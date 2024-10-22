@@ -12,8 +12,8 @@ linkTitle: Cosmos DB
   - [Operation Level Metrics](#operation-level-metrics)
     - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
     - [Metric: `db.client.response.row_count`](#metric-dbclientresponserow_count)
-    - [Metric: `db.cosmosdb.operation.request_charge`](#metric-dbcosmosdboperationrequest_charge)
-    - [Metric: `db.cosmosdb.client.active_instance.count`](#metric-dbcosmosdbclientactive_instancecount)
+    - [Metric: `db.client.cosmosdb.operation.request_charge`](#metric-dbclientcosmosdboperationrequest_charge)
+    - [Metric: `db.client.cosmosdb.active_instance.count`](#metric-dbclientcosmosdbactive_instancecount)
 
 <!-- tocstop -->
 
@@ -42,7 +42,7 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.connection_mode`](/docs/attributes-registry/db.md) | string | Cosmos client connection mode. | `gateway`; `direct` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.request_charge`](/docs/attributes-registry/db.md) | double | RU consumed for the operation. | `46.18`; `1.0` | `Conditionally Required` when available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.cosmosdb.request_charge`](/docs/attributes-registry/db.md) | double | Request units consumed for the operation. | `46.18`; `1.0` | `Conditionally Required` when available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | Cosmos DB sub status code. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [3] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -296,7 +296,7 @@ This metric is [required][MetricRequired].
 
 It captures the total time taken by an Azure Cosmos DB operation. This metric follows the common [db.client.operation.duration](/docs/database/database-metrics.md#metric-dbclientoperationduration) definition.
 
-Refer [db.cosmosdb.operation.request_charge](#metric-dbcosmosdboperationrequest_charge) metrics for dimensions.
+Refer [db.client.cosmosdb.operation.request_charge](#metric-dbclientcosmosdboperationrequest_charge) metrics for dimensions.
 
 ### Metric: `db.client.response.row_count`
 
@@ -304,9 +304,9 @@ This metric is [required][MetricRequired].
 
 It captures the number of items returned by a query or feed operation in Azure Cosmos DB. It helps identify response sizes that may contribute to high latency, increased memory/CPU usage, or network call failures. This metric follows the common [db.client.response.row_count](/docs/database/database-metrics.md#metric-dbclientresponserow_count) definition.
 
-Refer [db.cosmosdb.operation.request_charge](#metric-dbcosmosdboperationrequest_charge) metrics for dimensions.
+Refer [db.client.cosmosdb.operation.request_charge](#metric-dbclientcosmosdboperationrequest_charge) metrics for dimensions.
 
-### Metric: `db.cosmosdb.operation.request_charge`
+### Metric: `db.client.cosmosdb.operation.request_charge`
 
 This metric is [required][MetricRequired].
 
@@ -323,7 +323,7 @@ Explaining bucket configuration:
 3. 100, 250: Higher Usage Levels, These boundaries represent operations that may require significant resources, such as complex queries or larger transactions. Monitoring RUs in these ranges can help identify performance bottlenecks or costly queries that might lead to throttling.
 4. 500, 1000: Very High Usage Levels, These buckets capture operations that consume a substantial number of Request Units, which may indicate potentially expensive queries or batch processes. Understanding the frequency and patterns of such high RU usage can be critical in optimizing performance and ensuring the application remains within provisioned throughput limits.
 
-<!-- semconv metric.db.cosmosdb.operation.request_charge -->
+<!-- semconv metric.db.client.cosmosdb.operation.request_charge -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -332,7 +332,7 @@ Explaining bucket configuration:
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.cosmosdb.operation.request_charge` | Histogram | `{request_unit}` | [Request charge](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.cosmosdb.operation.request_charge` | Histogram | `{request_unit}` | [Request charge](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -407,13 +407,13 @@ and SHOULD be provided **at span creation time** (if provided at all):
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `db.cosmosdb.client.active_instance.count`
+### Metric: `db.client.cosmosdb.active_instance.count`
 
 This metric is [required][MetricRequired].
 
 It captures the number of active instances at any given time. Best practices dictate that there should ideally be only one instance of the SDK client per Azure Cosmos DB account. Having multiple instances of the SDK client for the same account in a single process can lead to CPU or memory-related issues.
 
-<!-- semconv metric.db.cosmosdb.client.active_instance.count -->
+<!-- semconv metric.db.client.cosmosdb.active_instance.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -422,7 +422,7 @@ It captures the number of active instances at any given time. Best practices dic
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.cosmosdb.client.active_instance.count` | UpDownCounter | `{instance}` | Number of active client instances | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.cosmosdb.client.active_instance.count` | UpDownCounter | `{instance}` | Number of active client instances | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
