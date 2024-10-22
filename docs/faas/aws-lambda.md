@@ -159,7 +159,7 @@ The span kind for both types of SQS spans SHOULD be `CONSUMER`.
 
 For the SQS event span, if all the messages in the event have the same event source, the name of the span MUST
 be `<event source> process`. If there are multiple sources in the batch, the name MUST be
-`multiple_sources process`. The parent MUST be the `SERVER` span corresponding to the function invocation.
+`multiple_sources process`. The parent SHOULD be the `SERVER` span corresponding to the function invocation.
 
 For every message in the event, the [message system attributes][] (not message attributes, which are provided by
 the user) SHOULD be checked for the key `AWSTraceHeader`. If it is present, an OpenTelemetry `Context` SHOULD be

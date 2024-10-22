@@ -55,7 +55,7 @@ This document defines how to describe remote procedure calls
 
 A remote procedure calls is described by two separate spans, one on the client-side and one on the server-side.
 
-For outgoing requests, the `SpanKind` SHOULD be set to `CLIENT` and for incoming requests to `SERVER`.
+For outgoing requests, the `SpanKind` MUST be set to `CLIENT` and for incoming requests to `SERVER`.
 
 Remote procedure calls can only be represented with these semantic conventions, when the names of the called service and method are known and available.
 
