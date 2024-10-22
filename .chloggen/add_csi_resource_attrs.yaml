@@ -7,10 +7,10 @@
 change_type: enhancement
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: container
+component: k8s
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Add `container.csi.plugin.name` and `container.csi.volume.id` to container resource attributes.
+note: Add `k8s.volume` resource, and add `container.csi.plugin.name` and `container.csi.volume.id` as resource attributes.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
