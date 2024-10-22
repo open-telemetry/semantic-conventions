@@ -511,7 +511,7 @@ groups:
       - id: db.cosmosdb.request_charge
         type: double
         stability: experimental
-        brief: RU consumed for the operation.
+        brief: Request units consumed for the operation.
         examples: [46.18, 1.0]
       - id: db.cosmosdb.request_content_length
         type: int
