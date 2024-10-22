@@ -10,7 +10,7 @@ change_type: enhancement
 component: enduser
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: introduce subnamespace `enduser.authentication` with new attributes `enduser.authentication.id`, `enduser.authentication.role`, and `enduser.authentication.scope`.
+note: introduce new attribute `enduser.authentication.id` and deprecate `enduser.authentication.role`, and `enduser.authentication.scope`.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
@@ -20,6 +20,5 @@ issues: [1104]
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
 subtext: |
-  The `enduser.authentication` subnamespace is intended to describe the authentication information of the end user.
-  The new attributes are intended to provide information about the authenticated user in the system,
-  the role the client is making the request under, and the scopes or granted authorities the client currently possesses.
+  The new attribute `enduser.authentication.id` is intended to provide an unique identifier of an authenticated enduser. 
+  The deprecated attributes `enduser.authentication.role` and `enduser.authentication.scope` are removed from the enduser registry.,
