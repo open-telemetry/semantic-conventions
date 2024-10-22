@@ -1,8 +1,9 @@
 {#- Macros for simplifying creating "Span" documentation. -#}
 {% import 'stability.j2' as stability %}
 {% macro header(span) %}
-{#- Can't do it yet since we have release candidate groups. -#}
+{#- Can't status yet since we have release candidate groups, but can't render them properly (https://github.com/open-telemetry/semantic-conventions/issues/1096) -#}
 {#- **Status:** {{ stability.badge(span.stability, span.deprecated) -#}
+{#- Can't do span kind yet because existing group need some cleanup -#}
 {{ span.brief | trim }}
 {%if span.note %}
 {{ span.note | trim }}
