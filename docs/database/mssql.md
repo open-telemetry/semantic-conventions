@@ -18,6 +18,7 @@ linkTitle: MSSQL
 Defines Semantic Conventions for *Microsoft SQL Server* client spans which extend and override the [Database Semantic Conventions](../../docs/database/database-spans.md).
 
 `db.system` MUST be set to `"mssql"` and SHOULD be provided **at span creation time**.
+
 This span has stability level RELEASE CANDIDATE.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

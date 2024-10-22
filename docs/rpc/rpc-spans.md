@@ -52,6 +52,7 @@ This document defines how to describe remote procedure calls
 > * SHOULD drop the environment variable in the next major version.
 
 ## Common remote procedure call conventions
+
 ### Span name
 
 The *span name* MUST be the full RPC method name formatted as:

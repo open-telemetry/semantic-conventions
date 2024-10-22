@@ -97,7 +97,7 @@ groups:
     brief: >
       Defines Semantic Conventions for *Microsoft SQL Server* client spans which extend
       and override the [Database Semantic Conventions](../../docs/database/database-spans.md).
-    note: >
+    note: |
       `db.system` MUST be set to `"mssql"` and SHOULD be provided **at span creation time**.
 
       This span has stability level RELEASE CANDIDATE.
@@ -137,7 +137,7 @@ groups:
     brief: >
       The Semantic Conventions for *PostgreSQL* client spans which extend and override
       the [Database Semantic Conventions](../../docs/database/database-spans.md).
-    note: >
+    note: |
       `db.system` MUST be set to `"postgresql"` and SHOULD be provided **at span creation time**.
 
       This span has stability level RELEASE CANDIDATE.
@@ -176,7 +176,7 @@ groups:
     brief: >
       The Semantic Conventions for *MySQL* client spans extend and override the
       [Database Semantic Conventions](../../docs/database/database-spans.md).
-    note: >
+    note: |
       `db.system` MUST be set to `"mysql"` and SHOULD be provided **at span creation time**.
 
       This span has stability level RELEASE CANDIDATE.
@@ -236,7 +236,7 @@ groups:
     brief: >
       Semantic Conventions for [Cassandra](https://cassandra.apache.org/) client spans
       extend and override the [Database Semantic Conventions](../../docs/database/database-spans.md).
-    note: >
+    note: |
       `db.system` MUST be set to `"cassandra"` and SHOULD be provided **at span creation time**.
 
       This span has stability level RELEASE CANDIDATE.
@@ -309,7 +309,7 @@ groups:
     brief: >
       Semantic Conventions for [CouchDB](https://couchdb.apache.org/) client spans
       extend and override the [Database Semantic Conventions](../../docs/database/database-spans.md).
-    note: >
+    note: |
       `db.system` MUST be set to `"couchdb"` and SHOULD be provided **at span creation time**.
 
       This span has stability level RELEASE CANDIDATE.

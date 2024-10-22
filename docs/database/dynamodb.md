@@ -9,8 +9,6 @@ linkTitle: AWS DynamoDB
 The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) extend and override the general
 [AWS SDK Semantic Conventions](/docs/cloud-providers/aws-sdk.md) and [Database Semantic Conventions](database-spans.md).
 
-`db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
-
 ## DynamoDB.BatchGetItem
 
 <!-- semconv dynamodb.batchgetitem -->
