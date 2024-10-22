@@ -20,5 +20,5 @@ issues: [1104]
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
 subtext: |
-  The new attribute `enduser.authentication.id` is intended to provide an unique identifier of an authenticated enduser. 
-  The deprecated attributes `enduser.authentication.role` and `enduser.authentication.scope` are removed from the enduser registry.,
+  The new attribute `enduser.authentication.id` is intended to provide an unique identifier of an authenticated enduser.
+  The deprecated attributes `enduser.authentication.role` and `enduser.authentication.scope` are removed from the enduser registry.
