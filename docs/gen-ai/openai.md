@@ -2,7 +2,7 @@
 linkTitle: OpenAI traces and metrics
 --->
 
-# Semantic Conventions for OpenAI operations
+# Semantic Conventions for OpenAI Client Operations
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -10,7 +10,7 @@ linkTitle: OpenAI traces and metrics
 
 <!-- toc -->
 
-- [OpenAI Spans](#openai-spans)
+- [OpenAI Client Spans](#openai-client-spans)
 - [OpenAI Metrics](#openai-metrics)
   - [Metric: `gen_ai.client.token.usage`](#metric-gen_aiclienttokenusage)
   - [Metric: `gen_ai.client.operation.duration`](#metric-gen_aiclientoperationduration)
@@ -22,7 +22,7 @@ for [Gen AI Spans](gen-ai-spans.md) and [Gen AI Metrics](gen-ai-metrics.md).
 
 `gen_ai.system` MUST be set to `"openai"`.
 
-## OpenAI Spans
+## OpenAI Client Spans
 
 These attributes track input data and metadata for a request to an OpenAI model. The attributes include general Generative AI
 attributes and ones specific the OpenAI.
@@ -33,6 +33,10 @@ attributes and ones specific the OpenAI.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+Semantic Conventions for [OpenAI](https://openai.com/) client spans extend and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md)
+
+`gen_ai.system` MUST be set to `"openai"`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

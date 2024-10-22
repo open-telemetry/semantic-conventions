@@ -1,14 +1,20 @@
 groups:
   - id: aws
     type: span
+    stability: experimental
+    span_kind: client
     brief: >
-      The `aws` conventions apply to operations using the AWS SDK. They map request or response parameters
-      in AWS SDK API calls to attributes on a Span. The conventions have been collected over time based
-      on feedback from AWS users of tracing and will continue to evolve as new interesting conventions
-      are found.
+        This span describes AWS SDK client call.
+    note: |
+        The span name MUST be of the format `Service.Operation` as per the
+        AWS HTTP API, e.g., `DynamoDB.GetItem`, `S3.ListBuckets`. This is
+        equivalent to concatenating `rpc.service` and `rpc.method` with `.` and
+        consistent with the naming guidelines for RPC client spans.
 
-      Some descriptions are also provided for populating general OpenTelemetry semantic conventions based on
-      these APIs.
+        AWS SDK span attributes are based on the request or response parameters
+        in AWS SDK API calls. The conventions have been collected over time based
+        on feedback from AWS users of tracing and will continue to increase as new
+        interesting conventions are found.
     attributes:
       - ref: rpc.system
         brief: "The value `aws-api`."
@@ -28,43 +34,15 @@ groups:
       - ref: aws.request_id
         requirement_level: recommended
 
-  - id: dynamodb.shared
-    extends: aws
-    type: span
-    brief: "Attributes that exist for multiple DynamoDB request types."
-    attributes:
-      - ref: db.operation.name
-        brief: "The same value as `rpc.method`."
-        examples:
-          - GetItem
-          - PutItem
-      - ref: aws.dynamodb.table_names
-        requirement_level: recommended
-      - ref: aws.dynamodb.consumed_capacity
-        requirement_level: recommended
-      - ref: aws.dynamodb.item_collection_metrics
-        requirement_level: recommended
-      - ref: aws.dynamodb.provisioned_read_capacity
-        requirement_level: recommended
-      - ref: aws.dynamodb.provisioned_write_capacity
-        requirement_level: recommended
-      - ref: aws.dynamodb.consistent_read
-        requirement_level: recommended
-      - ref: aws.dynamodb.projection
-        requirement_level: recommended
-      - ref: aws.dynamodb.limit
-        requirement_level: recommended
-      - ref: aws.dynamodb.attributes_to_get
-        requirement_level: recommended
-      - ref: aws.dynamodb.index_name
-        requirement_level: recommended
-      - ref: aws.dynamodb.select
-        requirement_level: recommended
-
   - id: dynamodb.batchgetitem
-    brief: DynamoDB.BatchGetItem
+    brief: >
+      This span represents `DynamoDB.BatchGetItem` call
+    note: |
+      `db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
     extends: aws
     type: span
+    stability: experimental
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
         requirement_level: recommended
@@ -72,9 +50,14 @@ groups:
         requirement_level: recommended
 
   - id: dynamodb.batchwriteitem
-    brief: DynamoDB.BatchWriteItem
+    brief: >
+      This span represents `DynamoDB.BatchWriteItem` call
+    note: |
+      `db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
     extends: aws
     type: span
+    stability: experimental
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
         requirement_level: recommended
@@ -84,9 +67,14 @@ groups:
         requirement_level: recommended
 
   - id: dynamodb.createtable
-    brief: DynamoDB.CreateTable
+    brief: >
+      This span represents `DynamoDB.CreateTable` call
+    note: |
+      `db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
     extends: aws
     type: span
+    stability: experimental
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.global_secondary_indexes
         requirement_level: recommended
@@ -107,9 +95,14 @@ groups:
         requirement_level: recommended
 
   - id: dynamodb.deleteitem
-    brief: DynamoDB.DeleteItem
+    brief: >
+      This span represents `DynamoDB.DeleteItem` call
+    note: |
+      `db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
     extends: aws
     type: span
+    stability: experimental
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
         requirement_level: recommended
@@ -122,9 +115,14 @@ groups:
         requirement_level: recommended
 
   - id: dynamodb.deletetable
-    brief: DynamoDB.DeleteTable
+    brief: >
+      This span represents `DynamoDB.DeleteTable` call
+    note: |
+      `db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
     extends: aws
     type: span
+    stability: experimental
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
         requirement_level: recommended
@@ -133,9 +131,14 @@ groups:
           - Users
 
   - id: dynamodb.describetable
-    brief: DynamoDB.DescribeTable
+    brief: >
+      This span represents `DynamoDB.DescribeTable` call
+    note: |
+      `db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
     extends: aws
     type: span
+    stability: experimental
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
         requirement_level: recommended
@@ -144,9 +147,14 @@ groups:
           - Users
 
   - id: dynamodb.getitem
-    brief: DynamoDB.GetItem
+    brief: >
+      This span represents `DynamoDB.GetItem` call
+    note: |
+      `db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
     extends: aws
     type: span
+    stability: experimental
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
         requirement_level: recommended
@@ -161,9 +169,14 @@ groups:
         requirement_level: recommended
 
   - id: dynamodb.listtables
-    brief: DynamoDB.ListTables
+    brief: >
+      This span represents `DynamoDB.ListTables` call
+    note: |
+      `db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
     extends: aws
     type: span
+    stability: experimental
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.exclusive_start_table
         requirement_level: recommended
@@ -173,9 +186,14 @@ groups:
         requirement_level: recommended
 
   - id: dynamodb.putitem
-    brief: DynamoDB.PutItem
+    brief: >
+      This span represents `DynamoDB.PutItem` call
+    note: |
+      `db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
     extends: aws
     type: span
+    stability: experimental
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
         requirement_level: recommended
@@ -185,9 +203,14 @@ groups:
         requirement_level: recommended
 
   - id: dynamodb.query
-    brief: DynamoDB.Query
+    brief: >
+      This span represents `DynamoDB.Query` call
+    note: |
+      `db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
     extends: aws
     type: span
+    stability: experimental
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.scan_forward
         requirement_level: recommended
@@ -212,9 +235,14 @@ groups:
         requirement_level: recommended
 
   - id: dynamodb.scan
-    brief: DynamoDB.Scan
+    brief: >
+      This span represents `DynamoDB.Scan` call
+    note: |
+      `db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
     extends: aws
     type: span
+    stability: experimental
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.segment
         requirement_level: recommended
@@ -245,9 +273,14 @@ groups:
         requirement_level: recommended
 
   - id: dynamodb.updateitem
-    brief: DynamoDB.UpdateItem
+    brief: >
+      This span represents `DynamoDB.UpdateItem` call
+    note: |
+      `db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
     extends: aws
     type: span
+    stability: experimental
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
         requirement_level: recommended
@@ -260,9 +293,14 @@ groups:
         requirement_level: recommended
 
   - id: dynamodb.updatetable
-    brief: DynamoDB.UpdateTable
+    brief: >
+      This span represents `DynamoDB.UpdateTable` call
+    note: |
+      `db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
     extends: aws
     type: span
+    stability: experimental
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.attribute_definitions
         requirement_level: recommended
@@ -283,7 +321,11 @@ groups:
   - id: aws.s3
     extends: aws
     type: span
-    brief: "Attributes that exist for S3 request types."
+    stability: experimental
+    span_kind: client
+    brief: >
+      Semantic Conventions for AWS S3 client spans extend the general
+      [AWS SDK Semantic Conventions](/docs/cloud-providers/aws-sdk.md)
     attributes:
       - ref: aws.s3.bucket
         requirement_level: recommended

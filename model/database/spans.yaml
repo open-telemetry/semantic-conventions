@@ -77,17 +77,31 @@ groups:
 
   - id: db
     type: span
-    stability: experimental
-    brief: This span defines the attributes used to perform database client calls.
+    stability: experimental # RELEASE CANDIDATE
+    brief: >
+      This span represents a database client operation.
+    note: |
+      **Span kind:** MUST always be `CLIENT`.
+
+      Span that describes database call SHOULD cover the duration of the corresponding call as if it was observed by the caller (such as client application).
+      For example, if a transient issue happened and was retried within this database call, the corresponding span should cover the duration of the logical operation
+      with all retries.
+
+      See [Name](../../docs/attributes-registry/db.md#name) for span naming details.
     span_kind: client
     extends: trace.db.common.full
 
   - id: db.mssql
     type: span
-    stability: experimental
-    extends: db.sql
+    stability: experimental # RELEASE CANDIDATE
     brief: >
-      Attributes for Microsoft SQL Server
+      Defines Semantic Conventions for *Microsoft SQL Server* client spans which extend
+      and override the [Database Semantic Conventions](../../docs/database/database-spans.md).
+    note: >
+      `db.system` MUST be set to `"mssql"` and SHOULD be provided **at span creation time**.
+
+      This span has stability level RELEASE CANDIDATE.
+    extends: db.sql
     attributes:
       - ref: db.namespace
         sampling_relevant: true
@@ -119,8 +133,14 @@ groups:
   - id: db.postgresql
     type: span
     extends: db.sql
+    stability: experimental # RELEASE CANDIDATE
     brief: >
-      Attributes for PostgreSQL
+      The Semantic Conventions for *PostgreSQL* client spans which extend and override
+      the [Database Semantic Conventions](../../docs/database/database-spans.md).
+    note: >
+      `db.system` MUST be set to `"postgresql"` and SHOULD be provided **at span creation time**.
+
+      This span has stability level RELEASE CANDIDATE.
     attributes:
       - ref: db.namespace
         sampling_relevant: true
@@ -152,8 +172,14 @@ groups:
   - id: db.mysql
     type: span
     extends: db.sql
+    stability: experimental # RELEASE CANDIDATE
     brief: >
-      Attributes for MySQL
+      The Semantic Conventions for *MySQL* client spans extend and override the
+      [Database Semantic Conventions](../../docs/database/database-spans.md).
+    note: >
+      `db.system` MUST be set to `"mysql"` and SHOULD be provided **at span creation time**.
+
+      This span has stability level RELEASE CANDIDATE.
     attributes:
       - ref: db.namespace
         sampling_relevant: true
@@ -177,8 +203,12 @@ groups:
   - id: db.mariadb
     type: span
     extends: db.sql
+    stability: experimental
     brief: >
-      Attributes for MariaDB
+      Semantic Conventions for *MariaDB* client spans extend and override the
+      [Database Semantic Conventions](../../docs/database/database-spans.md).
+    note: >
+      `db.system` MUST be set to `"mariadb"` and SHOULD be provided **at span creation time**.
     attributes:
       - ref: db.namespace
         sampling_relevant: true
@@ -203,9 +233,14 @@ groups:
   - id: db.cassandra
     type: span
     stability: experimental
-    extends: trace.db.common.query_and_collection
     brief: >
-      Attributes for Cassandra
+      Semantic Conventions for [Cassandra](https://cassandra.apache.org/) client spans
+      extend and override the [Database Semantic Conventions](../../docs/database/database-spans.md).
+    note: >
+      `db.system` MUST be set to `"cassandra"` and SHOULD be provided **at span creation time**.
+
+      This span has stability level RELEASE CANDIDATE.
+    extends: trace.db.common.query_and_collection
     attributes:
       - ref: db.namespace
         sampling_relevant: true
@@ -239,7 +274,10 @@ groups:
     stability: experimental
     extends: trace.db.common.minimal
     brief: >
-      Attributes for HBase
+      Semantic Conventions for [HBase](https://hbase.apache.org/) spans extend and
+      override the [Database Semantic Conventions](../../docs/database/database-spans.md).
+    note: >
+      `db.system` MUST be set to `"hbase"` and SHOULD be provided **at span creation time**.
     attributes:
       - ref: db.namespace
         sampling_relevant: true
@@ -269,7 +307,12 @@ groups:
     stability: experimental
     extends: trace.db.common.minimal
     brief: >
-      Attributes for CouchDB
+      Semantic Conventions for [CouchDB](https://couchdb.apache.org/) client spans
+      extend and override the [Database Semantic Conventions](../../docs/database/database-spans.md).
+    note: >
+      `db.system` MUST be set to `"couchdb"` and SHOULD be provided **at span creation time**.
+
+      This span has stability level RELEASE CANDIDATE.
     attributes:
       - ref: db.operation.name
         sampling_relevant: true
@@ -301,7 +344,10 @@ groups:
     stability: experimental
     extends: attributes.db.client.minimal
     brief: >
-      Attributes for Redis
+      Semantic Conventions for [Redis](https://redis.com/) client spans
+      extend and override the [Database Semantic Conventions](../../docs/database/database-spans.md).
+    note: >
+      `db.system` MUST be set to `"redis"` and SHOULD be provided **at span creation time**.
     attributes:
       - ref: db.namespace
         sampling_relevant: true
@@ -362,9 +408,12 @@ groups:
   - id: db.mongodb
     type: span
     stability: experimental
-    extends: trace.db.common.minimal
     brief: >
-      Attributes for MongoDB
+      Semantic Conventions for [MongoDB](https://www.mongodb.com/) client spans
+      extend and override the [Database Semantic Conventions](../../docs/database/database-spans.md).
+    note: >
+      `db.system` MUST be set to `"mongodb"` and SHOULD be provided **at span creation time**.
+    extends: trace.db.common.minimal
     attributes:
       - ref: db.operation.name
         sampling_relevant: true
@@ -398,7 +447,13 @@ groups:
     stability: experimental
     extends: trace.db.common.minimal
     brief: >
-      Attributes for Elasticsearch
+      Semantic Conventions for [Elasticsearch](https://www.elastic.co/) client spans
+      extend and override the [Database Semantic Conventions](database-spans.md).
+    note: |
+      `db.system` MUST be set to `"elasticsearch"` and SHOULD be provided **at span creation time**.
+
+      The **span name** follows the [general database span name guidelines](database-spans.md#name)
+      with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
     attributes:
       - ref: http.request.method
         sampling_relevant: true
@@ -450,10 +505,38 @@ groups:
           conditionally_required: If response was received.
   - id: db.sql
     type: span
-    stability: experimental
+    span_kind: client
+    stability: experimental # RELEASE CANDIDATE
     extends: trace.db.common.query_and_collection
     brief: >
-      Attributes for SQL databases
+      Semantic Conventions for SQL database client span extend and override the
+      [Database Semantic Conventions](database-spans.md).
+    note: |
+        The following database systems (defined in the [`db.system`](./database-spans.md#notes-and-well-known-identifiers-for-dbsystem) set) are known to use SQL as their primary query language:
+
+        - `cockroachdb`
+        - `db2`
+        - `derby`
+        - `edb`
+        - `firebird`
+        - `h2`
+        - `hsqldb`
+        - `ingres`
+        - `interbase`
+        - `mariadb`
+        - `maxdb`
+        - `mssql`
+        - `mssqlcompact`
+        - `mysql`
+        - `oracle`
+        - `other_sql`
+        - `pervasive`
+        - `postgresql`
+        - `sqlite`
+        - `trino`
+
+        Many other database systems support SQL and can be accessed via generic database driver such as JDBC or ODBC.
+        Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic conventions.
     attributes:
       - ref: db.operation.name
         note: >
@@ -533,10 +616,17 @@ groups:
           conditionally_required: If response has ended with warning or an error.
   - id: db.cosmosdb
     type: span
+    span_kind: client
     stability: experimental
     extends: trace.db.common.query_and_collection
     brief: >
-      Attributes for Cosmos DB.
+      Semantic Conventions for [Microsoft Cosmos DB](https://azure.microsoft.com/products/cosmos-db/)
+      client spans extend and override the [Database Semantic Conventions](database-spans.md).
+    note: |
+      `db.system` MUST be set to `"cosmosdb"` and SHOULD be provided **at span creation time**.
+
+      Cosmos DB instrumentation includes call-level (public API) surface spans and network spans.
+      Depending on the connection mode (Gateway or Direct), network-level spans may also be created.
     attributes:
       - ref: db.cosmosdb.client_id
       - ref: db.cosmosdb.operation_type

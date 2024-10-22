@@ -29,7 +29,7 @@ groups:
         #   sampling_relevant: true
 
   - id: messaging
-    type: span
+    type: attribute_group
     stability: experimental
     brief: >
         Defines a full set of attributes used in messaging systems.

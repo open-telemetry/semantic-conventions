@@ -1,0 +1,10 @@
+{#- Macros for simplifying creating "Span" documentation. -#}
+{% import 'stability.j2' as stability %}
+{% macro header(span) %}
+{#- Can't do it yet since we have release candidate groups. -#}
+{#- **Status:** {{ stability.badge(span.stability, span.deprecated) -#}
+{{ span.brief | trim }}
+{%if span.note %}
+{{ span.note | trim }}
+{% endif %}
+{% endmacro %}

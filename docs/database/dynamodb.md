@@ -2,7 +2,7 @@
 linkTitle: AWS DynamoDB
 --->
 
-# Semantic Conventions for AWS DynamoDB
+# Semantic Conventions for AWS DynamoDB Client Operations
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -19,6 +19,10 @@ The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) ex
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+This span represents `DynamoDB.BatchGetItem` call
+
+`db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -57,6 +61,10 @@ The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) ex
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+This span represents `DynamoDB.BatchWriteItem` call
+
+`db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -94,6 +102,10 @@ The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) ex
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+This span represents `DynamoDB.CreateTable` call
+
+`db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -137,6 +149,10 @@ The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) ex
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+This span represents `DynamoDB.DeleteItem` call
+
+`db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -175,6 +191,10 @@ The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) ex
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+This span represents `DynamoDB.DeleteTable` call
+
+`db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -211,6 +231,10 @@ The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) ex
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+This span represents `DynamoDB.DescribeTable` call
+
+`db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -246,6 +270,10 @@ The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) ex
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+This span represents `DynamoDB.GetItem` call
+
+`db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -286,6 +314,10 @@ The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) ex
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+This span represents `DynamoDB.ListTables` call
+
+`db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -324,6 +356,10 @@ The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) ex
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+This span represents `DynamoDB.PutItem` call
+
+`db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -361,6 +397,10 @@ The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) ex
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+This span represents `DynamoDB.Query` call
+
+`db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -405,6 +445,10 @@ The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) ex
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+This span represents `DynamoDB.Scan` call
+
+`db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -453,6 +497,10 @@ The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) ex
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+This span represents `DynamoDB.UpdateItem` call
+
+`db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -490,6 +538,10 @@ The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) ex
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+This span represents `DynamoDB.UpdateTable` call
+
+`db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

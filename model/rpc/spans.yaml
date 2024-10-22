@@ -1,8 +1,8 @@
 groups:
   - id: rpc
-    type: span
+    type: attribute_group
+    stability: experimental
     brief: 'This document defines semantic conventions for remote procedure calls.'
-    events: [rpc.message]
     attributes:
       - ref: rpc.system
         requirement_level: required
@@ -28,7 +28,16 @@ groups:
 
   - id: rpc.client
     type: span
-    brief: 'This document defines semantic conventions for remote procedure call client spans.'
+    stability: experimental
+    brief: >
+      This span represents an outgoing Remote Procedure (RPC) call.
+    note: |
+      The `SpanKind` MUST be set to `CLIENT`.
+
+      Remote procedure calls can only be represented with these semantic conventions,
+      when the names of the called service and method are known and available.
+
+      Refer to the [Span Name](#span-name) section for details on naming spans.
     extends: rpc
     attributes:
       - ref: network.peer.address
@@ -36,12 +45,22 @@ groups:
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
+    events: [rpc.message]
 
   - id: rpc.server
     type: span
+    stability: experimental
     extends: rpc
     span_kind: server
-    brief: 'Semantic Convention for RPC server spans'
+    brief: >
+      This span represents an incoming Remote Procedure (RPC) call.
+    note: |
+      The `SpanKind` MUST be set to `SERVER`.
+
+      Remote procedure calls can only be represented with these semantic conventions,
+      when the names of the called service and method are known and available.
+
+      Refer to the [Span Name](#span-name) section for details on naming spans.
     attributes:
       - ref: client.address
         requirement_level: recommended
@@ -56,11 +75,17 @@ groups:
         requirement_level: recommended
       - ref: network.type
         requirement_level: recommended
+    events: [rpc.message]
 
   - id: rpc.grpc
     type: span
+    stability: experimental
     extends: rpc
-    brief: 'Tech-specific attributes for gRPC.'
+    brief: >
+      Semantic Conventions for [gRPC](https://grpc.io/) extend and override the
+      [RPC client and server spans](rpc-spans.md)
+    note: |
+      `rpc.system` MUST be set to `"grpc"`.
     attributes:
       - ref: rpc.grpc.status_code
         tag: grpc-tech-specific
@@ -74,8 +99,13 @@ groups:
 
   - id: rpc.jsonrpc
     type: span
+    stability: experimental
     extends: rpc
-    brief: 'Tech-specific attributes for [JSON RPC](https://www.jsonrpc.org/).'
+    brief: >
+      Semantic Conventions for [JSON-RPC](https://www.jsonrpc.org/) extend and
+      override the [RPC client and server spans](rpc-spans.md)
+    note: |
+      `rpc.system` MUST be set to `"jsonrpc"`.
     attributes:
       - ref: rpc.jsonrpc.version
         tag: jsonrpc-tech-specific
@@ -119,8 +149,13 @@ groups:
 
   - id: rpc.connect_rpc
     type: span
+    stability: experimental
     extends: rpc
-    brief: 'Tech-specific attributes for Connect RPC.'
+    brief: >
+      Semantic Conventions for [Connect](http://connect.build) extend and override
+      the [RPC client and server spans](rpc-spans.md).
+    note: |
+      `rpc.system` MUST be set to `"connect_rpc"`.
     attributes:
       - ref: rpc.connect_rpc.error_code
         tag: connect_rpc-tech-specific
