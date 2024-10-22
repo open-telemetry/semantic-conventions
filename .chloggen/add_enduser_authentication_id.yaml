@@ -22,3 +22,4 @@ issues: [1104]
 subtext: |
   The new attribute `enduser.authentication.id` is intended to provide an unique identifier of an authenticated enduser.
   The deprecated attributes `enduser.authentication.role` and `enduser.authentication.scope` are removed from the enduser registry.
+  
