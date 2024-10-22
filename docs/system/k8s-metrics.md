@@ -30,10 +30,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `k8s.pod.cpu.time` | Counter | `s` | Total CPU time consumed [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Total CPU time consumed by the specific Pod on all available CPU cores
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -55,10 +52,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `k8s.pod.cpu.usage` | Gauge | `{cpu}` | Pod's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** CPU usage of the specific Pod on all available CPU cores, averaged over the sample window
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -80,10 +74,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `k8s.pod.memory.usage` | Gauge | `By` | Memory usage of the Pod [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Total memory usage of the Pod
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -105,10 +96,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `k8s.node.cpu.time` | Counter | `s` | Total CPU time consumed [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Total CPU time consumed by the specific Node on all available CPU cores
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -130,10 +118,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `k8s.node.cpu.usage` | Gauge | `{cpu}` | Node's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** CPU usage of the specific Node on all available CPU cores, averaged over the sample window
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -155,10 +140,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `k8s.node.memory.usage` | Gauge | `By` | Memory usage of the Node [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Total memory usage of the Node
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
