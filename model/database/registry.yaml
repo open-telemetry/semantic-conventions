@@ -151,7 +151,7 @@ groups:
       - id: db.response.row_count
         type: int
         stability: experimental
-        brief: Number of rows returned by the database in response.
+        brief: Number of rows returned by the operation.
         examples: [10, 30, 1000]
       - id: db.system
         brief: The database management system (DBMS) product as identified by the client instrumentation.
