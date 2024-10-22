@@ -36,7 +36,7 @@ For Apache Kafka, the following additional attributes are defined:
 | [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [2] | `0`; `1`; `2` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.kafka.message.tombstone`](/docs/attributes-registry/messaging.md) | boolean | A boolean that is true if the message is a tombstone. |  | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [7] | `publish`; `create`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [7] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.client.id`](/docs/attributes-registry/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md) | string | Kafka [consumer group id](https://docs.confluent.io/platform/current/clients/consumer.html). | `my-group`; `indexer` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -64,8 +64,8 @@ If the operation has completed successfully, instrumentations SHOULD NOT set `er
 If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
 it's RECOMMENDED to:
 
-* Use a domain-specific attribute
-* Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+- Use a domain-specific attribute
+- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
 **[2]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
@@ -89,8 +89,6 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 **[11]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
-
-
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
@@ -108,18 +106,15 @@ and SHOULD be provided **at span creation time** (if provided at all):
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `process` | One or more messages are processed by a consumer. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -165,7 +160,7 @@ flowchart LR;
   linkStyle 1 color:green,stroke:green
 ```
 
-| Field or Attribute | Span Send | Span Poll | Span Process | Span Commit T |
+| Field or Attribute | Producer | Consumer Span Poll | Consumer Span Process | Consumer Span Commit T |
 |-|-|-|-|-|
 | Span name | `"send T"` | `"poll T"` | `"process T"` | `"commit T"` |
 | Parent |  |  |  (optional) Span Send  | Span Process |
@@ -177,7 +172,7 @@ flowchart LR;
 | `messaging.destination.consumer.group` |  | `"my-group"` | `"my-group"` | `"my-group"` |
 | `messaging.destination.partition.id` | `"1"` | `"1"` | `"1"` | `"1"` |
 | `messaging.operation.name` | `"send"` | `"poll"` | `"process"` | `"commit"` |
-| `messaging.operation.type` | `"publish"`  | `"receive"` | `"process"` | `"settle"` |
+| `messaging.operation.type` | `"send"`  | `"receive"` | `"process"` | `"settle"` |
 | `messaging.client.id` | `"5"` | `"8"` | `"8"` | `"8"` |
 | `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` |  |
 | `messaging.kafka.message.offset` |  | `"12"` | `"12"` | `"12"` |

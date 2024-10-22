@@ -7,8 +7,9 @@ groups:
       - ref: db.operation.name
         requirement_level:
           conditionally_required: >
-            If readily available. The operation name MAY be parsed from the query text,
-            in which case it SHOULD be the first operation name found in the query.
+            If readily available and if there is a single operation name that describes the
+            database call. The operation name MAY be parsed from the query text,
+            in which case it SHOULD be the single operation name found in the query.
       - ref: server.address
         brief: >
           Name of the database host.
@@ -30,3 +31,22 @@ groups:
           generic one, the original exception SHOULD be preferred.
 
           Instrumentations SHOULD document how `error.type` is populated.
+
+  - id: attributes.db.client.with_query_and_collection
+    extends: attributes.db.client.minimal
+    type: attribute_group
+    stability: experimental
+    brief: This group defines the attributes describing database operations that
+      have query and collection name.
+    attributes:
+      - ref: db.query.text
+      - ref: db.query.summary
+        requirement_level:
+          recommended: if readily available or if instrumentation supports query summarization.
+      - ref: db.collection.name
+        sampling_relevant: true
+        requirement_level:
+          conditionally_required: >
+            If readily available and if a database call is performed on a single collection.
+            The collection name MAY be parsed from the query text,
+            in which case it SHOULD be the single collection name in the query.

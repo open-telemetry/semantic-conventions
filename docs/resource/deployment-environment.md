@@ -23,11 +23,8 @@ the `service.namespace`, `service.name` and `service.instance.id` resource attri
 This implies that resources carrying the following attribute combinations MUST be
 considered to be identifying the same service:
 
-* `service.name=frontend`, `deployment.environment.name=production`
-* `service.name=frontend`, `deployment.environment.name=staging`.
-
-
-
+- `service.name=frontend`, `deployment.environment.name=production`
+- `service.name=frontend`, `deployment.environment.name=staging`.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

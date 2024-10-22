@@ -61,12 +61,12 @@ groups:
         examples: ["process", "consume", "handle"]
 
   # counters
-  - id: metric.messaging.client.published.messages
+  - id: metric.messaging.client.sent.messages
     type: metric
-    metric_name: messaging.client.published.messages
-    brief: "Number of messages producer attempted to publish to the broker."
+    metric_name: messaging.client.sent.messages
+    brief: "Number of messages producer attempted to send to the broker."
     note: >
-      This metric MUST NOT count messages that were created haven't yet been attempted to be published.
+      This metric MUST NOT count messages that were created but haven't yet been sent.
     stability: experimental
     instrument: counter
     unit: "{message}"

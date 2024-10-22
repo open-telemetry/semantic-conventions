@@ -48,6 +48,18 @@ deny[yaml_schema_violation(description, group.id, name)] {
     description := sprintf("Event name '%s' is invalid. Event name %s'", [name, invalid_name_helper])
 }
 
+# checks event.name is not referenced in event attributes
+deny[yaml_schema_violation(description, group.id, name)] {
+    group := input.groups[_]
+    group.type == "event"
+    name := group.name
+
+    attr := group.attributes[_]
+    attr.ref == "event.name"
+
+    description := sprintf("Attribute 'event.name' is referenced on event group '%s'. Event name must be provided in 'name' property on the group", [name])
+}
+
 # require resources have names
 deny[yaml_schema_violation(description, group.id, "")] {
     group := input.groups[_]
