@@ -57,6 +57,7 @@ groups:
   - id: span.gen_ai.client
     type: span
     stability: experimental
+    span_kind: client
     brief: >
       Describes GenAI operation span.
     extends: trace.gen_ai.client.common_attributes
@@ -73,6 +74,7 @@ groups:
   - id: span.gen_ai.openai.client
     extends: trace.gen_ai.client.common_attributes
     stability: experimental
+    span_kind: client
     brief: >
       Describes an OpenAI operation span.
     attributes:

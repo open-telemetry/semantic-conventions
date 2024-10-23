@@ -1,6 +1,7 @@
 groups:
   - id: span.aws.client
     type: span
+    span_kind: client
     brief: >
       The `aws` conventions apply to operations using the AWS SDK. They map request or response parameters
       in AWS SDK API calls to attributes on a Span. The conventions have been collected over time based
@@ -32,6 +33,7 @@ groups:
     brief: DynamoDB.BatchGetItem
     extends: span.aws.client
     type: span
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
         requirement_level: recommended
@@ -42,6 +44,7 @@ groups:
     brief: DynamoDB.BatchWriteItem
     extends: span.aws.client
     type: span
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
         requirement_level: recommended
@@ -54,6 +57,7 @@ groups:
     brief: DynamoDB.CreateTable
     extends: span.aws.client
     type: span
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.global_secondary_indexes
         requirement_level: recommended
@@ -77,6 +81,7 @@ groups:
     brief: DynamoDB.DeleteItem
     extends: span.aws.client
     type: span
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
         requirement_level: recommended
@@ -92,6 +97,7 @@ groups:
     brief: DynamoDB.DeleteTable
     extends: span.aws.client
     type: span
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
         requirement_level: recommended
@@ -103,6 +109,7 @@ groups:
     brief: DynamoDB.DescribeTable
     extends: span.aws.client
     type: span
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
         requirement_level: recommended
@@ -114,6 +121,7 @@ groups:
     brief: DynamoDB.GetItem
     extends: span.aws.client
     type: span
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
         requirement_level: recommended
@@ -131,6 +139,7 @@ groups:
     brief: DynamoDB.ListTables
     extends: span.aws.client
     type: span
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.exclusive_start_table
         requirement_level: recommended
@@ -143,6 +152,7 @@ groups:
     brief: DynamoDB.PutItem
     extends: span.aws.client
     type: span
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
         requirement_level: recommended
@@ -155,6 +165,7 @@ groups:
     brief: DynamoDB.Query
     extends: span.aws.client
     type: span
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.scan_forward
         requirement_level: recommended
@@ -182,6 +193,7 @@ groups:
     brief: DynamoDB.Scan
     extends: span.aws.client
     type: span
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.segment
         requirement_level: recommended
@@ -215,6 +227,7 @@ groups:
     brief: DynamoDB.UpdateItem
     extends: span.aws.client
     type: span
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.table_names
         requirement_level: recommended
@@ -251,6 +264,7 @@ groups:
   - id: span.aws.s3.client
     extends: span.aws.client
     type: span
+    span_kind: client
     brief: "Attributes that exist for S3 request types."
     attributes:
       - ref: aws.s3.bucket
