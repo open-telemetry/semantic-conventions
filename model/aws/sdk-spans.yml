@@ -1,5 +1,5 @@
 groups:
-  - id: aws
+  - id: span.aws.client
     type: span
     brief: >
       The `aws` conventions apply to operations using the AWS SDK. They map request or response parameters
@@ -28,42 +28,9 @@ groups:
       - ref: aws.request_id
         requirement_level: recommended
 
-  - id: dynamodb.shared
-    extends: aws
-    type: span
-    brief: "Attributes that exist for multiple DynamoDB request types."
-    attributes:
-      - ref: db.operation.name
-        brief: "The same value as `rpc.method`."
-        examples:
-          - GetItem
-          - PutItem
-      - ref: aws.dynamodb.table_names
-        requirement_level: recommended
-      - ref: aws.dynamodb.consumed_capacity
-        requirement_level: recommended
-      - ref: aws.dynamodb.item_collection_metrics
-        requirement_level: recommended
-      - ref: aws.dynamodb.provisioned_read_capacity
-        requirement_level: recommended
-      - ref: aws.dynamodb.provisioned_write_capacity
-        requirement_level: recommended
-      - ref: aws.dynamodb.consistent_read
-        requirement_level: recommended
-      - ref: aws.dynamodb.projection
-        requirement_level: recommended
-      - ref: aws.dynamodb.limit
-        requirement_level: recommended
-      - ref: aws.dynamodb.attributes_to_get
-        requirement_level: recommended
-      - ref: aws.dynamodb.index_name
-        requirement_level: recommended
-      - ref: aws.dynamodb.select
-        requirement_level: recommended
-
-  - id: dynamodb.batchgetitem
+  - id: span.dynamodb.batchgetitem.client
     brief: DynamoDB.BatchGetItem
-    extends: aws
+    extends: span.aws.client
     type: span
     attributes:
       - ref: aws.dynamodb.table_names
@@ -71,9 +38,9 @@ groups:
       - ref: aws.dynamodb.consumed_capacity
         requirement_level: recommended
 
-  - id: dynamodb.batchwriteitem
+  - id: span.dynamodb.batchwriteitem.client
     brief: DynamoDB.BatchWriteItem
-    extends: aws
+    extends: span.aws.client
     type: span
     attributes:
       - ref: aws.dynamodb.table_names
@@ -83,9 +50,9 @@ groups:
       - ref: aws.dynamodb.item_collection_metrics
         requirement_level: recommended
 
-  - id: dynamodb.createtable
+  - id: span.dynamodb.createtable.client
     brief: DynamoDB.CreateTable
-    extends: aws
+    extends: span.aws.client
     type: span
     attributes:
       - ref: aws.dynamodb.global_secondary_indexes
@@ -106,9 +73,9 @@ groups:
       - ref: aws.dynamodb.provisioned_write_capacity
         requirement_level: recommended
 
-  - id: dynamodb.deleteitem
+  - id: span.dynamodb.deleteitem.client
     brief: DynamoDB.DeleteItem
-    extends: aws
+    extends: span.aws.client
     type: span
     attributes:
       - ref: aws.dynamodb.table_names
@@ -121,9 +88,9 @@ groups:
       - ref: aws.dynamodb.item_collection_metrics
         requirement_level: recommended
 
-  - id: dynamodb.deletetable
+  - id: span.dynamodb.deletetable.client
     brief: DynamoDB.DeleteTable
-    extends: aws
+    extends: span.aws.client
     type: span
     attributes:
       - ref: aws.dynamodb.table_names
@@ -132,9 +99,9 @@ groups:
         examples:
           - Users
 
-  - id: dynamodb.describetable
+  - id: span.dynamodb.describetable.client
     brief: DynamoDB.DescribeTable
-    extends: aws
+    extends: span.aws.client
     type: span
     attributes:
       - ref: aws.dynamodb.table_names
@@ -143,9 +110,9 @@ groups:
         examples:
           - Users
 
-  - id: dynamodb.getitem
+  - id: span.dynamodb.getitem.client
     brief: DynamoDB.GetItem
-    extends: aws
+    extends: span.aws.client
     type: span
     attributes:
       - ref: aws.dynamodb.table_names
@@ -160,9 +127,9 @@ groups:
       - ref: aws.dynamodb.projection
         requirement_level: recommended
 
-  - id: dynamodb.listtables
+  - id: span.dynamodb.listtables.client
     brief: DynamoDB.ListTables
-    extends: aws
+    extends: span.aws.client
     type: span
     attributes:
       - ref: aws.dynamodb.exclusive_start_table
@@ -172,9 +139,9 @@ groups:
       - ref: aws.dynamodb.limit
         requirement_level: recommended
 
-  - id: dynamodb.putitem
+  - id: span.dynamodb.putitem.client
     brief: DynamoDB.PutItem
-    extends: aws
+    extends: span.aws.client
     type: span
     attributes:
       - ref: aws.dynamodb.table_names
@@ -184,9 +151,9 @@ groups:
       - ref: aws.dynamodb.item_collection_metrics
         requirement_level: recommended
 
-  - id: dynamodb.query
+  - id: span.dynamodb.query.client
     brief: DynamoDB.Query
-    extends: aws
+    extends: span.aws.client
     type: span
     attributes:
       - ref: aws.dynamodb.scan_forward
@@ -211,9 +178,9 @@ groups:
       - ref: aws.dynamodb.select
         requirement_level: recommended
 
-  - id: dynamodb.scan
+  - id: span.dynamodb.scan.client
     brief: DynamoDB.Scan
-    extends: aws
+    extends: span.aws.client
     type: span
     attributes:
       - ref: aws.dynamodb.segment
@@ -244,9 +211,9 @@ groups:
       - ref: aws.dynamodb.select
         requirement_level: recommended
 
-  - id: dynamodb.updateitem
+  - id: span.dynamodb.updateitem.client
     brief: DynamoDB.UpdateItem
-    extends: aws
+    extends: span.aws.client
     type: span
     attributes:
       - ref: aws.dynamodb.table_names
@@ -259,10 +226,11 @@ groups:
       - ref: aws.dynamodb.item_collection_metrics
         requirement_level: recommended
 
-  - id: dynamodb.updatetable
+  - id: span.dynamodb.updatetable.client
     brief: DynamoDB.UpdateTable
-    extends: aws
+    extends: span.aws.client
     type: span
+    span_kind: client
     attributes:
       - ref: aws.dynamodb.attribute_definitions
         requirement_level: recommended
@@ -280,8 +248,8 @@ groups:
       - ref: aws.dynamodb.provisioned_write_capacity
         requirement_level: recommended
 
-  - id: aws.s3
-    extends: aws
+  - id: span.aws.s3.client
+    extends: span.aws.client
     type: span
     brief: "Attributes that exist for S3 request types."
     attributes:

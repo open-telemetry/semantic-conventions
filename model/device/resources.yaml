@@ -1,5 +1,5 @@
 groups:
-  - id: device
+  - id: resource.device
     type: resource
     name: device
     brief: >

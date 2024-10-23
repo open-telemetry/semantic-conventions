@@ -1,5 +1,5 @@
 groups:
-  - id: deployment
+  - id: resource.deployment
     type: resource
     name: deployment
     brief: >

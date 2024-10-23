@@ -1,5 +1,5 @@
 groups:
-  - id: cloudevents
+  - id: span.cloudevents
     type: span
     brief: >
         This document defines attributes for CloudEvents.

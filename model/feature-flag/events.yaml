@@ -1,5 +1,5 @@
 groups:
-  - id: feature_flag
+  - id: event.feature_flag
     type: event
     stability: experimental
     name: feature_flag

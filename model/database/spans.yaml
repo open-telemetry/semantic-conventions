@@ -75,17 +75,17 @@ groups:
         requirement_level:
           conditionally_required: If available.
 
-  - id: db
+  - id: span.db
     type: span
     stability: experimental
     brief: This span defines the attributes used to perform database client calls.
     span_kind: client
     extends: trace.db.common.full
 
-  - id: db.mssql
+  - id: span.db.mssql
     type: span
     stability: experimental
-    extends: db.sql
+    extends: span.db.sql
     brief: >
       Attributes for Microsoft SQL Server
     attributes:
@@ -116,9 +116,9 @@ groups:
           Microsoft SQL Server does not report SQLSTATE.
         examples: ["102", "40020"]
 
-  - id: db.postgresql
+  - id: span.db.postgresql
     type: span
-    extends: db.sql
+    extends: span.db.sql
     brief: >
       Attributes for PostgreSQL
     attributes:
@@ -149,9 +149,9 @@ groups:
           [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html).
         examples: ["08000", "08P01"]
 
-  - id: db.mysql
+  - id: span.db.mysql
     type: span
-    extends: db.sql
+    extends: span.db.sql
     brief: >
       Attributes for MySQL
     attributes:
@@ -174,9 +174,9 @@ groups:
           [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html).
         examples: ["1005", "MY-010016"]
 
-  - id: db.mariadb
+  - id: span.db.mariadb
     type: span
-    extends: db.sql
+    extends: span.db.sql
     brief: >
       Attributes for MariaDB
     attributes:
@@ -200,7 +200,7 @@ groups:
           represented as a string.
         examples: ["1008", "3058"]
 
-  - id: db.cassandra
+  - id: span.db.cassandra
     type: span
     stability: experimental
     extends: trace.db.common.query_and_collection
@@ -234,7 +234,7 @@ groups:
         brief: >
           [Cassandra protocol error code](https://github.com/apache/cassandra/blob/cassandra-5.0/doc/native_protocol_v5.spec) represented as a string.
         examples: ["102", "40020"]
-  - id: db.hbase
+  - id: span.db.hbase
     type: span
     stability: experimental
     extends: trace.db.common.minimal
@@ -264,7 +264,7 @@ groups:
         examples: ["200", "409", "14"]
         requirement_level:
           conditionally_required: If response was received.
-  - id: db.couchdb
+  - id: span.db.couchdb
     type: span
     stability: experimental
     extends: trace.db.common.minimal
@@ -296,7 +296,7 @@ groups:
         requirement_level:
           conditionally_required: If response was received and the HTTP response code is available.
 
-  - id: db.redis
+  - id: span.db.redis
     type: span
     stability: experimental
     extends: attributes.db.client.minimal
@@ -359,7 +359,7 @@ groups:
       - ref: server.port
         sampling_relevant: true
 
-  - id: db.mongodb
+  - id: span.db.mongodb
     type: span
     stability: experimental
     extends: trace.db.common.minimal
@@ -393,7 +393,7 @@ groups:
           conditionally_required: If the operation failed and error code is available.
         examples: ["36", "11602"]
 
-  - id: db.elasticsearch
+  - id: span.db.elasticsearch
     type: span
     stability: experimental
     extends: trace.db.common.minimal
@@ -448,7 +448,7 @@ groups:
         examples: ["200", "201", "429"]
         requirement_level:
           conditionally_required: If response was received.
-  - id: db.sql
+  - id: span.db.sql
     type: span
     stability: experimental
     extends: trace.db.common.query_and_collection
@@ -531,7 +531,7 @@ groups:
         examples: ["ORA-17027", "1052", "2201B"]
         requirement_level:
           conditionally_required: If response has ended with warning or an error.
-  - id: db.cosmosdb
+  - id: span.db.cosmosdb
     type: span
     stability: experimental
     extends: trace.db.common.query_and_collection

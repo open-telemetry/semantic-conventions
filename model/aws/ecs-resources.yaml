@@ -1,5 +1,5 @@
 groups:
-  - id: aws.ecs
+  - id: resource.aws.ecs
     type: resource
     name: aws.ecs
     brief: >
