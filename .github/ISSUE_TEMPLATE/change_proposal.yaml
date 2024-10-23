@@ -15,7 +15,6 @@ body:
         - area:android
         - area:artifact
         - area:aspnetcore
-        - area:authentication
         - area:aws
         - area:azure
         - area:browser
