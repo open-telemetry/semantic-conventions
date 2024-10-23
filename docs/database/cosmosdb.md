@@ -422,7 +422,7 @@ It captures the number of active instances at any given time. Best practices dic
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.cosmosdb.client.active_instance.count` | UpDownCounter | `{instance}` | Number of active client instances | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.cosmosdb.active_instance.count` | UpDownCounter | `{instance}` | Number of active client instances | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
