@@ -2,13 +2,9 @@
 linkTitle: HBase
 --->
 
-# Semantic Conventions for HBase
+# Semantic Conventions for HBase Client Operations
 
 **Status**: [Experimental][DocumentStatus]
-
-The Semantic Conventions for [HBase](https://hbase.apache.org/) extend and override the [Database Semantic Conventions](database-spans.md).
-
-`db.system` MUST be set to `"hbase"` and SHOULD be provided **at span creation time**.
 
 ## Attributes
 
@@ -18,6 +14,10 @@ The Semantic Conventions for [HBase](https://hbase.apache.org/) extend and overr
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+Semantic Conventions for [HBase](https://hbase.apache.org/) spans extend and override the [Database Semantic Conventions](../../docs/database/database-spans.md).
+
+`db.system` MUST be set to `"hbase"` and SHOULD be provided **at span creation time**.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

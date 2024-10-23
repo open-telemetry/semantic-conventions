@@ -57,8 +57,15 @@ groups:
   - id: trace.gen_ai.client.span
     type: span
     stability: experimental
+    span_kind: client
     brief: >
-      Describes GenAI operation span.
+      This span represents client call to GenAI system.
+    note: |
+      **Span kind:** MUST always be `CLIENT`.
+
+      GenAI spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#span).
+      The **span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
     extends: trace.gen_ai.client.common_attributes
     attributes:
       - ref: gen_ai.system
@@ -71,10 +78,15 @@ groups:
       - gen_ai.content.completion
 
   - id: trace.gen_ai.openai.client
+    type: span
+    span_kind: client
     extends: trace.gen_ai.client.common_attributes
     stability: experimental
     brief: >
-      Describes an OpenAI operation span.
+      Semantic Conventions for [OpenAI](https://openai.com/) client spans extend
+      and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md)
+    note: |
+      `gen_ai.system` MUST be set to `"openai"`.
     attributes:
       - ref: gen_ai.request.model
         requirement_level: required
@@ -96,11 +108,14 @@ groups:
         brief: The number of tokens used in the completions from OpenAI.
 
   - id: trace.gen_ai.az.ai.inference.client
+    span_kind: client
     extends: trace.gen_ai.client.common_attributes
     stability: experimental
-    type: attribute_group
     brief: >
-      Describes Azure AI Inference span attributes.
+      Semantic Conventions for [Azure AI Inference](https://learn.microsoft.com/azure/ai-studio/reference/reference-model-inference-api)
+      client spans extend and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md)
+    note: |
+      `gen_ai.system` MUST be set to `"az.ai.inference"`.
     attributes:
       - ref: az.namespace
         note: >
