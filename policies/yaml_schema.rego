@@ -143,7 +143,7 @@ deny[yaml_schema_violation(description, group.id, "")] {
     description := sprintf("Group '%s' uses prefix '%s'. All attribute should be fully qualified with their id, prefix is no longer supported.", [group.id, group.prefix])
 }
 
-# TODO: make span_kind required - add work item
+# TODO: remove after span_kind is required https://github.com/open-telemetry/semantic-conventions/issues/1513
 # checks that span id matches span.*. pattern if span_kind is not provided
 deny[yaml_schema_violation(description, group.id, "")] {
     group := input.groups[_]
