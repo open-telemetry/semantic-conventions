@@ -75,17 +75,18 @@ groups:
         requirement_level:
           conditionally_required: If available.
 
-  - id: span.db
+  - id: span.db.client
     type: span
     stability: experimental
     brief: This span defines the attributes used to perform database client calls.
     span_kind: client
     extends: trace.db.common.full
 
-  - id: span.db.mssql
+  - id: span.db.mssql.client
     type: span
     stability: experimental
-    extends: span.db.sql
+    extends: span.db.sql.client
+    span_kind: client
     brief: >
       Attributes for Microsoft SQL Server
     attributes:
@@ -116,9 +117,10 @@ groups:
           Microsoft SQL Server does not report SQLSTATE.
         examples: ["102", "40020"]
 
-  - id: span.db.postgresql
+  - id: span.db.postgresql.client
     type: span
-    extends: span.db.sql
+    extends: span.db.sql.client
+    span_kind: client
     brief: >
       Attributes for PostgreSQL
     attributes:
@@ -149,9 +151,10 @@ groups:
           [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html).
         examples: ["08000", "08P01"]
 
-  - id: span.db.mysql
+  - id: span.db.mysql.client
     type: span
-    extends: span.db.sql
+    extends: span.db.sql.client
+    span_kind: client
     brief: >
       Attributes for MySQL
     attributes:
@@ -174,9 +177,10 @@ groups:
           [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html).
         examples: ["1005", "MY-010016"]
 
-  - id: span.db.mariadb
+  - id: span.db.mariadb.client
     type: span
-    extends: span.db.sql
+    extends: span.db.sql.client
+    span_kind: client
     brief: >
       Attributes for MariaDB
     attributes:
@@ -200,8 +204,9 @@ groups:
           represented as a string.
         examples: ["1008", "3058"]
 
-  - id: span.db.cassandra
+  - id: span.db.cassandra.client
     type: span
+    span_kind: client
     stability: experimental
     extends: trace.db.common.query_and_collection
     brief: >
@@ -234,8 +239,9 @@ groups:
         brief: >
           [Cassandra protocol error code](https://github.com/apache/cassandra/blob/cassandra-5.0/doc/native_protocol_v5.spec) represented as a string.
         examples: ["102", "40020"]
-  - id: span.db.hbase
+  - id: span.db.hbase.client
     type: span
+    span_kind: client
     stability: experimental
     extends: trace.db.common.minimal
     brief: >
@@ -264,8 +270,9 @@ groups:
         examples: ["200", "409", "14"]
         requirement_level:
           conditionally_required: If response was received.
-  - id: span.db.couchdb
+  - id: span.db.couchdb.client
     type: span
+    span_kind: client
     stability: experimental
     extends: trace.db.common.minimal
     brief: >
@@ -296,9 +303,10 @@ groups:
         requirement_level:
           conditionally_required: If response was received and the HTTP response code is available.
 
-  - id: span.db.redis
+  - id: span.db.redis.client
     type: span
     stability: experimental
+    span_kind: client
     extends: attributes.db.client.minimal
     brief: >
       Attributes for Redis
@@ -359,9 +367,10 @@ groups:
       - ref: server.port
         sampling_relevant: true
 
-  - id: span.db.mongodb
+  - id: span.db.mongodb.client
     type: span
     stability: experimental
+    span_kind: client
     extends: trace.db.common.minimal
     brief: >
       Attributes for MongoDB
@@ -393,9 +402,10 @@ groups:
           conditionally_required: If the operation failed and error code is available.
         examples: ["36", "11602"]
 
-  - id: span.db.elasticsearch
+  - id: span.db.elasticsearch.client
     type: span
     stability: experimental
+    span_kind: client
     extends: trace.db.common.minimal
     brief: >
       Attributes for Elasticsearch
@@ -448,8 +458,9 @@ groups:
         examples: ["200", "201", "429"]
         requirement_level:
           conditionally_required: If response was received.
-  - id: span.db.sql
+  - id: span.db.sql.client
     type: span
+    span_kind: client
     stability: experimental
     extends: trace.db.common.query_and_collection
     brief: >
@@ -531,9 +542,10 @@ groups:
         examples: ["ORA-17027", "1052", "2201B"]
         requirement_level:
           conditionally_required: If response has ended with warning or an error.
-  - id: span.db.cosmosdb
+  - id: span.db.cosmosdb.client
     type: span
     stability: experimental
+    span_kind: client
     extends: trace.db.common.query_and_collection
     brief: >
       Attributes for Cosmos DB.

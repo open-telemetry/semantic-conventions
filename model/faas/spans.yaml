@@ -41,7 +41,7 @@ groups:
       - ref: faas.time
       - ref: faas.cron
 
-  - id: span.faas.in
+  - id: span.faas.server
     span_kind: server
     type: span
     brief: >
@@ -61,7 +61,7 @@ groups:
           nothing to do with the underlying transport used to make the API
           call to invoke the lambda, which is often HTTP).
 
-  - id: span.faas.out
+  - id: span.faas.client
     span_kind: client
     type: span
     brief: >

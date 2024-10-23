@@ -143,15 +143,28 @@ deny[yaml_schema_violation(description, group.id, "")] {
     description := sprintf("Group '%s' uses prefix '%s'. All attribute should be fully qualified with their id, prefix is no longer supported.", [group.id, group.prefix])
 }
 
-# checks that span id matches span.* pattern
+# TODO: make span_kind required - add work item
+# checks that span id matches span.*. pattern if span_kind is not provided
 deny[yaml_schema_violation(description, group.id, "")] {
     group := input.groups[_]
     group.type == "span"
+    kind := group.span_kind
 
-    span_group_id_regex := "span\\.[a-z0-9_.]+"
-    not regex.match(span_group_id_regex, group.id)
-
+    kind == null
+    not regex.match("^span\\.[a-z0-9_.]+$", group.id)
     description := sprintf("span id '%s' is invalid. span id must follow 'span.*' pattern", [group.id])
+}
+
+# checks that span id matches span.*.{kind} pattern if span_kind is not provided
+deny[yaml_schema_violation(description, group.id, "")] {
+    group := input.groups[_]
+    group.type == "span"
+    kind := group.span_kind
+
+    kind != null
+    pattern := sprintf("^span\\.[a-z0-9_.]+\\.%s$", [kind])
+    not regex.match(pattern, group.id)
+    description := sprintf("span id '%s' is invalid. span id must follow 'span.*.%s' pattern", [group.id, kind])
 }
 
 yaml_schema_violation(description, group, attr) = violation {

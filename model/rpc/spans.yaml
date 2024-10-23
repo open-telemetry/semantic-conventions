@@ -29,6 +29,7 @@ groups:
     type: span
     brief: 'This document defines semantic conventions for remote procedure call client spans.'
     extends: rpc
+    span_kind: client
     events: [rpc.message]
     attributes:
       - ref: network.peer.address

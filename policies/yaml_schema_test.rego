@@ -78,6 +78,17 @@ test_fails_if_prefix_is_present if {
     count(deny) == 1 with input as {"groups": [{"id": "test", "prefix": "foo"}]}
 }
 
+test_fails_on_invalid_span_id if {
+    invalid_ids := [
+        "foo.bar",
+        "span.foo.bar",
+        "span.foo.bar.client.deprecated",
+    ]
+    every id in invalid_ids {
+        count(deny) >= 1 with input as {"groups": [{"id": id, "type": "span", "span_kind": "client"}]}
+    }
+}
+
 create_attribute_group(attr) = json {
     json := [{"id": "yaml_schema.test", "attributes": [{"id": attr}]}]
 }
