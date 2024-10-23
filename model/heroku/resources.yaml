@@ -1,5 +1,5 @@
 groups:
-  - id: heroku
+  - id: resource.heroku
     type: resource
     name: heroku
     brief: >
