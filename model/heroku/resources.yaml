@@ -3,7 +3,7 @@ groups:
     type: resource
     name: heroku
     brief: >
-      Heroku dyno metadata
+      [Heroku dyno metadata](https://devcenter.heroku.com/articles/dyno-metadata)
     attributes:
       - ref: heroku.release.creation_timestamp
         requirement_level: opt_in
