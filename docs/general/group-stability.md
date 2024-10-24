@@ -70,7 +70,7 @@ Stability guarantees on a group level **do not** apply to experimental attribute
 **Stable groups:**
 
 - MAY add or remove references to experimental attributes with `opt_in`
-  requirement level regardless of attribute stability.
+  requirement level.
 - SHOULD NOT have references to experimental attributes with requirement level
   other than `opt_in`.
   The requirement level of an experimental attribute reference
