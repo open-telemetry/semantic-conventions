@@ -1,10 +1,10 @@
 groups:
   - id: trace-exception
     name: exception
+    stability: stable
     type: event
     brief: >
-      This document defines the attributes used to
-      report a single exception associated with a span.
+      This event describes a single exception.
     attributes:
       - ref: exception.type
         requirement_level:
