@@ -1,5 +1,5 @@
 groups:
-  - id: cloud
+  - id: resource.cloud
     type: resource
     name: cloud
     brief: >

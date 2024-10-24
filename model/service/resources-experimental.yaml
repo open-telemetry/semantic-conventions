@@ -1,5 +1,5 @@
 groups:
-  - id: service_experimental
+  - id: resource.service_experimental
     type: resource
     name: 'service'
     brief: >

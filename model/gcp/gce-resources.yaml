@@ -1,5 +1,5 @@
 groups:
-  - id: gcp.gce
+  - id: resource.gcp.gce
     type: resource
     name: gcp.gce
     brief: >

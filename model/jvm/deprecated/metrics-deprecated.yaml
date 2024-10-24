@@ -1,5 +1,5 @@
 groups:
-  - id: metric.jvm.buffer.memory.usage.deprecated
+  - id: metric.jvm.buffer.memory.usage
     type: metric
     metric_name: jvm.buffer.memory.usage
     stability: experimental

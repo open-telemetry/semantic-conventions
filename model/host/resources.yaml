@@ -1,5 +1,5 @@
 groups:
-  - id: host
+  - id: resource.host
     type: resource
     name: host
     brief: >
@@ -43,7 +43,7 @@ groups:
       - ref: host.mac
         requirement_level: opt_in
 
-  - id: host.cpu
+  - id: resource.host.cpu
     type: resource
     name: host.cpu
     brief: >

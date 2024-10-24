@@ -1,5 +1,5 @@
 groups:
-  - id: az.resource.log
+  - id: event.az.resource.log
     stability: experimental
     type: event
     name: az.resource.log

@@ -1,5 +1,5 @@
 groups:
-  - id: trace.http.client
+  - id: span.http.client
     type: span
     extends: attributes.http.client
     span_kind: client
@@ -38,7 +38,7 @@ groups:
           Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`.
           Other obscure implementations are possible.
 
-  - id: trace.http.client.experimental
+  - id: span.http.client.experimental
     type: attribute_group
     brief: 'Experimental attributes for HTTP Client spans'
     stability: experimental
@@ -53,7 +53,7 @@ groups:
       - ref: http.response.body.size
         requirement_level: opt_in
 
-  - id: trace.http.server
+  - id: span.http.server
     type: span
     extends: attributes.http.server
     span_kind: server

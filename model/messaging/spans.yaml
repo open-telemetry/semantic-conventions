@@ -28,7 +28,7 @@ groups:
         # - ref: messaging.system
         #   sampling_relevant: true
 
-  - id: messaging
+  - id: span.messaging
     type: span
     stability: experimental
     brief: >

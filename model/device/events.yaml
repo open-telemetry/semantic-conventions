@@ -1,5 +1,5 @@
 groups:
-  - id: device.app.lifecycle
+  - id: event.device.app.lifecycle
     stability: experimental
     type: event
     name: device.app.lifecycle
