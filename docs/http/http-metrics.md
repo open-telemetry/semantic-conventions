@@ -21,7 +21,6 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
   - [Metric: `http.server.response.body.size`](#metric-httpserverresponsebodysize)
 - [HTTP Client](#http-client)
   - [Metric: `http.client.request.duration`](#metric-httpclientrequestduration)
-    - [Experimental attributes](#experimental-attributes)
   - [Metric: `http.client.request.body.size`](#metric-httpclientrequestbodysize)
   - [Metric: `http.client.response.body.size`](#metric-httpclientresponsebodysize)
   - [Metric: `http.client.open_connections`](#metric-httpclientopen_connections)
