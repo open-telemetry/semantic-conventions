@@ -152,7 +152,7 @@ deny[yaml_schema_violation(description, group.id, "")] {
 
     kind == null
     not regex.match("^span\\.[a-z0-9_.]+$", group.id)
-    description := sprintf("span id '%s' is invalid. span id must follow 'span.*' pattern", [group.id])
+    description := sprintf("Group id '%s' is invalid. Span group 'id' must follow 'span.*' pattern", [group.id])
 }
 
 # checks that span id matches span.*.{kind} pattern if span_kind is not provided
@@ -164,7 +164,7 @@ deny[yaml_schema_violation(description, group.id, "")] {
     kind != null
     pattern := sprintf("^span\\.[a-z0-9_.]+\\.%s$", [kind])
     not regex.match(pattern, group.id)
-    description := sprintf("span id '%s' is invalid. span id must follow 'span.*.%s' pattern", [group.id, kind])
+    description := sprintf("Group id '%s' is invalid. Span group 'id' must follow 'span.*.%s' pattern", [group.id, kind])
 }
 
 yaml_schema_violation(description, group, attr) = violation {
