@@ -46,6 +46,7 @@ Currently, the following namespaces exist:
 - [Container](container.md)
 - [CPU](cpu.md)
 - [Db](db.md)
+- [DC](dc.md)
 - [Deployment](deployment.md)
 - [Destination](destination.md)
 - [Device](device.md)
