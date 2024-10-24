@@ -7,7 +7,7 @@ deny[group_stability_violation(description, group.id, name)] {
     group.type != "attribute_group"
     group.stability == "stable"
 
-    # TODO: create issue
+    # TODO: https://github.com/open-telemetry/semantic-conventions/issues/1514
     exceptions = {"metric.kestrel.connection.duration", "metric.kestrel.tls_handshake.duration"}
     not exceptions[group.id]
 
