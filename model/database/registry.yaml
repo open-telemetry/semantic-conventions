@@ -512,7 +512,7 @@ groups:
       - id: db.cosmosdb.regions_contacted
         type: string
         stability: experimental
-        brief: Comma separated list of regions contacted by Azure Cosmos DB operations.
+        brief: Comma separated list of regions contacted by the Azure Cosmos DB operation.
         examples: ["North Central US,Central US", "East US 2,North Central US"]
 
   - id: registry.db.elasticsearch
