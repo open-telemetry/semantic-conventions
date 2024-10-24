@@ -81,6 +81,7 @@
 /model/user/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 
 # CICD semantic conventions
+/docs/cicd/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/artifact/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/cicd/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/code/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
