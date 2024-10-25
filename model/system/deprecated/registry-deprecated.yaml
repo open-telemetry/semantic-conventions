@@ -51,17 +51,3 @@ groups:
         stability: experimental
         deprecated: 'Replaced by `cpu.mode`'
         examples: [ "idle", "interrupt" ]
-
-  - id: registry.system.metrics.deprecated
-    type: attribute_group
-    display_name: Deprecated System Metrics
-    brief: >
-      "Describes deprecated system metrics attributes."
-    stability: experimental
-    attributes:
-      - id: system.device
-        type: string
-        stability: experimental
-        brief: "Deprecated, use `network.interface.name` instead."
-        deprecated: "Replaced by `network.interface.name`."
-        examples: [ "(identifier)" ]

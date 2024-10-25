@@ -29,17 +29,3 @@ groups:
         stability: experimental
         deprecated: 'Replaced by `cpu.mode`'
         examples: [ "user", "kernel" ]
-
-  - id: registry.container.metrics.deprecated
-    type: attribute_group
-    display_name: Deprecated Container Metrics
-    brief: >
-      "Describes deprecated container metrics attributes."
-    stability: experimental
-    attributes:
-      - id: system.device
-        type: string
-        stability: experimental
-        brief: "Deprecated, use `network.interface.name` instead."
-        deprecated: "Replaced by `network.interface.name`."
-        examples: [ "(identifier)" ]
