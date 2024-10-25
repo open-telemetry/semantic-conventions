@@ -21,7 +21,7 @@ section of the trace semantic convention for feature flag evaluations.
 <!-- toc -->
 
 - [Recording an Evaluation](#recording-an-evaluation)
-- [Attributes](#attributes)
+- [Evaluation event](#evaluation-event)
 
 <!-- tocstop -->
 
@@ -32,7 +32,7 @@ Feature flag evaluations SHOULD be recorded as attributes on the
 operations. Evaluations MAY be recorded on "logs" or "events" depending on the
 context.
 
-## Attributes
+## Evaluation event
 
 The table below indicates which attributes should be added to the
 [LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/logs/data-model.md#log-and-event-record-definition) and their types.
@@ -44,7 +44,11 @@ The table below indicates which attributes should be added to the
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+
 The event name MUST be `feature_flag`.
+
+This event describes feature flag evaluation representation on a Log Record.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -60,9 +64,6 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 A stringified version of the value can be used in situations where a
 semantic identifier is unavailable. String representation of the value
 should be determined by the implementer.
-
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
