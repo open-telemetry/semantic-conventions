@@ -132,9 +132,9 @@ groups:
       - ref: db.client.connection.pool.name
         requirement_level: required
 
-  - id: metric.db.client.response.row_count
+  - id: metric.db.response.returned_rows
     type: metric
-    metric_name: db.client.response.row_count
+    metric_name: db.response.returned_rows
     brief: "The actual number of records returned by the database operation."
     instrument: histogram
     unit: "{row}"

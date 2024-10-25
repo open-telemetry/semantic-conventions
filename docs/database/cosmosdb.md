@@ -11,7 +11,7 @@ linkTitle: Cosmos DB
   - [Example](#example)
   - [Operation Level Metrics](#operation-level-metrics)
     - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
-    - [Metric: `db.client.response.row_count`](#metric-dbclientresponserow_count)
+    - [Metric: `db.response.returned_rows`](#metric-dbresponsereturned_rows)
     - [Metric: `db.client.cosmosdb.operation.request_charge`](#metric-dbclientcosmosdboperationrequest_charge)
     - [Metric: `db.client.cosmosdb.active_instance.count`](#metric-dbclientcosmosdbactive_instancecount)
 
@@ -298,11 +298,11 @@ It captures the total time taken by an Azure Cosmos DB operation. This metric fo
 
 Refer [db.client.cosmosdb.operation.request_charge](#metric-dbclientcosmosdboperationrequest_charge) metrics for dimensions.
 
-### Metric: `db.client.response.row_count`
+### Metric: `db.response.returned_rows`
 
 This metric is [required][MetricRequired].
 
-It captures the number of items returned by a query or feed operation in Azure Cosmos DB. It helps identify response sizes that may contribute to high latency, increased memory/CPU usage, or network call failures. This metric follows the common [db.client.response.row_count](/docs/database/database-metrics.md#metric-dbclientresponserow_count) definition.
+It captures the number of items returned by a query or feed operation in Azure Cosmos DB. It helps identify response sizes that may contribute to high latency, increased memory/CPU usage, or network call failures. This metric follows the common [db.response.returned_rows](/docs/database/database-metrics.md#metric-dbclientresponserow_count) definition.
 
 Refer [db.client.cosmosdb.operation.request_charge](#metric-dbclientcosmosdboperationrequest_charge) metrics for dimensions.
 
