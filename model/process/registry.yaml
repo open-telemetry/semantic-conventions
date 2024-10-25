@@ -116,6 +116,30 @@ groups:
         requirement_level:
           recommended: if `process.command_args` is populated.
         examples: [4]
+      - id: process.origin_referrer_url
+        type: string
+        stability: experimental
+        brief: >
+          The URL of the webpage that linked to the process's executable file.
+        note: >
+          This information comes from metadata or alternate data streams linked to the process's executable file.
+          `process.origin_url` represents the URL from which the file was downloaded, and `process.origin_referrer_url`
+          indicates the URL of the page where that URL was listed. There may be cases where both `process.origin_url`
+          and `process.origin_referrer_url` exist, or only one of them is present. Note that the URL itself may contain
+          sensitive information.
+        examples: ['http://example.com/article1.html']
+      - id: process.origin_url
+        type: string
+        stability: experimental
+        brief: >
+          The URL where the process's executable file is hosted.
+        note: >
+          This information comes from metadata or alternate data streams linked to the process's executable file.
+          `process.origin_url` represents the URL from which the file was downloaded, and `process.origin_referrer_url`
+          indicates the URL of the page where that URL was listed. There may be cases where both `process.origin_url`
+          and `process.origin_referrer_url` exist, or only one of them is present. Note that the URL itself may contain
+          sensitive information.
+        examples: ['http://example.com/files/example.exe']
       - id: process.owner
         type: string
         stability: experimental
@@ -241,3 +265,9 @@ groups:
               value: 'minor'
               stability: experimental
         stability: experimental
+      - id: process.zone_identifier
+        type: int
+        stability: experimental
+        brief: >
+          Windows Zone Identifier for the process's executable file. 
+        examples: 3       
