@@ -4,5 +4,4 @@
 {% macro generate(group) %}| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `{{ group.metric_name }}` | {{ metrics.instrument(group.instrument) | trim }} | `{{ group.unit }}` | {{ group.brief | trim }}{{ notes.add(group.note) }} | {{ stability.badge(group.stability, group.deprecated) | trim }} |
-
 {{ notes.render() }}{% endmacro %}

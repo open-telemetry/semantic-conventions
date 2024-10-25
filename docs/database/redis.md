@@ -41,12 +41,22 @@ then it is RECOMMENDED to fallback and use the database index provided when the 
 
 Instrumentation SHOULD document if `db.namespace` reflects the database index provided when the connection was established.
 
-**[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
-For batch operations, if the individual operations are known to have the same operation name then that operation name SHOULD be used prepended by `BATCH `, otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
+**[2]:** It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
+
+A single database query may involve multiple operations. If the operation
+name is parsed from the query text, it SHOULD only be captured for queries that
+contain a single operation or when the operation name describing the
+whole query is available by other means.
+
+For batch operations, if the individual operations are known to have the same operation name
+then that operation name SHOULD be used prepended by `BATCH `,
+otherwise `db.operation.name` SHOULD be `BATCH` or some other database
+system specific term if more applicable.
+
 This attribute has stability level RELEASE CANDIDATE.
 
-**[3]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
+**[3]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
 **[4]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
@@ -63,10 +73,12 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[8]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[9]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[10]:** For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI. If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
 
 **[11]:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text.
+See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](../../docs/attributes-registry/db.md)).
 
 **[12]:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
@@ -76,8 +88,6 @@ Parameterized query text SHOULD be collected by default (the query parameter val
 **[14]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 This attribute has stability level RELEASE CANDIDATE.
-
-
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -93,8 +103,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

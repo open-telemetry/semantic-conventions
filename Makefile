@@ -140,7 +140,6 @@ attribute-registry-generation:
 		  --templates=/home/weaver/templates \
 		  markdown \
 		  /home/weaver/target/attributes-registry/
-	npm run fix:format
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
 .PHONY: table-check
@@ -155,7 +154,7 @@ table-check:
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--dry-run \
-		/spec
+		/home/weaver/target
 
 .PHONY: schema-check
 schema-check:
@@ -178,7 +177,7 @@ check: misspell markdownlint check-format markdown-toc compatibility-check markd
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation attribute-registry-generation misspell-correction fix-format markdown-toc
+fix: table-generation attribute-registry-generation misspell-correction markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools

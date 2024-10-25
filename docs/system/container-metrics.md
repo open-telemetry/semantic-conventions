@@ -27,9 +27,7 @@ This metric is [opt-in][MetricOptIn].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `container.cpu.time` | Counter | `s` | Total CPU time consumed [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Total CPU time consumed by the specific container on all available CPU cores
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -38,8 +36,6 @@ This metric is [opt-in][MetricOptIn].
 **[1]:** Following states SHOULD be used: `user`, `system`, `kernel`
 
 **[2]:** Required if mode is available, i.e. metrics coming from the Docker Stats API.
-
-
 
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -53,8 +49,6 @@ This metric is [opt-in][MetricOptIn].
 | `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -76,9 +70,7 @@ This metric is [opt-in][MetricOptIn].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `container.cpu.usage` | Gauge | `{cpu}` | Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** CPU usage of the specific container on all available CPU cores, averaged over the sample window
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -87,8 +79,6 @@ This metric is [opt-in][MetricOptIn].
 **[1]:** Following states SHOULD be used: `user`, `system`, `kernel`
 
 **[2]:** Required if mode is available, i.e. metrics coming from the Docker Stats API.
-
-
 
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -102,8 +92,6 @@ This metric is [opt-in][MetricOptIn].
 | `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -125,10 +113,7 @@ This metric is [opt-in][MetricOptIn].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `container.memory.usage` | Counter | `By` | Memory usage of the container. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Memory usage of the container.
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -150,9 +135,7 @@ This metric is [opt-in][MetricOptIn].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `container.disk.io` | Counter | `By` | Disk bytes for the container. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** The total number of bytes read/written successfully (aggregated from all disks).
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -165,8 +148,6 @@ This metric is [opt-in][MetricOptIn].
 |---|---|---|
 | `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `write` | write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -188,9 +169,7 @@ This metric is [opt-in][MetricOptIn].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `container.network.io` | Counter | `By` | Network bytes for the container. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** The number of bytes sent/received on all network interfaces by the container.
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -203,8 +182,6 @@ This metric is [opt-in][MetricOptIn].
 |---|---|---|
 | `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
