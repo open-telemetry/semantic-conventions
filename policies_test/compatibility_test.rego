@@ -712,7 +712,7 @@ test_resource_stability_change if {
 }
 
 
-# Check that Stable resources cannot change required/recommended attributes
+# Check that Stable attributes on stable resources cannot be removed
 test_resource_attribute_missing if {
 	count(deny) > 0 with data.semconv as {
             "baseline_groups": [{
@@ -722,6 +722,7 @@ test_resource_attribute_missing if {
                 "stability": "stable",
                 "attributes": [{
                     "name": "test.missing",
+                    "stability": "stable",
                     "requirement_level": "required"
                 }],
             }],
@@ -740,6 +741,7 @@ test_resource_attribute_missing if {
                 "stability": "stable",
                 "attributes": [{
                     "name": "test.missing",
+                    "stability": "stable",
                     "requirement_level": "required"
                 },{
                     "name": "test.ignored",
@@ -755,6 +757,7 @@ test_resource_attribute_missing if {
                 "instrument": "histogram",
                 "attributes": [{
                     "name": "test.missing",
+                    "stability": "stable",
                     "requirement_level": "required"
                 }],
             }]
