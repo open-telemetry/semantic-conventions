@@ -570,7 +570,7 @@ groups:
         examples: ["200", "201"]
         requirement_level:
           conditionally_required: if response was received
-      - ref: db.response.row_count
+      - ref: db.response.returned_rows
         brief: >
           Cosmos DB row count in result set.
         examples: [10, 20]

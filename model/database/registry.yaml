@@ -148,7 +148,7 @@ groups:
 
           This attribute has stability level RELEASE CANDIDATE.
         examples: ["102", "ORA-17002", "08P01", "404"]
-      - id: db.response.row_count
+      - id: db.response.returned_rows
         type: int
         stability: experimental
         brief: Number of rows returned by the operation.

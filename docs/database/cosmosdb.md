@@ -11,7 +11,7 @@ linkTitle: Cosmos DB
   - [Example](#example)
   - [Operation Level Metrics](#operation-level-metrics)
     - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
-    - [Metric: `db.response.returned_rows`](#metric-dbresponsereturned_rows)
+    - [Metric: `db.client.response.returned_rows`](#metric-dbclientresponsereturned_rows)
     - [Metric: `db.client.cosmosdb.operation.request_charge`](#metric-dbclientcosmosdboperationrequest_charge)
     - [Metric: `db.client.cosmosdb.active_instance.count`](#metric-dbclientcosmosdbactive_instancecount)
 
@@ -46,7 +46,7 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | Cosmos DB sub status code. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [3] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.response.row_count`](/docs/attributes-registry/db.md) | int | Cosmos DB row count in result set. | `10`; `20` | `Conditionally Required` if response was received and returned any rows | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Cosmos DB row count in result set. | `10`; `20` | `Conditionally Required` if response was received and returned any rows | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Cosmos DB status code. [5] | `200`; `201` | `Conditionally Required` if response was received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` If not default (443). | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -298,11 +298,11 @@ It captures the total time taken by an Azure Cosmos DB operation. This metric fo
 
 Refer [db.client.cosmosdb.operation.request_charge](#metric-dbclientcosmosdboperationrequest_charge) metrics for dimensions.
 
-### Metric: `db.response.returned_rows`
+### Metric: `db.client.response.returned_rows`
 
 This metric is [required][MetricRequired].
 
-It captures the number of items returned by a query or feed operation in Azure Cosmos DB. It helps identify response sizes that may contribute to high latency, increased memory/CPU usage, or network call failures. This metric follows the common [db.response.returned_rows](/docs/database/database-metrics.md#metric-dbclientresponserow_count) definition.
+It captures the number of items returned by a query or feed operation in Azure Cosmos DB. It helps identify response sizes that may contribute to high latency, increased memory/CPU usage, or network call failures. This metric follows the common [db.client.response.returned_rows](/docs/database/database-metrics.md##metric-dbclientresponsereturned_rows) definition.
 
 Refer [db.client.cosmosdb.operation.request_charge](#metric-dbclientcosmosdboperationrequest_charge) metrics for dimensions.
 
