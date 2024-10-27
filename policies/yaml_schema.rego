@@ -110,7 +110,7 @@ deny[yaml_schema_violation(description, group.id, name)] {
     group.type == "resource"
     name := group.name
 
-    # TODO: remove once TODO is fixed
+    # TODO: remove once https://github.com/open-telemetry/semantic-conventions/pull/1423 is merged
     exclusions := {"telemetry.sdk_experimental", "service_experimental"}
     exclusions[name] != null
 
