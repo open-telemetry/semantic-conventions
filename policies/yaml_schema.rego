@@ -108,11 +108,12 @@ deny[yaml_schema_violation(description, group.id, name)] {
 deny[yaml_schema_violation(description, group.id, name)] {
     group := input.groups[_]
     group.type == "resource"
-    name := group.name
 
     # TODO: remove once https://github.com/open-telemetry/semantic-conventions/pull/1423 is merged
-    exclusions := {"telemetry.sdk_experimental", "service_experimental"}
-    exclusions[name] != null
+    exclusions := {"resource.telemetry.sdk_experimental", "resource.service_experimental"}
+    not exclusions[group.id]
+
+    name := group.name
 
     expected_id := sprintf("resource.%s", [name])
     expected_id != group.id
