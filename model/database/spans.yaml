@@ -47,6 +47,7 @@ groups:
         sampling_relevant: true
       - ref: server.port
         sampling_relevant: true
+      - ref: db.response.returned_rows
 
   - id: trace.db.common.full
     type: attribute_group
