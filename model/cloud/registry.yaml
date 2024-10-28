@@ -1,0 +1,220 @@
+groups:
+  - id: registry.cloud
+    type: attribute_group
+    display_name: Cloud Attributes
+    brief: >
+      A cloud environment (e.g. GCP, Azure, AWS).
+    attributes:
+      - id: cloud.provider
+        type:
+          members:
+            - id: 'alibaba_cloud'
+              value: 'alibaba_cloud'
+              brief: 'Alibaba Cloud'
+              stability: experimental
+            - id: 'aws'
+              value: 'aws'
+              brief: 'Amazon Web Services'
+              stability: experimental
+            - id: 'azure'
+              value: 'azure'
+              brief: 'Microsoft Azure'
+              stability: experimental
+            - id: 'gcp'
+              value: 'gcp'
+              brief: 'Google Cloud Platform'
+              stability: experimental
+            - id: 'heroku'
+              value: 'heroku'
+              brief: 'Heroku Platform as a Service'
+              stability: experimental
+            - id: 'ibm_cloud'
+              value: 'ibm_cloud'
+              brief: 'IBM Cloud'
+              stability: experimental
+            - id: 'tencent_cloud'
+              value: 'tencent_cloud'
+              brief: 'Tencent Cloud'
+              stability: experimental
+        stability: experimental
+        brief: >
+          Name of the cloud provider.
+      - id: cloud.account.id
+        type: string
+        stability: experimental
+        brief: >
+          The cloud account ID the resource is assigned to.
+        examples: ['111111111111', 'opentelemetry']
+      - id: cloud.region
+        type: string
+        stability: experimental
+        brief: >
+          The geographical region the resource is running.
+        note: >
+          Refer to your provider's docs to see the available regions, for example
+          [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm),
+          [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/),
+          [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/),
+          [Google Cloud regions](https://cloud.google.com/about/locations),
+          or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
+        examples: ['us-central1', 'us-east-1']
+      - id: cloud.resource_id
+        type: string
+        stability: experimental
+        brief: >
+          Cloud provider-specific native identifier of the monitored cloud resource
+          (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS,
+          a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure,
+          a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP)
+        note: |
+          On some cloud providers, it may not be possible to determine the full ID at startup,
+          so it may be necessary to set `cloud.resource_id` as a span attribute instead.
+
+          The exact value to use for `cloud.resource_id` depends on the cloud provider.
+          The following well-known definitions MUST be used if you set this attribute and they apply:
+
+          - **AWS Lambda:** The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+            Take care not to use the "invoked ARN" directly but replace any
+            [alias suffix](https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html)
+            with the resolved function version, as the same runtime instance may be invocable with
+            multiple different aliases.
+          - **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
+          - **Azure:** The [Fully Qualified Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
+            *not* the function app, having the form
+            `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
+            This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
+            a TracerProvider.
+        examples:
+          - 'arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function'
+          - '//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID'
+          - '/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>'
+      - id: cloud.availability_zone
+        type: string
+        stability: experimental
+        brief: >
+          Cloud regions often have multiple, isolated locations known as zones
+          to increase availability. Availability zone represents the
+          zone where the resource is running.
+        note: >
+          Availability zones are called "zones" on Alibaba Cloud and Google Cloud.
+        examples: ['us-east-1c']
+      - id: cloud.platform
+        type:
+          members:
+            - id: alibaba_cloud_ecs
+              value: 'alibaba_cloud_ecs'
+              brief: Alibaba Cloud Elastic Compute Service
+              stability: experimental
+            - id: alibaba_cloud_fc
+              value: 'alibaba_cloud_fc'
+              brief: Alibaba Cloud Function Compute
+              stability: experimental
+            - id: alibaba_cloud_openshift
+              value: 'alibaba_cloud_openshift'
+              brief: Red Hat OpenShift on Alibaba Cloud
+              stability: experimental
+            - id: aws_ec2
+              value: 'aws_ec2'
+              brief: AWS Elastic Compute Cloud
+              stability: experimental
+            - id: aws_ecs
+              value: 'aws_ecs'
+              brief: AWS Elastic Container Service
+              stability: experimental
+            - id: aws_eks
+              value: 'aws_eks'
+              brief: AWS Elastic Kubernetes Service
+              stability: experimental
+            - id: aws_lambda
+              value: 'aws_lambda'
+              brief: AWS Lambda
+              stability: experimental
+            - id: aws_elastic_beanstalk
+              value: 'aws_elastic_beanstalk'
+              brief: AWS Elastic Beanstalk
+              stability: experimental
+            - id: aws_app_runner
+              value: 'aws_app_runner'
+              brief: AWS App Runner
+              stability: experimental
+            - id: aws_openshift
+              value: 'aws_openshift'
+              brief: Red Hat OpenShift on AWS (ROSA)
+              stability: experimental
+            - id: azure_vm
+              value: 'azure_vm'
+              brief: Azure Virtual Machines
+              stability: experimental
+            - id: azure_container_apps
+              value: 'azure_container_apps'
+              brief: Azure Container Apps
+              stability: experimental
+            - id: azure_container_instances
+              value: 'azure_container_instances'
+              brief: Azure Container Instances
+              stability: experimental
+            - id: azure_aks
+              value: 'azure_aks'
+              brief: Azure Kubernetes Service
+              stability: experimental
+            - id: azure_functions
+              value: 'azure_functions'
+              brief: Azure Functions
+              stability: experimental
+            - id: azure_app_service
+              value: 'azure_app_service'
+              brief: Azure App Service
+              stability: experimental
+            - id: azure_openshift
+              value: 'azure_openshift'
+              brief: Azure Red Hat OpenShift
+              stability: experimental
+            - id: gcp_bare_metal_solution
+              value: 'gcp_bare_metal_solution'
+              brief: Google Bare Metal Solution (BMS)
+              stability: experimental
+            - id: gcp_compute_engine
+              value: 'gcp_compute_engine'
+              brief: Google Cloud Compute Engine (GCE)
+              stability: experimental
+            - id: gcp_cloud_run
+              value: 'gcp_cloud_run'
+              brief: Google Cloud Run
+              stability: experimental
+            - id: gcp_kubernetes_engine
+              value: 'gcp_kubernetes_engine'
+              brief: Google Cloud Kubernetes Engine (GKE)
+              stability: experimental
+            - id: gcp_cloud_functions
+              value: 'gcp_cloud_functions'
+              brief: Google Cloud Functions (GCF)
+              stability: experimental
+            - id: gcp_app_engine
+              value: 'gcp_app_engine'
+              brief: Google Cloud App Engine (GAE)
+              stability: experimental
+            - id: gcp_openshift
+              value: 'gcp_openshift'
+              brief: Red Hat OpenShift on Google Cloud
+              stability: experimental
+            - id: ibm_cloud_openshift
+              value: 'ibm_cloud_openshift'
+              brief: Red Hat OpenShift on IBM Cloud
+              stability: experimental
+            - id: tencent_cloud_cvm
+              value: 'tencent_cloud_cvm'
+              brief: Tencent Cloud Cloud Virtual Machine (CVM)
+              stability: experimental
+            - id: tencent_cloud_eks
+              value: 'tencent_cloud_eks'
+              brief: Tencent Cloud Elastic Kubernetes Service (EKS)
+              stability: experimental
+            - id: tencent_cloud_scf
+              value: 'tencent_cloud_scf'
+              brief: Tencent Cloud Serverless Cloud Function (SCF)
+              stability: experimental
+        stability: experimental
+        brief: >
+          The cloud platform in use.
+        note: >
+          The prefix of the service SHOULD match the one specified in `cloud.provider`.

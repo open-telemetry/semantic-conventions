@@ -86,13 +86,6 @@ jobs:
         make attribute-registry-generation
         git diff --exit-code './docs/attributes-registry/*.md' || (echo 'Attribute registry markdown is out of date, please run "make attribute-registry-generation" and commit the changes in this PR.' && exit 1)
 
-  semantic-conventions-compatibility:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: verify semantic convention compatibility with latest released version
-      run: make compatibility-check
-
   schemas-check:
     runs-on: ubuntu-latest
     steps:
@@ -108,3 +101,25 @@ jobs:
       run: |
         make generate-gh-issue-templates
         git diff --exit-code '.github/ISSUE_TEMPLATE' || (echo 'Dropdowns in issue templates is out of date, please run "make generate-gh-issue-templates" and commit the changes in this PR. Please note, if you are running it on Mac OS X, please make sure to use GNU version of sed instead of default "sed".' && exit 1)
+
+  policies-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: verify semantic conventions yaml definitions
+      run: make check-policies
+
+  polices-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: verify semantic conventions yaml definitions
+      run: make test-policies
+
+  # TODO: Remove this once policies-check is the only enforcement on github.
+  semantic-conventions-compatibility:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: verify semantic convention compatibility with latest released version
+      run: make compatibility-check

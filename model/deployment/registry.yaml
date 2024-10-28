@@ -1,0 +1,48 @@
+groups:
+  - id: registry.deployment
+    type: attribute_group
+    display_name: Deployment Attributes
+    brief: >
+      This document defines attributes for software deployments.
+    attributes:
+      - id: deployment.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the deployment.
+        examples: ["deploy my app", "deploy-frontend"]
+      - id: deployment.id
+        type: string
+        stability: experimental
+        brief: >
+          The id of the deployment.
+        examples: ["1208"]
+      - id: deployment.status
+        type:
+          members:
+            - id: failed
+              value: failed
+              brief: failed
+              stability: experimental
+            - id: succeeded
+              value: succeeded
+              brief: succeeded
+              stability: experimental
+        brief: >
+          The status of the deployment.
+        stability: experimental
+      - id: deployment.environment.name
+        type: string
+        stability: experimental
+        brief: >
+          Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment)
+          (aka deployment tier).
+        note: |
+          `deployment.environment.name` does not affect the uniqueness constraints defined through
+          the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
+          This implies that resources carrying the following attribute combinations MUST be
+          considered to be identifying the same service:
+
+          - `service.name=frontend`, `deployment.environment.name=production`
+          - `service.name=frontend`, `deployment.environment.name=staging`.
+        examples: ["staging", "production"]

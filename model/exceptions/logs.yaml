@@ -1,0 +1,14 @@
+groups:
+  - id: log-exception
+    type: attribute_group
+    brief: >
+      This document defines attributes for exceptions represented using Log
+      Records.
+    attributes:
+      - ref: exception.type
+        requirement_level:
+          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
+      - ref: exception.message
+        requirement_level:
+          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
+      - ref: exception.stacktrace

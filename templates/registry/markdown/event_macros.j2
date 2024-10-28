@@ -1,4 +1,16 @@
 {#- Macros for simplifying creating "Event" documentation. -#}
-{% macro header(event) %}{% if event.name or event.prefix %}The event name MUST be `{{ event.name or event.prefix }}`.
+{% import 'stability.j2' as stability %}
+{% import 'body_field_table.j2' as body_table %}
+{% macro header(event) %}**Status:** {{ stability.badge(event.stability, event.deprecated) }}
 
+The event name MUST be `{{ event.name }}`.
+
+{{ event.brief | trim }}
+{%if event.note %}
+{{ event.note | trim }}
+{% endif %}
+{% endmacro %}
+{% macro body(body) %}{% if body %}**Body fields:**
+
+{{ body_table.generate(body.fields) }}
 {% endif %}{% endmacro %}

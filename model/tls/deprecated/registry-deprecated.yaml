@@ -1,0 +1,11 @@
+groups:
+  - id: registry.tls.deprecated
+    type: attribute_group
+    brief: Describes deprecated `tls` attributes.
+    attributes:
+      - id: tls.client.server_name
+        type: string
+        stability: experimental
+        deprecated: "Replaced by `server.address`."
+        brief: "Deprecated, use `server.address` instead."
+        examples: ["opentelemetry.io"]

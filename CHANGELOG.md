@@ -7,6 +7,157 @@
 
 <!-- next version -->
 
+## v1.28.0
+
+### 🛑 Breaking changes 🛑
+
+- `database`: Add new `db.response.status_code` attribute, deprecate `db.cosmos.status_code`. (#1424)
+- `gen_ai`: Deprecate `gen_ai.prompt` and `gen_ai.completion` attributes, introduce log-based events for GenAI inputs and outputs. (#834, #980)
+- `system`: Make `system.cpu.utilization` and `process.cpu.utilization` opt-in (#1130)
+- `messaging`: Mark `*.size` messaging attributes as opt-in (#474)
+
+### 🚩 Deprecations 🚩
+
+- `event`: Remove support for the event `fields` supporting referencing / inheriting fields from global attributes. (#1341)
+
+### 🚀 New components 🚀
+
+- `cloudfoundry`: Adds a resource convention for Cloud Foundry applications and system components. (#622, #624)
+  Introduces a description for CloudFoundry resources. These can either be
+  applications deployed on the runtime or system components of Cloud Foundry
+  itself. It also extends to the runtime logs and metrics, e.g. Gorouter access
+  logs and container metrics.
+
+- `dotnet`: Adds experimental metrics for the .NET Common Language Runtime (CLR). (#956)
+- `profile`: Introduce semantic convention for OTel Profiles. (#1188)
+
+### 💡 Enhancements 💡
+
+- `db`: Mark database semantic conventions as release candidate (#1101)
+- `messaging`: Define span kind for unspecified cases of messaging `publish` and `process` spans. (#1112)
+- `db`: Change description of `db.client.connection.pending_requests` from cumulative to current value (#1290)
+- `docs`: Add note on tooling limitations for attribute names and enforce name format. (#1124)
+- `az, db`: Define  `db.operation.name` values for Cosmos DB, declare `az.namespace` attribute and add proper reference to it. (#1330)
+- `db`: Recommend to capture `db.namespace` from initial connection over not capturing any, also specify `db.namespace` value for PostgreSQL, MySQL and MariaDB (#1437)
+- `messaging`: Add recommendation to report "Create" spans for batch send calls only and to allow to disable "Create" spans.
+ (#1273)
+- `other`: Update resource to include stability in the YAML file (#1399)
+  Makes the following changes:
+
+  - Require `name` on resource groups.
+  - Enforce backwards compatibility stability requirements on resource groups.
+  - Rename `telemetry` to `telemetry.sdk`, attributes are unchanged.
+  - Mark `telemetry.sdk` and `resource` as stable in YAML model.
+  - Markdown templates for resource groups NOW includes header describing
+    the resource `type`, `stability` and `description`.
+
+- `process`: Add additional process fields from ECS (#993)
+- `container`: Add `container.cpu.usage` metric (#1128)
+- `container`: Add CSI (Container Storage Interface) attributes: `container.csi.plugin.name` and `container.csi.volume.id`. (#1119)
+- `system`: Add the `system.filesystem.limit` metric (#127)
+- `k8s`: Add `k8s.pod.cpu.time`, `k8s.pod.cpu.usage`, `k8s.node.cpu.time`, `k8s.node.cpu.usage` metrics (#1320)
+- `k8s`: Add k8s.pod.memory usage and k8s.node.memory.usage metrics (#1406)
+- `k8s`: Adds `k8s.volume.name` and `k8s.volume.type` attributes to the registry (#1164)
+- `os`: add lookup for `os.build_id` (#1318)
+- `gen_ai`: Add system specific conventions for OpenAI. (#1370)
+- `system`: Add the `system.disk.limit` metric (#127)
+- `file`: Add additional attributes from ECS to the `file` namespace. (#914)
+- `messaging`: Clarify the possibility to have a parent-child trace structure in messaging conventions (#1282)
+- `nodejs`: Adding `nodejs.eventloop.time` metric to Node.js runtime metrics. (#1259)
+- `process`: Extend process.executable with build_id attributes. (#1329)
+  For correct symbolization it is important to uniquely identify executables.
+- `messaging`: Change messaging.operation.type = publish to messaging.operation.type = send (#1285)
+- `host`: update lookup for os.build_id (#1396)
+
+### 🧰 Bug fixes 🧰
+
+- `messaging`: Fix deprecated note for service bus attributes (#1418)
+- `container`: Fixes broken link (#1332)
+
+## 1.27.0
+
+### 🛑 Breaking changes 🛑
+
+- `messaging`: Support generic operations in messaging and rename metrics:
+
+  - Make `messaging.operation.name` required and `messaging.operation.type` conditionally required when type is applicable.
+  - Rename `messaging.publish.messages` metric to `messaging.client.published.messages`
+  - Unify `messaging.publish.duration` and `messaging.receive.duration` metrics into `messaging.client.operation.duration`
+  - Unify `messaging.receive.messages` and `messaging.process.messages` metrics into `messaging.client.consumed.messages`
+ (#1006, #947, #937)
+
+- `db`: Clean up `db.system` enum members:
+
+  - remove `firstsql`, `mssqlcompact`, and `cloudscape` as the corresponding databases are discontinued.
+  - rename `cache` to `intersystems_cache`
+  - remove `coldfusion` as it is not a database.
+   (#1110)
+
+- `db`: Rename `db.client.connections.*` attributes to `db.client.connection.*` (#1125)
+- `messaging`: Rename `messaging.kafka.message.offset` to `messaging.kafka.offset` (#1156)
+- `db`: Sampling relevant attributes defined for database client spans (#1019)
+- `tls`: Deprecate `tls.client.server_name attribute` in favor of common `server.address`.
+ (#1211, #1216)
+- `messaging`: Deprecate `messaging.destination_publish.*`` namespace and remove all usages. (#1178, #1241)
+- `messaging`: Introduce common attributes for consumer group and subscription name instead of per-system ones: - `messaging.consumer.group.name` instead of `messaging.kafka.consumer.group`, `messaging.rocketmq.client_group`, and `messaging.eventhubs.consumer.group`. - `messaging.destination.subscription.name` instead of `messaging.servicebus.destination.subscription_name`. Use it in the Google Pub/Sub conventions.
+ (#815)
+- `db`: Align Elasticsearch span name to the general database span name guidelines. Deprecates `db.elasticsearch.cluster.name` in favor of `db.namespace`.
+ (#1002)
+- `cicd, deployment, artifact, test, vcs`: Adds CICD common attributes to the registry. (#915, #832, #833)
+  - CICD common attributes have been added to the registry.
+  - `deployment.environment` has been deprecated and moved to `deployment.environment.name`.
+
+- `jvm`: Rename JVM metric `jvm.buffer.memory.usage` to `jvm.buffer.memory.used` (#288)
+- `system`: Rename `process.cpu.state`, `container.cpu.state`, and `system.cpu.state` attributes into a common `cpu.mode` attribute (#840)
+
+### 🚀 New components 🚀
+
+- `azure`: Add Azure SDK attributes & Logs event semantic conventions (#1027)
+- `go`: Add new go namespace for Go runtime metrics (#535)
+- `nodejs`: Introducing semantic conventions for Node.js runtime metrics. (#990)
+- `user`: BREAKING - deprecate `enduser` in favor of a new `user` namespace. Add more `user` attributes. (#731)
+- `v8js`: Introducing semantic conventions for V8 JS Engine runtime metrics. (#990)
+
+### 💡 Enhancements 💡
+
+- `db`: List SQL database systems on the SQL semantic conventions. (#1024)
+- `db`: Update database span name: clarify that target depends on the operation and should not be set when corresponding data is not available. (#1045)
+- `db`: Mention how to capture collection and operation names from query text in the registry (#1070)
+- `docs`: Don't render deprecated enum members in semconv tables. (#1110)
+- `gen-ai`: Use GenAI instead of LLM on GenAI trace semantic conventions and minor cleanups. (#1087)
+- `gen-ai`: Add GenAI model server metrics for measuring LLM serving latency (#1102)
+- `db`: Clarify that `db.query.parameter.<key>` is string representation of the parameter value (#1165)
+- `messaging`: Clarify how per-message attributes should be recorded for batch operations. (#1168)
+- `messaging`: Define sampling relevant attributes for messaging client spans (#432, #1169)
+- `gen_ai`: Rename `gen_ai.usage.prompt_tokens` to `gen_ai.usage.input_tokens` and `gen_ai.usage.completion_tokens` to `gen_ai.usage.output_tokens` to align terminology between spans and metrics.
+ (#1200)
+- `gen_ai`: Convert `gen_ai.operation.name` to enum and use it on spans (#1202)
+- `network`: Add QUIC to the list of well known network transports (#1237, #1239)
+- `db`: `db.query.text` IN-clauses MAY be collapsed during the sanitization process (#1053)
+- `db`, `messaging`: Clarify that DB and messaging system-specific conventions override common ones (#1235, #1244)
+- `db`: Add better example of how to make the pool name unique (#1289)
+- `docs`: Update semantic conventions code generation documentation to use weaver instead of build-tools. (#1296)
+- `gen_ai`: Add `server.address`, `server.port`, and `error.type` to GenAI spans. (#1297)
+- `gen-ai`: Adding metrics for GenAI clients. (#811)
+- `gen-ai`: Adding `gen_ai.request.top_k`, `gen_ai.request.presence_penalty`,  `gen_ai.request.frequency_penalty` and `gen_ai.request.stop_sequences` attributes. (#839)
+- `messaging`: Document `messaging.operation.name` for Azure messaging systems. (#942)
+- `all`: Define name abbreviations guidelines in attribute and metric names. (#1121)
+- `messaging`: Add pulsar message system (#1099)
+- `linux`: Add the `system.linux.memory.slab.usage` metric and the `linux.memory.slab.state` attributes. (#531)
+- `cloudevents`: CloudEvents conventions to follow HTTP/Messaging Span conventions (#654)
+- `db`: Add support for database batch operations (#712)
+- `db`: Specify sanitization for `db.query.text`. (#717)
+- `gen-ai`: Add 3 well-known gen-ai systems as reference values of the gen-ai system attribute (#1020)
+- `gcp`: Introduces `gcp.client.service` scope attribute. (#1047)
+- `db`: Add semantic convention of InfluxDB (#949)
+- `log`: Add 'log.record.original' attribute. (#1137)
+- `session`: Add new experimental `session.start` and `session.end` events (#1091)
+
+### 🧰 Bug fixes 🧰
+
+- `messaging`: Update Kafka Spring example to align with the messaging spec (#1155)
+- `http`: Relax requirement on when to set HTTP span status to Error from `MUST` to `SHOULD`. (#1167, #1003)
+
 ## v1.26.0
 
 ### 🛑 Breaking changes 🛑

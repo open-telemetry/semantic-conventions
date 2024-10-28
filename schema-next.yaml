@@ -2,12 +2,19 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
+  1.28.0:
+    metrics:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1422
+        - rename_metrics:
+            messaging.client.published.messages: messaging.client.sent.messages
+  1.27.0:
     all:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/1216
         - rename_attributes:
-          attribute_map:
-            tls.client.server_name: server.address
+            attribute_map:
+              tls.client.server_name: server.address
         # https://github.com/open-telemetry/semantic-conventions/pull/1075
         - rename_attributes:
             attribute_map:
@@ -70,6 +77,9 @@ versions:
               - process.cpu.time
               - process.cpu.utilization
               - container.cpu.time
+        # https://github.com/open-telemetry/semantic-conventions/pull/1265
+        - rename_metrics:
+            jvm.buffer.memory.usage: jvm.buffer.memory.used
   1.26.0:
     metrics:
       changes:

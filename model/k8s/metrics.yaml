@@ -1,0 +1,62 @@
+groups:
+  # k8s.pod.cpu.* metrics
+  - id: metric.k8s.pod.cpu.time
+    type: metric
+    metric_name: k8s.pod.cpu.time
+    stability: experimental
+    brief: "Total CPU time consumed"
+    note: >
+      Total CPU time consumed by the specific Pod on all available CPU cores
+    instrument: counter
+    unit: "s"
+  - id: metric.k8s.pod.cpu.usage
+    type: metric
+    metric_name: k8s.pod.cpu.usage
+    stability: experimental
+    brief: "Pod's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs"
+    note: >
+      CPU usage of the specific Pod on all available CPU cores, averaged over the sample window
+    instrument: gauge
+    unit: "{cpu}"
+
+  # k8s.pod.memory.* metrics
+  - id: metric.k8s.pod.memory.usage
+    type: metric
+    metric_name: k8s.pod.memory.usage
+    stability: experimental
+    brief: "Memory usage of the Pod"
+    note: >
+      Total memory usage of the Pod
+    instrument: gauge
+    unit: "By"
+
+  # k8s.node.cpu.* metrics
+  - id: metric.k8s.node.cpu.time
+    type: metric
+    metric_name: k8s.node.cpu.time
+    stability: experimental
+    brief: "Total CPU time consumed"
+    note: >
+      Total CPU time consumed by the specific Node on all available CPU cores
+    instrument: counter
+    unit: "s"
+  - id: metric.k8s.node.cpu.usage
+    type: metric
+    metric_name: k8s.node.cpu.usage
+    stability: experimental
+    brief: "Node's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs"
+    note: >
+      CPU usage of the specific Node on all available CPU cores, averaged over the sample window
+    instrument: gauge
+    unit: "{cpu}"
+
+  # k8s.node.memory.* metrics
+  - id: metric.k8s.node.memory.usage
+    type: metric
+    metric_name: k8s.node.memory.usage
+    stability: experimental
+    brief: "Memory usage of the Node"
+    note: >
+      Total memory usage of the Node
+    instrument: gauge
+    unit: "By"

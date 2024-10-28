@@ -1,0 +1,19 @@
+groups:
+  - id: attributes.messaging.common.minimal
+    type: attribute_group
+    brief: "Common cross-signal messaging attributes."
+    stability: experimental
+    attributes:
+      # TODO: Not adding `messaging.system` to the minimal because of https://github.com/open-telemetry/build-tools/issues/192
+      - ref: error.type
+        examples: ["amqp:decode-error", "KAFKA_STORAGE_ERROR", "channel-error"]
+        requirement_level:
+          conditionally_required: If and only if the messaging operation has failed.
+      - ref: server.address
+        note: >
+          Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+        requirement_level:
+          conditionally_required: If available.
+      - ref: server.port
+      - ref: messaging.operation.name
+        requirement_level: required

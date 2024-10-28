@@ -1,0 +1,15 @@
+groups:
+  - id: registry.peer
+    type: attribute_group
+    display_name: Peer Attributes
+    brief: >
+      Operations that access some remote service.
+    attributes:
+      - id: peer.service
+        type: string
+        stability: experimental
+        brief: >
+          The [`service.name`](/docs/resource/README.md#service)
+          of the remote service. SHOULD be equal to the actual `service.name`
+          resource attribute of the remote service if any.
+        examples: "AuthTokenCache"

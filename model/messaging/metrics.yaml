@@ -1,0 +1,94 @@
+groups:
+  - id: metric.messaging.attributes
+    type: attribute_group
+    stability: experimental
+    brief: "Common messaging metrics attributes."
+    extends: attributes.messaging.common.minimal
+    attributes:
+      - ref: messaging.system
+        requirement_level: required
+      - ref: messaging.destination.partition.id
+      - ref: messaging.destination.name
+        requirement_level:
+          conditionally_required: if and only if `messaging.destination.name` is known to have low cardinality. Otherwise, `messaging.destination.template` MAY be populated.
+      - ref: messaging.destination.template
+        requirement_level:
+          conditionally_required: if available.
+
+  - id: metric.messaging.consumer.attributes
+    type: attribute_group
+    stability: experimental
+    brief: "Messaging consumer metrics attributes."
+    extends: metric.messaging.attributes
+    attributes:
+      - ref: messaging.consumer.group.name
+        requirement_level:
+          conditionally_required: if applicable.
+      - ref: messaging.destination.subscription.name
+        requirement_level:
+          conditionally_required: if applicable.
+
+  # durations
+  - id: metric.messaging.client.operation.duration
+    type: metric
+    metric_name: messaging.client.operation.duration
+    brief: "Duration of messaging operation initiated by a producer or consumer client."
+    note: >
+      This metric SHOULD NOT be used to report processing duration - processing duration is reported in `messaging.process.duration` metric.
+    stability: experimental
+    instrument: histogram
+    unit: "s"
+    extends: metric.messaging.consumer.attributes
+    attributes:
+      - ref: messaging.operation.type
+        requirement_level:
+          conditionally_required: If applicable.
+      - ref: messaging.operation.name
+        examples: ["send", "receive", "ack"]
+
+  - id: metric.messaging.process.duration
+    type: metric
+    metric_name: messaging.process.duration
+    brief: "Duration of processing operation."
+    note: >
+      This metric MUST be reported for operations with `messaging.operation.type` that matches `process`.
+    stability: experimental
+    instrument: histogram
+    unit: "s"
+    extends: metric.messaging.consumer.attributes
+    attributes:
+      - ref: messaging.operation.name
+        examples: ["process", "consume", "handle"]
+
+  # counters
+  - id: metric.messaging.client.sent.messages
+    type: metric
+    metric_name: messaging.client.sent.messages
+    brief: "Number of messages producer attempted to send to the broker."
+    note: >
+      This metric MUST NOT count messages that were created but haven't yet been sent.
+    stability: experimental
+    instrument: counter
+    unit: "{message}"
+    extends: metric.messaging.attributes
+    attributes:
+      - ref: messaging.operation.name
+        examples: ["send", "schedule", "enqueue"]
+
+  - id: metric.messaging.client.consumed.messages
+    type: metric
+    metric_name: messaging.client.consumed.messages
+    brief: "Number of messages that were delivered to the application."
+    note: >
+      Records the number of messages pulled from the broker or number of messages dispatched to the application in push-based scenarios.
+
+      The metric SHOULD be reported once per message delivery. For example, if receiving and
+      processing operations are both instrumented for a single message delivery, this counter
+      is incremented when the message is received and not reported when it is processed.
+    stability: experimental
+    instrument: counter
+    unit: "{message}"
+    extends: metric.messaging.consumer.attributes
+    attributes:
+      - ref: messaging.operation.name
+        examples: ["receive", "peek", "poll", "consume"]

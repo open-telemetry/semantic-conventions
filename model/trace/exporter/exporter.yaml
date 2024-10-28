@@ -1,9 +1,0 @@
-groups:
-  - id: otel_span
-    type: span
-    brief: Span attributes used by non-OTLP exporters to represent OpenTelemetry Span's concepts.
-    attributes:
-      - ref: otel.status_code
-        requirement_level: recommended
-      - ref: otel.status_description
-        requirement_level: recommended

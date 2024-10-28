@@ -1,8 +1,0 @@
-groups:
-  - id: event
-    type: attribute_group
-    brief: >
-        This document defines attributes for Events represented using Log Records.
-    attributes:
-      - ref: event.name
-        requirement_level: required

@@ -1,0 +1,205 @@
+groups:
+  - id: registry.faas
+    brief: FaaS attributes
+    type: attribute_group
+    display_name: Function as a Service Attributes
+    attributes:
+      - id: faas.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the single function that this runtime instance executes.
+        note: |
+          This is the name of the function as configured/deployed on the FaaS
+          platform and is usually different from the name of the callback
+          function (which may be stored in the
+          [`code.namespace`/`code.function`](/docs/general/attributes.md#source-code-attributes)
+          span attributes).
+
+          For some cloud providers, the above definition is ambiguous. The following
+          definition of function name MUST be used for this attribute
+          (and consequently the span name) for the listed cloud providers/products:
+
+          - **Azure:**  The full name `<FUNCAPP>/<FUNC>`, i.e., function app name
+            followed by a forward slash followed by the function name (this form
+            can also be seen in the resource JSON for the function).
+            This means that a span attribute MUST be used, as an Azure function
+            app can host multiple functions that would usually share
+            a TracerProvider (see also the `cloud.resource_id` attribute).
+        examples: ['my-function', 'myazurefunctionapp/some-function-name']
+      - id: faas.version
+        type: string
+        stability: experimental
+        brief: The immutable version of the function being executed.
+        note: |
+          Depending on the cloud provider and platform, use:
+
+          - **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
+            (an integer represented as a decimal string).
+          - **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
+            (i.e., the function name plus the revision suffix).
+          - **Google Cloud Functions:** The value of the
+            [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically).
+          - **Azure Functions:** Not applicable. Do not set this attribute.
+        examples: ['26', 'pinkfroid-00002']
+      - id: faas.instance
+        type: string
+        stability: experimental
+        brief: >
+          The execution environment ID as a string, that will be potentially reused
+          for other invocations to the same function/function version.
+        note: >
+          - **AWS Lambda:** Use the (full) log stream name.
+        examples: ['2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de']
+      - id: faas.max_memory
+        type: int
+        stability: experimental
+        brief: >
+          The amount of memory available to the serverless function converted to Bytes.
+        note: >
+          It's recommended to set this attribute since e.g. too little memory can easily
+          stop a Java AWS Lambda function from working correctly.
+          On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE`
+          provides this information (which must be multiplied by 1,048,576).
+        examples: 134217728
+      - id: faas.trigger
+        stability: experimental
+        brief: >
+          Type of the trigger which caused this function invocation.
+        type:
+          members:
+            - id: datasource
+              value: 'datasource'
+              brief: 'A response to some data source operation such as a database or filesystem read/write'
+              stability: experimental
+            - id: http
+              value: 'http'
+              brief: 'To provide an answer to an inbound HTTP request'
+              stability: experimental
+            - id: pubsub
+              value: 'pubsub'
+              brief: 'A function is set to be executed when messages are sent to a messaging system'
+              stability: experimental
+            - id: timer
+              value: 'timer'
+              brief: 'A function is scheduled to be executed regularly'
+              stability: experimental
+            - id: other
+              value: 'other'
+              brief: 'If none of the others apply'
+              stability: experimental
+      - id: faas.invoked_name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the invoked function.
+        note: >
+          SHOULD be equal to the `faas.name` resource attribute of the
+          invoked function.
+        examples: 'my-function'
+      - id: faas.invoked_provider
+        stability: experimental
+        type:
+          members:
+            - id: 'alibaba_cloud'
+              value: 'alibaba_cloud'
+              brief: 'Alibaba Cloud'
+              stability: experimental
+            - id: 'aws'
+              value: 'aws'
+              brief: 'Amazon Web Services'
+              stability: experimental
+            - id: 'azure'
+              value: 'azure'
+              brief: 'Microsoft Azure'
+              stability: experimental
+            - id: 'gcp'
+              value: 'gcp'
+              brief: 'Google Cloud Platform'
+              stability: experimental
+            - id: 'tencent_cloud'
+              value: 'tencent_cloud'
+              brief: 'Tencent Cloud'
+              stability: experimental
+        brief: >
+          The cloud provider of the invoked function.
+        note: >
+          SHOULD be equal to the `cloud.provider` resource attribute of the
+          invoked function.
+      - id: faas.invoked_region
+        type: string
+        stability: experimental
+        brief: >
+          The cloud region of the invoked function.
+        note: >
+          SHOULD be equal to the `cloud.region` resource attribute of the
+          invoked function.
+        examples: 'eu-central-1'
+      - id: faas.invocation_id
+        type: string
+        stability: experimental
+        brief: >
+          The invocation ID of the current function invocation.
+        examples: 'af9d5aa4-a685-4c5f-a22b-444f80b3cc28'
+      - id: faas.time
+        type: string
+        stability: experimental
+        brief: >
+          A string containing the function invocation time in the
+          [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)
+          format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
+        examples: "2020-01-23T13:47:06Z"
+      - id: faas.cron
+        type: string
+        stability: experimental
+        brief: >
+          A string containing the schedule period as
+          [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm).
+        examples: "0/5 * * * ? *"
+      - id: faas.coldstart
+        type: boolean
+        stability: experimental
+        brief: >
+          A boolean that is true if the serverless function is executed for the
+          first time (aka cold-start).
+      - id: faas.document.collection
+        type: string
+        stability: experimental
+        brief: >
+          The name of the source on which the triggering operation was performed.
+          For example, in Cloud Storage or S3 corresponds to the bucket name,
+          and in Cosmos DB to the database name.
+        examples: ['myBucketName', 'myDbName']
+      - id: faas.document.operation
+        stability: experimental
+        type:
+          members:
+            - id: insert
+              value: 'insert'
+              brief: 'When a new object is created.'
+              stability: experimental
+            - id: edit
+              value: 'edit'
+              brief: 'When an object is modified.'
+              stability: experimental
+            - id: delete
+              value: 'delete'
+              brief: 'When an object is deleted.'
+              stability: experimental
+        brief: 'Describes the type of the operation that was performed on the data.'
+      - id: faas.document.time
+        type: string
+        stability: experimental
+        brief: >
+          A string containing the time when the data was accessed in the
+          [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)
+          format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
+        examples: "2020-01-23T13:47:06Z"
+      - id: faas.document.name
+        type: string
+        stability: experimental
+        brief: >
+          The document name/table subjected to the operation.
+          For example, in Cloud Storage or S3 is the name of
+          the file, and in Cosmos DB the table name.
+        examples: ["myFile.txt", "myTableName"]

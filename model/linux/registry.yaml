@@ -1,0 +1,18 @@
+groups:
+  # linux.memory.* attribute group
+  - id: registry.linux.memory
+    type: attribute_group
+    brief: "Describes Linux Memory attributes"
+    attributes:
+      - id: linux.memory.slab.state
+        type:
+          members:
+            - id: reclaimable
+              value: 'reclaimable'
+              stability: experimental
+            - id: unreclaimable
+              value: 'unreclaimable'
+              stability: experimental
+        stability: experimental
+        brief: "The Linux Slab memory state"
+        examples: ["reclaimable", "unreclaimable"]
