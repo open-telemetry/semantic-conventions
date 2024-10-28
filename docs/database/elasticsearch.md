@@ -66,7 +66,8 @@ In such case username and password SHOULD be redacted and attribute's value SHOU
 
 Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
 
-In particular, query string values for the following keys SHOULD be redacted by default and replaced by the
+![Experimental](https://img.shields.io/badge/-experimental-blue)
+Query string values for the following keys SHOULD be redacted by default and replaced by the
 value `REDACTED`:
 
 * [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
