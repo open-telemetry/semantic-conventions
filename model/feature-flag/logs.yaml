@@ -16,7 +16,7 @@ groups:
         requirement_level: recommended
       - ref: feature_flag.version
         requirement_level: recommended
-      - ref: feature_flag.environment.id
+      - ref: feature_flag.flag_set.id
         requirement_level: recommended
       - ref: feature_flag.value
         requirement_level: opt_in
