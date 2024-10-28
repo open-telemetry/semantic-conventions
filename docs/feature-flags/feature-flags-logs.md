@@ -52,22 +52,22 @@ This semantic convention defines the attributes used to represent a feature flag
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`feature_flag.key`](/docs/attributes-registry/feature-flag.md) | string | The unique identifier of the feature flag. | `logo-color` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`feature_flag.variant`](/docs/attributes-registry/feature-flag.md) | string | SHOULD be a semantic identifier for a value. If one is unavailable, a stringified version of the value can be used. [1] | `red`; `true`; `on` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`feature_flag.key`](/docs/attributes-registry/feature-flag.md) | string | The lookup key of the feature flag. | `logo-color` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`feature_flag.value`](/docs/attributes-registry/feature-flag.md) | string | The evaluated value of the feature flag. | `#ff0000`; `1`; `true` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`feature_flag.variant`](/docs/attributes-registry/feature-flag.md) | string | A semantic identifier for an evaluated flag value. [2] | `red`; `true`; `on` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`feature_flag.context.id`](/docs/attributes-registry/feature-flag.md) | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`feature_flag.flag_set.id`](/docs/attributes-registry/feature-flag.md) | string | The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) which the feature flag belongs to in a flag management system. | `proj-1`; `ab98sgs`; `service1/dev` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`feature_flag.provider.id`](/docs/attributes-registry/feature-flag.md) | string | The name of the service provider that performs the flag evaluation. | `Flag Manager` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`feature_flag.version`](/docs/attributes-registry/feature-flag.md) | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`feature_flag.value`](/docs/attributes-registry/feature-flag.md) | string | The evaluated value of the feature flag. | `#ff0000`; `1`; `true` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** A semantic identifier, commonly referred to as a variant, provides a means
+**[1]:** If and only if feature flag provider does not provide variant or equivalent concept. Otherwise, `feature_flag.value` should be treated as opt-in.
+
+**[2]:** A semantic identifier, commonly referred to as a variant, provides a means
 for referring to a value without including the value itself. This can
 provide additional context for understanding the meaning behind a value.
 For example, the variant `red` maybe be used for the value `#c05543`.
 
-A stringified version of the value can be used in situations where a
-semantic identifier is unavailable. String representation of the value
-should be determined by the implementer.
+**[3]:** If feature flag provider provides a variant or equivalent concept.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
