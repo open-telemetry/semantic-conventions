@@ -113,3 +113,5 @@ groups:
         requirement_level: opt_in
       - ref: http.response.body.size
         requirement_level: opt_in
+      - ref: http.request.synthetic
+        requirement_level: opt_in
