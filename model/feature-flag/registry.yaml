@@ -1,6 +1,7 @@
 groups:
   - id: registry.feature_flag
     type: attribute_group
+    stability: experimental
     display_name: Feature Flag Attributes
     brief: >
         This document defines attributes for Feature Flags.

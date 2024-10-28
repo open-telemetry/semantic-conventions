@@ -1,4 +1,16 @@
 groups:
+  # system.* metrics
+  - id: metric.system.uptime
+    type: metric
+    metric_name: system.uptime
+    stability: experimental
+    brief: "The time the system has been running"
+    note: |
+      Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
+      The actual accuracy would depend on the instrumentation and operating system.
+    instrument: gauge
+    unit: "s"
+
   # system.cpu.* metrics
   - id: metric.system.cpu.time
     type: metric
@@ -110,6 +122,9 @@ groups:
     unit: "By"
     attributes:
       - ref: system.paging.state
+      - ref: system.device
+        brief: Unique identifier for the device responsible for managing paging operations.
+        examples: ["/dev/dm-0"]
 
   - id: metric.system.paging.utilization
     type: metric
@@ -120,6 +135,9 @@ groups:
     unit: "1"
     attributes:
       - ref: system.paging.state
+      - ref: system.device
+        brief: Unique identifier for the device responsible for managing paging operations.
+        examples: ["/dev/dm-0"]
 
   - id: metric.system.paging.faults
     type: metric
