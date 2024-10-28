@@ -60,14 +60,14 @@ This semantic convention defines the attributes used to represent a feature flag
 | [`feature_flag.provider.id`](/docs/attributes-registry/feature-flag.md) | string | The name of the service provider that performs the flag evaluation. | `Flag Manager` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`feature_flag.version`](/docs/attributes-registry/feature-flag.md) | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** If and only if feature flag provider does not provide variant or equivalent concept. Otherwise, `feature_flag.value` should be treated as opt-in.
+**[1]:** If and only if feature flag provider does not supply variant or equivalent concept. Otherwise, `feature_flag.value` should be treated as opt-in.
 
 **[2]:** A semantic identifier, commonly referred to as a variant, provides a means
 for referring to a value without including the value itself. This can
 provide additional context for understanding the meaning behind a value.
 For example, the variant `red` maybe be used for the value `#c05543`.
 
-**[3]:** If feature flag provider provides a variant or equivalent concept.
+**[3]:** If feature flag provider supplies a variant or equivalent concept.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -10,7 +10,7 @@ groups:
         requirement_level: required
       - ref: feature_flag.variant
         requirement_level:
-          conditionally_required: If feature flag provider provides a variant or equivalent concept.
+          conditionally_required: If feature flag provider supplies a variant or equivalent concept.
       - ref: feature_flag.provider.id
         requirement_level: recommended
       - ref: feature_flag.context.id
@@ -22,5 +22,5 @@ groups:
       - ref: feature_flag.value
         requirement_level:
           conditionally_required: >
-            If and only if feature flag provider does not provide variant or equivalent concept.
+            If and only if feature flag provider does not supply variant or equivalent concept.
             Otherwise, `feature_flag.value` should be treated as opt-in.
