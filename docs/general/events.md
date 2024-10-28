@@ -98,6 +98,14 @@ Recommendations on using attributes vs. body fields:
   * The _fields_ are unique to the named event (`event.name`) and different events
     may use the same _field_ name to represent different data, due to the unique
     nature of the event.
+  * The _fields_ SHOULD NOT use the `*.ref.*` name, except when applying the
+    same principle/data model as "attribute references" but in relation to
+    event fields (e.g. using `somefield.ref.uri` to relay the value of the
+    field `somefield` via indirection to an external storage system).
+  * For any _field_ name `somefield`, there exist a set of corresponding
+    fields `somefield.ref.*` that may be used to relay the value of `somefield`
+    via reference to an external storage system, following the same rules as
+    "attribute references" as outlined in the attribute naming conventions.
 
 ## External event compatibility
 

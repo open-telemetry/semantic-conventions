@@ -46,17 +46,20 @@ Names SHOULD follow these rules:
   indicate entity hierarchies. This purpose should primarily drive the decision
   about forming nested namespaces.
 
+- The special namespace `*.ref.*` is reserved for "reference attributes".
+
 - For each multi-word dot-delimited component of the attribute name separate the
   words by underscores (i.e. use snake_case). For example
   `http.response.status_code` denotes the status code in the http namespace.
 
 - Names SHOULD NOT coincide with namespaces. For example if
-  `service.instance.id` is an attribute name then it is no longer valid to have
-  an attribute named `service.instance` because `service.instance` is already a
+  `service.instance.id` is an attribute name, then it is no longer valid to have
+  an attribute named `service.instance`, because `service.instance` is already a
   namespace. Because of this rule be careful when choosing names: every existing
   name prohibits existence of an equally named namespace in the future, and vice
   versa: any existing namespace prohibits existence of an equally named
-  attribute key in the future.
+  attribute key in the future. Note that "reference attributes" are exempt
+  from this rule, because they are/replace the original attribute.
 
 ## Name Pluralization Guidelines
 
@@ -172,6 +175,32 @@ and protocols.
 
 Any additions to the `otel.*` namespace MUST be approved as part of
 OpenTelemetry specification.
+
+## Reference Attributes
+
+A "reference attribute" is a set of derived attribute names that are used to
+provide the value of an attribute indirectly via a URI reference to a storage
+system where the value of the attribute may be retrieved.
+
+In general, if there exists an attribute `somekey`, then there is implicitly
+defined another attribute `somekey.ref.uri` which may be used to provide
+the value of the attribute `somekey` by reference to an external storage
+system from which the value of `somekey` may be fetched.
+
+Additional `*.ref.*` attributes, beyond `.ref.uri`, may be used to provide
+additional information concerning the external reference, including:
+
+  - `*.ref.content_type`: the MIME type of the data (e.g. `text/plain`, `application/json`, `application/octet-stream`)
+  - `*.ref.size`: the size of the attribute value in bytes
+  - `*.ref.hash_value`: a hash of the data for validation
+  - `*.ref.hash_algorithm`: the algorithm used to compute the hash
+
+If both a reference attribute and its non-reference variant appear together
+within a signal (e.g. both `somekey` and `somekey.ref.uri` are present),
+it should be assumed that only the reference attribute references the full,
+complete, original value of the data; the non-reference variant may be used
+to preview/summarize the data but should be assumed to potentially contain
+a modified, truncated, redacted, or otherwise non-original value within it.
 
 [DocumentStatus]:
   https://opentelemetry.io/docs/specs/otel/document-status
