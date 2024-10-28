@@ -30,9 +30,29 @@ Attributes describing URL.
 
 **[2]:** The file extension is only set if it exists, as not every url has a file extension. When the file name has multiple extensions `example.tar.gz`, only the last one should be captured `gz`, not `tar.gz`.
 
-**[3]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
-`url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
-`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed). Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
+**[3]:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment
+is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
+
+`url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`.
+In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
+
+`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
+
+Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
+
+In particular, query string values for the following keys SHOULD be redacted by default and replaced by the
+value `REDACTED`:
+
+* [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
+* [`Signature`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
+* [`sig`](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview#sas-token)
+* [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
+
+This list is subject to grow over time, but once a key is added to the list, removing it will be considered a
+breaking change.
+
+When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
+`https://www.example.com/path?color=blue&sig=REDACTED`.
 
 **[4]:** In network monitoring, the observed URL may be a full URL, whereas in access logs, the URL is often just represented as a path. This field is meant to represent the URL as it was observed, complete or not.
 `url.original` might contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case password and username SHOULD NOT be redacted and attribute's value SHOULD remain the same.
@@ -40,6 +60,20 @@ Attributes describing URL.
 **[5]:** Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
 
 **[6]:** Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
+
+In particular, query string values for the following keys SHOULD be redacted by default and replaced by the
+value `REDACTED`:
+
+* [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
+* [`Signature`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
+* [`sig`](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview#sas-token)
+* [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
+
+This list is subject to grow over time, but once a key is added to the list, removing it will be considered a
+breaking change.
+
+When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
+`q=OpenTelemetry&sig=REDACTED`.
 
 **[7]:** This value can be determined precisely with the [public suffix list](http://publicsuffix.org). For example, the registered domain for `foo.example.com` is `example.com`. Trying to approximate this by simply taking the last two labels will not work well for TLDs such as `co.uk`.
 
