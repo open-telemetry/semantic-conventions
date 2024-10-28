@@ -42,6 +42,16 @@ registry_resources := [g |
 ]
 registry_resource_names := { g.name | some g in registry_resources }
 
+baseline_events := [ g |
+    some g in data.semconv.baseline_groups
+    g.type == "event"
+]
+registry_events := [g |
+    some g in data.semconv.groups
+    g.type == "events"
+]
+registry_event_names := { g.name | some g in registry_events }
+
 # Rules we enforce:
 # - Attributes
 #   - [x] Attributes cannot be removed
@@ -57,7 +67,18 @@ registry_resource_names := { g.name | some g in registry_resources }
 #   - [x] Stable Metric units cannot change
 #   - [x] Stable Metric instruments cannot change
 #   - [x] Set of required/recommended attributes must remain the same
-
+# - Resources
+#   - [x] resources cannot be removed
+#   - [x] Stable Resources cannot become unstable
+#   - [x] Stable attributes cannot be dropped from stable resource
+# - Events
+#   - [x] events cannot be removed
+#   - [x] Stable events cannot become unstable
+#   - [x] Stable attributes cannot be dropped from stable event
+# - Spans - no enforcement yet since id format is not finalized
+#   - [ ] spans cannot be removed
+#   - [ ] Stable spans cannot become unstable
+#   - [ ] Stable attributes cannot be dropped from stable span
 
 # Rule: Detect Removed Attributes
 #
@@ -76,8 +97,6 @@ deny contains back_comp_violation(description, group_id, attr.name) if {
     group_id := data.semconv.baseline_group_ids_by_attribute[attr.name]
     description := sprintf("Attribute '%s' no longer exists in the attribute registry", [attr.name])
 }
-
-
 
 # Rule: Detect Stable Attributes moving to unstable
 #
@@ -160,7 +179,7 @@ deny contains back_comp_violation(description, group_id, attr.name) if {
      some nmember in nattr.type.members
      member.id == nmember.id
 
-     # Enforce the policy    
+     # Enforce the policy
      member.stability == "stable"
      nmember.stability != "stable"
 
@@ -184,7 +203,7 @@ deny contains back_comp_violation(description, group_id, attr.name) if {
      some nmember in nattr.type.members
      member.id == nmember.id
 
-     # Enforce the policy    
+     # Enforce the policy
      member.value != nmember.value
 
      # Generate human readable error.
@@ -285,7 +304,7 @@ deny contains back_comp_violation(description, group_id, "") if {
     description := sprintf("Metric '%s' cannot change instrument (was '%s', now: '%s')", [metric.metric_name, metric.instrument, nmetric.instrument])
 }
 
-# Rule: Stable Metric required/recommended attributes cannot change - missing
+# Rule: Stable attributes on stable metric cannot be dropped.
 #
 # This rule checks that stable metrics have stable sets of attributes.
 deny contains back_comp_violation(description, group_id, "") if {
@@ -294,14 +313,14 @@ deny contains back_comp_violation(description, group_id, "") if {
     metric.stability == "stable"
     some nmetric in registry_metrics
     metric.metric_name = nmetric.metric_name
-    
+
     baseline_attributes := { attr.name |
         some attr in metric.attributes
-        not is_opt_in(attr)
+        attr.stability == "stable"
     }
     new_attributes := { attr.name |
         some attr in nmetric.attributes
-        not is_opt_in(attr)
+        attr.stability == "stable"
     }
     missing_attributes := baseline_attributes - new_attributes
     # Enforce the policy
@@ -312,7 +331,7 @@ deny contains back_comp_violation(description, group_id, "") if {
     description := sprintf("Metric '%s' cannot change required/recommended attributes (missing '%s')", [metric.metric_name, missing_attributes])
 }
 
-# Rule: Stable Metric required/recommended attributes cannot change - added
+# Rule: Stable Metric required/recommended attributes cannot be added
 #
 # This rule checks that stable metrics have stable sets of attributes.
 deny contains back_comp_violation(description, group_id, "") if {
@@ -321,7 +340,7 @@ deny contains back_comp_violation(description, group_id, "") if {
     metric.stability == "stable"
     some nmetric in registry_metrics
     metric.metric_name = nmetric.metric_name
-    
+
     baseline_attributes := { attr.name |
         some attr in metric.attributes
         not is_opt_in(attr)
@@ -351,7 +370,7 @@ deny contains back_comp_violation(description, group_id, "") if {
 deny contains back_comp_violation(description, group_id, "") if {
     # Find data we need to enforce
     some resource in baseline_resources
-    resource.stability == "stable"
+    resource.stability == "stable" # remove after https://github.com/open-telemetry/semantic-conventions/pull/1423 is merged
     # Enforce the policy
     not registry_resource_names[resource.name]
 
@@ -377,7 +396,7 @@ deny contains back_comp_violation(description, group_id, "") if {
     description := sprintf("Resource '%s' cannot change from stable", [resource.name])
 }
 
-# Rule: Stable Resource required/recommended attributes cannot be dropped.
+# Rule: Stable attributes cannot be dropped from stable resource.
 #
 # This rule checks that stable resources have stable sets of attributes.
 deny contains back_comp_violation(description, group_id, "") if {
@@ -385,15 +404,16 @@ deny contains back_comp_violation(description, group_id, "") if {
     some resource in baseline_resources
     resource.stability == "stable"
     some nresource in registry_resources
-    resource.name = nresource.name
-    
+    resource.name == nresource.name
+    nresource.stability == "stable" # remove after https://github.com/open-telemetry/semantic-conventions/pull/1423 is merged
+
     baseline_attributes := { attr.name |
         some attr in resource.attributes
-        not is_opt_in(attr)
+        attr.stability == "stable"
     }
     new_attributes := { attr.name |
         some attr in nresource.attributes
-        not is_opt_in(attr)
+        attr.stability == "stable"
     }
     missing_attributes := baseline_attributes - new_attributes
     # Enforce the policy
@@ -404,6 +424,70 @@ deny contains back_comp_violation(description, group_id, "") if {
     description := sprintf("Resource '%s' cannot remove required/recommended attributes (missing '%s')", [resource.name, missing_attributes])
 }
 
+
+# Rule: Detect Removed events
+#
+# This rule checks for stable events that existed in the baseline registry
+# but are no longer present in the current registry. Removing events
+# is considered a backward compatibility violation.
+#
+# In other words, we do not allow the removal of a events once added
+# to the registry. It must exist SOMEWHERE, but may be deprecated.
+deny contains back_comp_violation(description, group_id, "") if {
+    # Find data we need to enforce
+    some event in baseline_events
+    event.stability == "stable" # remove after https://github.com/open-telemetry/semantic-conventions/pull/1512 is merged
+    # Enforce the policy
+    not registry_event_names[event.name]
+
+    # Generate human readable error.
+    group_id := event.id
+    description := sprintf("Event '%s' no longer exists in semantic conventions", [event.name])
+}
+
+# Rule: Stable events cannot become unstable
+#
+# This rule checks that stable events cannot have their stability level changed.
+deny contains back_comp_violation(description, group_id, "") if {
+    # Find data we need to enforce
+    some event in baseline_events
+    event.stability == "stable"
+    some nevent in registry_events
+    event.name = nevent.name
+    # Enforce the policy
+    nevent.stability != "stable"
+
+    # Generate human readable error.
+    group_id := event.id
+    description := sprintf("Event '%s' cannot change from stable", [event.name])
+}
+
+# Rule: Stable attributes on stable event cannot be dropped.
+#
+# This rule checks that stable events have stable sets of attributes.
+deny contains back_comp_violation(description, group_id, "") if {
+    # Find data we need to enforce
+    some event in baseline_events
+    event.stability == "stable"
+    some nevent in registry_events
+    event.name == nevent.name
+
+    baseline_attributes := { attr.name |
+        some attr in event.attributes
+        attr.stability == "stable"
+    }
+    new_attributes := { attr.name |
+        some attr in event.attributes
+        attr.stability == "stable"
+    }
+    missing_attributes := baseline_attributes - new_attributes
+    # Enforce the policy
+    count(missing_attributes) > 0
+
+    # Generate human readable error.
+    group_id := event.id
+    description := sprintf("Event '%s' cannot remove stable attributes (missing '%s')", [event.name, missing_attributes])
+}
 
 # Helper Function: Create Backward Compatibility Violation Object
 #

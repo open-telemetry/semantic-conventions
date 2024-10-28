@@ -10,7 +10,7 @@ else
 	SED := sed
 endif
 
-TOOLS_DIR := ./internal/tools
+TOOLS_DIR := $(PWD)/internal/tools
 
 MISSPELL_BINARY=bin/misspell
 MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
@@ -140,7 +140,6 @@ attribute-registry-generation:
 		  --templates=/home/weaver/templates \
 		  markdown \
 		  /home/weaver/target/attributes-registry/
-	npm run fix:format
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
 .PHONY: table-check
@@ -150,12 +149,12 @@ table-check:
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target,readonly' \
 		$(WEAVER_CONTAINER) registry update-markdown \
-		--registry=/home/weaver/target \
+		--registry=/home/weaver/source \
 		--attribute-registry-base-url=/docs/attributes-registry \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--dry-run \
-		/spec
+		/home/weaver/target
 
 .PHONY: schema-check
 schema-check:
@@ -178,7 +177,7 @@ check: misspell markdownlint check-format markdown-toc compatibility-check markd
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation attribute-registry-generation misspell-correction fix-format markdown-toc
+fix: table-generation attribute-registry-generation misspell-correction markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools

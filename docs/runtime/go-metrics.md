@@ -50,9 +50,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.memory.used` | UpDownCounter | `By` | Memory used by the Go runtime. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Computed from `(/memory/classes/total:bytes - /memory/classes/heap/released:bytes)`.
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -66,10 +64,6 @@ This metric is [recommended][MetricRecommended].
 | `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Computed from `/memory/classes/heap/stacks:bytes`.
-
-
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -91,10 +85,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.memory.limit` | UpDownCounter | `By` | Go runtime memory limit configured by the user, if a limit exists. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Computed from `/gc/gomemlimit:bytes`. This metric is excluded if the limit obtained from the Go runtime is math.MaxInt64.
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -116,10 +107,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.memory.allocated` | Counter | `By` | Memory allocated to the heap by the application. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Computed from `/gc/heap/allocs:bytes`.
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -141,10 +129,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.memory.allocations` | Counter | `{allocation}` | Count of allocations to the heap by the application. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Computed from `/gc/heap/allocs:objects`.
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -170,10 +155,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.memory.gc.goal` | UpDownCounter | `By` | Heap size target for the end of the GC cycle. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Computed from `/gc/heap/goal:bytes`.
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -199,10 +181,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.goroutine.count` | UpDownCounter | `{goroutine}` | Count of live goroutines. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Computed from `/sched/goroutines:goroutines`.
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -228,10 +207,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.processor.limit` | UpDownCounter | `{thread}` | The number of OS threads that can execute user-level Go code simultaneously. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Computed from `/sched/gomaxprocs:threads`.
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -257,10 +233,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.schedule.duration` | Histogram | `s` | The time goroutines have spent in the scheduler in a runnable state before actually running. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Computed from `/sched/latencies:seconds`. Bucket boundaries are provided by the runtime, and are subject to change.
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -286,10 +259,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `go.config.gogc` | UpDownCounter | `%` | Heap size target percentage configured by the user, otherwise 100. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** The value range is [0.0,100.0]. Computed from `/gc/gogc:percent`.
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

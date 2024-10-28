@@ -4,10 +4,16 @@ versions:
   next:
     all:
       changes:
-        # https://github.com/open-telemetry/semantic-conventions/pull/<TBD>
+        # https://github.com/open-telemetry/semantic-conventions/pull/1520
         - rename_attributes:
             attribute_map:
               process.executable.build_id.profiling: process.executable.build_id.htlhash
+  1.28.0:
+    metrics:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1422
+        - rename_metrics:
+            messaging.client.published.messages: messaging.client.sent.messages
   1.27.0:
     all:
       changes:

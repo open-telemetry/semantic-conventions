@@ -39,7 +39,7 @@ For some cloud providers, the above definition is ambiguous. The following
 definition of function name MUST be used for this attribute
 (and consequently the span name) for the listed cloud providers/products:
 
-* **Azure:**  The full name `<FUNCAPP>/<FUNC>`, i.e., function app name
+- **Azure:**  The full name `<FUNCAPP>/<FUNC>`, i.e., function app name
   followed by a forward slash followed by the function name (this form
   can also be seen in the resource JSON for the function).
   This means that a span attribute MUST be used, as an Azure function
@@ -52,34 +52,31 @@ so it may be necessary to set `cloud.resource_id` as a span attribute instead.
 The exact value to use for `cloud.resource_id` depends on the cloud provider.
 The following well-known definitions MUST be used if you set this attribute and they apply:
 
-* **AWS Lambda:** The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+- **AWS Lambda:** The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
   Take care not to use the "invoked ARN" directly but replace any
   [alias suffix](https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html)
   with the resolved function version, as the same runtime instance may be invocable with
   multiple different aliases.
-* **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
-* **Azure:** The [Fully Qualified Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
+- **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
+- **Azure:** The [Fully Qualified Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
   *not* the function app, having the form
   `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
   a TracerProvider.
 
-**[3]:** * **AWS Lambda:** Use the (full) log stream name.
+**[3]:** - **AWS Lambda:** Use the (full) log stream name.
 
 **[4]:** It's recommended to set this attribute since e.g. too little memory can easily stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information (which must be multiplied by 1,048,576).
 
 **[5]:** Depending on the cloud provider and platform, use:
 
-* **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
+- **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
   (an integer represented as a decimal string).
-* **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
+- **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
   (i.e., the function name plus the revision suffix).
-* **Google Cloud Functions:** The value of the
+- **Google Cloud Functions:** The value of the
   [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically).
-* **Azure Functions:** Not applicable. Do not set this attribute.
-
-
-
+- **Azure Functions:** Not applicable. Do not set this attribute.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
