@@ -9,7 +9,7 @@ groups:
       - id: feature_flag.key
         type: string
         stability: experimental
-        brief: The unique identifier of the feature flag.
+        brief: The lookup key of the feature flag.
         examples: ["logo-color"]
       - id: feature_flag.provider.id
         type: string
