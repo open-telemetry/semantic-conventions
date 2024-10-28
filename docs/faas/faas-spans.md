@@ -57,13 +57,13 @@ so it may be necessary to set `cloud.resource_id` as a span attribute instead.
 The exact value to use for `cloud.resource_id` depends on the cloud provider.
 The following well-known definitions MUST be used if you set this attribute and they apply:
 
-* **AWS Lambda:** The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+- **AWS Lambda:** The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
   Take care not to use the "invoked ARN" directly but replace any
   [alias suffix](https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html)
   with the resolved function version, as the same runtime instance may be invocable with
   multiple different aliases.
-* **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
-* **Azure:** The [Fully Qualified Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
+- **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
+- **Azure:** The [Fully Qualified Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
   *not* the function app, having the form
   `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
@@ -79,8 +79,6 @@ trigger that corresponding incoming would have (i.e., this has
 nothing to do with the underlying transport used to make the API
 call to invoke the lambda, which is often HTTP).
 
-
-
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -90,8 +88,6 @@ call to invoke the lambda, which is often HTTP).
 | `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -129,7 +125,7 @@ The span attribute `faas.invocation_id` differs from the [resource attribute][Fa
 
 This section describes incoming FaaS invocations as they are reported by the FaaS instance itself.
 
-For incoming FaaS spans, the span kind MUST be `Server`.
+For incoming FaaS spans, the span kind SHOULD be `SERVER`.
 
 ### Incoming FaaS Span attributes
 
@@ -155,8 +151,6 @@ trigger that corresponding incoming would have (i.e., this has
 nothing to do with the underlying transport used to make the API
 call to invoke the lambda, which is often HTTP).
 
-
-
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -166,8 +160,6 @@ call to invoke the lambda, which is often HTTP).
 | `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -190,7 +182,7 @@ In principle, the above considerations apply to any resource attribute that fulf
 
 This section describes outgoing FaaS invocations as they are reported by a client calling a FaaS instance.
 
-For outgoing FaaS spans, the span kind MUST be `Client`.
+For outgoing FaaS spans, the span kind SHOULD be `CLIENT`.
 
 The values reported by the client for the attributes listed below SHOULD be equal to
 the corresponding [FaaS resource attributes][] and [Cloud resource attributes][],
@@ -217,8 +209,6 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 
 **[4]:** For some cloud providers, like AWS or GCP, the region in which a function is hosted is essential to uniquely identify the function and also part of its endpoint. Since it's part of the endpoint being called, the region is always known to clients. In these cases, `faas.invoked_region` MUST be set accordingly. If the region is unknown to the client or not required for identifying the invoked function, setting `faas.invoked_region` is optional.
 
-
-
 `faas.invoked_provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -228,8 +218,6 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 | `azure` | Microsoft Azure | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gcp` | Google Cloud Platform | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tencent_cloud` | Tencent Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -270,8 +258,6 @@ FaaS instrumentations that produce `faas` spans with trigger `datasource`, SHOUL
 | `edit` | When an object is modified. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `insert` | When a new object is created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -305,7 +291,6 @@ A function is scheduled to be executed regularly. The following additional attri
 | [`faas.cron`](/docs/attributes-registry/faas.md) | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`faas.time`](/docs/attributes-registry/faas.md) | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -319,7 +304,7 @@ In this case, it is responsibility of the framework or instrumentation library t
 
 ## Example
 
-This example shows the FaaS attributes for a (non-FaaS) process hosted on Google Cloud Platform (Span A with kind `Client`), which invokes a Lambda function called "my-lambda-function" in Amazon Web Services (Span B with kind `Server`).
+This example shows the FaaS attributes for a (non-FaaS) process hosted on Google Cloud Platform (Span A with kind `CLIENT`), which invokes a Lambda function called "my-lambda-function" in Amazon Web Services (Span B with kind `SERVER`).
 
 | Attribute Kind | Attribute               | Span A (Client, GCP)   | Span B (Server, AWS Lambda) |
 | -------------- | ----------------------- | ---------------------- | -- |

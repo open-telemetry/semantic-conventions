@@ -10,14 +10,14 @@
 
 A cloud environment (e.g. GCP, Azure, AWS).
 
-| Attribute                 | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                           | Examples                                                                                                                                                                                                                                                         | Stability                                                        |
-| ------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `cloud.account.id`        | string | The cloud account ID the resource is assigned to.                                                                                                                                                                                                                                                                                                                                                     | `111111111111`; `opentelemetry`                                                                                                                                                                                                                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloud.availability_zone` | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [1]                                                                                                                                                                                                                               | `us-east-1c`                                                                                                                                                                                                                                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloud.platform`          | string | The cloud platform in use. [2]                                                                                                                                                                                                                                                                                                                                                                        | `alibaba_cloud_ecs`; `alibaba_cloud_fc`; `alibaba_cloud_openshift`                                                                                                                                                                                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloud.provider`          | string | Name of the cloud provider.                                                                                                                                                                                                                                                                                                                                                                           | `alibaba_cloud`; `aws`; `azure`                                                                                                                                                                                                                                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloud.region`            | string | The geographical region the resource is running. [3]                                                                                                                                                                                                                                                                                                                                                  | `us-central1`; `us-east-1`                                                                                                                                                                                                                                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloud.resource_id`       | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [4] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="cloud-account-id" href="#cloud-account-id">`cloud.account.id`</a> | string | The cloud account ID the resource is assigned to. | `111111111111`; `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="cloud-availability-zone" href="#cloud-availability-zone">`cloud.availability_zone`</a> | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [1] | `us-east-1c` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="cloud-platform" href="#cloud-platform">`cloud.platform`</a> | string | The cloud platform in use. [2] | `alibaba_cloud_ecs`; `alibaba_cloud_fc`; `alibaba_cloud_openshift` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="cloud-provider" href="#cloud-provider">`cloud.provider`</a> | string | Name of the cloud provider. | `alibaba_cloud`; `aws`; `azure` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="cloud-region" href="#cloud-region">`cloud.region`</a> | string | The geographical region the resource is running. [3] | `us-central1`; `us-east-1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="cloud-resource-id" href="#cloud-resource-id">`cloud.resource_id`</a> | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [4] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Availability zones are called "zones" on Alibaba Cloud and Google Cloud.
 
@@ -38,52 +38,52 @@ The following well-known definitions MUST be used if you set this attribute and 
   multiple different aliases.
 - **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
 - **Azure:** The [Fully Qualified Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
-  _not_ the function app, having the form
+  *not* the function app, having the form
   `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
   a TracerProvider.
 
 `cloud.platform` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value                       | Description                                    | Stability                                                        |
-| --------------------------- | ---------------------------------------------- | ---------------------------------------------------------------- |
-| `alibaba_cloud_ecs`         | Alibaba Cloud Elastic Compute Service          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `alibaba_cloud_fc`          | Alibaba Cloud Function Compute                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `alibaba_cloud_openshift`   | Red Hat OpenShift on Alibaba Cloud             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws_app_runner`            | AWS App Runner                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws_ec2`                   | AWS Elastic Compute Cloud                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws_ecs`                   | AWS Elastic Container Service                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws_eks`                   | AWS Elastic Kubernetes Service                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws_elastic_beanstalk`     | AWS Elastic Beanstalk                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws_lambda`                | AWS Lambda                                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws_openshift`             | Red Hat OpenShift on AWS (ROSA)                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `azure_aks`                 | Azure Kubernetes Service                       | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `azure_app_service`         | Azure App Service                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `azure_container_apps`      | Azure Container Apps                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `azure_container_instances` | Azure Container Instances                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `azure_functions`           | Azure Functions                                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `azure_openshift`           | Azure Red Hat OpenShift                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `azure_vm`                  | Azure Virtual Machines                         | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp_app_engine`            | Google Cloud App Engine (GAE)                  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp_bare_metal_solution`   | Google Bare Metal Solution (BMS)               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp_cloud_functions`       | Google Cloud Functions (GCF)                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp_cloud_run`             | Google Cloud Run                               | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp_compute_engine`        | Google Cloud Compute Engine (GCE)              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp_kubernetes_engine`     | Google Cloud Kubernetes Engine (GKE)           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp_openshift`             | Red Hat OpenShift on Google Cloud              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm_cloud_openshift`       | Red Hat OpenShift on IBM Cloud                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tencent_cloud_cvm`         | Tencent Cloud Cloud Virtual Machine (CVM)      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tencent_cloud_eks`         | Tencent Cloud Elastic Kubernetes Service (EKS) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tencent_cloud_scf`         | Tencent Cloud Serverless Cloud Function (SCF)  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value  | Description | Stability |
+|---|---|---|
+| `alibaba_cloud_ecs` | Alibaba Cloud Elastic Compute Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `alibaba_cloud_fc` | Alibaba Cloud Function Compute | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `alibaba_cloud_openshift` | Red Hat OpenShift on Alibaba Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws_app_runner` | AWS App Runner | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws_ec2` | AWS Elastic Compute Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws_ecs` | AWS Elastic Container Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws_eks` | AWS Elastic Kubernetes Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws_elastic_beanstalk` | AWS Elastic Beanstalk | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws_lambda` | AWS Lambda | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws_openshift` | Red Hat OpenShift on AWS (ROSA) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure_aks` | Azure Kubernetes Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure_app_service` | Azure App Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure_container_apps` | Azure Container Apps | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure_container_instances` | Azure Container Instances | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure_functions` | Azure Functions | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure_openshift` | Azure Red Hat OpenShift | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure_vm` | Azure Virtual Machines | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp_app_engine` | Google Cloud App Engine (GAE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp_bare_metal_solution` | Google Bare Metal Solution (BMS) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp_cloud_functions` | Google Cloud Functions (GCF) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp_cloud_run` | Google Cloud Run | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp_compute_engine` | Google Cloud Compute Engine (GCE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp_kubernetes_engine` | Google Cloud Kubernetes Engine (GKE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp_openshift` | Red Hat OpenShift on Google Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ibm_cloud_openshift` | Red Hat OpenShift on IBM Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `tencent_cloud_cvm` | Tencent Cloud Cloud Virtual Machine (CVM) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `tencent_cloud_eks` | Tencent Cloud Elastic Kubernetes Service (EKS) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `cloud.provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value           | Description                  | Stability                                                        |
-| --------------- | ---------------------------- | ---------------------------------------------------------------- |
-| `alibaba_cloud` | Alibaba Cloud                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws`           | Amazon Web Services          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `azure`         | Microsoft Azure              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp`           | Google Cloud Platform        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `heroku`        | Heroku Platform as a Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm_cloud`     | IBM Cloud                    | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tencent_cloud` | Tencent Cloud                | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value  | Description | Stability |
+|---|---|---|
+| `alibaba_cloud` | Alibaba Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws` | Amazon Web Services | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure` | Microsoft Azure | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp` | Google Cloud Platform | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `heroku` | Heroku Platform as a Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ibm_cloud` | IBM Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `tencent_cloud` | Tencent Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
