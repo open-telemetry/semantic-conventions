@@ -549,7 +549,6 @@ groups:
         stability: experimental
         brief: Comma separated list of regions contacted by the Azure Cosmos DB operation.
         examples: ["North Central US,Central US", "East US 2,North Central US"]
-        
   - id: registry.db.elasticsearch
     type: attribute_group
     display_name: Elasticsearch Attributes
