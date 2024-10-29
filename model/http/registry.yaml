@@ -185,6 +185,6 @@ groups:
               stability: experimental
             - id: test
               value: "synthetic test"
-              brief: 'synthetic test source.'
+              brief: 'Synthetic test source.'
               stability: experimental
 
