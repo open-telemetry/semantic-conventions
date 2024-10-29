@@ -12,7 +12,7 @@ The Semantic Conventions for [Elasticsearch](https://www.elastic.co/) extend and
 
 ## Span Name
 
-The **span name** follows the [general database span name guidelines](database-spans.md#name) with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
+The **span name** follows the [general database span name guidelines](database-spans.md#name) with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.target.name`.
 
 ## Attributes
 
@@ -32,11 +32,11 @@ The **span name** follows the [general database span name guidelines](database-s
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | The HTTP response code returned by the Elasticsearch cluster. [5] | `200`; `201`; `429` | `Conditionally Required` If response was received. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The index or data stream against which the query is executed. [9] | `my_index`; `index1, index2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.elasticsearch.node.name`](/docs/attributes-registry/db.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. [10] | `instance-0000000001` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the Elasticsearch cluster which the client connects to. [11] | `customers`; `test.users` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [12] | `2`; `3`; `4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. [13] | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | `Recommended` [14] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.elasticsearch.node.name`](/docs/attributes-registry/db.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. [9] | `instance-0000000001` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the Elasticsearch cluster which the client connects to. [10] | `customers`; `test.users` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [11] | `2`; `3`; `4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.query.text`](/docs/attributes-registry/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. [12] | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | `Recommended` [13] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.target.name`](/docs/attributes-registry/db.md) | string | The index or data stream against which the query is executed. [14] | `my_index`; `index1, index2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** The `db.operation.name` SHOULD match the endpoint identifier provided in the request (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
@@ -74,31 +74,31 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[8]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[9]:** The query may target multiple indices or data streams, in which case it SHOULD be a comma separated list of those. If the query doesn't target a specific index, this field MUST NOT be set.
+**[9]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
 
-**[10]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
+**[10]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
 
-**[11]:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
-
-**[12]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+**[11]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[13]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[12]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[14]:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
+**[13]:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
+
+**[14]:** The query may target multiple indices or data streams, in which case it SHOULD be a comma separated list of those. If the query doesn't target a specific index, this field MUST NOT be set.
 
 **[15]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`db.collection.name`](/docs/attributes-registry/db.md)
 * [`db.namespace`](/docs/attributes-registry/db.md)
 * [`db.operation.name`](/docs/attributes-registry/db.md)
 * [`db.query.text`](/docs/attributes-registry/db.md)
+* [`db.target.name`](/docs/attributes-registry/db.md)
 * [`http.request.method`](/docs/attributes-registry/http.md)
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
@@ -141,7 +141,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `http.request.method`               | `"GET"`                                                                                                                             |
 | `db.query.text`                     | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"`                                                                                 |
 | `db.operation.name`                 | `"search"`                                                                                                                          |
-| `db.collection.name`                | `"my-index"`                                                                                                                        |
+| `db.target.name`                    | `"my-index"`                                                                                                                        |
 | `url.full`                          | `"https://elasticsearch.mydomain.com:9200/my-index-000001/_search?from=40&size=20"`                                                 |
 | `db.elasticsearch.path_parts.index` | `"my-index-000001"`                                                                                                                 |
 | `db.namespace`                      | `"my-cluster"`                                                                                                                      |

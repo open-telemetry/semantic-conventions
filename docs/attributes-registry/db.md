@@ -21,42 +21,26 @@ This group defines the attributes used to describe telemetry in the context of d
 |---|---|---|---|---|
 | <a id="db-client-connection-pool-name" href="#db-client-connection-pool-name">`db.client.connection.pool.name`</a> | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-client-connection-state" href="#db-client-connection-state">`db.client.connection.state`</a> | string | The state of a connection in the pool | `idle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-collection-name" href="#db-collection-name">`db.collection.name`</a> | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-namespace" href="#db-namespace">`db.namespace`</a> | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-operation-batch-size" href="#db-operation-batch-size">`db.operation.batch.size`</a> | int | The number of queries included in a batch operation. [3] | `2`; `3`; `4` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-operation-name" href="#db-operation-name">`db.operation.name`</a> | string | The name of the operation or command being executed. [4] | `findAndModify`; `HMSET`; `SELECT` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-query-parameter" href="#db-query-parameter">`db.query.parameter.<key>`</a> | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [5] | `someval`; `55` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-query-summary" href="#db-query-summary">`db.query.summary`</a> | string | Low cardinality representation of a database query text. [6] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-query-text" href="#db-query-text">`db.query.text`</a> | string | The database query being executed. [7] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-namespace" href="#db-namespace">`db.namespace`</a> | string | The name of the database, fully qualified within the server address and port. [1] | `customers`; `test.users` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-operation-batch-size" href="#db-operation-batch-size">`db.operation.batch.size`</a> | int | The number of queries included in a batch operation. [2] | `2`; `3`; `4` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-operation-name" href="#db-operation-name">`db.operation.name`</a> | string | The name of the operation or command being executed. [3] | `findAndModify`; `HMSET`; `SELECT` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-query-parameter" href="#db-query-parameter">`db.query.parameter.<key>`</a> | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [4] | `someval`; `55` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-query-summary" href="#db-query-summary">`db.query.summary`</a> | string | Low cardinality representation of a database query text. [5] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-query-text" href="#db-query-text">`db.query.text`</a> | string | The database query being executed. [6] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-response-returned-rows" href="#db-response-returned-rows">`db.response.returned_rows`</a> | int | Number of rows returned by the operation. | `10`; `30`; `1000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-response-status-code" href="#db-response-status-code">`db.response.status_code`</a> | string | Database response status code. [8] | `102`; `ORA-17002`; `08P01`; `404` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-system" href="#db-system">`db.system`</a> | string | The database management system (DBMS) product as identified by the client instrumentation. [9] | `other_sql`; `adabas`; `cache` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-response-status-code" href="#db-response-status-code">`db.response.status_code`</a> | string | Database response status code. [7] | `102`; `ORA-17002`; `08P01`; `404` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-system" href="#db-system">`db.system`</a> | string | The database management system (DBMS) product as identified by the client instrumentation. [8] | `other_sql`; `adabas`; `cache` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-target-name" href="#db-target-name">`db.target.name`</a> | string | The name of the operation target such as collection, table, container, stored procedure, database, or another database object. [9] | `public.users`; `customers` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-
-A single database query may involve multiple collections.
-
-If the collection name is parsed from the query text, it SHOULD only be captured for queries that
-contain a single collection and it SHOULD match the value provided in
-the query text including any schema and database name prefix.
-
-For batch operations, if the individual operations are known to have the same collection name
-then that collection name SHOULD be used.
-
-If the operation or query involves multiple collections, `db.collection.name`
-SHOULD NOT be captured.
-
-This attribute has stability level RELEASE CANDIDATE.
-
-**[2]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+**[1]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[3]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+**[2]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[4]:** It is RECOMMENDED to capture the value as provided by the application
+**[3]:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
 A single database query may involve multiple operations. If the operation
@@ -71,24 +55,46 @@ system specific term if more applicable.
 
 This attribute has stability level RELEASE CANDIDATE.
 
-**[5]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
+**[4]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[6]:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
+**[5]:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
 Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text) section.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[7]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[6]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[8]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+**[7]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[9]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
+**[8]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
+This attribute has stability level RELEASE CANDIDATE.
+
+**[9]:** For data manipulation operations, target usually matches database table,
+view, stored procedure or a user-defined function name.
+For data definition or administrative operations, target would match the
+database, index, user, or some other object type.
+
+It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
+
+A single database query may involve multiple targets.
+
+If the target name is parsed from the query text, it SHOULD only be captured for queries that
+contain a single target and it SHOULD match the value provided in
+the query text including any schema and database name prefix.
+
+For batch operations, if the individual operations are known to have the same target name
+then that target name SHOULD be used.
+
+If the operation or query involves multiple targets, `db.target.name`
+SHOULD NOT be captured.
+
 This attribute has stability level RELEASE CANDIDATE.
 
 `db.client.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -233,20 +239,21 @@ This group defines attributes for Elasticsearch.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="db-cassandra-table" href="#db-cassandra-table">`db.cassandra.table`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
+| <a id="db-cassandra-table" href="#db-cassandra-table">`db.cassandra.table`</a> | string | Deprecated, use `db.target.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.target.name`. |
+| <a id="db-collection-name" href="#db-collection-name">`db.collection.name`</a> | string | Deprecated, replaced by `db.target.name`. | `public.users`; `customers` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, replaced by `db.target.name`. |
 | <a id="db-connection-string" href="#db-connection-string">`db.connection_string`</a> | string | Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address` and `server.port`. |
-| <a id="db-cosmosdb-container" href="#db-cosmosdb-container">`db.cosmosdb.container`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
+| <a id="db-cosmosdb-container" href="#db-cosmosdb-container">`db.cosmosdb.container`</a> | string | Deprecated, use `db.target.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.target.name`. |
 | <a id="db-cosmosdb-operation-type" href="#db-cosmosdb-operation-type">`db.cosmosdb.operation_type`</a> | string | Deprecated, no replacement at this time. | `batch`; `create`; `delete` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>No replacement at this time. |
 | <a id="db-cosmosdb-status-code" href="#db-cosmosdb-status-code">`db.cosmosdb.status_code`</a> | int | Deprecated, use `db.response.status_code` instead. | `200`; `201` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.response.status_code`. |
 | <a id="db-elasticsearch-cluster-name" href="#db-elasticsearch-cluster-name">`db.elasticsearch.cluster.name`</a> | string | Deprecated, use `db.namespace` instead. | `e9106fc68e3044f0b1475b04bf4ffd5f` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
 | <a id="db-instance-id" href="#db-instance-id">`db.instance.id`</a> | string | Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. | `mysql-e26b99z.example.com` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. |
 | <a id="db-jdbc-driver-classname" href="#db-jdbc-driver-classname">`db.jdbc.driver_classname`</a> | string | Removed, no replacement at this time. | `org.postgresql.Driver`; `com.microsoft.sqlserver.jdbc.SQLServerDriver` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed as not used. |
-| <a id="db-mongodb-collection" href="#db-mongodb-collection">`db.mongodb.collection`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
+| <a id="db-mongodb-collection" href="#db-mongodb-collection">`db.mongodb.collection`</a> | string | Deprecated, use `db.target.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.target.name`. |
 | <a id="db-mssql-instance-name" href="#db-mssql-instance-name">`db.mssql.instance_name`</a> | string | Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute. | `MSSQLSERVER` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. |
 | <a id="db-name" href="#db-name">`db.name`</a> | string | Deprecated, use `db.namespace` instead. | `customers`; `main` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
 | <a id="db-operation" href="#db-operation">`db.operation`</a> | string | Deprecated, use `db.operation.name` instead. | `findAndModify`; `HMSET`; `SELECT` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.operation.name`. |
 | <a id="db-redis-database-index" href="#db-redis-database-index">`db.redis.database_index`</a> | int | Deprecated, use `db.namespace` instead. | `0`; `1`; `15` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
-| <a id="db-sql-table" href="#db-sql-table">`db.sql.table`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
+| <a id="db-sql-table" href="#db-sql-table">`db.sql.table`</a> | string | Deprecated, use `db.target.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.target.name`. |
 | <a id="db-statement" href="#db-statement">`db.statement`</a> | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`. |
 | <a id="db-user" href="#db-user">`db.user`</a> | string | Deprecated, no replacement at this time. | `readonly_user`; `reporting_user` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>No replacement at this time. |
 

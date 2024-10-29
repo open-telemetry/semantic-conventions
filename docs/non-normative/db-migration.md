@@ -45,10 +45,10 @@ to
 | `db.instance.id`                                    | Removed, replaced by `server.address` or integrated into `db.namespace` as appropriate                      |
 | `db.statement` &rarr; `db.query.text`               | Clarified, SHOULD be collected by default only if there is sanitization that excludes sensitive information |
 | `db.operation` &rarr; `db.operation.name`           |                                                                                                             |
-| `db.sql.table` &rarr; `db.collection.name`          |                                                                                                             |
-| `db.cassandra.table` &rarr; `db.collection.name`    |                                                                                                             |
-| `db.mongodb.collection` &rarr; `db.collection.name` |                                                                                                             |
-| `db.cosmosdb.container` &rarr; `db.collection.name` |                                                                                                             |
+| `db.sql.table` &rarr; `db.target.name`          |                                                                                                             |
+| `db.cassandra.table` &rarr; `db.target.name`    |                                                                                                             |
+| `db.mongodb.collection` &rarr; `db.target.name` |                                                                                                             |
+| `db.cosmosdb.container` &rarr; `db.target.name` |                                                                                                             |
 | New: `db.operation.batch.size`                      |                                                                                                             |
 | New: `db.response.status_code`                      |                                                                                                             |
 | New: `db.query.parameter.<key>`                     | Opt-In                                                                                                      |
@@ -65,7 +65,7 @@ References:
 The recommended span name has changed to `{db.operation.name} {target}`, where the `{target}` SHOULD describe the entity
 that the operation is performed against and SHOULD adhere to one of the following values, provided they are accessible:
 
-- `db.collection.name` SHOULD be used for data manipulation operations or operations on database collections
+- `db.target.name` SHOULD be used for data manipulation operations or operations on database collections
 - `db.namespace` SHOULD be used for operations on a specific database namespace
 - `server.address:server.port` SHOULD be used for other operations not targeting any specific database(s) or collection(s)
 

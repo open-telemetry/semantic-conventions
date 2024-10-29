@@ -42,7 +42,7 @@ groups:
       # - ref: db.system
       #   requirement_level:
       #     conditionally_required: if available
-      - ref: db.collection.name
+      - ref: db.target.name
         brief: >
           Cosmos DB container name.
         note: >
@@ -72,10 +72,10 @@ groups:
       - ref: db.query.summary
         requirement_level:
           recommended: if readily available or if instrumentation supports query summarization.
-      - ref: db.collection.name
+      - ref: db.target.name
         sampling_relevant: true
         requirement_level:
           conditionally_required: >
-            If readily available and if a database call is performed on a single collection.
-            The collection name MAY be parsed from the query text,
-            in which case it SHOULD be the single collection name in the query.
+            If readily available and if a database call is performed on a single target.
+            The target name MAY be parsed from the query text,
+            in which case it SHOULD be the single target name in the query.

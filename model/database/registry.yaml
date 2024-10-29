@@ -5,23 +5,31 @@ groups:
     brief: >
       This group defines the attributes used to describe telemetry in the context of databases.
     attributes:
-      - id: db.collection.name
+      - id: db.target.name
         type: string
         stability: experimental  # RELEASE CANDIDATE
-        brief: The name of a collection (table, container) within the database.
+        brief: >
+          The name of the operation target such as collection, table, container,
+          stored procedure, database, or another database object.
         note: |
-          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+          For data manipulation operations, target usually matches database table,
+          view, stored procedure or a user-defined function name.
+          For data definition or administrative operations, target would match the
+          database, index, user, or some other object type.
 
-          A single database query may involve multiple collections.
+          It is RECOMMENDED to capture the value as provided by the application
+          without attempting to do any case normalization.
 
-          If the collection name is parsed from the query text, it SHOULD only be captured for queries that
-          contain a single collection and it SHOULD match the value provided in
+          A single database query may involve multiple targets.
+
+          If the target name is parsed from the query text, it SHOULD only be captured for queries that
+          contain a single target and it SHOULD match the value provided in
           the query text including any schema and database name prefix.
 
-          For batch operations, if the individual operations are known to have the same collection name
-          then that collection name SHOULD be used.
+          For batch operations, if the individual operations are known to have the same target name
+          then that target name SHOULD be used.
 
-          If the operation or query involves multiple collections, `db.collection.name`
+          If the operation or query involves multiple targets, `db.target.name`
           SHOULD NOT be captured.
 
           This attribute has stability level RELEASE CANDIDATE.

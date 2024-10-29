@@ -21,7 +21,7 @@ The Semantic Conventions for [MongoDB](https://www.mongodb.com/) extend and over
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.namespace`. [1] | `public.users`; `customers` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.target.name`](/docs/attributes-registry/db.md) | string | The MongoDB collection, view, index, or another entity that the operation is acting upon. [1] | `public.users`; `customers` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The MongoDB database name. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the command being executed. [2] | `findAndModify`; `getMore`; `update` | `Conditionally Required` If readily available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [MongoDB error code](https://www.mongodb.com/docs/manual/reference/error-codes/) represented as a string. [3] | `36`; `11602` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -30,18 +30,24 @@ The Semantic Conventions for [MongoDB](https://www.mongodb.com/) extend and over
 | [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [8] | `2`; `3`; `4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[1]:** For data manipulation operations, target usually matches database table,
+view, stored procedure or a user-defined function name.
+For data definition or administrative operations, target would match the
+database, index, user, or some other object type.
 
-A single database query may involve multiple collections.
+It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
 
-If the collection name is parsed from the query text, it SHOULD only be captured for queries that
-contain a single collection and it SHOULD match the value provided in
+A single database query may involve multiple targets.
+
+If the target name is parsed from the query text, it SHOULD only be captured for queries that
+contain a single target and it SHOULD match the value provided in
 the query text including any schema and database name prefix.
 
-For batch operations, if the individual operations are known to have the same collection name
-then that collection name SHOULD be used.
+For batch operations, if the individual operations are known to have the same target name
+then that target name SHOULD be used.
 
-If the operation or query involves multiple collections, `db.collection.name`
+If the operation or query involves multiple targets, `db.target.name`
 SHOULD NOT be captured.
 
 This attribute has stability level RELEASE CANDIDATE.
@@ -70,9 +76,9 @@ This attribute has stability level RELEASE CANDIDATE.
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`db.collection.name`](/docs/attributes-registry/db.md)
 * [`db.namespace`](/docs/attributes-registry/db.md)
 * [`db.operation.name`](/docs/attributes-registry/db.md)
+* [`db.target.name`](/docs/attributes-registry/db.md)
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
 
@@ -98,7 +104,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `network.peer.address`  | `"192.0.2.14"` |
 | `network.peer.port`     | `27017` |
 | `network.transport`     | `"tcp"` |
-| `db.collection.name`    | `"products"` |
+| `db.target.name`        | `"products"` |
 | `db.namespace`          | `"shopDb"` |
 | `db.query.text`         | not set |
 | `db.operation.name`     | `"findAndModify"` |

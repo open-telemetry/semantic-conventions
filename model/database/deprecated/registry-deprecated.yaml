@@ -39,26 +39,26 @@ groups:
       - id: db.cassandra.table
         type: string
         stability: experimental
-        brief: 'Deprecated, use `db.collection.name` instead.'
-        deprecated: "Replaced by `db.collection.name`."
+        brief: 'Deprecated, use `db.target.name` instead.'
+        deprecated: "Replaced by `db.target.name`."
         examples: 'mytable'
       - id: db.cosmosdb.container
         type: string
         stability: experimental
-        brief: 'Deprecated, use `db.collection.name` instead.'
-        deprecated: "Replaced by `db.collection.name`."
+        brief: 'Deprecated, use `db.target.name` instead.'
+        deprecated: "Replaced by `db.target.name`."
         examples: 'mytable'
       - id: db.mongodb.collection
         type: string
         stability: experimental
-        brief: 'Deprecated, use `db.collection.name` instead.'
-        deprecated: "Replaced by `db.collection.name`."
+        brief: 'Deprecated, use `db.target.name` instead.'
+        deprecated: "Replaced by `db.target.name`."
         examples: 'mytable'
       - id: db.sql.table
         type: string
         stability: experimental
-        brief: 'Deprecated, use `db.collection.name` instead.'
-        deprecated: "Replaced by `db.collection.name`."
+        brief: 'Deprecated, use `db.target.name` instead.'
+        deprecated: "Replaced by `db.target.name`."
         examples: 'mytable'
       - id: db.redis.database_index
         type: int
@@ -148,6 +148,12 @@ groups:
         stability: experimental
         deprecated: "No replacement at this time."
         brief: Deprecated, no replacement at this time.
+      - id: db.collection.name
+        type: string
+        stability: experimental
+        brief: 'Deprecated, replaced by `db.target.name`.'
+        deprecated: 'Deprecated, replaced by `db.target.name`.'
+        examples: ["public.users", "customers"]
 
   - id: registry.db.metrics.deprecated
     type: attribute_group

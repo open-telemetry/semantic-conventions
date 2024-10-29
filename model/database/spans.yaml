@@ -38,7 +38,7 @@ groups:
         sampling_relevant: true
       - ref: db.query.parameter
         requirement_level: opt_in
-      - ref: db.collection.name
+      - ref: db.target.name
         sampling_relevant: true
       - ref: db.operation.name
         sampling_relevant: true
@@ -216,8 +216,10 @@ groups:
           conditionally_required: If available.
       - ref: db.cassandra.page_size
       - ref: db.cassandra.consistency_level
-      - ref: db.collection.name
-        brief: The name of the Cassandra table that the operation is acting upon.
+      - ref: db.target.name
+        brief: >
+          The name of the Cassandra table, keyspace, index, trigger or another
+          object that the operation is acting upon.
       - ref: db.cassandra.idempotence
       - ref: db.cassandra.speculative_execution_count
       - ref: db.cassandra.coordinator.id
@@ -248,13 +250,13 @@ groups:
         requirement_level:
           conditionally_required: If applicable.
         examples: ['mynamespace']
-      - ref: db.collection.name
+      - ref: db.target.name
         sampling_relevant: true
-        brief: The HBase table name.
+        brief: The HBase table or namespace name.
         requirement_level:
           conditionally_required: If applicable.
         note: >
-          If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
+          If table name includes the namespace, the `db.target.name` SHOULD be set to the full table name.
         examples: ['mytable', 'ns:table']
       - ref: db.operation.name
         requirement_level:
@@ -376,10 +378,10 @@ groups:
         examples: ['findAndModify', 'getMore', 'update']
         requirement_level:
           conditionally_required: If readily available.
-      - ref: db.collection.name
+      - ref: db.target.name
         sampling_relevant: true
         brief:
-          The MongoDB collection being accessed within the database stated in `db.namespace`.
+          The MongoDB collection, view, index, or another entity that the operation is acting upon.
         requirement_level: required
       - ref: db.namespace
         sampling_relevant: true
@@ -422,7 +424,7 @@ groups:
             sensitive information.
         brief: The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string.
         examples: [ '"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"' ]
-      - ref: db.collection.name
+      - ref: db.target.name
         sampling_relevant: true
         requirement_level: recommended
         brief: The index or data stream against which the query is executed.
@@ -462,8 +464,8 @@ groups:
 
           In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.
         examples: ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'mystoredproc']
-      - ref: db.collection.name
-        brief: The name of the SQL table that the operation is acting upon.
+      - ref: db.target.name
+        brief: The name of the database object that the operation is acting upon.
         examples: ['users', 'dbo.products']
       - ref: db.namespace
         brief: >
@@ -557,9 +559,9 @@ groups:
       - ref: db.cosmosdb.connection_mode
         requirement_level:
           conditionally_required: if not `gateway` (the default value is assumed to be `gateway`).
-      - ref: db.collection.name
+      - ref: db.target.name
         brief: >
-          Cosmos DB container name.
+          The name of the Cosmos DB container, stored procedure, database, or another entity that the operation is acting upon.
         note: >
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         requirement_level:

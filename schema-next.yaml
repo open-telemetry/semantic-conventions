@@ -26,6 +26,13 @@ versions:
         # https://github.com/open-telemetry/semantic-conventions/pull/1422
         - rename_metrics:
             messaging.client.published.messages: messaging.client.sent.messages
+    all:
+      changes:
+        # TODO
+        - rename_attributes:
+            attribute_map:
+              db.collection.name: db.target.name
+
   1.27.0:
     all:
       changes:

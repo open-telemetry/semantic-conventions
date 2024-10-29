@@ -21,10 +21,10 @@ The Semantic Conventions for *MySQL* extend and override the [Database Semantic 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of the SQL table that the operation is acting upon. [1] | `users`; `dbo.products` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The database associated with the connection. [3] | `products`; `customers` | `Conditionally Required` If available without an additional network call. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `SELECT`; `INSERT`; `UPDATE`; `DELETE`; `CREATE`; `mystoredproc` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html). [6] | `1005`; `MY-010016` | `Conditionally Required` If response has ended with warning or an error. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The database associated with the connection. [1] | `products`; `customers` | `Conditionally Required` If available without an additional network call. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [2] | `SELECT`; `INSERT`; `UPDATE`; `DELETE`; `CREATE`; `mystoredproc` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html). [4] | `1005`; `MY-010016` | `Conditionally Required` If response has ended with warning or an error. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.target.name`](/docs/attributes-registry/db.md) | string | The name of the database object that the operation is acting upon. [5] | `users`; `dbo.products` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Conditionally Required` [9] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [10] | `2`; `3`; `4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -34,25 +34,7 @@ The Semantic Conventions for *MySQL* extend and override the [Database Semantic 
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [16] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-
-A single database query may involve multiple collections.
-
-If the collection name is parsed from the query text, it SHOULD only be captured for queries that
-contain a single collection and it SHOULD match the value provided in
-the query text including any schema and database name prefix.
-
-For batch operations, if the individual operations are known to have the same collection name
-then that collection name SHOULD be used.
-
-If the operation or query involves multiple collections, `db.collection.name`
-SHOULD NOT be captured.
-
-This attribute has stability level RELEASE CANDIDATE.
-
-**[2]:** If readily available and if a database call is performed on a single collection. The collection name MAY be parsed from the query text, in which case it SHOULD be the single collection name in the query.
-
-**[3]:** A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
+**[1]:** A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
 
 If instrumentation is unable to capture the connection's currently associated database on each query
 without triggering an additional query to be executed (e.g. `SELECT DATABASE()`),
@@ -62,12 +44,12 @@ Instrumentation SHOULD document if `db.namespace` reflects the database provided
 
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[4]:** This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
+**[2]:** This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
 In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.
 
-**[5]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[3]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
-**[6]:** SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
+**[4]:** SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
 return code which is adopted by some database systems like PostgreSQL.
 See [PostgreSQL error codes](https://www.postgresql.org/docs/current/errcodes-appendix.html)
 for the details.
@@ -103,6 +85,30 @@ For example, generic DB instrumentation that detected an error and has
 SQLSTATE `"42000"` and vendor-specific `1071` should set
 `db.response.status_code` to `"42000/1071"`."
 
+**[5]:** For data manipulation operations, target usually matches database table,
+view, stored procedure or a user-defined function name.
+For data definition or administrative operations, target would match the
+database, index, user, or some other object type.
+
+It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
+
+A single database query may involve multiple targets.
+
+If the target name is parsed from the query text, it SHOULD only be captured for queries that
+contain a single target and it SHOULD match the value provided in
+the query text including any schema and database name prefix.
+
+For batch operations, if the individual operations are known to have the same target name
+then that target name SHOULD be used.
+
+If the operation or query involves multiple targets, `db.target.name`
+SHOULD NOT be captured.
+
+This attribute has stability level RELEASE CANDIDATE.
+
+**[6]:** If readily available and if a database call is performed on a single target. The target name MAY be parsed from the query text, in which case it SHOULD be the single target name in the query.
+
 **[7]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
@@ -137,11 +143,11 @@ This attribute has stability level RELEASE CANDIDATE.
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`db.collection.name`](/docs/attributes-registry/db.md)
 * [`db.namespace`](/docs/attributes-registry/db.md)
 * [`db.operation.name`](/docs/attributes-registry/db.md)
 * [`db.query.summary`](/docs/attributes-registry/db.md)
 * [`db.query.text`](/docs/attributes-registry/db.md)
+* [`db.target.name`](/docs/attributes-registry/db.md)
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
 
