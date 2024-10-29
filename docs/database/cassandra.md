@@ -92,7 +92,7 @@ SHOULD NOT be captured.
 
 This attribute has stability level RELEASE CANDIDATE.
 
-**[7]:** If readily available and if a database call is performed on a single target. The target name MAY be parsed from the query text, in which case it SHOULD be the single target name in the query.
+**[7]:** If readily available and if a database operation is performed on a single target. The target name MAY be parsed from the query text, in which case it SHOULD be the single target name in the query.
 
 **[8]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
