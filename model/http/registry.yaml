@@ -181,7 +181,7 @@ groups:
           members:
             - id: bot
               value: "bot"
-              brief: 'bot source.'
+              brief: 'Bot source.'
               stability: experimental
             - id: test
               value: "synthetic test"
