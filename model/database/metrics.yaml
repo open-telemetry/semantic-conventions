@@ -161,3 +161,31 @@ groups:
           conditionally_required: If available.
       - ref: db.query.text
         requirement_level: opt_in
+
+  - id: metric.db.client.operation.count
+    type: metric
+    metric_name: db.client.operation.count
+    brief: "The number of client operations."
+    instrument: counter
+    unit: "{operations}"
+    stability: experimental
+    extends: attributes.db.client.minimal
+    attributes:
+      - ref: db.system
+        # TODO: Not adding to the minimal because of https://github.com/open-telemetry/build-tools/issues/192
+        requirement_level: required
+      - ref: network.peer.address
+        brief: Peer address of the database node where the operation was performed.
+        requirement_level:
+          recommended: If applicable for this database system.
+        note: >
+          Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable.
+          Network peer address and port are useful when the application interacts with individual database nodes directly.
+
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If and only if `network.peer.address` is set.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.

@@ -59,6 +59,11 @@ groups:
       - ref: db.cosmosdb.consistency_level
         requirement_level:
           conditionally_required: If available.
+      - ref: db.cosmosdb.regions_contacted
+        brief: >
+          List of regions contacted by the client during a given operation.
+        requirement_level:
+          conditionally_required: If available
 
   - id: attributes.db.client.with_query_and_collection
     extends: attributes.db.client.minimal

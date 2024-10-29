@@ -737,3 +737,8 @@ groups:
       - ref: db.cosmosdb.consistency_level
         requirement_level:
           conditionally_required: If available.
+      - ref: db.cosmosdb.regions_contacted
+        note: >
+            When the `db.cosmosdb.regions_contacted` attribute is populated, it indicates that the operation was performed on multiple regions i.e. cross-regional call.
+        requirement_level:
+          conditionally_required: If available.
