@@ -252,7 +252,7 @@ groups:
         examples: ['mynamespace']
       - ref: db.target.name
         sampling_relevant: true
-        brief: The HBase table or namespace name.
+        brief: The HBase table or another entity that the operation is acting upon.
         requirement_level:
           conditionally_required: If applicable.
         note: >

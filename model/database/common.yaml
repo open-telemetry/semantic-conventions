@@ -44,7 +44,7 @@ groups:
       #     conditionally_required: if available
       - ref: db.target.name
         brief: >
-          Cosmos DB container name.
+          Cosmos DB container or another entity that the operation is acting upon.
         note: >
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         requirement_level:
@@ -76,6 +76,6 @@ groups:
         sampling_relevant: true
         requirement_level:
           conditionally_required: >
-            If readily available and if a database call is performed on a single target.
+            If readily available and if a database operation is performed on a single target.
             The target name MAY be parsed from the query text,
             in which case it SHOULD be the single target name in the query.
