@@ -1,0 +1,5 @@
+change_type: breaking
+component: db
+note: Rename `db.collection.name` to `db.target.name` to cover broader class of database operations.
+issues: [1491, 521, 1527]
+
