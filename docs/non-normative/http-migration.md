@@ -29,7 +29,7 @@ updated to the stable HTTP semantic conventions, they:
 - May drop the environment variable in their next major version and emit only
   the stable HTTP and networking conventions.
 
-The OpenTelemetry Java Agent v2.0.0 and later already defaults to the stable
+The OpenTelemetry Java Agent [v2.0.0](https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/tag/v2.0.0) and later already defaults to the stable
 conventions -- you do not have to opt into them.
 
 ## Summary of changes
