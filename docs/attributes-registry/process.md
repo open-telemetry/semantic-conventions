@@ -49,7 +49,7 @@ An operating system process.
 | <a id="process-user-name" href="#process-user-name">`process.user.name`</a> | string | The username of the effective user of the process. | `root` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="process-vpid" href="#process-vpid">`process.vpid`</a> | int | Virtual process identifier. [5] | `12` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="process-working-directory" href="#process-working-directory">`process.working_directory`</a> | string | The working directory of the process. | `/root` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="process-zone-identifier" href="#process-zone-identifier">`process.zone_identifier`</a> | int | Windows Zone Identifier for the process's executable file. | `3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="process-zone-identifier" href="#process-zone-identifier">`process.zone_identifier`</a> | int | Windows Zone Identifier for the process's executable file. [6] | `3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
 
@@ -60,6 +60,8 @@ An operating system process.
 **[4]:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
 
 **[5]:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
+
+**[6]:** Zone Identifier (ZoneID) is a numerical identifier that shows where (what "Zone") a file came from, helping to decide if it's safe to open. The commonly used predefined Zones in Windows and their IDs are as follows: Zone 0: Local Machine Zone Zone 1: Local Intranet Zone Zone 2: Trusted Sites Zone Zone 3: Internet Zone Zone 4: Restricted Sites Zone
 
 `process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
