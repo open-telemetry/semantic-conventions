@@ -37,8 +37,6 @@ groups:
     attributes:
       - ref: gen_ai.openai.response.service_tier
         requirement_level: recommended
-      - ref: gen_ai.openai.request.service_tier
-        requirement_level: recommended
   - id: metric.gen_ai.client.token.usage
     type: metric
     metric_name: gen_ai.client.token.usage

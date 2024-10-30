@@ -128,15 +128,7 @@ Additional attributes:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.openai.request.service_tier`](/docs/attributes-registry/gen-ai.md) | string | The service tier requested. May be a specific tier, detault, or auto. | `auto`; `default` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.openai.response.service_tier`](/docs/attributes-registry/gen-ai.md) | string | The service tier used for the response. | `scale`; `detault` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-`gen_ai.openai.request.service_tier` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `auto` | The system will utilize scale tier credits until they are exhausted. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `default` | The system will utilize the default scale tier. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -158,15 +150,7 @@ Additional attributes:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.openai.request.service_tier`](/docs/attributes-registry/gen-ai.md) | string | The service tier requested. May be a specific tier, detault, or auto. | `auto`; `default` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.openai.response.service_tier`](/docs/attributes-registry/gen-ai.md) | string | The service tier used for the response. | `scale`; `detault` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-`gen_ai.openai.request.service_tier` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `auto` | The system will utilize scale tier credits until they are exhausted. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `default` | The system will utilize the default scale tier. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
