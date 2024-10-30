@@ -4,6 +4,10 @@ versions:
   next:
     all:
       changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1520
+        - rename_attributes:
+            attribute_map:
+              process.executable.build_id.profiling: process.executable.build_id.htlhash
         # https://github.com/open-telemetry/semantic-conventions/pull/1383
         - rename_attributes:
             attribute_map:
