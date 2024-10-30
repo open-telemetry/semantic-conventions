@@ -65,7 +65,7 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 
 **[2] `db.cosmosdb.connection_mode`:** if not `gateway` (the default value is assumed to be `gateway`).
 
-**[3]:** The `db.cosmosdb.regions_contacted` attribute is populated with all regions that were contacted during the operation. If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call.
+**[3]:** The `db.cosmosdb.regions_contacted` attribute is populated with all regions that were contacted during the operation.  If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call.
 
 **[4]:** The `db.operation.name` has the following list of well-known values.
 If one of them applies, then the respective value MUST be used.
