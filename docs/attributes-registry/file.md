@@ -32,7 +32,7 @@ Describes file attributes.
 | <a id="file-path" href="#file-path">`file.path`</a> | string | Full path to the file, including the file name. It should include the drive letter, when appropriate. | `/home/alice/example.png`; `C:\Program Files\MyApp\myapp.exe` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="file-size" href="#file-size">`file.size`</a> | int | File size in bytes. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="file-symbolic-link-target-path" href="#file-symbolic-link-target-path">`file.symbolic_link.target_path`</a> | string | Path to the target of a symbolic link. [9] | `/usr/bin/python3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-zone-identifier" href="#file-zone-identifier">`file.zone_identifier`</a> | int | Windows Zone Identifier for a file. | `3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="file-zone-identifier" href="#file-zone-identifier">`file.zone_identifier`</a> | int | Windows Zone Identifier for the file. [10] | `3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
 
@@ -52,3 +52,5 @@ On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default da
 **[8]:** This information comes from metadata or alternate data streams linked to the file. `file.origin_url` represents the URL from which the file was downloaded, and `file.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `file.origin_url` and `file.origin_referrer_url` exist, or only one of them is present. Note that the URL itself may contain sensitive information.
 
 **[9]:** This attribute is only applicable to symbolic links.
+
+**[10]:** Zone Identifier (ZoneID) is a numerical identifier that shows where (what "Zone") a file came from, helping to decide if it's safe to open. The commonly used predefined Zones in Windows and their IDs are as follows: Zone 0: Local Machine Zone Zone 1: Local Intranet Zone Zone 2: Trusted Sites Zone Zone 3: Intranet Zone Zone 4: Restricted Site Zone
