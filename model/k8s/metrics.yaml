@@ -39,7 +39,7 @@ groups:
     instrument: counter
     unit: "By"
     attributes:
-      - ref: system.device
+      - ref: network.interface.name
       - ref: network.io.direction
   - id: metric.k8s.pod.network.errors
     type: metric
@@ -49,7 +49,7 @@ groups:
     instrument: counter
     unit: "{error}"
     attributes:
-      - ref: system.device
+      - ref: network.interface.name
       - ref: network.io.direction
 
   # k8s.node.cpu.* metrics
@@ -92,7 +92,7 @@ groups:
     instrument: counter
     unit: "By"
     attributes:
-      - ref: system.device
+      - ref: network.interface.name
       - ref: network.io.direction
   - id: metric.k8s.node.network.errors
     type: metric
@@ -102,5 +102,5 @@ groups:
     instrument: counter
     unit: "{error}"
     attributes:
-      - ref: system.device
+      - ref: network.interface.name
       - ref: network.io.direction
