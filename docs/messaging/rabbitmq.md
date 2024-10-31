@@ -18,13 +18,14 @@ In RabbitMQ, the destination is defined by an *exchange*, a *routing key* and
 for consumers, a *queue*.
 `messaging.destination.name` MUST be set to:
 
-**Producers**
+#### Producers
 
 - `{exchange}:{routing key}` when both values are present and non-empty.
 If any has an empty value (e.g., the default exchange is used) it SHOULD be omitted.
 - Otherwise: `amq.default`
 
-**Consumers**
+#### Consumers
+
 - `{exchange}:{routing key}:{queue}` when all values are present and non-empty.
 If any has an empty value (e.g., the default exchange is used) it SHOULD be omitted.
 
