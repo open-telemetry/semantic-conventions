@@ -53,4 +53,4 @@ On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default da
 
 **[9]:** This attribute is only applicable to symbolic links.
 
-**[10]:** Zone Identifier (ZoneID) is a numerical identifier that shows where (what "Zone") a file came from, helping to decide if it's safe to open. The commonly used predefined Zones in Windows and their IDs are as follows: Zone 0: Local Machine Zone Zone 1: Local Intranet Zone Zone 2: Trusted Sites Zone Zone 3: Intranet Zone Zone 4: Restricted Site Zone
+**[10]:** Zone Identifier (ZoneID) is a numerical identifier that shows where (what "Zone") a file came from, helping to decide if it's safe to open. The commonly used predefined Zones in Windows and their IDs are as follows: Zone 0: Local Machine Zone Zone 1: Local Intranet Zone Zone 2: Trusted Sites Zone Zone 3: Internet Zone Zone 4: Restricted Site Zone

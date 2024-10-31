@@ -172,7 +172,7 @@ groups:
           Zone 0: Local Machine Zone
           Zone 1: Local Intranet Zone
           Zone 2: Trusted Sites Zone
-          Zone 3: Intranet Zone
+          Zone 3: Internet Zone
           Zone 4: Restricted Site Zone
         stability: experimental
         examples: 3
