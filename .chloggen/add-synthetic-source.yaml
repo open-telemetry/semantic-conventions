@@ -7,10 +7,10 @@
 change_type: enhancement
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: http
+component: user_agent
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Add the http.request.synthetic attribute to track if spans and metrics are the result of real users, synthetic testing, or bots.
+note: Add the user_agent.synthetic.type attribute to track if spans and metrics are the result of real users, testing, or bots.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
