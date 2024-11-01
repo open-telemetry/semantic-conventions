@@ -42,7 +42,7 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.connection_mode`](/docs/attributes-registry/db.md) | string | Cosmos client connection mode. | `gateway`; `direct` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.regions_contacted`](/docs/attributes-registry/db.md) | string | Comma separated list of regions contacted by the Azure Cosmos DB operation. [3] | `North Central US,Central US`; `East US 2,North Central US` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.cosmosdb.regions_contacted`](/docs/attributes-registry/db.md) | string[] | Comma separated list of regions contacted by the Azure Cosmos DB operation. [3] | `["North Central US"]` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.request_charge`](/docs/attributes-registry/db.md) | double | Request units consumed for the operation. | `46.18`; `1.0` | `Conditionally Required` when available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | Cosmos DB sub status code. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -65,7 +65,7 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 
 **[2] `db.cosmosdb.connection_mode`:** if not `gateway` (the default value is assumed to be `gateway`).
 
-**[3]:** The `db.cosmosdb.regions_contacted` attribute is populated with all regions that were contacted during the operation.  If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call.
+**[3]:** The `db.cosmosdb.regions_contacted` attribute is populated with all regions that were contacted during the operation. If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call.
 
 **[4]:** The `db.operation.name` has the following list of well-known values.
 If one of them applies, then the respective value MUST be used.
@@ -341,7 +341,7 @@ Explaining bucket configuration:
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.regions_contacted`](/docs/attributes-registry/db.md) | string | List of regions contacted by the client during a given operation. | `North Central US,Central US`; `East US 2,North Central US` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.cosmosdb.regions_contacted`](/docs/attributes-registry/db.md) | string[] | List of regions contacted by the client during a given operation. | `["North Central US"]` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | Cosmos DB sub status code. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [2] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

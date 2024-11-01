@@ -545,10 +545,11 @@ groups:
         brief: Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels).
         examples: ["Eventual", "ConsistentPrefix", "BoundedStaleness", "Strong", "Session"]
       - id: db.cosmosdb.regions_contacted
-        type: string
+        type: string[]
         stability: experimental
         brief: Comma separated list of regions contacted by the Azure Cosmos DB operation.
-        examples: ["North Central US,Central US", "East US 2,North Central US"]
+        examples:
+          - ['North Central US']
   - id: registry.db.elasticsearch
     type: attribute_group
     display_name: Elasticsearch Attributes
