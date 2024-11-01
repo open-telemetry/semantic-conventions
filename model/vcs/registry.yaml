@@ -63,7 +63,7 @@ groups:
             "123",
             "HEAD",
           ]
-      - id: vcs.revision_delta.type
+      - id: vcs.revision_delta.direction
         type:
           members:
             - id: behind

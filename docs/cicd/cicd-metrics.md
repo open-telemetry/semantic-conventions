@@ -187,7 +187,7 @@ This metric is [recommended][MetricRecommended].
 | [`vcs.ref.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.ref.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://en.wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.revision_delta.type`](/docs/attributes-registry/vcs.md) | string | The type of revision comparison. | `ahead`; `behind` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.revision_delta.direction`](/docs/attributes-registry/vcs.md) | string | The type of revision comparison. | `ahead`; `behind` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `vcs.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -196,7 +196,7 @@ This metric is [recommended][MetricRecommended].
 | `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`vcs.revision_delta.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`vcs.revision_delta.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -321,7 +321,7 @@ This metric is [recommended][MetricRecommended].
 | [`vcs.ref.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.ref.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://en.wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.revision_delta.type`](/docs/attributes-registry/vcs.md) | string | The type of revision comparison. | `ahead`; `behind` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.revision_delta.direction`](/docs/attributes-registry/vcs.md) | string | The type of revision comparison. | `ahead`; `behind` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `vcs.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -330,7 +330,7 @@ This metric is [recommended][MetricRecommended].
 | `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-`vcs.revision_delta.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`vcs.revision_delta.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

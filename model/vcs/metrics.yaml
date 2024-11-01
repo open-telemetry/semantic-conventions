@@ -103,7 +103,7 @@ groups:
         requirement_level: required
       - ref: vcs.ref.type
         requirement_level: required
-      - ref: vcs.revision_delta.type
+      - ref: vcs.revision_delta.direction
         requirement_level: required
   - id: metric.vcs.ref.revisions_delta
     type: metric
@@ -119,7 +119,7 @@ groups:
         requirement_level: required
       - ref: vcs.ref.type
         requirement_level: required
-      - ref: vcs.revision_delta.type
+      - ref: vcs.revision_delta.direction
         requirement_level: required
   - id: metric.vcs.ref.time
     type: metric

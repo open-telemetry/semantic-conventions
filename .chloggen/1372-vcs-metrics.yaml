@@ -20,6 +20,6 @@ issues: [1372]
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
 subtext: |
-  - The VCS attributes `vcs.change.state`, `vcs.revision_delta.type` and `vcs.line_change.type` have been added to the registry.
+  - The VCS attributes `vcs.change.state`, `vcs.revision_delta.direction` and `vcs.line_change.type` have been added to the registry.
   - `vcs.repository.change.*` attributes have been deprecated and moved to `vcs.change.*`.
   - `vcs.repository.ref.*` attributes have been deprecated and moved to `vcs.ref.*`.
