@@ -9,6 +9,7 @@
 - [General Database Attributes](#general-database-attributes)
 - [Cassandra Attributes](#cassandra-attributes)
 - [Azure Cosmos DB Attributes](#azure-cosmos-db-attributes)
+- [Azure Cosmos DB Network level Attributes](#azure-cosmos-db-network-level-attributes)
 - [Elasticsearch Attributes](#elasticsearch-attributes)
 - [Deprecated Database Attributes](#deprecated-database-attributes)
 - [Deprecated Database Metrics](#deprecated-database-metrics)
@@ -228,6 +229,19 @@ This group defines attributes for Azure Cosmos DB.
 | `Eventual` | eventual | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Session` | session | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Strong` | strong | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Azure Cosmos DB Network level Attributes
+
+This group defines attributes for Azure Cosmos DB Network call.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="db-cosmosdb-network-host" href="#db-cosmosdb-network-host">`db.cosmosdb.network.host`</a> | string | Host from Gateway or Backend endpoint address | `rntbd://cdb-east-us.azure.document.com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-network-port" href="#db-cosmosdb-network-port">`db.cosmosdb.network.port`</a> | int | Port from Gateway or Backend endpoint address | `443` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-network-region" href="#db-cosmosdb-network-region">`db.cosmosdb.network.region`</a> | string | Azure Cosmos DB Region where the network call was made | `WEST US 2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-network-resource-id" href="#db-cosmosdb-network-resource-id">`db.cosmosdb.network.resource_id`</a> | string | Azure Cosmos DB Partition Key Range Id for a Gateway call and PartitionId/RepilcaId for a Direct call | `45678765678987/2345678906789s` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-network-response-status-code" href="#db-cosmosdb-network-response-status-code">`db.cosmosdb.network.response.status_code`</a> | int | HTTP Status code returned for network call | `200` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-network-response-sub-status-code" href="#db-cosmosdb-network-response-sub-status-code">`db.cosmosdb.network.response.sub_status_code`</a> | int | Azure Cosmos DB Sub Status code returned for network call | `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Elasticsearch Attributes
 

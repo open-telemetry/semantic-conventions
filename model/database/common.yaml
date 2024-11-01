@@ -59,6 +59,33 @@ groups:
       - ref: db.cosmosdb.consistency_level
         requirement_level:
           conditionally_required: If available.
+  
+  - id: attributes.db.cosmosdb.network.minimal
+    type: attribute_group
+    brief: 'Azure Cosmos DB Client network request level attributes'
+    stability: experimental
+    extends: attributes.db.cosmosdb.minimal
+    attributes:
+      - ref: network.protocol.name
+        requirement_level:
+          conditionally_required: If available
+      - ref: db.cosmosdb.network.host
+        requirement_level:
+          conditionally_required: If available
+      - ref: db.cosmosdb.network.port
+        requirement_level:
+          conditionally_required: If available
+      - ref: db.cosmosdb.network.response.status_code
+        requirement_level:
+          conditionally_required: If available
+      - ref: db.cosmosdb.network.response.sub_status_code
+        requirement_level:
+          conditionally_required: If available
+      - ref: db.cosmosdb.network.region
+        requirement_level:
+          conditionally_required: If available
+      - ref: db.cosmosdb.network.resource_id
+        requirement_level: opt_in
 
   - id: attributes.db.client.with_query_and_collection
     extends: attributes.db.client.minimal

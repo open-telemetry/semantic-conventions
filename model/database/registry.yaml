@@ -555,6 +555,46 @@ groups:
           in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
         examples:
           - ["North Central US", "Australia East", "Australia Southeast"]
+
+  - id: registry.db.cosmosdb.network
+    type: attribute_group
+    display_name: Azure Cosmos DB Network level Attributes
+    stability: experimental
+    brief: >
+      This group defines attributes for Azure Cosmos DB Network call.
+    attributes:
+      - id: db.cosmosdb.network.host
+        type: string
+        stability: experimental
+        brief: Host from Gateway or Backend endpoint address
+        examples: ["rntbd://cdb-east-us.azure.document.com"]
+      - id: db.cosmosdb.network.port
+        type: int
+        stability: experimental
+        brief: Port from Gateway or Backend endpoint address
+        examples: 443
+      - id: db.cosmosdb.network.response.status_code
+        type: int
+        stability: experimental
+        brief: HTTP Status code returned for network call
+        examples: 200
+      - id: db.cosmosdb.network.response.sub_status_code
+        type: int
+        stability: experimental
+        brief: Azure Cosmos DB Sub Status code returned for network call
+        examples: 1002
+      - id: db.cosmosdb.network.region
+        type: string
+        stability: experimental
+        brief: Azure Cosmos DB Region where the network call was made
+        examples: "WEST US 2"
+      - id: db.cosmosdb.network.resource_id
+        type: string
+        stability: experimental
+        brief: > 
+          Azure Cosmos DB Partition Key Range Id for a Gateway call and PartitionId/RepilcaId for a Direct call 
+        examples: "45678765678987/2345678906789s"
+      
   - id: registry.db.elasticsearch
     type: attribute_group
     display_name: Elasticsearch Attributes

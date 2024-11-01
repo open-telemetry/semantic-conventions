@@ -30,3 +30,66 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
+
+  - id: metric.db.client.cosmosdb.request.duration
+    type: metric
+    metric_name: db.client.cosmosdb.request.duration
+    brief: "Total time taken by the network call"
+    instrument: histogram
+    unit: "s"
+    stability: experimental
+    extends: attributes.db.cosmosdb.network.minimal
+
+  - id: metric.db.client.cosmosdb.request.body.size
+    type: metric
+    metric_name: db.client.cosmosdb.request.body.size
+    brief: "Size of request object sent over wire"
+    instrument: histogram
+    unit: "{bytes}"
+    stability: experimental
+    extends: attributes.db.cosmosdb.network.minimal
+
+  - id: metric.db.client.cosmosdb.response.body.size
+    type: metric
+    metric_name: db.client.cosmosdb.response.body.size
+    brief: "Size of response received over wire"
+    instrument: histogram
+    unit: "{bytes}"
+    stability: experimental
+    extends: attributes.db.cosmosdb.network.minimal
+
+  - id: metric.db.client.cosmosdb.request.channel_aquisition.duration
+    type: metric
+    metric_name: db.client.cosmosdb.request.channel_aquisition.duration
+    brief: "Time taken in creating connection, It is only available for Direct Mode"
+    instrument: histogram
+    unit: "s"
+    stability: experimental
+    extends: attributes.db.cosmosdb.network.minimal
+
+  - id: metric.db.server.cosmosdb.request.duration
+    type: metric
+    metric_name: db.server.cosmosdb.request.duration
+    brief: "Backend latency"
+    instrument: histogram
+    unit: "s"
+    stability: experimental
+    extends: attributes.db.cosmosdb.network.minimal
+
+  - id: metric.db.client.cosmosdb.request.transit.duration
+    type: metric
+    metric_name: db.client.cosmosdb.request.transit.duration
+    brief: "Time taken over wire, It is only available for Direct Mode"
+    instrument: histogram
+    unit: "s"
+    stability: experimental
+    extends: attributes.db.cosmosdb.network.minimal
+
+  - id: metric.db.client.cosmosdb.request.received.duration
+    type: metric
+    metric_name: db.client.cosmosdb.request.received.duration
+    brief: "Time taken by received step in network request pipeline, It is only available for Direct Mode"
+    instrument: histogram
+    unit: "s"
+    stability: experimental
+    extends: attributes.db.cosmosdb.network.minimal
