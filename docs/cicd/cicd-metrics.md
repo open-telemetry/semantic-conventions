@@ -139,7 +139,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.change.lines_delta` | Gauge | `{line}` | The number of lines added/removed in a change relative to the target branch of the change [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.change.lines_delta` | Gauge | `{line}` | The number of lines added/removed in a change relative to the common ancestor with the target branch. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric should be reported for each `vcs.line_change.type` value. For example if a change added 3 lines and removed 2 lines, instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers).
 

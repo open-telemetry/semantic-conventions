@@ -60,7 +60,7 @@ groups:
   - id: metric.vcs.change.lines_delta
     type: metric
     metric_name: vcs.change.lines_delta
-    brief: 'The number of lines added/removed in a change relative to the target branch of the change'
+    brief: 'The number of lines added/removed in a change relative to the common ancestor with the target branch.'
     note: 'This metric should be reported for each `vcs.line_change.type` value. For example if a change added 3 lines and removed 2 lines, instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers).'
     instrument: gauge
     unit: "{line}"
