@@ -139,7 +139,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.change.lines_delta` | Gauge | `{line}` | The number of lines added/removed in a change relative to the target branch of the change | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.change.lines_delta` | Gauge | `{line}` | The number of lines added/removed in a change relative to the target branch of the change [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** This metric should be reported for each `vcs.line_change.type` value. For example if a change added 3 lines and removed 2 lines, instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -180,7 +182,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.change.revisions_delta` | Gauge | `{revision}` | The number of revisions (commits) a change is ahead/behind the target branch of the change | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.change.revisions_delta` | Gauge | `{revision}` | The number of revisions (commits) a change is ahead/behind the target branch of the change [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** This metric should be reported for each `vcs.revision_delta.direction` value. For example if branch `a` is 3 commits behind and 2 commits ahead of the target branch, instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -273,7 +277,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.ref.lines_delta` | Gauge | `{line}` | The number of lines added/removed in a ref (branch) relative to the previous day | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.ref.lines_delta` | Gauge | `{line}` | The number of lines added/removed in a ref (branch) relative to the previous day [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** This metric should be reported for each `vcs.line_change.type` value. For example if a ref added 3 lines and removed 2 lines, instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -314,7 +320,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.ref.revisions_delta` | Gauge | `{revision}` | The number of revisions (commits) a ref (branch) is ahead/behind the default branch (trunk) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.ref.revisions_delta` | Gauge | `{revision}` | The number of revisions (commits) a ref (branch) is ahead/behind the default branch (trunk) [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** This metric should be reported for each `vcs.revision_delta.direction` value. For example if branch `a` is 3 commits behind and 2 commits ahead of `trunk`, instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

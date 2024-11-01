@@ -61,6 +61,7 @@ groups:
     type: metric
     metric_name: vcs.change.lines_delta
     brief: 'The number of lines added/removed in a change relative to the target branch of the change'
+    note: 'This metric should be reported for each `vcs.line_change.type` value. For example if a change added 3 lines and removed 2 lines, instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers).'
     instrument: gauge
     unit: "{line}"
     stability: experimental
@@ -77,6 +78,7 @@ groups:
     type: metric
     metric_name: vcs.ref.lines_delta
     brief: 'The number of lines added/removed in a ref (branch) relative to the previous day'
+    note: 'This metric should be reported for each `vcs.line_change.type` value. For example if a ref added 3 lines and removed 2 lines, instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers).'
     instrument: gauge
     unit: "{line}"
     stability: experimental
@@ -93,6 +95,7 @@ groups:
     type: metric
     metric_name: vcs.change.revisions_delta
     brief: 'The number of revisions (commits) a change is ahead/behind the target branch of the change'
+    note: 'This metric should be reported for each `vcs.revision_delta.direction` value. For example if branch `a` is 3 commits behind and 2 commits ahead of the target branch, instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers).'
     instrument: gauge
     unit: "{revision}"
     stability: experimental
@@ -109,6 +112,7 @@ groups:
     type: metric
     metric_name: vcs.ref.revisions_delta
     brief: 'The number of revisions (commits) a ref (branch) is ahead/behind the default branch (trunk)'
+    note: 'This metric should be reported for each `vcs.revision_delta.direction` value. For example if branch `a` is 3 commits behind and 2 commits ahead of `trunk`, instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers).'
     instrument: gauge
     unit: "{revision}"
     stability: experimental
