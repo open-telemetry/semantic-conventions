@@ -538,7 +538,7 @@ Span name: `GET /webshop/articles/:article_id`.
 | `http.route`         | `"/webshop/articles/:article_id"`               |
 | `http.response.status_code` | `200`                                    |
 | `client.address`     | `"192.0.2.4"`                                   |
-| `client.socket.address` | `"192.0.2.5"` (the client goes through a proxy) |
+| `network.peer.address` | `"192.0.2.5"` (the client goes through a proxy) |
 | `user_agent.original` | `"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0"` |
 
 ### HTTP client retries examples
