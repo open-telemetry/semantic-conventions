@@ -49,6 +49,6 @@ groups:
               brief: 'Bot source.'
               stability: experimental
             - id: test
-              value: "synthetic test"
+              value: "test"
               brief: 'Synthetic test source.'
               stability: experimental
