@@ -591,10 +591,10 @@ groups:
       - id: db.cosmosdb.network.resource_id
         type: string
         stability: experimental
-        brief: > 
-          Azure Cosmos DB Partition Key Range Id for a Gateway call and PartitionId/RepilcaId for a Direct call 
+        brief: >
+          Azure Cosmos DB Partition Key Range Id for a Gateway call and PartitionId/RepilcaId for a Direct call
         examples: "45678765678987/2345678906789s"
-      
+
   - id: registry.db.elasticsearch
     type: attribute_group
     display_name: Elasticsearch Attributes
