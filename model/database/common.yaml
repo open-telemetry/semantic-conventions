@@ -59,7 +59,7 @@ groups:
       - ref: db.cosmosdb.consistency_level
         requirement_level:
           conditionally_required: If available.
-  
+
   - id: attributes.db.cosmosdb.network.minimal
     type: attribute_group
     brief: 'Azure Cosmos DB Client network request level attributes'
