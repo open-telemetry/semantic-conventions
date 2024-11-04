@@ -183,20 +183,20 @@ provide the value of an attribute indirectly via a URI reference to a storage
 system where the value of the attribute may be retrieved.
 
 In general, if there exists an attribute `somekey`, then there is implicitly
-defined another attribute `somekey.ref.uri` which may be used to provide
+defined another attribute `somekey.blob_ref.uri` which may be used to provide
 the value of the attribute `somekey` by reference to an external storage
 system from which the value of `somekey` may be fetched.
 
-Additional `*.ref.*` attributes, beyond `.ref.uri`, may be used to provide
-additional information concerning the external reference, including:
+Additional `*.blob_ref.*` attributes, beyond `.blob_ref.uri`, may be used to
+provide additional information concerning the external reference, including:
 
-  - `*.ref.content_type`: the MIME type of the data (e.g. `text/plain`, `application/json`, `application/octet-stream`)
-  - `*.ref.size`: the size of the attribute value in bytes
-  - `*.ref.hash_value`: a hash of the data for validation
-  - `*.ref.hash_algorithm`: the algorithm used to compute the hash
+  - `*.blob_ref.content_type`: the MIME type of the data (e.g. `text/plain`, `application/json`, `application/octet-stream`)
+  - `*.blob_ref.size`: the size of the attribute value in bytes
+  - `*.blob_ref.hash_value`: a hash of the data for validation
+  - `*.blob_ref.hash_algorithm`: the algorithm used to compute the hash
 
 If both a reference attribute and its non-reference variant appear together
-within a signal (e.g. both `somekey` and `somekey.ref.uri` are present),
+within a signal (e.g. both `somekey` and `somekey.blob_ref.uri` are present),
 it should be assumed that only the reference attribute references the full,
 complete, original value of the data; the non-reference variant may be used
 to preview/summarize the data but should be assumed to potentially contain
