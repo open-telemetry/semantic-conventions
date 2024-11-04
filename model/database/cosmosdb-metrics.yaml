@@ -34,7 +34,7 @@ groups:
   - id: metric.db.client.cosmosdb.request.duration
     type: metric
     metric_name: db.client.cosmosdb.request.duration
-    brief: "Total time taken by the network call"
+    brief: "End to end Latency of Azure Cosmos DB Backend network call"
     instrument: histogram
     unit: "s"
     stability: experimental
@@ -43,7 +43,7 @@ groups:
   - id: metric.db.client.cosmosdb.request.body.size
     type: metric
     metric_name: db.client.cosmosdb.request.body.size
-    brief: "Size of request object sent over wire"
+    brief: "Size of request object sent to Azure Cosmos DB backend"
     instrument: histogram
     unit: "{bytes}"
     stability: experimental
@@ -52,7 +52,7 @@ groups:
   - id: metric.db.client.cosmosdb.response.body.size
     type: metric
     metric_name: db.client.cosmosdb.response.body.size
-    brief: "Size of response received over wire"
+    brief: "Size of response received from Azure Cosmos DB backend"
     instrument: histogram
     unit: "{bytes}"
     stability: experimental
@@ -61,7 +61,7 @@ groups:
   - id: metric.db.client.cosmosdb.request.channel_aquisition.duration
     type: metric
     metric_name: db.client.cosmosdb.request.channel_aquisition.duration
-    brief: "Time taken in creating connection, It is only available for Direct Mode"
+    brief: "Time taken in creating connection, It is only applicable in Direct Mode."
     instrument: histogram
     unit: "s"
     stability: experimental
@@ -70,7 +70,7 @@ groups:
   - id: metric.db.server.cosmosdb.request.duration
     type: metric
     metric_name: db.server.cosmosdb.request.duration
-    brief: "Backend latency"
+    brief: "Backend Server Latency, i.e. time taken by Azure Cosmos DB server to process the request. It is only applicable in Direct Mode."
     instrument: histogram
     unit: "s"
     stability: experimental
@@ -79,7 +79,7 @@ groups:
   - id: metric.db.client.cosmosdb.request.transit.duration
     type: metric
     metric_name: db.client.cosmosdb.request.transit.duration
-    brief: "Time taken over wire, It is only available for Direct Mode"
+    brief: "Transit time refers to the duration taken by a request to travel across the network—from the moment it leaves the client to when the response is received back at the client. It is only applicable in Direct Mode."
     instrument: histogram
     unit: "s"
     stability: experimental
@@ -88,7 +88,7 @@ groups:
   - id: metric.db.client.cosmosdb.request.received.duration
     type: metric
     metric_name: db.client.cosmosdb.request.received.duration
-    brief: "Time taken by received step in network request pipeline, It is only available for Direct Mode"
+    brief: "Received time is the duration from when the response is received until it is fully processed by the SDK. It is only applicable in Direct Mode."
     instrument: histogram
     unit: "s"
     stability: experimental
