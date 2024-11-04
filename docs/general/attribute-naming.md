@@ -46,7 +46,7 @@ Names SHOULD follow these rules:
   indicate entity hierarchies. This purpose should primarily drive the decision
   about forming nested namespaces.
 
-- The special namespace `*.ref.*` is reserved for "reference attributes".
+- The special namespace `*.blob_ref.*` is reserved for "reference attributes".
 
 - For each multi-word dot-delimited component of the attribute name separate the
   words by underscores (i.e. use snake_case). For example
