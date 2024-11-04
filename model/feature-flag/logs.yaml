@@ -11,7 +11,7 @@ groups:
       - ref: feature_flag.variant
         requirement_level:
           conditionally_required: If feature flag provider supplies a variant or equivalent concept.
-      - ref: feature_flag.provider.id
+      - ref: feature_flag.system
         requirement_level: recommended
       - ref: feature_flag.context.id
         requirement_level: recommended

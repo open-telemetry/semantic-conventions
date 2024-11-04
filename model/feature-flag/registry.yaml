@@ -11,10 +11,10 @@ groups:
         stability: experimental
         brief: The lookup key of the feature flag.
         examples: ["logo-color"]
-      - id: feature_flag.provider.id
+      - id: feature_flag.system
         type: string
         stability: experimental
-        brief: Any string which identifies the feature flag provider being used such as its name.
+        brief: Identifies the feature flag provider.
         examples: ["Flag Manager"]
       - id: feature_flag.variant
         type: string
