@@ -90,6 +90,8 @@ groups:
       - ref: gen_ai.openai.response.service_tier
         requirement_level:
           conditionally_required: if the response was received and includes a service_tier
+      - ref: gen_ai.openai.response.system_fingerprint
+        requirement_level: recommended
       - ref: gen_ai.usage.input_tokens
         brief: The number of tokens used in the prompt sent to OpenAI.
       - ref: gen_ai.usage.output_tokens

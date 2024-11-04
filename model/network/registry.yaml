@@ -232,3 +232,7 @@ groups:
         stability: experimental
         brief: "The network IO operation direction."
         examples: ["transmit"]
+      - id: network.interface.name
+        type: string
+        brief: 'The network interface name.'
+        examples: [ 'lo', 'eth0' ]

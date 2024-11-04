@@ -125,6 +125,7 @@ table-generation:
 		--attribute-registry-base-url=/docs/attributes-registry \
 		--templates=/home/weaver/templates \
 		--target=markdown \
+		--future \
 		/home/weaver/target
 
 # Generate attribute registry markdown.
@@ -154,6 +155,7 @@ table-check:
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--dry-run \
+		--future \
 		/home/weaver/target
 
 .PHONY: schema-check

@@ -41,9 +41,10 @@ attributes and ones specific the OpenAI.
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.openai.request.response_format`](/docs/attributes-registry/gen-ai.md) | string | The response format that is requested. | `json` | `Conditionally Required` if the request includes a response_format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.openai.request.seed`](/docs/attributes-registry/gen-ai.md) | int | Requests with same seed value more likely to return same result. | `100` | `Conditionally Required` if the request includes a seed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.openai.request.service_tier`](/docs/attributes-registry/gen-ai.md) | string | The service tier requested. May be a specific tier, detault, or auto. | `auto`; `default` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.openai.response.service_tier`](/docs/attributes-registry/gen-ai.md) | string | The service tier used for the response. | `scale`; `detault` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.openai.request.service_tier`](/docs/attributes-registry/gen-ai.md) | string | The service tier requested. May be a specific tier, default, or auto. | `auto`; `default` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.openai.response.service_tier`](/docs/attributes-registry/gen-ai.md) | string | The service tier used for the response. | `scale`; `default` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | GenAI server port. [6] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`gen_ai.openai.response.system_fingerprint`](/docs/attributes-registry/gen-ai.md) | string | A fingerprint to track any eventual change in the Generative AI environment. | `fp_44709d6fcb` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.frequency_penalty`](/docs/attributes-registry/gen-ai.md) | double | The frequency penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.max_tokens`](/docs/attributes-registry/gen-ai.md) | int | The maximum number of tokens the model generates for a request. | `100` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.presence_penalty`](/docs/attributes-registry/gen-ai.md) | double | The presence penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -128,7 +129,8 @@ Additional attributes:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.openai.response.service_tier`](/docs/attributes-registry/gen-ai.md) | string | The service tier used for the response. | `scale`; `detault` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.openai.response.service_tier`](/docs/attributes-registry/gen-ai.md) | string | The service tier used for the response. | `scale`; `default` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.openai.response.system_fingerprint`](/docs/attributes-registry/gen-ai.md) | string | A fingerprint to track any eventual change in the Generative AI environment. | `fp_44709d6fcb` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -150,7 +152,8 @@ Additional attributes:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.openai.response.service_tier`](/docs/attributes-registry/gen-ai.md) | string | The service tier used for the response. | `scale`; `detault` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.openai.response.service_tier`](/docs/attributes-registry/gen-ai.md) | string | The service tier used for the response. | `scale`; `default` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.openai.response.system_fingerprint`](/docs/attributes-registry/gen-ai.md) | string | A fingerprint to track any eventual change in the Generative AI environment. | `fp_44709d6fcb` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
