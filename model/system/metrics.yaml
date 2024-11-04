@@ -303,7 +303,7 @@ groups:
       - Windows: [`InDiscards`/`OutDiscards`](https://docs.microsoft.com/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
         from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2)
     attributes:
-      - ref: system.device
+      - ref: network.interface.name
       - ref: network.io.direction
 
   - id: metric.system.network.packets
@@ -331,7 +331,7 @@ groups:
       - Windows: [`InErrors`/`OutErrors`](https://docs.microsoft.com/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
         from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2).
     attributes:
-      - ref: system.device
+      - ref: network.interface.name
       - ref: network.io.direction
 
   - id: metric.system.network.io
@@ -342,7 +342,7 @@ groups:
     instrument: counter
     unit: "By"
     attributes:
-      - ref: system.device
+      - ref: network.interface.name
       - ref: network.io.direction
 
   - id: metric.system.network.connections
@@ -353,7 +353,7 @@ groups:
     instrument: updowncounter
     unit: "{connection}"
     attributes:
-      - ref: system.device
+      - ref: network.interface.name
       - ref: system.network.state
       - ref: network.transport
 
