@@ -79,7 +79,9 @@ groups:
   - id: metric.db.client.cosmosdb.request.transit.duration
     type: metric
     metric_name: db.client.cosmosdb.request.transit.duration
-    brief: "Transit time refers to the duration taken by a request to travel across the network—from the moment it leaves the client to when the response is received back at the client. It is only applicable in Direct Mode."
+    brief: >
+      "Transit time refers to the duration taken by a request to travel across the network—from the moment it leaves the client to
+      when the response is received back at the client. It is only applicable in Direct Mode."
     instrument: histogram
     unit: "s"
     stability: experimental
