@@ -6,6 +6,7 @@
 # Changelog
 
 <!-- next version -->
+<!-- markdown-link-check-disable -->
 
 ## v1.28.0
 
