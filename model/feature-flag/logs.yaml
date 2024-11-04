@@ -5,6 +5,12 @@ groups:
     brief: >
       This semantic convention defines the attributes used to represent a
       feature flag evaluation as an event.
+      A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag
+      value is evaluated, which may happen many times over the course of an
+      application lifecycle.
+      For example, a website A/B testing different animations may evaluate a
+      flag each time a button is clicked.
+      A `feature_flag.evaluation` event is emitted on each evaluation even if the result is the same.
     attributes:
       - ref: feature_flag.key
         requirement_level: required
