@@ -20,11 +20,9 @@ groups:
           It is RECOMMENDED to capture the value as provided by the application
           without attempting to do any case normalization.
 
-          A single database query may involve multiple targets.
-
-          If the target name is parsed from the query text, it SHOULD only be captured for queries that
-          contain a single target and it SHOULD match the value provided in
-          the query text including any schema and database name prefix.
+          If the target name is parsed from the query text, it SHOULD only be
+          captured for queries that contain a single target and it SHOULD match
+          the value provided in the query text including any schema and database name prefix.
 
           For batch operations, if the individual operations are known to have the same target name
           then that target name SHOULD be used.
