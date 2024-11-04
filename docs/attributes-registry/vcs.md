@@ -19,8 +19,12 @@ This group defines the attributes for [Version Control Systems (VCS)](https://en
 | <a id="vcs-change-state" href="#vcs-change-state">`vcs.change.state`</a> | string | The state of the change (pull request/merge request/changelist). | `open`; `closed`; `merged` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="vcs-change-title" href="#vcs-change-title">`vcs.change.title`</a> | string | The human readable title of the change (pull request/merge request/changelist). This title is often a brief summary of the change and may get merged in to a ref as the commit summary. | `Fixes broken thing`; `feat: add my new feature`; `[chore] update dependency` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="vcs-line-change-type" href="#vcs-line-change-type">`vcs.line_change.type`</a> | string | The type of line change being measured on a branch or change. | `added`; `removed` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="vcs-ref-name" href="#vcs-ref-name">`vcs.ref.name`</a> | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="vcs-ref-revision" href="#vcs-ref-revision">`vcs.ref.revision`</a> | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [1] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="vcs-ref-base-name" href="#vcs-ref-base-name">`vcs.ref.base.name`</a> | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="vcs-ref-base-revision" href="#vcs-ref-base-revision">`vcs.ref.base.revision`</a> | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [1] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="vcs-ref-base-type" href="#vcs-ref-base-type">`vcs.ref.base.type`</a> | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="vcs-ref-head-name" href="#vcs-ref-head-name">`vcs.ref.head.name`</a> | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="vcs-ref-head-revision" href="#vcs-ref-head-revision">`vcs.ref.head.revision`</a> | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [2] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="vcs-ref-head-type" href="#vcs-ref-head-type">`vcs.ref.head.type`</a> | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="vcs-ref-type" href="#vcs-ref-type">`vcs.ref.type`</a> | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="vcs-repository-url-full" href="#vcs-repository-url-full">`vcs.repository.url.full`</a> | string | The [URL](https://en.wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="vcs-revision-delta-direction" href="#vcs-revision-delta-direction">`vcs.revision_delta.direction`</a> | string | The type of revision comparison. | `ahead`; `behind` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -31,7 +35,17 @@ commit [commit](https://git-scm.com/docs/git-commit) object. It does
 not necessarily have to be a hash; it can simply define a
 [revision number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
 which is an integer that is monotonically increasing. In cases where
-it is identical to the `ref.name`, it SHOULD still be included. It is
+it is identical to the `ref.base.name`, it SHOULD still be included. It is
+up to the implementer to decide which value to set as the revision
+based on the VCS system and situational context.
+
+**[2]:** The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
+of the recorded change to a ref within a repository pointing to a
+commit [commit](https://git-scm.com/docs/git-commit) object. It does
+not necessarily have to be a hash; it can simply define a
+[revision number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
+which is an integer that is monotonically increasing. In cases where
+it is identical to the `ref.head.name`, it SHOULD still be included. It is
 up to the implementer to decide which value to set as the revision
 based on the VCS system and situational context.
 
@@ -50,6 +64,20 @@ based on the VCS system and situational context.
 |---|---|---|
 | `added` | How many lines were added. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `removed` | How many lines were removed. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`vcs.ref.base.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+`vcs.ref.head.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `vcs.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -73,9 +101,9 @@ based on the VCS system and situational context.
 |---|---|---|---|---|
 | <a id="vcs-repository-change-id" href="#vcs-repository-change-id">`vcs.repository.change.id`</a> | string | Deprecated, use `vcs.change.id` instead. | `123` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `vcs.change.id` instead. |
 | <a id="vcs-repository-change-title" href="#vcs-repository-change-title">`vcs.repository.change.title`</a> | string | Deprecated, use `vcs.change.title` instead. | `Fixes broken thing`; `feat: add my new feature`; `[chore] update dependency` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `vcs.change.title` instead. |
-| <a id="vcs-repository-ref-name" href="#vcs-repository-ref-name">`vcs.repository.ref.name`</a> | string | Deprecated, use `vcs.ref.name` instead. | `my-feature-branch`; `tag-1-test` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `vcs.ref.name` instead. |
-| <a id="vcs-repository-ref-revision" href="#vcs-repository-ref-revision">`vcs.repository.ref.revision`</a> | string | Deprecated, use `vcs.ref.revision` instead. | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `vcs.ref.revision` instead. |
-| <a id="vcs-repository-ref-type" href="#vcs-repository-ref-type">`vcs.repository.ref.type`</a> | string | Deprecated, use `vcs.ref.type` instead. | `branch`; `tag` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `vcs.ref.type` instead. |
+| <a id="vcs-repository-ref-name" href="#vcs-repository-ref-name">`vcs.repository.ref.name`</a> | string | Deprecated, use `vcs.ref.head.name` instead. | `my-feature-branch`; `tag-1-test` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `vcs.ref.head.name` instead. |
+| <a id="vcs-repository-ref-revision" href="#vcs-repository-ref-revision">`vcs.repository.ref.revision`</a> | string | Deprecated, use `vcs.ref.head.revision` instead. | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `vcs.ref.head.revision` instead. |
+| <a id="vcs-repository-ref-type" href="#vcs-repository-ref-type">`vcs.repository.ref.type`</a> | string | Deprecated, use `vcs.ref.head.type` instead. | `branch`; `tag` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `vcs.ref.head.type` instead. |
 
 `vcs.repository.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -17,7 +17,7 @@ groups:
             "https://github.com/opentelemetry/open-telemetry-collector-contrib",
             "https://gitlab.com/my-org/my-project/my-projects-project/repo",
           ]
-      - id: vcs.ref.name
+      - id: vcs.ref.base.name
         type: string
         stability: experimental
         brief: >
@@ -25,6 +25,90 @@ groups:
           [reference](https://git-scm.com/docs/gitglossary#def_ref) such as
           **branch** or **tag** in the repository.
         examples: ["my-feature-branch", "tag-1-test"]
+      - id: vcs.ref.base.type
+        type:
+          members:
+            - id: branch
+              value: branch
+              brief: "[branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)"
+              stability: experimental
+            - id: tag
+              value: tag
+              brief: "[tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)"
+              stability: experimental
+        stability: experimental
+        brief: >
+          The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
+        examples: ["branch", "tag"]
+      - id: vcs.ref.base.revision
+        type: string
+        stability: experimental
+        brief: >
+          The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision),
+          The revision most often refers to a commit object in Git, or a revision number in SVN.
+        note: |
+          The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
+          of the recorded change to a ref within a repository pointing to a
+          commit [commit](https://git-scm.com/docs/git-commit) object. It does
+          not necessarily have to be a hash; it can simply define a
+          [revision number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
+          which is an integer that is monotonically increasing. In cases where
+          it is identical to the `ref.base.name`, it SHOULD still be included. It is
+          up to the implementer to decide which value to set as the revision
+          based on the VCS system and situational context.
+        examples:
+          [
+            "9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc",
+            "main",
+            "123",
+            "HEAD",
+          ]
+      - id: vcs.ref.head.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the
+          [reference](https://git-scm.com/docs/gitglossary#def_ref) such as
+          **branch** or **tag** in the repository.
+        examples: ["my-feature-branch", "tag-1-test"]
+      - id: vcs.ref.head.type
+        type:
+          members:
+            - id: branch
+              value: branch
+              brief: "[branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)"
+              stability: experimental
+            - id: tag
+              value: tag
+              brief: "[tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)"
+              stability: experimental
+        stability: experimental
+        brief: >
+          The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
+        examples: ["branch", "tag"]
+      - id: vcs.ref.head.revision
+        type: string
+        stability: experimental
+        brief: >
+          The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision),
+          The revision most often refers to a commit object in Git, or a revision number in SVN.
+        note: |
+          The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
+          of the recorded change to a ref within a repository pointing to a
+          commit [commit](https://git-scm.com/docs/git-commit) object. It does
+          not necessarily have to be a hash; it can simply define a
+          [revision number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
+          which is an integer that is monotonically increasing. In cases where
+          it is identical to the `ref.head.name`, it SHOULD still be included. It is
+          up to the implementer to decide which value to set as the revision
+          based on the VCS system and situational context.
+        examples:
+          [
+            "9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc",
+            "main",
+            "123",
+            "HEAD",
+          ]
       - id: vcs.ref.type
         type:
           members:
@@ -40,29 +124,6 @@ groups:
         brief: >
           The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
         examples: ["branch", "tag"]
-      - id: vcs.ref.revision
-        type: string
-        stability: experimental
-        brief: >
-          The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision),
-          The revision most often refers to a commit object in Git, or a revision number in SVN.
-        note: |
-          The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
-          of the recorded change to a ref within a repository pointing to a
-          commit [commit](https://git-scm.com/docs/git-commit) object. It does
-          not necessarily have to be a hash; it can simply define a
-          [revision number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
-          which is an integer that is monotonically increasing. In cases where
-          it is identical to the `ref.name`, it SHOULD still be included. It is
-          up to the implementer to decide which value to set as the revision
-          based on the VCS system and situational context.
-        examples:
-          [
-            "9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc",
-            "main",
-            "123",
-            "HEAD",
-          ]
       - id: vcs.revision_delta.direction
         type:
           members:

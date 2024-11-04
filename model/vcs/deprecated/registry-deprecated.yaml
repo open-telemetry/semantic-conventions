@@ -7,9 +7,9 @@ groups:
       - id: vcs.repository.ref.name
         type: string
         stability: experimental
-        deprecated: 'Deprecated, use `vcs.ref.name` instead.'
+        deprecated: 'Deprecated, use `vcs.ref.head.name` instead.'
         brief: >
-          Deprecated, use `vcs.ref.name` instead.
+          Deprecated, use `vcs.ref.head.name` instead.
         examples: ["my-feature-branch", "tag-1-test"]
       - id: vcs.repository.ref.type
         type:
@@ -23,16 +23,16 @@ groups:
               brief: "[tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)"
               stability: experimental
         stability: experimental
-        deprecated: 'Deprecated, use `vcs.ref.type` instead.'
+        deprecated: 'Deprecated, use `vcs.ref.head.type` instead.'
         brief: >
-          Deprecated, use `vcs.ref.type` instead.
+          Deprecated, use `vcs.ref.head.type` instead.
         examples: ["branch", "tag"]
       - id: vcs.repository.ref.revision
         type: string
         stability: experimental
-        deprecated: 'Deprecated, use `vcs.ref.revision` instead.'
+        deprecated: 'Deprecated, use `vcs.ref.head.revision` instead.'
         brief: >
-          Deprecated, use `vcs.ref.revision` instead.
+          Deprecated, use `vcs.ref.head.revision` instead.
         examples:
           [
             "9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc",

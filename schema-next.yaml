@@ -13,9 +13,9 @@ versions:
             attribute_map:
               vcs.repository.change.id: vcs.change.id
               vcs.repository.change.title: vcs.change.title
-              vcs.repository.ref.name: vcs.ref.name
-              vcs.repository.ref.revision: vcs.ref.revision
-              vcs.repository.ref.type: vcs.ref.type
+              vcs.repository.ref.name: vcs.ref.head.name
+              vcs.repository.ref.revision: vcs.ref.head.revision
+              vcs.repository.ref.type: vcs.ref.head.type
     metrics:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/1492

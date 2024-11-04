@@ -21,5 +21,7 @@ issues: [1372]
 # Use pipe (|) for multiline entries.
 subtext: |
   - The VCS attributes `vcs.change.state`, `vcs.revision_delta.direction` and `vcs.line_change.type` have been added to the registry.
+  - The VCS ref attributes have been duplicated to `vcs.ref.base.*` to allow for ref comparisons.
+  - The VCS attribute `vcs.ref.type` has been added for simplicity when neither a full head or base ref is necessary.
   - `vcs.repository.change.*` attributes have been deprecated and moved to `vcs.change.*`.
-  - `vcs.repository.ref.*` attributes have been deprecated and moved to `vcs.ref.*`.
+  - `vcs.repository.ref.*` attributes have been deprecated and moved to `vcs.ref.head.*`.
