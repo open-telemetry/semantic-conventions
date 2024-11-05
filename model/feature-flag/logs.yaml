@@ -27,6 +27,9 @@ groups:
         requirement_level: recommended
       - ref: feature_flag.reason
         requirement_level: recommended
+      - ref: feature_flag.error.code
+        requirement_level:
+          conditionally_required: If an error occurred during flag evaluation.
     body:
       id: feature_flag.evaluation
       type: map

@@ -88,3 +88,42 @@ groups:
         examples: ["static", "targeting_match", "error", "default"]
         brief: >
           The reason code which shows how a feature flag value was determined.
+      - id: feature_flag.error.code
+        type:
+          members:
+            - id: provider_not_ready
+              value: "provider_not_ready"
+              brief: The value was resolved before the provider was initialized.
+              stability: experimental
+            - id: flag_not_found
+              value: "flag_not_found"
+              brief: The flag could not be found.
+              stability: experimental
+            - id: parse_error
+              value: "parse_error"
+              brief: An error was encountered parsing data, such as a flag configuration.
+              stability: experimental
+            - id: type_mismatch
+              value: "type_mismatch"
+              brief: The type of the flag value does not match the expected type.
+              stability: experimental
+            - id: targeting_key_missing
+              value: "targeting_key_missing"
+              brief: The provider requires a targeting key and one was not provided in the evaluation context.
+              stability: experimental
+            - id: invalid_context
+              value: "invalid_context"
+              brief: The evaluation context does not meet provider requirements.
+              stability: experimental
+            - id: provider_fatal
+              value: "provider_fatal"
+              brief: The provider has entered an irrecoverable error state.
+              stability: experimental
+            - id: general
+              value: "general"
+              brief: The error was for a reason not enumerated above.
+              stability: experimental
+        stability: experimental
+        examples: ["provider_not_ready", "targeting_key_missing", "provider_fatal", "general"]
+        brief: >
+          An error code which shows why a flag evaluation failed
