@@ -29,7 +29,10 @@ groups:
         requirement_level: recommended
       - ref: feature_flag.error.code
         requirement_level:
-          conditionally_required: If an error occurred during flag evaluation.
+          conditionally_required: Required if an error occured during flag evaluation and `feature_flag.error.message` is not set, recommended otherwise.
+      - ref: feature_flag.error.message
+        requirement_level:
+          conditionally_required: Required if an error occured during flag evaluation and `feature_flag.error.code` is not set, recommended otherwise.
     body:
       id: feature_flag.evaluation
       type: map

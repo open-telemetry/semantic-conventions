@@ -127,3 +127,8 @@ groups:
         examples: ["provider_not_ready", "targeting_key_missing", "provider_fatal", "general"]
         brief: >
           An error code which shows why a flag evaluation failed
+      - id: feature_flag.error.message
+        type: string
+        stability: experimental
+        examples: ["Flag `header-color` expected type `string` but found type `number`"]
+        brief: A message explaining why an error occurred during flag evaluation.
