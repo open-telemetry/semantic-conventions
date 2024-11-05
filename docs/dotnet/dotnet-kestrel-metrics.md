@@ -146,7 +146,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `error_reading_headers` | An error occurred when decoding HPACK headers in an HTTP/2 `HEADERS` frame. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `error_writing_headers` | An error occurred when encoding HPACK headers in an HTTP/2 `HEADERS` frame. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `flow_control_queue_size_exceeded` | The connection exceeded the outgoing flow control maximum queue size and was closed with `INTERNAL_ERROR`. This can be caused by an excessive number of HTTP/2 stream resets. For more information, see [Microsoft Security Advisory CVE-2023-44487:](https://github.com/dotnet/runtime/issues/93303). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `flow_control_window_exceeded` | The client sent more data than was available in the flow-control window. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `flow_control_window_exceeded` | The client sent more data than allowed by the current flow-control window. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `frame_after_stream_close` | An HTTP/2 frame was received on a closed stream. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `insufficient_tls_version` | The connection doesn't have TLS 1.2 or greater, as required by HTTP/2. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `invalid_body_reader_state` | An error occurred when draining the request body, aborting the HTTP/1.1 connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
