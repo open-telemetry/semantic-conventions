@@ -6,12 +6,13 @@
 
 # VCS
 
-- [VCS Repository Attributes](#vcs-repository-attributes)
-- [VCS Deprecated Attributes](#vcs-deprecated-attributes)
+- [VCS](#vcs)
+  - [VCS Repository Attributes](#vcs-repository-attributes)
+  - [VCS Deprecated Attributes](#vcs-deprecated-attributes)
 
 ## VCS Repository Attributes
 
-This group defines the attributes for [Version Control Systems (VCS)](https://en.wikipedia.org/wiki/Version_control).
+This group defines the attributes for [Version Control Systems (VCS)](https://wikipedia.org/wiki/Version_control).
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
