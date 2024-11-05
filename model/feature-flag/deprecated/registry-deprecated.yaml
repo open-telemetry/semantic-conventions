@@ -6,7 +6,7 @@ groups:
     attributes:
       - id: feature_flag.provider_name
         type: string
-        brief: 'Deprecated, use `feature_flag.provider.id` instead.'
+        brief: 'Deprecated, use `feature_flag.system` instead.'
         stability: experimental
-        deprecated: "Replaced by `feature_flag.provider.id`."
+        deprecated: "Replaced by `feature_flag.system`."
         examples: ["Flag Manager"]

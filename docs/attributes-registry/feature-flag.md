@@ -62,4 +62,4 @@ Describes deprecated Feature Flag attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | string | Deprecated, use `feature_flag.provider.id` instead. | `Flag Manager` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.provider.id`. |
+| <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | string | Deprecated, use `feature_flag.system` instead. | `Flag Manager` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.system`. |
