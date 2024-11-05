@@ -23,7 +23,7 @@ An exception SHOULD be recorded as an `Event` on the span during which it occurr
 The name of the event MUST be `"exception"`.
 
 A typical template for an auto-instrumentation implementing this semantic convention
-using an [API-provided `recordException` method](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/trace/api.md#record-exception)
+using an [API-provided `recordException` method](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#record-exception)
 could look like this (pseudo-Java):
 
 ```java
@@ -79,9 +79,6 @@ It follows that an exception may still escape the scope of the span
 even if the `exception.escaped` attribute was not set or set to false,
 since the event might have been recorded at a time where it was not
 clear whether the exception will escape.
-
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

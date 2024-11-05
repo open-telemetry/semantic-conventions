@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Logs
-aliases: [docs/specs/semconv/general/profiles-general]
+linkTitle: Profiles
 --->
 
 # General Profiles Attributes
@@ -44,8 +43,6 @@ They may be used in any Profiles record they apply to.
 | `php` | [PHP](https://wikipedia.org/wiki/PHP) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ruby` | [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `v8js` | [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

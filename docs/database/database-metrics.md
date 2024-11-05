@@ -2,14 +2,9 @@
 linkTitle: Metrics
 --->
 
-# Semantic Conventions for Database Metrics
+# Semantic Conventions for Database Client Metrics
 
-**Status**: [Experimental][DocumentStatus]
-
-The conventions described in this section are specific to SQL and NoSQL clients.
-
-**Disclaimer:** These are initial database client metric instruments
-and attributes but more may be added in the future.
+**Status**: [Mixed][DocumentStatus]
 
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
@@ -17,16 +12,17 @@ and attributes but more may be added in the future.
 
 - [Database operation](#database-operation)
   - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
-- [Connection pools](#connection-pools)
-  - [Metric: `db.client.connection.count`](#metric-dbclientconnectioncount)
-  - [Metric: `db.client.connection.idle.max`](#metric-dbclientconnectionidlemax)
-  - [Metric: `db.client.connection.idle.min`](#metric-dbclientconnectionidlemin)
-  - [Metric: `db.client.connection.max`](#metric-dbclientconnectionmax)
-  - [Metric: `db.client.connection.pending_requests`](#metric-dbclientconnectionpending_requests)
-  - [Metric: `db.client.connection.timeouts`](#metric-dbclientconnectiontimeouts)
-  - [Metric: `db.client.connection.create_time`](#metric-dbclientconnectioncreate_time)
-  - [Metric: `db.client.connection.wait_time`](#metric-dbclientconnectionwait_time)
-  - [Metric: `db.client.connection.use_time`](#metric-dbclientconnectionuse_time)
+- [Experimental](#experimental)
+  - [Connection pools](#connection-pools)
+    - [Metric: `db.client.connection.count`](#metric-dbclientconnectioncount)
+    - [Metric: `db.client.connection.idle.max`](#metric-dbclientconnectionidlemax)
+    - [Metric: `db.client.connection.idle.min`](#metric-dbclientconnectionidlemin)
+    - [Metric: `db.client.connection.max`](#metric-dbclientconnectionmax)
+    - [Metric: `db.client.connection.pending_requests`](#metric-dbclientconnectionpending_requests)
+    - [Metric: `db.client.connection.timeouts`](#metric-dbclientconnectiontimeouts)
+    - [Metric: `db.client.connection.create_time`](#metric-dbclientconnectioncreate_time)
+    - [Metric: `db.client.connection.wait_time`](#metric-dbclientconnectionwait_time)
+    - [Metric: `db.client.connection.use_time`](#metric-dbclientconnectionuse_time)
 
 <!-- tocstop -->
 
@@ -60,14 +56,14 @@ and attributes but more may be added in the future.
 
 ### Metric: `db.client.operation.duration`
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Release Candidate][DocumentStatus]
 
 This metric is [required][MetricRequired].
 
 When this metric is reported alongside a database operation span, the metric value SHOULD be the same as the database operation span duration.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 
 <!-- semconv metric.db.client.operation.duration -->
@@ -81,9 +77,7 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `db.client.operation.duration` | Histogram | `s` | Duration of database client operations. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 **[1]:** Batch operations SHOULD be recorded as a single operation.
-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -91,42 +85,53 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Conditionally Required` [9] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [10] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [7] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` [8] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [12] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
 For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[3]:** If readily available. The collection name MAY be parsed from the query text, in which case it SHOULD be the first collection name in the query.
 
 **[4]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[5]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the operation name is parsed from the query text, it SHOULD be the first operation name found in the query.
 For batch operations, if the individual operations are known to have the same operation name then that operation name SHOULD be used prepended by `BATCH `, otherwise `db.operation.name` SHOULD be `BATCH` or some other database system specific term if more applicable.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[6]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
 
-**[7]:** The `error.type` SHOULD match the error code returned by the database or the client library, the canonical name of exception that occurred, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
+**[7]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
+This attribute has stability level RELEASE CANDIDATE.
 
-**[8]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[8]:** If the operation failed and status code is available.
 
-**[9]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[9]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
+Instrumentations SHOULD document how `error.type` is populated.
 
-**[10]:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
+**[10]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[11]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+
+**[12]:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[11]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
-
-
+**[13]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -158,12 +163,12 @@ If a database operation involved multiple network calls (for example retries), t
 | `instantdb` | InstantDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `interbase` | InterBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `intersystems_cache` | InterSystems Caché | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mariadb` | MariaDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mariadb` | MariaDB (This value has stability level RELEASE CANDIDATE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `maxdb` | SAP MaxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `memcached` | Memcached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `mongodb` | MongoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mssql` | Microsoft SQL Server | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mysql` | MySQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mssql` | Microsoft SQL Server (This value has stability level RELEASE CANDIDATE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mysql` | MySQL (This value has stability level RELEASE CANDIDATE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `neo4j` | Neo4j | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `netezza` | Netezza | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `opensearch` | OpenSearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -171,7 +176,7 @@ If a database operation involved multiple network calls (for example retries), t
 | `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pervasive` | Pervasive PSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pointbase` | PointBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `postgresql` | PostgreSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `postgresql` | PostgreSQL (This value has stability level RELEASE CANDIDATE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `progress` | Progress Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `redis` | Redis | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `redshift` | Amazon Redshift | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -182,25 +187,24 @@ If a database operation involved multiple network calls (for example retries), t
 | `trino` | Trino | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertica` | Vertica | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## Connection pools
+## Experimental
+
+### Connection pools
 
 The following metric instruments describe database client connection pool operations.
 
-### Metric: `db.client.connection.count`
+#### Metric: `db.client.connection.count`
 
 This metric is [required][MetricRequired].
 
@@ -227,13 +231,12 @@ This metric is [required][MetricRequired].
 | `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
-### Metric: `db.client.connection.idle.max`
+
+#### Metric: `db.client.connection.idle.max`
 
 This metric is [recommended][MetricRecommended].
 
@@ -252,13 +255,12 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `db.client.connection.idle.min`
+#### Metric: `db.client.connection.idle.min`
 
 This metric is [recommended][MetricRecommended].
 
@@ -277,13 +279,12 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `db.client.connection.max`
+#### Metric: `db.client.connection.max`
 
 This metric is [recommended][MetricRecommended].
 
@@ -302,13 +303,12 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `db.client.connection.pending_requests`
+#### Metric: `db.client.connection.pending_requests`
 
 This metric is [recommended][MetricRecommended].
 
@@ -327,13 +327,12 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `db.client.connection.timeouts`
+#### Metric: `db.client.connection.timeouts`
 
 This metric is [recommended][MetricRecommended].
 
@@ -352,13 +351,12 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `db.client.connection.create_time`
+#### Metric: `db.client.connection.create_time`
 
 This metric is [recommended][MetricRecommended].
 
@@ -377,13 +375,12 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `db.client.connection.wait_time`
+#### Metric: `db.client.connection.wait_time`
 
 This metric is [recommended][MetricRecommended].
 
@@ -402,13 +399,12 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `db.client.connection.use_time`
+#### Metric: `db.client.connection.use_time`
 
 This metric is [recommended][MetricRecommended].
 
@@ -426,7 +422,6 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

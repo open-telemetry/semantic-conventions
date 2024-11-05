@@ -4,7 +4,7 @@ linkTitle: MSSQL
 
 # Semantic Conventions for MSSQL
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Release Candidate][DocumentStatus]
 
 The Semantic Conventions for the *Microsoft SQL Server* extend and override the [Database Semantic Conventions](database-spans.md).
 
@@ -22,46 +22,67 @@ The Semantic Conventions for the *Microsoft SQL Server* extend and override the 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of the SQL table that the operation is acting upon. [1] | `users`; `dbo.products` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [3] | `instance1.products`; `customers` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The database associated with the connection, qualified by the instance name. [3] | `instance1.products`; `customers` | `Conditionally Required` If available without an additional network call. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `SELECT`; `INSERT`; `UPDATE`; `DELETE`; `CREATE`; `mystoredproc` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [9] | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | `Recommended` [10] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [12] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [Microsoft SQL Server error](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors) number represented as a string. [6] | `102`; `40020` | `Conditionally Required` If response has ended with warning or an error. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Conditionally Required` [9] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [10] | `2`; `3`; `4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [11] | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | `Recommended` [12] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [14] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
 For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
+This attribute has stability level RELEASE CANDIDATE.
 
 **[2]:** If readily available. The collection name MAY be parsed from the query text, in which case it SHOULD be the first collection name found in the query.
 
-**[3]:** When connecting to a default instance, `db.namespace` SHOULD be set to the name of the database. When connecting to a [named instance](https://learn.microsoft.com/sql/connect/jdbc/building-the-connection-url#named-and-multiple-sql-server-instances), `db.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}.{database_name}` pattern.
-For commands that switch the database, this SHOULD be set to the target database (even if the command fails).
+**[3]:** When connected to a default instance, `db.namespace` SHOULD be set to the name of
+the database. When connected to a [named instance](https://learn.microsoft.com/sql/connect/jdbc/building-the-connection-url#named-and-multiple-sql-server-instances),
+`db.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}.{database_name}` pattern.
+
+A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
+
+If instrumentation is unable to capture the connection's currently associated database on each query
+without triggering an additional query to be executed (e.g. `SELECT DB_NAME()`),
+then it is RECOMMENDED to fallback and use the database provided when the connection was established.
+
+Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
+
+It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 **[4]:** This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
 In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.
 
 **[5]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
 
-**[6]:** The `error.type` SHOULD match the error code returned by the database or the client library, the canonical name of exception that occurred, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
+**[6]:** Microsoft SQL Server does not report SQLSTATE.
 
-**[7]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[7]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
+Instrumentations SHOULD document how `error.type` is populated.
 
-**[8]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[8]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[9]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[9]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+
+**[10]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+This attribute has stability level RELEASE CANDIDATE.
+
+**[11]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
+This attribute has stability level RELEASE CANDIDATE.
 
-**[10]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information. See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[12]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information. See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 
-**[11]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[13]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[12]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
+**[14]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
-
-
+This attribute has stability level RELEASE CANDIDATE.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -78,8 +99,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
