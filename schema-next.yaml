@@ -2,6 +2,24 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
+    all:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1520
+        - rename_attributes:
+            attribute_map:
+              process.executable.build_id.profiling: process.executable.build_id.htlhash
+    metrics:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1492
+        - rename_attributes:
+            attribute_map:
+              system.device: network.interface.name
+            apply_to_metrics:
+              - container.network.io
+              - system.network.dropped
+              - system.network.errors
+              - system.network.io
+              - system.network.connections
   1.28.0:
     metrics:
       changes:

@@ -8,6 +8,34 @@ linkTitle: RabbitMQ
 
 The Semantic Conventions for [RabbitMQ](https://www.rabbitmq.com/) extend and override the [Messaging Semantic Conventions](README.md).
 
+> [!Warning]
+>
+> Existing messaging instrumentations that are using
+> [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-spans.md)
+> (or prior):
+>
+> * SHOULD NOT change the version of the messaging conventions that they emit by default
+>   until the messaging semantic conventions are marked stable.
+>   Conventions include, but are not limited to, attributes,
+>   metric and span names, span kind and unit of measure.
+> * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
+>   in the existing major version which is a comma-separated list of values.
+>   The list of values includes:
+>   * `messaging` - emit the new, stable messaging conventions,
+>     and stop emitting the old experimental messaging conventions
+>     that the instrumentation emitted previously.
+>   * `messaging/dup` - emit both the old and the stable messaging conventions,
+>     allowing for a seamless transition.
+>   * The default behavior (in the absence of one of these values) is to continue
+>     emitting whatever version of the old experimental messaging conventions
+>     the instrumentation was emitting previously.
+>   * Note: `messaging/dup` has higher precedence than `messaging` in case both values are present
+> * SHOULD maintain (security patching at a minimum) the existing major version
+>   for at least six months after it starts emitting both sets of conventions.
+> * SHOULD drop the environment variable in the next major version.
+> * SHOULD emit the new, stable values for span name, span kind and similar "single"
+> valued concepts when `messaging/dup` is present in the list.
+
 `messaging.system` MUST be set to `"rabbitmq"` and SHOULD be provided **at span creation time**.
 
 ## RabbitMQ attributes
@@ -55,8 +83,8 @@ If the operation has completed successfully, instrumentations SHOULD NOT set `er
 If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
 it's RECOMMENDED to:
 
-* Use a domain-specific attribute
-* Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+- Use a domain-specific attribute
+- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
 **[2]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.

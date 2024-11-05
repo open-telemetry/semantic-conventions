@@ -19,3 +19,10 @@ groups:
               value: 'wait'
               stability: experimental
         stability: experimental
+      - id: process.executable.build_id.profiling
+        stability: experimental
+        type: string
+        deprecated: 'Replaced by `process.executable.build_id.htlhash`'
+        brief: >
+          "Deprecated, use `process.executable.build_id.htlhash` instead."
+        examples: ['600DCAFE4A110000F2BF38C493F5FB92']

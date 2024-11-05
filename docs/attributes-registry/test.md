@@ -8,29 +8,29 @@
 
 ## Test Attributes
 
-This group describes attributes specific to [software tests](https://en.wikipedia.org/wiki/Software_testing).
+This group describes attributes specific to [software tests](https://wikipedia.org/wiki/Software_testing).
 
-| Attribute                 | Type   | Description                                                                                          | Examples                                                                                 | Stability                                                        |
-| ------------------------- | ------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `test.case.name`          | string | The fully qualified human readable name of the [test case](https://en.wikipedia.org/wiki/Test_case). | `org.example.TestCase1.test1`; `example/tests/TestCase1.test1`; `ExampleTestCase1_test1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `test.case.result.status` | string | The status of the actual test case result from test execution.                                       | `pass`; `fail`                                                                           | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `test.suite.name`         | string | The human readable name of a [test suite](https://en.wikipedia.org/wiki/Test_suite).                 | `TestSuite1`                                                                             | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `test.suite.run.status`   | string | The status of the test suite run.                                                                    | `success`; `failure`; `skipped`; `aborted`; `timed_out`; `in_progress`                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="test-case-name" href="#test-case-name">`test.case.name`</a> | string | The fully qualified human readable name of the [test case](https://wikipedia.org/wiki/Test_case). | `org.example.TestCase1.test1`; `example/tests/TestCase1.test1`; `ExampleTestCase1_test1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="test-case-result-status" href="#test-case-result-status">`test.case.result.status`</a> | string | The status of the actual test case result from test execution. | `pass`; `fail` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="test-suite-name" href="#test-suite-name">`test.suite.name`</a> | string | The human readable name of a [test suite](https://wikipedia.org/wiki/Test_suite). | `TestSuite1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="test-suite-run-status" href="#test-suite-run-status">`test.suite.run.status`</a> | string | The status of the test suite run. | `success`; `failure`; `skipped`; `aborted`; `timed_out`; `in_progress` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `test.case.result.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability                                                        |
-| ------ | ----------- | ---------------------------------------------------------------- |
-| `fail` | fail        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pass` | pass        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value  | Description | Stability |
+|---|---|---|
+| `fail` | fail | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pass` | pass | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `test.suite.run.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value         | Description | Stability                                                        |
-| ------------- | ----------- | ---------------------------------------------------------------- |
-| `aborted`     | aborted     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `failure`     | failure     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value  | Description | Stability |
+|---|---|---|
+| `aborted` | aborted | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `failure` | failure | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `in_progress` | in_progress | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `skipped`     | skipped     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `success`     | success     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `timed_out`   | timed_out   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `skipped` | skipped | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `success` | success | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `timed_out` | timed_out | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
