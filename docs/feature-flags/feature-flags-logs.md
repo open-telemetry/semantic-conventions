@@ -48,26 +48,46 @@ The table below indicates which attributes should be added to the
 
 The event name MUST be `feature_flag.evaluation`.
 
-This semantic convention defines the attributes used to represent a feature flag evaluation as an event.
+This semantic convention defines the attributes used to represent a feature flag evaluation as an event. A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag value is evaluated, which may happen many times over the course of an application lifecycle. For example, a website A/B testing different animations may evaluate a flag each time a button is clicked. A `feature_flag.evaluation` event is emitted on each evaluation even if the result is the same.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`feature_flag.key`](/docs/attributes-registry/feature-flag.md) | string | The lookup key of the feature flag. | `logo-color` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`feature_flag.value`](/docs/attributes-registry/feature-flag.md) | string | The evaluated value of the feature flag. | `#ff0000`; `1`; `true` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`feature_flag.variant`](/docs/attributes-registry/feature-flag.md) | string | A semantic identifier for an evaluated flag value. [2] | `red`; `true`; `on` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`feature_flag.variant`](/docs/attributes-registry/feature-flag.md) | string | A semantic identifier for an evaluated flag value. [1] | `red`; `true`; `on` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`feature_flag.context.id`](/docs/attributes-registry/feature-flag.md) | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`feature_flag.flag_set.id`](/docs/attributes-registry/feature-flag.md) | string | The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) which the feature flag belongs to in a flag management system. | `proj-1`; `ab98sgs`; `service1/dev` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`feature_flag.provider.id`](/docs/attributes-registry/feature-flag.md) | string | The name of the service provider that performs the flag evaluation. | `Flag Manager` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`feature_flag.reason`](/docs/attributes-registry/feature-flag.md) | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`feature_flag.set.id`](/docs/attributes-registry/feature-flag.md) | string | The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) which the feature flag belongs to in a flag management system. | `proj-1`; `ab98sgs`; `service1/dev` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`feature_flag.system`](/docs/attributes-registry/feature-flag.md) | string | Identifies the feature flag provider. | `Flag Manager` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`feature_flag.version`](/docs/attributes-registry/feature-flag.md) | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** If and only if feature flag provider does not supply variant or equivalent concept. Otherwise, `feature_flag.value` should be treated as opt-in.
-
-**[2]:** A semantic identifier, commonly referred to as a variant, provides a means
+**[1]:** A semantic identifier, commonly referred to as a variant, provides a means
 for referring to a value without including the value itself. This can
 provide additional context for understanding the meaning behind a value.
 For example, the variant `red` maybe be used for the value `#c05543`.
 
-**[3]:** If feature flag provider supplies a variant or equivalent concept.
+**[2]:** If feature flag provider supplies a variant or equivalent concept.
+
+`feature_flag.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `cached` | The resolved value was retrieved from cache. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `default` | The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `disabled` | The resolved value was the result of the flag being disabled in the management system. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `error` | The resolved value was the result of an error. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `split` | The resolved value was the result of pseudorandom assignment. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stale` | The resolved value is non-authoritative or possibly out of date | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `static` | The resolved value is static (no dynamic evaluation). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unknown` | The reason for the resolved value could not be determined. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**Body fields:**
+
+| Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| `value` | undefined | The evaluated value of the feature flag. | `#ff0000`; `1`; `true` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** If and only if feature flag provider does not supply variant or equivalent concept. Otherwise, `value` should be treated as opt-in.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
