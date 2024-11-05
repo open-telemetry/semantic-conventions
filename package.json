@@ -11,7 +11,7 @@
   "devDependencies": {
     "gulp": "^5.0.0",
     "js-yaml": "^4.1.0",
-    "markdown-link-check": "3.11.2",
+    "markdown-link-check": "3.13.5",
     "markdown-toc": "^1.2.0",
     "markdownlint": "0.36.1",
     "markdownlint-cli": "0.42.0",
