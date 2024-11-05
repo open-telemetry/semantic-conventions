@@ -158,8 +158,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `invalid_request_line` | The first line of an HTTP/1.1 request was invalid, potentially due to invalid content or exceeding the allowed limit. Configured by `KestrelServerLimits.MaxRequestLineSize`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `invalid_settings` | The connection received an HTTP/2 or HTTP/3 `SETTINGS` frame with invalid settings. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `invalid_stream_id` | An HTTP/2 stream with an invalid stream ID was received. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid_window_update_size` | The server received an HTTP/2 `WINDOW_UPDATE` frame that caused a flow-control window to exceed the maximum size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `io_error` | An `IOException` occurred while an HTTP/2 or HTTP/3 connection was reading incoming data. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `invalid_window_update_size` | The server received an HTTP/2 `WINDOW_UPDATE` frame with a zero increment, or an increment that caused a flow-control window to exceed the maximum size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `io_error` | An `IOException` occurred while reading or writing connection data. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `keep_alive_timeout` | There was no activity on the connection, and the keep-alive timeout configured by `KestrelServerLimits.KeepAliveTimeout` was exceeded. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `max_concurrent_connections_exceeded` | The connection exceeded the maximum concurrent connection limit. Configured by `KestrelServerLimits.MaxConcurrentConnections`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `max_frame_length_exceeded` | The connection received an HTTP/2 frame that exceeded the size limit specified by `Http2Limits.MaxFrameSize`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
