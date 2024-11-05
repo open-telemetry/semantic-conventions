@@ -14,9 +14,15 @@ such as when the application loads or on a timer.
 To record a flag evaluation as a part of a transaction context,
 consider [recording it as a span event](feature-flags-spans.md).
 
-For more information about why it is useful to capture feature flag evaluations,
-refer to the [motivation](feature-flags-spans.md#motivation)
-section of the trace semantic convention for feature flag evaluations.
+## Motivation
+
+Features flags are commonly used in modern applications to decouple feature releases from deployments.
+Many feature flagging tools support the ability to update flag configurations in near real-time from a remote feature flag management service.
+They also commonly allow rulesets to be defined that return values based on contextual information.
+For example, a feature could be enabled only for a specific subset of users based on context (e.g. users email domain, membership tier, country).
+
+Since feature flags are dynamic and affect runtime behavior, it's important to collect relevant feature flag telemetry signals.
+This can be used to determine the impact a feature has on a request, enabling enhanced observability use cases, such as A/B testing or progressive feature releases.
 
 <!-- toc -->
 
