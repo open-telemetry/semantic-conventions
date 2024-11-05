@@ -25,6 +25,8 @@ groups:
         requirement_level: recommended
       - ref: feature_flag.set.id
         requirement_level: recommended
+      - ref: feature_flag.reason
+        requirement_level: recommended
     body:
       id: feature_flag.evaluation
       type: map
