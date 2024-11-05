@@ -28,16 +28,29 @@ The Semantic Conventions for *PostgreSQL* extend and override the [Database Sema
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Conditionally Required` [9] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [10] | `2`; `3`; `4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [11] | `SELECT * FROM wuser_table where username = ?`; `SET mykey "WuValue"` | `Recommended` [12] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [14] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a database query text. [11] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [12] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [13] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [14] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [16] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-If the collection name is parsed from the query text, it SHOULD be the first collection name found in the query and it SHOULD match the value provided in the query text including any schema and database name prefix.
-For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used, otherwise `db.collection.name` SHOULD NOT be captured.
+
+A single database query may involve multiple collections.
+
+If the collection name is parsed from the query text, it SHOULD only be captured for queries that
+contain a single collection and it SHOULD match the value provided in
+the query text including any schema and database name prefix.
+
+For batch operations, if the individual operations are known to have the same collection name
+then that collection name SHOULD be used.
+
+If the operation or query involves multiple collections, `db.collection.name`
+SHOULD NOT be captured.
+
 This attribute has stability level RELEASE CANDIDATE.
 
-**[2]:** If readily available. The collection name MAY be parsed from the query text, in which case it SHOULD be the first collection name found in the query.
+**[2]:** If readily available and if a database call is performed on a single collection. The collection name MAY be parsed from the query text, in which case it SHOULD be the single collection name in the query.
 
 **[3]:** `db.namespace` SHOULD be set to the combination of database and schema name following the `{database}.{schema}` pattern.
 
@@ -59,7 +72,7 @@ It is RECOMMENDED to capture the value as provided by the application without at
 **[4]:** This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
 In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.
 
-**[5]:** If readily available. The operation name MAY be parsed from the query text, in which case it SHOULD be the first operation name found in the query.
+**[5]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
 **[6]:** SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
 return code which is adopted by some database systems like PostgreSQL.
@@ -108,20 +121,25 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[10]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[11]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[11]:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
+Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text) section.
+This attribute has stability level RELEASE CANDIDATE.
+
+**[12]:** if readily available or if instrumentation supports query summarization.
+
+**[13]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[12]:** SHOULD be collected by default only if there is sanitization that excludes sensitive information. See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[14]:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](../../docs/attributes-registry/db.md)).
 
-**[13]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[15]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[14]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
+**[16]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
 If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 This attribute has stability level RELEASE CANDIDATE.
-
-
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -129,6 +147,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`db.collection.name`](/docs/attributes-registry/db.md)
 * [`db.namespace`](/docs/attributes-registry/db.md)
 * [`db.operation.name`](/docs/attributes-registry/db.md)
+* [`db.query.summary`](/docs/attributes-registry/db.md)
 * [`db.query.text`](/docs/attributes-registry/db.md)
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
@@ -138,8 +157,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

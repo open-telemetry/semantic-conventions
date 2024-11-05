@@ -32,7 +32,7 @@ use cases.
 
 ## All triggers
 
-For all events, a span with kind `SERVER` MUST be created corresponding to the function invocation unless stated
+For all events, a span with kind `SERVER` SHOULD be created corresponding to the function invocation unless stated
 otherwise below. Unless stated otherwise below, the name of the span MUST be set to the function name from the
 Lambda `Context`.
 
@@ -56,9 +56,6 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 | [`aws.lambda.invoked_arn`](/docs/attributes-registry/aws.md) | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This may be different from `cloud.resource_id` if an alias is involved.
-
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -156,13 +153,13 @@ business logic, not the Lambda framework, automatic instrumentation mechanisms w
 not be able to instrument the processing of the individual messages. Instrumentation SHOULD provide utilities
 for creating message processing spans within user code.
 
-The span kind for both types of SQS spans MUST be `CONSUMER`.
+The span kind for both types of SQS spans SHOULD be `CONSUMER`.
 
 ### SQS Event
 
 For the SQS event span, if all the messages in the event have the same event source, the name of the span MUST
 be `<event source> process`. If there are multiple sources in the batch, the name MUST be
-`multiple_sources process`. The parent MUST be the `SERVER` span corresponding to the function invocation.
+`multiple_sources process`. The parent SHOULD be the `SERVER` span corresponding to the function invocation.
 
 For every message in the event, the [message system attributes][] (not message attributes, which are provided by
 the user) SHOULD be checked for the key `AWSTraceHeader`. If it is present, an OpenTelemetry `Context` SHOULD be

@@ -8,6 +8,34 @@ linkTitle: RocketMQ
 
 The Semantic Conventions for [Apache RocketMQ](https://rocketmq.apache.org/) extend and override the [Messaging Semantic Conventions](README.md).
 
+> [!Warning]
+>
+> Existing messaging instrumentations that are using
+> [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-spans.md)
+> (or prior):
+>
+> * SHOULD NOT change the version of the messaging conventions that they emit by default
+>   until the messaging semantic conventions are marked stable.
+>   Conventions include, but are not limited to, attributes,
+>   metric and span names, span kind and unit of measure.
+> * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
+>   in the existing major version which is a comma-separated list of values.
+>   The list of values includes:
+>   * `messaging` - emit the new, stable messaging conventions,
+>     and stop emitting the old experimental messaging conventions
+>     that the instrumentation emitted previously.
+>   * `messaging/dup` - emit both the old and the stable messaging conventions,
+>     allowing for a seamless transition.
+>   * The default behavior (in the absence of one of these values) is to continue
+>     emitting whatever version of the old experimental messaging conventions
+>     the instrumentation was emitting previously.
+>   * Note: `messaging/dup` has higher precedence than `messaging` in case both values are present
+> * SHOULD maintain (security patching at a minimum) the existing major version
+>   for at least six months after it starts emitting both sets of conventions.
+> * SHOULD drop the environment variable in the next major version.
+> * SHOULD emit the new, stable values for span name, span kind and similar "single"
+> valued concepts when `messaging/dup` is present in the list.
+
 `messaging.system` MUST be set to `"rocketmq"` and SHOULD be provided **at span creation time**.
 
 ## Apache RocketMQ attributes
@@ -60,8 +88,8 @@ If the operation has completed successfully, instrumentations SHOULD NOT set `er
 If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
 it's RECOMMENDED to:
 
-* Use a domain-specific attribute
-* Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+- Use a domain-specific attribute
+- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
 **[2]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
@@ -85,8 +113,6 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 **[11]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
-
-
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
@@ -103,7 +129,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -114,14 +139,12 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 `messaging.rocketmq.consumption_model` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `broadcasting` | Broadcasting consumption model | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `clustering` | Clustering consumption model | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 
 `messaging.rocketmq.message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -131,8 +154,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `fifo` | FIFO message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `normal` | Normal message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `transaction` | Transaction message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

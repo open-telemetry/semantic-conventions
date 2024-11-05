@@ -35,19 +35,17 @@ so it may be necessary to set `cloud.resource_id` as a span attribute instead.
 The exact value to use for `cloud.resource_id` depends on the cloud provider.
 The following well-known definitions MUST be used if you set this attribute and they apply:
 
-* **AWS Lambda:** The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+- **AWS Lambda:** The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
   Take care not to use the "invoked ARN" directly but replace any
   [alias suffix](https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html)
   with the resolved function version, as the same runtime instance may be invocable with
   multiple different aliases.
-* **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
-* **Azure:** The [Fully Qualified Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
+- **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
+- **Azure:** The [Fully Qualified Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
   *not* the function app, having the form
   `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
   a TracerProvider.
-
-
 
 `cloud.platform` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -82,7 +80,6 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `tencent_cloud_eks` | Tencent Cloud Elastic Kubernetes Service (EKS) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-
 `cloud.provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -94,8 +91,6 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `heroku` | Heroku Platform as a Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm_cloud` | IBM Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tencent_cloud` | Tencent Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

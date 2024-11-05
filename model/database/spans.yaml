@@ -16,45 +16,38 @@ groups:
       - ref: server.port
         sampling_relevant: true
 
-  - id: trace.db.common.query
-    extends: trace.db.common.minimal
+  - id: trace.db.common.query_and_collection
+    extends: attributes.db.client.with_query_and_collection
     type: attribute_group
     stability: experimental
     brief: This group defines the attributes used to perform database client calls.
     attributes:
+      - ref: db.operation.batch.size
       - ref: db.query.text
         sampling_relevant: true
         requirement_level:
           recommended: >
             Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
             sensitive data, e.g. by redacting all literal values present in the query text.
+            See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
             see [`db.query.parameter.<key>`](../../docs/attributes-registry/db.md)).
-      - ref: db.query.parameter
-        requirement_level: opt_in
-
-  - id: trace.db.common.query_and_collection
-    extends: trace.db.common.minimal
-    type: attribute_group
-    stability: experimental
-    brief: This group defines the attributes used to perform database client calls.
-    attributes:
-      - ref: db.query.text
+      - ref: db.query.summary
         sampling_relevant: true
-        requirement_level:
-          recommended: >
-            SHOULD be collected by default only if there is sanitization that excludes sensitive information.
-            See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
       - ref: db.query.parameter
         requirement_level: opt_in
       - ref: db.collection.name
         sampling_relevant: true
-        requirement_level:
-          conditionally_required: >
-            If readily available. The collection name MAY be parsed from the query text,
-            in which case it SHOULD be the first collection name found in the query.
+      - ref: db.operation.name
+        sampling_relevant: true
+      - ref: db.operation.batch.size
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: db.response.returned_rows
 
   - id: trace.db.common.full
     type: attribute_group
@@ -263,6 +256,9 @@ groups:
         note: >
           If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
         examples: ['mytable', 'ns:table']
+      - ref: db.operation.name
+        requirement_level:
+          conditionally_required: If readily available.
       - ref: db.response.status_code
         brief: >
           Protocol-specific response code recorded as string.
@@ -287,6 +283,8 @@ groups:
           For example, when retrieving a document, `db.operation.name` would be set to
           (literally, i.e., without replacing the placeholders with concrete values):
           [`GET /{db}/{docid}`](https://docs.couchdb.org/en/stable/api/document/common.html#get--db-docid).
+        requirement_level:
+          conditionally_required: If readily available.
       - ref: db.namespace
         sampling_relevant: true
         requirement_level:
@@ -302,7 +300,7 @@ groups:
   - id: db.redis
     type: span
     stability: experimental
-    extends: trace.db.common.query
+    extends: attributes.db.client.minimal
     brief: >
       Attributes for Redis
     attributes:
@@ -321,11 +319,23 @@ groups:
 
           Instrumentation SHOULD document if `db.namespace` reflects the database index provided when the connection was established.
         examples: ["0", "1", "15"]
+      - ref: db.operation.name
+        sampling_relevant: true
       - ref: db.query.text
         sampling_relevant: true
         brief: >
           The full syntax of the Redis CLI command.
         examples: ["HMSET myhash field1 'Hello' field2 'World'"]
+        requirement_level:
+          recommended: >
+            Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
+            sensitive data, e.g. by redacting all literal values present in the query text.
+
+            See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+
+            Parameterized query text SHOULD be collected by default
+            (the query parameter values themselves are opt-in,
+            see [`db.query.parameter.<key>`](../../docs/attributes-registry/db.md)).
         note: >
           For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI.
           If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
@@ -342,6 +352,13 @@ groups:
         brief: >
           The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix.
         examples: ["ERR", "WRONGTYPE", "CLUSTERDOWN"]
+      - ref: db.operation.batch.size
+      - ref: db.query.parameter
+        requirement_level: opt_in
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
 
   - id: db.mongodb
     type: span
@@ -357,6 +374,8 @@ groups:
         note: >
           See [MongoDB database commands](https://www.mongodb.com/docs/manual/reference/command/).
         examples: ['findAndModify', 'getMore', 'update']
+        requirement_level:
+          conditionally_required: If readily available.
       - ref: db.collection.name
         sampling_relevant: true
         brief:
@@ -521,9 +540,6 @@ groups:
       Attributes for Cosmos DB.
     attributes:
       - ref: db.cosmosdb.client_id
-      - ref: db.cosmosdb.operation_type
-        requirement_level:
-          conditionally_required: when performing one of the operations in this list
       - ref: user_agent.original
         brief: 'Full user-agent string is generated by Cosmos DB SDK'
         note: >
@@ -555,6 +571,12 @@ groups:
         examples: ["200", "201"]
         requirement_level:
           conditionally_required: if response was received
+      - ref: db.response.returned_rows
+        brief: >
+          Cosmos DB row count in result set.
+        examples: [10, 20]
+        requirement_level:
+          conditionally_required: if response was received and returned any rows
       - ref: db.cosmosdb.sub_status_code
         requirement_level:
           conditionally_required: when response was received and contained sub-code.
@@ -701,3 +723,6 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: If not default (443).
+      - ref: db.cosmosdb.consistency_level
+        requirement_level:
+          conditionally_required: If available.

@@ -37,13 +37,6 @@ groups:
         note: >
           Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`.
           Other obscure implementations are possible.
-
-  - id: trace.http.client.experimental
-    type: attribute_group
-    brief: 'Experimental attributes for HTTP Client spans'
-    stability: experimental
-    extends: attributes.http.client.experimental
-    attributes:
       - ref: http.request.size
         requirement_level: opt_in
       - ref: http.response.size
@@ -112,12 +105,6 @@ groups:
         note: >
           Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`.
           Other obscure implementations are possible.
-
-  - id: trace.http.server.experimental
-    type: attribute_group
-    brief: 'Experimental attributes for HTTP Server spans'
-    stability: experimental
-    attributes:
       - ref: http.request.size
         requirement_level: opt_in
       - ref: http.response.size
