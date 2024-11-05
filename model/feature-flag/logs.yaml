@@ -25,8 +25,17 @@ groups:
         requirement_level: recommended
       - ref: feature_flag.set.id
         requirement_level: recommended
-      - ref: feature_flag.value
-        requirement_level:
-          conditionally_required: >
-            If and only if feature flag provider does not supply variant or equivalent concept.
-            Otherwise, `feature_flag.value` should be treated as opt-in.
+    body:
+      id: feature_flag.evaluation
+      type: map
+      requirement_level: recommended
+      fields:
+        - id: value
+          type: undefined
+          stability: experimental
+          brief: The evaluated value of the feature flag.
+          requirement_level:
+            conditionally_required: >
+              If and only if feature flag provider does not supply variant or equivalent concept.
+              Otherwise, `value` should be treated as opt-in.
+          examples: ["#ff0000", "1", "true"]

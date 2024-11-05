@@ -27,12 +27,6 @@ groups:
           for referring to a value without including the value itself. This can
           provide additional context for understanding the meaning behind a value.
           For example, the variant `red` maybe be used for the value `#c05543`.
-      - id: feature_flag.value
-        type: string
-        stability: experimental
-        examples: ["#ff0000", "1", "true"]
-        brief: >
-          The evaluated value of the feature flag.
       - id: feature_flag.context.id
         type: string
         stability: experimental
