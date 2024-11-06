@@ -25,14 +25,14 @@ groups:
         requirement_level: recommended
       - ref: feature_flag.set.id
         requirement_level: recommended
-      - ref: feature_flag.reason
+      - ref: feature_flag.evaluation.reason
         requirement_level: recommended
-      - ref: feature_flag.error.code
+      - ref: feature_flag.evaluation.error.code
         requirement_level:
-          conditionally_required: Required if an error occurred during flag evaluation and `feature_flag.error.message` is not set, recommended otherwise.
-      - ref: feature_flag.error.message
+          conditionally_required: Required if an error occurred during flag evaluation and `feature_flag.evaluation.error.message` is not set, recommended otherwise.
+      - ref: feature_flag.evaluation.error.message
         requirement_level:
-          conditionally_required: Required if an error occurred during flag evaluation and `feature_flag.error.code` is not set, recommended otherwise.
+          conditionally_required: Required if an error occurred during flag evaluation and `feature_flag.evaluation.error.code` is not set, recommended otherwise.
     body:
       id: feature_flag.evaluation
       type: map
