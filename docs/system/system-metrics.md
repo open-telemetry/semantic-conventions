@@ -998,7 +998,7 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`system.network.state`](/docs/attributes-registry/system.md) | string | A stateless protocol MUST NOT set this attribute | `close_wait` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** The value SHOULD be normalized to lowercase.
