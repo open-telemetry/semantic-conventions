@@ -8,7 +8,7 @@
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Mixed](https://img.shields.io/badge/-mixed-yellow)
 
 **type:** `browser`
 

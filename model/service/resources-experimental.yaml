@@ -1,9 +1,0 @@
-groups:
-  - id: service_experimental
-    type: resource
-    name: 'service'
-    brief: >
-      A service instance.
-    attributes:
-      - ref: service.namespace
-      - ref: service.instance.id
