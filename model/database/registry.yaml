@@ -508,7 +508,7 @@ groups:
               brief: Direct connection.
               stability: experimental
         stability: experimental
-        brief: Cosmos client connection mode.
+        brief: Azure Cosmos DB client connection mode.
       - id: db.cosmosdb.request_charge
         type: double
         stability: experimental
@@ -521,7 +521,8 @@ groups:
       - id: db.cosmosdb.sub_status_code
         type: int
         stability: experimental
-        brief: Cosmos DB sub status code.
+        brief: >
+          The Azure Cosmos DB sub-status code for an operation represents the final sub-status code after multiple network interactions have been completed during the operation.
         examples: [1000, 1002]
       - id: db.cosmosdb.consistency_level
         type:
@@ -542,7 +543,9 @@ groups:
               value: "ConsistentPrefix"
               stability: experimental
         stability: experimental
-        brief: Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels).
+        brief: >
+          Effective Request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels).
+          This represents the first applicable consistency level among those specified by the request or the client.
         examples: ["Eventual", "ConsistentPrefix", "BoundedStaleness", "Strong", "Session"]
       - id: db.cosmosdb.regions_contacted
         type: string[]
@@ -566,33 +569,33 @@ groups:
       - id: db.cosmosdb.network.host
         type: string
         stability: experimental
-        brief: Host from Gateway or Backend endpoint address
+        brief: Specifies the host address from the Gateway or Backend Service endpoint.
         examples: ["rntbd://cdb-east-us.azure.document.com"]
       - id: db.cosmosdb.network.port
         type: int
         stability: experimental
-        brief: Port from Gateway or Backend endpoint address
+        brief: The port used for the Gateway or Backend Service endpoint.
         examples: 443
       - id: db.cosmosdb.network.response.status_code
         type: int
         stability: experimental
-        brief: HTTP Status code returned for network call
+        brief: The HTTP status code returned from the network request.
         examples: 200
       - id: db.cosmosdb.network.response.sub_status_code
         type: int
         stability: experimental
-        brief: Azure Cosmos DB Sub Status code returned for network call
+        brief: The Azure Cosmos DB sub-status code for a network request made during an operation.
         examples: 1002
       - id: db.cosmosdb.network.region
         type: string
         stability: experimental
-        brief: Azure Cosmos DB Region where the network call was made
+        brief: Specifies the Azure Cosmos DB target region for the network request.
         examples: "WEST US 2"
       - id: db.cosmosdb.network.resource_id
         type: string
         stability: experimental
         brief: >
-          Azure Cosmos DB Partition Key Range Id for a Gateway call and PartitionId/RepilcaId for a Direct call
+          Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call.
         examples: "45678765678987/2345678906789s"
 
   - id: registry.db.elasticsearch

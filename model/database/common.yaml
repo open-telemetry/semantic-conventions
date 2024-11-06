@@ -42,6 +42,10 @@ groups:
       # - ref: db.system
       #   requirement_level:
       #     conditionally_required: if available
+      - ref: db.operation.name
+        examples: ['create_item', 'query_items', 'read_item']
+      - ref: db.response.status_code
+        examples: ["200", "201"]
       - ref: db.collection.name
         brief: >
           Cosmos DB container name.

@@ -203,6 +203,8 @@ This group defines attributes for Azure Cosmos DB.
 | <a id="db-cosmosdb-connection-mode" href="#db-cosmosdb-connection-mode">`db.cosmosdb.connection_mode`</a> | string | Cosmos client connection mode. | `gateway`; `direct` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-consistency-level" href="#db-cosmosdb-consistency-level">`db.cosmosdb.consistency_level`</a> | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-regions-contacted" href="#db-cosmosdb-regions-contacted">`db.cosmosdb.regions_contacted`</a> | string[] | List of regions contacted during operation in the order that they were contacted. If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call. [10] | `["North Central US", "Australia East", "Australia Southeast"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-connection-mode" href="#db-cosmosdb-connection-mode">`db.cosmosdb.connection_mode`</a> | string | Azure Cosmos DB client connection mode. | `gateway`; `direct` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-consistency-level" href="#db-cosmosdb-consistency-level">`db.cosmosdb.consistency_level`</a> | string | Effective Request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). This represents the first applicable consistency level among those specified by the request or the client. | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-request-charge" href="#db-cosmosdb-request-charge">`db.cosmosdb.request_charge`</a> | double | Request units consumed for the operation. | `46.18`; `1.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-request-content-length" href="#db-cosmosdb-request-content-length">`db.cosmosdb.request_content_length`</a> | int | Request payload size in bytes. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-sub-status-code" href="#db-cosmosdb-sub-status-code">`db.cosmosdb.sub_status_code`</a> | int | Cosmos DB sub status code. | `1000`; `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -210,6 +212,7 @@ This group defines attributes for Azure Cosmos DB.
 **[10] `db.cosmosdb.regions_contacted`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
 
 ---
+| <a id="db-cosmosdb-sub-status-code" href="#db-cosmosdb-sub-status-code">`db.cosmosdb.sub_status_code`</a> | int | The Azure Cosmos DB sub-status code for an operation represents the final sub-status code after multiple network interactions have been completed during the operation. | `1000`; `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `db.cosmosdb.connection_mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -236,12 +239,12 @@ This group defines attributes for Azure Cosmos DB Network call.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="db-cosmosdb-network-host" href="#db-cosmosdb-network-host">`db.cosmosdb.network.host`</a> | string | Host from Gateway or Backend endpoint address | `rntbd://cdb-east-us.azure.document.com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-network-port" href="#db-cosmosdb-network-port">`db.cosmosdb.network.port`</a> | int | Port from Gateway or Backend endpoint address | `443` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-network-region" href="#db-cosmosdb-network-region">`db.cosmosdb.network.region`</a> | string | Azure Cosmos DB Region where the network call was made | `WEST US 2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-network-resource-id" href="#db-cosmosdb-network-resource-id">`db.cosmosdb.network.resource_id`</a> | string | Azure Cosmos DB Partition Key Range Id for a Gateway call and PartitionId/RepilcaId for a Direct call | `45678765678987/2345678906789s` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-network-response-status-code" href="#db-cosmosdb-network-response-status-code">`db.cosmosdb.network.response.status_code`</a> | int | HTTP Status code returned for network call | `200` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-network-response-sub-status-code" href="#db-cosmosdb-network-response-sub-status-code">`db.cosmosdb.network.response.sub_status_code`</a> | int | Azure Cosmos DB Sub Status code returned for network call | `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-network-host" href="#db-cosmosdb-network-host">`db.cosmosdb.network.host`</a> | string | Specifies the host address from the Gateway or Backend Service endpoint. | `rntbd://cdb-east-us.azure.document.com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-network-port" href="#db-cosmosdb-network-port">`db.cosmosdb.network.port`</a> | int | The port used for the Gateway or Backend Service endpoint. | `443` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-network-region" href="#db-cosmosdb-network-region">`db.cosmosdb.network.region`</a> | string | Specifies the Azure Cosmos DB target region for the network request. | `WEST US 2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-network-resource-id" href="#db-cosmosdb-network-resource-id">`db.cosmosdb.network.resource_id`</a> | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-network-response-status-code" href="#db-cosmosdb-network-response-status-code">`db.cosmosdb.network.response.status_code`</a> | int | The HTTP status code returned from the network request. | `200` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-network-response-sub-status-code" href="#db-cosmosdb-network-response-sub-status-code">`db.cosmosdb.network.response.sub_status_code`</a> | int | The Azure Cosmos DB sub-status code for a network request made during an operation. | `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Elasticsearch Attributes
 
