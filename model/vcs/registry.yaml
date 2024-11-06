@@ -3,13 +3,13 @@ groups:
     type: attribute_group
     brief: >
       This group defines the attributes for
-      [Version Control Systems (VCS)](https://en.wikipedia.org/wiki/Version_control).
+      [Version Control Systems (VCS)](https://wikipedia.org/wiki/Version_control).
     attributes:
       - id: vcs.repository.url.full
         type: string
         stability: experimental
         brief: >
-          The [URL](https://en.wikipedia.org/wiki/URL) of the repository
+          The [URL](https://wikipedia.org/wiki/URL) of the repository
           providing the complete address in order to locate and identify the
           repository.
         examples:

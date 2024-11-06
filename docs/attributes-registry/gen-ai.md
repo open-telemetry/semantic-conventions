@@ -77,8 +77,9 @@ Thie group defines attributes for OpenAI.
 |---|---|---|---|---|
 | <a id="gen-ai-openai-request-response-format" href="#gen-ai-openai-request-response-format">`gen_ai.openai.request.response_format`</a> | string | The response format that is requested. | `json` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-openai-request-seed" href="#gen-ai-openai-request-seed">`gen_ai.openai.request.seed`</a> | int | Requests with same seed value more likely to return same result. | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-openai-request-service-tier" href="#gen-ai-openai-request-service-tier">`gen_ai.openai.request.service_tier`</a> | string | The service tier requested. May be a specific tier, detault, or auto. | `auto`; `default` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-openai-response-service-tier" href="#gen-ai-openai-response-service-tier">`gen_ai.openai.response.service_tier`</a> | string | The service tier used for the response. | `scale`; `detault` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-openai-request-service-tier" href="#gen-ai-openai-request-service-tier">`gen_ai.openai.request.service_tier`</a> | string | The service tier requested. May be a specific tier, default, or auto. | `auto`; `default` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-openai-response-service-tier" href="#gen-ai-openai-response-service-tier">`gen_ai.openai.response.service_tier`</a> | string | The service tier used for the response. | `scale`; `default` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-openai-response-system-fingerprint" href="#gen-ai-openai-response-system-fingerprint">`gen_ai.openai.response.system_fingerprint`</a> | string | A fingerprint to track any eventual change in the Generative AI environment. | `fp_44709d6fcb` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `gen_ai.openai.request.response_format` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
