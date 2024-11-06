@@ -31,7 +31,7 @@ groups:
           generic one, the original exception SHOULD be preferred.
 
           Instrumentations SHOULD document how `error.type` is populated.
-        
+
   - id: attributes.db.cosmosdb.minimal
     type: attribute_group
     brief: 'Azure Cosmos DB Client attributes'
