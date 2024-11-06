@@ -4,7 +4,7 @@ groups:
     brief: >
       This group describes attributes specific to pipelines within a Continuous
       Integration and Continuous Deployment (CI/CD) system. A
-      [pipeline](https://en.wikipedia.org/wiki/Pipeline_(computing)) in this
+      [pipeline](https://wikipedia.org/wiki/Pipeline_(computing)) in this
       case is a series of steps that are performed in order to deliver a new
       version of software. This aligns with the
       [Britannica](https://www.britannica.com/dictionary/pipeline) definition
@@ -35,7 +35,7 @@ groups:
         stability: experimental
         brief: >
           The human readable name of a task within a pipeline. Task here most
-          closely aligns with a [computing process](https://en.wikipedia.org/wiki/Pipeline_(computing))
+          closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing))
           in a pipeline. Other terms for tasks include commands, steps, and
           procedures.
         examples: ["Run GoLang Linter", "Go Build", "go-test", "deploy_binary"]
@@ -49,7 +49,7 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The [URL](https://en.wikipedia.org/wiki/URL) of the pipeline run
+          The [URL](https://wikipedia.org/wiki/URL) of the pipeline run
           providing the complete address in order to locate and identify the pipeline run.
         examples:
           [

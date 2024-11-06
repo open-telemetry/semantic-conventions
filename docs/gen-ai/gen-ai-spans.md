@@ -18,7 +18,11 @@ linkTitle: Generative AI traces
 
 A request to an Generative AI is modeled as a span in a trace.
 
-**Span kind:** MUST always be `CLIENT`.
+**Span kind:** SHOULD be `CLIENT`. It MAY be set to `INTERNAL` on spans representing
+call to models running in the same process.
+It's RECOMMENDED to use `CLIENT` kind when GenAI system being instrumented usually
+runs in a different process than its client or when GenAI call happens over
+instrumented protocol such as HTTP.
 
 ## Name
 

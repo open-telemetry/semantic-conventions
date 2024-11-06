@@ -57,13 +57,13 @@ so it may be necessary to set `cloud.resource_id` as a span attribute instead.
 The exact value to use for `cloud.resource_id` depends on the cloud provider.
 The following well-known definitions MUST be used if you set this attribute and they apply:
 
-* **AWS Lambda:** The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+- **AWS Lambda:** The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
   Take care not to use the "invoked ARN" directly but replace any
   [alias suffix](https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html)
   with the resolved function version, as the same runtime instance may be invocable with
   multiple different aliases.
-* **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
-* **Azure:** The [Fully Qualified Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
+- **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
+- **Azure:** The [Fully Qualified Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
   *not* the function app, having the form
   `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
@@ -125,7 +125,7 @@ The span attribute `faas.invocation_id` differs from the [resource attribute][Fa
 
 This section describes incoming FaaS invocations as they are reported by the FaaS instance itself.
 
-For incoming FaaS spans, the span kind MUST be `Server`.
+For incoming FaaS spans, the span kind SHOULD be `SERVER`.
 
 ### Incoming FaaS Span attributes
 
@@ -182,7 +182,7 @@ In principle, the above considerations apply to any resource attribute that fulf
 
 This section describes outgoing FaaS invocations as they are reported by a client calling a FaaS instance.
 
-For outgoing FaaS spans, the span kind MUST be `Client`.
+For outgoing FaaS spans, the span kind SHOULD be `CLIENT`.
 
 The values reported by the client for the attributes listed below SHOULD be equal to
 the corresponding [FaaS resource attributes][] and [Cloud resource attributes][],
@@ -304,7 +304,7 @@ In this case, it is responsibility of the framework or instrumentation library t
 
 ## Example
 
-This example shows the FaaS attributes for a (non-FaaS) process hosted on Google Cloud Platform (Span A with kind `Client`), which invokes a Lambda function called "my-lambda-function" in Amazon Web Services (Span B with kind `Server`).
+This example shows the FaaS attributes for a (non-FaaS) process hosted on Google Cloud Platform (Span A with kind `CLIENT`), which invokes a Lambda function called "my-lambda-function" in Amazon Web Services (Span B with kind `SERVER`).
 
 | Attribute Kind | Attribute               | Span A (Client, GCP)   | Span B (Server, AWS Lambda) |
 | -------------- | ----------------------- | ---------------------- | -- |

@@ -3,13 +3,13 @@ groups:
     type: attribute_group
     brief: >
       This group describes attributes specific to
-      [software tests](https://en.wikipedia.org/wiki/Software_testing).
+      [software tests](https://wikipedia.org/wiki/Software_testing).
     attributes:
       - id: test.suite.name
         type: string
         stability: experimental
         brief: >
-          The human readable name of a [test suite](https://en.wikipedia.org/wiki/Test_suite).
+          The human readable name of a [test suite](https://wikipedia.org/wiki/Test_suite).
         examples: ["TestSuite1"]
       - id: test.suite.run.status
         type:
@@ -54,7 +54,7 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The fully qualified human readable name of the [test case](https://en.wikipedia.org/wiki/Test_case).
+          The fully qualified human readable name of the [test case](https://wikipedia.org/wiki/Test_case).
         examples:
           [
             "org.example.TestCase1.test1",
