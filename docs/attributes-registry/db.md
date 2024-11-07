@@ -241,10 +241,10 @@ This group defines attributes for Azure Cosmos DB Network call.
 |---|---|---|---|---|
 | <a id="db-cosmosdb-network-region" href="#db-cosmosdb-network-region">`db.cosmosdb.network.region`</a> | string | Specifies the Azure Cosmos DB target region for the network request. | `WEST US 2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-network-resource-id" href="#db-cosmosdb-network-resource-id">`db.cosmosdb.network.resource_id`</a> | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-network-response-status-code" href="#db-cosmosdb-network-response-status-code">`db.cosmosdb.network.response.status_code`</a> | int | The HTTP status code returned from the network request. | `200` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-network-response-status-code" href="#db-cosmosdb-network-response-status-code">`db.cosmosdb.network.response.status_code`</a> | int | The status code returned in response. [10] | `200` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-network-response-sub-status-code" href="#db-cosmosdb-network-response-sub-status-code">`db.cosmosdb.network.response.sub_status_code`</a> | int | The Azure Cosmos DB sub-status code for a network request made during an operation. | `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="network-peer-address" href="#network-peer-address">`network.peer.address`</a> | string | Specifies the host address from the Gateway or Backend Service endpoint. | `cdb-east-us.azure.document.com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="network-peer-port" href="#network-peer-port">`network.peer.port`</a> | int | The port used for the Gateway or Backend Service endpoint. | `443` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[10]:** The protocol reuses HTTP status codes.
 
 ## Elasticsearch Attributes
 
@@ -254,8 +254,10 @@ This group defines attributes for Elasticsearch.
 |---|---|---|---|---|
 | <a id="db-elasticsearch-node-name" href="#db-elasticsearch-node-name">`db.elasticsearch.node.name`</a> | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-elasticsearch-path-parts" href="#db-elasticsearch-path-parts">`db.elasticsearch.path_parts.<key>`</a> | string | A dynamic value in the url path. [11] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-elasticsearch-path-parts" href="#db-elasticsearch-path-parts">`db.elasticsearch.path_parts.<key>`</a> | string | A dynamic value in the url path. [11] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[11] `db.elasticsearch.path_parts`:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
+**[11]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
 
 ## Deprecated Database Attributes
 

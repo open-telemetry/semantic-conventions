@@ -64,7 +64,7 @@ groups:
         requirement_level:
           conditionally_required: If available.
       - ref: error.type
-        examples: ["CosmosException", "CosmosOperationCanceledException", "CosmosObjectDisposedException", "CosmosNullReferenceException"]
+        examples: ["Microsoft.Azure.Cosmos.CosmosException", "Microsoft.Azure.Cosmos.CosmosOperationCanceledException"]
 
   - id: attributes.db.cosmosdb.network.minimal
     type: attribute_group
@@ -73,12 +73,25 @@ groups:
     extends: attributes.db.cosmosdb.minimal
     attributes:
       - ref: network.protocol.name
+        stability: experimental
+        brief: Specifies the host protocol.
+        examples: ["https", "rntbd"]
         requirement_level:
           conditionally_required: If available
+        note: >
+          The protocol name SHOULD be one of the following values: "https" or "rntbd".
+          The protocol name SHOULD be reported as "https" when the request is made over HTTPS i.e Azure Cosmos DB Gateway Service.
+          The protocol name SHOULD be reported as "rntbd" when the request is made over the Azure Cosmos DB transport protocol.
       - ref: network.peer.address
+        stability: experimental
+        brief: Specifies the host address from the Gateway or Backend Service endpoint.
+        examples: ["cdb-east-us.azure.document.com"]
         requirement_level:
           conditionally_required: If available
       - ref: network.peer.port
+        stability: experimental
+        brief: The port used for the Gateway or Backend Service endpoint.
+        examples: 443
         requirement_level:
           conditionally_required: If available
       - ref: db.cosmosdb.network.response.status_code
