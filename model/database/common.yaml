@@ -75,10 +75,10 @@ groups:
       - ref: network.protocol.name
         requirement_level:
           conditionally_required: If available
-      - ref: db.cosmosdb.network.host
+      - ref: network.peer.address
         requirement_level:
           conditionally_required: If available
-      - ref: db.cosmosdb.network.port
+      - ref: network.peer.port
         requirement_level:
           conditionally_required: If available
       - ref: db.cosmosdb.network.response.status_code

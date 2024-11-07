@@ -239,12 +239,12 @@ This group defines attributes for Azure Cosmos DB Network call.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="db-cosmosdb-network-host" href="#db-cosmosdb-network-host">`db.cosmosdb.network.host`</a> | string | Specifies the host address from the Gateway or Backend Service endpoint. | `rntbd://cdb-east-us.azure.document.com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-network-port" href="#db-cosmosdb-network-port">`db.cosmosdb.network.port`</a> | int | The port used for the Gateway or Backend Service endpoint. | `443` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-network-region" href="#db-cosmosdb-network-region">`db.cosmosdb.network.region`</a> | string | Specifies the Azure Cosmos DB target region for the network request. | `WEST US 2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-network-resource-id" href="#db-cosmosdb-network-resource-id">`db.cosmosdb.network.resource_id`</a> | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-network-response-status-code" href="#db-cosmosdb-network-response-status-code">`db.cosmosdb.network.response.status_code`</a> | int | The HTTP status code returned from the network request. | `200` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-network-response-sub-status-code" href="#db-cosmosdb-network-response-sub-status-code">`db.cosmosdb.network.response.sub_status_code`</a> | int | The Azure Cosmos DB sub-status code for a network request made during an operation. | `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="network-peer-address" href="#network-peer-address">`network.peer.address`</a> | string | Specifies the host address from the Gateway or Backend Service endpoint. | `cdb-east-us.azure.document.com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="network-peer-port" href="#network-peer-port">`network.peer.port`</a> | int | The port used for the Gateway or Backend Service endpoint. | `443` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Elasticsearch Attributes
 

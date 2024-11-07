@@ -45,7 +45,7 @@ groups:
     metric_name: db.client.cosmosdb.request.body.size
     brief: "Size of request object sent to Azure Cosmos DB backend"
     instrument: histogram
-    unit: "{bytes}"
+    unit: "By"
     stability: experimental
     extends: attributes.db.cosmosdb.network.minimal
 
@@ -54,7 +54,7 @@ groups:
     metric_name: db.client.cosmosdb.response.body.size
     brief: "Size of response received from Azure Cosmos DB backend"
     instrument: histogram
-    unit: "{bytes}"
+    unit: "By"
     stability: experimental
     extends: attributes.db.cosmosdb.network.minimal
 

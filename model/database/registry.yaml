@@ -566,13 +566,11 @@ groups:
     brief: >
       This group defines attributes for Azure Cosmos DB Network call.
     attributes:
-      - id: db.cosmosdb.network.host
-        type: string
+      - ref: network.peer.address
         stability: experimental
         brief: Specifies the host address from the Gateway or Backend Service endpoint.
-        examples: ["rntbd://cdb-east-us.azure.document.com"]
-      - id: db.cosmosdb.network.port
-        type: int
+        examples: ["cdb-east-us.azure.document.com"]
+      - ref: network.peer.port
         stability: experimental
         brief: The port used for the Gateway or Backend Service endpoint.
         examples: 443
