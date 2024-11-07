@@ -28,7 +28,7 @@ groups:
   - id: metric.vcs.change.time_to_approval
     type: metric
     metric_name: vcs.change.time_to_approval
-    brief: 'The amount of time it took a change (pull request/merge request/changelist) to get the first approval'
+    brief: 'The amount of time since its creation it took a change (pull request/merge request/changelist) to get the first approval'
     instrument: gauge
     unit: "s"
     stability: experimental
