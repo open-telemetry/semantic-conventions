@@ -22,7 +22,8 @@ issues: [1372]
 subtext: |
   Makes the following changes:
 
-  - Add metrics `vcs.change.count`, `vcs.change.duration`, `vcs.change.time_to_approval`, `vcs.repository.count`, `vcs.ref.count`, `vcs.ref.lines_delta`, `vcs.ref.revisions_delta`, `vcs.ref.time`, `vcs.contributor.count`
+  - Add metrics `vcs.change.count`, `vcs.change.duration`, `vcs.change.time_to_approval`, `vcs.repository.count`, `vcs.ref.count`,
+    `vcs.ref.lines_delta`, `vcs.ref.revisions_delta`, `vcs.ref.time`, `vcs.contributor.count`
   - The VCS attributes `vcs.change.state`, `vcs.revision_delta.direction` and `vcs.line_change.type` have been added to the registry.
   - The VCS ref attributes have been duplicated to `vcs.ref.base.*` to allow for ref comparisons.
   - The VCS attribute `vcs.ref.type` has been added for simplicity when neither a full head or base ref is necessary.

@@ -191,7 +191,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `vcs.ref.lines_delta` | Gauge | `{line}` | The number of lines added/removed in a ref (branch) relative to the ref from the `vcs.ref.base.name` attribute [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** This metric should be reported for each `vcs.line_change.type` value. For example if a ref added 3 lines and removed 2 lines, instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers).
+**[1]:** This metric should be reported for each `vcs.line_change.type` value. For example if a ref added 3 lines and removed 2 lines,
+instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers).
 If number of lines added/removed should be calculated from the start of time, then `vcs.ref.base.name` SHOULD be set to an empty string.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -245,7 +246,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `vcs.ref.revisions_delta` | Gauge | `{revision}` | The number of revisions (commits) a ref (branch) is ahead/behind the branch from the `vcs.ref.base.name` attribute [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** This metric should be reported for each `vcs.revision_delta.direction` value. For example if branch `a` is 3 commits behind and 2 commits ahead of `trunk`, instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers) and `vcs.ref.base.name` is set to `trunk`.
+**[1]:** This metric should be reported for each `vcs.revision_delta.direction` value. For example if branch `a` is 3 commits behind and 2 commits ahead of `trunk`,
+instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers) and `vcs.ref.base.name` is set to `trunk`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
