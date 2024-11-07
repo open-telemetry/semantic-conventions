@@ -34,7 +34,7 @@ groups:
   - id: metric.db.client.cosmosdb.request.duration
     type: metric
     metric_name: db.client.cosmosdb.request.duration
-    brief: "End to end Latency of Azure Cosmos DB Backend Service network call"
+    brief: "End to end latency of a network call made to Azure Cosmos DB service"
     instrument: histogram
     unit: "s"
     stability: experimental
