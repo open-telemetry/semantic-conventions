@@ -10,7 +10,7 @@ change_type: enhancement
 component: db
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Added `db.cosmosdb.regions_contacted` attribute as dimension for cosmos db metrics.
+note: Added `db.cosmosdb.regions_contacted` attribute to Cosmos DB metrics and traces.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
