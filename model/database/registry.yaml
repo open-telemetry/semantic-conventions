@@ -577,7 +577,8 @@ groups:
       - id: db.cosmosdb.network.response.status_code
         type: int
         stability: experimental
-        brief: The HTTP status code returned from the network request.
+        brief: The status code returned in response.
+        note: The protocol reuses HTTP status codes.
         examples: 200
       - id: db.cosmosdb.network.response.sub_status_code
         type: int
