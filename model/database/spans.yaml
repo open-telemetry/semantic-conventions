@@ -22,7 +22,6 @@ groups:
     stability: experimental
     brief: This group defines the attributes used to perform database client calls.
     attributes:
-      - ref: db.operation.batch.size
       - ref: db.query.text
         sampling_relevant: true
         requirement_level:
