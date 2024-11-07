@@ -159,7 +159,7 @@ groups:
       - id: network.protocol.name
         stability: stable
         type: string
-        brief: '[OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent.'
+        brief: '[OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent.'
         note: The value SHOULD be normalized to lowercase.
         examples: ['amqp', 'http', 'mqtt']
       - id: network.protocol.version
@@ -196,7 +196,7 @@ groups:
               brief: "QUIC"
               stability: experimental
         brief: >
-          [OSI transport layer](https://osi-model.com/transport-layer/) or
+          [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or
           [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
         note: |
           The value SHOULD be normalized to lowercase.
@@ -217,7 +217,7 @@ groups:
               value: 'ipv6'
               brief: "IPv6"
               stability: stable
-        brief: '[OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent.'
+        brief: '[OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent.'
         note: The value SHOULD be normalized to lowercase.
         examples: ['ipv4', 'ipv6']
       - id: network.io.direction

@@ -181,10 +181,15 @@ groups:
               value: "default"
               brief: The system will utilize the default scale tier.
               stability: experimental
-        brief: The service tier requested. May be a specific tier, detault, or auto.
+        brief: The service tier requested. May be a specific tier, default, or auto.
         examples: ['auto', 'default']
       - id: gen_ai.openai.response.service_tier
         stability: experimental
         type: string
         brief: The service tier used for the response.
-        examples: ['scale', 'detault']
+        examples: ['scale', 'default']
+      - id: gen_ai.openai.response.system_fingerprint
+        stability: experimental
+        type: string
+        brief: A fingerprint to track any eventual change in the Generative AI environment.
+        examples: ["fp_44709d6fcb"]
