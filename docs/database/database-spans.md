@@ -96,7 +96,6 @@ Instrumentation SHOULD consider the operation as failed if any of the following 
 - the `db.response.status_code` value indicates an error
 
   > [!NOTE]
-  >
   > The classification of status code as an error depends on the context.
   > For example, a SQL STATE `02000` (`no_data`) indicates an error when the application
   > expected the data to be available. However, it is not an error when the
@@ -133,10 +132,10 @@ span being recorded is a local root span (does not have a local parent).
 
 > [!NOTE]
 > Exception stack traces could be very long and are expensive to capture and store.
-> Exceptions which are not handled by instrumented libraries are likely to be caught,
-> logged, and handled by the caller.
-> Exceptions that are not handled will be recorded by the outermost (local root) instrumentation
-> such as HTTP or gRPC server.
+> Exceptions which are not handled by instrumented libraries are likely to be handled
+> and logged by the caller.
+> Exceptions that are not handled will be recorded by the outermost (local root)
+> instrumentation such as HTTP or gRPC server.
 
 ## Common attributes
 
