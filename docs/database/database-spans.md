@@ -89,16 +89,16 @@ For example, for an operation describing SQL query on an anonymous table like `S
 
 ## Status
 
-[Span Status Code][SpanStatus] MUST be left unset if operation has ended without any errors.
+[Span Status Code][SpanStatus] MUST be left unset if the operation has ended without any errors.
 
-Instrumentation SHOULD consider operation as failed if:
+Instrumentation SHOULD consider the operation as failed if any of the following is true:
 
 - the `db.response.status_code` value indicates an error
 
   > [!NOTE]
   >
   > The classification of status code as an error depends on the context.
-  > For example, a SQL STATE `no_data` status code indicates an error if the application
+  > For example, a SQL STATE `no_data` status code indicates an error when the application
   > expected the data to be available. However, it is not an error when the
   > application is simply checking whether the data exists.
   >
@@ -107,33 +107,33 @@ Instrumentation SHOULD consider operation as failed if:
   > Instrumentations that don't have any additional context MUST follow the
   > guidelines in this section.
 
-- exception is thrown by the instrumented method call
-- instrumented method returns error in another way
+- an exception is thrown by the instrumented method call
+- the instrumented method returns error in another way
 
-When operation ends with an error, instrumentation:
+When the operation ends with an error, instrumentation:
 
-- SHOULD set span status code to `Error`
-- SHOULD set `error.type` attribute
-- SHOULD set span status description when it has additional information
+- SHOULD set the span status code to `Error`
+- SHOULD set the `error.type` attribute
+- SHOULD set the span status description when it has additional information
   about the error that aligns with [Span Status Description][SpanStatus] and
   can't be inferred from `db.response.status_code` or `error.type` attributes.
 
-  When operation fails with exception, the span status description SHOULD be set to
-  exception message.
+  When the operation fails with an exception, the span status description SHOULD be set to
+  the exception message.
 
 ### Recording exception events
 
 **Status**: [Experimental][DocumentStatus]
 
-When operation fails with exception, instrumentation MAY record
-[exception event](../exceptions/exceptions-spans.md) by default if and only if the
+When the operation fails with an exception, instrumentation MAY record
+an [exception event](../exceptions/exceptions-spans.md) by default if and only if the
 span being recorded is a local root span (does not have a local parent).
 
 > [!NOTE]
 > Exception stack traces could be very long and are expensive to capture and store.
 > Exceptions which are not handled by instrumented libraries are likely to be caught,
 > logged, and handled by the caller.
-> Exceptions that are not handled are recorded by they outermost instrumentation
+> Exceptions that are not handled will be recorded by the outermost (local root) instrumentation
 > such as HTTP or gRPC server.
 
 Instrumentations SHOULD NOT record exception events (by default) on spans that
