@@ -98,7 +98,7 @@ Instrumentation SHOULD consider the operation as failed if any of the following 
   > [!NOTE]
   >
   > The classification of status code as an error depends on the context.
-  > For example, a SQL STATE `no_data` status code indicates an error when the application
+  > For example, a SQL STATE `02000` (`no_data`) indicates an error when the application
   > expected the data to be available. However, it is not an error when the
   > application is simply checking whether the data exists.
   >
@@ -108,15 +108,17 @@ Instrumentation SHOULD consider the operation as failed if any of the following 
   > guidelines in this section.
 
 - an exception is thrown by the instrumented method call
-- the instrumented method returns error in another way
+- the instrumented method returns an error in another way
 
 When the operation ends with an error, instrumentation:
 
 - SHOULD set the span status code to `Error`
 - SHOULD set the `error.type` attribute
 - SHOULD set the span status description when it has additional information
-  about the error that aligns with [Span Status Description][SpanStatus] and
-  can't be inferred from `db.response.status_code` or `error.type` attributes.
+  about the error that aligns with [Span Status Description][SpanStatus].
+
+  It's NOT RECOMMENDED to duplicate `db.response.status_code` or `error.type`
+  in span status description.
 
   When the operation fails with an exception, the span status description SHOULD be set to
   the exception message.
@@ -125,7 +127,7 @@ When the operation ends with an error, instrumentation:
 
 **Status**: [Experimental][DocumentStatus]
 
-When the operation fails with an exception, instrumentation MAY record
+When the operation fails with an exception, instrumentation SHOULD record
 an [exception event](../exceptions/exceptions-spans.md) by default if and only if the
 span being recorded is a local root span (does not have a local parent).
 
@@ -135,9 +137,6 @@ span being recorded is a local root span (does not have a local parent).
 > logged, and handled by the caller.
 > Exceptions that are not handled will be recorded by the outermost (local root) instrumentation
 > such as HTTP or gRPC server.
-
-Instrumentations SHOULD NOT record exception events (by default) on spans that
-have local parents.
 
 ## Common attributes
 
