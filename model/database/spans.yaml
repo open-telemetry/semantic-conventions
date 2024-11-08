@@ -32,10 +32,10 @@ groups:
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.query.parameter.<key>`](../../docs/attributes-registry/db.md)).
+            see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
       - ref: db.query.summary
         sampling_relevant: true
-      - ref: db.query.parameter
+      - ref: db.operation.parameter
         requirement_level: opt_in
       - ref: db.collection.name
         sampling_relevant: true
@@ -334,7 +334,7 @@ groups:
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.query.parameter.<key>`](../../docs/attributes-registry/db.md)).
+            see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
         note: >
           For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI.
           If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
@@ -352,7 +352,7 @@ groups:
           The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix.
         examples: ["ERR", "WRONGTYPE", "CLUSTERDOWN"]
       - ref: db.operation.batch.size
-      - ref: db.query.parameter
+      - ref: db.operation.parameter
         requirement_level: opt_in
       - ref: server.address
         sampling_relevant: true
