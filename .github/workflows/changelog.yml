@@ -76,13 +76,8 @@ jobs:
 
       # In order to validate any links in the yaml file, render the config to markdown
       - name: Render .chloggen changelog entries
-        run: make chlog-preview > changelog_preview.md
-      - name: Install markdown-link-check
-        run: npm install -g markdown-link-check
-      - name: Run markdown-link-check
         run: |
-          markdown-link-check \
-            --verbose \
-            --config .markdown_link_check_config.json \
-            changelog_preview.md \
-            || { echo "Check that anchor links are lowercase"; exit 1; }
+          make chlog-preview 2> changelog_preview.md
+          cat changelog_preview.md
+      - name: Run markdown-link-check
+        run: markdown-link-check-changelog-preview
