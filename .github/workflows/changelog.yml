@@ -76,6 +76,8 @@ jobs:
 
       # In order to validate any links in the yaml file, render the config to markdown
       - name: Render .chloggen changelog entries
-        run: make chlog-preview 2> changelog_preview.md
+        run: |
+          make chlog-preview 2> changelog_preview.md
+          cat changelog_preview.md
       - name: Run markdown-link-check
         run: markdown-link-check-changelog-preview
