@@ -80,4 +80,4 @@ jobs:
           make chlog-preview 2> changelog_preview.md
           cat changelog_preview.md
       - name: Run markdown-link-check
-        run: markdown-link-check-changelog-preview
+        run: make markdown-link-check-changelog-preview
