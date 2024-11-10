@@ -75,8 +75,7 @@ value `REDACTED`:
 * [`sig`](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview#sas-token)
 * [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
 
-This list is subject to grow over time, but once a key is added to the list, removing it will be considered a
-breaking change.
+This list is subject to change over time.
 
 When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
 `https://www.example.com/path?color=blue&sig=REDACTED`.
