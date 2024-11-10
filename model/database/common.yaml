@@ -36,6 +36,12 @@ groups:
       # - ref: db.system
       #   requirement_level:
       #     conditionally_required: if available
+      - ref: db.operation.name
+        requirement_level: # TODO (trask) simplify
+          conditionally_required: >
+            If readily available and if there is a single operation name that describes the
+            database call. The operation name MAY be parsed from the query text,
+            in which case it SHOULD be the single operation name found in the query.
       - ref: db.collection.name
         brief: Cosmos DB container name.
         requirement_level:
