@@ -332,7 +332,7 @@ groups:
   - id: db.redis
     type: span
     stability: experimental
-    extends: attributes.db.client.minimal
+    extends: trace.db.common.minimal
     brief: >
       Attributes for Redis
     attributes:
