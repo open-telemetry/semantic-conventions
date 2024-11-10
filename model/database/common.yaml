@@ -4,12 +4,6 @@ groups:
     brief: 'Database Client attributes'
     stability: experimental
     attributes:
-      - ref: db.operation.name
-        requirement_level:
-          conditionally_required: >
-            If readily available and if there is a single operation name that describes the
-            database call. The operation name MAY be parsed from the query text,
-            in which case it SHOULD be the single operation name found in the query.
       - ref: server.address
         brief: >
           Name of the database host.
@@ -43,12 +37,9 @@ groups:
       #   requirement_level:
       #     conditionally_required: if available
       - ref: db.collection.name
-        brief: >
-          Cosmos DB container name.
-        note: >
-          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        brief: Cosmos DB container name.
         requirement_level:
-          conditionally_required: If available
+          conditionally_required: If available.
       - ref: db.namespace
         sampling_relevant: true
         requirement_level:
@@ -61,20 +52,34 @@ groups:
         requirement_level:
           conditionally_required: If available.
 
-  - id: attributes.db.client.with_query_and_collection
+  - id: attributes.db.client.with_query
     extends: attributes.db.client.minimal
     type: attribute_group
     stability: experimental
     brief: This group defines the attributes describing database operations that
-      have query and collection name.
+      may have queries.
     attributes:
       - ref: db.query.text
       - ref: db.query.summary
         requirement_level:
           recommended: if readily available or if instrumentation supports query summarization.
+
+  - id: attributes.db.client.with_query_and_collection
+    extends: attributes.db.client.with_query
+    type: attribute_group
+    stability: experimental
+    brief: This group defines the attributes describing database operations that
+      have operation name, collection name and query.
+    attributes:
+      - ref: db.operation.name
+        requirement_level:  # TODO (trask) simplify
+          conditionally_required: >
+            If readily available and if there is a single operation name that describes the
+            database call. The operation name MAY be parsed from the query text,
+            in which case it SHOULD be the single operation name found in the query.
       - ref: db.collection.name
         sampling_relevant: true
-        requirement_level:
+        requirement_level:  # TODO (trask) simplify
           conditionally_required: >
             If readily available and if a database call is performed on a single collection.
             The collection name MAY be parsed from the query text,

@@ -44,17 +44,12 @@ The Semantic Conventions for [Cassandra](https://cassandra.apache.org/) extend a
 
 **[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-A single database query may involve multiple collections.
-
-If the collection name is parsed from the query text, it SHOULD only be captured for queries that
-contain a single collection and it SHOULD match the value provided in
-the query text including any schema and database name prefix.
+The collection name SHOULD NOT be extracted from `db.query.text`,
+unless the query format is known to only ever have a single collection name present
+and the collection name is known to always be under the captured `db.namespace`.
 
 For batch operations, if the individual operations are known to have the same collection name
 then that collection name SHOULD be used.
-
-If the operation or query involves multiple collections, `db.collection.name`
-SHOULD NOT be captured.
 
 This attribute has stability level RELEASE CANDIDATE.
 
@@ -68,10 +63,8 @@ This attribute has stability level RELEASE CANDIDATE.
 **[4]:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
-A single database query may involve multiple operations. If the operation
-name is parsed from the query text, it SHOULD only be captured for queries that
-contain a single operation or when the operation name describing the
-whole query is available by other means.
+The operation name SHOULD NOT be extracted from `db.query.text`,
+unless the query format is known to only ever have a single operation name present.
 
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,
