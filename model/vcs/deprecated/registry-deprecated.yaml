@@ -1,0 +1,61 @@
+groups:
+  - id: registry.vcs.deprecated
+    type: attribute_group
+    brief: >
+      "Describes deprecated vcs attributes."
+    attributes:
+      - id: vcs.repository.ref.name
+        type: string
+        stability: experimental
+        deprecated: 'Deprecated, use `vcs.ref.head.name` instead.'
+        brief: >
+          Deprecated, use `vcs.ref.head.name` instead.
+        examples: ["my-feature-branch", "tag-1-test"]
+      - id: vcs.repository.ref.type
+        type:
+          members:
+            - id: branch
+              value: branch
+              brief: "[branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)"
+              stability: experimental
+            - id: tag
+              value: tag
+              brief: "[tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)"
+              stability: experimental
+        stability: experimental
+        deprecated: 'Deprecated, use `vcs.ref.head.type` instead.'
+        brief: >
+          Deprecated, use `vcs.ref.head.type` instead.
+        examples: ["branch", "tag"]
+      - id: vcs.repository.ref.revision
+        type: string
+        stability: experimental
+        deprecated: 'Deprecated, use `vcs.ref.head.revision` instead.'
+        brief: >
+          Deprecated, use `vcs.ref.head.revision` instead.
+        examples:
+          [
+            "9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc",
+            "main",
+            "123",
+            "HEAD",
+          ]
+      - id: vcs.repository.change.title
+        type: string
+        stability: experimental
+        deprecated: 'Deprecated, use `vcs.change.title` instead.'
+        brief: >
+          Deprecated, use `vcs.change.title` instead.
+        examples:
+          [
+            "Fixes broken thing",
+            "feat: add my new feature",
+            "[chore] update dependency",
+          ]
+      - id: vcs.repository.change.id
+        type: string
+        stability: experimental
+        deprecated: 'Deprecated, use `vcs.change.id` instead.'
+        brief: >
+          Deprecated, use `vcs.change.id` instead.
+        examples: ["123"]

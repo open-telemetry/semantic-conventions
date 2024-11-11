@@ -18,14 +18,38 @@ test_fails_on_invalid_metric_name if {
     }
 }
 
+test_fails_on_invalid_metric_id if {
+    invalid_ids := [
+        "foo.bar",
+        "metric..foo.bar",
+        "metric.123",
+        "metric.foo.bar.deprecated",
+    ]
+    every id in invalid_ids {
+        count(deny) >= 1 with input as {"groups": [{"id": id, "type": "metric", "metric_name": "foo.bar"}]}
+    }
+}
+
 test_fails_on_invalid_event_name if {
     every name in invalid_names {
         count(deny) >= 1 with input as {"groups": create_event(name)}
     }
 }
 
+test_fails_on_invalid_event_id if {
+    invalid_ids := [
+        "foo.bar",
+        "event..foo.bar",
+        "event.123",
+        "evnt.foo.bar.deprecated",
+    ]
+    every id in invalid_ids {
+        count(deny) >= 1 with input as {"groups": [{"id": id, "type": "event", "name": "foo.bar"}]}
+    }
+}
+
 test_fails_on_referenced_event_name_on_event if {
-    event := [{ "id": "yaml_schema.test",
+    event := [{ "id": "event.foo",
                 "type": "event",
                 "name": "foo",
                 "attributes": [{"ref": "event.name"}]}]
@@ -39,7 +63,7 @@ test_fails_on_invalid_resource_name if {
 }
 
 test_fails_on_missing_resource_name if {
-    count(deny) >= 1 with input as {"groups": [{"id": "yaml_schema.test", "type": "resource", "name": null}]}
+    count(deny) >= 1 with input as {"groups": [{"id": "resource.", "type": "resource", "name": null}]}
 }
 
 test_passes_on_valid_names if {
@@ -54,20 +78,45 @@ test_fails_if_prefix_is_present if {
     count(deny) == 1 with input as {"groups": [{"id": "test", "prefix": "foo"}]}
 }
 
+test_fails_on_invalid_span_id if {
+    invalid_ids := [
+        "foo.bar",
+        "span.foo.bar",
+        "span.foo.bar.client.deprecated",
+    ]
+    every id in invalid_ids {
+        count(deny) >= 1 with input as {"groups": [{"id": id, "type": "span", "span_kind": "client"}]}
+    }
+}
+
+test_fails_on_invalid_resource_id if {
+    invalid_ids := [
+        "foo.bar",
+        "resource..foo.bar",
+        "resource.foo.bar.deprecated",
+    ]
+    every id in invalid_ids {
+        count(deny) >= 1 with input as {"groups": [{"id": id, "type": "resource", "name": "foo.bar"}]}
+    }
+}
+
 create_attribute_group(attr) = json {
     json := [{"id": "yaml_schema.test", "attributes": [{"id": attr}]}]
 }
 
 create_metric(name) = json {
-    json := [{"id": "yaml_schema.test", "type": "metric", "metric_name": name}]
+    id := sprintf("metric.%s", [name])
+    json := [{"id": id, "type": "metric", "metric_name": name}]
 }
 
 create_event(name) = json {
-    json := [{"id": "yaml_schema.test", "type": "event", "name": name}]
+    id := sprintf("event.%s", [name])
+    json := [{"id": id, "type": "event", "name": name}]
 }
 
 create_resource(name) = json {
-    json := [{"id": "yaml_schema.test", "type": "resource", "name": name}]
+    id := sprintf("resource.%s", [name])
+    json := [{"id": id, "type": "resource", "name": name}]
 }
 
 invalid_names := [
