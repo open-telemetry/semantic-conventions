@@ -120,8 +120,7 @@ This attribute has stability level RELEASE CANDIDATE.
 **[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 The collection name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single collection name present
-and the collection name is known to always be under the captured `db.namespace`.
+unless the query format is known to only ever have a single collection name present.
 
 For batch operations, if the individual operations are known to have the same collection name
 then that collection name SHOULD be used.
