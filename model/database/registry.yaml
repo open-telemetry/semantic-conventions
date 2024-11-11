@@ -548,8 +548,9 @@ groups:
         type: string[]
         stability: experimental
         brief: >
-          List of regions contacted by the Azure Cosmos DB operation. 
-          Format of region name would be similar to the "displayname" mentioned [here](https://learn.microsoft.com/en-us/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
+          List of regions contacted by the Azure Cosmos DB operation.
+          Format of region name would be similar to the "displayname"
+          mentioned [here](https://learn.microsoft.com/en-us/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
         examples:
           - ['North Central US']
   - id: registry.db.elasticsearch
