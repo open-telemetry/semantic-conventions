@@ -32,7 +32,7 @@ groups:
           conditionally_required: If and only if an error occurred during flag evaluation.
         # TODO: move note to yaml once https://github.com/open-telemetry/build-tools/issues/192 is supported
         note: |
-          `feature_flag.evaluation.error.code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+          If one of these values applies, then it MUST be used; otherwise, a custom value MAY be used.
 
           | Value  | Description | Stability |
           |---|---|---|

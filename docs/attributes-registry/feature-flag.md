@@ -16,7 +16,6 @@ This document defines attributes for Feature Flags.
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="feature-flag-context-id" href="#feature-flag-context-id">`feature_flag.context.id`</a> | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="feature-flag-evaluation-error-code" href="#feature-flag-evaluation-error-code">`feature_flag.evaluation.error.code`</a> | string | An error code which denotes why a flag evaluation failed | `provider_not_ready`; `targeting_key_missing`; `provider_fatal`; `general` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="feature-flag-evaluation-error-message" href="#feature-flag-evaluation-error-message">`feature_flag.evaluation.error.message`</a> | string | A message explaining the nature of an error occurring during flag evaluation. | `Flag `header-color` expected type `string` but found type `number`` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="feature-flag-evaluation-reason" href="#feature-flag-evaluation-reason">`feature_flag.evaluation.reason`</a> | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="feature-flag-key" href="#feature-flag-key">`feature_flag.key`</a> | string | The lookup key of the feature flag. | `logo-color` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -29,19 +28,6 @@ This document defines attributes for Feature Flags.
 for referring to a value without including the value itself. This can
 provide additional context for understanding the meaning behind a value.
 For example, the variant `red` maybe be used for the value `#c05543`.
-
-`feature_flag.evaluation.error.code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `flag_not_found` | The flag could not be found. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `general` | The error was for a reason not enumerated above. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid_context` | The evaluation context does not meet provider requirements. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `parse_error` | An error was encountered parsing data, such as a flag configuration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `provider_fatal` | The provider has entered an irrecoverable error state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `provider_not_ready` | The value was resolved before the provider was initialized. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `targeting_key_missing` | The provider requires a targeting key and one was not provided in the evaluation context. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `type_mismatch` | The type of the flag value does not match the expected type. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `feature_flag.evaluation.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
