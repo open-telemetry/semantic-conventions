@@ -3,8 +3,8 @@ groups:
     type: event
     name: feature_flag.evaluation
     brief: >
-      This semantic convention defines the attributes used to represent a
-      feature flag evaluation as an event.
+      Defines feature flag evaluation as an event. 
+    note: >
       A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag
       value is evaluated, which may happen many times over the course of an
       application lifecycle.
@@ -29,10 +29,10 @@ groups:
         requirement_level: recommended
       - ref: feature_flag.evaluation.error.code
         requirement_level:
-          conditionally_required: Required if an error occurred during flag evaluation and `feature_flag.evaluation.error.message` is not set, recommended otherwise.
+          conditionally_required: if and only if an error occurred during flag evaluation.
       - ref: feature_flag.evaluation.error.message
         requirement_level:
-          conditionally_required: Required if an error occurred during flag evaluation and `feature_flag.evaluation.error.code` is not set, recommended otherwise.
+          recommended: If and only if an error occurred. It's NOT RECOMMENDED to duplicate the value of `feature_flag.evaluation.error.code` in `feature_flag.evaluation.error.message`.
     body:
       id: feature_flag.evaluation
       type: map
