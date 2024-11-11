@@ -1,5 +1,5 @@
 groups:
-  - id: faas_span
+  - id: span.faas
     type: span
     brief: >
       This semantic convention describes an instance of a function that
@@ -20,7 +20,7 @@ groups:
       - ref: faas.invocation_id
       - ref: cloud.resource_id
 
-  - id: faas_span.datasource
+  - id: span.faas.datasource
     type: span
     brief: >
       Semantic Convention for FaaS triggered as a response to some data
@@ -33,7 +33,7 @@ groups:
       - ref: faas.document.time
       - ref: faas.document.name
 
-  - id: faas_span.timer
+  - id: span.faas.timer
     type: span
     brief: >
       Semantic Convention for FaaS scheduled to be executed regularly.
@@ -41,7 +41,7 @@ groups:
       - ref: faas.time
       - ref: faas.cron
 
-  - id: faas_span.in
+  - id: span.faas.server
     span_kind: server
     type: span
     brief: >
@@ -61,7 +61,7 @@ groups:
           nothing to do with the underlying transport used to make the API
           call to invoke the lambda, which is often HTTP).
 
-  - id: faas_span.out
+  - id: span.faas.client
     span_kind: client
     type: span
     brief: >
