@@ -1,6 +1,7 @@
 groups:
-  - id: graphql
+  - id: span.graphql.server
     type: span
+    span_kind: server
     brief: >
       This document defines semantic conventions to apply when instrumenting the GraphQL implementation. They map
       GraphQL operations to attributes on a Span.
