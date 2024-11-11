@@ -98,15 +98,13 @@ groups:
         stability: experimental
         brief: >
           Specifies the Azure Cosmos DB target region for the network request.
-          It would be one of the region supported by Azure data plane.
+          It would be one of the region supported by Azure data plane. Format of region name would be similar to the "displayname"
+          mentioned [here](https://learn.microsoft.com/en-us/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
         examples: "WEST US 2"
       - ref: db.cosmosdb.network.response.status_code
         requirement_level:
           conditionally_required: If available
       - ref: db.cosmosdb.network.response.sub_status_code
-        requirement_level:
-          conditionally_required: If available
-      - ref: cloud.region
         requirement_level:
           conditionally_required: If available
       - ref: db.cosmosdb.network.routing_id
