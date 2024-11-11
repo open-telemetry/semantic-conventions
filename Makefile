@@ -69,6 +69,11 @@ markdown-link-check:
 			|| exit 1; \
 	done
 
+.PHONY: markdown-link-check-changelog-preview
+markdown-link-check-changelog-preview:
+	@if ! npm ls markdown-link-check; then npm install; fi
+	npx --no -- markdown-link-check --quiet --config .markdown_link_check_config.json changelog_preview.md;
+
 # This target runs markdown-toc on all files that contain
 # a comment <!-- tocstop -->.
 #

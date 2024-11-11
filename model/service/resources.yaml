@@ -1,5 +1,5 @@
 groups:
-  - id: service
+  - id: resource.service
     type: resource
     name: service
     brief: >
