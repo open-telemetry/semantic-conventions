@@ -486,28 +486,30 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Specifies the Azure Cosmos DB target region for the network request.  It would be one of the region supported by Azure data plane. [1] | `WEST US 2` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [2] | `public.users`; `customers` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Effective Request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). This represents the first applicable consistency level among those specified by the request or the client. | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.network.region`](/docs/attributes-registry/db.md) | string | Specifies the Azure Cosmos DB target region for the network request. | `WEST US 2` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.network.response.status_code`](/docs/attributes-registry/db.md) | int | The status code returned in response. [2] | `200` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.cosmosdb.network.response.status_code`](/docs/attributes-registry/db.md) | int | The status code returned in response. [3] | `200` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.network.response.sub_status_code`](/docs/attributes-registry/db.md) | int | The Azure Cosmos DB sub-status code for a network request made during an operation. | `1002` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | The Azure Cosmos DB sub-status code for an operation represents the final sub-status code after multiple network interactions have been completed during the operation. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [3] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [5] | `200`; `201` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [6] | `200`; `201` | `Conditionally Required` [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [8] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Specifies the host address from the Gateway or Backend Service endpoint. | `cdb-east-us.azure.document.com` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.cosmosdb.network.resource_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [9] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.cosmosdb.network.routing_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[1]:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
 
-**[2]:** The protocol reuses HTTP status codes.
+**[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[3]:** It is RECOMMENDED to capture the value as provided by the application
+**[3]:** The protocol reuses HTTP status codes.
+
+**[4]:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
 A single database query may involve multiple operations. If the operation
@@ -522,25 +524,25 @@ system specific term if more applicable.
 
 This attribute has stability level RELEASE CANDIDATE.
 
-**[4]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[5]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
-**[5]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+**[6]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[6]:** If the operation failed and status code is available.
+**[7]:** If the operation failed and status code is available.
 
-**[7]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[8]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[8]:** The protocol name SHOULD be one of the following values: "https" or "rntbd". The protocol name SHOULD be reported as "https" when the request is made over HTTPS i.e Azure Cosmos DB Gateway Service. The protocol name SHOULD be reported as "rntbd" when the request is made over the Azure Cosmos DB transport protocol.
+**[9]:** The protocol name SHOULD be one of the following values: "https" or "rntbd". The protocol name SHOULD be reported as "https" when the request is made over HTTPS i.e Azure Cosmos DB Gateway Service. The protocol name SHOULD be reported as "rntbd" when the request is made over the Azure Cosmos DB transport protocol.
 
-**[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[10]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[10]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[11]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[11]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -598,28 +600,30 @@ Explaining bucket configuration:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Specifies the Azure Cosmos DB target region for the network request.  It would be one of the region supported by Azure data plane. [1] | `WEST US 2` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [2] | `public.users`; `customers` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Effective Request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). This represents the first applicable consistency level among those specified by the request or the client. | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.network.region`](/docs/attributes-registry/db.md) | string | Specifies the Azure Cosmos DB target region for the network request. | `WEST US 2` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.network.response.status_code`](/docs/attributes-registry/db.md) | int | The status code returned in response. [2] | `200` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.cosmosdb.network.response.status_code`](/docs/attributes-registry/db.md) | int | The status code returned in response. [3] | `200` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.network.response.sub_status_code`](/docs/attributes-registry/db.md) | int | The Azure Cosmos DB sub-status code for a network request made during an operation. | `1002` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | The Azure Cosmos DB sub-status code for an operation represents the final sub-status code after multiple network interactions have been completed during the operation. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [3] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [5] | `200`; `201` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [6] | `200`; `201` | `Conditionally Required` [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [8] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Specifies the host address from the Gateway or Backend Service endpoint. | `cdb-east-us.azure.document.com` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.cosmosdb.network.resource_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [9] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.cosmosdb.network.routing_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[1]:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
 
-**[2]:** The protocol reuses HTTP status codes.
+**[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[3]:** It is RECOMMENDED to capture the value as provided by the application
+**[3]:** The protocol reuses HTTP status codes.
+
+**[4]:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
 A single database query may involve multiple operations. If the operation
@@ -634,25 +638,25 @@ system specific term if more applicable.
 
 This attribute has stability level RELEASE CANDIDATE.
 
-**[4]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[5]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
-**[5]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+**[6]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[6]:** If the operation failed and status code is available.
+**[7]:** If the operation failed and status code is available.
 
-**[7]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[8]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[8]:** The protocol name SHOULD be one of the following values: "https" or "rntbd". The protocol name SHOULD be reported as "https" when the request is made over HTTPS i.e Azure Cosmos DB Gateway Service. The protocol name SHOULD be reported as "rntbd" when the request is made over the Azure Cosmos DB transport protocol.
+**[9]:** The protocol name SHOULD be one of the following values: "https" or "rntbd". The protocol name SHOULD be reported as "https" when the request is made over HTTPS i.e Azure Cosmos DB Gateway Service. The protocol name SHOULD be reported as "rntbd" when the request is made over the Azure Cosmos DB transport protocol.
 
-**[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[10]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[10]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[11]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[11]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -710,28 +714,30 @@ Explaining bucket configuration:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Specifies the Azure Cosmos DB target region for the network request.  It would be one of the region supported by Azure data plane. [1] | `WEST US 2` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [2] | `public.users`; `customers` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Effective Request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). This represents the first applicable consistency level among those specified by the request or the client. | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.network.region`](/docs/attributes-registry/db.md) | string | Specifies the Azure Cosmos DB target region for the network request. | `WEST US 2` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.network.response.status_code`](/docs/attributes-registry/db.md) | int | The status code returned in response. [2] | `200` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.cosmosdb.network.response.status_code`](/docs/attributes-registry/db.md) | int | The status code returned in response. [3] | `200` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.network.response.sub_status_code`](/docs/attributes-registry/db.md) | int | The Azure Cosmos DB sub-status code for a network request made during an operation. | `1002` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | The Azure Cosmos DB sub-status code for an operation represents the final sub-status code after multiple network interactions have been completed during the operation. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [3] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [5] | `200`; `201` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [6] | `200`; `201` | `Conditionally Required` [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [8] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Specifies the host address from the Gateway or Backend Service endpoint. | `cdb-east-us.azure.document.com` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.cosmosdb.network.resource_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [9] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.cosmosdb.network.routing_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[1]:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
 
-**[2]:** The protocol reuses HTTP status codes.
+**[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[3]:** It is RECOMMENDED to capture the value as provided by the application
+**[3]:** The protocol reuses HTTP status codes.
+
+**[4]:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
 A single database query may involve multiple operations. If the operation
@@ -746,25 +752,25 @@ system specific term if more applicable.
 
 This attribute has stability level RELEASE CANDIDATE.
 
-**[4]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[5]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
-**[5]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+**[6]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[6]:** If the operation failed and status code is available.
+**[7]:** If the operation failed and status code is available.
 
-**[7]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[8]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[8]:** The protocol name SHOULD be one of the following values: "https" or "rntbd". The protocol name SHOULD be reported as "https" when the request is made over HTTPS i.e Azure Cosmos DB Gateway Service. The protocol name SHOULD be reported as "rntbd" when the request is made over the Azure Cosmos DB transport protocol.
+**[9]:** The protocol name SHOULD be one of the following values: "https" or "rntbd". The protocol name SHOULD be reported as "https" when the request is made over HTTPS i.e Azure Cosmos DB Gateway Service. The protocol name SHOULD be reported as "rntbd" when the request is made over the Azure Cosmos DB transport protocol.
 
-**[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[10]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[10]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[11]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[11]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -811,32 +817,34 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.cosmosdb.request.channel_aquisition.duration` | Histogram | `s` | Time taken in creating connection, It is only applicable in Direct Mode. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.cosmosdb.request.channel_aquisition.duration` | Histogram | `s` | "Time to get or create a new TCP connection. Once a connection is established, it is reused for subsequent db.client.cosmosdb.request.transit.duration. It is only applicable in Direct Mode." | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Specifies the Azure Cosmos DB target region for the network request.  It would be one of the region supported by Azure data plane. [1] | `WEST US 2` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [2] | `public.users`; `customers` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Effective Request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). This represents the first applicable consistency level among those specified by the request or the client. | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.network.region`](/docs/attributes-registry/db.md) | string | Specifies the Azure Cosmos DB target region for the network request. | `WEST US 2` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.network.response.status_code`](/docs/attributes-registry/db.md) | int | The status code returned in response. [2] | `200` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.cosmosdb.network.response.status_code`](/docs/attributes-registry/db.md) | int | The status code returned in response. [3] | `200` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.network.response.sub_status_code`](/docs/attributes-registry/db.md) | int | The Azure Cosmos DB sub-status code for a network request made during an operation. | `1002` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | The Azure Cosmos DB sub-status code for an operation represents the final sub-status code after multiple network interactions have been completed during the operation. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [3] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [5] | `200`; `201` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [6] | `200`; `201` | `Conditionally Required` [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [8] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Specifies the host address from the Gateway or Backend Service endpoint. | `cdb-east-us.azure.document.com` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.cosmosdb.network.resource_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [9] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.cosmosdb.network.routing_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[1]:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
 
-**[2]:** The protocol reuses HTTP status codes.
+**[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[3]:** It is RECOMMENDED to capture the value as provided by the application
+**[3]:** The protocol reuses HTTP status codes.
+
+**[4]:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
 A single database query may involve multiple operations. If the operation
@@ -851,25 +859,25 @@ system specific term if more applicable.
 
 This attribute has stability level RELEASE CANDIDATE.
 
-**[4]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[5]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
-**[5]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+**[6]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[6]:** If the operation failed and status code is available.
+**[7]:** If the operation failed and status code is available.
 
-**[7]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[8]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[8]:** The protocol name SHOULD be one of the following values: "https" or "rntbd". The protocol name SHOULD be reported as "https" when the request is made over HTTPS i.e Azure Cosmos DB Gateway Service. The protocol name SHOULD be reported as "rntbd" when the request is made over the Azure Cosmos DB transport protocol.
+**[9]:** The protocol name SHOULD be one of the following values: "https" or "rntbd". The protocol name SHOULD be reported as "https" when the request is made over HTTPS i.e Azure Cosmos DB Gateway Service. The protocol name SHOULD be reported as "rntbd" when the request is made over the Azure Cosmos DB transport protocol.
 
-**[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[10]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[10]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[11]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[11]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -922,28 +930,30 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Specifies the Azure Cosmos DB target region for the network request.  It would be one of the region supported by Azure data plane. [1] | `WEST US 2` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [2] | `public.users`; `customers` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Effective Request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). This represents the first applicable consistency level among those specified by the request or the client. | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.network.region`](/docs/attributes-registry/db.md) | string | Specifies the Azure Cosmos DB target region for the network request. | `WEST US 2` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.network.response.status_code`](/docs/attributes-registry/db.md) | int | The status code returned in response. [2] | `200` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.cosmosdb.network.response.status_code`](/docs/attributes-registry/db.md) | int | The status code returned in response. [3] | `200` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.network.response.sub_status_code`](/docs/attributes-registry/db.md) | int | The Azure Cosmos DB sub-status code for a network request made during an operation. | `1002` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | The Azure Cosmos DB sub-status code for an operation represents the final sub-status code after multiple network interactions have been completed during the operation. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [3] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [5] | `200`; `201` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [6] | `200`; `201` | `Conditionally Required` [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [8] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Specifies the host address from the Gateway or Backend Service endpoint. | `cdb-east-us.azure.document.com` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.cosmosdb.network.resource_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [9] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.cosmosdb.network.routing_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[1]:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
 
-**[2]:** The protocol reuses HTTP status codes.
+**[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[3]:** It is RECOMMENDED to capture the value as provided by the application
+**[3]:** The protocol reuses HTTP status codes.
+
+**[4]:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
 A single database query may involve multiple operations. If the operation
@@ -958,25 +968,25 @@ system specific term if more applicable.
 
 This attribute has stability level RELEASE CANDIDATE.
 
-**[4]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[5]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
-**[5]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+**[6]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[6]:** If the operation failed and status code is available.
+**[7]:** If the operation failed and status code is available.
 
-**[7]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[8]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[8]:** The protocol name SHOULD be one of the following values: "https" or "rntbd". The protocol name SHOULD be reported as "https" when the request is made over HTTPS i.e Azure Cosmos DB Gateway Service. The protocol name SHOULD be reported as "rntbd" when the request is made over the Azure Cosmos DB transport protocol.
+**[9]:** The protocol name SHOULD be one of the following values: "https" or "rntbd". The protocol name SHOULD be reported as "https" when the request is made over HTTPS i.e Azure Cosmos DB Gateway Service. The protocol name SHOULD be reported as "rntbd" when the request is made over the Azure Cosmos DB transport protocol.
 
-**[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[10]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[10]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[11]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[11]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -1027,28 +1037,30 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Specifies the Azure Cosmos DB target region for the network request.  It would be one of the region supported by Azure data plane. [1] | `WEST US 2` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [2] | `public.users`; `customers` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Effective Request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). This represents the first applicable consistency level among those specified by the request or the client. | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.network.region`](/docs/attributes-registry/db.md) | string | Specifies the Azure Cosmos DB target region for the network request. | `WEST US 2` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.network.response.status_code`](/docs/attributes-registry/db.md) | int | The status code returned in response. [2] | `200` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.cosmosdb.network.response.status_code`](/docs/attributes-registry/db.md) | int | The status code returned in response. [3] | `200` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.network.response.sub_status_code`](/docs/attributes-registry/db.md) | int | The Azure Cosmos DB sub-status code for a network request made during an operation. | `1002` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | The Azure Cosmos DB sub-status code for an operation represents the final sub-status code after multiple network interactions have been completed during the operation. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [3] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [5] | `200`; `201` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [6] | `200`; `201` | `Conditionally Required` [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [8] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Specifies the host address from the Gateway or Backend Service endpoint. | `cdb-east-us.azure.document.com` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.cosmosdb.network.resource_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [9] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.cosmosdb.network.routing_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[1]:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
 
-**[2]:** The protocol reuses HTTP status codes.
+**[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[3]:** It is RECOMMENDED to capture the value as provided by the application
+**[3]:** The protocol reuses HTTP status codes.
+
+**[4]:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
 A single database query may involve multiple operations. If the operation
@@ -1063,25 +1075,25 @@ system specific term if more applicable.
 
 This attribute has stability level RELEASE CANDIDATE.
 
-**[4]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[5]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
-**[5]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+**[6]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[6]:** If the operation failed and status code is available.
+**[7]:** If the operation failed and status code is available.
 
-**[7]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[8]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[8]:** The protocol name SHOULD be one of the following values: "https" or "rntbd". The protocol name SHOULD be reported as "https" when the request is made over HTTPS i.e Azure Cosmos DB Gateway Service. The protocol name SHOULD be reported as "rntbd" when the request is made over the Azure Cosmos DB transport protocol.
+**[9]:** The protocol name SHOULD be one of the following values: "https" or "rntbd". The protocol name SHOULD be reported as "https" when the request is made over HTTPS i.e Azure Cosmos DB Gateway Service. The protocol name SHOULD be reported as "rntbd" when the request is made over the Azure Cosmos DB transport protocol.
 
-**[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[10]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[10]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[11]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[11]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -1132,28 +1144,30 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Specifies the Azure Cosmos DB target region for the network request.  It would be one of the region supported by Azure data plane. [1] | `WEST US 2` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [2] | `public.users`; `customers` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.consistency_level`](/docs/attributes-registry/db.md) | string | Effective Request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). This represents the first applicable consistency level among those specified by the request or the client. | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.network.region`](/docs/attributes-registry/db.md) | string | Specifies the Azure Cosmos DB target region for the network request. | `WEST US 2` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cosmosdb.network.response.status_code`](/docs/attributes-registry/db.md) | int | The status code returned in response. [2] | `200` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.cosmosdb.network.response.status_code`](/docs/attributes-registry/db.md) | int | The status code returned in response. [3] | `200` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.network.response.sub_status_code`](/docs/attributes-registry/db.md) | int | The Azure Cosmos DB sub-status code for a network request made during an operation. | `1002` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.cosmosdb.sub_status_code`](/docs/attributes-registry/db.md) | int | The Azure Cosmos DB sub-status code for an operation represents the final sub-status code after multiple network interactions have been completed during the operation. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [3] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [5] | `200`; `201` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [6] | `200`; `201` | `Conditionally Required` [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [8] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Specifies the host address from the Gateway or Backend Service endpoint. | `cdb-east-us.azure.document.com` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.cosmosdb.network.resource_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [9] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.cosmosdb.network.routing_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[1]:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
 
-**[2]:** The protocol reuses HTTP status codes.
+**[2]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[3]:** It is RECOMMENDED to capture the value as provided by the application
+**[3]:** The protocol reuses HTTP status codes.
+
+**[4]:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
 A single database query may involve multiple operations. If the operation
@@ -1168,25 +1182,25 @@ system specific term if more applicable.
 
 This attribute has stability level RELEASE CANDIDATE.
 
-**[4]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[5]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
-**[5]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+**[6]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[6]:** If the operation failed and status code is available.
+**[7]:** If the operation failed and status code is available.
 
-**[7]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[8]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[8]:** The protocol name SHOULD be one of the following values: "https" or "rntbd". The protocol name SHOULD be reported as "https" when the request is made over HTTPS i.e Azure Cosmos DB Gateway Service. The protocol name SHOULD be reported as "rntbd" when the request is made over the Azure Cosmos DB transport protocol.
+**[9]:** The protocol name SHOULD be one of the following values: "https" or "rntbd". The protocol name SHOULD be reported as "https" when the request is made over HTTPS i.e Azure Cosmos DB Gateway Service. The protocol name SHOULD be reported as "rntbd" when the request is made over the Azure Cosmos DB transport protocol.
 
-**[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[10]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[10]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[11]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[11]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):

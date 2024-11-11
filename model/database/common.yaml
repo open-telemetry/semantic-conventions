@@ -94,16 +94,22 @@ groups:
         examples: 443
         requirement_level:
           conditionally_required: If available
+      - ref: cloud.region
+        stability: experimental
+        brief: >
+          Specifies the Azure Cosmos DB target region for the network request. 
+          It would be one of the region supported by Azure data plane.
+        examples: "WEST US 2"
       - ref: db.cosmosdb.network.response.status_code
         requirement_level:
           conditionally_required: If available
       - ref: db.cosmosdb.network.response.sub_status_code
         requirement_level:
           conditionally_required: If available
-      - ref: db.cosmosdb.network.region
+      - ref: cloud.region
         requirement_level:
           conditionally_required: If available
-      - ref: db.cosmosdb.network.resource_id
+      - ref: db.cosmosdb.network.routing_id
         requirement_level: opt_in
 
   - id: attributes.db.client.with_query_and_collection

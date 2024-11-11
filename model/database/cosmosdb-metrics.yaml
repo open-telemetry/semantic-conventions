@@ -61,7 +61,9 @@ groups:
   - id: metric.db.client.cosmosdb.request.channel_aquisition.duration
     type: metric
     metric_name: db.client.cosmosdb.request.channel_aquisition.duration
-    brief: "Time taken in creating connection, It is only applicable in Direct Mode."
+    brief: >
+      "Time to get or create a new TCP connection. Once a connection is established, it is reused for subsequent db.client.cosmosdb.request.transit.duration.
+      It is only applicable in Direct Mode."
     instrument: histogram
     unit: "s"
     stability: experimental
