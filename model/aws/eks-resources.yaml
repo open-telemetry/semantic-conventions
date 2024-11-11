@@ -1,5 +1,5 @@
 groups:
-  - id: aws.eks
+  - id: resource.aws.eks
     type: resource
     name: aws.eks
     brief: >
