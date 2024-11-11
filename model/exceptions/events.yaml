@@ -1,5 +1,5 @@
 groups:
-  - id: trace-exception
+  - id: event.exception
     name: exception
     stability: stable
     type: event
