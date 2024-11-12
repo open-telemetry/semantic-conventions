@@ -79,6 +79,8 @@ trigger that corresponding incoming would have (i.e., this has
 nothing to do with the underlying transport used to make the API
 call to invoke the lambda, which is often HTTP).
 
+---
+
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -151,6 +153,8 @@ trigger that corresponding incoming would have (i.e., this has
 nothing to do with the underlying transport used to make the API
 call to invoke the lambda, which is often HTTP).
 
+---
+
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -209,6 +213,8 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 
 **[4]:** For some cloud providers, like AWS or GCP, the region in which a function is hosted is essential to uniquely identify the function and also part of its endpoint. Since it's part of the endpoint being called, the region is always known to clients. In these cases, `faas.invoked_region` MUST be set accordingly. If the region is unknown to the client or not required for identifying the invoked function, setting `faas.invoked_region` is optional.
 
+---
+
 `faas.invoked_provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -249,6 +255,8 @@ FaaS instrumentations that produce `faas` spans with trigger `datasource`, SHOUL
 | [`faas.document.operation`](/docs/attributes-registry/faas.md) | string | Describes the type of the operation that was performed on the data. | `insert`; `edit`; `delete` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`faas.document.name`](/docs/attributes-registry/faas.md) | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`faas.document.time`](/docs/attributes-registry/faas.md) | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `faas.document.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

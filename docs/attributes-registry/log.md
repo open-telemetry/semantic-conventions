@@ -18,6 +18,8 @@ This document defines log attributes
 |---|---|---|---|---|
 | <a id="log-iostream" href="#log-iostream">`log.iostream`</a> | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `log.iostream` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

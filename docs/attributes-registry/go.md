@@ -14,6 +14,8 @@ This document defines Go related attributes.
 |---|---|---|---|---|
 | <a id="go-memory-type" href="#go-memory-type">`go.memory.type`</a> | string | The type of memory. | `other`; `stack` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `go.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
