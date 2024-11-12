@@ -46,7 +46,9 @@ Names SHOULD follow these rules:
   indicate entity hierarchies. This purpose should primarily drive the decision
   about forming nested namespaces.
 
-- The special namespace `*.blob_ref.*` is reserved for "reference attributes".
+- The special namespace `blob_ref.*` and `*.blob_ref.*` is reserved for
+  [Blob Reference Properties](./blob-reference-properties.md) and should not be used
+  except in the manner outlined in that specification.
 
 - For each multi-word dot-delimited component of the attribute name separate the
   words by underscores (i.e. use snake_case). For example
@@ -58,7 +60,8 @@ Names SHOULD follow these rules:
   namespace. Because of this rule be careful when choosing names: every existing
   name prohibits existence of an equally named namespace in the future, and vice
   versa: any existing namespace prohibits existence of an equally named
-  attribute key in the future. Note that "reference attributes" are exempt
+  attribute key in the future. Note that
+  [Blob Reference Properties](./blob-reference-properties.md) are exempt
   from this rule, because they are/replace the original attribute.
 
 ## Name Pluralization Guidelines
@@ -187,20 +190,7 @@ defined another attribute `somekey.blob_ref.uri` which may be used to provide
 the value of the attribute `somekey` by reference to an external storage
 system from which the value of `somekey` may be fetched.
 
-Additional `*.blob_ref.*` attributes, beyond `.blob_ref.uri`, may be used to
-provide additional information concerning the external reference, including:
-
-  - `*.blob_ref.content_type`: the MIME type of the data (e.g. `text/plain`, `application/json`, `application/octet-stream`)
-  - `*.blob_ref.size`: the size of the attribute value in bytes
-  - `*.blob_ref.hash_value`: a hash of the data for validation
-  - `*.blob_ref.hash_algorithm`: the algorithm used to compute the hash
-
-If both a reference attribute and its non-reference variant appear together
-within a signal (e.g. both `somekey` and `somekey.blob_ref.uri` are present),
-it should be assumed that only the reference attribute references the full,
-complete, original value of the data; the non-reference variant may be used
-to preview/summarize the data but should be assumed to potentially contain
-a modified, truncated, redacted, or otherwise non-original value within it.
+See [Blob Reference Properties](./blob-reference-properties.md) for details.
 
 [DocumentStatus]:
   https://opentelemetry.io/docs/specs/otel/document-status
