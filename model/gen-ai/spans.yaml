@@ -54,9 +54,10 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
-  - id: trace.gen_ai.client.span
+  - id: span.gen_ai.client
     type: span
     stability: experimental
+    span_kind: client
     brief: >
       Describes GenAI operation span.
     extends: trace.gen_ai.client.common_attributes
@@ -70,9 +71,10 @@ groups:
       - gen_ai.content.prompt
       - gen_ai.content.completion
 
-  - id: trace.gen_ai.openai.client
+  - id: span.gen_ai.openai.client
     extends: trace.gen_ai.client.common_attributes
     stability: experimental
+    span_kind: client
     brief: >
       Describes an OpenAI operation span.
     attributes:

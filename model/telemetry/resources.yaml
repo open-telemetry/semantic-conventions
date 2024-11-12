@@ -1,6 +1,6 @@
 groups:
-  - id: telemetry.sdk
-    name: 'telemetry.sdk'
+  - id: resource.telemetry.sdk
+    name: telemetry.sdk
     type: resource
     stability: stable
     brief: >
@@ -12,7 +12,7 @@ groups:
         requirement_level: required
       - ref: telemetry.sdk.version
         requirement_level: required
-  - id: telemetry.distro
+  - id: resource.telemetry.distro
     name: 'telemetry.distro'
     type: resource
     stability: experimental
