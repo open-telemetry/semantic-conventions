@@ -116,7 +116,57 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`tls.protocol.version`](/docs/attributes-registry/tls.md) | string | Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES) | `1.2`; `3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Captures the exception type when a connection fails.
+**[1]:** Starting from .NET 9, Kestrel `kestrel.connection.duration` metric reports
+the following errors types when a corresponding error occurs:
+
+| Value  | Description | Stability |
+|---|---|---|
+| `aborted_by_app` | The HTTP/1.1 connection was aborted when app code aborted an HTTP request with `HttpContext.Abort()`. |
+| `app_shutdown_timeout` | The connection was aborted during app shutdown. During shutdown, the server stops accepting new connections and HTTP requests, and it is given time for active requests to complete. If the app shutdown timeout is exceeded, all remaining connections are aborted. |
+| `closed_critical_stream` | A critical control stream for an HTTP/3 connection was closed. |
+| `connection_reset` | The connection was reset while there were active HTTP/2 or HTTP/3 streams on the connection. |
+| `error_after_starting_response` | An error occurred after the response was started, causing an abort of the HTTP/1.1 connection or multiplexed request stream. |
+| `error_reading_headers` | An error occurred when decoding HPACK headers in an HTTP/2 `HEADERS` frame. |
+| `error_writing_headers` | An error occurred when encoding HPACK headers in an HTTP/2 `HEADERS` frame. |
+| `flow_control_queue_size_exceeded` | The connection exceeded the outgoing flow control maximum queue size and was closed with `INTERNAL_ERROR`. This can be caused by an excessive number of HTTP/2 stream resets. For more information, see [Microsoft Security Advisory CVE-2023-44487](https://github.com/dotnet/runtime/issues/93303). |
+| `flow_control_window_exceeded` | The client sent more data than allowed by the current flow-control window. |
+| `frame_after_stream_close` | An HTTP/2 frame was received on a closed stream. |
+| `insufficient_tls_version` | The connection doesn't have TLS 1.2 or greater, as required by HTTP/2. |
+| `invalid_body_reader_state` | An error occurred when draining the request body, aborting the HTTP/1.1 connection. |
+| `invalid_data_padding` | An HTTP/2 `HEADER` or `DATA` frame has an invalid amount of padding. |
+| `invalid_frame_length` | An HTTP/2 frame was received with an invalid frame payload length. The frame could contain a payload that is not valid for the type, or a `DATA` frame payload does not match the length specified in the frame header. |
+| `invalid_handshake` | An invalid HTTP/2 handshake was received. |
+| `invalid_http_version` | The connection received an HTTP request with the wrong version. For example, a browser sends an HTTP/1.1 request to a plain-text HTTP/2 connection. |
+| `invalid_request_headers` | The HTTP request contains invalid headers. This error can occur in a number of scenarios: a header might not be allowed by the HTTP protocol, such as a pseudo-header in the `HEADERS` frame of an HTTP/2 request. A header could also have an invalid value, such as a non-integer `content-length`, or a header name or value might contain invalid characters. |
+| `invalid_request_line` | The first line of an HTTP/1.1 request was invalid, potentially due to invalid content or exceeding the allowed limit. Configured by `KestrelServerLimits.MaxRequestLineSize`. |
+| `invalid_settings` | The connection received an HTTP/2 or HTTP/3 `SETTINGS` frame with invalid settings. |
+| `invalid_stream_id` | An HTTP/2 stream with an invalid stream ID was received. |
+| `invalid_window_update_size` | The server received an HTTP/2 `WINDOW_UPDATE` frame with a zero increment, or an increment that caused a flow-control window to exceed the maximum size. |
+| `io_error` | An `IOException` occurred while reading or writing connection data. |
+| `keep_alive_timeout` | There was no activity on the connection, and the keep-alive timeout configured by `KestrelServerLimits.KeepAliveTimeout` was exceeded. |
+| `max_concurrent_connections_exceeded` | The connection exceeded the maximum concurrent connection limit. Configured by `KestrelServerLimits.MaxConcurrentConnections`. |
+| `max_frame_length_exceeded` | The connection received an HTTP/2 frame that exceeded the size limit specified by `Http2Limits.MaxFrameSize`. |
+| `max_request_body_size_exceeded` | The HTTP request body exceeded the maximum request body size limit. Configured by `KestrelServerLimits.MaxRequestBodySize`. |
+| `max_request_header_count_exceeded` | The HTTP request headers exceeded the maximum count limit. Configured by `KestrelServerLimits.MaxRequestHeaderCount`. |
+| `max_request_headers_total_size_exceeded` | The HTTP request headers exceeded the maximum total size limit. Configured by `KestrelServerLimits.MaxRequestHeadersTotalSize`. |
+| `min_request_body_data_rate` | Reading the request body timed out due to data arriving too slowly. Configured by `KestrelServerLimits.MinRequestBodyDataRate`. |
+| `min_response_data_rate` | Writing the response timed out because the client did not read it at the specified minimum data rate. Configured by `KestrelServerLimits.MinResponseDataRate`. |
+| `missing_stream_end` | The connection received an HTTP/2 `HEADERS` frame for trailers without a stream end flag. |
+| `output_queue_size_exceeded` | The connection exceeded the output queue size and was closed with `INTERNAL_ERROR`. This can be caused by an excessive number of HTTP/2 stream resets. For more information, see [Microsoft Security Advisory CVE-2023-44487](https://github.com/dotnet/runtime/issues/93303). |
+| `request_headers_timeout` | Request headers timed out while waiting for headers to be received after the request started. Configured by `KestrelServerLimits.RequestHeadersTimeout`. |
+| `response_content_length_mismatch` | The HTTP response body sent data that didn't match the response's `content-length` header. |
+| `server_timeout` | The connection timed out with the `IConnectionTimeoutFeature`. |
+| `stream_creation_error` | The HTTP/3 connection received a stream that it wouldn't accept. For example, the client created duplicate control streams. |
+| `stream_reset_limit_exceeded` | The connection received an excessive number of HTTP/2 stream resets and was closed with `ENHANCE_YOUR_CALM`. For more information, see [Microsoft Security Advisory CVE-2023-44487](https://github.com/dotnet/runtime/issues/93303). |
+| `stream_self_dependency` | The connection received an HTTP/2 frame that caused a frame to depend on itself. |
+| `tls_handshake_failed` | An error occurred during the TLS handshake for a connection. Only reported for HTTP/1.1 and HTTP/2 connections. The TLS handshake for HTTP/3 is internal to QUIC transport. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `tls_not_supported` | A TLS handshake was received by an endpoint that isn't configured to support TLS. |
+| `unexpected_end_of_request_content` | The HTTP request body ended before the data specified by `content-length` was received. |
+| `unexpected_frame` | An unexpected HTTP/2 or HTTP/3 frame type was received. The frame type is either unknown, unsupported, or invalid for the current stream state. |
+| `unknown_stream` | An HTTP/2 frame was received on an unknown stream. |
+| `write_canceled` | The cancellation of a response body write aborted the HTTP/1.1 connection. |
+
+In other cases, `error.type` contains the fully qualified type name of the exception.
 
 **[2]:** The value SHOULD be normalized to lowercase.
 
@@ -138,50 +188,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `aborted_by_app` | The HTTP/1.1 connection was aborted when app code aborted an HTTP request with `HttpContext.Abort()`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `app_shutdown_timeout` | The connection was aborted during app shutdown. During shutdown, the server stops accepting new connections and HTTP requests, and it is given time for active requests to complete. If the app shutdown timeout is exceeded, all remaining connections are aborted. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `closed_critical_stream` | A critical control stream for an HTTP/3 connection was closed. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connection_reset` | The connection was reset while there were active HTTP/2 or HTTP/3 streams on the connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `error_after_starting_response` | An error occurred after the response was started, causing an abort of the HTTP/1.1 connection or multiplexed request stream. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `error_reading_headers` | An error occurred when decoding HPACK headers in an HTTP/2 `HEADERS` frame. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `error_writing_headers` | An error occurred when encoding HPACK headers in an HTTP/2 `HEADERS` frame. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `flow_control_queue_size_exceeded` | The connection exceeded the outgoing flow control maximum queue size and was closed with `INTERNAL_ERROR`. This can be caused by an excessive number of HTTP/2 stream resets. For more information, see [Microsoft Security Advisory CVE-2023-44487](https://github.com/dotnet/runtime/issues/93303). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `flow_control_window_exceeded` | The client sent more data than allowed by the current flow-control window. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `frame_after_stream_close` | An HTTP/2 frame was received on a closed stream. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `insufficient_tls_version` | The connection doesn't have TLS 1.2 or greater, as required by HTTP/2. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid_body_reader_state` | An error occurred when draining the request body, aborting the HTTP/1.1 connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid_data_padding` | An HTTP/2 `HEADER` or `DATA` frame has an invalid amount of padding. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid_frame_length` | An HTTP/2 frame was received with an invalid frame payload length. The frame could contain a payload that is not valid for the type, or a `DATA` frame payload does not match the length specified in the frame header. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid_handshake` | An invalid HTTP/2 handshake was received. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid_http_version` | The connection received an HTTP request with the wrong version. For example, a browser sends an HTTP/1.1 request to a plain-text HTTP/2 connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid_request_headers` | The HTTP request contains invalid headers. This error can occur in a number of scenarios: a header might not be allowed by the HTTP protocol, such as a pseudo-header in the `HEADERS` frame of an HTTP/2 request. A header could also have an invalid value, such as a non-integer `content-length`, or a header name or value might contain invalid characters. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid_request_line` | The first line of an HTTP/1.1 request was invalid, potentially due to invalid content or exceeding the allowed limit. Configured by `KestrelServerLimits.MaxRequestLineSize`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid_settings` | The connection received an HTTP/2 or HTTP/3 `SETTINGS` frame with invalid settings. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid_stream_id` | An HTTP/2 stream with an invalid stream ID was received. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid_window_update_size` | The server received an HTTP/2 `WINDOW_UPDATE` frame with a zero increment, or an increment that caused a flow-control window to exceed the maximum size. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `io_error` | An `IOException` occurred while reading or writing connection data. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `keep_alive_timeout` | There was no activity on the connection, and the keep-alive timeout configured by `KestrelServerLimits.KeepAliveTimeout` was exceeded. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `max_concurrent_connections_exceeded` | The connection exceeded the maximum concurrent connection limit. Configured by `KestrelServerLimits.MaxConcurrentConnections`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `max_frame_length_exceeded` | The connection received an HTTP/2 frame that exceeded the size limit specified by `Http2Limits.MaxFrameSize`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `max_request_body_size_exceeded` | The HTTP request body exceeded the maximum request body size limit. Configured by `KestrelServerLimits.MaxRequestBodySize`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `max_request_header_count_exceeded` | The HTTP request headers exceeded the maximum count limit. Configured by `KestrelServerLimits.MaxRequestHeaderCount`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `max_request_headers_total_size_exceeded` | The HTTP request headers exceeded the maximum total size limit. Configured by `KestrelServerLimits.MaxRequestHeadersTotalSize`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `min_request_body_data_rate` | Reading the request body timed out due to data arriving too slowly. Configured by `KestrelServerLimits.MinRequestBodyDataRate`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `min_response_data_rate` | Writing the response timed out because the client did not read it at the specified minimum data rate. Configured by `KestrelServerLimits.MinResponseDataRate`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `missing_stream_end` | The connection received an HTTP/2 `HEADERS` frame for trailers without a stream end flag. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `output_queue_size_exceeded` | The connection exceeded the output queue size and was closed with `INTERNAL_ERROR`. This can be caused by an excessive number of HTTP/2 stream resets. For more information, see [Microsoft Security Advisory CVE-2023-44487](https://github.com/dotnet/runtime/issues/93303). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `request_headers_timeout` | Request headers timed out while waiting for headers to be received after the request started. Configured by `KestrelServerLimits.RequestHeadersTimeout`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `response_content_length_mismatch` | The HTTP response body sent data that didn't match the response's `content-length` header. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `server_timeout` | The connection timed out with the `IConnectionTimeoutFeature`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stream_creation_error` | The HTTP/3 connection received a stream that it wouldn't accept. For example, the client created duplicate control streams. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stream_reset_limit_exceeded` | The connection received an excessive number of HTTP/2 stream resets and was closed with `ENHANCE_YOUR_CALM`. For more information, see [Microsoft Security Advisory CVE-2023-44487](https://github.com/dotnet/runtime/issues/93303). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stream_self_dependency` | The connection received an HTTP/2 frame that caused a frame to depend on itself. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tls_handshake_failed` | An error occurred during the TLS handshake for a connection. Only reported for HTTP/1.1 and HTTP/2 connections. The TLS handshake for HTTP/3 is internal to QUIC transport. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tls_not_supported` | A TLS handshake was received by an endpoint that isn't configured to support TLS. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unexpected_end_of_request_content` | The HTTP request body ended before the data specified by `content-length` was received. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unexpected_frame` | An unexpected HTTP/2 or HTTP/3 frame type was received. The frame type is either unknown, unsupported, or invalid for the current stream state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unknown_stream` | An HTTP/2 frame was received on an unknown stream. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `write_canceled` | The cancellation of a response body write aborted the HTTP/1.1 connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
