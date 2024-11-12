@@ -37,6 +37,8 @@ between a child Span and a parent Span, as defined by
 
 **[1]:** The causal relationship between a child Span and a parent Span.
 
+### `opentracing.ref_type` Values
+
 `opentracing.ref_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

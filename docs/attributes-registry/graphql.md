@@ -18,6 +18,8 @@ This document defines attributes for GraphQL.
 
 **[1]:** The value may be sanitized to exclude sensitive information.
 
+### `graphql.operation.type` Values
+
 `graphql.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

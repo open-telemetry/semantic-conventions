@@ -44,6 +44,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[4]:** The value SHOULD be normalized to lowercase.
 
+### `network.connection.subtype` Values
+
 `network.connection.subtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -70,6 +72,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `td_scdma` | TD-SCDMA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `umts` | UMTS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+### `network.connection.type` Values
+
 `network.connection.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -80,12 +84,16 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `wifi` | wifi | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `wired` | wired | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+### `network.io.direction` Values
+
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+### `network.transport` Values
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -96,6 +104,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+### `network.type` Values
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -126,6 +136,8 @@ These attributes may be used for any network related operation.
 | <a id="net-sock-peer-port" href="#net-sock-peer-port">`net.sock.peer.port`</a> | int | Deprecated, use `network.peer.port`. | `65531` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.peer.port`. |
 | <a id="net-transport" href="#net-transport">`net.transport`</a> | string | Deprecated, use `network.transport`. | `ip_tcp`; `ip_udp`; `pipe` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.transport`. |
 
+### `net.sock.family` Values
+
 `net.sock.family` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -133,6 +145,8 @@ These attributes may be used for any network related operation.
 | `inet` | IPv4 address | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `inet6` | IPv6 address | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `unix` | Unix domain socket path | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+### `net.transport` Values
 
 `net.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

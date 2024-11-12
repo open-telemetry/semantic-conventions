@@ -14,6 +14,8 @@ Describes Node.js related attributes.
 |---|---|---|---|---|
 | <a id="nodejs-eventloop-state" href="#nodejs-eventloop-state">`nodejs.eventloop.state`</a> | string | The state of event loop time. | `active`; `idle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+### `nodejs.eventloop.state` Values
+
 `nodejs.eventloop.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

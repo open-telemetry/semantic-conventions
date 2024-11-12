@@ -20,6 +20,8 @@ Attributes for hardware.
 
 **[1]:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
+### `hw.state` Values
+
 `hw.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -27,6 +29,8 @@ Attributes for hardware.
 | `degraded` | Degraded | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `failed` | Failed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ok` | Ok | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+### `hw.type` Values
 
 `hw.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -92,6 +92,8 @@ This metric reports the same values as accessing the corresponding processor tim
 |---|---|---|---|---|---|
 | [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The mode of the CPU | `user`; `system` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+### `cpu.mode` Values
+
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -160,6 +162,8 @@ This metric uses the [`GC.CollectionCount(int generation)`](https://learn.micros
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`dotnet.gc.heap.generation`](/docs/attributes-registry/dotnet.md) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+### `dotnet.gc.heap.generation` Values
 
 `dotnet.gc.heap.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -244,6 +248,8 @@ This metric reports the same values as calling [`GC.GetGCMemoryInfo().Generation
 |---|---|---|---|---|---|
 | [`dotnet.gc.heap.generation`](/docs/attributes-registry/dotnet.md) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+### `dotnet.gc.heap.generation` Values
+
 `dotnet.gc.heap.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -280,6 +286,8 @@ This metric reports the same values as calling [`GC.GetGCMemoryInfo().Generation
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`dotnet.gc.heap.generation`](/docs/attributes-registry/dotnet.md) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+### `dotnet.gc.heap.generation` Values
 
 `dotnet.gc.heap.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -565,6 +573,8 @@ This metric reports the same values as counting calls to [`AppDomain.CurrentDoma
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. | `System.OperationCanceledException`; `Contoso.MyException` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+### `error.type` Values
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

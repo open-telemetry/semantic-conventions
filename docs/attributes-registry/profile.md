@@ -14,6 +14,8 @@ Describes the origin of a single frame in a Profile.
 |---|---|---|---|---|
 | <a id="profile-frame-type" href="#profile-frame-type">`profile.frame.type`</a> | string | Describes the interpreter or compiler of a single frame. | `cpython` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+### `profile.frame.type` Values
+
 `profile.frame.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

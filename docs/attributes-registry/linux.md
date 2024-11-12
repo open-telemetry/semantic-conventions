@@ -14,6 +14,8 @@ Describes Linux Memory attributes
 |---|---|---|---|---|
 | <a id="linux-memory-slab-state" href="#linux-memory-slab-state">`linux.memory.slab.state`</a> | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+### `linux.memory.slab.state` Values
+
 `linux.memory.slab.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

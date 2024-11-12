@@ -18,6 +18,8 @@ The operating system (OS) on which the process represented by this resource is r
 | <a id="os-type" href="#os-type">`os.type`</a> | string | The operating system type. | `windows`; `linux`; `darwin` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="os-version" href="#os-version">`os.version`</a> | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+### `os.type` Values
+
 `os.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

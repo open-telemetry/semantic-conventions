@@ -47,6 +47,8 @@ This document defines attributes for remote procedure calls.
 
 **[7]:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
+### `rpc.connect_rpc.error_code` Values
+
 `rpc.connect_rpc.error_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -67,6 +69,8 @@ This document defines attributes for remote procedure calls.
 | `unavailable` | unavailable | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `unimplemented` | unimplemented | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `unknown` | unknown | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+### `rpc.grpc.status_code` Values
 
 `rpc.grpc.status_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -90,12 +94,16 @@ This document defines attributes for remote procedure calls.
 | `15` | DATA_LOSS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `16` | UNAUTHENTICATED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+### `rpc.message.type` Values
+
 `rpc.message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `RECEIVED` | received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `SENT` | sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+### `rpc.system` Values
 
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -117,6 +125,8 @@ Deprecated rpc message attributes.
 | <a id="message-id" href="#message-id">`message.id`</a> | int | Deprecated, use `rpc.message.id` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.id`. |
 | <a id="message-type" href="#message-type">`message.type`</a> | string | Deprecated, use `rpc.message.type` instead. | `SENT`; `RECEIVED` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.type`. |
 | <a id="message-uncompressed-size" href="#message-uncompressed-size">`message.uncompressed_size`</a> | int | Deprecated, use `rpc.message.uncompressed_size` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.uncompressed_size`. |
+
+### `message.type` Values
 
 `message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

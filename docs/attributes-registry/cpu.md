@@ -14,6 +14,8 @@ Attributes specific to a cpu instance.
 |---|---|---|---|---|
 | <a id="cpu-mode" href="#cpu-mode">`cpu.mode`</a> | string | The mode of the CPU | `user`; `system` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+### `cpu.mode` Values
+
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

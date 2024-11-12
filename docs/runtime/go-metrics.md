@@ -56,6 +56,8 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`go.memory.type`](/docs/attributes-registry/go.md) | string | The type of memory. | `other`; `stack` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+### `go.memory.type` Values
+
 `go.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

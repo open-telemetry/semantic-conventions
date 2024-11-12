@@ -66,6 +66,8 @@ definition of function name MUST be used for this attribute
   [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically).
 - **Azure Functions:** Not applicable. Do not set this attribute.
 
+### `faas.document.operation` Values
+
 `faas.document.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -73,6 +75,8 @@ definition of function name MUST be used for this attribute
 | `delete` | When an object is deleted. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `edit` | When an object is modified. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `insert` | When a new object is created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+### `faas.invoked_provider` Values
 
 `faas.invoked_provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -83,6 +87,8 @@ definition of function name MUST be used for this attribute
 | `azure` | Microsoft Azure | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gcp` | Google Cloud Platform | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tencent_cloud` | Tencent Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+### `faas.trigger` Values
 
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

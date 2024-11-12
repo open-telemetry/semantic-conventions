@@ -103,6 +103,8 @@ As such, these should be recorded as Log Record attributes when applicable. They
 |---|---|---|---|---|---|
 | [`log.iostream`](/docs/attributes-registry/log.md) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+### `log.iostream` Values
+
 `log.iostream` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

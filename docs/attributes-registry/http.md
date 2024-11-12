@@ -56,12 +56,16 @@ The attribute value MUST consist of either multiple header values as an array of
 **[5]:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
+### `http.connection.state` Values
+
 `http.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `active` | active state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `idle` | idle state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+### `http.request.method` Values
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -98,6 +102,8 @@ Describes deprecated HTTP attributes.
 | <a id="http-target" href="#http-target">`http.target`</a> | string | Deprecated, use `url.path` and `url.query` instead. | `/search?q=OpenTelemetry#SemConv` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Split to `url.path` and `url.query. |
 | <a id="http-url" href="#http-url">`http.url`</a> | string | Deprecated, use `url.full` instead. | `https://www.foo.bar/search?q=OpenTelemetry#SemConv` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `url.full`. |
 | <a id="http-user-agent" href="#http-user-agent">`http.user_agent`</a> | string | Deprecated, use `user_agent.original` instead. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user_agent.original`. |
+
+### `http.flavor` Values
 
 `http.flavor` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

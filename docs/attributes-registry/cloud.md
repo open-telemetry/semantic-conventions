@@ -43,6 +43,8 @@ The following well-known definitions MUST be used if you set this attribute and 
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
   a TracerProvider.
 
+### `cloud.platform` Values
+
 `cloud.platform` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -75,6 +77,8 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `tencent_cloud_cvm` | Tencent Cloud Cloud Virtual Machine (CVM) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tencent_cloud_eks` | Tencent Cloud Elastic Kubernetes Service (EKS) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+### `cloud.provider` Values
 
 `cloud.provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
