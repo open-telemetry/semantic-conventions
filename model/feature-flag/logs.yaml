@@ -28,6 +28,7 @@ groups:
       - ref: feature_flag.evaluation.reason
         requirement_level: recommended
       - ref: error.type
+        examples: ["provider_not_ready", "targeting_key_missing", "provider_fatal", "general"]
         requirement_level:
           conditionally_required: If and only if an error occurred during flag evaluation.
         # TODO: move note to yaml once https://github.com/open-telemetry/build-tools/issues/192 is supported
