@@ -547,12 +547,12 @@ groups:
       - id: db.cosmosdb.regions_contacted
         type: string[]
         stability: experimental
-        brief: >
-          List of regions contacted by the Azure Cosmos DB operation.
-          Format of region name would be similar to the "displayname"
-          mentioned [here](https://learn.microsoft.com/en-us/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
+        brief: List of regions contacted during operation in the order specific region was contacted.
+        note: >
+          Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
         examples:
           - ['North Central US']
+          - ['Australia East, 'Australia Southeast]
   - id: registry.db.elasticsearch
     type: attribute_group
     display_name: Elasticsearch Attributes
