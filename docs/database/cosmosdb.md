@@ -499,7 +499,7 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Specifies the Azure Cosmos DB target region for the network request. It would be one of the region supported by Azure data plane. Format of region name would be similar to the "displayname" mentioned [here](https://learn.microsoft.com/en-us/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location) [11] | `WEST US 2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Region contacted during operation in the order specific region was contacted. [11] | `["North Central US"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.cosmosdb.network.routing_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -540,7 +540,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[10]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[11]:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
+**[11]:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
 
 **[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -613,7 +613,7 @@ Explaining bucket configuration:
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Specifies the Azure Cosmos DB target region for the network request. It would be one of the region supported by Azure data plane. Format of region name would be similar to the "displayname" mentioned [here](https://learn.microsoft.com/en-us/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location) [11] | `WEST US 2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Region contacted during operation in the order specific region was contacted. [11] | `["North Central US"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.cosmosdb.network.routing_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -654,7 +654,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[10]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[11]:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
+**[11]:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
 
 **[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -727,7 +727,7 @@ Explaining bucket configuration:
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Specifies the Azure Cosmos DB target region for the network request. It would be one of the region supported by Azure data plane. Format of region name would be similar to the "displayname" mentioned [here](https://learn.microsoft.com/en-us/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location) [11] | `WEST US 2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Region contacted during operation in the order specific region was contacted. [11] | `["North Central US"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.cosmosdb.network.routing_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -768,7 +768,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[10]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[11]:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
+**[11]:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
 
 **[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -834,7 +834,7 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Specifies the Azure Cosmos DB target region for the network request. It would be one of the region supported by Azure data plane. Format of region name would be similar to the "displayname" mentioned [here](https://learn.microsoft.com/en-us/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location) [11] | `WEST US 2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Region contacted during operation in the order specific region was contacted. [11] | `["North Central US"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.cosmosdb.network.routing_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -875,7 +875,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[10]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[11]:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
+**[11]:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
 
 **[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -943,7 +943,7 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Specifies the Azure Cosmos DB target region for the network request. It would be one of the region supported by Azure data plane. Format of region name would be similar to the "displayname" mentioned [here](https://learn.microsoft.com/en-us/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location) [11] | `WEST US 2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Region contacted during operation in the order specific region was contacted. [11] | `["North Central US"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.cosmosdb.network.routing_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -984,7 +984,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[10]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[11]:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
+**[11]:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
 
 **[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -1050,7 +1050,7 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Specifies the Azure Cosmos DB target region for the network request. It would be one of the region supported by Azure data plane. Format of region name would be similar to the "displayname" mentioned [here](https://learn.microsoft.com/en-us/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location) [11] | `WEST US 2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Region contacted during operation in the order specific region was contacted. [11] | `["North Central US"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.cosmosdb.network.routing_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -1091,7 +1091,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[10]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[11]:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
+**[11]:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
 
 **[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -1157,7 +1157,7 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Specifies the Azure Cosmos DB target region for the network request. It would be one of the region supported by Azure data plane. Format of region name would be similar to the "displayname" mentioned [here](https://learn.microsoft.com/en-us/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location) [11] | `WEST US 2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Region contacted during operation in the order specific region was contacted. [11] | `["North Central US"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.cosmosdb.network.routing_id`](/docs/attributes-registry/db.md) | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -1198,7 +1198,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[10]:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[11]:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
+**[11]:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
 
 **[12]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
