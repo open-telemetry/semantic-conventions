@@ -1,5 +1,5 @@
 groups:
-  - id: feature_flag.evaluation
+  - id: event.feature_flag.evaluation
     type: event
     name: feature_flag.evaluation
     brief: >
