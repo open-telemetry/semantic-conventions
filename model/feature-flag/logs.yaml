@@ -3,7 +3,7 @@ groups:
     type: event
     name: feature_flag.evaluation
     brief: >
-      Defines feature flag evaluation as an event. 
+      Defines feature flag evaluation as an event.
     note: >
       A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag
       value is evaluated, which may happen many times over the course of an
