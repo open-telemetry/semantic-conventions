@@ -90,7 +90,7 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 
 **[4]:** If feature flag provider supplies a variant or equivalent concept.
 
-**[5]:** If and only if an error occurred. It's NOT RECOMMENDED to duplicate the value of `feature_flag.evaluation.error.code` in `feature_flag.evaluation.error.message`.
+**[5]:** If and only if an error occurred. It's NOT RECOMMENDED to duplicate the value of `error.type` in `feature_flag.evaluation.error.message`.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
