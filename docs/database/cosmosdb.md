@@ -381,11 +381,6 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[9]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-The following attributes can be important for making sampling decisions
-and SHOULD be provided **at span creation time** (if provided at all):
-
-* [`db.namespace`](/docs/attributes-registry/db.md)
-
 `db.cosmosdb.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
