@@ -10,6 +10,12 @@ The Semantic Conventions for [Redis](https://redis.com/) extend and override the
 
 `db.system` MUST be set to `"redis"` and SHOULD be provided **at span creation time**.
 
+## Span name
+
+Redis spans SHOULD follow the general [database span name convention](./database-spans.md#name),
+except that `db.namespace` SHOULD NOT be used in the span name since it is a numeric value that ends up
+looking confusing.
+
 ## Attributes
 
 <!-- semconv span.db.redis.client -->
