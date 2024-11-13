@@ -16,6 +16,11 @@ versions:
               vcs.repository.ref.name: vcs.ref.head.name
               vcs.repository.ref.revision: vcs.ref.head.revision
               vcs.repository.ref.type: vcs.ref.head.type
+        # https://github.com/open-telemetry/semantic-conventions/pull/1440
+        - rename_attributes:
+            attribute_map:
+              feature_flag.provider_name: feature_flag.system
+
     metrics:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/1492
