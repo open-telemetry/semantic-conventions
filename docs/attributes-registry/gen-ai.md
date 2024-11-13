@@ -57,8 +57,10 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | Value  | Description | Stability |
 |---|---|---|
 | `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ibm.watsonx.ai` | IBM Watsonx AI| ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
