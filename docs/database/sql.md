@@ -167,12 +167,10 @@ This is an example of attributes for a MySQL database span:
 | Key                    | Value |
 |:-----------------------| :----------------------------------------------------------- |
 | Span name              | `"SELECT orders"` |
-| `db.collection.name`   | `"orders"` |
 | `db.namespace`         | `"ShopDb"` |
 | `db.system`            | `"mysql"` |
 | `server.address`       | `"shopdb.example.com"` |
 | `server.port`          | `3306` |
 | `db.query.text`        | `"SELECT * FROM orders WHERE order_id = 'o4711'"` |
-| `db.operation.name`    | `"SELECT"` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
