@@ -18,6 +18,7 @@ They may be used in any Log Record they apply to.
 - [Log Media](#log-media)
   - [Log File](#log-file)
   - [I/O Stream](#io-stream)
+  - [`log.iostream` Values](#logiostream-values)
 
 <!-- tocstop -->
 

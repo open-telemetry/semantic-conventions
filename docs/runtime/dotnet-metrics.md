@@ -15,13 +15,17 @@ This document describes semantic conventions for .NET CLR runtime metrics in Ope
 - [.NET CLR Process](#net-clr-process)
   - [Metric: `dotnet.process.cpu.count`](#metric-dotnetprocesscpucount)
   - [Metric: `dotnet.process.cpu.time`](#metric-dotnetprocesscputime)
+  - [`cpu.mode` Values](#cpumode-values)
   - [Metric: `dotnet.process.memory.working_set`](#metric-dotnetprocessmemoryworking_set)
 - [.NET CLR Garbage Collection](#net-clr-garbage-collection)
   - [Metric: `dotnet.gc.collections`](#metric-dotnetgccollections)
+  - [`dotnet.gc.heap.generation` Values](#dotnetgcheapgeneration-values)
   - [Metric: `dotnet.gc.heap.total_allocated`](#metric-dotnetgcheaptotal_allocated)
   - [Metric: `dotnet.gc.last_collection.memory.committed_size`](#metric-dotnetgclast_collectionmemorycommitted_size)
   - [Metric: `dotnet.gc.last_collection.heap.size`](#metric-dotnetgclast_collectionheapsize)
+  - [`dotnet.gc.heap.generation` Values](#dotnetgcheapgeneration-values-1)
   - [Metric: `dotnet.gc.last_collection.heap.fragmentation.size`](#metric-dotnetgclast_collectionheapfragmentationsize)
+  - [`dotnet.gc.heap.generation` Values](#dotnetgcheapgeneration-values-2)
   - [Metric: `dotnet.gc.pause.time`](#metric-dotnetgcpausetime)
 - [.NET CLR Just-In-Time (JIT) Compiler](#net-clr-just-in-time-jit-compiler)
   - [Metric: `dotnet.jit.compiled_il.size`](#metric-dotnetjitcompiled_ilsize)
@@ -36,6 +40,7 @@ This document describes semantic conventions for .NET CLR runtime metrics in Ope
   - [Metric: `dotnet.timer.count`](#metric-dotnettimercount)
   - [Metric: `dotnet.assembly.count`](#metric-dotnetassemblycount)
   - [Metric: `dotnet.exceptions`](#metric-dotnetexceptions)
+  - [`error.type` Values](#errortype-values)
 
 <!-- tocstop -->
 

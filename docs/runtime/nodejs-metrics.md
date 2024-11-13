@@ -22,6 +22,7 @@ This document describes semantic conventions for Node.js Runtime metrics in Open
   - [Metric: `nodejs.eventloop.delay.p99`](#metric-nodejseventloopdelayp99)
   - [Metric: `nodejs.eventloop.utilization`](#metric-nodejseventlooputilization)
   - [Metric: `nodejs.eventloop.time`](#metric-nodejseventlooptime)
+  - [`nodejs.eventloop.state` Values](#nodejseventloopstate-values)
 
 <!-- tocstop -->
 

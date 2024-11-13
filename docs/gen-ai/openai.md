@@ -11,6 +11,10 @@ linkTitle: OpenAI traces and metrics
 <!-- toc -->
 
 - [OpenAI Spans](#openai-spans)
+  - [`error.type` Values](#errortype-values)
+  - [`gen_ai.openai.request.response_format` Values](#gen_aiopenairequestresponse_format-values)
+  - [`gen_ai.openai.request.service_tier` Values](#gen_aiopenairequestservice_tier-values)
+  - [`gen_ai.operation.name` Values](#gen_aioperationname-values)
 - [OpenAI Metrics](#openai-metrics)
   - [Metric: `gen_ai.client.token.usage`](#metric-gen_aiclienttokenusage)
   - [Metric: `gen_ai.client.operation.duration`](#metric-gen_aiclientoperationduration)

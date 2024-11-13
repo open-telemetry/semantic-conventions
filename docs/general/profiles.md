@@ -9,6 +9,7 @@ linkTitle: Profiles
 <!-- toc -->
 
 - [Frame types](#frame-types)
+  - [`profile.frame.type` Values](#profileframetype-values)
 
 <!-- tocstop -->
 

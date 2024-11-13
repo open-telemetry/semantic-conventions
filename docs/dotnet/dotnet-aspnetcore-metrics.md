@@ -13,14 +13,19 @@ This article defines semantic conventions for ASP.NET Core metrics.
 - [Server](#server)
 - [Routing](#routing)
   - [Metric: `aspnetcore.routing.match_attempts`](#metric-aspnetcoreroutingmatch_attempts)
+  - [`aspnetcore.routing.match_status` Values](#aspnetcoreroutingmatch_status-values)
 - [Exceptions](#exceptions)
   - [Metric: `aspnetcore.diagnostics.exceptions`](#metric-aspnetcorediagnosticsexceptions)
+  - [`aspnetcore.diagnostics.exception.result` Values](#aspnetcorediagnosticsexceptionresult-values)
+  - [`error.type` Values](#errortype-values)
 - [Rate-limiting](#rate-limiting)
   - [Metric: `aspnetcore.rate_limiting.active_request_leases`](#metric-aspnetcorerate_limitingactive_request_leases)
   - [Metric: `aspnetcore.rate_limiting.request_lease.duration`](#metric-aspnetcorerate_limitingrequest_leaseduration)
   - [Metric: `aspnetcore.rate_limiting.queued_requests`](#metric-aspnetcorerate_limitingqueued_requests)
   - [Metric: `aspnetcore.rate_limiting.request.time_in_queue`](#metric-aspnetcorerate_limitingrequesttime_in_queue)
+  - [`aspnetcore.rate_limiting.result` Values](#aspnetcorerate_limitingresult-values)
   - [Metric: `aspnetcore.rate_limiting.requests`](#metric-aspnetcorerate_limitingrequests)
+  - [`aspnetcore.rate_limiting.result` Values](#aspnetcorerate_limitingresult-values-1)
 
 <!-- tocstop -->
 

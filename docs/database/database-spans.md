@@ -12,6 +12,8 @@ linkTitle: Client Calls
 
 - [Name](#name)
 - [Common attributes](#common-attributes)
+  - [`db.system` Values](#dbsystem-values)
+  - [`error.type` Values](#errortype-values)
   - [Notes and well-known identifiers for `db.system`](#notes-and-well-known-identifiers-for-dbsystem)
 - [Sanitization of `db.query.text`](#sanitization-of-dbquerytext)
 - [Generating a summary of the query text](#generating-a-summary-of-the-query-text)

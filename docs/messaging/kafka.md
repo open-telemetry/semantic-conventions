@@ -9,6 +9,8 @@ linkTitle: Kafka
 <!-- toc -->
 
 - [Span attributes](#span-attributes)
+  - [`error.type` Values](#errortype-values)
+  - [`messaging.operation.type` Values](#messagingoperationtype-values)
 - [Examples](#examples)
   - [Apache Kafka with Quarkus or Spring Boot Example](#apache-kafka-with-quarkus-or-spring-boot-example)
 

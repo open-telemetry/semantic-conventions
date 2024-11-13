@@ -14,6 +14,7 @@ This document defines semantic conventions to apply when instrumenting DNS queri
 
 - [Metrics](#metrics)
   - [Metric: `dns.lookup.duration`](#metric-dnslookupduration)
+  - [`error.type` Values](#errortype-values)
 
 <!-- tocstop -->
 

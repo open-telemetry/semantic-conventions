@@ -8,11 +8,20 @@
 
 - [Common metrics](#common-metrics)
   - [Metric: `messaging.client.operation.duration`](#metric-messagingclientoperationduration)
+  - [`error.type` Values](#errortype-values)
+  - [`messaging.operation.type` Values](#messagingoperationtype-values)
+  - [`messaging.system` Values](#messagingsystem-values)
 - [Producer metrics](#producer-metrics)
   - [Metric: `messaging.client.sent.messages`](#metric-messagingclientsentmessages)
+  - [`error.type` Values](#errortype-values-1)
+  - [`messaging.system` Values](#messagingsystem-values-1)
 - [Consumer metrics](#consumer-metrics)
   - [Metric: `messaging.client.consumed.messages`](#metric-messagingclientconsumedmessages)
+  - [`error.type` Values](#errortype-values-2)
+  - [`messaging.system` Values](#messagingsystem-values-2)
   - [Metric: `messaging.process.duration`](#metric-messagingprocessduration)
+  - [`error.type` Values](#errortype-values-3)
+  - [`messaging.system` Values](#messagingsystem-values-3)
 
 <!-- tocstop -->
 

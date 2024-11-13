@@ -9,10 +9,17 @@ linkTitle: Common Hardware Metrics
 <!-- toc -->
 
 - [Common hardware metrics](#common-hardware-metrics)
+  - [`hw.type` Values](#hwtype-values)
   - [Metric: `hw.energy`](#metric-hwenergy)
+  - [`hw.type` Values](#hwtype-values-1)
   - [Metric: `hw.errors`](#metric-hwerrors)
+  - [`error.type` Values](#errortype-values)
+  - [`hw.type` Values](#hwtype-values-2)
   - [Metric: `hw.power`](#metric-hwpower)
+  - [`hw.type` Values](#hwtype-values-3)
   - [Metric: `hw.status`](#metric-hwstatus)
+  - [`hw.state` Values](#hwstate-values)
+  - [`hw.type` Values](#hwtype-values-4)
 
 <!-- tocstop -->
 

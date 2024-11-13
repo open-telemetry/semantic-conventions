@@ -14,10 +14,15 @@ This document describes semantic conventions for V8 JS Engine Runtime metrics in
 
 - [Experimental](#experimental)
   - [Metric: `v8js.gc.duration`](#metric-v8jsgcduration)
+  - [`v8js.gc.type` Values](#v8jsgctype-values)
   - [Metric: `v8js.memory.heap.limit`](#metric-v8jsmemoryheaplimit)
+  - [`v8js.heap.space.name` Values](#v8jsheapspacename-values)
   - [Metric: `v8js.memory.heap.used`](#metric-v8jsmemoryheapused)
+  - [`v8js.heap.space.name` Values](#v8jsheapspacename-values-1)
   - [Metric: `v8js.heap.space.available_size`](#metric-v8jsheapspaceavailable_size)
+  - [`v8js.heap.space.name` Values](#v8jsheapspacename-values-2)
   - [Metric: `v8js.heap.space.physical_size`](#metric-v8jsheapspacephysical_size)
+  - [`v8js.heap.space.name` Values](#v8jsheapspacename-values-3)
 
 <!-- tocstop -->
 

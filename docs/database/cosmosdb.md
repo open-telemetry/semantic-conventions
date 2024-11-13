@@ -8,11 +8,16 @@ linkTitle: Cosmos DB
 
 - [Semantic Conventions for Microsoft Azure Cosmos DB](#semantic-conventions-for-microsoft-azure-cosmos-db)
   - [Attributes](#attributes)
+    - [`db.cosmosdb.connection_mode` Values](#dbcosmosdbconnection_mode-values)
+    - [`db.cosmosdb.consistency_level` Values](#dbcosmosdbconsistency_level-values)
+    - [`error.type` Values](#errortype-values)
   - [Example](#example)
   - [Operation Level Metrics](#operation-level-metrics)
     - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
     - [Metric: `db.client.response.returned_rows`](#metric-dbclientresponsereturned_rows)
     - [Metric: `db.client.cosmosdb.operation.request_charge`](#metric-dbclientcosmosdboperationrequest_charge)
+    - [`db.cosmosdb.consistency_level` Values](#dbcosmosdbconsistency_level-values-1)
+    - [`error.type` Values](#errortype-values-1)
     - [Metric: `db.client.cosmosdb.active_instance.count`](#metric-dbclientcosmosdbactive_instancecount)
 
 <!-- tocstop -->

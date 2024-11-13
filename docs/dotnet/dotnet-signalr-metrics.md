@@ -11,7 +11,11 @@ This article defines semantic conventions for SignalR metrics emitted by .NET co
 <!-- toc -->
 
 - [Metric: `signalr.server.connection.duration`](#metric-signalrserverconnectionduration)
+  - [`signalr.connection.status` Values](#signalrconnectionstatus-values)
+  - [`signalr.transport` Values](#signalrtransport-values)
 - [Metric: `signalr.server.active_connections`](#metric-signalrserveractive_connections)
+  - [`signalr.connection.status` Values](#signalrconnectionstatus-values-1)
+  - [`signalr.transport` Values](#signalrtransport-values-1)
 
 <!-- tocstop -->
 

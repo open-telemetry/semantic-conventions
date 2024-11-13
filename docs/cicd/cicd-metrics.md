@@ -12,13 +12,23 @@ linkTitle: CICD metrics
 
 - [VCS Metrics](#vcs-metrics)
   - [Metric: `vcs.change.count`](#metric-vcschangecount)
+  - [`vcs.change.state` Values](#vcschangestate-values)
   - [Metric: `vcs.change.duration`](#metric-vcschangeduration)
+  - [`vcs.change.state` Values](#vcschangestate-values-1)
   - [Metric: `vcs.change.time_to_approval`](#metric-vcschangetime_to_approval)
   - [Metric: `vcs.repository.count`](#metric-vcsrepositorycount)
   - [Metric: `vcs.ref.count`](#metric-vcsrefcount)
+  - [`vcs.ref.type` Values](#vcsreftype-values)
   - [Metric: `vcs.ref.lines_delta`](#metric-vcsreflines_delta)
+  - [`vcs.line_change.type` Values](#vcsline_changetype-values)
+  - [`vcs.ref.base.type` Values](#vcsrefbasetype-values)
+  - [`vcs.ref.head.type` Values](#vcsrefheadtype-values)
   - [Metric: `vcs.ref.revisions_delta`](#metric-vcsrefrevisions_delta)
+  - [`vcs.ref.base.type` Values](#vcsrefbasetype-values-1)
+  - [`vcs.ref.head.type` Values](#vcsrefheadtype-values-1)
+  - [`vcs.revision_delta.direction` Values](#vcsrevision_deltadirection-values)
   - [Metric: `vcs.ref.time`](#metric-vcsreftime)
+  - [`vcs.ref.head.type` Values](#vcsrefheadtype-values-2)
   - [Metric: `vcs.contributor.count`](#metric-vcscontributorcount)
 
 <!-- tocstop -->

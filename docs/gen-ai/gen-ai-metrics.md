@@ -12,11 +12,24 @@ linkTitle: Generative AI metrics
 
 - [Generative AI Client Metrics](#generative-ai-client-metrics)
   - [Metric: `gen_ai.client.token.usage`](#metric-gen_aiclienttokenusage)
+  - [`gen_ai.operation.name` Values](#gen_aioperationname-values)
+  - [`gen_ai.system` Values](#gen_aisystem-values)
+  - [`gen_ai.token.type` Values](#gen_aitokentype-values)
   - [Metric: `gen_ai.client.operation.duration`](#metric-gen_aiclientoperationduration)
+  - [`error.type` Values](#errortype-values)
+  - [`gen_ai.operation.name` Values](#gen_aioperationname-values-1)
+  - [`gen_ai.system` Values](#gen_aisystem-values-1)
 - [Generative AI Model Server Metrics](#generative-ai-model-server-metrics)
   - [Metric: `gen_ai.server.request.duration`](#metric-gen_aiserverrequestduration)
+  - [`error.type` Values](#errortype-values-1)
+  - [`gen_ai.operation.name` Values](#gen_aioperationname-values-2)
+  - [`gen_ai.system` Values](#gen_aisystem-values-2)
   - [Metric: `gen_ai.server.time_per_output_token`](#metric-gen_aiservertime_per_output_token)
+  - [`gen_ai.operation.name` Values](#gen_aioperationname-values-3)
+  - [`gen_ai.system` Values](#gen_aisystem-values-3)
   - [Metric: `gen_ai.server.time_to_first_token`](#metric-gen_aiservertime_to_first_token)
+  - [`gen_ai.operation.name` Values](#gen_aioperationname-values-4)
+  - [`gen_ai.system` Values](#gen_aisystem-values-4)
 
 <!-- tocstop -->
 

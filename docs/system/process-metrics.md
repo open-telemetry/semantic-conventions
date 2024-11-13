@@ -21,15 +21,21 @@ metrics](/docs/runtime/README.md#metrics).
 
 - [Process Metrics](#process-metrics)
   - [Metric: `process.cpu.time`](#metric-processcputime)
+  - [`cpu.mode` Values](#cpumode-values)
   - [Metric: `process.cpu.utilization`](#metric-processcpuutilization)
+  - [`cpu.mode` Values](#cpumode-values-1)
   - [Metric: `process.memory.usage`](#metric-processmemoryusage)
   - [Metric: `process.memory.virtual`](#metric-processmemoryvirtual)
   - [Metric: `process.disk.io`](#metric-processdiskio)
+  - [`disk.io.direction` Values](#diskiodirection-values)
   - [Metric: `process.network.io`](#metric-processnetworkio)
+  - [`network.io.direction` Values](#networkiodirection-values)
   - [Metric: `process.thread.count`](#metric-processthreadcount)
   - [Metric: `process.open_file_descriptor.count`](#metric-processopen_file_descriptorcount)
   - [Metric: `process.context_switches`](#metric-processcontext_switches)
+  - [`process.context_switch_type` Values](#processcontext_switch_type-values)
   - [Metric: `process.paging.faults`](#metric-processpagingfaults)
+  - [`process.paging.fault_type` Values](#processpagingfault_type-values)
   - [Metric: `process.uptime`](#metric-processuptime)
 
 <!-- tocstop -->

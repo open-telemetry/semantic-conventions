@@ -14,6 +14,7 @@ compatibility components, e.g. OpenTracing Shim layer.
 <!-- toc -->
 
 - [OpenTracing](#opentracing)
+  - [`opentracing.ref_type` Values](#opentracingref_type-values)
 
 <!-- tocstop -->
 

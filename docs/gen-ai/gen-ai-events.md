@@ -11,6 +11,7 @@ linkTitle: Generative AI events
 <!-- toc -->
 
 - [Common attributes](#common-attributes)
+  - [`gen_ai.system` Values](#gen_aisystem-values)
 - [System event](#system-event)
 - [User event](#user-event)
 - [Assistant event](#assistant-event)

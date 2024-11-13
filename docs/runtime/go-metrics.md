@@ -15,6 +15,7 @@ These metrics are obtained from Go's [`runtime/metrics`][RuntimeMetrics] package
 
 - [Go Memory](#go-memory)
   - [Metric: `go.memory.used`](#metric-gomemoryused)
+  - [`go.memory.type` Values](#gomemorytype-values)
   - [Metric: `go.memory.limit`](#metric-gomemorylimit)
   - [Metric: `go.memory.allocated`](#metric-gomemoryallocated)
   - [Metric: `go.memory.allocations`](#metric-gomemoryallocations)

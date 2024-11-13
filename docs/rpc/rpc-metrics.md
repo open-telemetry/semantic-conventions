@@ -30,6 +30,9 @@ metrics can be filtered for finer grain analysis.
     - [Metric: `rpc.client.requests_per_rpc`](#metric-rpcclientrequests_per_rpc)
     - [Metric: `rpc.client.responses_per_rpc`](#metric-rpcclientresponses_per_rpc)
 - [Attributes](#attributes)
+  - [`network.transport` Values](#networktransport-values)
+  - [`network.type` Values](#networktype-values)
+  - [`rpc.system` Values](#rpcsystem-values)
   - [Service name](#service-name)
 - [Semantic Conventions for specific RPC technologies](#semantic-conventions-for-specific-rpc-technologies)
 

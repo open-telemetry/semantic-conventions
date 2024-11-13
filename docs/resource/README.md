@@ -23,6 +23,7 @@ This document defines standard attributes for resources. These attributes are ty
   - [Semantic Attributes with SDK-provided Default Value](#semantic-attributes-with-sdk-provided-default-value)
 - [Service](#service)
 - [Telemetry SDK](#telemetry-sdk)
+  - [`telemetry.sdk.language` Values](#telemetrysdklanguage-values)
 - [Telemetry Distro](#telemetry-distro)
 - [Compute Unit](#compute-unit)
 - [Compute Instance](#compute-instance)

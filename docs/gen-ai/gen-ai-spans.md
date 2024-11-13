@@ -12,6 +12,9 @@ linkTitle: Generative AI traces
 
 - [Name](#name)
 - [GenAI attributes](#genai-attributes)
+  - [`error.type` Values](#errortype-values)
+  - [`gen_ai.operation.name` Values](#gen_aioperationname-values)
+  - [`gen_ai.system` Values](#gen_aisystem-values)
 - [Capturing inputs and outputs](#capturing-inputs-and-outputs)
 
 <!-- tocstop -->
