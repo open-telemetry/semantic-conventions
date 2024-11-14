@@ -44,6 +44,7 @@ groups:
           conditionally_required: if and only if an error has occurred.
         note: "Captures the exception type when a connection fails."
         examples: ['System.OperationCanceledException', 'Contoso.MyException']
+      # yamllint disable rule:line-length
       - ref: error.type
         # TODO: move note to yaml once https://github.com/open-telemetry/build-tools/issues/192 is supported
         note: |
@@ -98,6 +99,7 @@ groups:
           | `write_canceled` | The cancellation of a response body write aborted the HTTP/1.1 connection. |
 
           In other cases, `error.type` contains the fully qualified type name of the exception.
+  # yamllint enable rule:line-length
   - id: metric.kestrel.rejected_connections
     type: metric
     metric_name: kestrel.rejected_connections
