@@ -95,27 +95,22 @@ Recommendations on using attributes vs. body fields:
   requirements don't apply to event payload fields.
 * The definition for OpenTelemetry defined events supports describing
   individual _fields_ (Body Fields)
-  * The _fields_ are unique to the named event (`event.name`) and different events
-    may use the same _field_ name to represent different data, due to the unique
-    nature of the event.
-  * The _fields_ SHOULD NOT use the `blob_ref.*` or `*.blob_ref.*` name pattern;
-    these are reserved for [Blob Reference Properties](./blob-reference-properties.md).
-  * The _fields_ of a named event (`event.name`) implicitly include both the
-    defined fields for that type as well as their corresponding [reference representation](./blob-reference-properties.md).
+
+  * The _fields_ are unique to the named event (`event.name`) and different events may use the same _field_ name to represent different data, due to the unique nature of the event.
+
+  * The _fields_ SHOULD NOT use the `blob_ref.*` or `*.blob_ref.*` name pattern; these are reserved for [Blob Reference Properties](./blob-reference-properties.md).
+
+  * The _fields_ of a named event (`event.name`) implicitly include both the defined fields for that type as well as their corresponding [reference representation](./blob-reference-properties.md).
 
 ### Reference fields
 
 Fields of the body or the entire body may be represented as external references:
 
-  * For any given field `somefield`, there exists a corresponding field
-   `somefield.blob_ref.uri` which may be used to supply a reference to the value.
-  * The presence of the field `blob_ref.uri` as a top-level field in the body
-    indicates that the full/original/true value of the entire body may be
-    found at the URI specified by that field (with other fields potentially
-    representing a subset or truncated/redacted copy).
-  * For each `blob_ref.uri` or `prefix.blob_ref.uri` field, there may be
-    optional corresponding `[*.]blob_ref.metadata-key` fields containing
-    metadata about the reference such as its content type, size, etc.
+* For any given field `somefield`, there exists a corresponding field `somefield.blob_ref.uri` which may be used to supply a reference to the value.
+
+* The presence of the field `blob_ref.uri` as a top-level field in the body indicates that the full/original/true value of the entire body may be found at the URI specified by that field (with other fields potentially representing a subset or truncated/redacted copy).
+
+* For each `blob_ref.uri` or `prefix.blob_ref.uri` field, there may be optional corresponding `[*.]blob_ref.metadata-key` fields containing metadata about the reference such as its content type, size, etc.
 
 See [Blob Reference Properties](./blob-reference-properties.md) for more details.
 

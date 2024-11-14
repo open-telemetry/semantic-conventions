@@ -39,10 +39,10 @@ A key of the form `{prefix}.blob_ref.uri` may be accompanied by `{prefix}.blob_r
 
 The following metadata are defined and valid:
 
-  - `[*.]blob_ref.content_type`: the MIME type of the data (e.g. `text/plain`, `application/json`, `application/octet-stream`)
-  - `[*.]blob_ref.size`: the size of the attribute value in bytes
-  - `[*.]blob_ref.hash_value`: a hash of the data for validation
-  - `[*.]blob_ref.hash_algorithm`: the algorithm used to compute the hash
+- `[*.]blob_ref.content_type`: the MIME type of the data (e.g. `text/plain`, `application/json`, `application/octet-stream`)
+- `[*.]blob_ref.size`: the size of the attribute value in bytes
+- `[*.]blob_ref.hash_value`: a hash of the data for validation
+- `[*.]blob_ref.hash_algorithm`: the algorithm used to compute the hash
 
 ## Original Field/Key with a Reference
 
