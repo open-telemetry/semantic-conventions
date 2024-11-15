@@ -2,8 +2,8 @@
 {%- if level == "recommended" %}`Recommended`
 {% elif level == "required" %}`Required`
 {% elif level == "opt_in" %}`Opt-In`
-{% elif level.conditionally_required %}`Conditionally Required`{{ notes.add_with_limit(level.conditionally_required) }}
-{% elif level.recommended %}`Recommended`{{ notes.add_with_limit(level.recommended) }}
+{% elif level.conditionally_required %}`Conditionally Required`{{ notes.add_with_limit({"note": level.conditionally_required}) }}
+{% elif level.recommended %}`Recommended`{{ notes.add_with_limit({"note": level.recommended}) }}
 {% else %}{{ level }}
 {%- endif %}
 {% endmacro %}
