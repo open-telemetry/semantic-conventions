@@ -24,7 +24,7 @@ In case of virtualized environments, this is the operating system as it is obser
 | [`os.name`](/docs/attributes-registry/os.md) | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`os.version`](/docs/attributes-registry/os.md) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** `build_id` values SHOULD be obtained from the following sources:
+**[1] `os.build_id`:** `build_id` values SHOULD be obtained from the following sources:
 
 | OS | Primary | Fallback |
 | ------- | ------- | ------- |

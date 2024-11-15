@@ -64,7 +64,7 @@ This event describes a single exception.
 
 **[2]:** Required if `exception.message` is not set, recommended otherwise.
 
-**[3]:** An exception is considered to have escaped (or left) the scope of a span,
+**[3] `exception.escaped`:** An exception is considered to have escaped (or left) the scope of a span,
 if that span is ended while the exception is still logically "in flight".
 This may be actually "in flight" in some languages (e.g. if the exception
 is passed to a Context manager's `__exit__` method in Python) but will

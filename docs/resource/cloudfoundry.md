@@ -41,11 +41,11 @@ They align with the Bosh deployment tool of CloudFoundry.
 | [`cloudfoundry.org.id`](/docs/attributes-registry/cloudfoundry.md) | string | The guid of the CloudFoundry org the application is running in. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`cloudfoundry.org.name`](/docs/attributes-registry/cloudfoundry.md) | string | The name of the CloudFoundry organization the app is running in. [2] | `my-org-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Application instrumentation should use the value from environment
+**[1] `cloudfoundry.org.id`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.org_id`. This is the same value as
 reported by `cf org <org-name> --guid`.
 
-**[2]:** Application instrumentation should use the value from environment
+**[2] `cloudfoundry.org.name`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.org_name`. This is the same value as
 reported by `cf orgs`.
 
@@ -75,11 +75,11 @@ reported by `cf orgs`.
 | [`cloudfoundry.space.id`](/docs/attributes-registry/cloudfoundry.md) | string | The guid of the CloudFoundry space the application is running in. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`cloudfoundry.space.name`](/docs/attributes-registry/cloudfoundry.md) | string | The name of the CloudFoundry space the application is running in. [2] | `my-space-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Application instrumentation should use the value from environment
+**[1] `cloudfoundry.space.id`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.space_id`. This is the same value as
 reported by `cf space <space-name> --guid`.
 
-**[2]:** Application instrumentation should use the value from environment
+**[2] `cloudfoundry.space.name`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.space_name`. This is the same value as
 reported by `cf spaces`.
 
@@ -109,11 +109,11 @@ reported by `cf spaces`.
 | [`cloudfoundry.app.id`](/docs/attributes-registry/cloudfoundry.md) | string | The guid of the application. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`cloudfoundry.app.name`](/docs/attributes-registry/cloudfoundry.md) | string | The name of the application. [2] | `my-app-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Application instrumentation should use the value from environment
+**[1] `cloudfoundry.app.id`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.application_id`. This is the same value as
 reported by `cf app <app-name> --guid`.
 
-**[2]:** Application instrumentation should use the value from environment
+**[2] `cloudfoundry.app.name`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.application_name`. This is the same value
 as reported by `cf apps`.
 
@@ -143,12 +143,12 @@ as reported by `cf apps`.
 | [`cloudfoundry.process.id`](/docs/attributes-registry/cloudfoundry.md) | string | The UID identifying the process. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`cloudfoundry.process.type`](/docs/attributes-registry/cloudfoundry.md) | string | The type of process. [2] | `web` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Application instrumentation should use the value from environment
+**[1] `cloudfoundry.process.id`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.process_id`. It is supposed to be equal to
 `VCAP_APPLICATION.app_id` for applications deployed to the runtime.
 For system components, this could be the actual PID.
 
-**[2]:** CloudFoundry applications can consist of multiple jobs. Usually the
+**[2] `cloudfoundry.process.type`:** CloudFoundry applications can consist of multiple jobs. Usually the
 main process will be of type `web`. There can be additional background
 tasks or side-cars with different process types.
 
@@ -178,7 +178,7 @@ tasks or side-cars with different process types.
 | [`cloudfoundry.system.id`](/docs/attributes-registry/cloudfoundry.md) | string | A guid or another name describing the event source. [1] | `cf/gorouter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`cloudfoundry.system.instance.id`](/docs/attributes-registry/cloudfoundry.md) | string | A guid describing the concrete instance of the event source. [2] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** CloudFoundry defines the `source_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+**[1] `cloudfoundry.system.id`:** CloudFoundry defines the `source_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
 It is used for logs and metrics emitted by CloudFoundry. It is
 supposed to contain the component name, e.g. "gorouter", for
 CloudFoundry components.
@@ -188,7 +188,7 @@ When system components are instrumented, values from the
 should be used. The `system.id` should be set to
 `spec.deployment/spec.name`.
 
-**[2]:** CloudFoundry defines the `instance_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+**[2] `cloudfoundry.system.instance.id`:** CloudFoundry defines the `instance_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
 It is used for logs and metrics emitted by CloudFoundry. It is
 supposed to contain the vm id for CloudFoundry components.
 

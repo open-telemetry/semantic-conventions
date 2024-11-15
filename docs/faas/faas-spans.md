@@ -51,7 +51,7 @@ If Spans following this convention are produced, a Resource of type `faas` MUST 
 | [`faas.invocation_id`](/docs/attributes-registry/faas.md) | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. [2] | `datasource`; `http`; `pubsub` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** On some cloud providers, it may not be possible to determine the full ID at startup,
+**[1] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
 
 The exact value to use for `cloud.resource_id` depends on the cloud provider.
@@ -69,7 +69,7 @@ The following well-known definitions MUST be used if you set this attribute and 
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
   a TracerProvider.
 
-**[2]:** For the server/consumer span on the incoming side,
+**[2] `faas.trigger`:** For the server/consumer span on the incoming side,
 `faas.trigger` MUST be set.
 
 Clients invoking FaaS instances usually cannot set `faas.trigger`,
@@ -141,7 +141,7 @@ For incoming FaaS spans, the span kind SHOULD be `SERVER`.
 | [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. [1] | `datasource`; `http`; `pubsub` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`faas.coldstart`](/docs/attributes-registry/faas.md) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** For the server/consumer span on the incoming side,
+**[1] `faas.trigger`:** For the server/consumer span on the incoming side,
 `faas.trigger` MUST be set.
 
 Clients invoking FaaS instances usually cannot set `faas.trigger`,
@@ -201,11 +201,11 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 | [`faas.invoked_provider`](/docs/attributes-registry/faas.md) | string | The cloud provider of the invoked function. [2] | `alibaba_cloud`; `aws`; `azure` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`faas.invoked_region`](/docs/attributes-registry/faas.md) | string | The cloud region of the invoked function. [3] | `eu-central-1` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
+**[1] `faas.invoked_name`:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
 
-**[2]:** SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
+**[2] `faas.invoked_provider`:** SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
 
-**[3]:** SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
+**[3] `faas.invoked_region`:** SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
 
 **[4]:** For some cloud providers, like AWS or GCP, the region in which a function is hosted is essential to uniquely identify the function and also part of its endpoint. Since it's part of the endpoint being called, the region is always known to clients. In these cases, `faas.invoked_region` MUST be set accordingly. If the region is unknown to the client or not required for identifying the invoked function, setting `faas.invoked_region` is optional.
 
