@@ -1,5 +1,5 @@
 groups:
-  - id: aws.log
+  - id: resource.aws.log
     type: resource
     name: aws.log
     brief: >
