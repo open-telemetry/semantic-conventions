@@ -108,15 +108,6 @@ groups:
     metric_name: process.uptime
     stability: experimental
     brief: "The time the process has been running."
-    instrument: counter
-    unit: "s"
-    note: "Instrumentations SHOULD use counter with type `double` and measure uptime with at least millisecond precision"
-
-  - id: metric.process.uptime
-    type: metric
-    metric_name: process.uptime
-    stability: experimental
-    brief: "The time the process has been running."
     note: |
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
       The actual accuracy would depend on the instrumentation and operating system.
