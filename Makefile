@@ -39,7 +39,6 @@ CHECK_TARGETS=install-tools markdownlint misspell table-check compatibility-chec
 			schema-check check-file-and-folder-names-in-docs
 
 
-
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
 all: $(CHECK_TARGETS) markdown-link-check
