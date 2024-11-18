@@ -1,5 +1,5 @@
 groups:
-  - id: trace.cli.common_attributes
+  - id: span.cli
     type: attribute_group
     stability: experimental
     brief: >
