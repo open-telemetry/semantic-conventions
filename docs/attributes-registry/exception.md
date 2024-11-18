@@ -17,7 +17,7 @@ This document defines the shared attributes used to report a single exception as
 | <a id="exception-stacktrace" href="#exception-stacktrace">`exception.stacktrace`</a> | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="exception-type" href="#exception-type">`exception.type`</a> | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. | `java.net.ConnectException`; `OSError` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** An exception is considered to have escaped (or left) the scope of a span,
+**[1] `exception.escaped`:** An exception is considered to have escaped (or left) the scope of a span,
 if that span is ended while the exception is still logically "in flight".
 This may be actually "in flight" in some languages (e.g. if the exception
 is passed to a Context manager's `__exit__` method in Python) but will

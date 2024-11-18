@@ -38,26 +38,26 @@ Attributes describing telemetry around messaging systems and messaging activitie
 | <a id="messaging-operation-type" href="#messaging-operation-type">`messaging.operation.type`</a> | string | A string identifying the type of the messaging operation. [8] | `create`; `send`; `receive` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | string | The messaging system as identified by the client instrumentation. [9] | `activemq`; `aws_sqs`; `eventgrid` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
+**[1] `messaging.batch.message_count`:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
-**[2]:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system.
+**[2] `messaging.consumer.group.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system.
 
-**[3]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+**[3] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[4]:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.destination.subscription.name` is applicable and what it means in the context of that system.
+**[4] `messaging.destination.subscription.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.destination.subscription.name` is applicable and what it means in the context of that system.
 
-**[5]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[5] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[6]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[6] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
-**[7]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
+**[7] `messaging.message.envelope.size`:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
 size should be used.
 
-**[8]:** If a custom value is used, it MUST be of low cardinality.
+**[8] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[9]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
+**[9] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -116,7 +116,7 @@ This group describes attributes specific to Apache Kafka.
 | <a id="messaging-kafka-message-tombstone" href="#messaging-kafka-message-tombstone">`messaging.kafka.message.tombstone`</a> | boolean | A boolean that is true if the message is a tombstone. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="messaging-kafka-offset" href="#messaging-kafka-offset">`messaging.kafka.offset`</a> | int | The offset of a record in the corresponding Kafka partition. | `42` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[10]:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
+**[10] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
 ## RabbitMQ Attributes
 

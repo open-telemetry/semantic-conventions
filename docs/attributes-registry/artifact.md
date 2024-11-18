@@ -20,12 +20,12 @@ This group describes attributes specific to artifacts. Artifacts are files or ot
 | <a id="artifact-purl" href="#artifact-purl">`artifact.purl`</a> | string | The [Package URL](https://github.com/package-url/purl-spec) of the [package artifact](https://slsa.dev/spec/v1.0/terminology#package-model) provides a standard way to identify and locate the packaged artifact. | `pkg:github/package-url/purl-spec@1209109710924`; `pkg:npm/foo@12.12.3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="artifact-version" href="#artifact-version">`artifact.version`</a> | string | The version of the artifact. | `v0.1.0`; `1.2.1`; `122691-build` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** This file name can also act as the [Package Name](https://slsa.dev/spec/v1.0/terminology#package-model)
+**[1] `artifact.filename`:** This file name can also act as the [Package Name](https://slsa.dev/spec/v1.0/terminology#package-model)
 in cases where the package ecosystem maps accordingly.
 Additionally, the artifact [can be published](https://slsa.dev/spec/v1.0/terminology#software-supply-chain)
 for others, but that is not a guarantee.
 
-**[2]:** The specific algorithm used to create the cryptographic hash value is
+**[2] `artifact.hash`:** The specific algorithm used to create the cryptographic hash value is
 not defined. In situations where an artifact has multiple
 cryptographic hashes, it is up to the implementer to choose which
 hash value to set here; this should be the most secure hash algorithm

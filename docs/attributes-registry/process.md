@@ -48,11 +48,11 @@ An operating system process.
 | <a id="process-vpid" href="#process-vpid">`process.vpid`</a> | int | Virtual process identifier. [3] | `12` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="process-working-directory" href="#process-working-directory">`process.working_directory`</a> | string | The working directory of the process. | `/root` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
+**[1] `process.args_count`:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
 
-**[2]:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
+**[2] `process.title`:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
 
-**[3]:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
+**[3] `process.vpid`:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
 
 `process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

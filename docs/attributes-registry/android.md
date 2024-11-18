@@ -25,7 +25,7 @@ This document defines attributes that represents an occurrence of a lifecycle tr
 |---|---|---|---|---|
 | <a id="android-state" href="#android-state">`android.state`</a> | string | Deprecated use the `device.app.lifecycle` event definition including `android.state` as a payload field instead. [1] | `created`; `background`; `foreground` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `device.app.lifecycle`. |
 
-**[1]:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
+**[1] `android.state`:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
 
 `android.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

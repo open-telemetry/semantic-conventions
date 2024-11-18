@@ -68,7 +68,7 @@ A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag valu
 | [`feature_flag.system`](/docs/attributes-registry/feature-flag.md) | string | Identifies the feature flag provider. | `Flag Manager` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`feature_flag.version`](/docs/attributes-registry/feature-flag.md) | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** If one of these values applies, then it MUST be used; otherwise, a custom value MAY be used.
+**[1] `error.type`:** If one of these values applies, then it MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -83,7 +83,7 @@ A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag valu
 
 **[2]:** If and only if an error occurred during flag evaluation.
 
-**[3]:** A semantic identifier, commonly referred to as a variant, provides a means
+**[3] `feature_flag.variant`:** A semantic identifier, commonly referred to as a variant, provides a means
 for referring to a value without including the value itself. This can
 provide additional context for understanding the meaning behind a value.
 For example, the variant `red` maybe be used for the value `#c05543`.

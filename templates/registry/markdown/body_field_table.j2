@@ -10,6 +10,6 @@
 {#- Macro for creating body table -#}
 {% macro generate(fields) %}{% if (fields | length > 0) %}{% set ns = namespace(flat=[])%}{% set _ = flatten(fields, ns, 0) %}| Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-{% for f in ns.flat %}| {{ field_name(f.field, f.depth) }} | {{ f.field.type }} | {{ f.field.brief | trim }}{{ notes.add(f.field.note) }} | {{ examples.format(f.field) | trim }} | {{ requirement.render(f.field.requirement_level, notes) | trim }} | {{ stability.badge(f.field.stability, f.field.deprecated) | trim }} |
+{% for f in ns.flat %}| {{ field_name(f.field, f.depth) }} | {{ f.field.type }} | {{ f.field.brief | trim }}{{ notes.add({"note": f.field.note}) }} | {{ examples.format(f.field) | trim }} | {{ requirement.render(f.field.requirement_level, notes) | trim }} | {{ stability.badge(f.field.stability, f.field.deprecated) | trim }} |
 {% endfor %}{{ notes.render() }}{{ enums.field_tables(ns.flat | map(attribute="field") | selectattr("type", "eq", "enum"), notes) -}}
 {%- endif %}{% endmacro %}

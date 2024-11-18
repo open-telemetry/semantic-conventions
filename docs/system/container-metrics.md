@@ -33,7 +33,7 @@ This metric is [opt-in][MetricOptIn].
 |---|---|---|---|---|---|
 | [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Following states SHOULD be used: `user`, `system`, `kernel`
+**[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `kernel`
 
 **[2]:** Required if mode is available, i.e. metrics coming from the Docker Stats API.
 
@@ -76,7 +76,7 @@ This metric is [opt-in][MetricOptIn].
 |---|---|---|---|---|---|
 | [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Following states SHOULD be used: `user`, `system`, `kernel`
+**[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `kernel`
 
 **[2]:** Required if mode is available, i.e. metrics coming from the Docker Stats API.
 
