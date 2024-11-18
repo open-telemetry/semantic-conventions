@@ -62,7 +62,7 @@ Cosmos DB instrumentation includes call-level (public API) surface spans and net
 
 **[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[2]:** if not `gateway` (the default value is assumed to be `gateway`).
+**[2] `db.cosmosdb.connection_mode`:** if not `gateway` (the default value is assumed to be `gateway`).
 
 **[3] `db.operation.name`:** The `db.operation.name` has the following list of well-known values.
 If one of them applies, then the respective value MUST be used.
@@ -188,7 +188,7 @@ If none of them applies, it's RECOMMENDED to use language-agnostic representatio
 client method name in snake_case. Instrumentations SHOULD document
 additional values when introducing new operations.
 
-**[4]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[4] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
 **[5] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
@@ -209,14 +209,14 @@ This attribute has stability level RELEASE CANDIDATE.
 Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text) section.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[11]:** if readily available or if instrumentation supports query summarization.
+**[11] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
 
 **[12] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[13]:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[13] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
 
 **[14] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
@@ -363,13 +363,13 @@ system specific term if more applicable.
 
 This attribute has stability level RELEASE CANDIDATE.
 
-**[3]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[3] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
 **[4] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[5]:** If the operation failed and status code is available.
+**[5] `db.response.status_code`:** If the operation failed and status code is available.
 
 **[6] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
@@ -377,7 +377,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[8]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[8] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[9] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -426,7 +426,7 @@ It captures the number of active instances at any given time. Best practices dic
 
 **[1] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[2]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[2] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[3] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 

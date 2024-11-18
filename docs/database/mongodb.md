@@ -52,7 +52,7 @@ This attribute has stability level RELEASE CANDIDATE.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[4]:** If the operation failed and error code is available.
+**[4] `db.response.status_code`:** If the operation failed and error code is available.
 
 **[5] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
@@ -60,7 +60,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[7]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[7] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[8] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 This attribute has stability level RELEASE CANDIDATE.

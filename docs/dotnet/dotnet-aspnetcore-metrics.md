@@ -111,7 +111,7 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2]:** if and only if the exception was handled by this handler.
+**[2] `aspnetcore.diagnostics.handler.type`:** if and only if the exception was handled by this handler.
 
 `aspnetcore.diagnostics.exception.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -156,7 +156,7 @@ All rate-limiting metrics are reported by the `Microsoft.AspNetCore.RateLimiting
 |---|---|---|---|---|---|
 | [`aspnetcore.rate_limiting.policy`](/docs/attributes-registry/aspnetcore.md) | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** if the matched endpoint for the request had a rate-limiting policy.
+**[1] `aspnetcore.rate_limiting.policy`:** if the matched endpoint for the request had a rate-limiting policy.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -186,7 +186,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 |---|---|---|---|---|---|
 | [`aspnetcore.rate_limiting.policy`](/docs/attributes-registry/aspnetcore.md) | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** if the matched endpoint for the request had a rate-limiting policy.
+**[1] `aspnetcore.rate_limiting.policy`:** if the matched endpoint for the request had a rate-limiting policy.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -212,7 +212,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 |---|---|---|---|---|---|
 | [`aspnetcore.rate_limiting.policy`](/docs/attributes-registry/aspnetcore.md) | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** if the matched endpoint for the request had a rate-limiting policy.
+**[1] `aspnetcore.rate_limiting.policy`:** if the matched endpoint for the request had a rate-limiting policy.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -243,7 +243,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | [`aspnetcore.rate_limiting.result`](/docs/attributes-registry/aspnetcore.md) | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`aspnetcore.rate_limiting.policy`](/docs/attributes-registry/aspnetcore.md) | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** if the matched endpoint for the request had a rate-limiting policy.
+**[1] `aspnetcore.rate_limiting.policy`:** if the matched endpoint for the request had a rate-limiting policy.
 
 `aspnetcore.rate_limiting.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -284,7 +284,7 @@ Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
 | [`aspnetcore.rate_limiting.result`](/docs/attributes-registry/aspnetcore.md) | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`aspnetcore.rate_limiting.policy`](/docs/attributes-registry/aspnetcore.md) | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** if the matched endpoint for the request had a rate-limiting policy.
+**[1] `aspnetcore.rate_limiting.policy`:** if the matched endpoint for the request had a rate-limiting policy.
 
 `aspnetcore.rate_limiting.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

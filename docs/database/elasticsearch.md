@@ -92,7 +92,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[8]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[8] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[9] `db.collection.name`:** The query may target multiple indices or data streams, in which case it SHOULD be a comma separated list of those. If the query doesn't target a specific index, this field MUST NOT be set.
 
@@ -108,7 +108,7 @@ For batch operations, if the individual operations are known to have the same qu
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[14]:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
+**[14] `db.query.text`:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
 
 **[15] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
