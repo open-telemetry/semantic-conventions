@@ -341,9 +341,10 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `process.uptime` | Counter | `s` | The time the process has been running. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.uptime` | Gauge | `s` | The time the process has been running. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Instrumentations SHOULD use counter with type `double` and measure uptime with at least millisecond precision
+**[1]:** Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
+The actual accuracy would depend on the instrumentation and operating system.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

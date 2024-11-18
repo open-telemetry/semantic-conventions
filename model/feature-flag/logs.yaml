@@ -1,0 +1,64 @@
+groups:
+  - id: event.feature_flag.evaluation
+    type: event
+    name: feature_flag.evaluation
+    brief: >
+      Defines feature flag evaluation as an event.
+    note: >
+      A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag
+      value is evaluated, which may happen many times over the course of an
+      application lifecycle.
+      For example, a website A/B testing different animations may evaluate a
+      flag each time a button is clicked.
+      A `feature_flag.evaluation` event is emitted on each evaluation even if the result is the same.
+    attributes:
+      - ref: feature_flag.key
+        requirement_level: required
+      - ref: feature_flag.variant
+        requirement_level:
+          conditionally_required: If feature flag provider supplies a variant or equivalent concept.
+      - ref: feature_flag.system
+        requirement_level: recommended
+      - ref: feature_flag.context.id
+        requirement_level: recommended
+      - ref: feature_flag.version
+        requirement_level: recommended
+      - ref: feature_flag.set.id
+        requirement_level: recommended
+      - ref: feature_flag.evaluation.reason
+        requirement_level: recommended
+      - ref: error.type
+        examples: ["provider_not_ready", "targeting_key_missing", "provider_fatal", "general"]
+        requirement_level:
+          conditionally_required: If and only if an error occurred during flag evaluation.
+        # TODO: move note to yaml once https://github.com/open-telemetry/build-tools/issues/192 is supported
+        note: |
+          If one of these values applies, then it MUST be used; otherwise, a custom value MAY be used.
+
+          | Value  | Description | Stability |
+          |---|---|---|
+          | `flag_not_found` | The flag could not be found. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+          | `invalid_context` | The evaluation context does not meet provider requirements. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+          | `parse_error` | An error was encountered parsing data, such as a flag configuration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+          | `provider_fatal` | The provider has entered an irrecoverable error state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+          | `provider_not_ready` | The value was resolved before the provider was initialized. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+          | `targeting_key_missing` | The provider requires a targeting key and one was not provided in the evaluation context. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+          | `type_mismatch` | The type of the flag value does not match the expected type. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+          | `general` | The error was for a reason not enumerated above. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+      - ref: feature_flag.evaluation.error.message
+        requirement_level:
+          recommended: If and only if an error occurred. It's NOT RECOMMENDED to duplicate the value of `error.type` in `feature_flag.evaluation.error.message`.
+    body:
+      id: feature_flag.evaluation
+      type: map
+      requirement_level: recommended
+      fields:
+        - id: value
+          type: undefined
+          stability: experimental
+          brief: The evaluated value of the feature flag.
+          requirement_level:
+            conditionally_required: >
+              If and only if feature flag provider does not supply variant or equivalent concept.
+              Otherwise, `value` should be treated as opt-in.
+          examples: ["#ff0000", "1", "true"]
