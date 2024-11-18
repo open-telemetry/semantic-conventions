@@ -118,7 +118,7 @@ Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service
 
 **[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[3]:** if the port is supported by the network transport used for communication.
+**[3] `server.port`:** if the port is supported by the network transport used for communication.
 
 **[4] `network.transport`:** The value SHOULD be normalized to lowercase.
 
@@ -191,7 +191,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[3]:** if the port is supported by the network transport used for communication.
+**[3] `server.port`:** if the port is supported by the network transport used for communication.
 
 **[4] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
 

@@ -129,7 +129,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[5] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
-**[6]:** If not `http` and `network.protocol.version` is set.
+**[6] `network.protocol.name`:** If not `http` and `network.protocol.version` is set.
 
 **[7] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
@@ -304,7 +304,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[5] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
-**[6]:** If not `http` and `network.protocol.version` is set.
+**[6] `network.protocol.name`:** If not `http` and `network.protocol.version` is set.
 
 **[7] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
@@ -412,7 +412,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[5] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
-**[6]:** If not `http` and `network.protocol.version` is set.
+**[6] `network.protocol.name`:** If not `http` and `network.protocol.version` is set.
 
 **[7] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
@@ -525,7 +525,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[5] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
-**[6]:** If not `http` and `network.protocol.version` is set.
+**[6] `network.protocol.name`:** If not `http` and `network.protocol.version` is set.
 
 **[7] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
@@ -624,7 +624,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[5] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
-**[6]:** If not `http` and `network.protocol.version` is set.
+**[6] `network.protocol.name`:** If not `http` and `network.protocol.version` is set.
 
 **[7] `url.template`:** The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
 
@@ -723,7 +723,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[5] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
-**[6]:** If not `http` and `network.protocol.version` is set.
+**[6] `network.protocol.name`:** If not `http` and `network.protocol.version` is set.
 
 **[7] `url.template`:** The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
 

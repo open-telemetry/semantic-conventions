@@ -223,11 +223,11 @@ additional filters are applied.
 
 If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-**[6]:** If and only if it's different than `http.request.method`.
+**[6] `http.request.method_original`:** If and only if it's different than `http.request.method`.
 
 **[7] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
-**[8]:** If not `http` and `network.protocol.version` is set.
+**[8] `network.protocol.name`:** If not `http` and `network.protocol.version` is set.
 
 **[9] `http.request.resend_count`:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
 
@@ -441,14 +441,14 @@ additional filters are applied.
 
 If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-**[5]:** If and only if it's different than `http.request.method`.
+**[5] `http.request.method_original`:** If and only if it's different than `http.request.method`.
 
 **[6] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
 **[7] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
-**[8]:** If not `http` and `network.protocol.version` is set.
+**[8] `network.protocol.name`:** If not `http` and `network.protocol.version` is set.
 
 **[9] `server.port`:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 

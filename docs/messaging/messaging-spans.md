@@ -411,24 +411,24 @@ it's RECOMMENDED to:
 
 **[3] `messaging.batch.message_count`:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
-**[4]:** If the span describes an operation on a batch of messages.
+**[4] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
 **[5] `messaging.consumer.group.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system.
 
-**[6]:** If value is `true`. When missing, the value is assumed to be `false`.
+**[6] `messaging.destination.anonymous`:** If value is `true`. When missing, the value is assumed to be `false`.
 
 **[7] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[8]:** If span describes operation on a single message or if the value applies to all messages in the batch.
+**[8] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
 **[9] `messaging.destination.subscription.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.destination.subscription.name` is applicable and what it means in the context of that system.
 
 **[10] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[11]:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
+**[11] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[12]:** If value is `true`. When missing, the value is assumed to be `false`.
+**[12] `messaging.destination.temporary`:** If value is `true`. When missing, the value is assumed to be `false`.
 
 **[13] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
