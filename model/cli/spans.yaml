@@ -1,0 +1,14 @@
+groups:
+  - id: trace.cli.common_attributes
+    type: attribute_group
+    stability: experimental
+    brief: >
+      Describes CLI (Command Line Interfaces) programs span.
+    attributes:
+      - ref: process.command_line
+        requirement_level: recommended
+      - ref: process.command_args
+        requirement_level: recommended
+      - ref: process.exit.code
+        brief: The exit code of the program
+        requirements_level: recommended
