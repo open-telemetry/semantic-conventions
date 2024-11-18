@@ -36,6 +36,14 @@ groups:
         deprecated: "Replaced by `db.query.text`."
         stability: experimental
         examples: ['SELECT * FROM wuser_table', 'SET mykey "WuValue"']
+      - id: db.query.parameter
+        type: template[string]
+        brief: >
+          A query parameter used in `db.query.text`, with `<key>` being the parameter name,
+          and the attribute value being a string representation of the parameter value.
+        deprecated: "Replaced by `db.operation.parameter`."
+        stability: experimental
+        examples: ["someval", "55"]
       - id: db.cassandra.table
         type: string
         stability: experimental
