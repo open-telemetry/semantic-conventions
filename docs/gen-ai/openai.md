@@ -66,9 +66,9 @@ attributes and ones specific the OpenAI.
 the canonical name of exception that occurred, or another low-cardinality error identifier.
 Instrumentations SHOULD document the list of errors they report.
 
-**[4]:** if the request includes a service_tier and the value is not 'auto'
+**[4] `gen_ai.openai.request.service_tier`:** if the request includes a service_tier and the value is not 'auto'
 
-**[5]:** if the response was received and includes a service_tier
+**[5] `gen_ai.openai.response.service_tier`:** if the response was received and includes a service_tier
 
 **[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 

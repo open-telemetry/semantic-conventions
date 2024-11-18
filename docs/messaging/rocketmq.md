@@ -93,18 +93,18 @@ it's RECOMMENDED to:
 
 **[2] `messaging.batch.message_count`:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
-**[3]:** If the span describes an operation on a batch of messages.
+**[3] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
 **[4] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[5]:** If span describes operation on a single message or if the value applies to all messages in the batch.
+**[5] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
 **[6] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[7]:** If the message type is delay and delivery timestamp is not specified.
+**[7] `messaging.rocketmq.message.delay_time_level`:** If the message type is delay and delivery timestamp is not specified.
 
-**[8]:** If the message type is delay and delay time level is not specified.
+**[8] `messaging.rocketmq.message.delivery_timestamp`:** If the message type is delay and delay time level is not specified.
 
 **[9] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
