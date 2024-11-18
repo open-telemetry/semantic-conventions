@@ -31,17 +31,17 @@ Describes file attributes.
 | <a id="file-size" href="#file-size">`file.size`</a> | int | File size in bytes. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="file-symbolic-link-target-path" href="#file-symbolic-link-target-path">`file.symbolic_link.target_path`</a> | string | Path to the target of a symbolic link. [7] | `/usr/bin/python3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
+**[1] `file.accessed`:** This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
 
-**[2]:** Attributes names depend on the OS or file system. Here’s a non-exhaustive list of values expected for this attribute: `archive`, `compressed`, `directory`, `encrypted`, `execute`, `hidden`, `immutable`, `journaled`, `read`, `readonly`, `symbolic link`, `system`, `temporary`, `write`.
+**[2] `file.attributes`:** Attributes names depend on the OS or file system. Here’s a non-exhaustive list of values expected for this attribute: `archive`, `compressed`, `directory`, `encrypted`, `execute`, `hidden`, `immutable`, `journaled`, `read`, `readonly`, `symbolic link`, `system`, `temporary`, `write`.
 
-**[3]:** `file.changed` captures the time when any of the file's properties or attributes (including the content) are changed, while `file.modified` captures the timestamp when the file content is modified.
+**[3] `file.changed`:** `file.changed` captures the time when any of the file's properties or attributes (including the content) are changed, while `file.modified` captures the timestamp when the file content is modified.
 
-**[4]:** This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
+**[4] `file.created`:** This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
 
-**[5]:** When the file name has multiple extensions (example.tar.gz), only the last one should be captured ("gz", not "tar.gz").
+**[5] `file.extension`:** When the file name has multiple extensions (example.tar.gz), only the last one should be captured ("gz", not "tar.gz").
 
-**[6]:** On Linux, a resource fork is used to store additional data with a filesystem object. A file always has at least one fork for the data portion, and additional forks may exist.
+**[6] `file.fork_name`:** On Linux, a resource fork is used to store additional data with a filesystem object. A file always has at least one fork for the data portion, and additional forks may exist.
 On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the Internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name.
 
-**[7]:** This attribute is only applicable to symbolic links.
+**[7] `file.symbolic_link.target_path`:** This attribute is only applicable to symbolic links.

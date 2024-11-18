@@ -51,7 +51,7 @@ to
 | `db.cosmosdb.container` &rarr; `db.collection.name` |                                                                                                             |
 | New: `db.operation.batch.size`                      |                                                                                                             |
 | New: `db.response.status_code`                      |                                                                                                             |
-| New: `db.query.parameter.<key>`                     | Opt-In                                                                                                      |
+| New: `db.operation.parameter.<key>`                 | Opt-In                                                                                                      |
 | New: `error.type`                                   |                                                                                                             |
 <!-- prettier-ignore-end -->
 

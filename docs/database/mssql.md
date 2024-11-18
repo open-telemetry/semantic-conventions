@@ -30,9 +30,9 @@ The Semantic Conventions for the *Microsoft SQL Server* extend and override the 
 | [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [9] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [10] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [12] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [12] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** When connected to a default instance, `db.namespace` SHOULD be set to the name of
+**[1] `db.namespace`:** When connected to a default instance, `db.namespace` SHOULD be set to the name of
 the database. When connected to a [named instance](https://learn.microsoft.com/sql/connect/jdbc/building-the-connection-url#named-and-multiple-sql-server-instances),
 `db.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}.{database_name}` pattern.
 
@@ -46,37 +46,37 @@ Instrumentation SHOULD document if `db.namespace` reflects the database provided
 
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[2]:** Microsoft SQL Server does not report SQLSTATE.
+**[2] `db.response.status_code`:** Microsoft SQL Server does not report SQLSTATE.
 
-**[3]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[3] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[4]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[5]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[5] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[6]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+**[6] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[7]:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
+**[7] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
 Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text) section.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[8]:** if readily available or if instrumentation supports query summarization.
+**[8] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
 
-**[9]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[9] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[10]:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
-Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](../../docs/attributes-registry/db.md)).
+**[10] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
 
-**[11]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[11] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[12]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
-If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
+**[12] `db.operation.parameter`:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
+If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
 This attribute has stability level RELEASE CANDIDATE.
 
 The following attributes can be important for making sampling decisions

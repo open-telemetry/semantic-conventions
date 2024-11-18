@@ -47,7 +47,6 @@ groups:
         requirement_level:
           conditionally_required: If available.
       - ref: db.namespace
-        sampling_relevant: true
         requirement_level:
           conditionally_required: If available.
         note: ""  # overriding the base note
@@ -84,7 +83,6 @@ groups:
             database call. The operation name MAY be parsed from the query text,
             in which case it SHOULD be the single operation name found in the query.
       - ref: db.collection.name
-        sampling_relevant: true
         requirement_level:  # TODO (trask) simplify
           conditionally_required: >
             If readily available and if a database call is performed on a single collection.
