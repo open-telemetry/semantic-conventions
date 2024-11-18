@@ -50,7 +50,6 @@ groups:
         requirement_level:
           conditionally_required: If available
       - ref: db.namespace
-        sampling_relevant: true
         requirement_level:
           conditionally_required: If available.
         note: ""  # overriding the base note
@@ -73,7 +72,6 @@ groups:
         requirement_level:
           recommended: if readily available or if instrumentation supports query summarization.
       - ref: db.collection.name
-        sampling_relevant: true
         requirement_level:
           conditionally_required: >
             If readily available and if a database call is performed on a single collection.

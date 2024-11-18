@@ -1,5 +1,5 @@
 groups:
-  - id: gcp.cloud_run
+  - id: resource.gcp.cloud_run
     type: resource
     name: gcp.cloud_run
     brief: >
