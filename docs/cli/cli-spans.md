@@ -12,7 +12,7 @@ operations to attributes on a Span.
 The **span name** SHOULD be of the format `{process.executable.name}`. In case this is
 not informative enough because of interpreters calling other files, e.g. `python script.py` or in
 cases of subcommands, e.g. `flask run mycommand` instrumentation MAY provide a more
-descriptive span name of the format `process.command_line` if appropriate.
+descriptive span name of the format `{process.command_line}` if appropriate.
 
 > **Warning**
 > The `process.command_line` value can have high cardinality.
