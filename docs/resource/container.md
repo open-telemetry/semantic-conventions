@@ -29,16 +29,16 @@
 | [`container.command_args`](/docs/attributes-registry/container.md) | string[] | All the command arguments (including the command/executable itself) run by the container. | `["otelcontribcol", "--config", "config.yaml"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`container.command_line`](/docs/attributes-registry/container.md) | string | The full command run by the container as a single string representing the full command. | `otelcontribcol --config config.yaml` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Docker defines a sha256 of the image id; `container.image.id` corresponds to the `Image` field from the Docker container inspect [API](https://docs.docker.com/engine/api/v1.43/#tag/Container/operation/ContainerInspect) endpoint.
+**[1] `container.image.id`:** Docker defines a sha256 of the image id; `container.image.id` corresponds to the `Image` field from the Docker container inspect [API](https://docs.docker.com/engine/api/v1.43/#tag/Container/operation/ContainerInspect) endpoint.
 K8s defines a link to the container registry repository with digest `"imageID": "registry.azurecr.io /namespace/service/dockerfile@sha256:bdeabd40c3a8a492eaf9e8e44d0ebbb84bac7ee25ac0cf8a7159d25f62555625"`.
 The ID is assigned by the container runtime and can vary in different environments. Consider using `oci.manifest.digest` if it is important to identify the same image in different environments/runtimes.
 
-**[2]:** [Docker](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
+**[2] `container.image.repo_digests`:** [Docker](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
 
-**[3]:** Follows [OCI Image Manifest Specification](https://github.com/opencontainers/image-spec/blob/main/manifest.md), and specifically the [Digest property](https://github.com/opencontainers/image-spec/blob/main/descriptor.md#digests).
+**[3] `oci.manifest.digest`:** Follows [OCI Image Manifest Specification](https://github.com/opencontainers/image-spec/blob/main/manifest.md), and specifically the [Digest property](https://github.com/opencontainers/image-spec/blob/main/descriptor.md#digests).
 An example can be found in [Example Image Manifest](https://docs.docker.com/registry/spec/manifest-v2-2/#example-image-manifest).
 
-**[4]:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
+**[4] `container.command`:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

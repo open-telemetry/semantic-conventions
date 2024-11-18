@@ -65,7 +65,7 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Following states SHOULD be used: `user`, `system`, `wait`
+**[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `wait`
 
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -104,7 +104,7 @@ This metric is [opt-in][MetricOptIn].
 |---|---|---|---|---|---|
 | [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Following states SHOULD be used: `user`, `system`, `wait`
+**[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `wait`
 
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -341,9 +341,10 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `process.uptime` | Counter | `s` | The time the process has been running. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.uptime` | Gauge | `s` | The time the process has been running. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Instrumentations SHOULD use counter with type `double` and measure uptime with at least millisecond precision
+**[1]:** Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
+The actual accuracy would depend on the instrumentation and operating system.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

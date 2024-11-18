@@ -18,7 +18,7 @@
 |---|---|---|---|---|---|
 | [`deployment.environment.name`](/docs/attributes-registry/deployment.md) | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** `deployment.environment.name` does not affect the uniqueness constraints defined through
+**[1] `deployment.environment.name`:** `deployment.environment.name` does not affect the uniqueness constraints defined through
 the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
 This implies that resources carrying the following attribute combinations MUST be
 considered to be identifying the same service:

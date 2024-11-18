@@ -24,7 +24,7 @@ This document defines attributes for Feature Flags.
 | <a id="feature-flag-variant" href="#feature-flag-variant">`feature_flag.variant`</a> | string | A semantic identifier for an evaluated flag value. [1] | `red`; `true`; `on` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="feature-flag-version" href="#feature-flag-version">`feature_flag.version`</a> | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** A semantic identifier, commonly referred to as a variant, provides a means
+**[1] `feature_flag.variant`:** A semantic identifier, commonly referred to as a variant, provides a means
 for referring to a value without including the value itself. This can
 provide additional context for understanding the meaning behind a value.
 For example, the variant `red` maybe be used for the value `#c05543`.
