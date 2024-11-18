@@ -44,7 +44,7 @@ This document defines semantic convention attributes in the TLS namespace.
 | <a id="tls-server-not-before" href="#tls-server-not-before">`tls.server.not_before`</a> | string | Date/Time indicating when server certificate is first considered valid. | `1970-01-01T00:00:00.000Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="tls-server-subject" href="#tls-server-subject">`tls.server.subject`</a> | string | Distinguished name of subject of the x.509 certificate presented by the server. | `CN=myserver, OU=Documentation Team, DC=example, DC=com` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The values allowed for `tls.cipher` MUST be one of the `Descriptions` of the [registered TLS Cipher Suits](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#table-tls-parameters-4).
+**[1] `tls.cipher`:** The values allowed for `tls.cipher` MUST be one of the `Descriptions` of the [registered TLS Cipher Suits](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#table-tls-parameters-4).
 
 `tls.protocol.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -19,4 +19,4 @@ Describes information about the user.
 | <a id="user-name" href="#user-name">`user.name`</a> | string | Short name or login/username of the user. | `a.einstein` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="user-roles" href="#user-roles">`user.roles`</a> | string[] | Array of user roles at the time of the event. | `["admin", "reporting_user"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Useful if `user.id` or `user.name` contain confidential information and cannot be used.
+**[1] `user.hash`:** Useful if `user.id` or `user.name` contain confidential information and cannot be used.

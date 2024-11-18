@@ -24,11 +24,11 @@ CloudFoundry resource attributes.
 | <a id="cloudfoundry-system-id" href="#cloudfoundry-system-id">`cloudfoundry.system.id`</a> | string | A guid or another name describing the event source. [10] | `cf/gorouter` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cloudfoundry-system-instance-id" href="#cloudfoundry-system-instance-id">`cloudfoundry.system.instance.id`</a> | string | A guid describing the concrete instance of the event source. [11] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Application instrumentation should use the value from environment
+**[1] `cloudfoundry.app.id`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.application_id`. This is the same value as
 reported by `cf app <app-name> --guid`.
 
-**[2]:** CloudFoundry defines the `instance_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+**[2] `cloudfoundry.app.instance.id`:** CloudFoundry defines the `instance_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
 It is used for logs and metrics emitted by CloudFoundry. It is
 supposed to contain the application instance index for applications
 deployed on the runtime.
@@ -36,36 +36,36 @@ deployed on the runtime.
 Application instrumentation should use the value from environment
 variable `CF_INSTANCE_INDEX`.
 
-**[3]:** Application instrumentation should use the value from environment
+**[3] `cloudfoundry.app.name`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.application_name`. This is the same value
 as reported by `cf apps`.
 
-**[4]:** Application instrumentation should use the value from environment
+**[4] `cloudfoundry.org.id`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.org_id`. This is the same value as
 reported by `cf org <org-name> --guid`.
 
-**[5]:** Application instrumentation should use the value from environment
+**[5] `cloudfoundry.org.name`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.org_name`. This is the same value as
 reported by `cf orgs`.
 
-**[6]:** Application instrumentation should use the value from environment
+**[6] `cloudfoundry.process.id`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.process_id`. It is supposed to be equal to
 `VCAP_APPLICATION.app_id` for applications deployed to the runtime.
 For system components, this could be the actual PID.
 
-**[7]:** CloudFoundry applications can consist of multiple jobs. Usually the
+**[7] `cloudfoundry.process.type`:** CloudFoundry applications can consist of multiple jobs. Usually the
 main process will be of type `web`. There can be additional background
 tasks or side-cars with different process types.
 
-**[8]:** Application instrumentation should use the value from environment
+**[8] `cloudfoundry.space.id`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.space_id`. This is the same value as
 reported by `cf space <space-name> --guid`.
 
-**[9]:** Application instrumentation should use the value from environment
+**[9] `cloudfoundry.space.name`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.space_name`. This is the same value as
 reported by `cf spaces`.
 
-**[10]:** CloudFoundry defines the `source_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+**[10] `cloudfoundry.system.id`:** CloudFoundry defines the `source_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
 It is used for logs and metrics emitted by CloudFoundry. It is
 supposed to contain the component name, e.g. "gorouter", for
 CloudFoundry components.
@@ -75,7 +75,7 @@ When system components are instrumented, values from the
 should be used. The `system.id` should be set to
 `spec.deployment/spec.name`.
 
-**[11]:** CloudFoundry defines the `instance_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
+**[11] `cloudfoundry.system.instance.id`:** CloudFoundry defines the `instance_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
 It is used for logs and metrics emitted by CloudFoundry. It is
 supposed to contain the vm id for CloudFoundry components.
 

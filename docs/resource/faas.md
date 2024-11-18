@@ -29,7 +29,7 @@ See also:
 | [`faas.max_memory`](/docs/attributes-registry/faas.md) | int | The amount of memory available to the serverless function converted to Bytes. [4] | `134217728` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`faas.version`](/docs/attributes-registry/faas.md) | string | The immutable version of the function being executed. [5] | `26`; `pinkfroid-00002` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** This is the name of the function as configured/deployed on the FaaS
+**[1] `faas.name`:** This is the name of the function as configured/deployed on the FaaS
 platform and is usually different from the name of the callback
 function (which may be stored in the
 [`code.namespace`/`code.function`](/docs/general/attributes.md#source-code-attributes)
@@ -46,7 +46,7 @@ definition of function name MUST be used for this attribute
   app can host multiple functions that would usually share
   a TracerProvider (see also the `cloud.resource_id` attribute).
 
-**[2]:** On some cloud providers, it may not be possible to determine the full ID at startup,
+**[2] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
 
 The exact value to use for `cloud.resource_id` depends on the cloud provider.
@@ -64,11 +64,11 @@ The following well-known definitions MUST be used if you set this attribute and 
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
   a TracerProvider.
 
-**[3]:** - **AWS Lambda:** Use the (full) log stream name.
+**[3] `faas.instance`:** - **AWS Lambda:** Use the (full) log stream name.
 
-**[4]:** It's recommended to set this attribute since e.g. too little memory can easily stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information (which must be multiplied by 1,048,576).
+**[4] `faas.max_memory`:** It's recommended to set this attribute since e.g. too little memory can easily stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information (which must be multiplied by 1,048,576).
 
-**[5]:** Depending on the cloud provider and platform, use:
+**[5] `faas.version`:** Depending on the cloud provider and platform, use:
 
 - **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
   (an integer represented as a decimal string).

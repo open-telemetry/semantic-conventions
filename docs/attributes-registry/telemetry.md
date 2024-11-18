@@ -18,10 +18,10 @@ This document defines attributes for telemetry SDK.
 | <a id="telemetry-sdk-name" href="#telemetry-sdk-name">`telemetry.sdk.name`</a> | string | The name of the telemetry SDK as defined above. [2] | `opentelemetry` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="telemetry-sdk-version" href="#telemetry-sdk-version">`telemetry.sdk.version`</a> | string | The version string of the telemetry SDK. | `1.2.3` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
+**[1] `telemetry.distro.name`:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
 
-**[2]:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
+**[2] `telemetry.sdk.name`:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
 If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the
 `telemetry.sdk.name` attribute to the fully-qualified class or module name of this SDK's main entry point
 or another suitable identifier depending on the language.

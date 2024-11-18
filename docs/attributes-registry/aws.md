@@ -88,7 +88,7 @@ This document defines attributes for AWS Lambda.
 |---|---|---|---|---|
 | <a id="aws-lambda-invoked-arn" href="#aws-lambda-invoked-arn">`aws.lambda.invoked_arn`</a> | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** This may be different from `cloud.resource_id` if an alias is involved.
+**[1] `aws.lambda.invoked_arn`:** This may be different from `cloud.resource_id` if an alias is involved.
 
 ## Amazon Logs Attributes
 
@@ -101,11 +101,11 @@ This document defines attributes for AWS Logs.
 | <a id="aws-log-stream-arns" href="#aws-log-stream-arns">`aws.log.stream.arns`</a> | string[] | The ARN(s) of the AWS log stream(s). [4] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="aws-log-stream-names" href="#aws-log-stream-names">`aws.log.stream.names`</a> | string[] | The name(s) of the AWS log stream(s) an application is writing to. | `["logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[2]:** See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
+**[2] `aws.log.group.arns`:** See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
 
-**[3]:** Multiple log groups must be supported for cases like multi-container applications, where a single application has sidecar containers, and each write to their own log group.
+**[3] `aws.log.group.names`:** Multiple log groups must be supported for cases like multi-container applications, where a single application has sidecar containers, and each write to their own log group.
 
-**[4]:** See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
+**[4] `aws.log.stream.arns`:** See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
 
 ## Amazon S3 Attributes
 
@@ -120,21 +120,21 @@ This document defines attributes for AWS S3.
 | <a id="aws-s3-part-number" href="#aws-s3-part-number">`aws.s3.part_number`</a> | int | The part number of the part being uploaded in a multipart-upload operation. This is a positive integer between 1 and 10,000. [9] | `3456` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="aws-s3-upload-id" href="#aws-s3-upload-id">`aws.s3.upload_id`</a> | string | Upload ID that identifies the multipart upload. [10] | `dfRtDYWFbkRONycy.Yxwh66Yjlx.cph0gtNBtJ` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[5]:** The `bucket` attribute is applicable to all S3 operations that reference a bucket, i.e. that require the bucket name as a mandatory parameter.
+**[5] `aws.s3.bucket`:** The `bucket` attribute is applicable to all S3 operations that reference a bucket, i.e. that require the bucket name as a mandatory parameter.
 This applies to almost all S3 operations except `list-buckets`.
 
-**[6]:** The `copy_source` attribute applies to S3 copy operations and corresponds to the `--copy-source` parameter
+**[6] `aws.s3.copy_source`:** The `copy_source` attribute applies to S3 copy operations and corresponds to the `--copy-source` parameter
 of the [copy-object operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html).
 This applies in particular to the following operations:
 
 - [copy-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html)
 - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
 
-**[7]:** The `delete` attribute is only applicable to the [delete-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-object.html) operation.
+**[7] `aws.s3.delete`:** The `delete` attribute is only applicable to the [delete-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-object.html) operation.
 The `delete` attribute corresponds to the `--delete` parameter of the
 [delete-objects operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-objects.html).
 
-**[8]:** The `key` attribute is applicable to all object-related S3 operations, i.e. that require the object key as a mandatory parameter.
+**[8] `aws.s3.key`:** The `key` attribute is applicable to all object-related S3 operations, i.e. that require the object key as a mandatory parameter.
 This applies in particular to the following operations:
 
 - [copy-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html)
@@ -151,12 +151,12 @@ This applies in particular to the following operations:
 - [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
 - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
 
-**[9]:** The `part_number` attribute is only applicable to the [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
+**[9] `aws.s3.part_number`:** The `part_number` attribute is only applicable to the [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
 and [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html) operations.
 The `part_number` attribute corresponds to the `--part-number` parameter of the
 [upload-part operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html).
 
-**[10]:** The `upload_id` attribute applies to S3 multipart-upload operations and corresponds to the `--upload-id` parameter
+**[10] `aws.s3.upload_id`:** The `upload_id` attribute applies to S3 multipart-upload operations and corresponds to the `--upload-id` parameter
 of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) multipart operations.
 This applies in particular to the following operations:
 
