@@ -27,7 +27,6 @@ The following semantic conventions for spans are defined:
 * [Database](/docs/database/database-spans.md): For SQL and NoSQL client call spans.
 * [Exceptions](/docs/exceptions/exceptions-spans.md): For recording exceptions associated with a span.
 * [FaaS](/docs/faas/faas-spans.md): For [Function as a Service](https://wikipedia.org/wiki/Function_as_a_service) (e.g., AWS Lambda) spans.
-* [Feature Flags](/docs/feature-flags/feature-flags-spans.md): For recording feature flag evaluations associated with a span.
 * [HTTP](/docs/http/http-spans.md): For HTTP client and server spans.
 * [Messaging](/docs/messaging/messaging-spans.md): For messaging systems (queues, publish/subscribe, etc.) spans.
 * [Object Stores](/docs/object-stores/README.md): Semantic Conventions for object stores spans.
