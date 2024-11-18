@@ -81,16 +81,16 @@ A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag valu
 | `type_mismatch` | The type of the flag value does not match the expected type. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `general` | The error was for a reason not enumerated above. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[2]:** If and only if an error occurred during flag evaluation.
+**[2] `error.type`:** If and only if an error occurred during flag evaluation.
 
 **[3] `feature_flag.variant`:** A semantic identifier, commonly referred to as a variant, provides a means
 for referring to a value without including the value itself. This can
 provide additional context for understanding the meaning behind a value.
 For example, the variant `red` maybe be used for the value `#c05543`.
 
-**[4]:** If feature flag provider supplies a variant or equivalent concept.
+**[4] `feature_flag.variant`:** If feature flag provider supplies a variant or equivalent concept.
 
-**[5]:** If and only if an error occurred. It's NOT RECOMMENDED to duplicate the value of `error.type` in `feature_flag.evaluation.error.message`.
+**[5] `feature_flag.evaluation.error.message`:** If and only if an error occurred. It's NOT RECOMMENDED to duplicate the value of `error.type` in `feature_flag.evaluation.error.message`.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -118,7 +118,7 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 |---|---|---|---|---|---|
 | `value` | undefined | The evaluated value of the feature flag. | `#ff0000`; `1`; `true` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** If and only if feature flag provider does not supply variant or equivalent concept. Otherwise, `value` should be treated as opt-in.
+**[1] `value`:** If and only if feature flag provider does not supply variant or equivalent concept. Otherwise, `value` should be treated as opt-in.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

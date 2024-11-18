@@ -89,7 +89,7 @@ it's RECOMMENDED to:
 **[2] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[3]:** If span describes operation on a single message or if the value applies to all messages in the batch.
+**[3] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
 **[4] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 

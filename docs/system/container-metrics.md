@@ -35,7 +35,7 @@ This metric is [opt-in][MetricOptIn].
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `kernel`
 
-**[2]:** Required if mode is available, i.e. metrics coming from the Docker Stats API.
+**[2] `cpu.mode`:** Required if mode is available, i.e. metrics coming from the Docker Stats API.
 
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -78,7 +78,7 @@ This metric is [opt-in][MetricOptIn].
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `kernel`
 
-**[2]:** Required if mode is available, i.e. metrics coming from the Docker Stats API.
+**[2] `cpu.mode`:** Required if mode is available, i.e. metrics coming from the Docker Stats API.
 
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -62,7 +62,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[7]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[7] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[8] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 This attribute has stability level RELEASE CANDIDATE.
