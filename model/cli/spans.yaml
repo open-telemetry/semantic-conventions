@@ -1,6 +1,6 @@
 groups:
   - id: span.cli
-    type: attribute_group
+    type: span
     stability: experimental
     brief: >
       Describes CLI (Command Line Interfaces) programs span.
