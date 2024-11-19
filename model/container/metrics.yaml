@@ -72,4 +72,4 @@ groups:
     unit: "By"
     attributes:
       - ref: network.io.direction
-      - ref: system.device
+      - ref: network.interface.name
