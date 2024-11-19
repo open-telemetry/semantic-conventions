@@ -27,8 +27,8 @@ versions:
             attribute_map:
               messaging.kafka.consumer.group: messaging.consumer.group.name
               messaging.rocketmq.client_group: messaging.consumer.group.name
-              messaging.evenhubs.consumer.group: messaging.consumer.group.name
-              message.servicebus.destination.subscription_name: messaging.destination.subscription.name
+              messaging.eventhubs.consumer.group: messaging.consumer.group.name
+              messaging.servicebus.destination.subscription_name: messaging.destination.subscription.name
         # https://github.com/open-telemetry/semantic-conventions/pull/1200
         - rename_attributes:
             attribute_map:
