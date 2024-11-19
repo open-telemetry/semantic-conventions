@@ -9,7 +9,7 @@ groups:
       - ref: server.port
         brief: GenAI server port.
         requirement_level:
-          conditionally_required: If `server.address` is set.
+          conditionally_required: If available and `server.address` is set.
       - ref: gen_ai.response.model
         requirement_level: recommended
       - ref: gen_ai.request.model

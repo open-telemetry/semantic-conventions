@@ -46,7 +46,7 @@ groups:
       - ref: server.port
         brief: GenAI server port.
         requirement_level:
-          conditionally_required: If `server.address` is set.
+          conditionally_required: If available and `server.address` is set.
       - ref: error.type
         requirement_level:
           conditionally_required: "if the operation ended in an error"
