@@ -96,6 +96,7 @@ Instrumentation SHOULD consider the operation as failed if any of the following 
 - the `db.response.status_code` value indicates an error
 
   > [!NOTE]
+  >
   > The classification of status code as an error depends on the context.
   > For example, a SQL STATE `02000` (`no_data`) indicates an error when the application
   > expected the data to be available. However, it is not an error when the
@@ -127,15 +128,19 @@ When the operation ends with an error, instrumentation:
 **Status**: [Experimental][DocumentStatus]
 
 When the operation fails with an exception, instrumentation SHOULD record
-an [exception event](../exceptions/exceptions-spans.md) by default if and only if the
-span being recorded is a local root span (does not have a local parent).
+an [exception event](../exceptions/exceptions-spans.md) by default if, and only if,
+the span being recorded is a local root span (does not have a local parent).
 
 > [!NOTE]
+>
 > Exception stack traces could be very long and are expensive to capture and store.
 > Exceptions which are not handled by instrumented libraries are likely to be handled
 > and logged by the caller.
 > Exceptions that are not handled will be recorded by the outermost (local root)
 > instrumentation such as HTTP or gRPC server.
+
+Instrumentation MAY provide a configuration option to record exceptions that
+escape the surface of the instrumented API.
 
 ## Common attributes
 
@@ -369,6 +374,7 @@ The `db.query.summary` attribute captures a shortened representation of a query 
 which SHOULD have low-cardinality and SHOULD NOT contain any dynamic or sensitive data.
 
 > [!NOTE]
+>
 > The `db.query.text` attribute is intended to identify individual queries. Even though
 > it is sanitized if captured by default, it could still have high cardinality and
 > might reach hundreds of lines.
