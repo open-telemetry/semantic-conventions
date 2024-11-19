@@ -55,7 +55,7 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 |---|---|---|---|---|---|
 | [`aws.lambda.invoked_arn`](/docs/attributes-registry/aws.md) | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** This may be different from `cloud.resource_id` if an alias is involved.
+**[1] `aws.lambda.invoked_arn`:** This may be different from `cloud.resource_id` if an alias is involved.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
