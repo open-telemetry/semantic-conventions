@@ -35,7 +35,7 @@ the span SHOULD be named `GraphQL Operation`.
 | [`graphql.operation.name`](/docs/attributes-registry/graphql.md) | string | The name of the operation being executed. | `findBookById` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`graphql.operation.type`](/docs/attributes-registry/graphql.md) | string | The type of the operation being executed. | `query`; `mutation`; `subscription` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The value may be sanitized to exclude sensitive information.
+**[1] `graphql.document`:** The value may be sanitized to exclude sensitive information.
 
 `graphql.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

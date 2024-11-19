@@ -45,7 +45,7 @@ structure and semantics will also be defined.
 |---|---|---|---|---|---|
 | [`event.name`](/docs/attributes-registry/event.md) | string | Identifies the class / type of event. [1] | `browser.mouse.click`; `device.app.lifecycle` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Event names are subject to the same rules as [attribute names](/docs/general/attribute-naming.md). Notably, event names are namespaced to avoid collisions and provide a clean separation of semantics for events in separate domains like browser, mobile, and kubernetes.
+**[1] `event.name`:** Event names are subject to the same rules as [attribute names](/docs/general/attribute-naming.md). Notably, event names are namespaced to avoid collisions and provide a clean separation of semantics for events in separate domains like browser, mobile, and kubernetes.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

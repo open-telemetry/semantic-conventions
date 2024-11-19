@@ -29,6 +29,14 @@ groups:
               stability: experimental
               value: "az.ai.inference"
               brief: 'Azure AI Inference'
+            - id: ibm.watsonx.ai
+              stability: experimental
+              value: "ibm.watsonx.ai"
+              brief: 'IBM Watsonx AI'
+            - id: aws.bedrock
+              stability: experimental
+              value: "aws.bedrock"
+              brief: 'AWS Bedrock'
         brief: The Generative AI product as identified by the client or server instrumentation.
         note: |
           The `gen_ai.system` describes a family of GenAI models with specific model identified

@@ -29,7 +29,7 @@ described on this page.
 | [`rpc.jsonrpc.error_message`](/docs/attributes-registry/rpc.md) | string | `error.message` property of response if it is an error response. | `Parse error`; `User already exists` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`rpc.jsonrpc.request_id`](/docs/attributes-registry/rpc.md) | string | `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. | `10`; `request-7`; `` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** This is always required for jsonrpc. See the note in the general RPC conventions for more information.
+**[1] `rpc.method`:** This is always required for jsonrpc. See the note in the general RPC conventions for more information.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

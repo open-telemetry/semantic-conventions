@@ -58,7 +58,7 @@ Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic co
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [16] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 A single database query may involve multiple collections.
 
@@ -74,9 +74,9 @@ SHOULD NOT be captured.
 
 This attribute has stability level RELEASE CANDIDATE.
 
-**[2]:** If readily available and if a database call is performed on a single collection. The collection name MAY be parsed from the query text, in which case it SHOULD be the single collection name in the query.
+**[2] `db.collection.name`:** If readily available and if a database call is performed on a single collection. The collection name MAY be parsed from the query text, in which case it SHOULD be the single collection name in the query.
 
-**[3]:** If a database system has multiple namespace components (e.g. schema name and database name), they SHOULD be concatenated
+**[3] `db.namespace`:** If a database system has multiple namespace components (e.g. schema name and database name), they SHOULD be concatenated
 (potentially using database system specific conventions) from most general to most
 specific namespace component, and more specific namespaces SHOULD NOT be captured without
 the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
@@ -94,12 +94,12 @@ Instrumentation SHOULD document if `db.namespace` reflects the database provided
 
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[4]:** This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
+**[4] `db.operation.name`:** This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
 In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.
 
-**[5]:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[5] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
-**[6]:** SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
+**[6] `db.response.status_code`:** SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
 return code which is adopted by some database systems like PostgreSQL.
 See [PostgreSQL error codes](https://www.postgresql.org/docs/current/errcodes-appendix.html)
 for the details.
@@ -135,34 +135,34 @@ For example, generic DB instrumentation that detected an error and has
 SQLSTATE `"42000"` and vendor-specific `1071` should set
 `db.response.status_code` to `"42000/1071"`."
 
-**[7]:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[7] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[8]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[8] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[9]:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[9] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[10]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+**[10] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[11]:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
+**[11] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
 Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text) section.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[12]:** if readily available or if instrumentation supports query summarization.
+**[12] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
 
-**[13]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[13] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[14]:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[14] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
 
-**[15]:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[15] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[16]:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
+**[16] `db.operation.parameter`:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
 This attribute has stability level RELEASE CANDIDATE.
 

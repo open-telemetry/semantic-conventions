@@ -32,17 +32,17 @@ These attributes may be used for any network related operation.
 | <a id="network-transport" href="#network-transport">`network.transport`</a> | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="network-type" href="#network-type">`network.type`</a> | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** The value SHOULD be normalized to lowercase.
+**[1] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
-**[2]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+**[2] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[3]:** The value SHOULD be normalized to lowercase.
+**[3] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[4]:** The value SHOULD be normalized to lowercase.
+**[4] `network.type`:** The value SHOULD be normalized to lowercase.
 
 `network.connection.subtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
