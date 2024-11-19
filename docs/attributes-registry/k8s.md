@@ -42,7 +42,7 @@ Kubernetes resource attributes.
 | <a id="k8s-volume-name" href="#k8s-volume-name">`k8s.volume.name`</a> | string | The name of the K8s volume. | `volume0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="k8s-volume-type" href="#k8s-volume-type">`k8s.volume.type`</a> | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** K8s doesn't have support for obtaining a cluster ID. If this is ever
+**[1] `k8s.cluster.uid`:** K8s doesn't have support for obtaining a cluster ID. If this is ever
 added, we will recommend collecting the `k8s.cluster.uid` through the
 official APIs. In the meantime, we are able to use the `uid` of the
 `kube-system` namespace as a proxy for cluster ID. Read on for the
