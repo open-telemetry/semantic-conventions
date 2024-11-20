@@ -53,10 +53,6 @@ key, but non-obvious, aspects:
 - All attributes, metrics, etc. are formally defined in YAML files under
   the `model/` directory.
 - All descriptions, normative language are defined in the `docs/` directory.
-- All changes to existing attributes, metrics, etc. MUST be allowed as
-  per our [stability guarantees][stability guarantees] and
-  defined in a schema file. As part of any contribution, you should
-  include attribute changes defined in the `schema-next.yaml` file.
 - Links to the specification repository MUST point to a tag and **not** to the `main` branch.
   The tag version MUST match with the one defined in [README](README.md).
 
@@ -125,20 +121,6 @@ HTTP spans are defined in `model/http/spans.yaml`.
 
 YAML definitions could be broken down into multiple files. For example, AWS spans
 are defined in `/model/aws/lambda-spans.yaml` and `/model/aws/sdk-spans.yaml` files.
-
-#### Schema files
-
-When making changes to existing semantic conventions (attributes, metrics, etc)
-you MUST also update the `schema-next.yaml` file with the changes.
-
-For details, please read
-[the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
-
-You can also take examples from past changes inside the `schemas` folder.
-
-> [!WARNING]
-> DO NOT add your changes to files inside the `schemas` folder. Always add your
-> changes to the `schema-next.yaml` file.
 
 ### 2. Update the markdown files
 
@@ -367,10 +349,6 @@ make check-policies
   [tooling to update the spec](#updating-the-referenced-specification-version)
   if needed.
 - Create a staging branch for the release.
-  - Update `schema-next.yaml` file and move to `schemas/{version}`
-    - Ensure the `next` version is appropriately configured as the `{version}`.
-    - Copy `schema-next.yaml` to `schemas/{version}`.
-    - Add `next` as a version in `schema-next.yaml` version.
   - Run `make chlog-update VERSION=v{version}`
     - `make chlog-update` will clean up all the current `.yaml` files inside the
       `.chloggen` folder automatically
