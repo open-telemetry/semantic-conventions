@@ -36,7 +36,7 @@ Span status SHOULD be set to `Error` if `{process.exit.code}` is not 0.
 | [`process.command_args`](/docs/attributes-registry/process.md) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `["cmd/otecol", "--config=config.yaml"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`process.executable.path`](/docs/attributes-registry/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
