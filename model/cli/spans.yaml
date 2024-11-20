@@ -5,10 +5,16 @@ groups:
     brief: >
       Describes CLI (Command Line Interfaces) programs span.
     attributes:
-      - ref: process.command_line
+      - ref: process.executable.name
+        requirement_level: required
+      - ref: process.executable.path
         requirement_level: recommended
+      - ref: process.pid
+        requirement_level: required
+      - ref: process.exit.code
+        requirement_level: required
       - ref: process.command_args
         requirement_level: recommended
-      - ref: process.exit.code
-        brief: The exit code of the program
-        requirement_level: recommended
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if process.exit.code is not 0
