@@ -12,7 +12,7 @@ groups:
         brief: >
           List of regions contacted by the client during a given operation.
         requirement_level:
-          conditionally_required: If available
+          recommended: If available
 
   - id: metric.db.client.cosmosdb.active_instance.count
     type: metric
