@@ -29,9 +29,38 @@ Span status SHOULD be set to `Error` if `{process.exit.code}` is not 0.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`process.executable.name`](/docs/attributes-registry/process.md) | string | The name of the process executable. On Linux based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.exit.code`](/docs/attributes-registry/process.md) | int | The exit code of the process. | `127` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.pid`](/docs/attributes-registry/process.md) | int | Process identifier (PID). | `1234` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if and only if process.exit.code is not 0 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`process.command_args`](/docs/attributes-registry/process.md) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `["cmd/otecol", "--config=config.yaml"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.command_line`](/docs/attributes-registry/process.md) | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. | `C:\cmd\otecol --config="my directory\config.yaml"` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.exit.code`](/docs/attributes-registry/process.md) | int | The exit code of the program | `127` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.executable.path`](/docs/attributes-registry/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+
+When `error.type` is set to a type (e.g., an exception type), its
+canonical class name identifying the type within the artifact SHOULD be used.
+
+Instrumentations SHOULD document the list of errors they report.
+
+The cardinality of `error.type` within one instrumentation library SHOULD be low.
+Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.type` to have high cardinality at query time when no
+additional filters are applied.
+
+If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
+
+If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+it's RECOMMENDED to:
+
+- Use a domain-specific attribute
+- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
