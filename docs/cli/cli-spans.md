@@ -63,4 +63,3 @@ it's RECOMMENDED to:
 <!-- endsemconv -->
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[ProcessRegistry]: https://opentelemetry.io/docs/specs/semconv/attributes-registry/process/
