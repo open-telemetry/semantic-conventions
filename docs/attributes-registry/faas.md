@@ -29,17 +29,17 @@ FaaS attributes
 | <a id="faas-trigger" href="#faas-trigger">`faas.trigger`</a> | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="faas-version" href="#faas-version">`faas.version`</a> | string | The immutable version of the function being executed. [7] | `26`; `pinkfroid-00002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** - **AWS Lambda:** Use the (full) log stream name.
+**[1] `faas.instance`:** - **AWS Lambda:** Use the (full) log stream name.
 
-**[2]:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
+**[2] `faas.invoked_name`:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
 
-**[3]:** SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
+**[3] `faas.invoked_provider`:** SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
 
-**[4]:** SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
+**[4] `faas.invoked_region`:** SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
 
-**[5]:** It's recommended to set this attribute since e.g. too little memory can easily stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information (which must be multiplied by 1,048,576).
+**[5] `faas.max_memory`:** It's recommended to set this attribute since e.g. too little memory can easily stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information (which must be multiplied by 1,048,576).
 
-**[6]:** This is the name of the function as configured/deployed on the FaaS
+**[6] `faas.name`:** This is the name of the function as configured/deployed on the FaaS
 platform and is usually different from the name of the callback
 function (which may be stored in the
 [`code.namespace`/`code.function`](/docs/general/attributes.md#source-code-attributes)
@@ -56,7 +56,7 @@ definition of function name MUST be used for this attribute
   app can host multiple functions that would usually share
   a TracerProvider (see also the `cloud.resource_id` attribute).
 
-**[7]:** Depending on the cloud provider and platform, use:
+**[7] `faas.version`:** Depending on the cloud provider and platform, use:
 
 - **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
   (an integer represented as a decimal string).

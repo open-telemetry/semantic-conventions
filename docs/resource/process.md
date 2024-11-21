@@ -46,15 +46,15 @@
 | [`process.parent_pid`](/docs/attributes-registry/process.md) | int | Parent Process identifier (PPID). | `111` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`process.pid`](/docs/attributes-registry/process.md) | int | Process identifier (PID). | `1234` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** See [Selecting process attributes](#selecting-process-attributes) for details.
+**[1] `process.command`:** See [Selecting process attributes](#selecting-process-attributes) for details.
 
-**[2]:** See [Selecting process attributes](#selecting-process-attributes) for details.
+**[2] `process.command_args`:** See [Selecting process attributes](#selecting-process-attributes) for details.
 
-**[3]:** See [Selecting process attributes](#selecting-process-attributes) for details.
+**[3] `process.command_line`:** See [Selecting process attributes](#selecting-process-attributes) for details.
 
-**[4]:** See [Selecting process attributes](#selecting-process-attributes) for details.
+**[4] `process.executable.name`:** See [Selecting process attributes](#selecting-process-attributes) for details.
 
-**[5]:** See [Selecting process attributes](#selecting-process-attributes) for details.
+**[5] `process.executable.path`:** See [Selecting process attributes](#selecting-process-attributes) for details.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -89,7 +89,7 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
+**[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
 ---
 
@@ -129,7 +129,7 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
+**[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
 ---
 
@@ -169,7 +169,7 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
+**[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
 ---
 
@@ -209,7 +209,7 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
+**[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
 ---
 
