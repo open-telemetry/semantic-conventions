@@ -243,12 +243,16 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
 
+---
+
 `db.cosmosdb.connection_mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `direct` | Direct connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gateway` | Gateway (HTTP) connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `db.cosmosdb.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -259,6 +263,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `Eventual` | eventual | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Session` | session | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Strong` | strong | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -387,6 +393,8 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[10] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
+---
+
 `db.cosmosdb.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -396,6 +404,8 @@ Instrumentations SHOULD document how `error.type` is populated.
 | `Eventual` | eventual | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Session` | session | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Strong` | strong | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

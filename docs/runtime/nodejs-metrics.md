@@ -232,6 +232,8 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`nodejs.eventloop.state`](/docs/attributes-registry/nodejs.md) | string | The state of event loop time. | `active`; `idle` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `nodejs.eventloop.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

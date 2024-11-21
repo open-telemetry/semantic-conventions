@@ -17,12 +17,16 @@ This group describes attributes specific to [software tests](https://wikipedia.o
 | <a id="test-suite-name" href="#test-suite-name">`test.suite.name`</a> | string | The human readable name of a [test suite](https://wikipedia.org/wiki/Test_suite). | `TestSuite1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="test-suite-run-status" href="#test-suite-run-status">`test.suite.run.status`</a> | string | The status of the test suite run. | `success`; `failure`; `skipped`; `aborted`; `timed_out`; `in_progress` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `test.case.result.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `fail` | fail | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pass` | pass | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `test.suite.run.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
