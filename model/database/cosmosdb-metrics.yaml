@@ -9,8 +9,6 @@ groups:
     extends: attributes.db.cosmosdb.minimal
     attributes:
       - ref: db.cosmosdb.regions_contacted
-        brief: >
-          List of regions contacted by the client during a given operation.
         requirement_level:
           recommended: If available
 
