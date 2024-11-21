@@ -200,19 +200,16 @@ This group defines attributes for Azure Cosmos DB.
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="db-cosmosdb-client-id" href="#db-cosmosdb-client-id">`db.cosmosdb.client_id`</a> | string | Unique Cosmos client instance id. | `3ba4827d-4422-483f-b59f-85b74211c11d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-connection-mode" href="#db-cosmosdb-connection-mode">`db.cosmosdb.connection_mode`</a> | string | Cosmos client connection mode. | `gateway`; `direct` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-consistency-level" href="#db-cosmosdb-consistency-level">`db.cosmosdb.consistency_level`</a> | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-regions-contacted" href="#db-cosmosdb-regions-contacted">`db.cosmosdb.regions_contacted`</a> | string[] | List of regions contacted during operation in the order that they were contacted. If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call. [10] | `["North Central US", "Australia East", "Australia Southeast"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-connection-mode" href="#db-cosmosdb-connection-mode">`db.cosmosdb.connection_mode`</a> | string | Azure Cosmos DB client connection mode. | `gateway`; `direct` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-consistency-level" href="#db-cosmosdb-consistency-level">`db.cosmosdb.consistency_level`</a> | string | Effective Request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). This represents the first applicable consistency level among those specified by the request or the client. | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-regions-contacted" href="#db-cosmosdb-regions-contacted">`db.cosmosdb.regions_contacted`</a> | string[] | List of regions contacted during operation in the order that they were contacted. If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call. [10] | `["North Central US", "Australia East", "Australia Southeast"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-request-charge" href="#db-cosmosdb-request-charge">`db.cosmosdb.request_charge`</a> | double | Request units consumed for the operation. | `46.18`; `1.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-request-content-length" href="#db-cosmosdb-request-content-length">`db.cosmosdb.request_content_length`</a> | int | Request payload size in bytes. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-sub-status-code" href="#db-cosmosdb-sub-status-code">`db.cosmosdb.sub_status_code`</a> | int | Cosmos DB sub status code. | `1000`; `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-sub-status-code" href="#db-cosmosdb-sub-status-code">`db.cosmosdb.sub_status_code`</a> | int | The Azure Cosmos DB sub-status code for an operation represents the final sub-status code after multiple network interactions have been completed during the operation. | `1000`; `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[10] `db.cosmosdb.regions_contacted`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
 
 ---
-| <a id="db-cosmosdb-sub-status-code" href="#db-cosmosdb-sub-status-code">`db.cosmosdb.sub_status_code`</a> | int | The Azure Cosmos DB sub-status code for an operation represents the final sub-status code after multiple network interactions have been completed during the operation. | `1000`; `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 `db.cosmosdb.connection_mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -239,11 +236,11 @@ This group defines attributes for Azure Cosmos DB Network call.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="db-cosmosdb-network-response-status-code" href="#db-cosmosdb-network-response-status-code">`db.cosmosdb.network.response.status_code`</a> | int | The status code returned in response. [10] | `200` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-network-response-status-code" href="#db-cosmosdb-network-response-status-code">`db.cosmosdb.network.response.status_code`</a> | int | The status code returned in response. [11] | `200` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-network-response-sub-status-code" href="#db-cosmosdb-network-response-sub-status-code">`db.cosmosdb.network.response.sub_status_code`</a> | int | The Azure Cosmos DB sub-status code for a network request made during an operation. | `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-network-routing-id" href="#db-cosmosdb-network-routing-id">`db.cosmosdb.network.routing_id`</a> | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[10]:** The protocol reuses HTTP status codes.
+**[11] `db.cosmosdb.network.response.status_code`:** The protocol reuses HTTP status codes.
 
 ## Elasticsearch Attributes
 
@@ -252,11 +249,9 @@ This group defines attributes for Elasticsearch.
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="db-elasticsearch-node-name" href="#db-elasticsearch-node-name">`db.elasticsearch.node.name`</a> | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-elasticsearch-path-parts" href="#db-elasticsearch-path-parts">`db.elasticsearch.path_parts.<key>`</a> | string | A dynamic value in the url path. [11] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-elasticsearch-path-parts" href="#db-elasticsearch-path-parts">`db.elasticsearch.path_parts.<key>`</a> | string | A dynamic value in the url path. [11] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-elasticsearch-path-parts" href="#db-elasticsearch-path-parts">`db.elasticsearch.path_parts.<key>`</a> | string | A dynamic value in the url path. [12] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[11] `db.elasticsearch.path_parts`:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
-**[11]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
+**[12] `db.elasticsearch.path_parts`:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
 
 ## Deprecated Database Attributes
 
