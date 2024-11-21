@@ -1,5 +1,5 @@
 groups:
-  - id: span.cli
+  - id: span.cli.internal
     type: span
     span_kind: internal
     stability: experimental
