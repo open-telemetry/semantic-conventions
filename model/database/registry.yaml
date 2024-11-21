@@ -547,7 +547,7 @@ groups:
       - id: db.cosmosdb.regions_contacted
         type: string[]
         stability: experimental
-        brief: Comma Separated List of regions contacted during operation in the order specific region was contacted.
+        brief: List of regions contacted during operation in the order that they were contacted.
         note: >
           Region name matches the format of `displayName`
           in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
