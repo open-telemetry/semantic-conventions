@@ -23,6 +23,7 @@ groups:
         requirement_level:
           conditionally_required: See [Selecting process attributes](#selecting-process-attributes) for details.
       - ref: process.owner
+      - ref: linux.process.cgroup
 
   - id: resource.process.runtime
     type: resource
