@@ -92,11 +92,15 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 
 **[5] `feature_flag.evaluation.error.message`:** If and only if an error occurred. It's NOT RECOMMENDED to duplicate the value of `error.type` in `feature_flag.evaluation.error.message`.
 
+---
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
 
 `feature_flag.evaluation.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

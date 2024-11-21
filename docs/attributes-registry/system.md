@@ -42,6 +42,8 @@ Describes Filesystem attributes
 | <a id="system-filesystem-state" href="#system-filesystem-state">`system.filesystem.state`</a> | string | The filesystem state | `used` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="system-filesystem-type" href="#system-filesystem-type">`system.filesystem.type`</a> | string | The filesystem type | `ext4` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `system.filesystem.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -49,6 +51,8 @@ Describes Filesystem attributes
 | `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `reserved` | reserved | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -69,6 +73,8 @@ Describes System Memory attributes
 |---|---|---|---|---|
 | <a id="system-memory-state" href="#system-memory-state">`system.memory.state`</a> | string | The memory state | `free`; `cached` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `system.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -86,6 +92,8 @@ Describes Network attributes
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="system-network-state" href="#system-network-state">`system.network.state`</a> | string | A stateless protocol MUST NOT set this attribute | `close_wait` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `system.network.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -114,6 +122,8 @@ Describes System Memory Paging attributes
 | <a id="system-paging-state" href="#system-paging-state">`system.paging.state`</a> | string | The memory paging state | `free` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="system-paging-type" href="#system-paging-type">`system.paging.type`</a> | string | The memory paging type | `minor` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `system.paging.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -121,12 +131,16 @@ Describes System Memory Paging attributes
 | `in` | in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `out` | out | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `system.paging.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `system.paging.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -142,6 +156,8 @@ Describes System Process attributes
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="system-process-status" href="#system-process-status">`system.process.status`</a> | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `system.process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -161,6 +177,8 @@ Deprecated system attributes.
 | <a id="system-cpu-state" href="#system-cpu-state">`system.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `idle`; `interrupt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode` |
 | <a id="system-processes-status" href="#system-processes-status">`system.processes.status`</a> | string | Deprecated, use `system.process.status` instead. | `running` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. |
 
+---
+
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -172,6 +190,8 @@ Deprecated system attributes.
 | `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `system.processes.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
