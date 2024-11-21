@@ -47,7 +47,7 @@ groups:
         requirement_level: opt_in
       - ref: user_agent.synthetic.type
         requirement_level:
-          conditionally recommendeed: When the client knows it is sending synthetic or bot traffic.
+          recommended: When the client knows it is sending synthetic or bot traffic.
 
   - id: span.http.server
     type: span
