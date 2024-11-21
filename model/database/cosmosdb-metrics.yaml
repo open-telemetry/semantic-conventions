@@ -58,17 +58,6 @@ groups:
     stability: experimental
     extends: attributes.db.cosmosdb.network.minimal
 
-  - id: metric.db.client.cosmosdb.request.channel_aquisition.duration
-    type: metric
-    metric_name: db.client.cosmosdb.request.channel_aquisition.duration
-    brief: >
-      "Time to get or create a new TCP connection. Once a connection is established, it is reused for subsequent db.client.cosmosdb.request.transit.duration.
-      It is only applicable in Direct Mode."
-    instrument: histogram
-    unit: "s"
-    stability: experimental
-    extends: attributes.db.cosmosdb.network.minimal
-
   - id: metric.db.server.cosmosdb.request.duration
     type: metric
     metric_name: db.server.cosmosdb.request.duration
@@ -79,23 +68,3 @@ groups:
     extends: attributes.db.cosmosdb.network.minimal
     note: >
        This is the latency returned in response and reported from the client. It will not be reported if response was not received.
-
-  - id: metric.db.client.cosmosdb.request.transit.duration
-    type: metric
-    metric_name: db.client.cosmosdb.request.transit.duration
-    brief: >
-      "Transit time refers to the duration taken by a request to travel across the network—from the moment it leaves the client to
-      when the response is received back at the client. It is only applicable in Direct Mode."
-    instrument: histogram
-    unit: "s"
-    stability: experimental
-    extends: attributes.db.cosmosdb.network.minimal
-
-  - id: metric.db.client.cosmosdb.request.received.duration
-    type: metric
-    metric_name: db.client.cosmosdb.request.received.duration
-    brief: "Received time is the duration from when the response is received until it is fully processed by the SDK. It is only applicable in Direct Mode."
-    instrument: histogram
-    unit: "s"
-    stability: experimental
-    extends: attributes.db.cosmosdb.network.minimal
