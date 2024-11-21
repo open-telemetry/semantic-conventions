@@ -737,3 +737,6 @@ groups:
       - ref: db.cosmosdb.consistency_level
         requirement_level:
           conditionally_required: If available.
+      - ref: db.cosmosdb.regions_contacted
+        requirement_level:
+          conditionally_required: If available.
