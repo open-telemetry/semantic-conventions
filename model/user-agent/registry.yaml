@@ -38,7 +38,7 @@ groups:
       - id: user_agent.synthetic.type
         stability: experimental
         brief: >
-         Specifies the category of synthetic traffic, such as monitoring, crawler, bot, or another automation.
+         Specifies the category of synthetic traffic, such as tests or bots.
         note: >
           This flag can primarily be determined by the contents of the `user_agent.original` attribute. Components that populate the attribute should determine what they consider synthetic or bot traffic,
           and set this attribute accordingly. This attribute can either be set for self-identification purposes, or on telemetry detected to be generated as a result
