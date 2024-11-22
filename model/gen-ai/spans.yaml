@@ -41,8 +41,6 @@ groups:
       - ref: gen_ai.usage.input_tokens
         requirement_level: recommended
       - ref: gen_ai.usage.output_tokens
-        requirement_level:
-          recommended: If applicable. For example, embeddings operations do not use output tokens.
       - ref: server.address
         brief: GenAI server address.
         requirement_level: recommended
