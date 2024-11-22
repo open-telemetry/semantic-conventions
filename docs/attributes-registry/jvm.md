@@ -28,12 +28,16 @@ This document defines Java Virtual machine related attributes.
 
 **[4] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
+---
+
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `heap` | Heap memory. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `non_heap` | Non-heap memory | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
 
 `jvm.thread.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

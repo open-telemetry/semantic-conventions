@@ -81,11 +81,15 @@ Instrumentations SHOULD document the list of errors they report.
 
 **[10] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
+---
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
 
 `gen_ai.openai.request.response_format` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -95,12 +99,16 @@ Instrumentations SHOULD document the list of errors they report.
 | `json_schema` | JSON schema response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `text` | Text response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `gen_ai.openai.request.service_tier` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `auto` | The system will utilize scale tier credits until they are exhausted. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `default` | The system will utilize the default scale tier. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `gen_ai.operation.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

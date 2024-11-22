@@ -32,6 +32,8 @@ In case of virtualized environments, this is the operating system as it is obser
 | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
 | Linux | `BUILD_ID` from `/etc/os-release` | `BUILD_ID` from `/usr/lib/os-release`; <br> contents of `/proc/sys/kernel/osrelease`|
 
+---
+
 `os.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |

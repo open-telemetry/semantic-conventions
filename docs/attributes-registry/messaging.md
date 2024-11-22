@@ -59,6 +59,8 @@ size should be used.
 
 **[9] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
+---
+
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -70,6 +72,8 @@ size should be used.
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -142,12 +146,16 @@ This group describes attributes specific to RocketMQ.
 | <a id="messaging-rocketmq-message-type" href="#messaging-rocketmq-message-type">`messaging.rocketmq.message.type`</a> | string | Type of message. | `normal`; `fifo`; `delay` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="messaging-rocketmq-namespace" href="#messaging-rocketmq-namespace">`messaging.rocketmq.namespace`</a> | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `messaging.rocketmq.consumption_model` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `broadcasting` | Broadcasting consumption model | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `clustering` | Clustering consumption model | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `messaging.rocketmq.message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -167,6 +175,8 @@ This group describes attributes specific to Azure Service Bus.
 | <a id="messaging-servicebus-disposition-status" href="#messaging-servicebus-disposition-status">`messaging.servicebus.disposition_status`</a> | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete`; `abandon`; `dead_letter` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="messaging-servicebus-message-delivery-count" href="#messaging-servicebus-message-delivery-count">`messaging.servicebus.message.delivery_count`</a> | int | Number of deliveries that have been attempted for this message. | `2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="messaging-servicebus-message-enqueued-time" href="#messaging-servicebus-message-enqueued-time">`messaging.servicebus.message.enqueued_time`</a> | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `messaging.servicebus.disposition_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

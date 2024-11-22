@@ -209,6 +209,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
 
+---
+
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -262,6 +264,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `teradata` | Teradata | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `trino` | Trino | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertica` | Vertica | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

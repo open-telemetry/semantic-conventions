@@ -64,6 +64,8 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 |---|---|---|---|---|---|
 | [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -102,6 +104,8 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 |---|---|---|---|---|---|
 | [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -135,6 +139,8 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -170,6 +176,8 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -203,6 +211,8 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -238,6 +248,8 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -271,6 +283,8 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -310,6 +324,8 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 |---|---|---|---|---|---|
 | [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -343,6 +359,8 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
