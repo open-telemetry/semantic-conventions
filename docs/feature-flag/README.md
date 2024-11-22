@@ -2,7 +2,7 @@
 linkTitle: Feature Flags
 path_base_for_github_subdir:
   from: tmp/semconv/docs/feature-flags/_index.md
-  to: feature-flags/README.md
+  to: feature-flag/README.md
 --->
 
 # Semantic Conventions for Feature Flags

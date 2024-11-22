@@ -27,7 +27,7 @@ Semantic Conventions are defined for the following areas:
 * [Database](database/README.md): Semantic Conventions for database operations.
 * [Exceptions](exceptions/README.md): Semantic Conventions for exceptions.
 * [FaaS](faas/README.md): Semantic Conventions for Function as a Service (FaaS) operations.
-* [Feature Flags](feature-flags/README.md): Semantic Conventions for feature flag evaluations.
+* [Feature Flags](feature-flag/README.md): Semantic Conventions for feature flag evaluations.
 * [Generative AI](gen-ai/README.md): Semantic Conventions for generative AI (LLM, etc.) operations.
 * [GraphQL](graphql/graphql-spans.md): Semantic Conventions for GraphQL implementations.
 * [HTTP](http/README.md): Semantic Conventions for HTTP client and server operations.
