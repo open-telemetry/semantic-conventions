@@ -25,7 +25,7 @@ The following semantic conventions for logs are defined:
 
 * **[General](#general-log-identification-attributes): General semantic attributes that may be used in describing Log Records.**
 * [Exceptions](/docs/exceptions/exceptions-logs.md): Semantic attributes that may be used in describing exceptions in logs.
-* [Feature Flags](/docs/feature-flags/feature-flags-logs.md): Semantic attributes that may be used in describing feature flag evaluations in logs.
+* [Feature Flags](/docs/feature-flag/feature-flag-logs.md): Semantic attributes that may be used in describing feature flag evaluations in logs.
 
 Apart from semantic conventions for logs, [events](events.md), [traces](trace.md), and [metrics](metrics.md),
 OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/resource/sdk.md) with their own
