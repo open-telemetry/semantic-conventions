@@ -99,8 +99,8 @@
 /model/messaging/                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-messaging-approvers
 
 # Feature flag semantic conventions
-/docs/feature-flag/               @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-feature-flag-approvers
-/model/feature-flag/              @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-feature-flag-approvers
+/docs/feature-flags/               @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-feature-flag-approvers
+/model/feature-flags/              @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-feature-flag-approvers
 
 # Tooling
 /policies/                        @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
