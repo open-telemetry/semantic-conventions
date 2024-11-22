@@ -50,6 +50,7 @@ body:
         - area:file
         - area:gcp
         - area:gen-ai
+        - area:geo
         - area:go
         - area:graphql
         - area:hardware

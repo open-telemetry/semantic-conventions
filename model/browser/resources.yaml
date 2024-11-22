@@ -1,5 +1,5 @@
 groups:
-  - id: browser
+  - id: resource.browser
     type: resource
     name: browser
     brief: >

@@ -8,6 +8,34 @@ linkTitle: RabbitMQ
 
 The Semantic Conventions for [RabbitMQ](https://www.rabbitmq.com/) extend and override the [Messaging Semantic Conventions](README.md).
 
+> [!Warning]
+>
+> Existing messaging instrumentations that are using
+> [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-spans.md)
+> (or prior):
+>
+> * SHOULD NOT change the version of the messaging conventions that they emit by default
+>   until the messaging semantic conventions are marked stable.
+>   Conventions include, but are not limited to, attributes,
+>   metric and span names, span kind and unit of measure.
+> * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
+>   in the existing major version which is a comma-separated list of values.
+>   The list of values includes:
+>   * `messaging` - emit the new, stable messaging conventions,
+>     and stop emitting the old experimental messaging conventions
+>     that the instrumentation emitted previously.
+>   * `messaging/dup` - emit both the old and the stable messaging conventions,
+>     allowing for a seamless transition.
+>   * The default behavior (in the absence of one of these values) is to continue
+>     emitting whatever version of the old experimental messaging conventions
+>     the instrumentation was emitting previously.
+>   * Note: `messaging/dup` has higher precedence than `messaging` in case both values are present
+> * SHOULD maintain (security patching at a minimum) the existing major version
+>   for at least six months after it starts emitting both sets of conventions.
+> * SHOULD drop the environment variable in the next major version.
+> * SHOULD emit the new, stable values for span name, span kind and similar "single"
+> valued concepts when `messaging/dup` is present in the list.
+
 `messaging.system` MUST be set to `"rabbitmq"` and SHOULD be provided **at span creation time**.
 
 ## RabbitMQ attributes
@@ -38,7 +66,7 @@ In RabbitMQ, the destination is defined by an *exchange* and a *routing key*.
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [8] | `1439` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
@@ -58,20 +86,20 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+**[2] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[3]:** If span describes operation on a single message or if the value applies to all messages in the batch.
+**[3] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[4]:** If a custom value is used, it MUST be of low cardinality.
+**[4] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[5]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[5] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
-**[6]:** If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+**[6] `network.peer.address`:** If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[7]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[8]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[8] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
 The following attributes can be important for making sampling decisions
@@ -83,11 +111,15 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
 
+---
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

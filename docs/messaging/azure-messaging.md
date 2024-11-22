@@ -8,6 +8,34 @@ linkTitle: Azure Messaging
 
 The Semantic Conventions for [Azure Service Bus](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview) and [Azure Event Hubs](https://learn.microsoft.com/azure/event-hubs/event-hubs-about) extend and override the [Messaging Semantic Conventions](README.md).
 
+> [!Warning]
+>
+> Existing messaging instrumentations that are using
+> [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-spans.md)
+> (or prior):
+>
+> * SHOULD NOT change the version of the messaging conventions that they emit by default
+>   until the messaging semantic conventions are marked stable.
+>   Conventions include, but are not limited to, attributes,
+>   metric and span names, span kind and unit of measure.
+> * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
+>   in the existing major version which is a comma-separated list of values.
+>   The list of values includes:
+>   * `messaging` - emit the new, stable messaging conventions,
+>     and stop emitting the old experimental messaging conventions
+>     that the instrumentation emitted previously.
+>   * `messaging/dup` - emit both the old and the stable messaging conventions,
+>     allowing for a seamless transition.
+>   * The default behavior (in the absence of one of these values) is to continue
+>     emitting whatever version of the old experimental messaging conventions
+>     the instrumentation was emitting previously.
+>   * Note: `messaging/dup` has higher precedence than `messaging` in case both values are present
+> * SHOULD maintain (security patching at a minimum) the existing major version
+>   for at least six months after it starts emitting both sets of conventions.
+> * SHOULD drop the environment variable in the next major version.
+> * SHOULD emit the new, stable values for span name, span kind and similar "single"
+> valued concepts when `messaging/dup` is present in the list.
+
 ## Azure Service Bus
 
 `messaging.system` MUST be set to `"servicebus"` and SHOULD be provided **at span creation time**.
@@ -38,7 +66,7 @@ The following additional attributes are defined:
 | [`messaging.servicebus.message.enqueued_time`](/docs/attributes-registry/messaging.md) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** The operation name SHOULD match one of the following values:
+**[1] `messaging.operation.name`:** The operation name SHOULD match one of the following values:
 
 - sender operations: `send`, `schedule`, `cancel_scheduled`
 - transaction operations: `create_transaction`, `commit_transaction`, `rollback_transaction`
@@ -49,7 +77,7 @@ The following additional attributes are defined:
 If none of the above operation names apply, the attribute SHOULD be set
 to the name of the client method in snake_case.
 
-**[2]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[2] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
@@ -69,22 +97,22 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[3]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
+**[3] `messaging.batch.message_count`:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
-**[4]:** If the span describes an operation on a batch of messages.
+**[4] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
-**[5]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+**[5] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[6]:** If span describes operation on a single message or if the value applies to all messages in the batch.
+**[6] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[7]:** If a custom value is used, it MUST be of low cardinality.
+**[7] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[8]:** If delivery count is available and is bigger than 0.
+**[8] `messaging.servicebus.message.delivery_count`:** If delivery count is available and is bigger than 0.
 
-**[9]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[9] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
-**[10]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[10] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -96,11 +124,15 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
 
+---
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -111,6 +143,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `messaging.servicebus.disposition_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -154,7 +188,7 @@ The following additional attributes are defined:
 | [`messaging.message.id`](/docs/attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** The operation name SHOULD match one of the following values:
+**[1] `messaging.operation.name`:** The operation name SHOULD match one of the following values:
 
 - `send`
 - `receive`
@@ -166,7 +200,7 @@ The following additional attributes are defined:
 If none of the above operation names apply, the attribute SHOULD be set
 to the name of the client method in snake_case.
 
-**[2]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[2] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
@@ -186,20 +220,20 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[3]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
+**[3] `messaging.batch.message_count`:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
-**[4]:** If the span describes an operation on a batch of messages.
+**[4] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
-**[5]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+**[5] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[6]:** If span describes operation on a single message or if the value applies to all messages in the batch.
+**[6] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[7]:** If a custom value is used, it MUST be of low cardinality.
+**[7] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[8]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[8] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
-**[9]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[9] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -212,11 +246,15 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
 
+---
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

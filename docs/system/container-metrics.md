@@ -33,9 +33,11 @@ This metric is [opt-in][MetricOptIn].
 |---|---|---|---|---|---|
 | [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Following states SHOULD be used: `user`, `system`, `kernel`
+**[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `kernel`
 
-**[2]:** Required if mode is available, i.e. metrics coming from the Docker Stats API.
+**[2] `cpu.mode`:** Required if mode is available, i.e. metrics coming from the Docker Stats API.
+
+---
 
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -76,9 +78,11 @@ This metric is [opt-in][MetricOptIn].
 |---|---|---|---|---|---|
 | [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Following states SHOULD be used: `user`, `system`, `kernel`
+**[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `kernel`
 
-**[2]:** Required if mode is available, i.e. metrics coming from the Docker Stats API.
+**[2] `cpu.mode`:** Required if mode is available, i.e. metrics coming from the Docker Stats API.
+
+---
 
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -142,6 +146,8 @@ This metric is [opt-in][MetricOptIn].
 | [`disk.io.direction`](/docs/attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `disk.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -173,8 +179,10 @@ This metric is [opt-in][MetricOptIn].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -1,0 +1,6 @@
+change_type: breaking
+component: feature_flag
+note: >
+  Rename `feature_flag` event to `feature_flag.evaluation` event, define new feature flag attributes and provide body definition.
+  Remove `feature_flag` span event definition in favor of log-based event.
+issues: [1440]

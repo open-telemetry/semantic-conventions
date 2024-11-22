@@ -21,27 +21,30 @@ These attributes may be used for any network related operation.
 | <a id="network-carrier-name" href="#network-carrier-name">`network.carrier.name`</a> | string | The name of the mobile carrier. | `sprint` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="network-connection-subtype" href="#network-connection-subtype">`network.connection.subtype`</a> | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="network-connection-type" href="#network-connection-type">`network.connection.type`</a> | string | The internet connection type. | `wifi` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="network-interface-name" href="#network-interface-name">`network.interface.name`</a> | string | The network interface name. | `lo`; `eth0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="network-io-direction" href="#network-io-direction">`network.io.direction`</a> | string | The network IO operation direction. | `transmit` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="network-local-address" href="#network-local-address">`network.local.address`</a> | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="network-local-port" href="#network-local-port">`network.local.port`</a> | int | Local port number of the network connection. | `65123` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="network-peer-address" href="#network-peer-address">`network.peer.address`</a> | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="network-peer-port" href="#network-peer-port">`network.peer.port`</a> | int | Peer port number of the network connection. | `65123` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="network-protocol-name" href="#network-protocol-name">`network.protocol.name`</a> | string | [OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="network-protocol-name" href="#network-protocol-name">`network.protocol.name`</a> | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="network-protocol-version" href="#network-protocol-version">`network.protocol.version`</a> | string | The actual version of the protocol used for network communication. [2] | `1.1`; `2` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="network-transport" href="#network-transport">`network.transport`</a> | string | [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="network-type" href="#network-type">`network.type`</a> | string | [OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="network-transport" href="#network-transport">`network.transport`</a> | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="network-type" href="#network-type">`network.type`</a> | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1]:** The value SHOULD be normalized to lowercase.
+**[1] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
-**[2]:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+**[2] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[3]:** The value SHOULD be normalized to lowercase.
+**[3] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[4]:** The value SHOULD be normalized to lowercase.
+**[4] `network.type`:** The value SHOULD be normalized to lowercase.
+
+---
 
 `network.connection.subtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -69,6 +72,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `td_scdma` | TD-SCDMA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `umts` | UMTS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `network.connection.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -79,12 +84,16 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `wifi` | wifi | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `wired` | wired | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -95,6 +104,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -125,6 +136,8 @@ These attributes may be used for any network related operation.
 | <a id="net-sock-peer-port" href="#net-sock-peer-port">`net.sock.peer.port`</a> | int | Deprecated, use `network.peer.port`. | `65531` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.peer.port`. |
 | <a id="net-transport" href="#net-transport">`net.transport`</a> | string | Deprecated, use `network.transport`. | `ip_tcp`; `ip_udp`; `pipe` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.transport`. |
 
+---
+
 `net.sock.family` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -132,6 +145,8 @@ These attributes may be used for any network related operation.
 | `inet` | IPv4 address | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `inet6` | IPv6 address | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `unix` | Unix domain socket path | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `net.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

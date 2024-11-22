@@ -69,8 +69,8 @@
 /model/signalr/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers
 
 # Gen-AI semantic conventions
-/docs/gen-ai/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers
-/model/gen-ai/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-llm-approvers
+/docs/gen-ai/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
+/model/gen-ai/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
 
 # Security semantic conventions
 /model/dns/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
@@ -81,6 +81,7 @@
 /model/user/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 
 # CICD semantic conventions
+/docs/cicd/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/artifact/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/cicd/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/code/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers

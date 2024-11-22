@@ -87,17 +87,18 @@ groups:
             "SELECT * FROM wuser_table where username = ?",
             'SET mykey ?',
           ]
-      - id: db.query.parameter
+      - id: db.operation.parameter
         type: template[string]
         stability: experimental  # RELEASE CANDIDATE
         brief: >
-          A query parameter used in `db.query.text`, with `<key>` being the parameter name,
+          A database operation parameter, with `<key>` being the parameter name,
           and the attribute value being a string representation of the parameter value.
         note: >
-          Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
-
           If a parameter has no name and instead is referenced only by index,
           then `<key>` SHOULD be the 0-based index.
+
+          If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match
+          up with the parameterized placeholders present in `db.query.text`.
 
           This attribute has stability level RELEASE CANDIDATE.
         examples: ["someval", "55"]
@@ -148,7 +149,11 @@ groups:
 
           This attribute has stability level RELEASE CANDIDATE.
         examples: ["102", "ORA-17002", "08P01", "404"]
-
+      - id: db.response.returned_rows
+        type: int
+        stability: experimental
+        brief: Number of rows returned by the operation.
+        examples: [10, 30, 1000]
       - id: db.system
         brief: The database management system (DBMS) product as identified by the client instrumentation.
         note: >
@@ -496,7 +501,7 @@ groups:
           members:
             - id: gateway
               value: "gateway"
-              brief: Gateway (HTTP) connections mode
+              brief: Gateway (HTTP) connection.
               stability: experimental
             - id: direct
               value: "direct"
@@ -504,70 +509,52 @@ groups:
               stability: experimental
         stability: experimental
         brief: Cosmos client connection mode.
-      - id: db.cosmosdb.operation_type
-        type:
-          members:
-            - id: batch
-              value: "batch"
-              stability: experimental
-            - id: create
-              value: "create"
-              stability: experimental
-            - id: delete
-              value: "delete"
-              stability: experimental
-            - id: execute
-              value: "execute"
-              stability: experimental
-            - id: execute_javascript
-              value: "execute_javascript"
-              stability: experimental
-            - id: invalid
-              value: "invalid"
-              stability: experimental
-            - id: head
-              value: "head"
-              stability: experimental
-            - id: head_feed
-              value: "head_feed"
-              stability: experimental
-            - id: patch
-              value: "patch"
-              stability: experimental
-            - id: query
-              value: "query"
-              stability: experimental
-            - id: query_plan
-              value: "query_plan"
-              stability: experimental
-            - id: read
-              value: "read"
-              stability: experimental
-            - id: read_feed
-              value: "read_feed"
-              stability: experimental
-            - id: replace
-              value: "replace"
-              stability: experimental
-            - id: upsert
-              value: "upsert"
-              stability: experimental
-        stability: experimental
-        brief: Cosmos DB Operation Type.
       - id: db.cosmosdb.request_charge
         type: double
         stability: experimental
-        brief: RU consumed for that operation
+        brief: Request units consumed for the operation.
         examples: [46.18, 1.0]
       - id: db.cosmosdb.request_content_length
         type: int
         stability: experimental
-        brief: Request payload size in bytes
+        brief: Request payload size in bytes.
       - id: db.cosmosdb.sub_status_code
         type: int
         stability: experimental
         brief: Cosmos DB sub status code.
         examples: [1000, 1002]
+      - id: db.cosmosdb.consistency_level
+        type:
+          members:
+            - id: strong
+              value: "Strong"
+              stability: experimental
+            - id: bounded_staleness
+              value: "BoundedStaleness"
+              stability: experimental
+            - id: session
+              value: "Session"
+              stability: experimental
+            - id: eventual
+              value: "Eventual"
+              stability: experimental
+            - id: consistent_prefix
+              value: "ConsistentPrefix"
+              stability: experimental
+        stability: experimental
+        brief: Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels).
+        examples: ["Eventual", "ConsistentPrefix", "BoundedStaleness", "Strong", "Session"]
+      - id: db.cosmosdb.regions_contacted
+        type: string[]
+        stability: experimental
+        brief: >
+          List of regions contacted during operation in the order that they were contacted. If there is more than one region listed,
+          it indicates that the operation was performed on multiple regions i.e. cross-regional call.
+        note: >
+          Region name matches the format of `displayName`
+          in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
+        examples:
+          - ["North Central US", "Australia East", "Australia Southeast"]
   - id: registry.db.elasticsearch
     type: attribute_group
     display_name: Elasticsearch Attributes
