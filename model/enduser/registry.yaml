@@ -5,11 +5,11 @@ groups:
     brief: >
       Describes information about the end user, which can be used as a subdomain of browser, client, or user domains.
     attributes:
-      - id: enduser.id
+      - id: enduser.anonymous.id
         type: string
         stability: experimental
         brief: >
-          Identifier of an end user who interacts with a system.
+          Identifier of an anonymous end user who interacts with a system.
           This identifier may be unique only through best-effort means and does not imply that the user is authenticated to the system.
         examples: ['QdH5CAWJgqVT4rOr0qtumf']
       - id: enduser.role
