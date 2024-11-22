@@ -54,7 +54,7 @@ Instrumentations SHOULD document the list of errors they report.
 
 **[5] `az.namespace`:** When `az.namespace` attribute is populated, it MUST be set to `Microsoft.CognitiveServices` for all operations performed by Azure AI Inference clients.
 
-**[6] `gen_ai.request.encoding_formats`:** In some APIs the encoding formats are called embedding types. In some APIs the request accepts a single format.
+**[6] `gen_ai.request.encoding_formats`:** In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
 
 **[7] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 

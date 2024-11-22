@@ -98,8 +98,8 @@ groups:
           - ['base64']
           - ['float', 'binary']
         note: >
-          In some APIs the encoding formats are called embedding types.
-          In some APIs the request accepts a single format.
+          In some GenAI systems the encoding formats are called embedding types.
+          Also, some GenAI systems only accept a single format per request.
       - id: gen_ai.response.id
         stability: experimental
         type: string
