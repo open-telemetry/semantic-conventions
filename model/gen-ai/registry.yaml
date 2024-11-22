@@ -127,8 +127,6 @@ groups:
         type: int
         brief: The number of tokens used in the GenAI response (completion).
         examples: [180]
-        note: >
-          If applicable. For example, embeddings operations to do use output tokens.
       - id: gen_ai.token.type
         stability: experimental
         type:

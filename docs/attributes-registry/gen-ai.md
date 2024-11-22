@@ -32,7 +32,7 @@ This document defines the attributes used to describe telemetry in the context o
 | <a id="gen-ai-system" href="#gen-ai-system">`gen_ai.system`</a> | string | The Generative AI product as identified by the client or server instrumentation. [3] | `openai` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-token-type" href="#gen-ai-token-type">`gen_ai.token.type`</a> | string | The type of token being counted. | `input`; `output` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-usage-input-tokens" href="#gen-ai-usage-input-tokens">`gen_ai.usage.input_tokens`</a> | int | The number of tokens used in the GenAI input (prompt). | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-usage-output-tokens" href="#gen-ai-usage-output-tokens">`gen_ai.usage.output_tokens`</a> | int | The number of tokens used in the GenAI response (completion). [4] | `180` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-usage-output-tokens" href="#gen-ai-usage-output-tokens">`gen_ai.usage.output_tokens`</a> | int | The number of tokens used in the GenAI response (completion). | `180` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
@@ -47,8 +47,6 @@ is set to `openai` based on the instrumentation's best knowledge.
 
 For custom model, a custom friendly name SHOULD be used.
 If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
-
-**[4] `gen_ai.usage.output_tokens`:** If applicable. For example, embeddings operations to do use output tokens.
 
 ---
 
