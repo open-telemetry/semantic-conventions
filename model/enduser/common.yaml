@@ -1,0 +1,19 @@
+groups:
+  - id: identity
+    type: attribute_group
+    brief: >
+      These attributes may be used for any operation with an authenticated and/or authorized enduser.
+    attributes:
+      - ref: enduser.anonymous.id
+        requirement_level: recommended
+      - ref: enduser.role
+        deprecated: "Removed."
+        requirement_level: recommended
+      - ref: enduser.scope
+        deprecated: "Removed."
+        requirement_level: recommended
+      - ref: enduser.authentication.id
+        requirement_level: required
+        note: >
+          The `enduser.authentication.id` attribute is intended to provide an unique identifier of an authenticated enduser.
+          The deprecated attributes `enduser.authentication.role` and `enduser.authentication.scope` are removed from the enduser registry.

@@ -396,9 +396,12 @@ These attributes may be used for any operation with an authenticated and/or auth
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`enduser.id`](/docs/attributes-registry/enduser.md) | string | Deprecated, use `user.id` instead. | `username` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user.id` attribute. |
-| [`enduser.role`](/docs/attributes-registry/enduser.md) | string | Deprecated, use `user.roles` instead. | `admin` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user.roles` attribute. |
-| [`enduser.scope`](/docs/attributes-registry/enduser.md) | string | Deprecated, no replacement at this time. | `read:message, write:files` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. |
+| [`enduser.authentication.id`](/docs/attributes-registry/enduser.md) | string | Unique identifier of an authenticated user in the system. [1] | `S-1-5-21-202424912787-2692429404-2351956786-1000` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`enduser.anonymous.id`](/docs/attributes-registry/enduser.md) | string | Identifier of an anonymous end user who interacts with a system. This identifier may be unique only through best-effort means and does not imply that the user is authenticated to the system. | `QdH5CAWJgqVT4rOr0qtumf` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`enduser.role`](/docs/attributes-registry/enduser.md) | string | Actual/assumed role the client is making the request under extracted from token or application security context. | `admin` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. |
+| [`enduser.scope`](/docs/attributes-registry/enduser.md) | string | Scopes or granted authorities the client currently possesses extracted from token or application security context. The value would come from the scope associated with an [OAuth 2.0 Access Token](https://tools.ietf.org/html/rfc6749#section-3.3) or an attribute value in a [SAML 2.0 Assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html). | `read:message, write:files` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. |
+
+**[1] `enduser.authentication.id`:** The `enduser.authentication.id` attribute is intended to provide an unique identifier of an authenticated enduser. The deprecated attributes `enduser.authentication.role` and `enduser.authentication.scope` are removed from the enduser registry.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
