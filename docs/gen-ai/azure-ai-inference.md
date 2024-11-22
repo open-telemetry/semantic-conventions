@@ -58,7 +58,7 @@ Instrumentations SHOULD document the list of errors they report.
 
 **[7] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
-**[8] `gen_ai.usage.output_tokens`:** If applicable. For example, embeddings operations to do use output tokens.
+**[8] `gen_ai.usage.output_tokens`:** If applicable. For example, embeddings operations do not use output tokens.
 
 **[9] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
