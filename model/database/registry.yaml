@@ -561,23 +561,23 @@ groups:
 
   - id: registry.db.cosmosdb.network
     type: attribute_group
-    display_name: Azure Cosmos DB Network level Attributes of individual network calls made to Azure Cosmos DB backend services.
-      Because the Cosmos DB SDK employs mechanisms like retries and failovers to ensure the operation succeeds under various conditions.
-      An Azure Cosmos DB operation can involve multiple network calls.
+    display_name: Azure Cosmos DB Network level Attributes
     stability: experimental
     brief: >
-      This group defines attributes for Azure Cosmos DB Network call.
+      This group defines attributes for network call made to Azure Cosmos DB backend services.
+      Because the Cosmos DB SDK employs mechanisms like retries and failovers to ensure the operation succeeds under various conditions.
+      An Azure Cosmos DB operation can involve multiple network calls.
     attributes:
       - id: db.cosmosdb.network.response.status_code
         type: int
         stability: experimental
-        brief: The status code returned in response by the network call, made to Cosmos DB backend.
+        brief: The status code returned in response by the network call, made to Cosmos DB backend services.
         note: The protocol reuses HTTP status codes.
         examples: 200
       - id: db.cosmosdb.network.response.sub_status_code
         type: int
         stability: experimental
-        brief: The Azure Cosmos DB sub-status code for a network request made during an operation.
+        brief: The Azure Cosmos DB sub-status code for a network request, made to Cosmos DB backend services, during an operation.
         examples: 1002
       - id: db.cosmosdb.network.routing_id
         type: string

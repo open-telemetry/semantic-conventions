@@ -9,7 +9,7 @@
 - [General Database Attributes](#general-database-attributes)
 - [Cassandra Attributes](#cassandra-attributes)
 - [Azure Cosmos DB Attributes](#azure-cosmos-db-attributes)
-- [Azure Cosmos DB Network level Attributes of individual network calls made to Azure Cosmos DB backend services. Because the Cosmos DB SDK employs mechanisms like retries and failovers to ensure the operation succeeds under various conditions. An Azure Cosmos DB operation can involve multiple network calls.](#azure-cosmos-db-network-level-attributes-of-individual-network-calls-made-to-azure-cosmos-db-backend-services-because-the-cosmos-db-sdk-employs-mechanisms-like-retries-and-failovers-to-ensure-the-operation-succeeds-under-various-conditions-an-azure-cosmos-db-operation-can-involve-multiple-network-calls)
+- [Azure Cosmos DB Network level Attributes](#azure-cosmos-db-network-level-attributes)
 - [Elasticsearch Attributes](#elasticsearch-attributes)
 - [Deprecated Database Attributes](#deprecated-database-attributes)
 - [Deprecated Database Metrics](#deprecated-database-metrics)
@@ -230,14 +230,14 @@ This group defines attributes for Azure Cosmos DB Operation requested by the app
 | `Session` | session | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Strong` | strong | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Azure Cosmos DB Network level Attributes of individual network calls made to Azure Cosmos DB backend services. Because the Cosmos DB SDK employs mechanisms like retries and failovers to ensure the operation succeeds under various conditions. An Azure Cosmos DB operation can involve multiple network calls.
+## Azure Cosmos DB Network level Attributes
 
-This group defines attributes for Azure Cosmos DB Network call.
+This group defines attributes for network call made to Azure Cosmos DB backend services. Because the Cosmos DB SDK employs mechanisms like retries and failovers to ensure the operation succeeds under various conditions. An Azure Cosmos DB operation can involve multiple network calls.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="db-cosmosdb-network-response-status-code" href="#db-cosmosdb-network-response-status-code">`db.cosmosdb.network.response.status_code`</a> | int | The status code returned in response by the network call, made to Cosmos DB backend. [11] | `200` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-network-response-sub-status-code" href="#db-cosmosdb-network-response-sub-status-code">`db.cosmosdb.network.response.sub_status_code`</a> | int | The Azure Cosmos DB sub-status code for a network request made during an operation. | `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-network-response-status-code" href="#db-cosmosdb-network-response-status-code">`db.cosmosdb.network.response.status_code`</a> | int | The status code returned in response by the network call, made to Cosmos DB backend services. [11] | `200` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-network-response-sub-status-code" href="#db-cosmosdb-network-response-sub-status-code">`db.cosmosdb.network.response.sub_status_code`</a> | int | The Azure Cosmos DB sub-status code for a network request, made to Cosmos DB backend services, during an operation. | `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-network-routing-id" href="#db-cosmosdb-network-routing-id">`db.cosmosdb.network.routing_id`</a> | string | Identifies the Azure Cosmos DB Partition Key Range ID for a Gateway call, or Partition ID/Replica ID for a Direct call. | `45678765678987/2345678906789s` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[11] `db.cosmosdb.network.response.status_code`:** The protocol reuses HTTP status codes.
