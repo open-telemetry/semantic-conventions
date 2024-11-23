@@ -545,7 +545,7 @@ groups:
         stability: experimental
         brief: >
           Effective Request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels).
-          This represents the first applicable consistency level among those specified by the request, the client or the account's default consistency level.
+          This represents the applicable consistency level determined based on the hierarchy of settings: request-level, client instance-level, and account-level default consistency levels.
         examples: ["Eventual", "ConsistentPrefix", "BoundedStaleness", "Strong", "Session"]
       - id: db.cosmosdb.regions_contacted
         type: string[]
