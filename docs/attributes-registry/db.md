@@ -9,8 +9,8 @@
 - [General Database Attributes](#general-database-attributes)
 - [Cassandra Attributes](#cassandra-attributes)
 - [Azure Cosmos DB Attributes](#azure-cosmos-db-attributes)
-- [Azure Cosmos DB Network level Attributes of individual network calls made to Azure Cosmos DB's backend services.  Because the Cosmos DB SDK employs mechanisms like retries and failovers to ensure the operation succeeds under various conditions, an operation can involve multiple network calls.
-](#azure-cosmos-db-network-level-attributes-of-individual-network-calls-made-to-azure-cosmos-db's-backend-services--because-the-cosmos-db-sdk-employs-mechanisms-like-retries-and-failovers-to-ensure-the-operation-succeeds-under-various-conditions,-an-operation-can-involve-multiple-network-calls)
+- [Azure Cosmos DB Network level Attributes of individual network calls made to Azure Cosmos DB's backend services. Because the Cosmos DB SDK employs mechanisms like retries and failovers to ensure the operation succeeds under various conditions, an operation can involve multiple network calls.
+](#azure-cosmos-db-network-level-attributes-of-individual-network-calls-made-to-azure-cosmos-db's-backend-services-because-the-cosmos-db-sdk-employs-mechanisms-like-retries-and-failovers-to-ensure-the-operation-succeeds-under-various-conditions,-an-operation-can-involve-multiple-network-calls)
 - [Elasticsearch Attributes](#elasticsearch-attributes)
 - [Deprecated Database Attributes](#deprecated-database-attributes)
 - [Deprecated Database Metrics](#deprecated-database-metrics)
@@ -231,7 +231,7 @@ This group defines attributes for Azure Cosmos DB Operation requested by the app
 | `Session` | session | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `Strong` | strong | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Azure Cosmos DB Network level Attributes of individual network calls made to Azure Cosmos DB's backend services.  Because the Cosmos DB SDK employs mechanisms like retries and failovers to ensure the operation succeeds under various conditions, an operation can involve multiple network calls.
+## Azure Cosmos DB Network level Attributes of individual network calls made to Azure Cosmos DB's backend services. Because the Cosmos DB SDK employs mechanisms like retries and failovers to ensure the operation succeeds under various conditions, an operation can involve multiple network calls.
 
 
 This group defines attributes for Azure Cosmos DB Network call.
