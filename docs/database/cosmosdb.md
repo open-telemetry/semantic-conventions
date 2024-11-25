@@ -18,7 +18,7 @@ linkTitle: Cosmos DB
     - [Metric: `db.client.cosmosdb.request.duration`](#metric-dbclientcosmosdbrequestduration)
     - [Metric: `db.client.cosmosdb.request.body.size`](#metric-dbclientcosmosdbrequestbodysize)
     - [Metric: `db.client.cosmosdb.response.body.size`](#metric-dbclientcosmosdbresponsebodysize)
-    - [Metric: `db.server.cosmosdb.request.duration`](#metric-dbservercosmosdbrequestduration)
+    - [Metric: `db.client.cosmosdb.request.service_duration`](#metric-dbclientcosmosdbrequestservice_duration)
 
 <!-- tocstop -->
 
@@ -491,8 +491,8 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [5] | `200`; `201` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Specifies the host address from the Gateway or Backend Service endpoint. | `cdb-east-us.azure.document.com` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port of the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Network protocol used to send the request. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Region contacted during operation in the order specific region was contacted. [11] | `["North Central US"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -604,8 +604,8 @@ Explaining bucket configuration:
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [5] | `200`; `201` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Specifies the host address from the Gateway or Backend Service endpoint. | `cdb-east-us.azure.document.com` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port of the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Network protocol used to send the request. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Region contacted during operation in the order specific region was contacted. [11] | `["North Central US"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -717,8 +717,8 @@ Explaining bucket configuration:
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [5] | `200`; `201` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Specifies the host address from the Gateway or Backend Service endpoint. | `cdb-east-us.azure.document.com` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port of the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Network protocol used to send the request. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Region contacted during operation in the order specific region was contacted. [11] | `["North Central US"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -790,7 +790,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `db.server.cosmosdb.request.duration`
+### Metric: `db.client.cosmosdb.request.service_duration`
 
 This metric is [recommended][MetricRecommended].
 
@@ -800,7 +800,7 @@ this metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.35.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 
-<!-- semconv metric.db.server.cosmosdb.request.duration -->
+<!-- semconv metric.db.client.cosmosdb.request.service_duration -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -809,9 +809,9 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `db.server.cosmosdb.request.duration` | Histogram | `s` | Backend Server Latency, i.e. time taken by Azure Cosmos DB server to process the request. It is only applicable in Direct Mode. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db.client.cosmosdb.request.service_duration` | Histogram | `s` | Time taken by the Azure Cosmos DB service to process the request. It is only applicable in Direct Mode. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** This is the latency returned in response and reported from the client. It will not be reported if response was not received.
+**[1]:** Duration is measured on the backend and does not include network time. It is not reported when response was not received.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -825,8 +825,8 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [5] | `200`; `201` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `Microsoft.Azure.Cosmos.CosmosException`; `Microsoft.Azure.Cosmos.CosmosOperationCanceledException` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Specifies the host address from the Gateway or Backend Service endpoint. | `cdb-east-us.azure.document.com` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port used for the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Specifies the host protocol. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.peer.port`](/docs/attributes-registry/network.md) | int | The port of the Gateway or Backend Service endpoint. | `443` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | Network protocol used to send the request. [8] | `https`; `rntbd` | `Conditionally Required` If available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`cloud.region`](/docs/attributes-registry/cloud.md) | string | Region contacted during operation in the order specific region was contacted. [11] | `["North Central US"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

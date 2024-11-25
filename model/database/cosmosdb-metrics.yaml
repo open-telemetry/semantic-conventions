@@ -58,14 +58,12 @@ groups:
     stability: experimental
     extends: attributes.db.cosmosdb.network.minimal
 
-  - id: metric.db.server.cosmosdb.request.duration
+  - id: metric.db.client.cosmosdb.request.service_duration
     type: metric
-    metric_name: db.server.cosmosdb.request.duration
+    metric_name: db.client.cosmosdb.request.service_duration
     brief: "Time taken by the Azure Cosmos DB service to process the request. It is only applicable in Direct Mode."
     note: Duration is measured on the backend and does not include network time. It is not reported when response was not received.
     instrument: histogram
     unit: "s"
     stability: experimental
     extends: attributes.db.cosmosdb.network.minimal
-    note: >
-       This is the latency returned in response and reported from the client. It will not be reported if response was not received.
