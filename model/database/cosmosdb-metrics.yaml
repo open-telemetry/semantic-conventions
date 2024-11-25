@@ -61,7 +61,8 @@ groups:
   - id: metric.db.server.cosmosdb.request.duration
     type: metric
     metric_name: db.server.cosmosdb.request.duration
-    brief: "Backend Server Latency, i.e. time taken by Azure Cosmos DB server to process the request. It is only applicable in Direct Mode."
+    brief: "Time taken by the Azure Cosmos DB service to process the request. It is only applicable in Direct Mode."
+    note: Duration is measured on the backend and does not include network time. It is not reported when response was not received.
     instrument: histogram
     unit: "s"
     stability: experimental
