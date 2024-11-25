@@ -265,7 +265,7 @@ groups:
       Attributes for Azure Event Hubs
     attributes:
       - ref: messaging.consumer.group.name
-        brief: "Azure Event Hubs [consumer group name](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features#consumer-groups)."
+        brief: "Azure Event Hubs [consumer group name](https://learn.microsoft.com/azure/event-hubs/event-hubs-features#consumer-groups)."
         note: ""
         requirement_level:
           conditionally_required: On consumer spans.

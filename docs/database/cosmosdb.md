@@ -209,7 +209,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 This attribute has stability level RELEASE CANDIDATE.
 
 **[11] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text) section.
+Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
 This attribute has stability level RELEASE CANDIDATE.
 
 **[12] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
@@ -311,7 +311,7 @@ Refer [db.client.cosmosdb.operation.request_charge](#metric-dbclientcosmosdboper
 
 This metric is [required][MetricRequired].
 
-It captures the number of items returned by a query or feed operation in Azure Cosmos DB. It helps identify response sizes that may contribute to high latency, increased memory/CPU usage, or network call failures. This metric follows the common [db.client.response.returned_rows](/docs/database/database-metrics.md##metric-dbclientresponsereturned_rows) definition.
+It captures the number of items returned by a query or feed operation in Azure Cosmos DB. It helps identify response sizes that may contribute to high latency, increased memory/CPU usage, or network call failures. This metric follows the common [db.client.response.returned_rows](/docs/database/database-metrics.md#metric-dbclientresponsereturned_rows) definition.
 
 Refer [db.client.cosmosdb.operation.request_charge](#metric-dbclientcosmosdboperationrequest_charge) metrics for dimensions.
 

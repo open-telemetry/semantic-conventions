@@ -198,7 +198,7 @@ Examples for some JavaScript runtimes
 
 - `process.runtime.name` - Fill in the value by the name of runtime.
 - `process.runtime.version` - Fill in the value of `System.Environment.Version` for .NET,
-  determine version based on the [registry values](https://learn.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed#query-the-registry-using-code)
+  determine version based on the [registry values](https://learn.microsoft.com/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed#query-the-registry-using-code)
   for .NET Framework
 - `process.runtime.description` - Fill in the values of `System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription`.
 
