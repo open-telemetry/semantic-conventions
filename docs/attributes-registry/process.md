@@ -7,6 +7,7 @@
 # Process
 
 - [Process Attributes](#process-attributes)
+- [Process Linux Attributes](#process-linux-attributes)
 - [Deprecated Process Attributes](#deprecated-process-attributes)
 
 ## Process Attributes
@@ -54,6 +55,8 @@ An operating system process.
 
 **[3] `process.vpid`:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
 
+---
+
 `process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -61,12 +64,24 @@ An operating system process.
 | `involuntary` | involuntary | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `voluntary` | voluntary | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `major` | major | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `minor` | minor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Process Linux Attributes
+
+Describes Linux Process attributes
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="process-linux-cgroup" href="#process-linux-cgroup">`process.linux.cgroup`</a> | string | The control group associated with the process. [4] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[4] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/<PID>/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
 
 ## Deprecated Process Attributes
 
@@ -76,6 +91,8 @@ Deprecated process attributes.
 |---|---|---|---|---|
 | <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode` |
 | <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.executable.build_id.htlhash` |
+
+---
 
 `process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
