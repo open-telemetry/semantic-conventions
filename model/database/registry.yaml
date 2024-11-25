@@ -544,7 +544,17 @@ groups:
         stability: experimental
         brief: Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels).
         examples: ["Eventual", "ConsistentPrefix", "BoundedStaleness", "Strong", "Session"]
-
+      - id: db.cosmosdb.regions_contacted
+        type: string[]
+        stability: experimental
+        brief: >
+          List of regions contacted during operation in the order that they were contacted. If there is more than one region listed,
+          it indicates that the operation was performed on multiple regions i.e. cross-regional call.
+        note: >
+          Region name matches the format of `displayName`
+          in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
+        examples:
+          - ["North Central US", "Australia East", "Australia Southeast"]
   - id: registry.db.elasticsearch
     type: attribute_group
     display_name: Elasticsearch Attributes

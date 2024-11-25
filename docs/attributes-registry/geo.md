@@ -21,6 +21,8 @@ Note: Geo attributes are typically used under another namespace, such as client.
 | <a id="geo-postal-code" href="#geo-postal-code">`geo.postal_code`</a> | string | Postal code associated with the location. Values appropriate for this field may also be known as a postcode or ZIP code and will vary widely from country to country. | `94040` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="geo-region-iso-code" href="#geo-region-iso-code">`geo.region.iso_code`</a> | string | Region ISO code ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)). | `CA-QC` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `geo.continent.code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
