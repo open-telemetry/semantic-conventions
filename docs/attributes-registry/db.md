@@ -232,7 +232,7 @@ This group defines attributes for Azure Cosmos DB Operation requested by the app
 
 ## Azure Cosmos DB Network level Attributes
 
-This group defines attributes for network calls to Azure Cosmos DB backend services, essential for monitoring and analysis,  as the SDK employs retries, failovers, and may involve multiple calls to ensure operation success under varying conditions.
+This group defines attributes for network calls to Azure Cosmos DB backend services, essential for monitoring and analysis, as the SDK employs retries, failovers, and may involve multiple calls to ensure operation success under varying conditions.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|

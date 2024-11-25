@@ -564,7 +564,7 @@ groups:
     display_name: Azure Cosmos DB Network level Attributes
     stability: experimental
     brief: >
-      This group defines attributes for network calls to Azure Cosmos DB backend services, essential for monitoring and analysis, 
+      This group defines attributes for network calls to Azure Cosmos DB backend services, essential for monitoring and analysis,
       as the SDK employs retries, failovers, and may involve multiple calls to ensure operation success under varying conditions.
     attributes:
       - id: db.cosmosdb.network.response.status_code
