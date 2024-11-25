@@ -35,11 +35,16 @@ OPA_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}'
 
 DOCKER_USER=$(shell id -u):$(shell id -g)
 
+CHECK_TARGETS=install-tools markdownlint misspell table-check compatibility-check \
+			schema-check check-file-and-folder-names-in-docs
+
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
-all: install-tools markdownlint markdown-link-check misspell table-check compatibility-check schema-check \
-		 check-file-and-folder-names-in-docs
+all: $(CHECK_TARGETS) markdown-link-check
+
+.PHONY: check
+check: $(CHECK_TARGETS)
 
 .PHONY: check-file-and-folder-names-in-docs
 check-file-and-folder-names-in-docs:

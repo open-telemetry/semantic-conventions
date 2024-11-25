@@ -43,6 +43,8 @@ groups:
         examples: ['System.OperationCanceledException', 'Contoso.MyException']
         requirement_level: required
       - ref: aspnetcore.diagnostics.handler.type
+        requirement_level:
+          conditionally_required: if and only if the exception was handled by this handler.
       - ref: aspnetcore.diagnostics.exception.result
         requirement_level: required
 
