@@ -90,7 +90,7 @@ groups:
           conditionally_required: If available
       - ref: network.peer.port
         stability: experimental
-        brief: The port used for the Gateway or Backend Service endpoint.
+        brief: The port of the Gateway or Backend Service endpoint.
         examples: 443
         requirement_level:
           conditionally_required: If available
