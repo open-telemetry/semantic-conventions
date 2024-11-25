@@ -115,7 +115,8 @@ When the operation ends with an error, instrumentation:
 - SHOULD set the span status code to `Error`
 - SHOULD set the `error.type` attribute
 - SHOULD set the span status description when it has additional information
-  about the error that aligns with [Span Status Description][SpanStatus].
+  about the error which is not expected to contain sensitive details and aligns
+  with [Span Status Description][SpanStatus] definition.
 
   It's NOT RECOMMENDED to duplicate `db.response.status_code` or `error.type`
   in span status description.
