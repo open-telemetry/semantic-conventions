@@ -7,38 +7,38 @@ groups:
     attributes:
       - id: code.function
         type: string
-        stability: experimental # RELEASE CANDIDATE
+        stability: experimental  # RELEASE CANDIDATE
         brief: >
           The method or function name, or equivalent (usually rightmost part of the code unit's name).
         examples: serveRequest
       - id: code.namespace
         type: string
-        stability: experimental # RELEASE CANDIDATE
+        stability: experimental  # RELEASE CANDIDATE
         brief: >
           The "namespace" within which `code.function` is defined. Usually the qualified class or module name,
           such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit.
         examples: com.example.MyHttpService
       - id: code.filepath
         type: string
-        stability: experimental # RELEASE CANDIDATE
+        stability: experimental  # RELEASE CANDIDATE
         brief: >
           The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path).
         examples: /usr/local/MyApplication/content_root/app/index.php
       - id: code.lineno
         type: int
-        stability: experimental # RELEASE CANDIDATE
+        stability: experimental  # RELEASE CANDIDATE
         brief: >
           The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`.
         examples: 42
       - id: code.column
         type: int
-        stability: experimental # RELEASE CANDIDATE
+        stability: experimental  # RELEASE CANDIDATE
         brief: >
           The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`.
         examples: 16
       - id: code.stacktrace
         type: string
-        stability: experimental # RELEASE CANDIDATE
+        stability: experimental  # RELEASE CANDIDATE
         brief: >
           A stacktrace as a string in the natural representation for the language runtime.
           The representation is to be determined and documented by each language SIG.
