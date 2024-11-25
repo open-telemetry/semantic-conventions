@@ -74,7 +74,7 @@ groups:
     attributes:
       - ref: network.protocol.name
         stability: experimental
-        brief: Specifies the host protocol.
+        brief: Network protocol used to send the request.
         examples: ["https", "rntbd"]
         requirement_level:
           conditionally_required: If available
