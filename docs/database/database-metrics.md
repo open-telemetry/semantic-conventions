@@ -154,7 +154,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[11] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[12] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text) section.
+Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
 This attribute has stability level RELEASE CANDIDATE.
 
 **[13] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
@@ -343,7 +343,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[11] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[12] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text) section.
+Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
 This attribute has stability level RELEASE CANDIDATE.
 
 **[13] `db.query.summary`:** if readily available or if instrumentation supports query summarization.

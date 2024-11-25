@@ -175,7 +175,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 This attribute has stability level RELEASE CANDIDATE.
 
 **[13] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text) section.
+Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
 This attribute has stability level RELEASE CANDIDATE.
 
 **[14] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
@@ -307,7 +307,7 @@ in which case the instrumentation MAY choose a different placeholder.
 
 Placeholders in a parameterized query SHOULD not be sanitized. E.g. `where id = $1` can be captured as is.
 
-[IN-clauses](https://en.wikipedia.org/wiki/Where_(SQL)#IN) MAY be collapsed during sanitization,
+[IN-clauses](https://wikipedia.org/wiki/Where_(SQL)#IN) MAY be collapsed during sanitization,
 e.g. from `IN (?, ?, ?, ?)` to `IN (?)`, as this can help with extremely long IN-clauses,
 and can help control cardinality for users who choose to (optionally) add `db.query.text` to their metric attributes.
 
