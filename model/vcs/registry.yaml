@@ -12,10 +12,31 @@ groups:
           The [URL](https://wikipedia.org/wiki/URL) of the repository
           providing the complete address in order to locate and identify the
           repository.
+        note: |
+          The URL SHOULD only be an HTTPS absolute URL and SHOULD NOT include
+          `.git` appended on the end nor be an SSH URL.
         examples:
           [
             "https://github.com/opentelemetry/open-telemetry-collector-contrib",
             "https://gitlab.com/my-org/my-project/my-projects-project/repo",
+          ]
+      - id: vcs.repository.name
+        type: string
+        stability: experimental
+        brief: >
+          The human readable name of the repository. It SHOULD NOT include any
+          additional identifier like Group/SubGroup in GitLab or organization
+          in GitHub.
+        note: |
+          Due to it only being the name, it can clash with forks of the same
+          repository if collecting telemetry across multiple orgs or groups in
+          the same backends. It is recommended to include
+          `vcs.repository.url.full` alongside this attribute to prevent
+          clashing.
+        examples:
+          [
+            "semantic-conventios",
+            "my-cool-repo",
           ]
       - id: vcs.ref.base.name
         type: string
