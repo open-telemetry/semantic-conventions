@@ -35,7 +35,7 @@ We are considering two personas for system semconv instrumentation. If we have a
 
 ### General Class: A generalized cross-platform use case we want any user of instrumentation to be able to easily access
 
-When instrumentation is meant for the General Class, we will strive to make the names and examples as prescriptive as possible. This instrumentation is what will drive the most important use cases we really want to cover with the system semantic conventions. Things like dashboards, alerts, and broader o11y setup tutorials will largely feature General Class instrumentation covering the [basic use cases](./use-cases.md) we have laid out as a group. We want this instrumentation to be very clear exactly how and when they should be used. Bucket 1 instrumentation will be recommended as **on by default**.
+When instrumentation is meant for the General Class, we will strive to make the names and examples as prescriptive as possible. This instrumentation is what will drive the most important use cases we really want to cover with the system semantic conventions. Things like dashboards, alerts, and broader o11y setup tutorials will largely feature General Class instrumentation covering the [basic use cases](./use-cases.md) we have laid out as a group. We want this instrumentation to be very clear exactly how and when they should be used. General Class instrumentation will be recommended as **on by default**.
 
 ### Specialist Class: A more specific use case that specialists could enable to get more in-depth information that they already understand how to use
 
@@ -80,15 +80,15 @@ In the `hostmetricsreceiver`, there is a Resource Attribute called `process.cgro
 
 ### Which class does this fall under?
 
-Based on our definitions, this attribute would fall under Bucket 2:
+Based on our definitions, this attribute would fall under Specialist Class:
 
 * `cgroups` are a Linux-specific feature  
 * It is not directly part of any of the default out-of-the-box usecases we want to cover
 
 ### What should it be named?
 
-Since it is in Bucket 2, and is a Linux-specific feature, it follows that this attribute should be named `process.linux.cgroup`.
+Since this metric falls under Specialist Class, and is a Linux-specific feature, it follows that this attribute should be named `process.linux.cgroup`.
 
 ### What should the value be?
 
-Since it is Bucket 2, we don't want to be too prescriptive. A user who needs to know the `cgroup` of a process likely already has a pretty good idea of how to interpret it and use it further, and it would not be worth it for this Working Group to try and come up with every possible edge case for how it might be used. It is much simpler for this attribute as it falls under our purview to simply reflect the value from the OS, i.e. the same thing as `cat /proc/PID/cgroup`. With cgroups in particular, there is high likelihood that more specialized semconv instrumentation could be developed, particularly in support of more specialized container runtime or systemd instrumentation. It's more useful for a working group that would develop special instrumentation that leverages cgroups would be more prescriptive about how the cgroup information should be interpreted and broken down with more specificity.
+Since this metric falls under Specialist Class, we don't want to be too prescriptive. A user who needs to know the `cgroup` of a process likely already has a pretty good idea of how to interpret it and use it further, and it would not be worth it for this Working Group to try and come up with every possible edge case for how it might be used. It is much simpler for this attribute as it falls under our purview to simply reflect the value from the OS, i.e. the same thing as `cat /proc/PID/cgroup`. With cgroups in particular, there is high likelihood that more specialized semconv instrumentation could be developed, particularly in support of more specialized container runtime or systemd instrumentation. It's more useful for a working group that would develop special instrumentation that leverages cgroups would be more prescriptive about how the cgroup information should be interpreted and broken down with more specificity.
