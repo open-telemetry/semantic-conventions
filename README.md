@@ -35,6 +35,7 @@ Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs
 - [Johannes Tax](https://github.com/pyohannes), Grafana Labs
 - [Josh Suereth](https://github.com/jsuereth), Google
 - [Liudmila Molkova](https://github.com/lmolkova), Microsoft
+- [Trask Stalnaker](https://github.com/trask), Microsoft
 
 Emeritus Maintainers:
 
