@@ -11,6 +11,10 @@ groups:
         stability: experimental
         brief: The lookup key of the feature flag.
         examples: ["logo-color"]
+<<<<<<< HEAD
+=======
+      # TODO: rename to `feature_flag.provider.name` once we can.
+>>>>>>> 5eaf0483 (BREAKING: rename db.system, messaging.system, gen_ai.system to *.provider.name, pc.system to pc.protocol.name, feature_flag.system back to feature_flag.provider_name)
       - id: feature_flag.provider_name
         type: string
         stability: experimental

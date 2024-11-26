@@ -8,7 +8,7 @@ linkTitle: SQL
 
 The SQL databases Semantic Conventions describes how common [Database Semantic Conventions](database-spans.md) apply to SQL databases.
 
-The following database systems (defined in the [`db.system`](./database-spans.md#notes-and-well-known-identifiers-for-dbsystem) set) are known to use SQL as their primary query language:
+The following database systems (defined in the [`db.provider.name`](./database-spans.md#notes-and-well-known-identifiers-for-dbsystem) set) are known to use SQL as their primary query language:
 
 - `cockroachdb`
 - `db2`
@@ -166,7 +166,7 @@ This is an example of attributes for a MySQL database span:
 |:-----------------------| :----------------------------------------------------------- |
 | Span name              | `"SELECT orders"` |
 | `db.namespace`         | `"ShopDb"` |
-| `db.system`            | `"mysql"` |
+| `db.provider.name`            | `"mysql"` |
 | `server.address`       | `"shopdb.example.com"` |
 | `server.port`          | `3306` |
 | `db.query.text`        | `"SELECT * FROM orders WHERE order_id = 'o4711'"` |

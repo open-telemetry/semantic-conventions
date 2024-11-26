@@ -44,7 +44,7 @@ The Semantic Conventions for [Apache Kafka](https://kafka.apache.org/) extend an
 > * SHOULD emit the new, stable values for span name, span kind and similar "single"
 > valued concepts when `messaging/dup` is present in the list.
 
-`messaging.system` MUST be set to `"kafka"` and SHOULD be provided **at span creation time**.
+`messaging.provider.name` MUST be set to `"kafka"` and SHOULD be provided **at span creation time**.
 
 ## Span attributes
 
@@ -199,7 +199,7 @@ flowchart LR;
 | Links |  | Span Send | Span Send |  |
 | SpanKind | `PRODUCER` | `CONSUMER` | `SERVER` | `CLIENT` |
 | Status | `UNSET` | `UNSET` | `UNSET` | `UNSET` |
-| `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
+| `messaging.provider.name` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` | `"T"` |
 | `messaging.destination.consumer.group` |  | `"my-group"` | `"my-group"` | `"my-group"` |
 | `messaging.destination.partition.id` | `"1"` | `"1"` | `"1"` | `"1"` |

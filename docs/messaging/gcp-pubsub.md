@@ -36,7 +36,7 @@ The Semantic Conventions for [Google Cloud Pub/Sub](https://cloud.google.com/pub
 > * SHOULD emit the new, stable values for span name, span kind and similar "single"
 > valued concepts when `messaging/dup` is present in the list.
 
-`messaging.system` MUST be set to `"gcp_pubsub"` and SHOULD be provided **at span creation time**.
+`messaging.provider.name` MUST be set to `"gcp_pubsub"` and SHOULD be provided **at span creation time**.
 
 ## Span attributes
 
@@ -181,7 +181,7 @@ flowchart LR;
 | `messaging.operation.type` | `"create"` | `"create"` | `"send"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.message.envelope.size` | `1` | `1` | |
-| `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |
+| `messaging.provider.name` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |
 
 ### Unary Pull Example
 
@@ -235,7 +235,7 @@ flowchart TD;
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` |`CLIENT` |`CLIENT` |
 | Status | `Ok` | `Ok` | `Ok` |`Ok` | `Ok` |
 | `messaging.destination.name` | `"T"`| `"T"`| `"S"` | `"S"` |`"S"` |
-| `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |  `"gcp_pubsub"` | `"gcp_pubsub"` |
+| `messaging.provider.name` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |  `"gcp_pubsub"` | `"gcp_pubsub"` |
 | `messaging.operation.name` | `"create"` | `"send"` | `"receive"` | `"modack"` | `"ack"` |
 | `messaging.operation.type` | `"create"` | `"send"` | `"receive"` |  | `"settle"` |
 | `messaging.message.id` | `"a1"` | | `"a1"` | | |

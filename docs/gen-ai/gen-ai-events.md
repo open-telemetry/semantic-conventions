@@ -68,21 +68,21 @@ This event describes the system instructions passed to the GenAI model.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.provider.name`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+**[1] `gen_ai.provider.name`:** The `gen_ai.provider.name` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
-For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
+For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.provider.name`
 is set to `openai` based on the instrumentation's best knowledge.
 
 For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+If none of these options apply, the `gen_ai.provider.name` SHOULD be set to `_OTHER`.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -404,7 +404,7 @@ sequenceDiagram
 |   Attribute name                |                     Value                  |
 |---------------------------------|--------------------------------------------|
 | Span name                       | `"chat gpt-4"`                             |
-| `gen_ai.system`                 | `"openai"`                                 |
+| `gen_ai.provider.name`                 | `"openai"`                                 |
 | `gen_ai.request.model`          | `"gpt-4"`                                  |
 | `gen_ai.request.max_tokens`     | `200`                                      |
 | `gen_ai.request.top_p`          | `1.0`                                      |
@@ -420,22 +420,37 @@ sequenceDiagram
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
+<<<<<<< HEAD
    | `gen_ai.system`     | `"openai"`                                            |
    | Event body (with content enabled) | `{"content": "You're a helpful bot"}` |
+=======
+   | `gen_ai.provider.name`     | `"openai"`                                            |
+   | Event body          | `{"content": "You're a friendly bot that answers questions about OpenTelemetry."}` |
+>>>>>>> 5eaf0483 (BREAKING: rename db.system, messaging.system, gen_ai.system to *.provider.name, pc.system to pc.protocol.name, feature_flag.system back to feature_flag.provider_name)
 
 2. `gen_ai.user.message`
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
+<<<<<<< HEAD
    | `gen_ai.system`     | `"openai"`                                            |
    | Event body (with content enabled) | `{"content":"Tell me a joke about OpenTelemetry"}` |
+=======
+   | `gen_ai.provider.name`     | `"openai"`                                            |
+   | Event body          | `{"content":"How to instrument GenAI library with OTel?"}` |
+>>>>>>> 5eaf0483 (BREAKING: rename db.system, messaging.system, gen_ai.system to *.provider.name, pc.system to pc.protocol.name, feature_flag.system back to feature_flag.provider_name)
 
 3. `gen_ai.choice`
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
+<<<<<<< HEAD
    | `gen_ai.system`     | `"openai"`                                            |
    | Event body (with content enabled) | `{"index":0,"finish_reason":"stop","message":{"content":"Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"}}` |
+=======
+   | `gen_ai.provider.name`     | `"openai"`                                            |
+   | Event body (with content enabled) | `{"index":0,"finish_reason":"stop","message":{"content":"Follow GenAI semantic conventions available at opentelemetry.io."}}` |
+>>>>>>> 5eaf0483 (BREAKING: rename db.system, messaging.system, gen_ai.system to *.provider.name, pc.system to pc.protocol.name, feature_flag.system back to feature_flag.provider_name)
    | Event body (without content) | `{"index":0,"finish_reason":"stop","message":{}}` |
 
 ### Tools
@@ -472,6 +487,7 @@ Here's the telemetry generated for each step in this scenario:
 
 **GenAI Client span 1:**
 
+<<<<<<< HEAD
 |   Attribute name    |                     Value                             |
 |---------------------|-------------------------------------------------------|
 | Span name           | `"chat gpt-4"`                             |
@@ -484,6 +500,20 @@ Here's the telemetry generated for each step in this scenario:
 | `gen_ai.usage.output_tokens`| `17`                                          |
 | `gen_ai.usage.input_tokens`| `47`                                           |
 | `gen_ai.response.finish_reasons`| `["tool_calls"]`                          |
+=======
+   |   Attribute name    |                     Value                             |
+   |---------------------|-------------------------------------------------------|
+   | Span name           | `"chat gpt-4"`                             |
+   | `gen_ai.provider.name`     | `"openai"`                                            |
+   | `gen_ai.request.model`| `"gpt-4"`                                           |
+   | `gen_ai.request.max_tokens`| `200`                                          |
+   | `gen_ai.request.top_p`| `1.0`                                               |
+   | `gen_ai.response.id`| `"chatcmpl-9J3uIL87gldCFtiIbyaOvTeYBRA3l"`            |
+   | `gen_ai.response.model`| `"gpt-4-0613"`                                     |
+   | `gen_ai.usage.output_tokens`| `17`                                          |
+   | `gen_ai.usage.input_tokens`| `47`                                           |
+   | `gen_ai.response.finish_reasons`| `["tool_calls"]`                          |
+>>>>>>> 5eaf0483 (BREAKING: rename db.system, messaging.system, gen_ai.system to *.provider.name, pc.system to pc.protocol.name, feature_flag.system back to feature_flag.provider_name)
 
   **Events**:
 
@@ -493,23 +523,34 @@ Here's the telemetry generated for each step in this scenario:
 
      |   Property          |                     Value                             |
      |---------------------|-------------------------------------------------------|
+<<<<<<< HEAD
      | `gen_ai.system`     | `"openai"`                                            |
      | Event body          | `{"content":"What's the weather in Paris?"}` |
+=======
+     | `gen_ai.provider.name`     | `"openai"`                                            |
+     | Event body          | `{"content":"How to instrument GenAI library with OTel?"}` |
+>>>>>>> 5eaf0483 (BREAKING: rename db.system, messaging.system, gen_ai.system to *.provider.name, pc.system to pc.protocol.name, feature_flag.system back to feature_flag.provider_name)
 
   2. `gen_ai.choice`
 
      |   Property          |                     Value                             |
      |---------------------|-------------------------------------------------------|
+<<<<<<< HEAD
      | `gen_ai.system`     | `"openai"`                                            |
      | Event body (with content)    | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":"{\"location\":\"Paris\"}"},"type":"function"}]}` |
      | Event body (without content) | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather"},"type":"function"}]}` |
+=======
+     | `gen_ai.provider.name`     | `"openai"`                                            |
+     | Event body (with content)    | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_link_to_otel_semconv","arguments":"{\"semconv\":\"GenAI\"}"},"type":"function"}]}` |
+     | Event body (without content) | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_link_to_otel_semconv"},"type":"function"}]}` |
+>>>>>>> 5eaf0483 (BREAKING: rename db.system, messaging.system, gen_ai.system to *.provider.name, pc.system to pc.protocol.name, feature_flag.system back to feature_flag.provider_name)
 
 **GenAI Client span 2:**
 
    |   Attribute name                |                     Value                             |
    |---------------------------------|-------------------------------------------------------|
    | Span name                       | `"chat gpt-4"`                                        |
-   | `gen_ai.system`                 | `"openai"`                                            |
+   | `gen_ai.provider.name`                 | `"openai"`                                            |
    | `gen_ai.request.model`          | `"gpt-4"`                                             |
    | `gen_ai.request.max_tokens`     | `200`                                                 |
    | `gen_ai.request.top_p`          | `1.0`                                                 |
@@ -529,31 +570,52 @@ Here's the telemetry generated for each step in this scenario:
 
      |   Property                       |                     Value                                  |
      |----------------------------------|------------------------------------------------------------|
+<<<<<<< HEAD
      | `gen_ai.system`                  | `"openai"`                                                 |
      | Event body                       | `{"content":"What's the weather in Paris?"}` |
+=======
+     | `gen_ai.provider.name`                  | `"openai"`                                                 |
+     | Event body                       | `{"content":"How to instrument GenAI library with OTel?"}` |
+>>>>>>> 5eaf0483 (BREAKING: rename db.system, messaging.system, gen_ai.system to *.provider.name, pc.system to pc.protocol.name, feature_flag.system back to feature_flag.provider_name)
 
   2. `gen_ai.assistant.message`
 
      |   Property                       |                     Value                                                                                                                  |
      |----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+<<<<<<< HEAD
      | `gen_ai.system`                  | `"openai"`                                                                                                                                 |
      | Event body (content enabled)     | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":"{\"location\":\"Paris\"}"},"type":"function"}]}` |
      | Event body (content not enabled) | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather"},"type":"function"}]}`                 |
+=======
+     | `gen_ai.provider.name`                  | `"openai"`                                                                                                                                 |
+     | Event body (content enabled)     | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_link_to_otel_semconv","arguments":"{\"semconv\":\"GenAI\"}"},"type":"function"}]}` |
+     | Event body (content not enabled) | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_link_to_otel_semconv"},"type":"function"}]}`                 |
+>>>>>>> 5eaf0483 (BREAKING: rename db.system, messaging.system, gen_ai.system to *.provider.name, pc.system to pc.protocol.name, feature_flag.system back to feature_flag.provider_name)
 
   3. `gen_ai.tool.message`
 
      |   Property                       |                     Value                                                                      |
      |----------------------------------|------------------------------------------------------------------------------------------------|
+<<<<<<< HEAD
      | `gen_ai.system`                  | `"openai"`                                                                                     |
      | Event body (content enabled)     | `{"content":"rainy, 57°F","id":"call_VSPygqKTWdrhaFErNvMV18Yl"}` |
+=======
+     | `gen_ai.provider.name`                  | `"openai"`                                                                                     |
+     | Event body (content enabled)     | `{"content":"opentelemetry.io/semconv/gen-ai","id":"call_VSPygqKTWdrhaFErNvMV18Yl"}` |
+>>>>>>> 5eaf0483 (BREAKING: rename db.system, messaging.system, gen_ai.system to *.provider.name, pc.system to pc.protocol.name, feature_flag.system back to feature_flag.provider_name)
      | Event body (content not enabled) | `{"id":"call_VSPygqKTWdrhaFErNvMV18Yl"}`                                             |
 
   4. `gen_ai.choice`
 
      |   Property                       |                     Value                                                                                                     |
      |----------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+<<<<<<< HEAD
      | `gen_ai.system`                  | `"openai"`                                                                                                                    |
      | Event body (content enabled)     | `{"index":0,"finish_reason":"stop","message":{"content":"The weather in Paris is rainy and overcast, with temperatures around 57°F"}}` |
+=======
+     | `gen_ai.provider.name`                  | `"openai"`                                                                                                                    |
+     | Event body (content enabled)     | `{"index":0,"finish_reason":"stop","message":{"content":"Follow OTel semconv available at opentelemetry.io/semconv/gen-ai"}}` |
+>>>>>>> 5eaf0483 (BREAKING: rename db.system, messaging.system, gen_ai.system to *.provider.name, pc.system to pc.protocol.name, feature_flag.system back to feature_flag.provider_name)
      | Event body (content not enabled) | `{"index":0,"finish_reason":"stop","message":{}}` |
 
 ### Chat completion with multiple choices
@@ -583,7 +645,7 @@ sequenceDiagram
 |   Attribute name    |                     Value                  |
 |---------------------|--------------------------------------------|
 | Span name           | `"chat gpt-4"`                             |
-| `gen_ai.system`     | `"openai"`                                 |
+| `gen_ai.provider.name`     | `"openai"`                                 |
 | `gen_ai.request.model`| `"gpt-4"`                                |
 | `gen_ai.request.max_tokens`| `200`                               |
 | `gen_ai.request.top_p`| `1.0`                                    |
@@ -603,14 +665,24 @@ All events are parented to the GenAI chat span above.
 
    |   Property                   |                     Value                             |
    |------------------------------|-------------------------------------------------------|
+<<<<<<< HEAD
    | `gen_ai.system`              | `"openai"`                                            |
    | Event body (content enabled) | `{"index":0,"finish_reason":"stop","message":{"content":"Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"}}` |
+=======
+   | `gen_ai.provider.name`              | `"openai"`                                            |
+   | Event body (content enabled) | `{"index":0,"finish_reason":"stop","message":{"content":"Follow GenAI semantic conventions available at opentelemetry.io."}}` |
+>>>>>>> 5eaf0483 (BREAKING: rename db.system, messaging.system, gen_ai.system to *.provider.name, pc.system to pc.protocol.name, feature_flag.system back to feature_flag.provider_name)
 
 4. `gen_ai.choice`
 
    |   Property                   |                     Value                             |
    |------------------------------|-------------------------------------------------------|
+<<<<<<< HEAD
    | `gen_ai.system`              | `"openai"`                                            |
    | Event body (content enabled) | `{"index":1,"finish_reason":"stop","message":{"content":"Why did OpenTelemetry get promoted? It had great span of control!"}}` |
+=======
+   | `gen_ai.provider.name`              | `"openai"`                                            |
+   | Event body (content enabled) | `{"index":1,"finish_reason":"stop","message":{"content":"Use OpenAI instrumentation library."}}` |
+>>>>>>> 5eaf0483 (BREAKING: rename db.system, messaging.system, gen_ai.system to *.provider.name, pc.system to pc.protocol.name, feature_flag.system back to feature_flag.provider_name)
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

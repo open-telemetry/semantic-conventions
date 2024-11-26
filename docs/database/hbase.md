@@ -8,7 +8,7 @@ linkTitle: HBase
 
 The Semantic Conventions for [HBase](https://hbase.apache.org/) extend and override the [Database Semantic Conventions](database-spans.md).
 
-`db.system` MUST be set to `"hbase"` and SHOULD be provided **at span creation time**.
+`db.provider.name` MUST be set to `"hbase"` and SHOULD be provided **at span creation time**.
 
 ## Attributes
 

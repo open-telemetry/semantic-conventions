@@ -8,6 +8,13 @@ versions:
         - rename_attributes:
             attribute_map:
               system.network.state: network.connection.state
+        # https://github.com/open-telemetry/semantic-conventions/pull/TODO
+        - rename_attributes:
+            attribute_map:
+              db.system: db.provider.name
+              messaging.system: messaging.provider.name
+              gen_ai.system: gen_ai.provider.name
+              rpc.system: rpc.protocol.name
   1.29.0:
     all:
       changes:

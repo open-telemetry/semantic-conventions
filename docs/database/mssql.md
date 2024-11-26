@@ -8,7 +8,7 @@ linkTitle: MSSQL
 
 The Semantic Conventions for the *Microsoft SQL Server* extend and override the [Database Semantic Conventions](database-spans.md).
 
-`db.system` MUST be set to `"mssql"` and SHOULD be provided **at span creation time**.
+`db.provider.name` MUST be set to `"mssql"` and SHOULD be provided **at span creation time**.
 
 ## Attributes
 

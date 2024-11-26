@@ -49,6 +49,7 @@ to
 | `db.cassandra.table` &rarr; `db.collection.name`    |                                                                                                             |
 | `db.mongodb.collection` &rarr; `db.collection.name` |                                                                                                             |
 | `db.cosmosdb.container` &rarr; `db.collection.name` |                                                                                                             |
+| `db.system` &rarr; `db.provider.name`               |                                                                                                             |
 | New: `db.operation.batch.size`                      |                                                                                                             |
 | New: `db.response.status_code`                      |                                                                                                             |
 | New: `db.operation.parameter.<key>`                 | Opt-In                                                                                                      |

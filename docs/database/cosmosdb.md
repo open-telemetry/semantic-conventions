@@ -26,7 +26,7 @@ extend and override the [Database Semantic Conventions](database-spans.md).
 
 ## Attributes
 
-`db.system` MUST be set to `"cosmosdb"` and SHOULD be provided **at span creation time**.
+`db.provider.name` MUST be set to `"cosmosdb"` and SHOULD be provided **at span creation time**.
 
 Cosmos DB instrumentation includes call-level (public API) surface spans and network spans. Depending on the connection mode (Gateway or Direct), network-level spans may also be created.
 
@@ -278,7 +278,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 |:-------------------------------------| :------------------- |
 | Span name                            | `"read_item orders"` |
 | `az.namespace`                       | `"Microsoft.DocumentDB"` |
-| `db.system`                          | `"cosmosdb"` |
+| `db.provider.name`                          | `"cosmosdb"` |
 | `db.collection.name`                 | `"orders"` |
 | `db.namespace`                       | `"ShopDb"` |
 | `db.operation.name`                  | `"read_item"` |

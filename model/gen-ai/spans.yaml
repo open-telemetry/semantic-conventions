@@ -64,7 +64,7 @@ groups:
       Describes GenAI operation span.
     extends: trace.gen_ai.client.common_attributes
     attributes:
-      - ref: gen_ai.system
+      - ref: gen_ai.provider.name
         # TODO: Not adding to trace.gen_ai.client.common_attributes because of https://github.com/open-telemetry/build-tools/issues/192
         requirement_level: required
       - ref: gen_ai.request.top_k

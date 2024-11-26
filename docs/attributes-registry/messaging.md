@@ -36,7 +36,7 @@ Attributes describing telemetry around messaging systems and messaging activitie
 | <a id="messaging-message-id" href="#messaging-message-id">`messaging.message.id`</a> | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="messaging-operation-name" href="#messaging-operation-name">`messaging.operation.name`</a> | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="messaging-operation-type" href="#messaging-operation-type">`messaging.operation.type`</a> | string | A string identifying the type of the messaging operation. [8] | `create`; `send`; `receive` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | string | The messaging system as identified by the client instrumentation. [9] | `activemq`; `aws_sqs`; `eventgrid` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="messaging-provider-name" href="#messaging-provider-name">`messaging.provider.name`</a> | string | The messaging provider name as identified by the client instrumentation. [9] | `activemq`; `aws_sqs`; `eventgrid` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `messaging.batch.message_count`:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
@@ -57,7 +57,7 @@ size should be used.
 
 **[8] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[9] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
+**[9] `messaging.provider.name`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.provider.name` is set to `kafka` based on the instrumentation's best knowledge.
 
 ---
 
@@ -75,7 +75,7 @@ size should be used.
 
 ---
 
-`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`messaging.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -203,3 +203,22 @@ Describes deprecated messaging attributes.
 | <a id="messaging-operation" href="#messaging-operation">`messaging.operation`</a> | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`. |
 | <a id="messaging-rocketmq-client-group" href="#messaging-rocketmq-client-group">`messaging.rocketmq.client_group`</a> | string | Deprecated, use `messaging.consumer.group.name` instead. | `myConsumerGroup` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.consumer.group.name` on the consumer spans. No replacement for producer spans. |
 | <a id="messaging-servicebus-destination-subscription-name" href="#messaging-servicebus-destination-subscription-name">`messaging.servicebus.destination.subscription_name`</a> | string | Deprecated, use `messaging.destination.subscription.name` instead. | `subscription-a` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.subscription.name`. |
+| <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | string | Deprecated, use `messaging.provider.name` instead. | `activemq`; `aws_sqs`; `eventgrid` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.provider.name`. |
+
+---
+
+`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `activemq` | Apache ActiveMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `eventgrid` | Azure Event Grid | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `eventhubs` | Azure Event Hubs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp_pubsub` | Google Cloud Pub/Sub | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `jms` | Java Message Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `kafka` | Apache Kafka | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pulsar` | Apache Pulsar | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rabbitmq` | RabbitMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rocketmq` | Apache RocketMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `servicebus` | Azure Service Bus | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

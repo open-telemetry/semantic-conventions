@@ -152,12 +152,12 @@ groups:
         brief: >
           The system-specific name of the messaging operation.
         examples: [ "ack", "nack", "send" ]
-      - id: messaging.system
-        brief: The messaging system as identified by the client instrumentation.
+      - id: messaging.provider.name
+        brief: The messaging provider name as identified by the client instrumentation.
         note: >
           The actual messaging system may differ from the one known by the client.
-          For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system`
-          is set to `kafka` based on the instrumentation's best knowledge.
+          For example, when using Kafka client libraries to communicate with Azure Event Hubs,
+          the `messaging.provider.name` is set to `kafka` based on the instrumentation's best knowledge.
         type:
           members:
             - id: activemq

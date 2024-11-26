@@ -36,7 +36,7 @@ The Semantic Conventions for [RabbitMQ](https://www.rabbitmq.com/) extend and ov
 > * SHOULD emit the new, stable values for span name, span kind and similar "single"
 > valued concepts when `messaging/dup` is present in the list.
 
-`messaging.system` MUST be set to `"rabbitmq"` and SHOULD be provided **at span creation time**.
+`messaging.provider.name` MUST be set to `"rabbitmq"` and SHOULD be provided **at span creation time**.
 
 ## RabbitMQ attributes
 

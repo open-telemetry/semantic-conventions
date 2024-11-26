@@ -3,7 +3,7 @@ groups:
     type: attribute_group
     brief: 'This document defines semantic conventions for remote procedure calls.'
     attributes:
-      - ref: rpc.system
+      - ref: rpc.protocol.name
         requirement_level: required
       - ref: rpc.service
         requirement_level: recommended

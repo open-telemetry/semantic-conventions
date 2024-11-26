@@ -10,7 +10,7 @@ groups:
     stability: release_candidate
     extends: attributes.db.client.with_query_and_collection
     attributes:
-      - ref: db.system
+      - ref: db.provider.name
         # TODO: Not adding to the minimal because of https://github.com/open-telemetry/build-tools/issues/192
         requirement_level: required
       - ref: network.peer.address
@@ -141,7 +141,7 @@ groups:
     stability: experimental
     extends: attributes.db.client.with_query_and_collection
     attributes:
-      - ref: db.system
+      - ref: db.provider.name
         # TODO: Not adding to the minimal because of https://github.com/open-telemetry/build-tools/issues/192
         requirement_level: required
       - ref: network.peer.address

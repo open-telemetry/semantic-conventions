@@ -5,7 +5,7 @@ groups:
     brief: "Common messaging metrics attributes."
     extends: attributes.messaging.common.minimal
     attributes:
-      - ref: messaging.system
+      - ref: messaging.provider.name
         requirement_level: required
       - ref: messaging.destination.partition.id
       - ref: messaging.destination.name

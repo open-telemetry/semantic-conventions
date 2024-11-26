@@ -24,8 +24,8 @@ groups:
         sampling_relevant: true
       - ref: server.port
         sampling_relevant: true
-        # TODO: add messaging.system once https://github.com/open-telemetry/build-tools/issues/192 is implemented
-        # - ref: messaging.system
+        # TODO: add messaging.provider.name once https://github.com/open-telemetry/build-tools/issues/192 is implemented
+        # - ref: messaging.provider.name
         #   sampling_relevant: true
 
   - id: span.messaging
@@ -35,7 +35,7 @@ groups:
         Defines a full set of attributes used in messaging systems.
     extends: attributes.messaging.trace.minimal
     attributes:
-      - ref: messaging.system
+      - ref: messaging.provider.name
         requirement_level: required
         sampling_relevant: true
       - ref: messaging.client.id

@@ -10,7 +10,7 @@ The Semantic Conventions for [Azure AI Inference](https://learn.microsoft.com/az
 
 ## Azure AI Inference Spans
 
-`gen_ai.system` MUST be set to `"az.ai.inference"` and SHOULD be provided **at span creation time**.
+`gen_ai.provider.name` MUST be set to `"az.ai.inference"` and SHOULD be provided **at span creation time**.
 
 ### Attributes
 

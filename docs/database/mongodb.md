@@ -8,7 +8,7 @@ linkTitle: MongoDB
 
 The Semantic Conventions for [MongoDB](https://www.mongodb.com/) extend and override the [Database Semantic Conventions](database-spans.md).
 
-`db.system` MUST be set to `"mongodb"` and SHOULD be provided **at span creation time**.
+`db.provider.name` MUST be set to `"mongodb"` and SHOULD be provided **at span creation time**.
 
 ## Attributes
 
@@ -84,7 +84,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | Key                     | Value |
 |:------------------------| :----------------------------------------------------------- |
 | Span name               | `"findAndModify products"` |
-| `db.system`             | `"mongodb"` |
+| `db.provider.name`             | `"mongodb"` |
 | `server.address`        | `"mongodb0.example.com"` |
 | `server.port`           | `27017` |
 | `network.peer.address`  | `"192.0.2.14"` |

@@ -31,3 +31,29 @@ groups:
         stability: experimental
         brief: "Deprecated, use `rpc.message.uncompressed_size` instead."
         deprecated: "Replaced by `rpc.message.uncompressed_size`."
+      - id: rpc.system
+        stability: experimental
+        brief: 'Deprecated, use `rpc.protocol.name` instead.'
+        deprecated: 'Replaced by `rpc.protocol.name`.'
+        type:
+          members:
+            - id: grpc
+              value: 'grpc'
+              brief: 'gRPC'
+              stability: experimental
+            - id: java_rmi
+              value: 'java_rmi'
+              brief: 'Java RMI'
+              stability: experimental
+            - id: dotnet_wcf
+              value: 'dotnet_wcf'
+              brief: '.NET WCF'
+              stability: experimental
+            - id: apache_dubbo
+              value: 'apache_dubbo'
+              brief: 'Apache Dubbo'
+              stability: experimental
+            - id: connect_rpc
+              value: 'connect_rpc'
+              brief: 'Connect RPC'
+              stability: experimental

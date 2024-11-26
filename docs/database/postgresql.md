@@ -8,7 +8,7 @@ linkTitle: PostgreSQL
 
 The Semantic Conventions for *PostgreSQL* extend and override the [Database Semantic Conventions](database-spans.md).
 
-`db.system` MUST be set to `"postgresql"` and SHOULD be provided **at span creation time**.
+`db.provider.name` MUST be set to `"postgresql"` and SHOULD be provided **at span creation time**.
 
 ## Attributes
 

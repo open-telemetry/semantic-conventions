@@ -21,6 +21,7 @@ This group defines the attributes used to describe telemetry in the context of d
 |---|---|---|---|---|
 | <a id="db-client-connection-pool-name" href="#db-client-connection-pool-name">`db.client.connection.pool.name`</a> | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-client-connection-state" href="#db-client-connection-state">`db.client.connection.state`</a> | string | The state of a connection in the pool | `idle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+<<<<<<< HEAD
 | <a id="db-collection-name" href="#db-collection-name">`db.collection.name`</a> | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-namespace" href="#db-namespace">`db.namespace`</a> | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-operation-batch-size" href="#db-operation-batch-size">`db.operation.batch.size`</a> | int | The number of queries included in a batch operation. [3] | `2`; `3`; `4` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
@@ -31,6 +32,18 @@ This group defines the attributes used to describe telemetry in the context of d
 | <a id="db-response-returned-rows" href="#db-response-returned-rows">`db.response.returned_rows`</a> | int | Number of rows returned by the operation. | `10`; `30`; `1000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-response-status-code" href="#db-response-status-code">`db.response.status_code`</a> | string | Database response status code. [8] | `102`; `ORA-17002`; `08P01`; `404` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-system" href="#db-system">`db.system`</a> | string | The database management system (DBMS) product as identified by the client instrumentation. [9] | `other_sql`; `adabas`; `cache` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+=======
+| <a id="db-collection-name" href="#db-collection-name">`db.collection.name`</a> | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-namespace" href="#db-namespace">`db.namespace`</a> | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-operation-batch-size" href="#db-operation-batch-size">`db.operation.batch.size`</a> | int | The number of queries included in a batch operation. [3] | `2`; `3`; `4` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-operation-name" href="#db-operation-name">`db.operation.name`</a> | string | The name of the operation or command being executed. [4] | `findAndModify`; `HMSET`; `SELECT` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-operation-parameter" href="#db-operation-parameter">`db.operation.parameter.<key>`</a> | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [5] | `someval`; `55` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-provider-name" href="#db-provider-name">`db.provider.name`</a> | string | The database management system (DBMS) product as identified by the client instrumentation. [6] | `other_sql`; `adabas`; `cache` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-query-summary" href="#db-query-summary">`db.query.summary`</a> | string | Low cardinality representation of a database query text. [7] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-query-text" href="#db-query-text">`db.query.text`</a> | string | The database query being executed. [8] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-response-returned-rows" href="#db-response-returned-rows">`db.response.returned_rows`</a> | int | Number of rows returned by the operation. | `10`; `30`; `1000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-response-status-code" href="#db-response-status-code">`db.response.status_code`</a> | string | Database response status code. [9] | `102`; `ORA-17002`; `08P01`; `404` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+>>>>>>> 5eaf0483 (BREAKING: rename db.system, messaging.system, gen_ai.system to *.provider.name, pc.system to pc.protocol.name, feature_flag.system back to feature_flag.provider_name)
 
 **[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
@@ -60,18 +73,24 @@ system specific term if more applicable.
 **[5] `db.operation.parameter`:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
 
-**[6] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
+**[6] `db.provider.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.provider.name` is set to `postgresql` based on the instrumentation's best knowledge.
+This attribute has stability level RELEASE CANDIDATE.
+
+**[7] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
 Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
 
-**[7] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[8] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
-**[8] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+**[9] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 
+<<<<<<< HEAD
 **[9] `db.system`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
 
+=======
+>>>>>>> 5eaf0483 (BREAKING: rename db.system, messaging.system, gen_ai.system to *.provider.name, pc.system to pc.protocol.name, feature_flag.system back to feature_flag.provider_name)
 ---
 
 `db.client.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -83,7 +102,7 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 
 ---
 
-`db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`db.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -243,6 +262,7 @@ This group defines attributes for Elasticsearch.
 | <a id="db-redis-database-index" href="#db-redis-database-index">`db.redis.database_index`</a> | int | Deprecated, use `db.namespace` instead. | `0`; `1`; `15` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
 | <a id="db-sql-table" href="#db-sql-table">`db.sql.table`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
 | <a id="db-statement" href="#db-statement">`db.statement`</a> | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`. |
+| <a id="db-system" href="#db-system">`db.system`</a> | string | Deprecated, use `db.provider.name` instead. | `other_sql`; `adabas`; `cache` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.provider.name`. |
 | <a id="db-user" href="#db-user">`db.user`</a> | string | Deprecated, no replacement at this time. | `readonly_user`; `reporting_user` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>No replacement at this time. |
 
 ---
@@ -266,6 +286,67 @@ This group defines attributes for Elasticsearch.
 | `read_feed` | read_feed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `replace` | replace | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `upsert` | upsert | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
+
+`db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `adabas` | Adabas (Adaptable Database System) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cache` | Deprecated, use `intersystems_cache` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `intersystems_cache`. |
+| `cassandra` | Apache Cassandra | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `clickhouse` | ClickHouse | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cloudscape` | Deprecated, use `other_sql` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `other_sql`. |
+| `cockroachdb` | CockroachDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `coldfusion` | Deprecated, no replacement at this time. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. |
+| `cosmosdb` | Microsoft Azure Cosmos DB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `couchbase` | Couchbase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `couchdb` | CouchDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `db2` | IBM Db2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `derby` | Apache Derby | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `dynamodb` | Amazon DynamoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `edb` | EnterpriseDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `elasticsearch` | Elasticsearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `filemaker` | FileMaker | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `firebird` | Firebird | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `firstsql` | Deprecated, use `other_sql` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `other_sql`. |
+| `geode` | Apache Geode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `h2` | H2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hanadb` | SAP HANA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hbase` | Apache HBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hive` | Apache Hive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hsqldb` | HyperSQL DataBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `influxdb` | InfluxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `informix` | Informix | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ingres` | Ingres | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `instantdb` | InstantDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `interbase` | InterBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `intersystems_cache` | InterSystems Caché | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mariadb` | MariaDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `maxdb` | SAP MaxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `memcached` | Memcached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mongodb` | MongoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mssql` | Microsoft SQL Server (This value has stability level RELEASE CANDIDATE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mssqlcompact` | Deprecated, Microsoft SQL Server Compact is discontinued. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, use `other_sql` instead. |
+| `mysql` | MySQL (This value has stability level RELEASE CANDIDATE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `neo4j` | Neo4j | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `netezza` | Netezza | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `opensearch` | OpenSearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `oracle` | Oracle Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pervasive` | Pervasive PSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pointbase` | PointBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `postgresql` | PostgreSQL (This value has stability level RELEASE CANDIDATE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `progress` | Progress Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `redis` | Redis | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `redshift` | Amazon Redshift | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `spanner` | Cloud Spanner | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sqlite` | SQLite | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sybase` | Sybase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `teradata` | Teradata | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `trino` | Trino | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vertica` | Vertica | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Deprecated Database Metrics
 

@@ -32,8 +32,8 @@ groups:
     stability: experimental
     extends: attributes.db.client.minimal
     attributes:
-      # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
-      # - ref: db.system
+      # TODO: add db.provider.name once https://github.com/open-telemetry/build-tools/issues/192 is possible
+      # - ref: db.provider.name
       #   requirement_level:
       #     conditionally_required: if available
       - ref: db.operation.name

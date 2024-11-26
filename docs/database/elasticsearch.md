@@ -8,7 +8,7 @@ linkTitle: Elasticsearch
 
 The Semantic Conventions for [Elasticsearch](https://www.elastic.co/) extend and override the [Database Semantic Conventions](database-spans.md).
 
-`db.system` MUST be set to `"elasticsearch"` and SHOULD be provided **at span creation time**.
+`db.provider.name` MUST be set to `"elasticsearch"` and SHOULD be provided **at span creation time**.
 
 ## Span Name
 
@@ -156,7 +156,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | Key                                 | Value                                                                                                                               |
 |:------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------|
 | Span name                           | `"search my-index"`                                                                                                                 |
-| `db.system`                         | `"elasticsearch"`                                                                                                                   |
+| `db.provider.name`                         | `"elasticsearch"`                                                                                                                   |
 | `server.address`                    | `"elasticsearch.mydomain.com"`                                                                                                      |
 | `server.port`                       | `9200`                                                                                                                              |
 | `http.request.method`               | `"GET"`                                                                                                                             |
