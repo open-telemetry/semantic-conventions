@@ -83,7 +83,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `dotnet.process.cpu.time` | Counter | `s` | CPU time used by the process. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `dotnet.process.cpu.time` | Counter | `s` | CPU time used by the process. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as accessing the corresponding processor time properties on [`System.Diagnostics.Process`](https://learn.microsoft.com/dotnet/api/system.diagnostics.process).

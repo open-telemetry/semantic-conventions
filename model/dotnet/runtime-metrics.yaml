@@ -22,7 +22,7 @@ groups:
       processor time properties on [`System.Diagnostics.Process`](https://learn.microsoft.com/dotnet/api/system.diagnostics.process).
     instrument: counter
     unit: "s"
-    stability: experimental
+    stability: stable
     attributes:
       - ref: cpu.mode
         requirement_level: required
