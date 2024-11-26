@@ -8,7 +8,7 @@ linkTitle: CLI
 
 This document defines semantic conventions to apply when instrumenting CLI programs, both as a caller and as callee. This document is intended for short-lived programs that end their execution, i.e. not daemon or long running background tasks.
 
-Span kind SHOULD be `INTERNAL` when the program is the callee or `CLIENT` when the caller is tracing.
+Span kind SHOULD be `INTERNAL` when the traced program is the callee or `CLIENT` when the caller is tracing another program.
 
 The span name SHOULD be set to `{process.executable.name}`.
 Instrumentations that have additional context about executed commands MAY use a different low-cardinality span name format and SHOULD document it.
