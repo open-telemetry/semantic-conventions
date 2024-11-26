@@ -21,7 +21,6 @@
 
 # Logs and events semantic conventions
 /docs/exceptions/exceptions-logs.md       @open-telemetry/specs-semconv-approvers @tigrannajaryan
-/docs/feature-flags/feature-flags-logs.md @open-telemetry/specs-semconv-approvers @tigrannajaryan
 /docs/general/events-general.md           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-event-approvers @tigrannajaryan
 /docs/general/logs-general.md             @open-telemetry/specs-semconv-approvers @tigrannajaryan
 /docs/logs/                               @open-telemetry/specs-semconv-approvers @tigrannajaryan
@@ -43,9 +42,11 @@
 /model/user-agent/                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 
 # System semantic conventions
+/docs/process/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers
 /docs/system/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 /docs/resource/host.md            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 /model/host/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
+/model/process/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers
 /model/system/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 
 # Mobile semantic conventions
@@ -76,7 +77,7 @@
 /model/dns/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 /model/file/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 # /model/network/                 is defined in HTTP section
-/model/process/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
+# /model/process/                 is defined in system section
 /model/tls/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 /model/user/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 
@@ -88,3 +89,21 @@
 /model/deployment/                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/test/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/vcs/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
+
+# Database semantic conventions
+/docs/database/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
+/model/database/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
+
+# Messaging semantic conventions
+/docs/messaging/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-messaging-approvers
+/model/messaging/                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-messaging-approvers
+
+# Feature flag semantic conventions
+/docs/feature-flags/               @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-feature-flag-approvers
+/model/feature-flags/              @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-feature-flag-approvers
+
+# Tooling
+/policies/                        @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
+/policies_test/                   @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
+/templates/                       @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
+/internal/                        @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers

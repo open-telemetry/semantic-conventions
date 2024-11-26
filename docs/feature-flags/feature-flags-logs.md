@@ -14,7 +14,7 @@ such as when the application loads or on a timer.
 
 ## Motivation
 
-Features flags are commonly used in modern applications to decouple feature releases from deployments.
+Feature flags are commonly used in modern applications to decouple feature releases from deployments.
 Many feature flagging tools support the ability to update flag configurations in near real-time from a remote feature flag management service.
 They also commonly allow rulesets to be defined that return values based on contextual information.
 For example, a feature could be enabled only for a specific subset of users based on context (e.g. users email domain, membership tier, country).
