@@ -1,0 +1,4 @@
+change_type: 'bug_fix'
+component: messaging
+note: Fix typo in schemas for messaging attribute changes
+issues: [1595]
