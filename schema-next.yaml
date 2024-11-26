@@ -8,7 +8,7 @@ versions:
         - rename_attributes:
             attribute_map:
               system.network.state: network.connection.state
-        # https://github.com/open-telemetry/semantic-conventions/pull/TODO
+        # https://github.com/open-telemetry/semantic-conventions/pull/1613
         - rename_attributes:
             attribute_map:
               db.system: db.provider.name
