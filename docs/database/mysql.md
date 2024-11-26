@@ -8,7 +8,7 @@ linkTitle: MySQL
 
 The Semantic Conventions for *MySQL* extend and override the [Database Semantic Conventions](database-spans.md).
 
-`db.system` MUST be set to `"mysql"` and SHOULD be provided **at span creation time**.
+`db.provider.name` MUST be set to `"mysql"` and SHOULD be provided **at span creation time**.
 
 ## Attributes
 

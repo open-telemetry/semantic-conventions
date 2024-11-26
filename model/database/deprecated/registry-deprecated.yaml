@@ -156,7 +156,233 @@ groups:
         stability: experimental
         deprecated: "No replacement at this time."
         brief: Deprecated, no replacement at this time.
-
+      - id: db.system
+        stability: experimental
+        brief: 'Deprecated, use `db.provider.name` instead.'
+        deprecated: 'Replaced by `db.provider.name`.'
+        type:
+          members:
+            - id: other_sql
+              value: "other_sql"
+              brief: "Some other SQL database. Fallback only. See notes."
+              stability: experimental
+            - id: adabas
+              value: "adabas"
+              brief: "Adabas (Adaptable Database System)"
+              stability: experimental
+            - id: cache
+              value: "cache"
+              deprecated: "Replaced by `intersystems_cache`."
+              brief: "Deprecated, use `intersystems_cache` instead."
+              stability: experimental
+            - id: intersystems_cache
+              value: "intersystems_cache"
+              brief: "InterSystems Caché"
+              stability: experimental
+            - id: cassandra
+              value: "cassandra"
+              brief: "Apache Cassandra"
+              stability: experimental
+            - id: clickhouse
+              value: "clickhouse"
+              brief: "ClickHouse"
+              stability: experimental
+            - id: cloudscape
+              value: "cloudscape"
+              deprecated: "Replaced by `other_sql`."
+              brief: "Deprecated, use `other_sql` instead."
+              stability: experimental
+            - id: cockroachdb
+              value: "cockroachdb"
+              brief: "CockroachDB"
+              stability: experimental
+            - id: coldfusion
+              value: "coldfusion"
+              deprecated: "Removed."
+              brief: "Deprecated, no replacement at this time."
+              stability: experimental
+            - id: cosmosdb
+              value: "cosmosdb"
+              brief: "Microsoft Azure Cosmos DB"
+              stability: experimental
+            - id: couchbase
+              value: "couchbase"
+              brief: "Couchbase"
+              stability: experimental
+            - id: couchdb
+              value: "couchdb"
+              brief: "CouchDB"
+              stability: experimental
+            - id: db2
+              value: "db2"
+              brief: "IBM Db2"
+              stability: experimental
+            - id: derby
+              value: "derby"
+              brief: "Apache Derby"
+              stability: experimental
+            - id: dynamodb
+              value: "dynamodb"
+              brief: "Amazon DynamoDB"
+              stability: experimental
+            - id: edb
+              value: "edb"
+              brief: "EnterpriseDB"
+              stability: experimental
+            - id: elasticsearch
+              value: "elasticsearch"
+              brief: "Elasticsearch"
+              stability: experimental
+            - id: filemaker
+              value: "filemaker"
+              brief: "FileMaker"
+              stability: experimental
+            - id: firebird
+              value: "firebird"
+              brief: "Firebird"
+              stability: experimental
+            - id: firstsql
+              value: "firstsql"
+              deprecated: "Replaced by `other_sql`."
+              brief: "Deprecated, use `other_sql` instead."
+              stability: experimental
+            - id: geode
+              value: "geode"
+              brief: "Apache Geode"
+              stability: experimental
+            - id: h2
+              value: "h2"
+              brief: "H2"
+              stability: experimental
+            - id: hanadb
+              value: "hanadb"
+              brief: "SAP HANA"
+              stability: experimental
+            - id: hbase
+              value: "hbase"
+              brief: "Apache HBase"
+              stability: experimental
+            - id: hive
+              value: "hive"
+              brief: "Apache Hive"
+              stability: experimental
+            - id: hsqldb
+              value: "hsqldb"
+              brief: "HyperSQL DataBase"
+              stability: experimental
+            - id: influxdb
+              value: "influxdb"
+              brief: "InfluxDB"
+              stability: experimental
+            - id: informix
+              value: "informix"
+              brief: "Informix"
+              stability: experimental
+            - id: ingres
+              value: "ingres"
+              brief: "Ingres"
+              stability: experimental
+            - id: instantdb
+              value: "instantdb"
+              brief: "InstantDB"
+              stability: experimental
+            - id: interbase
+              value: "interbase"
+              brief: "InterBase"
+              stability: experimental
+            - id: mariadb
+              value: "mariadb"
+              brief: "MariaDB"
+              stability: experimental
+            - id: maxdb
+              value: "maxdb"
+              brief: "SAP MaxDB"
+              stability: experimental
+            - id: memcached
+              value: "memcached"
+              brief: "Memcached"
+              stability: experimental
+            - id: mongodb
+              value: "mongodb"
+              brief: "MongoDB"
+              stability: experimental
+            - id: mssql
+              value: "mssql"
+              brief: "Microsoft SQL Server (This value has stability level RELEASE CANDIDATE)"
+              stability: experimental
+            - id: mssqlcompact
+              value: "mssqlcompact"
+              deprecated: "Removed, use `other_sql` instead."
+              brief: "Deprecated, Microsoft SQL Server Compact is discontinued."
+              stability: experimental
+            - id: mysql
+              value: "mysql"
+              brief: "MySQL (This value has stability level RELEASE CANDIDATE)"
+              stability: experimental
+            - id: neo4j
+              value: "neo4j"
+              brief: "Neo4j"
+              stability: experimental
+            - id: netezza
+              value: "netezza"
+              brief: "Netezza"
+              stability: experimental
+            - id: opensearch
+              value: "opensearch"
+              brief: "OpenSearch"
+              stability: experimental
+            - id: oracle
+              value: "oracle"
+              brief: "Oracle Database"
+              stability: experimental
+            - id: pervasive
+              value: "pervasive"
+              brief: "Pervasive PSQL"
+              stability: experimental
+            - id: pointbase
+              value: "pointbase"
+              brief: "PointBase"
+              stability: experimental
+            - id: postgresql
+              value: "postgresql"
+              brief: "PostgreSQL (This value has stability level RELEASE CANDIDATE)"
+              stability: experimental
+            - id: progress
+              value: "progress"
+              brief: "Progress Database"
+              stability: experimental
+            - id: redis
+              value: "redis"
+              brief: "Redis"
+              stability: experimental
+            - id: redshift
+              value: "redshift"
+              brief: "Amazon Redshift"
+              stability: experimental
+            - id: spanner
+              value: "spanner"
+              brief: "Cloud Spanner"
+              stability: experimental
+            - id: sqlite
+              value: "sqlite"
+              brief: "SQLite"
+              stability: experimental
+            - id: sybase
+              value: "sybase"
+              brief: "Sybase"
+              stability: experimental
+            - id: teradata
+              value: "teradata"
+              brief: "Teradata"
+              stability: experimental
+            - id: trino
+              value: "trino"
+              brief: "Trino"
+              stability: experimental
+            - id: vertica
+              value: "vertica"
+              brief: "Vertica"
+              stability: experimental
   - id: registry.db.metrics.deprecated
     type: attribute_group
     display_name: Deprecated Database Metrics

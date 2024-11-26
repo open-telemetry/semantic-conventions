@@ -63,21 +63,21 @@ The following attributes apply to all GenAI events.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.provider.name`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+**[1] `gen_ai.provider.name`:** The `gen_ai.provider.name` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
-For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
+For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.provider.name`
 is set to `openai` based on the instrumentation's best knowledge.
 
 For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+If none of these options apply, the `gen_ai.provider.name` SHOULD be set to `_OTHER`.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -203,7 +203,7 @@ Span:
 |   Attribute name                |                     Value                  |
 |---------------------------------|--------------------------------------------|
 | Span name                       | `"chat gpt-4"`                             |
-| `gen_ai.system`                 | `"openai"`                                 |
+| `gen_ai.provider.name`                 | `"openai"`                                 |
 | `gen_ai.request.model`          | `"gpt-4"`                                  |
 | `gen_ai.request.max_tokens`     | `200`                                      |
 | `gen_ai.request.top_p`          | `1.0`                                      |
@@ -219,21 +219,21 @@ Events:
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
-   | `gen_ai.system`     | `"openai"`                                            |
+   | `gen_ai.provider.name`     | `"openai"`                                            |
    | Event body          | `{"content": "You're a friendly bot that answers questions about OpenTelemetry."}` |
 
 2. `gen_ai.user.message`
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
-   | `gen_ai.system`     | `"openai"`                                            |
+   | `gen_ai.provider.name`     | `"openai"`                                            |
    | Event body          | `{"content":"How to instrument GenAI library with OTel?"}` |
 
 3. `gen_ai.choice`
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
-   | `gen_ai.system`     | `"openai"`                                            |
+   | `gen_ai.provider.name`     | `"openai"`                                            |
    | Event body (with content enabled) | `{"index":0,"finish_reason":"stop","message":{"content":"Follow GenAI semantic conventions available at opentelemetry.io."}}` |
    | Event body (without content) | `{"index":0,"finish_reason":"stop","message":{}}` |
 
@@ -257,7 +257,7 @@ Here's the telemetry generated for each step in this scenario:
    |   Attribute name    |                     Value                             |
    |---------------------|-------------------------------------------------------|
    | Span name           | `"chat gpt-4"`                             |
-   | `gen_ai.system`     | `"openai"`                                            |
+   | `gen_ai.provider.name`     | `"openai"`                                            |
    | `gen_ai.request.model`| `"gpt-4"`                                           |
    | `gen_ai.request.max_tokens`| `200`                                          |
    | `gen_ai.request.top_p`| `1.0`                                               |
@@ -273,14 +273,14 @@ Here's the telemetry generated for each step in this scenario:
 
      |   Property          |                     Value                             |
      |---------------------|-------------------------------------------------------|
-     | `gen_ai.system`     | `"openai"`                                            |
+     | `gen_ai.provider.name`     | `"openai"`                                            |
      | Event body          | `{"content":"How to instrument GenAI library with OTel?"}` |
 
    - `gen_ai.choice`
 
      |   Property          |                     Value                             |
      |---------------------|-------------------------------------------------------|
-     | `gen_ai.system`     | `"openai"`                                            |
+     | `gen_ai.provider.name`     | `"openai"`                                            |
      | Event body (with content)    | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_link_to_otel_semconv","arguments":"{\"semconv\":\"GenAI\"}"},"type":"function"}]}` |
      | Event body (without content) | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_link_to_otel_semconv"},"type":"function"}]}` |
 
@@ -290,7 +290,7 @@ Here's the telemetry generated for each step in this scenario:
    |   Attribute name                |                     Value                             |
    |---------------------------------|-------------------------------------------------------|
    | Span name                       | `"chat gpt-4"`                                        |
-   | `gen_ai.system`                 | `"openai"`                                            |
+   | `gen_ai.provider.name`                 | `"openai"`                                            |
    | `gen_ai.request.model`          | `"gpt-4"`                                             |
    | `gen_ai.request.max_tokens`     | `200`                                                 |
    | `gen_ai.request.top_p`          | `1.0`                                                 |
@@ -307,14 +307,14 @@ Here's the telemetry generated for each step in this scenario:
 
      |   Property                       |                     Value                                  |
      |----------------------------------|------------------------------------------------------------|
-     | `gen_ai.system`                  | `"openai"`                                                 |
+     | `gen_ai.provider.name`                  | `"openai"`                                                 |
      | Event body                       | `{"content":"How to instrument GenAI library with OTel?"}` |
 
    - `gen_ai.assistant.message`
 
      |   Property                       |                     Value                                                                                                                  |
      |----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
-     | `gen_ai.system`                  | `"openai"`                                                                                                                                 |
+     | `gen_ai.provider.name`                  | `"openai"`                                                                                                                                 |
      | Event body (content enabled)     | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_link_to_otel_semconv","arguments":"{\"semconv\":\"GenAI\"}"},"type":"function"}]}` |
      | Event body (content not enabled) | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_link_to_otel_semconv"},"type":"function"}]}`                 |
 
@@ -322,7 +322,7 @@ Here's the telemetry generated for each step in this scenario:
 
      |   Property                       |                     Value                                                                      |
      |----------------------------------|------------------------------------------------------------------------------------------------|
-     | `gen_ai.system`                  | `"openai"`                                                                                     |
+     | `gen_ai.provider.name`                  | `"openai"`                                                                                     |
      | Event body (content enabled)     | `{"content":"opentelemetry.io/semconv/gen-ai","id":"call_VSPygqKTWdrhaFErNvMV18Yl"}` |
      | Event body (content not enabled) | `{"id":"call_VSPygqKTWdrhaFErNvMV18Yl"}`                                             |
 
@@ -330,7 +330,7 @@ Here's the telemetry generated for each step in this scenario:
 
      |   Property                       |                     Value                                                                                                     |
      |----------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-     | `gen_ai.system`                  | `"openai"`                                                                                                                    |
+     | `gen_ai.provider.name`                  | `"openai"`                                                                                                                    |
      | Event body (content enabled)     | `{"index":0,"finish_reason":"stop","message":{"content":"Follow OTel semconv available at opentelemetry.io/semconv/gen-ai"}}` |
      | Event body (content not enabled) | `{"index":0,"finish_reason":"stop","message":{}}` |
 
@@ -353,7 +353,7 @@ Span:
 |   Attribute name    |                     Value                  |
 |---------------------|--------------------------------------------|
 | Span name           | `"chat gpt-4"`                             |
-| `gen_ai.system`     | `"openai"`                                 |
+| `gen_ai.provider.name`     | `"openai"`                                 |
 | `gen_ai.request.model`| `"gpt-4"`                                |
 | `gen_ai.request.max_tokens`| `200`                               |
 | `gen_ai.request.top_p`| `1.0`                                    |
@@ -371,14 +371,14 @@ Events:
 
    |   Property                   |                     Value                             |
    |------------------------------|-------------------------------------------------------|
-   | `gen_ai.system`              | `"openai"`                                            |
+   | `gen_ai.provider.name`              | `"openai"`                                            |
    | Event body (content enabled) | `{"index":0,"finish_reason":"stop","message":{"content":"Follow GenAI semantic conventions available at opentelemetry.io."}}` |
 
 4. `gen_ai.choice`
 
    |   Property                   |                     Value                             |
    |------------------------------|-------------------------------------------------------|
-   | `gen_ai.system`              | `"openai"`                                            |
+   | `gen_ai.provider.name`              | `"openai"`                                            |
    | Event body (content enabled) | `{"index":1,"finish_reason":"stop","message":{"content":"Use OpenAI instrumentation library."}}` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
