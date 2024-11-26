@@ -50,10 +50,8 @@ Instrumentation SHOULD document if `db.namespace` reflects the database index pr
 **[2] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
-A single database query may involve multiple operations. If the operation
-name is parsed from the query text, it SHOULD only be captured for queries that
-contain a single operation or when the operation name describing the
-whole query is available by other means.
+The operation name SHOULD NOT be extracted from `db.query.text`,
+unless the query format is known to only ever have a single operation name present.
 
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,
@@ -103,6 +101,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`db.query.text`](/docs/attributes-registry/db.md)
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
+
+---
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

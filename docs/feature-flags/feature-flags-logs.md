@@ -14,7 +14,7 @@ such as when the application loads or on a timer.
 
 ## Motivation
 
-Features flags are commonly used in modern applications to decouple feature releases from deployments.
+Feature flags are commonly used in modern applications to decouple feature releases from deployments.
 Many feature flagging tools support the ability to update flag configurations in near real-time from a remote feature flag management service.
 They also commonly allow rulesets to be defined that return values based on contextual information.
 For example, a feature could be enabled only for a specific subset of users based on context (e.g. users email domain, membership tier, country).
@@ -92,11 +92,15 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 
 **[5] `feature_flag.evaluation.error.message`:** If and only if an error occurred. It's NOT RECOMMENDED to duplicate the value of `error.type` in `feature_flag.evaluation.error.message`.
 
+---
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
 
 `feature_flag.evaluation.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

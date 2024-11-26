@@ -119,17 +119,11 @@ This attribute has stability level RELEASE CANDIDATE.
 
 **[2] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-A single database query may involve multiple collections.
-
-If the collection name is parsed from the query text, it SHOULD only be captured for queries that
-contain a single collection and it SHOULD match the value provided in
-the query text including any schema and database name prefix.
+The collection name SHOULD NOT be extracted from `db.query.text`,
+unless the query format is known to only ever have a single collection name present.
 
 For batch operations, if the individual operations are known to have the same collection name
 then that collection name SHOULD be used.
-
-If the operation or query involves multiple collections, `db.collection.name`
-SHOULD NOT be captured.
 
 This attribute has stability level RELEASE CANDIDATE.
 
@@ -143,10 +137,8 @@ This attribute has stability level RELEASE CANDIDATE.
 **[5] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
-A single database query may involve multiple operations. If the operation
-name is parsed from the query text, it SHOULD only be captured for queries that
-contain a single operation or when the operation name describing the
-whole query is available by other means.
+The operation name SHOULD NOT be extracted from `db.query.text`,
+unless the query format is known to only ever have a single operation name present.
 
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,
@@ -175,7 +167,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 This attribute has stability level RELEASE CANDIDATE.
 
 **[13] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text) section.
+Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
 This attribute has stability level RELEASE CANDIDATE.
 
 **[14] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
@@ -208,6 +200,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`db.system`](/docs/attributes-registry/db.md)
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
+
+---
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -263,6 +257,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `trino` | Trino | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertica` | Vertica | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -303,7 +299,7 @@ in which case the instrumentation MAY choose a different placeholder.
 
 Placeholders in a parameterized query SHOULD not be sanitized. E.g. `where id = $1` can be captured as is.
 
-[IN-clauses](https://en.wikipedia.org/wiki/Where_(SQL)#IN) MAY be collapsed during sanitization,
+[IN-clauses](https://wikipedia.org/wiki/Where_(SQL)#IN) MAY be collapsed during sanitization,
 e.g. from `IN (?, ?, ?, ?)` to `IN (?)`, as this can help with extremely long IN-clauses,
 and can help control cardinality for users who choose to (optionally) add `db.query.text` to their metric attributes.
 

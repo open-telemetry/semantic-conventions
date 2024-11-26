@@ -111,7 +111,7 @@ denote old attribute names in rename operations).
 
 - Semantic conventions MUST limit names to printable Basic Latin characters
   (more precisely to
-  [U+0021 .. U+007E](<https://en.wikipedia.org/wiki/Basic_Latin_(Unicode_block)#Table_of_characters>)
+  [U+0021 .. U+007E](<https://wikipedia.org/wiki/Basic_Latin_(Unicode_block)#Table_of_characters>)
   subset of Unicode code points). It is recommended to further limit names to
   the following Unicode code points: Latin alphabet, Numeric, Underscore, Dot
   (as namespace delimiter).
@@ -156,7 +156,7 @@ options:
 
 It is recommended to limit names to printable Basic Latin characters (more
 precisely to
-[U+0021 .. U+007E](<https://en.wikipedia.org/wiki/Basic_Latin_(Unicode_block)#Table_of_characters>)
+[U+0021 .. U+007E](<https://wikipedia.org/wiki/Basic_Latin_(Unicode_block)#Table_of_characters>)
 subset of Unicode code points).
 
 ## otel.\* Namespace
