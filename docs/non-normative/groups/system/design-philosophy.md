@@ -1,6 +1,6 @@
-# **System Semantic Conventions: Instrumentation Design Philosophy**
+# System Semantic Conventions: Instrumentation Design Philosophy
 
-The System Semantic Conventions are caught in a strange dichotomy that is unique among other semconv groups. While we want to make sure we cover obvious generic use cases, monitoring system health is a very old practice with lots of different existing strategies. While we can cover the basic use cases in cross platform ways, we want to make sure that users who specialize in certain platforms aren't left in the lurch; if users aren't given recommendations for particular types of data that isn't cross-platform and universal,they may come up with their own disparate ideas for how that instrumentation should look, leading to the kind of fracturing that the semantic conventions should be in place to avoid.
+The System Semantic Conventions are caught in a strange dichotomy that is unique among other semconv groups. While we want to make sure we cover obvious generic use cases, monitoring system health is a very old practice with lots of different existing strategies. While we can cover the basic use cases in cross platform ways, we want to make sure that users who specialize in certain platforms aren't left in the lurch; if users aren't given recommendations for particular types of data that isn't cross-platform and universal, they may come up with their own disparate ideas for how that instrumentation should look, leading to the kind of fracturing that the semantic conventions should be in place to avoid.
 
 The following sections address some of the most common instrumentation design questions, and how we as a working group have opted to address them. In some cases they are unique to the common semantic conventions guidance due to our unique circumstance, and those cases will be called out specifically.
 
@@ -43,7 +43,7 @@ When instrumentation falls into the Specialist Class, we are assuming the target
 The main differences in how we handle Speciialist Class instrumentation are:
 
 1. The names and resulting values will map directly to what a user would expect hunting down the information themselves. We will rarely be prescriptive in how the information should be used or how it should be broken down. For example, a metric to represent a process's cgroup would have the resulting value match exactly to what the result would be if the user called `cat /proc/PID/cgroup`.  
-2. If a metric is specific to a particular operating system, the operating system will be in the name. See Operating System in names (TODO: Link section) for more information. For example, a metric for a process's cgroup would be `process.linux.cgroup`, given that cgroups are a specific Linux kernel feature.
+2. If a piece of instrumentation is specific to a particular operating system, the name of the operating system will be in the instrumentation name. See [Operating System in names](#operating-system-in-names) for more information. For example, a metric for a process's cgroup would be `process.linux.cgroup`, given that cgroups are a specific Linux kernel feature.
 
 ### Examples
 
@@ -56,7 +56,7 @@ Some General Class examples:
 Some Specialist Class examples:
 
 * Particular Linux features like special process/system information in procfs (see things like [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc_meminfo.5.html) or [cgroups](https://man7.org/linux/man-pages/man7/cgroups.7.html))  
-* Particular Windows features like special process information (see things like [Windows Handles](https://learn.microsoft.com/en-us/windows/win32/sysinfo/about-handles-and-objects), [Process Working Set](https://learn.microsoft.com/en-us/windows/win32/procthread/process-working-set))  
+* Particular Windows features like special process information (see things like [Windows Handles](https://learn.microsoft.com/windows/win32/sysinfo/about-handles-and-objects), [Process Working Set](https://learn.microsoft.com/windows/win32/procthread/process-working-set))  
 * Niche process information like open file descriptors, page faults, etc.
 
 ## Operating System in names
@@ -70,7 +70,7 @@ Thus we have decided that any instrumentation that is:
 1. Specific to a particular operating system  
 2. Not meant to be part of what we consider our most important general use cases
 
-Will have the Operating System name as part of the namespace. For example, there may be `process.linux`, `process.windows`, or `process.posix` names for metrics and attributes. We will not have root `linux.*`,  `windows.*`, or `posix.*` namespaces. This is because of the principle we’re trying to uphold from the [Namespaces section](https://docs.google.com/document/d/1fCHZQemLun7qh5y--seBagPQZRuy_SuQJ2SOb2n2ZzU/edit?resourcekey=0-AZdnzcIOietd-cq6sGy-IA&tab=t.uq19eerhwz7#bookmark=id.2rkukcwjxprh); we still want the instrumentation source to be represented by the root namespace of the attribute/metric. If we had OS root namespaces, different sources like `system`, `process`, etc. could get very tangled within each OS namespace, defeating the intended design philosophy.
+Will have the Operating System name as part of the namespace. For example, there may be `process.linux`, `process.windows`, or `process.posix` names for metrics and attributes. We will not have root `linux.*`,  `windows.*`, or `posix.*` namespaces. This is because of the principle we’re trying to uphold from the [Namespaces section](#namespaces); we still want the instrumentation source to be represented by the root namespace of the attribute/metric. If we had OS root namespaces, different sources like `system`, `process`, etc. could get very tangled within each OS namespace, defeating the intended design philosophy.
 
 ## Case study: `process.cgroup`
 
