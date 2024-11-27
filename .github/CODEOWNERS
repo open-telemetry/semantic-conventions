@@ -36,7 +36,7 @@
 /model/http/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/error/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/client/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
-/model/network/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers @open-telemetry/semconv-security-approvers
+/model/network/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers
 /model/server/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/url/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/user-agent/                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
@@ -48,7 +48,7 @@
 /docs/system/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 /model/disk/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 /model/host/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
-/model/network/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
+# /model/network/                 is defined in HTTP section
 /model/os/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 /model/process/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers
 /model/system/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
