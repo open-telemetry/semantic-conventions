@@ -29,12 +29,15 @@ updated to the stable K8s semantic conventions, they:
 Specifically for the Opentelemetry Collector:
 
 The transition will happen through two different feature gates.
-One for enabling the new schema called `semconv.k8s.stable`,
-and one for disabling the old schema called `semconv.k8s.legacy`. Then:
+One for enabling the new schema called `semconv.k8s.enableStable`,
+and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
 
-- On alpha the old schema is enabled, while the new schema is disabled
-- On beta/stable the old schema is disabled, while the new is enabled
-- It is an error to disable both
+- On alpha the old schema is enabled by default (`semconv.k8s.disableLegacy` defaults to false),
+  while the new schema is disabled (`semconv.k8s.enableStable` defaults to false).
+- On beta/stable the old schema is disabled by default (`semconv.k8s.disableLegacy` defaults to true),
+  while the new is enabled by default (`semconv.k8s.enableStable` defaults to true).
+- It is an error to disable both schemas
+- Both schemas can enabled with `--feature-gates=-semconv.disableLegacy,+semconv.k8s.enableStable`.
 
 <!-- toc -->
 
