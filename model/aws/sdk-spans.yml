@@ -12,10 +12,10 @@ groups:
       these APIs.
     attributes:
       - ref: rpc.system
-        brief: "The value `aws-api`."
+        brief: "The value `aws_api`."
         requirement_level: required
         examples:
-          - aws-api
+          - aws_api
       - ref: rpc.service
         brief: "The name of the service to which a request is made, as returned by the AWS SDK."
         examples:

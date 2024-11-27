@@ -237,6 +237,10 @@ groups:
               value: 'connect_rpc'
               brief: 'Connect RPC'
               stability: experimental
+            - id: aws_api
+              value: 'aws_api'
+              brief: 'AWS API'
+              stability: experimental
         stability: experimental
       - id: rpc.message.type
         type:
