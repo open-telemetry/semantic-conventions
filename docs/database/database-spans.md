@@ -11,6 +11,8 @@ linkTitle: Client Calls
 <!-- toc -->
 
 - [Name](#name)
+- [Status](#status)
+  - [Recording exception events](#recording-exception-events)
 - [Common attributes](#common-attributes)
   - [Notes and well-known identifiers for `db.system`](#notes-and-well-known-identifiers-for-dbsystem)
 - [Sanitization of `db.query.text`](#sanitization-of-dbquerytext)
@@ -85,6 +87,62 @@ and SHOULD adhere to one of the following values, provided they are accessible:
 If a corresponding `{target}` value is not available for a specific operation, the instrumentation SHOULD omit the `{target}`.
 For example, for an operation describing SQL query on an anonymous table like `SELECT * FROM (SELECT * FROM table) t`, span name should be `SELECT`.
 
+## Status
+
+[Span Status Code][SpanStatus] MUST be left unset if the operation has ended without any errors.
+
+Instrumentation SHOULD consider the operation as failed if any of the following is true:
+
+- the `db.response.status_code` value indicates an error
+
+  > [!NOTE]
+  >
+  > The classification of status code as an error depends on the context.
+  > For example, a SQL STATE `02000` (`no_data`) indicates an error when the application
+  > expected the data to be available. However, it is not an error when the
+  > application is simply checking whether the data exists.
+  >
+  > Instrumentations that have additional context about a specific operation MAY use
+  > this context to set the span status more precisely.
+  > Instrumentations that don't have any additional context MUST follow the
+  > guidelines in this section.
+
+- an exception is thrown by the instrumented method call
+- the instrumented method returns an error in another way
+
+When the operation ends with an error, instrumentation:
+
+- SHOULD set the span status code to `Error`
+- SHOULD set the `error.type` attribute
+- SHOULD set the span status description when it has additional information
+  about the error which is not expected to contain sensitive details and aligns
+  with [Span Status Description][SpanStatus] definition.
+
+  It's NOT RECOMMENDED to duplicate `db.response.status_code` or `error.type`
+  in span status description.
+
+  When the operation fails with an exception, the span status description SHOULD be set to
+  the exception message.
+
+### Recording exception events
+
+**Status**: [Experimental][DocumentStatus]
+
+When the operation fails with an exception, instrumentation SHOULD record
+an [exception event](../exceptions/exceptions-spans.md) by default if, and only if,
+the span being recorded is a local root span (does not have a local parent).
+
+> [!NOTE]
+>
+> Exception stack traces could be very long and are expensive to capture and store.
+> Exceptions which are not handled by instrumented libraries are likely to be handled
+> and logged by the caller.
+> Exceptions that are not handled will be recorded by the outermost (local root)
+> instrumentation such as HTTP or gRPC server.
+
+Instrumentation MAY provide a configuration option to record exceptions that
+escape the surface of the instrumented API.
+
 ## Common attributes
 
 These attributes will usually be the same for all operations performed over the same database connection.
@@ -119,17 +177,11 @@ This attribute has stability level RELEASE CANDIDATE.
 
 **[2] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-A single database query may involve multiple collections.
-
-If the collection name is parsed from the query text, it SHOULD only be captured for queries that
-contain a single collection and it SHOULD match the value provided in
-the query text including any schema and database name prefix.
+The collection name SHOULD NOT be extracted from `db.query.text`,
+unless the query format is known to only ever have a single collection name present.
 
 For batch operations, if the individual operations are known to have the same collection name
 then that collection name SHOULD be used.
-
-If the operation or query involves multiple collections, `db.collection.name`
-SHOULD NOT be captured.
 
 This attribute has stability level RELEASE CANDIDATE.
 
@@ -143,10 +195,8 @@ This attribute has stability level RELEASE CANDIDATE.
 **[5] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
-A single database query may involve multiple operations. If the operation
-name is parsed from the query text, it SHOULD only be captured for queries that
-contain a single operation or when the operation name describing the
-whole query is available by other means.
+The operation name SHOULD NOT be extracted from `db.query.text`,
+unless the query format is known to only ever have a single operation name present.
 
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,
@@ -175,7 +225,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 This attribute has stability level RELEASE CANDIDATE.
 
 **[13] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text) section.
+Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
 This attribute has stability level RELEASE CANDIDATE.
 
 **[14] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
@@ -307,7 +357,7 @@ in which case the instrumentation MAY choose a different placeholder.
 
 Placeholders in a parameterized query SHOULD not be sanitized. E.g. `where id = $1` can be captured as is.
 
-[IN-clauses](https://en.wikipedia.org/wiki/Where_(SQL)#IN) MAY be collapsed during sanitization,
+[IN-clauses](https://wikipedia.org/wiki/Where_(SQL)#IN) MAY be collapsed during sanitization,
 e.g. from `IN (?, ?, ?, ?)` to `IN (?)`, as this can help with extremely long IN-clauses,
 and can help control cardinality for users who choose to (optionally) add `db.query.text` to their metric attributes.
 
@@ -317,6 +367,7 @@ The `db.query.summary` attribute captures a shortened representation of a query 
 which SHOULD have low-cardinality and SHOULD NOT contain any dynamic or sensitive data.
 
 > [!NOTE]
+>
 > The `db.query.text` attribute is intended to identify individual queries. Even though
 > it is sanitized if captured by default, it could still have high cardinality and
 > might reach hundreds of lines.
@@ -426,3 +477,4 @@ More specific Semantic Conventions are defined for the following database techno
 * [SQL](sql.md): Semantic Conventions for *SQL* databases.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#set-status

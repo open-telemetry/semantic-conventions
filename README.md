@@ -20,6 +20,7 @@ Approvers ([@open-telemetry/specs-semconv-approvers](https://github.com/orgs/ope
 
 - [Alexandra Konrad](https://github.com/trisch-me), Elastic
 - [Christian Neumüller](https://github.com/Oberon00), Dynatrace
+- [Daniel Dyla](https://github.com/dyladan), Dynatrace
 - [James Moessis](https://github.com/jamesmoessis), Atlassian
 - [Sean Marciniak](https://github.com/MovieStoreGuy), Atlassian
 - [Ted Young](https://github.com/tedsuo), Lightstep
