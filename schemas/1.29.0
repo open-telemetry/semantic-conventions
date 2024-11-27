@@ -1,7 +1,7 @@
 file_format: 1.1.0
-schema_url: https://opentelemetry.io/schemas/next
+schema_url: https://opentelemetry.io/schemas/1.29.0
 versions:
-  next:
+  1.29.0:
     all:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/1520
@@ -16,6 +16,7 @@ versions:
               vcs.repository.ref.name: vcs.ref.head.name
               vcs.repository.ref.revision: vcs.ref.head.revision
               vcs.repository.ref.type: vcs.ref.head.type
+
     metrics:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/1492
