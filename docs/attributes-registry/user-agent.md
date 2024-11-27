@@ -29,8 +29,6 @@ Describes the OS user-agent attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="user-agent-os-build-id" href="#user-agent-os-build-id">`user_agent.os.build_id`</a> | string | Unique identifier for a particular build or compilation of the operating system. | `TQ3C.230805.001.B2`; `20E247`; `22621` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="user-agent-os-description" href="#user-agent-os-description">`user_agent.os.description`</a> | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="user-agent-os-name" href="#user-agent-os-name">`user_agent.os.name`</a> | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="user-agent-os-type" href="#user-agent-os-type">`user_agent.os.type`</a> | string | The operating system type. | `windows`; `linux`; `darwin` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="user-agent-os-version" href="#user-agent-os-version">`user_agent.os.version`</a> | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
