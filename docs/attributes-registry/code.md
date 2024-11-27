@@ -6,6 +6,9 @@
 
 # Code
 
+- [Code Attributes](#code-attributes)
+- [Deprecated Code Attributes](#deprecated-code-attributes)
+
 ## Code Attributes
 
 These attributes provide context about source code
@@ -18,3 +21,13 @@ These attributes provide context about source code
 | <a id="code-line-number" href="#code-line-number">`code.line.number`</a> | int | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `42` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="code-namespace" href="#code-namespace">`code.namespace`</a> | string | The "namespace" within which `code.function.name` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function.name` form a unique identifier for the code unit. | `com.example.MyHttpService` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="code-stacktrace" href="#code-stacktrace">`code.stacktrace`</a> | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Deprecated Code Attributes
+
+These deprecated attributes provide context about source code
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="code-column" href="#code-column">`code.column`</a> | int | Deprecated, use `code.column.number` | `16` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `code.column.number` |
+| <a id="code-function" href="#code-function">`code.function`</a> | string | Deprecated, use `code.function.name` instead | `serveRequest` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `code.function.name` |
+| <a id="code-lineno" href="#code-lineno">`code.lineno`</a> | int | Deprecated, use `code.line.number` instead | `42` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `code.line.number` |
