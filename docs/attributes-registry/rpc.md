@@ -30,8 +30,8 @@ This document defines attributes for remote procedure calls.
 | <a id="rpc-message-type" href="#rpc-message-type">`rpc.message.type`</a> | string | Whether this is a received or sent message. | `SENT`; `RECEIVED` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="rpc-message-uncompressed-size" href="#rpc-message-uncompressed-size">`rpc.message.uncompressed_size`</a> | int | Uncompressed size of the message in bytes. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="rpc-method" href="#rpc-method">`rpc.method`</a> | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [6] | `exampleMethod` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="rpc-protocol-name" href="#rpc-protocol-name">`rpc.protocol.name`</a> | string | A string identifying the remoting protocol. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="rpc-service" href="#rpc-service">`rpc.service`</a> | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-system" href="#rpc-system">`rpc.system`</a> | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `rpc.connect_rpc.request.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
@@ -105,7 +105,7 @@ This document defines attributes for remote procedure calls.
 
 ---
 
-`rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`rpc.protocol.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -125,6 +125,7 @@ Deprecated rpc message attributes.
 | <a id="message-id" href="#message-id">`message.id`</a> | int | Deprecated, use `rpc.message.id` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.id`. |
 | <a id="message-type" href="#message-type">`message.type`</a> | string | Deprecated, use `rpc.message.type` instead. | `SENT`; `RECEIVED` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.type`. |
 | <a id="message-uncompressed-size" href="#message-uncompressed-size">`message.uncompressed_size`</a> | int | Deprecated, use `rpc.message.uncompressed_size` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.uncompressed_size`. |
+| <a id="rpc-system" href="#rpc-system">`rpc.system`</a> | string | Deprecated, use `rpc.protocol.name` instead. | `grpc`; `java_rmi`; `dotnet_wcf` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.protocol.name`. |
 
 ---
 
@@ -134,3 +135,15 @@ Deprecated rpc message attributes.
 |---|---|---|
 | `RECEIVED` | received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `SENT` | sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
+
+`rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

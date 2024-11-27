@@ -15,7 +15,7 @@ groups:
       - ref: gen_ai.request.model
         requirement_level:
           conditionally_required: If available.
-      - ref: gen_ai.system
+      - ref: gen_ai.provider.name
         requirement_level: required
       - ref: gen_ai.operation.name
         requirement_level: required

@@ -28,3 +28,37 @@ groups:
         deprecated: "Removed, no replacement at this time."
         brief: "Deprecated, use Event API to report completions contents."
         examples: ["[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]"]
+      - id: gen_ai.system
+        stability: experimental
+        type:
+          members:
+            - id: openai
+              stability: experimental
+              value: "openai"
+              brief: 'OpenAI'
+            - id: vertex_ai
+              stability: experimental
+              value: "vertex_ai"
+              brief: 'Vertex AI'
+            - id: anthropic
+              stability: experimental
+              value: "anthropic"
+              brief: 'Anthropic'
+            - id: cohere
+              stability: experimental
+              value: "cohere"
+              brief: 'Cohere'
+            - id: az.ai.inference
+              stability: experimental
+              value: "az.ai.inference"
+              brief: 'Azure AI Inference'
+            - id: ibm.watsonx.ai
+              stability: experimental
+              value: "ibm.watsonx.ai"
+              brief: 'IBM Watsonx AI'
+            - id: aws.bedrock
+              stability: experimental
+              value: "aws.bedrock"
+              brief: 'AWS Bedrock'
+        brief: 'Deprecated, use `gen_ai.provider.name` instead.'
+        deprecated: 'Replaced by `gen_ai.provider.name`.'

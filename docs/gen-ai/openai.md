@@ -20,7 +20,7 @@ linkTitle: OpenAI traces and metrics
 The Semantic Conventions for [OpenAI](https://openai.com/) extend and override the semantic conventions
 for [Gen AI Spans](gen-ai-spans.md) and [Gen AI Metrics](gen-ai-metrics.md).
 
-`gen_ai.system` MUST be set to `"openai"`.
+`gen_ai.provider.name` MUST be set to `"openai"`.
 
 ## OpenAI Spans
 
