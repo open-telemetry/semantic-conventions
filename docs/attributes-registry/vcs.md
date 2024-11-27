@@ -27,7 +27,7 @@ This group defines the attributes for [Version Control Systems (VCS)](https://wi
 | <a id="vcs-ref-head-type" href="#vcs-ref-head-type">`vcs.ref.head.type`</a> | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="vcs-ref-type" href="#vcs-ref-type">`vcs.ref.type`</a> | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="vcs-repository-name" href="#vcs-repository-name">`vcs.repository.name`</a> | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [3] | `semantic-conventions`; `my-cool-repo` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="vcs-repository-url-full" href="#vcs-repository-url-full">`vcs.repository.url.full`</a> | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="vcs-repository-url-full" href="#vcs-repository-url-full">`vcs.repository.url.full`</a> | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [4] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="vcs-revision-delta-direction" href="#vcs-revision-delta-direction">`vcs.revision_delta.direction`</a> | string | The type of revision comparison. | `ahead`; `behind` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `vcs.ref.base.revision`:** The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
@@ -53,6 +53,9 @@ based on the VCS system and situational context.
 **[3] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
+
+**[4] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+the `.git` extension.
 
 ---
 
