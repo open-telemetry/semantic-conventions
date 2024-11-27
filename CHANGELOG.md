@@ -8,6 +8,76 @@
 
 <!-- next version -->
 
+## v1.29.0
+
+### 🛑 Breaking changes 🛑
+
+- `vcs`: Add the VCS metrics inspired by the GitHub Receiver (#1372)
+  Makes the following changes:
+  
+  - Add metrics `vcs.change.count`, `vcs.change.duration`, `vcs.change.time_to_approval`, `vcs.repository.count`, `vcs.ref.count`,
+    `vcs.ref.lines_delta`, `vcs.ref.revisions_delta`, `vcs.ref.time`, `vcs.contributor.count`
+  - The VCS attributes `vcs.change.state`, `vcs.revision_delta.direction` and `vcs.line_change.type` have been added to the registry.
+  - The VCS ref attributes have been duplicated to `vcs.ref.base.*` to allow for ref comparisons.
+  - The VCS attribute `vcs.ref.type` has been added for simplicity when neither a full head or base ref is necessary.
+  - `vcs.repository.change.*` attributes have been deprecated and moved to `vcs.change.*`.
+  - `vcs.repository.ref.*` attributes have been deprecated and moved to `vcs.ref.head.*`.
+  
+- `feature_flag`: Rename `feature_flag` event to `feature_flag.evaluation` event, define new feature flag attributes and provide body definition. Remove `feature_flag` span event definition in favor of log-based event.
+ (#1440)
+- `db`: Generalize `db.query.parameter.<key>` to `db.operation.parameter.<key>` (#1559)
+- `db`: Remove redis database index from the redis span name. (#1449)
+- `db`: Don't capture `db.operation.name` and `db.collection.name` from query formats that support multiples. (#1566)
+- `system`: Introduce `network.interface.name` and use that instead of `system.device` for system and container network metrics (#1492)
+- `system`: Add system.device attribute to system paging metrics (#1408)
+- `process`: Change process.uptime instrument to a gauge. (#1518)
+- `process.executable.build_id`: Rename process.executable.build_id.profiling to process.executable.build_id.htlhash. (#1520)
+  With https://github.com/open-telemetry/opentelemetry-specification/pull/4197 it was decided to rename the attribute profiling in process.executable.build_id to htlhash.
+- `graphql`: Update the GraphQL Span name convention (#1361)
+
+### 🚀 New components 🚀
+
+- `cli`: Define span describing CLI application execution (#1577)
+- `geo`: Add geo fields to attribute registry. (#1033)
+
+### 💡 Enhancements 💡
+
+- `gen_ai`: Add system-specific conventions for Azure AI Inference. (#1393)
+- `http`: Define how to handle experimental attributes in stable groups, add policies and move experimental HTTP attributes into stable HTTP groups (as opt_in). (#906, #1472)
+- `db, gen-ai, faas`: Relax wording for span kind - use SHOULD instead of MUST for logical operations. (#1315, #1506)
+- `kestrel`: Add .NET 9 error reasons to Kestrel connection metric. (#1582)
+- `db`: Specify how to set span status for database operations. (#1536, #1560)
+- `gen-ai`: Add 2 well-known gen-ai systems as reference values of the gen-ai system attribute including AWS Bedrock and IBM Watsonx AI (#1574)
+- `http`: Relax `server.port` requirement level on HTTP server spans (#1387)
+- `gen-ai`: Add conventions for GenAI Embeddings operations (#1174, #1603)
+- `feature_flag`: Rename `feature_flag.system` back to `feature_flag.provider_name` (#1614)
+- `user_agent`: Add the `user_agent.synthetic.type` attribute to specify the category of synthetic traffic, such as tests or bots. (#1127)
+- `system`: Add system uptime metric (#648)
+- `gen-ai`: Add `gen_ai.openai.response.system_fingerprint` attribute (#1355)
+- `k8s`: Add k8s.{node,pod}.network.{io,errors} metrics (#1427)
+- `k8s`: Add uptime metrics for container, K8s Pod and K8s Node (#1486)
+- `linux`: Add linux.process.cgroup attribute (#1357)
+- `docs`: Improve separation between attribute table footnotes and enum values (#1569)
+- `messaging`: Specify which span kind to use for messaging settle operations (#1478)
+- `db`: Added `db.cosmosdb.regions_contacted` attribute to Cosmos DB metrics and traces. (#1525)
+- `db`: Added new common `db.client.response.returned_rows` database metric and several operation level metrics for Azure Cosmos DB. (#1438)
+
+### 🧰 Bug fixes 🧰
+
+- `service`: Merge `resource` experimental and stable groups for service and telemetry.sdk (#1423)
+  Discovered when fixing [weaver#306](https://github.com/open-telemetry/weaver/issues/306#issue-2458430277)
+  
+- `db`: Fix telemetry for complex queries:
+
+- introduce the `db.query.summary` attribute to provide a concise, low-cardinality
+  representation of the query text.
+- use `db.query.summary` as the span name and as a recommended attribute on metrics.
+- avoid capturing `db.operation.name` and `db.collection.name` when the query
+  involves multiple operations or collections, to prevent ambiguity.
+ (#521, #805, #1159)
+- `url`: Specific URL query string values should now be redacted by default due to concerns around leaking credentials. (#971)
+- `messaging`: Fix typo in schemas for messaging attribute changes (#1595)
+
 ## v1.28.0
 
 ### 🛑 Breaking changes 🛑
