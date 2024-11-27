@@ -11,7 +11,7 @@ groups:
         stability: experimental
         brief: The lookup key of the feature flag.
         examples: ["logo-color"]
-      - id: feature_flag.system
+      - id: feature_flag.provider_name
         type: string
         stability: experimental
         brief: Identifies the feature flag provider.

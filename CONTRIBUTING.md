@@ -114,7 +114,7 @@ The YAML (model definition) and Markdown (documentation) files are organized in 
 ```
 
 All attributes must be defined in the folder matching their root namespace under
-`/{root-namespace}/*registry.yaml` file.
+`/model/{root-namespace}/registry.yaml` file.
 
 Corresponding markdown files are auto-generated (see [Update the markdown files](#2-update-the-markdown-files))
 in `/docs/attribute_registry` folder.
