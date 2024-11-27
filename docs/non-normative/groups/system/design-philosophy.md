@@ -61,7 +61,7 @@ Some Specialist Class examples:
 
 ## Operating System in names
 
-Relevant discussions: [\#1255](https://github.com/open-telemetry/semantic-conventions/issues/1255)
+Relevant discussions: [\#1255](https://github.com/open-telemetry/semantic-conventions/issues/1255), [\#1364](https://github.com/open-telemetry/semantic-conventions/pull/1364#discussion_r1852465994)
 
 Monitoring operating systems is an old practice, and there are lots of ways to skin the cat within different platforms. There are lots of metrics, even in basic stuff like memory usage, where there are platform specific pieces of information that are valuable to those who really specialize in that platform.
 
