@@ -43,10 +43,14 @@
 
 # System semantic conventions
 /docs/process/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers
-/docs/system/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 /docs/resource/host.md            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
+/docs/resource/process.md         @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
+/docs/system/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
+/model/disk/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 /model/host/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
-/model/process/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers
+/model/network/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
+/model/os/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
+/model/process/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers
 /model/system/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 
 # Mobile semantic conventions
