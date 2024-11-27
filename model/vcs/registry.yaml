@@ -9,12 +9,9 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The [URL](https://wikipedia.org/wiki/URL) of the repository
-          providing the complete address in order to locate and identify the
-          repository.
-        note: |
-          The URL SHOULD only be an HTTPS absolute URL and SHOULD NOT include
-          `.git` appended on the end nor be an SSH URL.
+          The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.)
+          of the repository providing the complete HTTP(S) address in order to
+          locate and identify the repository through a browser.
         examples:
           [
             "https://github.com/opentelemetry/open-telemetry-collector-contrib",
@@ -30,12 +27,10 @@ groups:
         note: |
           Due to it only being the name, it can clash with forks of the same
           repository if collecting telemetry across multiple orgs or groups in
-          the same backends. It is recommended to include
-          `vcs.repository.url.full` alongside this attribute to prevent
-          clashing.
+          the same backends.
         examples:
           [
-            "semantic-conventios",
+            "semantic-conventions",
             "my-cool-repo",
           ]
       - id: vcs.ref.base.name
