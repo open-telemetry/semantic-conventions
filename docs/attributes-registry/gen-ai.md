@@ -33,9 +33,9 @@ This document defines the attributes used to describe telemetry in the context o
 | <a id="gen-ai-usage-input-tokens" href="#gen-ai-usage-input-tokens">`gen_ai.usage.input_tokens`</a> | int | The number of tokens used in the GenAI input (prompt). | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-usage-output-tokens" href="#gen-ai-usage-output-tokens">`gen_ai.usage.output_tokens`</a> | int | The number of tokens used in the GenAI response (completion). | `180` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
+**[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[2]:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+**[2] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
@@ -45,6 +45,8 @@ is set to `openai` based on the instrumentation's best knowledge.
 For custom model, a custom friendly name SHOULD be used.
 If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
+---
+
 `gen_ai.operation.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -52,15 +54,21 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `chat` | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `gen_ai.token.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -81,6 +89,8 @@ Thie group defines attributes for OpenAI.
 | <a id="gen-ai-openai-response-service-tier" href="#gen-ai-openai-response-service-tier">`gen_ai.openai.response.service_tier`</a> | string | The service tier used for the response. | `scale`; `default` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-openai-response-system-fingerprint" href="#gen-ai-openai-response-system-fingerprint">`gen_ai.openai.response.system_fingerprint`</a> | string | A fingerprint to track any eventual change in the Generative AI environment. | `fp_44709d6fcb` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `gen_ai.openai.request.response_format` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -88,6 +98,8 @@ Thie group defines attributes for OpenAI.
 | `json_object` | JSON object response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `json_schema` | JSON schema response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `text` | Text response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `gen_ai.openai.request.service_tier` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

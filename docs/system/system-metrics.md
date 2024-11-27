@@ -124,7 +124,9 @@ This metric is [recommended][MetricRecommended].
 | [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.cpu.logical_number`](/docs/attributes-registry/system.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
+**[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
+
+---
 
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -164,7 +166,9 @@ This metric is [opt-in][MetricOptIn].
 | [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.cpu.logical_number`](/docs/attributes-registry/system.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
+**[1] `cpu.mode`:** Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
+
+---
 
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -275,6 +279,8 @@ available on the system, that is `system.memory.limit`.
 |---|---|---|---|---|---|
 | [`system.memory.state`](/docs/attributes-registry/system.md) | string | The memory state | `free`; `cached` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `system.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -353,6 +359,8 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`system.memory.state`](/docs/attributes-registry/system.md) | string | The memory state | `free`; `cached` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `system.memory.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -391,6 +399,8 @@ This metric is [recommended][MetricRecommended].
 | [`system.device`](/docs/attributes-registry/system.md) | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.paging.state`](/docs/attributes-registry/system.md) | string | The memory paging state | `free` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `system.paging.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -423,6 +433,8 @@ This metric is [recommended][MetricRecommended].
 | [`system.device`](/docs/attributes-registry/system.md) | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.paging.state`](/docs/attributes-registry/system.md) | string | The memory paging state | `free` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `system.paging.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -453,6 +465,8 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`system.paging.type`](/docs/attributes-registry/system.md) | string | The memory paging type | `minor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `system.paging.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -486,12 +500,16 @@ This metric is [recommended][MetricRecommended].
 | [`system.paging.direction`](/docs/attributes-registry/system.md) | string | The paging access direction | `in` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.paging.type`](/docs/attributes-registry/system.md) | string | The memory paging type | `minor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `system.paging.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `in` | in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `out` | out | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `system.paging.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -529,6 +547,8 @@ This metric is [recommended][MetricRecommended].
 | [`disk.io.direction`](/docs/attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `disk.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -560,6 +580,8 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`disk.io.direction`](/docs/attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `disk.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -629,6 +651,8 @@ This metric is [recommended][MetricRecommended].
 | [`disk.io.direction`](/docs/attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `disk.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -660,6 +684,8 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`disk.io.direction`](/docs/attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `disk.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -727,6 +753,8 @@ SHOULD equal the total storage capacity of the filesystem, that is `system.files
 | [`system.filesystem.state`](/docs/attributes-registry/system.md) | string | The filesystem state | `used` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.filesystem.type`](/docs/attributes-registry/system.md) | string | The filesystem type | `ext4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `system.filesystem.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -734,6 +762,8 @@ SHOULD equal the total storage capacity of the filesystem, that is `system.files
 | `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `reserved` | reserved | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -774,6 +804,8 @@ This metric is [recommended][MetricRecommended].
 | [`system.filesystem.state`](/docs/attributes-registry/system.md) | string | The filesystem state | `used` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.filesystem.type`](/docs/attributes-registry/system.md) | string | The filesystem type | `ext4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `system.filesystem.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -781,6 +813,8 @@ This metric is [recommended][MetricRecommended].
 | `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `reserved` | reserved | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -819,6 +853,8 @@ This metric is [opt-in][MetricOptIn].
 | [`system.filesystem.mode`](/docs/attributes-registry/system.md) | string | The filesystem mode | `rw, ro` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.filesystem.mountpoint`](/docs/attributes-registry/system.md) | string | The filesystem mount path | `/mnt/data` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.filesystem.type`](/docs/attributes-registry/system.md) | string | The filesystem type | `ext4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -866,6 +902,8 @@ This metric is [recommended][MetricRecommended].
 | [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -897,6 +935,8 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -936,6 +976,8 @@ This metric is [recommended][MetricRecommended].
 | [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -967,6 +1009,8 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -1001,11 +1045,13 @@ This metric is [recommended][MetricRecommended].
 | [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`system.network.state`](/docs/attributes-registry/system.md) | string | A stateless protocol MUST NOT set this attribute | `close_wait` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The value SHOULD be normalized to lowercase.
+**[1] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
+
+---
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -1016,6 +1062,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
 
 `system.network.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -1061,6 +1109,8 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`system.process.status`](/docs/attributes-registry/system.md) | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `system.process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -1174,6 +1224,8 @@ See also the [Slab allocator](https://blogs.oracle.com/linux/post/understanding-
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`linux.memory.slab.state`](/docs/attributes-registry/linux.md) | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `linux.memory.slab.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

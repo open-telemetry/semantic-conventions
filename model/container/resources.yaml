@@ -1,5 +1,5 @@
 groups:
-  - id: container
+  - id: resource.container
     type: resource
     name: container
     brief: >

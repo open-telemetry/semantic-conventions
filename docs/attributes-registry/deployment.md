@@ -20,13 +20,15 @@ This document defines attributes for software deployments.
 | <a id="deployment-name" href="#deployment-name">`deployment.name`</a> | string | The name of the deployment. | `deploy my app`; `deploy-frontend` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="deployment-status" href="#deployment-status">`deployment.status`</a> | string | The status of the deployment. | `failed`; `succeeded` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** `deployment.environment.name` does not affect the uniqueness constraints defined through
+**[1] `deployment.environment.name`:** `deployment.environment.name` does not affect the uniqueness constraints defined through
 the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
 This implies that resources carrying the following attribute combinations MUST be
 considered to be identifying the same service:
 
 - `service.name=frontend`, `deployment.environment.name=production`
 - `service.name=frontend`, `deployment.environment.name=staging`.
+
+---
 
 `deployment.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

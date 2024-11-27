@@ -10,19 +10,29 @@ groups:
       #   sampling_relevant: true
       - ref: db.operation.name
         sampling_relevant: true
+        requirement_level: # TODO (trask) simplify
+          conditionally_required: >
+            If readily available and if there is a single operation name that describes the
+            database call. The operation name MAY be parsed from the query text,
+            in which case it SHOULD be the single operation name found in the query.
       - ref: db.operation.batch.size
       - ref: server.address
         sampling_relevant: true
       - ref: server.port
         sampling_relevant: true
 
-  - id: trace.db.common.query_and_collection
-    extends: attributes.db.client.with_query_and_collection
+  - id: trace.db.common.query
+    extends: attributes.db.client.with_query
     type: attribute_group
     stability: experimental
     brief: This group defines the attributes used to perform database client calls.
     attributes:
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
       - ref: db.operation.batch.size
+      - ref: db.response.returned_rows
       - ref: db.query.text
         sampling_relevant: true
         requirement_level:
@@ -33,11 +43,18 @@ groups:
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.query.parameter.<key>`](../../docs/attributes-registry/db.md)).
+            see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
       - ref: db.query.summary
         sampling_relevant: true
-      - ref: db.query.parameter
+      - ref: db.operation.parameter
         requirement_level: opt_in
+
+  - id: trace.db.common.query_and_collection
+    extends: attributes.db.client.with_query_and_collection
+    type: attribute_group
+    stability: experimental
+    brief: This group defines the attributes used to perform database client calls.
+    attributes:
       - ref: db.collection.name
         sampling_relevant: true
       - ref: db.operation.name
@@ -48,6 +65,21 @@ groups:
       - ref: server.port
         sampling_relevant: true
       - ref: db.response.returned_rows
+      - ref: db.query.text
+        sampling_relevant: true
+        requirement_level:
+          recommended: >
+            Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
+            sensitive data, e.g. by redacting all literal values present in the query text.
+            See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+
+            Parameterized query text SHOULD be collected by default
+            (the query parameter values themselves are opt-in,
+            see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
+      - ref: db.query.summary
+        sampling_relevant: true
+      - ref: db.operation.parameter
+        requirement_level: opt_in
 
   - id: trace.db.common.full
     type: attribute_group
@@ -76,17 +108,18 @@ groups:
         requirement_level:
           conditionally_required: If available.
 
-  - id: db
+  - id: span.db.client
     type: span
     stability: experimental
     brief: This span defines the attributes used to perform database client calls.
     span_kind: client
     extends: trace.db.common.full
 
-  - id: db.mssql
+  - id: span.db.mssql.client
     type: span
     stability: experimental
-    extends: db.sql
+    extends: span.db.sql.client
+    span_kind: client
     brief: >
       Attributes for Microsoft SQL Server
     attributes:
@@ -117,9 +150,10 @@ groups:
           Microsoft SQL Server does not report SQLSTATE.
         examples: ["102", "40020"]
 
-  - id: db.postgresql
+  - id: span.db.postgresql.client
     type: span
-    extends: db.sql
+    extends: span.db.sql.client
+    span_kind: client
     brief: >
       Attributes for PostgreSQL
     attributes:
@@ -150,9 +184,10 @@ groups:
           [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html).
         examples: ["08000", "08P01"]
 
-  - id: db.mysql
+  - id: span.db.mysql.client
     type: span
-    extends: db.sql
+    extends: span.db.sql.client
+    span_kind: client
     brief: >
       Attributes for MySQL
     attributes:
@@ -175,9 +210,10 @@ groups:
           [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html).
         examples: ["1005", "MY-010016"]
 
-  - id: db.mariadb
+  - id: span.db.mariadb.client
     type: span
-    extends: db.sql
+    extends: span.db.sql.client
+    span_kind: client
     brief: >
       Attributes for MariaDB
     attributes:
@@ -201,8 +237,9 @@ groups:
           represented as a string.
         examples: ["1008", "3058"]
 
-  - id: db.cassandra
+  - id: span.db.cassandra.client
     type: span
+    span_kind: client
     stability: experimental
     extends: trace.db.common.query_and_collection
     brief: >
@@ -235,8 +272,9 @@ groups:
         brief: >
           [Cassandra protocol error code](https://github.com/apache/cassandra/blob/cassandra-5.0/doc/native_protocol_v5.spec) represented as a string.
         examples: ["102", "40020"]
-  - id: db.hbase
+  - id: span.db.hbase.client
     type: span
+    span_kind: client
     stability: experimental
     extends: trace.db.common.minimal
     brief: >
@@ -265,8 +303,9 @@ groups:
         examples: ["200", "409", "14"]
         requirement_level:
           conditionally_required: If response was received.
-  - id: db.couchdb
+  - id: span.db.couchdb.client
     type: span
+    span_kind: client
     stability: experimental
     extends: trace.db.common.minimal
     brief: >
@@ -297,10 +336,11 @@ groups:
         requirement_level:
           conditionally_required: If response was received and the HTTP response code is available.
 
-  - id: db.redis
+  - id: span.db.redis.client
     type: span
     stability: experimental
-    extends: attributes.db.client.minimal
+    span_kind: client
+    extends: trace.db.common.minimal
     brief: >
       Attributes for Redis
     attributes:
@@ -335,7 +375,7 @@ groups:
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.query.parameter.<key>`](../../docs/attributes-registry/db.md)).
+            see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
         note: >
           For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI.
           If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
@@ -353,16 +393,17 @@ groups:
           The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix.
         examples: ["ERR", "WRONGTYPE", "CLUSTERDOWN"]
       - ref: db.operation.batch.size
-      - ref: db.query.parameter
+      - ref: db.operation.parameter
         requirement_level: opt_in
       - ref: server.address
         sampling_relevant: true
       - ref: server.port
         sampling_relevant: true
 
-  - id: db.mongodb
+  - id: span.db.mongodb.client
     type: span
     stability: experimental
+    span_kind: client
     extends: trace.db.common.minimal
     brief: >
       Attributes for MongoDB
@@ -394,9 +435,10 @@ groups:
           conditionally_required: If the operation failed and error code is available.
         examples: ["36", "11602"]
 
-  - id: db.elasticsearch
+  - id: span.db.elasticsearch.client
     type: span
     stability: experimental
+    span_kind: client
     extends: trace.db.common.minimal
     brief: >
       Attributes for Elasticsearch
@@ -449,22 +491,14 @@ groups:
         examples: ["200", "201", "429"]
         requirement_level:
           conditionally_required: If response was received.
-  - id: db.sql
+  - id: span.db.sql.client
     type: span
+    span_kind: client
     stability: experimental
-    extends: trace.db.common.query_and_collection
+    extends: trace.db.common.query
     brief: >
       Attributes for SQL databases
     attributes:
-      - ref: db.operation.name
-        note: >
-          This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
-
-          In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.
-        examples: ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'mystoredproc']
-      - ref: db.collection.name
-        brief: The name of the SQL table that the operation is acting upon.
-        examples: ['users', 'dbo.products']
       - ref: db.namespace
         brief: >
           The database associated with the connection,
@@ -532,9 +566,10 @@ groups:
         examples: ["ORA-17027", "1052", "2201B"]
         requirement_level:
           conditionally_required: If response has ended with warning or an error.
-  - id: db.cosmosdb
+  - id: span.db.cosmosdb.client
     type: span
     stability: experimental
+    span_kind: client
     extends: trace.db.common.query_and_collection
     brief: >
       Attributes for Cosmos DB.
@@ -724,5 +759,8 @@ groups:
         requirement_level:
           conditionally_required: If not default (443).
       - ref: db.cosmosdb.consistency_level
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.cosmosdb.regions_contacted
         requirement_level:
           conditionally_required: If available.
