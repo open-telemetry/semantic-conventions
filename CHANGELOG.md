@@ -14,7 +14,7 @@
 
 - `vcs`: Add the VCS metrics inspired by the GitHub Receiver (#1372)
   Makes the following changes:
-  
+
   - Add metrics `vcs.change.count`, `vcs.change.duration`, `vcs.change.time_to_approval`, `vcs.repository.count`, `vcs.ref.count`,
     `vcs.ref.lines_delta`, `vcs.ref.revisions_delta`, `vcs.ref.time`, `vcs.contributor.count`
   - The VCS attributes `vcs.change.state`, `vcs.revision_delta.direction` and `vcs.line_change.type` have been added to the registry.
@@ -22,7 +22,7 @@
   - The VCS attribute `vcs.ref.type` has been added for simplicity when neither a full head or base ref is necessary.
   - `vcs.repository.change.*` attributes have been deprecated and moved to `vcs.change.*`.
   - `vcs.repository.ref.*` attributes have been deprecated and moved to `vcs.ref.head.*`.
-  
+
 - `feature_flag`: Rename `feature_flag` event to `feature_flag.evaluation` event, define new feature flag attributes and provide body definition. Remove `feature_flag` span event definition in favor of log-based event.
  (#1440)
 - `db`: Generalize `db.query.parameter.<key>` to `db.operation.parameter.<key>` (#1559)
@@ -32,7 +32,7 @@
 - `system`: Add system.device attribute to system paging metrics (#1408)
 - `process`: Change process.uptime instrument to a gauge. (#1518)
 - `process.executable.build_id`: Rename process.executable.build_id.profiling to process.executable.build_id.htlhash. (#1520)
-  With https://github.com/open-telemetry/opentelemetry-specification/pull/4197 it was decided to rename the attribute profiling in process.executable.build_id to htlhash.
+  With [#4197](https://github.com/open-telemetry/opentelemetry-specification/pull/4197) it was decided to rename the attribute profiling in process.executable.build_id to htlhash.
 - `graphql`: Update the GraphQL Span name convention (#1361)
 
 ### 🚀 New components 🚀
@@ -66,7 +66,7 @@
 
 - `service`: Merge `resource` experimental and stable groups for service and telemetry.sdk (#1423)
   Discovered when fixing [weaver#306](https://github.com/open-telemetry/weaver/issues/306#issue-2458430277)
-  
+
 - `db`: Fix telemetry for complex queries:
 
 - introduce the `db.query.summary` attribute to provide a concise, low-cardinality
