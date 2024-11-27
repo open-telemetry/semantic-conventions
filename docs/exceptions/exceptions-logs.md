@@ -21,7 +21,7 @@ emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry
 ## Recording an Exception
 
 Exceptions SHOULD be recorded as attributes on the
-[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/logs/bridge-api.md#logger) emit
+[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/logs/api.md#logger) emit
 operations. Exceptions MAY be recorded on "logs" or "events" depending on the
 context.
 
