@@ -1,4 +1,0 @@
-change_type: enhancement
-component: kestrel
-note: Add .NET 9 error reasons to Kestrel connection metric.
-issues: [1582]
