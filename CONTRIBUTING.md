@@ -366,6 +366,8 @@ make check-policies
 - Ensure the referenced specification version is up to date. Use
   [tooling to update the spec](#updating-the-referenced-specification-version)
   if needed.
+- Run [opentelemetry.io workflow](https://github.com/open-telemetry/opentelemetry.io/actions/workflows/build-dev.yml)
+  against `semantic-conventions` submodule as a smoke-test for docs. Fix broken links, if any.
 - Create a staging branch for the release.
   - Update `schema-next.yaml` file and move to `schemas/{version}`
     - Ensure the `next` version is appropriately configured as the `{version}`.

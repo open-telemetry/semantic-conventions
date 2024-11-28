@@ -1,4 +1,0 @@
-change_type: enhancement
-component: feature_flag
-note: Rename `feature_flag.system` back to `feature_flag.provider_name`
-issues: [1614]

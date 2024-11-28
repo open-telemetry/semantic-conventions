@@ -1,4 +1,0 @@
-change_type: enhancement
-component: db
-note: Specify how to set span status for database operations.
-issues: [1536, 1560]

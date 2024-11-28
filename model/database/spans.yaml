@@ -10,7 +10,7 @@ groups:
       #   sampling_relevant: true
       - ref: db.operation.name
         sampling_relevant: true
-        requirement_level: # TODO (trask) simplify
+        requirement_level:  # TODO (trask) simplify
           conditionally_required: >
             If readily available and if there is a single operation name that describes the
             database call. The operation name MAY be parsed from the query text,
