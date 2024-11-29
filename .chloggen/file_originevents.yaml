@@ -10,7 +10,8 @@ change_type: enhancement
 component: file
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: add file.origin_referrer_url, file.origin_url, and file.zone_identifier
+note: This adds file.origin_referrer_url, file.origin_url, and file.zone_identifier attributes.
+      In addition, it also adds file.open event under event.yaml
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
