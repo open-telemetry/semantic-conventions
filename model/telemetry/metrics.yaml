@@ -39,9 +39,9 @@ groups:
       - ref: telemetry.sdk.processor.type
       - ref: telemetry.sdk.component.id
 
-  - id: metric.telemetry.sdk.span.processor.spans_submitted
+  - id: metric.telemetry.sdk.span.processor.spans_failed
     type: metric
-    metric_name: telemetry.sdk.span.processor.spans_submitted
+    metric_name: telemetry.sdk.span.processor.spans_failed
     stability: experimental
     brief: "The number of spans which could not be successfully processed"
     instrument: counter
@@ -50,6 +50,8 @@ groups:
       - ref: telemetry.sdk.processor.type
       - ref: telemetry.sdk.component.id
       - ref: error.type
+        brief: >
+          A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue full` for spans dropped due to a full queue.
         examples: ["queue full"]
 
   - id: metric.telemetry.sdk.span.exporter.spans_submitted
