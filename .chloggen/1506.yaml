@@ -1,4 +1,0 @@
-change_type: enhancement
-component: db, gen-ai, faas
-note: Relax wording for span kind - use SHOULD instead of MUST for logical operations.
-issues: [1315, 1506]
