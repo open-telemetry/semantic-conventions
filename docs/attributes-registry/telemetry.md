@@ -14,19 +14,37 @@ This document defines attributes for telemetry SDK.
 |---|---|---|---|---|
 | <a id="telemetry-distro-name" href="#telemetry-distro-name">`telemetry.distro.name`</a> | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="telemetry-distro-version" href="#telemetry-distro-version">`telemetry.distro.version`</a> | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="telemetry-sdk-component-id" href="#telemetry-sdk-component-id">`telemetry.sdk.component.id`</a> | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [2] | `batch-span-0`; `custom-name` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="telemetry-sdk-exporter-type" href="#telemetry-sdk-exporter-type">`telemetry.sdk.exporter.type`</a> | string | A name identifying the type of the OpenTelemetry SDK exporter. [3] | `otlp-grpc`; `jaeger` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="telemetry-sdk-failure-reason" href="#telemetry-sdk-failure-reason">`telemetry.sdk.failure_reason`</a> | string | A low-cardinality for why this component failed to process a record. [4] | `queue full`; `exporter failed` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="telemetry-sdk-language" href="#telemetry-sdk-language">`telemetry.sdk.language`</a> | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="telemetry-sdk-name" href="#telemetry-sdk-name">`telemetry.sdk.name`</a> | string | The name of the telemetry SDK as defined above. [2] | `opentelemetry` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="telemetry-sdk-name" href="#telemetry-sdk-name">`telemetry.sdk.name`</a> | string | The name of the telemetry SDK as defined above. [5] | `opentelemetry` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="telemetry-sdk-processor-type" href="#telemetry-sdk-processor-type">`telemetry.sdk.processor.type`</a> | string | A name identifying the type of the OpenTelemetry SDK processor. [6] | `batch-span`; `MyCustomProcessor` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="telemetry-sdk-version" href="#telemetry-sdk-version">`telemetry.sdk.version`</a> | string | The version string of the telemetry SDK. | `1.2.3` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `telemetry.distro.name`:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
 
-**[2] `telemetry.sdk.name`:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
+**[2] `telemetry.sdk.component.id`:** The SDK MAY allow users to provide an id for the component instances. If no id is provided by the user,
+the SDK SHOULD automatically assign an id. Because this attribute is used in metrics, the SDK MUST ensure a low cardinality in that case.
+E.g. it MUST NOT use a UUID.
+It instead MAY do that by using the following pattern as value: `<telemetry.sdk.processor/exporter.type>-<instance-counter>`: Hereby, `<instance-counter>` is a 
+monotonically increasing counter (starting with `0`), which is incremented every time an instance of the given component type is created.
+For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
+These values will therefore be reused in the case of an application restart.
+
+**[3] `telemetry.sdk.exporter.type`:** For OTLP, the values `otlp-grpc`, `otlp-http` or `otlp-http-json` MUST be used, based on the transport and serialization format.
+
+**[4] `telemetry.sdk.failure_reason`:** For the SDK Batch Span Processor `queue full` MUST be used for when items are dropped due to a full queue.
+
+**[5] `telemetry.sdk.name`:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
 If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the
 `telemetry.sdk.name` attribute to the fully-qualified class or module name of this SDK's main entry point
 or another suitable identifier depending on the language.
 The identifier `opentelemetry` is reserved and MUST NOT be used in this case.
 All custom identifiers SHOULD be stable across different versions of an implementation.
+
+**[6] `telemetry.sdk.processor.type`:** The value `batch-span` MUST be used for the SDK builtin Batch Span Processor.
 
 ---
 
