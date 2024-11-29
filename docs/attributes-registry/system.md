@@ -91,7 +91,7 @@ Describes Network attributes
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="system-network-state" href="#system-network-state">`system.network.state`</a> | string | A stateless protocol MUST NOT set this attribute | `close_wait` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="system-network-state" href="#system-network-state">`system.network.state`</a> | string | A stateless protocol MUST NOT set this attribute | `close_wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report network connection state with `network.connection.state` attribute |
 
 ---
 
