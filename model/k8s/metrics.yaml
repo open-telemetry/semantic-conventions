@@ -126,3 +126,35 @@ groups:
     attributes:
       - ref: network.interface.name
       - ref: network.io.direction
+
+  # k8s.deployment.* metrics
+  - id: metric.k8s.deployment.desired
+    type: metric
+    metric_name: k8s.deployment.desired
+    stability: experimental
+    brief: "Number of desired pods in this deployment"
+    instrument: gauge
+    unit: "{pod}"
+  - id: metric.k8s.deployment.available
+    type: metric
+    metric_name: k8s.deployment.available
+    stability: experimental
+    brief: "Total number of available pods (ready for at least minReadySeconds) targeted by this deployment"
+    instrument: gauge
+    unit: "{pod}"
+
+  # k8s.replicaset.* metrics
+  - id: metric.k8s.replicaset.desired
+    type: metric
+    metric_name: k8s.replicaset.desired
+    stability: experimental
+    brief: "Number of desired pods in this replicaset"
+    instrument: gauge
+    unit: "{pod}"
+  - id: metric.k8s.replicaset.available
+    type: metric
+    metric_name: k8s.replicaset.available
+    stability: experimental
+    brief: "Total number of available pods (ready for at least minReadySeconds) targeted by this replicaset"
+    instrument: gauge
+    unit: "{pod}"
