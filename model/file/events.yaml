@@ -1,0 +1,32 @@
+groups:
+  - id: event.file.open
+    stability: experimental
+    type: event
+    name: file.open
+    brief: >
+      A file is defined as a set of information that has been created on,
+      or has existed on a filesystem.
+      A file open event represents the action of a process accessing a file
+      on the filesystem. It includes details such as the file's name,
+      path, directory, size, extension, and metadata, including
+      file access time, file origin information and more. It addition,
+      it also includes information about the process that accessed the file.
+    attributes:
+      - ref: file.name
+      - ref: file.path
+      - ref: file.directory
+      - ref: file.size
+      - ref: file.extension
+      - ref: file.accessed
+      - ref: file.created
+      - ref: file.owner.name
+      - ref: file.owner.id
+      - ref: file.origin_referrer_url
+      - ref: file.origin_url
+      - ref: file.zone_identifier
+      - ref: process.pid
+        brief: Process id of the process that accessed the file.
+      - ref: process.user.name
+        brief: Process name of the process that accessed the file.
+      - ref: process.executable.name
+        brief: Executable file name of the process that accessed the file.
