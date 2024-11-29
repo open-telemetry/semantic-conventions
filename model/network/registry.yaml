@@ -276,5 +276,6 @@ groups:
               value: 'time_wait'
               stability: experimental
         stability: experimental
-        brief: "A stateless protocol MUST NOT set this attribute"
+        brief: "The state of network connection"
+        note: "A stateless protocol MUST NOT set this attribute"
         examples: [ "close_wait" ]

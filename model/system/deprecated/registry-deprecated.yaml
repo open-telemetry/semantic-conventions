@@ -51,3 +51,46 @@ groups:
         stability: experimental
         deprecated: 'Replaced by `cpu.mode`'
         examples: [ "idle", "interrupt" ]
+      - id: system.network.state
+        deprecated: 'Removed, report network connection state with `network.connection.state` attribute'
+        type:
+          members:
+            - id: close
+              value: 'close'
+              stability: experimental
+            - id: close_wait
+              value: 'close_wait'
+              stability: experimental
+            - id: closing
+              value: 'closing'
+              stability: experimental
+            - id: delete
+              value: 'delete'
+              stability: experimental
+            - id: established
+              value: 'established'
+              stability: experimental
+            - id: fin_wait_1
+              value: 'fin_wait_1'
+              stability: experimental
+            - id: fin_wait_2
+              value: 'fin_wait_2'
+              stability: experimental
+            - id: last_ack
+              value: 'last_ack'
+              stability: experimental
+            - id: listen
+              value: 'listen'
+              stability: experimental
+            - id: syn_recv
+              value: 'syn_recv'
+              stability: experimental
+            - id: syn_sent
+              value: 'syn_sent'
+              stability: experimental
+            - id: time_wait
+              value: 'time_wait'
+              stability: experimental
+        stability: experimental
+        brief: "A stateless protocol MUST NOT set this attribute"
+        examples: [ "close_wait" ]
