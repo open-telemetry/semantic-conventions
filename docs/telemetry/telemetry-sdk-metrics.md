@@ -85,7 +85,7 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`telemetry.sdk.component.id`](/docs/attributes-registry/telemetry.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`telemetry.sdk.processor.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK processor. [2] | `batch-span`; `MyCustomProcessor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`telemetry.sdk.processor.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK processor. | `batch-span`; `MyCustomProcessor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `telemetry.sdk.component.id`:** The SDK MAY allow users to provide an id for the component instances. If no id is provided by the user,
 the SDK SHOULD automatically assign an id. Because this attribute is used in metrics, the SDK MUST ensure a low cardinality in that case.
@@ -96,7 +96,14 @@ instance of the given component type is created.
 For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
 These values will therefore be reused in the case of an application restart.
 
-**[2] `telemetry.sdk.processor.type`:** The value `batch-span` MUST be used for the SDK builtin Batch Span Processor.
+---
+
+`telemetry.sdk.processor.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `batch-span` | The builtin SDK Batching Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `simple-span` | The builtin SDK Simple Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -121,7 +128,7 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`telemetry.sdk.component.id`](/docs/attributes-registry/telemetry.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`telemetry.sdk.processor.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK processor. [2] | `batch-span`; `MyCustomProcessor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`telemetry.sdk.processor.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK processor. | `batch-span`; `MyCustomProcessor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `telemetry.sdk.component.id`:** The SDK MAY allow users to provide an id for the component instances. If no id is provided by the user,
 the SDK SHOULD automatically assign an id. Because this attribute is used in metrics, the SDK MUST ensure a low cardinality in that case.
@@ -132,7 +139,14 @@ instance of the given component type is created.
 For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
 These values will therefore be reused in the case of an application restart.
 
-**[2] `telemetry.sdk.processor.type`:** The value `batch-span` MUST be used for the SDK builtin Batch Span Processor.
+---
+
+`telemetry.sdk.processor.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `batch-span` | The builtin SDK Batching Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `simple-span` | The builtin SDK Simple Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -158,7 +172,7 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `queue full` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`telemetry.sdk.component.id`](/docs/attributes-registry/telemetry.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [2] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`telemetry.sdk.processor.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK processor. [3] | `batch-span`; `MyCustomProcessor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`telemetry.sdk.processor.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK processor. | `batch-span`; `MyCustomProcessor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -189,8 +203,6 @@ instance of the given component type is created.
 For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
 These values will therefore be reused in the case of an application restart.
 
-**[3] `telemetry.sdk.processor.type`:** The value `batch-span` MUST be used for the SDK builtin Batch Span Processor.
-
 ---
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -198,6 +210,15 @@ These values will therefore be reused in the case of an application restart.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
+
+`telemetry.sdk.processor.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `batch-span` | The builtin SDK Batching Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `simple-span` | The builtin SDK Simple Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -222,7 +243,7 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`telemetry.sdk.component.id`](/docs/attributes-registry/telemetry.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`telemetry.sdk.exporter.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK exporter. [2] | `otlp-grpc`; `jaeger` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`telemetry.sdk.exporter.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK exporter. | `otlp-grpc`; `jaeger` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `telemetry.sdk.component.id`:** The SDK MAY allow users to provide an id for the component instances. If no id is provided by the user,
 the SDK SHOULD automatically assign an id. Because this attribute is used in metrics, the SDK MUST ensure a low cardinality in that case.
@@ -233,7 +254,15 @@ instance of the given component type is created.
 For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
 These values will therefore be reused in the case of an application restart.
 
-**[2] `telemetry.sdk.exporter.type`:** For OTLP, the values `otlp-grpc`, `otlp-http` or `otlp-http-json` MUST be used, based on the transport and serialization format.
+---
+
+`telemetry.sdk.exporter.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `otlp-grpc` | OTLP exporter over gRPC with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otlp-http` | OTLP exporter over HTTP with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otlp-http-json` | OTLP exporter over HTTP with JSON serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -259,7 +288,7 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`telemetry.sdk.component.id`](/docs/attributes-registry/telemetry.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [2] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`telemetry.sdk.exporter.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK exporter. [3] | `otlp-grpc`; `jaeger` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`telemetry.sdk.exporter.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK exporter. | `otlp-grpc`; `jaeger` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -290,8 +319,6 @@ instance of the given component type is created.
 For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
 These values will therefore be reused in the case of an application restart.
 
-**[3] `telemetry.sdk.exporter.type`:** For OTLP, the values `otlp-grpc`, `otlp-http` or `otlp-http-json` MUST be used, based on the transport and serialization format.
-
 ---
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -299,6 +326,16 @@ These values will therefore be reused in the case of an application restart.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
+
+`telemetry.sdk.exporter.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `otlp-grpc` | OTLP exporter over gRPC with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otlp-http` | OTLP exporter over HTTP with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otlp-http-json` | OTLP exporter over HTTP with JSON serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

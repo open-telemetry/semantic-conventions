@@ -82,20 +82,43 @@ groups:
           The version string of the auto instrumentation agent or distribution, if used.
         examples: ["1.2.3"]
       - id: telemetry.sdk.processor.type
-        type: string
+        type:
+          members:
+            - id: batch_span
+              value: "batch-span"
+              brief: >
+                The builtin SDK Batching Span Processor
+              stability: experimental
+            - id: simple_span
+              value: "simple-span"
+              brief: >
+                The builtin SDK Simple Span Processor
+              stability: experimental
         stability: experimental
         brief: >
           A name identifying the type of the OpenTelemetry SDK processor.
-        note: |
-          The value `batch-span` MUST be used for the SDK builtin Batch Span Processor.
         examples: ["batch-span", "MyCustomProcessor"]
       - id: telemetry.sdk.exporter.type
-        type: string
+        type:
+          members:
+            - id: otlp_grpc
+              value: "otlp-grpc"
+              brief: >
+                OTLP exporter over gRPC with protobuf serialization
+              stability: experimental
+            - id: otlp_http
+              value: "otlp-http"
+              brief: >
+                OTLP exporter over HTTP with protobuf serialization
+              stability: experimental
+            - id: otlp_http_json
+              value: "otlp-http-json"
+              brief: >
+                OTLP exporter over HTTP with JSON serialization
+              stability: experimental
         stability: experimental
         brief: >
           A name identifying the type of the OpenTelemetry SDK exporter.
-        note: |
-          For OTLP, the values `otlp-grpc`, `otlp-http` or `otlp-http-json` MUST be used, based on the transport and serialization format.
         examples: ["otlp-grpc", "jaeger"]
       - id: telemetry.sdk.component.id
         type: string
@@ -112,4 +135,3 @@ groups:
           For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
           These values will therefore be reused in the case of an application restart.
         examples: ["batch-span-0", "custom-name"]
-
