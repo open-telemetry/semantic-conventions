@@ -19,10 +19,23 @@ groups:
     type: metric
     metric_name: telemetry.sdk.span.processor.queue_size
     stability: experimental
-    brief: "The number of spans in the queue of an instance of an SDK span processor"
+    brief: "The number of spans in the queue of a given instance of an SDK span processor"
     note: |
       Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
     instrument: updowncounter
+    unit: "1"
+    attributes:
+      - ref: telemetry.sdk.processor.type
+      - ref: telemetry.sdk.component.id
+
+  - id: metric.telemetry.sdk.span.processor.queue_capacity
+    type: metric
+    metric_name: telemetry.sdk.span.processor.queue_capacity
+    stability: experimental
+    brief: "The maximum number of spans the queue of a given instance of an SDK span processor can hold"
+    note: |
+      Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
+    instrument: gauge
     unit: "1"
     attributes:
       - ref: telemetry.sdk.processor.type
