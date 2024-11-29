@@ -30,7 +30,7 @@ groups:
 
   - id: metric.telemetry.sdk.span.processor.spans_submitted
     type: metric
-    metric_name: telemetry.sdk.trace.processor.spans_submitted
+    metric_name: telemetry.sdk.span.processor.spans_submitted
     stability: experimental
     brief: "The number of spans submitted for processing to this span processor"
     instrument: counter
