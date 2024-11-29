@@ -86,8 +86,8 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+**[2] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+If `messaging.destination.anonymous` or `messaging.destination.temporary` is set to true, `messaging.destination.name` SHOULD be set to `(temporary)`.
 
 **[3] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 

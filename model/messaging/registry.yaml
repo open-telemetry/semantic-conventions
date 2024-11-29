@@ -33,9 +33,12 @@ groups:
         type: string
         stability: experimental
         brief: 'The message destination name'
-        note: |
+        note: >
           Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
           the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+
+          If `messaging.destination.anonymous` or `messaging.destination.temporary` is set to true,
+          `messaging.destination.name` SHOULD be set to `(temporary)`.
         examples: ['MyQueue', 'MyTopic']
       - id: messaging.destination.subscription.name
         type: string
