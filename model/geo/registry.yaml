@@ -56,18 +56,12 @@ groups:
         brief: >
           Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://wikipedia.org/wiki/ISO_3166-1#Codes)).
         examples: [ 'CA' ]
-      - id: geo.location.lon
+      - id: geo.location
         stability: experimental
-        type: double
+        type: double[]
         brief: >
-          Longitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
-        examples: [ -73.614830 ]
-      - id: geo.location.lat
-        stability: experimental
-        type: double
-        brief: >
-          Latitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
-        examples: [ 45.505918 ]
+          Latitude and longitude (in that order) of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
+        examples: [ [45.505918, -73.614830] ]
       - id: geo.postal_code
         stability: experimental
         type: string
