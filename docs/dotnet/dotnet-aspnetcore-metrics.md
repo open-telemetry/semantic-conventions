@@ -54,6 +54,8 @@ All routing metrics are reported by the `Microsoft.AspNetCore.Routing` meter.
 **[1] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
+---
+
 `aspnetcore.routing.match_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -113,6 +115,8 @@ it's RECOMMENDED to:
 
 **[2] `aspnetcore.diagnostics.handler.type`:** if and only if the exception was handled by this handler.
 
+---
+
 `aspnetcore.diagnostics.exception.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -121,6 +125,8 @@ it's RECOMMENDED to:
 | `handled` | Exception was handled by the exception handling middleware. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `skipped` | Exception handling was skipped because the response had started. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unhandled` | Exception was not handled by the exception handling middleware. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -166,7 +172,7 @@ All rate-limiting metrics are reported by the `Microsoft.AspNetCore.RateLimiting
 ### Metric: `aspnetcore.rate_limiting.request_lease.duration`
 
 this metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.aspnetcore.rate_limiting.request_lease.duration -->
@@ -222,7 +228,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 ### Metric: `aspnetcore.rate_limiting.request.time_in_queue`
 
 this metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.aspnetcore.rate_limiting.request.time_in_queue -->
@@ -244,6 +250,8 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | [`aspnetcore.rate_limiting.policy`](/docs/attributes-registry/aspnetcore.md) | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `aspnetcore.rate_limiting.policy`:** if the matched endpoint for the request had a rate-limiting policy.
+
+---
 
 `aspnetcore.rate_limiting.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -285,6 +293,8 @@ Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
 | [`aspnetcore.rate_limiting.policy`](/docs/attributes-registry/aspnetcore.md) | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `aspnetcore.rate_limiting.policy`:** if the matched endpoint for the request had a rate-limiting policy.
+
+---
 
 `aspnetcore.rate_limiting.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -27,7 +27,7 @@ linkTitle: Generative AI events
 
 <!-- tocstop -->
 
-GenAI instrumentations MAY capture user inputs sent to the model and responses received from it as [events](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/logs/event-api.md).
+GenAI instrumentations MAY capture user inputs sent to the model and responses received from it as [events](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/logs/event-api.md).
 
 > Note:
 > Event API is experimental and not yet available in some languages. Check [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/main/spec-compliance-matrix.md#events) to see the implementation status in corresponding language.
@@ -74,6 +74,8 @@ is set to `openai` based on the instrumentation's best knowledge.
 
 For custom model, a custom friendly name SHOULD be used.
 If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+
+---
 
 `gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

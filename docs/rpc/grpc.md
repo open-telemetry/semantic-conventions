@@ -33,6 +33,8 @@ Below is a table of attributes that SHOULD be included on client and server gRPC
 
 **[2] `rpc.grpc.response.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
+---
+
 `rpc.grpc.status_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -63,10 +65,10 @@ Below is a table of attributes that SHOULD be included on client and server gRPC
 ## gRPC Status
 
 The table below describes when
-the [Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#set-status) MUST be set
+the [Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/trace/api.md#set-status) MUST be set
 to `Error` or remain unset
 depending on the [gRPC status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md)
-and [Span Kind](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#spankind).
+and [Span Kind](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/trace/api.md#spankind).
 
 | gRPC Status Code | `SpanKind.SERVER` Span Status | `SpanKind.CLIENT` Span Status |
 |---|---|---|

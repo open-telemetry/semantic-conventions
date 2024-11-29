@@ -68,6 +68,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
+---
+
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -102,6 +104,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | [`jvm.memory.type`](/docs/attributes-registry/jvm.md) | string | The type of memory. | `heap`; `non_heap` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
+
+---
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -138,6 +142,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
+---
+
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -173,6 +179,8 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
+---
+
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -198,7 +206,7 @@ This metric is obtained by subscribing to
 [`GarbageCollectionNotificationInfo`](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/GarbageCollectionNotificationInfo.html) events provided by [`GarbageCollectorMXBean`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/GarbageCollectorMXBean.html). The duration value is obtained from [`GcInfo`](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/GcInfo.html#getDuration--)
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.01, 0.1, 1, 10 ]`.
 
 <!-- semconv metric.jvm.gc.duration -->
@@ -259,6 +267,8 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 |---|---|---|---|---|---|
 | [`jvm.thread.daemon`](/docs/attributes-registry/jvm.md) | boolean | Whether the thread is daemon or not. |  | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`jvm.thread.state`](/docs/attributes-registry/jvm.md) | string | State of the thread. | `runnable`; `blocked` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
 
 `jvm.thread.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -449,6 +459,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 | [`jvm.memory.type`](/docs/attributes-registry/jvm.md) | string | The type of memory. | `heap`; `non_heap` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
+
+---
 
 `jvm.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

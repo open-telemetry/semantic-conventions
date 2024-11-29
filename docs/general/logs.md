@@ -28,7 +28,7 @@ The following semantic conventions for logs are defined:
 * [Feature Flags](/docs/feature-flags/feature-flags-logs.md): Semantic attributes that may be used in describing feature flag evaluations in logs.
 
 Apart from semantic conventions for logs, [events](events.md), [traces](trace.md), and [metrics](metrics.md),
-OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/resource/sdk.md) with their own
+OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/resource/sdk.md) with their own
 [Resource Semantic Conventions](/docs/resource/README.md).
 
 ## General log identification attributes
@@ -61,7 +61,7 @@ The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID
 
 This section describes attributes for log media in OpenTelemetry. Log media are mechanisms by which logs are transmitted. Types of media include files, streams, network protocols, and os-specific logging services such as journald and Windows Event Log.
 
-**Note:** The OpenTelemetry specification defines a [Resource](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/resource/sdk.md) as `an immutable representation of the entity producing telemetry`.
+**Note:** The OpenTelemetry specification defines a [Resource](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/resource/sdk.md) as `an immutable representation of the entity producing telemetry`.
 The following attributes do not describe entities that produce telemetry. Rather, they describe mechanisms of log transmission.
 As such, these should be recorded as Log Record attributes when applicable. They should not be recorded as Resource attributes.
 
@@ -102,6 +102,8 @@ As such, these should be recorded as Log Record attributes when applicable. They
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`log.iostream`](/docs/attributes-registry/log.md) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `log.iostream` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

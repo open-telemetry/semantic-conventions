@@ -7,6 +7,10 @@ groups:
     unit: "{request_unit}"
     stability: experimental
     extends: attributes.db.cosmosdb.minimal
+    attributes:
+      - ref: db.cosmosdb.regions_contacted
+        requirement_level:
+          recommended: If available
 
   - id: metric.db.client.cosmosdb.active_instance.count
     type: metric
