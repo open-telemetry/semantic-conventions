@@ -1,0 +1,22 @@
+groups:
+  - id: registry.geo.deprecated
+    type: attribute_group
+    display_name: Deprecated geo Attributes
+    brief: >
+      "Describes deprecated geo attributes."
+    stability: experimental
+    attributes: 
+      - id: geo.location.lon
+        stability: experimental
+        type: double
+        deprecated: "Use `geo.location` instead."
+        brief: >
+          Deprecated. Use `geo.location` instead.
+        examples: [ -73.614830 ]
+      - id: geo.location.lat
+        stability: experimental
+        type: double
+        deprecated: "Use `geo.location` instead."
+        brief: >
+          Deprecated. Use `geo.location` instead.
+        examples: [ 45.505918 ]
