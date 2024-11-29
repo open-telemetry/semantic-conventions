@@ -5,7 +5,7 @@ groups:
     brief: >
       "Describes deprecated geo attributes."
     stability: experimental
-    attributes: 
+    attributes:
       - id: geo.location.lon
         stability: experimental
         type: double
