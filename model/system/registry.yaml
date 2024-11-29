@@ -152,6 +152,7 @@ groups:
     brief: "Describes Network attributes"
     attributes:
       - id: system.network.state
+        deprecated: 'Removed, report network connection state with `network.connection.state` attribute'
         type:
           members:
             - id: close

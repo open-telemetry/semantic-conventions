@@ -19,6 +19,7 @@ These attributes may be used for any network related operation.
 | <a id="network-carrier-mcc" href="#network-carrier-mcc">`network.carrier.mcc`</a> | string | The mobile carrier country code. | `310` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="network-carrier-mnc" href="#network-carrier-mnc">`network.carrier.mnc`</a> | string | The mobile carrier network code. | `001` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="network-carrier-name" href="#network-carrier-name">`network.carrier.name`</a> | string | The name of the mobile carrier. | `sprint` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="network-connection-state" href="#network-connection-state">`network.connection.state`</a> | string | A stateless protocol MUST NOT set this attribute | `close_wait` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="network-connection-subtype" href="#network-connection-subtype">`network.connection.subtype`</a> | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="network-connection-type" href="#network-connection-type">`network.connection.type`</a> | string | The internet connection type. | `wifi` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="network-interface-name" href="#network-interface-name">`network.interface.name`</a> | string | The network interface name. | `lo`; `eth0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -43,6 +44,25 @@ a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[4] `network.type`:** The value SHOULD be normalized to lowercase.
+
+---
+
+`network.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `close` | close | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `close_wait` | close_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `closing` | closing | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `delete` | delete | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `established` | established | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `fin_wait_1` | fin_wait_1 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `fin_wait_2` | fin_wait_2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `last_ack` | last_ack | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `listen` | listen | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `syn_recv` | syn_recv | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `syn_sent` | syn_sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `time_wait` | time_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 
