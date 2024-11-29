@@ -41,7 +41,7 @@ The following semantic conventions surrounding metrics are defined:
 * [SDK Telemetry](/docs/telemetry/telemetry-sdk-metrics.md): Metrics emitted by the OpenTelemetry SDK components.
 
 Apart from semantic conventions for metrics, [traces](trace.md), [logs](logs.md), and [events](events.md), OpenTelemetry also
-defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/resource/sdk.md) with
+defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/resource/sdk.md) with
 their own [Resource Semantic Conventions](/docs/resource/README.md).
 
 ## General Guidelines
@@ -125,7 +125,7 @@ usable.
 
 When building components that interoperate between OpenTelemetry and a system
 using the OpenMetrics exposition format, use the
-[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/compatibility/prometheus_and_openmetrics.md).
+[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/compatibility/prometheus_and_openmetrics.md).
 
 ### Naming rules for Counters and UpDownCounters
 
