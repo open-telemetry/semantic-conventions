@@ -156,11 +156,31 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`telemetry.sdk.component.id`](/docs/attributes-registry/telemetry.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`telemetry.sdk.failure_reason`](/docs/attributes-registry/telemetry.md) | string | A low-cardinality for why this component failed to process a record. [2] | `queue full`; `exporter failed` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `queue full` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`telemetry.sdk.component.id`](/docs/attributes-registry/telemetry.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [2] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`telemetry.sdk.processor.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK processor. [3] | `batch-span`; `MyCustomProcessor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `telemetry.sdk.component.id`:** The SDK MAY allow users to provide an id for the component instances. If no id is provided by the user,
+**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+
+When `error.type` is set to a type (e.g., an exception type), its
+canonical class name identifying the type within the artifact SHOULD be used.
+
+Instrumentations SHOULD document the list of errors they report.
+
+The cardinality of `error.type` within one instrumentation library SHOULD be low.
+Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.type` to have high cardinality at query time when no
+additional filters are applied.
+
+If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
+
+If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+it's RECOMMENDED to:
+
+- Use a domain-specific attribute
+- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+
+**[2] `telemetry.sdk.component.id`:** The SDK MAY allow users to provide an id for the component instances. If no id is provided by the user,
 the SDK SHOULD automatically assign an id. Because this attribute is used in metrics, the SDK MUST ensure a low cardinality in that case.
 E.g. it MUST NOT use a UUID.
 It instead MAY do that by using the following pattern as value: `<telemetry.sdk.processor/exporter.type>-<instance-counter>`:
@@ -169,9 +189,15 @@ instance of the given component type is created.
 For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
 These values will therefore be reused in the case of an application restart.
 
-**[2] `telemetry.sdk.failure_reason`:** For the SDK Batch Span Processor `queue full` MUST be used for when items are dropped due to a full queue.
-
 **[3] `telemetry.sdk.processor.type`:** The value `batch-span` MUST be used for the SDK builtin Batch Span Processor.
+
+---
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -231,11 +257,31 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`telemetry.sdk.component.id`](/docs/attributes-registry/telemetry.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`telemetry.sdk.exporter.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK exporter. [2] | `otlp-grpc`; `jaeger` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`telemetry.sdk.failure_reason`](/docs/attributes-registry/telemetry.md) | string | A low-cardinality for why this component failed to process a record. [3] | `queue full`; `exporter failed` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`telemetry.sdk.component.id`](/docs/attributes-registry/telemetry.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [2] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`telemetry.sdk.exporter.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK exporter. [3] | `otlp-grpc`; `jaeger` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `telemetry.sdk.component.id`:** The SDK MAY allow users to provide an id for the component instances. If no id is provided by the user,
+**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+
+When `error.type` is set to a type (e.g., an exception type), its
+canonical class name identifying the type within the artifact SHOULD be used.
+
+Instrumentations SHOULD document the list of errors they report.
+
+The cardinality of `error.type` within one instrumentation library SHOULD be low.
+Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.type` to have high cardinality at query time when no
+additional filters are applied.
+
+If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
+
+If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+it's RECOMMENDED to:
+
+- Use a domain-specific attribute
+- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+
+**[2] `telemetry.sdk.component.id`:** The SDK MAY allow users to provide an id for the component instances. If no id is provided by the user,
 the SDK SHOULD automatically assign an id. Because this attribute is used in metrics, the SDK MUST ensure a low cardinality in that case.
 E.g. it MUST NOT use a UUID.
 It instead MAY do that by using the following pattern as value: `<telemetry.sdk.processor/exporter.type>-<instance-counter>`:
@@ -244,9 +290,15 @@ instance of the given component type is created.
 For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
 These values will therefore be reused in the case of an application restart.
 
-**[2] `telemetry.sdk.exporter.type`:** For OTLP, the values `otlp-grpc`, `otlp-http` or `otlp-http-json` MUST be used, based on the transport and serialization format.
+**[3] `telemetry.sdk.exporter.type`:** For OTLP, the values `otlp-grpc`, `otlp-http` or `otlp-http-json` MUST be used, based on the transport and serialization format.
 
-**[3] `telemetry.sdk.failure_reason`:** For the SDK Batch Span Processor `queue full` MUST be used for when items are dropped due to a full queue.
+---
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

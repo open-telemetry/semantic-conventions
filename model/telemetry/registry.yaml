@@ -112,11 +112,4 @@ groups:
           For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
           These values will therefore be reused in the case of an application restart.
         examples: ["batch-span-0", "custom-name"]
-      - id: telemetry.sdk.failure_reason
-        type: string
-        stability: experimental
-        brief: >
-          A low-cardinality for why this component failed to process a record.
-        note: |
-          For the SDK Batch Span Processor `queue full` MUST be used for when items are dropped due to a full queue.
-        examples: ["queue full", "exporter failed"]
+
