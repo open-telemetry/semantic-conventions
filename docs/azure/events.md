@@ -46,7 +46,7 @@ Describes Azure Resource Log event, see [Azure Resource Log Top-level Schema](ht
 > [!Warning]
 > This field contains sensitive (PII) information.
 
-**[2]:** if the event is tied to an Active Directory tenant.
+**[2] `tenant.id`:** if the event is tied to an Active Directory tenant.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

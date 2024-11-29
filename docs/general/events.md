@@ -45,7 +45,7 @@ structure and semantics will also be defined.
 |---|---|---|---|---|---|
 | [`event.name`](/docs/attributes-registry/event.md) | string | Identifies the class / type of event. [1] | `browser.mouse.click`; `device.app.lifecycle` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** Event names are subject to the same rules as [attribute names](/docs/general/attribute-naming.md). Notably, event names are namespaced to avoid collisions and provide a clean separation of semantics for events in separate domains like browser, mobile, and kubernetes.
+**[1] `event.name`:** Event names are subject to the same rules as [attribute names](/docs/general/attribute-naming.md). Notably, event names are namespaced to avoid collisions and provide a clean separation of semantics for events in separate domains like browser, mobile, and kubernetes.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -55,7 +55,7 @@ structure and semantics will also be defined.
 ### General event semantics
 
 * An event MUST have an `event.name` attribute that uniquely identifies the event.
-* It MAY have [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/common#attribute)
+* It MAY have [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/common#attribute)
   attributes that provide additional context about the event.
 * It MAY contain a _payload_ (body) that describes the specific details of the
   named event.
@@ -70,7 +70,7 @@ structure and semantics will also be defined.
 Recommendations for defining events:
 
 * Use the _payload_ (body) to represent the details of the event instead of a
-  collection of [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/common#attribute)
+  collection of [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/common#attribute)
   attributes.
 * Events SHOULD be generated / produced / recorded using the
     [Event API](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/event-api.md)
