@@ -6,6 +6,9 @@
 
 # Geo
 
+- [Geo Attributes](#geo-attributes)
+- [Deprecated geo Attributes](#deprecated-geo-attributes)
+
 ## Geo Attributes
 
 Geo fields can carry data about a specific location related to an event. This geolocation information can be derived from techniques such as Geo IP, or be user-supplied.
@@ -33,3 +36,12 @@ Note: Geo attributes are typically used under another namespace, such as client.
 | `NA` | North America | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `OC` | Oceania | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `SA` | South America | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Deprecated geo Attributes
+
+"Describes deprecated geo attributes."
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="geo-location-lat" href="#geo-location-lat">`geo.location.lat`</a> | double | Deprecated. Use `geo.location` instead. | `45.505918` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use `geo.location` instead. |
+| <a id="geo-location-lon" href="#geo-location-lon">`geo.location.lon`</a> | double | Deprecated. Use `geo.location` instead. | `-73.61483` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use `geo.location` instead. |
