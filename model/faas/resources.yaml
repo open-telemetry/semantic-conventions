@@ -1,5 +1,5 @@
 groups:
-  - id: faas_resource
+  - id: resource.faas
     type: resource
     name: faas
     brief: >

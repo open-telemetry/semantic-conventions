@@ -25,43 +25,36 @@ This group defines the attributes used to describe telemetry in the context of d
 | <a id="db-namespace" href="#db-namespace">`db.namespace`</a> | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-operation-batch-size" href="#db-operation-batch-size">`db.operation.batch.size`</a> | int | The number of queries included in a batch operation. [3] | `2`; `3`; `4` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-operation-name" href="#db-operation-name">`db.operation.name`</a> | string | The name of the operation or command being executed. [4] | `findAndModify`; `HMSET`; `SELECT` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-query-parameter" href="#db-query-parameter">`db.query.parameter.<key>`</a> | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [5] | `someval`; `55` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-operation-parameter" href="#db-operation-parameter">`db.operation.parameter.<key>`</a> | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [5] | `someval`; `55` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-query-summary" href="#db-query-summary">`db.query.summary`</a> | string | Low cardinality representation of a database query text. [6] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-query-text" href="#db-query-text">`db.query.text`</a> | string | The database query being executed. [7] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-response-returned-rows" href="#db-response-returned-rows">`db.response.returned_rows`</a> | int | Number of rows returned by the operation. | `10`; `30`; `1000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-response-status-code" href="#db-response-status-code">`db.response.status_code`</a> | string | Database response status code. [8] | `102`; `ORA-17002`; `08P01`; `404` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-system" href="#db-system">`db.system`</a> | string | The database management system (DBMS) product as identified by the client instrumentation. [9] | `other_sql`; `adabas`; `cache` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-A single database query may involve multiple collections.
-
-If the collection name is parsed from the query text, it SHOULD only be captured for queries that
-contain a single collection and it SHOULD match the value provided in
-the query text including any schema and database name prefix.
+The collection name SHOULD NOT be extracted from `db.query.text`,
+unless the query format is known to only ever have a single collection name present.
 
 For batch operations, if the individual operations are known to have the same collection name
 then that collection name SHOULD be used.
 
-If the operation or query involves multiple collections, `db.collection.name`
-SHOULD NOT be captured.
-
 This attribute has stability level RELEASE CANDIDATE.
 
-**[2]:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+**[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[3]:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+**[3] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[4]:** It is RECOMMENDED to capture the value as provided by the application
+**[4] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
-A single database query may involve multiple operations. If the operation
-name is parsed from the query text, it SHOULD only be captured for queries that
-contain a single operation or when the operation name describing the
-whole query is available by other means.
+The operation name SHOULD NOT be extracted from `db.query.text`,
+unless the query format is known to only ever have a single operation name present.
 
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,
@@ -70,25 +63,27 @@ system specific term if more applicable.
 
 This attribute has stability level RELEASE CANDIDATE.
 
-**[5]:** Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
-If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
+**[5] `db.operation.parameter`:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
+If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[6]:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text) section.
+**[6] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
+Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[7]:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[7] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[8]:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+**[8] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 This attribute has stability level RELEASE CANDIDATE.
 
-**[9]:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
+**[9] `db.system`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
 This attribute has stability level RELEASE CANDIDATE.
+
+---
 
 `db.client.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -96,6 +91,8 @@ This attribute has stability level RELEASE CANDIDATE.
 |---|---|---|
 | `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -169,6 +166,8 @@ This group defines attributes for Cassandra.
 | <a id="db-cassandra-page-size" href="#db-cassandra-page-size">`db.cassandra.page_size`</a> | int | The fetch size used for paging, i.e. how many rows will be returned at once. | `5000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cassandra-speculative-execution-count" href="#db-cassandra-speculative-execution-count">`db.cassandra.speculative_execution_count`</a> | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `db.cassandra.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -193,17 +192,71 @@ This group defines attributes for Azure Cosmos DB.
 |---|---|---|---|---|
 | <a id="db-cosmosdb-client-id" href="#db-cosmosdb-client-id">`db.cosmosdb.client_id`</a> | string | Unique Cosmos client instance id. | `3ba4827d-4422-483f-b59f-85b74211c11d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-connection-mode" href="#db-cosmosdb-connection-mode">`db.cosmosdb.connection_mode`</a> | string | Cosmos client connection mode. | `gateway`; `direct` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-operation-type" href="#db-cosmosdb-operation-type">`db.cosmosdb.operation_type`</a> | string | Cosmos DB Operation Type. | `batch`; `create`; `delete` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-request-charge" href="#db-cosmosdb-request-charge">`db.cosmosdb.request_charge`</a> | double | RU consumed for that operation | `46.18`; `1.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-cosmosdb-request-content-length" href="#db-cosmosdb-request-content-length">`db.cosmosdb.request_content_length`</a> | int | Request payload size in bytes |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-consistency-level" href="#db-cosmosdb-consistency-level">`db.cosmosdb.consistency_level`</a> | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-regions-contacted" href="#db-cosmosdb-regions-contacted">`db.cosmosdb.regions_contacted`</a> | string[] | List of regions contacted during operation in the order that they were contacted. If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call. [10] | `["North Central US", "Australia East", "Australia Southeast"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-request-charge" href="#db-cosmosdb-request-charge">`db.cosmosdb.request_charge`</a> | double | Request units consumed for the operation. | `46.18`; `1.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-cosmosdb-request-content-length" href="#db-cosmosdb-request-content-length">`db.cosmosdb.request_content_length`</a> | int | Request payload size in bytes. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-cosmosdb-sub-status-code" href="#db-cosmosdb-sub-status-code">`db.cosmosdb.sub_status_code`</a> | int | Cosmos DB sub status code. | `1000`; `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[10] `db.cosmosdb.regions_contacted`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
+
+---
 
 `db.cosmosdb.connection_mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `direct` | Direct connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gateway` | Gateway (HTTP) connections mode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gateway` | Gateway (HTTP) connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
+
+`db.cosmosdb.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `BoundedStaleness` | bounded_staleness | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ConsistentPrefix` | consistent_prefix | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Eventual` | eventual | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Session` | session | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Strong` | strong | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Elasticsearch Attributes
+
+This group defines attributes for Elasticsearch.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="db-elasticsearch-node-name" href="#db-elasticsearch-node-name">`db.elasticsearch.node.name`</a> | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-elasticsearch-path-parts" href="#db-elasticsearch-path-parts">`db.elasticsearch.path_parts.<key>`</a> | string | A dynamic value in the url path. [11] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[11] `db.elasticsearch.path_parts`:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
+
+## Deprecated Database Attributes
+
+"Describes deprecated db attributes."
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="db-cassandra-table" href="#db-cassandra-table">`db.cassandra.table`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
+| <a id="db-connection-string" href="#db-connection-string">`db.connection_string`</a> | string | Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address` and `server.port`. |
+| <a id="db-cosmosdb-container" href="#db-cosmosdb-container">`db.cosmosdb.container`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
+| <a id="db-cosmosdb-operation-type" href="#db-cosmosdb-operation-type">`db.cosmosdb.operation_type`</a> | string | Deprecated, no replacement at this time. | `batch`; `create`; `delete` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>No replacement at this time. |
+| <a id="db-cosmosdb-status-code" href="#db-cosmosdb-status-code">`db.cosmosdb.status_code`</a> | int | Deprecated, use `db.response.status_code` instead. | `200`; `201` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.response.status_code`. |
+| <a id="db-elasticsearch-cluster-name" href="#db-elasticsearch-cluster-name">`db.elasticsearch.cluster.name`</a> | string | Deprecated, use `db.namespace` instead. | `e9106fc68e3044f0b1475b04bf4ffd5f` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
+| <a id="db-instance-id" href="#db-instance-id">`db.instance.id`</a> | string | Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. | `mysql-e26b99z.example.com` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. |
+| <a id="db-jdbc-driver-classname" href="#db-jdbc-driver-classname">`db.jdbc.driver_classname`</a> | string | Removed, no replacement at this time. | `org.postgresql.Driver`; `com.microsoft.sqlserver.jdbc.SQLServerDriver` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed as not used. |
+| <a id="db-mongodb-collection" href="#db-mongodb-collection">`db.mongodb.collection`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
+| <a id="db-mssql-instance-name" href="#db-mssql-instance-name">`db.mssql.instance_name`</a> | string | Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute. | `MSSQLSERVER` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. |
+| <a id="db-name" href="#db-name">`db.name`</a> | string | Deprecated, use `db.namespace` instead. | `customers`; `main` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
+| <a id="db-operation" href="#db-operation">`db.operation`</a> | string | Deprecated, use `db.operation.name` instead. | `findAndModify`; `HMSET`; `SELECT` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.operation.name`. |
+| <a id="db-query-parameter" href="#db-query-parameter">`db.query.parameter.<key>`</a> | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. | `someval`; `55` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.operation.parameter`. |
+| <a id="db-redis-database-index" href="#db-redis-database-index">`db.redis.database_index`</a> | int | Deprecated, use `db.namespace` instead. | `0`; `1`; `15` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
+| <a id="db-sql-table" href="#db-sql-table">`db.sql.table`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
+| <a id="db-statement" href="#db-statement">`db.statement`</a> | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`. |
+| <a id="db-user" href="#db-user">`db.user`</a> | string | Deprecated, no replacement at this time. | `readonly_user`; `reporting_user` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>No replacement at this time. |
+
+---
 
 `db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -225,39 +278,6 @@ This group defines attributes for Azure Cosmos DB.
 | `replace` | replace | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `upsert` | upsert | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## Elasticsearch Attributes
-
-This group defines attributes for Elasticsearch.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="db-elasticsearch-node-name" href="#db-elasticsearch-node-name">`db.elasticsearch.node.name`</a> | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-elasticsearch-path-parts" href="#db-elasticsearch-path-parts">`db.elasticsearch.path_parts.<key>`</a> | string | A dynamic value in the url path. [10] | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-**[10]:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
-
-## Deprecated Database Attributes
-
-"Describes deprecated db attributes."
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="db-cassandra-table" href="#db-cassandra-table">`db.cassandra.table`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
-| <a id="db-connection-string" href="#db-connection-string">`db.connection_string`</a> | string | Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address` and `server.port`. |
-| <a id="db-cosmosdb-container" href="#db-cosmosdb-container">`db.cosmosdb.container`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
-| <a id="db-cosmosdb-status-code" href="#db-cosmosdb-status-code">`db.cosmosdb.status_code`</a> | int | Deprecated, use `db.response.status_code` instead. | `200`; `201` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.response.status_code`. |
-| <a id="db-elasticsearch-cluster-name" href="#db-elasticsearch-cluster-name">`db.elasticsearch.cluster.name`</a> | string | Deprecated, use `db.namespace` instead. | `e9106fc68e3044f0b1475b04bf4ffd5f` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
-| <a id="db-instance-id" href="#db-instance-id">`db.instance.id`</a> | string | Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. | `mysql-e26b99z.example.com` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. |
-| <a id="db-jdbc-driver-classname" href="#db-jdbc-driver-classname">`db.jdbc.driver_classname`</a> | string | Removed, no replacement at this time. | `org.postgresql.Driver`; `com.microsoft.sqlserver.jdbc.SQLServerDriver` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed as not used. |
-| <a id="db-mongodb-collection" href="#db-mongodb-collection">`db.mongodb.collection`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
-| <a id="db-mssql-instance-name" href="#db-mssql-instance-name">`db.mssql.instance_name`</a> | string | Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute. | `MSSQLSERVER` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. |
-| <a id="db-name" href="#db-name">`db.name`</a> | string | Deprecated, use `db.namespace` instead. | `customers`; `main` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
-| <a id="db-operation" href="#db-operation">`db.operation`</a> | string | Deprecated, use `db.operation.name` instead. | `findAndModify`; `HMSET`; `SELECT` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.operation.name`. |
-| <a id="db-redis-database-index" href="#db-redis-database-index">`db.redis.database_index`</a> | int | Deprecated, use `db.namespace` instead. | `0`; `1`; `15` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
-| <a id="db-sql-table" href="#db-sql-table">`db.sql.table`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
-| <a id="db-statement" href="#db-statement">`db.statement`</a> | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`. |
-| <a id="db-user" href="#db-user">`db.user`</a> | string | Deprecated, no replacement at this time. | `readonly_user`; `reporting_user` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>No replacement at this time. |
-
 ## Deprecated Database Metrics
 
 "Describes deprecated db metrics attributes."
@@ -269,12 +289,16 @@ This group defines attributes for Elasticsearch.
 | <a id="pool-name" href="#pool-name">`pool.name`</a> | string | Deprecated, use `db.client.connection.pool.name` instead. | `myDataSource` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.pool.name`. |
 | <a id="state" href="#state">`state`</a> | string | Deprecated, use `db.client.connection.state` instead. | `idle` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.state`. |
 
+---
+
 `db.client.connections.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -1,5 +1,5 @@
 groups:
-  - id: webengine_resource
+  - id: resource.webengine
     type: resource
     name: webengine
     brief: >
