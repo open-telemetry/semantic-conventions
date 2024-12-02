@@ -60,7 +60,7 @@ groups:
         stability: experimental
         type: double[]
         brief: >
-          Latitude and longitude (in that order) of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
+          Longitude and latitude (in that order) of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
         examples: [ [45.505918, -73.614830] ]
       - id: geo.postal_code
         stability: experimental
