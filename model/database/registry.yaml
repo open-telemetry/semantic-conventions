@@ -57,6 +57,15 @@ groups:
 
           This attribute has stability level RELEASE CANDIDATE.
         examples: ["findAndModify", "HMSET", "SELECT"]
+      - id: db.record.id
+        type: string
+        stability: experimental
+        brief: >
+          The ID of the record
+        note: >
+          This can be also the ID of the vector, in case of vector database.
+        examples:
+          ["1", "5c56c793-69f3-4fbf-87e6-c4bf54c28c26"]
       - id: db.query.text
         type: string
         stability: experimental  # RELEASE CANDIDATE
