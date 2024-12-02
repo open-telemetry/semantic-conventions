@@ -6,7 +6,7 @@ import rego.v1
 attribute_names := { obj |
     group := input.groups[_];
     attr := group.attributes[_];
-    obj := { "name": attr.name, "const_name": to_const_name(attr.name), "namespace_prefix": to_namespace_prefix(attr.name), "deprecated": get_or_null(attr, "deprecated") }
+    obj := { "name": attr.name, "const_name": to_const_name(attr.name), "namespace_prefix": to_namespace_prefix(attr.name), "deprecated": is_property_set(attr, "deprecated") }
 }
 
 # check that attribute constant names do not collide
@@ -31,14 +31,14 @@ deny contains attr_registry_collision(description, name) if {
     some i
 
     # ignore deprecated attributes
-    attribute_names[i].deprecated == null
+    not attribute_names[i].deprecated
 
     name := attribute_names[i].name
     prefix := attribute_names[i].namespace_prefix
 
     collisions := [other.name |
         other := attribute_names[_]
-        other.deprecated == null
+        not other.deprecated
 
         other.name != name
         startswith(other.name, prefix)
@@ -78,13 +78,11 @@ to_const_name(name) = const_name if {
     const_name := replace(name, ".", "_")
 }
 
-get_or_null(obj, key) = value if {
-    value := obj[key]
-} else = null if {
-    not obj[key]
-}
+is_property_set(obj, property) = true if {
+    obj[property] != null
+} else = false
 
-# This list contain exceptions for existing collisions that were introduced unintentionally.
+# This list contains exceptions for existing collisions that were introduced unintentionally.
 # We'll have a way to specify how collision resolution happens in the schema -
 # see phase 2 in https://github.com/open-telemetry/semantic-conventions/issues/1118#issuecomment-2173803006
 # For now we'll exclude existing collisions from the checks.
