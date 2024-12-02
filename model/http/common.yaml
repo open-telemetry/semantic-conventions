@@ -79,7 +79,7 @@ groups:
         note: >
           See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
         requirement_level:
-          conditionally_required: If `server.address` is set.
+          conditionally_required: If available and `server.address` is set.
       - ref: url.scheme
         requirement_level: required
         examples: ["http", "https"]

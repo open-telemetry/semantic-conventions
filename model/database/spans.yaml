@@ -10,18 +10,29 @@ groups:
       #   sampling_relevant: true
       - ref: db.operation.name
         sampling_relevant: true
+        requirement_level:  # TODO (trask) simplify
+          conditionally_required: >
+            If readily available and if there is a single operation name that describes the
+            database call. The operation name MAY be parsed from the query text,
+            in which case it SHOULD be the single operation name found in the query.
       - ref: db.operation.batch.size
       - ref: server.address
         sampling_relevant: true
       - ref: server.port
         sampling_relevant: true
 
-  - id: trace.db.common.query_and_collection
-    extends: attributes.db.client.with_query_and_collection
+  - id: trace.db.common.query
+    extends: attributes.db.client.with_query
     type: attribute_group
     stability: experimental
     brief: This group defines the attributes used to perform database client calls.
     attributes:
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: db.operation.batch.size
+      - ref: db.response.returned_rows
       - ref: db.query.text
         sampling_relevant: true
         requirement_level:
@@ -37,6 +48,13 @@ groups:
         sampling_relevant: true
       - ref: db.operation.parameter
         requirement_level: opt_in
+
+  - id: trace.db.common.query_and_collection
+    extends: attributes.db.client.with_query_and_collection
+    type: attribute_group
+    stability: experimental
+    brief: This group defines the attributes used to perform database client calls.
+    attributes:
       - ref: db.collection.name
         sampling_relevant: true
       - ref: db.operation.name
@@ -47,6 +65,21 @@ groups:
       - ref: server.port
         sampling_relevant: true
       - ref: db.response.returned_rows
+      - ref: db.query.text
+        sampling_relevant: true
+        requirement_level:
+          recommended: >
+            Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
+            sensitive data, e.g. by redacting all literal values present in the query text.
+            See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+
+            Parameterized query text SHOULD be collected by default
+            (the query parameter values themselves are opt-in,
+            see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
+      - ref: db.query.summary
+        sampling_relevant: true
+      - ref: db.operation.parameter
+        requirement_level: opt_in
 
   - id: trace.db.common.full
     type: attribute_group
@@ -307,7 +340,7 @@ groups:
     type: span
     stability: experimental
     span_kind: client
-    extends: attributes.db.client.minimal
+    extends: trace.db.common.minimal
     brief: >
       Attributes for Redis
     attributes:
@@ -462,19 +495,10 @@ groups:
     type: span
     span_kind: client
     stability: experimental
-    extends: trace.db.common.query_and_collection
+    extends: trace.db.common.query
     brief: >
       Attributes for SQL databases
     attributes:
-      - ref: db.operation.name
-        note: >
-          This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
-
-          In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.
-        examples: ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'mystoredproc']
-      - ref: db.collection.name
-        brief: The name of the SQL table that the operation is acting upon.
-        examples: ['users', 'dbo.products']
       - ref: db.namespace
         brief: >
           The database associated with the connection,
@@ -735,5 +759,8 @@ groups:
         requirement_level:
           conditionally_required: If not default (443).
       - ref: db.cosmosdb.consistency_level
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.cosmosdb.regions_contacted
         requirement_level:
           conditionally_required: If available.

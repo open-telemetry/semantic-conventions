@@ -1,5 +1,0 @@
-change_type: enhancement
-component: messaging
-note: Specify which span kind to use for messaging settle operations
-issues: [1478]
-subtext:
