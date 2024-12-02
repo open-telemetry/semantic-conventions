@@ -33,11 +33,11 @@ One for enabling the new schema called `semconv.k8s.enableStable`,
 and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
 
 - On alpha the old schema is enabled by default (`semconv.k8s.disableLegacy` defaults to false),
-  while the new schema is disabled (`semconv.k8s.enableStable` defaults to false).
+  while the new schema is disabled by default (`semconv.k8s.enableStable` defaults to false).
 - On beta/stable the old schema is disabled by default (`semconv.k8s.disableLegacy` defaults to true),
   while the new is enabled by default (`semconv.k8s.enableStable` defaults to true).
 - It is an error to disable both schemas
-- Both schemas can enabled with `--feature-gates=-semconv.disableLegacy,+semconv.k8s.enableStable`.
+- Both schemas can be enabled with `--feature-gates=-semconv.disableLegacy,+semconv.k8s.enableStable`.
 
 <!-- toc -->
 
