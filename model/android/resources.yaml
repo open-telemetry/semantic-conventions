@@ -1,5 +1,5 @@
 groups:
-  - id: android
+  - id: resource.android
     type: resource
     name: android
     brief: >

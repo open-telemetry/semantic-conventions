@@ -1,5 +1,5 @@
 groups:
-  - id: aws.lambda
+  - id: span.aws.lambda
     type: span
     brief: >
       Span attributes used by AWS Lambda (in addition to general `faas` attributes).

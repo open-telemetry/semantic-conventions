@@ -1,5 +1,5 @@
 groups:
-  - id: otel.scope
+  - id: resource.otel.scope
     # This should not be a resource, but an attribute group.
     type: resource
     name: otel.scope

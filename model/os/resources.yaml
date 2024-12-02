@@ -1,5 +1,5 @@
 groups:
-  - id: os
+  - id: resource.os
     type: resource
     name: os
     brief: >

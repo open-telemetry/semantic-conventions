@@ -53,7 +53,7 @@ groups:
         brief: >
           The Go build ID as retrieved by `go tool buildid <go executable>`.
         examples: ['foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY']
-      - id: process.executable.build_id.profiling
+      - id: process.executable.build_id.htlhash
         stability: experimental
         type: string
         brief: >
@@ -113,8 +113,6 @@ groups:
           This field can be useful for querying or performing bucket analysis on how many
           arguments were provided to start a process. More arguments may be an indication
           of suspicious activity.
-        requirement_level:
-          recommended: if `process.command_args` is populated.
         examples: [4]
       - id: process.owner
         type: string
@@ -241,3 +239,20 @@ groups:
               value: 'minor'
               stability: experimental
         stability: experimental
+  # process.linux* attribute group
+  - id: registry.process.linux
+    type: attribute_group
+    brief: "Describes Linux Process attributes"
+    attributes:
+      - id: process.linux.cgroup
+        type: string
+        stability: experimental
+        brief: The control group associated with the process.
+        examples: ["1:name=systemd:/user.slice/user-1000.slice/session-3.scope", "0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope"]
+        note: >
+          Control groups (cgroups) are a kernel feature used to organize and
+          manage process resources. This attribute provides the path(s) to the
+          cgroup(s) associated with the process, which should match the contents
+          of the
+          [/proc/<PID>/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html)
+          file.
