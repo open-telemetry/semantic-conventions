@@ -26,6 +26,8 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.request.presence_penalty
         requirement_level: recommended
+      - ref: gen_ai.request.encoding_formats
+        requirement_level: recommended
       - ref: gen_ai.response.id
         requirement_level: recommended
       - ref: gen_ai.response.model

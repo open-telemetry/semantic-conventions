@@ -54,19 +54,19 @@ groups:
         stability: experimental
         type: string
         brief: >
-          Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://en.wikipedia.org/wiki/ISO_3166-1#Codes)).
+          Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://wikipedia.org/wiki/ISO_3166-1#Codes)).
         examples: [ 'CA' ]
       - id: geo.location.lon
         stability: experimental
         type: double
         brief: >
-          Longitude of the geo location in [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84).
+          Longitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
         examples: [ -73.614830 ]
       - id: geo.location.lat
         stability: experimental
         type: double
         brief: >
-          Latitude of the geo location in [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84).
+          Latitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
         examples: [ 45.505918 ]
       - id: geo.postal_code
         stability: experimental
@@ -79,5 +79,5 @@ groups:
         stability: experimental
         type: string
         brief: >
-          Region ISO code ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
+          Region ISO code ([ISO 3166-2](https://wikipedia.org/wiki/ISO_3166-2)).
         examples: [ 'CA-QC' ]

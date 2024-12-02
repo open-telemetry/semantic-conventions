@@ -8,7 +8,6 @@ groups:
       - id: telemetry.sdk.name
         type: string
         stability: stable
-        requirement_level: required
         brief: >
           The name of the telemetry SDK as defined above.
         note: |
@@ -59,13 +58,11 @@ groups:
               value: "webjs"
               stability: stable
         stability: stable
-        requirement_level: required
         brief: >
           The language of the telemetry SDK.
       - id: telemetry.sdk.version
         type: string
         stability: stable
-        requirement_level: required
         brief: >
           The version string of the telemetry SDK.
         examples: ["1.2.3"]
