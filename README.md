@@ -19,10 +19,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 Approvers ([@open-telemetry/specs-semconv-approvers](https://github.com/orgs/open-telemetry/teams/specs-semconv-approvers)):
 
 - [Alexandra Konrad](https://github.com/trisch-me), Elastic
-- [Christian Neumüller](https://github.com/Oberon00), Dynatrace
 - [Daniel Dyla](https://github.com/dyladan), Dynatrace
-- [James Moessis](https://github.com/jamesmoessis), Atlassian
-- [Sean Marciniak](https://github.com/MovieStoreGuy), Atlassian
 - [Ted Young](https://github.com/tedsuo), Lightstep
 
 _Find more about the approver role in [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#approver)._
@@ -37,8 +34,11 @@ Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs
 - [Liudmila Molkova](https://github.com/lmolkova), Microsoft
 - [Trask Stalnaker](https://github.com/trask), Microsoft
 
-Emeritus Maintainers:
+Emeritus Maintainers/Approvers:
 
+- [Christian Neumüller](https://github.com/Oberon00)
+- [James Moessis](https://github.com/jamesmoessis)
 - [Reiley Yang](https://github.com/reyang)
+- [Sean Marciniak](https://github.com/MovieStoreGuy)
 
 _Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#maintainer)._
