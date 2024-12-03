@@ -22,3 +22,6 @@ change_logs:
 # If 'change_logs' is specified in this file, and no value is specified for 'default_change_logs',
 # then 'change_logs' MUST be specified in every entry file.
 default_change_logs: [user]
+
+# Custom template for the changelog that include links for the issue/PRs
+summary_template: .chloggen/CHANGELOG.tmpl
