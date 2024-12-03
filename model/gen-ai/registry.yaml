@@ -90,6 +90,16 @@ groups:
         type: double
         brief: The presence penalty setting for the GenAI request.
         examples: [0.1]
+      - id: gen_ai.request.encoding_formats
+        stability: experimental
+        type: string[]
+        brief: The encoding formats requested in an embeddings operation, if specified.
+        examples:
+          - ['base64']
+          - ['float', 'binary']
+        note: >
+          In some GenAI systems the encoding formats are called embedding types.
+          Also, some GenAI systems only accept a single format per request.
       - id: gen_ai.response.id
         stability: experimental
         type: string
@@ -142,6 +152,10 @@ groups:
             - id: text_completion
               value: "text_completion"
               brief: 'Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions)'
+              stability: experimental
+            - id: embeddings
+              value: "embeddings"
+              brief: 'Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create)'
               stability: experimental
         brief: The name of the operation being performed.
         note: >
