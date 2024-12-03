@@ -55,11 +55,13 @@ groups:
       - ref: telemetry.sdk.processor.type
       - ref: telemetry.sdk.component.id
 
-  - id: metric.telemetry.sdk.span.processor.spans_failed
+  - id: metric.telemetry.sdk.span.processor.spans_processed
     type: metric
-    metric_name: telemetry.sdk.span.processor.spans_failed
+    metric_name: telemetry.sdk.span.processor.spans_processed
     stability: experimental
-    brief: "The number of spans which could not be successfully processed"
+    brief: "The number of spans for which the processing has finished, either successful or failed"
+    note: |
+      For successful processing, `error.type` must be empty. For failed processing, `error.type` must contain the failure cause.
     instrument: counter
     unit: "1"
     attributes:
@@ -74,18 +76,20 @@ groups:
     type: metric
     metric_name: telemetry.sdk.span.exporter.spans_submitted
     stability: experimental
-    brief: "The number of spans submitted for export"
+    brief: "The number of spans for which the `export` callback of the exporter has been invoked. This does not require the export of the span to have finished yet."
     instrument: counter
     unit: "1"
     attributes:
       - ref: telemetry.sdk.exporter.type
       - ref: telemetry.sdk.component.id
 
-  - id: metric.telemetry.sdk.span.exporter.spans_failed
+  - id: metric.telemetry.sdk.span.exporter.spans_processed
     type: metric
-    metric_name: telemetry.sdk.span.exporter.spans_failed
+    metric_name: telemetry.sdk.span.exporter.spans_processed
     stability: experimental
-    brief: "The number of spans which could not be successfully exported"
+    brief: "The number of spans for which the export has finished, either successful or failed"
+    note: |
+      For successful exports, `error.type` must be empty. For failed exports, `error.type` must contain the failure cause.
     instrument: counter
     unit: "1"
     attributes:
