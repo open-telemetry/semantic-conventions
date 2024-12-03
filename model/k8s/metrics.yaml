@@ -133,6 +133,9 @@ groups:
     metric_name: k8s.deployment.desired
     stability: experimental
     brief: "Number of desired pods in this deployment"
+    note: |
+      This metric aligns with the `replicas` field of the
+      [K8s Deployment Spec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentspec-v1-apps)
     instrument: gauge
     unit: "{pod}"
   - id: metric.k8s.deployment.available
@@ -140,6 +143,9 @@ groups:
     metric_name: k8s.deployment.available
     stability: experimental
     brief: "Total number of available pods (ready for at least minReadySeconds) targeted by this deployment"
+    note: |
+      This metric aligns with the `readyReplicas` field of the
+      [K8s Deployment Status](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentstatus-v1-apps)
     instrument: gauge
     unit: "{pod}"
 
@@ -149,6 +155,9 @@ groups:
     metric_name: k8s.replicaset.desired
     stability: experimental
     brief: "Number of desired pods in this replicaset"
+    note: |
+      This metric aligns with the `replicas` field of the
+      [K8s ReplicaSet Spec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetspec-v1-apps)
     instrument: gauge
     unit: "{pod}"
   - id: metric.k8s.replicaset.available
@@ -156,5 +165,8 @@ groups:
     metric_name: k8s.replicaset.available
     stability: experimental
     brief: "Total number of available pods (ready for at least minReadySeconds) targeted by this replicaset"
+    note: |
+      This metric aligns with the `readyReplicas` field of the
+      [K8s ReplicaSet Status](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetstatus-v1-apps)
     instrument: gauge
     unit: "{pod}"
