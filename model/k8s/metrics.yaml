@@ -170,3 +170,25 @@ groups:
       [K8s ReplicaSet Status](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetstatus-v1-apps)
     instrument: gauge
     unit: "{pod}"
+
+  # k8s.replication_controller.* metrics
+  - id: metric.k8s.replication_controller.desired
+    type: metric
+    metric_name: k8s.replication_controller.desired
+    stability: experimental
+    brief: "Number of desired pods in this replication controller"
+    note: |
+      This metric aligns with the `replicas` field of the
+      [K8s ReplicationController Spec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerspec-v1-core)
+    instrument: gauge
+    unit: "{pod}"
+  - id: metric.k8s.replication_controller.available
+    type: metric
+    metric_name: k8s.replication_controller.available
+    stability: experimental
+    brief: "Total number of available pods (ready for at least minReadySeconds) targeted by this replication controller"
+    note: |
+      This metric aligns with the `availableReplicas` field of the
+      [K8s ReplicationController Status](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerstatus-v1-core)
+    instrument: gauge
+    unit: "{pod}"
