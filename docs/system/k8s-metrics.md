@@ -381,7 +381,10 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.deployment.desired` | Gauge | `{pod}` | Number of desired pods in this deployment | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.deployment.desired` | Gauge | `{pod}` | Number of desired pods in this deployment [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** This metric aligns with the `replicas` field of the
+[K8s Deployment Spec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentspec-v1-apps)
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -401,7 +404,10 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.deployment.available` | Gauge | `{pod}` | Total number of available pods (ready for at least minReadySeconds) targeted by this deployment | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.deployment.available` | Gauge | `{pod}` | Total number of available pods (ready for at least minReadySeconds) targeted by this deployment [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** This metric aligns with the `readyReplicas` field of the
+[K8s Deployment Status](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentstatus-v1-apps)
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -425,7 +431,10 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.replicaset.desired` | Gauge | `{pod}` | Number of desired pods in this replicaset | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.replicaset.desired` | Gauge | `{pod}` | Number of desired pods in this replicaset [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** This metric aligns with the `replicas` field of the
+[K8s ReplicaSet Spec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetspec-v1-apps)
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -445,7 +454,10 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.replicaset.available` | Gauge | `{pod}` | Total number of available pods (ready for at least minReadySeconds) targeted by this replicaset | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.replicaset.available` | Gauge | `{pod}` | Total number of available pods (ready for at least minReadySeconds) targeted by this replicaset [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** This metric aligns with the `readyReplicas` field of the
+[K8s ReplicaSet Status](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetstatus-v1-apps)
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
