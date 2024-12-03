@@ -24,12 +24,12 @@ This document defines attributes for telemetry SDK.
 **[1] `telemetry.distro.name`:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
 
-**[2] `telemetry.sdk.component.id`:** The SDK MAY allow users to provide an id for the component instances. If no id is provided by the user,
-the SDK SHOULD automatically assign an id. Because this attribute is used in metrics, the SDK MUST ensure a low cardinality in that case.
+**[2] `telemetry.sdk.component.id`:** The SDK components MAY allow users to provide an id for the component instances. If no id is provided by the user,
+the components SHOULD automatically assign an id. Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality in that case.
 E.g. it MUST NOT use a UUID.
 It instead MAY do that by using the following pattern as value: `<telemetry.sdk.processor/exporter.type>-<instance-counter>`:
 Hereby, `<instance-counter>` is a monotonically increasing counter (starting with `0`), which is incremented every time an
-instance of the given component type is created.
+instance of the given component type is started.
 For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
 These values will therefore be reused in the case of an application restart.
 

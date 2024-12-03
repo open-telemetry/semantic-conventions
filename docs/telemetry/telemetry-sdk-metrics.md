@@ -88,12 +88,12 @@ This metric is [recommended][MetricRecommended].
 | [`telemetry.sdk.component.id`](/docs/attributes-registry/telemetry.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`telemetry.sdk.processor.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK processor. | `batch-span`; `MyCustomProcessor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `telemetry.sdk.component.id`:** The SDK MAY allow users to provide an id for the component instances. If no id is provided by the user,
-the SDK SHOULD automatically assign an id. Because this attribute is used in metrics, the SDK MUST ensure a low cardinality in that case.
+**[1] `telemetry.sdk.component.id`:** The SDK components MAY allow users to provide an id for the component instances. If no id is provided by the user,
+the components SHOULD automatically assign an id. Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality in that case.
 E.g. it MUST NOT use a UUID.
 It instead MAY do that by using the following pattern as value: `<telemetry.sdk.processor/exporter.type>-<instance-counter>`:
 Hereby, `<instance-counter>` is a monotonically increasing counter (starting with `0`), which is incremented every time an
-instance of the given component type is created.
+instance of the given component type is started.
 For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
 These values will therefore be reused in the case of an application restart.
 
@@ -133,12 +133,12 @@ This metric is [recommended][MetricRecommended].
 | [`telemetry.sdk.component.id`](/docs/attributes-registry/telemetry.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`telemetry.sdk.processor.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK processor. | `batch-span`; `MyCustomProcessor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `telemetry.sdk.component.id`:** The SDK MAY allow users to provide an id for the component instances. If no id is provided by the user,
-the SDK SHOULD automatically assign an id. Because this attribute is used in metrics, the SDK MUST ensure a low cardinality in that case.
+**[1] `telemetry.sdk.component.id`:** The SDK components MAY allow users to provide an id for the component instances. If no id is provided by the user,
+the components SHOULD automatically assign an id. Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality in that case.
 E.g. it MUST NOT use a UUID.
 It instead MAY do that by using the following pattern as value: `<telemetry.sdk.processor/exporter.type>-<instance-counter>`:
 Hereby, `<instance-counter>` is a monotonically increasing counter (starting with `0`), which is incremented every time an
-instance of the given component type is created.
+instance of the given component type is started.
 For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
 These values will therefore be reused in the case of an application restart.
 
@@ -179,12 +179,12 @@ For the Batching and Simple Span Processors this metric therefore MUST be increm
 | [`telemetry.sdk.component.id`](/docs/attributes-registry/telemetry.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`telemetry.sdk.processor.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK processor. | `batch-span`; `MyCustomProcessor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `telemetry.sdk.component.id`:** The SDK MAY allow users to provide an id for the component instances. If no id is provided by the user,
-the SDK SHOULD automatically assign an id. Because this attribute is used in metrics, the SDK MUST ensure a low cardinality in that case.
+**[1] `telemetry.sdk.component.id`:** The SDK components MAY allow users to provide an id for the component instances. If no id is provided by the user,
+the components SHOULD automatically assign an id. Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality in that case.
 E.g. it MUST NOT use a UUID.
 It instead MAY do that by using the following pattern as value: `<telemetry.sdk.processor/exporter.type>-<instance-counter>`:
 Hereby, `<instance-counter>` is a monotonically increasing counter (starting with `0`), which is incremented every time an
-instance of the given component type is created.
+instance of the given component type is started.
 For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
 These values will therefore be reused in the case of an application restart.
 
@@ -245,12 +245,12 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2] `telemetry.sdk.component.id`:** The SDK MAY allow users to provide an id for the component instances. If no id is provided by the user,
-the SDK SHOULD automatically assign an id. Because this attribute is used in metrics, the SDK MUST ensure a low cardinality in that case.
+**[2] `telemetry.sdk.component.id`:** The SDK components MAY allow users to provide an id for the component instances. If no id is provided by the user,
+the components SHOULD automatically assign an id. Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality in that case.
 E.g. it MUST NOT use a UUID.
 It instead MAY do that by using the following pattern as value: `<telemetry.sdk.processor/exporter.type>-<instance-counter>`:
 Hereby, `<instance-counter>` is a monotonically increasing counter (starting with `0`), which is incremented every time an
-instance of the given component type is created.
+instance of the given component type is started.
 For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
 These values will therefore be reused in the case of an application restart.
 
@@ -296,12 +296,12 @@ This metric is [recommended][MetricRecommended].
 | [`telemetry.sdk.component.id`](/docs/attributes-registry/telemetry.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`telemetry.sdk.exporter.type`](/docs/attributes-registry/telemetry.md) | string | A name identifying the type of the OpenTelemetry SDK exporter. | `otlp-grpc`; `jaeger` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `telemetry.sdk.component.id`:** The SDK MAY allow users to provide an id for the component instances. If no id is provided by the user,
-the SDK SHOULD automatically assign an id. Because this attribute is used in metrics, the SDK MUST ensure a low cardinality in that case.
+**[1] `telemetry.sdk.component.id`:** The SDK components MAY allow users to provide an id for the component instances. If no id is provided by the user,
+the components SHOULD automatically assign an id. Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality in that case.
 E.g. it MUST NOT use a UUID.
 It instead MAY do that by using the following pattern as value: `<telemetry.sdk.processor/exporter.type>-<instance-counter>`:
 Hereby, `<instance-counter>` is a monotonically increasing counter (starting with `0`), which is incremented every time an
-instance of the given component type is created.
+instance of the given component type is started.
 For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
 These values will therefore be reused in the case of an application restart.
 
@@ -363,12 +363,12 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2] `telemetry.sdk.component.id`:** The SDK MAY allow users to provide an id for the component instances. If no id is provided by the user,
-the SDK SHOULD automatically assign an id. Because this attribute is used in metrics, the SDK MUST ensure a low cardinality in that case.
+**[2] `telemetry.sdk.component.id`:** The SDK components MAY allow users to provide an id for the component instances. If no id is provided by the user,
+the components SHOULD automatically assign an id. Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality in that case.
 E.g. it MUST NOT use a UUID.
 It instead MAY do that by using the following pattern as value: `<telemetry.sdk.processor/exporter.type>-<instance-counter>`:
 Hereby, `<instance-counter>` is a monotonically increasing counter (starting with `0`), which is incremented every time an
-instance of the given component type is created.
+instance of the given component type is started.
 For example, the first Batch Span Processor will have `batch-span-0` as `telemetry.sdk.component.id`, the second one `batch-span-1` and so one.
 These values will therefore be reused in the case of an application restart.
 
