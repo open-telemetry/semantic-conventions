@@ -169,7 +169,10 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `telemetry.sdk.span.processor.spans_submitted` | Counter | `1` | The number of spans submitted for processing to this span processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `telemetry.sdk.span.processor.spans_submitted` | Counter | `1` | The number of spans submitted for processing to this span processor. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** A span is considered submitted when the first callback has been called which triggers processing of the span for the given processor.
+For the Batching and Simple Span Processors this metric therefore MUST be incremented on invocations of the `on_end` span processor callback.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

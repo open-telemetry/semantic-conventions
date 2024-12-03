@@ -45,7 +45,10 @@ groups:
     type: metric
     metric_name: telemetry.sdk.span.processor.spans_submitted
     stability: experimental
-    brief: "The number of spans submitted for processing to this span processor"
+    brief: "The number of spans submitted for processing to this span processor."
+    note: |
+      A span is considered submitted when the first callback has been called which triggers processing of the span for the given processor.
+      For the Batching and Simple Span Processors this metric therefore MUST be incremented on invocations of the `on_end` span processor callback.
     instrument: counter
     unit: "1"
     attributes:
