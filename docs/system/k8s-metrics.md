@@ -406,7 +406,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `k8s.deployment.available` | Gauge | `{pod}` | Total number of available pods (ready for at least minReadySeconds) targeted by this deployment [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** This metric aligns with the `readyReplicas` field of the
+**[1]:** This metric aligns with the `availableReplicas` field of the
 [K8s Deployment Status](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentstatus-v1-apps)
 
 <!-- markdownlint-restore -->
@@ -456,7 +456,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `k8s.replicaset.available` | Gauge | `{pod}` | Total number of available pods (ready for at least minReadySeconds) targeted by this replicaset [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** This metric aligns with the `readyReplicas` field of the
+**[1]:** This metric aligns with the `availableReplicas` field of the
 [K8s ReplicaSet Status](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetstatus-v1-apps)
 
 <!-- markdownlint-restore -->
