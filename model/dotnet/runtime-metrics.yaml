@@ -9,7 +9,7 @@ groups:
       This metric reports the same values as accessing [`Environment.ProcessorCount`](https://learn.microsoft.com/dotnet/api/system.environment.processorcount).
     instrument: updowncounter
     unit: "{cpu}"
-    stability: experimental
+    stability: stable
 
   - id: metric.dotnet.process.cpu.time
     type: metric
@@ -22,7 +22,7 @@ groups:
       processor time properties on [`System.Diagnostics.Process`](https://learn.microsoft.com/dotnet/api/system.diagnostics.process).
     instrument: counter
     unit: "s"
-    stability: experimental
+    stability: stable
     attributes:
       - ref: cpu.mode
         requirement_level: required
@@ -37,7 +37,7 @@ groups:
       This metric reports the same values as calling [`Environment.WorkingSet`](https://learn.microsoft.com/dotnet/api/system.environment.workingset).
     instrument: updowncounter
     unit: "By"
-    stability: experimental
+    stability: stable
 
   - id: metric.dotnet.gc.collections
     type: metric
@@ -50,7 +50,7 @@ groups:
       API to calculate exclusive collections per generation.
     instrument: counter
     unit: "{collection}"
-    stability: experimental
+    stability: stable
     attributes:
       - ref: dotnet.gc.heap.generation
         requirement_level: required
@@ -67,7 +67,7 @@ groups:
       This metric reports the same values as calling [`GC.GetTotalAllocatedBytes()`](https://learn.microsoft.com/dotnet/api/system.gc.gettotalallocatedbytes).
     instrument: counter
     unit: "By"
-    stability: experimental
+    stability: stable
 
   - id: metric.dotnet.gc.last_collection.memory.committed_size
     type: metric
@@ -86,7 +86,7 @@ groups:
       future.
     instrument: updowncounter
     unit: "By"
-    stability: experimental
+    stability: stable
 
   - id: metric.dotnet.gc.last_collection.heap.size
     type: metric
@@ -101,7 +101,7 @@ groups:
       [`GC.GetGCMemoryInfo().GenerationInfo.SizeAfterBytes`](https://learn.microsoft.com/dotnet/api/system.gcgenerationinfo.sizeafterbytes).
     instrument: updowncounter
     unit: "By"
-    stability: experimental
+    stability: stable
     attributes:
       - ref: dotnet.gc.heap.generation
         requirement_level: required
@@ -118,7 +118,7 @@ groups:
       [`GC.GetGCMemoryInfo().GenerationInfo.FragmentationAfterBytes`](https://learn.microsoft.com/dotnet/api/system.gcgenerationinfo.fragmentationafterbytes).
     instrument: updowncounter
     unit: "By"
-    stability: experimental
+    stability: stable
     attributes:
       - ref: dotnet.gc.heap.generation
         requirement_level: required
@@ -133,7 +133,7 @@ groups:
       This metric reports the same values as calling [`GC.GetTotalPauseDuration()`](https://learn.microsoft.com/dotnet/api/system.gc.gettotalpauseduration).
     instrument: counter
     unit: "s"
-    stability: experimental
+    stability: stable
 
   - id: metric.dotnet.jit.compiled_il.size
     type: metric
@@ -146,7 +146,7 @@ groups:
       [`JitInfo.GetCompiledILBytes()`](https://learn.microsoft.com/dotnet/api/system.runtime.jitinfo.getcompiledilbytes).
     instrument: counter
     unit: "By"
-    stability: experimental
+    stability: stable
 
   - id: metric.dotnet.jit.compiled_methods
     type: metric
@@ -161,7 +161,7 @@ groups:
       [`JitInfo.GetCompiledMethodCount()`](https://learn.microsoft.com/dotnet/api/system.runtime.jitinfo.getcompiledmethodcount).
     instrument: counter
     unit: "{method}"
-    stability: experimental
+    stability: stable
 
   - id: metric.dotnet.jit.compilation.time
     type: metric
@@ -176,7 +176,7 @@ groups:
       [`JitInfo.GetCompilationTime()`](https://learn.microsoft.com/dotnet/api/system.runtime.jitinfo.getcompilationtime).
     instrument: counter
     unit: "s"
-    stability: experimental
+    stability: stable
 
   - id: metric.dotnet.monitor.lock_contentions
     type: metric
@@ -191,7 +191,7 @@ groups:
       [`Monitor.LockContentionCount`](https://learn.microsoft.com/dotnet/api/system.threading.monitor.lockcontentioncount).
     instrument: counter
     unit: "{contention}"
-    stability: experimental
+    stability: stable
 
   - id: metric.dotnet.thread_pool.thread.count
     type: metric
@@ -203,7 +203,7 @@ groups:
       This metric reports the same values as calling [`ThreadPool.ThreadCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.threadcount).
     instrument: updowncounter
     unit: "{thread}"
-    stability: experimental
+    stability: stable
 
   - id: metric.dotnet.thread_pool.work_item.count
     type: metric
@@ -218,7 +218,7 @@ groups:
       [`ThreadPool.CompletedWorkItemCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.completedworkitemcount).
     instrument: counter
     unit: "{work_item}"
-    stability: experimental
+    stability: stable
 
   - id: metric.dotnet.thread_pool.queue.length
     type: metric
@@ -233,7 +233,7 @@ groups:
       [`ThreadPool.PendingWorkItemCount`](https://learn.microsoft.com/dotnet/api/system.threading.threadpool.pendingworkitemcount).
     instrument: updowncounter
     unit: "{work_item}"
-    stability: experimental
+    stability: stable
 
   - id: metric.dotnet.timer.count
     type: metric
@@ -245,7 +245,7 @@ groups:
       This metric reports the same values as calling [`Timer.ActiveCount`](https://learn.microsoft.com/dotnet/api/system.threading.timer.activecount).
     instrument: updowncounter
     unit: "{timer}"
-    stability: experimental
+    stability: stable
 
   - id: metric.dotnet.assembly.count
     type: metric
@@ -258,7 +258,7 @@ groups:
       [`AppDomain.CurrentDomain.GetAssemblies().Length`](https://learn.microsoft.com/dotnet/api/system.appdomain.getassemblies).
     instrument: updowncounter
     unit: "{assembly}"
-    stability: experimental
+    stability: stable
 
   - id: metric.dotnet.exceptions
     type: metric
@@ -271,7 +271,7 @@ groups:
       [`AppDomain.CurrentDomain.FirstChanceException`](https://learn.microsoft.com/dotnet/api/system.appdomain.firstchanceexception).
     instrument: counter
     unit: "{exception}"
-    stability: experimental
+    stability: stable
     attributes:
       - ref: error.type
         note: ""
