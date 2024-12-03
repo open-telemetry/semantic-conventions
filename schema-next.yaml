@@ -2,7 +2,6 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
-  1.29.0:
     all:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/1624
@@ -11,6 +10,9 @@ versions:
               code.function: code.function.name
               code.lineno: code.line.number
               code.column: code.column.number
+  1.29.0:
+    all:
+      changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/1520
         - rename_attributes:
             attribute_map:
