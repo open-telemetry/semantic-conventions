@@ -49,7 +49,7 @@ try {
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
 
-The event name MUST be `exception`.
+The [EventName](TODO link to new spec model) MUST be `exception`.
 
 This event describes a single exception.
 

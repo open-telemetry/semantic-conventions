@@ -266,7 +266,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-The event name MUST be `rpc.message`.
+The [EventName](TODO link to new spec model) MUST be `rpc.message`.
 
 Describes a message sent or received within the context of an RPC call.
 

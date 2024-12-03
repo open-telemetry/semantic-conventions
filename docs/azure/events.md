@@ -16,7 +16,7 @@ Resource Log events.
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-The event name MUST be `az.resource.log`.
+The [EventName](TODO link to new spec model) MUST be `az.resource.log`.
 
 Describes Azure Resource Log event, see [Azure Resource Log Top-level Schema](https://learn.microsoft.com/azure/azure-monitor/essentials/resource-logs-schema#top-level-common-schema) for more details.
 

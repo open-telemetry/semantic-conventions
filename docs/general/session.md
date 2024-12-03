@@ -40,7 +40,7 @@ backends can link the two sessions (see [Session Start Event](#session-start-eve
 
 ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-`event.name` MUST be`session.start`
+[EventName](TODO link to new spec model) MUST be`session.start`
 
 For instrumentation that tracks user behavior during user sessions, a `session.start` event MUST be emitted
 every time a session is created. When a new session is created as a continuation of a prior session,
@@ -61,7 +61,7 @@ that the previous session has ended. If the session ID in `session.previous_id` 
 
 ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-`event.name` MUST be `session.end`
+[EventName](TODO link to new spec model) MUST be `session.end`
 
 For instrumentation that tracks user behavior during user sessions, a `session.end` event SHOULD be emitted
 every time a session ends. When a session ends and continues as a new session, this event SHOULD be

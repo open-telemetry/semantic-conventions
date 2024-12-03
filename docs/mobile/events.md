@@ -4,7 +4,7 @@
 
 This document defines semantic conventions for instrumentations that emit
 events on mobile platforms. All mobile events MUST use a namespace of
-`device` in the `event.name` property.
+`device` in the EventName LogRecord property.
 
 <!-- toc -->
 
@@ -29,7 +29,7 @@ application lifecycle.
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-The event name MUST be `device.app.lifecycle`.
+The [EventName](TODO link to new spec model) MUST be `device.app.lifecycle`.
 
 This event represents an occurrence of a lifecycle transition on Android or iOS platform.
 
