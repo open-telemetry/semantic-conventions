@@ -144,7 +144,7 @@ groups:
     stability: experimental
     brief: "Total number of available pods (ready for at least minReadySeconds) targeted by this deployment"
     note: |
-      This metric aligns with the `readyReplicas` field of the
+      This metric aligns with the `availableReplicas` field of the
       [K8s Deployment Status](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentstatus-v1-apps)
     instrument: gauge
     unit: "{pod}"
