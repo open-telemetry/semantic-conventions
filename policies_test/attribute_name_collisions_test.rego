@@ -17,3 +17,15 @@ test_fails_on_namespace_collision if {
     ]}
     count(deny) == 1 with input as collision
 }
+
+test_does_not_fail_on_deprecated_namespace_collision if {
+    collision := {"groups": [
+        {"id": "test1", "attributes": [{"name": "test.namespace.id"}]},
+        {"id": "test2", "attributes": [{"name": "test.namespace", "deprecated": "replaced by foo.bar.baz"}]},
+
+        {"id": "test3", "attributes": [{"name": "another_test.namespace.id", "deprecated": "replaced by another_test.namespace"}]},
+        {"id": "test4", "attributes": [{"name": "another_test.namespace"}]},
+    ]}
+    count(deny) == 0 with input as collision
+}
+
