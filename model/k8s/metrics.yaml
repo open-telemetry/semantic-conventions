@@ -128,67 +128,151 @@ groups:
       - ref: network.io.direction
 
   # k8s.deployment.* metrics
-  - id: metric.k8s.deployment.desired
+  - id: metric.k8s.deployment.desired_pods
     type: metric
-    metric_name: k8s.deployment.desired
+    metric_name: k8s.deployment.desired_pods
     stability: experimental
-    brief: "Number of desired pods in this deployment"
+    brief: "Number of desired replica pods in this deployment"
     note: |
       This metric aligns with the `replicas` field of the
-      [K8s Deployment Spec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentspec-v1-apps)
+      [K8s DeploymentSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentspec-v1-apps)
     instrument: gauge
     unit: "{pod}"
-  - id: metric.k8s.deployment.available
+  - id: metric.k8s.deployment.available_pods
     type: metric
-    metric_name: k8s.deployment.available
+    metric_name: k8s.deployment.available_pods
     stability: experimental
-    brief: "Total number of available pods (ready for at least minReadySeconds) targeted by this deployment"
+    brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this deployment"
     note: |
       This metric aligns with the `availableReplicas` field of the
-      [K8s Deployment Status](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentstatus-v1-apps)
+      [K8s DeploymentStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentstatus-v1-apps)
     instrument: gauge
     unit: "{pod}"
 
   # k8s.replicaset.* metrics
-  - id: metric.k8s.replicaset.desired
+  - id: metric.k8s.replicaset.desired_pods
     type: metric
-    metric_name: k8s.replicaset.desired
+    metric_name: k8s.replicaset.desired_pods
     stability: experimental
-    brief: "Number of desired pods in this replicaset"
+    brief: "Number of desired replica pods in this replicaset"
     note: |
       This metric aligns with the `replicas` field of the
-      [K8s ReplicaSet Spec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetspec-v1-apps)
+      [K8s ReplicaSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetspec-v1-apps)
     instrument: gauge
     unit: "{pod}"
-  - id: metric.k8s.replicaset.available
+  - id: metric.k8s.replicaset.available_pods
     type: metric
-    metric_name: k8s.replicaset.available
+    metric_name: k8s.replicaset.available_pods
     stability: experimental
-    brief: "Total number of available pods (ready for at least minReadySeconds) targeted by this replicaset"
+    brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this replicaset"
     note: |
       This metric aligns with the `availableReplicas` field of the
-      [K8s ReplicaSet Status](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetstatus-v1-apps)
+      [K8s ReplicaSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetstatus-v1-apps)
     instrument: gauge
     unit: "{pod}"
 
   # k8s.replication_controller.* metrics
-  - id: metric.k8s.replication_controller.desired
+  - id: metric.k8s.replication_controller.desired_pods
     type: metric
-    metric_name: k8s.replication_controller.desired
+    metric_name: k8s.replication_controller.desired_pods
     stability: experimental
-    brief: "Number of desired pods in this replication controller"
+    brief: "Number of desired replica pods in this replication controller"
     note: |
       This metric aligns with the `replicas` field of the
-      [K8s ReplicationController Spec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerspec-v1-core)
+      [K8s ReplicationControllerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerspec-v1-core)
     instrument: gauge
     unit: "{pod}"
-  - id: metric.k8s.replication_controller.available
+  - id: metric.k8s.replication_controller.available_pods
     type: metric
-    metric_name: k8s.replication_controller.available
+    metric_name: k8s.replication_controller.available_pods
     stability: experimental
-    brief: "Total number of available pods (ready for at least minReadySeconds) targeted by this replication controller"
+    brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this replication controller"
     note: |
       This metric aligns with the `availableReplicas` field of the
-      [K8s ReplicationController Status](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerstatus-v1-core)
+      [K8s ReplicationControllerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerstatus-v1-core)
+    instrument: gauge
+    unit: "{pod}"
+
+  # k8s.statefulset.* metrics
+  - id: metric.k8s.statefulset.desired_pods
+    type: metric
+    metric_name: k8s.statefulset.desired_pods
+    stability: experimental
+    brief: "Number of desired replica pods in this statefulset"
+    note: |
+      This metric aligns with the `replicas` field of the
+      [K8s StatefulSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetspec-v1-apps)
+    instrument: gauge
+    unit: "{pod}"
+  - id: metric.k8s.statefulset.ready_pods
+    type: metric
+    metric_name: k8s.statefulset.ready_pods
+    stability: experimental
+    brief: "The number of replica pods created for this statefulset with a Ready Condition"
+    note: |
+      This metric aligns with the `readyReplicas` field of the
+      [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps)
+    instrument: gauge
+    unit: "{pod}"
+  - id: metric.k8s.statefulset.current_pods
+    type: metric
+    metric_name: k8s.statefulset.current_pods
+    stability: experimental
+    brief: "The number of replica pods created by the statefulset controller from the statefulset version indicated by currentRevision"
+    note: |
+      This metric aligns with the `currentReplicas` field of the
+      [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps)
+    instrument: gauge
+    unit: "{pod}"
+  - id: metric.k8s.statefulset.updated_pods
+    type: metric
+    metric_name: k8s.statefulset.updated_pods
+    stability: experimental
+    brief: "Number of replica pods created by the statefulset controller from the statefulset version indicated by updateRevision"
+    note: |
+      This metric aligns with the `updatedReplicas` field of the
+      [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps)
+    instrument: gauge
+    unit: "{pod}"
+
+  # k8s.hpa.* metrics
+  - id: metric.k8s.hpa.desired_pods
+    type: metric
+    metric_name: k8s.hpa.desired_pods
+    stability: experimental
+    brief: "Desired number of replica pods managed by this horizontal pod autoscaler, as last calculated by the autoscaler"
+    note: |
+      This metric aligns with the `desiredReplicas` field of the
+      [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
+    instrument: gauge
+    unit: "{pod}"
+  - id: metric.k8s.hpa.current_pods
+    type: metric
+    metric_name: k8s.hpa.current_pods
+    stability: experimental
+    brief: "Current number of replica pods managed by this horizontal pod autoscaler, as last seen by the autoscaler"
+    note: |
+      This metric aligns with the `currentReplicas` field of the
+      [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
+    instrument: gauge
+    unit: "{pod}"
+  - id: metric.k8s.hpa.max_pods
+    type: metric
+    metric_name: k8s.hpa.max_pods
+    stability: experimental
+    brief: "The upper limit for the number of replica pods to which the autoscaler can scale up"
+    note: |
+      This metric aligns with the `maxReplicas` field of the
+      [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
+    instrument: gauge
+    unit: "{pod}"
+  - id: metric.k8s.hpa.min_pods
+    type: metric
+    metric_name: k8s.hpa.min_pods
+    stability: experimental
+    brief: "The lower limit for the number of replica pods to which the autoscaler can scale down"
+    note: |
+      This metric aligns with the `minReplicas` field of the
+      [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
     instrument: gauge
     unit: "{pod}"
