@@ -110,7 +110,8 @@
 /model/feature-flags/              @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-feature-flag-approvers
 
 # Tooling
-/policies/                        @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
-/policies_test/                   @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
-/templates/                       @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
-/internal/                        @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
+/policies/                              @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
+/policies_test/                         @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
+/templates/                             @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
+/internal/                              @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
+/docs/non-normative/code-generation.md  @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
