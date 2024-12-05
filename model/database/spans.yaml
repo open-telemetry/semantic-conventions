@@ -803,7 +803,7 @@ groups:
           If the query doesn't target a specific index, this field MUST NOT be set.
         examples: ['my_index', 'index1, index2']
       - ref: db.search.similarity_metric
-        brief: specify the metric used in similarity search (e.g. cosine)
+        brief: Specifies the metric used in similarity search (e.g. cosine)
         note: >
           Some vector databases allow specifying the similarity search during a search, while others only allow it when creating an index or collection.
         requirement_level:
