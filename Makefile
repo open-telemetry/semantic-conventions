@@ -68,11 +68,17 @@ misspell-correction:	$(MISSPELL)
 
 .PHONY: markdown-link-check
 markdown-link-check:
-	@if ! npm ls markdown-link-check; then npm install; fi
-	@for f in $(ALL_DOCS); do \
-		npx --no -- markdown-link-check --quiet --config .markdown_link_check_config.json $$f \
-			|| exit 1; \
-	done
+	# --insecure is currently needed for https://osi-model.com
+	docker run --rm \
+		--mount 'type=bind,source=$(PWD),target=/home/repo' \
+		lycheeverse/lychee:latest \
+		--root-dir /home/repo \
+		--include-fragments \
+		--accept 200..=299,403 \
+		--exclude https://www.foo.bar \
+		--insecure \
+		-v \
+		home/repo
 
 .PHONY: markdown-link-check-changelog-preview
 markdown-link-check-changelog-preview:
