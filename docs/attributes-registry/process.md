@@ -7,6 +7,7 @@
 # Process
 
 - [Process Attributes](#process-attributes)
+- [Process Linux Attributes](#process-linux-attributes)
 - [Deprecated Process Attributes](#deprecated-process-attributes)
 
 ## Process Attributes
@@ -49,19 +50,18 @@ An operating system process.
 | <a id="process-user-name" href="#process-user-name">`process.user.name`</a> | string | The username of the effective user of the process. | `root` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="process-vpid" href="#process-vpid">`process.vpid`</a> | int | Virtual process identifier. [5] | `12` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="process-working-directory" href="#process-working-directory">`process.working_directory`</a> | string | The working directory of the process. | `/root` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="process-zone-identifier" href="#process-zone-identifier">`process.zone_identifier`</a> | int | Windows Zone Identifier for the process's executable file. [6] | `3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
+**[1] `process.args_count`:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
 
-**[2]:** This information comes from metadata or alternate data streams linked to the process's executable file. `process.origin_url` represents the URL from which the file was downloaded, and `process.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `process.origin_url` and `process.origin_referrer_url` exist, or only one of them is present. Note that the URL itself may contain sensitive information.
+**[2] `process.origin_referrer_url`:** This information comes from metadata or alternate data streams linked to the process's executable file. `process.origin_url` represents the URL from which the file was downloaded, and `process.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `process.origin_url` and `process.origin_referrer_url` exist, or only one of them is present. Note that the URL itself may contain sensitive information.
 
-**[3]:** This information comes from metadata or alternate data streams linked to the process's executable file. `process.origin_url` represents the URL from which the file was downloaded, and `process.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `process.origin_url` and `process.origin_referrer_url` exist, or only one of them is present. Note that the URL itself may contain sensitive information.
+**[3] `process.origin_url`:** This information comes from metadata or alternate data streams linked to the process's executable file. `process.origin_url` represents the URL from which the file was downloaded, and `process.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `process.origin_url` and `process.origin_referrer_url` exist, or only one of them is present. Note that the URL itself may contain sensitive information.
 
-**[4]:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
+**[4] `process.title`:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
 
-**[5]:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
+**[5] `process.vpid`:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
 
-**[6]:** Zone Identifier (ZoneID) is a numerical identifier that shows where (what "Zone") a file came from, helping to decide if it's safe to open. The commonly used predefined Zones in Windows and their IDs are as follows: Zone 0: Local Machine Zone Zone 1: Local Intranet Zone Zone 2: Trusted Sites Zone Zone 3: Internet Zone Zone 4: Restricted Sites Zone
+---
 
 `process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -70,12 +70,24 @@ An operating system process.
 | `involuntary` | involuntary | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `voluntary` | voluntary | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `major` | major | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `minor` | minor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Process Linux Attributes
+
+Describes Linux Process attributes
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="process-linux-cgroup" href="#process-linux-cgroup">`process.linux.cgroup`</a> | string | The control group associated with the process. [6] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[6] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/<PID>/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
 
 ## Deprecated Process Attributes
 
@@ -85,6 +97,8 @@ Deprecated process attributes.
 |---|---|---|---|---|
 | <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode` |
 | <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.executable.build_id.htlhash` |
+
+---
 
 `process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

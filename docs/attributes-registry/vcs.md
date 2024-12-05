@@ -26,10 +26,11 @@ This group defines the attributes for [Version Control Systems (VCS)](https://wi
 | <a id="vcs-ref-head-revision" href="#vcs-ref-head-revision">`vcs.ref.head.revision`</a> | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [2] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="vcs-ref-head-type" href="#vcs-ref-head-type">`vcs.ref.head.type`</a> | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="vcs-ref-type" href="#vcs-ref-type">`vcs.ref.type`</a> | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="vcs-repository-url-full" href="#vcs-repository-url-full">`vcs.repository.url.full`</a> | string | The [URL](https://wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="vcs-repository-name" href="#vcs-repository-name">`vcs.repository.name`</a> | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [3] | `semantic-conventions`; `my-cool-repo` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="vcs-repository-url-full" href="#vcs-repository-url-full">`vcs.repository.url.full`</a> | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [4] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="vcs-revision-delta-direction" href="#vcs-revision-delta-direction">`vcs.revision_delta.direction`</a> | string | The type of revision comparison. | `ahead`; `behind` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
+**[1] `vcs.ref.base.revision`:** The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
 of the recorded change to a ref within a repository pointing to a
 commit [commit](https://git-scm.com/docs/git-commit) object. It does
 not necessarily have to be a hash; it can simply define a
@@ -39,7 +40,7 @@ it is identical to the `ref.base.name`, it SHOULD still be included. It is
 up to the implementer to decide which value to set as the revision
 based on the VCS system and situational context.
 
-**[2]:** The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
+**[2] `vcs.ref.head.revision`:** The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
 of the recorded change to a ref within a repository pointing to a
 commit [commit](https://git-scm.com/docs/git-commit) object. It does
 not necessarily have to be a hash; it can simply define a
@@ -48,6 +49,15 @@ which is an integer that is monotonically increasing. In cases where
 it is identical to the `ref.head.name`, it SHOULD still be included. It is
 up to the implementer to decide which value to set as the revision
 based on the VCS system and situational context.
+
+**[3] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+repository if collecting telemetry across multiple orgs or groups in
+the same backends.
+
+**[4] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+the `.git` extension.
+
+---
 
 `vcs.change.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -58,12 +68,16 @@ based on the VCS system and situational context.
 | `open` | Open means the change is currently active and under review. It hasn't been merged into the target branch yet, and it's still possible to make changes or add comments. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `wip` | WIP (work-in-progress, draft) means the change is still in progress and not yet ready for a full review. It might still undergo significant changes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `vcs.line_change.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `added` | How many lines were added. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `removed` | How many lines were removed. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `vcs.ref.base.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -72,6 +86,8 @@ based on the VCS system and situational context.
 | `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `vcs.ref.head.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -79,12 +95,16 @@ based on the VCS system and situational context.
 | `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `vcs.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `vcs.revision_delta.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -104,6 +124,8 @@ based on the VCS system and situational context.
 | <a id="vcs-repository-ref-name" href="#vcs-repository-ref-name">`vcs.repository.ref.name`</a> | string | Deprecated, use `vcs.ref.head.name` instead. | `my-feature-branch`; `tag-1-test` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `vcs.ref.head.name` instead. |
 | <a id="vcs-repository-ref-revision" href="#vcs-repository-ref-revision">`vcs.repository.ref.revision`</a> | string | Deprecated, use `vcs.ref.head.revision` instead. | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `vcs.ref.head.revision` instead. |
 | <a id="vcs-repository-ref-type" href="#vcs-repository-ref-type">`vcs.repository.ref.type`</a> | string | Deprecated, use `vcs.ref.head.type` instead. | `branch`; `tag` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `vcs.ref.head.type` instead. |
+
+---
 
 `vcs.repository.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

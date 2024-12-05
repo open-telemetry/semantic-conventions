@@ -12,14 +12,16 @@ This document defines .NET related attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="dotnet-gc-heap-generation" href="#dotnet-gc-heap-generation">`dotnet.gc.heap.generation`</a> | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="dotnet-gc-heap-generation" href="#dotnet-gc-heap-generation">`dotnet.gc.heap.generation`</a> | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
 
 `dotnet.gc.heap.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `gen0` | Generation 0 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gen1` | Generation 1 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gen2` | Generation 2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `loh` | Large Object Heap | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `poh` | Pinned Object Heap | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gen0` | Generation 0 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `gen1` | Generation 1 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `gen2` | Generation 2 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `loh` | Large Object Heap | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `poh` | Pinned Object Heap | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

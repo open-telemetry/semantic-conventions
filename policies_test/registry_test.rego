@@ -22,3 +22,9 @@ test_attribute_refs if {
 	count(before_resolution.deny) > 0 with input as {"groups": [{"id": "registry.foo", "attributes": [{"ref": "foo"}]}]}
 	count(before_resolution.deny) == 0 with input as {"groups": [{"id": "not_registry", "attributes": [{"ref": "foo"}]}]}
 }
+
+test_attribute_requirement_levels if {
+	count(before_resolution.deny) > 0 with input as {"groups": [{"id": "registry.foo", "attributes": [{"id": "foo", "requirement_level": "required"}]}]}
+	count(before_resolution.deny) > 0 with input as {"groups": [{"id": "registry.foo", "attributes": [{"id": "foo", "requirement_level": {"recommended": "if available"}}]}]}
+	count(before_resolution.deny) == 0 with input as {"groups": [{"id": "not_registry", "attributes": [{"ref": "foo", "requirement_level": "required"}]}]}
+}

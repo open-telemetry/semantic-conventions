@@ -48,7 +48,17 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`vcs.change.state`](/docs/attributes-registry/vcs.md) | string | The state of the change (pull request/merge request/changelist). | `open`; `closed`; `merged` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+the `.git` extension.
+
+**[2] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+repository if collecting telemetry across multiple orgs or groups in
+the same backends.
+
+---
 
 `vcs.change.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -83,7 +93,17 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`vcs.change.state`](/docs/attributes-registry/vcs.md) | string | The state of the change (pull request/merge request/changelist). | `open`; `closed`; `merged` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+the `.git` extension.
+
+**[2] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+repository if collecting telemetry across multiple orgs or groups in
+the same backends.
+
+---
 
 `vcs.change.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -117,7 +137,15 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+the `.git` extension.
+
+**[2] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+repository if collecting telemetry across multiple orgs or groups in
+the same backends.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -162,7 +190,17 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`vcs.ref.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+the `.git` extension.
+
+**[2] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+repository if collecting telemetry across multiple orgs or groups in
+the same backends.
+
+---
 
 `vcs.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -202,8 +240,18 @@ If number of lines added/removed should be calculated from the start of time, th
 | [`vcs.ref.base.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.ref.head.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.change.id`](/docs/attributes-registry/vcs.md) | string | The ID of the change (pull request/merge request/changelist) if applicable. This is usually a unique (within repository) identifier generated by the VCS system. | `123` | `Conditionally Required` if a change is associate with the ref. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+the `.git` extension.
+
+**[2] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+repository if collecting telemetry across multiple orgs or groups in
+the same backends.
+
+---
 
 `vcs.line_change.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -212,12 +260,16 @@ If number of lines added/removed should be calculated from the start of time, th
 | `added` | How many lines were added. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `removed` | How many lines were removed. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `vcs.ref.base.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `vcs.ref.head.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -255,9 +307,19 @@ instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers) 
 | [`vcs.ref.base.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.ref.head.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.revision_delta.direction`](/docs/attributes-registry/vcs.md) | string | The type of revision comparison. | `ahead`; `behind` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.change.id`](/docs/attributes-registry/vcs.md) | string | The ID of the change (pull request/merge request/changelist) if applicable. This is usually a unique (within repository) identifier generated by the VCS system. | `123` | `Conditionally Required` if a change is associate with the ref. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+the `.git` extension.
+
+**[2] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+repository if collecting telemetry across multiple orgs or groups in
+the same backends.
+
+---
 
 `vcs.ref.base.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -266,12 +328,16 @@ instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers) 
 | `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `vcs.ref.head.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `vcs.revision_delta.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -304,7 +370,17 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|---|---|---|
 | [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.ref.head.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+the `.git` extension.
+
+**[2] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+repository if collecting telemetry across multiple orgs or groups in
+the same backends.
+
+---
 
 `vcs.ref.head.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -335,7 +411,15 @@ This metric is [opt-in][MetricOptIn].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the repository providing the complete address in order to locate and identify the repository. | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+the `.git` extension.
+
+**[2] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+repository if collecting telemetry across multiple orgs or groups in
+the same backends.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
