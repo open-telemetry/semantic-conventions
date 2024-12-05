@@ -830,7 +830,7 @@ groups:
         requirement_level: recommended
         examples: [3, 1536]
       - ref: db.vector.query.top_k
-        brief: the top-k most similar vectors returned by a query
+        brief: The top-k most similar vectors returned by a query
         note: >
           The top-k parameter is usually specified when executing a vector search (i.e. query)
         requirement_level:
