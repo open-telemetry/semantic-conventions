@@ -306,3 +306,57 @@ groups:
       [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
     instrument: updowncounter
     unit: "{pod}"
+
+  # k8s.daemonset.* metrics
+  - id: metric.k8s.daemonset.current_scheduled_nodes
+    type: metric
+    metric_name: k8s.daemonset.current_scheduled_nodes
+    stability: experimental
+    brief: "Number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod"
+    note: |
+      This metric aligns with the `currentNumberScheduled` field of the
+      [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.daemonset`](../resource/k8s.md#daemonset) resource.
+    instrument: updowncounter
+    unit: "{node}"
+  - id: metric.k8s.daemonset.desired_scheduled_nodes
+    type: metric
+    metric_name: k8s.daemonset.desired_scheduled_nodes
+    stability: experimental
+    brief: "Number of nodes that should be running the daemon pod (including nodes currently running the daemon pod)"
+    note: |
+      This metric aligns with the `desiredNumberScheduled` field of the
+      [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.daemonset`](../resource/k8s.md#daemonset) resource.
+    instrument: updowncounter
+    unit: "{node}"
+  - id: metric.k8s.daemonset.misscheduled_nodes
+    type: metric
+    metric_name: k8s.daemonset.misscheduled_nodes
+    stability: experimental
+    brief: "Number of nodes that are running the daemon pod, but are not supposed to run the daemon pod"
+    note: |
+      This metric aligns with the `numberMisscheduled` field of the
+      [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.daemonset`](../resource/k8s.md#daemonset) resource.
+    instrument: updowncounter
+    unit: "{node}"
+  - id: metric.k8s.daemonset.ready_nodes
+    type: metric
+    metric_name: k8s.daemonset.ready_nodes
+    stability: experimental
+    brief: "Number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready"
+    note: |
+      This metric aligns with the `numberReady` field of the
+      [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.daemonset`](../resource/k8s.md#daemonset) resource.
+    instrument: updowncounter
+    unit: "{node}"
