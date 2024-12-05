@@ -23,7 +23,6 @@ groups:
       - ref: file.owner.id
       - ref: file.origin_referrer_url
       - ref: file.origin_url
-      - ref: file.zone_identifier
       - ref: process.pid
         brief: Process id of the process that accessed the file.
       - ref: process.user.name
