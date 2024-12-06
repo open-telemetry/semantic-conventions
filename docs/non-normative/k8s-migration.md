@@ -43,6 +43,10 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
 
 - [Summary of changes](#summary-of-changes)
   - [K8s network metrics](#k8s-network-metrics)
+  - [K8s Deployment metrics](#k8s-deployment-metrics)
+  - [K8s ReplicaSet metrics](#k8s-replicaset-metrics)
+  - [K8s ReplicationController metrics](#k8s-replicationcontroller-metrics)
+  - [K8s HorizontalPodAutoscaler metrics](#k8s-horizontalpodautoscaler-metrics)
 
 <!-- tocstop -->
 
@@ -56,13 +60,94 @@ to bring the conventions to stable (TODO: link to specific version once it exist
 
 The K8s network metrics implemented by the Collector and specifically the
 [kubeletstats](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.112.0/receiver/kubeletstatsreceiver/documentation.md)
-receiver were introduced as semantic conventions in [v1.29.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.29.0/docs/system/k8s-metrics.md).
+receiver were introduced as semantic conventions
+in [v1.29.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.29.0/docs/system/k8s-metrics.md).
 
 The changes in their attributes are the following:
 
 <!-- prettier-ignore-start -->
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                       |
-|------------------------------------------------------------------------------------|---------------------------|
-| `interface`                                                                        | `network.interface.name`  |
-| `direction`                                                                        | `network.io.direction` |
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                      |
+|------------------------------------------------------------------------------------|--------------------------|
+| `interface`                                                                        | `network.interface.name` |
+| `direction`                                                                        | `network.io.direction`   |
+
+<!-- prettier-ignore-end -->
+
+### K8s Deployment metrics
+
+The K8s Deployment metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#1636](https://github.com/open-telemetry/semantic-conventions/pull/1636) (TODO: replace with SemConv version once
+available).
+
+The changes in their metric names are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                             |
+|------------------------------------------------------------------------------------|---------------------------------|
+| `k8s.deployment.desired`                                                           | `k8s.deployment.desired_pods`   |
+| `k8s.deployment.available`                                                         | `k8s.deployment.available_pods` |
+
+<!-- prettier-ignore-end -->
+
+### K8s ReplicaSet metrics
+
+The K8s ReplicaSet metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#1636](https://github.com/open-telemetry/semantic-conventions/pull/1636) (TODO: replace with SemConv version once
+available).
+
+The changes in their metric names are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                             |
+|------------------------------------------------------------------------------------|---------------------------------|
+| `k8s.replicaset.desired`                                                           | `k8s.replicaset.desired_pods`   |
+| `k8s.replicaset.available`                                                         | `k8s.replicaset.available_pods` |
+
+<!-- prettier-ignore-end -->
+
+### K8s ReplicationController metrics
+
+The K8s ReplicationController metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#1636](https://github.com/open-telemetry/semantic-conventions/pull/1636) (TODO: replace with SemConv version once
+available).
+
+The changes in their metric names are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                         |
+|------------------------------------------------------------------------------------|---------------------------------------------|
+| `k8s.replication_controller.desired`                                               | `k8s.replication_controller.desired_pods`   |
+| `k8s.replication_controller.available`                                             | `k8s.replication_controller.available_pods` |
+
+<!-- prettier-ignore-end -->
+
+### K8s HorizontalPodAutoscaler metrics
+
+The K8s HorizontalPodAutoscaler metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#1636](https://github.com/open-telemetry/semantic-conventions/pull/1636) (TODO: replace with SemConv version once
+available).
+
+The changes in their metric names are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                    |
+|------------------------------------------------------------------------------------|------------------------|
+| `k8s.hpa.desired_replicas`                                                         | `k8s.hpa.desired_pods` |
+| `k8s.hpa.current_replicas`                                                         | `k8s.hpa.current_pods` |
+| `k8s.hpa.max_replicas`                                                             | `k8s.hpa.max_pods`     |
+| `k8s.hpa.min_replicas`                                                             | `k8s.hpa.min_pods`     |
+
 <!-- prettier-ignore-end -->
