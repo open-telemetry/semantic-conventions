@@ -48,7 +48,7 @@ baseline_events := [ g |
 ]
 registry_events := [g |
     some g in data.semconv.groups
-    g.type == "events"
+    g.type == "event"
 ]
 registry_event_names := { g.name | some g in registry_events }
 
@@ -236,11 +236,11 @@ deny contains back_comp_violation(description, group_id, attr.name) if {
 # Rule: Detect Removed Metrics
 #
 # This rule checks for stable metrics that existed in the baseline registry
-# but are no longer present in the current registry. Removing attributes
+# but are no longer present in the current registry. Removing metrics
 # is considered a backward compatibility violation.
 #
-# In other words, we do not allow the removal of an attribute once added
-# to the registry. It must exist SOMEWHERE in a group, but may be deprecated.
+# In other words, we do not allow the removal of an metrics once added
+# to semantic conventions. They, however, may be deprecated.
 deny contains back_comp_violation(description, group_id, "") if {
     # Find data we need to enforce
     some metric in baseline_metrics
@@ -366,7 +366,7 @@ deny contains back_comp_violation(description, group_id, "") if {
 # is considered a backward compatibility violation.
 #
 # In other words, we do not allow the removal of a resource once added
-# to the registry. It must exist SOMEWHERE, but may be deprecated.
+# to semantic conventions. They, however, may be deprecated.
 deny contains back_comp_violation(description, group_id, "") if {
     # Find data we need to enforce
     some resource in baseline_resources
@@ -432,11 +432,10 @@ deny contains back_comp_violation(description, group_id, "") if {
 # is considered a backward compatibility violation.
 #
 # In other words, we do not allow the removal of a events once added
-# to the registry. It must exist SOMEWHERE, but may be deprecated.
+# to semantic conventions. They, however, may be deprecated.
 deny contains back_comp_violation(description, group_id, "") if {
     # Find data we need to enforce
     some event in baseline_events
-    event.stability == "stable" # remove after https://github.com/open-telemetry/semantic-conventions/pull/1512 is merged
     # Enforce the policy
     not registry_event_names[event.name]
 

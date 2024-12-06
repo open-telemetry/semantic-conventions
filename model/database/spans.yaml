@@ -152,6 +152,7 @@ groups:
 
   - id: span.db.postgresql.client
     type: span
+    stability: experimental
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -186,6 +187,7 @@ groups:
 
   - id: span.db.mysql.client
     type: span
+    stability: experimental
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -212,6 +214,7 @@ groups:
 
   - id: span.db.mariadb.client
     type: span
+    stability: experimental
     extends: span.db.sql.client
     span_kind: client
     brief: >
