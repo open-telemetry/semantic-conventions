@@ -107,8 +107,8 @@ it's RECOMMENDED to:
 
 **[3] `messaging.consumer.group.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system.
 
-**[4] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+**[4] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+If `messaging.destination.anonymous` or `messaging.destination.temporary` is set to true, `messaging.destination.name` SHOULD be set to `(temporary)`.
 
 **[5] `messaging.destination.name`:** if and only if `messaging.destination.name` is known to have low cardinality. Otherwise, `messaging.destination.template` MAY be populated.
 
@@ -217,8 +217,8 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[3] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+**[3] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+If `messaging.destination.anonymous` or `messaging.destination.temporary` is set to true, `messaging.destination.name` SHOULD be set to `(temporary)`.
 
 **[4] `messaging.destination.name`:** if and only if `messaging.destination.name` is known to have low cardinality. Otherwise, `messaging.destination.template` MAY be populated.
 
@@ -316,8 +316,8 @@ it's RECOMMENDED to:
 
 **[3] `messaging.consumer.group.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system.
 
-**[4] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+**[4] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+If `messaging.destination.anonymous` or `messaging.destination.temporary` is set to true, `messaging.destination.name` SHOULD be set to `(temporary)`.
 
 **[5] `messaging.destination.name`:** if and only if `messaging.destination.name` is known to have low cardinality. Otherwise, `messaging.destination.template` MAY be populated.
 
@@ -420,8 +420,8 @@ it's RECOMMENDED to:
 
 **[3] `messaging.consumer.group.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system.
 
-**[4] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+**[4] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+If `messaging.destination.anonymous` or `messaging.destination.temporary` is set to true, `messaging.destination.name` SHOULD be set to `(temporary)`.
 
 **[5] `messaging.destination.name`:** if and only if `messaging.destination.name` is known to have low cardinality. Otherwise, `messaging.destination.template` MAY be populated.
 
