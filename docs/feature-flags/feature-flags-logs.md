@@ -50,7 +50,7 @@ The table below indicates which attributes should be added to the
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-The event name MUST be `feature_flag.evaluation`.
+The [EventName](TODO link to new spec model) MUST be `feature_flag.evaluation`.
 
 Defines feature flag evaluation as an event.
 
