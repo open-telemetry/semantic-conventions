@@ -1,0 +1,4 @@
+change_type: enhancement
+component: specification
+note: Defines "reference attribute" concept
+issues: [1428]
