@@ -6,33 +6,34 @@
 
 <!-- toc -->
 
-- [Definitions](#definitions)
-  - [Message](#message)
-  - [Producer](#producer)
-  - [Consumer](#consumer)
-  - [Intermediary](#intermediary)
-  - [Destinations](#destinations)
-  - [Message consumption](#message-consumption)
-    - [Consumer groups](#consumer-groups)
-    - [Subscriptions](#subscriptions)
-  - [Conversations](#conversations)
-  - [Temporary and anonymous destinations](#temporary-and-anonymous-destinations)
-- [Conventions](#conventions)
-  - [Context propagation](#context-propagation)
-  - [Span name](#span-name)
-  - [Operation types](#operation-types)
-  - [Span kind](#span-kind)
-  - [Trace structure](#trace-structure)
-    - [Producer spans](#producer-spans)
-    - [Consumer spans](#consumer-spans)
-      - [Message creation context as parent of "Process" span](#message-creation-context-as-parent-of-process-span)
-- [Messaging attributes](#messaging-attributes)
-  - [Recording per-message attributes on batch operations](#recording-per-message-attributes-on-batch-operations)
-- [Examples](#examples)
-  - [Topic with multiple consumers](#topic-with-multiple-consumers)
-  - [Batch receiving](#batch-receiving)
-  - [Batch publishing with "Create" spans](#batch-publishing-with-create-spans)
-  - [Batch publishing without "Create" spans](#batch-publishing-without-create-spans)
+- [Semantic Conventions for Messaging Spans](#semantic-conventions-for-messaging-spans)
+  - [Definitions](#definitions)
+    - [Message](#message)
+    - [Producer](#producer)
+    - [Consumer](#consumer)
+    - [Intermediary](#intermediary)
+    - [Destinations](#destinations)
+    - [Message consumption](#message-consumption)
+      - [Consumer groups](#consumer-groups)
+      - [Subscriptions](#subscriptions)
+    - [Conversations](#conversations)
+    - [Temporary and anonymous destinations](#temporary-and-anonymous-destinations)
+  - [Conventions](#conventions)
+    - [Context propagation](#context-propagation)
+    - [Span name](#span-name)
+    - [Operation types](#operation-types)
+    - [Span kind](#span-kind)
+    - [Trace structure](#trace-structure)
+      - [Producer spans](#producer-spans)
+      - [Consumer spans](#consumer-spans)
+        - [Message creation context as parent of "Process" span](#message-creation-context-as-parent-of-process-span)
+  - [Messaging attributes](#messaging-attributes)
+    - [Recording per-message attributes on batch operations](#recording-per-message-attributes-on-batch-operations)
+  - [Examples](#examples)
+    - [Topic with multiple consumers](#topic-with-multiple-consumers)
+    - [Batch receiving](#batch-receiving)
+    - [Batch publishing with "Create" spans](#batch-publishing-with-create-spans)
+    - [Batch publishing without "Create" spans](#batch-publishing-without-create-spans)
 
 <!-- tocstop -->
 
@@ -210,8 +211,7 @@ and SHOULD adhere to one of the following values, provided they are accessible:
 4. The placeholder `(temporary)` SHOULD be used when the destination is [temporary or anonymous](#temporary-and-anonymous-destinations)
    and neither `messaging.destination.template` or `server.address:server.port` are available.
 
-If a `{destination}` value is not available, the instrumentation
-SHOULD omit the `{destination}` from the span name.
+If a corresponding `{destination}` value is not available for a specific operation, the instrumentation SHOULD omit the `{destination}`.
 
 Examples:
 
