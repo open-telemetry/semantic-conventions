@@ -72,6 +72,7 @@ body:
         - area:process
         - area:profile
         - area:rpc
+        - area:security-rule
         - area:server
         - area:service
         - area:session

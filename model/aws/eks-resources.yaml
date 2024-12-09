@@ -1,6 +1,7 @@
 groups:
   - id: resource.aws.eks
     type: resource
+    stability: experimental
     name: aws.eks
     brief: >
       Resources used by AWS Elastic Kubernetes Service (EKS).

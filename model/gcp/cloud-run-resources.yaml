@@ -1,6 +1,7 @@
 groups:
   - id: resource.gcp.cloud_run
     type: resource
+    stability: experimental
     name: gcp.cloud_run
     brief: >
       Resource used by Google Cloud Run.
