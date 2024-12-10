@@ -36,6 +36,14 @@ groups:
         deprecated: "Replaced by `db.query.text`."
         stability: experimental
         examples: ['SELECT * FROM wuser_table', 'SET mykey "WuValue"']
+      - id: db.query.parameter
+        type: template[string]
+        brief: >
+          A query parameter used in `db.query.text`, with `<key>` being the parameter name,
+          and the attribute value being a string representation of the parameter value.
+        deprecated: "Replaced by `db.operation.parameter`."
+        stability: experimental
+        examples: ["someval", "55"]
       - id: db.cassandra.table
         type: string
         stability: experimental
@@ -97,6 +105,57 @@ groups:
         deprecated: 'Replaced by `db.response.status_code`.'
         brief: 'Deprecated, use `db.response.status_code` instead.'
         examples: [200, 201]
+      - id: db.cosmosdb.operation_type
+        type:
+          members:
+            - id: batch
+              value: "batch"
+              stability: experimental
+            - id: create
+              value: "create"
+              stability: experimental
+            - id: delete
+              value: "delete"
+              stability: experimental
+            - id: execute
+              value: "execute"
+              stability: experimental
+            - id: execute_javascript
+              value: "execute_javascript"
+              stability: experimental
+            - id: invalid
+              value: "invalid"
+              stability: experimental
+            - id: head
+              value: "head"
+              stability: experimental
+            - id: head_feed
+              value: "head_feed"
+              stability: experimental
+            - id: patch
+              value: "patch"
+              stability: experimental
+            - id: query
+              value: "query"
+              stability: experimental
+            - id: query_plan
+              value: "query_plan"
+              stability: experimental
+            - id: read
+              value: "read"
+              stability: experimental
+            - id: read_feed
+              value: "read_feed"
+              stability: experimental
+            - id: replace
+              value: "replace"
+              stability: experimental
+            - id: upsert
+              value: "upsert"
+              stability: experimental
+        stability: experimental
+        deprecated: "No replacement at this time."
+        brief: Deprecated, no replacement at this time.
 
   - id: registry.db.metrics.deprecated
     type: attribute_group

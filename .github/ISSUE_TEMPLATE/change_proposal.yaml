@@ -41,6 +41,7 @@ body:
         - area:file
         - area:gcp
         - area:gen-ai
+        - area:geo
         - area:go
         - area:graphql
         - area:hardware
@@ -62,6 +63,7 @@ body:
         - area:process
         - area:profile
         - area:rpc
+        - area:security-rule
         - area:server
         - area:service
         - area:session

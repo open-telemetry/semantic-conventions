@@ -679,6 +679,30 @@ test_removed_resources if {
     }
 }
 
+# Check that events cannot be removed.
+test_removed_events if {
+	count(deny) > 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "event.test.missing",
+                "type": "event",
+                "name": "test.missing"
+            }],
+    }
+    count(deny) == 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "event.test.deprecated",
+                "type": "event",
+                "name": "test.deprecated",
+            }],
+            "groups": [{
+                "id": "event.test.deprecated",
+                "type": "event",
+                "name": "test.deprecated",
+                "deprecated": "use `test` instead",
+            }]
+    }
+}
+
 # Check that Stable resources cannot become unstable
 test_resource_stability_change if {
 	count(deny) > 0 with data.semconv as {
@@ -712,7 +736,7 @@ test_resource_stability_change if {
 }
 
 
-# Check that Stable resources cannot change required/recommended attributes
+# Check that Stable attributes on stable resources cannot be removed
 test_resource_attribute_missing if {
 	count(deny) > 0 with data.semconv as {
             "baseline_groups": [{
@@ -722,6 +746,7 @@ test_resource_attribute_missing if {
                 "stability": "stable",
                 "attributes": [{
                     "name": "test.missing",
+                    "stability": "stable",
                     "requirement_level": "required"
                 }],
             }],
@@ -740,6 +765,7 @@ test_resource_attribute_missing if {
                 "stability": "stable",
                 "attributes": [{
                     "name": "test.missing",
+                    "stability": "stable",
                     "requirement_level": "required"
                 },{
                     "name": "test.ignored",
@@ -755,6 +781,7 @@ test_resource_attribute_missing if {
                 "instrument": "histogram",
                 "attributes": [{
                     "name": "test.missing",
+                    "stability": "stable",
                     "requirement_level": "required"
                 }],
             }]

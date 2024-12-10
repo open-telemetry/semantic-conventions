@@ -1,0 +1,42 @@
+groups:
+  - id: span.cli.internal
+    type: span
+    span_kind: internal
+    stability: experimental
+    brief: >
+      Describes span of CLI (Command Line Interfaces) programs.
+    attributes:
+      - ref: process.executable.name
+        requirement_level: required
+      - ref: process.executable.path
+        requirement_level: recommended
+      - ref: process.pid
+        requirement_level: required
+      - ref: process.exit.code
+        requirement_level: required
+      - ref: process.command_args
+        requirement_level: recommended
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if process.exit.code is not 0
+
+  - id: span.cli.client
+    type: span
+    span_kind: client
+    stability: experimental
+    brief: >
+      Describes span to calls of CLI (Command Line Interfaces) programs.
+    attributes:
+      - ref: process.executable.name
+        requirement_level: required
+      - ref: process.executable.path
+        requirement_level: recommended
+      - ref: process.pid
+        requirement_level: required
+      - ref: process.exit.code
+        requirement_level: required
+      - ref: process.command_args
+        requirement_level: recommended
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if process.exit.code is not 0

@@ -1,8 +1,7 @@
 groups:
   - id: rpc
-    type: span
+    type: attribute_group
     brief: 'This document defines semantic conventions for remote procedure calls.'
-    events: [rpc.message]
     attributes:
       - ref: rpc.system
         requirement_level: required
@@ -26,10 +25,13 @@ groups:
         requirement_level:
           conditionally_required: if the port is supported by the network transport used for communication.
 
-  - id: rpc.client
+  - id: span.rpc.client
     type: span
+    stability: experimental
     brief: 'This document defines semantic conventions for remote procedure call client spans.'
     extends: rpc
+    span_kind: client
+    events: [rpc.message]
     attributes:
       - ref: network.peer.address
         requirement_level: recommended
@@ -37,11 +39,13 @@ groups:
         requirement_level:
           recommended: If `network.peer.address` is set.
 
-  - id: rpc.server
+  - id: span.rpc.server
     type: span
+    stability: experimental
     extends: rpc
     span_kind: server
     brief: 'Semantic Convention for RPC server spans'
+    events: [rpc.message]
     attributes:
       - ref: client.address
         requirement_level: recommended
@@ -57,8 +61,9 @@ groups:
       - ref: network.type
         requirement_level: recommended
 
-  - id: rpc.grpc
+  - id: span.rpc.grpc
     type: span
+    stability: experimental
     extends: rpc
     brief: 'Tech-specific attributes for gRPC.'
     attributes:
@@ -72,8 +77,9 @@ groups:
         tag: grpc-tech-specific
         requirement_level: opt_in
 
-  - id: rpc.jsonrpc
+  - id: span.rpc.jsonrpc
     type: span
+    stability: experimental
     extends: rpc
     brief: 'Tech-specific attributes for [JSON RPC](https://www.jsonrpc.org/).'
     attributes:
@@ -98,7 +104,7 @@ groups:
           This is always required for jsonrpc. See the note in the general
           RPC conventions for more information.
 
-  - id: rpc.message
+  - id: event.rpc.message
     type: event
     stability: experimental
     name: rpc.message
@@ -117,8 +123,9 @@ groups:
       - ref: rpc.message.uncompressed_size
         requirement_level: recommended
 
-  - id: rpc.connect_rpc
+  - id: span.rpc.connect_rpc
     type: span
+    stability: experimental
     extends: rpc
     brief: 'Tech-specific attributes for Connect RPC.'
     attributes:

@@ -1,6 +1,7 @@
 groups:
-  - id: faas_span
+  - id: span.faas
     type: span
+    stability: experimental
     brief: >
       This semantic convention describes an instance of a function that
       runs without provisioning or managing of servers (also known as
@@ -20,8 +21,9 @@ groups:
       - ref: faas.invocation_id
       - ref: cloud.resource_id
 
-  - id: faas_span.datasource
+  - id: span.faas.datasource
     type: span
+    stability: experimental
     brief: >
       Semantic Convention for FaaS triggered as a response to some data
       source operation such as a database or filesystem read/write.
@@ -33,17 +35,19 @@ groups:
       - ref: faas.document.time
       - ref: faas.document.name
 
-  - id: faas_span.timer
+  - id: span.faas.timer
     type: span
+    stability: experimental
     brief: >
       Semantic Convention for FaaS scheduled to be executed regularly.
     attributes:
       - ref: faas.time
       - ref: faas.cron
 
-  - id: faas_span.in
+  - id: span.faas.server
     span_kind: server
     type: span
+    stability: experimental
     brief: >
       Contains additional attributes for incoming FaaS spans.
     attributes:
@@ -61,9 +65,10 @@ groups:
           nothing to do with the underlying transport used to make the API
           call to invoke the lambda, which is often HTTP).
 
-  - id: faas_span.out
+  - id: span.faas.client
     span_kind: client
     type: span
+    stability: experimental
     brief: >
       Contains additional attributes for outgoing FaaS spans.
     attributes:

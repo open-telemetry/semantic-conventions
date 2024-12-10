@@ -1,6 +1,7 @@
 groups:
-  - id: aws.log
+  - id: resource.aws.log
     type: resource
+    stability: experimental
     name: aws.log
     brief: >
       Resources specific to Amazon Web Services.

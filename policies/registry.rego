@@ -55,6 +55,20 @@ deny[attr_registry_violation(description, group.id, attr.ref)] {
     description := sprintf("Registry group '%s' references attribute '%s'. Registry groups can only define new attributes.", [group.id, attr.ref])
 }
 
+# We don't allow attribute definitions to have requirement_level
+deny[attr_registry_violation(description, group.id, attr.id)] {
+    group := input.groups[_]
+    startswith(group.id, "registry.")
+
+    attr := group.attributes[_]
+
+    # TODO: requirement_level defaults to recommended - no way to check if it's not set.
+    attr.requirement_level != "recommended"
+
+    # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
+    description := sprintf("Attribute definition '%s' has requirement_level set to %s. Only attribute references can set requirement_level.", [attr.id, attr.requirement_level])
+}
+
 get_attribute_name(attr, group) = name {
     full_name = concat(".", [group.prefix, attr.id])
 
