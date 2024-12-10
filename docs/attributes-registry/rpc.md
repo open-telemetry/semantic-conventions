@@ -110,6 +110,7 @@ This document defines attributes for remote procedure calls.
 | Value  | Description | Stability |
 |---|---|---|
 | `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws_api` | AWS API | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
