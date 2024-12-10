@@ -1,5 +1,5 @@
 groups:
-  - id: dotnet.http.request.wait_for_connection
+  - id: span.dotnet.http.request.wait_for_connection.internal
     type: span
     stability: development
     span_kind: internal
@@ -13,7 +13,7 @@ groups:
         note: ""
         examples: ["version_negotiation_error", "System.OperationCanceledException"]
 
-  - id: dotnet.http.connection_setup
+  - id: span.dotnet.http.connection_setup.client
     type: span
     stability: development
     span_kind: client
@@ -22,6 +22,9 @@ groups:
       the time it takes to resolve the DNS, establish the socket connection, and perform the TLS handshake.
     attributes:
       - ref: network.peer.address
+        brief: Peer IP address of the socket connection.
+        note: >
+          The `network.peer.address` attribute is available only if the connection was successfully established.
       - ref: server.address
       - ref: server.port
       - ref: error.type
@@ -33,7 +36,7 @@ groups:
         examples: ["name_resolution_error", "System.OperationCanceledException"]
       - ref: url.scheme
 
-  - id: dotnet.socket.connect
+  - id: span.dotnet.socket.connect.client
     type: span
     stability: development
     span_kind: client
@@ -80,7 +83,7 @@ groups:
           [Linux](https://man7.org/linux/man-pages/man2/connect.2.html) for more details.
         examples: ["connection_refused", "address_not_available"]
 
-  - id: dotnet.dns.lookup
+  - id: span.dotnet.dns.lookup.client
     type: span
     stability: development
     span_kind: client
@@ -92,7 +95,7 @@ groups:
       - ref: dns.answers
         brief: List of resolved IP addresses (for DNS lookup) or a single element containing domain name (for reverse lookup).
       - ref: error.type
-        brief: Error code returned by the DNS resolver.
+        brief:  The error code or exception name returned by [System.Net.Dns](https://learn.microsoft.com/dotnet/api/system.net.dns).
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         note: |
@@ -107,7 +110,7 @@ groups:
           See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.socketerror) for more details.
         examples: ["host_not_found", "try_again" ]
 
-  - id: dotnet.tls.handshake
+  - id: span.dotnet.tls.handshake.client
     type: span
     span_kind: client
     stability: development
