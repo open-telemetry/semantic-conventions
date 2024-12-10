@@ -240,7 +240,8 @@ It's different from [*HTTP connection setup*](#http-connection-setup) span, whic
 
 When *socket connect* span is reported along with *HTTP connection setup* span, the socket span becomes a child of HTTP connection setup.
 
-Span name SHOULD be `socket connect {network.peer.address}:{network.peer.port}`, where port is only available for IP sockets.
+Span name SHOULD be `socket connect {network.peer.address}:{network.peer.port}` when socket address family has a notion of port and `socket connect {network.peer.address}`
+otherwise.
 Span kind SHOULD be `INTERNAL`.
 
 Corresponding `Activity.OperationName` is `Experimental.System.Net.Sockets.Connect`, `ActivitySource` name - `Experimental.System.Net.Sockets`.
@@ -402,27 +403,32 @@ The span describes TLS handshake.
 
 ### HTTP request was performed on a connection that was immediately available
 
-If connection is immediately available for the request, `HttpClient` creates one span for HTTP request.
+If connection is immediately available for the request, `HttpClient` creates one span for HTTP request and links it to the *HTTP connection_setup* span
+associated with this connection (the *HTTP connection_setup* span has already ended at this point).
 
 ```
-<------------------ GET / (INTERNAL, trace=t1, span=s1) --------------------------->
+<- HTTP connection_setup - (trace=t1, span=s1) ->
+<--- DNS --->
+             <--- socket connect --->
+                                     <--- TLS -->
+                                                       <--- GET / (INTERNAL, trace=t2, span=s2, link_to=t1,s1) --->
 ```
 
 ### HTTP request has to wait for connection setup
 
 If connection was not immediately available for the request, `HttpClient` creates span for HTTP request and
 *Wait for connection* span. In this example, a new connection was created and the request was executed on it immediately after
-connection was created. There was no cached DNS record for the host.
+connection was created. Instrumentation added a link to *HTTP connection_setup* span on HTTP request `GET` span.
 
 ```
-<----------------------- GET / (trace=t1, span=s1, link_to=t2,s3) -------------------------------->
-<--------- HTTP wait_for_connection (trace=t1, span=s2) ---------->
-
-
-<--------- HTTP connection_setup (trace=t2, span=s3) -------->
+<--------- HTTP connection_setup (trace=t1, span=s1) -------->
 <--- DNS --->
              <--------- socket connect -------->
                                                 <--- TLS --->
+
+
+<----------------------- GET / (trace=t2, span=s2, link_to=t1,s1) -------------------------------->
+<--------- HTTP wait_for_connection (trace=t2, span=s3) ---------->
 ```
 
 ### HTTP request has to wait for connection setup and other requests on that connection to complete
@@ -432,18 +438,29 @@ If connection was not immediately available for the request, `HttpClient` create
 served other requests in the queue before it became available for this request.
 
 ```
-                <--------------------- GET / (trace=t1, span=s1) ------------------------------>
-                <---- HTTP wait_for_connection (trace=t1, span=s2, link_to=t2,s3) ---->
-
-
-<--- HTTP connection_setup - (trace=t2, span=s3) --->
-<-- DNS -->
-           <------ socket connect ------->
-                                          <-- TLS -->
+<- HTTP connection_setup - (trace=t1, span=s1) ->
+                                <--------------------- GET / (trace=t2, span=s2) ------------------------------>
+                                <---- HTTP wait_for_connection (trace=t2, span=s3, link_to=t1,s1) ---->
 ```
 
-The *HTTP connection_setup* has started before this request, it also ended much earlier than
+The *HTTP connection_setup* span has started before this request, it also ended much earlier than
 *Wait for connection* span, indicating that there is a queue of requests and high demand for
 connections in the pool.
+
+
+### HTTP request fails because connection cannot be established
+
+If HTTP request fails before connection is established:
+- all attempts to establish connections are recorded as *HTTP connection_setup* spans
+- HTTP request `GET` span is recorded with the corresponding error type along with *Wait for connection* span.
+- HTTP request `GET` span is **not** linked to any of the *HTTP connection_setup* spans since these connections were never associated with corresponding request.
+
+```
+<- HTTP connection_setup - (trace=t1, span=s1) - ERROR ->
+<------------------- DNS - timeout ---------------->
+
+<---------- GET / (trace=t2, span=s2) - ERROR ---------->
+<- HTTP wait_for_connection (trace=t2, span=s3) - ERROR ->
+```
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

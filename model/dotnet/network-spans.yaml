@@ -24,7 +24,7 @@ groups:
       - ref: network.peer.address
         brief: Peer IP address of the socket connection.
         note: >
-          The `network.peer.address` attribute is available only if the connection was successfully established.
+          The `network.peer.address` attribute is available only if the connection was successfully established and only for IP sockets.
       - ref: server.address
       - ref: server.port
       - ref: error.type
