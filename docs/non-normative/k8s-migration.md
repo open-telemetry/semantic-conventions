@@ -51,6 +51,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s DaemonSet metrics](#k8s-daemonset-metrics)
   - [K8s Job metrics](#k8s-job-metrics)
   - [K8s Cronjob metrics](#k8s-cronjob-metrics)
+  - [K8s Namespace metrics](#k8s-namespace-metrics)
 
 <!-- tocstop -->
 
@@ -232,5 +233,23 @@ The changes in their metric types are the following:
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                            |
 |--------------------------------------------------|--------------------------------|
 | `k8s.cronjob.active_jobs`                  (type: `gauge`) | `k8s.cronjob.active_jobs` (type: `updowncounter`) |
+
+<!-- prettier-ignore-end -->
+
+### K8s Namespace metrics
+
+The K8s Namespace metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#1649](https://github.com/open-telemetry/semantic-conventions/pull/1668) (TODO: replace with SemConv version once
+available).
+
+The changes in their metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                            |
+|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| `k8s.namespace.phase`                  (type: `gauge`), 1 for active and 0 for terminating                      | `k8s.namespace.phase` (type: `updowncounter`), with `k8s.namespace.phase` indicating the phase |
 
 <!-- prettier-ignore-end -->
