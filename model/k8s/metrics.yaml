@@ -133,7 +133,7 @@ groups:
     metric_name: k8s.job.active_pods
     stability: experimental
     brief: "The number of pending and actively running pods for a job"
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
     note: |
       This metric aligns with the `active` field of the
@@ -143,7 +143,7 @@ groups:
     metric_name: k8s.job.failed_pods
     stability: experimental
     brief: "The number of pods which reached phase Failed for a job"
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
     note: |
       This metric aligns with the `failed` field of the
@@ -153,7 +153,7 @@ groups:
     metric_name: k8s.job.successful_pods
     stability: experimental
     brief: "The number of pods which reached phase Succeeded for a job"
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
     note: |
       This metric aligns with the `succeeded` field of the
@@ -185,7 +185,7 @@ groups:
     metric_name: k8s.cronjob.active_jobs
     stability: experimental
     brief: "The number of actively running jobs for a cronjob"
-    instrument: gauge
+    instrument: updowncounter
     unit: "{job}"
     note: |
       This metric aligns with the `active` field of the

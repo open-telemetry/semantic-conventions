@@ -342,7 +342,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.job.active_pods` | Gauge | `{pod}` | The number of pending and actively running pods for a job [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.job.active_pods` | UpDownCounter | `{pod}` | The number of pending and actively running pods for a job [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `active` field of the
 [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch)
@@ -365,7 +365,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.job.failed_pods` | Gauge | `{pod}` | The number of pods which reached phase Failed for a job [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.job.failed_pods` | UpDownCounter | `{pod}` | The number of pods which reached phase Failed for a job [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `failed` field of the
 [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch)
@@ -388,7 +388,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.job.successful_pods` | Gauge | `{pod}` | The number of pods which reached phase Succeeded for a job [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.job.successful_pods` | UpDownCounter | `{pod}` | The number of pods which reached phase Succeeded for a job [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `succeeded` field of the
 [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch)
@@ -457,7 +457,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.cronjob.active_jobs` | Gauge | `{job}` | The number of actively running jobs for a cronjob [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.cronjob.active_jobs` | UpDownCounter | `{job}` | The number of actively running jobs for a cronjob [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `active` field of the
 [K8s CronJobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#cronjobstatus-v1-batch)
