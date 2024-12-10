@@ -18,12 +18,6 @@ groups:
         brief: >
           Pseudonymous identifier of an end user. This identifier is unique to the user but does not reveal their actual identity.
         examples: ['QdH5CAWJgqVT4rOr0qtumf']
-        type: string
-        stability: experimental
-        brief: >
-          Identifier of an anonymous end user who interacts with a system.
-          This identifier may be unique only through best-effort means and does not imply that the user is authenticated to the system.
-        examples: ['QdH5CAWJgqVT4rOr0qtumf']
       - id: enduser.role
         type: string
         deprecated: "Removed."
