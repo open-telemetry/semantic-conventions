@@ -234,5 +234,5 @@ groups:
               stability: experimental
             - id: unknown
               value: "unknown"
-              brief: "Unknow phase is set if phase is blank for some reason"
+              brief: "Unknown phase is set if phase is blank for some reason"
               stability: experimental

@@ -77,7 +77,7 @@ conflict.
 |---|---|---|
 | `active` | Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `terminating` | Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unknown` | Unknow phase is set if phase is blank for some reason | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unknown` | Unknown phase is set if phase is blank for some reason | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 
