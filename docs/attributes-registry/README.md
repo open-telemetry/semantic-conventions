@@ -84,6 +84,7 @@ Currently, the following namespaces exist:
 - [Process](process.md)
 - [Profile](profile.md)
 - [RPC](rpc.md)
+- [Security Rule](security-rule.md)
 - [Server](server.md)
 - [Service](service.md)
 - [Session](session.md)

@@ -1,6 +1,7 @@
 groups:
   - id: resource.process
     type: resource
+    stability: experimental
     name: process
     brief: >
         An operating system process.
@@ -23,9 +24,11 @@ groups:
         requirement_level:
           conditionally_required: See [Selecting process attributes](#selecting-process-attributes) for details.
       - ref: process.owner
+      - ref: process.linux.cgroup
 
   - id: resource.process.runtime
     type: resource
+    stability: experimental
     name: process.runtime
     brief: >
       The single (language) runtime instance which is monitored.

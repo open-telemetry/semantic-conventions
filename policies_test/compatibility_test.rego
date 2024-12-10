@@ -679,6 +679,30 @@ test_removed_resources if {
     }
 }
 
+# Check that events cannot be removed.
+test_removed_events if {
+	count(deny) > 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "event.test.missing",
+                "type": "event",
+                "name": "test.missing"
+            }],
+    }
+    count(deny) == 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "event.test.deprecated",
+                "type": "event",
+                "name": "test.deprecated",
+            }],
+            "groups": [{
+                "id": "event.test.deprecated",
+                "type": "event",
+                "name": "test.deprecated",
+                "deprecated": "use `test` instead",
+            }]
+    }
+}
+
 # Check that Stable resources cannot become unstable
 test_resource_stability_change if {
 	count(deny) > 0 with data.semconv as {

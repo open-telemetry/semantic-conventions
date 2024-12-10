@@ -2,6 +2,7 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
+  1.29.0:
     all:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/1520
@@ -16,11 +17,6 @@ versions:
               vcs.repository.ref.name: vcs.ref.head.name
               vcs.repository.ref.revision: vcs.ref.head.revision
               vcs.repository.ref.type: vcs.ref.head.type
-        # https://github.com/open-telemetry/semantic-conventions/pull/1440
-        - rename_attributes:
-            attribute_map:
-              feature_flag.provider_name: feature_flag.system
-
     metrics:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/1492
@@ -59,8 +55,8 @@ versions:
             attribute_map:
               messaging.kafka.consumer.group: messaging.consumer.group.name
               messaging.rocketmq.client_group: messaging.consumer.group.name
-              messaging.evenhubs.consumer.group: messaging.consumer.group.name
-              message.servicebus.destination.subscription_name: messaging.destination.subscription.name
+              messaging.eventhubs.consumer.group: messaging.consumer.group.name
+              messaging.servicebus.destination.subscription_name: messaging.destination.subscription.name
         # https://github.com/open-telemetry/semantic-conventions/pull/1200
         - rename_attributes:
             attribute_map:
