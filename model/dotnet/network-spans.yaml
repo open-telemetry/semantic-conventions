@@ -1,0 +1,135 @@
+groups:
+  - id: span.dotnet.http.request.wait_for_connection.internal
+    type: span
+    span_kind: internal
+    stability: experimental
+    brief: 'The span describes the time it takes for HTTP request to obtain a connection to run on.'
+    attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        brief: >
+          One of the [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, or a full exception type.
+        note: ""
+        examples: ["version_negotiation_error", "System.OperationCanceledException"]
+
+  - id: span.dotnet.http.connection_setup.client
+    type: span
+    span_kind: client
+    stability: experimental
+    brief: >
+      The span describes the establishment of the HTTP connection. It includes
+      the time it takes to resolve the DNS, establish the socket connection, and perform the TLS handshake.
+    attributes:
+      - ref: network.peer.address
+        brief: Peer IP address of the socket connection.
+        note: >
+          The `network.peer.address` attribute is available only if the connection was successfully established.
+      - ref: server.address
+      - ref: server.port
+      - ref: error.type
+        brief: >
+          One of the [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, or a full exception type.
+        note: ""
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ["name_resolution_error", "System.OperationCanceledException"]
+      - ref: url.scheme
+
+  - id: span.dotnet.socket.connect.client
+    type: span
+    span_kind: client
+    stability: experimental
+    brief: >
+      The span describes the establishment of the socket connection.
+    attributes:
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If port is supported for the socket address family.
+      - ref: network.peer.address
+      - ref: network.type
+        requirement_level:
+          recommended: if `network.peer.address` is an IP address.
+      - ref: network.transport
+        examples: ['tcp', 'udp', 'unix']
+        requirement_level:
+          recommended: If value is not `tcp`. When missing, the value is assumed to be `tcp`.
+      - ref: error.type
+        brief: "Socket error code."
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        note: |
+          The following errors codes are reported:
+
+          - `network_down`
+          - `address_already_in_use`
+          - `interrupted`
+          - `in_progress`
+          - `already_in_progress`
+          - `address_not_available`
+          - `address_family_not_supported`
+          - `connection_refused`
+          - `fault`
+          - `invalid_argument`
+          - `is_connected`
+          - `network_unreachable`
+          - `host_unreachable`
+          - `no_buffer_space_available`
+          - `timed_out`
+          - `access_denied`
+          - `protocol_type`
+
+          See socket errors on [Windows](https://learn.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect#return-value) and
+          [Linux](https://man7.org/linux/man-pages/man2/connect.2.html) for more details.
+        examples: ["connection_refused", "address_not_available"]
+
+  - id: span.dotnet.dns.lookup.client
+    type: span
+    span_kind: client
+    stability: experimental
+    brief: >
+      The span describes DNS lookup.
+    attributes:
+      - ref: dns.question.name
+        brief: The domain name or an IP address being queried.
+      - ref: dns.answers
+        brief: List of resolved IP addresses (for DNS lookup) or a single element containing domain name (for reverse lookup).
+      - ref: error.type
+        brief: The error code or exception name returned by [System.Net.Dns](https://learn.microsoft.com/dotnet/api/system.net.dns).
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        note: |
+          The following errors are reported:
+
+          - `host_not_found`
+          - `try_again`
+          - `no_recovery`
+          - `address_family_not_supported`
+          - the full exception type name
+
+          See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.socketerror) for more details.
+        examples: ["host_not_found", "try_again" ]
+
+  - id: span.dotnet.tls.handshake.client
+    type: span
+    span_kind: client
+    stability: experimental
+    brief: >
+      The span describes TLS handshake.
+    attributes:
+      - ref: tls.protocol.name
+        requirement_level:
+          recommended: when available
+      - ref: tls.protocol.version
+        requirement_level:
+          recommended: when available
+      - ref: server.address
+        brief: The [server name indication (SNI)](https://en.wikipedia.org/wiki/Server_Name_Indication) used in the 'Client Hello' message during TLS handshake.
+        requirement_level:
+          recommended: when authenticating the client.
+        examples: ["opentelemetry.io", "example.com"]
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        note: ""
+        examples: ["System.Net.Security.Authentication.AuthenticationException", "System.OperationCanceledException"]
