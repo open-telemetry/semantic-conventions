@@ -3,9 +3,9 @@ groups:
     type: attribute_group
     display_name: Code Attributes
     brief: >
-      These attributes allow to report this unit of code and therefore to provide more context about the span.
+      These attributes provide context about source code
     attributes:
-      - id: code.function
+      - id: code.function.name
         type: string
         stability: experimental
         brief: >
@@ -15,8 +15,8 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The "namespace" within which `code.function` is defined. Usually the qualified class or module name,
-          such that `code.namespace` + some separator + `code.function` form a unique identifier for the code unit.
+          The "namespace" within which `code.function.name` is defined. Usually the qualified class or module name,
+          such that `code.namespace` + some separator + `code.function.name` form a unique identifier for the code unit.
         examples: com.example.MyHttpService
       - id: code.filepath
         type: string
@@ -24,13 +24,13 @@ groups:
         brief: >
           The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path).
         examples: /usr/local/MyApplication/content_root/app/index.php
-      - id: code.lineno
+      - id: code.line.number
         type: int
         stability: experimental
         brief: >
           The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`.
         examples: 42
-      - id: code.column
+      - id: code.column.number
         type: int
         stability: experimental
         brief: >
