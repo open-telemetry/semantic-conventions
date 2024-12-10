@@ -442,3 +442,18 @@ groups:
 
       This metric SHOULD, at a minimum, be reported against a
       [`k8s.cronjob`](../resource/k8s.md#cronjob) resource.
+
+  # k8s.namespace.* metrics
+  - id: metric.k8s.namespace.phase
+    type: metric
+    metric_name: k8s.namespace.phase
+    stability: experimental
+    brief: "Operational status: `1` (true) or `0` (false) for each of the possible phases"
+    instrument: updowncounter
+    unit: "{namespace}"
+    note: |
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.namespace`](../resource/k8s.md#namespace) resource.
+    attributes:
+      - ref: k8s.namespace.phase
+        requirement_level: required
