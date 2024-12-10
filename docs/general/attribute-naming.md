@@ -46,17 +46,23 @@ Names SHOULD follow these rules:
   indicate entity hierarchies. This purpose should primarily drive the decision
   about forming nested namespaces.
 
+- The special namespace `blob_ref.*` and `*.blob_ref.*` is reserved for
+  [Blob Reference Properties](./blob-reference-properties.md) and should not be used
+  except in the manner outlined in that specification.
+
 - For each multi-word dot-delimited component of the attribute name separate the
   words by underscores (i.e. use snake_case). For example
   `http.response.status_code` denotes the status code in the http namespace.
 
 - Names SHOULD NOT coincide with namespaces. For example if
-  `service.instance.id` is an attribute name then it is no longer valid to have
-  an attribute named `service.instance` because `service.instance` is already a
+  `service.instance.id` is an attribute name, then it is no longer valid to have
+  an attribute named `service.instance`, because `service.instance` is already a
   namespace. Because of this rule be careful when choosing names: every existing
   name prohibits existence of an equally named namespace in the future, and vice
   versa: any existing namespace prohibits existence of an equally named
-  attribute key in the future.
+  attribute key in the future. Note that
+  [Blob Reference Properties](./blob-reference-properties.md) are exempt
+  from this rule, because they are/replace the original attribute.
 
 ## Name Pluralization Guidelines
 
@@ -172,6 +178,19 @@ and protocols.
 
 Any additions to the `otel.*` namespace MUST be approved as part of
 OpenTelemetry specification.
+
+## Reference Attributes
+
+A "reference attribute" is a set of derived attribute names that are used to
+provide the value of an attribute indirectly via a URI reference to a storage
+system where the value of the attribute may be retrieved.
+
+In general, if there exists an attribute `somekey`, then there is implicitly
+defined another attribute `somekey.blob_ref.uri` which may be used to provide
+the value of the attribute `somekey` by reference to an external storage
+system from which the value of `somekey` may be fetched.
+
+See [Blob Reference Properties](./blob-reference-properties.md) for details.
 
 [DocumentStatus]:
   https://opentelemetry.io/docs/specs/otel/document-status
