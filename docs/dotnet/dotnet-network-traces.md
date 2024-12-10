@@ -20,6 +20,7 @@ This article defines semantic conventions for HTTP client, DNS and TLS spans emi
   - [HTTP request was performed on a connection that was immediately available](#http-request-was-performed-on-a-connection-that-was-immediately-available)
   - [HTTP request has to wait for connection setup](#http-request-has-to-wait-for-connection-setup)
   - [HTTP request has to wait for connection setup and other requests on that connection to complete](#http-request-has-to-wait-for-connection-setup-and-other-requests-on-that-connection-to-complete)
+  - [HTTP request fails because connection cannot be established](#http-request-fails-because-connection-cannot-be-established)
 
 <!-- tocstop -->
 
@@ -144,7 +145,7 @@ The span describes the establishment of the HTTP connection. It includes the tim
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `network.peer.address`:** The `network.peer.address` attribute is available only if the connection was successfully established.
+**[1] `network.peer.address`:** The `network.peer.address` attribute is available only if the connection was successfully established and only for IP sockets.
 
 **[2] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -447,10 +448,10 @@ The *HTTP connection_setup* span has started before this request, it also ended 
 *Wait for connection* span, indicating that there is a queue of requests and high demand for
 connections in the pool.
 
-
 ### HTTP request fails because connection cannot be established
 
 If HTTP request fails before connection is established:
+
 - all attempts to establish connections are recorded as *HTTP connection_setup* spans
 - HTTP request `GET` span is recorded with the corresponding error type along with *Wait for connection* span.
 - HTTP request `GET` span is **not** linked to any of the *HTTP connection_setup* spans since these connections were never associated with corresponding request.
