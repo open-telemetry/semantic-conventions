@@ -11,6 +11,8 @@ groups:
         requirement_level: required
       - ref: vcs.repository.url.full
         requirement_level: required
+      - ref: vcs.repository.name
+        requirement_level: recommended
   - id: metric.vcs.change.duration
     type: metric
     metric_name: vcs.change.duration
@@ -21,6 +23,8 @@ groups:
     attributes:
       - ref: vcs.repository.url.full
         requirement_level: required
+      - ref: vcs.repository.name
+        requirement_level: recommended
       - ref: vcs.ref.head.name
         requirement_level: required
       - ref: vcs.change.state
@@ -35,6 +39,8 @@ groups:
     attributes:
       - ref: vcs.repository.url.full
         requirement_level: required
+      - ref: vcs.repository.name
+        requirement_level: recommended
       - ref: vcs.ref.head.name
         requirement_level: required
   - id: metric.vcs.repository.count
@@ -55,6 +61,8 @@ groups:
     attributes:
       - ref: vcs.repository.url.full
         requirement_level: required
+      - ref: vcs.repository.name
+        requirement_level: recommended
       - ref: vcs.ref.type
         requirement_level: required
   - id: metric.vcs.ref.lines_delta
@@ -74,6 +82,8 @@ groups:
           conditionally_required: if a change is associate with the ref.
       - ref: vcs.repository.url.full
         requirement_level: required
+      - ref: vcs.repository.name
+        requirement_level: recommended
       - ref: vcs.ref.head.name
         requirement_level: required
       - ref: vcs.ref.head.type
@@ -100,6 +110,8 @@ groups:
           conditionally_required: if a change is associate with the ref.
       - ref: vcs.repository.url.full
         requirement_level: required
+      - ref: vcs.repository.name
+        requirement_level: recommended
       - ref: vcs.ref.head.name
         requirement_level: required
       - ref: vcs.ref.head.type
@@ -120,6 +132,8 @@ groups:
     attributes:
       - ref: vcs.repository.url.full
         requirement_level: required
+      - ref: vcs.repository.name
+        requirement_level: recommended
       - ref: vcs.ref.head.name
         requirement_level: required
       - ref: vcs.ref.head.type
@@ -134,3 +148,5 @@ groups:
     attributes:
       - ref: vcs.repository.url.full
         requirement_level: required
+      - ref: vcs.repository.name
+        requirement_level: recommended

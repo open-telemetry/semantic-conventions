@@ -81,7 +81,7 @@ Describes Linux Process attributes
 |---|---|---|---|---|
 | <a id="process-linux-cgroup" href="#process-linux-cgroup">`process.linux.cgroup`</a> | string | The control group associated with the process. [4] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[4] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/<PID>/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
+**[4] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/\[PID\]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
 
 ## Deprecated Process Attributes
 

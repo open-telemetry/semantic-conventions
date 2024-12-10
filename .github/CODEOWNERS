@@ -32,14 +32,15 @@
 /model/jvm/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
 
 # HTTP semantic conventions
-/docs/http/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
-/model/http/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
-/model/error/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
-/model/client/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
-/model/network/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers
-/model/server/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
-/model/url/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
-/model/user-agent/                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/http/                            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/http/                           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/error/                          @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/client/                         @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/network/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers
+/model/server/                         @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/url/                            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/model/user-agent/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
+/docs/non-normative/http-migration.md  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 
 # System semantic conventions
 /docs/process/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers
@@ -58,8 +59,9 @@
 /model/device/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
 
 # K8s semantic conventions
-/docs/resource/k8s.md             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
-/model/k8s/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/docs/resource/k8s.md                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/model/k8s/                          @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/docs/non-normative/k8s-migration.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
 
 # Container semantic conventions
 /docs/resource/container.md       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
@@ -95,8 +97,9 @@
 /model/vcs/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 
 # Database semantic conventions
-/docs/database/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
-/model/database/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
+/docs/database/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
+/model/database/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
+/docs/non-normative/db-migration.md  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
 
 # Messaging semantic conventions
 /docs/messaging/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-messaging-approvers
@@ -107,7 +110,8 @@
 /model/feature-flags/              @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-feature-flag-approvers
 
 # Tooling
-/policies/                        @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
-/policies_test/                   @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
-/templates/                       @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
-/internal/                        @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
+/policies/                              @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
+/policies_test/                         @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
+/templates/                             @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
+/internal/                              @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
+/docs/non-normative/code-generation.md  @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-maintainers
