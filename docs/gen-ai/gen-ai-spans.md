@@ -121,10 +121,14 @@ Instrumentations SHOULD document the list of errors they report.
 | `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

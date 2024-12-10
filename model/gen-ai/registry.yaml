@@ -45,6 +45,22 @@ groups:
               stability: experimental
               value: "aws.bedrock"
               brief: 'AWS Bedrock'
+            - id: perplexity
+              stability: experimental
+              value: "perplexity"
+              brief: 'Perplexity'
+            - id: xai
+              stability: experimental
+              value: "xai"
+              brief: 'xAI'
+            - id: deepseek
+              stability: experimental
+              value: "deepseek"
+              brief: 'DeepSeek'
+            - id: groq
+              stability: experimental
+              value: "groq"
+              brief: 'Groq'
 
         brief: The Generative AI product as identified by the client or server instrumentation.
         note: |
