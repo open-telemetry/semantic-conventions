@@ -95,8 +95,8 @@ it's RECOMMENDED to:
 
 **[3] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
-**[4] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
-If `messaging.destination.anonymous` or `messaging.destination.temporary` is set to true, `messaging.destination.name` SHOULD be set to `(temporary)`.
+**[4] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
 **[5] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 

@@ -207,10 +207,11 @@ and SHOULD adhere to one of the following values, provided they are accessible:
 1. `messaging.destination.template` SHOULD be used when it is available.
 2. `messaging.destination.name` SHOULD be used when the destination is known to be neither [temporary nor anonymous](#temporary-and-anonymous-destinations).
 3. `server.address:server.port` SHOULD be used only for operations not targeting any specific destination(s).
+4. The placeholder `(temporary)` SHOULD be used when the destination is [temporary or anonymous](#temporary-and-anonymous-destinations)
+   and neither `messaging.destination.template` or `server.address:server.port` are available.
 
 If a `{destination}` value is not available, the instrumentation
-SHOULD omit the `{destination}` from the span name. The same applies for
-[temporary or anonymous](#temporary-and-anonymous-destinations) destinations.
+SHOULD omit the `{destination}` from the span name.
 
 Examples:
 
@@ -424,8 +425,8 @@ it's RECOMMENDED to:
 
 **[6] `messaging.destination.anonymous`:** If value is `true`. When missing, the value is assumed to be `false`.
 
-**[7] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
-If `messaging.destination.anonymous` or `messaging.destination.temporary` is set to true, `messaging.destination.name` SHOULD be set to `(temporary)`.
+**[7] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
 **[8] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
