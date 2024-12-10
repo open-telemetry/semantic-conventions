@@ -411,7 +411,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.job.desired_successful_pods` | Gauge | `{pod}` | The desired number of successfully finished pods the job should be run with [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.job.desired_successful_pods` | UpDownCounter | `{pod}` | The desired number of successfully finished pods the job should be run with [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `completions` field of the
 [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch)
@@ -434,7 +434,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.job.max_parallel_pods` | Gauge | `{pod}` | The max desired number of pods the job should run at any given time [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.job.max_parallel_pods` | UpDownCounter | `{pod}` | The max desired number of pods the job should run at any given time [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `parallelism` field of the
 [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch

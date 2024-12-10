@@ -163,7 +163,7 @@ groups:
     metric_name: k8s.job.desired_successful_pods
     stability: experimental
     brief: "The desired number of successfully finished pods the job should be run with"
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
     note: |
       This metric aligns with the `completions` field of the
@@ -173,7 +173,7 @@ groups:
     metric_name: k8s.job.max_parallel_pods
     stability: experimental
     brief: "The max desired number of pods the job should run at any given time"
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
     note: |
       This metric aligns with the `parallelism` field of the
