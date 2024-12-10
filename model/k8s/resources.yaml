@@ -111,3 +111,13 @@ groups:
     attributes:
       - ref: k8s.cronjob.uid
       - ref: k8s.cronjob.name
+
+  - id: resource.k8s.persistent_volume
+    type: resource
+    stability: experimental
+    name: k8s.persistent_volume
+    brief: >
+      A Kubernetes Persistent Volume object.
+    attributes:
+      - ref: container.csi.plugin.name
+      - ref: container.csi.volume.id
