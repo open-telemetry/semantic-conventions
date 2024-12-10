@@ -7,12 +7,17 @@ groups:
     attributes:
       - id: enduser.id
         type: string
-        deprecated: Replaced by `enduser.anonymous.id` attribute.
+        deprecated: Replaced by `enduser.pseudo.id` attribute.
         stability: experimental
         examples: ['QdH5CAWJgqVT4rOr0qtumf']
         brief: >
-          Deprecated, use `enduser.anonymous.id` instead.
-      - id: enduser.anonymous.id
+          Deprecated, use `enduser.pseudo.id` instead.
+      - id: enduser.pseudo.id
+        type: string
+        stability: experimental
+        brief: >
+          Pseudonymous identifier of an end user. This identifier is unique to the user but does not reveal their actual identity.
+        examples: ['QdH5CAWJgqVT4rOr0qtumf']
         type: string
         stability: experimental
         brief: >

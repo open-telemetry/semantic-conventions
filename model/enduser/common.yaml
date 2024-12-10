@@ -5,9 +5,9 @@ groups:
       These attributes may be used for any operation with an authenticated and/or authorized enduser.
     attributes:
       - ref: enduser.id
-        deprecated: Replaced by `enduser.anonymous.id` attribute.
+        deprecated: Replaced by `enduser.pseudo.id` attribute.
         requirement_level: recommended
-      - ref: enduser.anonymous.id
+      - ref: enduser.pseudo.id
         requirement_level: recommended
       - ref: enduser.role
         deprecated: "Removed."
