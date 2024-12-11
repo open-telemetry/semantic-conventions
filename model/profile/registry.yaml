@@ -2,6 +2,7 @@ groups:
 
   - id: registry.profile.frame
     type: attribute_group
+    display_name: Profile Frame Attributes
     brief: >
       Describes the origin of a single frame in a Profile.
     attributes:

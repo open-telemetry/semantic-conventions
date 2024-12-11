@@ -1,6 +1,7 @@
 groups:
   - id: registry.vcs.repository
     type: attribute_group
+    display_name: VCS Repository Attributes
     brief: >
       This group defines the attributes for
       [Version Control Systems (VCS)](https://wikipedia.org/wiki/Version_control).

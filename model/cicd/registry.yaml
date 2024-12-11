@@ -1,6 +1,7 @@
 groups:
   - id: registry.cicd.pipeline
     type: attribute_group
+    display_name: CI/CD Pipeline Attributes
     brief: >
       This group describes attributes specific to pipelines within a Continuous
       Integration and Continuous Deployment (CI/CD) system. A
