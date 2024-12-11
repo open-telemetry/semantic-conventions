@@ -63,6 +63,15 @@ groups:
       - ref: network.interface.name
       - ref: network.io.direction
 
+  # k8s.container.* metrics
+  - id: metric.k8s.container.status.waiting
+    type: metric
+    metric_name: k8s.container.status.waiting
+    stability: experimental
+    brief: "Whether container is in waiting state. (0 for no, 1 for yes)"
+    instrument: gauge
+    unit: ""
+
   # k8s.node.* metrics
   - id: metric.k8s.node.uptime
     type: metric
