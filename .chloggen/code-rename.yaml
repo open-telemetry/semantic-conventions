@@ -10,7 +10,7 @@ change_type: breaking
 component: code
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: rename `code.function`, `code.lineno` and `code.column`
+note: rename `code.function`, `code.lineno`, `code.column` and `code.filepath`
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
@@ -23,3 +23,4 @@ subtext: |
   `code.function` renamed to `code.function.name`
   `code.lineno` renamed to `code.line.number`
   `code.column` renamed to `code.column.number`
+  `code.filepath` renamed to `code.file.path`

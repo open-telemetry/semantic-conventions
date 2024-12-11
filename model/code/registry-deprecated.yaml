@@ -12,6 +12,12 @@ groups:
         brief: >
           Deprecated, use `code.function.name` instead
         examples: serveRequest
+      - id: code.filepath
+        type: string
+        stability: experimental
+        brief: >
+          Deprecated, use `code.file.path` instead
+        examples: /usr/local/MyApplication/content_root/app/index.php
       - id: code.lineno
         type: int
         stability: experimental

@@ -16,7 +16,7 @@ These attributes provide context about source code
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="code-column-number" href="#code-column-number">`code.column.number`</a> | int | The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `16` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="code-filepath" href="#code-filepath">`code.filepath`</a> | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). | `/usr/local/MyApplication/content_root/app/index.php` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="code-file-path" href="#code-file-path">`code.file.path`</a> | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). | `/usr/local/MyApplication/content_root/app/index.php` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="code-function-name" href="#code-function-name">`code.function.name`</a> | string | The method or function name, or equivalent (usually rightmost part of the code unit's name). | `serveRequest` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="code-line-number" href="#code-line-number">`code.line.number`</a> | int | The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`. | `42` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="code-namespace" href="#code-namespace">`code.namespace`</a> | string | The "namespace" within which `code.function.name` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function.name` form a unique identifier for the code unit. | `com.example.MyHttpService` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -29,5 +29,6 @@ These deprecated attributes provide context about source code
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="code-column" href="#code-column">`code.column`</a> | int | Deprecated, use `code.column.number` | `16` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `code.column.number` |
+| <a id="code-filepath" href="#code-filepath">`code.filepath`</a> | string | Deprecated, use `code.file.path` instead | `/usr/local/MyApplication/content_root/app/index.php` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="code-function" href="#code-function">`code.function`</a> | string | Deprecated, use `code.function.name` instead | `serveRequest` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `code.function.name` |
 | <a id="code-lineno" href="#code-lineno">`code.lineno`</a> | int | Deprecated, use `code.line.number` instead | `42` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `code.line.number` |

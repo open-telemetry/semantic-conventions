@@ -18,7 +18,7 @@ groups:
           The "namespace" within which `code.function.name` is defined. Usually the qualified class or module name,
           such that `code.namespace` + some separator + `code.function.name` form a unique identifier for the code unit.
         examples: com.example.MyHttpService
-      - id: code.filepath
+      - id: code.file.path
         type: string
         stability: experimental
         brief: >
