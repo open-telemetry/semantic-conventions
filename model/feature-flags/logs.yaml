@@ -2,6 +2,7 @@ groups:
   - id: event.feature_flag.evaluation
     type: event
     name: feature_flag.evaluation
+    stability: experimental
     brief: >
       Defines feature flag evaluation as an event.
     note: >
