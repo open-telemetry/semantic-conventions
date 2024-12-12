@@ -1,6 +1,7 @@
 groups:
   - id: registry.azure.sdk
     type: attribute_group
+    display_name: Azure SDK Attributes
     brief: >
       This document defines generic attributes for Azure SDK.
     attributes:
