@@ -6,7 +6,7 @@
 
 # Azure
 
-## Azure Sdk Attributes
+## Azure SDK Attributes
 
 This document defines generic attributes for Azure SDK.
 

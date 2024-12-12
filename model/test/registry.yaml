@@ -1,6 +1,7 @@
 groups:
   - id: registry.test
     type: attribute_group
+    display_name: Test Attributes
     brief: >
       This group describes attributes specific to
       [software tests](https://wikipedia.org/wiki/Software_testing).
