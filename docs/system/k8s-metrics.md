@@ -394,7 +394,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.deployment.desired_pods` | Gauge | `{pod}` | Number of desired replica pods in this deployment [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.deployment.desired_pods` | UpDownCounter | `{pod}` | Number of desired replica pods in this deployment [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `replicas` field of the
 [K8s DeploymentSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentspec-v1-apps)
@@ -417,7 +417,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.deployment.available_pods` | Gauge | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this deployment [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.deployment.available_pods` | UpDownCounter | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this deployment [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `availableReplicas` field of the
 [K8s DeploymentStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentstatus-v1-apps)
@@ -444,7 +444,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.replicaset.desired_pods` | Gauge | `{pod}` | Number of desired replica pods in this replicaset [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.replicaset.desired_pods` | UpDownCounter | `{pod}` | Number of desired replica pods in this replicaset [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `replicas` field of the
 [K8s ReplicaSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetspec-v1-apps)
@@ -467,7 +467,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.replicaset.available_pods` | Gauge | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this replicaset [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.replicaset.available_pods` | UpDownCounter | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this replicaset [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `availableReplicas` field of the
 [K8s ReplicaSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetstatus-v1-apps)
@@ -494,7 +494,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.replication_controller.desired_pods` | Gauge | `{pod}` | Number of desired replica pods in this replication controller [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.replication_controller.desired_pods` | UpDownCounter | `{pod}` | Number of desired replica pods in this replication controller [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `replicas` field of the
 [K8s ReplicationControllerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerspec-v1-core)
@@ -517,7 +517,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.replication_controller.available_pods` | Gauge | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this replication controller [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.replication_controller.available_pods` | UpDownCounter | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this replication controller [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `availableReplicas` field of the
 [K8s ReplicationControllerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerstatus-v1-core)
@@ -544,7 +544,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.statefulset.desired_pods` | Gauge | `{pod}` | Number of desired replica pods in this statefulset [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.statefulset.desired_pods` | UpDownCounter | `{pod}` | Number of desired replica pods in this statefulset [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `replicas` field of the
 [K8s StatefulSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetspec-v1-apps)
@@ -567,7 +567,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.statefulset.ready_pods` | Gauge | `{pod}` | The number of replica pods created for this statefulset with a Ready Condition [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.statefulset.ready_pods` | UpDownCounter | `{pod}` | The number of replica pods created for this statefulset with a Ready Condition [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `readyReplicas` field of the
 [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps)
@@ -590,7 +590,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.statefulset.current_pods` | Gauge | `{pod}` | The number of replica pods created by the statefulset controller from the statefulset version indicated by currentRevision [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.statefulset.current_pods` | UpDownCounter | `{pod}` | The number of replica pods created by the statefulset controller from the statefulset version indicated by currentRevision [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `currentReplicas` field of the
 [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps)
@@ -613,7 +613,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.statefulset.updated_pods` | Gauge | `{pod}` | Number of replica pods created by the statefulset controller from the statefulset version indicated by updateRevision [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.statefulset.updated_pods` | UpDownCounter | `{pod}` | Number of replica pods created by the statefulset controller from the statefulset version indicated by updateRevision [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `updatedReplicas` field of the
 [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps)
@@ -640,7 +640,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.hpa.desired_pods` | Gauge | `{pod}` | Desired number of replica pods managed by this horizontal pod autoscaler, as last calculated by the autoscaler [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.hpa.desired_pods` | UpDownCounter | `{pod}` | Desired number of replica pods managed by this horizontal pod autoscaler, as last calculated by the autoscaler [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `desiredReplicas` field of the
 [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
@@ -663,7 +663,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.hpa.current_pods` | Gauge | `{pod}` | Current number of replica pods managed by this horizontal pod autoscaler, as last seen by the autoscaler [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.hpa.current_pods` | UpDownCounter | `{pod}` | Current number of replica pods managed by this horizontal pod autoscaler, as last seen by the autoscaler [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `currentReplicas` field of the
 [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
@@ -686,7 +686,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.hpa.max_pods` | Gauge | `{pod}` | The upper limit for the number of replica pods to which the autoscaler can scale up [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.hpa.max_pods` | UpDownCounter | `{pod}` | The upper limit for the number of replica pods to which the autoscaler can scale up [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `maxReplicas` field of the
 [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
@@ -709,7 +709,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.hpa.min_pods` | Gauge | `{pod}` | The lower limit for the number of replica pods to which the autoscaler can scale down [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.hpa.min_pods` | UpDownCounter | `{pod}` | The lower limit for the number of replica pods to which the autoscaler can scale down [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `minReplicas` field of the
 [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)

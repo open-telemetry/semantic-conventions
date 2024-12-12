@@ -136,7 +136,7 @@ groups:
     note: |
       This metric aligns with the `replicas` field of the
       [K8s DeploymentSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentspec-v1-apps)
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.deployment.available_pods
     type: metric
@@ -146,7 +146,7 @@ groups:
     note: |
       This metric aligns with the `availableReplicas` field of the
       [K8s DeploymentStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentstatus-v1-apps)
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
 
   # k8s.replicaset.* metrics
@@ -158,7 +158,7 @@ groups:
     note: |
       This metric aligns with the `replicas` field of the
       [K8s ReplicaSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetspec-v1-apps)
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.replicaset.available_pods
     type: metric
@@ -168,7 +168,7 @@ groups:
     note: |
       This metric aligns with the `availableReplicas` field of the
       [K8s ReplicaSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetstatus-v1-apps)
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
 
   # k8s.replication_controller.* metrics
@@ -180,7 +180,7 @@ groups:
     note: |
       This metric aligns with the `replicas` field of the
       [K8s ReplicationControllerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerspec-v1-core)
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.replication_controller.available_pods
     type: metric
@@ -190,7 +190,7 @@ groups:
     note: |
       This metric aligns with the `availableReplicas` field of the
       [K8s ReplicationControllerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerstatus-v1-core)
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
 
   # k8s.statefulset.* metrics
@@ -202,7 +202,7 @@ groups:
     note: |
       This metric aligns with the `replicas` field of the
       [K8s StatefulSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetspec-v1-apps)
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.statefulset.ready_pods
     type: metric
@@ -212,7 +212,7 @@ groups:
     note: |
       This metric aligns with the `readyReplicas` field of the
       [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps)
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.statefulset.current_pods
     type: metric
@@ -222,7 +222,7 @@ groups:
     note: |
       This metric aligns with the `currentReplicas` field of the
       [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps)
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.statefulset.updated_pods
     type: metric
@@ -232,7 +232,7 @@ groups:
     note: |
       This metric aligns with the `updatedReplicas` field of the
       [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps)
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
 
   # k8s.hpa.* metrics
@@ -244,7 +244,7 @@ groups:
     note: |
       This metric aligns with the `desiredReplicas` field of the
       [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.hpa.current_pods
     type: metric
@@ -254,7 +254,7 @@ groups:
     note: |
       This metric aligns with the `currentReplicas` field of the
       [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.hpa.max_pods
     type: metric
@@ -264,7 +264,7 @@ groups:
     note: |
       This metric aligns with the `maxReplicas` field of the
       [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.hpa.min_pods
     type: metric
@@ -274,5 +274,5 @@ groups:
     note: |
       This metric aligns with the `minReplicas` field of the
       [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"

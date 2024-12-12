@@ -46,6 +46,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Deployment metrics](#k8s-deployment-metrics)
   - [K8s ReplicaSet metrics](#k8s-replicaset-metrics)
   - [K8s ReplicationController metrics](#k8s-replicationcontroller-metrics)
+  - [K8s StatefulsSet metrics](#k8s-statefulsset-metrics)
   - [K8s HorizontalPodAutoscaler metrics](#k8s-horizontalpodautoscaler-metrics)
 
 <!-- tocstop -->
@@ -82,14 +83,14 @@ receiver were introduced as semantic conventions in
 [#1636](https://github.com/open-telemetry/semantic-conventions/pull/1636) (TODO: replace with SemConv version once
 available).
 
-The changes in their metric names are the following:
+The changes in their metric names and types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                             |
-|------------------------------------------------------------------------------------|---------------------------------|
-| `k8s.deployment.desired`                                                           | `k8s.deployment.desired_pods`   |
-| `k8s.deployment.available`                                                         | `k8s.deployment.available_pods` |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                          |
+|------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| `k8s.deployment.desired`       (type: `gauge`)                                     | `k8s.deployment.desired_pods` (type: `updowncounter`)        |
+| `k8s.deployment.available`     (type: `gauge`)                                     | `k8s.deployment.available_pods`      (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
@@ -101,14 +102,14 @@ receiver were introduced as semantic conventions in
 [#1636](https://github.com/open-telemetry/semantic-conventions/pull/1636) (TODO: replace with SemConv version once
 available).
 
-The changes in their metric names are the following:
+The changes in their metric names and types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                             |
-|------------------------------------------------------------------------------------|---------------------------------|
-| `k8s.replicaset.desired`                                                           | `k8s.replicaset.desired_pods`   |
-| `k8s.replicaset.available`                                                         | `k8s.replicaset.available_pods` |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                     |
+|------------------------------------------------------------------------------------|---------------------------------------------------------|
+| `k8s.replicaset.desired`           (type: `gauge`)                                 | `k8s.replicaset.desired_pods` (type: `updowncounter`)   |
+| `k8s.replicaset.available`         (type: `gauge`)                                 | `k8s.replicaset.available_pods` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
@@ -120,14 +121,35 @@ receiver were introduced as semantic conventions in
 [#1636](https://github.com/open-telemetry/semantic-conventions/pull/1636) (TODO: replace with SemConv version once
 available).
 
-The changes in their metric names are the following:
+The changes in their metric names and types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                         |
-|------------------------------------------------------------------------------------|---------------------------------------------|
-| `k8s.replication_controller.desired`                                               | `k8s.replication_controller.desired_pods`   |
-| `k8s.replication_controller.available`                                             | `k8s.replication_controller.available_pods` |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                 |
+|------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| `k8s.replication_controller.desired`           (type: `gauge`)                     | `k8s.replication_controller.desired_pods` (type: `updowncounter`)   |
+| `k8s.replication_controller.available`         (type: `gauge`)                     | `k8s.replication_controller.available_pods` (type: `updowncounter`) |
+
+<!-- prettier-ignore-end -->
+
+### K8s StatefulsSet metrics
+
+The K8s StatefulsSet metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#1636](https://github.com/open-telemetry/semantic-conventions/pull/1636) (TODO: replace with SemConv version once
+available).
+
+The changes in their metric types are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                      |
+|------------------------------------------------------------------------------------|----------------------------------------------------------|
+| `k8s.statefulset.desired_pods`                  (type: `gauge`)                    | `k8s.statefulset.desired_pods` (type: `updowncounter`)   |
+| `k8s.statefulset.ready_pods`                  (type: `gauge`)                      | `k8s.statefulset.ready_pods` (type: `updowncounter`)     |
+| `k8s.statefulset.current_pods`                       (type: `gauge`)               | `k8s.statefulset.current_pods`  (type: `updowncounter`)  |
+| `k8s.statefulset.updated_pods`                      (type: `gauge`)                | `k8s.statefulset.updated_pods`   (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
@@ -139,15 +161,15 @@ receiver were introduced as semantic conventions in
 [#1636](https://github.com/open-telemetry/semantic-conventions/pull/1636) (TODO: replace with SemConv version once
 available).
 
-The changes in their metric names are the following:
+The changes in their metric names and types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                    |
-|------------------------------------------------------------------------------------|------------------------|
-| `k8s.hpa.desired_replicas`                                                         | `k8s.hpa.desired_pods` |
-| `k8s.hpa.current_replicas`                                                         | `k8s.hpa.current_pods` |
-| `k8s.hpa.max_replicas`                                                             | `k8s.hpa.max_pods`     |
-| `k8s.hpa.min_replicas`                                                             | `k8s.hpa.min_pods`     |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                            |
+|------------------------------------------------------------------------------------|------------------------------------------------|
+| `k8s.hpa.desired_replicas`                  (type: `gauge`)                        | `k8s.hpa.desired_pods` (type: `updowncounter`) |
+| `k8s.hpa.current_replicas`                  (type: `gauge`)                        | `k8s.hpa.current_pods` (type: `updowncounter`) |
+| `k8s.hpa.max_replicas`                       (type: `gauge`)                       | `k8s.hpa.max_pods`  (type: `updowncounter`)    |
+| `k8s.hpa.min_replicas`                      (type: `gauge`)                        | `k8s.hpa.min_pods`   (type: `updowncounter`)   |
 
 <!-- prettier-ignore-end -->
