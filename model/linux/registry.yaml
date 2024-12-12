@@ -2,6 +2,7 @@ groups:
   # linux.memory.* attribute group
   - id: registry.linux.memory
     type: attribute_group
+    display_name: Linux Memory Attributes
     brief: "Describes Linux Memory attributes"
     attributes:
       - id: linux.memory.slab.state
