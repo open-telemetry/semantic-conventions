@@ -12,7 +12,7 @@ groups:
     type: event
     stability: experimental
     brief: >
-      This event describes the instructions passed to the GenAI system inside the prompt.
+      This event describes the system instructions passed to the GenAI model.
     extends: gen_ai.common.event.attributes
     body:
       id: gen_ai.system.message
@@ -33,14 +33,14 @@ groups:
             The actual role of the message author as passed in the message.
           examples: ["system", "instruction"]
           requirement_level:
-            conditionally_required: if available and not equal to `system`.`
+            conditionally_required: if available and not equal to `system`.
 
   - id: event.gen_ai.user.message
     name: gen_ai.user.message
     type: event
     stability: experimental
     brief: >
-      This event describes the prompt message specified by the user.
+      This event describes the user message passed to the GenAI model.
     extends: gen_ai.common.event.attributes
     body:
       id: gen_ai.user.message
@@ -149,7 +149,7 @@ groups:
     type: event
     stability: experimental
     brief: >
-      This event describes the tool or function response message.
+      This event describes the response from a tool or function call passed to the GenAI model.
     extends: gen_ai.common.event.attributes
     body:
       id: gen_ai.tool.message

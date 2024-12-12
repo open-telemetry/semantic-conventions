@@ -59,7 +59,7 @@ Instrumentations MAY offer configuration options allowing to disable events or a
 
 The event name MUST be `gen_ai.system.message`.
 
-This event describes the instructions passed to the GenAI system inside the prompt.
+This event describes the system instructions passed to the GenAI model.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -94,7 +94,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | `content` | undefined | The contents of the system message. | `You're a helpful bot` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `role` | string | The actual role of the message author as passed in the message. | `system`; `instruction` | `Conditionally Required` if available and not equal to `system`.` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `role` | string | The actual role of the message author as passed in the message. | `system`; `instruction` | `Conditionally Required` if available and not equal to `system`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -114,7 +114,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 The event name MUST be `gen_ai.user.message`.
 
-This event describes the prompt message specified by the user.
+This event describes the user message passed to the GenAI model.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -239,7 +239,7 @@ Semantic conventions for individual systems MAY specify a different type for arg
 
 The event name MUST be `gen_ai.tool.message`.
 
-This event describes the tool or function response message.
+This event describes the response from a tool or function call passed to the GenAI model.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
