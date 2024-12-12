@@ -192,8 +192,7 @@ Messaging spans SHOULD follow the overall [guidelines for span names](https://gi
 <!-- markdown-link-check-disable -->
 <!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
 The **span name** SHOULD be `{messaging.operation.name} {destination}`
-(see below for the exact definition of the
-[`{destination}`](#destination-placeholder) placeholder).
+(see below for the exact definition of the [`{destination}`](#destination-placeholder) placeholder).
 <!-- markdown-link-check-enable -->
 
 Semantic conventions for individual messaging systems MAY specify different
@@ -207,10 +206,9 @@ and SHOULD adhere to one of the following values, provided they are accessible:
 1. `messaging.destination.template` SHOULD be used when it is available.
 2. `messaging.destination.name` SHOULD be used when the destination is known to be neither [temporary nor anonymous](#temporary-and-anonymous-destinations).
 3. `server.address:server.port` SHOULD be used only for operations not targeting any specific destination(s).
-4. The placeholder `(temporary)` SHOULD be used when the destination is [temporary or anonymous](#temporary-and-anonymous-destinations)
-   and neither `messaging.destination.template` or `server.address:server.port` are available.
 
-If a corresponding `{destination}` value is not available for a specific operation, the instrumentation SHOULD omit the `{destination}`.
+If a (low-cardinality) corresponding `{destination}` value is not available for
+a specific operation, the instrumentation SHOULD omit the `{destination}`.
 
 Examples:
 
