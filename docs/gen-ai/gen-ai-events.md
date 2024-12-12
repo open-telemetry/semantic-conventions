@@ -169,7 +169,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 The event name MUST be `gen_ai.assistant.message`.
 
-This event describes the assistant message passed to GenAI system or received from it.
+This event describes the assistant message passed to GenAI system.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

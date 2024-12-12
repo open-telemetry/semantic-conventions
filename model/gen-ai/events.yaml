@@ -68,7 +68,7 @@ groups:
     type: event
     stability: experimental
     brief: >
-      This event describes the assistant message passed to GenAI system or received from it.
+      This event describes the assistant message passed to GenAI system.
     extends: gen_ai.common.event.attributes
     body:
       id: gen_ai.assistant.message
