@@ -23,10 +23,15 @@ linkTitle: Generative AI events
 
 <!-- tocstop -->
 
-GenAI instrumentations MAY capture user inputs sent to the model and responses received from it as [events](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/logs/event-api.md).
+GenAI instrumentations MAY capture user inputs sent to the model and responses received from it as [events](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.40.0/specification/logs/api.md#emit-an-event).
 
+<<<<<<< HEAD
 > [!NOTE]
 > Event API is experimental and not yet available in some languages. Check [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/main/spec-compliance-matrix.md#events) to see the implementation status in corresponding language.
+=======
+> Note:
+> Event API is experimental and not yet available in some languages. Check [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.40.0/spec-compliance-matrix.md#logs) to see the implementation status in corresponding language.
+>>>>>>> 75746bc9 (reword)
 
 Instrumentations MAY capture inputs and outputs if and only if application has enabled the collection of this data.
 This is for three primary reasons:
@@ -57,7 +62,7 @@ Instrumentations MAY offer configuration options allowing to disable events or a
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-The event name MUST be `gen_ai.system.message`.
+The [EventName](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/data-model.md#field-eventname) MUST be `gen_ai.system.message`.
 
 This event describes the system instructions passed to the GenAI model.
 
@@ -112,7 +117,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-The event name MUST be `gen_ai.user.message`.
+The [EventName](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/data-model.md#field-eventname) MUST be `gen_ai.user.message`.
 
 This event describes the user message passed to the GenAI model.
 
@@ -167,7 +172,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-The event name MUST be `gen_ai.assistant.message`.
+The [EventName](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/data-model.md#field-eventname) MUST be `gen_ai.assistant.message`.
 
 This event describes the assistant message passed to GenAI system.
 
@@ -237,7 +242,7 @@ Semantic conventions for individual systems MAY specify a different type for arg
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-The event name MUST be `gen_ai.tool.message`.
+The [EventName](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/data-model.md#field-eventname) MUST be `gen_ai.tool.message`.
 
 This event describes the response from a tool or function call passed to the GenAI model.
 
@@ -293,7 +298,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-The event name MUST be `gen_ai.choice`.
+The [EventName](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/data-model.md#field-eventname) MUST be `gen_ai.choice`.
 
 This event describes the Gen AI response message.
 

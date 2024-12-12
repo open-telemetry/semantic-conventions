@@ -29,7 +29,7 @@ application lifecycle.
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-The [EventName](TODO link to new spec model) MUST be `device.app.lifecycle`.
+The [EventName](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/data-model.md#field-eventname) MUST be `device.app.lifecycle`.
 
 This event represents an occurrence of a lifecycle transition on Android or iOS platform.
 

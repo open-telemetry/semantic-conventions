@@ -50,7 +50,7 @@ The table below indicates which attributes should be added to the
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-The [EventName](TODO link to new spec model) MUST be `feature_flag.evaluation`.
+The [EventName](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/data-model.md#field-eventname) MUST be `feature_flag.evaluation`.
 
 Defines feature flag evaluation as an event.
 

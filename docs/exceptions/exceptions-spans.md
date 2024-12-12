@@ -49,7 +49,7 @@ try {
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
 
-The [EventName](TODO link to new spec model) MUST be `exception`.
+The [EventName](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/data-model.md#field-eventname) MUST be `exception`.
 
 This event describes a single exception.
 

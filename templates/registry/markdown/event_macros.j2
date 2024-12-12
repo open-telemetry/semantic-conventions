@@ -3,7 +3,7 @@
 {% import 'body_field_table.j2' as body_table %}
 {% macro header(event) %}**Status:** {{ stability.badge(event.stability, event.deprecated) }}
 
-The [EventName](TODO link to new spec model) MUST be `{{ event.name }}`.
+The [EventName](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/data-model.md#field-eventname) MUST be `{{ event.name }}`.
 
 {{ event.brief | trim }}
 {%if event.note %}
