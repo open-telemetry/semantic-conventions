@@ -42,16 +42,16 @@ The Semantic Conventions for [RabbitMQ](https://www.rabbitmq.com/) extend and ov
 
 ### Destination name
 
-n RabbitMQ, the destination is defined by an *exchange*, a *routing key* and
+In RabbitMQ, the destination is defined by an *exchange*, a *routing key* and
 for consumers, a *queue*.
 
-`messaging.destination.name` MUST be set to:
+`messaging.destination.name` SHOULD be set to:
 
 #### Producers
 
 - `{exchange}:{routing key}` when both values are present and non-empty.
 If any has an empty value (e.g., the default exchange is used) it SHOULD be omitted.
-- Otherwise: `amq.default`
+- Otherwise: `amq.default` when the default exchange is used and no routing key is provided
 
 #### Consumers
 
