@@ -31,3 +31,15 @@ groups:
     attributes:
       - ref: cicd.pipeline.name
         requirement_level: recommended
+  - id: metric.cicd.worker.count
+    type: metric
+    metric_name: cicd.worker.count
+    brief: 'The number of workers available to the CICD system and/or busy.'
+    instrument: updowncounter
+    unit: "{count}"
+    stability: experimental
+    attributes:
+      - ref: cicd.worker.type
+        requirement_level: required
+      - ref: cicd.worker.state
+        requirement_level: required

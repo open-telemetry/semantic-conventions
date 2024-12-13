@@ -105,3 +105,33 @@ groups:
         brief: >
           The result of a pipeline run.
         examples: ["open", "closed", "merged"]
+      - id: cicd.worker.type
+        type:
+          members:
+            - id: vm
+              value: vm
+              brief: "A virtual machine or baremetal host."
+              stability: experimental
+            - id: pod
+              value: pod
+              brief: "One or more containers deployed together."
+              stability: experimental
+        stability: experimental
+        brief: >
+          The type of worker / agent used by the CICD system.
+        examples: ["vm", "pod"]
+      - id: cicd.worker.state
+        type:
+          members:
+            - id: idle
+              value: idle
+              brief: "The worker is not performing work for the CICD system."
+              stability: experimental
+            - id: busy
+              value: busy
+              brief: "The worker is performing work for the CICD system."
+              stability: experimental
+        stability: experimental
+        brief: >
+          The state of a CICD worker / agent.
+        examples: ["idle", "busy"]
