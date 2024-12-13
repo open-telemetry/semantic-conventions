@@ -85,7 +85,7 @@ groups:
             - id: failure
               value: failure
               brief: >-
-                The pipeline run did not finish successfully, eg. due to compile error or a failing test.
+                The pipeline run did not finish successfully, eg. due to a compile error or a failing test.
                 Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run.
               stability: experimental
             - id: error
