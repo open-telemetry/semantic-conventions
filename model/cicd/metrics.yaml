@@ -1,0 +1,13 @@
+groups:
+  - id: metric.cicd.pipeline.run.duration
+    type: metric
+    metric_name: cicd.pipeline.run.duration
+    brief: 'Duration of a pipeline run grouped by pipeline and result.'
+    instrument: histogram
+    unit: "s"
+    stability: experimental
+    attributes:
+      - ref: cicd.pipeline.name
+        requirement_level: required
+      - ref: cicd.pipeline.result
+        requirement_level: required

@@ -75,3 +75,33 @@ groups:
         brief: >
           The type of the task within a pipeline.
         examples: ["build", "test", "deploy"]
+      - id: cicd.pipeline.result
+        type:
+          members:
+            - id: success
+              value: success
+              brief: "The pipeline run finished successfully."
+              stability: experimental
+            - id: failure
+              value: failure
+              brief: >-
+                The pipeline run did not finish successfully, eg. due to compile error or a failing test.
+                Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run.
+              stability: experimental
+            - id: error
+              value: error
+              brief: >-
+                The pipeline run failed due to an error in the CICD system, eg. due to the worker being killed.
+              stability: experimental
+            - id: timeout
+              value: timeout
+              brief: "A timeout caused the pipeline run to be interrupted."
+              stability: experimental
+            - id: cancelled
+              value: cancelled
+              brief: "The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run."
+              stability: experimental
+        stability: experimental
+        brief: >
+          The result of a pipeline run.
+        examples: ["open", "closed", "merged"]
