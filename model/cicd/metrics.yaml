@@ -14,7 +14,7 @@ groups:
   - id: metric.cicd.queue.latency
     type: metric
     metric_name: cicd.queue.latency
-    brief: 'Duration a pipeline run takes from being triggered to the start of execution.'
+    brief: 'The duration a pipeline run takes from being triggered to the start of execution.'
     instrument: histogram
     unit: "s"
     stability: experimental

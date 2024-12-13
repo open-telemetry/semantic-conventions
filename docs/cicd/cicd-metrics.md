@@ -86,7 +86,7 @@ This metric is [required][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `cicd.queue.latency` | Histogram | `s` | Duration a pipeline run takes from being triggered to the start of execution. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cicd.queue.latency` | Histogram | `s` | The duration a pipeline run takes from being triggered to the start of execution. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
