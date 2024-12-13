@@ -11,3 +11,23 @@ groups:
         requirement_level: required
       - ref: cicd.pipeline.result
         requirement_level: required
+  - id: metric.cicd.queue.latency
+    type: metric
+    metric_name: cicd.queue.latency
+    brief: 'Duration a pipeline run takes from being triggered to the start of execution.'
+    instrument: histogram
+    unit: "s"
+    stability: experimental
+    attributes:
+      - ref: cicd.pipeline.name
+        requirement_level: recommended
+  - id: metric.cicd.queue.length
+    type: metric
+    metric_name: cicd.queue.length
+    brief: 'The number of pipeline runs waiting for their start of execution.'
+    instrument: updowncounter
+    unit: "{pipeline_run}"
+    stability: experimental
+    attributes:
+      - ref: cicd.pipeline.name
+        requirement_level: recommended
