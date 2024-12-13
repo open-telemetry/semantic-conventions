@@ -50,7 +50,7 @@ Recommendations for defining events:
   collection of [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/common#attribute)
   attributes.
 * Events SHOULD be generated / produced / recorded using the
-    [Emit Event API](https://github.com/open-telemetry/opentelemetry-specification/blob/tree/v1.40.0/specification/logs/api.md#emit-an-event)
+    [Emit Event API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/api.md#emit-an-event)
     to ensure that the event is created using the configured SDK instance.
   * The Emit Event API is not yet available in all OpenTelemetry SDKs. Check [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.40.0/spec-compliance-matrix.md#logs) to see the implementation status in corresponding language.
 * It's NOT RECOMMENDED to prefix the _payload_ (body) _fields_ with the `EventName` to
