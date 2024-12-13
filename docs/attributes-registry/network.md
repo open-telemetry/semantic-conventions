@@ -33,7 +33,7 @@ These attributes may be used for any network related operation.
 | <a id="network-transport" href="#network-transport">`network.transport`</a> | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="network-type" href="#network-type">`network.type`</a> | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [5] | `ipv4`; `ipv6` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `network.connection.state`:** A stateless protocol MUST NOT set this attribute
+**[1] `network.connection.state`:** Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
 
 **[2] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
@@ -53,16 +53,15 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `close` | close | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `close_wait` | close_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `closed` | closed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `closing` | closing | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `delete` | delete | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `established` | established | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `fin_wait_1` | fin_wait_1 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `fin_wait_2` | fin_wait_2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `last_ack` | last_ack | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `listen` | listen | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `syn_recv` | syn_recv | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `syn_received` | syn_received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `syn_sent` | syn_sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `time_wait` | time_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 

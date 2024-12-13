@@ -239,17 +239,14 @@ groups:
       - id: network.connection.state
         type:
           members:
-            - id: close
-              value: 'close'
+            - id: closed
+              value: 'closed'
               stability: experimental
             - id: close_wait
               value: 'close_wait'
               stability: experimental
             - id: closing
               value: 'closing'
-              stability: experimental
-            - id: delete
-              value: 'delete'
               stability: experimental
             - id: established
               value: 'established'
@@ -266,8 +263,8 @@ groups:
             - id: listen
               value: 'listen'
               stability: experimental
-            - id: syn_recv
-              value: 'syn_recv'
+            - id: syn_received
+              value: 'syn_received'
               stability: experimental
             - id: syn_sent
               value: 'syn_sent'
@@ -277,5 +274,5 @@ groups:
               stability: experimental
         stability: experimental
         brief: "The state of network connection"
-        note: "A stateless protocol MUST NOT set this attribute"
+        note: "Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)"
         examples: [ "close_wait" ]
