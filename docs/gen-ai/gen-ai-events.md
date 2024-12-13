@@ -62,7 +62,7 @@ Instrumentations MAY offer configuration options allowing to disable events or a
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-The [EventName](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/data-model.md#field-eventname) MUST be `gen_ai.system.message`.
+The event name MUST be `gen_ai.system.message`.
 
 This event describes the system instructions passed to the GenAI model.
 
@@ -117,7 +117,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-The [EventName](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/data-model.md#field-eventname) MUST be `gen_ai.user.message`.
+The event name MUST be `gen_ai.user.message`.
 
 This event describes the user message passed to the GenAI model.
 
@@ -172,7 +172,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-The [EventName](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/data-model.md#field-eventname) MUST be `gen_ai.assistant.message`.
+The event name MUST be `gen_ai.assistant.message`.
 
 This event describes the assistant message passed to GenAI system.
 
@@ -242,7 +242,7 @@ Semantic conventions for individual systems MAY specify a different type for arg
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-The [EventName](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/data-model.md#field-eventname) MUST be `gen_ai.tool.message`.
+The event name MUST be `gen_ai.tool.message`.
 
 This event describes the response from a tool or function call passed to the GenAI model.
 
@@ -298,7 +298,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
-The [EventName](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/data-model.md#field-eventname) MUST be `gen_ai.choice`.
+The event name MUST be `gen_ai.choice`.
 
 This event describes the Gen AI response message.
 
