@@ -54,7 +54,7 @@ This metric is [required][MetricRequired].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cicd.pipeline.name`](/docs/attributes-registry/cicd.md) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`cicd.pipeline.result`](/docs/attributes-registry/cicd.md) | string | The result of a pipeline run. | `open`; `closed`; `merged` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cicd.pipeline.result`](/docs/attributes-registry/cicd.md) | string | The result of a pipeline run. | `success`; `failure`; `timeout` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 

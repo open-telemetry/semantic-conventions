@@ -104,7 +104,7 @@ groups:
         stability: experimental
         brief: >
           The result of a pipeline run.
-        examples: ["open", "closed", "merged"]
+        examples: ["success", "failure", "timeout"]
       - id: cicd.worker.type
         type:
           members:
