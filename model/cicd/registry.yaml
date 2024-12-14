@@ -101,10 +101,14 @@ groups:
               value: cancelled
               brief: "The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run."
               stability: experimental
+            - id: skipped
+              value: skipped
+              brief: "The pipeline run was skipped, eg. due to a precondition not being met."
+              stability: experimental
         stability: experimental
         brief: >
           The result of a pipeline run.
-        examples: ["success", "failure", "timeout"]
+        examples: ["success", "failure", "timeout", "skipped"]
       - id: cicd.worker.type
         type:
           members:

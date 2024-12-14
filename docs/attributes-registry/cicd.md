@@ -13,7 +13,7 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="cicd-pipeline-name" href="#cicd-pipeline-name">`cicd.pipeline.name`</a> | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="cicd-pipeline-result" href="#cicd-pipeline-result">`cicd.pipeline.result`</a> | string | The result of a pipeline run. | `success`; `failure`; `timeout` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="cicd-pipeline-result" href="#cicd-pipeline-result">`cicd.pipeline.result`</a> | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cicd-pipeline-run-id" href="#cicd-pipeline-run-id">`cicd.pipeline.run.id`</a> | string | The unique identifier of a pipeline run within a CI/CD system. | `120912` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cicd-pipeline-task-name" href="#cicd-pipeline-task-name">`cicd.pipeline.task.name`</a> | string | The human readable name of a task within a pipeline. Task here most closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing)) in a pipeline. Other terms for tasks include commands, steps, and procedures. | `Run GoLang Linter`; `Go Build`; `go-test`; `deploy_binary` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cicd-pipeline-task-run-id" href="#cicd-pipeline-task-run-id">`cicd.pipeline.task.run.id`</a> | string | The unique identifier of a task run within a pipeline. | `12097` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -31,6 +31,7 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | `cancelled` | The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `error` | The pipeline run failed due to an error in the CICD system, eg. due to the worker being killed. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `failure` | The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `skipped` | The pipeline run was skipped, eg. due to a precondition not being met. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `success` | The pipeline run finished successfully. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timeout` | A timeout caused the pipeline run to be interrupted. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 

@@ -54,7 +54,7 @@ This metric is [required][MetricRequired].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cicd.pipeline.name`](/docs/attributes-registry/cicd.md) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`cicd.pipeline.result`](/docs/attributes-registry/cicd.md) | string | The result of a pipeline run. | `success`; `failure`; `timeout` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cicd.pipeline.result`](/docs/attributes-registry/cicd.md) | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 
@@ -65,6 +65,7 @@ This metric is [required][MetricRequired].
 | `cancelled` | The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `error` | The pipeline run failed due to an error in the CICD system, eg. due to the worker being killed. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `failure` | The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `skipped` | The pipeline run was skipped, eg. due to a precondition not being met. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `success` | The pipeline run finished successfully. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timeout` | A timeout caused the pipeline run to be interrupted. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
