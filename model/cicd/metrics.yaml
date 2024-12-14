@@ -11,6 +11,16 @@ groups:
         requirement_level: required
       - ref: cicd.pipeline.result
         requirement_level: required
+  - id: metric.cicd.pipeline.run.executing
+    type: metric
+    metric_name: cicd.pipeline.run.executing
+    brief: 'The number of pipeline runs currently executing.'
+    instrument: updowncounter
+    unit: "{pipeline_run}"
+    stability: experimental
+    attributes:
+      - ref: cicd.pipeline.name
+        requirement_level: required
   - id: metric.cicd.queue.latency
     type: metric
     metric_name: cicd.queue.latency
