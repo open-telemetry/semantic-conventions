@@ -85,6 +85,11 @@ groups:
         type: double
         brief: The frequency penalty setting for the GenAI request.
         examples: [0.1]
+      - id: gen_ai.request.seed
+        stability: experimental
+        type: int
+        brief: Requests with same seed value more likely to return same result.
+        examples: [100]
       - id: gen_ai.request.presence_penalty
         stability: experimental
         type: double
@@ -168,11 +173,6 @@ groups:
     brief: >
       Thie group defines attributes for OpenAI.
     attributes:
-      - id: gen_ai.openai.request.seed
-        stability: experimental
-        type: int
-        brief: Requests with same seed value more likely to return same result.
-        examples: [100]
       - id: gen_ai.openai.request.response_format
         stability: experimental
         type:

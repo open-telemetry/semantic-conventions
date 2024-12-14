@@ -28,3 +28,9 @@ groups:
         deprecated: "Removed, no replacement at this time."
         brief: "Deprecated, use Event API to report completions contents."
         examples: ["[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]"]
+      - id: gen_ai.openai.request.seed
+        type: int
+        stability: experimental
+        deprecated: Replaced by `gen_ai.request.seed` attribute
+        brief: "Deprecated, use `gen_ai.request.seed` instead."
+        examples: [100]
