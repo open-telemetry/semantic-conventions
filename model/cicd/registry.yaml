@@ -129,7 +129,10 @@ groups:
           members:
             - id: idle
               value: idle
-              brief: "The worker is not performing work for the CICD system."
+              brief: >-
+                The worker is not performing work for the CICD system.
+                It is available to the CICD system to perform work on.
+              note: "Pipelines might have conditions on which workers they are able to run so not every worker might be available to every pipeline."
               stability: experimental
             - id: busy
               value: busy

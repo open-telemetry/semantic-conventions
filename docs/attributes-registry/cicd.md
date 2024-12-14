@@ -53,7 +53,9 @@ This group describes attributes specific to pipelines within a Continuous Integr
 |---|---|---|
 | `busy` | The worker is performing work for the CICD system. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `down` | The worker is not available to the CICD system (disconnected / down). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `idle` | The worker is not performing work for the CICD system. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | The worker is not performing work for the CICD system. It is available to the CICD system to perform work on. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Pipelines might have conditions on which workers they are able to run so not every worker might be available to every pipeline.
 
 ---
 
