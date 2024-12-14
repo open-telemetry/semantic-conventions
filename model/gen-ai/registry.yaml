@@ -13,9 +13,9 @@ groups:
               stability: experimental
               value: "openai"
               brief: 'OpenAI'
-            - id: vertex_ai
+            - id: vertex.ai
               stability: experimental
-              value: "vertex_ai"
+              value: "vertex.ai"
               brief: 'Vertex AI'
             - id: gemini
               stability: experimental
@@ -61,6 +61,11 @@ groups:
               stability: experimental
               value: "groq"
               brief: 'Groq'
+            - id: vertex_ai
+              stability: experimental
+              value: "vertex_ai"
+              brief: 'Deprecated. Use `vertex.ai` instead.'
+              deprecated: "Replaced by `vertex.ai`."
 
         brief: The Generative AI product as identified by the client or server instrumentation.
         note: |
