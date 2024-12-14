@@ -135,7 +135,11 @@ groups:
               value: busy
               brief: "The worker is performing work for the CICD system."
               stability: experimental
+            - id: down
+              value: down
+              brief: "The worker is not available to the CICD system (disconnected / down)."
+              stability: experimental
         stability: experimental
         brief: >
           The state of a CICD worker / agent.
-        examples: ["idle", "busy"]
+        examples: ["idle", "busy", "down"]

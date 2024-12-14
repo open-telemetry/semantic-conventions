@@ -139,7 +139,7 @@ This metric is [required][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cicd.worker.state`](/docs/attributes-registry/cicd.md) | string | The state of a CICD worker / agent. | `idle`; `busy` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cicd.worker.state`](/docs/attributes-registry/cicd.md) | string | The state of a CICD worker / agent. | `idle`; `busy`; `down` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`cicd.worker.type`](/docs/attributes-registry/cicd.md) | string | The type of worker / agent used by the CICD system. | `vm`; `pod` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
@@ -149,6 +149,7 @@ This metric is [required][MetricRecommended].
 | Value  | Description | Stability |
 |---|---|---|
 | `busy` | The worker is performing work for the CICD system. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `down` | The worker is not available to the CICD system (disconnected / down). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `idle` | The worker is not performing work for the CICD system. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---

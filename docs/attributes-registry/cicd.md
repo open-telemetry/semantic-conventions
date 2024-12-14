@@ -19,7 +19,7 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | <a id="cicd-pipeline-task-run-id" href="#cicd-pipeline-task-run-id">`cicd.pipeline.task.run.id`</a> | string | The unique identifier of a task run within a pipeline. | `12097` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cicd-pipeline-task-run-url-full" href="#cicd-pipeline-task-run-url-full">`cicd.pipeline.task.run.url.full`</a> | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline run providing the complete address in order to locate and identify the pipeline run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cicd-pipeline-task-type" href="#cicd-pipeline-task-type">`cicd.pipeline.task.type`</a> | string | The type of the task within a pipeline. | `build`; `test`; `deploy` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="cicd-worker-state" href="#cicd-worker-state">`cicd.worker.state`</a> | string | The state of a CICD worker / agent. | `idle`; `busy` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="cicd-worker-state" href="#cicd-worker-state">`cicd.worker.state`</a> | string | The state of a CICD worker / agent. | `idle`; `busy`; `down` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cicd-worker-type" href="#cicd-worker-type">`cicd.worker.type`</a> | string | The type of worker / agent used by the CICD system. | `vm`; `pod` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
@@ -52,6 +52,7 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | Value  | Description | Stability |
 |---|---|---|
 | `busy` | The worker is performing work for the CICD system. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `down` | The worker is not available to the CICD system (disconnected / down). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `idle` | The worker is not performing work for the CICD system. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
