@@ -57,13 +57,11 @@ groups:
         requirement_level: recommended
       - ref: vcs.ref.head.name
         requirement_level: required
+      - ref: vcs.ref.head.revision
+        requirement_level: recommended
       - ref: vcs.ref.base.name
         requirement_level: recommended
       - ref: vcs.ref.base.revision
-        requirement_level: recommended
-      - ref: vcs.ref.head.name
-        requirement_level: recommended
-      - ref: vcs.ref.head.revision
         requirement_level: recommended
   - id: metric.vcs.repository.count
     type: metric
