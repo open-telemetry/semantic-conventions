@@ -132,7 +132,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.change.time_to_approval` | Gauge | `s` | The amount of time since its creation it took a change (pull request/merge request/changelist) to get the first approval | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.change.time_to_approval` | Gauge | `s` | The amount of time since its creation it took a change (pull request/merge request/changelist) to get the first approval. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -165,7 +165,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.repository.count` | UpDownCounter | `{repository}` | The number of repositories in an organization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.repository.count` | UpDownCounter | `{repository}` | The number of repositories in an organization. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -185,7 +185,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.ref.count` | UpDownCounter | `{ref}` | The number of refs of type branch or tag in a repository | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.ref.count` | UpDownCounter | `{ref}` | The number of refs of type branch or tag in a repository. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -227,7 +227,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `vcs.ref.lines_delta` | Gauge | `{line}` | The number of lines added/removed in a ref (branch) relative to the ref from the `vcs.ref.base.name` attribute [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vcs.ref.lines_delta` | Gauge | `{line}` | The number of lines added/removed in a ref (branch) relative to the ref from the `vcs.ref.base.name` attribute. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric should be reported for each `vcs.line_change.type` value. For example if a ref added 3 lines and removed 2 lines,
 instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers).

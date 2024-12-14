@@ -32,7 +32,7 @@ groups:
   - id: metric.vcs.change.time_to_approval
     type: metric
     metric_name: vcs.change.time_to_approval
-    brief: 'The amount of time since its creation it took a change (pull request/merge request/changelist) to get the first approval'
+    brief: 'The amount of time since its creation it took a change (pull request/merge request/changelist) to get the first approval.'
     instrument: gauge
     unit: "s"
     stability: experimental
@@ -43,10 +43,32 @@ groups:
         requirement_level: recommended
       - ref: vcs.ref.head.name
         requirement_level: required
+  - id: metric.vcs.change.time_to_merge
+    type: metric
+    metric_name: vcs.change.time_to_merge
+    brief: 'The amount of time since its creation it took a change (pull request/merge request/changelist) to get merged into the target(base) ref.'
+    instrument: gauge
+    unit: "s"
+    stability: experimental
+    attributes:
+      - ref: vcs.repository.url.full
+        requirement_level: required
+      - ref: vcs.repository.name
+        requirement_level: recommended
+      - ref: vcs.ref.head.name
+        requirement_level: required
+      - ref: vcs.ref.base.name
+        requirement_level: recommended
+      - ref: vcs.ref.base.revision
+        requirement_level: recommended
+      - ref: vcs.ref.head.name
+        requirement_level: recommended
+      - ref: vcs.ref.head.revision
+        requirement_level: recommended
   - id: metric.vcs.repository.count
     type: metric
     metric_name: vcs.repository.count
-    brief: 'The number of repositories in an organization'
+    brief: 'The number of repositories in an organization.'
     instrument: updowncounter
     unit: "{repository}"
     stability: experimental
@@ -54,7 +76,7 @@ groups:
   - id: metric.vcs.ref.count
     type: metric
     metric_name: vcs.ref.count
-    brief: 'The number of refs of type branch or tag in a repository'
+    brief: 'The number of refs of type branch or tag in a repository.'
     instrument: updowncounter
     unit: "{ref}"
     stability: experimental
@@ -68,7 +90,7 @@ groups:
   - id: metric.vcs.ref.lines_delta
     type: metric
     metric_name: vcs.ref.lines_delta
-    brief: 'The number of lines added/removed in a ref (branch) relative to the ref from the `vcs.ref.base.name` attribute'
+    brief: 'The number of lines added/removed in a ref (branch) relative to the ref from the `vcs.ref.base.name` attribute.'
     note: |
       This metric should be reported for each `vcs.line_change.type` value. For example if a ref added 3 lines and removed 2 lines,
       instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers).
