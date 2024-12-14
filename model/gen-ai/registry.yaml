@@ -13,9 +13,9 @@ groups:
               stability: experimental
               value: "openai"
               brief: 'OpenAI'
-            - id: vertex_ai
+            - id: vertex.ai
               stability: experimental
-              value: "vertex_ai"
+              value: "vertex.ai"
               brief: 'Vertex AI'
             - id: anthropic
               stability: experimental
