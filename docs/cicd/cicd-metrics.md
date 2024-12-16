@@ -185,6 +185,7 @@ This metric is [required][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
+| `container` | A single container. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pod` | One or more containers deployed together. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vm` | A virtual machine or baremetal host. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 

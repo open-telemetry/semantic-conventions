@@ -116,6 +116,10 @@ groups:
               value: vm
               brief: "A virtual machine or baremetal host."
               stability: experimental
+            - id: container
+              value: container
+              brief: "A single container."
+              stability: experimental
             - id: pod
               value: pod
               brief: "One or more containers deployed together."
