@@ -132,8 +132,7 @@ groups:
           For cases when `{routing key}` and `{queue}` are equal, only one of them SHOULD
           be used, e.g., `{exchange}:{routing key}`.
         examples: ['direct_logs:warning', 'logs']
-        requirement_level:
-          conditionally_required: If span describes operation on a single message or if the value applies to all messages in the batch.
+        requirement_level: required
 
   - id: messaging.kafka
     type: attribute_group
