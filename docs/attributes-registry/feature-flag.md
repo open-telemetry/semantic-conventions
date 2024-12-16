@@ -15,6 +15,7 @@ This document defines attributes for Feature Flags.
 | <a id="feature-flag-context-id" href="#feature-flag-context-id">`feature_flag.context.id`</a> | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="feature-flag-evaluation-error-message" href="#feature-flag-evaluation-error-message">`feature_flag.evaluation.error.message`</a> | string | A message explaining the nature of an error occurring during flag evaluation. | `Flag `header-color` expected type `string` but found type `number`` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="feature-flag-evaluation-reason" href="#feature-flag-evaluation-reason">`feature_flag.evaluation.reason`</a> | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="feature-flag-evaluation-value-type" href="#feature-flag-evaluation-value-type">`feature_flag.evaluation.value_type`</a> | string | Indicates the type of the `feature_flag.evaluation` event body field `value`. | `string`; `boolean` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="feature-flag-key" href="#feature-flag-key">`feature_flag.key`</a> | string | The lookup key of the feature flag. | `logo-color` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | string | Identifies the feature flag provider. | `Flag Manager` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="feature-flag-set-id" href="#feature-flag-set-id">`feature_flag.set.id`</a> | string | The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs. | `proj-1`; `ab98sgs`; `service1/dev` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -41,3 +42,18 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 | `static` | The resolved value is static (no dynamic evaluation). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `unknown` | The reason for the resolved value could not be determined. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
+
+`feature_flag.evaluation.value_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `array` | This indicates the type of `feature_flag.evaluation` event body field `value` is array. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `boolean` | This indicates the type of `feature_flag.evaluation` event body field `value` is boolean. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `byte_array` | This indicates the type of `feature_flag.evaluation` event body field `value` is byte array. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `float` | This indicates the type of `feature_flag.evaluation` event body field `value` is double precision floating point (IEEE 754-1985). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `map` | This indicates the type of `feature_flag.evaluation` event body field `value` is map. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `null` | This indicates the type of `feature_flag.evaluation` event body field `value` is null. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `string` | This indicates the type of `feature_flag.evaluation` event body field `value` is string. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `unknown` | This indicates the type of `feature_flag.evaluation` event body field `value` is unknown. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
