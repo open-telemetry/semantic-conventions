@@ -104,6 +104,10 @@ groups:
               value: "boolean"
               brief: This indicates the type of `feature_flag.evaluation` event body field `value` is boolean.
               stability: experimental
+            - id: int
+              value: "int"
+              brief: This indicates the type of `feature_flag.evaluation` event body field `value` is 64-bit integer.
+              stability: experimental
             - id: float
               value: "float"
               brief: This indicates the type of `feature_flag.evaluation` event body field `value` is double precision floating point (IEEE 754-1985).
