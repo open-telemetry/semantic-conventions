@@ -214,3 +214,25 @@ groups:
               value: 'local'
               brief: "A [local](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume"
               stability: experimental
+      - id: k8s.namespace.phase
+        stability: experimental
+        brief: >
+          The phase of the K8s namespace.
+        note: |
+          This attribute aligns with the `phase` field of the
+          [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
+        examples: [ "active", "terminating" ]
+        type:
+          members:
+            - id: active
+              value: 'active'
+              brief: "Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)"
+              stability: experimental
+            - id: terminating
+              value: 'terminating'
+              brief: "Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)"
+              stability: experimental
+            - id: unknown
+              value: "unknown"
+              brief: "Unknown phase is set if phase is blank for some reason"
+              stability: experimental
