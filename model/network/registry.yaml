@@ -236,3 +236,43 @@ groups:
         type: string
         brief: 'The network interface name.'
         examples: [ 'lo', 'eth0' ]
+      - id: network.connection.state
+        type:
+          members:
+            - id: closed
+              value: 'closed'
+              stability: experimental
+            - id: close_wait
+              value: 'close_wait'
+              stability: experimental
+            - id: closing
+              value: 'closing'
+              stability: experimental
+            - id: established
+              value: 'established'
+              stability: experimental
+            - id: fin_wait_1
+              value: 'fin_wait_1'
+              stability: experimental
+            - id: fin_wait_2
+              value: 'fin_wait_2'
+              stability: experimental
+            - id: last_ack
+              value: 'last_ack'
+              stability: experimental
+            - id: listen
+              value: 'listen'
+              stability: experimental
+            - id: syn_received
+              value: 'syn_received'
+              stability: experimental
+            - id: syn_sent
+              value: 'syn_sent'
+              stability: experimental
+            - id: time_wait
+              value: 'time_wait'
+              stability: experimental
+        stability: experimental
+        brief: "The state of network connection"
+        note: "Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)"
+        examples: [ "close_wait" ]
