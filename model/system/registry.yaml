@@ -145,54 +145,6 @@ groups:
         stability: experimental
         brief: "The filesystem mount path"
         examples: ["/mnt/data"]
-  # System-specific network attributes
-  - id: registry.system.network
-    type: attribute_group
-    display_name: System Network Attributes
-    brief: "Describes Network attributes"
-    attributes:
-      - id: system.network.state
-        type:
-          members:
-            - id: close
-              value: 'close'
-              stability: experimental
-            - id: close_wait
-              value: 'close_wait'
-              stability: experimental
-            - id: closing
-              value: 'closing'
-              stability: experimental
-            - id: delete
-              value: 'delete'
-              stability: experimental
-            - id: established
-              value: 'established'
-              stability: experimental
-            - id: fin_wait_1
-              value: 'fin_wait_1'
-              stability: experimental
-            - id: fin_wait_2
-              value: 'fin_wait_2'
-              stability: experimental
-            - id: last_ack
-              value: 'last_ack'
-              stability: experimental
-            - id: listen
-              value: 'listen'
-              stability: experimental
-            - id: syn_recv
-              value: 'syn_recv'
-              stability: experimental
-            - id: syn_sent
-              value: 'syn_sent'
-              stability: experimental
-            - id: time_wait
-              value: 'time_wait'
-              stability: experimental
-        stability: experimental
-        brief: "A stateless protocol MUST NOT set this attribute"
-        examples: ["close_wait"]
   # system.process.* attribute group
   - id: registry.system.process
     type: attribute_group
