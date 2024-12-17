@@ -12,6 +12,12 @@ groups:
         examples:
           - 79b9da39-b7ae-508a-a6bc-864b2829c622
           - C9ER4AJX75574TDJ
+      - id: aws.extended_request_id
+        type: string
+        stability: experimental
+        brief: "The AWS extended request ID as returned in the response header `x-amz-id-2`."
+        examples:
+          - wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=
   - id: registry.aws.dynamodb
     type: attribute_group
     display_name: Amazon DynamoDB Attributes
