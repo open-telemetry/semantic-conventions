@@ -53,6 +53,7 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 | `boolean` | This indicates the type of `feature_flag.evaluation` event body field `value` is boolean. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `byte_array` | This indicates the type of `feature_flag.evaluation` event body field `value` is byte array. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `float` | This indicates the type of `feature_flag.evaluation` event body field `value` is double precision floating point (IEEE 754-1985). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `int` | This indicates the type of `feature_flag.evaluation` event body field `value` is 64-bit integer. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `map` | This indicates the type of `feature_flag.evaluation` event body field `value` is map. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `null` | This indicates the type of `feature_flag.evaluation` event body field `value` is null. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `string` | This indicates the type of `feature_flag.evaluation` event body field `value` is string. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
