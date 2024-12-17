@@ -27,7 +27,8 @@ groups:
       - ref: gen_ai.request.presence_penalty
         requirement_level: recommended
       - ref: gen_ai.request.seed
-        requirement_level: recommended
+        requirement_level:
+          conditionally_required: if appliable and if the request includes a seed
       - ref: gen_ai.request.encoding_formats
         requirement_level: recommended
       - ref: gen_ai.response.id

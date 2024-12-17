@@ -4,13 +4,13 @@
 # your pull request title with [chore] or use the "Skip Changelog" label.
 
 # One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
-change_type: deprecation
+change_type: breaking
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
 component: gen_ai
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Consolidate genai.request.seed
+note: Rename `gen_ai.openai.request.seed` to `gen_ai.request.seed` and use it on general GenAI conventions.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
