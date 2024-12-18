@@ -43,6 +43,12 @@ groups:
         requirement_level: recommended
       - ref: vcs.ref.head.name
         requirement_level: required
+      - ref: vcs.ref.head.revision
+        requirement_level: recommended
+      - ref: vcs.ref.base.name
+        requirement_level: recommended
+      - ref: vcs.ref.base.revision
+        requirement_level: recommended
   - id: metric.vcs.change.time_to_merge
     type: metric
     metric_name: vcs.change.time_to_merge
