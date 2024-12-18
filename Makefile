@@ -68,16 +68,11 @@ misspell-correction:	$(MISSPELL)
 
 .PHONY: markdown-link-check
 markdown-link-check:
-	# --insecure is currently needed for https://osi-model.com
 	docker run --rm \
 		--mount 'type=bind,source=$(PWD),target=/home/repo' \
 		lycheeverse/lychee \
+		--config home/repo/.lychee.toml \
 		--root-dir /home/repo \
-		--include-fragments \
-		--accept 200..=299,403 \
-		--exclude https://www.foo.bar \
-		--insecure \
-		--max-retries 6 \
 		-v \
 		home/repo
 
