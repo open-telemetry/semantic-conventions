@@ -10,7 +10,6 @@
 - [System CPU Attributes](#system-cpu-attributes)
 - [Filesystem Attributes](#filesystem-attributes)
 - [System Memory Attributes](#system-memory-attributes)
-- [System Network Attributes](#system-network-attributes)
 - [System Paging Attributes](#system-paging-attributes)
 - [System Process Attributes](#system-process-attributes)
 - [Deprecated System Attributes](#deprecated-system-attributes)
@@ -85,33 +84,6 @@ Describes System Memory attributes
 | `shared` | shared | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report shared memory usage with `metric.system.memory.shared` metric |
 | `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-## System Network Attributes
-
-Describes Network attributes
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="system-network-state" href="#system-network-state">`system.network.state`</a> | string | A stateless protocol MUST NOT set this attribute | `close_wait` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
----
-
-`system.network.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `close` | close | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `close_wait` | close_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `closing` | closing | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `delete` | delete | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `established` | established | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fin_wait_1` | fin_wait_1 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fin_wait_2` | fin_wait_2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `last_ack` | last_ack | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `listen` | listen | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `syn_recv` | syn_recv | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `syn_sent` | syn_sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `time_wait` | time_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
 ## System Paging Attributes
 
 Describes System Memory Paging attributes
@@ -175,6 +147,7 @@ Deprecated system attributes.
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="system-cpu-state" href="#system-cpu-state">`system.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `idle`; `interrupt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode` |
+| <a id="system-network-state" href="#system-network-state">`system.network.state`</a> | string | Deprecated, use `network.connection.state` instead. | `close_wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report network connection state with `network.connection.state` attribute |
 | <a id="system-processes-status" href="#system-processes-status">`system.processes.status`</a> | string | Deprecated, use `system.process.status` instead. | `running` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. |
 
 ---
@@ -190,6 +163,25 @@ Deprecated system attributes.
 | `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
+
+`system.network.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `close` | close | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `close_wait` | close_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `closing` | closing | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `delete` | delete | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `established` | established | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `fin_wait_1` | fin_wait_1 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `fin_wait_2` | fin_wait_2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `last_ack` | last_ack | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `listen` | listen | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `syn_recv` | syn_recv | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `syn_sent` | syn_sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `time_wait` | time_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 

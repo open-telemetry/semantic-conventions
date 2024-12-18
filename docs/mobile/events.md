@@ -4,7 +4,7 @@
 
 This document defines semantic conventions for instrumentations that emit
 events on mobile platforms. All mobile events MUST use a namespace of
-`device` in the `event.name` property.
+`device` in the EventName LogRecord property.
 
 <!-- toc -->
 

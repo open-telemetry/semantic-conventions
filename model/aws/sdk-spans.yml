@@ -29,6 +29,9 @@ groups:
           - PutItem
       - ref: aws.request_id
         requirement_level: recommended
+      - ref: aws.extended_request_id
+        requirement_level:
+          conditionally_required: If available.
 
   - id: span.dynamodb.batchgetitem.client
     brief: DynamoDB.BatchGetItem

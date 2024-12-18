@@ -4,6 +4,10 @@ versions:
   next:
     all:
       changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1632
+        - rename_attributes:
+            attribute_map:
+              system.network.state: network.connection.state
         # https://github.com/open-telemetry/semantic-conventions/pull/1624
         - rename_attributes:
             attribute_map:
