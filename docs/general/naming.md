@@ -281,7 +281,7 @@ over all attribute values SHOULD be equal to the **limit**.
   maximum possible amount of virtual memory that a process may consume may
   fluctuate over time and is not typically known.
 
-- **utilization** - an instrument that measures the *fraction* of **usage**
+- **utilization** - an instrument that measures the _fraction_ of **usage**
 out of its **limit** should be called `entity.utilization`. For example,
 `system.memory.utilization` for the fraction of memory in use. Utilization can
 be with respect to a fixed limit or a soft limit. Utilization values are
