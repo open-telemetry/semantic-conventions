@@ -5,8 +5,7 @@ accept = ["200..=299", "403"]
 exclude  = [
     "^https://www.foo.bar",
     # excluding links to pull requests and issues is done for performance
-    "^https://github.com/open-telemetry/semantic-conventions/pull/\\d+$",
-    "^https://github.com/open-telemetry/semantic-conventions/issue/\\d+$"
+    "^https://github.com/open-telemetry/semantic-conventions/(pull|issue)/\\d+$"
 ]
 
 # better to be safe and avoid failures
