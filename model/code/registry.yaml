@@ -28,13 +28,13 @@ groups:
         type: int
         stability: experimental
         brief: >
-          The line number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`.
+          The line number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`.
         examples: 42
       - id: code.column.number
         type: int
         stability: experimental
         brief: >
-          The column number in `code.filepath` best representing the operation. It SHOULD point within the code unit named in `code.function`.
+          The column number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`.
         examples: 16
       - id: code.stacktrace
         type: string
