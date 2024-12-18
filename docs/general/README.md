@@ -17,4 +17,3 @@ The following general Semantic Conventions are defined:
 * [Logs](logs.md): General Semantic Conventions for logs.
 * [Metrics](metrics.md): General Semantic Conventions for metrics.
 * [Spans](trace.md): General Semantic Conventions for traces / spans.
-
