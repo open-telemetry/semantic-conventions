@@ -71,7 +71,7 @@ Names SHOULD follow these rules:
   unambiguous.
   - When introducing a name describing a certain property of the object,
     include the property name. For example, use `file.owner.name` instead of `file.owner`
-    and `system.network.packets.dropped` instead of `system.network.dropped`
+    and `system.network.packet.dropped` instead of `system.network.dropped`
   - Avoid introducing names and namespaces that would mean different things when
     used by different conventions or instrumentations. For example, use `security_rule`
     instead of `rule`.
@@ -101,7 +101,7 @@ to multiple products or concepts.
 Two attributes, two metrics, or two events MUST NOT share the same name.
 Different entities (attribute and metric, metric and event) MAY share the same name.
 
-Attributes, metric, events, or other named entities SHOULD NOT be removed from semantic
+Attributes, metrics, and events SHOULD NOT be removed from semantic
 conventions regardless of their maturity level. When the convention is renamed or
 no longer recommended, it SHOULD be deprecated.
 
@@ -206,8 +206,8 @@ is expected to be used on multiple signals.
 When an attribute is defined, it is not always clear if it will be applicable outside
 of a certain metric, event, or other convention.
 
-Attributes that are unlikely to have any usage beyond a specific metric, event, resource,
-or other conventions, SHOULD be added under that metric (event, etc) namespace.
+Attributes that are unlikely to have any usage beyond a specific convention,
+SHOULD be added under that metric (event, etc) namespace.
 
 Examples:
 
