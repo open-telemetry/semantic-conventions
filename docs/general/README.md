@@ -18,11 +18,3 @@ The following general Semantic Conventions are defined:
 * [Metrics](metrics.md): General Semantic Conventions for metrics.
 * [Spans](trace.md): General Semantic Conventions for traces / spans.
 
-## Event Name Reuse Prohibition
-
-A new event MUST NOT be added with the same name as an event that existed in
-the past but was renamed (with a corresponding schema file).
-
-When introducing a new event name check all existing schema files to make sure
-the name does not appear as a key of any "rename_events" section (keys denote
-old event names in rename operations).
