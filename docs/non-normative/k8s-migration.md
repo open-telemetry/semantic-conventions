@@ -48,6 +48,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s ReplicationController metrics](#k8s-replicationcontroller-metrics)
   - [K8s StatefulsSet metrics](#k8s-statefulsset-metrics)
   - [K8s HorizontalPodAutoscaler metrics](#k8s-horizontalpodautoscaler-metrics)
+  - [K8s DaemonSet metrics](#k8s-daemonset-metrics)
 
 <!-- tocstop -->
 
@@ -171,5 +172,26 @@ The changes in their metric names and types are the following:
 | `k8s.hpa.current_replicas`                  (type: `gauge`)                        | `k8s.hpa.current_pods` (type: `updowncounter`) |
 | `k8s.hpa.max_replicas`                       (type: `gauge`)                       | `k8s.hpa.max_pods`  (type: `updowncounter`)    |
 | `k8s.hpa.min_replicas`                      (type: `gauge`)                        | `k8s.hpa.min_pods`   (type: `updowncounter`)   |
+
+<!-- prettier-ignore-end -->
+
+### K8s DaemonSet metrics
+
+The K8s DaemonSet metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#1649](https://github.com/open-telemetry/semantic-conventions/pull/1649) (TODO: replace with SemConv version once
+available).
+
+The changes in their metric types are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                             |
+|------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| `k8s.daemonset.current_scheduled_nodes`                  (type: `gauge`)           | `k8s.daemonset.current_scheduled_nodes` (type: `updowncounter`) |
+| `k8s.daemonset.desired_scheduled_nodes`                  (type: `gauge`)           | `k8s.daemonset.desired_scheduled_nodes` (type: `updowncounter`) |
+| `k8s.daemonset.misscheduled_nodes`                       (type: `gauge`)           | `k8s.daemonset.misscheduled_nodes`  (type: `updowncounter`)     |
+| `k8s.daemonset.ready_nodes`                      (type: `gauge`)                   | `k8s.daemonset.ready_nodes`   (type: `updowncounter`)           |
 
 <!-- prettier-ignore-end -->
