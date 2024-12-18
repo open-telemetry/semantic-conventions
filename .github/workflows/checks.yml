@@ -83,7 +83,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: verify registry tables
       run: |
-        make attribute-registry-generation
+        make attribute-registry-generation fix-format
         git diff --exit-code './docs/attributes-registry/*.md' || (echo 'Attribute registry markdown is out of date, please run "make attribute-registry-generation" and commit the changes in this PR.' && exit 1)
 
   schemas-check:
