@@ -43,13 +43,6 @@ jobs:
     - name: install dependencies
       run: npm install
 
-    - name: Restore lychee cache
-      uses: actions/cache@v4
-      with:
-        path: .lycheecache
-        key: cache-lychee-${{ github.sha }}
-        restore-keys: cache-lychee-
-
     - name: run markdown-link-check
       run: make markdown-link-check
 
