@@ -77,6 +77,7 @@ markdown-link-check:
 		--accept 200..=299,403 \
 		--exclude https://www.foo.bar \
 		--insecure \
+		--max-retries 5 \
 		-v \
 		home/repo
 
