@@ -32,7 +32,7 @@
 _This section applies to attribute names (also
 known as the "attribute keys"), as well as Metric and Event names. For brevity
 within this section when we use the term "name" without an adjective it is
-implied to mean either of these._
+implied to mean all of these._
 
 Every name MUST be a valid Unicode sequence.
 
@@ -64,12 +64,12 @@ Names SHOULD follow these rules:
   `http.response.status_code` denotes the status code in the http namespace.
 
   Use underscore only when using dot (namespacing) does not make sense or changes
-  the semantical meaning of the name. For example, use `rate_limiting`
+  the semantic meaning of the name. For example, use `rate_limiting`
   instead of `rate.limiting`.
 
 - Be precise. Attribute, event, metric, and other names should be descriptive and
   unambiguous.
-  - When introducing a name describing certain property of the object,
+  - When introducing a name describing a certain property of the object,
     include the property name. For example, use `file.owner.name` instead of `file.owner`
     and `system.network.packets.dropped` instead of `system.network.dropped`
   - Avoid introducing names and namespaces that would mean different things when
@@ -108,7 +108,7 @@ no longer recommended, it SHOULD be deprecated.
 ## Recommendations for OpenTelemetry Authors
 
 - When coming up with a new semantic convention make sure to check existing
-  namespaces ([Semantic Conventions](/docs/README.md)) to see if a similar entity
+  namespaces ([Semantic Conventions](/docs/README.md)) to see if a similar namespace
   already exists.
 
 - All names that are part of OpenTelemetry semantic conventions SHOULD be part
@@ -203,10 +203,10 @@ OpenTelemetry specification.
 Attributes are defined in semantic conventions in a signal-agnostic way. The same attribute
 is expected to be used on multiple signals.
 
-IWhen attribute is defined, it is not always clear if it will be applicable outside
+When an attribute is defined, it is not always clear if it will be applicable outside
 of a certain metric, event, or other convention.
 
-Attributes that are unlikely to have any usage beyond specific metric, event, resource,
+Attributes that are unlikely to have any usage beyond a specific metric, event, resource,
 or other conventions, SHOULD be added under that metric (event, etc) namespace.
 
 Examples:
