@@ -10,12 +10,12 @@
 
 Describes user-agent attributes.
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="user-agent-name" href="#user-agent-name">`user_agent.name`</a> | string | Name of the user-agent extracted from original. Usually refers to the browser's name. [1] | `Safari`; `YourApp` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="user-agent-original" href="#user-agent-original">`user_agent.original`</a> | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="user-agent-synthetic-type" href="#user-agent-synthetic-type">`user_agent.synthetic.type`</a> | string | Specifies the category of synthetic traffic, such as tests or bots. [2] | `bot`; `test` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="user-agent-version" href="#user-agent-version">`user_agent.version`</a> | string | Version of the user-agent extracted from original. Usually refers to the browser's version [3] | `14.1.2`; `1.0.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                                                                                           | Type   | Description                                                                                                             | Examples                                                                                                                                                                                                                   | Stability                                                        |
+| --------------------------------------------------------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| <a id="user-agent-name" href="#user-agent-name">`user_agent.name`</a>                               | string | Name of the user-agent extracted from original. Usually refers to the browser's name. [1]                               | `Safari`; `YourApp`                                                                                                                                                                                                        | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="user-agent-original" href="#user-agent-original">`user_agent.original`</a>                   | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
+| <a id="user-agent-synthetic-type" href="#user-agent-synthetic-type">`user_agent.synthetic.type`</a> | string | Specifies the category of synthetic traffic, such as tests or bots. [2]                                                 | `bot`; `test`                                                                                                                                                                                                              | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="user-agent-version" href="#user-agent-version">`user_agent.version`</a>                      | string | Version of the user-agent extracted from original. Usually refers to the browser's version [3]                          | `14.1.2`; `1.0.0`                                                                                                                                                                                                          | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `user_agent.name`:** [Example](https://www.whatsmyua.info) of extracting browser's name from original string. In the case of using a user-agent for non-browser products, such as microservices with multiple names/versions inside the `user_agent.original`, the most significant name SHOULD be selected. In such a scenario it should align with `user_agent.version`
 
@@ -27,7 +27,7 @@ Describes user-agent attributes.
 
 `user_agent.synthetic.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
-| `bot` | Bot source. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Value  | Description            | Stability                                                        |
+| ------ | ---------------------- | ---------------------------------------------------------------- |
+| `bot`  | Bot source.            | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `test` | Synthetic test source. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

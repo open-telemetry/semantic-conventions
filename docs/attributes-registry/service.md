@@ -10,12 +10,12 @@
 
 A service instance.
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="service-instance-id" href="#service-instance-id">`service.instance.id`</a> | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="service-name" href="#service-name">`service.name`</a> | string | Logical name of the service. [2] | `shoppingcart` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="service-namespace" href="#service-namespace">`service.namespace`</a> | string | A namespace for `service.name`. [3] | `Shop` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="service-version" href="#service-version">`service.version`</a> | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Attribute                                                                         | Type   | Description                                                                                              | Examples                               | Stability                                                        |
+| --------------------------------------------------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------- |
+| <a id="service-instance-id" href="#service-instance-id">`service.instance.id`</a> | string | The string ID of the service instance. [1]                                                               | `627cc493-f310-47de-96bd-71410b7dec09` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="service-name" href="#service-name">`service.name`</a>                      | string | Logical name of the service. [2]                                                                         | `shoppingcart`                         | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
+| <a id="service-namespace" href="#service-namespace">`service.namespace`</a>       | string | A namespace for `service.name`. [3]                                                                      | `Shop`                                 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="service-version" href="#service-version">`service.version`</a>             | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a`                   | ![Stable](https://img.shields.io/badge/-stable-lightgreen)       |
 
 **[1] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
 `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to

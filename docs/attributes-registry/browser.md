@@ -10,12 +10,12 @@
 
 The web browser attributes
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="browser-brands" href="#browser-brands">`browser.brands`</a> | string[] | Array of brand name and version separated by a space [1] | `[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="browser-language" href="#browser-language">`browser.language`</a> | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="browser-mobile" href="#browser-mobile">`browser.mobile`</a> | boolean | A boolean that is true if the browser is running on a mobile device [3] |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="browser-platform" href="#browser-platform">`browser.platform`</a> | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Attribute                                                                | Type     | Description                                                             | Examples                                          | Stability                                                        |
+| ------------------------------------------------------------------------ | -------- | ----------------------------------------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------- |
+| <a id="browser-brands" href="#browser-brands">`browser.brands`</a>       | string[] | Array of brand name and version separated by a space [1]                | `[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="browser-language" href="#browser-language">`browser.language`</a> | string   | Preferred language of the user using the browser [2]                    | `en`; `en-US`; `fr`; `fr-FR`                      | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="browser-mobile" href="#browser-mobile">`browser.mobile`</a>       | boolean  | A boolean that is true if the browser is running on a mobile device [3] |                                                   | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="browser-platform" href="#browser-platform">`browser.platform`</a> | string   | The platform on which the browser is running [4]                        | `Windows`; `macOS`; `Android`                     | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `browser.brands`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.brands`).
 
