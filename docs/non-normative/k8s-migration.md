@@ -49,6 +49,8 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s StatefulsSet metrics](#k8s-statefulsset-metrics)
   - [K8s HorizontalPodAutoscaler metrics](#k8s-horizontalpodautoscaler-metrics)
   - [K8s DaemonSet metrics](#k8s-daemonset-metrics)
+  - [K8s Job metrics](#k8s-job-metrics)
+  - [K8s Cronjob metrics](#k8s-cronjob-metrics)
 
 <!-- tocstop -->
 
@@ -193,5 +195,42 @@ The changes in their metric types are the following:
 | `k8s.daemonset.desired_scheduled_nodes`                  (type: `gauge`)           | `k8s.daemonset.desired_scheduled_nodes` (type: `updowncounter`) |
 | `k8s.daemonset.misscheduled_nodes`                       (type: `gauge`)           | `k8s.daemonset.misscheduled_nodes`  (type: `updowncounter`)     |
 | `k8s.daemonset.ready_nodes`                      (type: `gauge`)                   | `k8s.daemonset.ready_nodes`   (type: `updowncounter`)           |
+
+<!-- prettier-ignore-end -->
+
+### K8s Job metrics
+
+The K8s Job metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#1649](https://github.com/open-telemetry/semantic-conventions/pull/1660) (TODO: replace with SemConv version once
+available).
+
+The changes in their metric types are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                    |
+|----------------------------------------------------------|----------------------------------------|
+| `k8s.job.active_pods`                  (type: `gauge`) | `k8s.job.active_pods` (type: `updowncounter`) |
+| `k8s.job.failed_pods`                  (type: `gauge`) | `k8s.job.failed_pods` (type: `updowncounter`) |
+| `k8s.job.desired_successful_pods`                       (type: `gauge`) | `k8s.job.desired_successful_pods`  (type: `updowncounter`) |
+| `k8s.job.max_parallel_pods`                      (type: `gauge`) | `k8s.job.max_parallel_pods`   (type: `updowncounter`) |
+
+### K8s Cronjob metrics
+
+The K8s Cronjob metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#1649](https://github.com/open-telemetry/semantic-conventions/pull/1660) (TODO: replace with SemConv version once
+available).
+
+The changes in their metric types are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                            |
+|--------------------------------------------------|--------------------------------|
+| `k8s.cronjob.active_jobs`                  (type: `gauge`) | `k8s.cronjob.active_jobs` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
