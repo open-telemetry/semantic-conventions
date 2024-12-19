@@ -1,0 +1,34 @@
+groups:
+  - id: registry.code.deprecated
+    type: attribute_group
+    display_name: Deprecated Code Attributes
+    brief: >
+      These deprecated attributes provide context about source code
+    attributes:
+      - id: code.function
+        type: string
+        stability: experimental
+        deprecated: Replaced by `code.function.name`
+        brief: >
+          Deprecated, use `code.function.name` instead
+        examples: serveRequest
+      - id: code.filepath
+        type: string
+        stability: experimental
+        brief: >
+          Deprecated, use `code.file.path` instead
+        examples: /usr/local/MyApplication/content_root/app/index.php
+      - id: code.lineno
+        type: int
+        stability: experimental
+        deprecated: Replaced by `code.line.number`
+        brief: >
+          Deprecated, use `code.line.number` instead
+        examples: 42
+      - id: code.column
+        type: int
+        stability: experimental
+        deprecated: Replaced by `code.column.number`
+        brief: >
+          Deprecated, use `code.column.number`
+        examples: 16
