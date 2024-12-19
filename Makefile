@@ -189,7 +189,7 @@ check: misspell markdownlint check-format markdown-toc compatibility-check markd
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation attribute-registry-generation misspell-correction markdown-toc
+fix: table-generation attribute-registry-generation misspell-correction markdown-toc fix-format
 	@echo "All autofixes complete"
 
 .PHONY: install-tools

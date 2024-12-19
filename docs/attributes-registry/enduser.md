@@ -10,8 +10,8 @@
 
 Describes deprecated enduser attributes. Complete enduser namespace has been deprecated
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="enduser-id" href="#enduser-id">`enduser.id`</a> | string | Deprecated, use `user.id` instead. | `username` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user.id` attribute. |
-| <a id="enduser-role" href="#enduser-role">`enduser.role`</a> | string | Deprecated, use `user.roles` instead. | `admin` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user.roles` attribute. |
-| <a id="enduser-scope" href="#enduser-scope">`enduser.scope`</a> | string | Deprecated, no replacement at this time. | `read:message, write:files` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. |
+| Attribute                                                       | Type   | Description                              | Examples                    | Stability                                                                                          |
+| --------------------------------------------------------------- | ------ | ---------------------------------------- | --------------------------- | -------------------------------------------------------------------------------------------------- |
+| <a id="enduser-id" href="#enduser-id">`enduser.id`</a>          | string | Deprecated, use `user.id` instead.       | `username`                  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user.id` attribute.    |
+| <a id="enduser-role" href="#enduser-role">`enduser.role`</a>    | string | Deprecated, use `user.roles` instead.    | `admin`                     | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user.roles` attribute. |
+| <a id="enduser-scope" href="#enduser-scope">`enduser.scope`</a> | string | Deprecated, no replacement at this time. | `read:message, write:files` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed.                            |
