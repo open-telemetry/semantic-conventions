@@ -7,7 +7,7 @@ groups:
     attributes:
       - id: db.collection.name
         type: string
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
         brief: The name of a collection (table, container) within the database.
         note: |
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
@@ -17,12 +17,10 @@ groups:
 
           For batch operations, if the individual operations are known to have the same collection name
           then that collection name SHOULD be used.
-
-          This attribute has stability level RELEASE CANDIDATE.
         examples: ["public.users", "customers"]
       - id: db.namespace
         type: string
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
         brief: >
           The name of the database, fully qualified within the server address and port.
         note: >
@@ -35,12 +33,10 @@ groups:
           means in the context of that system.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-
-          This attribute has stability level RELEASE CANDIDATE.
         examples: ["customers", "test.users"]
       - id: db.operation.name
         type: string
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
         brief: >
           The name of the operation or command being executed.
         note: |
@@ -54,12 +50,10 @@ groups:
           then that operation name SHOULD be used prepended by `BATCH `,
           otherwise `db.operation.name` SHOULD be `BATCH` or some other database
           system specific term if more applicable.
-
-          This attribute has stability level RELEASE CANDIDATE.
         examples: ["findAndModify", "HMSET", "SELECT"]
       - id: db.query.text
         type: string
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
         brief: >
           The database query being executed.
         note: >
@@ -72,8 +66,6 @@ groups:
           Even though parameterized query text can potentially have sensitive data, by using a parameterized query
           the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit
           to observability of capturing the static part of the query text by default outweighs the risk.
-
-          This attribute has stability level RELEASE CANDIDATE.
         examples:
           [
             "SELECT * FROM wuser_table where username = ?",
@@ -81,7 +73,7 @@ groups:
           ]
       - id: db.operation.parameter
         type: template[string]
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
         brief: >
           A database operation parameter, with `<key>` being the parameter name,
           and the attribute value being a string representation of the parameter value.
@@ -91,12 +83,10 @@ groups:
 
           If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match
           up with the parameterized placeholders present in `db.query.text`.
-
-          This attribute has stability level RELEASE CANDIDATE.
         examples: ["someval", "55"]
       - id: db.query.summary
         type: string
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
         brief: >
           Low cardinality representation of a database query text.
         note: >
@@ -109,8 +99,6 @@ groups:
           that support query parsing SHOULD generate a summary following
           [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-query-text)
           section.
-
-          This attribute has stability level RELEASE CANDIDATE.
         examples:
           [
             'SELECT wuser_table',
@@ -119,17 +107,15 @@ groups:
           ]
       - id: db.operation.batch.size
         type: int
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
         brief: The number of queries included in a batch operation.
         note: >
           Operations are only considered batches when they contain two or more operations,
           and so `db.operation.batch.size` SHOULD never be `1`.
-
-          This attribute has stability level RELEASE CANDIDATE.
         examples: [2, 3, 4]
       - id: db.response.status_code
         type: string
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
         brief: Database response status code.
         note: >
           The status code returned by the database. Usually it represents an error code,
@@ -138,8 +124,6 @@ groups:
 
           Semantic conventions for individual database systems SHOULD document what
           `db.response.status_code` means in the context of that system.
-
-          This attribute has stability level RELEASE CANDIDATE.
         examples: ["102", "ORA-17002", "08P01", "404"]
       - id: db.response.returned_rows
         type: int
@@ -152,8 +136,6 @@ groups:
           The actual DBMS may differ from the one identified by the client.
           For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system`
           is set to `postgresql` based on the instrumentation's best knowledge.
-
-          This attribute has stability level RELEASE CANDIDATE.
         type:
           members:
             - id: other_sql
@@ -287,7 +269,7 @@ groups:
             - id: mariadb
               value: "mariadb"
               brief: "MariaDB (This value has stability level RELEASE CANDIDATE)"
-              stability: experimental  # RELEASE CANDIDATE
+              stability: release_candidate
             - id: maxdb
               value: "maxdb"
               brief: "SAP MaxDB"
@@ -303,7 +285,7 @@ groups:
             - id: mssql
               value: "mssql"
               brief: "Microsoft SQL Server (This value has stability level RELEASE CANDIDATE)"
-              stability: experimental  # RELEASE CANDIDATE
+              stability: release_candidate
             - id: mssqlcompact
               value: "mssqlcompact"
               deprecated: "Removed, use `other_sql` instead."
@@ -312,7 +294,7 @@ groups:
             - id: mysql
               value: "mysql"
               brief: "MySQL (This value has stability level RELEASE CANDIDATE)"
-              stability: experimental  # RELEASE CANDIDATE
+              stability: release_candidate
             - id: neo4j
               value: "neo4j"
               brief: "Neo4j"
@@ -340,7 +322,7 @@ groups:
             - id: postgresql
               value: "postgresql"
               brief: "PostgreSQL (This value has stability level RELEASE CANDIDATE)"
-              stability: experimental  # RELEASE CANDIDATE
+              stability: release_candidate
             - id: progress
               value: "progress"
               brief: "Progress Database"
@@ -377,7 +359,7 @@ groups:
               value: "vertica"
               brief: "Vertica"
               stability: experimental
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
       - id: db.client.connection.state
         stability: experimental
         type:
