@@ -21,7 +21,7 @@ This document defines generic attributes for AWS services.
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="aws-extended-request-id" href="#aws-extended-request-id">`aws.extended_request_id`</a> | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="aws-request-id" href="#aws-request-id">`aws.request_id`</a> | string | The AWS request ID as returned in the response headers `x-amz-request-id` or `x-amz-requestid`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="aws-request-id" href="#aws-request-id">`aws.request_id`</a> | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Amazon DynamoDB Attributes
 
