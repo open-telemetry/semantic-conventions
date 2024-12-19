@@ -55,5 +55,6 @@ Technology specific semantic conventions are defined for the following databases
 * [MSSQL](mssql.md): Semantic Conventions for *MSSQL*.
 * [Redis](redis.md): Semantic Conventions for *Redis*.
 * [SQL](sql.md): Semantic Conventions for *SQL* databases.
+* [Vector DB](vector.md): Semantic Conventions for *Vector* databases.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
