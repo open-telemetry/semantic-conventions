@@ -30,7 +30,7 @@ groups:
             and from which the `OS terminology` column values are derived.
           brief: >
             This attribute represents the state the application has transitioned into at the occurrence of the event.
-          examples: ["active"]
+          examples: [ "active" ]
           type: enum
           members:
             - id: active
@@ -64,7 +64,7 @@ groups:
           note: >
             The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc),
             and from which the `OS identifiers` are derived.
-          examples: ["created"]
+          examples: [ "created" ]
           type: enum
           members:
             - id: created
@@ -82,3 +82,131 @@ groups:
               brief: >
                 Any time after Activity.onResume() or, if the app has no Activity,
                 Context.startService() has been called when the app was in either the created or background states.
+
+  - id: event.device.crash
+    stability: experimental
+    type: event
+    name: device.crash
+    brief: >
+      A crash event represents the termination of an application instance due to an unhandled error or exception. It can be detected and
+      recorded as it is happening (e.g. through an UncaughtExceptionHandler), or after the fact, when a tombstone is detected
+      containing information about a previously terminated app instance that was caused by an unhandled error or exception.
+    note: >
+      The body fields of this event contain data and metadata about the crash tht can be used to classify and aggregate it with similar
+      crashes on other devices. The crash event may not contain the entirety of the data necessary for it to be properly aggregated
+      because some of it are not available on the crashing device. In those cases, the data contained in the body fields of the
+      event SHOULD provide enough specificity for the rest to be looked up (e.g. the ID for a proguard file uploaded at build time).
+      The resource attributes, event attributes, and body fields should in totality contain enough information for reasonable deduplication
+      to take place so the same crash instance isn't counted twice even the same data causes the emission of more than once event
+      (e.g. device ID + process ID).
+
+      This event is meant to be used in conjunction with `os.name` [resource semantic convention](/docs/resource/os.md) to identify the
+      mobile operating system (e.g. Android, iOS, etc.) on which the crash occurred, which could be useful to determine how the data
+      in the event can be interpreted.
+
+      The event body fields MUST be used to describe the state of the application at the time of the crash, not when the event was actually
+      emitted, which could happen at a much later time (e.g. when the app next starts up).
+    body:
+      id: device_crash_state
+      type: map
+      requirement_level: required
+      fields:
+        - id: id
+          stability: experimental
+          requirement_level: required
+          brief: >
+            An ID that uniquely identifies the crash instance obtained from a specific `source`.
+          examples: [ "0d48510589c0426b43f01a5fa060a333" ]
+          type: string
+        - id: source
+          stability: experimental
+          requirement_level: recommended
+          brief: >
+            A value from a fixed set of values that uniquely identifies source of the crash data that determines what the `data` field contains.
+          note: >
+            This field, combined with `source_version`, will uniquely identify the structure of the `data` field.
+          examples: [ "jvm_exception" ]
+          type: enum
+          members:
+            - id: jvm_exception
+              value: 'jvm_exception'
+              brief: >
+                Throwable in the JVM layer, usually caught by an UncaughtExceptionHandler.
+            - id: sig_handler
+              value: 'sig_handler'
+              brief: >
+                Crash in the native layer caught by a signal handler
+            - id: aei
+              value: 'aei'
+              brief: >
+                [Application Exit Info](https://developer.android.com/reference/android/app/ApplicationExitInfo) written by Android after a process death
+        - id: source_version
+          stability: experimental
+          requirement_level: recommended
+          brief: >
+            Supplements the `source` field that identifies the specific variation of it [2].
+          note: >
+            This version is specifically for the `source` field. It can be a well-defined version of some external format (e.g. Android 15
+            Application Exit Info), or some custom version number associated with the usage in this event (e.g. some custom JSON schema).
+          examples: [ "1.0.0" ]
+          type: string
+        - id: data
+          stability: experimental
+          requirement_level: recommended
+          brief: >
+            A blob field containing the details of the crash that is obtained from the `source`. Combined with `data_content_type`, the
+            data in this field SHOULD be parseable.
+          note: >
+            This is considered a blob because it is not expected to be programmatically understandable without additional information
+            not represented in the semantic conventions. The value of this blob is typically obfuscated or contains obfuscated values,
+            encoded a binary format, and not useful unless paired with data that is not available on-device. As such, it's best for it to
+            be transmitted as a blob to be further processed at the Collector level.
+          type: string
+          examples: [ "{
+            \"exceptions\": [
+              {
+                \"type\": \"a.b.c\",
+                \"message\": \"An error has occurred\",
+                \"stacktrace\": \"a.b.c: An error has occurred\nat a.b.d.e.p(unknown source)\nat a.b.d.e.g(unknown source)\nat a.b.d.e.z(unknown source)\nat a.b.d.y.r(unknown source)\"
+              }
+            ],
+            \"threads\": [
+              {
+                \"id\": 74,
+                \"state\": \"RUNNABLE\",
+                \"name\": \"main\",
+                \"callstack\": [
+                  \"x.y.z\",
+                  \"x.y.aa\"
+                ]
+              }
+            ],
+            \"proguard_file_id\": \"<UUID>\"
+          }" ]
+        - id: data_content_type
+          stability: experimental
+          requirement_level: recommended
+          brief: >
+            The format of the `data` field as defined by [RFC 2046](https://datatracker.ietf.org/doc/html/rfc2046).
+          note: >
+            This, combined with a priori knowledge of the structure of the blob, will allow Collectors to parse and process the `data` field.
+          examples: [ "application/json" ]
+          type: string
+        - id: crashed_service_version
+          stability: experimental
+          requirement_level: recommended
+          brief: >
+            The version of the app when the crash happened, which may be different than the `service.version` resource attribute.
+          note: >
+            This is required so crashes can be aggregated by the version in which it occurred, not the one that emitted the event.
+          examples: [ "7.5.0" ]
+          type: string
+        - id: crashed_os_version
+          stability: experimental
+          requirement_level: recommended
+          brief: >
+            The version of the OS when the crash happened, which may be different than the `os.version` resource attribute.
+          note: >
+            This is required so crashes can be aggregated by the version of the OS on which it occurred, not the one that emitted the event.
+          examples: [ "15.0" ]
+          type: string
