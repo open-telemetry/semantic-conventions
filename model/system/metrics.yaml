@@ -354,7 +354,7 @@ groups:
     unit: "{connection}"
     attributes:
       - ref: network.interface.name
-      - ref: system.network.state
+      - ref: network.connection.state
       - ref: network.transport
 
   # system.process.* metrics
