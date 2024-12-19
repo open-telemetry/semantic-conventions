@@ -92,7 +92,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vertex.ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **Body fields:**
 
@@ -147,7 +147,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vertex.ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **Body fields:**
 
@@ -202,7 +202,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vertex.ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **Body fields:**
 
@@ -272,7 +272,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vertex.ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **Body fields:**
 
@@ -328,7 +328,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vertex.ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **Body fields:**
 
