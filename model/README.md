@@ -44,7 +44,7 @@ as our code generations tool.
 
 ## Validating semantic conventions
 
-Semantic conventions YAML files are validated by `check-policies` make target for backward compatibility,
+Semantic conventions YAML files are validated by the `check-policies` make target for backward compatibility,
 name formatting, and other policies.
 
 You can run it with the following command:
