@@ -31,7 +31,7 @@ structure and semantics will also be defined.
 ## General event semantics
 
 * An event MUST have an [Event name property](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/data-model.md#field-eventname)
-  that uniquely identifies the event. Event names are subject to the same rules as [attribute names](/docs/general/attribute-naming.md).
+  that uniquely identifies the event. Event names are subject to the [Naming guidelines](/docs/general/naming.md).
 * Event MAY have [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/common#attribute)
   attributes that provide additional context about the event.
 * It MAY contain a _payload_ (body) that describes the specific details of the
