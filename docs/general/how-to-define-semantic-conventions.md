@@ -9,6 +9,16 @@ aliases: [how-to-define-new-semantic-conventions]
 
 <!-- toc -->
 
+- [Defining new conventions](#defining-new-conventions)
+  - [Best practices](#best-practices)
+    - [Defining attributes](#defining-attributes)
+    - [Defining spans](#defining-spans)
+    - [Defining metrics](#defining-metrics)
+    - [Defining resources](#defining-resources)
+    - [Defining events](#defining-events)
+- [Stabilizing existing conventions](#stabilizing-existing-conventions)
+  - [Migration plan](#migration-plan)
+
 <!-- tocstop -->
 
 This document describes requirements, recommendations, and best practices on how to define conventions
