@@ -193,7 +193,7 @@ When creating new markdown files, you should provide the `linkTitle` attribute.
 This is used to generate the navigation bar on the website,
 and will be listed relative to the "parent" document.
 
-### 4. Check new convention
+### 3. Check new convention
 
 Semantic conventions are validated for name formatting and backward compatibility with last released versions.
 Here's [the full list of compatibility checks](./policies/compatibility.rego).
