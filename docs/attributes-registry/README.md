@@ -16,7 +16,7 @@ The attributes registry is the place where attributes are defined. An attribute 
 - a `brief` description of the attribute and optionally a longer `note`
 - example values
 
-Attributes defined in the registry can be used in different semantic conventions. Attributes should be included in this registry before they are used in semantic conventions. Semantic conventions may override all the properties of an attribute except for the `id`, `type`, and `stability` in case it's required for a particular context. In addition, semantic conventions specify the requirement level of an attribute in the corresponding context.
+Attributes defined in the registry can be used in different semantic conventions. Attributes should be included in this registry before they are used in semantic conventions. Semantic conventions may override all the properties of an attribute except for the `id`, `type` and `stability` in case it's required for a particular context. In addition, semantic conventions specify the requirement level of an attribute in the corresponding context.
 
 A definition of an attribute in the registry doesn't necessarily imply that the attribute is used in any of the semantic conventions.
 
@@ -46,12 +46,12 @@ Currently, the following namespaces exist:
 - [Code](code.md)
 - [Container](container.md)
 - [CPU](cpu.md)
-- [Db](db.md)
+- [DB](db.md)
 - [Deployment](deployment.md)
 - [Destination](destination.md)
 - [Device](device.md)
 - [Disk](disk.md)
-- [Dns](dns.md)
+- [DNS](dns.md)
 - [Dotnet](dotnet.md)
 - [Enduser](enduser.md)
 - [Error](error.md)
