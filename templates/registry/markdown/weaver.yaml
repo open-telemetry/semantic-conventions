@@ -14,6 +14,8 @@ acronyms:
   - CLR
   - CPU
   - CSI
+  - DB
+  - DNS
   - DynamoDB
   - ECS
   - EKS
