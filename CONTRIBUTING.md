@@ -20,8 +20,9 @@ requirements and recommendations.
     - [Schema files](#schema-files)
   - [2. Update the markdown files](#2-update-the-markdown-files)
     - [Hugo frontmatter](#hugo-frontmatter)
-  - [3. Verify the changes before committing](#3-verify-the-changes-before-committing)
-  - [4. Changelog](#4-changelog)
+  - [3. Check new convention](#3-check-new-convention)
+  - [4. Verify the changes before committing](#4-verify-the-changes-before-committing)
+  - [5. Changelog](#5-changelog)
     - [When to add a Changelog Entry](#when-to-add-a-changelog-entry)
       - [Examples](#examples)
     - [Adding a Changelog Entry](#adding-a-changelog-entry)
@@ -32,7 +33,6 @@ requirements and recommendations.
   - [Markdown style](#markdown-style)
   - [Misspell check](#misspell-check)
   - [Markdown link check](#markdown-link-check)
-  - [Version compatibility check](#version-compatibility-check)
 - [Updating the referenced specification version](#updating-the-referenced-specification-version)
 - [Making a Release](#making-a-release)
 - [Merging existing ECS conventions](#merging-existing-ecs-conventions)
@@ -207,7 +207,7 @@ You can run backward compatibility check (along with other policies) in all yaml
 make check-policies
 ```
 
-### 5. Verify the changes before committing
+### 4. Verify the changes before committing
 
 Before sending a PR with your changes, make sure to run the automated checks:
 
@@ -218,7 +218,7 @@ make check
 Alternatively, you can run each check individually.
 Refer to the [Automation](#automation) section for more details.
 
-### 6. Changelog
+### 5. Changelog
 
 #### When to add a Changelog Entry
 
