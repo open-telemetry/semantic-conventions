@@ -13,6 +13,7 @@ requirements and recommendations.
 
 - [Sign the CLA](#sign-the-cla)
 - [How to Contribute](#how-to-contribute)
+  - [Suggesting conventions for a new areas](#suggesting-conventions-for-a-new-areas)
   - [Prerequisites](#prerequisites)
   - [1. Modify the YAML model](#1-modify-the-yaml-model)
     - [Code structure](#code-structure)
@@ -61,6 +62,18 @@ key, but non-obvious, aspects:
   The tag version MUST match with the one defined in [README](README.md).
 
 Please make sure all Pull Requests are compliant with these rules!
+
+### Suggesting conventions for a new areas
+
+Defining semantic conventions involves a group of people who are familiar with the domain,
+are involved into instrumentation efforts, and are committed to be the point of contact for
+pull requests, issues, and questions in this area.
+
+Check out [project management](https://github.com/open-telemetry/community/blob/main/project-management.md)
+for the details on how to start.
+
+Refer to the [How to define new conventions](/docs/general/how-to-define-semantic-conventions.md) for
+guidance.
 
 ### Prerequisites
 
