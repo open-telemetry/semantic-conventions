@@ -18,7 +18,7 @@ jobs:
       run: make check-file-and-folder-names-in-docs
 
     - name: run markdownlint
-      run: npx gulp lint-md
+      run: make markdownlint
 
   yamllint:
     runs-on: ubuntu-latest
