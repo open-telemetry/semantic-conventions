@@ -93,7 +93,7 @@ groups:
         stability: experimental
         examples: ["Flag `header-color` expected type `string` but found type `number`"]
         brief: A message explaining the nature of an error occurring during flag evaluation.
-      - id: feature_flag.evaluation.value_type
+      - id: feature_flag.evaluation.value.type
         type:
           members:
             - id: string

@@ -60,7 +60,7 @@ A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag valu
 |---|---|---|---|---|---|
 | [`feature_flag.key`](/docs/attributes-registry/feature-flag.md) | string | The lookup key of the feature flag. | `logo-color` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `provider_not_ready`; `targeting_key_missing`; `provider_fatal`; `general` | `Conditionally Required` [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`feature_flag.evaluation.value_type`](/docs/attributes-registry/feature-flag.md) | string | Indicates the type of the `feature_flag.evaluation` event body field `value`. | `string`; `boolean` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`feature_flag.evaluation.value.type`](/docs/attributes-registry/feature-flag.md) | string | Indicates the type of the `feature_flag.evaluation` event body field `value`. | `string`; `boolean` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`feature_flag.variant`](/docs/attributes-registry/feature-flag.md) | string | A semantic identifier for an evaluated flag value. [4] | `red`; `true`; `on` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`feature_flag.context.id`](/docs/attributes-registry/feature-flag.md) | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`feature_flag.evaluation.error.message`](/docs/attributes-registry/feature-flag.md) | string | A message explaining the nature of an error occurring during flag evaluation. | `Flag `header-color` expected type `string` but found type `number`` | `Recommended` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -84,7 +84,7 @@ A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag valu
 
 **[2] `error.type`:** If and only if an error occurred during flag evaluation.
 
-**[3] `feature_flag.evaluation.value_type`:** If and only if `value` field is supplied in the event body
+**[3] `feature_flag.evaluation.value.type`:** If and only if `value` field is supplied in the event body
 
 **[4] `feature_flag.variant`:** A semantic identifier, commonly referred to as a variant, provides a means
 for referring to a value without including the value itself. This can
@@ -121,7 +121,7 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 
 ---
 
-`feature_flag.evaluation.value_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`feature_flag.evaluation.value.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

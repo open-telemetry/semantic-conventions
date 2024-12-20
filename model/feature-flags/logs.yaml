@@ -49,7 +49,7 @@ groups:
       - ref: feature_flag.evaluation.error.message
         requirement_level:
           recommended: If and only if an error occurred. It's NOT RECOMMENDED to duplicate the value of `error.type` in `feature_flag.evaluation.error.message`.
-      - ref: feature_flag.evaluation.value_type
+      - ref: feature_flag.evaluation.value.type
         requirement_level:
           conditionally_required: If and only if `value` field is supplied in the event body
     body:
