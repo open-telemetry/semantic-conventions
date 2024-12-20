@@ -37,7 +37,7 @@ for the new areas or make substantial changes to the existing ones.
 #### Defining attributes
 
 Reuse existing attributes when possible. Look through [existing conventions](/docs/attributes-registry/) for similar areas,
-check out [common attributes](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/general/attributes.md).
+check out [common attributes](/docs/general/attributes.md).
 Semantic conventions authors are encouraged to use attributes from different namespaces.
 
 Introduce new attributes when there is a clear use-case for them. Consider adding
@@ -70,6 +70,7 @@ When defining a new attribute:
           >
           > This attribute contains sensitive (PII) information.
     ```
+
 - Use the appropriate [attribute type](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md#type)
   - If the value has a reasonably short (open or closed) set of possible values, define it as an enum.
   - If the value is a timestamp, record it as a string in ISO 8601 format.
@@ -139,9 +140,12 @@ TBD
 - Conventions that are not used by instrumentations MUST NOT be declared stable
 
 TODO:
+
 - prototyping/implementation requirements
 - migration plan
 
 ### Migration plan
 
 TODO
+
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
