@@ -13,6 +13,7 @@ requirements and recommendations.
 
 - [Sign the CLA](#sign-the-cla)
 - [How to Contribute](#how-to-contribute)
+  - [Suggesting conventions for a new areas](#suggesting-conventions-for-a-new-areas)
   - [Prerequisites](#prerequisites)
   - [1. Modify the YAML model](#1-modify-the-yaml-model)
     - [Code structure](#code-structure)
