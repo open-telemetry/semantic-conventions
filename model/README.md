@@ -4,8 +4,10 @@ The YAML descriptions of semantic convention contained in this directory are int
 be used by the various OpenTelemetry language implementations to aid in automatic
 generation of semantics-related code.
 
-⚠ If you want to read the semantic conventions and not edit them, please see
-the generated markdown output in the [docs](../docs/README.md) folder.
+> [!NOTE]
+>
+> If you want to read the semantic conventions and not edit them, please see
+> the generated markdown output in the [docs](../docs/README.md) folder.
 
 ## Writing semantic conventions
 
@@ -21,17 +23,35 @@ A schema file for VS code is configured in the `/.vscode/settings.json` of this
 repository, enabling auto-completion and additional checks. Refer to
 [the generator README](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md) for what extension you need.
 
+When defining semantic conventions, follow [contributing guide](/CONTRIBUTING.md#1-modify-the-yaml-model):
+
+- If new attributes are necessary, define them in the [attribute registry](/docs/attributes-registry/README.md).
+  Attributes can only be defined inside groups with `attribute_group` type and with `id` starting with `registry.` prefix.
+- Define new spans, metrics, events, resources, and other conventions using appropriate group type. See
+  [semantic convention groups](/docs/general/semantic-convention-groups.md) for more details.
+
 ## Generating markdown
 
-These YAML files are used by the make target `table-generation` to generate consistently
+These YAML files are used by the make targets `attribute-registry-generation` and `table-generation` to generate consistently
 formatted Markdown tables for all semantic conventions in the specification. Run it from the root of this repository using the command
 
 ```
-make table-generation
+make attribute-registry-generation table-generation
 ```
 
 For more information, see the [Weaver](https://github.com/open-telemetry/weaver)
 as our code generations tool.
+
+## Validating semantic conventions
+
+Semantic conventions YAML files are validated by `check-policies` make target for backward compatibility,
+name formatting, and other policies.
+
+You can run it with the following command:
+
+```
+make check-policies
+```
 
 See also:
 
