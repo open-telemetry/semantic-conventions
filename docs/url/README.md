@@ -14,3 +14,5 @@ This document defines semantic conventions for URLs.
 URL semantic conventions are defined for the following:
 
 * [URL](url.md): For describing URL and its components.
+
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
