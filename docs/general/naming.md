@@ -16,12 +16,15 @@
   - [otel.\* Namespace](#otel-namespace)
   - [Attribute Name Pluralization Guidelines](#attribute-name-pluralization-guidelines)
   - [Signal-specific Attributes](#signal-specific-attributes)
+  - [System-specific attributes](#system-specific-attributes)
 - [Metrics](#metrics)
   - [Naming Rules for Counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
     - [Pluralization](#pluralization)
     - [Use `count` Instead of Pluralization for UpDownCounters](#use-count-instead-of-pluralization-for-updowncounters)
     - [Do Not Use `total`](#do-not-use-total)
   - [Instrument Naming](#instrument-naming)
+  - [Client and server metrics](#client-and-server-metrics)
+  - [System-specific metrics](#system-specific-metrics)
 
 <!-- tocstop -->
 
@@ -222,9 +225,37 @@ Examples:
 Metric `http.server.request.duration` uses attributes from the registry such as
 `server.port`, `error.type`.
 
+### System-specific attributes
+
+**Status**: [Development][DocumentStatus]
+
+When an attribute is specific to a particular system (e.g., project, provider, product),
+the system name should be used in the attribute name, following the pattern:
+`{optional domain}.{system}.*.{property}` pattern.
+
+Examples:
+
+- `db.cassandra.consistency_level` - Describes the consistency level property
+  specific to the Cassandra database.
+Cassandra DB.
+- `aws.s3.key` - Refers to the `key` property of the AWS S3 product.
+- `signalr.connection.status` – Indicates the connection status of the SignalR
+  network protocol. In this case, no domain is included.
+
+Semantic conventions for a specific domain are generally applicable to multiple systems.
+These conventions should define an attribute to represent the name of the system.
+For example, database conventions include the `db.system` attribute.
+<!-- update when https://github.com/open-telemetry/semantic-conventions/pull/1613 is merged -->
+
+The name of the system used in the corresponding `*.system` (or similar) attribute should match
+the name used inside system-specific attributes.
+
+For example, if the database name specified in `db.system` is `foo.bar`, system-specific
+attributes for this database should follow the `db.foo.bar.*` pattern.
+
 ## Metrics
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 ### Naming Rules for Counters and UpDownCounters
 
@@ -263,8 +294,6 @@ Counters SHOULD NOT append `_total` either because then their meaning will
 be confusing in delta backends.
 
 ### Instrument Naming
-
-**Status**: [Experimental][DocumentStatus]
 
 - **limit** - an instrument that measures the constant, known total amount of
 something should be called `entity.limit`. For example, `system.memory.limit`
@@ -308,5 +337,38 @@ called `entity.io` and have attributes for direction. For example,
 freely. For example, `system.paging.faults` and `system.network.packets`.
 Units do not need to be specified in the names since they are included during
 instrument creation, but can be added if there is ambiguity.
+
+### Client and server metrics
+
+Metrics that measure aspects of a physical or logical network call should include
+an indication of the side being measured when ambiguity exists.
+
+In such cases, the metric name should follow the pattern: `{domain}.{client|server}.{metric_name}`.
+
+For example:
+- `http.client.request.duration`
+- `gen_ai.server.request.duration`
+- `messaging.client.sent.messages`
+- `messaging.process.duration` - the term `process` clearly indicates that
+  the metric is reported by the consumer.
+- `kestrel.connection.duration` - here, `kestrel` is the name of the web server,
+  so no additional indication is necessary.
+
+### System-specific metrics
+
+When a metric is specific to a system (e.g., project, provider, product) in a given domain,
+the system name should be included in the instrument name using the pattern:
+`{domain}.{client|server}.{system}.*.{property}` pattern.
+
+For example, `db.client.cosmosdb.operation.request_charge`
+
+<!-- update when https://github.com/open-telemetry/semantic-conventions/pull/1613 is merged -->
+The system name should match the value of the corresponding `{domain}.system`
+attribute.
+
+For additional details, refer to [system-specific attributes](#system-specific-attributes).
+
+If a metric does not belong to any domain, use the system name at the start of the instrument name.
+For example, `signalr.server.connection.duration`.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
