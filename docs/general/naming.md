@@ -20,18 +20,21 @@ aliases: [attribute-naming]
   - [otel.\* Namespace](#otel-namespace)
   - [Attribute Name Pluralization Guidelines](#attribute-name-pluralization-guidelines)
   - [Signal-specific Attributes](#signal-specific-attributes)
+  - [System-specific attributes](#system-specific-attributes)
 - [Metrics](#metrics)
   - [Naming Rules for Counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
     - [Pluralization](#pluralization)
     - [Use `count` Instead of Pluralization for UpDownCounters](#use-count-instead-of-pluralization-for-updowncounters)
     - [Do Not Use `total`](#do-not-use-total)
   - [Instrument Naming](#instrument-naming)
+  - [Client and server metrics](#client-and-server-metrics)
+  - [System-specific metrics](#system-specific-metrics)
 
 <!-- tocstop -->
 
 </details>
 
-## General Naming Considerations
+## General naming considerations
 
 _This section applies to attribute names (also
 known as the "attribute keys"), as well as Metric and Event names. For brevity
@@ -84,7 +87,7 @@ Names SHOULD follow these rules:
   components or words in multi-word components when they are not necessary. For example,
   `vcs.change.id` describes pull request id as precisely as `vcs.repository.change.id` does.
 
-## Name Abbreviation Guidelines
+## Name abbreviation guidelines
 
 Abbreviations MAY be used when they are widely recognized and commonly used.
 
@@ -100,7 +103,7 @@ or `container.oci.*` instead of `container.open_container_initiative.*`
 Abbreviations SHOULD be avoided if they are ambiguous, for example, when they apply
 to multiple products or concepts.
 
-## Name Reuse Prohibition
+## Name reuse prohibition
 
 Two attributes, two metrics, or two events MUST NOT share the same name.
 Different entities (attribute and metric, metric and event) MAY share the same name.
@@ -109,7 +112,7 @@ Attributes, metrics, and events SHOULD NOT be removed from semantic
 conventions regardless of their maturity level. When the convention is renamed or
 no longer recommended, it SHOULD be deprecated.
 
-## Recommendations for OpenTelemetry Authors
+## Recommendations for OpenTelemetry authors
 
 - When coming up with a new semantic convention make sure to check existing
   namespaces ([Semantic Conventions](/docs/README.md)) to see if a similar namespace
@@ -134,7 +137,7 @@ no longer recommended, it SHOULD be deprecated.
 > Names must start with a letter, end with an alphanumeric character, and must not
 > contain two or more consecutive delimiters (Underscore or Dot).
 
-## Recommendations for Application Developers
+## Recommendations for application developers
 
 As an application developer when you need to record an attribute, metric, event, or
 other signal first consult existing [semantic conventions](./README.md).
@@ -173,7 +176,7 @@ subset of Unicode code points).
 
 ## Attributes
 
-### otel.\* Namespace
+### otel.\* namespace
 
 Attribute names that start with `otel.` are reserved to be defined by
 OpenTelemetry specification. These are typically used to express OpenTelemetry
@@ -187,7 +190,7 @@ and protocols.
 Any additions to the `otel.*` namespace MUST be approved as part of
 OpenTelemetry specification.
 
-### Attribute Name Pluralization Guidelines
+### Attribute name pluralization guidelines
 
 - When an attribute represents a single entity, the attribute name SHOULD be
   singular. Examples: `host.name`, `container.id`.
@@ -200,7 +203,7 @@ OpenTelemetry specification.
   [Name Pluralization Guidelines](./naming.md#pluralization) SHOULD be
   followed for the attribute name.
 
-### Signal-specific Attributes
+### Signal-specific attributes
 
 **Status**: [Development][DocumentStatus]
 
@@ -226,11 +229,39 @@ Examples:
 Metric `http.server.request.duration` uses attributes from the registry such as
 `server.port`, `error.type`.
 
+### System-specific attributes
+
+**Status**: [Development][DocumentStatus]
+
+When an attribute is specific to a particular system (e.g., project, provider, product),
+the system name should be used in the attribute name, following the pattern:
+`{optional domain}.{system}.*.{property}` pattern.
+
+Examples:
+
+- `db.cassandra.consistency_level` - Describes the consistency level property
+  specific to the Cassandra database.
+Cassandra DB.
+- `aws.s3.key` - Refers to the `key` property of the AWS S3 product.
+- `signalr.connection.status` – Indicates the connection status of the SignalR
+  network protocol. In this case, no domain is included.
+
+Semantic conventions for a specific domain are generally applicable to multiple systems.
+These conventions should define an attribute to represent the name of the system.
+For example, database conventions include the `db.system` attribute.
+<!-- update when https://github.com/open-telemetry/semantic-conventions/pull/1613 is merged -->
+
+The name of the system used in the corresponding `*.system` (or similar) attribute should match
+the name used inside system-specific attributes.
+
+For example, if the database name specified in `db.system` is `foo.bar`, system-specific
+attributes for this database should follow the `db.foo.bar.*` pattern.
+
 ## Metrics
 
 **Status**: [Development][DocumentStatus]
 
-### Naming Rules for Counters and UpDownCounters
+### Naming rules for counters and UpDownCounters
 
 #### Pluralization
 
@@ -249,7 +280,7 @@ should not be pluralized, even if many data points are recorded.
 * `system.paging.faults`, `system.disk.operations`, and `system.network.packets`
 should be pluralized, even if only a single data point is recorded.
 
-#### Use `count` Instead of Pluralization for UpDownCounters
+#### Use `count` instead of pluralization for UpDownCounters
 
 If the value being recorded represents the count of concepts signified
 by the namespace then the metric should be named `count` (within its namespace).
@@ -258,7 +289,7 @@ For example if we have a namespace `system.process` which contains all metrics r
 to the processes then to represent the count of the processes we can have a metric named
 `system.process.count`.
 
-#### Do Not Use `total`
+#### Do not use `total`
 
 UpDownCounters SHOULD NOT use `_total` because then they will look like
 monotonic sums.
@@ -266,7 +297,7 @@ monotonic sums.
 Counters SHOULD NOT append `_total` either because then their meaning will
 be confusing in delta backends.
 
-### Instrument Naming
+### Instrument naming
 
 **Status**: [Development][DocumentStatus]
 
@@ -312,5 +343,38 @@ called `entity.io` and have attributes for direction. For example,
 freely. For example, `system.paging.faults` and `system.network.packets`.
 Units do not need to be specified in the names since they are included during
 instrument creation, but can be added if there is ambiguity.
+
+### Client and server metrics
+
+Metrics that measure aspects of a physical or logical network call should include
+an indication of the side being measured when ambiguity exists.
+
+In such cases, the metric name should follow the pattern: `{domain}.{client|server}.{metric_name}`.
+
+For example:
+- `http.client.request.duration`
+- `gen_ai.server.request.duration`
+- `messaging.client.sent.messages`
+- `messaging.process.duration` - the term `process` clearly indicates that
+  the metric is reported by the consumer.
+- `kestrel.connection.duration` - here, `kestrel` is the name of the web server,
+  so no additional indication is necessary.
+
+### System-specific metrics
+
+When a metric is specific to a system (e.g., project, provider, product) in a given domain,
+the system name should be included in the instrument name using the pattern:
+`{domain}.{client|server}.{system}.*.{property}` pattern.
+
+For example, `db.client.cosmosdb.operation.request_charge`
+
+<!-- update when https://github.com/open-telemetry/semantic-conventions/pull/1613 is merged -->
+The system name should match the value of the corresponding `{domain}.system`
+attribute.
+
+For additional details, refer to [system-specific attributes](#system-specific-attributes).
+
+If a metric does not belong to any domain, use the system name at the start of the instrument name.
+For example, `signalr.server.connection.duration`.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
