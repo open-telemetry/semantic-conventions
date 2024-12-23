@@ -9,6 +9,7 @@
 - [GCP Client Attributes](#gcp-client-attributes)
 - [GCP - Google Cloud Run Attributes](#gcp---google-cloud-run-attributes)
 - [GCP - Google Compute Engine (GCE) Attributes](#gcp---google-compute-engine-gce-attributes)
+- [GCP Pub/Sub Attributes](#gcp-pubsub-attributes)
 
 ## GCP Client Attributes
 
@@ -37,3 +38,14 @@ This document defines attributes for Google Compute Engine (GCE).
 |---|---|---|---|---|
 | <a id="gcp-gce-instance-hostname" href="#gcp-gce-instance-hostname">`gcp.gce.instance.hostname`</a> | string | The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm). | `my-host1234.example.com`; `sample-vm.us-west1-b.c.my-project.internal` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gcp-gce-instance-name" href="#gcp-gce-instance-name">`gcp.gce.instance.name`</a> | string | The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names). | `instance-1`; `my-vm-name` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## GCP Pub/Sub Attributes
+
+This group describes attributes specific to GCP Pub/Sub.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="gcp-pubsub-message-ack-deadline" href="#gcp-pubsub-message-ack-deadline">`gcp.pubsub.message.ack_deadline`</a> | int | The ack deadline in seconds set for the modify ack deadline request. | `10` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gcp-pubsub-message-ack-id" href="#gcp-pubsub-message-ack-id">`gcp.pubsub.message.ack_id`</a> | string | The ack id for a given message. | `ack_id` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gcp-pubsub-message-delivery-attempt" href="#gcp-pubsub-message-delivery-attempt">`gcp.pubsub.message.delivery_attempt`</a> | int | The delivery attempt for a given message. | `2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gcp-pubsub-message-ordering-key" href="#gcp-pubsub-message-ordering-key">`gcp.pubsub.message.ordering_key`</a> | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

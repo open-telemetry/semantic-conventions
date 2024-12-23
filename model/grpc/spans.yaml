@@ -1,0 +1,16 @@
+groups:
+  - id: span.grpc
+    type: span
+    stability: experimental
+    extends: rpc
+    brief: 'Tech-specific attributes for gRPC.'
+    attributes:
+      - ref: grpc.status_code
+        tag: grpc-tech-specific
+        requirement_level: required
+      - ref: grpc.request.metadata
+        tag: grpc-tech-specific
+        requirement_level: opt_in
+      - ref: grpc.response.metadata
+        tag: grpc-tech-specific
+        requirement_level: opt_in

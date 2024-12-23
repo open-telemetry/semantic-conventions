@@ -1,0 +1,39 @@
+groups:
+  - id: span.eventhubs
+    type: attribute_group # this should be a span
+    stability: experimental
+    extends: attributes.messaging.trace.minimal
+    brief: >
+      Azure Event Hubs spans
+    attributes:
+      - ref: messaging.consumer.group.name
+        brief: "Azure Event Hubs [consumer group name](https://learn.microsoft.com/azure/event-hubs/event-hubs-features#consumer-groups)."
+        note: ""
+        requirement_level:
+          conditionally_required: On consumer spans.
+        sampling_relevant: true
+      - ref: messaging.destination.partition.id
+        brief: >
+          String representation of the partition id messages are sent to or received from, unique within the Event Hub.
+        requirement_level:
+          conditionally_required: If available.
+        sampling_relevant: true
+      - ref: eventhubs.message.enqueued_time
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
+      - ref: messaging.operation.name
+        brief: Azure Event Hubs operation name.
+        examples: ['send', 'receive', 'checkpoint']
+        note: |
+          The operation name SHOULD match one of the following values:
+
+          - `send`
+          - `receive`
+          - `process`
+          - `checkpoint`
+          - `get_partition_properties`
+          - `get_event_hub_properties`
+
+          If none of the above operation names apply, the attribute SHOULD be set
+          to the name of the client method in snake_case.

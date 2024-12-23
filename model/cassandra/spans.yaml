@@ -1,0 +1,36 @@
+groups:
+  - id: span.cassandra.client
+    type: span
+    span_kind: client
+    stability: experimental
+    extends: trace.db.common.query_and_collection
+    brief: >
+      Attributes for Cassandra
+    attributes:
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: The keyspace associated with the session.
+        examples: ["mykeyspace"]
+        requirement_level:
+          conditionally_required: If available.
+      - ref: cassandra.page_size
+      - ref: cassandra.consistency_level
+      - ref: db.collection.name
+        brief: The name of the Cassandra table that the operation is acting upon.
+      - ref: cassandra.idempotence
+      - ref: cassandra.speculative_execution_count
+      - ref: cassandra.coordinator.id
+      - ref: cassandra.coordinator.dc
+      - ref: network.peer.address
+        brief: Peer address of the database node where the operation was performed.
+        requirement_level:
+          recommended
+        note: >
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: if and only if `network.peer.address` is set.
+      - ref: db.response.status_code
+        brief: >
+          [Cassandra protocol error code](https://github.com/apache/cassandra/blob/cassandra-5.0/doc/native_protocol_v5.spec) represented as a string.
+        examples: ["102", "40020"]

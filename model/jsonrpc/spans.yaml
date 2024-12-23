@@ -1,0 +1,27 @@
+groups:
+  - id: span.jsonrpc
+    type: span
+    stability: experimental
+    extends: rpc
+    brief: '[JSON RPC](https://www.jsonrpc.org/) spans.'
+    attributes:
+      - ref: jsonrpc.version
+        tag: jsonrpc-tech-specific
+        requirement_level:
+          conditionally_required: If other than the default version (`1.0`)
+      - ref: jsonrpc.request_id
+        tag: jsonrpc-tech-specific
+        requirement_level: recommended
+      - ref: jsonrpc.error_code
+        tag: jsonrpc-tech-specific
+        requirement_level:
+          conditionally_required: If response is not successful.
+      - ref: jsonrpc.error_message
+        tag: jsonrpc-tech-specific
+        requirement_level: recommended
+      - ref: rpc.method
+        tag: jsonrpc-tech-specific
+        requirement_level: required
+        note: >
+          This is always required for jsonrpc. See the note in the general
+          RPC conventions for more information.

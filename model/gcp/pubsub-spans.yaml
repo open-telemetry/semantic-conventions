@@ -1,0 +1,31 @@
+groups:
+  - id: span.gcp.pubsub
+    type: attribute_group # TODO: this should be a span
+    stability: experimental
+    extends: attributes.messaging.trace.minimal
+    brief: >
+      Google Cloud Pub/Sub spans
+    attributes:
+      - ref: messaging.destination.subscription.name
+        brief: "Google Pub/Sub [subscription name](https://cloud.google.com/pubsub/docs/subscription-overview)."
+        note: ""
+        sampling_relevant: true
+      - ref: gcp.pubsub.message.ordering_key
+        requirement_level:
+          conditionally_required: If the message type has an ordering key set.
+      - ref: gcp.pubsub.message.delivery_attempt
+      - ref: gcp.pubsub.message.ack_deadline
+      - ref: gcp.pubsub.message.ack_id
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
+      - ref: messaging.operation.name
+        note: |
+          The `messaging.operation.name` has the following list of well-known values in the context of Google Pub/Sub.
+          If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+          - `ack` and `nack` for settlement operations
+          - `send` for publishing operations
+          - `modack` for extending the lease for a single message or batch of messages
+          - `subscribe` for operations that represent the time from after the message was received to when the message is acknowledged, negatively acknowledged, or expired.
+          - `create` and `receive` for [common messaging operations](/docs/messaging/messaging-spans.md#operation-types)

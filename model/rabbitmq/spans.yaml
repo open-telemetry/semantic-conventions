@@ -1,0 +1,19 @@
+groups:
+  - id: span.rabbitmq
+    type: attribute_group # TODO: this should be a span
+    stability: experimental
+    extends: messaging.network.attributes
+    brief: >
+      RabbitMQ spans
+    attributes:
+      - ref: rabbitmq.destination.routing_key
+        requirement_level:
+          conditionally_required: If not empty.
+      - ref: rabbitmq.message.delivery_tag
+        requirement_level:
+          conditionally_required: When available.
+      - ref: messaging.message.conversation_id
+        brief: >
+          Message [correlation Id](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property.
+      - ref: messaging.message.body.size
+        requirement_level: opt_in

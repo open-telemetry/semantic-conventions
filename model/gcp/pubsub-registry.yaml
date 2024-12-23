@@ -1,0 +1,31 @@
+groups:
+  - id: registry.gcp.pubsub
+    type: attribute_group
+    display_name: GCP Pub/Sub Attributes
+    brief: >
+      This group describes attributes specific to GCP Pub/Sub.
+    attributes:
+      - id: gcp.pubsub.message.ordering_key
+        type: string
+        stability: experimental
+        brief: >
+          The ordering key for a given message. If the attribute is not present, the message does not have an ordering key.
+        examples: 'ordering_key'
+      - id: gcp.pubsub.message.ack_id
+        type: string
+        stability: experimental
+        brief: >
+         The ack id for a given message.
+        examples: 'ack_id'
+      - id: gcp.pubsub.message.ack_deadline
+        type: int
+        stability: experimental
+        brief: >
+          The ack deadline in seconds set for the modify ack deadline request.
+        examples: 10
+      - id: gcp.pubsub.message.delivery_attempt
+        type: int
+        stability: experimental
+        brief: >
+          The delivery attempt for a given message.
+        examples: 2
