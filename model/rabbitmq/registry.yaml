@@ -1,0 +1,19 @@
+groups:
+  - id: registry.rabbitmq
+    type: attribute_group
+    display_name: RabbitMQ Attributes
+    brief: >
+      This group describes attributes specific to RabbitMQ.
+    attributes:
+      - id: rabbitmq.destination.routing_key
+        type: string
+        stability: experimental
+        brief: >
+          RabbitMQ message routing key.
+        examples: 'myKey'
+      - id: rabbitmq.message.delivery_tag
+        type: int
+        stability: experimental
+        brief: >
+          RabbitMQ message delivery tag
+        examples: 123

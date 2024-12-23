@@ -1,0 +1,77 @@
+groups:
+  - id: registry.connect_rpc
+    type: attribute_group
+    display_name: Connect RPC Attributes
+    brief: 'This document defines attributes for Connect RPC.'
+    attributes:
+      - id: connect_rpc.error_code
+        type:
+          members:
+            - id: cancelled
+              value: cancelled
+              stability: experimental
+            - id: unknown
+              value: unknown
+              stability: experimental
+            - id: invalid_argument
+              value: invalid_argument
+              stability: experimental
+            - id: deadline_exceeded
+              value: deadline_exceeded
+              stability: experimental
+            - id: not_found
+              value: not_found
+              stability: experimental
+            - id: already_exists
+              value: already_exists
+              stability: experimental
+            - id: permission_denied
+              value: permission_denied
+              stability: experimental
+            - id: resource_exhausted
+              value: resource_exhausted
+              stability: experimental
+            - id: failed_precondition
+              value: failed_precondition
+              stability: experimental
+            - id: aborted
+              value: aborted
+              stability: experimental
+            - id: out_of_range
+              value: out_of_range
+              stability: experimental
+            - id: unimplemented
+              value: unimplemented
+              stability: experimental
+            - id: internal
+              value: internal
+              stability: experimental
+            - id: unavailable
+              value: unavailable
+              stability: experimental
+            - id: data_loss
+              value: data_loss
+              stability: experimental
+            - id: unauthenticated
+              value: unauthenticated
+              stability: experimental
+        stability: experimental
+        brief: "The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values."
+      - id: connect_rpc.request.metadata
+        type: template[string[]]
+        stability: experimental
+        brief: >
+          Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
+        note: >
+          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+          Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+        examples: ['rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]']
+      - id: connect_rpc.response.metadata
+        type: template[string[]]
+        stability: experimental
+        brief: >
+          Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
+        note: >
+          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+          Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+        examples: ['rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]']

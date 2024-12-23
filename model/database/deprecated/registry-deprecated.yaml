@@ -89,10 +89,10 @@ groups:
       - id: db.instance.id
         type: string
         stability: experimental
-        brief: 'Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.'
-        deprecated: 'Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.'
+        brief: 'Deprecated, no general replacement at this time. For Elasticsearch, use `elasticsearch.node.name` instead.'
+        deprecated: 'Deprecated, no general replacement at this time. For Elasticsearch, use `elasticsearch.node.name` instead.'
         examples: 'mysql-e26b99z.example.com'
-      - id: db.elasticsearch.cluster.name
+      - id: elasticsearch.cluster.name
         type: string
         stability: experimental
         deprecated: Replaced by `db.namespace`.

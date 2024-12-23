@@ -1,0 +1,80 @@
+groups:
+  - id: registry.rocketmq
+    type: attribute_group
+    display_name: RocketMQ Attributes
+    brief: >
+      This group describes attributes specific to RocketMQ.
+    attributes:
+      - id: rocketmq.consumption_model
+        type:
+          members:
+            - id: clustering
+              value: 'clustering'
+              brief: 'Clustering consumption model'
+              stability: experimental
+            - id: broadcasting
+              value: 'broadcasting'
+              brief: 'Broadcasting consumption model'
+              stability: experimental
+        stability: experimental
+        brief: >
+          Model of message consumption. This only applies to consumer spans.
+      - id: rocketmq.message.delay_time_level
+        type: int
+        stability: experimental
+        brief: >
+          The delay time level for delay message, which determines the message delay time.
+        examples: 3
+      - id: rocketmq.message.delivery_timestamp
+        type: int
+        stability: experimental
+        brief: >
+          The timestamp in milliseconds that the delay message is expected to be delivered to consumer.
+        examples: 1665987217045
+      - id: rocketmq.message.group
+        type: string
+        stability: experimental
+        brief: >
+          It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group.
+        examples: 'myMessageGroup'
+      - id: rocketmq.message.keys
+        type: string[]
+        stability: experimental
+        brief: >
+          Key(s) of message, another way to mark message besides message id.
+        examples:
+          - [keyA, keyB]
+      - id: rocketmq.message.tag
+        type: string
+        stability: experimental
+        brief: >
+          The secondary classifier of message besides topic.
+        examples: tagA
+      - id: rocketmq.message.type
+        type:
+          members:
+            - id: normal
+              value: 'normal'
+              brief: "Normal message"
+              stability: experimental
+            - id: fifo
+              value: 'fifo'
+              brief: 'FIFO message'
+              stability: experimental
+            - id: delay
+              value: 'delay'
+              brief: 'Delay message'
+              stability: experimental
+            - id: transaction
+              value: 'transaction'
+              brief: 'Transaction message'
+              stability: experimental
+        stability: experimental
+        brief: >
+          Type of message.
+      - id: rocketmq.namespace
+        type: string
+        stability: experimental
+        brief: >
+          Namespace of RocketMQ resources, resources in different namespaces are individual.
+        examples: 'myNamespace'

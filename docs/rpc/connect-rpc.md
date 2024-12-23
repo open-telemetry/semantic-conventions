@@ -25,19 +25,19 @@ Below is a table of attributes that SHOULD be included on client and server Conn
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.connect_rpc.error_code`](/docs/attributes-registry/rpc.md) | string | The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled`; `unknown`; `invalid_argument` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.connect_rpc.request.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [2] | `rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.connect_rpc.response.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [3] | `rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`connect_rpc.error_code`](/docs/attributes-registry/connect-rpc.md) | string | The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled`; `unknown`; `invalid_argument` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`connect_rpc.request.metadata.<key>`](/docs/attributes-registry/connect-rpc.md) | string[] | Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [2] | `rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`connect_rpc.response.metadata.<key>`](/docs/attributes-registry/connect-rpc.md) | string[] | Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [3] | `rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `rpc.connect_rpc.error_code`:** If response is not successful and if error code available.
+**[1] `connect_rpc.error_code`:** If response is not successful and if error code available.
 
-**[2] `rpc.connect_rpc.request.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+**[2] `connect_rpc.request.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-**[3] `rpc.connect_rpc.response.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+**[3] `connect_rpc.response.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 ---
 
-`rpc.connect_rpc.error_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`connect_rpc.error_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

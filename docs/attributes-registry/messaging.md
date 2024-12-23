@@ -7,12 +7,6 @@
 # Messaging
 
 - [General Messaging Attributes](#general-messaging-attributes)
-- [Azure Event Hubs Attributes](#azure-event-hubs-attributes)
-- [GCP Pub/Sub Attributes](#gcp-pubsub-attributes)
-- [Kafka Attributes](#kafka-attributes)
-- [RabbitMQ Attributes](#rabbitmq-attributes)
-- [RocketMQ Attributes](#rocketmq-attributes)
-- [Azure Service Bus Attributes](#azure-service-bus-attributes)
 - [Deprecated Messaging Attributes](#deprecated-messaging-attributes)
 
 ## General Messaging Attributes
@@ -90,102 +84,6 @@ size should be used.
 | `rabbitmq` | RabbitMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `rocketmq` | Apache RocketMQ | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `servicebus` | Azure Service Bus | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## Azure Event Hubs Attributes
-
-This group describes attributes specific to Azure Event Hubs.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="messaging-eventhubs-message-enqueued-time" href="#messaging-eventhubs-message-enqueued-time">`messaging.eventhubs.message.enqueued_time`</a> | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## GCP Pub/Sub Attributes
-
-This group describes attributes specific to GCP Pub/Sub.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="messaging-gcp-pubsub-message-ack-deadline" href="#messaging-gcp-pubsub-message-ack-deadline">`messaging.gcp_pubsub.message.ack_deadline`</a> | int | The ack deadline in seconds set for the modify ack deadline request. | `10` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="messaging-gcp-pubsub-message-ack-id" href="#messaging-gcp-pubsub-message-ack-id">`messaging.gcp_pubsub.message.ack_id`</a> | string | The ack id for a given message. | `ack_id` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="messaging-gcp-pubsub-message-delivery-attempt" href="#messaging-gcp-pubsub-message-delivery-attempt">`messaging.gcp_pubsub.message.delivery_attempt`</a> | int | The delivery attempt for a given message. | `2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="messaging-gcp-pubsub-message-ordering-key" href="#messaging-gcp-pubsub-message-ordering-key">`messaging.gcp_pubsub.message.ordering_key`</a> | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## Kafka Attributes
-
-This group describes attributes specific to Apache Kafka.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="messaging-kafka-message-key" href="#messaging-kafka-message-key">`messaging.kafka.message.key`</a> | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [10] | `myKey` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="messaging-kafka-message-tombstone" href="#messaging-kafka-message-tombstone">`messaging.kafka.message.tombstone`</a> | boolean | A boolean that is true if the message is a tombstone. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="messaging-kafka-offset" href="#messaging-kafka-offset">`messaging.kafka.offset`</a> | int | The offset of a record in the corresponding Kafka partition. | `42` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-**[10] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
-
-## RabbitMQ Attributes
-
-This group describes attributes specific to RabbitMQ.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="messaging-rabbitmq-destination-routing-key" href="#messaging-rabbitmq-destination-routing-key">`messaging.rabbitmq.destination.routing_key`</a> | string | RabbitMQ message routing key. | `myKey` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="messaging-rabbitmq-message-delivery-tag" href="#messaging-rabbitmq-message-delivery-tag">`messaging.rabbitmq.message.delivery_tag`</a> | int | RabbitMQ message delivery tag | `123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## RocketMQ Attributes
-
-This group describes attributes specific to RocketMQ.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="messaging-rocketmq-consumption-model" href="#messaging-rocketmq-consumption-model">`messaging.rocketmq.consumption_model`</a> | string | Model of message consumption. This only applies to consumer spans. | `clustering`; `broadcasting` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="messaging-rocketmq-message-delay-time-level" href="#messaging-rocketmq-message-delay-time-level">`messaging.rocketmq.message.delay_time_level`</a> | int | The delay time level for delay message, which determines the message delay time. | `3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="messaging-rocketmq-message-delivery-timestamp" href="#messaging-rocketmq-message-delivery-timestamp">`messaging.rocketmq.message.delivery_timestamp`</a> | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer. | `1665987217045` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="messaging-rocketmq-message-group" href="#messaging-rocketmq-message-group">`messaging.rocketmq.message.group`</a> | string | It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group. | `myMessageGroup` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="messaging-rocketmq-message-keys" href="#messaging-rocketmq-message-keys">`messaging.rocketmq.message.keys`</a> | string[] | Key(s) of message, another way to mark message besides message id. | `["keyA", "keyB"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="messaging-rocketmq-message-tag" href="#messaging-rocketmq-message-tag">`messaging.rocketmq.message.tag`</a> | string | The secondary classifier of message besides topic. | `tagA` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="messaging-rocketmq-message-type" href="#messaging-rocketmq-message-type">`messaging.rocketmq.message.type`</a> | string | Type of message. | `normal`; `fifo`; `delay` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="messaging-rocketmq-namespace" href="#messaging-rocketmq-namespace">`messaging.rocketmq.namespace`</a> | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
----
-
-`messaging.rocketmq.consumption_model` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `broadcasting` | Broadcasting consumption model | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `clustering` | Clustering consumption model | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
----
-
-`messaging.rocketmq.message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `delay` | Delay message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fifo` | FIFO message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `normal` | Normal message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `transaction` | Transaction message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## Azure Service Bus Attributes
-
-This group describes attributes specific to Azure Service Bus.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="messaging-servicebus-disposition-status" href="#messaging-servicebus-disposition-status">`messaging.servicebus.disposition_status`</a> | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete`; `abandon`; `dead_letter` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="messaging-servicebus-message-delivery-count" href="#messaging-servicebus-message-delivery-count">`messaging.servicebus.message.delivery_count`</a> | int | Number of deliveries that have been attempted for this message. | `2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="messaging-servicebus-message-enqueued-time" href="#messaging-servicebus-message-enqueued-time">`messaging.servicebus.message.enqueued_time`</a> | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
----
-
-`messaging.servicebus.disposition_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `abandon` | Message is abandoned | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `complete` | Message is completed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dead_letter` | Message is sent to dead letter queue | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `defer` | Message is deferred | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Deprecated Messaging Attributes
 

@@ -26,37 +26,6 @@ groups:
 
           Instrumentations SHOULD document how `error.type` is populated.
 
-  - id: attributes.db.cosmosdb.minimal
-    type: attribute_group
-    brief: 'Azure Cosmos DB Client attributes'
-    stability: experimental
-    extends: attributes.db.client.minimal
-    attributes:
-      # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
-      # - ref: db.system
-      #   requirement_level:
-      #     conditionally_required: if available
-      - ref: db.operation.name
-        requirement_level:  # TODO (trask) simplify
-          conditionally_required: >
-            If readily available and if there is a single operation name that describes the
-            database call. The operation name MAY be parsed from the query text,
-            in which case it SHOULD be the single operation name found in the query.
-      - ref: db.collection.name
-        brief: Cosmos DB container name.
-        requirement_level:
-          conditionally_required: If available.
-      - ref: db.namespace
-        requirement_level:
-          conditionally_required: If available.
-        note: ""  # overriding the base note
-      - ref: db.cosmosdb.sub_status_code
-        requirement_level:
-          conditionally_required: when response was received and contained sub-code.
-      - ref: db.cosmosdb.consistency_level
-        requirement_level:
-          conditionally_required: If available.
-
   - id: attributes.db.client.with_query
     extends: attributes.db.client.minimal
     type: attribute_group

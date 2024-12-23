@@ -1,0 +1,41 @@
+groups:
+  - id: registry.servicebus
+    type: attribute_group
+    display_name: Azure Service Bus Attributes
+    brief: >
+      This group describes attributes specific to Azure Service Bus.
+    attributes:
+      - id: servicebus.message.delivery_count
+        type: int
+        stability: experimental
+        brief: >
+          Number of deliveries that have been attempted for this message.
+        examples: 2
+      - id: servicebus.message.enqueued_time
+        type: int
+        stability: experimental
+        brief: >
+          The UTC epoch seconds at which the message has been accepted and stored in the entity.
+        examples: 1701393730
+      - id: servicebus.disposition_status
+        brief: >
+          Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
+        type:
+          members:
+            - id: complete
+              value: 'complete'
+              brief: 'Message is completed'
+              stability: experimental
+            - id: abandon
+              value: 'abandon'
+              brief: 'Message is abandoned'
+              stability: experimental
+            - id: dead_letter
+              value: 'dead_letter'
+              brief: 'Message is sent to dead letter queue'
+              stability: experimental
+            - id: defer
+              value: 'defer'
+              brief: 'Message is deferred'
+              stability: experimental
+        stability: experimental

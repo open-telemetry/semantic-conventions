@@ -1,0 +1,41 @@
+groups:
+  - id: span.servicebus
+    type: attribute_group # todo: this should be a span
+    stability: experimental
+    extends: attributes.messaging.trace.minimal
+    brief: >
+      Azure Service Bus spans
+    attributes:
+      - ref: messaging.destination.subscription.name
+        brief: "Azure Service Bus [subscription name](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-queues-topics-subscriptions#topics-and-subscriptions)."
+        note: ""
+        sampling_relevant: true
+        requirement_level:
+          conditionally_required: If messages are received from the subscription.
+      - ref: servicebus.message.delivery_count
+        requirement_level:
+          conditionally_required: If delivery count is available and is bigger than 0.
+      - ref: servicebus.message.enqueued_time
+      - ref: servicebus.disposition_status
+        requirement_level:
+          conditionally_required: if and only if `messaging.operation` is `settle`.
+      - ref: messaging.message.conversation_id
+        brief: Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property.
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
+      - ref: messaging.operation.name
+        brief: Azure Service Bus operation name.
+        note: |
+          The operation name SHOULD match one of the following values:
+
+          - sender operations: `send`, `schedule`, `cancel_scheduled`
+          - transaction operations: `create_transaction`, `commit_transaction`, `rollback_transaction`
+          - receiver operation: `receive`, `peek`, `receive_deferred`, `renew_message_lock`
+          - settlement operations: `abandon`, `complete`, `defer`, `dead_letter`, `delete`
+          - session operations: `accept_session`, `get_session_state`, `set_session_state`, `renew_session_lock`
+
+          If none of the above operation names apply, the attribute SHOULD be set
+          to the name of the client method in snake_case.
+
+        examples: ['send', 'receive', 'complete', 'process', 'peek']

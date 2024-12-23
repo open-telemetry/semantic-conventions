@@ -7,7 +7,6 @@
 # Gen AI
 
 - [GenAI Attributes](#genai-attributes)
-- [OpenAI Attributes](#openai-attributes)
 - [Deprecated GenAI Attributes](#deprecated-genai-attributes)
 
 ## GenAI Attributes
@@ -80,37 +79,6 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 |---|---|---|
 | `input` | Input tokens (prompt, input, etc.) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `output` | Output tokens (completion, response, etc.) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## OpenAI Attributes
-
-Thie group defines attributes for OpenAI.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="gen-ai-openai-request-response-format" href="#gen-ai-openai-request-response-format">`gen_ai.openai.request.response_format`</a> | string | The response format that is requested. | `json` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-openai-request-seed" href="#gen-ai-openai-request-seed">`gen_ai.openai.request.seed`</a> | int | Requests with same seed value more likely to return same result. | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-openai-request-service-tier" href="#gen-ai-openai-request-service-tier">`gen_ai.openai.request.service_tier`</a> | string | The service tier requested. May be a specific tier, default, or auto. | `auto`; `default` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-openai-response-service-tier" href="#gen-ai-openai-response-service-tier">`gen_ai.openai.response.service_tier`</a> | string | The service tier used for the response. | `scale`; `default` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-openai-response-system-fingerprint" href="#gen-ai-openai-response-system-fingerprint">`gen_ai.openai.response.system_fingerprint`</a> | string | A fingerprint to track any eventual change in the Generative AI environment. | `fp_44709d6fcb` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
----
-
-`gen_ai.openai.request.response_format` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `json_object` | JSON object response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `json_schema` | JSON schema response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `text` | Text response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
----
-
-`gen_ai.openai.request.service_tier` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `auto` | The system will utilize scale tier credits until they are exhausted. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `default` | The system will utilize the default scale tier. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Deprecated GenAI Attributes
 

@@ -1,0 +1,13 @@
+groups:
+  - id: registry.eventhubs
+    type: attribute_group
+    display_name: Azure Event Hubs Attributes
+    brief: >
+      This group describes attributes specific to Azure Event Hubs.
+    attributes:
+      - id: eventhubs.message.enqueued_time
+        type: int
+        stability: experimental
+        brief: >
+          The UTC epoch seconds at which the message has been accepted and stored in the entity.
+        examples: 1701393730

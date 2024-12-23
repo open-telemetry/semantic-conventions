@@ -1,0 +1,28 @@
+groups:
+  - id: registry.kafka
+    type: attribute_group
+    display_name: Kafka Attributes
+    brief: >
+      This group describes attributes specific to Apache Kafka.
+    attributes:
+      - id: kafka.message.key
+        type: string
+        stability: experimental
+        brief: >
+          Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition.
+          They differ from `messaging.message.id` in that they're not unique.
+          If the key is `null`, the attribute MUST NOT be set.
+        note: >
+          If the key type is not string, it's string representation has to be supplied for the attribute.
+          If the key has no unambiguous, canonical string form, don't include its value.
+        examples: 'myKey'
+      - id: kafka.offset
+        type: int
+        stability: experimental
+        brief: >
+          The offset of a record in the corresponding Kafka partition.
+        examples: 42
+      - id: kafka.message.tombstone
+        type: boolean
+        stability: experimental
+        brief: 'A boolean that is true if the message is a tombstone.'

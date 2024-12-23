@@ -1,0 +1,17 @@
+groups:
+  - id: span.rpc.connect_rpc
+    type: span
+    stability: experimental
+    extends: rpc
+    brief: 'Connect RPC spans.'
+    attributes:
+      - ref: connect_rpc.error_code
+        tag: connect_rpc-tech-specific
+        requirement_level:
+          conditionally_required: If response is not successful and if error code available.
+      - ref: connect_rpc.request.metadata
+        tag: connect_rpc-tech-specific
+        requirement_level: opt_in
+      - ref: connect_rpc.response.metadata
+        tag: connect_rpc-tech-specific
+        requirement_level: opt_in

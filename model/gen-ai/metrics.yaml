@@ -35,9 +35,9 @@ groups:
     type: attribute_group
     brief: 'This group describes GenAI server metrics attributes'
     attributes:
-      - ref: gen_ai.openai.response.service_tier
+      - ref: openai.response.service_tier
         requirement_level: recommended
-      - ref: gen_ai.openai.response.system_fingerprint
+      - ref: openai.response.system_fingerprint
         requirement_level: recommended
   - id: metric.gen_ai.client.token.usage
     type: metric

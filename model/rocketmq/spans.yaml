@@ -1,0 +1,34 @@
+groups:
+  - id: span.rocketmq
+    type: attribute_group # TODO: this should be a span
+    stability: experimental
+    extends: attributes.messaging.trace.minimal
+    brief: >
+      Apache RocketMQ spans
+    attributes:
+      - ref: messaging.consumer.group.name
+        brief: "RocketMQ [consumer group name](https://rocketmq.apache.org/docs/domainModel/07consumergroup)."
+        note: ""
+        sampling_relevant: true
+        requirement_level: required
+      - ref: rocketmq.namespace
+        requirement_level: required
+      - ref: rocketmq.message.delivery_timestamp
+        requirement_level:
+          conditionally_required: If the message type is delay and delay time level is not specified.
+      - ref: rocketmq.message.delay_time_level
+        requirement_level:
+          conditionally_required: If the message type is delay and delivery timestamp is not specified.
+      - ref: rocketmq.message.group
+        requirement_level:
+          conditionally_required: If the message type is FIFO.
+      - ref: rocketmq.message.type
+      - ref: rocketmq.message.tag
+      - ref: rocketmq.message.keys
+      - ref: rocketmq.consumption_model
+      - ref: messaging.client.id
+      - ref: messaging.message.body.size
+        requirement_level: opt_in
+      - ref: messaging.batch.message_count
+        requirement_level:
+          conditionally_required: If the span describes an operation on a batch of messages.
