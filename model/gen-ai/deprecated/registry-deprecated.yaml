@@ -28,3 +28,13 @@ groups:
         deprecated: "Removed, no replacement at this time."
         brief: "Deprecated, use Event API to report completions contents."
         examples: ["[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]"]
+  - id: registry.gen_ai.openai.deprecated
+    type: attribute_group
+    brief: Describes deprecated `gen_ai.openai` attributes.
+    display_name: Deprecated OpenAI GenAI Attributes
+    attributes:
+      - id: gen_ai.openai.request.seed
+        stability: experimental
+        type: int
+        brief: "Deprecated, use `gen_ai.request.seed`."
+        examples: [100]
