@@ -13,6 +13,7 @@ requirements and recommendations.
 
 - [Sign the CLA](#sign-the-cla)
 - [How to Contribute](#how-to-contribute)
+  - [Which semantic conventions belong in this repo](#which-semantic-conventions-belong-in-this-repo)
   - [Prerequisites](#prerequisites)
   - [1. Modify the YAML model](#1-modify-the-yaml-model)
     - [Code structure](#code-structure)
@@ -61,6 +62,25 @@ key, but non-obvious, aspects:
   The tag version MUST match with the one defined in [README](README.md).
 
 Please make sure all Pull Requests are compliant with these rules!
+
+### Which semantic conventions belong in this repo
+
+This repo contains semantic conventions supported by the OpenTelemetry ecosystem
+including, but not limited to, components hosted in OpenTelemetry.
+
+Instrumentations hosted in OpenTelemetry SHOULD contribute their semantic
+conventions to this repo with the following exceptions:
+
+- Instrumentations that follow external schema not fully compatible with OpenTelemetry such as
+  [Kafka client JMX metrics](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/v2.10.0/instrumentation/kafka/kafka-clients/kafka-clients-2.6/library/README.md)
+  or [RabbitMQ Collector Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/v0.116.0/receiver/rabbitmqreceiver)
+  SHOULD document such conventions in their own repository.
+
+Having all OTel conventions in this repo allows to reuse common attributes, enforce naming and compatibility policies,
+and helps to keep conventions consistent and backward compatible.
+
+Want to define your own conventions outside this repo while building on OTel’s?
+Come help us [decentralize semantic conventions](https://github.com/open-telemetry/weaver/issues/215).
 
 ### Prerequisites
 
