@@ -20,8 +20,9 @@ requirements and recommendations.
     - [Schema files](#schema-files)
   - [2. Update the markdown files](#2-update-the-markdown-files)
     - [Hugo frontmatter](#hugo-frontmatter)
-  - [3. Verify the changes before committing](#3-verify-the-changes-before-committing)
-  - [4. Changelog](#4-changelog)
+  - [3. Check new convention](#3-check-new-convention)
+  - [4. Verify the changes before committing](#4-verify-the-changes-before-committing)
+  - [5. Changelog](#5-changelog)
     - [When to add a Changelog Entry](#when-to-add-a-changelog-entry)
       - [Examples](#examples)
     - [Adding a Changelog Entry](#adding-a-changelog-entry)
@@ -32,7 +33,6 @@ requirements and recommendations.
   - [Markdown style](#markdown-style)
   - [Misspell check](#misspell-check)
   - [Markdown link check](#markdown-link-check)
-  - [Version compatibility check](#version-compatibility-check)
 - [Updating the referenced specification version](#updating-the-referenced-specification-version)
 - [Making a Release](#making-a-release)
 - [Merging existing ECS conventions](#merging-existing-ecs-conventions)
@@ -126,6 +126,8 @@ The YAML (model definition) and Markdown (documentation) files are organized in 
 │   │   ├── ....md
 ├── model
 │   ├── {root-namespace}
+│   │   ├── deprecated
+│   │   |   ├── registry-deprecated.yaml
 │   │   ├── events.yaml
 │   │   ├── metrics.yaml
 │   │   ├── registry.yaml
@@ -146,6 +148,9 @@ HTTP spans are defined in `model/http/spans.yaml`.
 YAML definitions could be broken down into multiple files. For example, AWS spans
 are defined in `/model/aws/lambda-spans.yaml` and `/model/aws/sdk-spans.yaml` files.
 
+Deprecated conventions should be placed under `/model/{root-namespace}/deprecated`
+folder.
+
 #### Schema files
 
 When making changes to existing semantic conventions (attributes, metrics, etc)
@@ -157,6 +162,7 @@ For details, please read
 You can also take examples from past changes inside the `schemas` folder.
 
 > [!WARNING]
+>
 > DO NOT add your changes to files inside the `schemas` folder. Always add your
 > changes to the `schema-next.yaml` file.
 
@@ -187,7 +193,21 @@ When creating new markdown files, you should provide the `linkTitle` attribute.
 This is used to generate the navigation bar on the website,
 and will be listed relative to the "parent" document.
 
-### 3. Verify the changes before committing
+### 3. Check new convention
+
+Semantic conventions are validated for name formatting and backward compatibility with last released versions.
+Here's [the full list of compatibility checks](./policies/compatibility.rego).
+
+Removing attributes, metrics, or enum members is not allowed, they should be deprecated instead.
+It applies to stable and experimental conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
+
+You can run backward compatibility check (along with other policies) in all yaml files with the following command:
+
+```bash
+make check-policies
+```
+
+### 4. Verify the changes before committing
 
 Before sending a PR with your changes, make sure to run the automated checks:
 
@@ -198,7 +218,7 @@ make check
 Alternatively, you can run each check individually.
 Refer to the [Automation](#automation) section for more details.
 
-### 4. Changelog
+### 5. Changelog
 
 #### When to add a Changelog Entry
 
@@ -359,18 +379,6 @@ To check the validity of links in all markdown files, run the following command:
 
 ```bash
 make markdown-link-check
-```
-
-### Version compatibility check
-
-Semantic conventions are validated for backward compatibility with last released versions. Here's [the full list of compatibility checks](./policies/compatibility.rego).
-Removing attributes, metrics, or enum members is not allowed, they should be deprecated instead.
-It applies to stable and experimental conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
-
-You can run backward compatibility check (along with other policies) in all yaml files with the following command:
-
-```bash
-make check-policies
 ```
 
 ## Updating the referenced specification version
