@@ -36,5 +36,6 @@ groups:
       - id: gen_ai.openai.request.seed
         stability: experimental
         type: int
+        deprecated: Replaced by `gen_ai.request.seed` attribute.
         brief: "Deprecated, use `gen_ai.request.seed`."
         examples: [100]
