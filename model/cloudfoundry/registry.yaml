@@ -1,6 +1,7 @@
 groups:
   - id: registry.cloudfoundry
     type: attribute_group
+    display_name: CloudFoundry Attributes
     brief: >
       CloudFoundry resource attributes.
     attributes:

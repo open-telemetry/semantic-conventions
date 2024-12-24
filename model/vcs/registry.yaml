@@ -1,6 +1,7 @@
 groups:
   - id: registry.vcs.repository
     type: attribute_group
+    display_name: VCS Repository Attributes
     brief: >
       This group defines the attributes for
       [Version Control Systems (VCS)](https://wikipedia.org/wiki/Version_control).
@@ -9,13 +10,32 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The [URL](https://wikipedia.org/wiki/URL) of the repository
-          providing the complete address in order to locate and identify the
-          repository.
+          The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.)
+          of the repository providing the complete HTTP(S) address in order to
+          locate and identify the repository through a browser.
+        note: |
+          In Git Version Control Systems, the canonical URL SHOULD NOT include
+          the `.git` extension.
         examples:
           [
             "https://github.com/opentelemetry/open-telemetry-collector-contrib",
             "https://gitlab.com/my-org/my-project/my-projects-project/repo",
+          ]
+      - id: vcs.repository.name
+        type: string
+        stability: experimental
+        brief: >
+          The human readable name of the repository. It SHOULD NOT include any
+          additional identifier like Group/SubGroup in GitLab or organization
+          in GitHub.
+        note: |
+          Due to it only being the name, it can clash with forks of the same
+          repository if collecting telemetry across multiple orgs or groups in
+          the same backends.
+        examples:
+          [
+            "semantic-conventions",
+            "my-cool-repo",
           ]
       - id: vcs.ref.base.name
         type: string

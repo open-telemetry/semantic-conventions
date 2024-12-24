@@ -187,23 +187,28 @@ in such a way that it cannot be changed by intermediaries.
 
 ### Span name
 
-Messaging spans SHOULD follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#span).
+Messaging spans SHOULD follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/trace/api.md#span).
 
 <!-- markdown-link-check-disable -->
 <!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
-The **span name** SHOULD be `{messaging.operation.name} {destination}` (see below for the exact definition of the [`{destination}`](#destination-placeholder) placeholder).
+The **span name** SHOULD be `{messaging.operation.name} {destination}`
+(see below for the exact definition of the [`{destination}`](#destination-placeholder) placeholder).
 <!-- markdown-link-check-enable -->
 
-Semantic conventions for individual messaging systems MAY specify different span name format and then MUST document it in semantic conventions for specific messaging technologies.
+Semantic conventions for individual messaging systems MAY specify different
+span name format and then MUST document it in semantic conventions
+for specific messaging technologies.
 
-The <span id="destination-placeholder">`{destination}`</span> SHOULD describe the entity that the operation is performed against
+The <span id="destination-placeholder">`{destination}`</span>
+SHOULD describe the entity that the operation is performed against
 and SHOULD adhere to one of the following values, provided they are accessible:
 
 1. `messaging.destination.template` SHOULD be used when it is available.
 2. `messaging.destination.name` SHOULD be used when the destination is known to be neither [temporary nor anonymous](#temporary-and-anonymous-destinations).
 3. `server.address:server.port` SHOULD be used only for operations not targeting any specific destination(s).
 
-If a corresponding `{destination}` value is not available for a specific operation, the instrumentation SHOULD omit the `{destination}`.
+If a (low-cardinality) corresponding `{destination}` value is not available for
+a specific operation, the instrumentation SHOULD omit the `{destination}`.
 
 Examples:
 

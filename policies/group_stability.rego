@@ -12,6 +12,8 @@ deny[group_stability_violation(description, group.id, name)] {
         "metric.kestrel.connection.duration", "metric.kestrel.tls_handshake.duration",
         # TODO: https://github.com/open-telemetry/semantic-conventions/issues/1519
         "resource.service",
+        # TODO: https://github.com/open-telemetry/semantic-conventions/issues/1616
+        "metric.dotnet.process.cpu.time",
     }
     not exceptions[group.id]
 

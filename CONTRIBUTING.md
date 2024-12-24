@@ -13,6 +13,7 @@ requirements and recommendations.
 
 - [Sign the CLA](#sign-the-cla)
 - [How to Contribute](#how-to-contribute)
+  - [Which semantic conventions belong in this repo](#which-semantic-conventions-belong-in-this-repo)
   - [Prerequisites](#prerequisites)
   - [1. Modify the YAML model](#1-modify-the-yaml-model)
     - [Code structure](#code-structure)
@@ -61,6 +62,25 @@ key, but non-obvious, aspects:
   The tag version MUST match with the one defined in [README](README.md).
 
 Please make sure all Pull Requests are compliant with these rules!
+
+### Which semantic conventions belong in this repo
+
+This repo contains semantic conventions supported by the OpenTelemetry ecosystem
+including, but not limited to, components hosted in OpenTelemetry.
+
+Instrumentations hosted in OpenTelemetry SHOULD contribute their semantic
+conventions to this repo with the following exceptions:
+
+- Instrumentations that follow external schema not fully compatible with OpenTelemetry such as
+  [Kafka client JMX metrics](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/v2.10.0/instrumentation/kafka/kafka-clients/kafka-clients-2.6/library/README.md)
+  or [RabbitMQ Collector Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/v0.116.0/receiver/rabbitmqreceiver)
+  SHOULD document such conventions in their own repository.
+
+Having all OTel conventions in this repo allows to reuse common attributes, enforce naming and compatibility policies,
+and helps to keep conventions consistent and backward compatible.
+
+Want to define your own conventions outside this repo while building on OTel’s?
+Come help us [decentralize semantic conventions](https://github.com/open-telemetry/weaver/issues/215).
 
 ### Prerequisites
 
@@ -114,7 +134,7 @@ The YAML (model definition) and Markdown (documentation) files are organized in 
 ```
 
 All attributes must be defined in the folder matching their root namespace under
-`/{root-namespace}/*registry.yaml` file.
+`/model/{root-namespace}/registry.yaml` file.
 
 Corresponding markdown files are auto-generated (see [Update the markdown files](#2-update-the-markdown-files))
 in `/docs/attribute_registry` folder.
@@ -366,6 +386,8 @@ make check-policies
 - Ensure the referenced specification version is up to date. Use
   [tooling to update the spec](#updating-the-referenced-specification-version)
   if needed.
+- Run [opentelemetry.io workflow](https://github.com/open-telemetry/opentelemetry.io/actions/workflows/build-dev.yml)
+  against `semantic-conventions` submodule as a smoke-test for docs. Fix broken links, if any.
 - Create a staging branch for the release.
   - Update `schema-next.yaml` file and move to `schemas/{version}`
     - Ensure the `next` version is appropriately configured as the `{version}`.
@@ -397,7 +419,7 @@ exists in some form in ECS, consider the following guidelines:
     data, user issue reports, feature requests, examples of prior work on a
     different standard or comparable evidence about the alternatives.
   - When no suitable alternatives are provided, altering an ECS name solely
-    for the purpose of complying with [Name Pluralization guidelines](docs/general/attribute-naming.md#name-pluralization-guidelines)
+    for the purpose of complying with [Name Pluralization guidelines](docs/general/naming.md#attribute-name-pluralization-guidelines)
     MAY BE avoided.
 - Do not use an existing ECS name as a namespace. If the name must differ, use a
   different namespace name to avoid clashes or avoid using the namespace

@@ -7,16 +7,19 @@
 change_type: enhancement
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: db
+component: k8s
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: "Added new common `db.client.response.returned_rows` database metric and several operation level metrics for Azure Cosmos DB."
+note: Add metrics for k8s deployment, replicaset, replication_controller, statefulset and hpa.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-issues: [1438]
+issues: [1636, 1637, 1644]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
-subtext:
+subtext: |
+  This addition focused on providing consistency between these metrics, while
+  also ensuring alignment with recommendations from Kubernetes.
+  More details in https://github.com/open-telemetry/semantic-conventions/issues/1637
