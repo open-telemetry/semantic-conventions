@@ -100,6 +100,11 @@ groups:
         note: >
           In some GenAI systems the encoding formats are called embedding types.
           Also, some GenAI systems only accept a single format per request.
+      - id: gen_ai.request.seed
+        stability: experimental
+        type: int
+        brief: Requests with same seed value more likely to return same result.
+        examples: [100]
       - id: gen_ai.response.id
         stability: experimental
         type: string
@@ -168,11 +173,6 @@ groups:
     brief: >
       Thie group defines attributes for OpenAI.
     attributes:
-      - id: gen_ai.openai.request.seed
-        stability: experimental
-        type: int
-        brief: Requests with same seed value more likely to return same result.
-        examples: [100]
       - id: gen_ai.openai.request.response_format
         stability: experimental
         type:
