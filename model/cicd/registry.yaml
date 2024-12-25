@@ -109,7 +109,7 @@ groups:
         brief: >
           The result of a pipeline run.
         examples: ["success", "failure", "timeout", "skipped"]
-      - id: cicd.worker.type
+      - id: cicd.worker.class
         type:
           members:
             - id: vm

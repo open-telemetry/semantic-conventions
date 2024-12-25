@@ -164,8 +164,18 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`cicd.worker.class`](/docs/attributes-registry/cicd.md) | string | The type of worker / agent used by the CICD system. | `vm`; `pod` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`cicd.worker.state`](/docs/attributes-registry/cicd.md) | string | The state of a CICD worker / agent. | `idle`; `busy`; `down` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`cicd.worker.type`](/docs/attributes-registry/cicd.md) | string | The type of worker / agent used by the CICD system. | `vm`; `pod` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
+
+`cicd.worker.class` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `container` | A single container. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pod` | One or more containers deployed together. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `vm` | A virtual machine or baremetal host. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 
@@ -178,16 +188,6 @@ This metric is [recommended][MetricRecommended].
 | `idle` | The worker is not performing work for the CICD system. It is available to the CICD system to perform work on. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Pipelines might have conditions on which workers they are able to run so not every worker might be available to every pipeline.
-
----
-
-`cicd.worker.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `container` | A single container. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pod` | One or more containers deployed together. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vm` | A virtual machine or baremetal host. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
