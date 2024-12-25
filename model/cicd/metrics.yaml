@@ -44,7 +44,7 @@ groups:
   - id: metric.cicd.worker.count
     type: metric
     metric_name: cicd.worker.count
-    brief: 'The number of workers available to the CICD system and/or busy.'
+    brief: 'The number of workers on the CICD system by type and status.'
     instrument: updowncounter
     unit: "{count}"
     stability: experimental
