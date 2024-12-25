@@ -43,7 +43,6 @@ body:
         - area:dns
         - area:dotnet
         - area:error
-        - area:event
         - area:exception
         - area:faas
         - area:feature-flag
@@ -72,6 +71,7 @@ body:
         - area:process
         - area:profile
         - area:rpc
+        - area:security-rule
         - area:server
         - area:service
         - area:session

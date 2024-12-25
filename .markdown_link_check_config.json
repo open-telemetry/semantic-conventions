@@ -7,6 +7,9 @@
       "pattern": "^https://github\\.com/open-telemetry/semantic-conventions/(issues|pull|actions)"
     },
     {
+      "pattern": "^https://blogs.oracle.com/linux/post/understanding-linux-kernel-memory-statistics$"
+    },
+    {
       "pattern": "^#"
     }
   ],

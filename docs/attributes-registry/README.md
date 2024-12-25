@@ -84,6 +84,7 @@ Currently, the following namespaces exist:
 - [Process](process.md)
 - [Profile](profile.md)
 - [RPC](rpc.md)
+- [Security Rule](security-rule.md)
 - [Server](server.md)
 - [Service](service.md)
 - [Session](session.md)
@@ -101,4 +102,4 @@ Currently, the following namespaces exist:
 - [VCS](vcs.md)
 - [Webengine](webengine.md)
 
-[developers recommendations]: ../general/attribute-naming.md#recommendations-for-application-developers
+[developers recommendations]: ../general/naming.md#recommendations-for-application-developers
