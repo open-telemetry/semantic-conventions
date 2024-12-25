@@ -10,7 +10,7 @@ the generated markdown output in the [docs](../docs/README.md) folder.
 ## Writing semantic conventions
 
 Semantic conventions for the spec MUST adhere to the
-[attribute naming](../docs/general/attribute-naming.md),
+[naming](../docs/general/naming.md),
 [attribute requirement level](../docs/general/attribute-requirement-level.md),
 and [metric requirement level](../docs/general/metric-requirement-level.md) conventions.
 
