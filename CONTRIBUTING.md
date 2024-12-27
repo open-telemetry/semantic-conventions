@@ -13,14 +13,16 @@ requirements and recommendations.
 
 - [Sign the CLA](#sign-the-cla)
 - [How to Contribute](#how-to-contribute)
+  - [Which semantic conventions belong in this repo](#which-semantic-conventions-belong-in-this-repo)
   - [Prerequisites](#prerequisites)
   - [1. Modify the YAML model](#1-modify-the-yaml-model)
     - [Code structure](#code-structure)
     - [Schema files](#schema-files)
   - [2. Update the markdown files](#2-update-the-markdown-files)
     - [Hugo frontmatter](#hugo-frontmatter)
-  - [3. Verify the changes before committing](#3-verify-the-changes-before-committing)
-  - [4. Changelog](#4-changelog)
+  - [3. Check new convention](#3-check-new-convention)
+  - [4. Verify the changes before committing](#4-verify-the-changes-before-committing)
+  - [5. Changelog](#5-changelog)
     - [When to add a Changelog Entry](#when-to-add-a-changelog-entry)
       - [Examples](#examples)
     - [Adding a Changelog Entry](#adding-a-changelog-entry)
@@ -31,7 +33,6 @@ requirements and recommendations.
   - [Markdown style](#markdown-style)
   - [Misspell check](#misspell-check)
   - [Markdown link check](#markdown-link-check)
-  - [Version compatibility check](#version-compatibility-check)
 - [Updating the referenced specification version](#updating-the-referenced-specification-version)
 - [Making a Release](#making-a-release)
 - [Merging existing ECS conventions](#merging-existing-ecs-conventions)
@@ -61,6 +62,25 @@ key, but non-obvious, aspects:
   The tag version MUST match with the one defined in [README](README.md).
 
 Please make sure all Pull Requests are compliant with these rules!
+
+### Which semantic conventions belong in this repo
+
+This repo contains semantic conventions supported by the OpenTelemetry ecosystem
+including, but not limited to, components hosted in OpenTelemetry.
+
+Instrumentations hosted in OpenTelemetry SHOULD contribute their semantic
+conventions to this repo with the following exceptions:
+
+- Instrumentations that follow external schema not fully compatible with OpenTelemetry such as
+  [Kafka client JMX metrics](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/v2.10.0/instrumentation/kafka/kafka-clients/kafka-clients-2.6/library/README.md)
+  or [RabbitMQ Collector Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/v0.116.0/receiver/rabbitmqreceiver)
+  SHOULD document such conventions in their own repository.
+
+Having all OTel conventions in this repo allows to reuse common attributes, enforce naming and compatibility policies,
+and helps to keep conventions consistent and backward compatible.
+
+Want to define your own conventions outside this repo while building on OTel’s?
+Come help us [decentralize semantic conventions](https://github.com/open-telemetry/weaver/issues/215).
 
 ### Prerequisites
 
@@ -106,6 +126,8 @@ The YAML (model definition) and Markdown (documentation) files are organized in 
 │   │   ├── ....md
 ├── model
 │   ├── {root-namespace}
+│   │   ├── deprecated
+│   │   |   ├── registry-deprecated.yaml
 │   │   ├── events.yaml
 │   │   ├── metrics.yaml
 │   │   ├── registry.yaml
@@ -126,6 +148,9 @@ HTTP spans are defined in `model/http/spans.yaml`.
 YAML definitions could be broken down into multiple files. For example, AWS spans
 are defined in `/model/aws/lambda-spans.yaml` and `/model/aws/sdk-spans.yaml` files.
 
+Deprecated conventions should be placed under `/model/{root-namespace}/deprecated`
+folder.
+
 #### Schema files
 
 When making changes to existing semantic conventions (attributes, metrics, etc)
@@ -137,6 +162,7 @@ For details, please read
 You can also take examples from past changes inside the `schemas` folder.
 
 > [!WARNING]
+>
 > DO NOT add your changes to files inside the `schemas` folder. Always add your
 > changes to the `schema-next.yaml` file.
 
@@ -167,7 +193,21 @@ When creating new markdown files, you should provide the `linkTitle` attribute.
 This is used to generate the navigation bar on the website,
 and will be listed relative to the "parent" document.
 
-### 3. Verify the changes before committing
+### 3. Check new convention
+
+Semantic conventions are validated for name formatting and backward compatibility with last released versions.
+Here's [the full list of compatibility checks](./policies/compatibility.rego).
+
+Removing attributes, metrics, or enum members is not allowed, they should be deprecated instead.
+It applies to stable and experimental conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
+
+You can run backward compatibility check (along with other policies) in all yaml files with the following command:
+
+```bash
+make check-policies
+```
+
+### 4. Verify the changes before committing
 
 Before sending a PR with your changes, make sure to run the automated checks:
 
@@ -178,7 +218,7 @@ make check
 Alternatively, you can run each check individually.
 Refer to the [Automation](#automation) section for more details.
 
-### 4. Changelog
+### 5. Changelog
 
 #### When to add a Changelog Entry
 
@@ -339,18 +379,6 @@ To check the validity of links in all markdown files, run the following command:
 
 ```bash
 make markdown-link-check
-```
-
-### Version compatibility check
-
-Semantic conventions are validated for backward compatibility with last released versions. Here's [the full list of compatibility checks](./policies/compatibility.rego).
-Removing attributes, metrics, or enum members is not allowed, they should be deprecated instead.
-It applies to stable and experimental conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
-
-You can run backward compatibility check (along with other policies) in all yaml files with the following command:
-
-```bash
-make check-policies
 ```
 
 ## Updating the referenced specification version
