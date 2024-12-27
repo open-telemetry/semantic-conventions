@@ -79,7 +79,7 @@ conventions to this repo with the following exceptions:
 Having all OTel conventions in this repo allows to reuse common attributes, enforce naming and compatibility policies,
 and helps to keep conventions consistent and backward compatible.
 
-If you want to define your own conventions outside this repo while building on OTel’s?
+Want to define your own conventions outside this repo while building on OTel’s?
 Come help us [decentralize semantic conventions](https://github.com/open-telemetry/weaver/issues/215).
 
 ### Prerequisites
