@@ -22,7 +22,7 @@ aliases: [how-to-define-new-semantic-conventions]
 <!-- tocstop -->
 
 This document describes requirements, recommendations, and best practices on how to define conventions
-for the new areas or make substantial changes to the existing ones.
+for new areas or make substantial changes to the existing ones.
 
 ## Defining new conventions
 
@@ -40,14 +40,14 @@ Reuse existing attributes when possible. Look through [existing conventions](/do
 check out [common attributes](/docs/general/attributes.md).
 Semantic conventions authors are encouraged to use attributes from different namespaces.
 
-Introduce new attributes when there is a clear use-case for them. Consider adding
-them if most of the following apply:
+Consider adding a new attribute when the following apply:
 
-- They provide a clear benefit to end users by enhancing telemetry.
-- You plan to use the attribute in spans, metrics, events, resources, or other telemetry signals.
-- The attribute will be utilized in instrumentations.
+- It provides a clear benefit to end users by enhancing telemetry.
+- There is a clear plan to use the attribute in spans, metrics, events, resources, or other telemetry signals.
+- There is a clear plan on how these attributes will be used by instrumentations
 
-Postpone adding new attributes if their benefit to telemetry is not yet clear.
+Semantic convention maintainers may reject the addition of a new attribute if its benefits
+and use-cases are not yet clear.
 
 When defining a new attribute:
 
