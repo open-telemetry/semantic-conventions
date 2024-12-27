@@ -125,7 +125,7 @@ groups:
           `messaging.destination.name` SHOULD be set to:
 
           - **On the producer side**: `{exchange}:{routing key}` when both values are present and non-empty.
-          When only one is avaiable, only that value SHOULD be used. E.g., `{exchange}` or `{routing key}`.
+          When only one is available, only that value SHOULD be used. E.g., `{exchange}` or `{routing key}`.
           Otherwise: `amq.default` when the default exchange is used and no routing key is provided
 
           - **On the consumer side**: `{exchange}:{routing key}:{queue}` when all values are present and non-empty.
