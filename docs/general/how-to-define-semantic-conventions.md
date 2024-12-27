@@ -43,7 +43,7 @@ Semantic conventions authors are encouraged to use attributes from different nam
 Consider adding a new attribute when the following apply:
 
 - It provides a clear benefit to end users by enhancing telemetry.
-- There is a clear plan to use the attribute in spans, metrics, events, resources, or other telemetry signals.
+- There is a clear plan to use the attributes when defining spans, metrics, events, resources, or other telemetry signals in semantic conventions.
 - There is a clear plan on how these attributes will be used by instrumentations
 
 Semantic convention maintainers may reject the addition of a new attribute if its benefits
