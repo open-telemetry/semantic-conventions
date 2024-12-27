@@ -67,10 +67,11 @@ The Semantic Conventions for [RabbitMQ](https://www.rabbitmq.com/) extend and ov
 
 `messaging.destination.name` SHOULD be set to:
 
-- **Producers**: `{exchange}:{routing key}` when both values are present and non-empty.
+- **On the producer side**: `{exchange}:{routing key}` when both values are present and non-empty.
+When only one is available, only that value SHOULD be used. E.g., `{exchange}` or `{routing key}`.
 Otherwise: `amq.default` when the default exchange is used and no routing key is provided
 
-- **Consumers**: `{exchange}:{routing key}:{queue}` when all values are present and non-empty.
+- **On the consumer side**: `{exchange}:{routing key}:{queue}` when all values are present and non-empty.
 If any has an empty value (e.g., the default exchange is used) it SHOULD be omitted.
 For cases when `{routing key}` and `{queue}` are equal, only one of them SHOULD
 be used, e.g., `{exchange}:{routing key}`.
