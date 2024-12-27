@@ -28,7 +28,6 @@ groups:
         deprecated: "Removed, no replacement at this time."
         brief: "Deprecated, use Event API to report completions contents."
         examples: ["[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]"]
-<<<<<<< HEAD
   - id: registry.gen_ai.openai.deprecated
     type: attribute_group
     brief: Describes deprecated `gen_ai.openai` attributes.
@@ -40,7 +39,6 @@ groups:
         deprecated: Replaced by `gen_ai.request.seed` attribute.
         brief: "Deprecated, use `gen_ai.request.seed`."
         examples: [100]
-=======
       - id: gen_ai.system
         stability: experimental
         type:
@@ -75,4 +73,3 @@ groups:
               brief: 'AWS Bedrock'
         brief: 'Deprecated, use `gen_ai.provider.name` instead.'
         deprecated: 'Replaced by `gen_ai.provider.name`.'
->>>>>>> 5eaf0483 (BREAKING: rename db.system, messaging.system, gen_ai.system to *.provider.name, pc.system to pc.protocol.name, feature_flag.system back to feature_flag.provider_name)

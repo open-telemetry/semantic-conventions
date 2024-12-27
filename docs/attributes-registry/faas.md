@@ -6,6 +6,9 @@
 
 # Faas
 
+- [Function as a Service Attributes](#function-as-a-service-attributes)
+- [Deprecated FaaS Attributes](#deprecated-faas-attributes)
+
 ## Function as a Service Attributes
 
 FaaS attributes
@@ -21,7 +24,7 @@ FaaS attributes
 | <a id="faas-instance" href="#faas-instance">`faas.instance`</a> | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [1] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="faas-invocation-id" href="#faas-invocation-id">`faas.invocation_id`</a> | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="faas-invoked-name" href="#faas-invoked-name">`faas.invoked_name`</a> | string | The name of the invoked function. [2] | `my-function` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="faas-invoked-provider" href="#faas-invoked-provider">`faas.invoked_provider`</a> | string | The cloud provider of the invoked function. [3] | `alibaba_cloud`; `aws`; `azure` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="faas-invoked-provider-name" href="#faas-invoked-provider-name">`faas.invoked_provider.name`</a> | string | The cloud provider of the invoked function. [3] | `alibaba_cloud`; `aws`; `azure` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="faas-invoked-region" href="#faas-invoked-region">`faas.invoked_region`</a> | string | The cloud region of the invoked function. [4] | `eu-central-1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="faas-max-memory" href="#faas-max-memory">`faas.max_memory`</a> | int | The amount of memory available to the serverless function converted to Bytes. [5] | `134217728` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="faas-name" href="#faas-name">`faas.name`</a> | string | The name of the single function that this runtime instance executes. [6] | `my-function`; `myazurefunctionapp/some-function-name` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -33,7 +36,7 @@ FaaS attributes
 
 **[2] `faas.invoked_name`:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
 
-**[3] `faas.invoked_provider`:** SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
+**[3] `faas.invoked_provider.name`:** SHOULD be equal to the `cloud.provider.name` resource attribute of the invoked function.
 
 **[4] `faas.invoked_region`:** SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
 
@@ -78,7 +81,7 @@ definition of function name MUST be used for this attribute
 
 ---
 
-`faas.invoked_provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`faas.invoked_provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -99,3 +102,23 @@ definition of function name MUST be used for this attribute
 | `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Deprecated FaaS Attributes
+
+Deprecated `faas` attributes.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="faas-invoked-provider" href="#faas-invoked-provider">`faas.invoked_provider`</a> | string | Deprecated, use `faas.invoked_provider.name` instead. | `alibaba_cloud`; `aws`; `azure` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `faas.invoked_provider.name`. |
+
+---
+
+`faas.invoked_provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `alibaba_cloud` | Alibaba Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws` | Amazon Web Services | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure` | Microsoft Azure | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp` | Google Cloud Platform | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `tencent_cloud` | Tencent Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

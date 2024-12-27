@@ -97,7 +97,7 @@ groups:
           SHOULD be equal to the `faas.name` resource attribute of the
           invoked function.
         examples: 'my-function'
-      - id: faas.invoked_provider
+      - id: faas.invoked_provider.name
         stability: experimental
         type:
           members:
@@ -124,7 +124,7 @@ groups:
         brief: >
           The cloud provider of the invoked function.
         note: >
-          SHOULD be equal to the `cloud.provider` resource attribute of the
+          SHOULD be equal to the `cloud.provider.name` resource attribute of the
           invoked function.
       - id: faas.invoked_region
         type: string

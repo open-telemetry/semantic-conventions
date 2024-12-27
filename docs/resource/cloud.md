@@ -19,7 +19,7 @@
 | [`cloud.account.id`](/docs/attributes-registry/cloud.md) | string | The cloud account ID the resource is assigned to. | `111111111111`; `opentelemetry` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`cloud.availability_zone`](/docs/attributes-registry/cloud.md) | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [1] | `us-east-1c` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`cloud.platform`](/docs/attributes-registry/cloud.md) | string | The cloud platform in use. [2] | `alibaba_cloud_ecs`; `alibaba_cloud_fc`; `alibaba_cloud_openshift` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`cloud.provider`](/docs/attributes-registry/cloud.md) | string | Name of the cloud provider. | `alibaba_cloud`; `aws`; `azure` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.provider.name`](/docs/attributes-registry/cloud.md) | string | Name of the cloud provider. | `alibaba_cloud`; `aws`; `azure` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`cloud.region`](/docs/attributes-registry/cloud.md) | string | The geographical region the resource is running. [3] | `us-central1`; `us-east-1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`cloud.resource_id`](/docs/attributes-registry/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [4] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -84,7 +84,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 ---
 
-`cloud.provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`cloud.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

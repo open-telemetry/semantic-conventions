@@ -1,0 +1,33 @@
+groups:
+  - id: registry.faas.deprecated
+    type: attribute_group
+    brief: Deprecated `faas` attributes.
+    display_name: Deprecated FaaS Attributes
+    attributes:
+      - id: faas.invoked_provider
+        stability: experimental
+        type:
+          members:
+            - id: 'alibaba_cloud'
+              value: 'alibaba_cloud'
+              brief: 'Alibaba Cloud'
+              stability: experimental
+            - id: 'aws'
+              value: 'aws'
+              brief: 'Amazon Web Services'
+              stability: experimental
+            - id: 'azure'
+              value: 'azure'
+              brief: 'Microsoft Azure'
+              stability: experimental
+            - id: 'gcp'
+              value: 'gcp'
+              brief: 'Google Cloud Platform'
+              stability: experimental
+            - id: 'tencent_cloud'
+              value: 'tencent_cloud'
+              brief: 'Tencent Cloud'
+              stability: experimental
+        deprecated: "Replaced by `faas.invoked_provider.name`."
+        brief: >
+          Deprecated, use `faas.invoked_provider.name` instead.

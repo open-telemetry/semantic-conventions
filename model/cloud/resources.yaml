@@ -6,7 +6,7 @@ groups:
     brief: >
       A cloud environment (e.g. GCP, Azure, AWS)
     attributes:
-      - ref: cloud.provider
+      - ref: cloud.provider.name
       - ref: cloud.account.id
       - ref: cloud.region
       - ref: cloud.resource_id
