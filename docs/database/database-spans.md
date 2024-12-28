@@ -89,59 +89,11 @@ For example, for an operation describing SQL query on an anonymous table like `S
 
 ## Status
 
-[Span Status Code][SpanStatus] MUST be left unset if the operation has ended without any errors.
+Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
+details on how to record span status.
 
-Instrumentation SHOULD consider the operation as failed if any of the following is true:
-
-- the `db.response.status_code` value indicates an error
-
-  > [!NOTE]
-  >
-  > The classification of status code as an error depends on the context.
-  > For example, a SQL STATE `02000` (`no_data`) indicates an error when the application
-  > expected the data to be available. However, it is not an error when the
-  > application is simply checking whether the data exists.
-  >
-  > Instrumentations that have additional context about a specific operation MAY use
-  > this context to set the span status more precisely.
-  > Instrumentations that don't have any additional context MUST follow the
-  > guidelines in this section.
-
-- an exception is thrown by the instrumented method call
-- the instrumented method returns an error in another way
-
-When the operation ends with an error, instrumentation:
-
-- SHOULD set the span status code to `Error`
-- SHOULD set the `error.type` attribute
-- SHOULD set the span status description when it has additional information
-  about the error which is not expected to contain sensitive details and aligns
-  with [Span Status Description][SpanStatus] definition.
-
-  It's NOT RECOMMENDED to duplicate `db.response.status_code` or `error.type`
-  in span status description.
-
-  When the operation fails with an exception, the span status description SHOULD be set to
-  the exception message.
-
-### Recording exception events
-
-**Status**: [Experimental][DocumentStatus]
-
-When the operation fails with an exception, instrumentation SHOULD record
-an [exception event](../exceptions/exceptions-spans.md) by default if, and only if,
-the span being recorded is a local root span (does not have a local parent).
-
-> [!NOTE]
->
-> Exception stack traces could be very long and are expensive to capture and store.
-> Exceptions which are not handled by instrumented libraries are likely to be handled
-> and logged by the caller.
-> Exceptions that are not handled will be recorded by the outermost (local root)
-> instrumentation such as HTTP or gRPC server.
-
-Instrumentation MAY provide a configuration option to record exceptions that
-escape the surface of the instrumented API.
+Semantic conventions for individual systems SHOULD specify which values of `db.response.status_code`
+classify as errors.
 
 ## Common attributes
 

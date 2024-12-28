@@ -30,6 +30,11 @@ GenAI spans MUST follow the overall [guidelines for span names](https://github.c
 The **span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
 Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
 
+### Status
+
+Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
+details on how to record span status.
+
 ## GenAI attributes
 
 These attributes track input data and metadata for a request to a GenAI model. Each attribute represents a concept that is common to most Generative AI clients.

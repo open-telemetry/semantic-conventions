@@ -79,6 +79,11 @@ Examples of span names:
   `MyServiceReference.ICalculator/Add` reported by the client for .NET WCF calls
 - `MyServiceWithNoPackage/theMethod`
 
+### Span status
+
+Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
+details on how to record span status.
+
 ### Service name
 
 On the server process receiving and handling the remote procedure call, the service name provided in `rpc.service` does not necessarily have to match the [`service.name`][] resource attribute.

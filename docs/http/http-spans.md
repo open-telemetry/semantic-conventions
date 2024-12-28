@@ -91,7 +91,7 @@ Instrumentation MUST NOT default to using URI path as a `{target}`.
 the response body; or 3xx codes with max redirects exceeded), in which case status
 MUST be set to `Error`.
 
-> **Note:**
+> [!NOTE]
 >
 > The classification of an HTTP status code as an error depends on the context.
 > For example, a 404 "Not Found" status code indicates an error if the application
@@ -116,6 +116,9 @@ the client or server from sending/receiving the request/response fully.
 
 When instrumentation detects such errors it SHOULD set span status to `Error`
 and SHOULD set the `error.type` attribute.
+
+Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
+details on how to record span status.
 
 ## HTTP client
 
