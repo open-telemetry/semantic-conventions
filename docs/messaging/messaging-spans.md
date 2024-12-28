@@ -22,6 +22,7 @@
   - [Span name](#span-name)
   - [Operation types](#operation-types)
   - [Span kind](#span-kind)
+  - [Span status](#span-status)
   - [Trace structure](#trace-structure)
     - [Producer spans](#producer-spans)
     - [Consumer spans](#consumer-spans)

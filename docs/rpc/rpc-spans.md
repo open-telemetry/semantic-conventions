@@ -15,6 +15,7 @@ This document defines how to describe remote procedure calls
 
 - [Common remote procedure call conventions](#common-remote-procedure-call-conventions)
   - [Span name](#span-name)
+  - [Span status](#span-status)
   - [Service name](#service-name)
   - [Client attributes](#client-attributes)
   - [Server attributes](#server-attributes)

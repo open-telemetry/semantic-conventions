@@ -11,6 +11,7 @@ linkTitle: Generative AI traces
 <!-- toc -->
 
 - [Name](#name)
+  - [Status](#status)
 - [GenAI attributes](#genai-attributes)
 - [Capturing inputs and outputs](#capturing-inputs-and-outputs)
 
