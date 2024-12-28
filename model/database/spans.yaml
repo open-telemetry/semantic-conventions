@@ -187,9 +187,9 @@ groups:
         brief: >
           [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html).
         note: >
+          PostgreSQL follows SQL standard conventions for [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE).
           Response codes of "Class 02" or higher SHOULD be considered errors.
         examples: ["08000", "08P01"]
-
   - id: span.db.mysql.client
     type: span
     stability: experimental
@@ -214,9 +214,10 @@ groups:
         examples: ["products", "customers"]
       - ref: db.response.status_code
         brief: >
-          [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html).
+          [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html) recorded as a string.
         note: >
-          All MySQL error codes SHOULD be considered errors.
+          MySQL error codes are vendor specific error codes and don't follow [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE)
+          conventions. All MySQL error codes SHOULD be considered errors.
         examples: ["1005", "MY-010016"]
 
   - id: span.db.mariadb.client
@@ -246,12 +247,17 @@ groups:
           [Maria DB error code](https://mariadb.com/kb/en/mariadb-error-code-reference/)
           represented as a string.
         note: >
-          When [SQLSTATE](https://mariadb.com/kb/en/sqlstate/) is available, SQLSTATE of
-          "Class 02" or higher SHOULD be considered errors.). When SQLSTATE is not available,
-          all Maria DB error codes SHOULD be considered errors.
+          MariaDB uses vendor-specific error codes on all errors and reports
+          [SQLSTATE](https://mariadb.com/kb/en/sqlstate/) in some cases.
+
+          MariaDB error codes are more granular than SQLSTATE, so MariaDB instrumentations
+          SHOULD set the `db.response.status_code` to this known error code.
+
+          When SQLSTATE is available, SQLSTATE of "Class 02" or higher SHOULD be
+          considered errors. When SQLSTATE is not available, all MariaDB error
+          codes SHOULD be considered errors.
 
         examples: ["1008", "3058"]
-
   - id: span.db.cassandra.client
     type: span
     span_kind: client

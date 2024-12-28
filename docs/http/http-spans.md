@@ -118,7 +118,7 @@ When instrumentation detects such errors it SHOULD set span status to `Error`
 and SHOULD set the `error.type` attribute.
 
 Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
-details on how to record span status.
+general considerations on how to record span status.
 
 ## HTTP client
 
