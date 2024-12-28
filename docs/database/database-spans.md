@@ -12,7 +12,6 @@ linkTitle: Client Calls
 
 - [Name](#name)
 - [Status](#status)
-  - [Recording exception events](#recording-exception-events)
 - [Common attributes](#common-attributes)
   - [Notes and well-known identifiers for `db.system`](#notes-and-well-known-identifiers-for-dbsystem)
 - [Sanitization of `db.query.text`](#sanitization-of-dbquerytext)
@@ -418,4 +417,3 @@ More specific Semantic Conventions are defined for the following database techno
 * [SQL](sql.md): Semantic Conventions for *SQL* databases.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/trace/api.md#set-status
