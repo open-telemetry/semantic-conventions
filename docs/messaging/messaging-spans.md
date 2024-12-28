@@ -247,6 +247,11 @@ Span kind SHOULD be set according to the following table, based on the operation
 Setting span kinds according to this table allows analysis tools to interpret spans
 and relationships between them without the need for additional semantic hints.
 
+### Span status
+
+Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
+details on how to record span status.
+
 ### Trace structure
 
 #### Producer spans

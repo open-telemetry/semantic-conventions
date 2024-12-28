@@ -82,8 +82,7 @@ When a query string value is redacted, the query string key SHOULD still be pres
 
 **[4] `db.elasticsearch.path_parts`:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
 
-**[5] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
-Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
+**[5] `db.response.status_code`:** HTTP response codes in the 4xx and 5xx range SHOULD be considered errors.
 
 **[6] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.

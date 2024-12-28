@@ -47,6 +47,7 @@ Instrumentation SHOULD document if `db.namespace` reflects the database provided
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 **[2] `db.response.status_code`:** Microsoft SQL Server does not report SQLSTATE.
+Instrumentations SHOULD use [error severity](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-error-severities) returned along with the status code to determine the status of the span. Response codes with severity 11 or higher SHOULD be considered errors.
 
 **[3] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
