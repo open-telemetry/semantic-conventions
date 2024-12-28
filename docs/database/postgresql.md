@@ -49,7 +49,7 @@ Instrumentation SHOULD document if `db.namespace` reflects the user provided whe
 
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[2] `db.response.status_code`:** Response codes of "Class 02" or higher SHOULD be considered errors.
+**[2] `db.response.status_code`:** PostgreSQL follows SQL standard conventions for [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE). Response codes of "Class 02" or higher SHOULD be considered errors.
 
 **[3] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.

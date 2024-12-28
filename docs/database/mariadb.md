@@ -42,7 +42,9 @@ Instrumentation SHOULD document if `db.namespace` reflects the database provided
 
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[2] `db.response.status_code`:** When [SQLSTATE](https://mariadb.com/kb/en/sqlstate/) is available, SQLSTATE of "Class 02" or higher SHOULD be considered errors.). When SQLSTATE is not available, all Maria DB error codes SHOULD be considered errors.
+**[2] `db.response.status_code`:** MariaDB uses vendor-specific error codes on all errors and reports [SQLSTATE](https://mariadb.com/kb/en/sqlstate/) in some cases.
+MariaDB error codes are more granular than SQLSTATE, so MariaDB instrumentations SHOULD set the `db.response.status_code` to this known error code.
+When SQLSTATE is available, SQLSTATE of "Class 02" or higher SHOULD be considered errors. When SQLSTATE is not available, all MariaDB error codes SHOULD be considered errors.
 
 **[3] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
