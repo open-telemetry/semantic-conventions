@@ -22,6 +22,7 @@ Semantic Conventions are defined for the following areas:
 
 * **[General](general/README.md): General Semantic Conventions**.
 * [CICD](cicd/cicd-metrics.md): Semantic Conventions for CICD systems.
+* [Code](code/README.md): Semantic Conventions for code.
 * [Cloud Providers](cloud-providers/README.md): Semantic Conventions for cloud providers libraries.
 * [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.
 * [Database](database/README.md): Semantic Conventions for database operations.
