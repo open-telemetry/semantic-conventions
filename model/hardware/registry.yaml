@@ -1,6 +1,7 @@
 groups:
   - id: registry.hardware
     type: attribute_group
+    display_name: Hardware Attributes
     brief: >
       Attributes for hardware.
     attributes:

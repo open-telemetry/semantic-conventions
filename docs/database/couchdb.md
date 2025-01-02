@@ -21,19 +21,18 @@ The Semantic Conventions for [CouchDB](https://couchdb.apache.org/) extend and o
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The HTTP method + the target REST route. [1] | `GET /{db}/{docid}` | `Conditionally Required` If readily available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | The HTTP response code returned by the Couch DB. [2] | `200`; `201`; `429` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The HTTP method + the target REST route. [1] | `GET /{db}/{docid}` | `Conditionally Required` If readily available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | The HTTP response code returned by the Couch DB. [2] | `200`; `201`; `429` | `Conditionally Required` [3] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [7] | `2`; `3`; `4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [7] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `db.operation.name`:** In **CouchDB**, `db.operation.name` should be set to the HTTP method + the target REST route according to the API reference documentation. For example, when retrieving a document, `db.operation.name` would be set to (literally, i.e., without replacing the placeholders with concrete values): [`GET /{db}/{docid}`](https://docs.couchdb.org/en/stable/api/document/common.html#get--db-docid).
 
 **[2] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
-This attribute has stability level RELEASE CANDIDATE.
 
 **[3] `db.response.status_code`:** If response was received and the HTTP response code is available.
 
@@ -46,7 +45,6 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[6] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[7] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
-This attribute has stability level RELEASE CANDIDATE.
 
 **[8] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 

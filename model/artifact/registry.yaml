@@ -1,6 +1,7 @@
 groups:
   - id: registry.artifact
     type: attribute_group
+    display_name: Artifact Attributes
     brief: >
       This group describes attributes specific to artifacts. Artifacts are
       files or other immutable objects that are intended for distribution. This

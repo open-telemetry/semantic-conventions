@@ -6,7 +6,7 @@
 
 # CICD
 
-## CICD Pipeline Attributes
+## CI/CD Pipeline Attributes
 
 This group describes attributes specific to pipelines within a Continuous Integration and Continuous Deployment (CI/CD) system. A [pipeline](https://wikipedia.org/wiki/Pipeline_(computing)) in this case is a series of steps that are performed in order to deliver a new version of software. This aligns with the [Britannica](https://www.britannica.com/dictionary/pipeline) definition of a pipeline where a **pipeline** is the system for developing and producing something. In the context of CI/CD, a pipeline produces or delivers software.
 
