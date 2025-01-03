@@ -2,6 +2,13 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
+    all:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1632
+        - rename_attributes:
+            attribute_map:
+              gen_ai.openai.request.seed: gen_ai.request.seed
+              system.network.state: network.connection.state
   1.29.0:
     all:
       changes:
