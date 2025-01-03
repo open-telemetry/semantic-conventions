@@ -22,7 +22,7 @@ The Semantic Conventions for *MySQL* extend and override the [Database Semantic 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The database associated with the connection. [1] | `products`; `customers` | `Conditionally Required` If available without an additional network call. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html). [2] | `1005`; `MY-010016` | `Conditionally Required` If response has ended with warning or an error. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html) recorded as a string. [2] | `1005`; `MY-010016` | `Conditionally Required` If response has ended with warning or an error. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Conditionally Required` [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [6] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
@@ -42,41 +42,7 @@ Instrumentation SHOULD document if `db.namespace` reflects the database provided
 
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[2] `db.response.status_code`:** SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
-return code which is adopted by some database systems like PostgreSQL.
-See [PostgreSQL error codes](https://www.postgresql.org/docs/current/errcodes-appendix.html)
-for the details.
-
-Other systems like MySQL, Oracle, or MS SQL Server define vendor-specific
-error codes. Database SQL drivers usually provide access to both properties.
-For example, in Java, the [`SQLException`](https://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html)
-class reports them with `getSQLState()` and `getErrorCode()` methods.
-
-Instrumentations SHOULD populate the `db.response.status_code` with the
-the most specific code available to them.
-
-Here's a non-exhaustive list of databases that report vendor-specific
-codes with granularity higher than SQLSTATE (or don't report SQLSTATE
-at all):
-
-- [DB2 SQL codes](https://www.ibm.com/docs/db2-for-zos/12?topic=codes-sql).
-- [Maria DB error codes](https://mariadb.com/kb/en/mariadb-error-code-reference/)
-- [Microsoft SQL Server errors](https://docs.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors)
-- [MySQL error codes](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html)
-- [Oracle error codes](https://docs.oracle.com/cd/B28359_01/server.111/b28278/toc.htm)
-- [SQLite result codes](https://www.sqlite.org/rescode.html)
-
-These systems SHOULD set the `db.response.status_code` to a
-known vendor-specific error code. If only SQLSTATE is available,
-it SHOULD be used.
-
-When multiple error codes are available and specificity is unclear,
-instrumentation SHOULD set the `db.response.status_code` to the
-concatenated string of all codes with '/' used as a separator.
-
-For example, generic DB instrumentation that detected an error and has
-SQLSTATE `"42000"` and vendor-specific `1071` should set
-`db.response.status_code` to `"42000/1071"`."
+**[2] `db.response.status_code`:** MySQL error codes are vendor specific error codes and don't follow [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) conventions. All MySQL error codes SHOULD be considered errors.
 
 **[3] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.

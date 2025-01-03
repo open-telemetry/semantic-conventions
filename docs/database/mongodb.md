@@ -40,8 +40,7 @@ then that collection name SHOULD be used.
 
 **[2] `db.operation.name`:** See [MongoDB database commands](https://www.mongodb.com/docs/manual/reference/command/).
 
-**[3] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
-Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
+**[3] `db.response.status_code`:** All MongoDB error codes SHOULD be considered errors.
 
 **[4] `db.response.status_code`:** If the operation failed and error code is available.
 

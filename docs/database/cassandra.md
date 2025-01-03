@@ -69,8 +69,7 @@ system specific term if more applicable.
 
 **[5] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
-**[6] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
-Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
+**[6] `db.response.status_code`:** All Cassandra protocol error codes SHOULD be considered errors.
 
 **[7] `db.response.status_code`:** If the operation failed and status code is available.
 
