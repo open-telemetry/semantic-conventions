@@ -21,10 +21,36 @@ Semantic conventions for Exceptions are defined for the following signals:
 When instrumented operation fails with an exception, instrumentation SHOULD record
 this exception as a [span event](exceptions-spans.md) or a [log record](exceptions-logs.md).
 
-It's NOT RECOMMENDED to record exceptions that are handled by the instrumented library.
-
 It's RECOMMENDED to use `Span.recordException` API or logging library API that takes exception instance
 instead of providing individual attributes. This enables the OpenTelemetry SDK to
 control what information is recorded based on user configuration.
+
+It's NOT RECOMMENDED to record the same exception more than once.
+It's NOT RECOMMENDED to record exceptions that are handled by the instrumented library.
+
+For example, in this code-snippet, `ResourceNotFoundException` is handled and corresponding
+native instrumentation should not record it. Other exceptions, that are propagated
+to the caller, should be recorded (or logged) once.
+
+```java
+public boolean createIfNotExists(String resourceId) throws IOException {
+  Span span = startSpan();
+  try {
+    create(id);
+    return true;
+  } catch (ResourceNotFoundException e) {
+    // not recording exception and not setting span status to error - exception is handled
+    return false;
+  } catch (IOException e) {
+    // recording exception here (assuming it was not recorded inside `create` method)
+    span.recordException(e);
+    // or
+    // logger.atWarning().setCause(e).log();
+
+    span.setStatus(StatusCode.ERROR);
+    throw e;
+  }
+}
+```
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
