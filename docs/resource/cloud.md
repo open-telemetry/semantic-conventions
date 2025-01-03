@@ -78,6 +78,8 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `gcp_kubernetes_engine` | Google Cloud Kubernetes Engine (GKE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gcp_openshift` | Red Hat OpenShift on Google Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm_cloud_openshift` | Red Hat OpenShift on IBM Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `oracle_cloud_compute` | Compute on Oracle Cloud Infrastructure (OCI) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `oracle_cloud_oke` | Kubernetes Engine (OKE) on Oracle Cloud Infrastructure (OCI) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tencent_cloud_cvm` | Tencent Cloud Cloud Virtual Machine (CVM) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tencent_cloud_eks` | Tencent Cloud Elastic Kubernetes Service (EKS) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -94,6 +96,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `gcp` | Google Cloud Platform | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `heroku` | Heroku Platform as a Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm_cloud` | IBM Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `oracle_cloud` | Oracle Cloud Infrastructure (OCI) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `tencent_cloud` | Tencent Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
