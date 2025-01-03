@@ -9,6 +9,13 @@ versions:
             attribute_map:
               gen_ai.openai.request.seed: gen_ai.request.seed
               system.network.state: network.connection.state
+        # https://github.com/open-telemetry/semantic-conventions/pull/1624
+        - rename_attributes:
+            attribute_map:
+              code.function: code.function.name
+              code.filepath: code.file.path
+              code.lineno: code.line.number
+              code.column: code.column.number
   1.29.0:
     all:
       changes:
