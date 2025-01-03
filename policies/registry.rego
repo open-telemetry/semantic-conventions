@@ -1,11 +1,12 @@
 package before_resolution
+import rego.v1
 
 # This file enforces policies requiring all attributes to be defined within
 # a semantic convention "registry".  This is a naming/structure convention
 # used by semantic conventions.
 
 # Helper to create attribute registry violations.
-attr_registry_violation(description, group_id, attr_id) = violation {
+attr_registry_violation(description, group_id, attr_id) = violation if {
     violation := {
         "id": description,
         "type": "semconv_attribute",
@@ -16,7 +17,7 @@ attr_registry_violation(description, group_id, attr_id) = violation {
 }
 
 # We only allow attribute groups in the attribute registry.
-deny[attr_registry_violation(description, group.id, "")] {
+deny contains attr_registry_violation(description, group.id, "") if {
     group := input.groups[_]
     startswith(group.id, "registry.")
     group.type != "attribute_group"
@@ -28,7 +29,7 @@ deny[attr_registry_violation(description, group.id, "")] {
 
 # Any group that is NOT in the attribute registry that has an attribute id is
 # in violation of not using the attribute registry.
-deny[attr_registry_violation(description, group.id, attr.id)] {
+deny contains attr_registry_violation(description, group.id, attr.id) if {
     group := input.groups[_]
     not startswith(group.id, "registry.")
     attr := group.attributes[_]
@@ -43,7 +44,7 @@ deny[attr_registry_violation(description, group.id, attr.id)] {
 
 # A registry `attribute_group` containing at least one `ref` attribute is
 # considered invalid if it's not in the registry group.
-deny[attr_registry_violation(description, group.id, attr.ref)] {
+deny contains attr_registry_violation(description, group.id, attr.ref) if {
     # TODO - this will need to be updated to support `embed` in the future.
     group := input.groups[_]
     startswith(group.id, "registry.")
@@ -56,7 +57,7 @@ deny[attr_registry_violation(description, group.id, attr.ref)] {
 }
 
 # We don't allow attribute definitions to have requirement_level
-deny[attr_registry_violation(description, group.id, attr.id)] {
+deny contains attr_registry_violation(description, group.id, attr.id) if {
     group := input.groups[_]
     startswith(group.id, "registry.")
 
@@ -69,8 +70,8 @@ deny[attr_registry_violation(description, group.id, attr.id)] {
     description := sprintf("Attribute definition '%s' has requirement_level set to %s. Only attribute references can set requirement_level.", [attr.id, attr.requirement_level])
 }
 
-get_attribute_name(attr, group) = name {
-    full_name = concat(".", [group.prefix, attr.id])
+get_attribute_name(attr, group) := name if {
+    full_name := concat(".", [group.prefix, attr.id])
 
     # if there was no prefix, we have a leading dot
     name := trim(full_name, ".")
