@@ -40,7 +40,7 @@ Reuse existing attributes when possible. Look through [existing conventions](/do
 check out [common attributes](/docs/general/attributes.md).
 Semantic conventions authors are encouraged to use attributes from different namespaces.
 
-Consider adding a new attribute when the following apply:
+Consider adding a new attribute if all of the following apply:
 
 - It provides a clear benefit to end users by enhancing telemetry.
 - There is a clear plan to use the attributes when defining spans, metrics, events, resources, or other telemetry signals in semantic conventions.
