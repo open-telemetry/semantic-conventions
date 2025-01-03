@@ -5,8 +5,8 @@ groups:
     stability: experimental
     brief: This group defines the attributes used to perform database client calls.
     attributes:
-      # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
-      # - ref: db.system
+      # TODO: add db.provider.name once https://github.com/open-telemetry/build-tools/issues/192 is possible
+      # - ref: db.provider.name
       #   sampling_relevant: true
       - ref: db.operation.name
         sampling_relevant: true
@@ -99,7 +99,7 @@ groups:
       - ref: network.peer.port
         requirement_level:
           recommended: if and only if `network.peer.address` is set.
-      - ref: db.system
+      - ref: db.provider.name
         sampling_relevant: true
         # TODO: Not adding to the minimal because of https://github.com/open-telemetry/build-tools/issues/192
         requirement_level: required

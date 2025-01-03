@@ -213,8 +213,8 @@ groups:
           e.g., class with method actually executing the call on the server side,
           RPC client stub class on the client side).
         examples: "myservice.EchoService"
-      - id: rpc.system
-        brief: 'A string identifying the remoting system. See below for a list of well-known identifiers.'
+      - id: rpc.protocol.name
+        brief: 'A string identifying the remoting protocol. See below for a list of well-known identifiers.'
         type:
           members:
             - id: grpc

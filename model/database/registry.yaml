@@ -130,11 +130,11 @@ groups:
         stability: experimental
         brief: Number of rows returned by the operation.
         examples: [10, 30, 1000]
-      - id: db.system
+      - id: db.provider.name
         brief: The database management system (DBMS) product as identified by the client instrumentation.
         note: >
           The actual DBMS may differ from the one identified by the client.
-          For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system`
+          For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.provider.name`
           is set to `postgresql` based on the instrumentation's best knowledge.
         type:
           members:

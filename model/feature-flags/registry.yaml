@@ -11,6 +11,7 @@ groups:
         stability: experimental
         brief: The lookup key of the feature flag.
         examples: ["logo-color"]
+      # TODO: rename to `feature_flag.provider.name` once we can.
       - id: feature_flag.provider_name
         type: string
         stability: experimental

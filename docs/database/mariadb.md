@@ -8,7 +8,7 @@ linkTitle: MariaDB
 
 The Semantic Conventions for *MariaDB* extend and override the [Database Semantic Conventions](database-spans.md).
 
-`db.system` MUST be set to `"mariadb"` and SHOULD be provided **at span creation time**.
+`db.provider.name` MUST be set to `"mariadb"` and SHOULD be provided **at span creation time**.
 
 ## Attributes
 

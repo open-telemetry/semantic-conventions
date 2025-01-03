@@ -62,7 +62,7 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [1, 4, 16, 64
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `text_completion`; `embeddings` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.provider.name`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.token.type`](/docs/attributes-registry/gen-ai.md) | string | The type of token being counted. | `input`; `output` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the GenAI model a request is being made to. | `gpt-4` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | GenAI server port. [3] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -71,15 +71,15 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [1, 4, 16, 64
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[2] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+**[2] `gen_ai.provider.name`:** The `gen_ai.provider.name` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
-For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
+For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.provider.name`
 is set to `openai` based on the instrumentation's best knowledge.
 
 For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+If none of these options apply, the `gen_ai.provider.name` SHOULD be set to `_OTHER`.
 
 **[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -97,7 +97,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -143,7 +143,7 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [0.01, 0.02, 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `text_completion`; `embeddings` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.provider.name`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the GenAI model a request is being made to. | `gpt-4` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | GenAI server port. [4] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -152,15 +152,15 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [0.01, 0.02, 
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[2] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+**[2] `gen_ai.provider.name`:** The `gen_ai.provider.name` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
-For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
+For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.provider.name`
 is set to `openai` based on the instrumentation's best knowledge.
 
 For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+If none of these options apply, the `gen_ai.provider.name` SHOULD be set to `_OTHER`.
 
 **[3] `error.type`:** The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
 the canonical name of exception that occurred, or another low-cardinality error identifier.
@@ -190,7 +190,7 @@ Instrumentations SHOULD document the list of errors they report.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -234,7 +234,7 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `text_completion`; `embeddings` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.provider.name`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the GenAI model a request is being made to. | `gpt-4` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | GenAI server port. [4] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -243,15 +243,15 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[2] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+**[2] `gen_ai.provider.name`:** The `gen_ai.provider.name` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
-For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
+For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.provider.name`
 is set to `openai` based on the instrumentation's best knowledge.
 
 For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+If none of these options apply, the `gen_ai.provider.name` SHOULD be set to `_OTHER`.
 
 **[3] `error.type`:** The `error.type` SHOULD match the error code returned by the Generative AI service,
 the canonical name of exception that occurred, or another low-cardinality error identifier.
@@ -281,7 +281,7 @@ Instrumentations SHOULD document the list of errors they report.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -325,7 +325,7 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `text_completion`; `embeddings` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.provider.name`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the GenAI model a request is being made to. | `gpt-4` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | GenAI server port. [3] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.response.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the model that generated the response. | `gpt-4-0613` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -333,15 +333,15 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[2] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+**[2] `gen_ai.provider.name`:** The `gen_ai.provider.name` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
-For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
+For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.provider.name`
 is set to `openai` based on the instrumentation's best knowledge.
 
 For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+If none of these options apply, the `gen_ai.provider.name` SHOULD be set to `_OTHER`.
 
 **[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -359,7 +359,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -402,7 +402,7 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `text_completion`; `embeddings` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.provider.name`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the GenAI model a request is being made to. | `gpt-4` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | GenAI server port. [3] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.response.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the model that generated the response. | `gpt-4-0613` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -410,15 +410,15 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[2] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+**[2] `gen_ai.provider.name`:** The `gen_ai.provider.name` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
-For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
+For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.provider.name`
 is set to `openai` based on the instrumentation's best knowledge.
 
 For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+If none of these options apply, the `gen_ai.provider.name` SHOULD be set to `_OTHER`.
 
 **[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -436,7 +436,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

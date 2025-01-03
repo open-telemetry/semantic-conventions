@@ -5,7 +5,7 @@ groups:
     brief: >
       A cloud environment (e.g. GCP, Azure, AWS).
     attributes:
-      - id: cloud.provider
+      - id: cloud.provider.name
         type:
           members:
             - id: 'alibaba_cloud'

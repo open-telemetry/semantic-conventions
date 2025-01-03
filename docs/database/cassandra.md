@@ -8,7 +8,7 @@ linkTitle: Cassandra
 
 The Semantic Conventions for [Cassandra](https://cassandra.apache.org/) extend and override the [Database Semantic Conventions](database-spans.md).
 
-`db.system` MUST be set to `"cassandra"` and SHOULD be provided **at span creation time**.
+`db.provider.name` MUST be set to `"cassandra"` and SHOULD be provided **at span creation time**.
 
 ## Attributes
 

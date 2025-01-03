@@ -6,7 +6,7 @@ groups:
       - ref: faas.trigger
       - ref: faas.invoked_name
         requirement_level: required
-      - ref: faas.invoked_provider
+      - ref: faas.invoked_provider.name
         requirement_level: required
       - ref: faas.invoked_region
         requirement_level:

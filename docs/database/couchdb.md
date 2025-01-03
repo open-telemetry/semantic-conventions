@@ -8,7 +8,7 @@ linkTitle: CouchDB
 
 The Semantic Conventions for [CouchDB](https://couchdb.apache.org/) extend and override the [Database Semantic Conventions](database-spans.md).
 
-`db.system` MUST be set to `"couchdb"` and SHOULD be provided **at span creation time**.
+`db.provider.name` MUST be set to `"couchdb"` and SHOULD be provided **at span creation time**.
 
 ## Attributes
 

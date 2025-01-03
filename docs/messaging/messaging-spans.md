@@ -371,7 +371,7 @@ Messaging system-specific attributes MUST be defined in the corresponding `messa
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.system`](/docs/attributes-registry/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.provider.name`](/docs/attributes-registry/messaging.md) | string | The messaging provider name as identified by the client instrumentation. [1] | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md) | string | The name of the consumer group with which a consumer is associated. [5] | `my-group`; `indexer` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -392,7 +392,7 @@ Messaging system-specific attributes MUST be defined in the corresponding `messa
 | [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [17] | `1439` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.envelope.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body and metadata in bytes. [18] | `2738` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
+**[1] `messaging.provider.name`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.provider.name` is set to `kafka` based on the instrumentation's best knowledge.
 
 **[2] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -461,7 +461,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`messaging.destination.template`](/docs/attributes-registry/messaging.md)
 * [`messaging.operation.name`](/docs/attributes-registry/messaging.md)
 * [`messaging.operation.type`](/docs/attributes-registry/messaging.md)
-* [`messaging.system`](/docs/attributes-registry/messaging.md)
+* [`messaging.provider.name`](/docs/attributes-registry/messaging.md)
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
 
@@ -487,7 +487,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
-`messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`messaging.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -572,7 +572,7 @@ flowchart LR;
 | SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
-| `messaging.system` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
+| `messaging.provider.name` | `"rabbitmq"` | `"rabbitmq"` | `"rabbitmq"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
 | `messaging.operation.name` | `"publish"` | `"consume"` | `"consume"` |
 | `messaging.operation.type` | `"send"` | `"process"` | `"process"` |
@@ -611,7 +611,7 @@ flowchart LR;
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
-| `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
+| `messaging.provider.name` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
 | `messaging.operation.name` | `"send"` | `"send"` | `"poll"` |
 | `messaging.operation.type` | `"send"` | `"send"` | `"receive"` |
@@ -660,7 +660,7 @@ flowchart LR;
 | SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` | `CONSUMER` | `CONSUMER` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` | `1234` | `1234` |
-| `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
+| `messaging.provider.name` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` | `"Q"` | `"Q"` |
 | `messaging.operation.name` | `"create"` | `"create"` | `"send"` | `"poll"` | `"poll"` |
 | `messaging.operation.type` | `"create"` | `"create"` | `"send"` | `"receive"` | `"receive"` |
@@ -705,7 +705,7 @@ flowchart LR;
 | SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
-| `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
+| `messaging.provider.name` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
 | `messaging.operation.name` | `"send"` | `"poll"` | `"poll"` |
 | `messaging.operation.type` | `"publish"` | `"receive"` | `"receive"` |

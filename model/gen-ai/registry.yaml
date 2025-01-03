@@ -5,7 +5,7 @@ groups:
     brief: >
       This document defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models requests and responses.
     attributes:
-      - id: gen_ai.system
+      - id: gen_ai.provider.name
         stability: experimental
         type:
           members:
@@ -39,15 +39,15 @@ groups:
               brief: 'AWS Bedrock'
         brief: The Generative AI product as identified by the client or server instrumentation.
         note: |
-          The `gen_ai.system` describes a family of GenAI models with specific model identified
+          The `gen_ai.provider.name` describes a family of GenAI models with specific model identified
           by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
           The actual GenAI product may differ from the one identified by the client.
-          For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
+          For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.provider.name`
           is set to `openai` based on the instrumentation's best knowledge.
 
           For custom model, a custom friendly name SHOULD be used.
-          If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+          If none of these options apply, the `gen_ai.provider.name` SHOULD be set to `_OTHER`.
         examples: 'openai'
       - id: gen_ai.request.model
         stability: experimental

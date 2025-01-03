@@ -12,11 +12,6 @@ groups:
       Some descriptions are also provided for populating general OpenTelemetry semantic conventions based on
       these APIs.
     attributes:
-      - ref: rpc.system
-        brief: "The value `aws-api`."
-        requirement_level: required
-        examples:
-          - aws-api
       - ref: rpc.service
         brief: "The name of the service to which a request is made, as returned by the AWS SDK."
         examples:
