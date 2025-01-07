@@ -1,4 +1,0 @@
-change_type: enhancement
-component: fake
-note: This is a fake changelog record to test CI. It also has a [good link](https://example.com)
-issues: [1723]
