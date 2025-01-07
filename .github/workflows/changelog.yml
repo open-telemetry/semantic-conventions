@@ -75,15 +75,8 @@ jobs:
             || { echo "New ./.chloggen/*.yaml file failed validation."; exit 1; }
 
       # In order to validate any links in the yaml file, render the config to markdown
-      - name: Render .chloggen changelog entries
+      - name: Run markdown-link-check on the changelog
         run: |
-          mkdir -p /tmp
-          make chlog-preview &> /tmp/changelog_preview.md
-          cat /tmp/changelog_preview.md
-          docker run --rm \
-            --mount 'type=bind,source=/tmp,target=/home/repo' \
-            lycheeverse/lychee \
-            --config /home/repo/.lychee.toml \
-            --root-dir /home/repo \
-            --verbose \
-            home/repo/changelog_preview.md
+          make chlog-preview &> changelog_preview.md
+          cat changelog_preview.md
+          make markdown-link-check-changelog-preview

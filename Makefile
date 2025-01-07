@@ -76,6 +76,16 @@ markdown-link-check:
 		--verbose \
 		home/repo
 
+.PHONY: markdown-link-check-changelog-preview
+markdown-link-check-changelog-preview:
+	docker run --rm \
+		--mount 'type=bind,source=$(PWD),target=/home/repo' \
+		lycheeverse/lychee \
+		--config /home/repo/.lychee.toml \
+		--root-dir /home/repo \
+		--verbose \
+		home/repo/changelog_preview.md
+
 # This target runs markdown-toc on all files that contain
 # a comment <!-- tocstop -->.
 #
