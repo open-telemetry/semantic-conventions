@@ -77,7 +77,13 @@ jobs:
       # In order to validate any links in the yaml file, render the config to markdown
       - name: Render .chloggen changelog entries
         run: |
-          make chlog-preview 2> changelog_preview.md
-          cat changelog_preview.md
-      - name: Run markdown-link-check
-        run: make markdown-link-check-changelog-preview
+          mkdir -p ${{ github.workspace }}/tmp
+          make chlog-preview &> ${{ github.workspace }}/tmp/changelog_preview.md
+          cat ${{ github.workspace }}/tmp/changelog_preview.md
+          docker run --rm \
+            --mount 'type=bind,source=${{ github.workspace }},target=/home/repo' \
+            lycheeverse/lychee \
+            --config /home/repo/.lychee.toml \
+            --root-dir /home/repo \
+            --verbose \
+            home/repo/tmp/changelog_preview.md

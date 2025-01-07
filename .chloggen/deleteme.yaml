@@ -1,0 +1,4 @@
+change_type: enhancement
+component: fake
+note: This is a fake changelog record to test CI. It also has a [non-existing link](https://dk2342342342423lfgjdflkgjlkdfgjkldjdflk.com)
+issues: [1723]
