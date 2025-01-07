@@ -100,21 +100,21 @@ test_fails_on_invalid_resource_id if {
     }
 }
 
-create_attribute_group(attr) = json {
+create_attribute_group(attr) = json if {
     json := [{"id": "yaml_schema.test", "attributes": [{"id": attr}]}]
 }
 
-create_metric(name) = json {
+create_metric(name) = json if {
     id := sprintf("metric.%s", [name])
     json := [{"id": id, "type": "metric", "metric_name": name}]
 }
 
-create_event(name) = json {
+create_event(name) = json if {
     id := sprintf("event.%s", [name])
     json := [{"id": id, "type": "event", "name": name}]
 }
 
-create_resource(name) = json {
+create_resource(name) = json if {
     id := sprintf("resource.%s", [name])
     json := [{"id": id, "type": "resource", "name": name}]
 }
