@@ -1,7 +1,8 @@
 package before_resolution
+import rego.v1
 
 # checks attribute name format
-deny[yaml_schema_violation(description, group.id, name)] {
+deny contains yaml_schema_violation(description, group.id, name) if {
     group := input.groups[_]
     attr := group.attributes[_]
     name := attr.id
@@ -12,7 +13,7 @@ deny[yaml_schema_violation(description, group.id, name)] {
 }
 
 # checks attribute name has a namespace
-deny[yaml_schema_violation(description, group.id, name)] {
+deny contains yaml_schema_violation(description, group.id, name) if {
     group := input.groups[_]
     attr := group.attributes[_]
     name := attr.id
@@ -24,9 +25,8 @@ deny[yaml_schema_violation(description, group.id, name)] {
     description := sprintf("Attribute name '%s' should have a namespace. Attribute name %s", [name, invalid_name_helper])
 }
 
-
 # checks metric name format
-deny[yaml_schema_violation(description, group.id, name)] {
+deny contains yaml_schema_violation(description, group.id, name) if {
     group := input.groups[_]
     name := group.metric_name
 
@@ -37,7 +37,7 @@ deny[yaml_schema_violation(description, group.id, name)] {
 }
 
 # checks that metric id matches metric.{metric_name}
-deny[yaml_schema_violation(description, group.id, name)] {
+deny contains yaml_schema_violation(description, group.id, name) if {
     group := input.groups[_]
     name := group.metric_name
     name != null
@@ -49,7 +49,7 @@ deny[yaml_schema_violation(description, group.id, name)] {
 }
 
 # checks event name format
-deny[yaml_schema_violation(description, group.id, name)] {
+deny contains yaml_schema_violation(description, group.id, name) if {
     group := input.groups[_]
     group.type == "event"
     name := group.name
@@ -61,7 +61,7 @@ deny[yaml_schema_violation(description, group.id, name)] {
 }
 
 # checks that event id matches event.{name}
-deny[yaml_schema_violation(description, group.id, name)] {
+deny contains yaml_schema_violation(description, group.id, name) if {
     group := input.groups[_]
     group.type == "event"
     name := group.name
@@ -73,7 +73,7 @@ deny[yaml_schema_violation(description, group.id, name)] {
 }
 
 # checks event.name is not referenced in event attributes
-deny[yaml_schema_violation(description, group.id, name)] {
+deny contains yaml_schema_violation(description, group.id, name) if {
     group := input.groups[_]
     group.type == "event"
     name := group.name
@@ -85,7 +85,7 @@ deny[yaml_schema_violation(description, group.id, name)] {
 }
 
 # require resources have names
-deny[yaml_schema_violation(description, group.id, "")] {
+deny contains yaml_schema_violation(description, group.id, "") if {
     group := input.groups[_]
     group.type == "resource"
     group.name == null
@@ -93,7 +93,7 @@ deny[yaml_schema_violation(description, group.id, "")] {
 }
 
 # checks resource name format
-deny[yaml_schema_violation(description, group.id, name)] {
+deny contains yaml_schema_violation(description, group.id, name) if {
     group := input.groups[_]
     group.type == "resource"
     name := group.name
@@ -105,7 +105,7 @@ deny[yaml_schema_violation(description, group.id, name)] {
 }
 
 # checks that resource group id matches resource.{name}
-deny[yaml_schema_violation(description, group.id, name)] {
+deny contains yaml_schema_violation(description, group.id, name) if {
     group := input.groups[_]
     group.type == "resource"
 
@@ -122,7 +122,7 @@ deny[yaml_schema_violation(description, group.id, name)] {
 }
 
 # checks attribute member id format
-deny[yaml_schema_violation(description, group.id, attr_name)] {
+deny contains yaml_schema_violation(description, group.id, attr_name) if {
     group := input.groups[_]
     attr := group.attributes[_]
     attr_name := attr.id
@@ -134,7 +134,7 @@ deny[yaml_schema_violation(description, group.id, attr_name)] {
 }
 
 # check that attribute is fully qualified with their id, prefix is no longer supported
-deny[yaml_schema_violation(description, group.id, "")] {
+deny contains yaml_schema_violation(description, group.id, "") if {
     group := input.groups[_]
 
     group.prefix != null
@@ -146,7 +146,7 @@ deny[yaml_schema_violation(description, group.id, "")] {
 
 # TODO: remove after span_kind is required https://github.com/open-telemetry/semantic-conventions/issues/1513
 # checks that span id matches span.*. pattern if span_kind is not provided
-deny[yaml_schema_violation(description, group.id, "")] {
+deny contains yaml_schema_violation(description, group.id, "") if {
     group := input.groups[_]
     group.type == "span"
     kind := group.span_kind
@@ -157,7 +157,7 @@ deny[yaml_schema_violation(description, group.id, "")] {
 }
 
 # checks that span id matches span.*.{kind} pattern if span_kind is not provided
-deny[yaml_schema_violation(description, group.id, "")] {
+deny contains yaml_schema_violation(description, group.id, "") if {
     group := input.groups[_]
     group.type == "span"
     kind := group.span_kind
@@ -168,7 +168,7 @@ deny[yaml_schema_violation(description, group.id, "")] {
     description := sprintf("Group id '%s' is invalid. Span group 'id' must follow 'span.*.%s' pattern", [group.id, kind])
 }
 
-yaml_schema_violation(description, group, attr) = violation {
+yaml_schema_violation(description, group, attr) = violation if {
     violation := {
         "id": description,
         "type": "semconv_attribute",
