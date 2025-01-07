@@ -78,5 +78,4 @@ jobs:
       - name: Run markdown-link-check on the changelog
         run: |
           make chlog-preview &> changelog_preview.md
-          cat changelog_preview.md
           make markdown-link-check-changelog-preview
