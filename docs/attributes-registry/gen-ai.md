@@ -44,8 +44,10 @@ This document defines the attributes used to describe telemetry in the context o
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
-For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
-is set to `openai` based on the instrumentation's best knowledge.
+Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
+libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
+instrumentation's best knowledge, instead of the actual system. The `server.address`
+attribute may help identify the actual system in use for `openai`.
 
 For custom model, a custom friendly name SHOULD be used.
 If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
@@ -69,10 +71,16 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 
