@@ -26,6 +26,9 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.request.presence_penalty
         requirement_level: recommended
+      - ref: gen_ai.request.seed
+        requirement_level:
+          conditionally_required: if appliable and if the request includes a seed
       - ref: gen_ai.request.encoding_formats
         requirement_level: recommended
       - ref: gen_ai.response.id
@@ -82,9 +85,6 @@ groups:
     attributes:
       - ref: gen_ai.request.model
         requirement_level: required
-      - ref: gen_ai.openai.request.seed
-        requirement_level:
-          conditionally_required: if the request includes a seed
       - ref: gen_ai.openai.request.response_format
         requirement_level:
           conditionally_required: if the request includes a response_format
