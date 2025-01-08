@@ -61,7 +61,7 @@ groups:
               stability: experimental
               value: "groq"
               brief: 'Groq'
-            - id: mistralai
+            - id: mistral_ai
               stability: experimental
               value: "mistralai"
               brief: 'Mistral AI'
