@@ -139,14 +139,18 @@ This metric is [recommended][MetricRecommended].
 | [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.ref.base.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.base.revision`](/docs/attributes-registry/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [2] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.head.revision`](/docs/attributes-registry/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [3] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.base.revision`](/docs/attributes-registry/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [3] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.head.revision`](/docs/attributes-registry/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [4] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
 
-**[2] `vcs.ref.base.revision`:** The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
+**[2] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+repository if collecting telemetry across multiple orgs or groups in
+the same backends.
+
+**[3] `vcs.ref.base.revision`:** The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
 of the recorded change to a ref within a repository pointing to a
 commit [commit](https://git-scm.com/docs/git-commit) object. It does
 not necessarily have to be a hash; it can simply define a
@@ -156,7 +160,7 @@ it is identical to the `ref.base.name`, it SHOULD still be included. It is
 up to the implementer to decide which value to set as the revision
 based on the VCS system and situational context.
 
-**[3] `vcs.ref.head.revision`:** The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
+**[4] `vcs.ref.head.revision`:** The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
 of the recorded change to a ref within a repository pointing to a
 commit [commit](https://git-scm.com/docs/git-commit) object. It does
 not necessarily have to be a hash; it can simply define a
@@ -165,10 +169,6 @@ which is an integer that is monotonically increasing. In cases where
 it is identical to the `ref.head.name`, it SHOULD still be included. It is
 up to the implementer to decide which value to set as the revision
 based on the VCS system and situational context.
-
-**[4] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
-repository if collecting telemetry across multiple orgs or groups in
-the same backends.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
