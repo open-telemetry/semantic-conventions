@@ -8,7 +8,7 @@ linkTitle: System
 
 This document describes instruments and attributes for common system level
 metrics in OpenTelemetry. Consider the [general metric semantic
-conventions](/docs/general/metrics.md#general-metric-semantic-conventions) when creating
+conventions](/docs/general/metrics.md#general-guidelines) when creating
 instruments not explicitly defined in the specification.
 
 The `system.*` namespace SHOULD be exclusively used to report hosts' metrics.

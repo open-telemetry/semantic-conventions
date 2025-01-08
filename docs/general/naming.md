@@ -193,7 +193,7 @@ OpenTelemetry specification.
   might include multiple values: the executable name and command arguments.
 
 - When an attribute represents a measurement,
-  [Metric Name Pluralization Guidelines](./metrics.md#pluralization) SHOULD be
+  [Name Pluralization Guidelines](./naming.md#pluralization) SHOULD be
   followed for the attribute name.
 
 ### Signal-specific Attributes
