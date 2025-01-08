@@ -169,7 +169,23 @@ You can also take examples from past changes inside the `schemas` folder.
 ### 2. Update the markdown files
 
 After updating the YAML file(s), you need to update
-the respective markdown files. For this, run the following commands:
+the respective markdown files.
+If you want to update existing tables, just run the following commands:
+
+```bash
+make table-generation attribute-registry-generation
+```
+
+When defining new telemetry signals (spans, metrics, events, resources) in YAML,
+make sure to add a new markdown section describing them. Add the following
+code-snippet into the markdown file:
+
+```
+<!-- semconv new-group-id -->
+<!-- endsemconv -->
+```
+
+Then run markdown generation commands:
 
 ```bash
 make table-generation attribute-registry-generation
