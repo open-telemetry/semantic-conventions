@@ -44,11 +44,11 @@ groups:
       - ref: vcs.ref.head.name
         requirement_level: required
       - ref: vcs.ref.head.revision
-        requirement_level: recommended
+        requirement_level: opt-in
       - ref: vcs.ref.base.name
         requirement_level: recommended
       - ref: vcs.ref.base.revision
-        requirement_level: recommended
+        requirement_level: opt-in
   - id: metric.vcs.change.time_to_merge
     type: metric
     metric_name: vcs.change.time_to_merge
@@ -64,11 +64,11 @@ groups:
       - ref: vcs.ref.head.name
         requirement_level: required
       - ref: vcs.ref.head.revision
-        requirement_level: recommended
+        requirement_level: opt-in
       - ref: vcs.ref.base.name
         requirement_level: recommended
       - ref: vcs.ref.base.revision
-        requirement_level: recommended
+        requirement_level: opt-in
   - id: metric.vcs.repository.count
     type: metric
     metric_name: vcs.repository.count
