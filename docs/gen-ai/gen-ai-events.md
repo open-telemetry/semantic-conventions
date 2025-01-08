@@ -92,7 +92,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mistralai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mistral_ai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -156,7 +156,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mistralai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mistral_ai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -220,7 +220,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mistralai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mistral_ai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -299,7 +299,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mistralai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mistral_ai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -364,7 +364,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mistralai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mistral_ai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

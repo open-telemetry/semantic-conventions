@@ -63,7 +63,7 @@ groups:
               brief: 'Groq'
             - id: mistral_ai
               stability: experimental
-              value: "mistralai"
+              value: "mistral_ai"
               brief: 'Mistral AI'
 
         brief: The Generative AI product as identified by the client or server instrumentation.
