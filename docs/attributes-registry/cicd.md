@@ -20,7 +20,6 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | <a id="cicd-pipeline-task-run-url-full" href="#cicd-pipeline-task-run-url-full">`cicd.pipeline.task.run.url.full`</a> | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline run providing the complete address in order to locate and identify the pipeline run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cicd-pipeline-task-type" href="#cicd-pipeline-task-type">`cicd.pipeline.task.type`</a> | string | The type of the task within a pipeline. | `build`; `test`; `deploy` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cicd-system-component" href="#cicd-system-component">`cicd.system.component`</a> | string | The name of a component of the CICD system. | `controller`; `scheduler`; `agent` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="cicd-worker-class" href="#cicd-worker-class">`cicd.worker.class`</a> | string | The type of worker / agent used by the CICD system. | `vm`; `pod` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cicd-worker-state" href="#cicd-worker-state">`cicd.worker.state`</a> | string | The state of a CICD worker / agent. | `idle`; `busy`; `down` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
@@ -45,16 +44,6 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | `build` | build | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `deploy` | deploy | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `test` | test | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
----
-
-`cicd.worker.class` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `container` | A single container. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pod` | One or more containers deployed together. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vm` | A virtual machine or baremetal host. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 

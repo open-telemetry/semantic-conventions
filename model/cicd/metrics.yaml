@@ -52,8 +52,6 @@ groups:
     unit: "{count}"
     stability: experimental
     attributes:
-      - ref: cicd.worker.class
-        requirement_level: required
       - ref: cicd.worker.state
         requirement_level: required
   - id: metric.cicd.pipeline.run.errors
