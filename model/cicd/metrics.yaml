@@ -11,6 +11,9 @@ groups:
         requirement_level: required
       - ref: cicd.pipeline.result
         requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the pipeline run failed.
   - id: metric.cicd.pipeline.run.executing
     type: metric
     metric_name: cicd.pipeline.run.executing
