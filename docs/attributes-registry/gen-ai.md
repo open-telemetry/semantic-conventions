@@ -17,6 +17,17 @@ This document defines the attributes used to describe telemetry in the context o
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
+| <a id="gen-ai-agent-description" href="#gen-ai-agent-description">`gen_ai.agent.description`</a> | string | Free-form description of the GenAI agent provided by the application. | `Helps with math problems`; `Generates fiction stories` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-agent-id" href="#gen-ai-agent-id">`gen_ai.agent.id`</a> | string | The unique identifier of the GenAI agent. | `asst_5j66UpCpwteGg4YSxUnt7lPY` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-agent-name" href="#gen-ai-agent-name">`gen_ai.agent.name`</a> | string | Human-readable name of the GenAI agent provided by the application. | `Math Tutor`; `Fiction Writer` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-agent-status" href="#gen-ai-agent-status">`gen_ai.agent.status`</a> | string | The status of the agent. | `completed`; `failed` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-agent-tool-call-id" href="#gen-ai-agent-tool-call-id">`gen_ai.agent.tool.call.id`</a> | string | The tool call identifier. | `call_mszuSIzqtI65i1wAUOE8w5H4` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-agent-tool-datastore-name" href="#gen-ai-agent-tool-datastore-name">`gen_ai.agent.tool.datastore.name`</a> | string | Name of the datastore of the tool utilized by the agent. | `pdf dstore`; `website dstore` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-agent-tool-extension-name" href="#gen-ai-agent-tool-extension-name">`gen_ai.agent.tool.extension.name`</a> | string | Name of the extension of the tool utilized by the agent. | `Code Interpreter` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-agent-tool-function-name" href="#gen-ai-agent-tool-function-name">`gen_ai.agent.tool.function.name`</a> | string | Name of the function of the tool utilized by the agent. | `getFlights`; `getWeather` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-agent-tool-name" href="#gen-ai-agent-tool-name">`gen_ai.agent.tool.name`</a> | string | Name of the tool utilized by the agent. | `Flights` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-agent-tool-type" href="#gen-ai-agent-tool-type">`gen_ai.agent.tool.type`</a> | string | Type of the tool utilized by the agent. | `function`; `extension`; `datastore` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-agent-tools" href="#gen-ai-agent-tools">`gen_ai.agent.tools`</a> | string[] | List of tool names available to the agent. | `["Flights", "Search", "Code"]`; `["calc"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-operation-name" href="#gen-ai-operation-name">`gen_ai.operation.name`</a> | string | The name of the operation being performed. [1] | `chat`; `text_completion`; `embeddings` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-encoding-formats" href="#gen-ai-request-encoding-formats">`gen_ai.request.encoding_formats`</a> | string[] | The encoding formats requested in an embeddings operation, if specified. [2] | `["base64"]`; `["float", "binary"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-frequency-penalty" href="#gen-ai-request-frequency-penalty">`gen_ai.request.frequency_penalty`</a> | double | The frequency penalty setting for the GenAI request. | `0.1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -54,12 +65,23 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 ---
 
+`gen_ai.agent.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `completed` | The agent has been completed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `failed` | The agent was unable to complete the task due to an error. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
+
 `gen_ai.operation.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `chat` | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create_agent` | Create GenAI agent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `embeddings` | Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute_tool` | Execute a tool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---

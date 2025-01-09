@@ -94,7 +94,9 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | Value  | Description | Stability |
 |---|---|---|
 | `chat` | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create_agent` | Create GenAI agent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `embeddings` | Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute_tool` | Execute a tool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
@@ -196,7 +198,9 @@ Instrumentations SHOULD document the list of errors they report.
 | Value  | Description | Stability |
 |---|---|---|
 | `chat` | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create_agent` | Create GenAI agent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `embeddings` | Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute_tool` | Execute a tool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
@@ -296,7 +300,9 @@ Instrumentations SHOULD document the list of errors they report.
 | Value  | Description | Stability |
 |---|---|---|
 | `chat` | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create_agent` | Create GenAI agent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `embeddings` | Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute_tool` | Execute a tool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
@@ -383,7 +389,9 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | Value  | Description | Stability |
 |---|---|---|
 | `chat` | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create_agent` | Create GenAI agent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `embeddings` | Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute_tool` | Execute a tool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
@@ -469,7 +477,9 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | Value  | Description | Stability |
 |---|---|---|
 | `chat` | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create_agent` | Create GenAI agent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `embeddings` | Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute_tool` | Execute a tool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---

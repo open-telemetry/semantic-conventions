@@ -177,6 +177,71 @@ groups:
               brief: 'Output tokens (completion, response, etc.)'
         brief: The type of token being counted.
         examples: ['input', 'output']
+      - id: gen_ai.agent.id   # alternatives: assistant (openai)
+        stability: experimental
+        type: string
+        brief: The unique identifier of the GenAI agent.
+        examples: ['asst_5j66UpCpwteGg4YSxUnt7lPY']
+      - id: gen_ai.agent.name
+        stability: experimental
+        type: string
+        brief: Human-readable name of the GenAI agent provided by the application.
+        examples: ["Math Tutor", "Fiction Writer"]
+      - id: gen_ai.agent.description
+        stability: experimental
+        type: string
+        brief: Free-form description of the GenAI agent provided by the application.
+        examples: ["Helps with math problems", "Generates fiction stories"]
+      - id: gen_ai.agent.tools
+        stability: experimental
+        type: string[]
+        brief: List of tool names available to the agent.
+        examples:
+          - ["Flights", "Search", "Code"]
+          - ["calc"]
+      - id: gen_ai.agent.status
+        stability: experimental
+        type:
+          members:
+            - id: completed
+              value: "completed"
+              brief: 'The agent has been completed'
+              stability: experimental
+            - id: failed
+              value: "failed"
+              brief: 'The agent was unable to complete the task due to an error.'
+              stability: experimental
+        brief: The status of the agent.
+      - id: gen_ai.agent.tool.name
+        stability: experimental
+        type: string
+        brief: Name of the tool utilized by the agent.
+        examples: ["Flights"]
+      - id: gen_ai.agent.tool.call.id
+        stability: experimental
+        type: string
+        brief: The tool call identifier.
+        examples: ['call_mszuSIzqtI65i1wAUOE8w5H4']
+      - id: gen_ai.agent.tool.type
+        stability: experimental
+        type: string
+        brief: Type of the tool utilized by the agent.
+        examples: ['function', 'extension', 'datastore']
+      - id: gen_ai.agent.tool.function.name
+        stability: experimental
+        type: string
+        brief: Name of the function of the tool utilized by the agent.
+        examples: ["getFlights", "getWeather"]
+      - id: gen_ai.agent.tool.extension.name
+        stability: experimental
+        type: string
+        brief: Name of the extension of the tool utilized by the agent.
+        examples: ['Code Interpreter']
+      - id: gen_ai.agent.tool.datastore.name
+        stability: experimental
+        type: string
+        brief: Name of the datastore of the tool utilized by the agent.
+        examples: ['pdf dstore', 'website dstore']
       - id: gen_ai.operation.name
         stability: experimental
         type:
@@ -192,6 +257,14 @@ groups:
             - id: embeddings
               value: "embeddings"
               brief: 'Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create)'
+              stability: experimental
+            - id: create_agent
+              value: "create_agent"
+              brief: 'Create GenAI agent'
+              stability: experimental
+            - id: execute_tool
+              value: "execute_tool"
+              brief: 'Execute a tool'
               stability: experimental
         brief: The name of the operation being performed.
         note: >
