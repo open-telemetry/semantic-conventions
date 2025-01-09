@@ -150,3 +150,13 @@ groups:
         brief: >
           The state of a CICD worker / agent.
         examples: ["idle", "busy", "down"]
+      - id: cicd.system.component
+        type: string
+        stability: experimental
+        brief: The name of a component of the CICD system.
+        examples:
+          [
+            "controller",
+            "scheduler",
+            "agent",
+          ]

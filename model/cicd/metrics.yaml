@@ -77,5 +77,7 @@ groups:
     unit: "{error}"
     stability: experimental
     attributes:
+      - ref: cicd.system.component
+        requirement_level: required
       - ref: error.type
         requirement_level: required
