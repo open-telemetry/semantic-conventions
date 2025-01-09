@@ -11,6 +11,14 @@ groups:
         brief: >
           Process identifier (PID).
         examples: [1234]
+      - id: process.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the process. On Linux based systems, can be set
+          to the `Name` in `proc/[pid]/status`. On Windows, can be set to the
+          base name of `GetProcessImageFileNameW`.
+        examples: ['otelcol']
       - id: process.parent_pid
         type: int
         stability: experimental
@@ -65,8 +73,8 @@ groups:
         stability: experimental
         brief: >
           The name of the process executable. On Linux based systems, can be set
-          to the `Name` in `proc/[pid]/status`. On Windows, can be set to the
-          base name of `GetProcessImageFileNameW`.
+          to the base name of the target of `/proc/[pid]/exe`. On Windows,
+          can be set to the base name of `GetProcessImageFileNameW`.
         examples: ['otelcol']
       - id: process.executable.path
         type: string
