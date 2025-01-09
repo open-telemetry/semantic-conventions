@@ -229,33 +229,41 @@ Examples:
 Metric `http.server.request.duration` uses attributes from the registry such as
 `server.port`, `error.type`.
 
+### Attributes that describe system name
+
+Semantic conventions for a certain area are usually applicable to multiple systems
+(projects, providers, products).
+
+For example, database semantic conventions can be used to describe telemetry for a
+broad range of database systems.
+
+Such conventions SHOULD define an attribute to represent system name following
+`{area}.system|provider|protocol|etc.name`.
+
+For example, database conventions include the `db.system.name` attribute.
+<!-- not yet, we should not merge it before https://github.com/open-telemetry/semantic-conventions/pull/1613 -->
+
 ### System-specific attributes
 
 **Status**: [Development][DocumentStatus]
 
-When an attribute is specific to a particular system (e.g., project, provider, product),
-the system name should be used in the attribute name, following the pattern:
-`{optional domain}.{system}.*.{property}` pattern.
+When an attribute is specific to a particular system (project, provider, product),
+the corresponding attribute name SHOULD start with the system name following the
+`{system_name}.*.{property}` pattern.
 
 Examples:
 
-- `db.cassandra.consistency_level` - Describes the consistency level property
+- `cassandra.consistency_level` - Describes the consistency level property
   specific to the Cassandra database.
-Cassandra DB.
 - `aws.s3.key` - Refers to the `key` property of the AWS S3 product.
 - `signalr.connection.status` – Indicates the connection status of the SignalR
-  network protocol. In this case, no domain is included.
+  network protocol.
 
-Semantic conventions for a specific domain are generally applicable to multiple systems.
-These conventions should define an attribute to represent the name of the system.
-For example, database conventions include the `db.system` attribute.
-<!-- update when https://github.com/open-telemetry/semantic-conventions/pull/1613 is merged -->
+The value of the [`*.system.name`](#attributes-that-describe-system-name) (or similar)
+attribute MUST match the root namespace used in the system specific attribute being defined.
 
-The name of the system used in the corresponding `*.system` (or similar) attribute should match
-the name used inside system-specific attributes.
-
-For example, if the database name specified in `db.system` is `foo.bar`, system-specific
-attributes for this database should follow the `db.foo.bar.*` pattern.
+For example, both `cassandra.consistency_level` attribute name and `db.system.name=cassandra`
+ use the same system name (`cassandra`).
 
 ## Metrics
 
@@ -346,12 +354,12 @@ instrument creation, but can be added if there is ambiguity.
 
 ### Client and server metrics
 
-Metrics that measure aspects of a physical or logical network call should include
+Metrics that measure aspects of a physical or logical network call SHOULD include
 an indication of the side being measured when ambiguity exists.
 
-In such cases, the metric name should follow the pattern: `{domain}.{client|server}.{metric_name}`.
+Metric names SHOULD follow the `{area}.{client|server}.{metric_name}` pattern.
 
-For example:
+Examples:
 - `http.client.request.duration`
 - `gen_ai.server.request.duration`
 - `messaging.client.sent.messages`
@@ -362,19 +370,19 @@ For example:
 
 ### System-specific metrics
 
-When a metric is specific to a system (e.g., project, provider, product) in a given domain,
-the system name should be included in the instrument name using the pattern:
-`{domain}.{client|server}.{system}.*.{property}` pattern.
+When a metric is specific to a system (project, provider, product) in a given area,
+the system name should be included in the instrument name following the
+`{system_name}.*.{metric_name}` pattern.
 
-For example, `db.client.cosmosdb.operation.request_charge`
+For example, `cosmosdb.client.operation.request_charge`
 
+<!-- todo not yet - https://github.com/open-telemetry/semantic-conventions/pull/1711 -->
 <!-- update when https://github.com/open-telemetry/semantic-conventions/pull/1613 is merged -->
-The system name should match the value of the corresponding `{domain}.system`
-attribute.
 
-For additional details, refer to [system-specific attributes](#system-specific-attributes).
+The value of the [`*.system.name`](#attributes-that-describe-system-name) (or similar)
+attribute MUST match the root namespace used in system specific metric.
 
-If a metric does not belong to any domain, use the system name at the start of the instrument name.
-For example, `signalr.server.connection.duration`.
+For example, both `cosmosdb.client.operation.request_charge` metric and `db.system.name=cosmosdb`
+attribute use the same system name (`cosmosdb`).
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
