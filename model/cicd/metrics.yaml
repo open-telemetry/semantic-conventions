@@ -56,10 +56,11 @@ groups:
         requirement_level: required
       - ref: cicd.worker.state
         requirement_level: required
-  - id: metric.cicd.errors
+  - id: metric.cicd.system.errors
     type: metric
-    metric_name: cicd.errors
-    brief: 'The number of errors in the controller of the CICD system.'
+    metric_name: cicd.system.errors
+    brief: 'The number of errors in a component of the CICD system (eg. controller, scheduler, agent).'
+    note: 'Errors in pipeline run execution are explicitly excluded. Ie a test failure is not counted in this metric.'
     instrument: counter
     unit: "{error}"
     stability: experimental
