@@ -22,5 +22,5 @@ issues: [1600]
 subtext: |
   Makes the following changes:
 
-  - Add metrics `cicd.pipeline.run.duration`, `cicd.pipeline.run.executing`, `cicd.queue.latency`, `cicd.queue.length`, `cicd.worker.count`, `cicd.errors`.
+  - Add metrics `cicd.pipeline.run.duration`, `cicd.pipeline.run.active`, `cicd.queue.latency`, `cicd.queue.length`, `cicd.worker.count`, `cicd.errors`.
   - The CICD attributes `cicd.pipeline.result`, `cicd.worker.state` and `cicd.worker.class` have been added to the registry.

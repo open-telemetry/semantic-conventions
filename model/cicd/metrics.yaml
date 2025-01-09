@@ -14,9 +14,9 @@ groups:
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if the pipeline run failed.
-  - id: metric.cicd.pipeline.run.executing
+  - id: metric.cicd.pipeline.run.active
     type: metric
-    metric_name: cicd.pipeline.run.executing
+    metric_name: cicd.pipeline.run.active
     brief: 'The number of pipeline runs currently executing.'
     instrument: updowncounter
     unit: "{run}"
