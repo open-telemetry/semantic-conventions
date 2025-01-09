@@ -30,7 +30,7 @@ discussion.
 
 Metrics specific to a certain runtime environment should be prefixed with
 the runtime's top-level namespace `{environment}.*`, e.g., `jvm.*` and follow the
-[general metric semantic convention guidelines](/docs/general/metrics.md#general-metric-semantic-conventions).
+[general metric semantic convention guidelines](/docs/general/metrics.md#general-guidelines).
 
 Authors of runtime instrumentations are responsible for the choice of
 `{environment}` to avoid ambiguity when interpreting a metric's name or values.
@@ -42,7 +42,7 @@ such languages, consider using specific `{environment}` prefixes to avoid
 ambiguity, like `cpython.*` and `pypy.*`.
 
 Also consider the
-[general metrics](/docs/general/metrics.md#general-metric-semantic-conventions),
+[general metrics](/docs/general/metrics.md#general-guidelines),
 [system metrics](/docs/system/system-metrics.md) and
 [OS process metrics](/docs/system/process-metrics.md)
 semantic conventions when instrumenting runtime environments.
