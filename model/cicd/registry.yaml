@@ -97,12 +97,12 @@ groups:
               value: timeout
               brief: "A timeout caused the pipeline run to be interrupted."
               stability: experimental
-            - id: cancelled
-              value: cancelled
+            - id: cancel
+              value: cancel
               brief: "The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run."
               stability: experimental
-            - id: skipped
-              value: skipped
+            - id: skip
+              value: skip
               brief: "The pipeline run was skipped, eg. due to a precondition not being met."
               stability: experimental
         stability: experimental
