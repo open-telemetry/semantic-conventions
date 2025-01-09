@@ -190,7 +190,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `cicd.worker.count` | UpDownCounter | `{count}` | The number of workers on the CICD system by class and status. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cicd.worker.count` | UpDownCounter | `{count}` | The number of workers on the CICD system by state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
