@@ -28,7 +28,7 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 | Value  | Description | Stability |
 |---|---|---|
-| `cancel` | The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cancellation` | The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `error` | The pipeline run failed due to an error in the CICD system, eg. due to the worker being killed. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `failure` | The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `skip` | The pipeline run was skipped, eg. due to a precondition not being met. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
