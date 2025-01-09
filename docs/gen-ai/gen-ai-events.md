@@ -25,13 +25,8 @@ linkTitle: Generative AI events
 
 GenAI instrumentations MAY capture user inputs sent to the model and responses received from it as [events](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.40.0/specification/logs/api.md#emit-an-event).
 
-<<<<<<< HEAD
-> [!NOTE]
-> Event API is experimental and not yet available in some languages. Check [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/main/spec-compliance-matrix.md#events) to see the implementation status in corresponding language.
-=======
 > Note:
 > Event API is experimental and not yet available in some languages. Check [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.40.0/spec-compliance-matrix.md#logs) to see the implementation status in corresponding language.
->>>>>>> 75746bc9 (reword)
 
 Instrumentations MAY capture inputs and outputs if and only if application has enabled the collection of this data.
 This is for three primary reasons:
@@ -74,8 +69,10 @@ This event describes the system instructions passed to the GenAI model.
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
-For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
-is set to `openai` based on the instrumentation's best knowledge.
+Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
+libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
+instrumentation's best knowledge, instead of the actual system. The `server.address`
+attribute may help identify the actual system in use for `openai`.
 
 For custom model, a custom friendly name SHOULD be used.
 If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
@@ -89,10 +86,16 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **Body fields:**
 
@@ -129,8 +132,10 @@ This event describes the user message passed to the GenAI model.
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
-For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
-is set to `openai` based on the instrumentation's best knowledge.
+Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
+libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
+instrumentation's best knowledge, instead of the actual system. The `server.address`
+attribute may help identify the actual system in use for `openai`.
 
 For custom model, a custom friendly name SHOULD be used.
 If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
@@ -144,10 +149,16 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **Body fields:**
 
@@ -184,8 +195,10 @@ This event describes the assistant message passed to GenAI system.
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
-For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
-is set to `openai` based on the instrumentation's best knowledge.
+Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
+libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
+instrumentation's best knowledge, instead of the actual system. The `server.address`
+attribute may help identify the actual system in use for `openai`.
 
 For custom model, a custom friendly name SHOULD be used.
 If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
@@ -199,10 +212,16 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **Body fields:**
 
@@ -254,8 +273,10 @@ This event describes the response from a tool or function call passed to the Gen
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
-For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
-is set to `openai` based on the instrumentation's best knowledge.
+Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
+libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
+instrumentation's best knowledge, instead of the actual system. The `server.address`
+attribute may help identify the actual system in use for `openai`.
 
 For custom model, a custom friendly name SHOULD be used.
 If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
@@ -269,10 +290,16 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **Body fields:**
 
@@ -310,8 +337,10 @@ This event describes the Gen AI response message.
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
-For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
-is set to `openai` based on the instrumentation's best knowledge.
+Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
+libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
+instrumentation's best knowledge, instead of the actual system. The `server.address`
+attribute may help identify the actual system in use for `openai`.
 
 For custom model, a custom friendly name SHOULD be used.
 If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
@@ -325,10 +354,16 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **Body fields:**
 
