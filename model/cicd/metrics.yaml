@@ -24,9 +24,9 @@ groups:
     attributes:
       - ref: cicd.pipeline.name
         requirement_level: required
-  - id: metric.cicd.queue.latency
+  - id: metric.cicd.pipeline.run.time_in_queue
     type: metric
-    metric_name: cicd.queue.latency
+    metric_name: cicd.pipeline.run.time_in_queue
     brief: 'The duration a pipeline run takes from being triggered to the start of execution.'
     instrument: histogram
     unit: "s"
