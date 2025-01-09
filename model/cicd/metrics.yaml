@@ -34,9 +34,9 @@ groups:
     attributes:
       - ref: cicd.pipeline.name
         requirement_level: recommended
-  - id: metric.cicd.queue.length
+  - id: metric.cicd.pipeline.run.queued
     type: metric
-    metric_name: cicd.queue.length
+    metric_name: cicd.pipeline.run.queued
     brief: 'The number of pipeline runs waiting for their start of execution.'
     instrument: updowncounter
     unit: "{run}"
