@@ -88,7 +88,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `cicd.pipeline.run.executing` | UpDownCounter | `{pipeline_run}` | The number of pipeline runs currently executing. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cicd.pipeline.run.executing` | UpDownCounter | `{run}` | The number of pipeline runs currently executing. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -136,7 +136,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `cicd.queue.length` | UpDownCounter | `{pipeline_run}` | The number of pipeline runs waiting for their start of execution. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cicd.queue.length` | UpDownCounter | `{run}` | The number of pipeline runs waiting for their start of execution. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

@@ -16,7 +16,7 @@ groups:
     metric_name: cicd.pipeline.run.executing
     brief: 'The number of pipeline runs currently executing.'
     instrument: updowncounter
-    unit: "{pipeline_run}"
+    unit: "{run}"
     stability: experimental
     attributes:
       - ref: cicd.pipeline.name
@@ -36,7 +36,7 @@ groups:
     metric_name: cicd.queue.length
     brief: 'The number of pipeline runs waiting for their start of execution.'
     instrument: updowncounter
-    unit: "{pipeline_run}"
+    unit: "{run}"
     stability: experimental
     attributes:
       - ref: cicd.pipeline.name
