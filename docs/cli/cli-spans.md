@@ -28,7 +28,7 @@ Span status SHOULD be set to `Error` if `{process.exit.code}` is not 0.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`process.executable.name`](/docs/attributes-registry/process.md) | string | The name of the process executable. On Linux based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.executable.name`](/docs/attributes-registry/process.md) | string | The name of the process executable. On Linux based systems, can be set to the base name of the target of `/proc/[pid]/exe`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`process.exit.code`](/docs/attributes-registry/process.md) | int | The exit code of the process. | `127` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`process.pid`](/docs/attributes-registry/process.md) | int | Process identifier (PID). | `1234` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if and only if process.exit.code is not 0 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -79,7 +79,7 @@ it's RECOMMENDED to:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`process.executable.name`](/docs/attributes-registry/process.md) | string | The name of the process executable. On Linux based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.executable.name`](/docs/attributes-registry/process.md) | string | The name of the process executable. On Linux based systems, can be set to the base name of the target of `/proc/[pid]/exe`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`process.exit.code`](/docs/attributes-registry/process.md) | int | The exit code of the process. | `127` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`process.pid`](/docs/attributes-registry/process.md) | int | Process identifier (PID). | `1234` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if and only if process.exit.code is not 0 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
