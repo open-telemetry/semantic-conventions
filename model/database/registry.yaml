@@ -190,16 +190,12 @@ groups:
               value: "derby"  # trademark on 'derby'
               brief: "[Apache Derby](https://db.apache.org/derby/)"
               stability: development
-            - id: edb
-              value: "edb"  # trademark on 'enterprisedb' and 'edb'
-              brief: "[EnterpriseDB](https://www.enterprisedb.com/)"
-              stability: development
             - id: elasticsearch
               value: "elasticsearch"  # trademark on 'elasticsearch'
               brief: "[Elasticsearch](https://www.elastic.co/elasticsearch)"
               stability: development
-            - id: firebird
-              value: "firebird"  # no trademark?
+            - id: firebirdsql
+              value: "firebirdsql"  # no trademark
               brief: "[Firebird](https://www.firebirdsql.org/)"
               stability: development
             - id: gcp.spanner
@@ -226,7 +222,7 @@ groups:
               value: "hsqldb"  # no trademark
               brief: "[HyperSQL Database](https://hsqldb.org/)"
               stability: development
-            - id: ibm.db2
+            - id: db2
               value: "ibm.db2"  # trademark on 'db2'
               brief: "[IBM Db2](https://www.ibm.com/db2)"
               stability: development
@@ -274,8 +270,8 @@ groups:
               value: "opensearch"  # trademark on 'opensearch'
               brief: "[OpenSearch](https://opensearch.org/)"
               stability: development
-            - id: oracle
-              value: "oracle"
+            - id: oracle.db
+              value: "oracle.db"
               brief: "[Oracle Database](https://www.oracle.com/database/)"
               stability: development
             - id: postgresql
