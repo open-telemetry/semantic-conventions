@@ -331,4 +331,3 @@ groups:
           Instrumentations that generate connection pool name following different patterns
           SHOULD document it.
         examples: ["myDataSource"]
-

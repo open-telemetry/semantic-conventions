@@ -157,4 +157,3 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
-
