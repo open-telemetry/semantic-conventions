@@ -143,177 +143,177 @@ groups:
               brief: "Some other SQL database. Fallback only. See notes."
               stability: development
             - id: adabas
-              value: "adabas"
+              value: "adabas"  # trademark on 'adabas'
               brief: "Adabas (Adaptable Database System)"
-              stability: development # there is a trademark
+              stability: development
             - id: actian.ingres
-              value: "actian.ingres"
+              value: "actian.ingres"  # trademark on 'ingres'
               brief: "[Actian Ingres](https://www.actian.com/databases/ingres/)"
               stability: development
-            - id: aws.dynamodb # there is a trademark
-              value: "aws.dynamodb"
+            - id: aws.dynamodb
+              value: "aws.dynamodb"  # trademark on 'dynamodb'
               brief: "[Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/)"
               stability: development
             - id: aws.redshift
               value: "aws.redshift"
               brief: "Amazon Redshift"
-              stability: development # trademark on amazon redshift
+              stability: development  # trademark on 'amazon redshift'
             - id: az.cosmosdb
-              value: "az.cosmosdb"
+              value: "az.cosmosdb"  # trademark on 'azure cosmos db'
               brief: "[Microsoft Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db)"
               stability: development
             - id: intersystems.cache
-              value: "intersystems.cache"
+              value: "intersystems.cache"  # trademark on 'INTERSYSTEMS CACHÉ'
               brief: "[InterSystems Caché](https://www.intersystems.com/products/cache/)"
               stability: development
             - id: cassandra
-              value: "cassandra"
+              value: "cassandra"  # trademark on 'cassandra'
               brief: "[Apache Cassandra](https://cassandra.apache.org/)"
-              stability: development # there is a trademark
+              stability: development
             - id: clickhouse
-              value: "clickhouse"
+              value: "clickhouse"  # no wordmark
               brief: "[ClickHouse](https://clickhouse.com/)"
-              stability: development # not a wordmark
+              stability: development
             - id: cockroachdb
-              value: "cockroachdb"
+              value: "cockroachdb"  # trademark on 'cockroachdb'
               brief: "[CockroachDB](https://www.cockroachlabs.com/)"
-              stability: development # there is a trademark
+              stability: development
             - id: couchbase
-              value: "couchbase"
+              value: "couchbase"  # trademark on 'couchbase'
               brief: "[Couchbase](https://www.couchbase.com/)"
-              stability: development # there is a trademark
+              stability: development
             - id: couchdb
-              value: "couchdb"
+              value: "couchdb"  # trademark on 'couchdb'
               brief: "[Apache CouchDB](https://couchdb.apache.org/)"
-              stability: development # there is a trademark
+              stability: development
             - id: derby
-              value: "derby"
-              brief: "[Apache Derby](https://db.apache.org/derby/)" # there is a trademark
+              value: "derby"  # trademark on 'derby'
+              brief: "[Apache Derby](https://db.apache.org/derby/)"
               stability: development
             - id: edb
-              value: "edb"
+              value: "edb"  # trademark on 'enterprisedb' and 'edb'
               brief: "[EnterpriseDB](https://www.enterprisedb.com/)" # there is a trademark
               stability: development
             - id: elasticsearch
-              value: "elasticsearch"
+              value: "elasticsearch"  # trademark on 'elasticsearch'
               brief: "[Elasticsearch](https://www.elastic.co/elasticsearch)" # there is a trademark
               stability: development
             - id: firebird
-              value: "firebird"
+              value: "firebird"  # no trademark?
               brief: "[Firebird](https://www.firebirdsql.org/)"
-              stability: development # no trademark
+              stability: development
             - id: gcp.spanner
-              value: "spanner"
-              brief: "Cloud Spanner"
+              value: "gcp.spanner"  # trademark on 'cloud spanner'
+              brief: "[Google Cloud Spanner](https://cloud.google.com/spanner)"
               stability: development
             - id: geode
-              value: "geode"
+              value: "geode"  # trademark on 'geode'
               brief: "[Apache Geode](https://geode.apache.org/)"
-              stability: development # there is a trademark
+              stability: development
             - id: h2
-              value: "h2"
+              value: "h2"  # no trademark
               brief: "[H2 Database](https://h2database.com/)"
               stability: development
             - id: hbase
-              value: "hbase"
+              value: "hbase"  # trademark on 'hbase'
               brief: "[Apache HBase](https://hbase.apache.org/)"
-              stability: development # there is a trademark
+              stability: development
             - id: hive
-              value: "hive"
+              value: "hive"  # trademark on 'hive'
               brief: "[Apache Hive](https://hive.apache.org/)"
-              stability: development # there is a trademark
+              stability: development
             - id: hsqldb
-              value: "hsqldb"
+              value: "hsqldb"  # no trademark
               brief: "[HyperSQL Database](https://hsqldb.org/)"
-              stability: development # no trademark
+              stability: development
             - id: ibm.db2
-              value: "ibm.db2"
+              value: "ibm.db2"  # trademark on 'db2'
               brief: "[IBM Db2](https://www.ibm.com/db2)"
-              stability: development # there is a trademark on db2
+              stability: development
             - id: ibm.informix
-              value: "ibm.informix"
+              value: "ibm.informix"  # trademark on 'informix'
               brief: "[IBM Informix](https://www.ibm.com/products/informix)"
-              stability: development # there is a trademark on informix
+              stability: development
             - id: ibm.netezza
               value: "ibm.netezza"
-              brief: "IBM Netezza"
-              stability: development # there is a trademark on netezza
+              brief: "IBM Netezza"  # trademark on 'netezza'
+              stability: development
             - id: influxdb
-              value: "influxdb"
-              brief: "[InfluxDB](https://www.influxdata.com/)" # there is a trademark
+              value: "influxdb"  # trademark on 'influxdb'
+              brief: "[InfluxDB](https://www.influxdata.com/)"
               stability: development
             - id: instantdb
-              value: "instantdb"
-              brief: "[InstantDB](https://www.instantdb.com/)" # no trademark
+              value: "instantdb"  # no trademark
+              brief: "[InstantDB](https://www.instantdb.com/)"
               stability: development
             - id: mariadb
-              value: "mariadb"
-              brief: "MariaDB" # there is a trademark
+              value: "mariadb"  # trademark on 'mariadb'
+              brief: "MariaDB"
               stability: release_candidate
             - id: memcached
-              value: "memcached"
+              value: "memcached"  # no trademark
               brief: "Memcached"
-              stability: development # no trademark
+              stability: development
             - id: mongodb
-              value: "mongodb"
-              brief: "MongoDB" # there is a trademark
+              value: "mongodb"  # trademark on 'mongodb'
+              brief: "MongoDB"
               stability: development
             - id: mssql
-              value: "mssql"
+              value: "mssql"  # trademark on 'SQL Server'
               brief: "Microsoft SQL Server"
               stability: release_candidate
             - id: mysql
-              value: "mysql"
-              brief: "MySQL" # there is a trademark
+              value: "mysql"  # trademark on 'mysql'
+              brief: "MySQL"
               stability: release_candidate
             - id: neo4j
-              value: "neo4j"
-              brief: "Neo4j" # there is a trademark
+              value: "neo4j"  # trademark on 'neo4j'
+              brief: "Neo4j"
               stability: development
             - id: opensearch
-              value: "opensearch"
+              value: "opensearch"  # trademark on 'opensearch'
               brief: "[OpenSearch](https://opensearch.org/)"
-              stability: development # there is a trademark
+              stability: development
             - id: oracle
               value: "oracle"
               brief: "[Oracle Database](https://www.oracle.com/database/)"
               stability: development
             - id: pervasive
-              value: "pervasive"
-              brief: "Pervasive PSQL" # there is a trademark
+              value: "pervasive"  # trademark on 'pervasive'
+              brief: "Pervasive PSQL"
               stability: development
             - id: postgresql
-              value: "postgresql"
+              value: "postgresql"  # trademark on 'postgresql'
               brief: "PostgreSQL"
-              stability: release_candidate # there is a trademark
+              stability: release_candidate
             - id: redis
-              value: "redis"
+              value: "redis"  # trademark on 'redis'
               brief: "Redis"
-              stability: development # there is a trademark
-            - id: sap.hanadb
-              value: "sap.hanadb"
+              stability: development
+            - id: sap.hana
+              value: "sap.hana"  # trademark on 'sap hana'
               brief: "[SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html)"
               stability: development
             - id: sap.maxdb
-              value: "sap.maxdb"
+              value: "sap.maxdb"  # trademark on 'maxdb'
               brief: "SAP MaxDB"
               stability: development  # no trademark
             - id: sqlite
-              value: "sqlite"
+              value: "sqlite"  # trademark on 'sqlite'
               brief: "SQLite"
-              stability: development # there is a trademark
+              stability: development
             - id: teradata
-              value: "teradata"
+              value: "teradata"  # trademark on 'teradata'
               brief: "Teradata"
-              stability: development # there is a trademark
+              stability: development
             - id: trino
-              value: "trino"
+              value: "trino"  # no trademark
               brief: "[Trino](https://trino.io/)"
-              stability: development # no trademark
+              stability: development
             - id: vertica
-              value: "vertica"
+              value: "vertica"  # trademark on 'vertica'
               brief: "Vertica"
-              stability: development # there is a trademark
+              stability: development
         stability: release_candidate
       - id: db.client.connection.state
         stability: experimental
