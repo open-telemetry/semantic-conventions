@@ -58,7 +58,7 @@ details.
 ## How to record errors on metrics
 
 Semantic conventions for operations usually define an operation duration histogram
-metric. It SHOULD include the `error.type` attribute. This enables users to derive
+metric. This metric SHOULD include the `error.type` attribute. This enables users to derive
 throughput and error rates.
 
 Operations that complete successfully SHOULD NOT include the `error.type` attribute,
