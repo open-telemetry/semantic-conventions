@@ -360,3 +360,85 @@ groups:
       [`k8s.daemonset`](../resource/k8s.md#daemonset) resource.
     instrument: updowncounter
     unit: "{node}"
+
+  # k8s.job.* metrics
+  - id: metric.k8s.job.active_pods
+    type: metric
+    metric_name: k8s.job.active_pods
+    stability: experimental
+    brief: "The number of pending and actively running pods for a job"
+    instrument: updowncounter
+    unit: "{pod}"
+    note: |
+      This metric aligns with the `active` field of the
+      [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.job`](../resource/k8s.md#job) resource.
+  - id: metric.k8s.job.failed_pods
+    type: metric
+    metric_name: k8s.job.failed_pods
+    stability: experimental
+    brief: "The number of pods which reached phase Failed for a job"
+    instrument: updowncounter
+    unit: "{pod}"
+    note: |
+      This metric aligns with the `failed` field of the
+      [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.job`](../resource/k8s.md#job) resource.
+  - id: metric.k8s.job.successful_pods
+    type: metric
+    metric_name: k8s.job.successful_pods
+    stability: experimental
+    brief: "The number of pods which reached phase Succeeded for a job"
+    instrument: updowncounter
+    unit: "{pod}"
+    note: |
+      This metric aligns with the `succeeded` field of the
+      [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.job`](../resource/k8s.md#job) resource.
+  - id: metric.k8s.job.desired_successful_pods
+    type: metric
+    metric_name: k8s.job.desired_successful_pods
+    stability: experimental
+    brief: "The desired number of successfully finished pods the job should be run with"
+    instrument: updowncounter
+    unit: "{pod}"
+    note: |
+      This metric aligns with the `completions` field of the
+      [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch).
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.job`](../resource/k8s.md#job) resource.
+  - id: metric.k8s.job.max_parallel_pods
+    type: metric
+    metric_name: k8s.job.max_parallel_pods
+    stability: experimental
+    brief: "The max desired number of pods the job should run at any given time"
+    instrument: updowncounter
+    unit: "{pod}"
+    note: |
+      This metric aligns with the `parallelism` field of the
+      [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch.
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.job`](../resource/k8s.md#job) resource.
+
+  # k8s.job.* metrics
+  - id: metric.k8s.cronjob.active_jobs
+    type: metric
+    metric_name: k8s.cronjob.active_jobs
+    stability: experimental
+    brief: "The number of actively running jobs for a cronjob"
+    instrument: updowncounter
+    unit: "{job}"
+    note: |
+      This metric aligns with the `active` field of the
+      [K8s CronJobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#cronjobstatus-v1-batch).
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.cronjob`](../resource/k8s.md#cronjob) resource.
