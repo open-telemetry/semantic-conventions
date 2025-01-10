@@ -18,7 +18,7 @@ Semantic conventions for Exceptions are defined for the following signals:
 
 **Status**: [Development][DocumentStatus]
 
-When instrumented operation fails with an exception, instrumentation SHOULD record
+When an instrumented operation fails with an exception, instrumentation SHOULD record
 this exception as a [span event](exceptions-spans.md) or a [log record](exceptions-logs.md).
 
 Recording exceptions on spans SHOULD be accompanied by
@@ -28,16 +28,16 @@ Recording exceptions on spans SHOULD be accompanied by
 Refer to the [Recording errors](/docs/general/recording-errors.md) document for additional
 details on how to record errors across different signals.
 
-It's RECOMMENDED to use `Span.recordException` API or logging library API that takes exception instance
+It's RECOMMENDED to use the `Span.recordException` API or logging library API that takes exception instance
 instead of providing individual attributes. This enables the OpenTelemetry SDK to
 control what information is recorded based on application configuration.
 
 It's NOT RECOMMENDED to record the same exception more than once.
 It's NOT RECOMMENDED to record exceptions that are handled by the instrumented library.
 
-For example, in this code-snippet, `ResourceNotFoundException` is handled and corresponding
-native instrumentation should not record it. Other exceptions, that are propagated
-to the caller, should be recorded (or logged) once.
+For example, in this code-snippet, `ResourceAlreadyExistsException` is handled and the corresponding
+native instrumentation should not record it. Exceptions which are propagated
+to the caller should be recorded (or logged) once.
 
 ```java
 public boolean createIfNotExists(String resourceId) throws IOException {

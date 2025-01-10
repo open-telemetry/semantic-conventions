@@ -6,14 +6,14 @@ linkTitle: Recording errors
 
 **Status**: [Development][DocumentStatus].
 
-This document provides recommendations to semantic conventions and instrumentation authors
+This document provides recommendations to semantic convention and instrumentation authors
 on how to record errors on spans and metrics.
 
 Individual semantic conventions are encouraged to provide additional guidance.
 
 ## What constitutes an error
 
-Operation SHOULD be considered as failed if any of the following is true:
+An operation SHOULD be considered as failed if any of the following is true:
 
 - an exception is thrown by the instrumented method (API, block of code, or another instrumented unit)
 - the instrumented method returns an error in another way, for example, via an error code
@@ -31,7 +31,7 @@ Operation SHOULD be considered as failed if any of the following is true:
   > Instrumentations that have additional context about a specific request MAY use
   > this context to set the span status more precisely.
 
-Errors that were retried or handled allowing operation to complete gracefully SHOULD NOT
+Errors that were retried or handled (allowing an operation to complete gracefully) SHOULD NOT
 be recorded on spans or metrics that describe this operation.
 
 ## How to record errors on spans
