@@ -191,7 +191,7 @@ Relevant discussions:
 [\#1364 (particular thread)](https://github.com/open-telemetry/semantic-conventions/pull/1364#discussion_r1730743509)
 
 In the `hostmetricsreceiver`, there is a Resource Attribute called
-`process.cgroup`. How should this metric be adopted in System Semantic
+`process.cgroup`. How should this attribute be adopted in System Semantic
 Conventions?
 
 Based on our definitions, this attribute would fall under Specialist Class:
@@ -235,10 +235,11 @@ Relevant discussions:
 [\#1255](https://github.com/open-telemetry/semantic-conventions/issues/1255),
 [\#1364](https://github.com/open-telemetry/semantic-conventions/pull/1364#discussion_r1852465994)
 
-Monitoring operating systems is an old practice, and there are lots of ways to
-skin the cat within different platforms. There are lots of metrics, even in
-basic stuff like memory usage, where there are platform specific pieces of
-information that are valuable to those who really specialize in that platform.
+Monitoring operating systems is an old practice, and there are numerous heavily
+differing approaches within different platforms. There are lots of metrics, even
+considering common stats like memory usage, where there are platform-exclusive
+pieces of information that are only valuable to those who specialize in that
+platform.
 
 Thus we have decided that any instrumentation that is:
 
