@@ -192,11 +192,11 @@ groups:
               stability: development
             - id: edb
               value: "edb"  # trademark on 'enterprisedb' and 'edb'
-              brief: "[EnterpriseDB](https://www.enterprisedb.com/)" # there is a trademark
+              brief: "[EnterpriseDB](https://www.enterprisedb.com/)"
               stability: development
             - id: elasticsearch
               value: "elasticsearch"  # trademark on 'elasticsearch'
-              brief: "[Elasticsearch](https://www.elastic.co/elasticsearch)" # there is a trademark
+              brief: "[Elasticsearch](https://www.elastic.co/elasticsearch)"
               stability: development
             - id: firebird
               value: "firebird"  # no trademark?
@@ -236,7 +236,7 @@ groups:
               stability: development
             - id: ibm.netezza
               value: "ibm.netezza"
-              brief: "IBM Netezza"  # trademark on 'netezza'
+              brief: "[IBM Netezza](https://www.ibm.com/products/netezza)"  # trademark on 'netezza'
               stability: development
             - id: influxdb
               value: "influxdb"  # trademark on 'influxdb'
@@ -248,27 +248,27 @@ groups:
               stability: development
             - id: mariadb
               value: "mariadb"  # trademark on 'mariadb'
-              brief: "MariaDB"
+              brief: "[MariaDB](https://mariadb.org/)"
               stability: release_candidate
             - id: memcached
               value: "memcached"  # no trademark
-              brief: "Memcached"
+              brief: "[Memcached](https://memcached.org/)"
               stability: development
             - id: mongodb
               value: "mongodb"  # trademark on 'mongodb'
-              brief: "MongoDB"
+              brief: "[MongoDB](https://www.mongodb.com/)"
               stability: development
             - id: mssql
               value: "mssql"  # trademark on 'SQL Server'
-              brief: "Microsoft SQL Server"
+              brief: "[Microsoft SQL Server](https://www.microsoft.com/sql-server)"
               stability: release_candidate
             - id: mysql
               value: "mysql"  # trademark on 'mysql'
-              brief: "MySQL"
+              brief: "[MySQL](https://www.mysql.com/)"
               stability: release_candidate
             - id: neo4j
               value: "neo4j"  # trademark on 'neo4j'
-              brief: "Neo4j"
+              brief: "[Neo4j](https://neo4j.com/)"
               stability: development
             - id: opensearch
               value: "opensearch"  # trademark on 'opensearch'
@@ -278,17 +278,13 @@ groups:
               value: "oracle"
               brief: "[Oracle Database](https://www.oracle.com/database/)"
               stability: development
-            - id: pervasive
-              value: "pervasive"  # trademark on 'pervasive'
-              brief: "Pervasive PSQL"
-              stability: development
             - id: postgresql
               value: "postgresql"  # trademark on 'postgresql'
-              brief: "PostgreSQL"
+              brief: "[PostgreSQL](https://www.postgresql.org/)"
               stability: release_candidate
             - id: redis
               value: "redis"  # trademark on 'redis'
-              brief: "Redis"
+              brief: "[Redis](https://redis.io/)"
               stability: development
             - id: sap.hana
               value: "sap.hana"  # trademark on 'sap hana'
@@ -296,23 +292,19 @@ groups:
               stability: development
             - id: sap.maxdb
               value: "sap.maxdb"  # trademark on 'maxdb'
-              brief: "SAP MaxDB"
+              brief: "[SAP MaxDB](https://maxdb.sap.com/)"
               stability: development  # no trademark
             - id: sqlite
               value: "sqlite"  # trademark on 'sqlite'
-              brief: "SQLite"
+              brief: "[SQLite](https://www.sqlite.org/)"
               stability: development
             - id: teradata
               value: "teradata"  # trademark on 'teradata'
-              brief: "Teradata"
+              brief: "[Teradata](https://www.teradata.com/)"
               stability: development
             - id: trino
               value: "trino"  # no trademark
               brief: "[Trino](https://trino.io/)"
-              stability: development
-            - id: vertica
-              value: "vertica"  # trademark on 'vertica'
-              brief: "Vertica"
               stability: development
         stability: release_candidate
       - id: db.client.connection.state
