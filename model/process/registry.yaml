@@ -15,9 +15,9 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The name of the process. On Linux based systems, can be set
-          to the `Name` in `proc/[pid]/status`. On Windows, can be set to the
-          base name of `GetProcessImageFileNameW`.
+          The name of the process. On Linux based systems, can be set to
+          the value of `/proc/[pid]/comm` or to the `Name` field in `proc/[pid]/status`.
+          On Windows, can be set to the base name of `GetProcessImageFileNameW`.
         examples: ['otelcol']
       - id: process.parent_pid
         type: int
