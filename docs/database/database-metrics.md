@@ -180,28 +180,26 @@ Even though parameterized query text can potentially have sensitive data, by usi
 | `hsqldb` | [HyperSQL Database](https://hsqldb.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.db2` | [IBM Db2](https://www.ibm.com/db2) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.informix` | [IBM Informix](https://www.ibm.com/products/informix) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm.netezza` | IBM Netezza | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ibm.netezza` | [IBM Netezza](https://www.ibm.com/products/netezza) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `influxdb` | [InfluxDB](https://www.influxdata.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `instantdb` | [InstantDB](https://www.instantdb.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `intersystems.cache` | [InterSystems Caché](https://www.intersystems.com/products/cache/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mariadb` | MariaDB | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `memcached` | Memcached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mongodb` | MongoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mssql` | Microsoft SQL Server | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `mysql` | MySQL | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `neo4j` | Neo4j | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mariadb` | [MariaDB](https://mariadb.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `memcached` | [Memcached](https://memcached.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mongodb` | [MongoDB](https://www.mongodb.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mssql` | [Microsoft SQL Server](https://www.microsoft.com/sql-server) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `mysql` | [MySQL](https://www.mysql.com/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `neo4j` | [Neo4j](https://neo4j.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `opensearch` | [OpenSearch](https://opensearch.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `oracle` | [Oracle Database](https://www.oracle.com/database/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pervasive` | Pervasive PSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `postgresql` | PostgreSQL | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `redis` | Redis | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `postgresql` | [PostgreSQL](https://www.postgresql.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `redis` | [Redis](https://redis.io/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `sap.hana` | [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sap.maxdb` | SAP MaxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sqlite` | SQLite | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `teradata` | Teradata | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sap.maxdb` | [SAP MaxDB](https://maxdb.sap.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sqlite` | [SQLite](https://www.sqlite.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `teradata` | [Teradata](https://www.teradata.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `trino` | [Trino](https://trino.io/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertica` | Vertica | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 
@@ -347,28 +345,26 @@ Even though parameterized query text can potentially have sensitive data, by usi
 | `hsqldb` | [HyperSQL Database](https://hsqldb.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.db2` | [IBM Db2](https://www.ibm.com/db2) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.informix` | [IBM Informix](https://www.ibm.com/products/informix) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm.netezza` | IBM Netezza | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ibm.netezza` | [IBM Netezza](https://www.ibm.com/products/netezza) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `influxdb` | [InfluxDB](https://www.influxdata.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `instantdb` | [InstantDB](https://www.instantdb.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `intersystems.cache` | [InterSystems Caché](https://www.intersystems.com/products/cache/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mariadb` | MariaDB | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `memcached` | Memcached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mongodb` | MongoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mssql` | Microsoft SQL Server | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `mysql` | MySQL | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `neo4j` | Neo4j | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mariadb` | [MariaDB](https://mariadb.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `memcached` | [Memcached](https://memcached.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mongodb` | [MongoDB](https://www.mongodb.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mssql` | [Microsoft SQL Server](https://www.microsoft.com/sql-server) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `mysql` | [MySQL](https://www.mysql.com/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `neo4j` | [Neo4j](https://neo4j.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `opensearch` | [OpenSearch](https://opensearch.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `oracle` | [Oracle Database](https://www.oracle.com/database/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pervasive` | Pervasive PSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `postgresql` | PostgreSQL | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `redis` | Redis | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `postgresql` | [PostgreSQL](https://www.postgresql.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `redis` | [Redis](https://redis.io/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `sap.hana` | [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sap.maxdb` | SAP MaxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sqlite` | SQLite | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `teradata` | Teradata | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sap.maxdb` | [SAP MaxDB](https://maxdb.sap.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sqlite` | [SQLite](https://www.sqlite.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `teradata` | [Teradata](https://www.teradata.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `trino` | [Trino](https://trino.io/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertica` | Vertica | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 
