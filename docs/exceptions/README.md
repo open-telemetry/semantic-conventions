@@ -21,9 +21,10 @@ Semantic conventions for Exceptions are defined for the following signals:
 When an instrumented operation fails with an exception, instrumentation SHOULD record
 this exception as a [span event](exceptions-spans.md) or a [log record](exceptions-logs.md).
 
-Recording exceptions on spans SHOULD be accompanied by
+Recording exceptions on spans SHOULD be accompanied by:
+
 - setting span status to `ERROR`
-- setting [`error.type`](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/attributes-registry/error.md#error-type)
+- setting [`error.type`](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/attributes-registry/error.md#error-type) attribute
 
 Refer to the [Recording errors](/docs/general/recording-errors.md) document for additional
 details on how to record errors across different signals.
