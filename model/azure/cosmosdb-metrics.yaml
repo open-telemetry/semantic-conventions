@@ -1,27 +1,27 @@
 groups:
-  - id: metric.db.client.cosmosdb.operation.request_charge
+  - id: metric.az.cosmosdb.client.operation.request_charge
     type: metric
-    metric_name: db.client.cosmosdb.operation.request_charge
+    metric_name: az.cosmosdb.client.operation.request_charge
     brief: "[Request charge](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation"
     instrument: histogram
     unit: "{request_unit}"
-    stability: experimental
-    extends: attributes.db.cosmosdb.minimal
+    stability: development
+    extends: attributes.az.cosmosdb.minimal
     attributes:
-      - ref: db.cosmosdb.regions_contacted
+      - ref: az.cosmosdb.request.regions_contacted
         requirement_level:
           recommended: If available
 
-  - id: metric.db.client.cosmosdb.active_instance.count
+  - id: metric.az.cosmosdb.client.active_instance.count
     type: metric
-    metric_name: db.client.cosmosdb.active_instance.count
+    metric_name: az.cosmosdb.client.active_instance.count
     brief: "Number of active client instances"
     instrument: updowncounter
     unit: "{instance}"
-    stability: experimental
+    stability: development
     attributes:
       # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
-      # - ref: db.system
+      # - ref: db.system.name
       #   requirement_level:
       #     conditionally_required: if available
       - ref: server.address

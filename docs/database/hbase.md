@@ -19,7 +19,7 @@ The Semantic Conventions for [HBase](https://hbase.apache.org/) extend and overr
 
 Spans representing calls to an HBase database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
 
-`db.system` MUST be set to `"hbase"` and SHOULD be provided **at span creation time**.
+`db.system.name` MUST be set to `"hbase"` and SHOULD be provided **at span creation time**.
 
 The following table outlines the span attributes applicable to HBase.
 

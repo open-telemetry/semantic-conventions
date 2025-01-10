@@ -19,7 +19,7 @@ The Semantic Conventions for *Microsoft SQL Server* extend and override the [Dat
 
 Spans representing calls to Microsoft SQL Server adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
 
-`db.system` MUST be set to `"mssql"` and SHOULD be provided **at span creation time**.
+`db.system.name` MUST be set to `"mssql"` and SHOULD be provided **at span creation time**.
 
 The following table outlines the span attributes applicable to Microsoft SQL Server.
 

@@ -19,7 +19,7 @@ The Semantic Conventions for [CouchDB](https://couchdb.apache.org/) extend and o
 
 Spans representing calls to CouchDB adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
 
-`db.system` MUST be set to `"couchdb"` and SHOULD be provided **at span creation time**.
+`db.system.name` MUST be set to `"couchdb"` and SHOULD be provided **at span creation time**.
 
 The following table outlines the span attributes applicable to CouchDB.
 

@@ -19,7 +19,7 @@ The Semantic Conventions for *PostgreSQL* extend and override the [Database Sema
 
 Spans representing calls to a PostgreSQL database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
 
-`db.system` MUST be set to `"postgresql"` and SHOULD be provided **at span creation time**.
+`db.system.name` MUST be set to `"postgresql"` and SHOULD be provided **at span creation time**.
 
 The following table outlines the span attributes applicable to PostgreSQL.
 
