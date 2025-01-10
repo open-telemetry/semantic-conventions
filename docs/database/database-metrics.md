@@ -169,9 +169,8 @@ Even though parameterized query text can potentially have sensitive data, by usi
 | `couchbase` | [Couchbase](https://www.couchbase.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `couchdb` | [Apache CouchDB](https://couchdb.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `derby` | [Apache Derby](https://db.apache.org/derby/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `edb` | [EnterpriseDB](https://www.enterprisedb.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `elasticsearch` | [Elasticsearch](https://www.elastic.co/elasticsearch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `firebird` | [Firebird](https://www.firebirdsql.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `firebirdsql` | [Firebird](https://www.firebirdsql.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gcp.spanner` | [Google Cloud Spanner](https://cloud.google.com/spanner) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `geode` | [Apache Geode](https://geode.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `h2` | [H2 Database](https://h2database.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -191,7 +190,7 @@ Even though parameterized query text can potentially have sensitive data, by usi
 | `mysql` | [MySQL](https://www.mysql.com/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `neo4j` | [Neo4j](https://neo4j.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `opensearch` | [OpenSearch](https://opensearch.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `oracle` | [Oracle Database](https://www.oracle.com/database/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `oracle.db` | [Oracle Database](https://www.oracle.com/database/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `postgresql` | [PostgreSQL](https://www.postgresql.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `redis` | [Redis](https://redis.io/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -334,9 +333,8 @@ Even though parameterized query text can potentially have sensitive data, by usi
 | `couchbase` | [Couchbase](https://www.couchbase.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `couchdb` | [Apache CouchDB](https://couchdb.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `derby` | [Apache Derby](https://db.apache.org/derby/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `edb` | [EnterpriseDB](https://www.enterprisedb.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `elasticsearch` | [Elasticsearch](https://www.elastic.co/elasticsearch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `firebird` | [Firebird](https://www.firebirdsql.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `firebirdsql` | [Firebird](https://www.firebirdsql.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gcp.spanner` | [Google Cloud Spanner](https://cloud.google.com/spanner) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `geode` | [Apache Geode](https://geode.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `h2` | [H2 Database](https://h2database.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -356,7 +354,7 @@ Even though parameterized query text can potentially have sensitive data, by usi
 | `mysql` | [MySQL](https://www.mysql.com/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `neo4j` | [Neo4j](https://neo4j.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `opensearch` | [OpenSearch](https://opensearch.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `oracle` | [Oracle Database](https://www.oracle.com/database/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `oracle.db` | [Oracle Database](https://www.oracle.com/database/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `postgresql` | [PostgreSQL](https://www.postgresql.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `redis` | [Redis](https://redis.io/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
