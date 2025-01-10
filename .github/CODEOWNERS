@@ -109,6 +109,10 @@
 /docs/feature-flags/               @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-feature-flag-approvers
 /model/feature-flags/              @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-feature-flag-approvers
 
+# Profiling semantic conventions
+/docs/general/profiles.md          @open-telemetry/specs-semconv-approvers @open-telemetry/profiling-approvers
+/model/profile/                    @open-telemetry/specs-semconv-approvers @open-telemetry/profiling-approvers
+
 # Tooling
 /policies/                              @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-approvers
 /policies_test/                         @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-approvers
