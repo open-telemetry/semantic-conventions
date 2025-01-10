@@ -1,9 +1,9 @@
 groups:
-  - id: registry.azure.sdk
+  - id: registry.azure.client.sdk
     type: attribute_group
-    display_name: Azure SDK Attributes
+    display_name: Azure Client Library Attributes
     brief: >
-      This document defines generic attributes for Azure SDK.
+      This document defines generic attributes used by Azure Client Libraries.
     attributes:
       - id: az.service_request_id
         type: string
