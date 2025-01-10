@@ -61,3 +61,8 @@ groups:
                 [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine))
               value: "v8js"
               stability: experimental
+            - id: beam
+              brief: >
+                [Erlang](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine))
+              value: "beam"
+              stability: experimental
