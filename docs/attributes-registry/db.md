@@ -131,7 +131,7 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 
 ## Deprecated Database Attributes
 
-"Describes deprecated db attributes."
+Describes deprecated database attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|

@@ -26,7 +26,7 @@ extend and override the [Database Semantic Conventions](database-spans.md).
 
 ## Attributes
 
-`db.system.name` MUST be set to `"cosmosdb"` and SHOULD be provided **at span creation time**.
+`db.system.name` MUST be set to `"az.cosmosdb"` and SHOULD be provided **at span creation time**.
 
 Cosmos DB instrumentation includes call-level (public API) surface spans and network spans. Depending on the connection mode (Gateway or Direct), network-level spans may also be created.
 

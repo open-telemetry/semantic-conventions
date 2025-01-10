@@ -3,7 +3,7 @@ groups:
     type: attribute_group
     display_name: Deprecated Database Attributes
     brief: >
-      "Describes deprecated db attributes."
+      Describes deprecated database attributes.
     stability: experimental
     attributes:
       - id: db.connection_string
