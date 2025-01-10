@@ -21,15 +21,15 @@ An operation SHOULD be considered as failed if any of the following is true:
   Semantic conventions that define domain-specific status codes SHOULD specify
   which status codes should be reported as errors by a general-purpose instrumentation.
 
-  > [!NOTE]
-  >
-  > The classification of a status code as an error depends on the context.
-  > For example, an HTTP 404 "Not Found" status code indicates an error if the application
-  > expected the resource to be available. However, it is not an error when the
-  > application is simply checking whether the resource exists.
-  >
-  > Instrumentations that have additional context about a specific request MAY use
-  > this context to set the span status more precisely.
+> [!NOTE]
+>
+> The classification of a status code as an error depends on the context.
+> For example, an HTTP 404 "Not Found" status code indicates an error if the application
+> expected the resource to be available. However, it is not an error when the
+> application is simply checking whether the resource exists.
+>
+> Instrumentations that have additional context about a specific request MAY use
+> this context to set the span status more precisely.
 
 Errors that were retried or handled (allowing an operation to complete gracefully) SHOULD NOT
 be recorded on spans or metrics that describe this operation.
