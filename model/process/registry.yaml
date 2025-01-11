@@ -19,7 +19,7 @@ groups:
           the value of `/proc/[pid]/comm` or to the `Name` field in `proc/[pid]/status`
           (these values are equivalent). On Windows, this SHOULD be set to the
           base name of `GetProcessImageFileNameW`.
-        note:: >
+        note: >
           The value of this attribute will be equivalent to `process.executable.name`
           on Windows, but may not be on Linux. On Linux, the process name from `/proc/[pid]/comm`
           is truncated if its name is longer than `TASK_COMM_LEN`-1, and it can be manually
