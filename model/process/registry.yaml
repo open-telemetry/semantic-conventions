@@ -15,9 +15,17 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The name of the process. On Linux based systems, can be set to
-          the value of `/proc/[pid]/comm` or to the `Name` field in `proc/[pid]/status`.
-          On Windows, can be set to the base name of `GetProcessImageFileNameW`.
+          The name of the process. On Linux based systems, this SHOULD be set to
+          the value of `/proc/[pid]/comm` or to the `Name` field in `proc/[pid]/status`
+          (these values are equivalent). On Windows, this SHOULD be set to the
+          base name of `GetProcessImageFileNameW`.
+        note:: >
+          The value of this attribute will be equivalent to `process.executable.name`
+          on Windows, but may not be on Linux. On Linux, the process name from `/proc/[pid]/comm`
+          is truncated if its name is longer than `TASK_COMM_LEN`-1, and it can be manually
+          changed by the process itself via [`prctl(2)`](https://man7.org/linux/man-pages/man2/prctl.2.html).
+          On Windows, it won't be necessary to have both `process.name` and `process.executable.name`, but
+          it may be on Linux depending on your use case.
         examples: ['otelcol']
       - id: process.parent_pid
         type: int
@@ -72,9 +80,9 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The name of the process executable. On Linux based systems, can be set
-          to the base name of the target of `/proc/[pid]/exe`. On Windows,
-          can be set to the base name of `GetProcessImageFileNameW`.
+          The name of the process executable. On Linux based systems, this SHOULD be
+          set to the base name of the target of `/proc/[pid]/exe`. On Windows,
+          this SHOULD be set to the base name of `GetProcessImageFileNameW`.
         examples: ['otelcol']
       - id: process.executable.path
         type: string
