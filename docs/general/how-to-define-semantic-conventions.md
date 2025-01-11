@@ -54,7 +54,7 @@ When defining a new attribute:
 - Follow the [naming guidance](/docs/general/naming.md)
 - Provide descriptive `brief` and `note` sections to clearly explain what the attribute represents.
   - If the attribute represents a common concept documented externally, include relevant links.
-    For example, always link to attributes related to concepts defined in RFCs or other standards.
+    For example, always link to concepts defined in RFCs or other standards.
   - If the attribute's value might contain PII or other sensitive information, explicitly call this out in
     the `note`.
 
@@ -75,7 +75,7 @@ When defining a new attribute:
   - If the value has a reasonably short (open or closed) set of possible values, define it as an enum.
   - If the value is a timestamp, record it as a string in ISO 8601 format.
   - For arrays of primitives, use the array type. Avoid recording arrays as a single string.
-  - Use the template type to define attributes with variable names (only the last segment of the name should be dynamic).
+  - Use the template type to define attributes with dynamic names (only the last segment of the name should be dynamic).
     This is useful for capturing user-defined key-value pairs, such as HTTP headers.
   - Represent complex values as a set of flat attributes. <!-- This may change, check out https://github.com/open-telemetry/semantic-conventions/issues/1669 to monitor the progress -->
 - Define new attributes with `development` stability.

@@ -83,9 +83,9 @@ and helps to keep conventions consistent and backward compatible.
 Want to define your own conventions outside this repo while building on OTel’s?
 Come help us [decentralize semantic conventions](https://github.com/open-telemetry/weaver/issues/215).
 
-### Suggesting conventions for a new areas
+### Suggesting conventions for a new area
 
-Defining semantic conventions involves a group of people who are familiar with the domain,
+Defining semantic conventions requires a group of people who are familiar with the domain,
 are involved with instrumentation efforts, and are committed to be the point of contact for
 pull requests, issues, and questions in this area.
 
