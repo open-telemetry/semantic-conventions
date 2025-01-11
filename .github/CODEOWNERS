@@ -53,6 +53,7 @@
 /model/os/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 /model/process/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers
 /model/system/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
+/docs/non-normative/groups/system @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 
 # Mobile semantic conventions
 /docs/mobile/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers

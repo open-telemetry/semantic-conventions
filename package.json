@@ -15,6 +15,17 @@
     "prettier": "^3.0.0"
   },
   "prettier": {
-    "proseWrap": "preserve"
+    "proseWrap": "preserve",
+    "overrides": [
+      {
+        "files": [
+          "**/non-normative/groups/system/**/*.md"
+        ],
+        "options": {
+          "printWidth": 80,
+          "proseWrap": "always"
+        }
+      }
+    ]
   }
 }
