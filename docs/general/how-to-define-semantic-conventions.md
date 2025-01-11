@@ -34,6 +34,10 @@ for new areas or make substantial changes to the existing ones.
 
 ### Best practices
 
+> [!NOTE]
+>
+> This section contains non-normative guidance.
+
 #### Defining attributes
 
 Reuse existing attributes when possible. Look through [existing conventions](/docs/attributes-registry/) for similar areas,
@@ -89,7 +93,7 @@ Consider the scope of the attribute and how it may evolve in the future:
   For example, if creating a system-specific attribute, evaluate whether other systems
   in the same domain might need a similar attribute in the future.
 
-  Similarly, instead of defining a simple boolean flag like `foo.is_error`, consider a
+  Similarly, instead of defining a simple boolean flag indicating a success or failure, consider a
   more extensible approach, such as using a `foo.status_code` attribute to include additional details.
 
 - When defining a broad attribute applicable across multiple domains or systems,
