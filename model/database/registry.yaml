@@ -206,8 +206,8 @@ groups:
               value: "geode"  # trademark on 'geode'
               brief: "[Apache Geode](https://geode.apache.org/)"
               stability: development
-            - id: h2
-              value: "h2"  # no trademark
+            - id: h2database
+              value: "h2database "  # no trademark
               brief: "[H2 Database](https://h2database.com/)"
               stability: development
             - id: hbase
@@ -222,7 +222,7 @@ groups:
               value: "hsqldb"  # no trademark
               brief: "[HyperSQL Database](https://hsqldb.org/)"
               stability: development
-            - id: db2
+            - id: ibm.db2
               value: "ibm.db2"  # trademark on 'db2'
               brief: "[IBM Db2](https://www.ibm.com/db2)"
               stability: development
