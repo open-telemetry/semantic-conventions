@@ -68,16 +68,23 @@ misspell-correction:	$(MISSPELL)
 
 .PHONY: markdown-link-check
 markdown-link-check:
-	@if ! npm ls markdown-link-check; then npm install; fi
-	@for f in $(ALL_DOCS); do \
-		npx --no -- markdown-link-check --quiet --config .markdown_link_check_config.json $$f \
-			|| exit 1; \
-	done
+	docker run --rm \
+		--mount 'type=bind,source=$(PWD),target=/home/repo' \
+		lycheeverse/lychee \
+		--config home/repo/.lychee.toml \
+		--root-dir /home/repo \
+		--verbose \
+		home/repo
 
 .PHONY: markdown-link-check-changelog-preview
 markdown-link-check-changelog-preview:
-	@if ! npm ls markdown-link-check; then npm install; fi
-	npx --no -- markdown-link-check --quiet --config .markdown_link_check_config.json changelog_preview.md;
+	docker run --rm \
+		--mount 'type=bind,source=$(PWD),target=/home/repo' \
+		lycheeverse/lychee \
+		--config /home/repo/.lychee.toml \
+		--root-dir /home/repo \
+		--verbose \
+		home/repo/changelog_preview.md
 
 # This target runs markdown-toc on all files that contain
 # a comment <!-- tocstop -->.
@@ -101,17 +108,8 @@ markdown-toc:
 
 .PHONY: markdownlint
 markdownlint:
-	@if ! npm ls markdownlint; then npm install; fi
-	@npx gulp lint-md
-
-.PHONY: markdownlint-old
-markdownlint-old:
-	@if ! npm ls markdownlint; then npm install; fi
-	@for f in $(ALL_DOCS); do \
-		echo $$f; \
-		npx --no -p markdownlint-cli markdownlint -c .markdownlint.yaml $$f \
-			|| exit 1; \
-	done
+	@if ! npm ls markdownlint-cli; then npm install; fi
+	npx --no -- markdownlint-cli -c .markdownlint.yaml $(ALL_DOCS)
 
 .PHONY: install-yamllint
 install-yamllint:

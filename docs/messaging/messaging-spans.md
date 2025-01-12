@@ -608,7 +608,7 @@ flowchart LR;
 | Links |  |  | Span Send A, Span Send B |
 | Link attributes |  |  | Span Send A: `messaging.message.id`: `"a1"`  |
 |                 |  |  | Span Send B: `messaging.message.id`: `"a2"`  |
-| SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` |
+| SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
@@ -657,7 +657,7 @@ flowchart LR;
 | Span name | `create Q` | `create Q` | `send Q` | `poll Q` | `poll Q` |
 | Parent |  | | | | |
 | Links |  |  |  | Span Create A | Span Create B |
-| SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` | `CONSUMER` | `CONSUMER` |
+| SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` | `CLIENT` | `CLIENT` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
@@ -702,7 +702,7 @@ flowchart LR;
 | Span name | `send Q` | `poll Q` | `poll Q` |
 | Parent | | | |
 | Links |  | Span Publish | Span Publish |
-| SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` |
+| SpanKind | `PRODUCER` | `CLIENT` | `CLIENT` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
