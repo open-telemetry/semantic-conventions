@@ -1,0 +1,28 @@
+groups:
+  - id: registry.enduser.deprecated
+    type: attribute_group
+    display_name: Deprecated End User Attributes
+    brief: "Describes deprecated end user attributes."
+    attributes:
+      - id: enduser.id
+        type: string
+        brief: 'Deprecated, use `enduser.pseudo.id` instead.'
+        stability: experimental
+        deprecated: "Replaced by `enduser.pseudo.id`."
+        examples: ['QdH5CAWJgqVT4rOr0qtumf']
+      - id: enduser.role
+        type: string
+        deprecated: "Removed."
+        stability: experimental
+        brief: 'Actual/assumed role the client is making the request under extracted from token or application security context.'
+        examples: 'admin'
+      - id: enduser.scope
+        type: string
+        deprecated: "Removed."
+        stability: experimental
+        brief: >
+          Scopes or granted authorities the client currently possesses extracted from token
+          or application security context. The value would come from the scope associated
+          with an [OAuth 2.0 Access Token](https://tools.ietf.org/html/rfc6749#section-3.3)
+          or an attribute value in a [SAML 2.0 Assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html).
+        examples: 'read:message, write:files'
