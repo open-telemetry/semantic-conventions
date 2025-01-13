@@ -53,6 +53,7 @@
 /model/os/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 /model/process/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers
 /model/system/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
+/docs/non-normative/groups/system @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 
 # Mobile semantic conventions
 /docs/mobile/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
@@ -108,6 +109,10 @@
 # Feature flag semantic conventions
 /docs/feature-flags/               @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-feature-flag-approvers
 /model/feature-flags/              @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-feature-flag-approvers
+
+# Profiling semantic conventions
+/docs/general/profiles.md          @open-telemetry/specs-semconv-approvers @open-telemetry/profiling-approvers
+/model/profile/                    @open-telemetry/specs-semconv-approvers @open-telemetry/profiling-approvers
 
 # Tooling
 /policies/                              @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-approvers
