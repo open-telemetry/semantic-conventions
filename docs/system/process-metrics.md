@@ -8,7 +8,7 @@ linkTitle: Process
 
 This document describes instruments and attributes for common OS process level
 metrics in OpenTelemetry. Also consider the [general metric semantic
-conventions](/docs/general/metrics.md#general-metric-semantic-conventions) when creating
+conventions](/docs/general/metrics.md#general-guidelines) when creating
 instruments not explicitly defined in this document. OS process metrics are
 not related to the runtime environment of the program, and should take
 measurements from the operating system. For runtime environment metrics see
