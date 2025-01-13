@@ -6,6 +6,9 @@
 
 # Enduser
 
+- [End User Attributes](#end-user-attributes)
+- [Deprecated End User Attributes](#deprecated-end-user-attributes)
+
 ## End User Attributes
 
 Describes information about the end user, which can be used as a subdomain of browser, client, or user domains.
@@ -13,7 +16,14 @@ Describes information about the end user, which can be used as a subdomain of br
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="enduser-authentication-id" href="#enduser-authentication-id">`enduser.authentication.id`</a> | string | Unique identifier of an authenticated user in the system. | `S-1-5-21-202424912787-2692429404-2351956786-1000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="enduser-id" href="#enduser-id">`enduser.id`</a> | string | Deprecated, use `enduser.pseudo.id` instead. | `QdH5CAWJgqVT4rOr0qtumf` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `enduser.pseudo.id` attribute. |
 | <a id="enduser-pseudo-id" href="#enduser-pseudo-id">`enduser.pseudo.id`</a> | string | Pseudonymous identifier of an end user. This identifier is unique to the user but does not reveal their actual identity. | `QdH5CAWJgqVT4rOr0qtumf` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## Deprecated End User Attributes
+
+Describes deprecated end user attributes.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="enduser-id" href="#enduser-id">`enduser.id`</a> | string | Deprecated, use `enduser.pseudo.id` instead. | `QdH5CAWJgqVT4rOr0qtumf` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `enduser.pseudo.id`. |
 | <a id="enduser-role" href="#enduser-role">`enduser.role`</a> | string | Actual/assumed role the client is making the request under extracted from token or application security context. | `admin` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. |
 | <a id="enduser-scope" href="#enduser-scope">`enduser.scope`</a> | string | Scopes or granted authorities the client currently possesses extracted from token or application security context. The value would come from the scope associated with an [OAuth 2.0 Access Token](https://tools.ietf.org/html/rfc6749#section-3.3) or an attribute value in a [SAML 2.0 Assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html). | `read:message, write:files` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. |
