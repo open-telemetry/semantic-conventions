@@ -83,9 +83,9 @@ groups:
       - ref: otel.sdk.exporter.type
       - ref: otel.sdk.component.id
 
-  - id: metric.otel.sdk.span.exporter.spans_processed
+  - id: metric.otel.sdk.span.exporter.spans_exported
     type: metric
-    metric_name: otel.sdk.span.exporter.spans_processed
+    metric_name: otel.sdk.span.exporter.spans_exported
     stability: development
     brief: "The number of spans for which the export has finished, either successful or failed"
     note: |
