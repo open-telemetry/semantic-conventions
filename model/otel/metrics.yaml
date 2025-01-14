@@ -40,8 +40,7 @@ groups:
     instrument: updowncounter
     unit: "1"
     attributes:
-      - ref: otel.sdk.processor.type
-      - ref: otel.sdk.component.id
+      - ref: otel.sdk.component.name
 
   - id: metric.otel.sdk.span.processor.queue_capacity
     type: metric
@@ -53,8 +52,7 @@ groups:
     instrument: gauge
     unit: "1"
     attributes:
-      - ref: otel.sdk.processor.type
-      - ref: otel.sdk.component.id
+      - ref: otel.sdk.component.name
 
   - id: metric.otel.sdk.span.processor.spans_processed
     type: metric
@@ -67,8 +65,7 @@ groups:
     instrument: counter
     unit: "1"
     attributes:
-      - ref: otel.sdk.processor.type
-      - ref: otel.sdk.component.id
+      - ref: otel.sdk.component.name
       - ref: error.type
         brief: >
           A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue.
@@ -84,9 +81,7 @@ groups:
     instrument: updowncounter
     unit: "1"
     attributes:
-      - ref: otel.sdk.exporter.type
-      - ref: otel.sdk.component.id
-      - ref: error.type
+      - ref: otel.sdk.component.name
 
   - id: metric.otel.sdk.span.exporter.spans_exported
     type: metric
@@ -100,6 +95,7 @@ groups:
     instrument: counter
     unit: "1"
     attributes:
-      - ref: otel.sdk.exporter.type
-      - ref: otel.sdk.component.id
+      - ref: otel.sdk.component.name
       - ref: error.type
+        examples: ["rejected"]
+

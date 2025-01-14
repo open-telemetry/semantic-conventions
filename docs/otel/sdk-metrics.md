@@ -118,26 +118,26 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`otel.sdk.component.id`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.sdk.processor.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry SDK processor. | `batch-span`; `MyCustomProcessor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.sdk.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `otel.sdk.component.id`:** The SDK components MAY allow users to provide an id for the component instances. If no id is provided by the user,
-the components SHOULD automatically assign an id. Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality in that case.
-E.g. it MUST NOT use a UUID.
-It instead MAY do that by using the following pattern as value: `<otel.sdk.processor/exporter.type>-<instance-counter>`:
-Hereby, `<instance-counter>` is a monotonically increasing counter (starting with `0`), which is incremented every time an
+**[1] `otel.sdk.component.name`:** The attribute value MUST follow a `<type-name>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+
+For components corresponding to SDK specification concepts, the `type-name` MUST have the following values:
+  * `batching_span_processor` for the SDK Batching Span Processor
+  * `simple_span_processor` for the SDK Simple Span Processor
+  * `otlp_grpc_exporter` for the OTLP exporter over gRPC with protobuf serialization
+  * `otlp_http_exporter` for the OTLP exporter over HTTP with protobuf serialization
+  * `otlp_http_json_exporter` for the OTLP exporter over HTTP with JSON serialization
+
+Other components SHOULD use the language and implementation dependant type name of the component for `type-name`, e.g. the class name in Java.
+
+The value of `instance-counter` MUST be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
+Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality. E.g. a UUID MUST NOT be use for <instance-counter>.
+Instead, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
-For example, the first Batch Span Processor will have `batch-span-0` as `otel.sdk.component.id`, the second one `batch-span-1` and so one.
+
+For example, the first Batching Span Processor will have `batching_span_processor/0` as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
-
----
-
-`otel.sdk.processor.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `batch-span` | The builtin SDK Batching Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `simple-span` | The builtin SDK Simple Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -163,26 +163,26 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`otel.sdk.component.id`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.sdk.processor.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry SDK processor. | `batch-span`; `MyCustomProcessor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.sdk.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `otel.sdk.component.id`:** The SDK components MAY allow users to provide an id for the component instances. If no id is provided by the user,
-the components SHOULD automatically assign an id. Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality in that case.
-E.g. it MUST NOT use a UUID.
-It instead MAY do that by using the following pattern as value: `<otel.sdk.processor/exporter.type>-<instance-counter>`:
-Hereby, `<instance-counter>` is a monotonically increasing counter (starting with `0`), which is incremented every time an
+**[1] `otel.sdk.component.name`:** The attribute value MUST follow a `<type-name>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+
+For components corresponding to SDK specification concepts, the `type-name` MUST have the following values:
+  * `batching_span_processor` for the SDK Batching Span Processor
+  * `simple_span_processor` for the SDK Simple Span Processor
+  * `otlp_grpc_exporter` for the OTLP exporter over gRPC with protobuf serialization
+  * `otlp_http_exporter` for the OTLP exporter over HTTP with protobuf serialization
+  * `otlp_http_json_exporter` for the OTLP exporter over HTTP with JSON serialization
+
+Other components SHOULD use the language and implementation dependant type name of the component for `type-name`, e.g. the class name in Java.
+
+The value of `instance-counter` MUST be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
+Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality. E.g. a UUID MUST NOT be use for <instance-counter>.
+Instead, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
-For example, the first Batch Span Processor will have `batch-span-0` as `otel.sdk.component.id`, the second one `batch-span-1` and so one.
+
+For example, the first Batching Span Processor will have `batching_span_processor/0` as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
-
----
-
-`otel.sdk.processor.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `batch-span` | The builtin SDK Batching Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `simple-span` | The builtin SDK Simple Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -210,8 +210,7 @@ For the SDK Simple and Batching Span Processor a span is considered to be proces
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`error.type`](/docs/attributes-registry/error.md) | string | A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue. [1] | `queue_full` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`otel.sdk.component.id`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [2] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.sdk.processor.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry SDK processor. | `batch-span`; `MyCustomProcessor` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.sdk.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [2] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -233,13 +232,23 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2] `otel.sdk.component.id`:** The SDK components MAY allow users to provide an id for the component instances. If no id is provided by the user,
-the components SHOULD automatically assign an id. Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality in that case.
-E.g. it MUST NOT use a UUID.
-It instead MAY do that by using the following pattern as value: `<otel.sdk.processor/exporter.type>-<instance-counter>`:
-Hereby, `<instance-counter>` is a monotonically increasing counter (starting with `0`), which is incremented every time an
+**[2] `otel.sdk.component.name`:** The attribute value MUST follow a `<type-name>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+
+For components corresponding to SDK specification concepts, the `type-name` MUST have the following values:
+  * `batching_span_processor` for the SDK Batching Span Processor
+  * `simple_span_processor` for the SDK Simple Span Processor
+  * `otlp_grpc_exporter` for the OTLP exporter over gRPC with protobuf serialization
+  * `otlp_http_exporter` for the OTLP exporter over HTTP with protobuf serialization
+  * `otlp_http_json_exporter` for the OTLP exporter over HTTP with JSON serialization
+
+Other components SHOULD use the language and implementation dependant type name of the component for `type-name`, e.g. the class name in Java.
+
+The value of `instance-counter` MUST be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
+Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality. E.g. a UUID MUST NOT be use for <instance-counter>.
+Instead, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
-For example, the first Batch Span Processor will have `batch-span-0` as `otel.sdk.component.id`, the second one `batch-span-1` and so one.
+
+For example, the first Batching Span Processor will have `batching_span_processor/0` as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
 
 ---
@@ -249,15 +258,6 @@ These values will therefore be reused in the case of an application restart.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`otel.sdk.processor.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `batch-span` | The builtin SDK Batching Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `simple-span` | The builtin SDK Simple Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -283,56 +283,26 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`otel.sdk.component.id`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [2] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.sdk.exporter.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry SDK exporter. | `otlp-grpc`; `jaeger` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.sdk.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[1] `otel.sdk.component.name`:** The attribute value MUST follow a `<type-name>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 
-When `error.type` is set to a type (e.g., an exception type), its
-canonical class name identifying the type within the artifact SHOULD be used.
+For components corresponding to SDK specification concepts, the `type-name` MUST have the following values:
+  * `batching_span_processor` for the SDK Batching Span Processor
+  * `simple_span_processor` for the SDK Simple Span Processor
+  * `otlp_grpc_exporter` for the OTLP exporter over gRPC with protobuf serialization
+  * `otlp_http_exporter` for the OTLP exporter over HTTP with protobuf serialization
+  * `otlp_http_json_exporter` for the OTLP exporter over HTTP with JSON serialization
 
-Instrumentations SHOULD document the list of errors they report.
+Other components SHOULD use the language and implementation dependant type name of the component for `type-name`, e.g. the class name in Java.
 
-The cardinality of `error.type` within one instrumentation library SHOULD be low.
-Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to:
-
-- Use a domain-specific attribute
-- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
-
-**[2] `otel.sdk.component.id`:** The SDK components MAY allow users to provide an id for the component instances. If no id is provided by the user,
-the components SHOULD automatically assign an id. Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality in that case.
-E.g. it MUST NOT use a UUID.
-It instead MAY do that by using the following pattern as value: `<otel.sdk.processor/exporter.type>-<instance-counter>`:
-Hereby, `<instance-counter>` is a monotonically increasing counter (starting with `0`), which is incremented every time an
+The value of `instance-counter` MUST be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
+Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality. E.g. a UUID MUST NOT be use for <instance-counter>.
+Instead, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
-For example, the first Batch Span Processor will have `batch-span-0` as `otel.sdk.component.id`, the second one `batch-span-1` and so one.
+
+For example, the first Batching Span Processor will have `batching_span_processor/0` as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
-
----
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`otel.sdk.exporter.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `otlp-grpc` | OTLP exporter over gRPC with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp-http` | OTLP exporter over HTTP with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp-http-json` | OTLP exporter over HTTP with JSON serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -360,9 +330,8 @@ If no rejection reason is available, `rejected` SHOULD be used as value for `err
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`otel.sdk.component.id`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [2] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.sdk.exporter.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry SDK exporter. | `otlp-grpc`; `jaeger` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `rejected` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`otel.sdk.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [2] | `batch-span-0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -384,13 +353,23 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2] `otel.sdk.component.id`:** The SDK components MAY allow users to provide an id for the component instances. If no id is provided by the user,
-the components SHOULD automatically assign an id. Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality in that case.
-E.g. it MUST NOT use a UUID.
-It instead MAY do that by using the following pattern as value: `<otel.sdk.processor/exporter.type>-<instance-counter>`:
-Hereby, `<instance-counter>` is a monotonically increasing counter (starting with `0`), which is incremented every time an
+**[2] `otel.sdk.component.name`:** The attribute value MUST follow a `<type-name>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+
+For components corresponding to SDK specification concepts, the `type-name` MUST have the following values:
+  * `batching_span_processor` for the SDK Batching Span Processor
+  * `simple_span_processor` for the SDK Simple Span Processor
+  * `otlp_grpc_exporter` for the OTLP exporter over gRPC with protobuf serialization
+  * `otlp_http_exporter` for the OTLP exporter over HTTP with protobuf serialization
+  * `otlp_http_json_exporter` for the OTLP exporter over HTTP with JSON serialization
+
+Other components SHOULD use the language and implementation dependant type name of the component for `type-name`, e.g. the class name in Java.
+
+The value of `instance-counter` MUST be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
+Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality. E.g. a UUID MUST NOT be use for <instance-counter>.
+Instead, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
-For example, the first Batch Span Processor will have `batch-span-0` as `otel.sdk.component.id`, the second one `batch-span-1` and so one.
+
+For example, the first Batching Span Processor will have `batching_span_processor/0` as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
 
 ---
@@ -400,16 +379,6 @@ These values will therefore be reused in the case of an application restart.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`otel.sdk.exporter.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `otlp-grpc` | OTLP exporter over gRPC with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp-http` | OTLP exporter over HTTP with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp-http-json` | OTLP exporter over HTTP with JSON serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
