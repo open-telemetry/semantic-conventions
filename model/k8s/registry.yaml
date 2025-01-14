@@ -117,6 +117,30 @@ groups:
         brief: >
           The name of the ReplicaSet.
         examples: ['opentelemetry']
+      - id: k8s.replication_controller.uid
+        type: string
+        stability: experimental
+        brief: >
+          The UID of the replication controller.
+        examples: [ '275ecb36-5aa8-4c2a-9c47-d8bb681b9aff' ]
+      - id: k8s.replication_controller.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the replication controller.
+        examples: [ 'opentelemetry' ]
+      - id: k8s.resource_quota.uid
+        type: string
+        stability: experimental
+        brief: >
+          The UID of the resource quota.
+        examples: [ '275ecb36-5aa8-4c2a-9c47-d8bb681b9aff' ]
+      - id: k8s.resource_quota.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the resource quota.
+        examples: [ 'opentelemetry' ]
       - id: k8s.deployment.uid
         type: string
         stability: experimental
@@ -152,6 +176,18 @@ groups:
         stability: experimental
         brief: >
           The name of the DaemonSet.
+        examples: ['opentelemetry']
+      - id: k8s.hpa.uid
+        type: string
+        stability: experimental
+        brief: >
+          The UID of the horizontal pod autoscaler.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.hpa.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the horizontal pod autoscaler.
         examples: ['opentelemetry']
       - id: k8s.job.uid
         type: string
