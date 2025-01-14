@@ -39,7 +39,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.span.created_count` | Counter | `1` | The number of spans which have been created | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.span.created_count` | Counter | `{span}` | The number of spans which have been created | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -64,7 +64,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.span.live_count` | UpDownCounter | `1` | The number of created spans for which the end operation has not been called yet | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.span.live_count` | UpDownCounter | `{span}` | The number of created spans for which the end operation has not been called yet | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -88,7 +88,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.span.ended_count` | Counter | `1` | The number of created spans for which the end operation was called | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.span.ended_count` | Counter | `{span}` | The number of created spans for which the end operation was called | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -112,7 +112,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.span.processor.queue_size` | UpDownCounter | `1` | The number of spans in the queue of a given instance of an SDK span processor [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.span.processor.queue_size` | UpDownCounter | `{span}` | The number of spans in the queue of a given instance of an SDK span processor [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
 
@@ -157,7 +157,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.span.processor.queue_capacity` | Gauge | `1` | The maximum number of spans the queue of a given instance of an SDK span processor can hold [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.span.processor.queue_capacity` | Gauge | `{span}` | The maximum number of spans the queue of a given instance of an SDK span processor can hold [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
 
@@ -202,7 +202,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.span.processor.spans_processed` | Counter | `1` | The number of spans for which the processing has finished, either successful or failed [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.span.processor.spans_processed` | Counter | `{span}` | The number of spans for which the processing has finished, either successful or failed [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** For successful processing, `error.type` must be empty. For failed processing, `error.type` must contain the failure cause.
 For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
@@ -277,7 +277,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.span.exporter.spans_inflight` | UpDownCounter | `1` | The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed) [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.span.exporter.spans_inflight` | UpDownCounter | `{span}` | The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed) [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** For successful exports, `error.type` must be empty. For failed exports, `error.type` must contain the failure cause.
 
@@ -322,7 +322,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.span.exporter.spans_exported` | Counter | `1` | The number of spans for which the export has finished, either successful or failed [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.span.exporter.spans_exported` | Counter | `{span}` | The number of spans for which the export has finished, either successful or failed [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** For successful exports, `error.type` must be empty. For failed exports, `error.type` must contain the failure cause.
 For exporters with partial success semantics (e.g. OTLP with `rejected_spans`), rejected spans must count as failed and only non-rejected spans count as success.

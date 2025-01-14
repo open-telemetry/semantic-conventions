@@ -5,7 +5,7 @@ groups:
     stability: development
     brief: "The number of spans which have been created"
     instrument: counter
-    unit: "1"
+    unit: "{span}"
     attributes:
       - ref: otel.is_sampled
 
@@ -15,7 +15,7 @@ groups:
     stability: development
     brief: "The number of created spans for which the end operation has not been called yet"
     instrument: updowncounter
-    unit: "1"
+    unit: "{span}"
     attributes:
       - ref: otel.is_sampled
   
@@ -25,7 +25,7 @@ groups:
     stability: development
     brief: "The number of created spans for which the end operation was called"
     instrument: counter
-    unit: "1"
+    unit: "{span}"
     attributes:
       - ref: otel.is_sampled
 
@@ -38,7 +38,7 @@ groups:
     note: |
       Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
     instrument: updowncounter
-    unit: "1"
+    unit: "{span}"
     attributes:
       - ref: otel.sdk.component.name
 
@@ -50,7 +50,7 @@ groups:
     note: |
       Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
     instrument: gauge
-    unit: "1"
+    unit: "{span}"
     attributes:
       - ref: otel.sdk.component.name
 
@@ -63,7 +63,7 @@ groups:
       For successful processing, `error.type` must be empty. For failed processing, `error.type` must contain the failure cause.
       For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
     instrument: counter
-    unit: "1"
+    unit: "{span}"
     attributes:
       - ref: otel.sdk.component.name
       - ref: error.type
@@ -79,7 +79,7 @@ groups:
     note: |
       For successful exports, `error.type` must be empty. For failed exports, `error.type` must contain the failure cause.
     instrument: updowncounter
-    unit: "1"
+    unit: "{span}"
     attributes:
       - ref: otel.sdk.component.name
 
@@ -93,7 +93,7 @@ groups:
       For exporters with partial success semantics (e.g. OTLP with `rejected_spans`), rejected spans must count as failed and only non-rejected spans count as success.
       If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
     instrument: counter
-    unit: "1"
+    unit: "{span}"
     attributes:
       - ref: otel.sdk.component.name
       - ref: error.type
