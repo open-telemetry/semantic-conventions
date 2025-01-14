@@ -8,7 +8,7 @@
 
 - [OTel Attributes](#otel-attributes)
 - [OTel Scope Attributes](#otel-scope-attributes)
-- [OTel Scope Attributes](#otel-scope-attributes)
+- [OTel SDK Telemetry Attributes](#otel-sdk-telemetry-attributes)
 - [Deprecated OTel Library Attributes](#deprecated-otel-library-attributes)
 
 ## OTel Attributes
@@ -39,7 +39,7 @@ Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concept
 | <a id="otel-scope-name" href="#otel-scope-name">`otel.scope.name`</a> | string | The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP). | `io.opentelemetry.contrib.mongodb` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="otel-scope-version" href="#otel-scope-version">`otel.scope.version`</a> | string | The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP). | `1.0.0` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-## OTel Scope Attributes
+## OTel SDK Telemetry Attributes
 
 Attributes used for OpenTelemetry SDK self-monitoring
 
@@ -52,11 +52,12 @@ Attributes used for OpenTelemetry SDK self-monitoring
 **[1] `otel.sdk.component.name`:** The attribute value MUST follow a `<type-name>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 
 For components corresponding to SDK specification concepts, the `type-name` MUST have the following values:
-  * `batching_span_processor` for the SDK Batching Span Processor
-  * `simple_span_processor` for the SDK Simple Span Processor
-  * `otlp_grpc_exporter` for the OTLP exporter over gRPC with protobuf serialization
-  * `otlp_http_exporter` for the OTLP exporter over HTTP with protobuf serialization
-  * `otlp_http_json_exporter` for the OTLP exporter over HTTP with JSON serialization
+
+* `batching_span_processor` for the SDK Batching Span Processor
+* `simple_span_processor` for the SDK Simple Span Processor
+* `otlp_grpc_exporter` for the OTLP exporter over gRPC with protobuf serialization
+* `otlp_http_exporter` for the OTLP exporter over HTTP with protobuf serialization
+* `otlp_http_json_exporter` for the OTLP exporter over HTTP with JSON serialization
 
 Other components SHOULD use the language and implementation dependant type name of the component for `type-name`, e.g. the class name in Java.
 

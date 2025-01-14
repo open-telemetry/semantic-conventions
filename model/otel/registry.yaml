@@ -43,7 +43,7 @@ groups:
         stability: stable
   - id: registry.otel.sdk.telemetry
     type: attribute_group
-    display_name: OTel Scope Attributes
+    display_name: OTel SDK Telemetry Attributes
     brief: Attributes used for OpenTelemetry SDK self-monitoring
     attributes:
       - id: otel.sdk.processor.type
@@ -94,11 +94,12 @@ groups:
           The attribute value MUST follow a `<type-name>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 
           For components corresponding to SDK specification concepts, the `type-name` MUST have the following values:
-            * `batching_span_processor` for the SDK Batching Span Processor
-            * `simple_span_processor` for the SDK Simple Span Processor
-            * `otlp_grpc_exporter` for the OTLP exporter over gRPC with protobuf serialization
-            * `otlp_http_exporter` for the OTLP exporter over HTTP with protobuf serialization
-            * `otlp_http_json_exporter` for the OTLP exporter over HTTP with JSON serialization
+          
+          * `batching_span_processor` for the SDK Batching Span Processor
+          * `simple_span_processor` for the SDK Simple Span Processor
+          * `otlp_grpc_exporter` for the OTLP exporter over gRPC with protobuf serialization
+          * `otlp_http_exporter` for the OTLP exporter over HTTP with protobuf serialization
+          * `otlp_http_json_exporter` for the OTLP exporter over HTTP with JSON serialization
 
           Other components SHOULD use the language and implementation dependant type name of the component for `type-name`, e.g. the class name in Java.
 
