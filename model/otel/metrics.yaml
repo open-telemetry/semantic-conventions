@@ -18,7 +18,7 @@ groups:
     unit: "{span}"
     attributes:
       - ref: otel.is_sampled
-  
+
   - id: metric.otel.sdk.span.ended_count
     type: metric
     metric_name: otel.sdk.span.ended_count
@@ -98,4 +98,3 @@ groups:
       - ref: otel.sdk.component.name
       - ref: error.type
         examples: ["rejected"]
-

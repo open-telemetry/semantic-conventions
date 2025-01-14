@@ -94,7 +94,7 @@ groups:
           The attribute value MUST follow a `<type-name>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
 
           For components corresponding to SDK specification concepts, the `type-name` MUST have the following values:
-          
+
           * `batching_span_processor` for the SDK Batching Span Processor
           * `simple_span_processor` for the SDK Simple Span Processor
           * `otlp_grpc_exporter` for the OTLP exporter over gRPC with protobuf serialization
