@@ -1,19 +1,34 @@
 groups:
+  - id: metric.otel.sdk.span.created_count
+    type: metric
+    metric_name: otel.sdk.span.created_count
+    stability: development
+    brief: "The number of spans which have been created"
+    instrument: counter
+    unit: "1"
+    attributes:
+      - ref: otel.is_sampled
+
+  - id: metric.otel.sdk.span.live_count
+    type: metric
+    metric_name: otel.sdk.span.live_count
+    stability: development
+    brief: "The number of created spans for which the end operation has not been called yet"
+    instrument: updowncounter
+    unit: "1"
+    attributes:
+      - ref: otel.is_sampled
+  
   - id: metric.otel.sdk.span.ended_count
     type: metric
     metric_name: otel.sdk.span.ended_count
     stability: development
-    brief: "The number of spans which have been ended"
+    brief: "The number of created spans for which the end operation was called"
     instrument: counter
     unit: "1"
+    attributes:
+      - ref: otel.is_sampled
 
-  - id: metric.otel.sdk.span.sampled_count
-    type: metric
-    metric_name: otel.sdk.span.sampled_count
-    stability: development
-    brief: "The number of spans which have been ended AND are sampled"
-    instrument: counter
-    unit: "1"
 
   - id: metric.otel.sdk.span.processor.queue_size
     type: metric
@@ -41,20 +56,6 @@ groups:
       - ref: otel.sdk.processor.type
       - ref: otel.sdk.component.id
 
-  - id: metric.otel.sdk.span.processor.spans_submitted
-    type: metric
-    metric_name: otel.sdk.span.processor.spans_submitted
-    stability: development
-    brief: "The number of spans submitted for processing to this span processor."
-    note: |
-      A span is considered submitted when the first callback has been called which triggers processing of the span for the given processor.
-      For the Batching and Simple Span Processors this metric therefore MUST be incremented on invocations of the `on_end` span processor callback.
-    instrument: counter
-    unit: "1"
-    attributes:
-      - ref: otel.sdk.processor.type
-      - ref: otel.sdk.component.id
-
   - id: metric.otel.sdk.span.processor.spans_processed
     type: metric
     metric_name: otel.sdk.span.processor.spans_processed
@@ -62,6 +63,7 @@ groups:
     brief: "The number of spans for which the processing has finished, either successful or failed"
     note: |
       For successful processing, `error.type` must be empty. For failed processing, `error.type` must contain the failure cause.
+      For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
     instrument: counter
     unit: "1"
     attributes:
@@ -69,19 +71,22 @@ groups:
       - ref: otel.sdk.component.id
       - ref: error.type
         brief: >
-          A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue full` for spans dropped due to a full queue.
-        examples: ["queue full"]
+          A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue.
+        examples: ["queue_full"]
 
-  - id: metric.otel.sdk.span.exporter.spans_submitted
+  - id: metric.otel.sdk.span.exporter.spans_inflight
     type: metric
-    metric_name: otel.sdk.span.exporter.spans_submitted
+    metric_name: otel.sdk.span.exporter.spans_inflight
     stability: development
-    brief: "The number of spans for which the `export` callback of the exporter has been invoked. This does not require the export of the span to have finished yet."
-    instrument: counter
+    brief: "The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
+    note: |
+      For successful exports, `error.type` must be empty. For failed exports, `error.type` must contain the failure cause.
+    instrument: updowncounter
     unit: "1"
     attributes:
       - ref: otel.sdk.exporter.type
       - ref: otel.sdk.component.id
+      - ref: error.type
 
   - id: metric.otel.sdk.span.exporter.spans_exported
     type: metric

@@ -22,6 +22,10 @@ groups:
         brief: "Description of the Status if it has a value, otherwise not set."
         examples: ['resource not found']
         stability: stable
+      - id: otel.is_sampled
+        type: boolean
+        brief: "The sampled trace flag of the span"
+        stability: development
   - id: registry.otel.scope
     type: attribute_group
     display_name: OTel Scope Attributes
