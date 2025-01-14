@@ -42,7 +42,6 @@ body:
         - area:dns
         - area:dotnet
         - area:error
-        - area:event
         - area:exception
         - area:faas
         - area:feature-flag
