@@ -8,6 +8,7 @@
 
 - [OTel Attributes](#otel-attributes)
 - [OTel Scope Attributes](#otel-scope-attributes)
+- [OTel Scope Attributes](#otel-scope-attributes)
 - [Deprecated OTel Library Attributes](#deprecated-otel-library-attributes)
 
 ## OTel Attributes
@@ -36,6 +37,44 @@ Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concept
 |---|---|---|---|---|
 | <a id="otel-scope-name" href="#otel-scope-name">`otel.scope.name`</a> | string | The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP). | `io.opentelemetry.contrib.mongodb` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="otel-scope-version" href="#otel-scope-version">`otel.scope.version`</a> | string | The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP). | `1.0.0` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+## OTel Scope Attributes
+
+Attributes used for OpenTelemetry SDK self-monitoring
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="otel-sdk-component-id" href="#otel-sdk-component-id">`otel.sdk.component.id`</a> | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `batch-span-0`; `custom-name` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="otel-sdk-exporter-type" href="#otel-sdk-exporter-type">`otel.sdk.exporter.type`</a> | string | A name identifying the type of the OpenTelemetry SDK exporter. | `otlp-grpc`; `jaeger` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="otel-sdk-processor-type" href="#otel-sdk-processor-type">`otel.sdk.processor.type`</a> | string | A name identifying the type of the OpenTelemetry SDK processor. | `batch-span`; `MyCustomProcessor` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1] `otel.sdk.component.id`:** The SDK components MAY allow users to provide an id for the component instances. If no id is provided by the user,
+the components SHOULD automatically assign an id. Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality in that case.
+E.g. it MUST NOT use a UUID.
+It instead MAY do that by using the following pattern as value: `<otel.sdk.processor/exporter.type>-<instance-counter>`:
+Hereby, `<instance-counter>` is a monotonically increasing counter (starting with `0`), which is incremented every time an
+instance of the given component type is started.
+For example, the first Batch Span Processor will have `batch-span-0` as `otel.sdk.component.id`, the second one `batch-span-1` and so one.
+These values will therefore be reused in the case of an application restart.
+
+---
+
+`otel.sdk.exporter.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `otlp-grpc` | OTLP exporter over gRPC with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otlp-http` | OTLP exporter over HTTP with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otlp-http-json` | OTLP exporter over HTTP with JSON serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
+
+`otel.sdk.processor.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `batch-span` | The builtin SDK Batching Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `simple-span` | The builtin SDK Simple Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Deprecated OTel Library Attributes
 

@@ -37,3 +37,62 @@ groups:
         brief: The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP).
         examples: ['1.0.0']
         stability: stable
+  - id: registry.otel.sdk.telemetry
+    type: attribute_group
+    display_name: OTel Scope Attributes
+    brief: Attributes used for OpenTelemetry SDK self-monitoring
+    attributes:
+      - id: otel.sdk.processor.type
+        type:
+          members:
+            - id: batch_span
+              value: "batch-span"
+              brief: >
+                The builtin SDK Batching Span Processor
+              stability: development
+            - id: simple_span
+              value: "simple-span"
+              brief: >
+                The builtin SDK Simple Span Processor
+              stability: development
+        stability: development
+        brief: >
+          A name identifying the type of the OpenTelemetry SDK processor.
+        examples: ["batch-span", "MyCustomProcessor"]
+      - id: otel.sdk.exporter.type
+        type:
+          members:
+            - id: otlp_grpc
+              value: "otlp-grpc"
+              brief: >
+                OTLP exporter over gRPC with protobuf serialization
+              stability: development
+            - id: otlp_http
+              value: "otlp-http"
+              brief: >
+                OTLP exporter over HTTP with protobuf serialization
+              stability: development
+            - id: otlp_http_json
+              value: "otlp-http-json"
+              brief: >
+                OTLP exporter over HTTP with JSON serialization
+              stability: development
+        stability: development
+        brief: >
+          A name identifying the type of the OpenTelemetry SDK exporter.
+        examples: ["otlp-grpc", "jaeger"]
+      - id: otel.sdk.component.id
+        type: string
+        stability: development
+        brief: >
+          A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance.
+        note: |
+          The SDK components MAY allow users to provide an id for the component instances. If no id is provided by the user,
+          the components SHOULD automatically assign an id. Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality in that case.
+          E.g. it MUST NOT use a UUID.
+          It instead MAY do that by using the following pattern as value: `<otel.sdk.processor/exporter.type>-<instance-counter>`:
+          Hereby, `<instance-counter>` is a monotonically increasing counter (starting with `0`), which is incremented every time an
+          instance of the given component type is started.
+          For example, the first Batch Span Processor will have `batch-span-0` as `otel.sdk.component.id`, the second one `batch-span-1` and so one.
+          These values will therefore be reused in the case of an application restart.
+        examples: ["batch-span-0", "custom-name"]
