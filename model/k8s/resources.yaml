@@ -111,3 +111,33 @@ groups:
     attributes:
       - ref: k8s.cronjob.uid
       - ref: k8s.cronjob.name
+
+  - id: resource.k8s.replication_controller
+    type: resource
+    stability: experimental
+    name: k8s.replication_controller
+    brief: >
+      A Kubernetes ReplicationController object.
+    attributes:
+      - ref: k8s.replication_controller.uid
+      - ref: k8s.replication_controller.name
+
+  - id: resource.k8s.hpa
+    type: resource
+    stability: experimental
+    name: k8s.hpa
+    brief: >
+      A Kubernetes HorizontalPodAutoscaler object.
+    attributes:
+      - ref: k8s.hpa.uid
+      - ref: k8s.hpa.name
+
+  - id: resource.k8s.resource_quota
+    type: resource
+    stability: experimental
+    name: k8s.resource_quota
+    brief: >
+      A Kubernetes ResourceQuota object.
+    attributes:
+      - ref: k8s.resource_quota.uid
+      - ref: k8s.resource_quota.name
