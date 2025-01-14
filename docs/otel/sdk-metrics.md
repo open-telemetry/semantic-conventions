@@ -355,6 +355,8 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.span.exporter.spans_exported` | Counter | `1` | The number of spans for which the export has finished, either successful or failed [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** For successful exports, `error.type` must be empty. For failed exports, `error.type` must contain the failure cause.
+For exporters with partial success semantics (e.g. OTLP with `rejected_spans`), rejected spans must count as failed and only non-rejected spans count as success.
+If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

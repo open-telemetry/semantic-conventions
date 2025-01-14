@@ -95,6 +95,8 @@ groups:
     brief: "The number of spans for which the export has finished, either successful or failed"
     note: |
       For successful exports, `error.type` must be empty. For failed exports, `error.type` must contain the failure cause.
+      For exporters with partial success semantics (e.g. OTLP with `rejected_spans`), rejected spans must count as failed and only non-rejected spans count as success.
+      If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
     instrument: counter
     unit: "1"
     attributes:
