@@ -3,8 +3,7 @@ groups:
     type: resource
     stability: experimental
     name: zos.software
-    brief: > 
-      A software resource running on a z/OS system.
+    brief: A software resource running on a z/OS system.
     attributes:
       - ref: service.name
         note: For z/OS system software, SHOULD be set to an appreviated name of the z/OS system software.
@@ -29,7 +28,7 @@ groups:
       - ref: process.pid
         note: 'On z/OS, SHOULD be set to the Address Space Identifier.'
         examples: '008A'
-        requirement_level: required       
+        requirement_level: required
       - ref: process.owner
         note: 'On z/OS, SHOULD be set to the user under which the z/OS system software is executed.'
         examples: 'CICSUSR'
