@@ -75,9 +75,7 @@ jobs:
             || { echo "New ./.chloggen/*.yaml file failed validation."; exit 1; }
 
       # In order to validate any links in the yaml file, render the config to markdown
-      - name: Render .chloggen changelog entries
+      - name: Run markdown-link-check on the changelog
         run: |
-          make chlog-preview 2> changelog_preview.md
-          cat changelog_preview.md
-      - name: Run markdown-link-check
-        run: make markdown-link-check-changelog-preview
+          make chlog-preview &> changelog_preview.md
+          make markdown-link-check-changelog-preview

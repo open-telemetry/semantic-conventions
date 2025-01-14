@@ -7,6 +7,10 @@
 !/docs/cloud*/**
 !/docs/attributes-registry*
 !/docs/attributes-registry*/**
+!/docs/non-normative*
+!/docs/non-normative/groups*
+!/docs/non-normative/groups/system*
+!/docs/non-normative/groups/system*/**
 /model
 /schemas
 CHANGELOG.md

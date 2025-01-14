@@ -735,7 +735,7 @@ Span name: `POST /uploads/:document_id`.
 
 |   Attribute name     |                      Value                      |
 | :------------------- | :---------------------------------------------- |
-| `http.request.method`| `"GET"`                                         |
+| `http.request.method`| `"POST"`                                         |
 | `url.path`           | `"/uploads/4"`                                  |
 | `url.scheme`         | `"https"`                                       |
 | `http.route`         | `"/uploads/:document_id"`                       |
