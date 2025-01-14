@@ -21,6 +21,6 @@ groups:
         requirement_level: required
         examples: 'cics'
       - ref: network.protocol.name
-        examples: ['ipic','mro']
+        examples: ['ipic', 'mro']
       - ref: rpc.system
-        examples: ['dpl','rmi']
+        examples: ['dpl', 'rmi']
