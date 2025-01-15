@@ -211,15 +211,14 @@ deny contains back_comp_violation(description, group_id, attr.name) if {
      description := sprintf("Enum '%s' had stable value '%s', but is now '%s'", [attr.name, member.value, nmember.value])
 }
 
-# Rule: Detect Stable Enum members missing
+# Rule: Detect missing Enum members
 #
-# This rule checks for enum values that were stable in the baseline registry
-# but are no longer have the same values in the current registry. Once stable,
-# enum values remain forever but may be deprecated.
+# This rule checks for missing enum values that were present in the baseline registry
+# but no longer exist in the current registry. Once added, regardless of their stability,
+# enum values must remain in the registry but may be marked as deprecated.
 deny contains back_comp_violation(description, group_id, attr.name) if {
      # Find data we need to enforce: Enums in baseline/current.
      some attr in baseline_attributes
-     attr.stability == "stable"
      some nattr in registry_attributes
      attr.name == nattr.name
      is_enum(attr)
