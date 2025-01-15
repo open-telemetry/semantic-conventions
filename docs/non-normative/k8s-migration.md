@@ -250,6 +250,6 @@ The changes in their metrics are the following:
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                            |
 |------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| `k8s.namespace.phase`                  (type: `gauge`), 1 for active and 0 for terminating                      | `k8s.namespace.phase` (type: `updowncounter`), with `k8s.namespace.phase` indicating the phase |
+| `k8s.namespace.phase`                  (type: `gauge`), 1 for active and 0 for terminating                      | `k8s.namespace.phase` (type: `updowncounter`), with the attribute `k8s.namespace.phase` indicating the phase |
 
 <!-- prettier-ignore-end -->
