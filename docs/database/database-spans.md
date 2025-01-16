@@ -231,8 +231,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `intersystems.cache` | [InterSystems Caché](https://www.intersystems.com/products/cache/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `mariadb` | [MariaDB](https://mariadb.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `memcached` | [Memcached](https://memcached.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `microsoft.sql_server` | [Microsoft SQL Server](https://www.microsoft.com/sql-server) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `mongodb` | [MongoDB](https://www.mongodb.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mssql` | [Microsoft SQL Server](https://www.microsoft.com/sql-server) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `mysql` | [MySQL](https://www.mysql.com/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `neo4j` | [Neo4j](https://neo4j.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `opensearch` | [OpenSearch](https://opensearch.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

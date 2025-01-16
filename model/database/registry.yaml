@@ -254,8 +254,8 @@ groups:
               value: "mongodb"  # trademark on 'mongodb'
               brief: "[MongoDB](https://www.mongodb.com/)"
               stability: development
-            - id: mssql
-              value: "mssql"  # trademark on 'SQL Server'
+            - id: microsoft.sql_server
+              value: "microsoft.sql_server"  # trademark on 'SQL Server'
               brief: "[Microsoft SQL Server](https://www.microsoft.com/sql-server)"
               stability: release_candidate
             - id: mysql
