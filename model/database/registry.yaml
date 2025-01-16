@@ -142,8 +142,8 @@ groups:
               value: "other_sql"
               brief: "Some other SQL database. Fallback only. See notes."
               stability: development
-            - id: adabas
-              value: "adabas"  # trademark on 'adabas'
+            - id: software_ag.adabas
+              value: "software_ag.adabas"  # trademark on 'adabas'
               brief: "Adabas (Adaptable Database System)"
               stability: development
             - id: actian.ingres
@@ -240,7 +240,7 @@ groups:
               stability: development
             - id: instantdb
               value: "instantdb"  # no trademark
-              brief: "[InstantDB](https://www.instantdb.com/)"
+              brief: "[Instant](https://www.instantdb.com/)"
               stability: development
             - id: mariadb
               value: "mariadb"  # trademark on 'mariadb'

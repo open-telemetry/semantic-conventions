@@ -27,7 +27,7 @@ This group defines the attributes used to describe telemetry in the context of d
 | <a id="db-query-text" href="#db-query-text">`db.query.text`</a> | string | The database query being executed. [7] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-response-returned-rows" href="#db-response-returned-rows">`db.response.returned_rows`</a> | int | Number of rows returned by the operation. | `10`; `30`; `1000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="db-response-status-code" href="#db-response-status-code">`db.response.status_code`</a> | string | Database response status code. [8] | `102`; `ORA-17002`; `08P01`; `404` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| <a id="db-system-name" href="#db-system-name">`db.system.name`</a> | string | The database management system (DBMS) product as identified by the client instrumentation. [9] | `other_sql`; `adabas`; `actian.ingres` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="db-system-name" href="#db-system-name">`db.system.name`</a> | string | The database management system (DBMS) product as identified by the client instrumentation. [9] | `other_sql`; `software_ag.adabas`; `actian.ingres` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
@@ -85,7 +85,6 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 | Value  | Description | Stability |
 |---|---|---|
 | `actian.ingres` | [Actian Ingres](https://www.actian.com/databases/ingres/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `adabas` | Adabas (Adaptable Database System) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.dynamodb` | [Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.redshift` | Amazon Redshift | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `az.cosmosdb` | [Microsoft Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -107,7 +106,7 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 | `ibm.informix` | [IBM Informix](https://www.ibm.com/products/informix) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.netezza` | [IBM Netezza](https://www.ibm.com/products/netezza) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `influxdb` | [InfluxDB](https://www.influxdata.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `instantdb` | [InstantDB](https://www.instantdb.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `instantdb` | [Instant](https://www.instantdb.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `intersystems.cache` | [InterSystems Caché](https://www.intersystems.com/products/cache/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `mariadb` | [MariaDB](https://mariadb.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `memcached` | [Memcached](https://memcached.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -122,6 +121,7 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 | `redis` | [Redis](https://redis.io/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `sap.hana` | [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `sap.maxdb` | [SAP MaxDB](https://maxdb.sap.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `software_ag.adabas` | Adabas (Adaptable Database System) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `sqlite` | [SQLite](https://www.sqlite.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `teradata` | [Teradata](https://www.teradata.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `trino` | [Trino](https://trino.io/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -136,7 +136,7 @@ Describes deprecated database attributes.
 | <a id="db-cassandra-coordinator-dc" href="#db-cassandra-coordinator-dc">`db.cassandra.coordinator.dc`</a> | string | Deprecated, use `cassandra.coordinator.dc` instead. | `us-west-2` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cassandra.coordinator.dc`. |
 | <a id="db-cassandra-coordinator-id" href="#db-cassandra-coordinator-id">`db.cassandra.coordinator.id`</a> | string | Deprecated, use `cassandra.coordinator.id` instead. | `be13faa2-8574-4d71-926d-27f16cf8a7af` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cassandra.coordinator.id`. |
 | <a id="db-cassandra-idempotence" href="#db-cassandra-idempotence">`db.cassandra.idempotence`</a> | boolean | Deprecated, use `cassandra.idempotence` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cassandra.idempotence`. |
-| <a id="db-cassandra-page-size" href="#db-cassandra-page-size">`db.cassandra.page_size`</a> | int | Deprecated, use `cassandra.page_size` instead. | `5000` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cassandra.page_size`. |
+| <a id="db-cassandra-page-size" href="#db-cassandra-page-size">`db.cassandra.page_size`</a> | int | Deprecated, use `cassandra.page.size` instead. | `5000` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cassandra.page.size`. |
 | <a id="db-cassandra-speculative-execution-count" href="#db-cassandra-speculative-execution-count">`db.cassandra.speculative_execution_count`</a> | int | Deprecated, use `cassandra.speculative_execution_count` instead. | `0`; `2` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cassandra.speculative_execution_count`. |
 | <a id="db-cassandra-table" href="#db-cassandra-table">`db.cassandra.table`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
 | <a id="db-connection-string" href="#db-connection-string">`db.connection_string`</a> | string | Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address` and `server.port`. |
@@ -147,7 +147,7 @@ Describes deprecated database attributes.
 | <a id="db-cosmosdb-operation-type" href="#db-cosmosdb-operation-type">`db.cosmosdb.operation_type`</a> | string | Deprecated, no replacement at this time. | `batch`; `create`; `delete` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>No replacement at this time. |
 | <a id="db-cosmosdb-regions-contacted" href="#db-cosmosdb-regions-contacted">`db.cosmosdb.regions_contacted`</a> | string[] | Deprecated, use `az.cosmosdb.request.regions_contacted` instead. | `["North Central US", "Australia East", "Australia Southeast"]` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `az.cosmosdb.request.regions_contacted`. |
 | <a id="db-cosmosdb-request-charge" href="#db-cosmosdb-request-charge">`db.cosmosdb.request_charge`</a> | double | Deprecated, use `az.cosmosdb.request.charge` instead. | `46.18`; `1.0` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `az.cosmosdb.request.charge`. |
-| <a id="db-cosmosdb-request-content-length" href="#db-cosmosdb-request-content-length">`db.cosmosdb.request_content_length`</a> | int | Deprecated, use `az.cosmosdb.request.content_length` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `az.cosmosdb.request.content_length`. |
+| <a id="db-cosmosdb-request-content-length" href="#db-cosmosdb-request-content-length">`db.cosmosdb.request_content_length`</a> | int | Deprecated, use `az.cosmosdb.request.body.size` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `az.cosmosdb.request.body.size`. |
 | <a id="db-cosmosdb-status-code" href="#db-cosmosdb-status-code">`db.cosmosdb.status_code`</a> | int | Deprecated, use `db.response.status_code` instead. | `200`; `201` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.response.status_code`. |
 | <a id="db-cosmosdb-sub-status-code" href="#db-cosmosdb-sub-status-code">`db.cosmosdb.sub_status_code`</a> | int | Deprecated, use `cosmosdb.response.sub_status_code` instead. | `1000`; `1002` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `az.cosmosdb.response.sub_status_code`. |
 | <a id="db-elasticsearch-cluster-name" href="#db-elasticsearch-cluster-name">`db.elasticsearch.cluster.name`</a> | string | Deprecated, use `db.namespace` instead. | `e9106fc68e3044f0b1475b04bf4ffd5f` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |

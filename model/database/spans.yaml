@@ -272,7 +272,7 @@ groups:
         examples: ["mykeyspace"]
         requirement_level:
           conditionally_required: If available.
-      - ref: cassandra.page_size
+      - ref: cassandra.page.size
       - ref: cassandra.consistency.level
       - ref: db.collection.name
         brief: The name of the Cassandra table that the operation is acting upon.
@@ -630,7 +630,7 @@ groups:
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         requirement_level:
           conditionally_required: if available
-      - ref: az.cosmosdb.request.content_length
+      - ref: az.cosmosdb.request.body.size
       - ref: db.response.status_code
         brief: >
           Cosmos DB status code.

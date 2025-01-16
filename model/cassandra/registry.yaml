@@ -61,7 +61,7 @@ groups:
         stability: development
         brief: >
           Whether or not the query is idempotent.
-      - id: cassandra.page_size
+      - id: cassandra.page.size
         type: int
         stability: development
         brief: >
