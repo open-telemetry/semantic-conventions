@@ -52,7 +52,7 @@ When the operation ends with an error, instrumentation:
   When the operation fails with an exception, the span status description SHOULD be set to
   the exception message.
 
-Refer to the [general exception guidance](/docs/exceptions/README.md) on capturing exception
+Refer to the [recording exceptions](#recording-errors) on capturing exception
 details.
 
 ## How to record errors on metrics
@@ -75,6 +75,46 @@ Instrumentation SHOULD ensure `error.type` is applied consistently across spans
 and metrics when both are reported. A span and its corresponding metric for a single
 operation SHOULD have the same `error.type` value if the operation failed and SHOULD NOT
 include it if the operation succeeded.
+
+## Recording exceptions
+
+When an instrumented operation fails with an exception, instrumentation SHOULD record
+this exception as a [span event](exceptions-spans.md) or a [log record](exceptions-logs.md).
+
+It's RECOMMENDED to use the `Span.recordException` API or logging library API that takes exception instance
+instead of providing individual attributes. This enables the OpenTelemetry SDK to
+control what information is recorded based on application configuration.
+
+It's NOT RECOMMENDED to record the same exception more than once.
+It's NOT RECOMMENDED to record exceptions that are handled by the instrumented library.
+
+For example, in this code-snippet, `ResourceAlreadyExistsException` is handled and the corresponding
+native instrumentation should not record it. Exceptions which are propagated
+to the caller should be recorded (or logged) once.
+
+```java
+public boolean createIfNotExists(String resourceId) throws IOException {
+  Span span = startSpan();
+  try {
+    create(resourceId);
+    return true;
+  } catch (ResourceAlreadyExistsException e) {
+    // not recording exception and not setting span status to error - exception is handled
+    // but we can set attributes that capture additional details
+    span.setAttribute(AttributeKey.stringKey("acme.resource.create.status"), "already_exists");
+    return false;
+  } catch (IOException e) {
+    // recording exception here (assuming it was not recorded inside `create` method)
+    span.recordException(e);
+    // or
+    // logger.warn(e);
+
+    span.setAttribute(AttributeKey.stringKey("error.type"), e.getClass().getCanonicalName())
+    span.setStatus(StatusCode.ERROR, e.getMessage());
+    throw e;
+  }
+}
+```
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
 [SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/trace/api.md#set-status
