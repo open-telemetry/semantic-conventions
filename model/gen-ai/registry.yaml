@@ -178,70 +178,39 @@ groups:
         brief: The type of token being counted.
         examples: ['input', 'output']
       - id: gen_ai.agent.id   # alternatives: assistant (openai)
-        stability: experimental
+        stability: development
         type: string
         brief: The unique identifier of the GenAI agent.
         examples: ['asst_5j66UpCpwteGg4YSxUnt7lPY']
       - id: gen_ai.agent.name
-        stability: experimental
+        stability: development
         type: string
         brief: Human-readable name of the GenAI agent provided by the application.
         examples: ["Math Tutor", "Fiction Writer"]
       - id: gen_ai.agent.description
-        stability: experimental
+        stability: development
         type: string
         brief: Free-form description of the GenAI agent provided by the application.
         examples: ["Helps with math problems", "Generates fiction stories"]
-      - id: gen_ai.agent.tools
-        stability: experimental
-        type: string[]
-        brief: List of tool names available to the agent.
-        examples:
-          - ["Flights", "Search", "Code"]
-          - ["calc"]
-      - id: gen_ai.agent.status
-        stability: experimental
-        type:
-          members:
-            - id: completed
-              value: "completed"
-              brief: 'The agent has been completed'
-              stability: experimental
-            - id: failed
-              value: "failed"
-              brief: 'The agent was unable to complete the task due to an error.'
-              stability: experimental
-        brief: The status of the agent.
-      - id: gen_ai.agent.tool.name
-        stability: experimental
+      - id: gen_ai.tool.name
+        stability: development
         type: string
         brief: Name of the tool utilized by the agent.
         examples: ["Flights"]
-      - id: gen_ai.agent.tool.call.id
-        stability: experimental
+      - id: gen_ai.tool.call.id
+        stability: development
         type: string
         brief: The tool call identifier.
         examples: ['call_mszuSIzqtI65i1wAUOE8w5H4']
-      - id: gen_ai.agent.tool.type
-        stability: experimental
+      - id: gen_ai.tool.type
+        stability: development
         type: string
-        brief: Type of the tool utilized by the agent.
+        brief: Type of the tool utilized by the agent
+        note: >
+          Extension: A tool executed on the agent-side to directly call external APIs, bridging the gap between the agent and real-world systems.
+          Function: A tool executed on the client-side, where the agent generates parameters for a predefined function, and the client executes the logic.
+          Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
         examples: ['function', 'extension', 'datastore']
-      - id: gen_ai.agent.tool.function.name
-        stability: experimental
-        type: string
-        brief: Name of the function of the tool utilized by the agent.
-        examples: ["getFlights", "getWeather"]
-      - id: gen_ai.agent.tool.extension.name
-        stability: experimental
-        type: string
-        brief: Name of the extension of the tool utilized by the agent.
-        examples: ['Code Interpreter']
-      - id: gen_ai.agent.tool.datastore.name
-        stability: experimental
-        type: string
-        brief: Name of the datastore of the tool utilized by the agent.
-        examples: ['pdf dstore', 'website dstore']
       - id: gen_ai.operation.name
         stability: experimental
         type:
