@@ -48,7 +48,7 @@ groups:
         stability: development
         brief: Request units consumed for the operation.
         examples: [46.18, 1.0]
-      - id: az.cosmosdb.request.content_length
+      - id: az.cosmosdb.request.body.size
         type: int
         stability: development
         brief: Request payload size in bytes.

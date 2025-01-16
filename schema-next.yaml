@@ -24,16 +24,18 @@ versions:
               db.cassandra.coordinator.id: cassandra.coordinator.id
               db.cassandra.consistency_level: cassandra.consistency.level
               db.cassandra.idempotence: cassandra.idempotence
-              db.cassandra.page_size: cassandra.page_size
-              db.cassandra.speculative_execution_count: cassandra.speculative_execution.count
+              db.cassandra.page_size: cassandra.page.size
+              db.cassandra.speculative_execution_count: cassandra.speculative_execution_count
               db.cosmosdb.client_id: az.client.id
               db.cosmosdb.connection_mode: az.cosmosdb.connection.mode
               db.cosmosdb.consistency_level: az.cosmosdb.consistency.level
               db.cosmosdb.request_charge: az.cosmosdb.request.charge
-              db.cosmosdb.request_content_length: az.cosmosdb.request.content_length
+              db.cosmosdb.request_content_length: az.cosmosdb.request.body.size
               db.cosmosdb.regions_contacted: az.cosmosdb.request.regions_contacted
               db.cosmosdb.sub_status_code: az.cosmosdb.response.sub_status_code
               db.elasticsearch.node.name: elasticsearch.node.name
+              # db.elasticsearch.path_parts is a template attribute, schema transformation
+              # does not support it, adding as a comment for consistency
               # db.elasticsearch.path_parts.<key> -> elasticsearch.path_parts.<key>
   1.29.0:
     all:
