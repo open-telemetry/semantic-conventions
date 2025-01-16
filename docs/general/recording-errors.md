@@ -6,6 +6,15 @@ linkTitle: Recording errors
 
 **Status**: [Development][DocumentStatus].
 
+<!-- toc -->
+
+- [What constitutes an error](#what-constitutes-an-error)
+- [Recording errors on spans](#recording-errors-on-spans)
+- [Recording errors on metrics](#recording-errors-on-metrics)
+- [Recording exceptions](#recording-exceptions)
+
+<!-- tocstop -->
+
 This document provides recommendations to semantic convention and instrumentation authors
 on how to record errors on spans and metrics.
 
@@ -34,7 +43,7 @@ An operation SHOULD be considered as failed if any of the following is true:
 Errors that were retried or handled (allowing an operation to complete gracefully) SHOULD NOT
 be recorded on spans or metrics that describe this operation.
 
-## How to record errors on spans
+## Recording errors on spans
 
 [Span Status Code][SpanStatus] MUST be left unset if the instrumented operation has
 ended without any errors.
@@ -55,7 +64,7 @@ When the operation ends with an error, instrumentation:
 Refer to the [recording exceptions](#recording-errors) on capturing exception
 details.
 
-## How to record errors on metrics
+## Recording errors on metrics
 
 Semantic conventions for operations usually define an operation duration histogram
 metric. This metric SHOULD include the `error.type` attribute. This enables users to derive
@@ -79,7 +88,7 @@ include it if the operation succeeded.
 ## Recording exceptions
 
 When an instrumented operation fails with an exception, instrumentation SHOULD record
-this exception as a [span event](exceptions-spans.md) or a [log record](exceptions-logs.md).
+this exception as a [span event](/docs/exceptions/exceptions-spans.md) or a [log record](/docs/exceptions/exceptions-logs.md).
 
 It's RECOMMENDED to use the `Span.recordException` API or logging library API that takes exception instance
 instead of providing individual attributes. This enables the OpenTelemetry SDK to
