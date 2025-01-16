@@ -130,7 +130,7 @@ groups:
       Describes GenAI agent creation and is usually applicable when working
       with agent services.
     note: |
-      The `gen_ai.operation.name` MUST be `create_agent`.
+      The `gen_ai.operation.name` SHOULD be `create_agent`.
       The **span name** SHOULD be `create_agent {gen_ai.agent.name}`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
     extends: trace.gen_ai.client.common_attributes
@@ -146,11 +146,6 @@ groups:
       - ref: gen_ai.agent.description
         requirement_level:
           conditionally_required: If provided by the application.
-      - ref: gen_ai.agent.tools
-        requirement_level:
-          conditionally_required: If provided by the application.
-      - ref: gen_ai.agent.status
-        requirement_level: required
       - ref: gen_ai.request.model
         requirement_level:
           conditionally_required: If provided by the application.
@@ -177,17 +172,15 @@ groups:
       for the application developers to follow this semantic conventions for tool invoked
       by the application code.
     attributes:
-      - ref: gen_ai.agent.tool.name
+      - ref: gen_ai.tool.name
         requirement_level: recommended
-      - ref: gen_ai.agent.tool.call.id
+      - ref: gen_ai.tool.call.id
         requirement_level:
           recommended: if available
-      - ref: gen_ai.agent.tool.function.name
+      - ref: error.type
         requirement_level:
-          conditionally_required: If provided by the tool.
-      - ref: gen_ai.agent.tool.extension.name
-        requirement_level:
-          conditionally_required: If provided by the tool.
-      - ref: gen_ai.agent.tool.datastore.name
-        requirement_level:
-          conditionally_required: If provided by the tool.
+          conditionally_required: "if the operation ended in an error"
+        note: |
+          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
