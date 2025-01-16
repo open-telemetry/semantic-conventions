@@ -4,8 +4,8 @@ component: db
 
 note: |
   Rename `db.system` to `db.system.name` and clean up its values.
-  Rename `db.elasticsearch.*`, `db.cassandra.*`, `db.cosmosdb.*` attributes to `elasticsearch.*`, `cassandra.*`, and `az.cosmosdb.*` respectively.
-  Rename `db.client.cosmosdb.*` metrics to `az.cosmosdb.client.*`.
+  Rename `db.elasticsearch.*`, `db.cassandra.*`, `db.cosmosdb.*` attributes to `elasticsearch.*`, `cassandra.*`, and `azure.cosmosdb.*` respectively.
+  Rename `db.client.cosmosdb.*` metrics to `azure.cosmosdb.client.*`.
 
 issues: [1581, 608]
 

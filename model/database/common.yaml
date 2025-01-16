@@ -26,7 +26,7 @@ groups:
 
           Instrumentations SHOULD document how `error.type` is populated.
 
-  - id: attributes.az.cosmosdb.minimal
+  - id: attributes.azure.cosmosdb.minimal
     type: attribute_group
     brief: 'Azure Cosmos DB Client attributes'
     stability: development
@@ -50,10 +50,10 @@ groups:
         requirement_level:
           conditionally_required: If available.
         note: ""  # overriding the base note
-      - ref: az.cosmosdb.response.sub_status_code
+      - ref: azure.cosmosdb.response.sub_status_code
         requirement_level:
           conditionally_required: when response was received and contained sub-code.
-      - ref: az.cosmosdb.consistency.level
+      - ref: azure.cosmosdb.consistency.level
         requirement_level:
           conditionally_required: If available.
 

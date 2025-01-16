@@ -158,8 +158,8 @@ groups:
               value: "aws.redshift"
               brief: "Amazon Redshift"
               stability: development  # trademark on 'amazon redshift'
-            - id: az.cosmosdb
-              value: "az.cosmosdb"  # trademark on 'azure cosmos db'
+            - id: azure.cosmosdb
+              value: "azure.cosmosdb"  # trademark on 'azure cosmos db'
               brief: "[Microsoft Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db)"
               stability: development
             - id: intersystems.cache

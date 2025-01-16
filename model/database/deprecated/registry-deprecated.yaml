@@ -228,8 +228,8 @@ groups:
       - id: db.cosmosdb.client_id
         type: string
         stability: experimental
-        brief: "Deprecated, use `az.client.id` instead."
-        deprecated: "Replaced by `az.client.id`."
+        brief: "Deprecated, use `azure.client.id` instead."
+        deprecated: "Replaced by `azure.client.id`."
         examples: "3ba4827d-4422-483f-b59f-85b74211c11d"
       - id: db.cosmosdb.connection_mode
         type:
@@ -243,24 +243,24 @@ groups:
               brief: Direct connection.
               stability: experimental
         stability: experimental
-        brief: "Deprecated, use `az.cosmosdb.connection.mode` instead."
-        deprecated: "Replaced by `az.cosmosdb.connection.mode`."
+        brief: "Deprecated, use `azure.cosmosdb.connection.mode` instead."
+        deprecated: "Replaced by `azure.cosmosdb.connection.mode`."
       - id: db.cosmosdb.request_charge
         type: double
         stability: experimental
-        brief: "Deprecated, use `az.cosmosdb.request.charge` instead."
-        deprecated: "Replaced by `az.cosmosdb.request.charge`."
+        brief: "Deprecated, use `azure.cosmosdb.request.charge` instead."
+        deprecated: "Replaced by `azure.cosmosdb.request.charge`."
         examples: [46.18, 1.0]
       - id: db.cosmosdb.request_content_length
         type: int
         stability: experimental
-        brief: "Deprecated, use `az.cosmosdb.request.body.size` instead."
-        deprecated: "Replaced by `az.cosmosdb.request.body.size`."
+        brief: "Deprecated, use `azure.cosmosdb.request.body.size` instead."
+        deprecated: "Replaced by `azure.cosmosdb.request.body.size`."
       - id: db.cosmosdb.sub_status_code
         type: int
         stability: experimental
-        brief: "Deprecated, use `cosmosdb.response.sub_status_code` instead."
-        deprecated: "Replaced by `az.cosmosdb.response.sub_status_code`."
+        brief: "Deprecated, use `azure.cosmosdb.response.sub_status_code` instead."
+        deprecated: "Replaced by `azure.cosmosdb.response.sub_status_code`."
         examples: [1000, 1002]
       - id: db.cosmosdb.consistency_level
         type:
@@ -282,13 +282,13 @@ groups:
               stability: experimental
         stability: experimental
         brief: "Deprecated, use `cosmosdb.consistency.level` instead."
-        deprecated: "Replaced by `az.cosmosdb.consistency.level`."
+        deprecated: "Replaced by `azure.cosmosdb.consistency.level`."
         examples: ["Eventual", "ConsistentPrefix", "BoundedStaleness", "Strong", "Session"]
       - id: db.cosmosdb.regions_contacted
         type: string[]
         stability: experimental
-        brief: "Deprecated, use `az.cosmosdb.request.regions_contacted` instead."
-        deprecated: "Replaced by `az.cosmosdb.request.regions_contacted`."
+        brief: "Deprecated, use `azure.cosmosdb.request.regions_contacted` instead."
+        deprecated: "Replaced by `azure.cosmosdb.request.regions_contacted`."
         examples:
           - ["North Central US", "Australia East", "Australia Southeast"]
       - id: db.elasticsearch.node.name

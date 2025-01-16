@@ -18,7 +18,7 @@ groups:
           [Azure Resource Provider Namespace](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-services-resource-providers)
           as recognized by the client.
         examples: ["Microsoft.Storage", "Microsoft.KeyVault", "Microsoft.ServiceBus"]
-      - id: az.client.id
+      - id: azure.client.id
         type: string
         stability: development
         brief: The unique identifier of the client instance.
@@ -30,7 +30,7 @@ groups:
     brief: >
       This group defines attributes for Azure Cosmos DB.
     attributes:
-      - id: az.cosmosdb.connection.mode
+      - id: azure.cosmosdb.connection.mode
         type:
           members:
             - id: gateway
@@ -43,16 +43,16 @@ groups:
               stability: development
         stability: development
         brief: Cosmos client connection mode.
-      - id: az.cosmosdb.request.charge
+      - id: azure.cosmosdb.request.charge
         type: double
         stability: development
         brief: Request units consumed for the operation.
         examples: [46.18, 1.0]
-      - id: az.cosmosdb.request.body.size
+      - id: azure.cosmosdb.request.body.size
         type: int
         stability: development
         brief: Request payload size in bytes.
-      - id: az.cosmosdb.request.regions_contacted
+      - id: azure.cosmosdb.request.regions_contacted
         type: string[]
         stability: development
         brief: >
@@ -63,12 +63,12 @@ groups:
           in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
         examples:
           - ["North Central US", "Australia East", "Australia Southeast"]
-      - id: az.cosmosdb.response.sub_status_code
+      - id: azure.cosmosdb.response.sub_status_code
         type: int
         stability: development
         brief: Cosmos DB sub status code.
         examples: [1000, 1002]
-      - id: az.cosmosdb.consistency.level
+      - id: azure.cosmosdb.consistency.level
         type:
           members:
             - id: strong
