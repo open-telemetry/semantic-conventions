@@ -15,6 +15,7 @@ This document defines how to describe remote procedure calls
 
 - [Common remote procedure call conventions](#common-remote-procedure-call-conventions)
   - [Span name](#span-name)
+  - [Span status](#span-status)
   - [Service name](#service-name)
   - [Client attributes](#client-attributes)
   - [Server attributes](#server-attributes)
@@ -78,6 +79,11 @@ Examples of span names:
 - `MyCalcService.Calculator/Add` reported by the server and
   `MyServiceReference.ICalculator/Add` reported by the client for .NET WCF calls
 - `MyServiceWithNoPackage/theMethod`
+
+### Span status
+
+Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
+details on how to record span status.
 
 ### Service name
 
