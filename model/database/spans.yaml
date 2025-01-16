@@ -322,7 +322,7 @@ groups:
           conditionally_required: If readily available.
       - ref: db.response.status_code
         brief: >
-          Protocol-specific response code recorded as string.
+          Protocol-specific response code recorded as a string.
         examples: ["200", "409", "14"]
         requirement_level:
           conditionally_required: If response was received.
@@ -354,7 +354,7 @@ groups:
         note: ""  # overriding the base note
       - ref: db.response.status_code
         brief: >
-          The HTTP response code returned by the Couch DB recorded as string.
+          The HTTP response code returned by the Couch DB recorded as a string.
         note: >
           HTTP response codes in the 4xx and 5xx range SHOULD be considered errors.
         examples: ["200", "201", "429"]
@@ -556,7 +556,7 @@ groups:
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
       - ref: db.response.status_code
         brief: >
-          Database response code recorded as string.
+          Database response code recorded as a string.
         note: |
           SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
           return code which is adopted by some database systems like PostgreSQL.
