@@ -302,8 +302,8 @@ groups:
         type: template[string]
         stability: experimental
         brief: >
-          Deprecated, use `elasticsearch.path_parts` instead.
-        deprecated: "Replaced by `elasticsearch.path_parts`."
+          Deprecated, use `db.operation.parameter` instead.
+        deprecated: "Replaced by `db.operation.parameter`."
         examples:
           [
             "db.elasticsearch.path_parts.index=test-index",

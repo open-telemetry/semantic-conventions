@@ -511,9 +511,22 @@ groups:
         note: >
           When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
         requirement_level: recommended
-      - ref: elasticsearch.path_parts
+      - ref: db.operation.parameter
+        stability: development
+        brief: >
+          A dynamic value in the url path.
+        note: >
+          Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format
+          `db.operation.parameter.<key>`, where `<key>` is the path parameter name. The implementation SHOULD
+          reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)
+          in order to map the path parameter values to their names.
+        examples:
+          [
+            'db.operation.parameter.index="test-index"',
+            'db.operation.parameter="123"',
+          ]
         requirement_level:
-          conditionally_required: when the url has dynamic values
+          conditionally_required: when the url has path parameters
       - ref: db.response.status_code
         brief: >
           The HTTP response code returned by the Elasticsearch cluster.
