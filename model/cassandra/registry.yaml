@@ -56,7 +56,7 @@ groups:
               value: "local_serial"
               stability: development
         stability: development
-      - id: cassandra.query.is_idempotent
+      - id: cassandra.query.idempotent
         type: boolean
         stability: development
         brief: >

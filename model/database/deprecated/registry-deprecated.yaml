@@ -211,8 +211,8 @@ groups:
       - id: db.cassandra.idempotence
         type: boolean
         stability: experimental
-        brief: "Deprecated, use `cassandra.query.is_idempotent` instead."
-        deprecated: "Replaced by `cassandra.query.is_idempotent`."
+        brief: "Deprecated, use `cassandra.query.idempotent` instead."
+        deprecated: "Replaced by `cassandra.query.idempotent`."
       - id: db.cassandra.page_size
         type: int
         stability: experimental

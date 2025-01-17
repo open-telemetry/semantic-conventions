@@ -23,7 +23,7 @@ versions:
               db.cassandra.coordinator.dc: cassandra.coordinator.dc
               db.cassandra.coordinator.id: cassandra.coordinator.id
               db.cassandra.consistency_level: cassandra.consistency.level
-              db.cassandra.idempotence: cassandra.query.is_idempotent
+              db.cassandra.idempotence: cassandra.query.idempotent
               db.cassandra.page_size: cassandra.page.size
               db.cassandra.speculative_execution_count: cassandra.speculative_execution.count
               db.cosmosdb.client_id: azure.client.id
