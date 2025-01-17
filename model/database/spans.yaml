@@ -277,7 +277,7 @@ groups:
       - ref: db.collection.name
         brief: The name of the Cassandra table that the operation is acting upon.
       - ref: cassandra.idempotence
-      - ref: cassandra.speculative_execution_count
+      - ref: cassandra.speculative_execution.count
       - ref: cassandra.coordinator.id
       - ref: cassandra.coordinator.dc
       - ref: network.peer.address

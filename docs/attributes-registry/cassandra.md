@@ -17,7 +17,7 @@ This group defines attributes for Cassandra.
 | <a id="cassandra-coordinator-id" href="#cassandra-coordinator-id">`cassandra.coordinator.id`</a> | string | The ID of the coordinating node for a query. | `be13faa2-8574-4d71-926d-27f16cf8a7af` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cassandra-idempotence" href="#cassandra-idempotence">`cassandra.idempotence`</a> | boolean | Whether or not the query is idempotent. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cassandra-page-size" href="#cassandra-page-size">`cassandra.page.size`</a> | int | The fetch size used for paging, i.e. how many rows will be returned at once. | `5000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="cassandra-speculative-execution-count" href="#cassandra-speculative-execution-count">`cassandra.speculative_execution_count`</a> | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="cassandra-speculative-execution-count" href="#cassandra-speculative-execution-count">`cassandra.speculative_execution.count`</a> | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 

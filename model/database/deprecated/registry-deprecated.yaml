@@ -222,8 +222,8 @@ groups:
       - id: db.cassandra.speculative_execution_count
         type: int
         stability: experimental
-        brief: "Deprecated, use `cassandra.speculative_execution_count` instead."
-        deprecated: "Replaced by `cassandra.speculative_execution_count`."
+        brief: "Deprecated, use `cassandra.speculative_execution.count` instead."
+        deprecated: "Replaced by `cassandra.speculative_execution.count`."
         examples: [0, 2]
       - id: db.cosmosdb.client_id
         type: string

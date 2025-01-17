@@ -67,7 +67,7 @@ groups:
         brief: >
           The fetch size used for paging, i.e. how many rows will be returned at once.
         examples: [5000]
-      - id: cassandra.speculative_execution_count
+      - id: cassandra.speculative_execution.count
         type: int
         stability: development
         brief: >
