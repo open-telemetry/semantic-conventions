@@ -25,7 +25,7 @@ versions:
               db.cassandra.consistency_level: cassandra.consistency.level
               db.cassandra.idempotence: cassandra.idempotence
               db.cassandra.page_size: cassandra.page.size
-              db.cassandra.speculative_execution_count: cassandra.speculative_execution_count
+              db.cassandra.speculative_execution_count: cassandra.speculative_execution.count
               db.cosmosdb.client_id: azure.client.id
               db.cosmosdb.connection_mode: azure.cosmosdb.connection.mode
               db.cosmosdb.consistency_level: azure.cosmosdb.consistency.level

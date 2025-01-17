@@ -140,94 +140,94 @@ groups:
           members:
             - id: other_sql
               value: "other_sql"
-              brief: "Some other SQL database. Fallback only. See notes."
+              brief: "Some other SQL database. Fallback only."
               stability: development
             - id: software_ag.adabas
-              value: "software_ag.adabas"  # trademark on 'adabas'
-              brief: "Adabas (Adaptable Database System)"
+              value: "software_ag.adabas"
+              brief: "[Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas)"
               stability: development
             - id: actian.ingres
-              value: "actian.ingres"  # trademark on 'ingres'
+              value: "actian.ingres"
               brief: "[Actian Ingres](https://www.actian.com/databases/ingres/)"
               stability: development
             - id: aws.dynamodb
-              value: "aws.dynamodb"  # trademark on 'dynamodb'
+              value: "aws.dynamodb"
               brief: "[Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/)"
               stability: development
             - id: aws.redshift
               value: "aws.redshift"
-              brief: "Amazon Redshift"
-              stability: development  # trademark on 'amazon redshift'
+              brief: "[Amazon Redshift](https://aws.amazon.com/redshift/)"
+              stability: development
             - id: azure.cosmosdb
-              value: "azure.cosmosdb"  # trademark on 'azure cosmos db'
-              brief: "[Microsoft Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db)"
+              value: "azure.cosmosdb"
+              brief: "[Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db)"
               stability: development
             - id: intersystems.cache
-              value: "intersystems.cache"  # trademark on 'INTERSYSTEMS CACHÉ'
+              value: "intersystems.cache"
               brief: "[InterSystems Caché](https://www.intersystems.com/products/cache/)"
               stability: development
             - id: cassandra
-              value: "cassandra"  # trademark on 'cassandra'
+              value: "cassandra"
               brief: "[Apache Cassandra](https://cassandra.apache.org/)"
               stability: development
             - id: clickhouse
-              value: "clickhouse"  # no wordmark
+              value: "clickhouse"
               brief: "[ClickHouse](https://clickhouse.com/)"
               stability: development
             - id: cockroachdb
-              value: "cockroachdb"  # trademark on 'cockroachdb'
+              value: "cockroachdb"
               brief: "[CockroachDB](https://www.cockroachlabs.com/)"
               stability: development
             - id: couchbase
-              value: "couchbase"  # trademark on 'couchbase'
+              value: "couchbase"
               brief: "[Couchbase](https://www.couchbase.com/)"
               stability: development
             - id: couchdb
-              value: "couchdb"  # trademark on 'couchdb'
+              value: "couchdb"
               brief: "[Apache CouchDB](https://couchdb.apache.org/)"
               stability: development
             - id: derby
-              value: "derby"  # trademark on 'derby'
+              value: "derby"
               brief: "[Apache Derby](https://db.apache.org/derby/)"
               stability: development
             - id: elasticsearch
-              value: "elasticsearch"  # trademark on 'elasticsearch'
+              value: "elasticsearch"
               brief: "[Elasticsearch](https://www.elastic.co/elasticsearch)"
               stability: development
             - id: firebirdsql
-              value: "firebirdsql"  # no trademark
+              value: "firebirdsql"
               brief: "[Firebird](https://www.firebirdsql.org/)"
               stability: development
             - id: gcp.spanner
-              value: "gcp.spanner"  # trademark on 'cloud spanner'
+              value: "gcp.spanner"
               brief: "[Google Cloud Spanner](https://cloud.google.com/spanner)"
               stability: development
             - id: geode
-              value: "geode"  # trademark on 'geode'
+              value: "geode"
               brief: "[Apache Geode](https://geode.apache.org/)"
               stability: development
             - id: h2database
-              value: "h2database "  # no trademark
+              value: "h2database"
               brief: "[H2 Database](https://h2database.com/)"
               stability: development
             - id: hbase
-              value: "hbase"  # trademark on 'hbase'
+              value: "hbase"
               brief: "[Apache HBase](https://hbase.apache.org/)"
               stability: development
             - id: hive
-              value: "hive"  # trademark on 'hive'
+              value: "hive"
               brief: "[Apache Hive](https://hive.apache.org/)"
               stability: development
             - id: hsqldb
-              value: "hsqldb"  # no trademark
+              value: "hsqldb"
               brief: "[HyperSQL Database](https://hsqldb.org/)"
               stability: development
             - id: ibm.db2
-              value: "ibm.db2"  # trademark on 'db2'
+              value: "ibm.db2"
               brief: "[IBM Db2](https://www.ibm.com/db2)"
               stability: development
             - id: ibm.informix
-              value: "ibm.informix"  # trademark on 'informix'
+              value: "ibm.informix"
               brief: "[IBM Informix](https://www.ibm.com/products/informix)"
               stability: development
             - id: ibm.netezza
@@ -235,39 +235,39 @@ groups:
               brief: "[IBM Netezza](https://www.ibm.com/products/netezza)"  # trademark on 'netezza'
               stability: development
             - id: influxdb
-              value: "influxdb"  # trademark on 'influxdb'
+              value: "influxdb"
               brief: "[InfluxDB](https://www.influxdata.com/)"
               stability: development
             - id: instantdb
-              value: "instantdb"  # no trademark
+              value: "instantdb"
               brief: "[Instant](https://www.instantdb.com/)"
               stability: development
             - id: mariadb
-              value: "mariadb"  # trademark on 'mariadb'
+              value: "mariadb"
               brief: "[MariaDB](https://mariadb.org/)"
               stability: release_candidate
             - id: memcached
-              value: "memcached"  # no trademark
+              value: "memcached"
               brief: "[Memcached](https://memcached.org/)"
               stability: development
             - id: mongodb
-              value: "mongodb"  # trademark on 'mongodb'
+              value: "mongodb"
               brief: "[MongoDB](https://www.mongodb.com/)"
               stability: development
             - id: microsoft.sql_server
-              value: "microsoft.sql_server"  # trademark on 'SQL Server'
+              value: "microsoft.sql_server"
               brief: "[Microsoft SQL Server](https://www.microsoft.com/sql-server)"
               stability: release_candidate
             - id: mysql
-              value: "mysql"  # trademark on 'mysql'
+              value: "mysql"
               brief: "[MySQL](https://www.mysql.com/)"
               stability: release_candidate
             - id: neo4j
-              value: "neo4j"  # trademark on 'neo4j'
+              value: "neo4j"
               brief: "[Neo4j](https://neo4j.com/)"
               stability: development
             - id: opensearch
-              value: "opensearch"  # trademark on 'opensearch'
+              value: "opensearch"
               brief: "[OpenSearch](https://opensearch.org/)"
               stability: development
             - id: oracle.db
@@ -275,31 +275,31 @@ groups:
               brief: "[Oracle Database](https://www.oracle.com/database/)"
               stability: development
             - id: postgresql
-              value: "postgresql"  # trademark on 'postgresql'
+              value: "postgresql"
               brief: "[PostgreSQL](https://www.postgresql.org/)"
               stability: release_candidate
             - id: redis
-              value: "redis"  # trademark on 'redis'
+              value: "redis"
               brief: "[Redis](https://redis.io/)"
               stability: development
             - id: sap.hana
-              value: "sap.hana"  # trademark on 'sap hana'
+              value: "sap.hana"
               brief: "[SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html)"
               stability: development
             - id: sap.maxdb
-              value: "sap.maxdb"  # trademark on 'maxdb'
+              value: "sap.maxdb"
               brief: "[SAP MaxDB](https://maxdb.sap.com/)"
-              stability: development  # no trademark
+              stability: development
             - id: sqlite
-              value: "sqlite"  # trademark on 'sqlite'
+              value: "sqlite"
               brief: "[SQLite](https://www.sqlite.org/)"
               stability: development
             - id: teradata
-              value: "teradata"  # trademark on 'teradata'
+              value: "teradata"
               brief: "[Teradata](https://www.teradata.com/)"
               stability: development
             - id: trino
-              value: "trino"  # no trademark
+              value: "trino"
               brief: "[Trino](https://trino.io/)"
               stability: development
         stability: release_candidate
