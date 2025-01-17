@@ -38,8 +38,8 @@ versions:
               # does not support it, adding as a comment for consistency
               # db.elasticsearch.path_parts.<key> -> db.operation.parameter.<key>
         - rename_metrics:
-              db.client.cosmosdb.operation.request_charge: azure.cosmosdb.client.operation.request.charge
-              db.client.cosmosdb.active_instance.count: azure.cosmosdb.client.active_instance.count
+            db.client.cosmosdb.operation.request_charge: azure.cosmosdb.client.operation.request.charge
+            db.client.cosmosdb.active_instance.count: azure.cosmosdb.client.active_instance.count
 
   1.29.0:
     all:

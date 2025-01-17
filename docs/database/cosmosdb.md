@@ -13,7 +13,7 @@ linkTitle: Cosmos DB
   - [Example](#example)
   - [Operation Level Metrics](#operation-level-metrics)
     - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
-    - [Metric: `azure.cosmosdb.client.response.returned_rows`](#metric-azurecosmosdbclientresponsereturned_rows)
+    - [Metric: `db.client.response.returned_rows`](#metric-dbclientresponsereturned_rows)
     - [Metric: `azure.cosmosdb.client.operation.request_charge`](#metric-azurecosmosdbclientoperationrequest_charge)
     - [Metric: `azure.cosmosdb.client.active_instance.count`](#metric-azurecosmosdbclientactive_instancecount)
 
