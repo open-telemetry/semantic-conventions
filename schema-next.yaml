@@ -16,6 +16,10 @@ versions:
               code.filepath: code.file.path
               code.lineno: code.line.number
               code.column: code.column.number
+        # TODO
+        - rename_attributes:
+            attribute_map:
+              gen_ai.openai.request.response_format: gen_ai.request.response_format
   1.29.0:
     all:
       changes:

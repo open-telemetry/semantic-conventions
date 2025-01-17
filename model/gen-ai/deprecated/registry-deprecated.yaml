@@ -39,3 +39,22 @@ groups:
         deprecated: Replaced by `gen_ai.request.seed` attribute.
         brief: "Deprecated, use `gen_ai.request.seed`."
         examples: [100]
+      - id: gen_ai.openai.request.response_format
+        stability: experimental
+        type:
+          members:
+            - id: text
+              value: "text"
+              brief: 'Text response format'
+              stability: experimental
+            - id: json_object
+              value: "json_object"
+              brief: 'JSON object response format'
+              stability: experimental
+            - id: json_schema
+              value: "json_schema"
+              brief: 'JSON schema response format'
+              stability: experimental
+        brief: >
+          Deprecated, use `gen_ai.request.response_format`.
+        deprecated: "Replaced by `gen_ai.request.response_format`."

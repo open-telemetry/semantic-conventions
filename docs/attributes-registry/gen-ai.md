@@ -23,6 +23,7 @@ This document defines the attributes used to describe telemetry in the context o
 | <a id="gen-ai-request-max-tokens" href="#gen-ai-request-max-tokens">`gen_ai.request.max_tokens`</a> | int | The maximum number of tokens the model generates for a request. | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-model" href="#gen-ai-request-model">`gen_ai.request.model`</a> | string | The name of the GenAI model a request is being made to. | `gpt-4` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-presence-penalty" href="#gen-ai-request-presence-penalty">`gen_ai.request.presence_penalty`</a> | double | The presence penalty setting for the GenAI request. | `0.1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-request-response-format" href="#gen-ai-request-response-format">`gen_ai.request.response_format`</a> | string | The structured response format specified in the request. | `text`; `json_object`; `json_schema` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-seed" href="#gen-ai-request-seed">`gen_ai.request.seed`</a> | int | Requests with same seed value more likely to return same result. | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-stop-sequences" href="#gen-ai-request-stop-sequences">`gen_ai.request.stop_sequences`</a> | string[] | List of sequences that the model will use to stop generating further tokens. | `["forest", "lived"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-temperature" href="#gen-ai-request-temperature">`gen_ai.request.temperature`</a> | double | The temperature setting for the GenAI request. | `0.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -64,6 +65,16 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 ---
 
+`gen_ai.request.response_format` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `json_object` | JSON object response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `json_schema` | JSON schema response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `text` | Text response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
+
 `gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -90,28 +101,18 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | Value  | Description | Stability |
 |---|---|---|
 | `input` | Input tokens (prompt, input, etc.) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `output` | Output tokens (completion, response, etc.) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `output`. |
 | `output` | Output tokens (completion, response, etc.) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## OpenAI Attributes
 
-Thie group defines attributes for OpenAI.
+This group defines attributes for OpenAI.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="gen-ai-openai-request-response-format" href="#gen-ai-openai-request-response-format">`gen_ai.openai.request.response_format`</a> | string | The response format that is requested. | `json` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-openai-request-service-tier" href="#gen-ai-openai-request-service-tier">`gen_ai.openai.request.service_tier`</a> | string | The service tier requested. May be a specific tier, default, or auto. | `auto`; `default` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-openai-response-service-tier" href="#gen-ai-openai-response-service-tier">`gen_ai.openai.response.service_tier`</a> | string | The service tier used for the response. | `scale`; `default` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-openai-response-system-fingerprint" href="#gen-ai-openai-response-system-fingerprint">`gen_ai.openai.response.system_fingerprint`</a> | string | A fingerprint to track any eventual change in the Generative AI environment. | `fp_44709d6fcb` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
----
-
-`gen_ai.openai.request.response_format` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `json_object` | JSON object response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `json_schema` | JSON schema response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `text` | Text response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 
@@ -139,4 +140,15 @@ Describes deprecated `gen_ai.openai` attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
+| <a id="gen-ai-openai-request-response-format" href="#gen-ai-openai-request-response-format">`gen_ai.openai.request.response_format`</a> | string | Deprecated, use `gen_ai.request.response_format`. | `text`; `json_object`; `json_schema` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.request.response_format`. |
 | <a id="gen-ai-openai-request-seed" href="#gen-ai-openai-request-seed">`gen_ai.openai.request.seed`</a> | int | Deprecated, use `gen_ai.request.seed`. | `100` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.request.seed` attribute. |
+
+---
+
+`gen_ai.openai.request.response_format` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `json_object` | JSON object response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `json_schema` | JSON schema response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `text` | Text response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

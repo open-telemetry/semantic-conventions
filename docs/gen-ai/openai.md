@@ -39,7 +39,6 @@ attributes and ones specific the OpenAI.
 | [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `text_completion`; `embeddings` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the GenAI model a request is being made to. [2] | `gpt-4` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`gen_ai.openai.request.response_format`](/docs/attributes-registry/gen-ai.md) | string | The response format that is requested. | `json` | `Conditionally Required` if the request includes a response_format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.openai.request.service_tier`](/docs/attributes-registry/gen-ai.md) | string | The service tier requested. May be a specific tier, default, or auto. | `auto`; `default` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.openai.response.service_tier`](/docs/attributes-registry/gen-ai.md) | string | The service tier used for the response. | `scale`; `default` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.seed`](/docs/attributes-registry/gen-ai.md) | int | Requests with same seed value more likely to return same result. | `100` | `Conditionally Required` if appliable and if the request includes a seed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -86,16 +85,6 @@ Instrumentations SHOULD document the list of errors they report.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`gen_ai.openai.request.response_format` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `json_object` | JSON object response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `json_schema` | JSON schema response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `text` | Text response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 
