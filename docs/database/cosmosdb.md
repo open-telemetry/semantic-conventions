@@ -320,7 +320,7 @@ This metric is [required][MetricRequired].
 
 It captures the total time taken by an Azure Cosmos DB operation. This metric follows the common [db.client.operation.duration](/docs/database/database-metrics.md#metric-dbclientoperationduration) definition.
 
-Refer [azure.cosmosdb.client.operation.request_charge](#metric-azcosmosdbclientoperationrequest_charge) metrics for dimensions.
+Refer [azure.cosmosdb.client.operation.request_charge](#metric-azurecosmosdbclientoperationrequest_charge) metrics for dimensions.
 
 ### Metric: `azure.cosmosdb.client.response.returned_rows`
 
@@ -328,7 +328,7 @@ This metric is [required][MetricRequired].
 
 It captures the number of items returned by a query or feed operation in Azure Cosmos DB. It helps identify response sizes that may contribute to high latency, increased memory/CPU usage, or network call failures. This metric follows the common [db.client.response.returned_rows](/docs/database/database-metrics.md#metric-dbclientresponsereturned_rows) definition.
 
-Refer [azure.cosmosdb.client.operation.request_charge](#metric-azcosmosdbclientoperationrequest_charge) metrics for dimensions.
+Refer [azure.cosmosdb.client.operation.request_charge](#metric-azurecosmosdbclientoperationrequest_charge) metrics for dimensions.
 
 ### Metric: `azure.cosmosdb.client.operation.request_charge`
 
