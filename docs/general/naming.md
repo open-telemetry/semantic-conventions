@@ -401,7 +401,7 @@ Examples:
 - `signalr.connection.status` – Indicates the connection status of the SignalR
   network protocol.
 
-The value of the [`*.system.name`](#attributes-that-describe-system-name) (or similar)
+The value of the [`*.system.name`](#system-projectproductprovider-name-attribute) (or similar)
 attribute MUST match the root namespace used in the system specific attribute being defined.
 
 For example, both `cassandra.consistency.level` attribute name and `db.system.name=cassandra`
@@ -418,10 +418,10 @@ For example, `azure.cosmosdb.client.operation.request.charge`
 <!-- todo not yet - https://github.com/open-telemetry/semantic-conventions/pull/1711 -->
 <!-- update when https://github.com/open-telemetry/semantic-conventions/pull/1613 is merged -->
 
-The value of the [`*.system.name`](#attributes-that-describe-system-name) (or similar)
+The value of the [`*.system.name`](#system-projectproductprovider-name-attribute) (or similar)
 attribute MUST match system specific metric namespace.
 
-For example, both the `azure.cosmosdb.client.operation.request_charge` metric and the `db.system.name=azure.cosmosdb`
+For example, both the `azure.cosmosdb.client.operation.request.charge` metric and the `db.system.name=azure.cosmosdb`
 attribute use the same system name (`azure.cosmosdb`).
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
