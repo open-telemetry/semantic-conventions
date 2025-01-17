@@ -102,10 +102,11 @@ groups:
       - ref: gen_ai.usage.output_tokens
         brief: The number of tokens used in the completions from OpenAI.
 
-  - id: trace.gen_ai.az.ai.inference.client
+  - id: span.gen_ai.az.ai.inference.client
     extends: trace.gen_ai.client.common_attributes
     stability: development
     type: span
+    span_kind: client
     brief: >
       Describes Azure AI Inference span attributes.
     attributes:
