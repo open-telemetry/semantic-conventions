@@ -466,7 +466,7 @@ since users may not be aware that their labels are being used for this purpose.
 
 Each attribute has a priority order for how it should be calculated as described below.
 
-#### How `service.namespace` is calculated
+### How `service.namespace` is calculated
 
 Choose the first value found:
 
@@ -474,7 +474,7 @@ Choose the first value found:
 2. `pod.label[app.kubernetes.io/part-of]` (well-known label
    [app.kubernetes.io/part-of](https://kubernetes.io/docs/reference/labels-annotations-taints/#app-kubernetes-io-part-of))
 
-#### How `service.name` is calculated
+### How `service.name` is calculated
 
 Choose the first value found:
 
@@ -490,7 +490,7 @@ Choose the first value found:
 - `k8s.pod.name`
 - `k8s.container.name`
 
-#### How `service.version` is calculated
+### How `service.version` is calculated
 
 Choose the first value found:
 
@@ -499,10 +499,9 @@ Choose the first value found:
   [app.kubernetes.io/version](https://kubernetes.io/docs/reference/labels-annotations-taints/#app-kubernetes-io-version))
 - `if (contains(container docker image tag, '/') == false) container docker image tag`
 
-#### How `service.instance.id` is calculated
+### How `service.instance.id` is calculated
 
 Choose the first value found:
 
 - `pod.annotation[resource.opentelemetry.io/service.instance.id]`
 - `concat([k8s.namespace.name, k8s.pod.name, k8s.container.name], '.')`
-
