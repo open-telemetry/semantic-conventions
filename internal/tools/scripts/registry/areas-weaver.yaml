@@ -1,7 +1,7 @@
 templates:
   - pattern: areas.md.j2
     filter: >
-      semconv_grouped_attributes({"exclude_deprecated": true}) | .[].root_namespace | unique
+      semconv_grouped_attributes({"exclude_deprecated": true}) | .[].root_namespace
     application_mode: single
 whitespace_control:
   trim_blocks: true
