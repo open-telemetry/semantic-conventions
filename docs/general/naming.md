@@ -323,7 +323,7 @@ instrument creation, but can be added if there is ambiguity.
 
 ### Client and Server Metrics
 
-Metrics that measure some aspect of a physical or logical network calls SHOULD include
+Metrics that measure some aspect of a physical or logical network call SHOULD include
 an indication of the side metric being recorded.
 
 Such metrics SHOULD follow the `{area}.{client|server}.{metric_name}`
@@ -368,7 +368,8 @@ When adding new system to the semantic conventions, follow these principles in d
 2. The system name SHOULD unambiguously identify this specific product or project.
 
    For example, use `gcp.pubsub` or `oracle.db`. Avoid generic names like `pubsub`,
-   which could refer to multiple messaging products, or `oracle` which lacks specificity.
+   which could refer to multiple messaging products, or `oracle` which could refer to
+   multiple Oracle products.
 
 3. The system name SHOULD match the corresponding project or product name in the following cases:
 
@@ -381,7 +382,7 @@ When adding new system to the semantic conventions, follow these principles in d
 
 3. In other cases, the system name SHOULD be prefixed with the company (organization,
    division, or group) name. For cloud services, the name SHOULD use the
-   corresponding cloud provider name. For example, use `ibm.db2` or `aws.dynamodb`.
+   corresponding cloud provider name. For example, use `aws.dynamodb` or `azure.cosmosdb`.
 
    The company (organization, division, or group) name SHOULD remain consistent
    across multiple product names in different semantic convention areas.
@@ -408,11 +409,11 @@ For example, both `cassandra.consistency.level` attribute name and `db.system.na
 
 ### System-specific Metrics
 
-When a metric is specific to a system (project, provider, product) in a given area,
+When a metric is specific to a system (project, provider, product),
 the system name should be included in the instrument name following the
 `{system_name}.*.{metric_name}` pattern.
 
-For example, `azure.cosmosdb.client.operation.request_charge`
+For example, `azure.cosmosdb.client.operation.request.charge`
 
 <!-- todo not yet - https://github.com/open-telemetry/semantic-conventions/pull/1711 -->
 <!-- update when https://github.com/open-telemetry/semantic-conventions/pull/1613 is merged -->
@@ -420,7 +421,7 @@ For example, `azure.cosmosdb.client.operation.request_charge`
 The value of the [`*.system.name`](#attributes-that-describe-system-name) (or similar)
 attribute MUST match system specific metric namespace.
 
-For example, both `azure.cosmosdb.client.operation.request_charge` metric and `db.system.name=azure.cosmosdb`
+For example, both the `azure.cosmosdb.client.operation.request_charge` metric and the `db.system.name=azure.cosmosdb`
 attribute use the same system name (`azure.cosmosdb`).
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
