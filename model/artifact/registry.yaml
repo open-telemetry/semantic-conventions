@@ -91,7 +91,7 @@ groups:
         stability: experimental
         brief: >
           The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
-          of the built attestation. Some envelopes in the software attestation
-          space also refer to this as the [digest](https://github.com/in-toto/attestation/blob/main/spec/README.md#in-toto-attestation-framework-spec).
+          of the built attestation. Some envelopes in the [software attestation
+          space](https://github.com/in-toto/attestation/tree/main/spec) also refer to this as the **digest**.
         examples:
           ["1b31dfcd5b7f9267bf2ff47651df1cfb9147b9e4df1f335accf65b4cda498408"]

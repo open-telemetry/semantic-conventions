@@ -148,6 +148,9 @@ groups:
           represented as a string.
         note: >
           Microsoft SQL Server does not report SQLSTATE.
+
+          Instrumentations SHOULD use [error severity](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-error-severities)
+          returned along with the status code to determine the status of the span. Response codes with severity 11 or higher SHOULD be considered errors.
         examples: ["102", "40020"]
 
   - id: span.db.postgresql.client
@@ -183,8 +186,10 @@ groups:
       - ref: db.response.status_code
         brief: >
           [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html).
+        note: >
+          PostgreSQL follows SQL standard conventions for [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE).
+          Response codes of "Class 02" or higher SHOULD be considered errors.
         examples: ["08000", "08P01"]
-
   - id: span.db.mysql.client
     type: span
     stability: experimental
@@ -209,7 +214,10 @@ groups:
         examples: ["products", "customers"]
       - ref: db.response.status_code
         brief: >
-          [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html).
+          [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html) recorded as a string.
+        note: >
+          MySQL error codes are vendor specific error codes and don't follow [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE)
+          conventions. All MySQL error codes SHOULD be considered errors.
         examples: ["1005", "MY-010016"]
 
   - id: span.db.mariadb.client
@@ -238,8 +246,18 @@ groups:
         brief: >
           [Maria DB error code](https://mariadb.com/kb/en/mariadb-error-code-reference/)
           represented as a string.
-        examples: ["1008", "3058"]
+        note: >
+          MariaDB uses vendor-specific error codes on all errors and reports
+          [SQLSTATE](https://mariadb.com/kb/en/sqlstate/) in some cases.
 
+          MariaDB error codes are more granular than SQLSTATE, so MariaDB instrumentations
+          SHOULD set the `db.response.status_code` to this known error code.
+
+          When SQLSTATE is available, SQLSTATE of "Class 02" or higher SHOULD be
+          considered errors. When SQLSTATE is not available, all MariaDB error
+          codes SHOULD be considered errors.
+
+        examples: ["1008", "3058"]
   - id: span.db.cassandra.client
     type: span
     span_kind: client
@@ -274,6 +292,8 @@ groups:
       - ref: db.response.status_code
         brief: >
           [Cassandra protocol error code](https://github.com/apache/cassandra/blob/cassandra-5.0/doc/native_protocol_v5.spec) represented as a string.
+        note: >
+          All Cassandra protocol error codes SHOULD be considered errors.
         examples: ["102", "40020"]
   - id: span.db.hbase.client
     type: span
@@ -302,7 +322,7 @@ groups:
           conditionally_required: If readily available.
       - ref: db.response.status_code
         brief: >
-          Protocol-specific response code recorded as string.
+          Protocol-specific response code recorded as a string.
         examples: ["200", "409", "14"]
         requirement_level:
           conditionally_required: If response was received.
@@ -334,7 +354,9 @@ groups:
         note: ""  # overriding the base note
       - ref: db.response.status_code
         brief: >
-          The HTTP response code returned by the Couch DB.
+          The HTTP response code returned by the Couch DB recorded as a string.
+        note: >
+          HTTP response codes in the 4xx and 5xx range SHOULD be considered errors.
         examples: ["200", "201", "429"]
         requirement_level:
           conditionally_required: If response was received and the HTTP response code is available.
@@ -395,6 +417,8 @@ groups:
         brief: >
           The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix.
         examples: ["ERR", "WRONGTYPE", "CLUSTERDOWN"]
+        note: >
+          All Redis error prefixes SHOULD be considered errors.
       - ref: db.operation.batch.size
       - ref: db.operation.parameter
         requirement_level: opt_in
@@ -434,6 +458,8 @@ groups:
       - ref: db.response.status_code
         brief: >
           [MongoDB error code](https://www.mongodb.com/docs/manual/reference/error-codes/) represented as a string.
+        note: >
+          All MongoDB error codes SHOULD be considered errors.
         requirement_level:
           conditionally_required: If the operation failed and error code is available.
         examples: ["36", "11602"]
@@ -492,6 +518,8 @@ groups:
         brief: >
           The HTTP response code returned by the Elasticsearch cluster.
         examples: ["200", "201", "429"]
+        note: >
+          HTTP response codes in the 4xx and 5xx range SHOULD be considered errors.
         requirement_level:
           conditionally_required: If response was received.
   - id: span.db.sql.client
@@ -528,7 +556,7 @@ groups:
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
       - ref: db.response.status_code
         brief: >
-          Database response code recorded as string.
+          Database response code recorded as a string.
         note: |
           SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
           return code which is adopted by some database systems like PostgreSQL.
@@ -607,6 +635,8 @@ groups:
         brief: >
           Cosmos DB status code.
         examples: ["200", "201"]
+        note: >
+          Response codes in the 4xx and 5xx range SHOULD be considered errors.
         requirement_level:
           conditionally_required: if response was received
       - ref: db.response.returned_rows

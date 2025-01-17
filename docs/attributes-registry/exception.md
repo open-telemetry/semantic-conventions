@@ -6,30 +6,23 @@
 
 # Exception
 
+- [Exception Attributes](#exception-attributes)
+- [Deprecated Exception Attributes](#deprecated-exception-attributes)
+
 ## Exception Attributes
 
 This document defines the shared attributes used to report a single exception associated with a span or log.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="exception-escaped" href="#exception-escaped">`exception.escaped`</a> | boolean | SHOULD be set to true if the exception event is recorded at a point where it is known that the exception is escaping the scope of the span. [1] |  | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="exception-message" href="#exception-message">`exception.message`</a> | string | The exception message. | `Division by zero`; `Can't convert 'int' object to str implicitly` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="exception-stacktrace" href="#exception-stacktrace">`exception.stacktrace`</a> | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="exception-type" href="#exception-type">`exception.type`</a> | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. | `java.net.ConnectException`; `OSError` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `exception.escaped`:** An exception is considered to have escaped (or left) the scope of a span,
-if that span is ended while the exception is still logically "in flight".
-This may be actually "in flight" in some languages (e.g. if the exception
-is passed to a Context manager's `__exit__` method in Python) but will
-usually be caught at the point of recording the exception in most languages.
+## Deprecated Exception Attributes
 
-It is usually not possible to determine at the point where an exception is thrown
-whether it will escape the scope of a span.
-However, it is trivial to know that an exception
-will escape, if one checks for an active exception just before ending the span,
-as done in the [example for recording span exceptions](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-spans/#recording-an-exception).
+Deprecated exception attributes.
 
-It follows that an exception may still escape the scope of the span
-even if the `exception.escaped` attribute was not set or set to false,
-since the event might have been recorded at a time where it was not
-clear whether the exception will escape.
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="exception-escaped" href="#exception-escaped">`exception.escaped`</a> | boolean | Indicates that the exception is escaping the scope of the span. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>It's no longer recommended to record exceptions that are handled and do not escape the scope of a span. |

@@ -49,41 +49,7 @@ Instrumentation SHOULD document if `db.namespace` reflects the user provided whe
 
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[2] `db.response.status_code`:** SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
-return code which is adopted by some database systems like PostgreSQL.
-See [PostgreSQL error codes](https://www.postgresql.org/docs/current/errcodes-appendix.html)
-for the details.
-
-Other systems like MySQL, Oracle, or MS SQL Server define vendor-specific
-error codes. Database SQL drivers usually provide access to both properties.
-For example, in Java, the [`SQLException`](https://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html)
-class reports them with `getSQLState()` and `getErrorCode()` methods.
-
-Instrumentations SHOULD populate the `db.response.status_code` with the
-the most specific code available to them.
-
-Here's a non-exhaustive list of databases that report vendor-specific
-codes with granularity higher than SQLSTATE (or don't report SQLSTATE
-at all):
-
-- [DB2 SQL codes](https://www.ibm.com/docs/db2-for-zos/12?topic=codes-sql).
-- [Maria DB error codes](https://mariadb.com/kb/en/mariadb-error-code-reference/)
-- [Microsoft SQL Server errors](https://docs.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors)
-- [MySQL error codes](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html)
-- [Oracle error codes](https://docs.oracle.com/cd/B28359_01/server.111/b28278/toc.htm)
-- [SQLite result codes](https://www.sqlite.org/rescode.html)
-
-These systems SHOULD set the `db.response.status_code` to a
-known vendor-specific error code. If only SQLSTATE is available,
-it SHOULD be used.
-
-When multiple error codes are available and specificity is unclear,
-instrumentation SHOULD set the `db.response.status_code` to the
-concatenated string of all codes with '/' used as a separator.
-
-For example, generic DB instrumentation that detected an error and has
-SQLSTATE `"42000"` and vendor-specific `1071` should set
-`db.response.status_code` to `"42000/1071"`."
+**[2] `db.response.status_code`:** PostgreSQL follows SQL standard conventions for [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE). Response codes of "Class 02" or higher SHOULD be considered errors.
 
 **[3] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
