@@ -1,0 +1,4 @@
+change_type: breaking
+component: gen-ai
+note: "Rename `gen-ai.openai.request.response_format` to `gen-ai.request.response_format`"
+issues: [1757]
