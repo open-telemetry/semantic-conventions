@@ -32,6 +32,7 @@ requirements and recommendations.
   - [Auto formatting](#auto-formatting)
   - [Markdown style](#markdown-style)
   - [Misspell check](#misspell-check)
+  - [Update the tables of content](#update-the-tables-of-content)
   - [Markdown link check](#markdown-link-check)
 - [Updating the referenced specification version](#updating-the-referenced-specification-version)
 - [Making a Release](#making-a-release)
@@ -343,6 +344,7 @@ You can also run these fixes individually.
 See:
 
 - [Misspell Correction](#misspell-check)
+- [Update the tables of content](#update-the-tables-of-content)
 - [Update the markdown files](#2-update-the-markdown-files)
 
 ### Markdown style
@@ -387,6 +389,14 @@ To quickly fix typos, use
 
 ```bash
 make misspell-correction
+```
+
+### Update the tables of content
+
+To update the tables of content, run:
+
+```bash
+make markdown-toc
 ```
 
 ### Markdown link check
