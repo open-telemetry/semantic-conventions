@@ -8,15 +8,15 @@
 
 ## Cassandra Attributes
 
-This group defines attributes for Cassandra.
+This section defines attributes for Cassandra.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="cassandra-consistency-level" href="#cassandra-consistency-level">`cassandra.consistency.level`</a> | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all`; `each_quorum`; `quorum` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cassandra-coordinator-dc" href="#cassandra-coordinator-dc">`cassandra.coordinator.dc`</a> | string | The data center of the coordinating node for a query. | `us-west-2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cassandra-coordinator-id" href="#cassandra-coordinator-id">`cassandra.coordinator.id`</a> | string | The ID of the coordinating node for a query. | `be13faa2-8574-4d71-926d-27f16cf8a7af` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="cassandra-idempotence" href="#cassandra-idempotence">`cassandra.idempotence`</a> | boolean | Whether or not the query is idempotent. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cassandra-page-size" href="#cassandra-page-size">`cassandra.page.size`</a> | int | The fetch size used for paging, i.e. how many rows will be returned at once. | `5000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="cassandra-query-is-idempotent" href="#cassandra-query-is-idempotent">`cassandra.query.is_idempotent`</a> | boolean | Whether or not the query is idempotent. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cassandra-speculative-execution-count" href="#cassandra-speculative-execution-count">`cassandra.speculative_execution.count`</a> | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---

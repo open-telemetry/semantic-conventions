@@ -3,7 +3,7 @@ groups:
     type: attribute_group
     display_name: Elasticsearch Attributes
     brief: >
-      This group defines attributes for Elasticsearch.
+      This section defines attributes for Elasticsearch.
     attributes:
       - id: elasticsearch.node.name
         type: string

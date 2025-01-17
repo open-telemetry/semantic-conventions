@@ -3,7 +3,7 @@ groups:
     type: attribute_group
     display_name: Cassandra Attributes
     brief: >
-      This group defines attributes for Cassandra.
+      This section defines attributes for Cassandra.
     attributes:
       - id: cassandra.coordinator.dc
         type: string
@@ -56,7 +56,7 @@ groups:
               value: "local_serial"
               stability: development
         stability: development
-      - id: cassandra.idempotence
+      - id: cassandra.query.is_idempotent
         type: boolean
         stability: development
         brief: >

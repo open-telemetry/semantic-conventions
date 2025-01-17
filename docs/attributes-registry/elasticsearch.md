@@ -8,7 +8,7 @@
 
 ## Elasticsearch Attributes
 
-This group defines attributes for Elasticsearch.
+This section defines attributes for Elasticsearch.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|

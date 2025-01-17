@@ -8,7 +8,7 @@ linkTitle: SQL
 
 The SQL databases Semantic Conventions describes how common [Database Semantic Conventions](database-spans.md) apply to SQL databases.
 
-The following database systems (defined in the [`db.system.name`](./database-spans.md#notes-and-well-known-identifiers-for-dbsystem) set) are known to use SQL as their primary query language:
+The following database systems (defined in the [`db.system.name`](./database-spans.md#notes-and-well-known-identifiers-for-dbsystemname) set) are known to use SQL as their primary query language:
 
 - `cockroachdb`
 - `db2`
