@@ -112,8 +112,8 @@ groups:
   - id: metric.db.client.cosmosdb.operation.request_charge
     type: metric
     metric_name: db.client.cosmosdb.operation.request_charge
-    brief: "Deprecated, use `az.cosmosdb.client.request.charge` instead."
-    deprecated: "Replaced by `az.cosmosdb.client.request.charge`."
+    brief: "Deprecated, use `azure.cosmosdb.client.request.charge` instead."
+    deprecated: "Replaced by `azure.cosmosdb.client.request.charge`."
     instrument: histogram
     unit: "{request_unit}"
     stability: experimental
@@ -145,8 +145,8 @@ groups:
   - id: metric.db.client.cosmosdb.active_instance.count
     type: metric
     metric_name: db.client.cosmosdb.active_instance.count
-    brief: "Deprecated, use `az.cosmosdb.client.active_instance.count` instead."
-    deprecated: "Replaced by `az.cosmosdb.client.active_instance.count`."
+    brief: "Deprecated, use `azure.cosmosdb.client.active_instance.count` instead."
+    deprecated: "Replaced by `azureus.cosmosdb.client.active_instance.count`."
     instrument: updowncounter
     unit: "{instance}"
     stability: experimental
