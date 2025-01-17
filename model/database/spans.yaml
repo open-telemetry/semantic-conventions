@@ -276,7 +276,7 @@ groups:
       - ref: cassandra.consistency.level
       - ref: db.collection.name
         brief: The name of the Cassandra table that the operation is acting upon.
-      - ref: cassandra.query.is_idempotent
+      - ref: cassandra.query.idempotent
       - ref: cassandra.speculative_execution.count
       - ref: cassandra.coordinator.id
       - ref: cassandra.coordinator.dc
