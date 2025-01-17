@@ -63,13 +63,13 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `aws_elastic_beanstalk` | AWS Elastic Beanstalk | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws_lambda` | AWS Lambda | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws_openshift` | Red Hat OpenShift on AWS (ROSA) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.aks` | Azure Kubernetes Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.app_service` | Azure App Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.container_apps` | Azure Container Apps | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.container_instances` | Azure Container Instances | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.functions` | Azure Functions | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.openshift` | Azure Red Hat OpenShift | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.vm` | Azure Virtual Machines | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure.aks` | Azure Kubernetes Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure.app_service` | Azure App Service | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure.container_apps` | Azure Container Apps | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure.container_instances` | Azure Container Instances | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure.functions` | Azure Functions | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure.openshift` | Azure Red Hat OpenShift | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure.vm` | Azure Virtual Machines | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gcp_app_engine` | Google Cloud App Engine (GAE) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gcp_bare_metal_solution` | Google Bare Metal Solution (BMS) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gcp_cloud_functions` | Google Cloud Functions (GCF) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

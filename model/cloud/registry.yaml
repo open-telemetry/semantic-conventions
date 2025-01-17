@@ -145,34 +145,69 @@ groups:
               value: 'aws_openshift'
               brief: Red Hat OpenShift on AWS (ROSA)
               stability: experimental
-            - id: az.vm
-              value: 'az.vm'
+            - id: azure.vm
+              value: 'azure.vm'
               brief: Azure Virtual Machines
-              stability: experimental
-            - id: az.container_apps
-              value: 'az.container_apps'
+              stability: development
+            - id: azure.container_apps
+              value: 'azure.container_apps'
               brief: Azure Container Apps
-              stability: experimental
-            - id: az.container_instances
-              value: 'az.container_instances'
+              stability: development
+            - id: azure.container_instances
+              value: 'azure.container_instances'
               brief: Azure Container Instances
-              stability: experimental
-            - id: az.aks
-              value: 'az.aks'
+              stability: development
+            - id: azure.aks
+              value: 'azure.aks'
               brief: Azure Kubernetes Service
-              stability: experimental
-            - id: az.functions
-              value: 'az.functions'
+              stability: development
+            - id: azure.functions
+              value: 'azure.functions'
               brief: Azure Functions
-              stability: experimental
-            - id: az.app_service
-              value: 'az.app_service'
+              stability: development
+            - id: azure.app_service
+              value: 'azure.app_service'
               brief: Azure App Service
-              stability: experimental
-            - id: az.openshift
-              value: 'az.openshift'
+              stability: development
+            - id: azure.openshift
+              value: 'azure.openshift'
               brief: Azure Red Hat OpenShift
-              stability: experimental
+              stability: development
+            - id: azure_vm
+              value: 'azure_vm'
+              brief: Azure Virtual Machines
+              stability: development
+              deprecated: "Replaced by `azure.vm`"
+            - id: azure_container_apps
+              value: 'azure_container_apps'
+              brief: Azure Container Apps
+              stability: development
+              deprecated: "Replaced by `azure.container_apps`"
+            - id: azure_container_instances
+              value: 'azure_container_instances'
+              brief: Azure Container Instances
+              stability: development
+              deprecated: "Replaced by `azure.container_instances`"
+            - id: azure_aks
+              value: 'azure_aks'
+              brief: Azure Kubernetes Service
+              stability: development
+              deprecated: "Replaced by `azure.aks`"
+            - id: azure_functions
+              value: 'azure_functions'
+              brief: Azure Functions
+              stability: development
+              deprecated: "Replaced by `azure.functions`"
+            - id: azure_app_service
+              value: 'azure_app_service.app_service'
+              brief: Azure App Service
+              stability: development
+              deprecated: "Replaced by `azure.app_service`"
+            - id: azure_openshift
+              value: 'azure_openshift'
+              brief: Azure Red Hat OpenShift
+              stability: development
+              deprecated: "Replaced by `azure.openshift`"
             - id: gcp_bare_metal_solution
               value: 'gcp_bare_metal_solution'
               brief: Google Bare Metal Solution (BMS)
