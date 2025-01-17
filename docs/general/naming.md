@@ -28,7 +28,7 @@ aliases: [attribute-naming]
   - [Instrument Naming](#instrument-naming)
   - [Client and Server Metrics](#client-and-server-metrics)
 - [System-specific naming](#system-specific-naming)
-  - [System (project/product/provider) name](#system-projectproductprovider-name)
+  - [System (project/product/provider) name attribute](#system-projectproductprovider-name-attribute)
   - [Choosing a System Name](#choosing-a-system-name)
   - [System-specific Attributes](#system-specific-attributes)
   - [System-specific Metrics](#system-specific-metrics)
@@ -276,6 +276,8 @@ be confusing in delta backends.
 
 **Status**: [Development][DocumentStatus]
 
+**Status**: [Experimental][DocumentStatus]
+
 - **limit** - an instrument that measures the constant, known total amount of
 something should be called `entity.limit`. For example, `system.memory.limit`
 for the total amount of memory on a system.
@@ -342,7 +344,7 @@ Examples:
 
 **Status**: [Development][DocumentStatus]
 
-### System (project/product/provider) name
+### System (project/product/provider) name attribute
 
 Semantic conventions for a certain area are usually applicable to multiple systems
 (projects, providers, products).
@@ -358,7 +360,7 @@ For example, database conventions include the `db.system.name` attribute.
 
 ### Choosing a System Name
 
-When adding new system name, follow these principles in descending order of priority:
+When adding new system to the semantic conventions, follow these principles in descending order of priority:
 
 1. The system name SHOULD adhere to the general attribute naming guidelines outlined in this document,
    as it will be used as a namespace in [system-specific attribute names](#system-specific-attributes).
@@ -374,14 +376,14 @@ When adding new system name, follow these principles in descending order of prio
      `kafka` or `cassandra`.
    - Products with names similar to the owning company, such as `mongodb` or `elasticsearch`
    - Widely recognized products that are popular outside their company's ecosystem.
-     These products often have trademarks without the company name and may have
+     These products often have trademarks without the company name and have
      their own top-level domain (e.g. `spring` or `mysql`).
 
 3. In other cases, the system name SHOULD be prefixed with the company (organization,
    division, or group) name. For cloud services, the name SHOULD use the
-   corresponding cloud provider prefix. For example, use `ibm.db2` or `aws.dynamodb`.
+   corresponding cloud provider name. For example, use `ibm.db2` or `aws.dynamodb`.
 
-   The company (organization, division, or group) naming SHOULD remain consistent
+   The company (organization, division, or group) name SHOULD remain consistent
    across multiple product names in different semantic convention areas.
 
 ### System-specific Attributes
