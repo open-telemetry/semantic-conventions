@@ -1,7 +1,7 @@
 groups:
   - id: trace.gen_ai.client.common_attributes
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: >
       Describes GenAI operation span.
     attributes:
@@ -31,6 +31,9 @@ groups:
           conditionally_required: if appliable and if the request includes a seed
       - ref: gen_ai.request.encoding_formats
         requirement_level: recommended
+      - ref: gen_ai.request.response_format
+        requirement_level:
+          conditionally_required: when applicable and if the request includes a response_format
       - ref: gen_ai.response.id
         requirement_level: recommended
       - ref: gen_ai.response.model
@@ -72,9 +75,6 @@ groups:
         requirement_level: required
       - ref: gen_ai.request.top_k
         requirement_level: recommended
-      - ref: gen_ai.request.response_format
-        requirement_level:
-          conditionally_required: if the request includes a response_format
     events:
       - gen_ai.content.prompt
       - gen_ai.content.completion
@@ -83,6 +83,7 @@ groups:
     extends: trace.gen_ai.client.common_attributes
     stability: development
     span_kind: client
+    type: span
     brief: >
       Describes an OpenAI operation span.
     attributes:
@@ -103,8 +104,8 @@ groups:
 
   - id: trace.gen_ai.az.ai.inference.client
     extends: trace.gen_ai.client.common_attributes
-    stability: experimental
-    type: attribute_group
+    stability: development
+    type: span
     brief: >
       Describes Azure AI Inference span attributes.
     attributes:
