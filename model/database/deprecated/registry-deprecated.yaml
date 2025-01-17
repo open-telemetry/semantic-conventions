@@ -211,8 +211,8 @@ groups:
       - id: db.cassandra.idempotence
         type: boolean
         stability: experimental
-        brief: "Deprecated, use `cassandra.idempotence` instead."
-        deprecated: "Replaced by `cassandra.idempotence`."
+        brief: "Deprecated, use `cassandra.query.is_idempotent` instead."
+        deprecated: "Replaced by `cassandra.query.is_idempotent`."
       - id: db.cassandra.page_size
         type: int
         stability: experimental
@@ -287,8 +287,8 @@ groups:
       - id: db.cosmosdb.regions_contacted
         type: string[]
         stability: experimental
-        brief: "Deprecated, use `azure.cosmosdb.request.regions_contacted` instead."
-        deprecated: "Replaced by `azure.cosmosdb.request.regions_contacted`."
+        brief: "Deprecated, use `azure.cosmosdb.request.contacted_regions` instead."
+        deprecated: "Replaced by `azure.cosmosdb.request.contacted_regions`."
         examples:
           - ["North Central US", "Australia East", "Australia Southeast"]
       - id: db.elasticsearch.node.name

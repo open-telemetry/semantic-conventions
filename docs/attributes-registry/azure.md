@@ -11,7 +11,7 @@
 
 ## Azure Client Library Attributes
 
-This document defines generic attributes used by Azure Client Libraries.
+This section defines generic attributes used by Azure Client Libraries.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
@@ -21,7 +21,7 @@ This document defines generic attributes used by Azure Client Libraries.
 
 ## Azure Cosmos DB Attributes
 
-This group defines attributes for Azure Cosmos DB.
+This section defines attributes for Azure Cosmos DB.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
@@ -29,10 +29,10 @@ This group defines attributes for Azure Cosmos DB.
 | <a id="azure-cosmosdb-consistency-level" href="#azure-cosmosdb-consistency-level">`azure.cosmosdb.consistency.level`</a> | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="azure-cosmosdb-request-body-size" href="#azure-cosmosdb-request-body-size">`azure.cosmosdb.request.body.size`</a> | int | Request payload size in bytes. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="azure-cosmosdb-request-charge" href="#azure-cosmosdb-request-charge">`azure.cosmosdb.request.charge`</a> | double | Request units consumed for the operation. | `46.18`; `1.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="azure-cosmosdb-request-regions-contacted" href="#azure-cosmosdb-request-regions-contacted">`azure.cosmosdb.request.regions_contacted`</a> | string[] | List of regions contacted during operation in the order that they were contacted. If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call. [1] | `["North Central US", "Australia East", "Australia Southeast"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="azure-cosmosdb-request-contacted-regions" href="#azure-cosmosdb-request-contacted-regions">`azure.cosmosdb.request.contacted_regions`</a> | string[] | List of regions contacted during operation in the order that they were contacted. If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call. [1] | `["North Central US", "Australia East", "Australia Southeast"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="azure-cosmosdb-response-sub-status-code" href="#azure-cosmosdb-response-sub-status-code">`azure.cosmosdb.response.sub_status_code`</a> | int | Cosmos DB sub status code. | `1000`; `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `azure.cosmosdb.request.regions_contacted`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
+**[1] `azure.cosmosdb.request.contacted_regions`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
 
 ---
 

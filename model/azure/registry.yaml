@@ -3,7 +3,7 @@ groups:
     type: attribute_group
     display_name: Azure Client Library Attributes
     brief: >
-      This document defines generic attributes used by Azure Client Libraries.
+      This section defines generic attributes used by Azure Client Libraries.
     attributes:
       - id: az.service_request_id
         type: string
@@ -28,7 +28,7 @@ groups:
     display_name: Azure Cosmos DB Attributes
     stability: development
     brief: >
-      This group defines attributes for Azure Cosmos DB.
+      This section defines attributes for Azure Cosmos DB.
     attributes:
       - id: azure.cosmosdb.connection.mode
         type:
@@ -52,7 +52,7 @@ groups:
         type: int
         stability: development
         brief: Request payload size in bytes.
-      - id: azure.cosmosdb.request.regions_contacted
+      - id: azure.cosmosdb.request.contacted_regions
         type: string[]
         stability: development
         brief: >
