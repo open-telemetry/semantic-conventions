@@ -36,7 +36,7 @@ versions:
               db.elasticsearch.node.name: elasticsearch.node.name
               # db.elasticsearch.path_parts is a template attribute, schema transformation
               # does not support it, adding as a comment for consistency
-              # db.elasticsearch.path_parts.<key> -> elasticsearch.path_parts.<key>
+              # db.elasticsearch.path_parts.<key> -> db.operation.parameter.<key>
         - rename_metrics:
               db.client.cosmosdb.operation.request_charge: azure.cosmosdb.client.operation.request.charge
               db.client.cosmosdb.active_instance.count: azure.cosmosdb.client.active_instance.count
