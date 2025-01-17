@@ -1,0 +1,9 @@
+change_type: enhancement
+
+component: k8s
+
+note: How to populate resource attributes based on attributes, labels and transformation
+
+issues: [236]
+
+subtext:
