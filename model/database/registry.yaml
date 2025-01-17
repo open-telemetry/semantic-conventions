@@ -142,8 +142,8 @@ groups:
               value: "other_sql"
               brief: "Some other SQL database. Fallback only."
               stability: development
-            - id: software_ag.adabas
-              value: "software_ag.adabas"
+            - id: softwareag.adabas
+              value: "softwareag.adabas"
               brief: "[Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas)"
               stability: development
             - id: actian.ingres
@@ -232,7 +232,7 @@ groups:
               stability: development
             - id: ibm.netezza
               value: "ibm.netezza"
-              brief: "[IBM Netezza](https://www.ibm.com/products/netezza)"  # trademark on 'netezza'
+              brief: "[IBM Netezza](https://www.ibm.com/products/netezza)"
               stability: development
             - id: influxdb
               value: "influxdb"
