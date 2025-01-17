@@ -332,6 +332,7 @@ Otherwise, when a specific communication side is implied by given `{area}` or
 `{metric_name}`, the `{area}.{metric_name}` pattern SHOULD be used.
 
 Examples:
+
 - `http.client.request.duration`
 - `gen_ai.server.request.duration`
 - `messaging.client.sent.messages`
@@ -380,7 +381,7 @@ When adding new system to the semantic conventions, follow these principles in d
      These products often have trademarks without the company name and have
      their own top-level domain (e.g. `spring` or `mysql`).
 
-3. In other cases, the system name SHOULD be prefixed with the company (organization,
+4. In other cases, the system name SHOULD be prefixed with the company (organization,
    division, or group) name. For cloud services, the name SHOULD use the
    corresponding cloud provider name. For example, use `aws.dynamodb` or `azure.cosmosdb`.
 
