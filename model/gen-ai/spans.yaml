@@ -61,7 +61,7 @@ groups:
           Instrumentations SHOULD document the list of errors they report.
   - id: span.gen_ai.client
     type: span
-    stability: experimental
+    stability: development
     span_kind: client
     brief: >
       Describes GenAI operation span.
@@ -72,22 +72,22 @@ groups:
         requirement_level: required
       - ref: gen_ai.request.top_k
         requirement_level: recommended
+      - ref: gen_ai.request.response_format
+        requirement_level:
+          conditionally_required: if the request includes a response_format
     events:
       - gen_ai.content.prompt
       - gen_ai.content.completion
 
   - id: span.gen_ai.openai.client
     extends: trace.gen_ai.client.common_attributes
-    stability: experimental
+    stability: development
     span_kind: client
     brief: >
       Describes an OpenAI operation span.
     attributes:
       - ref: gen_ai.request.model
         requirement_level: required
-      - ref: gen_ai.openai.request.response_format
-        requirement_level:
-          conditionally_required: if the request includes a response_format
       - ref: gen_ai.openai.request.service_tier
         requirement_level:
           conditionally_required: if the request includes a service_tier and the value is not 'auto'
