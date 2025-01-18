@@ -22,6 +22,10 @@ updated to the stable database semantic conventions, they:
 - May drop the environment variable in their next major version and emit only
   the stable database conventions.
 
+> [!NOTE]
+> `OTEL_SEMCONV_STABILITY_OPT_IN` is only intended to be used when migrating
+> from an experimental semantic convention to its initial stable version.
+
 ## Summary of changes
 
 This section summarizes the changes made to the HTTP semantic conventions
