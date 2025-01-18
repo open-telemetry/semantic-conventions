@@ -16,7 +16,7 @@
 
 ## General AWS Attributes
 
-This document defines generic attributes for AWS services.
+This section defines generic attributes for AWS services.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
