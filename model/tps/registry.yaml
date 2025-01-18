@@ -1,0 +1,55 @@
+groups:
+  - id: registry.tps
+    type: attribute_group
+    display_name: Transaction Processing System Attributes
+    brief: > 
+      This group defines generic attributes for Transaction Processing Systems (TPS).
+    attributes:
+      - id: tps.system
+        type: string
+        stability: experimental
+        brief: "Type of Transaction Processing System"
+        examples: ['jta','tuxedo','cics','ims','ztpf']
+      - id: tps.transaction.id
+        type: string
+        stability: experimental
+        brief: "Identifier of the transaction initiated by a user or system request"
+        examples: 'TRX1'
+      - id: tps.transaction.owner
+        type: string
+        stability: experimental
+        brief: "Identifier of the user owning the transaction"
+        examples: 'USER'
+      - id: tps.region.id
+        type: string
+        stability: experimental
+        brief: "Runtime environment within the Transaction Processing System"
+        examples: 'PRD1'
+      - id: tps.task.id
+        type: string
+        stability: experimental
+        brief: "Identifier of the task created to run the transaction"
+        examples: '1554'
+      - id: tps.program.name
+        type: string
+        stability: experimental
+        brief: "Program name executed by the task"
+        examples: 'PROG123'
+      - id: tps.unit_of_work.id
+        type: string
+        stability: experimental
+        brief: "Unit of work executed by the program"
+        examples: 'DF308CBF385A3C05'
+
+  - id: registry.tps.ims
+    type: attribute_group
+    display_name: IBM Information Management System (IMS) Attributes
+    brief: This group defines attributes for IBM Information Management System (IMS) for z/OS
+    attributes:
+      - id: tps.ims.commit_mode
+        type: string
+        stability: experimental
+        brief: Determines the type of commit mode processing that IMS performs.
+        examples: ['0','1']
+
+    
