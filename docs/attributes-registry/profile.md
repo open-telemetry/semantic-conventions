@@ -20,6 +20,7 @@ Describes the origin of a single frame in a Profile.
 
 | Value  | Description | Stability |
 |---|---|---|
+| `beam` | [Erlang](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cpython` | [Python](https://wikipedia.org/wiki/Python_(programming_language)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `dotnet` | [.NET](https://wikipedia.org/wiki/.NET) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `jvm` | [JVM](https://wikipedia.org/wiki/Java_virtual_machine) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
