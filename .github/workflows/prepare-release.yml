@@ -39,7 +39,7 @@ jobs:
 
       - name: Update change log
         run: |
-          make chlog-update VERSION=${{ inputs.version }}
+          make chlog-update VERSION=v${{ inputs.version }}
 
       - name: Create pull request
         env:
