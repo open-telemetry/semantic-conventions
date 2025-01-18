@@ -164,15 +164,20 @@ groups:
         brief: The number of tokens used in the GenAI response (completion).
         examples: [180]
       - id: gen_ai.token.type
-        stability: experimental
+        stability: development
         type:
           members:
             - id: input
-              stability: experimental
+              stability: development
               value: "input"
               brief: 'Input tokens (prompt, input, etc.)'
             - id: completion
-              stability: experimental
+              stability: development
+              value: "output"
+              deprecated: "Replaced by `output`."
+              brief: 'Output tokens (completion, response, etc.)'
+            - id: output
+              stability: development
               value: "output"
               brief: 'Output tokens (completion, response, etc.)'
         brief: The type of token being counted.
@@ -198,30 +203,29 @@ groups:
           If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic
           conventions for specific GenAI system and use system-specific name in the instrumentation.
           If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
-  - id: registry.gen_ai.openai
-    type: attribute_group
-    display_name: OpenAI Attributes
-    brief: >
-      Thie group defines attributes for OpenAI.
-    attributes:
-      - id: gen_ai.openai.request.response_format
-        stability: experimental
+      - id: gen_ai.request.response_format
+        stability: development
         type:
           members:
             - id: text
               value: "text"
               brief: 'Text response format'
-              stability: experimental
+              stability: development
             - id: json_object
               value: "json_object"
               brief: 'JSON object response format'
-              stability: experimental
+              stability: development
             - id: json_schema
               value: "json_schema"
               brief: 'JSON schema response format'
-              stability: experimental
-        brief: The response format that is requested.
-        examples: ['json']
+              stability: development
+        brief: The structured response format specified in the request.
+  - id: registry.gen_ai.openai
+    type: attribute_group
+    display_name: OpenAI Attributes
+    brief: >
+      This group defines attributes for OpenAI.
+    attributes:
       - id: gen_ai.openai.request.service_tier
         stability: experimental
         type:
