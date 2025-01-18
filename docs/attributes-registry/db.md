@@ -88,12 +88,9 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 | Value  | Description | Stability |
 |---|---|---|
 | `adabas` | Adabas (Adaptable Database System) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cache` | Deprecated, use `intersystems_cache` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `intersystems_cache`. |
 | `cassandra` | Apache Cassandra | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `clickhouse` | ClickHouse | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cloudscape` | Deprecated, use `other_sql` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `other_sql`. |
 | `cockroachdb` | CockroachDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `coldfusion` | Deprecated, no replacement at this time. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. |
 | `cosmosdb` | Microsoft Azure Cosmos DB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `couchbase` | Couchbase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `couchdb` | CouchDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -104,7 +101,6 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 | `elasticsearch` | Elasticsearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `filemaker` | FileMaker | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `firebird` | Firebird | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `firstsql` | Deprecated, use `other_sql` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `other_sql`. |
 | `geode` | Apache Geode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `h2` | H2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `hanadb` | SAP HANA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -122,7 +118,6 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 | `memcached` | Memcached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `mongodb` | MongoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `mssql` | Microsoft SQL Server (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `mssqlcompact` | Deprecated, Microsoft SQL Server Compact is discontinued. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, use `other_sql` instead. |
 | `mysql` | MySQL (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `neo4j` | Neo4j | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `netezza` | Netezza | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
