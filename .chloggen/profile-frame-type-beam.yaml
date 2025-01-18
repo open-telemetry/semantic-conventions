@@ -7,7 +7,7 @@
 change_type: enhancement
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: profile.frame.type
+component: profile
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
 note: 'Extend the list of known frame types with a value for Erlang'
