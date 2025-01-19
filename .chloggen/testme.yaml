@@ -1,0 +1,4 @@
+change_type: breaking
+component: foo
+note: something that breaks
+issues: [123]
