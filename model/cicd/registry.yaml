@@ -36,7 +36,8 @@ groups:
           members:
             - id: pending
               value: pending
-              brief: The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
+              brief: >
+                The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
               stability: experimental
             - id: executing
               value: executing
