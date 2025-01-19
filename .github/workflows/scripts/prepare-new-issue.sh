@@ -28,7 +28,7 @@ if [[ -z "${ISSUE:-}" || -z "${BODY:-}" || -z "${OPENER:-}" ]]; then
   exit 0
 fi
 
-LABELS=""
+LABELS="triage:needs-triage,"
 AREAS_SECTION_START=$( (echo "${BODY}" | grep -n '### Area(s)' | awk '{ print $1 }' | grep -oE '[0-9]+') || echo '-1' )
 BODY_AREAS=""
 
@@ -51,8 +51,8 @@ for AREA in ${BODY_AREAS}; do
     LABELS+="${AREA}"
 done
 
-if [[ -v PINGED_AREAS[@] ]]; then
-  echo "The issue was associated with areas:" "${!PINGED_AREAS[@]}"
+if [[ -v BODY_AREAS[@] ]]; then
+  echo "The issue was associated with areas:" "${!BODY_AREAS[@]}"
 else
   echo "No related areas were given"
 fi
