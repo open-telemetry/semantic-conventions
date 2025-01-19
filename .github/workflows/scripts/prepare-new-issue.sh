@@ -28,7 +28,7 @@ if [[ -z "${ISSUE:-}" || -z "${BODY:-}" || -z "${OPENER:-}" ]]; then
   exit 0
 fi
 
-LABELS="triage:needs-triage,"
+LABELS="triage:needs-triage"
 AREAS_SECTION_START=$( (echo "${BODY}" | grep -n '### Area(s)' | awk '{ print $1 }' | grep -oE '[0-9]+') || echo '-1' )
 BODY_AREAS=""
 
