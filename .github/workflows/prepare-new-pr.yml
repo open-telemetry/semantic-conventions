@@ -6,7 +6,9 @@ on:
 jobs:
   prepare-new-pr:
     runs-on: ubuntu-latest
-    # if: ${{ github.repository_owner == 'open-telemetry' }}
+    permissions:
+      pull-requests: write
+    if: ${{ github.repository_owner == 'open-telemetry' }}
     steps:
       - uses: actions/checkout@v4
 

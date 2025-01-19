@@ -3,14 +3,12 @@
 # Copyright The OpenTelemetry Authors
 # SPDX-License-Identifier: Apache-2.0
 #
-#
+# This script uses chloggen file to get the change_type and add it as a label to the PR.
 
 if [ -z ${PR:-} ]; then
     echo "PR number is required"
     exit 1
 fi
-
-# set -o xtrace
 
 CHLOG="$(gh pr view $PR --json files --jq '.files.[].path | select (. | startswith(".chloggen/"))')"
 echo "Change log file: ${CHLOG}"
@@ -26,7 +24,7 @@ if [ $COUNT -eq 1 ]; then
     echo $CHANGE_TYPE
     gh pr edit "${PR}" --add-label "${CHANGE_TYPE}" || true
 else
-    echo "Found multiple changelogs - $CHLOG. Ignoring this change."
+    echo "Found multiple changelogs= files - $CHLOG. Ignoring this change."
 fi
 
 exit 0
