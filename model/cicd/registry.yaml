@@ -31,6 +31,25 @@ groups:
         brief: >
           The unique identifier of a pipeline run within a CI/CD system.
         examples: ["120912"]
+      - id: cicd.pipeline.run.state
+        type:
+          members:
+            - id: pending
+              value: pending
+              brief: The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
+              stability: experimental
+            - id: executing
+              value: executing
+              brief: The executing state spans the execution of any run tasks (eg. build, test).
+              stability: experimental
+            - id: finalizing
+              value: finalizing
+              brief: The finalizing state spans from when the run has finished executing (eg. cleanup of run resources).
+              stability: experimental
+        stability: experimental
+        brief: >
+          The pipeline run goes through these states during its lifecycle.
+        examples: ["pending", "executing", "finalizing"]
       - id: cicd.pipeline.task.name
         type: string
         stability: experimental
