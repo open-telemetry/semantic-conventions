@@ -2,7 +2,7 @@ name: 'Prepare new PR'
 on:
   pull_request_target:
     types: [opened, synchronize]
-    branches: [ 'main*' ]
+    #branches: [ 'main*' ]
 
 jobs:
   get-change-details:
