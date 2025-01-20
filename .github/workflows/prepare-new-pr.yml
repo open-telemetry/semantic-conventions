@@ -1,23 +1,40 @@
 name: 'Prepare new PR'
 on:
   pull_request_target:
-    types: [opened, reopened]
+    types: [opened, synchronize]
     branches: [ 'main*' ]
 
 jobs:
-  prepare-new-pr:
+  get-change-details:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: write
     if: ${{ github.repository_owner == 'open-telemetry' }}
+    outputs:
+      change_type: ${{ steps.get-change-type.outputs.change_type }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
+      - id: get-change-type
+        name: Run get-change-type.sh
+        run: |
+          change_type=$(./.github/workflows/scripts/get-change-type.sh)
+          echo "change_type=$change_type" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ github.event.pull_request.number }}
+
+  prepare-new-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    if: ${{ github.repository_owner == 'open-telemetry' }}
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Run prepare-new-pr.sh
         run: ./.github/workflows/scripts/prepare-new-pr.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR: ${{ github.event.pull_request.number }}
+          PR: ${{ needs.get-change-details.outputs.change_type }}
