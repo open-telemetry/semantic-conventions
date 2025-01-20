@@ -92,4 +92,4 @@ body:
   - type: textarea
     attributes:
       label: Describe the solution you'd like
-      description: A clear and concise description of solution you'd like to contribute.
+      description: A clear and concise description of solution you'd like to see.
