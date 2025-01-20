@@ -250,7 +250,7 @@ Examples for some Python runtimes:
 | --- | --- | --- | --- |
 | CPython 3.7.3 on Windows | cpython | 3.7.3 | 3.7.3 (v3.7.3:ef4ec6ed12, Mar 25 2019, 22:22:05) [MSC v.1916 64 bit (AMD64)] |
 | CPython 3.8.6 on Linux | cpython | 3.8.6 | 3.8.6 (default, Sep 30 2020, 04:00:38) <br>[GCC 10.2.0] |
-| PyPy 3 7.3.2 on Linux | pypy | 3.7.4 | 3.7.4 (?, Sep 27 2020, 15:12:26)<br>[PyPy 7.3.2-alpha0 with GCC 10.2.0] |
+| PyPy 3 7.3.17 on Linux | pypy | 7.3.17 | 3.10.14 (39dc8d3c85a7, Aug 27 2024, 14:32:27)<br>[PyPy 7.3.17 with GCC 10.2.1 20210130 (Red Hat 10.2.1-11)] |
 
 Note that on Linux, there is an actual newline in the `sys.version` string,
 and the CPython string had a trailing space in the first line.
