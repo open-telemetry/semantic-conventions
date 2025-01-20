@@ -43,6 +43,9 @@ groups:
     type: metric
     metric_name: cicd.pipeline.run.errors
     brief: 'The number of errors encountered in pipeline runs (eg. compile, test failures).'
+    note: |
+      There might be errors in a pipeline run that are non fatal (eg. they are suppressed) or in a parallel stage multiple stages could have a fatal error.
+      This means that this error count might not be the same as the count of metric `cicd.pipeline.run.duration` with run result `failure`.
     instrument: counter
     unit: "{error}"
     stability: experimental

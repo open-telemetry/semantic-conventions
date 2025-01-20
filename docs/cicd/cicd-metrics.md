@@ -200,7 +200,10 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `cicd.pipeline.run.errors` | Counter | `{error}` | The number of errors encountered in pipeline runs (eg. compile, test failures). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cicd.pipeline.run.errors` | Counter | `{error}` | The number of errors encountered in pipeline runs (eg. compile, test failures). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** There might be errors in a pipeline run that are non fatal (eg. they are suppressed) or in a parallel stage multiple stages could have a fatal error.
+This means that this error count might not be the same as the count of metric `cicd.pipeline.run.duration` with run result `failure`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
