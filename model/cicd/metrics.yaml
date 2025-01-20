@@ -2,15 +2,18 @@ groups:
   - id: metric.cicd.pipeline.run.duration
     type: metric
     metric_name: cicd.pipeline.run.duration
-    brief: 'Duration of a pipeline run grouped by pipeline and result.'
+    brief: 'Duration of a pipeline run grouped by pipeline, state and result.'
     instrument: histogram
     unit: "s"
     stability: experimental
     attributes:
       - ref: cicd.pipeline.name
         requirement_level: required
-      - ref: cicd.pipeline.result
+      - ref: cicd.pipeline.run.state
         requirement_level: required
+      - ref: cicd.pipeline.result
+        requirement_level:
+          conditionally_required: If and only if the pipeline run result has been set during that state.
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if the pipeline run failed.
@@ -26,16 +29,6 @@ groups:
         requirement_level: required
       - ref: cicd.pipeline.run.state
         requirement_level: required
-  - id: metric.cicd.pipeline.run.time_in_queue
-    type: metric
-    metric_name: cicd.pipeline.run.time_in_queue
-    brief: 'The duration a pipeline run takes from being triggered to the start of execution.'
-    instrument: histogram
-    unit: "s"
-    stability: experimental
-    attributes:
-      - ref: cicd.pipeline.name
-        requirement_level: recommended
   - id: metric.cicd.worker.count
     type: metric
     metric_name: cicd.worker.count

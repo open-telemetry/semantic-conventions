@@ -13,7 +13,6 @@ linkTitle: CICD metrics
 - [CICD Metrics](#cicd-metrics)
   - [Metric: `cicd.pipeline.run.duration`](#metric-cicdpipelinerunduration)
   - [Metric: `cicd.pipeline.run.active`](#metric-cicdpipelinerunactive)
-  - [Metric: `cicd.pipeline.run.time_in_queue`](#metric-cicdpipelineruntime_in_queue)
   - [Metric: `cicd.worker.count`](#metric-cicdworkercount)
   - [Metric: `cicd.pipeline.run.errors`](#metric-cicdpipelinerunerrors)
   - [Metric: `cicd.system.errors`](#metric-cicdsystemerrors)
@@ -50,15 +49,18 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `cicd.pipeline.run.duration` | Histogram | `s` | Duration of a pipeline run grouped by pipeline and result. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cicd.pipeline.run.duration` | Histogram | `s` | Duration of a pipeline run grouped by pipeline, state and result. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cicd.pipeline.name`](/docs/attributes-registry/cicd.md) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`cicd.pipeline.result`](/docs/attributes-registry/cicd.md) | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the pipeline run failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`cicd.pipeline.run.state`](/docs/attributes-registry/cicd.md) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cicd.pipeline.result`](/docs/attributes-registry/cicd.md) | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the pipeline run failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[1] `cicd.pipeline.result`:** If and only if the pipeline run result has been set during that state.
+
+**[2] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
@@ -90,6 +92,16 @@ it's RECOMMENDED to:
 | `skip` | The pipeline run was skipped, eg. due to a precondition not being met. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `success` | The pipeline run finished successfully. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `timeout` | A timeout caused the pipeline run to be interrupted. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
+
+`cicd.pipeline.run.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `executing` | The executing state spans the execution of any run tasks (eg. build, test). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `finalizing` | The finalizing state spans from when the run has finished executing (eg. cleanup of run resources). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `pending` | The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 
@@ -133,30 +145,6 @@ This metric is [recommended][MetricRecommended].
 | `executing` | The executing state spans the execution of any run tasks (eg. build, test). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `finalizing` | The finalizing state spans from when the run has finished executing (eg. cleanup of run resources). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `pending` | The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
-
-### Metric: `cicd.pipeline.run.time_in_queue`
-
-This metric is [recommended][MetricRecommended].
-
-<!-- semconv metric.cicd.pipeline.run.time_in_queue -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
-
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `cicd.pipeline.run.time_in_queue` | Histogram | `s` | The duration a pipeline run takes from being triggered to the start of execution. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`cicd.pipeline.name`](/docs/attributes-registry/cicd.md) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
