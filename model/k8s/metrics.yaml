@@ -448,7 +448,7 @@ groups:
     type: metric
     metric_name: k8s.namespace.phase
     stability: experimental
-    brief: "Operational status: `1` (true) or `0` (false) for each of the possible phases"
+    brief: "Describes number of K8s namespaces that are currently in a given phase."
     instrument: updowncounter
     unit: "{namespace}"
     note: |

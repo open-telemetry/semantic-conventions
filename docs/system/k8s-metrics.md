@@ -1047,7 +1047,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.namespace.phase` | UpDownCounter | `{namespace}` | Operational status: `1` (true) or `0` (false) for each of the possible phases [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `k8s.namespace.phase` | UpDownCounter | `{namespace}` | Describes number of K8s namespaces that are currently in a given phase. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric SHOULD, at a minimum, be reported against a
 [`k8s.namespace`](../resource/k8s.md#namespace) resource.
@@ -1067,7 +1067,6 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `active` | Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `terminating` | Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unknown` | Unknown phase is set if phase is blank for some reason | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

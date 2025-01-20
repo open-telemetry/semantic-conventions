@@ -77,7 +77,6 @@ conflict.
 |---|---|---|
 | `active` | Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `terminating` | Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unknown` | Unknown phase is set if phase is blank for some reason | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 
@@ -85,12 +84,12 @@ conflict.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `configMap` | A [configMap](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `downwardAPI` | A [downwardAPI](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `emptyDir` | An [emptyDir](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local` | A [local](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `persistentVolumeClaim` | A [persistentVolumeClaim](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `secret` | A [secret](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `configMap` | A [configMap](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `downwardAPI` | A [downwardAPI](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `emptyDir` | An [emptyDir](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local` | A [local](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `persistentVolumeClaim` | A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `secret` | A [secret](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Deprecated Kubernetes Attributes
 
