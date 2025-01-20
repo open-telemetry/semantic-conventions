@@ -54,14 +54,10 @@ else
   echo "No related areas were given"
 fi
 
-if [[ -n "${LABELS}" ]]; then
-  # Notes on this call:
-  # 1. Labels will be deduplicated by the GitHub CLI.
-  # 2. The call to edit the issue will fail if any of the
-  #    labels doesn't exist. We can be reasonably sure that
-  #    all labels will exist since they come from a known set.
-  echo "Adding the following labels: ${LABELS//,/ /}"
-  gh issue edit "${ISSUE}" --add-label "${LABELS}" || true
-else
-  echo "No labels were found to add"
-fi
+# Notes on this call:
+# 1. Labels will be deduplicated by the GitHub CLI.
+# 2. The call to edit the issue will fail if any of the
+#    labels doesn't exist. We can be reasonably sure that
+#    all labels will exist since they come from a known set.
+echo "Adding the following labels: ${LABELS//,/ /}"
+gh issue edit "${ISSUE}" --add-label "${LABELS}" || true
