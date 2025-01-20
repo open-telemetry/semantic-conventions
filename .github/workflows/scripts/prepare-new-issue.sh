@@ -45,10 +45,7 @@ for AREA in ${BODY_AREAS}; do
     continue
   fi
 
-  if [[ -n "${LABELS}" ]]; then
-      LABELS+=","
-  fi
-    LABELS+="${AREA}"
+  LABELS+=",${AREA}"
 done
 
 if [[ -v BODY_AREAS[@] ]]; then
