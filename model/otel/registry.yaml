@@ -41,7 +41,7 @@ groups:
         brief: The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP).
         examples: ['1.0.0']
         stability: stable
-  - id: registry.otel.sdk.telemetry
+  - id: registry.otel.sdk
     type: attribute_group
     display_name: OTel SDK Telemetry Attributes
     brief: Attributes used for OpenTelemetry SDK self-monitoring
