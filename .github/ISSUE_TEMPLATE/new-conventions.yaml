@@ -16,8 +16,13 @@ body:
         Creating a new issue here is a great first step to find others interested in collaborating.
   - type: textarea
     attributes:
-      label: What do you think is missing?
-      description: Please describe the use-case or scenario that you think is not covered by the existing conventions.
+      label: Propose new conventions
+      description: |
+        Please provide a brief description of the conventions, including
+        telemetry signals you'd like to define.
+
+        Consider specifying which instrumentations or systems would implement these
+        conventions and the benefits they would bring to the ecosystem.
     validations:
       required: true
   - type: textarea
