@@ -22,7 +22,7 @@ groups:
         brief: "Description of the Status if it has a value, otherwise not set."
         examples: ['resource not found']
         stability: stable
-      - id: otel.is_sampled
+      - id: otel.span.is_sampled
         type: boolean
         brief: "The sampled trace flag of the span"
         stability: development

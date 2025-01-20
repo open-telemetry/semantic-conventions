@@ -7,7 +7,7 @@ groups:
     instrument: counter
     unit: "{span}"
     attributes:
-      - ref: otel.is_sampled
+      - ref: otel.span.is_sampled
 
   - id: metric.otel.sdk.span.live_count
     type: metric
@@ -17,7 +17,7 @@ groups:
     instrument: updowncounter
     unit: "{span}"
     attributes:
-      - ref: otel.is_sampled
+      - ref: otel.span.is_sampled
 
   - id: metric.otel.sdk.span.ended_count
     type: metric
@@ -27,7 +27,7 @@ groups:
     instrument: counter
     unit: "{span}"
     attributes:
-      - ref: otel.is_sampled
+      - ref: otel.span.is_sampled
 
 
   - id: metric.otel.sdk.span.processor.queue_size

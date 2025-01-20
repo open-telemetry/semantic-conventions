@@ -43,7 +43,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`otel.is_sampled`](/docs/attributes-registry/otel.md) | boolean | The sampled trace flag of the span |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.span.is_sampled`](/docs/attributes-registry/otel.md) | boolean | The sampled trace flag of the span |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -67,7 +67,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`otel.is_sampled`](/docs/attributes-registry/otel.md) | boolean | The sampled trace flag of the span |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.span.is_sampled`](/docs/attributes-registry/otel.md) | boolean | The sampled trace flag of the span |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -91,7 +91,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`otel.is_sampled`](/docs/attributes-registry/otel.md) | boolean | The sampled trace flag of the span |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.span.is_sampled`](/docs/attributes-registry/otel.md) | boolean | The sampled trace flag of the span |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
