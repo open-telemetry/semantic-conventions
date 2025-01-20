@@ -1,5 +1,5 @@
 name: Propose enhancement to existing conventions
-description: Propose changes you'd like to contribute
+description: Propose changes you'd like to see
 labels: ["enhancement", "triage:needs-triage"]
 body:
   - type: dropdown
