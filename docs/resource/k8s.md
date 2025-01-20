@@ -473,6 +473,7 @@ Choose the first value found:
 1. `pod.annotation[resource.opentelemetry.io/service.namespace]`
 2. `pod.label[app.kubernetes.io/part-of]` (well-known label
    [app.kubernetes.io/part-of](https://kubernetes.io/docs/reference/labels-annotations-taints/#app-kubernetes-io-part-of))
+3. `k8s.namespace.name`
 
 ### How `service.name` is calculated
 
