@@ -61,7 +61,7 @@ When the operation ends with an error, instrumentation:
   When the operation fails with an exception, the span status description SHOULD be set to
   the exception message.
 
-Refer to the [recording exceptions](#recording-errors) on capturing exception
+Refer to the [recording exceptions](#recording-exceptions) on capturing exception
 details.
 
 ## Recording errors on metrics
