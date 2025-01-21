@@ -29,6 +29,7 @@ Kubernetes resource attributes.
 | <a id="k8s-job-name" href="#k8s-job-name">`k8s.job.name`</a> | string | The name of the Job. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="k8s-job-uid" href="#k8s-job-uid">`k8s.job.uid`</a> | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="k8s-namespace-name" href="#k8s-namespace-name">`k8s.namespace.name`</a> | string | The name of the namespace that the pod is running in. | `default` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="k8s-namespace-phase" href="#k8s-namespace-phase">`k8s.namespace.phase`</a> | string | The phase of the K8s namespace. [2] | `active`; `terminating` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="k8s-node-name" href="#k8s-node-name">`k8s.node.name`</a> | string | The name of the Node. | `node-1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="k8s-node-uid" href="#k8s-node-uid">`k8s.node.uid`</a> | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="k8s-pod-annotation" href="#k8s-pod-annotation">`k8s.pod.annotation.<key>`</a> | string | The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. | `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true`; `k8s.pod.annotation.mycompany.io/arch=x64`; `k8s.pod.annotation.data=` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -65,18 +66,30 @@ Which states:
 Therefore, UIDs between clusters should be extremely unlikely to
 conflict.
 
+**[2] `k8s.namespace.phase`:** This attribute aligns with the `phase` field of the
+[K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
+
+---
+
+`k8s.namespace.phase` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `active` | Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `terminating` | Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
 ---
 
 `k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `configMap` | A [configMap](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `downwardAPI` | A [downwardAPI](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `emptyDir` | An [emptyDir](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local` | A [local](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `persistentVolumeClaim` | A [persistentVolumeClaim](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `secret` | A [secret](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `configMap` | A [configMap](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `downwardAPI` | A [downwardAPI](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `emptyDir` | An [emptyDir](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `local` | A [local](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `persistentVolumeClaim` | A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `secret` | A [secret](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Deprecated Kubernetes Attributes
 
