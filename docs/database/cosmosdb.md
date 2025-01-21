@@ -2,24 +2,23 @@
 linkTitle: Cosmos DB
 --->
 
+# Semantic Conventions for Microsoft Azure Cosmos DB
+
+**Status**: [Experimental][DocumentStatus]
+
 <!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
-- [Semantic Conventions for Microsoft Azure Cosmos DB](#semantic-conventions-for-microsoft-azure-cosmos-db)
-  - [Spans](#spans)
-    - [Example](#example)
-  - [Metrics](#metrics)
-    - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
-    - [Metric: `db.client.response.returned_rows`](#metric-dbclientresponsereturned_rows)
-    - [Metric: `db.client.cosmosdb.operation.request_charge`](#metric-dbclientcosmosdboperationrequest_charge)
-    - [Metric: `db.client.cosmosdb.active_instance.count`](#metric-dbclientcosmosdbactive_instancecount)
+- [Spans](#spans)
+  - [Example](#example)
+- [Metrics](#metrics)
+  - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
+  - [Metric: `db.client.response.returned_rows`](#metric-dbclientresponsereturned_rows)
+  - [Metric: `db.client.cosmosdb.operation.request_charge`](#metric-dbclientcosmosdboperationrequest_charge)
+  - [Metric: `db.client.cosmosdb.active_instance.count`](#metric-dbclientcosmosdbactive_instancecount)
 
 <!-- tocstop -->
-
-# Semantic Conventions for Microsoft Azure Cosmos DB
-
-**Status**: [Experimental][DocumentStatus]
 
 The Semantic Conventions for [Microsoft Cosmos DB](https://azure.microsoft.com/products/cosmos-db/)
 extend and override the [Database Semantic Conventions](README.md).
