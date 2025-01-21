@@ -21,7 +21,7 @@ if [ -z ${PR_CHANGELOG_PATH:-} ]; then
     exit 1
 fi
 
-CHLOG="$PR_CHANGELOG_PATH/$(gh pr view $PR --json files --jq '.files.[].path | select (. | startswith(".chloggen/"))')"
+CHLOG="$(gh pr view $PR --json files --jq '.files.[].path | select (. | startswith(".chloggen/"))')"
 echo "Change log file(s): ${CHLOG}"
 
 if [ -z "$CHLOG" ]; then
@@ -31,7 +31,7 @@ fi
 
 COUNT="$(echo "$CHLOG" | wc -l)"
 if [ $COUNT -eq 1 ]; then
-    CHANGE_TYPE=$(awk -F': ' '/^change_type:/ {print $2}' "$CHLOG" | xargs)
+    CHANGE_TYPE=$(awk -F': ' '/^change_type:/ {print $2}' "$PR_CHANGELOG_PATH/$CHLOG" | xargs)
     echo $CHANGE_TYPE
     gh pr edit "${PR}" --add-label "${CHANGE_TYPE}" || true
 else
