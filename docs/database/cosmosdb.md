@@ -26,7 +26,7 @@ extend and override the [Database Semantic Conventions](README.md).
 ## Spans
 
 Cosmos DB instrumentations include call-level spans that represent logical database
-call and adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
+calls and adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
 
 Additional spans representing network calls may also be created depending on the connection mode (Gateway or Direct). Semantic conventions described in this document apply to the call-level spans only.
 

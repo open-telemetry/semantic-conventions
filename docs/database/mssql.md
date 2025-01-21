@@ -13,7 +13,7 @@ linkTitle: MSSQL
 
 <!-- tocstop -->
 
-The Semantic Conventions for the *Microsoft SQL Server* extend and override the [Database Semantic Conventions](README.md).
+The Semantic Conventions for *Microsoft SQL Server* extend and override the [Database Semantic Conventions](README.md).
 
 ## Spans
 
