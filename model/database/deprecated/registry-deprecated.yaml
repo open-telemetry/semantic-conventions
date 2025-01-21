@@ -248,8 +248,8 @@ groups:
       - id: db.cosmosdb.request_charge
         type: double
         stability: experimental
-        brief: "Deprecated, use `azure.cosmosdb.request.charge` instead."
-        deprecated: "Replaced by `azure.cosmosdb.request.charge`."
+        brief: "Deprecated, use `azure.cosmosdb.operation.request_charge` instead."
+        deprecated: "Replaced by `azure.cosmosdb.operation.request_charge`."
         examples: [46.18, 1.0]
       - id: db.cosmosdb.request_content_length
         type: int
@@ -287,8 +287,8 @@ groups:
       - id: db.cosmosdb.regions_contacted
         type: string[]
         stability: experimental
-        brief: "Deprecated, use `azure.cosmosdb.request.contacted_regions` instead."
-        deprecated: "Replaced by `azure.cosmosdb.request.contacted_regions`."
+        brief: "Deprecated, use `azure.cosmosdb.operation.contacted_regions` instead."
+        deprecated: "Replaced by `azure.cosmosdb.operation.contacted_regions`."
         examples:
           - ["North Central US", "Australia East", "Australia Southeast"]
       - id: db.elasticsearch.node.name

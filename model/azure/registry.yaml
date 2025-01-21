@@ -43,16 +43,16 @@ groups:
               stability: development
         stability: development
         brief: Cosmos client connection mode.
-      - id: azure.cosmosdb.request.charge
+      - id: azure.cosmosdb.operation.request_charge
         type: double
         stability: development
-        brief: Request units consumed for the operation.
+        brief: 	The number of request units consumed by the operation.
         examples: [46.18, 1.0]
       - id: azure.cosmosdb.request.body.size
         type: int
         stability: development
         brief: Request payload size in bytes.
-      - id: azure.cosmosdb.request.contacted_regions
+      - id: azure.cosmosdb.operation.contacted_regions
         type: string[]
         stability: development
         brief: >

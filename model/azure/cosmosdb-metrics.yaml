@@ -1,14 +1,14 @@
 groups:
-  - id: metric.azure.cosmosdb.client.operation.request.charge
+  - id: metric.azure.cosmosdb.client.operation.request_charge
     type: metric
-    metric_name: azure.cosmosdb.client.operation.request.charge
-    brief: "[Request charge](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation"
+    metric_name: azure.cosmosdb.client.operation.request_charge
+    brief: "[Request units](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation"
     instrument: histogram
     unit: "{request_unit}"
     stability: development
     extends: attributes.azure.cosmosdb.minimal
     attributes:
-      - ref: azure.cosmosdb.request.contacted_regions
+      - ref: azure.cosmosdb.operation.contacted_regions
         requirement_level:
           recommended: If available
 

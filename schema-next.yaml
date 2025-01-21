@@ -29,16 +29,16 @@ versions:
               db.cosmosdb.client_id: azure.client.id
               db.cosmosdb.connection_mode: azure.cosmosdb.connection.mode
               db.cosmosdb.consistency_level: azure.cosmosdb.consistency.level
-              db.cosmosdb.request_charge: azure.cosmosdb.request.charge
+              db.cosmosdb.request_charge: azure.cosmosdb.operation.request_charge
               db.cosmosdb.request_content_length: azure.cosmosdb.request.body.size
-              db.cosmosdb.regions_contacted: azure.cosmosdb.request.contacted_regions
+              db.cosmosdb.regions_contacted: azure.cosmosdb.operation.contacted_regions
               db.cosmosdb.sub_status_code: azure.cosmosdb.response.sub_status_code
               db.elasticsearch.node.name: elasticsearch.node.name
               # db.elasticsearch.path_parts is a template attribute, schema transformation
               # does not support it, adding as a comment for consistency
               # db.elasticsearch.path_parts.<key> -> db.operation.parameter.<key>
         - rename_metrics:
-            db.client.cosmosdb.operation.request_charge: azure.cosmosdb.client.operation.request.charge
+            db.client.cosmosdb.operation.request_charge: azure.cosmosdb.client.operation.request_charge
             db.client.cosmosdb.active_instance.count: azure.cosmosdb.client.active_instance.count
 
   1.29.0:

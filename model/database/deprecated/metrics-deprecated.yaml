@@ -113,7 +113,7 @@ groups:
     type: metric
     metric_name: db.client.cosmosdb.operation.request_charge
     brief: "Deprecated, use `azure.cosmosdb.client.operation.request_charge` instead."
-    deprecated: "Replaced by `azure.cosmosdb.client.request.charge`."
+    deprecated: "Replaced by `azure.cosmosdb.client.operation.request_charge`."
     instrument: histogram
     unit: "{request_unit}"
     stability: experimental
