@@ -6,52 +6,29 @@ on:
     paths: ['.chloggen/*']
 
 jobs:
-  get-change-details:
+  prepare-new-pr:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      pull-requests: write
     if: ${{ github.repository_owner == 'open-telemetry' }}
     outputs:
       change_type: ${{ steps.get-change-type.outputs.change_type }}
     steps:
+      # check out main
       - uses: actions/checkout@v4
+      # sparse checkout to only get the .chloggen directory
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
           path: prchangelog
           sparse-checkout: .chloggen
-      - id: get-change-type
-        name: Run get-change-type.sh
-        run: |
-          set +e
-          change_type=$(./.github/workflows/scripts/get-change-type.sh)
-          if [ $? -ne 0 ]; then
-            change_type=""
-          fi
-          echo "change_type=$change_type" >> $GITHUB_OUTPUT
+
+      # we're going to run prepare-new-pr script from the main branch
+      # to parse changelog record from the PR branch.
+      - name: Run prepare-new-pr.sh
+        run: ./.github/workflows/scripts/prepare-new-pr.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR: ${{ github.event.pull_request.number }}
           PR_CHANGELOG_PATH: prchangelog
-
-  # get-change-details job needs to check out PR code to read changelog, but it only needs read permissions.
-  # prepare-new-pr job needs write permissions to set labels, but it runs on the main branch.
-  # this way we don't have write permissions while running PR code.
-  prepare-new-pr:
-    runs-on: ubuntu-latest
-    needs: get-change-details
-    permissions:
-      pull-requests: write
-    if: |
-      needs.get-change-details.outputs.change_type != '' &&
-      needs.get-change-details.outputs.change_type != null &&
-      github.repository_owner == 'open-telemetry'
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set label with change type on the PR
-        run: gh pr edit "${PR}" --add-label "${CHANGE_TYPE}" || true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR: ${{ github.event.pull_request.number }}
-          CHANGE_TYPE: ${{ needs.get-change-details.outputs.change_type }}
