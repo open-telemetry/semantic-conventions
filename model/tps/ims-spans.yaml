@@ -1,0 +1,14 @@
+groups:
+  - id: span.tps.ims.rpc.server
+    type: span
+    stability: experimental
+    brief: 'This group defines semantic conventions for Remote Procedure Call (RPC) server spans of IBM Information Management System (IMS) for z/OS'
+    extends: span.tps.rpc.server
+    span_kind: server
+    attributes:
+      - ref: tps.system
+        requirement_level: required
+        examples: 'ims'
+      - ref: tps.ims.commit_mode
+      - ref: rpc.system
+        examples: ['otma','odbm']
