@@ -12,7 +12,12 @@ if [ -z ${PR:-} ]; then
     exit 1
 fi
 
-CHLOG="$(gh pr view $PR --json files --jq '.files.[].path | select (. | startswith(".chloggen/"))')"
+if [ -z ${PR_CHANGELOG_PATH:-} ]; then
+    echo "PR_CHANGELOG_PATH is required"
+    exit 1
+fi
+
+CHLOG="$PR_CHANGELOG_PATH/$(gh pr view $PR --json files --jq '.files.[].path | select (. | startswith(".chloggen/"))')"
 # echo "Change log file(s): ${CHLOG}"
 
 if [ -z "$CHLOG" ]; then
