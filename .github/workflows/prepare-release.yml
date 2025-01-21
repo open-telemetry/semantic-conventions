@@ -1,0 +1,59 @@
+name: Prepare release
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The version to release, e.g. 1.30.0'
+        required: true
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate version
+        run: |
+          version=${{ inputs.version }}
+          if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "unexpected version: $version"
+            exit 1
+          fi
+
+      - name: Use CLA approved github bot
+        run: .github/workflows/scripts/use-cla-approved-github-bot.sh
+
+      - name: Update schema files
+        run: |
+          if ! grep -q "^  next:$" schema-next.yaml; then
+            echo "String 'next:' not found in the file"
+            exit 1
+          fi
+
+          version=${{ inputs.version }}
+          sed -i "0,/^  next:$/s//  $version:/" schema-next.yaml
+          cp schema-next.yaml "schemas/$version"
+          git add "schemas/$version"
+
+          sed -i "0,/^  $version:$/s//  next:\n  $version:/" schema-next.yaml
+
+      - name: Update change log
+        run: |
+          make chlog-update VERSION=v${{ inputs.version }}
+
+      - name: Create pull request
+        env:
+          # not using secrets.GITHUB_TOKEN since pull requests from that token do not run workflows
+          GH_TOKEN: ${{ secrets.OPENTELEMETRYBOT_GITHUB_TOKEN }}
+        run: |
+          version=${{ inputs.version }}
+          message="Prepare release v${version}"
+          body="Prepare release \`v${version}\`."
+          branch="opentelemetrybot/prepare-release-v${version}"
+
+          git checkout -b $branch
+          git commit -a -m "$message"
+          git push --set-upstream origin $branch
+          gh pr create --title "$message" \
+                       --body "$body" \
+                       --base main
