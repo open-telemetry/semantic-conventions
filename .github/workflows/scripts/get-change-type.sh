@@ -26,6 +26,6 @@ if [ $COUNT -eq 1 ]; then
     echo $CHANGE_TYPE
     exit 0
 else
-    echo "Found multiple changelog files - $CHLOG. Ignoring this change."
+    echo "Found multiple changelog files. Ignoring this change."
     exit 1
 fi
