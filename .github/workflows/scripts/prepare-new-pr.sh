@@ -16,6 +16,11 @@ if [ -z ${PR:-} ]; then
     exit 1
 fi
 
+if [ -z ${PR_CHANGELOG_PATH:-} ]; then
+    echo "PR number is required"
+    exit 1
+fi
+
 CHLOG="$PR_CHANGELOG_PATH/$(gh pr view $PR --json files --jq '.files.[].path | select (. | startswith(".chloggen/"))')"
 echo "Change log file(s): ${CHLOG}"
 
