@@ -6,8 +6,26 @@ linkTitle: AWS DynamoDB
 
 **Status**: [Experimental][DocumentStatus]
 
+<!-- toc -->
+
+- [DynamoDB.BatchGetItem](#dynamodbbatchgetitem)
+- [DynamoDB.BatchWriteItem](#dynamodbbatchwriteitem)
+- [DynamoDB.CreateTable](#dynamodbcreatetable)
+- [DynamoDB.DeleteItem](#dynamodbdeleteitem)
+- [DynamoDB.DeleteTable](#dynamodbdeletetable)
+- [DynamoDB.DescribeTable](#dynamodbdescribetable)
+- [DynamoDB.GetItem](#dynamodbgetitem)
+- [DynamoDB.ListTables](#dynamodblisttables)
+- [DynamoDB.PutItem](#dynamodbputitem)
+- [DynamoDB.Query](#dynamodbquery)
+- [DynamoDB.Scan](#dynamodbscan)
+- [DynamoDB.UpdateItem](#dynamodbupdateitem)
+- [DynamoDB.UpdateTable](#dynamodbupdatetable)
+
+<!-- tocstop -->
+
 The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) extend and override the general
-[AWS SDK Semantic Conventions](/docs/cloud-providers/aws-sdk.md) and [Database Semantic Conventions](database-spans.md).
+[AWS SDK Semantic Conventions](/docs/cloud-providers/aws-sdk.md) and [Database Semantic Conventions](README.md.md).
 
 `db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
 
