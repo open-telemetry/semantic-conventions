@@ -1,6 +1,6 @@
 name: Propose changes to existing conventions
 description: Propose changes you'd like to be added to existing conventions
-labels: ["enhancement", "triage:needs-triage"]
+labels: ["enhancement"]
 body:
   - type: dropdown
     id: area

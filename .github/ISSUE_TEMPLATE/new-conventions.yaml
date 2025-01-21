@@ -1,6 +1,6 @@
 name: Propose new semantic conventions
 description: Propose new conventions you'd like to be part of the OpenTelemetry project
-labels: ["enhancement", "triage:needs-triage", "experts needed"]
+labels: ["enhancement", "experts needed"]
 body:
   - type: markdown
     attributes:
