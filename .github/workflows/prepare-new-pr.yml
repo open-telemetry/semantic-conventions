@@ -12,8 +12,6 @@ jobs:
       contents: read
       pull-requests: write
     if: ${{ github.repository_owner == 'open-telemetry' }}
-    outputs:
-      change_type: ${{ steps.get-change-type.outputs.change_type }}
     steps:
       # check out main
       - uses: actions/checkout@v4

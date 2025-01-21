@@ -17,7 +17,7 @@ if [ -z ${PR:-} ]; then
 fi
 
 if [ -z ${PR_CHANGELOG_PATH:-} ]; then
-    echo "PR number is required"
+    echo "PR_CHANGELOG_PATH is required"
     exit 1
 fi
 
@@ -37,5 +37,3 @@ if [ $COUNT -eq 1 ]; then
 else
     echo "Found multiple changelog files. Ignoring this change."
 fi
-
-exit 0
