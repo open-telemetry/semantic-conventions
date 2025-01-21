@@ -298,7 +298,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 |:-------------------------------------| :------------------- |
 | Span name                            | `"read_item orders"` |
 | `az.namespace`                       | `"Microsoft.DocumentDB"` |
-| `db.system.name`                     | `"cosmosdb"` |
+| `db.system.name`                     | `"azure.cosmosdb"` |
 | `db.collection.name`                 | `"orders"` |
 | `db.namespace`                       | `"ShopDb"` |
 | `db.operation.name`                  | `"read_item"` |
