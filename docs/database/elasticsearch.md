@@ -16,12 +16,13 @@ linkTitle: Elasticsearch
 
 The Semantic Conventions for [Elasticsearch](https://www.elastic.co/) extend and override the [Database Semantic Conventions](README.md).
 
-`db.system` MUST be set to `"elasticsearch"` and SHOULD be provided **at span creation time**.
 ## Spans
 
 Spans representing calls to Elasticsearch adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
 
 The **span name** follows the [general database span name guidelines](database-spans.md#name) with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
+
+`db.system` MUST be set to `"elasticsearch"` and SHOULD be provided **at span creation time**.
 
 The following table outlines the span attributes applicable to Elasticsearch.
 
