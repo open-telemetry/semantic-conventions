@@ -17,6 +17,8 @@ Kubernetes resource attributes.
 | <a id="k8s-container-name" href="#k8s-container-name">`k8s.container.name`</a> | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-container-restart-count" href="#k8s-container-restart-count">`k8s.container.restart_count`</a> | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-container-status-last-terminated-reason" href="#k8s-container-status-last-terminated-reason">`k8s.container.status.last_terminated_reason`</a> | string | Last terminated reason of the Container. | `Evicted`; `Error` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-container-status-reason" href="#k8s-container-status-reason">`k8s.container.status.reason`</a> | string | The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core) | `ContainerCreating`; `CrashLoopBackOff`; `CreateContainerConfigError`; `ErrImagePull`; `ImagePullBackOff`; `OOMKilled`; `Completed`; `Error`; `ContainerCannotRun` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-container-status-state" href="#k8s-container-status-state">`k8s.container.status.state`</a> | string | The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core) | `terminated`; `running`; `waiting` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-cronjob-annotation" href="#k8s-cronjob-annotation">`k8s.cronjob.annotation.<key>`</a> | string | The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value. [2] | `4`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-cronjob-label" href="#k8s-cronjob-label">`k8s.cronjob.label.<key>`</a> | string | The label placed on the CronJob, the `<key>` being the label name, the value being the label value. [3] | `weekly`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-cronjob-name" href="#k8s-cronjob-name">`k8s.cronjob.name`</a> | string | The name of the CronJob. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -157,6 +159,33 @@ conflict.
 **[19] `k8s.statefulset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
 **[20] `k8s.statefulset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+
+---
+
+`k8s.container.status.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `` | Reason unknown. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Completed` | The container has completed execution. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ContainerCannotRun` | The container cannot run. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ContainerCreating` | The container is being created. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `CrashLoopBackOff` | The container is in a crash loop back off state. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `CreateContainerConfigError` | There was an error creating the container configuration. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ErrImagePull` | There was an error pulling the container image. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Error` | There was an error with the container. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ImagePullBackOff` | The container image pull is in back off state. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `OOMKilled` | The container was killed due to out of memory. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`k8s.container.status.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `running` | The container is running. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `terminated` | The container has terminated. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `waiting` | The container is waiting. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
