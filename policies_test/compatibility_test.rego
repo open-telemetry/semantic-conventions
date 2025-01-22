@@ -345,7 +345,7 @@ test_attribute_enum_member_value_change if {
     }
 }
 
-# Check stable attribute enum member values changing
+# Check enum member missing for attributes of any stability level
 test_attribute_enum_member_missing if {
 	count(deny) > 0 with data.semconv as {
             "registry_baseline_groups": [{
@@ -421,6 +421,88 @@ test_attribute_enum_member_missing if {
                             "id": "missing",
                             "value": "missing",
                             "stability": "stable",
+                        }]
+                    },
+                }]
+            }],
+            "baseline_group_ids_by_attribute": {
+                "test.missing": "registry.test"
+            }
+    }
+	count(deny) > 0 with data.semconv as {
+            "registry_baseline_groups": [{
+                "id": "registry.test",
+                "type": "attribute_group",
+                "attributes": [{
+                    "name": "test.missing",
+                    "stability": "stable",
+                    "type": {
+                        "members": [{
+                            "id": "test",
+                            "value": "test",
+                            "stability": "experimental",
+                        }, {
+                            "id": "missing",
+                            "value": "missing",
+                            "stability": "experimental",
+                        }]
+                    },
+                }]
+            }],
+            "registry_groups": [{
+                "id": "registry.test",
+                "type": "attribute_group",
+                "attributes": [{
+                    "name": "test.missing",
+                    "stability": "stable",
+                    "type": {
+                        "members": [{
+                            "id": "test",
+                            "value": "test",
+                            "stability": "experimental",
+                        }]
+                    },
+                }]
+            }],
+            "baseline_group_ids_by_attribute": {
+                "test.missing": "registry.test"
+            }
+    }
+    count(deny) == 0 with data.semconv as {
+            "registry_baseline_groups": [{
+                "id": "registry.test",
+                "type": "attribute_group",
+                "attributes": [{
+                    "name": "test.missing",
+                    "stability": "stable",
+                    "type": {
+                        "members": [{
+                            "id": "test",
+                            "value": "test",
+                            "stability": "experimental",
+                        }, {
+                            "id": "missing",
+                            "value": "missing",
+                            "stability": "experimental",
+                        }]
+                    },
+                }]
+            }],
+            "registry_groups": [{
+                "id": "registry.test",
+                "type": "attribute_group",
+                "attributes": [{
+                    "name": "test.missing",
+                    "stability": "stable",
+                    "type": {
+                        "members": [{
+                            "id": "test",
+                            "value": "test",
+                            "stability": "experimental",
+                        }, {
+                            "id": "missing",
+                            "value": "missing",
+                            "stability": "experimental",
                         }]
                     },
                 }]
