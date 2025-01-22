@@ -1,0 +1,32 @@
+name: 'Prepare new PR'
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+    branches: [ 'main*' ]
+    paths: ['.chloggen/*']
+
+jobs:
+  prepare-new-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    if: ${{ github.repository_owner == 'open-telemetry' }}
+    steps:
+      # check out main
+      - uses: actions/checkout@v4
+      # sparse checkout to only get the .chloggen directory
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          path: prchangelog
+          sparse-checkout: .chloggen
+
+      # we're going to run prepare-new-pr script from the main branch
+      # to parse changelog record from the PR branch.
+      - name: Run prepare-new-pr.sh
+        run: ./.github/workflows/scripts/prepare-new-pr.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ github.event.pull_request.number }}
+          PR_CHANGELOG_PATH: prchangelog
