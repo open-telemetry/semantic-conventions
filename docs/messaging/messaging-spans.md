@@ -22,6 +22,7 @@
   - [Span name](#span-name)
   - [Operation types](#operation-types)
   - [Span kind](#span-kind)
+  - [Span status](#span-status)
   - [Trace structure](#trace-structure)
     - [Producer spans](#producer-spans)
     - [Consumer spans](#consumer-spans)
@@ -187,7 +188,7 @@ in such a way that it cannot be changed by intermediaries.
 
 ### Span name
 
-Messaging spans SHOULD follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/trace/api.md#span).
+Messaging spans SHOULD follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/trace/api.md#span).
 
 <!-- markdown-link-check-disable -->
 <!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
@@ -246,6 +247,11 @@ Span kind SHOULD be set according to the following table, based on the operation
 
 Setting span kinds according to this table allows analysis tools to interpret spans
 and relationships between them without the need for additional semantic hints.
+
+### Span status
+
+Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
+details on how to record span status.
 
 ### Trace structure
 

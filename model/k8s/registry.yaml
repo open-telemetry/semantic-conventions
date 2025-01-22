@@ -192,25 +192,43 @@ groups:
           members:
             - id: persistent_volume_claim
               value: 'persistentVolumeClaim'
-              brief: "A [persistentVolumeClaim](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume"
+              brief: "A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume"
               stability: experimental
             - id: config_map
               value: 'configMap'
-              brief: "A [configMap](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume"
+              brief: "A [configMap](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume"
               stability: experimental
             - id: downward_api
               value: 'downwardAPI'
-              brief: "A [downwardAPI](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume"
+              brief: "A [downwardAPI](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume"
               stability: experimental
             - id: empty_dir
               value: 'emptyDir'
-              brief: "An [emptyDir](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume"
+              brief: "An [emptyDir](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume"
               stability: experimental
             - id: secret
               value: 'secret'
-              brief: "A [secret](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
+              brief: "A [secret](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
               stability: experimental
             - id: local
               value: 'local'
-              brief: "A [local](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume"
+              brief: "A [local](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume"
+              stability: experimental
+      - id: k8s.namespace.phase
+        stability: experimental
+        brief: >
+          The phase of the K8s namespace.
+        note: |
+          This attribute aligns with the `phase` field of the
+          [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
+        examples: [ "active", "terminating" ]
+        type:
+          members:
+            - id: active
+              value: 'active'
+              brief: "Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)"
+              stability: experimental
+            - id: terminating
+              value: 'terminating'
+              brief: "Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)"
               stability: experimental
