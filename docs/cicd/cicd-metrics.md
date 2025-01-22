@@ -93,14 +93,17 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`vcs.change.state`](/docs/attributes-registry/vcs.md) | string | The state of the change (pull request/merge request/changelist). | `open`; `closed`; `merged` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [3] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+**[1] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
+given time.
+
+**[2] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
 
-**[2] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+**[3] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
@@ -137,39 +140,52 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.base.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.base.revision`](/docs/attributes-registry/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [3] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.head.revision`](/docs/attributes-registry/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [4] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.base.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.base.revision`](/docs/attributes-registry/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [5] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.head.revision`](/docs/attributes-registry/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [6] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+**[1] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
+given time.
+
+**[2] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
 
-**[2] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+**[3] `vcs.ref.base.name`:** `base` refers to the starting point of a change. For example, `main`
+would be the base reference of type branch if you've created a new
+reference of type branch from it and created new commits.
+
+**[4] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
-**[3] `vcs.ref.base.revision`:** The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
+**[5] `vcs.ref.base.revision`:** `base` refers to the starting point of a change. For example, `main`
+would be the base reference of type branch if you've created a new
+reference of type branch from it and created new commits. The
+revision can be a full [hash value (see
+glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
 of the recorded change to a ref within a repository pointing to a
 commit [commit](https://git-scm.com/docs/git-commit) object. It does
-not necessarily have to be a hash; it can simply define a
-[revision number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
+not necessarily have to be a hash; it can simply define a [revision
+number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
 which is an integer that is monotonically increasing. In cases where
-it is identical to the `ref.base.name`, it SHOULD still be included. It is
-up to the implementer to decide which value to set as the revision
-based on the VCS system and situational context.
+it is identical to the `ref.base.name`, it SHOULD still be included.
+It is up to the implementer to decide which value to set as the
+revision based on the VCS system and situational context.
 
-**[4] `vcs.ref.head.revision`:** The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
+**[6] `vcs.ref.head.revision`:** `head` refers to where you are right now; the current reference at a
+given time.The revision can be a full [hash value (see
+glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
 of the recorded change to a ref within a repository pointing to a
 commit [commit](https://git-scm.com/docs/git-commit) object. It does
-not necessarily have to be a hash; it can simply define a
-[revision number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
+not necessarily have to be a hash; it can simply define a [revision
+number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
 which is an integer that is monotonically increasing. In cases where
-it is identical to the `ref.head.name`, it SHOULD still be included. It is
-up to the implementer to decide which value to set as the revision
-based on the VCS system and situational context.
+it is identical to the `ref.head.name`, it SHOULD still be included.
+It is up to the implementer to decide which value to set as the
+revision based on the VCS system and situational context.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -193,39 +209,52 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.base.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.base.revision`](/docs/attributes-registry/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [3] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.head.revision`](/docs/attributes-registry/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [4] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.base.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.base.revision`](/docs/attributes-registry/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [5] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.head.revision`](/docs/attributes-registry/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [6] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+**[1] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
+given time.
+
+**[2] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
 
-**[2] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+**[3] `vcs.ref.base.name`:** `base` refers to the starting point of a change. For example, `main`
+would be the base reference of type branch if you've created a new
+reference of type branch from it and created new commits.
+
+**[4] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
-**[3] `vcs.ref.base.revision`:** The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
+**[5] `vcs.ref.base.revision`:** `base` refers to the starting point of a change. For example, `main`
+would be the base reference of type branch if you've created a new
+reference of type branch from it and created new commits. The
+revision can be a full [hash value (see
+glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
 of the recorded change to a ref within a repository pointing to a
 commit [commit](https://git-scm.com/docs/git-commit) object. It does
-not necessarily have to be a hash; it can simply define a
-[revision number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
+not necessarily have to be a hash; it can simply define a [revision
+number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
 which is an integer that is monotonically increasing. In cases where
-it is identical to the `ref.base.name`, it SHOULD still be included. It is
-up to the implementer to decide which value to set as the revision
-based on the VCS system and situational context.
+it is identical to the `ref.base.name`, it SHOULD still be included.
+It is up to the implementer to decide which value to set as the
+revision based on the VCS system and situational context.
 
-**[4] `vcs.ref.head.revision`:** The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
+**[6] `vcs.ref.head.revision`:** `head` refers to where you are right now; the current reference at a
+given time.The revision can be a full [hash value (see
+glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
 of the recorded change to a ref within a repository pointing to a
 commit [commit](https://git-scm.com/docs/git-commit) object. It does
-not necessarily have to be a hash; it can simply define a
-[revision number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
+not necessarily have to be a hash; it can simply define a [revision
+number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
 which is an integer that is monotonically increasing. In cases where
-it is identical to the `ref.head.name`, it SHOULD still be included. It is
-up to the implementer to decide which value to set as the revision
-based on the VCS system and situational context.
+it is identical to the `ref.head.name`, it SHOULD still be included.
+It is up to the implementer to decide which value to set as the
+revision based on the VCS system and situational context.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -316,18 +345,32 @@ If number of lines added/removed should be calculated from the start of time, th
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`vcs.line_change.type`](/docs/attributes-registry/vcs.md) | string | The type of line change being measured on a branch or change. | `added`; `removed` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.base.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.base.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.head.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.base.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.base.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [2] | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.head.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [4] | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [5] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.change.id`](/docs/attributes-registry/vcs.md) | string | The ID of the change (pull request/merge request/changelist) if applicable. This is usually a unique (within repository) identifier generated by the VCS system. | `123` | `Conditionally Required` if a change is associate with the ref. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [6] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+**[1] `vcs.ref.base.name`:** `base` refers to the starting point of a change. For example, `main`
+would be the base reference of type branch if you've created a new
+reference of type branch from it and created new commits.
+
+**[2] `vcs.ref.base.type`:** `base` refers to the starting point of a change. For example, `main`
+would be the base reference of type branch if you've created a new
+reference of type branch from it and created new commits.
+
+**[3] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
+given time.
+
+**[4] `vcs.ref.head.type`:** `head` refers to where you are right now; the current reference at a
+given time.
+
+**[5] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
 
-**[2] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+**[6] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
@@ -383,19 +426,33 @@ instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers) 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`vcs.ref.base.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.base.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.head.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.base.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.base.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [2] | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.head.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [4] | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [5] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.revision_delta.direction`](/docs/attributes-registry/vcs.md) | string | The type of revision comparison. | `ahead`; `behind` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`vcs.change.id`](/docs/attributes-registry/vcs.md) | string | The ID of the change (pull request/merge request/changelist) if applicable. This is usually a unique (within repository) identifier generated by the VCS system. | `123` | `Conditionally Required` if a change is associate with the ref. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [6] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+**[1] `vcs.ref.base.name`:** `base` refers to the starting point of a change. For example, `main`
+would be the base reference of type branch if you've created a new
+reference of type branch from it and created new commits.
+
+**[2] `vcs.ref.base.type`:** `base` refers to the starting point of a change. For example, `main`
+would be the base reference of type branch if you've created a new
+reference of type branch from it and created new commits.
+
+**[3] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
+given time.
+
+**[4] `vcs.ref.head.type`:** `head` refers to where you are right now; the current reference at a
+given time.
+
+**[5] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
 
-**[2] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+**[6] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
@@ -448,15 +505,21 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.ref.head.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.head.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.ref.head.type`](/docs/attributes-registry/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [2] | `branch`; `tag` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [3] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+**[1] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
+given time.
+
+**[2] `vcs.ref.head.type`:** `head` refers to where you are right now; the current reference at a
+given time.
+
+**[3] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
 
-**[2] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+**[4] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
