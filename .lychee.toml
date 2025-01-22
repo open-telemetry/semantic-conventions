@@ -6,7 +6,9 @@ exclude = [
     "^https://www.foo.bar",
     # excluding links to pull requests and issues is done for performance
     "^https://github.com/open-telemetry/semantic-conventions/(pull|issues)/\\d+$",
-    "^https://github.com/open-telemetry/opentelemetry-specification/(pull|issues)/\\d+$"
+    "^https://github.com/open-telemetry/opentelemetry-specification/(pull|issues)/\\d+$",
+    # TODO (trask) remove this exclusion after (hopefully) this page comes back up
+    "^https://docs.oracle.com/en/java/javase/17/docs/api/"
 ]
 
 # better to be safe and avoid failures

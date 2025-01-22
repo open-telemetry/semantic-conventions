@@ -1,5 +1,9 @@
 # Database semantic convention stability migration guide
 
+> [!WARNING]
+> This document is a work in progress and the database semantic conventions
+> have not been marked stable yet and changes are still being made.
+
 Due to the significant number of modifications and the extensive user base
 affected by them, existing database instrumentations published by
 OpenTelemetry are required to implement a migration plan that will assist users in
