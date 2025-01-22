@@ -2,6 +2,8 @@
 
 ## Preparing a new release
 
+- Close the [release milestone](https://github.com/open-telemetry/semantic-conventions/milestones)
+  if there is one.
 - Ensure the referenced specification version is up to date. Use
   [tooling to update the spec](./CONTRIBUTING.md#updating-the-referenced-specification-version)
   if needed.
