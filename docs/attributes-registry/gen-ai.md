@@ -18,12 +18,13 @@ This document defines the attributes used to describe telemetry in the context o
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="gen-ai-operation-name" href="#gen-ai-operation-name">`gen_ai.operation.name`</a> | string | The name of the operation being performed. [1] | `chat`; `text_completion`; `embeddings` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-request-encoding-formats" href="#gen-ai-request-encoding-formats">`gen_ai.request.encoding_formats`</a> | string[] | The encoding formats requested in an embeddings operation, if specified. [2] | `["base64"]`; `["float", "binary"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-output-json-schema-name" href="#gen-ai-output-json-schema-name">`gen_ai.output.json.schema.name`</a> | string | Represents the name of the JSON schema requested by the client. It typically corresponds to the type to which the model output should be serializable. [2] | `calendar_event`; `system.ResolverExecution` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-output-type" href="#gen-ai-output-type">`gen_ai.output.type`</a> | string | Represents the content type requested by the client. [3] | `text`; `json`; `image` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-request-encoding-formats" href="#gen-ai-request-encoding-formats">`gen_ai.request.encoding_formats`</a> | string[] | The encoding formats requested in an embeddings operation, if specified. [4] | `["base64"]`; `["float", "binary"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-frequency-penalty" href="#gen-ai-request-frequency-penalty">`gen_ai.request.frequency_penalty`</a> | double | The frequency penalty setting for the GenAI request. | `0.1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-max-tokens" href="#gen-ai-request-max-tokens">`gen_ai.request.max_tokens`</a> | int | The maximum number of tokens the model generates for a request. | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-model" href="#gen-ai-request-model">`gen_ai.request.model`</a> | string | The name of the GenAI model a request is being made to. | `gpt-4` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-presence-penalty" href="#gen-ai-request-presence-penalty">`gen_ai.request.presence_penalty`</a> | double | The presence penalty setting for the GenAI request. | `0.1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-request-response-format" href="#gen-ai-request-response-format">`gen_ai.request.response_format`</a> | string | The structured response format specified in the request. | `text`; `json_object`; `json_schema` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-seed" href="#gen-ai-request-seed">`gen_ai.request.seed`</a> | int | Requests with same seed value more likely to return same result. | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-stop-sequences" href="#gen-ai-request-stop-sequences">`gen_ai.request.stop_sequences`</a> | string[] | List of sequences that the model will use to stop generating further tokens. | `["forest", "lived"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-temperature" href="#gen-ai-request-temperature">`gen_ai.request.temperature`</a> | double | The temperature setting for the GenAI request. | `0.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -32,16 +33,28 @@ This document defines the attributes used to describe telemetry in the context o
 | <a id="gen-ai-response-finish-reasons" href="#gen-ai-response-finish-reasons">`gen_ai.response.finish_reasons`</a> | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `["stop"]`; `["stop", "length"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-response-id" href="#gen-ai-response-id">`gen_ai.response.id`</a> | string | The unique identifier for the completion. | `chatcmpl-123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-response-model" href="#gen-ai-response-model">`gen_ai.response.model`</a> | string | The name of the model that generated the response. | `gpt-4-0613` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-system" href="#gen-ai-system">`gen_ai.system`</a> | string | The Generative AI product as identified by the client or server instrumentation. [3] | `openai` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-system" href="#gen-ai-system">`gen_ai.system`</a> | string | The Generative AI product as identified by the client or server instrumentation. [5] | `openai` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-token-type" href="#gen-ai-token-type">`gen_ai.token.type`</a> | string | The type of token being counted. | `input`; `output` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-usage-input-tokens" href="#gen-ai-usage-input-tokens">`gen_ai.usage.input_tokens`</a> | int | The number of tokens used in the GenAI input (prompt). | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-usage-output-tokens" href="#gen-ai-usage-output-tokens">`gen_ai.usage.output_tokens`</a> | int | The number of tokens used in the GenAI response (completion). | `180` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[2] `gen_ai.request.encoding_formats`:** In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
+**[2] `gen_ai.output.json.schema.name`:** This attribute SHOULD be set when `gen_ai.output.type` is `json` and
+the client has requested output in a specific schema.
 
-**[3] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+Semantic conventions for a specific GenAI system SHOULD document
+how to populate this attribute based on the available request properties.
+
+If the request does not include a schema or schema name is not available, this attribute SHOULD NOT be set.
+
+**[3] `gen_ai.output.type`:** This attribute SHOULD be used when the client requests output of a specific type. The model may return zero or more outputs of this type.
+This attribute specifies the output modality and not the actual output format. For example, if an image is requested, the actual output could be a URL pointing to an image file.
+Additional output format details may be recorded in `gen_ai.output.{type}.*` attributes, such as `gen_ai.output.json.schema.name`.
+
+**[4] `gen_ai.request.encoding_formats`:** In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
+
+**[5] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
@@ -65,13 +78,14 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 ---
 
-`gen_ai.request.response_format` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.output.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `json_object` | JSON object response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `json_schema` | JSON schema response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `text` | Text response format | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `image` | Image | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `json` | JSON object with known or unknown schema | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `speech` | Speech | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `text` | Plain text | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 
@@ -101,7 +115,6 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | Value  | Description | Stability |
 |---|---|---|
 | `input` | Input tokens (prompt, input, etc.) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `output` | Output tokens (completion, response, etc.) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `output`. |
 | `output` | Output tokens (completion, response, etc.) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## OpenAI Attributes

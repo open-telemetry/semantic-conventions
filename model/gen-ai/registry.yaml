@@ -203,23 +203,55 @@ groups:
           If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic
           conventions for specific GenAI system and use system-specific name in the instrumentation.
           If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
-      - id: gen_ai.request.response_format
+      - id: gen_ai.output.type
         stability: development
         type:
           members:
             - id: text
               value: "text"
-              brief: 'Text response format'
+              brief: 'Plain text'
               stability: development
-            - id: json_object
-              value: "json_object"
-              brief: 'JSON object response format'
+            - id: json
+              value: "json"
+              brief: 'JSON object with known or unknown schema'
               stability: development
-            - id: json_schema
-              value: "json_schema"
-              brief: 'JSON schema response format'
+            - id: image
+              value: "image"
+              brief: 'Image'
               stability: development
-        brief: The structured response format specified in the request.
+            - id: speech
+              value: "speech"
+              brief: 'Speech'
+              stability: development
+        # if might need to record requested and actual output types on the same span/event
+        # at some point. In this case, we might need to add a new attribute.
+        # we may also need to record an array of types if multiple are requested/returned.
+        brief: Represents the content type requested by the client.
+        note: >
+          This attribute SHOULD be used when the client requests output of a
+          specific type. The model may return zero or more outputs of this type.
+
+          This attribute specifies the output modality and not the actual output format.
+          For example, if an image is requested, the actual output could be a
+          URL pointing to an image file.
+
+          Additional output format details may be recorded in `gen_ai.output.{type}.*` attributes, such
+          as `gen_ai.output.json.schema.name`.
+      - id: gen_ai.output.json.schema.name
+        stability: development
+        type: string
+        brief: Represents the name of the JSON schema requested by the client.
+          It typically corresponds to the type to which the model output should
+          be serializable.
+        note: |
+          This attribute SHOULD be set when `gen_ai.output.type` is `json` and
+          the client has requested output in a specific schema.
+
+          Semantic conventions for a specific GenAI system SHOULD document
+          how to populate this attribute based on the available request properties.
+
+          If the request does not include a schema or schema name is not available, this attribute SHOULD NOT be set.
+        examples: ['calendar_event', 'system.ResolverExecution']
   - id: registry.gen_ai.openai
     type: attribute_group
     display_name: OpenAI Attributes
