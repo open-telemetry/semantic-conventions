@@ -52,14 +52,14 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Use CLA approved github bot
-        run: .github/workflows/scripts/use-cla-approved-github-bot.sh
+        run: .github/scripts/use-cla-approved-github-bot.sh
 
       - name: Update version
         env:
           VERSION: ${{ needs.check-versions.outputs.latest-version }}
         run: |
-          .github/workflows/scripts/update-spec-repo-links.sh $VERSION
-          sed -i "s/^PREVIOUS_SPECIFICATION_VERSION=.*/PREVIOUS_SPECIFICATION_VERSION=$VERSION/" .github/workflows/scripts/update-spec-repo-links.sh
+          .github/scripts/update-spec-repo-links.sh $VERSION
+          sed -i "s/^PREVIOUS_SPECIFICATION_VERSION=.*/PREVIOUS_SPECIFICATION_VERSION=$VERSION/" .github/scripts/update-spec-repo-links.sh
 
       - name: Create pull request
         env:
