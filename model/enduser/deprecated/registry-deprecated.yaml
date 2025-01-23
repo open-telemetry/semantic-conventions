@@ -4,12 +4,6 @@ groups:
     display_name: Deprecated End User Attributes
     brief: "Describes deprecated end user attributes."
     attributes:
-      - id: enduser.id
-        type: string
-        brief: 'Deprecated, use `enduser.pseudo.id` instead.'
-        stability: experimental
-        deprecated: "Replaced by `enduser.pseudo.id`."
-        examples: ['QdH5CAWJgqVT4rOr0qtumf']
       - id: enduser.role
         type: string
         deprecated: "Removed."
