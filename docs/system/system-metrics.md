@@ -8,7 +8,7 @@ linkTitle: System
 
 This document describes instruments and attributes for common system level
 metrics in OpenTelemetry. Consider the [general metric semantic
-conventions](/docs/general/metrics.md#general-metric-semantic-conventions) when creating
+conventions](/docs/general/metrics.md#general-guidelines) when creating
 instruments not explicitly defined in the specification.
 
 The `system.*` namespace SHOULD be exclusively used to report hosts' metrics.
@@ -201,7 +201,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.cpu.physical.count` | UpDownCounter | `{cpu}` | Reports the number of actual physical processor cores on the hardware | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.cpu.physical.count` | UpDownCounter | `{cpu}` | Reports the number of actual physical processor cores on the hardware [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Calculated by multiplying the number of sockets by the number of cores per socket
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -221,7 +223,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.cpu.logical.count` | UpDownCounter | `{cpu}` | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.cpu.logical.count` | UpDownCounter | `{cpu}` | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Calculated by multiplying the number of sockets by the number of cores per socket, and then by the number of threads per core
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -1041,15 +1045,35 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`network.connection.state`](/docs/attributes-registry/network.md) | string | The state of network connection [1] | `close_wait` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`system.network.state`](/docs/attributes-registry/system.md) | string | A stateless protocol MUST NOT set this attribute | `close_wait` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `network.transport`:** The value SHOULD be normalized to lowercase.
+**[1] `network.connection.state`:** Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
+
+**[2] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
+
+---
+
+`network.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `close_wait` | close_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `closed` | closed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `closing` | closing | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `established` | established | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `fin_wait_1` | fin_wait_1 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `fin_wait_2` | fin_wait_2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `last_ack` | last_ack | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `listen` | listen | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `syn_received` | syn_received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `syn_sent` | syn_sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `time_wait` | time_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 
@@ -1062,25 +1086,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`system.network.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `close` | close | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `close_wait` | close_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `closing` | closing | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `delete` | delete | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `established` | established | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fin_wait_1` | fin_wait_1 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fin_wait_2` | fin_wait_2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `last_ack` | last_ack | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `listen` | listen | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `syn_recv` | syn_recv | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `syn_sent` | syn_sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `time_wait` | time_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

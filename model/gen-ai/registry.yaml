@@ -17,6 +17,10 @@ groups:
               stability: experimental
               value: "vertex_ai"
               brief: 'Vertex AI'
+            - id: gemini
+              stability: experimental
+              value: "gemini"
+              brief: 'Gemini'
             - id: anthropic
               stability: experimental
               value: "anthropic"
@@ -29,6 +33,10 @@ groups:
               stability: experimental
               value: "az.ai.inference"
               brief: 'Azure AI Inference'
+            - id: az.ai.openai
+              stability: experimental
+              value: "az.ai.openai"
+              brief: 'Azure OpenAI'
             - id: ibm.watsonx.ai
               stability: experimental
               value: "ibm.watsonx.ai"
@@ -37,14 +45,37 @@ groups:
               stability: experimental
               value: "aws.bedrock"
               brief: 'AWS Bedrock'
+            - id: perplexity
+              stability: experimental
+              value: "perplexity"
+              brief: 'Perplexity'
+            - id: xai
+              stability: experimental
+              value: "xai"
+              brief: 'xAI'
+            - id: deepseek
+              stability: experimental
+              value: "deepseek"
+              brief: 'DeepSeek'
+            - id: groq
+              stability: experimental
+              value: "groq"
+              brief: 'Groq'
+            - id: mistral_ai
+              stability: experimental
+              value: "mistral_ai"
+              brief: 'Mistral AI'
+
         brief: The Generative AI product as identified by the client or server instrumentation.
         note: |
           The `gen_ai.system` describes a family of GenAI models with specific model identified
           by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
           The actual GenAI product may differ from the one identified by the client.
-          For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
-          is set to `openai` based on the instrumentation's best knowledge.
+          Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
+          libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
+          instrumentation's best knowledge, instead of the actual system. The `server.address`
+          attribute may help identify the actual system in use for `openai`.
 
           For custom model, a custom friendly name SHOULD be used.
           If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
@@ -100,6 +131,11 @@ groups:
         note: >
           In some GenAI systems the encoding formats are called embedding types.
           Also, some GenAI systems only accept a single format per request.
+      - id: gen_ai.request.seed
+        stability: experimental
+        type: int
+        brief: Requests with same seed value more likely to return same result.
+        examples: [100]
       - id: gen_ai.response.id
         stability: experimental
         type: string
@@ -168,11 +204,6 @@ groups:
     brief: >
       Thie group defines attributes for OpenAI.
     attributes:
-      - id: gen_ai.openai.request.seed
-        stability: experimental
-        type: int
-        brief: Requests with same seed value more likely to return same result.
-        examples: [100]
       - id: gen_ai.openai.request.response_format
         stability: experimental
         type:

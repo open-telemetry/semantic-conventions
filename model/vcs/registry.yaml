@@ -1,13 +1,14 @@
 groups:
   - id: registry.vcs.repository
     type: attribute_group
+    display_name: VCS Repository Attributes
     brief: >
       This group defines the attributes for
       [Version Control Systems (VCS)](https://wikipedia.org/wiki/Version_control).
     attributes:
       - id: vcs.repository.url.full
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.)
           of the repository providing the complete HTTP(S) address in order to
@@ -22,7 +23,7 @@ groups:
           ]
       - id: vcs.repository.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The human readable name of the repository. It SHOULD NOT include any
           additional identifier like Group/SubGroup in GitLab or organization
@@ -38,11 +39,15 @@ groups:
           ]
       - id: vcs.ref.base.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the
           [reference](https://git-scm.com/docs/gitglossary#def_ref) such as
           **branch** or **tag** in the repository.
+        note: |
+          `base` refers to the starting point of a change. For example, `main`
+          would be the base reference of type branch if you've created a new
+          reference of type branch from it and created new commits.
         examples: ["my-feature-branch", "tag-1-test"]
       - id: vcs.ref.base.type
         type:
@@ -50,31 +55,39 @@ groups:
             - id: branch
               value: branch
               brief: "[branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)"
-              stability: experimental
+              stability: development
             - id: tag
               value: tag
               brief: "[tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)"
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
+        note: |
+          `base` refers to the starting point of a change. For example, `main`
+          would be the base reference of type branch if you've created a new
+          reference of type branch from it and created new commits.
         examples: ["branch", "tag"]
       - id: vcs.ref.base.revision
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision),
           The revision most often refers to a commit object in Git, or a revision number in SVN.
         note: |
-          The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
+          `base` refers to the starting point of a change. For example, `main`
+          would be the base reference of type branch if you've created a new
+          reference of type branch from it and created new commits. The
+          revision can be a full [hash value (see
+          glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
           of the recorded change to a ref within a repository pointing to a
           commit [commit](https://git-scm.com/docs/git-commit) object. It does
-          not necessarily have to be a hash; it can simply define a
-          [revision number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
+          not necessarily have to be a hash; it can simply define a [revision
+          number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
           which is an integer that is monotonically increasing. In cases where
-          it is identical to the `ref.base.name`, it SHOULD still be included. It is
-          up to the implementer to decide which value to set as the revision
-          based on the VCS system and situational context.
+          it is identical to the `ref.base.name`, it SHOULD still be included.
+          It is up to the implementer to decide which value to set as the
+          revision based on the VCS system and situational context.
         examples:
           [
             "9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc",
@@ -84,11 +97,14 @@ groups:
           ]
       - id: vcs.ref.head.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the
           [reference](https://git-scm.com/docs/gitglossary#def_ref) such as
           **branch** or **tag** in the repository.
+        note: |
+          `head` refers to where you are right now; the current reference at a
+          given time.
         examples: ["my-feature-branch", "tag-1-test"]
       - id: vcs.ref.head.type
         type:
@@ -96,31 +112,36 @@ groups:
             - id: branch
               value: branch
               brief: "[branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)"
-              stability: experimental
+              stability: development
             - id: tag
               value: tag
               brief: "[tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)"
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
+        note: |
+          `head` refers to where you are right now; the current reference at a
+          given time.
         examples: ["branch", "tag"]
       - id: vcs.ref.head.revision
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision),
           The revision most often refers to a commit object in Git, or a revision number in SVN.
         note: |
-          The revision can be a full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
+          `head` refers to where you are right now; the current reference at a
+          given time.The revision can be a full [hash value (see
+          glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
           of the recorded change to a ref within a repository pointing to a
           commit [commit](https://git-scm.com/docs/git-commit) object. It does
-          not necessarily have to be a hash; it can simply define a
-          [revision number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
+          not necessarily have to be a hash; it can simply define a [revision
+          number](https://svnbook.red-bean.com/en/1.7/svn.tour.revs.specifiers.html)
           which is an integer that is monotonically increasing. In cases where
-          it is identical to the `ref.head.name`, it SHOULD still be included. It is
-          up to the implementer to decide which value to set as the revision
-          based on the VCS system and situational context.
+          it is identical to the `ref.head.name`, it SHOULD still be included.
+          It is up to the implementer to decide which value to set as the
+          revision based on the VCS system and situational context.
         examples:
           [
             "9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc",
@@ -134,12 +155,12 @@ groups:
             - id: branch
               value: branch
               brief: "[branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)"
-              stability: experimental
+              stability: development
             - id: tag
               value: tag
               brief: "[tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)"
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
         examples: ["branch", "tag"]
@@ -149,12 +170,12 @@ groups:
             - id: behind
               value: behind
               brief: "How many revisions the change is behind the target ref."
-              stability: experimental
+              stability: development
             - id: ahead
               value: ahead
               brief: "How many revisions the change is ahead of the target ref."
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The type of revision comparison.
         examples: ["ahead", "behind"]
@@ -164,18 +185,18 @@ groups:
             - id: added
               value: added
               brief: "How many lines were added."
-              stability: experimental
+              stability: development
             - id: removed
               value: removed
               brief: "How many lines were removed."
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The type of line change being measured on a branch or change.
         examples: ["added", "removed"]
       - id: vcs.change.title
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The human readable title of the change (pull request/merge request/changelist).
           This title is often a brief summary of the change and may get merged
@@ -188,7 +209,7 @@ groups:
           ]
       - id: vcs.change.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The ID of the change (pull request/merge request/changelist) if applicable. This
           is usually a unique (within repository) identifier generated by the VCS system.
@@ -199,22 +220,22 @@ groups:
             - id: open
               value: open
               brief: "Open means the change is currently active and under review. It hasn't been merged into the target branch yet, and it's still possible to make changes or add comments."
-              stability: experimental
+              stability: development
             - id: wip
               value: wip
               brief: "WIP (work-in-progress, draft) means the change is still in progress and not yet ready for a full review. It might still undergo significant changes."
-              stability: experimental
+              stability: development
             - id: closed
               value: closed
               brief: >-
                 Closed means the merge request has been closed without merging. This can happen for various reasons, such as the changes being deemed unnecessary,
                 the issue being resolved in another way, or the author deciding to withdraw the request.
-              stability: experimental
+              stability: development
             - id: merged
               value: merged
               brief: "Merged indicates that the change has been successfully integrated into the target codebase."
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The state of the change (pull request/merge request/changelist).
         examples: ["open", "closed", "merged"]

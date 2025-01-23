@@ -2,6 +2,7 @@ groups:
 
   - id: registry.profile.frame
     type: attribute_group
+    display_name: Profile Frame Attributes
     brief: >
       Describes the origin of a single frame in a Profile.
     attributes:
@@ -11,7 +12,6 @@ groups:
           Describes the interpreter or compiler of a single frame.
         examples: ['cpython']
         type:
-          allow_custom_values: true
           members:
             - id: dotnet
               brief: >
@@ -60,4 +60,9 @@ groups:
               brief: >
                 [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine))
               value: "v8js"
+              stability: experimental
+            - id: beam
+              brief: >
+                [Erlang](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine))
+              value: "beam"
               stability: experimental

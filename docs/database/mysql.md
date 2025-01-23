@@ -21,16 +21,16 @@ The Semantic Conventions for *MySQL* extend and override the [Database Semantic 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The database associated with the connection. [1] | `products`; `customers` | `Conditionally Required` If available without an additional network call. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html). [2] | `1005`; `MY-010016` | `Conditionally Required` If response has ended with warning or an error. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The database associated with the connection. [1] | `products`; `customers` | `Conditionally Required` If available without an additional network call. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html) recorded as a string. [2] | `1005`; `MY-010016` | `Conditionally Required` If response has ended with warning or an error. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Conditionally Required` [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [6] | `2`; `3`; `4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a database query text. [7] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [8] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [9] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [10] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [6] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a database query text. [7] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [8] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [9] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [10] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [12] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [12] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1] `db.namespace`:** A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
 
@@ -42,41 +42,7 @@ Instrumentation SHOULD document if `db.namespace` reflects the database provided
 
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[2] `db.response.status_code`:** SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
-return code which is adopted by some database systems like PostgreSQL.
-See [PostgreSQL error codes](https://www.postgresql.org/docs/current/errcodes-appendix.html)
-for the details.
-
-Other systems like MySQL, Oracle, or MS SQL Server define vendor-specific
-error codes. Database SQL drivers usually provide access to both properties.
-For example, in Java, the [`SQLException`](https://docs.oracle.com/javase/8/docs/api/java/sql/SQLException.html)
-class reports them with `getSQLState()` and `getErrorCode()` methods.
-
-Instrumentations SHOULD populate the `db.response.status_code` with the
-the most specific code available to them.
-
-Here's a non-exhaustive list of databases that report vendor-specific
-codes with granularity higher than SQLSTATE (or don't report SQLSTATE
-at all):
-
-- [DB2 SQL codes](https://www.ibm.com/docs/db2-for-zos/12?topic=codes-sql).
-- [Maria DB error codes](https://mariadb.com/kb/en/mariadb-error-code-reference/)
-- [Microsoft SQL Server errors](https://docs.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors)
-- [MySQL error codes](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html)
-- [Oracle error codes](https://docs.oracle.com/cd/B28359_01/server.111/b28278/toc.htm)
-- [SQLite result codes](https://www.sqlite.org/rescode.html)
-
-These systems SHOULD set the `db.response.status_code` to a
-known vendor-specific error code. If only SQLSTATE is available,
-it SHOULD be used.
-
-When multiple error codes are available and specificity is unclear,
-instrumentation SHOULD set the `db.response.status_code` to the
-concatenated string of all codes with '/' used as a separator.
-
-For example, generic DB instrumentation that detected an error and has
-SQLSTATE `"42000"` and vendor-specific `1071` should set
-`db.response.status_code` to `"42000/1071"`."
+**[2] `db.response.status_code`:** MySQL error codes are vendor specific error codes and don't follow [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) conventions. All MySQL error codes SHOULD be considered errors.
 
 **[3] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
@@ -87,18 +53,15 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[5] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[6] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
-This attribute has stability level RELEASE CANDIDATE.
 
 **[7] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
 Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
-This attribute has stability level RELEASE CANDIDATE.
 
 **[8] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
 
 **[9] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
-This attribute has stability level RELEASE CANDIDATE.
 
 **[10] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
 Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
@@ -107,7 +70,6 @@ Parameterized query text SHOULD be collected by default (the query parameter val
 
 **[12] `db.operation.parameter`:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
-This attribute has stability level RELEASE CANDIDATE.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):

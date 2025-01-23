@@ -10,9 +10,10 @@
         "MD040": false,
     },
     "yaml.schemas": {
-        "https://raw.githubusercontent.com/open-telemetry/weaver/v0.11.0/schemas/semconv.schema.json": [
+        "https://raw.githubusercontent.com/open-telemetry/weaver/v0.12.0/schemas/semconv.schema.json": [
             "model/**/*.yaml"
         ]
     },
-    "json.schemaDownload.enable": true
+    "json.schemaDownload.enable": true,
+    "markdown.extension.toc.levels": "2..6"
 }

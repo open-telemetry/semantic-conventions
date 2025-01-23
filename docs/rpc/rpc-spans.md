@@ -15,6 +15,7 @@ This document defines how to describe remote procedure calls
 
 - [Common remote procedure call conventions](#common-remote-procedure-call-conventions)
   - [Span name](#span-name)
+  - [Span status](#span-status)
   - [Service name](#service-name)
   - [Client attributes](#client-attributes)
   - [Server attributes](#server-attributes)
@@ -79,6 +80,11 @@ Examples of span names:
   `MyServiceReference.ICalculator/Add` reported by the client for .NET WCF calls
 - `MyServiceWithNoPackage/theMethod`
 
+### Span status
+
+Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
+details on how to record span status.
+
 ### Service name
 
 On the server process receiving and handling the remote procedure call, the service name provided in `rpc.service` does not necessarily have to match the [`service.name`][] resource attribute.
@@ -128,7 +134,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[5] `network.type`:** The value SHOULD be normalized to lowercase.
 
-**[6] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+**[6] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
 **[7] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
@@ -211,7 +217,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[7] `network.type`:** The value SHOULD be normalized to lowercase.
 
-**[8] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+**[8] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
 **[9] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 

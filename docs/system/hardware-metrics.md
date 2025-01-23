@@ -7,11 +7,11 @@ linkTitle: Hardware
 **Status**: [Experimental][DocumentStatus]
 
 This document describes instruments and attributes for common hardware level
-metrics in OpenTelemetry. Consider the [general metric semantic conventions](/docs/general/metrics.md#general-metric-semantic-conventions)
+metrics in OpenTelemetry. Consider the [general metric semantic conventions](/docs/general/metrics.md#general-guidelines)
 when creating instruments not explicitly defined in the specification.
 
 This document is being converted to specific hardware metrics, parts of this document that have already been
-converted are now located in the [Hardware] (/docs/hardware/README.md) folder and are no longer present in this file.
+converted are now located in the [Hardware](/docs/hardware/README.md) folder and are no longer present in this file.
 
 Please note that this is an [ongoing process](https://github.com/open-telemetry/semantic-conventions/issues/1309) and may take some time to complete.
 
