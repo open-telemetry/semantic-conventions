@@ -236,6 +236,7 @@ groups:
         type: string
         brief: 'The network interface name.'
         examples: [ 'lo', 'eth0' ]
+        stability: development
       - id: network.connection.state
         type:
           members:
