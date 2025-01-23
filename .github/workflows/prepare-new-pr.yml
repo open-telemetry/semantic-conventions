@@ -20,6 +20,7 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           path: prchangelog
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
           sparse-checkout: .chloggen
 
       # we're going to run prepare-new-pr script from the main branch
