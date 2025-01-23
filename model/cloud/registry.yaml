@@ -32,6 +32,10 @@ groups:
               value: 'ibm_cloud'
               brief: 'IBM Cloud'
               stability: experimental
+            - id: 'oracle_cloud'
+              value: 'oracle_cloud'
+              brief: 'Oracle Cloud Infrastructure (OCI)'
+              stability: experimental
             - id: 'tencent_cloud'
               value: 'tencent_cloud'
               brief: 'Tencent Cloud'
@@ -200,6 +204,14 @@ groups:
             - id: ibm_cloud_openshift
               value: 'ibm_cloud_openshift'
               brief: Red Hat OpenShift on IBM Cloud
+              stability: experimental
+            - id: oracle_cloud_compute
+              value: 'oracle_cloud_compute'
+              brief: Compute on Oracle Cloud Infrastructure (OCI)
+              stability: experimental
+            - id: oracle_cloud_oke
+              value: 'oracle_cloud_oke'
+              brief: Kubernetes Engine (OKE) on Oracle Cloud Infrastructure (OCI)
               stability: experimental
             - id: tencent_cloud_cvm
               value: 'tencent_cloud_cvm'

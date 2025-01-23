@@ -11,6 +11,7 @@ linkTitle: Generative AI traces
 <!-- toc -->
 
 - [Name](#name)
+  - [Status](#status)
 - [GenAI attributes](#genai-attributes)
 - [Capturing inputs and outputs](#capturing-inputs-and-outputs)
 
@@ -26,9 +27,14 @@ instrumented protocol such as HTTP.
 
 ## Name
 
-GenAI spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/trace/api.md#span).
+GenAI spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/trace/api.md#span).
 The **span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
 Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+
+### Status
+
+Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
+details on how to record span status.
 
 ## GenAI attributes
 
@@ -126,6 +132,7 @@ Instrumentations SHOULD document the list of errors they report.
 | `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mistral_ai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

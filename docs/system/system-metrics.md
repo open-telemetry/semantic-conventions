@@ -201,7 +201,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.cpu.physical.count` | UpDownCounter | `{cpu}` | Reports the number of actual physical processor cores on the hardware | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.cpu.physical.count` | UpDownCounter | `{cpu}` | Reports the number of actual physical processor cores on the hardware [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Calculated by multiplying the number of sockets by the number of cores per socket
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -221,7 +223,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.cpu.logical.count` | UpDownCounter | `{cpu}` | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.cpu.logical.count` | UpDownCounter | `{cpu}` | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Calculated by multiplying the number of sockets by the number of cores per socket, and then by the number of threads per core
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
