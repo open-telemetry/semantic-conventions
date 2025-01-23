@@ -15,7 +15,7 @@ Semantically, an Event is a named occurrence at an instant in time. It signals t
 Examples of Events might include things like uncaught exceptions, button clicks, user logout,
 network connection severed, etc.
 
-In OpenTelemetry, Events are implemented as a specific type of [`LogRecord`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.39.0/specification/logs/api.md) that conforms to the conventions included here.
+In OpenTelemetry, Events are implemented as a specific type of [`LogRecord`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/api.md) that conforms to the conventions included here.
 
 In addition to a required name, an Event may contain a _payload_ (body) of any type permitted
 by the [LogRecord body](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-body).
@@ -32,7 +32,7 @@ structure and semantics will also be defined.
 
 * An event MUST have an [Event name property](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/data-model.md#field-eventname)
   that uniquely identifies the event. Event names are subject to the [Naming guidelines](/docs/general/naming.md).
-* Event MAY have [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/common#attribute)
+* Event MAY have [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/common#attribute)
   attributes that provide additional context about the event.
 * It MAY contain a _payload_ (body) that describes the specific details of the
   named event.
@@ -47,7 +47,7 @@ structure and semantics will also be defined.
 Recommendations for defining events:
 
 * Use the _payload_ (body) to represent the details of the event instead of a
-  collection of [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/common#attribute)
+  collection of [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/common#attribute)
   attributes.
 * Events SHOULD be generated / produced / recorded using the
     [Emit Event API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/logs/api.md#emit-an-event)
