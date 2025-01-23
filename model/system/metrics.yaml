@@ -53,6 +53,7 @@ groups:
     metric_name: system.cpu.physical.count
     stability: experimental
     brief: "Reports the number of actual physical processor cores on the hardware"
+    note: "Calculated by multiplying the number of sockets by the number of cores per socket"
     instrument: updowncounter
     unit: "{cpu}"
     attributes: []
@@ -62,6 +63,7 @@ groups:
     metric_name: system.cpu.logical.count
     stability: experimental
     brief: "Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking"
+    note: "Calculated by multiplying the number of sockets by the number of cores per socket, and then by the number of threads per core"
     instrument: updowncounter
     unit: "{cpu}"
     attributes: []

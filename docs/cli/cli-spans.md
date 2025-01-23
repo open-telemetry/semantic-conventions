@@ -13,7 +13,8 @@ Span kind SHOULD be `INTERNAL` when the traced program is the callee or `CLIENT`
 The span name SHOULD be set to `{process.executable.name}`.
 Instrumentations that have additional context about executed commands MAY use a different low-cardinality span name format and SHOULD document it.
 
-Span status SHOULD be set to `Error` if `{process.exit.code}` is not 0.
+Span status SHOULD be set to `Error` if `{process.exit.code}` is not 0. Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
+additional details on how to record span status.
 
 <!-- TODO: context propagation https://github.com/open-telemetry/semantic-conventions/issues/1612 -->
 

@@ -9,8 +9,6 @@ path_base_for_github_subdir:
 
 **Status**: [Stable][DocumentStatus]
 
-This document defines semantic conventions for Exceptions.
-
 Semantic conventions for Exceptions are defined for the following signals:
 
 * [Exceptions on spans](exceptions-spans.md): Semantic Conventions for Exceptions associated with *spans*.
