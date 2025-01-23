@@ -46,45 +46,6 @@ groups:
     display_name: OTel SDK Telemetry Attributes
     brief: Attributes used for OpenTelemetry SDK self-monitoring
     attributes:
-      - id: otel.sdk.processor.type
-        type:
-          members:
-            - id: batching_span
-              value: "batch-span"
-              brief: >
-                The builtin SDK Batching Span Processor
-              stability: development
-            - id: simple_span
-              value: "simple-span"
-              brief: >
-                The builtin SDK Simple Span Processor
-              stability: development
-        stability: development
-        brief: >
-          A name identifying the type of the OpenTelemetry SDK processor.
-        examples: ["batch-span", "MyCustomProcessor"]
-      - id: otel.sdk.exporter.type
-        type:
-          members:
-            - id: otlp_grpc
-              value: "otlp-grpc"
-              brief: >
-                OTLP exporter over gRPC with protobuf serialization
-              stability: development
-            - id: otlp_http
-              value: "otlp-http"
-              brief: >
-                OTLP exporter over HTTP with protobuf serialization
-              stability: development
-            - id: otlp_http_json
-              value: "otlp-http-json"
-              brief: >
-                OTLP exporter over HTTP with JSON serialization
-              stability: development
-        stability: development
-        brief: >
-          A name identifying the type of the OpenTelemetry SDK exporter.
-        examples: ["otlp-grpc", "jaeger"]
       - id: otel.sdk.component.name
         type: string
         stability: development
