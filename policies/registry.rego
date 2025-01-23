@@ -70,6 +70,25 @@ deny contains attr_registry_violation(description, group.id, attr.id) if {
     description := sprintf("Attribute definition '%s' has requirement_level set to %s. Only attribute references can set requirement_level.", [attr.id, attr.requirement_level])
 }
 
+# We require attribute definitions to have stability
+deny contains attr_registry_violation(description, group.id, attr.id) if {
+    group := input.groups[_]
+    attr := group.attributes[_]
+    not attr.stability
+    description := sprintf("Attribute definition '%s' does not contain stability field. All attribute definitions must include stability level.", [attr.id])
+}
+
+# We require span, metrics, events, resources definitions to have stability
+deny contains attr_registry_violation(description, group.id, "") if {
+    semconv_types := {"span", "metric", "event", "resource"}
+    group := input.groups[_]
+
+    semconv_types[group.type] != null
+
+    not group.stability
+    description := sprintf("Semconv group '%s' does not contain stability field. All semconv definitions must include stability level.", [group.id])
+}
+
 get_attribute_name(attr, group) := name if {
     full_name := concat(".", [group.prefix, attr.id])
 
