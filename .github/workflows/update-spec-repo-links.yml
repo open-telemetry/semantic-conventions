@@ -1,0 +1,79 @@
+name: Auto-update spec repo links
+on:
+  schedule:
+    # hourly at minute 46
+    - cron: "46 * * * *"
+  workflow_dispatch:
+
+jobs:
+  check-versions:
+    runs-on: ubuntu-latest
+    outputs:
+      current-version: ${{ steps.check-versions.outputs.current-version }}
+      latest-version: ${{ steps.check-versions.outputs.latest-version }}
+      already-opened: ${{ steps.check-versions.outputs.already-opened }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: check-versions
+        name: Check versions
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          current_version=$(grep "PREVIOUS_SPECIFICATION_VERSION=v.*" \
+                                 internal/tools/update_specification_version.sh \
+                            | sed "s/PREVIOUS_SPECIFICATION_VERSION=//")
+          latest_version=$(gh release view \
+                               --repo open-telemetry/opentelemetry-specification \
+                               --json tagName \
+                               --jq .tagName)
+
+          matches=$(gh pr list \
+                        --author opentelemetrybot \
+                        --state open \
+                        --search "in:title \"Update spec repo links to $latest_version\"")
+          if [ ! -z "$matches" ]
+          then
+            already_opened=true
+          fi
+
+          echo "current-version=$current_version" >> $GITHUB_OUTPUT
+          echo "latest-version=$latest_version" >> $GITHUB_OUTPUT
+          echo "already-opened=$already_opened" >> $GITHUB_OUTPUT
+
+  update-spec-repo-links:
+    runs-on: ubuntu-latest
+    if: |
+      needs.check-versions.outputs.current-version != needs.check-versions.outputs.latest-version &&
+      needs.check-versions.outputs.already-opened != 'true'
+    needs:
+      - check-versions
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use CLA approved github bot
+        run: .github/workflows/scripts/use-cla-approved-github-bot.sh
+
+      - name: Update version
+        env:
+          VERSION: ${{ needs.check-versions.outputs.latest-version }}
+        run: |
+          internal/tools/update_specification_version.sh $VERSION
+          sed -i "s/^PREVIOUS_SPECIFICATION_VERSION=.*/PREVIOUS_SPECIFICATION_VERSION=$VERSION/" internal/tools/update_specification_version.sh
+
+      - name: Create pull request
+        env:
+          VERSION: ${{ needs.check-versions.outputs.latest-version }}
+          # not using secrets.GITHUB_TOKEN since pull requests from that token do not run workflows
+          GH_TOKEN: ${{ secrets.OPENTELEMETRYBOT_GITHUB_TOKEN }}
+        run: |
+          message="Update spec repo links to $VERSION"
+          body="Update spec repo links to \`$VERSION\`."
+          branch="opentelemetrybot/update-spec-repo-links-to-$VERSION"
+
+          git checkout -b $branch
+          git commit -a -m "$message"
+          git push --set-upstream origin $branch
+          gh pr create --title "$message" \
+                       --body "$body" \
+                       --base main
