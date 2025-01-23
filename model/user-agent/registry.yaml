@@ -41,61 +41,13 @@ groups:
     display_name: User-agent OS Attributes
     brief: "Describes the OS user-agent attributes."
     attributes:
-      - id: user_agent.os.type
-        type:
-          members:
-            - id: windows
-              value: 'windows'
-              brief: "Microsoft Windows"
-              stability: experimental
-            - id: linux
-              value: 'linux'
-              brief: "Linux"
-              stability: experimental
-            - id: darwin
-              value: 'darwin'
-              brief: "Apple Darwin"
-              stability: experimental
-            - id: freebsd
-              value: 'freebsd'
-              brief: "FreeBSD"
-              stability: experimental
-            - id: netbsd
-              value: 'netbsd'
-              brief: "NetBSD"
-              stability: experimental
-            - id: openbsd
-              value: 'openbsd'
-              brief: "OpenBSD"
-              stability: experimental
-            - id: dragonflybsd
-              value: 'dragonflybsd'
-              brief: "DragonFly BSD"
-              stability: experimental
-            - id: hpux
-              value: 'hpux'
-              brief: "HP-UX (Hewlett Packard Unix)"
-              stability: experimental
-            - id: aix
-              value: 'aix'
-              brief: "AIX (Advanced Interactive eXecutive)"
-              stability: experimental
-            - id: solaris
-              value: 'solaris'
-              brief: "SunOS, Oracle Solaris"
-              stability: experimental
-            - id: z_os
-              value: 'z_os'
-              brief: "IBM z/OS"
-              stability: experimental
-        brief: >
-          The operating system type.
-        stability: experimental
       - id: user_agent.os.name
         type: string
         stability: experimental
         brief: 'Human readable operating system name.'
         examples: ['iOS', 'Android', 'Ubuntu']
+        note: >
+          For mapping user agent strings to OS names, libraries such as [ua-parser](https://github.com/ua-parser) can be utilized.
       - id: user_agent.os.version
         type: string
         stability: experimental
@@ -103,6 +55,8 @@ groups:
           The version string of the operating system as defined in
           [Version Attributes](/docs/resource/README.md#version-attributes).
         examples: ['14.2.1', '18.04.1']
+        note: >
+          For mapping user agent strings to OS versions, libraries such as [ua-parser](https://github.com/ua-parser) can be utilized.
 
       - id: user_agent.synthetic.type
         stability: experimental
