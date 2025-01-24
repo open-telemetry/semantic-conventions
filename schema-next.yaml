@@ -17,7 +17,9 @@ versions:
               code.filepath: code.file.path
               code.lineno: code.line.number
               code.column: code.column.number
-        # https://github.com/open-telemetry/semantic-conventions/pull/TODO
+    metrics:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1734
         - rename_attributes:
             attribute_map:
               db.system: db.system.name
