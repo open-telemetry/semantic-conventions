@@ -62,17 +62,17 @@ groups:
             - id: otlp_grpc_span_exporter
               value: "otlp_grpc_exporter"
               brief: >
-                OTLP exporter over gRPC with protobuf serialization
+                OTLP span exporter over gRPC with protobuf serialization
               stability: development
             - id: otlp_http_span_exporter
               value: "otlp_http_exporter"
               brief: >
-                OTLP exporter over HTTP with protobuf serialization
+                OTLP span exporter over HTTP with protobuf serialization
               stability: development
             - id: otlp_http_json_span_exporter
               value: "otlp_http_json_exporter"
               brief: >
-                OTLP exporter over HTTP with JSON serialization
+                OTLP span exporter over HTTP with JSON serialization
               stability: development
         stability: development
         brief: >

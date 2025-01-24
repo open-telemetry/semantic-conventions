@@ -72,9 +72,9 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | Value  | Description | Stability |
 |---|---|---|
 | `batching_span_processor` | The builtin SDK Batching Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_grpc_exporter` | OTLP exporter over gRPC with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_http_exporter` | OTLP exporter over HTTP with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_http_json_exporter` | OTLP exporter over HTTP with JSON serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otlp_grpc_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otlp_http_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otlp_http_json_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Deprecated OTel Library Attributes
