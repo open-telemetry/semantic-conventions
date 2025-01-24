@@ -440,7 +440,7 @@ information is required and would not violate any policies or regulations.
 
 Enduser attributes capture end user identity. They are likely to contain PII and should be populated, processed, and stored with caution.
 Information about the end user is usually available on the client side (in a mobile or browser application).
-Enduser attributes are populated by the user application in coordination with OpenTelemetry SDK. 
+Enduser attributes are populated by the user application in coordination with OpenTelemetry SDK.
 Some OpenTelemetry distributions auto-collect this information from HTTP cookies.
 When user information is available, it's RECOMMENDED to add it to all spans and events emitted in the scope
 of operation initiated by this user.
