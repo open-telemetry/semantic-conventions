@@ -56,7 +56,7 @@ Rename `db.client.cosmosdb.*` metrics to `azure.cosmosdb.client.*`.
 - `k8s`: Add metrics for k8s deployment, replicaset, replication_controller, statefulset and hpa. ([#1636](https://github.com/open-telemetry/semantic-conventions/issues/1636), [#1637](https://github.com/open-telemetry/semantic-conventions/issues/1637), [#1644](https://github.com/open-telemetry/semantic-conventions/issues/1644))
   This addition focused on providing consistency between these metrics, while
   also ensuring alignment with recommendations from Kubernetes.
-  More details in https://github.com/open-telemetry/semantic-conventions/issues/1637
+  More details in [#1637](https://github.com/open-telemetry/semantic-conventions/issues/1637)
   
 - `k8s`: Add k8s deamonset related metrics ([#1649](https://github.com/open-telemetry/semantic-conventions/issues/1649))
 - `k8s`: Add k8s metrics for job and cronjob ([#1660](https://github.com/open-telemetry/semantic-conventions/issues/1660))
