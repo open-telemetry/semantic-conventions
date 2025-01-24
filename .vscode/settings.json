@@ -14,5 +14,6 @@
             "model/**/*.yaml"
         ]
     },
-    "json.schemaDownload.enable": true
+    "json.schemaDownload.enable": true,
+    "markdown.extension.toc.levels": "2..6"
 }
