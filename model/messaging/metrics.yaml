@@ -92,3 +92,14 @@ groups:
     attributes:
       - ref: messaging.operation.name
         examples: ["receive", "peek", "poll", "consume"]
+  - id: metric.messaging.queue.latency
+    type: metric
+    metric_name: messaging.queue.latency
+    brief: "Time between enqueueing a message and the start of its processing."
+    note: >
+      Records the time between a message being produced into a queue and that same message being delivered
+      to a processor. This metric SHOULD NOT include the time taken to process the message.
+    stability: experimental
+    instrument: histogram
+    unit: "s"
+    extends: metric.messaging.attributes
