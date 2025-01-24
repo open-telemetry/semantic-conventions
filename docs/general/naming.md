@@ -357,7 +357,6 @@ Such conventions SHOULD define an attribute to represent system name following
 `{area}.system|provider|protocol.name` pattern.
 
 For example, database conventions include the `db.system.name` attribute.
-<!-- not yet, we should not merge it before https://github.com/open-telemetry/semantic-conventions/pull/1613 -->
 
 ### Choosing a System Name
 
@@ -414,15 +413,12 @@ When a metric is specific to a system (project, provider, product),
 the system name should be included in the instrument name following the
 `{system_name}.*.{metric_name}` pattern.
 
-For example, `azure.cosmosdb.client.operation.request.charge`
-
-<!-- todo not yet - https://github.com/open-telemetry/semantic-conventions/pull/1711 -->
-<!-- update when https://github.com/open-telemetry/semantic-conventions/pull/1613 is merged -->
+For example, `azure.cosmosdb.client.operation.request_charge`
 
 The value of the [`*.system.name`](#system-projectproductprovider-name-attribute) (or similar)
 attribute MUST match system specific metric namespace.
 
-For example, both the `azure.cosmosdb.client.operation.request.charge` metric and the `db.system.name=azure.cosmosdb`
+For example, both the `azure.cosmosdb.client.operation.request_charge` metric and the `db.system.name=azure.cosmosdb`
 attribute use the same system name (`azure.cosmosdb`).
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
