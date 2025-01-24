@@ -19,7 +19,7 @@ The Semantic Conventions for *MariaDB* extend and override the [Database Semanti
 
 Spans representing calls to MariaDB adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
 
-`db.system` MUST be set to `"mariadb"` and SHOULD be provided **at span creation time**.
+`db.system.name` MUST be set to `"mariadb"` and SHOULD be provided **at span creation time**.
 
 The following table outlines the span attributes applicable to MariaDB.
 

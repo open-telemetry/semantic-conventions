@@ -19,7 +19,7 @@ The Semantic Conventions for [Cassandra](https://cassandra.apache.org/) extend a
 
 Spans representing calls to a Cassandra database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
 
-`db.system` MUST be set to `"cassandra"` and SHOULD be provided **at span creation time**.
+`db.system.name` MUST be set to `"cassandra"` and SHOULD be provided **at span creation time**.
 
 The following table outlines the span attributes applicable to Cassandra.
 
@@ -38,12 +38,12 @@ The following table outlines the span attributes applicable to Cassandra.
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [Cassandra protocol error code](https://github.com/apache/cassandra/blob/cassandra-5.0/doc/native_protocol_v5.spec) represented as a string. [6] | `102`; `40020` | `Conditionally Required` [7] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [8] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.cassandra.consistency_level`](/docs/attributes-registry/db.md) | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all`; `each_quorum`; `quorum` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cassandra.coordinator.dc`](/docs/attributes-registry/db.md) | string | The data center of the coordinating node for a query. | `us-west-2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cassandra.coordinator.id`](/docs/attributes-registry/db.md) | string | The ID of the coordinating node for a query. | `be13faa2-8574-4d71-926d-27f16cf8a7af` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cassandra.idempotence`](/docs/attributes-registry/db.md) | boolean | Whether or not the query is idempotent. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cassandra.page_size`](/docs/attributes-registry/db.md) | int | The fetch size used for paging, i.e. how many rows will be returned at once. | `5000` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cassandra.speculative_execution_count`](/docs/attributes-registry/db.md) | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cassandra.consistency.level`](/docs/attributes-registry/cassandra.md) | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all`; `each_quorum`; `quorum` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cassandra.coordinator.dc`](/docs/attributes-registry/cassandra.md) | string | The data center of the coordinating node for a query. | `us-west-2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cassandra.coordinator.id`](/docs/attributes-registry/cassandra.md) | string | The ID of the coordinating node for a query. | `be13faa2-8574-4d71-926d-27f16cf8a7af` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cassandra.page.size`](/docs/attributes-registry/cassandra.md) | int | The fetch size used for paging, i.e. how many rows will be returned at once. | `5000` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cassandra.query.idempotent`](/docs/attributes-registry/cassandra.md) | boolean | Whether or not the query is idempotent. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cassandra.speculative_execution.count`](/docs/attributes-registry/cassandra.md) | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [11] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a database query text. [12] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [13] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [14] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [15] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
@@ -126,7 +126,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
-`db.cassandra.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`cassandra.consistency.level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
