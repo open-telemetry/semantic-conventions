@@ -14,5 +14,5 @@ groups:
         type: string
         stability: development
         brief: >
-          Pseudonymous identifier of an end user. This identifier is unique to the user but does not reveal their actual identity.
+          Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity.
         examples: ['QdH5CAWJgqVT4rOr0qtumf']
