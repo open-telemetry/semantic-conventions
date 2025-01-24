@@ -47,12 +47,12 @@ Technology specific semantic conventions are defined for the following databases
 
 * [AWS DynamoDB](dynamodb.md): Semantic Conventions for *AWS DynamoDB*.
 * [Cassandra](cassandra.md): Semantic Conventions for *Cassandra*.
-* [Cosmos DB](cosmosdb.md): Semantic Conventions for *Microsoft Cosmos DB*.
+* [Azure Cosmos DB](cosmosdb.md): Semantic Conventions for *Azure Cosmos DB*.
 * [CouchDB](couchdb.md): Semantic Conventions for *CouchDB*.
 * [Elasticsearch](elasticsearch.md): Semantic Conventions for *Elasticsearch*.
 * [HBase](hbase.md): Semantic Conventions for *HBase*.
 * [MongoDB](mongodb.md): Semantic Conventions for *MongoDB*.
-* [MSSQL](mssql.md): Semantic Conventions for *MSSQL*.
+* [Microsoft SQL Server](mssql.md): Semantic Conventions for *Microsoft SQL Server*.
 * [Redis](redis.md): Semantic Conventions for *Redis*.
 * [SQL](sql.md): Semantic Conventions for *SQL* databases.
 
