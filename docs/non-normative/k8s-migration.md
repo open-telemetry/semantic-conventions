@@ -52,8 +52,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Job metrics](#k8s-job-metrics)
   - [K8s Cronjob metrics](#k8s-cronjob-metrics)
   - [K8s Namespace metrics](#k8s-namespace-metrics)
-  - [K8s ReplicationController attributes](#k8s-replicationcontroller-attributes)
-  - [K8s ResourceQuota attributes](#k8s-resourcequota-attributes)
+  - [K8s HorizontalPodAutoscaler attributes](#k8s-horizontalpodautoscaler-attributes)
 
 <!-- tocstop -->
 
@@ -256,9 +255,9 @@ The changes in their metrics are the following:
 
 <!-- prettier-ignore-end -->
 
-### K8s ReplicationController attributes
+### K8s HorizontalPodAutoscaler attributes
 
-The K8s ReplicationController attributes implemented by the Collector and specifically the
+The K8s HorizontalPodAutoscaler attributes implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
 receiver were introduced as semantic conventions in
 [#1649](https://github.com/open-telemetry/semantic-conventions/pull/1742) (TODO: replace with SemConv version once
@@ -268,28 +267,9 @@ The changes are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                               |
-|------------------------------------------------------------------------------------|-----------------------------------|
-| `k8s.replicationcontroller.name`                                                   | `k8s.replication_controller.name` |
-| `k8s.replicationcontroller.uid`                                                    | `k8s.replication_controller.uid`  |
-
-<!-- prettier-ignore-end -->
-
-### K8s ResourceQuota attributes
-
-The K8s ResourceQuota attributes implemented by the Collector and specifically the
-[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
-receiver were introduced as semantic conventions in
-[#1649](https://github.com/open-telemetry/semantic-conventions/pull/1742) (TODO: replace with SemConv version once
-available).
-
-The changes are the following:
-
-<!-- prettier-ignore-start -->
-
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                               |
-|----------------------------------------------------------------------------------|-----------------------------------|
-| `k8s.resourcequota.name`                                                  | `k8s.resource_quota.name` |
-| `k8s.resourcequota.uid`                                                   | `k8s.resource_quota.uid`  |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                |
+|------------------------------------------------------------------------------------|------------------------------------|
+| `k8s.horizontalpodautoscaler.name`                                                   | `k8s.horizontalpodautoscaler.name` |
+| `k8s.horizontalpodautoscaler.uid`                                                    | `k8s.horizontalpodautoscaler.uid`  |
 
 <!-- prettier-ignore-end -->
