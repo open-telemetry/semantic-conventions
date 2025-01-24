@@ -396,7 +396,7 @@ These attributes may be used for any operation with an authenticated and/or auth
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`enduser.id`](/docs/attributes-registry/enduser.md) | string | Unique identifier of an authenticated user in the system. | `<authenticated_user_id>` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`enduser.id`](/docs/attributes-registry/enduser.md) | string | Unique identifier of an authenticated user in the system. | `username` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`enduser.pseudo.id`](/docs/attributes-registry/enduser.md) | string | Pseudonymous identifier of an end user. This identifier is unique to the user but does not reveal their actual identity. | `QdH5CAWJgqVT4rOr0qtumf` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
@@ -409,7 +409,47 @@ system. It is expected this information would be propagated unchanged from node-
 using the Baggage mechanism. These attributes should not be used to record system-to-system
 authentication attributes.
 
-`enduser.pseudo.id` attribute can be set by a specific client component, e.g. through a cookie out of the Span's HTTP request headers. Client side application should be able to stamp this attribute on any telemetry item emitted by the application whenever this cookie is available.
+Examples of where the `enduser.id` value is extracted from:
+
+| Authentication protocol | Field or description            |
+| :---------------------- | :------------------------------ |
+| [HTTP Basic/Digest Authentication] | `username`               |
+| [OAuth 2.0 Bearer Token] | [OAuth 2.0 Client Identifier] value from `client_id` for the [OAuth 2.0 Client Credentials Grant] flow and `subject` or `username` from get token info response for other flows using opaque tokens. |
+| [OpenID Connect 1.0 IDToken] | `sub` |
+| [SAML 2.0 Assertion] | `urn:oasis:names:tc:SAML:2.0:assertion:Subject` |
+| [Kerberos] | `PrincipalName` |
+
+| Framework               | Field or description            |
+| :---------------------- | :------------------------------ |
+| [JavaEE/JakartaEE Servlet] | `javax.servlet.http.HttpServletRequest.getUserPrincipal()` |
+| [Windows Communication Foundation] | `ServiceSecurityContext.Current.PrimaryIdentity` |
+
+[SAML 2.0 Assertion]: http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html
+[HTTP Basic/Digest Authentication]: https://tools.ietf.org/html/rfc2617
+[OAuth 2.0 Bearer Token]: https://tools.ietf.org/html/rfc6750
+[OAuth 2.0 Client Identifier]: https://tools.ietf.org/html/rfc6749#section-2.2
+[OAuth 2.0 Client Credentials Grant]: https://tools.ietf.org/html/rfc6749#section-4.4
+[OpenID Connect 1.0 IDToken]: https://openid.net/specs/openid-connect-core-1_0.html#IDToken
+[Kerberos]: https://tools.ietf.org/html/rfc4120
+[JavaEE/JakartaEE Servlet]: https://jakarta.ee/specifications/platform/8/apidocs/javax/servlet/http/HttpServletRequest.html
+[Windows Communication Foundation]: https://docs.microsoft.com/dotnet/api/system.servicemodel.servicesecuritycontext?view=netframework-4.8
+
+Given the sensitive nature of this information, SDKs and exporters SHOULD drop these attributes by
+default and then provide a configuration parameter to turn on retention for use cases where the
+information is required and would not violate any policies or regulations.
+
+Enduser attributes capture end user identity. They are likely to contain PII and should be populated, processed, and stored with caution.
+Information about the end user is usually available on the client side (in a mobile or browser application).
+Enduser attributes are populated by the user application in coordination with OpenTelemetry SDK. 
+Some OpenTelemetry distributions auto-collect this information from HTTP cookies.
+When user information is available, it's RECOMMENDED to add it to all spans and events emitted in the scope
+of operation initiated by this user.
+
+Application in coordination with OpenTelemetry SDK and Distro MAY propagate user information from the client application
+to the front end and across different backend services using custom HTTP cookies and/or [Baggage]<https://github.com/open-telemetry/opentelemetry-specification/blob/v1.40.0/specification/baggage/api.md>.
+
+Enduser information is collected and populated manually by user application or specialized components,
+other instrumentations such as HTTP or RPC are not expected to populate these attributes by default.
 
 ## General thread attributes
 

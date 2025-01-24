@@ -3,16 +3,16 @@ groups:
     type: attribute_group
     display_name: End User Attributes
     brief: >
-      Describes information about the end user, which can be used as a subdomain of browser, client, or user domains.
+      Describes the end user.
     attributes:
       - id: enduser.id
         type: string
         brief: "Unique identifier of an authenticated user in the system."
-        examples: [ '<authenticated_user_id>' ]
-        stability: experimental
+        examples: [ 'username' ]
+        stability: development
       - id: enduser.pseudo.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Pseudonymous identifier of an end user. This identifier is unique to the user but does not reveal their actual identity.
         examples: ['QdH5CAWJgqVT4rOr0qtumf']

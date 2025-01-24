@@ -2,7 +2,7 @@ groups:
   - id: identity
     type: attribute_group
     brief: >
-      These attributes may be used for any operation with an authenticated and/or authorized enduser.
+      Describes end user identity.
     attributes:
       - ref: enduser.id
         requirement_level: recommended
