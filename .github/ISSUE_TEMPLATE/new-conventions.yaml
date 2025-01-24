@@ -12,6 +12,7 @@ body:
         and usually require a group of people who are familiar with the domain,
         are involved with instrumentation efforts, and are committed to be the point of contact for
         pull requests, issues, and questions in this area.
+
         Creating a new issue here is a great first step to find others interested in collaborating.
   - type: textarea
     attributes:
