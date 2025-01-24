@@ -11,6 +11,11 @@ exceptions associated with spans.
 
 <!-- toc -->
 
+- [Exception event](#exception-event)
+  - [Stacktrace Representation](#stacktrace-representation)
+
+<!-- tocstop -->
+
 ## Exception event
 
 <!-- semconv event.exception -->
