@@ -1,0 +1,17 @@
+groups:
+  - id: event.az.resource.log
+    stability: experimental
+    type: event
+    name: az.resource.log
+    brief: >
+      Deprecated. Use `azure.resource.log` instead.
+    deprecated: "Replaced by `azure.resource.log`."
+    attributes:
+      - ref: az.service_request_id
+      - ref: cloud.resource_id
+        brief: The [Fully Qualified Azure Resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) the log is emitted for.
+        note: ""
+    body:
+      id: az.resource.log
+      requirement_level: recommended
+      type: undefined

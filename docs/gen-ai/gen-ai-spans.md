@@ -125,8 +125,8 @@ Instrumentations SHOULD document the list of errors they report.
 |---|---|---|
 | `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
