@@ -16,4 +16,3 @@ groups:
         brief: >
           Pseudonymous identifier of an end user. This identifier is unique to the user but does not reveal their actual identity.
         examples: ['QdH5CAWJgqVT4rOr0qtumf']
-      
