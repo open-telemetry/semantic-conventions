@@ -45,27 +45,36 @@ Attributes used for OpenTelemetry SDK self-monitoring
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="otel-sdk-component-name" href="#otel-sdk-component-name">`otel.sdk.component.name`</a> | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `batch-span-0`; `custom-name` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="otel-sdk-component-name" href="#otel-sdk-component-name">`otel.sdk.component.name`</a> | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `otlp_grpc_exporter/0`; `custom-name` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="otel-sdk-component-type" href="#otel-sdk-component-type">`otel.sdk.component.type`</a> | string | A name identifying the type of the OpenTelemetry SDK component. [2] | `batching_span_processor`; `co.example.MySpanExporter` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `otel.sdk.component.name`:** The attribute value MUST follow a `<type-name>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+**[1] `otel.sdk.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
+E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-For components corresponding to SDK specification concepts, the `type-name` MUST have the following values:
+Implementations MAY achieve these goals by following a `<otel.sdk.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+Hereby `otel.sdk.component.type` refers to the corresponding attribute value of the component.
 
-* `batching_span_processor` for the SDK Batching Span Processor
-* `simple_span_processor` for the SDK Simple Span Processor
-* `otlp_grpc_exporter` for the OTLP exporter over gRPC with protobuf serialization
-* `otlp_http_exporter` for the OTLP exporter over HTTP with protobuf serialization
-* `otlp_http_json_exporter` for the OTLP exporter over HTTP with JSON serialization
-
-Other components SHOULD use the language and implementation dependant type name of the component for `type-name`, e.g. the class name in Java.
-
-The value of `instance-counter` MUST be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
-Because this attribute is used in metrics, the component implementation MUST ensure a low cardinality. E.g. a UUID MUST NOT be use for <instance-counter>.
-Instead, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
+The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
+For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
-For example, the first Batching Span Processor will have `batching_span_processor/0` as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
+With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0` as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
+
+**[2] `otel.sdk.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
+E.g. for Java the fully qualified classname SHOULD be used in this case.
+
+---
+
+`otel.sdk.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `batching_span_processor` | The builtin SDK Batching Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otlp_grpc_exporter` | OTLP exporter over gRPC with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otlp_http_exporter` | OTLP exporter over HTTP with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otlp_http_json_exporter` | OTLP exporter over HTTP with JSON serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `simple_span_processor` | The builtin SDK Simple Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Deprecated OTel Library Attributes
 
