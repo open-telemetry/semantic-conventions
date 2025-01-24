@@ -100,4 +100,4 @@ groups:
           With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
           as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
           These values will therefore be reused in the case of an application restart.
-        examples: ["otlp_grpc_exporter/0", "custom-name"]
+        examples: ["otlp_grpc_span_exporter/0", "custom-name"]

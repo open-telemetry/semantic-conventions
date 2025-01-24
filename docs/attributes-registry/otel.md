@@ -45,7 +45,7 @@ Attributes used for OpenTelemetry SDK self-monitoring
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="otel-sdk-component-name" href="#otel-sdk-component-name">`otel.sdk.component.name`</a> | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `otlp_grpc_exporter/0`; `custom-name` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="otel-sdk-component-name" href="#otel-sdk-component-name">`otel.sdk.component.name`</a> | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="otel-sdk-component-type" href="#otel-sdk-component-type">`otel.sdk.component.type`</a> | string | A name identifying the type of the OpenTelemetry SDK component. [2] | `batching_span_processor`; `co.example.MySpanExporter` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `otel.sdk.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
