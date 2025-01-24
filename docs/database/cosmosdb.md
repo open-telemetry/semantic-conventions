@@ -2,24 +2,6 @@
 linkTitle: Cosmos DB
 --->
 
-<<<<<<< HEAD
-=======
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
-<!-- toc -->
-
-- [Semantic Conventions for Microsoft Azure Cosmos DB](#semantic-conventions-for-microsoft-azure-cosmos-db)
-  - [Attributes](#attributes)
-  - [Example](#example)
-  - [Operation Level Metrics](#operation-level-metrics)
-    - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
-    - [Metric: `db.client.response.returned_rows`](#metric-dbclientresponsereturned_rows)
-    - [Metric: `azure.cosmosdb.client.operation.request_charge`](#metric-azurecosmosdbclientoperationrequest_charge)
-    - [Metric: `azure.cosmosdb.client.active_instance.count`](#metric-azurecosmosdbclientactive_instancecount)
-
-<!-- tocstop -->
-
->>>>>>> 310d80f0 (az.cosmos -> azure.cosmos)
 # Semantic Conventions for Microsoft Azure Cosmos DB
 
 **Status**: [Experimental][DocumentStatus]
@@ -33,8 +15,8 @@ linkTitle: Cosmos DB
 - [Metrics](#metrics)
   - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
   - [Metric: `db.client.response.returned_rows`](#metric-dbclientresponsereturned_rows)
-  - [Metric: `db.client.cosmosdb.operation.request_charge`](#metric-dbclientcosmosdboperationrequest_charge)
-  - [Metric: `db.client.cosmosdb.active_instance.count`](#metric-dbclientcosmosdbactive_instancecount)
+  - [Metric: `azure.cosmosdb.client.operation.request_charge`](#metric-azurecosmosdbclientoperationrequest_charge)
+  - [Metric: `azure.cosmosdb.client.active_instance.count`](#metric-azurecosmosdbclientactive_instancecount)
 
 <!-- tocstop -->
 
