@@ -76,5 +76,4 @@ jobs:
           git push --set-upstream origin $branch
           gh pr create --title "$message" \
                        --body "$body" \
-                       --label "Skip Changelog" \
                        --base main
