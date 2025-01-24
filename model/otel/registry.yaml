@@ -60,17 +60,17 @@ groups:
                 The builtin SDK Simple Span Processor
               stability: development
             - id: otlp_grpc_span_exporter
-              value: "otlp_grpc_exporter"
+              value: "otlp_grpc_span_exporter"
               brief: >
                 OTLP span exporter over gRPC with protobuf serialization
               stability: development
             - id: otlp_http_span_exporter
-              value: "otlp_http_exporter"
+              value: "otlp_http_span_exporter"
               brief: >
                 OTLP span exporter over HTTP with protobuf serialization
               stability: development
             - id: otlp_http_json_span_exporter
-              value: "otlp_http_json_exporter"
+              value: "otlp_http_json_span_exporter"
               brief: >
                 OTLP span exporter over HTTP with JSON serialization
               stability: development
