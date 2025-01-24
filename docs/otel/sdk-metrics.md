@@ -130,7 +130,8 @@ The value of `instance-counter` MAY be automatically assigned by the component a
 For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
-With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0` as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
+With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
+as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
 
 **[2] `otel.sdk.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
@@ -185,7 +186,8 @@ The value of `instance-counter` MAY be automatically assigned by the component a
 For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
-With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0` as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
+With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
+as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
 
 **[2] `otel.sdk.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
@@ -262,7 +264,8 @@ The value of `instance-counter` MAY be automatically assigned by the component a
 For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
-With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0` as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
+With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
+as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
 
 **[3] `otel.sdk.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
@@ -325,7 +328,8 @@ The value of `instance-counter` MAY be automatically assigned by the component a
 For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
-With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0` as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
+With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
+as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
 
 **[2] `otel.sdk.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
@@ -403,7 +407,8 @@ The value of `instance-counter` MAY be automatically assigned by the component a
 For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
-With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0` as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
+With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
+as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
 
 **[3] `otel.sdk.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
