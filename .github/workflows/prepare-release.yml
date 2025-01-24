@@ -21,7 +21,7 @@ jobs:
           fi
 
       - name: Use CLA approved github bot
-        run: .github/workflows/scripts/use-cla-approved-github-bot.sh
+        run: .github/scripts/use-cla-approved-github-bot.sh
 
       - name: Update schema files
         run: |

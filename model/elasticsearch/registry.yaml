@@ -1,0 +1,13 @@
+groups:
+  - id: registry.elasticsearch
+    type: attribute_group
+    display_name: Elasticsearch Attributes
+    brief: >
+      This section defines attributes for Elasticsearch.
+    attributes:
+      - id: elasticsearch.node.name
+        type: string
+        stability: development
+        brief: >
+          Represents the human-readable identifier of the node/instance to which a request was routed.
+        examples: ["instance-0000000001"]
