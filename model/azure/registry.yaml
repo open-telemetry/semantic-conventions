@@ -46,7 +46,8 @@ groups:
       - id: azure.cosmosdb.operation.request_charge
         type: double
         stability: development
-        brief: 	The number of request units consumed by the operation.
+        brief: >
+          The number of request units consumed by the operation.
         examples: [46.18, 1.0]
       - id: azure.cosmosdb.request.body.size
         type: int
