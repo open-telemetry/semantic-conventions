@@ -8,7 +8,7 @@ groups:
         type: string
         deprecated: "Removed."
         stability: experimental
-        brief: 'Actual/assumed role the client is making the request under extracted from token or application security context.'
+        brief: 'Deprecated, no replacement at this time.'
         examples: 'admin'
       - id: enduser.scope
         type: string
