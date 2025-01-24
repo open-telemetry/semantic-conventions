@@ -20,4 +20,4 @@ issues: [1104]
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
 subtext: |
-  The new attribute `enduser.pseudo.id` is intended to provide an unique identifier of an authenticated enduser.
+  The new attribute `enduser.pseudo.id` is intended to provide an unique identifier of a pseudonymous enduser.
