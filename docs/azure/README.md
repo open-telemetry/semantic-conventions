@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: azure/README.md
 --->
 
-# Semantic Convention for Azure Resource Logs
+# Semantic Conventions for Azure Resource Logs
 
 **Status**: [Experimental][DocumentStatus]
 

@@ -3,7 +3,7 @@ linkTitle: HTTP migration
 aliases: [../http/migration-guide]
 --->
 
-# HTTP semantic convention stability migration
+# HTTP Semantic Convention Stability Migration
 
 Due to the significant number of modifications and the extensive user base
 affected by them, existing HTTP instrumentations published by

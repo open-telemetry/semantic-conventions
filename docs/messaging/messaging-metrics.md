@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Client
+--->
+
 # Semantic Conventions for Messaging Client Metrics
 
 **Status**: [Experimental][DocumentStatus]

@@ -2,7 +2,7 @@
 linkTitle: K8s migration
 --->
 
-# K8s semantic conventions stability migration
+# K8s Semantic Convention Stability Migration
 
 Due to the significant number of modifications and the extensive user base
 affected by them, existing K8s instrumentations published by

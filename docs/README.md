@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Semantic Conventions
-# no_list: true
 cascade:
   body_class: otel-docs-spec
   github_repo: &repo https://github.com/open-telemetry/semantic-conventions
@@ -10,6 +9,7 @@ cascade:
 path_base_for_github_subdir:
   from: tmp/semconv/docs/_index.md
   to: README.md
+auto_gen: false
 --->
 
 # OpenTelemetry Semantic Conventions

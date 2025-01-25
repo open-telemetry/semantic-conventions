@@ -1,4 +1,8 @@
-# Database semantic convention stability migration guide
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Database migration
+--->
+
+# Database Semantic Convention Stability Migration Guide
 
 > [!WARNING]
 > This document is a work in progress and the database semantic conventions

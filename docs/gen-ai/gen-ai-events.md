@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Generative AI events
+linkTitle: GenAI events
 --->
 
-# Semantic Conventions for GenAI events
+# Semantic Conventions for GenAI Events
 
 **Status**: [Experimental][DocumentStatus]
 
