@@ -52,7 +52,6 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Job metrics](#k8s-job-metrics)
   - [K8s Cronjob metrics](#k8s-cronjob-metrics)
   - [K8s Namespace metrics](#k8s-namespace-metrics)
-  - [K8s HorizontalPodAutoscaler attributes](#k8s-horizontalpodautoscaler-attributes)
 
 <!-- tocstop -->
 
@@ -252,24 +251,5 @@ The changes in their metrics are the following:
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                            |
 |------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | `k8s.namespace.phase`                  (type: `gauge`), 1 for active and 0 for terminating                      | `k8s.namespace.phase` (type: `updowncounter`), with the attribute `k8s.namespace.phase` indicating the phase |
-
-<!-- prettier-ignore-end -->
-
-### K8s HorizontalPodAutoscaler attributes
-
-The K8s HorizontalPodAutoscaler attributes implemented by the Collector and specifically the
-[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
-receiver were introduced as semantic conventions in
-[#1649](https://github.com/open-telemetry/semantic-conventions/pull/1742) (TODO: replace with SemConv version once
-available).
-
-The changes are the following:
-
-<!-- prettier-ignore-start -->
-
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                |
-|------------------------------------------------------------------------------------|------------------------------------|
-| `k8s.horizontalpodautoscaler.name`                                                   | `k8s.horizontalpodautoscaler.name` |
-| `k8s.horizontalpodautoscaler.uid`                                                    | `k8s.horizontalpodautoscaler.uid`  |
 
 <!-- prettier-ignore-end -->

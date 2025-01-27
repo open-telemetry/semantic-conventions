@@ -122,15 +122,15 @@ groups:
       - ref: k8s.replicationcontroller.uid
       - ref: k8s.replicationcontroller.name
 
-  - id: resource.k8s.horizontalpodautoscaler
+  - id: resource.k8s.hpa
     type: resource
     stability: experimental
-    name: k8s.horizontalpodautoscaler
+    name: k8s.hpa
     brief: >
       A Kubernetes HorizontalPodAutoscaler object.
     attributes:
-      - ref: k8s.horizontalpodautoscaler.uid
-      - ref: k8s.horizontalpodautoscaler.name
+      - ref: k8s.hpa.uid
+      - ref: k8s.hpa.name
 
   - id: resource.k8s.resourcequota
     type: resource

@@ -177,13 +177,13 @@ groups:
         brief: >
           The name of the DaemonSet.
         examples: ['opentelemetry']
-      - id: k8s.horizontalpodautoscaler.uid
+      - id: k8s.hpa.uid
         type: string
         stability: experimental
         brief: >
           The UID of the horizontal pod autoscaler.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
-      - id: k8s.horizontalpodautoscaler.name
+      - id: k8s.hpa.name
         type: string
         stability: experimental
         brief: >
