@@ -1,8 +1,4 @@
-<!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Recording errors
---->
-
-# Recording errors
+# Recording Errors
 
 **Status**: [Development][DocumentStatus].
 

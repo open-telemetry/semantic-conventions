@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: OpenAI traces and metrics
+linkTitle: OpenAI
 --->
 
-# Semantic Conventions for OpenAI operations
+# Semantic Conventions for OpenAI Operations
 
 **Status**: [Experimental][DocumentStatus]
 

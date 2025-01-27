@@ -1,4 +1,8 @@
-# Semantic Conventions for Azure Resource Log events
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Events
+--->
+
+# Semantic Conventions for Azure Resource Log Events
 
 **Status**: [Experimental][DocumentStatus]
 
