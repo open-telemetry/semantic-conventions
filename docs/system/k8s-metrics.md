@@ -527,7 +527,7 @@ This metric is [recommended][MetricRecommended].
 [K8s ReplicationControllerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerspec-v1-core)
 
 This metric SHOULD, at a minimum, be reported against a
-[`k8s.replication_controller`](../resource/k8s.md#replicationcontroller) resource.
+[`k8s.replicationcontroller`](../resource/k8s.md#replicationcontroller) resource.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -553,7 +553,7 @@ This metric is [recommended][MetricRecommended].
 [K8s ReplicationControllerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerstatus-v1-core)
 
 This metric SHOULD, at a minimum, be reported against a
-[`k8s.replication_controller`](../resource/k8s.md#replicationcontroller) resource.
+[`k8s.replicationcontroller`](../resource/k8s.md#replicationcontroller) resource.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
