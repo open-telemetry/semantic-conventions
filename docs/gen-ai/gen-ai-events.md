@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: GenAI events
+linkTitle: Events
 --->
 
 # Semantic Conventions for GenAI Events
