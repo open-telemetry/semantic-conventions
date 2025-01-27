@@ -82,6 +82,7 @@ groups:
 
   - id: attributes.gen_ai.openai_based
     extends: trace.gen_ai.client.common_attributes
+    type: attribute_group
     stability: development
     brief: >
       Describes attributes that are common to OpenAI-based Generative AI services.
