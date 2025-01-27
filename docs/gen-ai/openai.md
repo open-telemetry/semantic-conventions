@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: OpenAI operations
+linkTitle: OpenAI
 --->
 
 # Semantic Conventions for OpenAI Operations

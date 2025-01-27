@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Client
+linkTitle: Metrics
 --->
 
 # Semantic Conventions for Messaging Client Metrics

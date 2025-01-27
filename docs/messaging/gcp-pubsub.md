@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Google cloud pub/sub
+linkTitle: Google Cloud Pub/Sub
 --->
 
 # Semantic Conventions for Google Cloud Pub/Sub
