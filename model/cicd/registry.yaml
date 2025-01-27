@@ -39,7 +39,7 @@ groups:
           providing the complete address in order to locate and identify the pipeline run.
         examples:
           [
-            "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075",
+            "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075",
           ]
       - id: cicd.pipeline.run.state
         type:
