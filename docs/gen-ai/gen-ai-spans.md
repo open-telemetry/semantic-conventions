@@ -2,7 +2,7 @@
 linkTitle: Spans
 --->
 
-# Semantic Conventions for GenAI Spans
+# Semantic Conventions for Generative AI Spans
 
 **Status**: [Experimental][DocumentStatus]
 

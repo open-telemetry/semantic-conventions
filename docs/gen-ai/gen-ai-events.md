@@ -2,7 +2,7 @@
 linkTitle: Events
 --->
 
-# Semantic Conventions for GenAI Events
+# Semantic Conventions for Generative AI Events
 
 **Status**: [Experimental][DocumentStatus]
 
