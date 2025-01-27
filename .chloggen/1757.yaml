@@ -1,4 +1,4 @@
 change_type: breaking
 component: gen-ai
-note: "Rename `gen_ai.openai.request.response_format` to `gen_ai.request.response_format`"
+note: "Introduce `gen_ai.output.type` and `gen_ai.output.json.schema.name` to record response type and format. Deprecate `gen_ai.openai.request.response_format`"
 issues: [1757]
