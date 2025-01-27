@@ -22,7 +22,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           current_version=$(grep "PREVIOUS_SPECIFICATION_VERSION=v.*" \
-                                 internal/tools/update_specification_version.sh \
+                                 .github/scripts/update-spec-repo-links.sh \
                             | sed "s/PREVIOUS_SPECIFICATION_VERSION=//")
           latest_version=$(gh release view \
                                --repo open-telemetry/opentelemetry-specification \
