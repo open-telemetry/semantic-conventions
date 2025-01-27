@@ -1,4 +1,0 @@
-change_type: breaking
-component: event
-note: Deprecate `event.name` attribute in favor of the top level event name property on the log record
-issues: [1646]

@@ -8,6 +8,7 @@ on:
 jobs:
   check-versions:
     runs-on: ubuntu-latest
+    if: github.repository_owner == 'open-telemetry'
     outputs:
       current-version: ${{ steps.check-versions.outputs.current-version }}
       latest-version: ${{ steps.check-versions.outputs.latest-version }}

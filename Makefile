@@ -101,6 +101,8 @@ markdown-toc:
 		if grep -q '<!-- tocstop -->' $$f; then \
 			echo markdown-toc: processing $$f; \
 			npx --no -- markdown-toc --bullets "-" --no-first-h1 --no-stripHeadingTags -i $$f || exit 1; \
+		elif grep -q '<!-- toc -->' $$f; then \
+			echo markdown-toc: ERROR: '<!-- tocstop -->' missing from $$f; exit 1; \
 		else \
 			echo markdown-toc: no TOC markers, skipping $$f; \
 		fi; \
