@@ -8,26 +8,22 @@ linkTitle: SQL
 
 The SQL databases Semantic Conventions describes how common [Database Semantic Conventions](database-spans.md) apply to SQL databases.
 
-The following database systems (defined in the [`db.system`](./database-spans.md#notes-and-well-known-identifiers-for-dbsystem) set) are known to use SQL as their primary query language:
+The following database systems (defined in the [`db.system.name`](./database-spans.md#notes-and-well-known-identifiers-for-dbsystemname) set) are known to use SQL as their primary query language:
 
+- `actian.ingres`
 - `cockroachdb`
-- `db2`
 - `derby`
-- `edb`
-- `firebird`
-- `h2`
+- `firebirdsql`
+- `h2database`
 - `hsqldb`
-- `ingres`
-- `interbase`
+- `ibm.db2`
 - `mariadb`
-- `maxdb`
-- `mssql`
-- `mssqlcompact`
+- `microsoft.sql_server`
 - `mysql`
-- `oracle`
+- `oracle.db`
 - `other_sql`
-- `pervasive`
 - `postgresql`
+- `sap.maxdb`
 - `sqlite`
 - `trino`
 
@@ -166,7 +162,7 @@ This is an example of attributes for a MySQL database span:
 |:-----------------------| :----------------------------------------------------------- |
 | Span name              | `"SELECT orders"` |
 | `db.namespace`         | `"ShopDb"` |
-| `db.system`            | `"mysql"` |
+| `db.system.name`       | `"mysql"` |
 | `server.address`       | `"shopdb.example.com"` |
 | `server.port`          | `3306` |
 | `db.query.text`        | `"SELECT * FROM orders WHERE order_id = 'o4711'"` |

@@ -4,9 +4,6 @@
 
 - Close the [release milestone](https://github.com/open-telemetry/semantic-conventions/milestones)
   if there is one.
-- Ensure the referenced specification version is up to date. Use
-  [tooling to update the spec](./CONTRIBUTING.md#updating-the-referenced-specification-version)
-  if needed.
 - Run [opentelemetry.io workflow](https://github.com/open-telemetry/opentelemetry.io/actions/workflows/build-dev.yml)
   against `semantic-conventions` submodule as a smoke-test for docs. Fix broken links, if any.
 - Run the [prepare release workflow](https://github.com/open-telemetry/semantic-conventions/actions/workflows/prepare-release.yml).

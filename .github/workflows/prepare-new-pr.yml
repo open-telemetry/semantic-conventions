@@ -26,7 +26,7 @@ jobs:
       # we're going to run prepare-new-pr script from the main branch
       # to parse changelog record from the PR branch.
       - name: Run prepare-new-pr.sh
-        run: ./.github/workflows/scripts/prepare-new-pr.sh
+        run: ./.github/scripts/prepare-new-pr.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR: ${{ github.event.pull_request.number }}

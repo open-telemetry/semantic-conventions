@@ -1,4 +1,0 @@
-change_type: breaking
-component: messaging
-note: "RabbitMQ: Specify how to populate `messaging.destination.name`"
-issues: [1529]
