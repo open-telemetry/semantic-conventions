@@ -1,4 +1,8 @@
-# Semantic Conventions for mobile events
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Events
+--->
+
+# Semantic Conventions for Mobile Events
 
 **Status**: [Experimental][DocumentStatus]
 

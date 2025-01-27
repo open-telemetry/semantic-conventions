@@ -1,4 +1,8 @@
-# Semantic conventions for session
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Session
+--->
+
+# Semantic Conventions for Session
 
 **Status**: [Experimental][DocumentStatus]
 

@@ -2,7 +2,7 @@
 linkTitle: ASP.NET Core
 --->
 
-# Semantic Conventions for ASP.NET Core metrics
+# Semantic Conventions for ASP.NET Core Metrics
 
 **Status**: [Stable][DocumentStatus]
 

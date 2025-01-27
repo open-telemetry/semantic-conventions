@@ -1,5 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Runtime Environment
+linkTitle: Runtime environment
+path_base_for_github_subdir:
+  from: tmp/semconv/docs/runtime/_index.md
+  to: runtime/README.md
 --->
 
 # Semantic Conventions for Runtime Environment
