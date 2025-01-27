@@ -1,11 +1,10 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Cloud provider
 path_base_for_github_subdir:
   from: tmp/semconv/docs/resource/cloud-provider/_index.md
   to: resource/cloud-provider/README.md
 --->
 
-# Semantic Conventions for Cloud Provider Resources
+# Cloud Provider
 
 **Status**: [Experimental][DocumentStatus]
 
