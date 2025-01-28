@@ -75,7 +75,6 @@ jobs:
           git checkout -b $branch
           git commit -a -m "$message"
           git push --set-upstream origin $branch
-          gh pr create --title "$message" \
+          gh pr create --title "[chore] $message" \
                        --body "$body" \
-                       --label "Skip Changelog" \
                        --base main
