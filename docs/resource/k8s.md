@@ -478,6 +478,8 @@ Choose the first value found:
 Choose the first value found:
 
 - `pod.annotation[resource.opentelemetry.io/service.name]`
+- `pod.label[app.kubernetes.io/instance]` (well-known label
+  [app.kubernetes.io/instance](https://kubernetes.io/docs/reference/labels-annotations-taints/#app-kubernetes-io-instance))
 - `pod.label[app.kubernetes.io/name]` (well-known label
   [app.kubernetes.io/name](https://kubernetes.io/docs/reference/labels-annotations-taints/#app-kubernetes-io-name))
 - `k8s.deployment.name`
