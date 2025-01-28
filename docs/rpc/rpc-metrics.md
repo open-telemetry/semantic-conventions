@@ -2,7 +2,7 @@
 linkTitle: Metrics
 --->
 
-# Semantic Conventions for RPC Metrics
+# Semantic conventions for RPC metrics
 
 **Status**: [Experimental][DocumentStatus]
 

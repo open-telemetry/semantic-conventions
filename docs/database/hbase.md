@@ -2,7 +2,7 @@
 linkTitle: HBase
 --->
 
-# Semantic Conventions for HBase
+# Semantic conventions for HBase
 
 **Status**: [Experimental][DocumentStatus]
 

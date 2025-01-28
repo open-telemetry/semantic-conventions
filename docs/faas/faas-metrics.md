@@ -2,7 +2,7 @@
 linkTitle: Metrics
 --->
 
-# Semantic Conventions for FaaS Metrics
+# Semantic conventions for FaaS metrics
 
 **Status**: [Experimental][DocumentStatus]
 

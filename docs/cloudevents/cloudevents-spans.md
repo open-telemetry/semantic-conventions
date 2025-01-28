@@ -2,7 +2,7 @@
 linkTitle: CloudEvents spans
 --->
 
-# Semantic Conventions for CloudEvents Spans
+# Semantic conventions for CloudEvents spans
 
 **Status**: [Experimental][DocumentStatus]
 

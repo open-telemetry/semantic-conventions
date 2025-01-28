@@ -2,7 +2,7 @@
 linkTitle: System
 --->
 
-# Semantic Conventions for System Metrics
+# Semantic conventions for system metrics
 
 **Status**: [Experimental][DocumentStatus]
 

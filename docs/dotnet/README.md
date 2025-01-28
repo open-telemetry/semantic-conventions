@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: dotnet/README.md
 --->
 
-# Semantic Conventions for .NET Metrics
+# Semantic conventions for .NET metrics
 
 **Status**: [Stable][DocumentStatus]
 

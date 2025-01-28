@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: http/README.md
 --->
 
-# Semantic Conventions for HTTP
+# Semantic conventions for HTTP
 
 **Status**: [Mixed][DocumentStatus]
 

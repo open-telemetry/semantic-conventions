@@ -3,7 +3,7 @@ linkTitle: Semantic Convention Groups
 aliases: [group-stability]
 --->
 
-# Semantic Convention Groups
+# Semantic convention groups
 
 **Status**: [Experimental][DocumentStatus]
 

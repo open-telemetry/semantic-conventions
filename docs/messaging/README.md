@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: messaging/README.md
 --->
 
-# Semantic Conventions for Messaging Systems
+# Semantic conventions for messaging systems
 
 **Status**: [Experimental][DocumentStatus]
 

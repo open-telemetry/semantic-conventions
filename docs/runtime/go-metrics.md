@@ -2,7 +2,7 @@
 linkTitle: Go
 --->
 
-# Semantic Conventions for Go Runtime Metrics
+# Semantic conventions for Go runtime metrics
 
 **Status**: [Experimental][DocumentStatus]
 

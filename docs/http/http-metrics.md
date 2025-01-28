@@ -2,7 +2,7 @@
 linkTitle: Metrics
 --->
 
-# Semantic Conventions for HTTP Metrics
+# Semantic conventions for HTTP metrics
 
 **Status**: [Mixed][DocumentStatus]
 

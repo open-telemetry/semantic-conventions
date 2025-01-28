@@ -2,7 +2,7 @@
 linkTitle: Spans
 --->
 
-# Semantic Conventions for HTTP Spans
+# Semantic conventions for HTTP spans
 
 **Status**: [Stable][DocumentStatus], Unless otherwise specified.
 

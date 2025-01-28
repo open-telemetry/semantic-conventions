@@ -2,7 +2,7 @@
 linkTitle: MySQL
 --->
 
-# Semantic Conventions for MySQL
+# Semantic conventions for MySQL
 
 **Status**: [Release Candidate][DocumentStatus]
 
