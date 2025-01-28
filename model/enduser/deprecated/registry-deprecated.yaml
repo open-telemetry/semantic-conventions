@@ -8,7 +8,7 @@ groups:
         type: string
         deprecated: "Removed."
         stability: experimental
-        brief: 'Deprecated, no replacement at this time.'
+        brief: "Deprecated, use `user.roles` instead."
         examples: 'admin'
       - id: enduser.scope
         type: string

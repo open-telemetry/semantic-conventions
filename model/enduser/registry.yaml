@@ -7,7 +7,10 @@ groups:
     attributes:
       - id: enduser.id
         type: string
-        brief: "Unique identifier of an authenticated user in the system."
+        brief: "Unique identifier of an end user in the system. It maybe a username, email address, or other identifier."
+        note: |
+          > [!Warning]
+          > This field contains sensitive (PII) information.
         examples: [ 'username' ]
         stability: development
       - id: enduser.pseudo.id
@@ -15,4 +18,7 @@ groups:
         stability: development
         brief: >
           Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity.
+        note: |
+          > [!Warning]
+          > This field contains sensitive (linkable PII) information.
         examples: ['QdH5CAWJgqVT4rOr0qtumf']
