@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: cloud-providers/README.md
 --->
 
-# Semantic Conventions for Cloud Providers
+# Semantic conventions for cloud providers
 
 **Status**: [Experimental][DocumentStatus]
 

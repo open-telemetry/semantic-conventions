@@ -2,7 +2,7 @@
 linkTitle: V8 JS engine
 --->
 
-# Semantic Conventions for V8 JS Engine Runtime Metrics
+# Semantic conventions for V8 JS engine runtime metrics
 
 **Status**: [Experimental][DocumentStatus]
 

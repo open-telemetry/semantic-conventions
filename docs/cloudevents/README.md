@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: cloudevents/README.md
 --->
 
-# Semantic Conventions for CloudEvents
+# Semantic conventions for CloudEvents
 
 **Status**: [Experimental][DocumentStatus]
 

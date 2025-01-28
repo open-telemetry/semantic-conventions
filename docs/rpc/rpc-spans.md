@@ -2,7 +2,7 @@
 linkTitle: Spans
 --->
 
-# Semantic Conventions for RPC Spans
+# Semantic conventions for RPC spans
 
 **Status**: [Experimental][DocumentStatus]
 

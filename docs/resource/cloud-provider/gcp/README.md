@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: resource/cloud-provider/gcp/README.md
 --->
 
-# GCP Semantic Conventions
+# GCP semantic conventions
 
 **Status**: [Experimental][DocumentStatus]
 

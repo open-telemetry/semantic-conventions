@@ -2,7 +2,7 @@
 linkTitle: Database migration
 --->
 
-# Database Semantic Convention Stability Migration Guide
+# Database semantic convention stability migration guide
 
 > [!WARNING]
 > This document is a work in progress and the database semantic conventions

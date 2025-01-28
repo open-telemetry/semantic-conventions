@@ -2,7 +2,7 @@
 linkTitle: HTTP
 --->
 
-# Semantic Conventions for HTTP Client and Server Metrics Emitted by .NET
+# Semantic conventions for HTTP client and server metrics emitted by .NET
 
 **Status**: [Stable][DocumentStatus]
 
