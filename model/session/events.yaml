@@ -24,3 +24,15 @@ groups:
             the `session.previous_id` SHOULD be included in the event. The `session.id` and `session.previous_id`
             attributes MUST have different values.
         brief: The previous `session.id` for this user, when known.
+  - id: event.session.end
+    stability: experimental
+    type: event
+    name: session.end
+    brief: >
+      For instrumentation that tracks user behavior during user sessions, a `session.end` event SHOULD be emitted
+      every time a session ends. When a session ends and continues as a new session, this event SHOULD be
+      emitted prior to the `session.start` event.
+    attributes:
+      - ref: session.id
+        requirement_level: required
+        brief: The ID of the session being ended.
