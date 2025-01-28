@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Client Calls
+linkTitle: Spans
 --->
 
 # Semantic Conventions for Database Client Spans
@@ -289,7 +289,7 @@ in which case the instrumentation MAY choose a different placeholder.
 
 Placeholders in a parameterized query SHOULD not be sanitized. E.g. `where id = $1` can be captured as is.
 
-[IN-clauses](https://wikipedia.org/wiki/Where_(SQL)#IN) MAY be collapsed during sanitization,
+[IN-clauses](https://wikipedia.org/wiki/SQL_syntax#Operators) MAY be collapsed during sanitization,
 e.g. from `IN (?, ?, ?, ?)` to `IN (?)`, as this can help with extremely long IN-clauses,
 and can help control cardinality for users who choose to (optionally) add `db.query.text` to their metric attributes.
 

@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: GraphQL Server
+linkTitle: GraphQL server
 --->
 
 # Semantic Conventions for GraphQL Server

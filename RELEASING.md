@@ -16,6 +16,7 @@
   - Set title and tag to `v{version}`
   - Set target to the commit of the merged release PR
   - Copy changelog to the release notes
+    - First click the generate release notes button and keep only the bottom sections under "New Contributors"
   - Verify that the release looks like expected
   - Publish release
 

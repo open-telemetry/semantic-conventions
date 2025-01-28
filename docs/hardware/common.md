@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Common Hardware Metrics
+linkTitle: Common hardware
 --->
 
 # Semantic Conventions for Common Hardware Metrics

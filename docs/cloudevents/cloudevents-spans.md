@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: CloudEvents Spans
+linkTitle: CloudEvents spans
 --->
 
 # Semantic Conventions for CloudEvents Spans

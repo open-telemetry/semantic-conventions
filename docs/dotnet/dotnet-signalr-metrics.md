@@ -2,7 +2,7 @@
 linkTitle: SignalR
 --->
 
-# Semantic Conventions for SignalR server metrics
+# Semantic Conventions for SignalR Server Metrics
 
 **Status**: [Stable][DocumentStatus]
 

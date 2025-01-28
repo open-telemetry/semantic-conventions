@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Container
+linkTitle: Kubernetes
 --->
 
 # Semantic Conventions for Kubernetes Metrics
@@ -990,7 +990,7 @@ This metric is [recommended][MetricRecommended].
 | `k8s.job.max_parallel_pods` | UpDownCounter | `{pod}` | The max desired number of pods the job should run at any given time [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** This metric aligns with the `parallelism` field of the
-[K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch.
+[K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch).
 
 This metric SHOULD, at a minimum, be reported against a
 [`k8s.job`](../resource/k8s.md#job) resource.
