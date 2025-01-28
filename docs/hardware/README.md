@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: hardware/README.md
 --->
 
-# Semantic Conventions for Hardware
+# Semantic conventions for hardware
 
 **Status**: [Experimental][DocumentStatus]
 

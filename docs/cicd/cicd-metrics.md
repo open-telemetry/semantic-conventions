@@ -2,7 +2,7 @@
 linkTitle: CICD
 --->
 
-# Semantic Conventions for CICD Metrics
+# Semantic conventions for CICD metrics
 
 **Status**: [Experimental][DocumentStatus]
 

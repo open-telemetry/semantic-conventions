@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: feature-flags/README.md
 --->
 
-# Semantic Conventions for Feature Flags
+# Semantic conventions for feature flags
 
 **Status**: [Experimental][DocumentStatus]
 

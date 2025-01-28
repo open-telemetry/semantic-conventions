@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: object-stores/README.md
 --->
 
-# Semantic Conventions for Object Stores
+# Semantic conventions for object stores
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 

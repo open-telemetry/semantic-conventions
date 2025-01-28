@@ -2,7 +2,7 @@
 linkTitle: Cosmos DB
 --->
 
-# Semantic Conventions for Microsoft Azure Cosmos DB
+# Semantic conventions for Microsoft Azure Cosmos DB
 
 **Status**: [Experimental][DocumentStatus]
 

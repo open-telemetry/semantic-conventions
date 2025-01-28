@@ -2,7 +2,7 @@
 linkTitle: Container
 --->
 
-# Semantic Conventions for Container Metrics
+# Semantic conventions for container metrics
 
 **Status**: [Experimental][DocumentStatus]
 

@@ -2,7 +2,7 @@
 linkTitle: Process
 --->
 
-# Process and Process Runtime Resources
+# Process and process runtime resources
 
 **Status**: [Experimental][DocumentStatus]
 

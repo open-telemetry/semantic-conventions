@@ -2,7 +2,7 @@
 linkTitle: .NET
 --->
 
-# Semantic Conventions for .NET Common Language Runtime (CLR) Metrics
+# Semantic conventions for .NET Common Language Runtime (CLR) metrics
 
 **Status**: [Stable][DocumentStatus]
 

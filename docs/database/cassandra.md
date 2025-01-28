@@ -2,7 +2,7 @@
 linkTitle: Cassandra
 --->
 
-# Semantic Conventions for Cassandra
+# Semantic conventions for Cassandra
 
 **Status**: [Experimental][DocumentStatus]
 

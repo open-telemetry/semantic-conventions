@@ -3,7 +3,7 @@ linkTitle: Attributes
 aliases: [general-attributes]
 --->
 
-# General Attributes
+# General attributes
 
 **Status**: [Experimental][DocumentStatus]
 

@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: runtime/README.md
 --->
 
-# Semantic Conventions for Runtime Environment
+# Semantic conventions for runtime environment
 
 **Status**: [Experimental][DocumentStatus]
 

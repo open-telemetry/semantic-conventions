@@ -2,7 +2,7 @@
 linkTitle: Tracing compatibility
 --->
 
-# Semantic Conventions for Tracing Compatibility Components
+# Semantic conventions for tracing compatibility components
 
 **Status**: [Experimental][DocumentStatus]
 

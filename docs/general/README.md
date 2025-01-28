@@ -7,7 +7,7 @@ path_base_for_github_subdir:
   to: general/README.md
 --->
 
-# General Semantic Conventions
+# General semantic conventions
 
 This document defines general Semantic Conventions for spans, metrics, logs and events.
 
