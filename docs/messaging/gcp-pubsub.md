@@ -2,7 +2,7 @@
 linkTitle: Google Cloud Pub/Sub
 --->
 
-# Semantic Conventions for Google Cloud Pub/Sub
+# Semantic conventions for Google Cloud Pub/Sub
 
 **Status**: [Experimental][DocumentStatus]
 

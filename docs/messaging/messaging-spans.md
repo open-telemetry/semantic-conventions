@@ -1,4 +1,8 @@
-# Semantic Conventions for Messaging Spans
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Spans
+--->
+
+# Semantic conventions for messaging spans
 
 **Status**: [Experimental][DocumentStatus]
 

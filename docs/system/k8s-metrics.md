@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Container
+linkTitle: Kubernetes
 --->
 
-# Semantic Conventions for Kubernetes Metrics
+# Semantic conventions for Kubernetes metrics
 
 **Status**: [Experimental][DocumentStatus]
 

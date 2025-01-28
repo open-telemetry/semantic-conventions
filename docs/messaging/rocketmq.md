@@ -2,7 +2,7 @@
 linkTitle: RocketMQ
 --->
 
-# Semantic Conventions for RocketMQ
+# Semantic conventions for RocketMQ
 
 **Status**: [Experimental][DocumentStatus]
 

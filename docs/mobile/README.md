@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: mobile/README.md
 --->
 
-# Semantic Convention for Mobile Platform
+# Semantic conventions for mobile platform
 
 **Status**: [Experimental][DocumentStatus]
 

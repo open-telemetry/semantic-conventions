@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: system/README.md
 --->
 
-# System Semantic Conventions
+# System semantic conventions
 
 **Status**: [Experimental][DocumentStatus]
 

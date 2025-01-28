@@ -2,7 +2,7 @@
 linkTitle: SQL
 --->
 
-# Semantic Conventions for SQL Databases
+# Semantic conventions for SQL databases
 
 **Status**: [Release Candidate][DocumentStatus]
 

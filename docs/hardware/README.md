@@ -1,8 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Hardware
+path_base_for_github_subdir:
+  from: tmp/semconv/docs/hardware/_index.md
+  to: hardware/README.md
 --->
 
-# Semantic Conventions for Hardware
+# Semantic conventions for hardware
 
 **Status**: [Experimental][DocumentStatus]
 

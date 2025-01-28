@@ -3,7 +3,7 @@ linkTitle: Logs
 aliases: [logs-general]
 --->
 
-# General Logs Attributes
+# General logs attributes
 
 **Status**: [Experimental][DocumentStatus]
 

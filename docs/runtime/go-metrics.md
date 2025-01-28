@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Go Runtime
+linkTitle: Go
 --->
 
-# Semantic Conventions for Go Runtime Metrics
+# Semantic conventions for Go runtime metrics
 
 **Status**: [Experimental][DocumentStatus]
 

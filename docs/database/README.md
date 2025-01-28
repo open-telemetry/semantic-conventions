@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: database/README.md
 --->
 
-# Semantic Conventions for Database Calls and Systems
+# Semantic conventions for database calls and systems
 
 **Status**: [Mixed][DocumentStatus]
 

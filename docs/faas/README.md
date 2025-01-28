@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: faas/README.md
 --->
 
-# Semantic Conventions for Function-as-a-Service
+# Semantic conventions for Function-as-a-Service
 
 **Status**: [Experimental][DocumentStatus]
 

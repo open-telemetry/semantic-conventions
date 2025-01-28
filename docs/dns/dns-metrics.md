@@ -2,7 +2,7 @@
 linkTitle: DNS
 --->
 
-# Semantic Conventions for DNS queries
+# Semantic conventions for DNS queries
 
 **Status**: [Experimental][DocumentStatus]
 
