@@ -498,7 +498,14 @@ Choose the first value found:
 - `pod.annotation[resource.opentelemetry.io/service.version]`
 - `pod.label[app.kubernetes.io/version]` (well-known label
   [app.kubernetes.io/version](https://kubernetes.io/docs/reference/labels-annotations-taints/#app-kubernetes-io-version))
-- `if (contains(container docker image tag, '/') == false) container docker image tag`
+- calculate the version using algorithm described below
+
+1. calculate tag and digest using the algorithm described in the 
+   [reference library](https://github.com/distribution/reference/blob/main/reference.go)
+2. choose the first value found:
+   - `<tag>@<digest>`
+   - `<digest>`
+   - `<tag>`
 
 ### How `service.instance.id` is calculated
 
