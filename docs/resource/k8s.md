@@ -500,7 +500,7 @@ Choose the first value found:
   [app.kubernetes.io/version](https://kubernetes.io/docs/reference/labels-annotations-taints/#app-kubernetes-io-version))
 - calculate the version using algorithm described below
 
-1. calculate tag and digest using the algorithm described in the 
+1. calculate tag and digest using the algorithm described in the
    [reference library](https://github.com/distribution/reference/blob/main/reference.go)
 2. choose the first value found:
    - `<tag>@<digest>`
