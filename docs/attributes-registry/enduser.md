@@ -15,8 +15,14 @@ Describes the end user.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="enduser-id" href="#enduser-id">`enduser.id`</a> | string | Unique identifier of an authenticated user in the system. | `username` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="enduser-pseudo-id" href="#enduser-pseudo-id">`enduser.pseudo.id`</a> | string | Pseudonymous identifier of an end user. This identifier is unique to the user but does not reveal their actual identity. | `QdH5CAWJgqVT4rOr0qtumf` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="enduser-id" href="#enduser-id">`enduser.id`</a> | string | Unique identifier of an end user in the system. It maybe a username, email address, or other identifier. [1] | `username` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="enduser-pseudo-id" href="#enduser-pseudo-id">`enduser.pseudo.id`</a> | string | Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity. [2] | `QdH5CAWJgqVT4rOr0qtumf` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1] `enduser.id`:** > [!Warning]
+> This field contains sensitive (PII) information.
+
+**[2] `enduser.pseudo.id`:** > [!Warning]
+> This field contains sensitive (linkable PII) information.
 
 ## Deprecated End User Attributes
 
@@ -24,5 +30,5 @@ Describes deprecated enduser attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="enduser-role" href="#enduser-role">`enduser.role`</a> | string | Actual/assumed role the client is making the request under extracted from token or application security context. | `admin` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. |
+| <a id="enduser-role" href="#enduser-role">`enduser.role`</a> | string | Deprecated, use `user.roles` instead. | `admin` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. |
 | <a id="enduser-scope" href="#enduser-scope">`enduser.scope`</a> | string | Deprecated, no replacement at this time. | `read:message, write:files` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. |

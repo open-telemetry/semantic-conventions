@@ -396,8 +396,14 @@ These attributes may be used for any operation with an authenticated and/or auth
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`enduser.id`](/docs/attributes-registry/enduser.md) | string | Unique identifier of an authenticated user in the system. | `username` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`enduser.pseudo.id`](/docs/attributes-registry/enduser.md) | string | Pseudonymous identifier of an end user. This identifier is unique to the user but does not reveal their actual identity. | `QdH5CAWJgqVT4rOr0qtumf` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`enduser.id`](/docs/attributes-registry/enduser.md) | string | Unique identifier of an end user in the system. It maybe a username, email address, or other identifier. [1] | `username` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`enduser.pseudo.id`](/docs/attributes-registry/enduser.md) | string | Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity. [2] | `QdH5CAWJgqVT4rOr0qtumf` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1] `enduser.id`:** > [!Warning]
+> This field contains sensitive (PII) information.
+
+**[2] `enduser.pseudo.id`:** > [!Warning]
+> This field contains sensitive (linkable PII) information.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
