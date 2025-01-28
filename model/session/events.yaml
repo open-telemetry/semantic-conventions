@@ -17,7 +17,7 @@ groups:
       - ref: session.id
         requirement_level: required
         brief: The ID of the new session being started.
-      - ref: session.previous.id
+      - ref: session.previous_id
         requirement_level:
           conditionally_required: >
             If the new session is being created as a continuation of a previous session,
