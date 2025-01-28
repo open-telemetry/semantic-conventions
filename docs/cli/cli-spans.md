@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: CLI
+linkTitle: CLI programs
 --->
 
-# Semantic Conventions for CLI (Command Line Interface) programs
+# Semantic Conventions for CLI (Command Line Interface) Programs
 
 **Status**: [Experimental][DocumentStatus]
 

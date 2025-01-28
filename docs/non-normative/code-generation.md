@@ -1,9 +1,4 @@
-<!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Generating Semantic Convention libraries
-# Renamed from: semantic_conventions_code_generation
---->
-
-# Generating Semantic Convention libraries
+# Generating Semantic Convention Libraries
 
 <!-- toc -->
 

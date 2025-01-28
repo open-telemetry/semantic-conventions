@@ -1,4 +1,8 @@
-# **System Semantic Conventions: General Use Cases**
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: System use cases
+--->
+
+# System Semantic Conventions: General Use Cases
 
 This document is a collection of the use cases that we want to cover with the
 System Semantic Conventions. The use cases outlined here inform the working
