@@ -197,7 +197,7 @@ flowchart LR;
 | Span name | `"send T"` | `"poll T"` | `"process T"` | `"commit T"` |
 | Parent |  |  |  (optional) Span Send  | Span Process |
 | Links |  | Span Send | Span Send |  |
-| SpanKind | `PRODUCER` | `CONSUMER` | `SERVER` | `CLIENT` |
+| SpanKind | `PRODUCER` | `CLIENT` | `CONSUMER` | `CLIENT` |
 | Status | `UNSET` | `UNSET` | `UNSET` | `UNSET` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` | `"T"` |
