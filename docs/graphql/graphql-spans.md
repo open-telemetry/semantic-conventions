@@ -2,7 +2,7 @@
 linkTitle: GraphQL server
 --->
 
-# Semantic Conventions for GraphQL Server
+# Semantic conventions for GraphQL server
 
 **Status**: [Experimental][DocumentStatus]
 

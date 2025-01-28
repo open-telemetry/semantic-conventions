@@ -2,7 +2,7 @@
 linkTitle: MariaDB
 --->
 
-# Semantic Conventions for MariaDB
+# Semantic conventions for MariaDB
 
 **Status**: [Release Candidate][DocumentStatus]
 

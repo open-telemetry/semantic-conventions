@@ -2,7 +2,7 @@
 linkTitle: OS process
 --->
 
-# Semantic Conventions for OS Process Metrics
+# Semantic conventions for OS process metrics
 
 **Status**: [Experimental][DocumentStatus]
 

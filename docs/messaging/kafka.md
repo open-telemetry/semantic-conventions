@@ -2,7 +2,7 @@
 linkTitle: Kafka
 --->
 
-# Semantic Conventions for Kafka
+# Semantic conventions for Kafka
 
 **Status**: [Experimental][DocumentStatus]
 

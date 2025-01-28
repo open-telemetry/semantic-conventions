@@ -2,7 +2,7 @@
 linkTitle: CLI programs
 --->
 
-# Semantic Conventions for CLI (Command Line Interface) Programs
+# Semantic conventions for CLI (command line interface) programs
 
 **Status**: [Experimental][DocumentStatus]
 

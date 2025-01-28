@@ -2,7 +2,7 @@
 linkTitle: Azure
 --->
 
-# Semantic Conventions for Azure Messaging Systems
+# Semantic conventions for Azure messaging systems
 
 **Status**: [Experimental][DocumentStatus]
 

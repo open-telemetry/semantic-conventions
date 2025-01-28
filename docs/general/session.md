@@ -2,7 +2,7 @@
 linkTitle: Session
 --->
 
-# Semantic Conventions for Session
+# Semantic conventions for session
 
 **Status**: [Experimental][DocumentStatus]
 

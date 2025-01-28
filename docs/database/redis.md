@@ -2,7 +2,7 @@
 linkTitle: Redis
 --->
 
-# Semantic Conventions for Redis
+# Semantic conventions for Redis
 
 **Status**: [Experimental][DocumentStatus]
 

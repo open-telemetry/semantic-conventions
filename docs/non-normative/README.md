@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: non-normative/README.md
 --->
 
-# Non-Normative Supplementary Information
+# Non-normative supplementary information
 
 The pages in this section are **non-normative**, most are supplementary
 guidelines.

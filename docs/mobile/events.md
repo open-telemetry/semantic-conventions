@@ -2,7 +2,7 @@
 linkTitle: Events
 --->
 
-# Semantic Conventions for Mobile Events
+# Semantic conventions for mobile events
 
 **Status**: [Experimental][DocumentStatus]
 

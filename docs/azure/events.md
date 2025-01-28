@@ -2,7 +2,7 @@
 linkTitle: Events
 --->
 
-# Semantic Conventions for Azure Resource Log Events
+# Semantic conventions for Azure resource log events
 
 **Status**: [Experimental][DocumentStatus]
 

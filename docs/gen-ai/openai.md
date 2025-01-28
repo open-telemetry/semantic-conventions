@@ -2,7 +2,7 @@
 linkTitle: OpenAI
 --->
 
-# Semantic Conventions for OpenAI Operations
+# Semantic conventions for OpenAI operations
 
 **Status**: [Experimental][DocumentStatus]
 

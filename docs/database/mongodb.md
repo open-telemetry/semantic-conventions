@@ -2,7 +2,7 @@
 linkTitle: MongoDB
 --->
 
-# Semantic Conventions for MongoDB
+# Semantic conventions for MongoDB
 
 **Status**: [Experimental][DocumentStatus]
 

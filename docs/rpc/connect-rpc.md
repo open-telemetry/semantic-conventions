@@ -2,7 +2,7 @@
 linkTitle: Connect
 --->
 
-# Semantic Conventions for Connect RPC
+# Semantic conventions for Connect RPC
 
 **Status**: [Experimental][DocumentStatus]
 

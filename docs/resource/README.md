@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: resource/README.md
 --->
 
-# Resource Semantic Conventions
+# Resource semantic conventions
 
 **Status**: [Mixed][DocumentStatus]
 

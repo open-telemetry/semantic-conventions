@@ -2,7 +2,7 @@
 linkTitle: Kubernetes
 --->
 
-# Semantic Conventions for Kubernetes Metrics
+# Semantic conventions for Kubernetes metrics
 
 **Status**: [Experimental][DocumentStatus]
 
