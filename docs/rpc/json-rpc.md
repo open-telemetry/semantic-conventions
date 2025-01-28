@@ -2,7 +2,7 @@
 linkTitle: JSON-RPC
 --->
 
-# Semantic Conventions for JSON-RPC
+# Semantic conventions for JSON-RPC
 
 **Status**: [Experimental][DocumentStatus]
 

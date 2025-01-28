@@ -2,13 +2,13 @@
 linkTitle: Redis
 --->
 
-# Semantic Conventions for Redis
+# Semantic conventions for Redis
 
 **Status**: [Experimental][DocumentStatus]
 
 The Semantic Conventions for [Redis](https://redis.com/) extend and override the [Database Semantic Conventions](database-spans.md).
 
-`db.system` MUST be set to `"redis"` and SHOULD be provided **at span creation time**.
+`db.system.name` MUST be set to `"redis"` and SHOULD be provided **at span creation time**.
 
 ## Span name
 
@@ -116,7 +116,7 @@ In this example, Redis is connected using a unix domain socket and therefore the
 | Key                       | Value |
 |:--------------------------| :-------------------------------------------- |
 | Span name                 | `"HMSET 15"` |
-| `db.system`               | `"redis"` |
+| `db.system.name`          | `"redis"` |
 | `network.peer.address`    | `"/tmp/redis.sock"` |
 | `network.transport`       | `"unix"` |
 | `db.namespace`            | `"15"` |

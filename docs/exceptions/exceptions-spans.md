@@ -2,7 +2,7 @@
 linkTitle: Spans
 --->
 
-# Semantic Conventions for Exceptions on Spans
+# Semantic conventions for exceptions on spans
 
 **Status**: [Stable][DocumentStatus]
 
@@ -10,6 +10,11 @@ This document defines semantic conventions for recording application
 exceptions associated with spans.
 
 <!-- toc -->
+
+- [Exception event](#exception-event)
+  - [Stacktrace Representation](#stacktrace-representation)
+
+<!-- tocstop -->
 
 ## Exception event
 

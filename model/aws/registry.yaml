@@ -3,7 +3,7 @@ groups:
     type: attribute_group
     display_name: General AWS Attributes
     brief: >
-      This document defines generic attributes for AWS services.
+      This section defines generic attributes for AWS services.
     attributes:
       - id: aws.request_id
         type: string

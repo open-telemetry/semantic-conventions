@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run prepare-new-issue.sh
-        run: ./.github/workflows/scripts/prepare-new-issue.sh
+        run: ./.github/scripts/prepare-new-issue.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE: ${{ github.event.issue.number }}
