@@ -1,4 +1,8 @@
-# Semantic Conventions for Messaging Client Metrics
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Metrics
+--->
+
+# Semantic conventions for messaging client metrics
 
 **Status**: [Experimental][DocumentStatus]
 

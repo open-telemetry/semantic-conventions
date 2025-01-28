@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: url/README.md
 --->
 
-# URL Semantic Conventions
+# URL semantic conventions
 
 **Status**: [Experimental][DocumentStatus]
 

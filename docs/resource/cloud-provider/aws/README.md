@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: resource/cloud-provider/aws/README.md
 --->
 
-# AWS Semantic Conventions
+# AWS semantic conventions
 
 **Status**: [Experimental][DocumentStatus]
 

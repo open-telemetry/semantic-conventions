@@ -2,7 +2,7 @@
 linkTitle: Elasticsearch
 --->
 
-# Semantic Conventions for Elasticsearch
+# Semantic conventions for Elasticsearch
 
 **Status**: [Experimental][DocumentStatus]
 

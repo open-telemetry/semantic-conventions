@@ -2,7 +2,7 @@
 linkTitle: PostgreSQL
 --->
 
-# Semantic Conventions for PostgreSQL
+# Semantic conventions for PostgreSQL
 
 **Status**: [Release Candidate][DocumentStatus]
 

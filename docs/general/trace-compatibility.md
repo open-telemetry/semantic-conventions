@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Tracing Compatibility
+linkTitle: Tracing compatibility
 --->
 
-# Semantic Conventions for Tracing Compatibility Components
+# Semantic conventions for tracing compatibility components
 
 **Status**: [Experimental][DocumentStatus]
 

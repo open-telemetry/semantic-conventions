@@ -1,11 +1,11 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Messaging Systems
+linkTitle: Messaging
 path_base_for_github_subdir:
   from: tmp/semconv/docs/messaging/_index.md
   to: messaging/README.md
 --->
 
-# Semantic Conventions for Messaging Systems
+# Semantic conventions for messaging systems
 
 **Status**: [Experimental][DocumentStatus]
 

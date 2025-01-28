@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Generative AI traces
+linkTitle: Spans
 --->
 
-# Semantic Conventions for GenAI spans
+# Semantic conventions for generative AI spans
 
 **Status**: [Experimental][DocumentStatus]
 

@@ -2,7 +2,7 @@
 linkTitle: MSSQL
 --->
 
-# Semantic Conventions for MSSQL
+# Semantic conventions for MSSQL
 
 **Status**: [Release Candidate][DocumentStatus]
 

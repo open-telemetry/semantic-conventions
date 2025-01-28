@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Node.js Runtime
+linkTitle: Node.js
 --->
 
-# Semantic Conventions for Node.js Runtime Metrics
+# Semantic conventions for Node.js runtime metrics
 
 **Status**: [Experimental][DocumentStatus]
 

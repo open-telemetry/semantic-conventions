@@ -2,7 +2,7 @@
 linkTitle: Spans
 --->
 
-# Semantic Conventions for FaaS Spans
+# Semantic conventions for FaaS spans
 
 **Status**: [Experimental][DocumentStatus]
 

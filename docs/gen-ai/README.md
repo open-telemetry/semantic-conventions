@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: gen-ai/README.md
 --->
 
-# Semantic Conventions for Generative AI systems
+# Semantic conventions for generative AI systems
 
 **Status**: [Experimental][DocumentStatus]
 

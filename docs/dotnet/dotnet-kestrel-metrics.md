@@ -2,7 +2,7 @@
 linkTitle: Kestrel
 --->
 
-# Semantic Conventions for Kestrel web server metrics
+# Semantic conventions for Kestrel web server metrics
 
 **Status**: [Stable][DocumentStatus]
 

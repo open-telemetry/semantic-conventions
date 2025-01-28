@@ -2,7 +2,7 @@
 linkTitle: JVM
 --->
 
-# Semantic Conventions for JVM Metrics
+# Semantic conventions for JVM metrics
 
 **Status**: [Mixed][DocumentStatus]
 

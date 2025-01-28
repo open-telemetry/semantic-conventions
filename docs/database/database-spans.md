@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Client Calls
+linkTitle: Spans
 --->
 
-# Semantic Conventions for Database Client Spans
+# Semantic conventions for database client spans
 
 **Status**: [Release Candidate][DocumentStatus], unless otherwise specified
 
