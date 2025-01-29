@@ -183,10 +183,10 @@ groups:
     instrument: updowncounter
     unit: "{pod}"
 
-  # k8s.replication_controller.* metrics
-  - id: metric.k8s.replication_controller.desired_pods
+  # k8s.replicationcontroller.* metrics
+  - id: metric.k8s.replicationcontroller.desired_pods
     type: metric
-    metric_name: k8s.replication_controller.desired_pods
+    metric_name: k8s.replicationcontroller.desired_pods
     stability: experimental
     brief: "Number of desired replica pods in this replication controller"
     # TODO: Add note for resource correlation once https://github.com/open-telemetry/semantic-conventions/issues/1656 is implemented
@@ -198,9 +198,9 @@ groups:
       [`k8s.replicationcontroller`](../resource/k8s.md#replicationcontroller) resource.
     instrument: updowncounter
     unit: "{pod}"
-  - id: metric.k8s.replication_controller.available_pods
+  - id: metric.k8s.replicationcontroller.available_pods
     type: metric
-    metric_name: k8s.replication_controller.available_pods
+    metric_name: k8s.replicationcontroller.available_pods
     stability: experimental
     brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this replication controller"
     # TODO: Add note for resource correlation once https://github.com/open-telemetry/semantic-conventions/issues/1656 is implemented
