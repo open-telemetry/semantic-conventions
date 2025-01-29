@@ -1,0 +1,31 @@
+groups:
+  - id: metric.k8s.replication_controller.desired_pods
+    type: metric
+    metric_name: k8s.replication_controller.desired_pods
+    stability: experimental
+    deprecated: "Replaced by `k8s.replicationcontroller.desired_pods`."
+    brief: "Deprecated, use `k8s.replication_controller.desired_pods` instead."
+    # TODO: Add note for resource correlation once https://github.com/open-telemetry/semantic-conventions/issues/1656 is implemented
+    note: |
+      This metric aligns with the `replicas` field of the
+      [K8s ReplicationControllerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerspec-v1-core)
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.replicationcontroller`](../resource/k8s.md#replicationcontroller) resource.
+    instrument: updowncounter
+    unit: "{pod}"
+  - id: metric.k8s.replication_controller.available_pods
+    type: metric
+    metric_name: k8s.replication_controller.available_pods
+    stability: experimental
+    deprecated: "Replaced by `k8s.replicationcontroller.available_pods`."
+    brief: "Deprecated, use `k8s.replication_controller.available_pods` instead."
+    # TODO: Add note for resource correlation once https://github.com/open-telemetry/semantic-conventions/issues/1656 is implemented
+    note: |
+      This metric aligns with the `availableReplicas` field of the
+      [K8s ReplicationControllerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerstatus-v1-core)
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.replicationcontroller`](../resource/k8s.md#replicationcontroller) resource.
+    instrument: updowncounter
+    unit: "{pod}"
