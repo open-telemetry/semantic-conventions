@@ -2,7 +2,7 @@
 linkTitle: System
 --->
 
-# Semantic Conventions for System Metrics
+# Semantic conventions for system metrics
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -16,8 +16,6 @@ The `system.*` namespace SHOULD only be used when the metrics are collected from
 Metrics collected from technology-specific, well-defined APIs (e.g. Kubelet's API or container runtimes)
 should be reported under their respective namespace (e.g. k8s.*, container.*).
 Resource attributes related to a host, SHOULD be reported under the `host.*` namespace.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

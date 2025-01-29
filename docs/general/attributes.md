@@ -3,15 +3,13 @@ linkTitle: Attributes
 aliases: [general-attributes]
 --->
 
-# General Attributes
+# General attributes
 
 **Status**: [Experimental][DocumentStatus]
 
 The attributes described in this section are not specific to a particular operation but rather generic.
 They may be used in any Span they apply to.
 Particular operations may refer to or require some of these attributes.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

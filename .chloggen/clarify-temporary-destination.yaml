@@ -1,5 +1,0 @@
-change_type: enhancement
-component: messaging
-note: Further clarify `{destination}` value on span names
-issues: [1635]
-subtext:

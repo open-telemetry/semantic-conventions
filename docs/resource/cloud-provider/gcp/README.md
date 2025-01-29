@@ -1,11 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: GCP
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/resource/cloud-provider/gcp/_index.md
-  to: resource/cloud-provider/gcp/README.md
 --->
 
-# GCP Semantic Conventions
+# GCP semantic conventions
 
 **Status**: [Experimental][DocumentStatus]
 

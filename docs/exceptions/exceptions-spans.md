@@ -2,7 +2,7 @@
 linkTitle: Spans
 --->
 
-# Semantic Conventions for Exceptions on Spans
+# Semantic conventions for exceptions on spans
 
 **Status**: [Stable][DocumentStatus]
 
