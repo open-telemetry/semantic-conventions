@@ -2,7 +2,7 @@
 linkTitle: System use cases
 --->
 
-# System Semantic Conventions: General Use Cases
+# System semantic conventions: general use cases
 
 This document is a collection of the use cases that we want to cover with the
 System Semantic Conventions. The use cases outlined here inform the working

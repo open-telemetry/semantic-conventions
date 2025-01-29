@@ -2,11 +2,9 @@
 linkTitle: Process
 --->
 
-# Process and Process Runtime Resources
+# Process and process runtime resources
 
 **Status**: [Experimental][DocumentStatus]
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

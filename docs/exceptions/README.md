@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: exceptions/README.md
 --->
 
-# Semantic Conventions for Exceptions
+# Semantic conventions for exceptions
 
 **Status**: [Stable][DocumentStatus]
 

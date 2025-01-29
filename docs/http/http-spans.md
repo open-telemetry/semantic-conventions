@@ -2,15 +2,13 @@
 linkTitle: Spans
 --->
 
-# Semantic Conventions for HTTP Spans
+# Semantic conventions for HTTP spans
 
 **Status**: [Stable][DocumentStatus], Unless otherwise specified.
 
 This document defines semantic conventions for HTTP client and server Spans.
 They can be used for http and https schemes
 and various HTTP versions like 1.1, 2 and SPDY.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

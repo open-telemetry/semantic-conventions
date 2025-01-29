@@ -2,7 +2,7 @@
 linkTitle: Kubernetes
 --->
 
-# Semantic Conventions for Kubernetes Metrics
+# Semantic conventions for Kubernetes metrics
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -14,8 +14,6 @@ well-defined APIs (e.g. Kubelet's API).
 
 Metrics in `k8s.` instruments SHOULD be attached to a [K8s Resource](/docs/resource/k8s.md)
 and therefore inherit its attributes, like `k8s.pod.name` and `k8s.pod.uid`.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

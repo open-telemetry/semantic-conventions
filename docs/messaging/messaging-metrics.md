@@ -2,11 +2,9 @@
 linkTitle: Metrics
 --->
 
-# Semantic Conventions for Messaging Client Metrics
+# Semantic conventions for messaging client metrics
 
 **Status**: [Experimental][DocumentStatus]
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

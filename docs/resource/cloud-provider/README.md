@@ -4,7 +4,7 @@ path_base_for_github_subdir:
   to: resource/cloud-provider/README.md
 --->
 
-# Cloud Provider
+# Cloud provider
 
 **Status**: [Experimental][DocumentStatus]
 

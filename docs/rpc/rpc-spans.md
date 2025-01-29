@@ -2,14 +2,12 @@
 linkTitle: Spans
 --->
 
-# Semantic Conventions for RPC Spans
+# Semantic conventions for RPC spans
 
 **Status**: [Experimental][DocumentStatus]
 
 This document defines how to describe remote procedure calls
 (also called "remote method invocations" / "RMI") with spans.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

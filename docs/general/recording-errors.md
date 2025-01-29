@@ -1,4 +1,4 @@
-# Recording Errors
+# Recording errors
 
 **Status**: [Development][DocumentStatus].
 

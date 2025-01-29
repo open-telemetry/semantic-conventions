@@ -5,7 +5,7 @@ path_base_for_github_subdir:
   to: rpc/README.md
 --->
 
-# Semantic Conventions for RPC
+# Semantic conventions for RPC
 
 **Status**: [Experimental][DocumentStatus]
 
