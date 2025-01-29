@@ -1,6 +1,6 @@
 groups:
   - id: event.session.start
-    stability: experimental
+    stability: development
     type: event
     name: session.start
     brief: >
@@ -25,7 +25,7 @@ groups:
             attributes MUST have different values.
         brief: The previous `session.id` for this user, when known.
   - id: event.session.end
-    stability: experimental
+    stability: development
     type: event
     name: session.end
     brief: >
