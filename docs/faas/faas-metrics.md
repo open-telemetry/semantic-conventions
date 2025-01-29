@@ -2,7 +2,7 @@
 linkTitle: Metrics
 --->
 
-# Semantic Conventions for FaaS Metrics
+# Semantic conventions for FaaS metrics
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -12,8 +12,6 @@ or managing of servers (also known as serverless functions or Function as a Serv
 The conventions described in this section are FaaS (function as a service) specific. When FaaS operations occur,
 metric events about those operations will be generated and reported to provide insights into the
 operations. By adding FaaS attributes to metric events it allows for finely tuned filtering.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
@@ -46,7 +44,7 @@ The following metrics are recorded by the FaaS instance.
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.faas.invoke_duration -->
@@ -86,7 +84,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.faas.init_duration -->
@@ -306,7 +304,7 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.faas.cpu_usage -->

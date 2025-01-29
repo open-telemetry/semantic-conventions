@@ -8,6 +8,72 @@
 
 <!-- next version -->
 
+## v1.30.0
+
+### 🛑 Breaking changes 🛑
+
+- `event`: Deprecate `event.name` attribute in favor of the top level event name property on the log record ([#1646](https://github.com/open-telemetry/semantic-conventions/issues/1646))
+- `gen_ai`: Rename `gen_ai.openai.request.seed` to `gen_ai.request.seed` and use it on general GenAI conventions. ([#1715](https://github.com/open-telemetry/semantic-conventions/issues/1715))
+- `db`: Rename `db.system` to `db.system.name` and clean up its values.
+Rename `db.elasticsearch.*`, `db.cassandra.*`, `db.cosmosdb.*` attributes to `elasticsearch.*`, `cassandra.*`, and `azure.cosmosdb.*` respectively.
+Rename `db.client.cosmosdb.*` metrics to `azure.cosmosdb.client.*`.
+ ([#1581](https://github.com/open-telemetry/semantic-conventions/issues/1581), [#608](https://github.com/open-telemetry/semantic-conventions/issues/608))
+- `code`: rename `code.function`, `code.lineno`, `code.column` and `code.filepath` ([#1377](https://github.com/open-telemetry/semantic-conventions/issues/1377), [#1599](https://github.com/open-telemetry/semantic-conventions/issues/1599))
+  `code.function` renamed to `code.function.name`
+  `code.lineno` renamed to `code.line.number`
+  `code.column` renamed to `code.column.number`
+  `code.filepath` renamed to `code.file.path`
+  
+- `system`: Replace `system.network.state` with `network.connection.state` ([#308](https://github.com/open-telemetry/semantic-conventions/issues/308))
+- `messaging`: RabbitMQ: Specify how to populate `messaging.destination.name` ([#1529](https://github.com/open-telemetry/semantic-conventions/issues/1529))
+
+### 🚀 New components 🚀
+
+- `security-rule`: Introducing a new security rule namespace ([#903](https://github.com/open-telemetry/semantic-conventions/issues/903))
+
+### 💡 Enhancements 💡
+
+- `cloud`: Add Oracle Cloud Infrastructure to Semantic Conventions ([#1658](https://github.com/open-telemetry/semantic-conventions/issues/1658))
+- `gen_ai`: Yamlify gen_ai events and clean up examples. ([#1469](https://github.com/open-telemetry/semantic-conventions/issues/1469))
+- `cicd`: Add CICD metrics ([#1600](https://github.com/open-telemetry/semantic-conventions/issues/1600))
+  Makes the following changes:
+  
+  - Add metrics `cicd.pipeline.run.duration`, `cicd.pipeline.run.active`, `cicd.worker.count`,
+    `cicd.pipeline.run.errors` and `cicd.system.errors`.
+  - The CICD attributes `cicd.pipeline.run.state`, `cicd.pipeline.result`, `cicd.system.component`, `cicd.worker.state` have been added to the registry.
+  
+- `gen-ai`: Adds OpenAI API compatible `gen_ai.system` attribute values: `az.ai.openai`, `deepseek`, `gemini`, `groq`,
+`perplexity` and `xai`. Elaborates that `openai` can be ambiguous due to API emulation.
+ ([#1655](https://github.com/open-telemetry/semantic-conventions/issues/1655))
+- `docs`: Update attribute, events, and metrics naming guidance to include new best practices. ([#1694](https://github.com/open-telemetry/semantic-conventions/issues/1694))
+  - Use namespaces (with `.` delimiter) whenever possible.
+  - Use precise, descriptive, unambiguous names that leave room for expansion.
+  
+- `docs, db`: Add common guidance for recording errors on spans and metrics, clarify DB conventions. ([#1516](https://github.com/open-telemetry/semantic-conventions/issues/1516), [#1536](https://github.com/open-telemetry/semantic-conventions/issues/1536), [#1716](https://github.com/open-telemetry/semantic-conventions/issues/1716))
+- `gen-ai`: Adds `mistral_ai` as a `gen_ai.system` attribute value. ([#1719](https://github.com/open-telemetry/semantic-conventions/issues/1719))
+- `process`: Update `process.runtime` example for the Python language. ([#1772](https://github.com/open-telemetry/semantic-conventions/issues/1772))
+- `db`: Add metrics section to each of the database system-specific conventions. ([#1447](https://github.com/open-telemetry/semantic-conventions/issues/1447), [#1779](https://github.com/open-telemetry/semantic-conventions/issues/1779))
+- `k8s`: Add metrics for k8s deployment, replicaset, replication_controller, statefulset and hpa. ([#1636](https://github.com/open-telemetry/semantic-conventions/issues/1636), [#1637](https://github.com/open-telemetry/semantic-conventions/issues/1637), [#1644](https://github.com/open-telemetry/semantic-conventions/issues/1644))
+  This addition focused on providing consistency between these metrics, while
+  also ensuring alignment with recommendations from Kubernetes.
+  More details in [#1637](https://github.com/open-telemetry/semantic-conventions/issues/1637)
+  
+- `k8s`: Add k8s deamonset related metrics ([#1649](https://github.com/open-telemetry/semantic-conventions/issues/1649))
+- `k8s`: Add k8s metrics for job and cronjob ([#1660](https://github.com/open-telemetry/semantic-conventions/issues/1660))
+- `k8s`: Add k8s.namespace.phase metric along with the respective attribute ([#1668](https://github.com/open-telemetry/semantic-conventions/issues/1668))
+- `aws`: Add extended request ID to general AWS attributes as `aws.extended_request_id` ([#1670](https://github.com/open-telemetry/semantic-conventions/issues/1670))
+- `messaging`: Further clarify `{destination}` value on span names ([#1635](https://github.com/open-telemetry/semantic-conventions/issues/1635))
+- `gen_ai`: Introduce gen_ai.request.seed and deprecated gen_ai.openai.request.seed ([#1710](https://github.com/open-telemetry/semantic-conventions/issues/1710))
+- `system`: Adds note about how `system.cpu.physical.count` and `system.cpu.logical.count` are calculated ([#1780](https://github.com/open-telemetry/semantic-conventions/issues/1780))
+- `k8s`: Add migration guide for K8s semantic conventions ([#1597](https://github.com/open-telemetry/semantic-conventions/issues/1597))
+- `profile`: Extend the list of known frame types with a value for Erlang ([#1735](https://github.com/open-telemetry/semantic-conventions/issues/1735))
+- `dotnet`: Mark .NET runtime metrics as stable ([#1602](https://github.com/open-telemetry/semantic-conventions/issues/1602))
+- `vcs`: Adds `vcs.repository.name` attribute to registry and update
+`vcs.repository.url.full` description for consistent representation. Updates
+the VCS metrics to include `vcs.repository.name` as a recommended attribute.
+ ([#1254](https://github.com/open-telemetry/semantic-conventions/issues/1254), [#1453](https://github.com/open-telemetry/semantic-conventions/issues/1453))
+- `vcs`: Add `vcs.change.time_to_merge` metric. ([#1685](https://github.com/open-telemetry/semantic-conventions/issues/1685))
+
 ## v1.29.0
 
 ### 🛑 Breaking changes 🛑

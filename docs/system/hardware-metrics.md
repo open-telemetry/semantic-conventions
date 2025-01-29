@@ -2,7 +2,7 @@
 linkTitle: Hardware
 --->
 
-# Semantic Conventions for Hardware Metrics
+# Semantic conventions for hardware metrics
 
 **Status**: [Experimental][DocumentStatus]
 
