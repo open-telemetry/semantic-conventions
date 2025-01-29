@@ -1,9 +1,3 @@
-<!--- Hugo front matter used to generate the website version of this page:
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/resource/cloud-provider/_index.md
-  to: resource/cloud-provider/README.md
---->
-
 # Cloud provider
 
 **Status**: [Experimental][DocumentStatus]

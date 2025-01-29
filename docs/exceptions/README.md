@@ -1,8 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Exceptions
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/exceptions/_index.md
-  to: exceptions/README.md
 --->
 
 # Semantic conventions for exceptions
