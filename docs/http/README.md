@@ -1,8 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: HTTP
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/http/_index.md
-  to: http/README.md
 --->
 
 # Semantic conventions for HTTP

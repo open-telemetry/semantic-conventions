@@ -1,8 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Mobile
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/mobile/_index.md
-  to: mobile/README.md
 --->
 
 # Semantic conventions for mobile platform
