@@ -1,12 +1,10 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: OpenAI traces and metrics
+linkTitle: OpenAI
 --->
 
-# Semantic Conventions for OpenAI operations
+# Semantic conventions for OpenAI operations
 
 **Status**: [Experimental][DocumentStatus]
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

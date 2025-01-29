@@ -1,15 +1,13 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Go Runtime
+linkTitle: Go
 --->
 
-# Semantic Conventions for Go Runtime Metrics
+# Semantic conventions for Go runtime metrics
 
 **Status**: [Experimental][DocumentStatus]
 
 This document describes semantic conventions for Go runtime metrics in OpenTelemetry.
 These metrics are obtained from Go's [`runtime/metrics`][RuntimeMetrics] package.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

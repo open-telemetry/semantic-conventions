@@ -1,7 +1,3 @@
-<!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Recording errors
---->
-
 # Recording errors
 
 **Status**: [Development][DocumentStatus].
@@ -126,4 +122,4 @@ public boolean createIfNotExists(String resourceId) throws IOException {
 ```
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/trace/api.md#set-status
+[SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/trace/api.md#set-status

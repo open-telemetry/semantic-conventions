@@ -1,12 +1,10 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Client Calls
+linkTitle: Spans
 --->
 
-# Semantic Conventions for Database Client Spans
+# Semantic conventions for database client spans
 
 **Status**: [Release Candidate][DocumentStatus], unless otherwise specified
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
@@ -58,7 +56,7 @@ with all retries.
 
 ## Name
 
-Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/trace/api.md#span).
+Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/trace/api.md#span).
 
 The **span name** SHOULD be `{db.query.summary}` if a summary is available.
 
@@ -168,16 +166,16 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[12] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 
 **[13] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
+Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../database/database-spans.md#generating-a-summary-of-the-query-text) section.
 
 **[14] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
 
-**[15] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[15] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
-**[16] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
-Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
+**[16] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
+Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
 
 **[17] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
@@ -289,7 +287,7 @@ in which case the instrumentation MAY choose a different placeholder.
 
 Placeholders in a parameterized query SHOULD not be sanitized. E.g. `where id = $1` can be captured as is.
 
-[IN-clauses](https://wikipedia.org/wiki/Where_(SQL)#IN) MAY be collapsed during sanitization,
+[IN-clauses](https://wikipedia.org/wiki/SQL_syntax#Operators) MAY be collapsed during sanitization,
 e.g. from `IN (?, ?, ?, ?)` to `IN (?)`, as this can help with extremely long IN-clauses,
 and can help control cardinality for users who choose to (optionally) add `db.query.text` to their metric attributes.
 
