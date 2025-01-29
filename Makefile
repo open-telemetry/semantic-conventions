@@ -84,7 +84,8 @@ markdown-link-check: normalized-link-check
 		lycheeverse/lychee \
 		--config home/repo/.lychee.toml \
 		--root-dir /home/repo \
-		--verbose $(MARKDOWN_LINK_CHECK_ARG) \
+		--verbose \
+		$(MARKDOWN_LINK_CHECK_ARG) \
 		home/repo
 
 .PHONY: markdown-link-check-changelog-preview
