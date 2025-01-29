@@ -6,8 +6,6 @@ linkTitle: Metrics
 
 **Status**: [Experimental][DocumentStatus]
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [Generative AI Client Metrics](#generative-ai-client-metrics)

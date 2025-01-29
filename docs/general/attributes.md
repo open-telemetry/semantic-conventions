@@ -11,8 +11,6 @@ The attributes described in this section are not specific to a particular operat
 They may be used in any Span they apply to.
 Particular operations may refer to or require some of these attributes.
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [Server, client and shared network attributes](#server-client-and-shared-network-attributes)

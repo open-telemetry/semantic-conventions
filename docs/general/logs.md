@@ -10,8 +10,6 @@ aliases: [logs-general]
 The attributes described in this section are rather generic.
 They may be used in any Log Record they apply to.
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [General log identification attributes](#general-log-identification-attributes)
