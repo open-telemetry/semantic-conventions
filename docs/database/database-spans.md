@@ -6,8 +6,6 @@ linkTitle: Spans
 
 **Status**: [Release Candidate][DocumentStatus], unless otherwise specified
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [Name](#name)

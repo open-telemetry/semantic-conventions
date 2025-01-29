@@ -15,8 +15,6 @@ measurements from the operating system. For runtime environment metrics see
 [semantic conventions for runtime environment
 metrics](/docs/runtime/README.md#metrics).
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [Process Metrics](#process-metrics)

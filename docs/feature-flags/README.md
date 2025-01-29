@@ -1,8 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Feature flags
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/feature-flags/_index.md
-  to: feature-flags/README.md
 --->
 
 # Semantic conventions for feature flags

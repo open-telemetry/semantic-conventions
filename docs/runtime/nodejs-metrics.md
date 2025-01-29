@@ -8,8 +8,6 @@ linkTitle: Node.js
 
 This document describes semantic conventions for Node.js Runtime metrics in OpenTelemetry.
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [Experimental](#experimental)
