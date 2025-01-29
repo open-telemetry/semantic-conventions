@@ -399,10 +399,14 @@ These attributes may be used for any operation with an authenticated and/or auth
 | [`enduser.id`](/docs/attributes-registry/enduser.md) | string | Unique identifier of an end user in the system. It maybe a username, email address, or other identifier. [1] | `username` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`enduser.pseudo.id`](/docs/attributes-registry/enduser.md) | string | Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity. [2] | `QdH5CAWJgqVT4rOr0qtumf` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `enduser.id`:** > [!Warning]
+**[1] `enduser.id`:** Unique identifier of an end user in the system.
+
+> [!Warning]
 > This field contains sensitive (PII) information.
 
-**[2] `enduser.pseudo.id`:** > [!Warning]
+**[2] `enduser.pseudo.id`:** Pseudonymous identifier of an end user.
+
+> [!Warning]
 > This field contains sensitive (linkable PII) information.
 
 <!-- markdownlint-restore -->

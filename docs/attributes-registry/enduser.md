@@ -18,10 +18,14 @@ Describes the end user.
 | <a id="enduser-id" href="#enduser-id">`enduser.id`</a> | string | Unique identifier of an end user in the system. It maybe a username, email address, or other identifier. [1] | `username` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="enduser-pseudo-id" href="#enduser-pseudo-id">`enduser.pseudo.id`</a> | string | Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity. [2] | `QdH5CAWJgqVT4rOr0qtumf` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `enduser.id`:** > [!Warning]
+**[1] `enduser.id`:** Unique identifier of an end user in the system.
+
+> [!Warning]
 > This field contains sensitive (PII) information.
 
-**[2] `enduser.pseudo.id`:** > [!Warning]
+**[2] `enduser.pseudo.id`:** Pseudonymous identifier of an end user.
+
+> [!Warning]
 > This field contains sensitive (linkable PII) information.
 
 ## Deprecated End User Attributes
