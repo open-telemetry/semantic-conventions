@@ -12,8 +12,6 @@ path_base_for_github_subdir:
 This document defines semantic conventions for
 runtime environment spans, metrics and logs.
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [Metrics](#metrics)

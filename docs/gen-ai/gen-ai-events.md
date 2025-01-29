@@ -6,8 +6,6 @@ linkTitle: Events
 
 **Status**: [Experimental][DocumentStatus]
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [Event: `gen_ai.system.message`](#event-gen_aisystemmessage)

@@ -12,8 +12,6 @@ path_base_for_github_subdir:
 This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
 [OpenCensus Resource standard](https://github.com/census-instrumentation/opencensus-specs/blob/master/resource/StandardResources.md).
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [TODOs](#todos)

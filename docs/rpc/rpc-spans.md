@@ -9,8 +9,6 @@ linkTitle: Spans
 This document defines how to describe remote procedure calls
 (also called "remote method invocations" / "RMI") with spans.
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [Common remote procedure call conventions](#common-remote-procedure-call-conventions)
