@@ -56,5 +56,5 @@ groups:
               brief: 'JSON schema response format'
               stability: experimental
         brief: >
-          Deprecated, use `gen_ai.request.response_format`.
-        deprecated: "Replaced by `gen_ai.request.response_format`."
+          Deprecated, use `gen_ai.output.type` and `gen_ai.output.json.schema.name`.
+        deprecated: "Replaced by `gen_ai.output.type` and `gen_ai.output.json.schema.name`."

@@ -96,7 +96,9 @@ the client has requested output in a specific schema.
 Semantic conventions for a specific GenAI system SHOULD document
 how to populate this attribute based on the available request properties.
 
-If the request does not include a schema or schema name is not available, this attribute SHOULD NOT be set.
+If the request does not include a schema this attribute SHOULD NOT be set.
+If a schema is provided but does not have a name, this attribute SHOULD
+be set to `unnamed`.
 
 **[5] `gen_ai.output.json.schema.name`:** if and only if structured output with specific JSON schema was requested.
 

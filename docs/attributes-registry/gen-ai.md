@@ -46,7 +46,9 @@ the client has requested output in a specific schema.
 Semantic conventions for a specific GenAI system SHOULD document
 how to populate this attribute based on the available request properties.
 
-If the request does not include a schema or schema name is not available, this attribute SHOULD NOT be set.
+If the request does not include a schema this attribute SHOULD NOT be set.
+If a schema is provided but does not have a name, this attribute SHOULD
+be set to `unnamed`.
 
 **[3] `gen_ai.output.type`:** This attribute SHOULD be used when the client requests output of a specific type. The model may return zero or more outputs of this type.
 This attribute specifies the output modality and not the actual output format. For example, if an image is requested, the actual output could be a URL pointing to an image file.
@@ -153,7 +155,7 @@ Describes deprecated `gen_ai.openai` attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="gen-ai-openai-request-response-format" href="#gen-ai-openai-request-response-format">`gen_ai.openai.request.response_format`</a> | string | Deprecated, use `gen_ai.request.response_format`. | `text`; `json_object`; `json_schema` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.request.response_format`. |
+| <a id="gen-ai-openai-request-response-format" href="#gen-ai-openai-request-response-format">`gen_ai.openai.request.response_format`</a> | string | Deprecated, use `gen_ai.output.type` and `gen_ai.output.json.schema.name`. | `text`; `json_object`; `json_schema` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.output.type` and `gen_ai.output.json.schema.name`. |
 | <a id="gen-ai-openai-request-seed" href="#gen-ai-openai-request-seed">`gen_ai.openai.request.seed`</a> | int | Deprecated, use `gen_ai.request.seed`. | `100` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.request.seed` attribute. |
 
 ---
