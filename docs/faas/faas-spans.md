@@ -11,8 +11,6 @@ or managing of servers (also known as serverless functions or Function as a Serv
 
 See also the [additional instructions for instrumenting AWS Lambda](aws-lambda.md).
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [General Attributes](#general-attributes)

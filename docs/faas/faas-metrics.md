@@ -13,8 +13,6 @@ The conventions described in this section are FaaS (function as a service) speci
 metric events about those operations will be generated and reported to provide insights into the
 operations. By adding FaaS attributes to metric events it allows for finely tuned filtering.
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [Metric Instruments](#metric-instruments)

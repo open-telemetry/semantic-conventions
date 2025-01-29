@@ -9,8 +9,6 @@ applicable when handlers are for HTTP requests.
 There are a variety of triggers for Lambda functions, and this document will grow over time to cover all the
 use cases.
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i docs/faas/aws-lambda.md` -->
-
 <!-- toc -->
 
 - [All triggers](#all-triggers)

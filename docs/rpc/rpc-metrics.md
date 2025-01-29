@@ -12,8 +12,6 @@ measurements are aggregated and exported as metrics, which provide insight into
 those operations. By including RPC properties as attributes on measurements, the
 metrics can be filtered for finer grain analysis.
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [Metric instruments](#metric-instruments)

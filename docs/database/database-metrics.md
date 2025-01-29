@@ -6,8 +6,6 @@ linkTitle: Metrics
 
 **Status**: [Mixed][DocumentStatus]
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [Database operation](#database-operation)
