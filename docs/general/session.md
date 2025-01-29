@@ -53,6 +53,8 @@ backends can link the two sessions (see [Session Start Event](#session-start-eve
 
 The event name MUST be `session.start`.
 
+Indicates that a new session has been started, optionally linking to the prior session.
+
 For instrumentation that tracks user behavior during user sessions, a `session.start` event MUST be emitted every time a session is created. When a new session is created as a continuation of a prior session, the `session.previous_id` SHOULD be included in the event. The values of `session.id` and `session.previous_id` MUST be different.
 When the `session.start` event contains both `session.id` and `session.previous_id` fields, the event indicates that the previous session has ended. If the session ID in `session.previous_id` has not yet ended via explicit `session.end` event, then the consumer SHOULD treat this continuation event as semantically equivalent to `session.end(session.previous_id)` and `session.start(session.id)`.
 
@@ -80,6 +82,8 @@ When the `session.start` event contains both `session.id` and `session.previous_
 **Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
 
 The event name MUST be `session.end`.
+
+Indicates that a session has ended.
 
 For instrumentation that tracks user behavior during user sessions, a `session.end` event SHOULD be emitted every time a session ends. When a session ends and continues as a new session, this event SHOULD be emitted prior to the `session.start` event.
 

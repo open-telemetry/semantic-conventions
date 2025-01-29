@@ -4,6 +4,8 @@ groups:
     type: event
     name: session.start
     brief: >
+      Indicates that a new session has been started, optionally linking to the prior session.
+    note: >
       For instrumentation that tracks user behavior during user sessions, a `session.start` event MUST be emitted
       every time a session is created. When a new session is created as a continuation of a prior session,
       the `session.previous_id` SHOULD be included in the event. The values of `session.id` and `session.previous_id`
@@ -29,6 +31,8 @@ groups:
     type: event
     name: session.end
     brief: >
+      Indicates that a session has ended.
+    note: >
       For instrumentation that tracks user behavior during user sessions, a `session.end` event SHOULD be emitted
       every time a session ends. When a session ends and continues as a new session, this event SHOULD be
       emitted prior to the `session.start` event.
