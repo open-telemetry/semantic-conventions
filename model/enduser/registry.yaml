@@ -9,7 +9,7 @@ groups:
         type: string
         brief: "Unique identifier of an end user in the system. It maybe a username, email address, or other identifier."
         note: |
-      
+
           > [!Warning]
           > This field contains sensitive (PII) information.
         examples: [ 'username' ]
