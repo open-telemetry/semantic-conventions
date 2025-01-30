@@ -31,6 +31,7 @@ jobs:
           fi
 
           version=${{ inputs.version }}
+          sed -i "0,/^schema_url: .*\/next$/s/\/next$/\/$version/" schema-next.yaml
           sed -i "0,/^  next:$/s//  $version:/" schema-next.yaml
           cp schema-next.yaml "schemas/$version"
           git add "schemas/$version"

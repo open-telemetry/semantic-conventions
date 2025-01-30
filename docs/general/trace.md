@@ -3,7 +3,7 @@ linkTitle: Trace
 aliases: [trace-general]
 --->
 
-# Trace Semantic Conventions
+# Trace semantic conventions
 
 **Status**: [Mixed][DocumentStatus]
 

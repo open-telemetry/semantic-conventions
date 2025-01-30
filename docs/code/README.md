@@ -1,11 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Code
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/code/_index.md
-  to: code/README.md
 --->
 
-# Semantic Conventions for Code
+# Semantic conventions for code
 
 **Status**: [Experimental][DocumentStatus]
 

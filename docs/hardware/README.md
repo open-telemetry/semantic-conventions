@@ -2,7 +2,7 @@
 linkTitle: Hardware
 --->
 
-# Semantic Conventions for Hardware
+# Semantic conventions for hardware
 
 **Status**: [Experimental][DocumentStatus]
 

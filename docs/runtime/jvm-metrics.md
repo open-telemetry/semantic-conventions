@@ -2,13 +2,11 @@
 linkTitle: JVM
 --->
 
-# Semantic Conventions for JVM Metrics
+# Semantic conventions for JVM metrics
 
 **Status**: [Mixed][DocumentStatus]
 
 This document describes semantic conventions for JVM metrics in OpenTelemetry.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

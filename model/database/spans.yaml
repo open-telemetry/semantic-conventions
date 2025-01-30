@@ -39,11 +39,11 @@ groups:
           recommended: >
             Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
             sensitive data, e.g. by redacting all literal values present in the query text.
-            See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+            See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
+            see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
       - ref: db.query.summary
         sampling_relevant: true
       - ref: db.operation.parameter
@@ -71,11 +71,11 @@ groups:
           recommended: >
             Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
             sensitive data, e.g. by redacting all literal values present in the query text.
-            See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+            See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
+            see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
       - ref: db.query.summary
         sampling_relevant: true
       - ref: db.operation.parameter
@@ -396,11 +396,11 @@ groups:
             Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
             sensitive data, e.g. by redacting all literal values present in the query text.
 
-            See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+            See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
+            see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
         note: >
           For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI.
           If, for example, the [`HMSET` command](https://redis.io/docs/latest/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.

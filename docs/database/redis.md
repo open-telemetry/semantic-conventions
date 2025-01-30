@@ -2,7 +2,7 @@
 linkTitle: Redis
 --->
 
-# Semantic Conventions for Redis
+# Semantic conventions for Redis
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -77,8 +77,8 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[10] `db.query.text`:** For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI. If, for example, the [`HMSET` command](https://redis.io/docs/latest/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
 
 **[11] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text.
-See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
-Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
+See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
+Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
 
 **[12] `network.peer.address`:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 

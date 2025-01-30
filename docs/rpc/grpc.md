@@ -2,7 +2,7 @@
 linkTitle: gRPC
 --->
 
-# Semantic Conventions for gRPC
+# Semantic conventions for gRPC
 
 **Status**: [Experimental][DocumentStatus]
 

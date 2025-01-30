@@ -122,8 +122,8 @@ Metric changes:
 
 - **Name**: `http.client.duration` &rarr; `http.client.request.duration`
 - **Unit**: `ms` &rarr; `s`
-- **Description**: `Measures the duration of inbound HTTP requests.` &rarr;
-  `Duration of HTTP server requests.`
+- **Description**: `Measures the duration of outbound HTTP requests.` &rarr;
+  `Duration of HTTP client requests.`
 - **Histogram buckets**: boundaries updated to reflect change from milliseconds
   to seconds, and zero bucket boundary removed
 - **Attributes**: see table below

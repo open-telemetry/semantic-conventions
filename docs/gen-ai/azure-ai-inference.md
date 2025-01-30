@@ -2,7 +2,7 @@
 linkTitle: Azure AI Inference
 --->
 
-# Semantic Conventions for Azure AI Inference
+# Semantic conventions for Azure AI Inference
 
 **Status**: [Experimental][DocumentStatus]
 

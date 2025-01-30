@@ -2,7 +2,7 @@
 linkTitle: Spans
 --->
 
-# Semantic Conventions for FaaS Spans
+# Semantic conventions for FaaS spans
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -10,8 +10,6 @@ This document defines how to describe an instance of a function that runs withou
 or managing of servers (also known as serverless functions or Function as a Service (FaaS)) with spans.
 
 See also the [additional instructions for instrumenting AWS Lambda](aws-lambda.md).
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

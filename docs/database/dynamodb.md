@@ -2,7 +2,7 @@
 linkTitle: AWS DynamoDB
 --->
 
-# Semantic Conventions for AWS DynamoDB
+# Semantic conventions for AWS DynamoDB
 
 **Status**: [Experimental][DocumentStatus]
 

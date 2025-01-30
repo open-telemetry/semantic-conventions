@@ -2,7 +2,7 @@
 linkTitle: RabbitMQ
 --->
 
-# Semantic Conventions for RabbitMQ
+# Semantic conventions for RabbitMQ
 
 **Status**: [Experimental][DocumentStatus]
 

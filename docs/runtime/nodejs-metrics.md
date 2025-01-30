@@ -1,14 +1,12 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Node.js Runtime
+linkTitle: Node.js
 --->
 
-# Semantic Conventions for Node.js Runtime Metrics
+# Semantic conventions for Node.js runtime metrics
 
 **Status**: [Experimental][DocumentStatus]
 
 This document describes semantic conventions for Node.js Runtime metrics in OpenTelemetry.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

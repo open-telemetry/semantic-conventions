@@ -1,11 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: .NET
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/dotnet/_index.md
-  to: dotnet/README.md
 --->
 
-# Semantic Conventions for .NET metrics
+# Semantic conventions for .NET metrics
 
 **Status**: [Stable][DocumentStatus]
 

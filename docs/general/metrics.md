@@ -3,7 +3,7 @@ linkTitle: Metrics
 aliases: [metrics-general]
 --->
 
-# Metrics Semantic Conventions
+# Metrics semantic conventions
 
 **Status**: [Mixed][DocumentStatus]
 

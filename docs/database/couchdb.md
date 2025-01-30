@@ -2,7 +2,7 @@
 linkTitle: CouchDB
 --->
 
-# Semantic Conventions for CouchDB
+# Semantic conventions for CouchDB
 
 **Status**: [Experimental][DocumentStatus]
 

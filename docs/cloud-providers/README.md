@@ -1,11 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Cloud Providers
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/cloud-providers/_index.md
-  to: cloud-providers/README.md
+linkTitle: Cloud providers
 --->
 
-# Semantic Conventions for Cloud Providers
+# Semantic conventions for cloud providers
 
 **Status**: [Experimental][DocumentStatus]
 

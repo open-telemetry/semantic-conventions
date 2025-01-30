@@ -1,11 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: FaaS
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/faas/_index.md
-  to: faas/README.md
 --->
 
-# Semantic Conventions for Function-as-a-Service
+# Semantic conventions for Function-as-a-Service
 
 **Status**: [Experimental][DocumentStatus]
 

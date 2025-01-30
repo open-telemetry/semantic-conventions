@@ -1,11 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: RPC
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/rpc/_index.md
-  to: rpc/README.md
 --->
 
-# Semantic Conventions for RPC
+# Semantic conventions for RPC
 
 **Status**: [Experimental][DocumentStatus]
 

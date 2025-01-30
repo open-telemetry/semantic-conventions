@@ -2,13 +2,11 @@
 linkTitle: DNS
 --->
 
-# Semantic Conventions for DNS queries
+# Semantic conventions for DNS queries
 
 **Status**: [Experimental][DocumentStatus]
 
 This document defines semantic conventions to apply when instrumenting DNS queries.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

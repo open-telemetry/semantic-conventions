@@ -2,7 +2,7 @@
 linkTitle: AWS SDK
 --->
 
-# Semantic Conventions for AWS SDK
+# Semantic conventions for AWS SDK
 
 **Status**: [Experimental][DocumentStatus]
 

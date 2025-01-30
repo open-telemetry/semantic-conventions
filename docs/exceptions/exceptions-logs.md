@@ -2,12 +2,12 @@
 linkTitle: Logs
 --->
 
-# Semantic Conventions for Exceptions in Logs
+# Semantic conventions for exceptions in logs
 
 **Status**: [Stable][DocumentStatus]
 
 This document defines semantic conventions for recording exceptions on
-[logs](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/logs/api.md#emit-a-logrecord) and [events](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/logs/api.md#emit-an-event)
+[logs](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/logs/api.md#emit-a-logrecord)
 emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/logs/api.md#logger).
 
 <!-- toc -->

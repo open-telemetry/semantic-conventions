@@ -2,7 +2,7 @@
 linkTitle: URL
 --->
 
-# Semantic Conventions for URL
+# Semantic conventions for URL
 
 **Status**: [Experimental][DocumentStatus]
 

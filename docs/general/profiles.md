@@ -2,7 +2,7 @@
 linkTitle: Profiles
 --->
 
-# General Profiles Attributes
+# General profiles attributes
 
 **Status**: [Experimental][DocumentStatus]
 

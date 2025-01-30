@@ -1,12 +1,10 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: CICD metrics
+linkTitle: CICD
 --->
 
-# Semantic Conventions for CICD Metrics
+# Semantic conventions for CICD metrics
 
 **Status**: [Experimental][DocumentStatus]
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

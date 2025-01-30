@@ -2,7 +2,7 @@
 linkTitle: DNS
 --->
 
-# Semantic Conventions for DNS metrics emitted by .NET
+# Semantic conventions for DNS metrics emitted by .NET
 
 **Status**: [Stable][DocumentStatus]
 
