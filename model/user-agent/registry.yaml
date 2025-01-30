@@ -35,6 +35,29 @@ groups:
           using a user-agent for non-browser products, such as microservices with multiple names/versions inside the
           `user_agent.original`, the most significant version SHOULD be selected. In such a scenario it should align
           with `user_agent.name`
+
+  - id: registry.user_agent.os
+    type: attribute_group
+    display_name: User-agent OS Attributes
+    brief: "Describes the OS user-agent attributes."
+    attributes:
+      - id: user_agent.os.name
+        type: string
+        stability: experimental
+        brief: 'Human readable operating system name.'
+        examples: ['iOS', 'Android', 'Ubuntu']
+        note: >
+          For mapping user agent strings to OS names, libraries such as [ua-parser](https://github.com/ua-parser) can be utilized.
+      - id: user_agent.os.version
+        type: string
+        stability: experimental
+        brief: >
+          The version string of the operating system as defined in
+          [Version Attributes](/docs/resource/README.md#version-attributes).
+        examples: ['14.2.1', '18.04.1']
+        note: >
+          For mapping user agent strings to OS versions, libraries such as [ua-parser](https://github.com/ua-parser) can be utilized.
+
       - id: user_agent.synthetic.type
         stability: experimental
         brief: >
