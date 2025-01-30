@@ -42,7 +42,17 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`otel.span.is_sampled`](/docs/attributes-registry/otel.md) | boolean | The sampled trace flag of the span |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.span.sampling_result`](/docs/attributes-registry/otel.md) | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
+
+`otel.span.sampling_result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `DROP` | The span is not sampled and not recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECORD_AND_SAMPLE` | The span is sampled and recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECORD_ONLY` | The span is not sampled, but recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -66,7 +76,17 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`otel.span.is_sampled`](/docs/attributes-registry/otel.md) | boolean | The sampled trace flag of the span |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.span.sampling_result`](/docs/attributes-registry/otel.md) | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
+
+`otel.span.sampling_result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `DROP` | The span is not sampled and not recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECORD_AND_SAMPLE` | The span is sampled and recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECORD_ONLY` | The span is not sampled, but recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

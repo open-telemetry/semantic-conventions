@@ -14,9 +14,19 @@ Attributes reserved for OpenTelemetry
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="otel-span-is-sampled" href="#otel-span-is-sampled">`otel.span.is_sampled`</a> | boolean | The sampled trace flag of the span |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="otel-span-sampling-result" href="#otel-span-sampling-result">`otel.span.sampling_result`</a> | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="otel-status-code" href="#otel-status-code">`otel.status_code`</a> | string | Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET. | `OK`; `ERROR` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="otel-status-description" href="#otel-status-description">`otel.status_description`</a> | string | Description of the Status if it has a value, otherwise not set. | `resource not found` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
+
+`otel.span.sampling_result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `DROP` | The span is not sampled and not recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECORD_AND_SAMPLE` | The span is sampled and recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECORD_ONLY` | The span is not sampled, but recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 

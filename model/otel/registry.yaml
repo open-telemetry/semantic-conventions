@@ -22,9 +22,22 @@ groups:
         brief: "Description of the Status if it has a value, otherwise not set."
         examples: ['resource not found']
         stability: stable
-      - id: otel.span.is_sampled
-        type: boolean
-        brief: "The sampled trace flag of the span"
+      - id: otel.span.sampling_result
+        type:
+          members:
+            - id: drop
+              value: DROP
+              brief: 'The span is not sampled and not recording'
+              stability: development
+            - id: record_only
+              value: RECORD_ONLY
+              brief: 'The span is not sampled, but recording'
+              stability: development
+            - id: record_and_sample
+              value: RECORD_AND_SAMPLE
+              brief: 'The span is sampled and recording'
+              stability: development
+        brief: "The result value of the sampler for this span"
         stability: development
   - id: registry.otel.scope
     type: attribute_group
