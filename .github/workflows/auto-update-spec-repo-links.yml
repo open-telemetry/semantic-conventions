@@ -8,6 +8,7 @@ on:
 jobs:
   check-versions:
     runs-on: ubuntu-latest
+    if: github.repository_owner == 'open-telemetry'
     outputs:
       current-version: ${{ steps.check-versions.outputs.current-version }}
       latest-version: ${{ steps.check-versions.outputs.latest-version }}
@@ -21,7 +22,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           current_version=$(grep "PREVIOUS_SPECIFICATION_VERSION=v.*" \
-                                 internal/tools/update_specification_version.sh \
+                                 .github/scripts/update-spec-repo-links.sh \
                             | sed "s/PREVIOUS_SPECIFICATION_VERSION=//")
           latest_version=$(gh release view \
                                --repo open-telemetry/opentelemetry-specification \
@@ -74,7 +75,6 @@ jobs:
           git checkout -b $branch
           git commit -a -m "$message"
           git push --set-upstream origin $branch
-          gh pr create --title "$message" \
+          gh pr create --title "[chore] $message" \
                        --body "$body" \
-                       --label "Skip Changelog" \
                        --base main
