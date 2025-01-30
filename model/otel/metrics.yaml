@@ -39,7 +39,7 @@ groups:
     brief: "The maximum number of spans the queue of a given instance of an SDK span processor can hold"
     note: |
       Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
-    instrument: gauge
+    instrument: updowncounter
     unit: "{span}"
     attributes:
       - ref: otel.sdk.component.type

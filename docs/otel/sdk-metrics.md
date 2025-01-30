@@ -142,7 +142,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.span.processor.queue_capacity` | Gauge | `{span}` | The maximum number of spans the queue of a given instance of an SDK span processor can hold [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.span.processor.queue_capacity` | UpDownCounter | `{span}` | The maximum number of spans the queue of a given instance of an SDK span processor can hold [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
 
