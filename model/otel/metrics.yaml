@@ -6,6 +6,9 @@ groups:
     brief: "The number of created spans for which the end operation has not been called yet"
     instrument: updowncounter
     unit: "{span}"
+    note: |
+      For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live_count` and `otel.sdk.span.ended_count`otel.sdk.component.name`.
+      For spans with `recording=false` implementations MUST either record both `metric.otel.sdk.span.live_count` and `otel.sdk.span.ended_count`otel.sdk.component.name` or none.
     attributes:
       - ref: otel.span.sampling_result
 
@@ -16,6 +19,9 @@ groups:
     brief: "The number of created spans for which the end operation was called"
     instrument: counter
     unit: "{span}"
+    note: |
+      For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live_count` and `otel.sdk.span.ended_count`otel.sdk.component.name`.
+      For spans with `recording=false` implementations MUST either record both `metric.otel.sdk.span.live_count` and `otel.sdk.span.ended_count`otel.sdk.component.name` or none.
     attributes:
       - ref: otel.span.sampling_result
 

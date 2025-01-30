@@ -38,7 +38,10 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.span.live_count` | UpDownCounter | `{span}` | The number of created spans for which the end operation has not been called yet | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.span.live_count` | UpDownCounter | `{span}` | The number of created spans for which the end operation has not been called yet [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live_count` and `otel.sdk.span.ended_count`otel.sdk.component.name`.
+For spans with `recording=false` implementations MUST either record both `metric.otel.sdk.span.live_count` and `otel.sdk.span.ended_count`otel.sdk.component.name` or none.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -72,7 +75,10 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.span.ended_count` | Counter | `{span}` | The number of created spans for which the end operation was called | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.span.ended_count` | Counter | `{span}` | The number of created spans for which the end operation was called [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live_count` and `otel.sdk.span.ended_count`otel.sdk.component.name`.
+For spans with `recording=false` implementations MUST either record both `metric.otel.sdk.span.live_count` and `otel.sdk.span.ended_count`otel.sdk.component.name` or none.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
