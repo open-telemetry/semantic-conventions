@@ -128,7 +128,7 @@ groups:
     stability: experimental
     brief: >
       Describes GenAI agent creation and is usually applicable when working
-      with agent services.
+      with remote agent services.
     note: |
       The `gen_ai.operation.name` SHOULD be `create_agent`.
       The **span name** SHOULD be `create_agent {gen_ai.agent.name}`.
