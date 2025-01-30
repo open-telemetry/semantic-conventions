@@ -119,7 +119,7 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`otel.sdk.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.sdk.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry SDK component. [2] | `batching_span_processor`; `co.example.MySpanExporter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.sdk.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry SDK component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `otel.sdk.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -175,7 +175,7 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`otel.sdk.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.sdk.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry SDK component. [2] | `batching_span_processor`; `co.example.MySpanExporter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.sdk.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry SDK component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `otel.sdk.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -233,7 +233,7 @@ For the SDK Simple and Batching Span Processor a span is considered to be proces
 |---|---|---|---|---|---|
 | [`error.type`](/docs/attributes-registry/error.md) | string | A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue. [1] | `queue_full` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`otel.sdk.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.sdk.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry SDK component. [3] | `batching_span_processor`; `co.example.MySpanExporter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.sdk.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry SDK component. [3] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -317,7 +317,7 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`otel.sdk.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.sdk.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry SDK component. [2] | `batching_span_processor`; `co.example.MySpanExporter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.sdk.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry SDK component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `otel.sdk.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -376,7 +376,7 @@ If no rejection reason is available, `rejected` SHOULD be used as value for `err
 |---|---|---|---|---|---|
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `rejected` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`otel.sdk.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.sdk.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry SDK component. [3] | `batching_span_processor`; `co.example.MySpanExporter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.sdk.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry SDK component. [3] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 

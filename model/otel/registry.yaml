@@ -93,7 +93,7 @@ groups:
         note: |
           If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
           E.g. for Java the fully qualified classname SHOULD be used in this case.
-        examples: ["batching_span_processor", "co.example.MySpanExporter"]
+        examples: ["batching_span_processor", "com.example.MySpanExporter"]
       - id: otel.sdk.component.name
         type: string
         stability: development
