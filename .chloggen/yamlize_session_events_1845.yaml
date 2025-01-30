@@ -1,0 +1,7 @@
+change_type: breaking
+component: session
+note: Move `session.id` and `session.previous_id` from body fields to event attributes, and yamlize `session.start` and `session.end` events.
+issues: [1845]
+subtext: >
+  As part of the ongoing migration of event fields from LogRecord body to extended/complex attributes, the
+  `session.start` and `session.end` events have been redefined.
