@@ -1,12 +1,10 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Generative AI events
+linkTitle: Events
 --->
 
-# Semantic Conventions for GenAI events
+# Semantic conventions for generative AI events
 
 **Status**: [Experimental][DocumentStatus]
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

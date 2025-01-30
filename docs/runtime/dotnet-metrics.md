@@ -2,13 +2,11 @@
 linkTitle: .NET
 --->
 
-# Semantic Conventions for .NET Common Language Runtime (CLR) Metrics
+# Semantic conventions for .NET Common Language Runtime (CLR) metrics
 
 **Status**: [Stable][DocumentStatus]
 
 This document describes semantic conventions for .NET CLR runtime metrics in OpenTelemetry.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

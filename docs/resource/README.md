@@ -1,18 +1,13 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Resource
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/resource/_index.md
-  to: resource/README.md
 --->
 
-# Resource Semantic Conventions
+# Resource semantic conventions
 
 **Status**: [Mixed][DocumentStatus]
 
 This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
 [OpenCensus Resource standard](https://github.com/census-instrumentation/opencensus-specs/blob/master/resource/StandardResources.md).
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
