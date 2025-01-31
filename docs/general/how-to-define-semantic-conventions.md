@@ -85,7 +85,7 @@ When defining a new attribute:
 - Define new attributes with `development` stability.
 - Provide realistic examples
 - Avoid defining attributes with potentially unbounded values, such as strings longer than
-  1 KB or arrays with more than 1,000 elements. Such values should be recorded in the log or event body instead.
+  1 KB or arrays with more than 1,000 elements. Such values should be recorded in the log or event body instead. <!-- This may change, check out https://github.com/open-telemetry/semantic-conventions/issues/1651 to monitor the progress -->
 
 Consider the scope of the attribute and how it may evolve in the future:
 
