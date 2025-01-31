@@ -81,6 +81,10 @@ groups:
     attributes:
       - ref: otel.sdk.component.type
       - ref: otel.sdk.component.name
+      - ref: server.address
+        note: recommended when applicable
+      - ref: server.port
+        note: recommended when applicable
 
   - id: metric.otel.sdk.exporter.span.exported.count
     type: metric
@@ -96,5 +100,9 @@ groups:
     attributes:
       - ref: otel.sdk.component.type
       - ref: otel.sdk.component.name
+      - ref: server.address
+        note: recommended when applicable
+      - ref: server.port
+        note: recommended when applicable
       - ref: error.type
         examples: ["rejected"]
