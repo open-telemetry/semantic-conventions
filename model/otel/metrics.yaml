@@ -69,9 +69,9 @@ groups:
           A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue.
         examples: ["queue_full"]
 
-  - id: metric.otel.sdk.span.exporter.spans.inflight
+  - id: metric.otel.sdk.exporter.span.inflight.count
     type: metric
-    metric_name: otel.sdk.span.exporter.spans.inflight
+    metric_name: otel.sdk.exporter.span.inflight.count
     stability: development
     brief: "The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
     note: |
@@ -82,9 +82,9 @@ groups:
       - ref: otel.sdk.component.type
       - ref: otel.sdk.component.name
 
-  - id: metric.otel.sdk.span.exporter.spans.exported
+  - id: metric.otel.sdk.exporter.span.exported.count
     type: metric
-    metric_name: otel.sdk.span.exporter.spans.exported
+    metric_name: otel.sdk.exporter.span.exported.count
     stability: development
     brief: "The number of spans for which the export has finished, either successful or failed"
     note: |
