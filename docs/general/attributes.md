@@ -413,9 +413,7 @@ These attributes may be used for any operation with an authenticated and/or auth
 <!-- endsemconv -->
 
 `enduser.id` describe the authenticated user driving the user agent making requests to the instrumented
-system. It is expected this information would be propagated unchanged from node-to-node within the system
-using the Baggage mechanism. This attribute should not be used to record system-to-system
-authentication attributes.
+system.
 
 Examples of where the `enduser.id` value is extracted from:
 
