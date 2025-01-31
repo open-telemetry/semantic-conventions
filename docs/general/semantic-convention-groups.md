@@ -1,9 +1,9 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Semantic Convention Groups
-aliases: [semantic-convention-groups]
+linkTitle: Semantic convention groups
+aliases: [group-stability]
 --->
 
-# Semantic Convention Groups
+# Semantic convention groups
 
 **Status**: [Experimental][DocumentStatus]
 
