@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: How To Define New Semantic Conventions
-aliases: [how-to-define-new-semantic-conventions]
+linkTitle: How to define new semantic conventions
 --->
 
 # How to define new semantic conventions
