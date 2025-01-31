@@ -6,7 +6,7 @@ groups:
     attributes:
       - id: enduser.role
         type: string
-        deprecated: "Removed."
+        deprecated: "Replaced by `user.roles` attribute."
         stability: experimental
         brief: "Deprecated, use `user.roles` instead."
         examples: 'admin'
