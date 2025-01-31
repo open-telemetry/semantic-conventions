@@ -2,11 +2,9 @@
 linkTitle: Spans
 --->
 
-# Semantic Conventions for Messaging Spans
+# Semantic conventions for messaging spans
 
 **Status**: [Experimental][DocumentStatus]
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

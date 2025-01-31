@@ -2,7 +2,7 @@
 linkTitle: OS process
 --->
 
-# Semantic Conventions for OS Process Metrics
+# Semantic conventions for OS process metrics
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -14,8 +14,6 @@ not related to the runtime environment of the program, and should take
 measurements from the operating system. For runtime environment metrics see
 [semantic conventions for runtime environment
 metrics](/docs/runtime/README.md#metrics).
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

@@ -1,4 +1,4 @@
-# Generating Semantic Convention Libraries
+# Generating semantic convention libraries
 
 <!-- toc -->
 

@@ -2,13 +2,11 @@
 linkTitle: V8 JS engine
 --->
 
-# Semantic Conventions for V8 JS Engine Runtime Metrics
+# Semantic conventions for V8 JS engine runtime metrics
 
 **Status**: [Experimental][DocumentStatus]
 
 This document describes semantic conventions for V8 JS Engine Runtime metrics in OpenTelemetry. This engine is used in some javascript runtime such as Node.js and Deno.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

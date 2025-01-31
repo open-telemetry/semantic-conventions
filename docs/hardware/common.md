@@ -2,7 +2,7 @@
 linkTitle: Common hardware
 --->
 
-# Semantic Conventions for Common Hardware Metrics
+# Semantic conventions for common hardware metrics
 
 **Status**: [Experimental][DocumentStatus]
 

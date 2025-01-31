@@ -2,14 +2,12 @@
 linkTitle: Tracing compatibility
 --->
 
-# Semantic Conventions for Tracing Compatibility Components
+# Semantic conventions for tracing compatibility components
 
 **Status**: [Experimental][DocumentStatus]
 
 This document defines trace semantic conventions used by the
 compatibility components, e.g. OpenTracing Shim layer.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

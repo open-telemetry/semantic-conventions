@@ -2,12 +2,9 @@
 linkTitle: General
 weight: -1
 auto_gen: below
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/general/_index.md
-  to: general/README.md
 --->
 
-# General Semantic Conventions
+# General semantic conventions
 
 This document defines general Semantic Conventions for spans, metrics, logs and events.
 

@@ -2,7 +2,7 @@
 linkTitle: Metrics
 --->
 
-# Semantic Conventions for FaaS Metrics
+# Semantic conventions for FaaS metrics
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -12,8 +12,6 @@ or managing of servers (also known as serverless functions or Function as a Serv
 The conventions described in this section are FaaS (function as a service) specific. When FaaS operations occur,
 metric events about those operations will be generated and reported to provide insights into the
 operations. By adding FaaS attributes to metric events it allows for finely tuned filtering.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

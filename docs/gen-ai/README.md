@@ -1,11 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Generative AI
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/gen-ai/_index.md
-  to: gen-ai/README.md
 --->
 
-# Semantic Conventions for Generative AI Systems
+# Semantic conventions for generative AI systems
 
 **Status**: [Experimental][DocumentStatus]
 

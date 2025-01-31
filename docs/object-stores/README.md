@@ -1,11 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Object stores
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/object-stores/_index.md
-  to: object-stores/README.md
 --->
 
-# Semantic Conventions for Object Stores
+# Semantic conventions for object stores
 
 **Status**: [Experimental, Feature-freeze][DocumentStatus]
 

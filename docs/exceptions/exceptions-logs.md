@@ -2,7 +2,7 @@
 linkTitle: Logs
 --->
 
-# Semantic Conventions for Exceptions in Logs
+# Semantic conventions for exceptions in logs
 
 **Status**: [Stable][DocumentStatus]
 

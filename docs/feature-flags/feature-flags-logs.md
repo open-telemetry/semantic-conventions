@@ -2,7 +2,7 @@
 linkTitle: Logs
 --->
 
-# Semantic Conventions for Feature Flags in Logs
+# Semantic conventions for feature flags in logs
 
 **Status**: [Experimental][DocumentStatus]
 
