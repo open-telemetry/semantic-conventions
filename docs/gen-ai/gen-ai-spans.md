@@ -53,11 +53,10 @@ Many of these attributes only apply to specific GenAI operations. For example, G
 | [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `text_completion`; `embeddings` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`gen_ai.output.json.schema.name`](/docs/attributes-registry/gen-ai.md) | string | Represents the name of the JSON schema requested by the client. It typically corresponds to the type to which the model output should be serializable. [4] | `calendar_event`; `system.ResolverExecution` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.output.type`](/docs/attributes-registry/gen-ai.md) | string | Represents the content type requested by the client. [6] | `text`; `json`; `image` | `Conditionally Required` [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the GenAI model a request is being made to. [8] | `gpt-4` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.output.type`](/docs/attributes-registry/gen-ai.md) | string | Represents the content type requested by the client. [4] | `text`; `json`; `image` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the GenAI model a request is being made to. [6] | `gpt-4` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.seed`](/docs/attributes-registry/gen-ai.md) | int | Requests with same seed value more likely to return same result. | `100` | `Conditionally Required` if applicable and if the request includes a seed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | GenAI server port. [9] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | GenAI server port. [7] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.request.frequency_penalty`](/docs/attributes-registry/gen-ai.md) | double | The frequency penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.max_tokens`](/docs/attributes-registry/gen-ai.md) | int | The maximum number of tokens the model generates for a request. | `100` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.request.presence_penalty`](/docs/attributes-registry/gen-ai.md) | double | The presence penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -67,10 +66,10 @@ Many of these attributes only apply to specific GenAI operations. For example, G
 | [`gen_ai.request.top_p`](/docs/attributes-registry/gen-ai.md) | double | The top_p sampling setting for the GenAI request. | `1.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.response.finish_reasons`](/docs/attributes-registry/gen-ai.md) | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `["stop"]`; `["stop", "length"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.response.id`](/docs/attributes-registry/gen-ai.md) | string | The unique identifier for the completion. | `chatcmpl-123` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`gen_ai.response.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the model that generated the response. [10] | `gpt-4-0613` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.response.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the model that generated the response. [8] | `gpt-4-0613` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.usage.input_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of tokens used in the GenAI input (prompt). | `100` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`gen_ai.usage.output_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of tokens used in the GenAI response (completion). | `180` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | GenAI server address. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | GenAI server address. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
@@ -90,31 +89,19 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 the canonical name of exception that occurred, or another low-cardinality error identifier.
 Instrumentations SHOULD document the list of errors they report.
 
-**[4] `gen_ai.output.json.schema.name`:** This attribute SHOULD be set when `gen_ai.output.type` is `json` and
-the client has requested output in a specific schema.
-
-Semantic conventions for a specific GenAI system SHOULD document
-how to populate this attribute based on the available request properties.
-
-If the request does not include a schema this attribute SHOULD NOT be set.
-If a schema is provided but does not have a name, this attribute SHOULD
-be set to `unnamed`.
-
-**[5] `gen_ai.output.json.schema.name`:** if and only if structured output with specific JSON schema was requested.
-
-**[6] `gen_ai.output.type`:** This attribute SHOULD be used when the client requests output of a specific type. The model may return zero or more outputs of this type.
+**[4] `gen_ai.output.type`:** This attribute SHOULD be used when the client requests output of a specific type. The model may return zero or more outputs of this type.
 This attribute specifies the output modality and not the actual output format. For example, if an image is requested, the actual output could be a URL pointing to an image file.
-Additional output format details may be recorded in `gen_ai.output.{type}.*` attributes, such as `gen_ai.output.json.schema.name`.
+Additional output format details may be recorded in the future in the `gen_ai.output.{type}.*` attributes.
 
-**[7] `gen_ai.output.type`:** when applicable and if the request includes an output format.
+**[5] `gen_ai.output.type`:** when applicable and if the request includes an output format.
 
-**[8] `gen_ai.request.model`:** The name of the GenAI model a request is being made to. If the model is supplied by a vendor, then the value must be the exact name of the model requested. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+**[6] `gen_ai.request.model`:** The name of the GenAI model a request is being made to. If the model is supplied by a vendor, then the value must be the exact name of the model requested. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
-**[9] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[10] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+**[8] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
-**[11] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[9] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 

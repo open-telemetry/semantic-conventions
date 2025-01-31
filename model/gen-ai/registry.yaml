@@ -235,25 +235,8 @@ groups:
           For example, if an image is requested, the actual output could be a
           URL pointing to an image file.
 
-          Additional output format details may be recorded in `gen_ai.output.{type}.*` attributes, such
-          as `gen_ai.output.json.schema.name`.
-      - id: gen_ai.output.json.schema.name
-        stability: development
-        type: string
-        brief: Represents the name of the JSON schema requested by the client.
-          It typically corresponds to the type to which the model output should
-          be serializable.
-        note: |
-          This attribute SHOULD be set when `gen_ai.output.type` is `json` and
-          the client has requested output in a specific schema.
-
-          Semantic conventions for a specific GenAI system SHOULD document
-          how to populate this attribute based on the available request properties.
-
-          If the request does not include a schema this attribute SHOULD NOT be set.
-          If a schema is provided but does not have a name, this attribute SHOULD
-          be set to `unnamed`.
-        examples: ['calendar_event', 'system.ResolverExecution']
+          Additional output format details may be recorded in the future in the
+          `gen_ai.output.{type}.*` attributes.
   - id: registry.gen_ai.openai
     type: attribute_group
     display_name: OpenAI Attributes

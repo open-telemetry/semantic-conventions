@@ -18,9 +18,8 @@ This document defines the attributes used to describe telemetry in the context o
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="gen-ai-operation-name" href="#gen-ai-operation-name">`gen_ai.operation.name`</a> | string | The name of the operation being performed. [1] | `chat`; `text_completion`; `embeddings` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-output-json-schema-name" href="#gen-ai-output-json-schema-name">`gen_ai.output.json.schema.name`</a> | string | Represents the name of the JSON schema requested by the client. It typically corresponds to the type to which the model output should be serializable. [2] | `calendar_event`; `system.ResolverExecution` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-output-type" href="#gen-ai-output-type">`gen_ai.output.type`</a> | string | Represents the content type requested by the client. [3] | `text`; `json`; `image` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-request-encoding-formats" href="#gen-ai-request-encoding-formats">`gen_ai.request.encoding_formats`</a> | string[] | The encoding formats requested in an embeddings operation, if specified. [4] | `["base64"]`; `["float", "binary"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-output-type" href="#gen-ai-output-type">`gen_ai.output.type`</a> | string | Represents the content type requested by the client. [2] | `text`; `json`; `image` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-request-encoding-formats" href="#gen-ai-request-encoding-formats">`gen_ai.request.encoding_formats`</a> | string[] | The encoding formats requested in an embeddings operation, if specified. [3] | `["base64"]`; `["float", "binary"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-frequency-penalty" href="#gen-ai-request-frequency-penalty">`gen_ai.request.frequency_penalty`</a> | double | The frequency penalty setting for the GenAI request. | `0.1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-max-tokens" href="#gen-ai-request-max-tokens">`gen_ai.request.max_tokens`</a> | int | The maximum number of tokens the model generates for a request. | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-model" href="#gen-ai-request-model">`gen_ai.request.model`</a> | string | The name of the GenAI model a request is being made to. | `gpt-4` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -33,30 +32,20 @@ This document defines the attributes used to describe telemetry in the context o
 | <a id="gen-ai-response-finish-reasons" href="#gen-ai-response-finish-reasons">`gen_ai.response.finish_reasons`</a> | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `["stop"]`; `["stop", "length"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-response-id" href="#gen-ai-response-id">`gen_ai.response.id`</a> | string | The unique identifier for the completion. | `chatcmpl-123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-response-model" href="#gen-ai-response-model">`gen_ai.response.model`</a> | string | The name of the model that generated the response. | `gpt-4-0613` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-system" href="#gen-ai-system">`gen_ai.system`</a> | string | The Generative AI product as identified by the client or server instrumentation. [5] | `openai` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-system" href="#gen-ai-system">`gen_ai.system`</a> | string | The Generative AI product as identified by the client or server instrumentation. [4] | `openai` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-token-type" href="#gen-ai-token-type">`gen_ai.token.type`</a> | string | The type of token being counted. | `input`; `output` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-usage-input-tokens" href="#gen-ai-usage-input-tokens">`gen_ai.usage.input_tokens`</a> | int | The number of tokens used in the GenAI input (prompt). | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-usage-output-tokens" href="#gen-ai-usage-output-tokens">`gen_ai.usage.output_tokens`</a> | int | The number of tokens used in the GenAI response (completion). | `180` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[2] `gen_ai.output.json.schema.name`:** This attribute SHOULD be set when `gen_ai.output.type` is `json` and
-the client has requested output in a specific schema.
-
-Semantic conventions for a specific GenAI system SHOULD document
-how to populate this attribute based on the available request properties.
-
-If the request does not include a schema this attribute SHOULD NOT be set.
-If a schema is provided but does not have a name, this attribute SHOULD
-be set to `unnamed`.
-
-**[3] `gen_ai.output.type`:** This attribute SHOULD be used when the client requests output of a specific type. The model may return zero or more outputs of this type.
+**[2] `gen_ai.output.type`:** This attribute SHOULD be used when the client requests output of a specific type. The model may return zero or more outputs of this type.
 This attribute specifies the output modality and not the actual output format. For example, if an image is requested, the actual output could be a URL pointing to an image file.
-Additional output format details may be recorded in `gen_ai.output.{type}.*` attributes, such as `gen_ai.output.json.schema.name`.
+Additional output format details may be recorded in the future in the `gen_ai.output.{type}.*` attributes.
 
-**[4] `gen_ai.request.encoding_formats`:** In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
+**[3] `gen_ai.request.encoding_formats`:** In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
 
-**[5] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+**[4] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
@@ -155,7 +144,7 @@ Describes deprecated `gen_ai.openai` attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="gen-ai-openai-request-response-format" href="#gen-ai-openai-request-response-format">`gen_ai.openai.request.response_format`</a> | string | Deprecated, use `gen_ai.output.type` and `gen_ai.output.json.schema.name`. | `text`; `json_object`; `json_schema` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.output.type` and `gen_ai.output.json.schema.name`. |
+| <a id="gen-ai-openai-request-response-format" href="#gen-ai-openai-request-response-format">`gen_ai.openai.request.response_format`</a> | string | Deprecated, use `gen_ai.output.type`. | `text`; `json_object`; `json_schema` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.output.type`. |
 | <a id="gen-ai-openai-request-seed" href="#gen-ai-openai-request-seed">`gen_ai.openai.request.seed`</a> | int | Deprecated, use `gen_ai.request.seed`. | `100` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.request.seed` attribute. |
 
 ---

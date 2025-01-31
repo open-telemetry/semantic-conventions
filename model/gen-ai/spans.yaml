@@ -32,9 +32,6 @@ groups:
       - ref: gen_ai.output.type
         requirement_level:
           conditionally_required: when applicable and if the request includes an output format.
-      - ref: gen_ai.output.json.schema.name
-        requirement_level:
-          conditionally_required: if and only if structured output with specific JSON schema was requested.
       - ref: gen_ai.response.id
         requirement_level: recommended
       - ref: gen_ai.response.model
@@ -99,14 +96,8 @@ groups:
           For example, if an image is requested, the actual output could be a
           URL pointing to an image file.
 
-          Additional output format details may be recorded in `gen_ai.output.{type}.*` attributes, such
-          as `gen_ai.output.json.schema.name`.
-      - ref: gen_ai.output.json.schema.name
-        note:
-          This attribute SHOULD be set when `gen_ai.output.type` is `json` and
-          the client has requested output in a specific schema.
-
-          It SHOULD match the name of the `json_schema` that the client has requested.
+          Additional output format details may be recorded in the future in the
+          `gen_ai.output.{type}.*` attributes.
   - id: span.gen_ai.openai.client
     extends: attributes.gen_ai.openai_based
     stability: development
