@@ -29,7 +29,6 @@ Particular operations may refer to or require some of these attributes.
         - [Client/server example with forward proxy](#clientserver-example-with-forward-proxy)
     - [Network connection and carrier attributes](#network-connection-and-carrier-attributes)
 - [General remote service attributes](#general-remote-service-attributes)
-- [General identity attributes](#general-identity-attributes)
 - [General thread attributes](#general-thread-attributes)
 - [Source Code Attributes](#source-code-attributes)
 
