@@ -1,33 +1,33 @@
 groups:
-  - id: metric.otel.sdk.span.live_count
+  - id: metric.otel.sdk.span.live.count
     type: metric
-    metric_name: otel.sdk.span.live_count
+    metric_name: otel.sdk.span.live.count
     stability: development
     brief: "The number of created spans for which the end operation has not been called yet"
     instrument: updowncounter
     unit: "{span}"
     note: |
-      For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live_count` and `otel.sdk.span.ended_count`otel.sdk.component.name`.
-      For spans with `recording=false` implementations MUST either record both `metric.otel.sdk.span.live_count` and `otel.sdk.span.ended_count`otel.sdk.component.name` or none.
+      For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`otel.sdk.component.name`.
+      For spans with `recording=false` implementations MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`otel.sdk.component.name` or none.
     attributes:
       - ref: otel.span.sampling_result
 
-  - id: metric.otel.sdk.span.ended_count
+  - id: metric.otel.sdk.span.ended.count
     type: metric
-    metric_name: otel.sdk.span.ended_count
+    metric_name: otel.sdk.span.ended.count
     stability: development
     brief: "The number of created spans for which the end operation was called"
     instrument: counter
     unit: "{span}"
     note: |
-      For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live_count` and `otel.sdk.span.ended_count`otel.sdk.component.name`.
-      For spans with `recording=false` implementations MUST either record both `metric.otel.sdk.span.live_count` and `otel.sdk.span.ended_count`otel.sdk.component.name` or none.
+      For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`otel.sdk.component.name`.
+      For spans with `recording=false` implementations MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`otel.sdk.component.name` or none.
     attributes:
       - ref: otel.span.sampling_result
 
-  - id: metric.otel.sdk.span.processor.queue_size
+  - id: metric.otel.sdk.span.processor.queue.size
     type: metric
-    metric_name: otel.sdk.span.processor.queue_size
+    metric_name: otel.sdk.span.processor.queue.size
     stability: development
     brief: "The number of spans in the queue of a given instance of an SDK span processor"
     note: |
@@ -38,9 +38,9 @@ groups:
       - ref: otel.sdk.component.type
       - ref: otel.sdk.component.name
 
-  - id: metric.otel.sdk.span.processor.queue_capacity
+  - id: metric.otel.sdk.span.processor.queue.capacity
     type: metric
-    metric_name: otel.sdk.span.processor.queue_capacity
+    metric_name: otel.sdk.span.processor.queue.capacity
     stability: development
     brief: "The maximum number of spans the queue of a given instance of an SDK span processor can hold"
     note: |
@@ -51,9 +51,9 @@ groups:
       - ref: otel.sdk.component.type
       - ref: otel.sdk.component.name
 
-  - id: metric.otel.sdk.span.processor.spans_processed
+  - id: metric.otel.sdk.span.processor.spans.processed
     type: metric
-    metric_name: otel.sdk.span.processor.spans_processed
+    metric_name: otel.sdk.span.processor.spans.processed
     stability: development
     brief: "The number of spans for which the processing has finished, either successful or failed"
     note: |
@@ -69,9 +69,9 @@ groups:
           A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue.
         examples: ["queue_full"]
 
-  - id: metric.otel.sdk.span.exporter.spans_inflight
+  - id: metric.otel.sdk.span.exporter.spans.inflight
     type: metric
-    metric_name: otel.sdk.span.exporter.spans_inflight
+    metric_name: otel.sdk.span.exporter.spans.inflight
     stability: development
     brief: "The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
     note: |
@@ -82,9 +82,9 @@ groups:
       - ref: otel.sdk.component.type
       - ref: otel.sdk.component.name
 
-  - id: metric.otel.sdk.span.exporter.spans_exported
+  - id: metric.otel.sdk.span.exporter.spans.exported
     type: metric
-    metric_name: otel.sdk.span.exporter.spans_exported
+    metric_name: otel.sdk.span.exporter.spans.exported
     stability: development
     brief: "The number of spans for which the export has finished, either successful or failed"
     note: |
