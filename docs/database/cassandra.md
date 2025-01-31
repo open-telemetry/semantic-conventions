@@ -2,7 +2,7 @@
 linkTitle: Cassandra
 --->
 
-# Semantic Conventions for Cassandra
+# Semantic conventions for Cassandra
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -19,7 +19,7 @@ The Semantic Conventions for [Cassandra](https://cassandra.apache.org/) extend a
 
 Spans representing calls to a Cassandra database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
 
-`db.system` MUST be set to `"cassandra"` and SHOULD be provided **at span creation time**.
+`db.system.name` MUST be set to `"cassandra"` and SHOULD be provided **at span creation time**.
 
 The following table outlines the span attributes applicable to Cassandra.
 
@@ -38,12 +38,12 @@ The following table outlines the span attributes applicable to Cassandra.
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [Cassandra protocol error code](https://github.com/apache/cassandra/blob/cassandra-5.0/doc/native_protocol_v5.spec) represented as a string. [6] | `102`; `40020` | `Conditionally Required` [7] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [8] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.cassandra.consistency_level`](/docs/attributes-registry/db.md) | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all`; `each_quorum`; `quorum` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cassandra.coordinator.dc`](/docs/attributes-registry/db.md) | string | The data center of the coordinating node for a query. | `us-west-2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cassandra.coordinator.id`](/docs/attributes-registry/db.md) | string | The ID of the coordinating node for a query. | `be13faa2-8574-4d71-926d-27f16cf8a7af` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cassandra.idempotence`](/docs/attributes-registry/db.md) | boolean | Whether or not the query is idempotent. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cassandra.page_size`](/docs/attributes-registry/db.md) | int | The fetch size used for paging, i.e. how many rows will be returned at once. | `5000` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.cassandra.speculative_execution_count`](/docs/attributes-registry/db.md) | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cassandra.consistency.level`](/docs/attributes-registry/cassandra.md) | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all`; `each_quorum`; `quorum` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cassandra.coordinator.dc`](/docs/attributes-registry/cassandra.md) | string | The data center of the coordinating node for a query. | `us-west-2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cassandra.coordinator.id`](/docs/attributes-registry/cassandra.md) | string | The ID of the coordinating node for a query. | `be13faa2-8574-4d71-926d-27f16cf8a7af` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cassandra.page.size`](/docs/attributes-registry/cassandra.md) | int | The fetch size used for paging, i.e. how many rows will be returned at once. | `5000` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cassandra.query.idempotent`](/docs/attributes-registry/cassandra.md) | boolean | Whether or not the query is idempotent. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cassandra.speculative_execution.count`](/docs/attributes-registry/cassandra.md) | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [11] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a database query text. [12] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [13] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [14] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [15] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
@@ -95,16 +95,16 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[11] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 
 **[12] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
+Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../database/database-spans.md#generating-a-summary-of-the-query-text) section.
 
 **[13] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
 
-**[14] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[14] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
-**[15] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
-Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
+**[15] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
+Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
 
 **[16] `network.peer.address`:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
@@ -126,7 +126,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ---
 
-`db.cassandra.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`cassandra.consistency.level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

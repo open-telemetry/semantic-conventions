@@ -1,11 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: CloudEvents
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/cloudevents/_index.md
-  to: cloudevents/README.md
 --->
 
-# Semantic Conventions for CloudEvents
+# Semantic conventions for CloudEvents
 
 **Status**: [Experimental][DocumentStatus]
 

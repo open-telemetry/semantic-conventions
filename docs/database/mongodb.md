@@ -2,7 +2,7 @@
 linkTitle: MongoDB
 --->
 
-# Semantic Conventions for MongoDB
+# Semantic conventions for MongoDB
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -21,7 +21,7 @@ The Semantic Conventions for [MongoDB](https://www.mongodb.com/) extend and over
 
 Spans representing calls to MongoDB adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
 
-`db.system` MUST be set to `"mongodb"` and SHOULD be provided **at span creation time**.
+`db.system.name` MUST be set to `"mongodb"` and SHOULD be provided **at span creation time**.
 
 The following table outlines the span attributes applicable to MongoDB.
 
@@ -98,7 +98,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | Key                     | Value |
 |:------------------------| :----------------------------------------------------------- |
 | Span name               | `"findAndModify products"` |
-| `db.system`             | `"mongodb"` |
+| `db.system.name`        | `"mongodb"` |
 | `server.address`        | `"mongodb0.example.com"` |
 | `server.port`           | `27017` |
 | `network.peer.address`  | `"192.0.2.14"` |

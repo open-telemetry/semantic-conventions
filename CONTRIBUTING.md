@@ -35,7 +35,6 @@ requirements and recommendations.
   - [Misspell check](#misspell-check)
   - [Update the tables of content](#update-the-tables-of-content)
   - [Markdown link check](#markdown-link-check)
-- [Updating the referenced specification version](#updating-the-referenced-specification-version)
 - [Merging existing ECS conventions](#merging-existing-ecs-conventions)
 
 <!-- tocstop -->
@@ -418,14 +417,6 @@ To check the validity of links in all markdown files, run the following command:
 ```bash
 make markdown-link-check
 ```
-
-## Updating the referenced specification version
-
-1. Open the `./internal/tools/update_specification_version.sh` script.
-2. Modify the `PREVIOUS_SPECIFICATION_VERSION` to be the same value as `LATEST_SPECIFICATION_VERSION`
-3. Modify `LATEST_SPECIFICATION_VERSION` to the latest specification tag, e.g. `1.21`
-4. Run the script from the root directory, e.g. `semantic-conventions$ ./internal/tools/update_specification_version.sh`.
-5. Add all modified files to the change submit and submit a PR.
 
 ## Merging existing ECS conventions
 

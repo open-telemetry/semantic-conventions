@@ -1,5 +1,0 @@
-change_type: 'enhancement'
-component: gen_ai
-note: Yamlify gen_ai events and clean up examples.
-
-issues: [1469]

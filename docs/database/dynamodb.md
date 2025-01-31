@@ -2,7 +2,7 @@
 linkTitle: AWS DynamoDB
 --->
 
-# Semantic Conventions for AWS DynamoDB
+# Semantic conventions for AWS DynamoDB
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -35,7 +35,7 @@ Spans representing calls to AWS DynamoDB adhere to the general [Semantic Convent
 
 The following table outlines the span attributes applicable to DynamoDB.
 
-`db.system` MUST be set to `"dynamodb"` and SHOULD be provided **at span creation time**.
+`db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
 
 ### DynamoDB.BatchGetItem
 
