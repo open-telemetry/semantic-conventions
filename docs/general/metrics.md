@@ -34,6 +34,7 @@ The following semantic conventions surrounding metrics are defined:
   * [K8s](/docs/system/k8s-metrics.md): For K8s metrics.
   * [Process](/docs/system/process-metrics.md): For standard process metrics.
   * [Runtime Environment](/docs/runtime/README.md#metrics): For runtime environment metrics.
+* [OTel SDK Telemetry](/docs/otel/sdk-metrics.md): Metrics emitted by the OpenTelemetry SDK components.
 
 Apart from semantic conventions for metrics, [traces](trace.md), [logs](logs.md), and [events](events.md), OpenTelemetry also
 defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/resource/sdk.md) with
