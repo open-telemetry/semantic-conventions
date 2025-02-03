@@ -41,7 +41,7 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.span.live.count` | UpDownCounter | `{span}` | The number of created spans for which the end operation has not been called yet [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
-For spans with `recording=false` implementations MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count` or none.
+For spans with `recording=false` implementations SHOULD record this metric, they MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count` or none.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -78,7 +78,7 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.span.ended.count` | Counter | `{span}` | The number of created spans for which the end operation was called [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1]:** For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
-For spans with `recording=false` implementations MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count` or none.
+For spans with `recording=false` implementations SHOULD record this metric, they MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count` or none.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -380,7 +380,7 @@ If no rejection reason is available, `rejected` SHOULD be used as value for `err
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `rejected` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `rejected`; `timeout`; `500`; `java.net.UnknownHostException` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`otel.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`otel.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

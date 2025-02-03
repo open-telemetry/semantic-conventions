@@ -8,7 +8,7 @@ groups:
     unit: "{span}"
     note: |
       For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
-      For spans with `recording=false` implementations MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count` or none.
+      For spans with `recording=false` implementations SHOULD record this metric, they MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count` or none.
     attributes:
       - ref: otel.span.sampling_result
 
@@ -21,7 +21,7 @@ groups:
     unit: "{span}"
     note: |
       For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
-      For spans with `recording=false` implementations MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count` or none.
+      For spans with `recording=false` implementations SHOULD record this metric, they MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count` or none.
     attributes:
       - ref: otel.span.sampling_result
 
@@ -105,4 +105,4 @@ groups:
       - ref: server.port
         note: recommended when applicable
       - ref: error.type
-        examples: ["rejected"]
+        examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
