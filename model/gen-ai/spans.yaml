@@ -29,6 +29,8 @@ groups:
       - ref: gen_ai.request.seed
         requirement_level:
           conditionally_required: if applicable and if the request includes a seed
+      - ref: gen_ai.request.encoding_formats
+        requirement_level: recommended
       - ref: gen_ai.output.type
         requirement_level:
           conditionally_required: when applicable and if the request includes an output format.
