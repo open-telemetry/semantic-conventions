@@ -186,6 +186,9 @@ Choose the first value found:
 - `k8s.pod.name`
 - `k8s.container.name`
 
+The rationale is to go from the ancestor to the descendant in the Kubernetes resource hierarchy, e.g. from `deployment`
+to `pod` - see [Kubernetes Object Hierarchy](https://gist.github.com/fardjad/ea3c38d566c845e0b353237d3959e365).
+
 #### How `service.version` is calculated
 
 Choose the first value found:
@@ -208,6 +211,9 @@ Choose the first value found:
 
 - `pod.annotation[resource.opentelemetry.io/service.instance.id]`
 - `concat([k8s.namespace.name, k8s.pod.name, k8s.container.name], '.')`
+
+Note that the container restart count is not included in the `service.instance.id` calculation, because it makes
+troubleshooting harder when the ID changes on every restart, e.g. in a crash loop.
 
 ## Telemetry SDK
 
