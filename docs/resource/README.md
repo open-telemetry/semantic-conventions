@@ -18,10 +18,10 @@ This document defines standard attributes for resources. These attributes are ty
   - [Semantic Attributes with SDK-provided Default Value](#semantic-attributes-with-sdk-provided-default-value)
 - [Service](#service)
   - [Service in Kubernetes](#service-in-kubernetes)
-    - [How `service.namespace`should be calculated](#how-servicenamespace-is-calculated)
-    - [How `service.name`should be calculated](#how-servicename-is-calculated)
-    - [How `service.version`should be calculated](#how-serviceversion-is-calculated)
-    - [How `service.instance.id`should be calculated](#how-serviceinstanceid-is-calculated)
+    - [How `service.namespace` should be calculated](#how-servicenamespace-should-be-calculated)
+    - [How `service.name` should be calculated](#how-servicename-should-be-calculated)
+    - [How `service.version` should be calculated](#how-serviceversion-should-be-calculated)
+    - [How `service.instance.id` should be calculated](#how-serviceinstanceid-should-be-calculated)
 - [Telemetry SDK](#telemetry-sdk)
 - [Telemetry Distro](#telemetry-distro)
 - [Compute Unit](#compute-unit)
@@ -161,14 +161,14 @@ since users may not be aware that their labels are being used for this purpose.
 
 Each attribute has a priority order for how it should be calculated as described below.
 
-#### How `service.namespace`should be calculated
+#### How `service.namespace` should be calculated
 
 Choose the first value found:
 
 1. `pod.annotation[resource.opentelemetry.io/service.namespace]`
 2. `k8s.namespace.name`
 
-#### How `service.name`should be calculated
+#### How `service.name` should be calculated
 
 Choose the first value found:
 
@@ -189,7 +189,7 @@ Choose the first value found:
 The rationale is to go from the ancestor to the descendant in the Kubernetes resource hierarchy, e.g. from `deployment`
 to `pod` - see [Kubernetes Object Hierarchy](https://gist.github.com/fardjad/ea3c38d566c845e0b353237d3959e365).
 
-#### How `service.version`should be calculated
+#### How `service.version` should be calculated
 
 Choose the first value found:
 
@@ -205,7 +205,7 @@ Choose the first value found:
    - `<digest>`
    - `<tag>`
 
-#### How `service.instance.id`should be calculated
+#### How `service.instance.id` should be calculated
 
 Choose the first value found:
 
