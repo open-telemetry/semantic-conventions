@@ -183,13 +183,12 @@ groups:
     instrument: updowncounter
     unit: "{pod}"
 
-  # k8s.replication_controller.* metrics
-  - id: metric.k8s.replication_controller.desired_pods
+  # k8s.replicationcontroller.* metrics
+  - id: metric.k8s.replicationcontroller.desired_pods
     type: metric
-    metric_name: k8s.replication_controller.desired_pods
+    metric_name: k8s.replicationcontroller.desired_pods
     stability: experimental
     brief: "Number of desired replica pods in this replication controller"
-    # TODO: Add note for resource correlation once https://github.com/open-telemetry/semantic-conventions/issues/1656 is implemented
     note: |
       This metric aligns with the `replicas` field of the
       [K8s ReplicationControllerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerspec-v1-core)
@@ -198,12 +197,11 @@ groups:
       [`k8s.replicationcontroller`](../resource/k8s.md#replicationcontroller) resource.
     instrument: updowncounter
     unit: "{pod}"
-  - id: metric.k8s.replication_controller.available_pods
+  - id: metric.k8s.replicationcontroller.available_pods
     type: metric
-    metric_name: k8s.replication_controller.available_pods
+    metric_name: k8s.replicationcontroller.available_pods
     stability: experimental
     brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this replication controller"
-    # TODO: Add note for resource correlation once https://github.com/open-telemetry/semantic-conventions/issues/1656 is implemented
     note: |
       This metric aligns with the `availableReplicas` field of the
       [K8s ReplicationControllerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerstatus-v1-core)
@@ -273,7 +271,6 @@ groups:
     metric_name: k8s.hpa.desired_pods
     stability: experimental
     brief: "Desired number of replica pods managed by this horizontal pod autoscaler, as last calculated by the autoscaler"
-    # TODO: Add note for resource correlation once https://github.com/open-telemetry/semantic-conventions/issues/1656 is implemented
     note: |
       This metric aligns with the `desiredReplicas` field of the
       [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
@@ -287,7 +284,6 @@ groups:
     metric_name: k8s.hpa.current_pods
     stability: experimental
     brief: "Current number of replica pods managed by this horizontal pod autoscaler, as last seen by the autoscaler"
-    # TODO: Add note for resource correlation once https://github.com/open-telemetry/semantic-conventions/issues/1656 is implemented
     note: |
       This metric aligns with the `currentReplicas` field of the
       [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
@@ -301,7 +297,6 @@ groups:
     metric_name: k8s.hpa.max_pods
     stability: experimental
     brief: "The upper limit for the number of replica pods to which the autoscaler can scale up"
-    # TODO: Add note for resource correlation once https://github.com/open-telemetry/semantic-conventions/issues/1656 is implemented
     note: |
       This metric aligns with the `maxReplicas` field of the
       [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
@@ -315,7 +310,6 @@ groups:
     metric_name: k8s.hpa.min_pods
     stability: experimental
     brief: "The lower limit for the number of replica pods to which the autoscaler can scale down"
-    # TODO: Add note for resource correlation once https://github.com/open-telemetry/semantic-conventions/issues/1656 is implemented
     note: |
       This metric aligns with the `minReplicas` field of the
       [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
