@@ -55,9 +55,6 @@ The following table outlines the span attributes applicable to Cassandra.
 
 **[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-The collection name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single collection name present.
-
 For batch operations, if the individual operations are known to have the same collection name
 then that collection name SHOULD be used.
 
