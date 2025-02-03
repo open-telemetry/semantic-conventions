@@ -28,7 +28,7 @@ looking confusing.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The [database index] associated with the connection, represented as a string. [1] | `0`; `1`; `15` | `Conditionally Required` If and only if it can be captured reliably. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [2] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [3] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The Redis command name. [2] | `HMSET`; `GET`; `SET` | `Conditionally Required` [3] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix. [4] | `ERR`; `WRONGTYPE`; `CLUSTERDOWN` | `Conditionally Required` [5] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -47,16 +47,8 @@ then it is RECOMMENDED to fallback and use the database index provided when the 
 
 Instrumentation SHOULD document if `db.namespace` reflects the database index provided when the connection was established.
 
-**[2] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
-without attempting to do any case normalization.
-
-The operation name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single operation name present.
-
-For batch operations, if the individual operations are known to have the same operation name
-then that operation name SHOULD be used prepended by `BATCH `,
-otherwise `db.operation.name` SHOULD be `BATCH` or some other database
-system specific term if more applicable.
+**[2] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+For [transactions and pipelined calls](https://redis.io/docs/latest/develop/clients/redis-py/transpipe/), if the individual operations are known to have the same command then that command SHOULD be used prepended by `MULTI ` or `PIPELINE `. Otherwise `db.operation.name` SHOULD be `MULTI` or `PIPELINE`.
 
 **[3] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
 
@@ -115,7 +107,7 @@ In this example, Redis is connected using a unix domain socket and therefore the
 
 | Key                       | Value |
 |:--------------------------| :-------------------------------------------- |
-| Span name                 | `"HMSET 15"` |
+| Span name                 | `"HMSET"` |
 | `db.system.name`          | `"redis"` |
 | `network.peer.address`    | `"/tmp/redis.sock"` |
 | `network.transport`       | `"unix"` |
