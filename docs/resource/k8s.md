@@ -447,3 +447,9 @@ attributes.
 
 For example, the annotation `resource.opentelemetry.io/service.name` should be translated into the `service.name`
 attribute.
+
+## Kubernetes specific guidelines
+
+The following guidelines are specific to Kubernetes:
+
+- [Service in Kubernetes](README.md#service-in-kubernetes)
