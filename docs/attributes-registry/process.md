@@ -23,6 +23,8 @@ An operating system process.
 | <a id="process-executable-build-id-go" href="#process-executable-build-id-go">`process.executable.build_id.go`</a> | string | The Go build ID as retrieved by `go tool buildid <go executable>`. | `foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="process-executable-build-id-htlhash" href="#process-executable-build-id-htlhash">`process.executable.build_id.htlhash`</a> | string | Profiling specific build ID for executables. See the OTel specification for Profiles for more information. | `600DCAFE4A110000F2BF38C493F5FB92` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="process-executable-name" href="#process-executable-name">`process.executable.name`</a> | string | The name of the process executable. On Linux based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="process-executable-origin-referrer-url" href="#process-executable-origin-referrer-url">`process.executable.origin_referrer_url`</a> | string | The URL of the webpage that linked to the process's executable file. [2] | `http://example.com/article1.html` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="process-executable-origin-url" href="#process-executable-origin-url">`process.executable.origin_url`</a> | string | The URL where the process's executable file is hosted. [3] | `http://example.com/files/example.exe` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="process-executable-path" href="#process-executable-path">`process.executable.path`</a> | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="process-exit-code" href="#process-exit-code">`process.exit.code`</a> | int | The exit code of the process. | `127` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="process-exit-time" href="#process-exit-time">`process.exit.time`</a> | string | The date and time the process exited, in ISO 8601 format. | `2023-11-21T09:26:12.315Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -40,17 +42,21 @@ An operating system process.
 | <a id="process-saved-user-id" href="#process-saved-user-id">`process.saved_user.id`</a> | int | The saved user ID (SUID) of the process. | `1002` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="process-saved-user-name" href="#process-saved-user-name">`process.saved_user.name`</a> | string | The username of the saved user. | `operator` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="process-session-leader-pid" href="#process-session-leader-pid">`process.session_leader.pid`</a> | int | The PID of the process's session leader. This is also the session ID (SID) of the process. | `14` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="process-title" href="#process-title">`process.title`</a> | string | Process title (proctitle) [2] | `cat /etc/hostname`; `xfce4-session`; `bash` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="process-title" href="#process-title">`process.title`</a> | string | Process title (proctitle) [4] | `cat /etc/hostname`; `xfce4-session`; `bash` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="process-user-id" href="#process-user-id">`process.user.id`</a> | int | The effective user ID (EUID) of the process. | `1001` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="process-user-name" href="#process-user-name">`process.user.name`</a> | string | The username of the effective user of the process. | `root` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="process-vpid" href="#process-vpid">`process.vpid`</a> | int | Virtual process identifier. [3] | `12` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="process-vpid" href="#process-vpid">`process.vpid`</a> | int | Virtual process identifier. [5] | `12` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="process-working-directory" href="#process-working-directory">`process.working_directory`</a> | string | The working directory of the process. | `/root` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `process.args_count`:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
 
-**[2] `process.title`:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
+**[2] `process.executable.origin_referrer_url`:** This information comes from metadata or alternate data streams linked to the process's executable file. `process.executable.origin_url` represents the URL from which the file was downloaded, and `process.executable.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `process.executable.origin_url` and `process.executable.origin_referrer_url` exist, or only one of them is present. Note that the URL itself may contain sensitive information.
 
-**[3] `process.vpid`:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
+**[3] `process.executable.origin_url`:** This information comes from metadata or alternate data streams linked to the process's executable file. `process.executable.origin_url` represents the URL from which the file was downloaded, and `process.executable.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `process.executable.origin_url` and `process.executable.origin_referrer_url` exist, or only one of them is present. Note that the URL itself may contain sensitive information.
+
+**[4] `process.title`:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
+
+**[5] `process.vpid`:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
 
 ---
 
@@ -76,9 +82,9 @@ Describes Linux Process attributes
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="process-linux-cgroup" href="#process-linux-cgroup">`process.linux.cgroup`</a> | string | The control group associated with the process. [4] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="process-linux-cgroup" href="#process-linux-cgroup">`process.linux.cgroup`</a> | string | The control group associated with the process. [6] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[4] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/\[PID\]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
+**[6] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/\[PID\]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
 
 ## Deprecated Process Attributes
 
