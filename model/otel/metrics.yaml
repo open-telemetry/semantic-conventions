@@ -25,9 +25,9 @@ groups:
     attributes:
       - ref: otel.span.sampling_result
 
-  - id: metric.otel.sdk.span.processor.queue.size
+  - id: metric.otel.sdk.processor.span.queue.size
     type: metric
-    metric_name: otel.sdk.span.processor.queue.size
+    metric_name: otel.sdk.processor.span.queue.size
     stability: development
     brief: "The number of spans in the queue of a given instance of an SDK span processor"
     note: |
@@ -38,9 +38,9 @@ groups:
       - ref: otel.sdk.component.type
       - ref: otel.sdk.component.name
 
-  - id: metric.otel.sdk.span.processor.queue.capacity
+  - id: metric.otel.sdk.processor.span.queue.capacity
     type: metric
-    metric_name: otel.sdk.span.processor.queue.capacity
+    metric_name: otel.sdk.processor.span.queue.capacity
     stability: development
     brief: "The maximum number of spans the queue of a given instance of an SDK span processor can hold"
     note: |
@@ -51,9 +51,9 @@ groups:
       - ref: otel.sdk.component.type
       - ref: otel.sdk.component.name
 
-  - id: metric.otel.sdk.span.processor.spans.processed
+  - id: metric.otel.sdk.processor.span.processed.count
     type: metric
-    metric_name: otel.sdk.span.processor.spans.processed
+    metric_name: otel.sdk.processor.span.processed.count
     stability: development
     brief: "The number of spans for which the processing has finished, either successful or failed"
     note: |
