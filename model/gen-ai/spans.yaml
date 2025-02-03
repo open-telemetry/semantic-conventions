@@ -122,3 +122,135 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: If not default (443).
+  - id: trace.gen_ai.client.create_workflow
+    type: span
+    stability: experimental
+    brief: >
+      Describes GenAI external tool creation and is usually applicable when working
+      with remote external services.
+    note: |
+      The `gen_ai.operation.name` MUST be `create_tool`.
+      The **span name** SHOULD be `create_tool {gen_ai.agent.tool.name}`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+    extends: trace.gen_ai.client.create_task
+    attributes:
+      - ref: gen_ai.agent.tool.name
+        requirement_level: required
+  - id: trace.gen_ai.client.create_agent
+    type: span
+    stability: experimental
+    brief: >
+      Describes GenAI agent creation and is usually applicable when working
+      with remote agent services.
+    note: |
+      The `gen_ai.operation.name` MUST be `create_agent`.
+      The **span name** SHOULD be `create_agent {gen_ai.agent.name}`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+    extends: trace.gen_ai.client.common_attributes
+    attributes:
+      - ref: gen_ai.system
+        requirement_level: required
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: if applicable.
+      - ref: gen_ai.agent.name
+        requirement_level:
+          conditionally_required: If provided by the application.
+      - ref: gen_ai.agent.description
+        requirement_level:
+          conditionally_required: If provided by the application.
+      - ref: gen_ai.request.model
+        requirement_level:
+          conditionally_required: If provided by the application.
+        note: >
+            The name of the GenAI model a request is being made to. If the model is supplied by a vendor,
+            then the value must be the exact name of the model requested. If the model is a fine-tuned
+            custom model, the value should have a more specific name than the base model that's been fine-tuned.
+      - ref: gen_ai.request.temperature
+        requirement_level:
+          conditionally_required: If provided by the application.
+      - ref: gen_ai.request.top_p
+        requirement_level:
+          conditionally_required: If provided by the application.
+  - id: trace.gen_ai.client.create_task
+    type: span
+    stability: experimental
+    brief: >
+      Describes GenAI task creation and is usually applicable when working
+      with remote task services.
+    note: |
+      The `gen_ai.operation.name` MUST be `create_task`.
+      The **span name** SHOULD be `create_task {gen_ai.agent.task.name}`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+    attributes:
+      - ref: gen_ai.agent.task.name
+        requirement_level: required
+  - id: trace.gen_ai.client.create_tool
+    type: span
+    stability: experimental
+    brief: >
+      Describes GenAI external tool creation and is usually applicable when working
+      with remote external services.
+    note: |
+      The `gen_ai.operation.name` MUST be `create_tool`.
+      The **span name** SHOULD be `create_tool {gen_ai.agent.tool.name}`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+    attributes:
+      - ref: gen_ai.agent.tool.name
+        requirement_level: required
+  - id: trace.gen_ai.client.run_tool
+    type: span
+    stability: experimental
+    brief: >
+      Describes GenAI external tool creation and is usually applicable when working
+      with remote external services.
+    note: |
+      The `gen_ai.operation.name` MUST be `create_tool`.
+      The **span name** SHOULD be `create_tool {gen_ai.agent.tool.name}`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+    extends: trace.gen_ai.client.create_tool
+    attributes:
+      - ref: gen_ai.agent.tool.name
+        requirement_level: required
+  - id: trace.gen_ai.client.run_task
+    type: span
+    stability: experimental
+    brief: >
+      Describes GenAI external tool creation and is usually applicable when working
+      with remote external services.
+    note: |
+      The `gen_ai.operation.name` MUST be `create_tool`.
+      The **span name** SHOULD be `create_tool {gen_ai.agent.tool.name}`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+    extends: trace.gen_ai.client.create_task
+    attributes:
+      - ref: gen_ai.agent.tool.name
+        requirement_level: required
+  - id: trace.gen_ai.client.create_workflow
+    type: span
+    stability: experimental
+    brief: >
+      Describes GenAI external tool creation and is usually applicable when working
+      with remote external services.
+    note: |
+      The `gen_ai.operation.name` MUST be `create_tool`.
+      The **span name** SHOULD be `create_tool {gen_ai.agent.tool.name}`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+    extends: trace.gen_ai.client.create_task
+    attributes:
+      - ref: gen_ai.agent.tool.name
+        requirement_level: required
+  - id: trace.gen_ai.client.run_workflow
+    type: span
+    stability: experimental
+    brief: >
+      Describes GenAI external tool creation and is usually applicable when working
+      with remote external services.
+    note: |
+      The `gen_ai.operation.name` MUST be `create_tool`.
+      The **span name** SHOULD be `create_tool {gen_ai.agent.tool.name}`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+    extends: trace.gen_ai.client.create_task
+    attributes:
+      - ref: gen_ai.agent.tool.name
+        requirement_level: required
