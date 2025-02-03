@@ -7,8 +7,8 @@ groups:
     instrument: updowncounter
     unit: "{span}"
     note: |
-      For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`otel.sdk.component.name`.
-      For spans with `recording=false` implementations MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`otel.sdk.component.name` or none.
+      For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
+      For spans with `recording=false` implementations MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count` or none.
     attributes:
       - ref: otel.span.sampling_result
 
@@ -20,8 +20,8 @@ groups:
     instrument: counter
     unit: "{span}"
     note: |
-      For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`otel.sdk.component.name`.
-      For spans with `recording=false` implementations MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`otel.sdk.component.name` or none.
+      For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
+      For spans with `recording=false` implementations MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count` or none.
     attributes:
       - ref: otel.span.sampling_result
 
@@ -35,8 +35,8 @@ groups:
     instrument: updowncounter
     unit: "{span}"
     attributes:
-      - ref: otel.sdk.component.type
-      - ref: otel.sdk.component.name
+      - ref: otel.component.type
+      - ref: otel.component.name
 
   - id: metric.otel.sdk.processor.span.queue.capacity
     type: metric
@@ -48,8 +48,8 @@ groups:
     instrument: updowncounter
     unit: "{span}"
     attributes:
-      - ref: otel.sdk.component.type
-      - ref: otel.sdk.component.name
+      - ref: otel.component.type
+      - ref: otel.component.name
 
   - id: metric.otel.sdk.processor.span.processed.count
     type: metric
@@ -62,8 +62,8 @@ groups:
     instrument: counter
     unit: "{span}"
     attributes:
-      - ref: otel.sdk.component.type
-      - ref: otel.sdk.component.name
+      - ref: otel.component.type
+      - ref: otel.component.name
       - ref: error.type
         brief: >
           A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue.
@@ -79,8 +79,8 @@ groups:
     instrument: updowncounter
     unit: "{span}"
     attributes:
-      - ref: otel.sdk.component.type
-      - ref: otel.sdk.component.name
+      - ref: otel.component.type
+      - ref: otel.component.name
       - ref: server.address
         note: recommended when applicable
       - ref: server.port
@@ -98,8 +98,8 @@ groups:
     instrument: counter
     unit: "{span}"
     attributes:
-      - ref: otel.sdk.component.type
-      - ref: otel.sdk.component.name
+      - ref: otel.component.type
+      - ref: otel.component.name
       - ref: server.address
         note: recommended when applicable
       - ref: server.port

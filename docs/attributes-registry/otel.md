@@ -4,8 +4,8 @@
 # OTel
 
 - [OTel Attributes](#otel-attributes)
+- [OTel Component Attributes](#otel-component-attributes)
 - [OTel Scope Attributes](#otel-scope-attributes)
-- [OTel SDK Telemetry Attributes](#otel-sdk-telemetry-attributes)
 - [Deprecated OTel Library Attributes](#deprecated-otel-library-attributes)
 
 ## OTel Attributes
@@ -37,44 +37,35 @@ Attributes reserved for OpenTelemetry
 | `ERROR` | The operation contains an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `OK` | The operation has been validated by an Application developer or Operator to have completed successfully. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-## OTel Scope Attributes
+## OTel Component Attributes
 
-Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="otel-scope-name" href="#otel-scope-name">`otel.scope.name`</a> | string | The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP). | `io.opentelemetry.contrib.mongodb` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="otel-scope-version" href="#otel-scope-version">`otel.scope.version`</a> | string | The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP). | `1.0.0` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-## OTel SDK Telemetry Attributes
-
-Attributes used for OpenTelemetry SDK self-monitoring
+Attributes used for OpenTelemetry component self-monitoring
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="otel-sdk-component-name" href="#otel-sdk-component-name">`otel.sdk.component.name`</a> | string | A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="otel-sdk-component-type" href="#otel-sdk-component-type">`otel.sdk.component.type`</a> | string | A name identifying the type of the OpenTelemetry SDK component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="otel-component-name" href="#otel-component-name">`otel.component.name`</a> | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="otel-component-type" href="#otel-component-type">`otel.component.type`</a> | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `otel.sdk.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
+**[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-Implementations MAY achieve these goals by following a `<otel.sdk.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
-Hereby `otel.sdk.component.type` refers to the corresponding attribute value of the component.
+Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
 The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
 For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
 instance of the given component type is started.
 
 With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
-as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
+as `otel.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
 
-**[2] `otel.sdk.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
+**[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 ---
 
-`otel.sdk.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`otel.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -83,6 +74,15 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_json_span_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## OTel Scope Attributes
+
+Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="otel-scope-name" href="#otel-scope-name">`otel.scope.name`</a> | string | The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP). | `io.opentelemetry.contrib.mongodb` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="otel-scope-version" href="#otel-scope-version">`otel.scope.version`</a> | string | The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP). | `1.0.0` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ## Deprecated OTel Library Attributes
 

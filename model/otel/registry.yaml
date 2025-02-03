@@ -54,12 +54,12 @@ groups:
         brief: The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP).
         examples: ['1.0.0']
         stability: stable
-  - id: registry.otel.sdk
+  - id: registry.otel.component
     type: attribute_group
-    display_name: OTel SDK Telemetry Attributes
-    brief: Attributes used for OpenTelemetry SDK self-monitoring
+    display_name: OTel Component Attributes
+    brief: Attributes used for OpenTelemetry component self-monitoring
     attributes:
-      - id: otel.sdk.component.type
+      - id: otel.component.type
         type:
           members:
             - id: batching_span_processor
@@ -89,28 +89,28 @@ groups:
               stability: development
         stability: development
         brief: >
-          A name identifying the type of the OpenTelemetry SDK component.
+          A name identifying the type of the OpenTelemetry component.
         note: |
           If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
           E.g. for Java the fully qualified classname SHOULD be used in this case.
         examples: ["batching_span_processor", "com.example.MySpanExporter"]
-      - id: otel.sdk.component.name
+      - id: otel.component.name
         type: string
         stability: development
         brief: >
-          A name uniquely identifying the instance of the OpenTelemetry SDK component within its containing SDK instance.
+          A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance.
         note: |
           Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
           E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
-          Implementations MAY achieve these goals by following a `<otel.sdk.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
-          Hereby `otel.sdk.component.type` refers to the corresponding attribute value of the component.
+          Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+          Hereby `otel.component.type` refers to the corresponding attribute value of the component.
 
           The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
           For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
           instance of the given component type is started.
 
           With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
-          as `otel.sdk.component.name`, the second one `batching_span_processor/1` and so on.
+          as `otel.component.name`, the second one `batching_span_processor/1` and so on.
           These values will therefore be reused in the case of an application restart.
         examples: ["otlp_grpc_span_exporter/0", "custom-name"]
