@@ -82,9 +82,11 @@ groups:
       - ref: otel.component.type
       - ref: otel.component.name
       - ref: server.address
-        note: recommended when applicable
+        requirement_level:
+          recommended: when applicable
       - ref: server.port
-        note: recommended when applicable
+        requirement_level:
+          recommended: when applicable
 
   - id: metric.otel.sdk.exporter.span.exported.count
     type: metric
@@ -101,8 +103,10 @@ groups:
       - ref: otel.component.type
       - ref: otel.component.name
       - ref: server.address
-        note: recommended when applicable
+        requirement_level:
+          recommended: when applicable
       - ref: server.port
-        note: recommended when applicable
+        requirement_level:
+          recommended: when applicable
       - ref: error.type
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
