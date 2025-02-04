@@ -1,7 +1,8 @@
 groups:
-  - id: otel.scope
+  - id: resource.otel.scope
     # This should not be a resource, but an attribute group.
     type: resource
+    stability: experimental
     name: otel.scope
     brief: Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
     attributes:

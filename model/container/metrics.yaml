@@ -1,4 +1,15 @@
 groups:
+  # container.* metrics
+  - id: metric.container.uptime
+    type: metric
+    metric_name: container.uptime
+    stability: experimental
+    brief: "The time the container has been running"
+    note: |
+      Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
+      The actual accuracy would depend on the instrumentation and operating system.
+    instrument: gauge
+    unit: "s"
   # container.cpu.* metrics and attribute group
   - id: metric.container.cpu.time
     type: metric
@@ -72,4 +83,4 @@ groups:
     unit: "By"
     attributes:
       - ref: network.io.direction
-      - ref: system.device
+      - ref: network.interface.name

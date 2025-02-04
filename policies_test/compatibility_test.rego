@@ -345,7 +345,7 @@ test_attribute_enum_member_value_change if {
     }
 }
 
-# Check stable attribute enum member values changing
+# Check enum member missing for attributes of any stability level
 test_attribute_enum_member_missing if {
 	count(deny) > 0 with data.semconv as {
             "registry_baseline_groups": [{
@@ -421,6 +421,88 @@ test_attribute_enum_member_missing if {
                             "id": "missing",
                             "value": "missing",
                             "stability": "stable",
+                        }]
+                    },
+                }]
+            }],
+            "baseline_group_ids_by_attribute": {
+                "test.missing": "registry.test"
+            }
+    }
+	count(deny) > 0 with data.semconv as {
+            "registry_baseline_groups": [{
+                "id": "registry.test",
+                "type": "attribute_group",
+                "attributes": [{
+                    "name": "test.missing",
+                    "stability": "stable",
+                    "type": {
+                        "members": [{
+                            "id": "test",
+                            "value": "test",
+                            "stability": "experimental",
+                        }, {
+                            "id": "missing",
+                            "value": "missing",
+                            "stability": "experimental",
+                        }]
+                    },
+                }]
+            }],
+            "registry_groups": [{
+                "id": "registry.test",
+                "type": "attribute_group",
+                "attributes": [{
+                    "name": "test.missing",
+                    "stability": "stable",
+                    "type": {
+                        "members": [{
+                            "id": "test",
+                            "value": "test",
+                            "stability": "experimental",
+                        }]
+                    },
+                }]
+            }],
+            "baseline_group_ids_by_attribute": {
+                "test.missing": "registry.test"
+            }
+    }
+    count(deny) == 0 with data.semconv as {
+            "registry_baseline_groups": [{
+                "id": "registry.test",
+                "type": "attribute_group",
+                "attributes": [{
+                    "name": "test.missing",
+                    "stability": "stable",
+                    "type": {
+                        "members": [{
+                            "id": "test",
+                            "value": "test",
+                            "stability": "experimental",
+                        }, {
+                            "id": "missing",
+                            "value": "missing",
+                            "stability": "experimental",
+                        }]
+                    },
+                }]
+            }],
+            "registry_groups": [{
+                "id": "registry.test",
+                "type": "attribute_group",
+                "attributes": [{
+                    "name": "test.missing",
+                    "stability": "stable",
+                    "type": {
+                        "members": [{
+                            "id": "test",
+                            "value": "test",
+                            "stability": "experimental",
+                        }, {
+                            "id": "missing",
+                            "value": "missing",
+                            "stability": "experimental",
                         }]
                     },
                 }]
@@ -675,6 +757,30 @@ test_removed_resources if {
                 "type": "resource",
                 "name": "test.missing",
                 "stability": "stable",
+            }]
+    }
+}
+
+# Check that events cannot be removed.
+test_removed_events if {
+	count(deny) > 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "event.test.missing",
+                "type": "event",
+                "name": "test.missing"
+            }],
+    }
+    count(deny) == 0 with data.semconv as {
+            "baseline_groups": [{
+                "id": "event.test.deprecated",
+                "type": "event",
+                "name": "test.deprecated",
+            }],
+            "groups": [{
+                "id": "event.test.deprecated",
+                "type": "event",
+                "name": "test.deprecated",
+                "deprecated": "use `test` instead",
             }]
     }
 }

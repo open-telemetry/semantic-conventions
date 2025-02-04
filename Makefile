@@ -5,13 +5,14 @@ PWD := $(shell pwd)
 # Determine OS & Arch for specific OS only tools on Unix based systems
 OS := $(shell uname | tr '[:upper:]' '[:lower:]')
 ifeq ($(OS),darwin)
-	SED := gsed
+	SED ?= gsed
 else
-	SED := sed
+	SED ?= sed
 endif
 
 TOOLS_DIR := $(PWD)/internal/tools
 
+MARKDOWN_LINK_CHECK_ARG= # pass extra arguments such as --exclude '^http'
 MISSPELL_BINARY=bin/misspell
 MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
 
@@ -35,11 +36,16 @@ OPA_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}'
 
 DOCKER_USER=$(shell id -u):$(shell id -g)
 
+CHECK_TARGETS=install-tools markdownlint misspell table-check compatibility-check \
+			schema-check check-file-and-folder-names-in-docs
+
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
-all: install-tools markdownlint markdown-link-check misspell table-check compatibility-check schema-check \
-		 check-file-and-folder-names-in-docs
+all: $(CHECK_TARGETS) markdown-link-check
+
+.PHONY: check
+check: $(CHECK_TARGETS)
 
 .PHONY: check-file-and-folder-names-in-docs
 check-file-and-folder-names-in-docs:
@@ -61,13 +67,38 @@ misspell:	$(MISSPELL)
 misspell-correction:	$(MISSPELL)
 	$(MISSPELL) -w $(ALL_DOCS)
 
+.PHONY: normalized-link-check
+# NOTE: we check `model/[a-z]*` to avoid `model/README.md`, which contains
+# valid occurrences of `../docs/`.
+normalized-link-check:
+	@if grep -R '\.\./docs/' docs model/[a-z]*; then \
+		echo "\nERROR: Found occurrences of '../docs/'; see above."; \
+		echo "       Remove the '../docs/' from doc page links referencing doc pages."; \
+		exit 1; \
+	else \
+		echo "Normalized-link check passed."; \
+	fi
+
 .PHONY: markdown-link-check
-markdown-link-check:
-	@if ! npm ls markdown-link-check; then npm install; fi
-	@for f in $(ALL_DOCS); do \
-		npx --no -- markdown-link-check --quiet --config .markdown_link_check_config.json $$f \
-			|| exit 1; \
-	done
+markdown-link-check: normalized-link-check
+	docker run --rm \
+		--mount 'type=bind,source=$(PWD),target=/home/repo' \
+		lycheeverse/lychee \
+		--config home/repo/.lychee.toml \
+		--root-dir /home/repo \
+		--verbose \
+		$(MARKDOWN_LINK_CHECK_ARG) \
+		home/repo
+
+.PHONY: markdown-link-check-changelog-preview
+markdown-link-check-changelog-preview:
+	docker run --rm \
+		--mount 'type=bind,source=$(PWD),target=/home/repo' \
+		lycheeverse/lychee \
+		--config /home/repo/.lychee.toml \
+		--root-dir /home/repo \
+		--verbose \
+		home/repo/changelog_preview.md
 
 # This target runs markdown-toc on all files that contain
 # a comment <!-- tocstop -->.
@@ -84,6 +115,8 @@ markdown-toc:
 		if grep -q '<!-- tocstop -->' $$f; then \
 			echo markdown-toc: processing $$f; \
 			npx --no -- markdown-toc --bullets "-" --no-first-h1 --no-stripHeadingTags -i $$f || exit 1; \
+		elif grep -q '<!-- toc -->' $$f; then \
+			echo markdown-toc: ERROR: '<!-- tocstop -->' missing from $$f; exit 1; \
 		else \
 			echo markdown-toc: no TOC markers, skipping $$f; \
 		fi; \
@@ -91,17 +124,8 @@ markdown-toc:
 
 .PHONY: markdownlint
 markdownlint:
-	@if ! npm ls markdownlint; then npm install; fi
-	@npx gulp lint-md
-
-.PHONY: markdownlint-old
-markdownlint-old:
-	@if ! npm ls markdownlint; then npm install; fi
-	@for f in $(ALL_DOCS); do \
-		echo $$f; \
-		npx --no -p markdownlint-cli markdownlint -c .markdownlint.yaml $$f \
-			|| exit 1; \
-	done
+	@if ! npm ls markdownlint-cli; then npm install; fi
+	npx --no -- markdownlint-cli -c .markdownlint.yaml $(ALL_DOCS)
 
 .PHONY: install-yamllint
 install-yamllint:
@@ -125,6 +149,7 @@ table-generation:
 		--attribute-registry-base-url=/docs/attributes-registry \
 		--templates=/home/weaver/templates \
 		--target=markdown \
+		--future \
 		/home/weaver/target
 
 # Generate attribute registry markdown.
@@ -154,24 +179,17 @@ table-check:
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--dry-run \
+		--future \
 		/home/weaver/target
 
 .PHONY: schema-check
 schema-check:
 	$(TOOLS_DIR)/schema_check.sh
 
-.PHONY: check-format
-check-format:
-	npm run check:format
-
-.PHONY: fix-format
-fix-format:
-	npm run fix:format
-
 # Run all checks in order of speed / likely failure.
 # As a last thing, run attribute registry generation and git-diff for differences.
 .PHONY: check
-check: misspell markdownlint check-format markdown-toc compatibility-check markdown-link-check check-policies attribute-registry-generation
+check: misspell markdownlint markdown-toc markdown-link-check check-policies attribute-registry-generation
 	git diff --exit-code ':*.md' || (echo 'Generated markdown Table of Contents is out of date, please run "make markdown-toc" and commit the changes in this PR.' && exit 1)
 	@echo "All checks complete"
 

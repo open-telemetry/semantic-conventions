@@ -1,15 +1,13 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Tracing Compatibility
+linkTitle: Tracing compatibility
 --->
 
-# Semantic Conventions for Tracing Compatibility Components
+# Semantic conventions for tracing compatibility components
 
 **Status**: [Experimental][DocumentStatus]
 
 This document defines trace semantic conventions used by the
 compatibility components, e.g. OpenTracing Shim layer.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
@@ -35,7 +33,9 @@ between a child Span and a parent Span, as defined by
 |---|---|---|---|---|---|
 | [`opentracing.ref_type`](/docs/attributes-registry/opentracing.md) | string | Parent-child Reference type [1] | `child_of`; `follows_from` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The causal relationship between a child Span and a parent Span.
+**[1] `opentracing.ref_type`:** The causal relationship between a child Span and a parent Span.
+
+---
 
 `opentracing.ref_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -81,7 +81,7 @@ groups:
     stability: experimental
     brief: "Number of file descriptors in use by the process."
     instrument: updowncounter
-    unit: "{count}"
+    unit: "{file_descriptor}"
 
   - id: metric.process.context_switches
     type: metric
@@ -89,7 +89,7 @@ groups:
     stability: experimental
     brief: "Number of times the process has been context switched."
     instrument: counter
-    unit: "{count}"
+    unit: "{context_switch}"
     attributes:
       - ref: process.context_switch_type
 
@@ -108,6 +108,8 @@ groups:
     metric_name: process.uptime
     stability: experimental
     brief: "The time the process has been running."
-    instrument: counter
+    note: |
+      Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
+      The actual accuracy would depend on the instrumentation and operating system.
+    instrument: gauge
     unit: "s"
-    note: "Instrumentations SHOULD use counter with type `double` and measure uptime with at least millisecond precision"

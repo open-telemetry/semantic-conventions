@@ -29,6 +29,10 @@ updated to the stable HTTP semantic conventions, they:
 - May drop the environment variable in their next major version and emit only
   the stable HTTP and networking conventions.
 
+> [!NOTE]
+> `OTEL_SEMCONV_STABILITY_OPT_IN` is only intended to be used when migrating
+> from an experimental semantic convention to its initial stable version.
+
 ## Summary of changes
 
 This section summarizes the changes made to the HTTP semantic conventions
@@ -118,8 +122,8 @@ Metric changes:
 
 - **Name**: `http.client.duration` &rarr; `http.client.request.duration`
 - **Unit**: `ms` &rarr; `s`
-- **Description**: `Measures the duration of inbound HTTP requests.` &rarr;
-  `Duration of HTTP server requests.`
+- **Description**: `Measures the duration of outbound HTTP requests.` &rarr;
+  `Duration of HTTP client requests.`
 - **Histogram buckets**: boundaries updated to reflect change from milliseconds
   to seconds, and zero bucket boundary removed
 - **Attributes**: see table below

@@ -1,5 +1,5 @@
 groups:
-  - id: trace.http.client
+  - id: span.http.client
     type: span
     extends: attributes.http.client
     span_kind: client
@@ -45,8 +45,10 @@ groups:
         requirement_level: opt_in
       - ref: http.response.body.size
         requirement_level: opt_in
+      - ref: user_agent.synthetic.type
+        requirement_level: opt_in
 
-  - id: trace.http.server
+  - id: span.http.server
     type: span
     extends: attributes.http.server
     span_kind: server
@@ -112,4 +114,6 @@ groups:
       - ref: http.request.body.size
         requirement_level: opt_in
       - ref: http.response.body.size
+        requirement_level: opt_in
+      - ref: user_agent.synthetic.type
         requirement_level: opt_in

@@ -1,6 +1,7 @@
 groups:
-  - id: faas_resource
+  - id: resource.faas
     type: resource
+    stability: experimental
     name: faas
     brief: >
       A serverless instance.

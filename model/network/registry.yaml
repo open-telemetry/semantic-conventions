@@ -159,7 +159,7 @@ groups:
       - id: network.protocol.name
         stability: stable
         type: string
-        brief: '[OSI application layer](https://osi-model.com/application-layer/) or non-OSI equivalent.'
+        brief: '[OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent.'
         note: The value SHOULD be normalized to lowercase.
         examples: ['amqp', 'http', 'mqtt']
       - id: network.protocol.version
@@ -196,7 +196,7 @@ groups:
               brief: "QUIC"
               stability: experimental
         brief: >
-          [OSI transport layer](https://osi-model.com/transport-layer/) or
+          [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or
           [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
         note: |
           The value SHOULD be normalized to lowercase.
@@ -217,7 +217,7 @@ groups:
               value: 'ipv6'
               brief: "IPv6"
               stability: stable
-        brief: '[OSI network layer](https://osi-model.com/network-layer/) or non-OSI equivalent.'
+        brief: '[OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent.'
         note: The value SHOULD be normalized to lowercase.
         examples: ['ipv4', 'ipv6']
       - id: network.io.direction
@@ -232,3 +232,48 @@ groups:
         stability: experimental
         brief: "The network IO operation direction."
         examples: ["transmit"]
+      - id: network.interface.name
+        type: string
+        brief: 'The network interface name.'
+        examples: [ 'lo', 'eth0' ]
+        stability: development
+      - id: network.connection.state
+        type:
+          members:
+            - id: closed
+              value: 'closed'
+              stability: experimental
+            - id: close_wait
+              value: 'close_wait'
+              stability: experimental
+            - id: closing
+              value: 'closing'
+              stability: experimental
+            - id: established
+              value: 'established'
+              stability: experimental
+            - id: fin_wait_1
+              value: 'fin_wait_1'
+              stability: experimental
+            - id: fin_wait_2
+              value: 'fin_wait_2'
+              stability: experimental
+            - id: last_ack
+              value: 'last_ack'
+              stability: experimental
+            - id: listen
+              value: 'listen'
+              stability: experimental
+            - id: syn_received
+              value: 'syn_received'
+              stability: experimental
+            - id: syn_sent
+              value: 'syn_sent'
+              stability: experimental
+            - id: time_wait
+              value: 'time_wait'
+              stability: experimental
+        stability: experimental
+        brief: "The state of network connection"
+        note: "Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)"
+        examples: [ "close_wait" ]

@@ -1,4 +1,0 @@
-change_type: enhancement
-component: http
-note: Define how to handle experimental attributes in stable groups, add policies and move experimental HTTP attributes into stable HTTP groups (as opt_in).
-issues: [906, 1472]

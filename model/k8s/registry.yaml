@@ -117,6 +117,30 @@ groups:
         brief: >
           The name of the ReplicaSet.
         examples: ['opentelemetry']
+      - id: k8s.replicationcontroller.uid
+        type: string
+        stability: experimental
+        brief: >
+          The UID of the replication controller.
+        examples: [ '275ecb36-5aa8-4c2a-9c47-d8bb681b9aff' ]
+      - id: k8s.replicationcontroller.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the replication controller.
+        examples: [ 'opentelemetry' ]
+      - id: k8s.resourcequota.uid
+        type: string
+        stability: experimental
+        brief: >
+          The UID of the resource quota.
+        examples: [ '275ecb36-5aa8-4c2a-9c47-d8bb681b9aff' ]
+      - id: k8s.resourcequota.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the resource quota.
+        examples: [ 'opentelemetry' ]
       - id: k8s.deployment.uid
         type: string
         stability: experimental
@@ -152,6 +176,18 @@ groups:
         stability: experimental
         brief: >
           The name of the DaemonSet.
+        examples: ['opentelemetry']
+      - id: k8s.hpa.uid
+        type: string
+        stability: experimental
+        brief: >
+          The UID of the horizontal pod autoscaler.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.hpa.name
+        type: string
+        stability: experimental
+        brief: >
+          The name of the horizontal pod autoscaler.
         examples: ['opentelemetry']
       - id: k8s.job.uid
         type: string
@@ -192,25 +228,43 @@ groups:
           members:
             - id: persistent_volume_claim
               value: 'persistentVolumeClaim'
-              brief: "A [persistentVolumeClaim](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume"
+              brief: "A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume"
               stability: experimental
             - id: config_map
               value: 'configMap'
-              brief: "A [configMap](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume"
+              brief: "A [configMap](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume"
               stability: experimental
             - id: downward_api
               value: 'downwardAPI'
-              brief: "A [downwardAPI](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume"
+              brief: "A [downwardAPI](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume"
               stability: experimental
             - id: empty_dir
               value: 'emptyDir'
-              brief: "An [emptyDir](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume"
+              brief: "An [emptyDir](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume"
               stability: experimental
             - id: secret
               value: 'secret'
-              brief: "A [secret](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
+              brief: "A [secret](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
               stability: experimental
             - id: local
               value: 'local'
-              brief: "A [local](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume"
+              brief: "A [local](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume"
+              stability: experimental
+      - id: k8s.namespace.phase
+        stability: experimental
+        brief: >
+          The phase of the K8s namespace.
+        note: |
+          This attribute aligns with the `phase` field of the
+          [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
+        examples: [ "active", "terminating" ]
+        type:
+          members:
+            - id: active
+              value: 'active'
+              brief: "Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)"
+              stability: experimental
+            - id: terminating
+              value: 'terminating'
+              brief: "Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)"
               stability: experimental

@@ -1,10 +1,11 @@
 groups:
   - id: registry.cicd.pipeline
     type: attribute_group
+    display_name: CI/CD Pipeline Attributes
     brief: >
       This group describes attributes specific to pipelines within a Continuous
       Integration and Continuous Deployment (CI/CD) system. A
-      [pipeline](https://en.wikipedia.org/wiki/Pipeline_(computing)) in this
+      [pipeline](https://wikipedia.org/wiki/Pipeline_(computing)) in this
       case is a series of steps that are performed in order to deliver a new
       version of software. This aligns with the
       [Britannica](https://www.britannica.com/dictionary/pipeline) definition
@@ -30,12 +31,42 @@ groups:
         brief: >
           The unique identifier of a pipeline run within a CI/CD system.
         examples: ["120912"]
+      - id: cicd.pipeline.run.url.full
+        type: string
+        stability: experimental
+        brief: >
+          The [URL](https://wikipedia.org/wiki/URL) of the pipeline run,
+          providing the complete address in order to locate and identify the pipeline run.
+        examples:
+          [
+            "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075",
+          ]
+      - id: cicd.pipeline.run.state
+        type:
+          members:
+            - id: pending
+              value: pending
+              brief: >
+                The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
+              stability: experimental
+            - id: executing
+              value: executing
+              brief: The executing state spans the execution of any run tasks (eg. build, test).
+              stability: experimental
+            - id: finalizing
+              value: finalizing
+              brief: The finalizing state spans from when the run has finished executing (eg. cleanup of run resources).
+              stability: experimental
+        stability: experimental
+        brief: >
+          The pipeline run goes through these states during its lifecycle.
+        examples: ["pending", "executing", "finalizing"]
       - id: cicd.pipeline.task.name
         type: string
         stability: experimental
         brief: >
           The human readable name of a task within a pipeline. Task here most
-          closely aligns with a [computing process](https://en.wikipedia.org/wiki/Pipeline_(computing))
+          closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing))
           in a pipeline. Other terms for tasks include commands, steps, and
           procedures.
         examples: ["Run GoLang Linter", "Go Build", "go-test", "deploy_binary"]
@@ -49,8 +80,8 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The [URL](https://en.wikipedia.org/wiki/URL) of the pipeline run
-          providing the complete address in order to locate and identify the pipeline run.
+          The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run,
+          providing the complete address in order to locate and identify the pipeline task run.
         examples:
           [
             "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075",
@@ -74,3 +105,69 @@ groups:
         brief: >
           The type of the task within a pipeline.
         examples: ["build", "test", "deploy"]
+      - id: cicd.pipeline.result
+        type:
+          members:
+            - id: success
+              value: success
+              brief: "The pipeline run finished successfully."
+              stability: experimental
+            - id: failure
+              value: failure
+              brief: >-
+                The pipeline run did not finish successfully, eg. due to a compile error or a failing test.
+                Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run.
+              stability: experimental
+            - id: error
+              value: error
+              brief: >-
+                The pipeline run failed due to an error in the CICD system, eg. due to the worker being killed.
+              stability: experimental
+            - id: timeout
+              value: timeout
+              brief: "A timeout caused the pipeline run to be interrupted."
+              stability: experimental
+            - id: cancellation
+              value: cancellation
+              brief: "The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run."
+              stability: experimental
+            - id: skip
+              value: skip
+              brief: "The pipeline run was skipped, eg. due to a precondition not being met."
+              stability: experimental
+        stability: experimental
+        brief: >
+          The result of a pipeline run.
+        examples: ["success", "failure", "timeout", "skipped"]
+      - id: cicd.worker.state
+        type:
+          members:
+            - id: available
+              value: available
+              brief: >-
+                The worker is not performing work for the CICD system.
+                It is available to the CICD system to perform work on (online / idle).
+              note: "Pipelines might have conditions on which workers they are able to run so not every worker might be available to every pipeline."
+              stability: experimental
+            - id: busy
+              value: busy
+              brief: "The worker is performing work for the CICD system."
+              stability: experimental
+            - id: offline
+              value: offline
+              brief: "The worker is not available to the CICD system (disconnected / down)."
+              stability: experimental
+        stability: experimental
+        brief: >
+          The state of a CICD worker / agent.
+        examples: ["idle", "busy", "down"]
+      - id: cicd.system.component
+        type: string
+        stability: experimental
+        brief: The name of a component of the CICD system.
+        examples:
+          [
+            "controller",
+            "scheduler",
+            "agent",
+          ]

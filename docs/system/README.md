@@ -1,11 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: System
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/system/_index.md
-  to: system/README.md
 --->
 
-# System Semantic Conventions
+# System semantic conventions
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -14,6 +11,8 @@ This document defines semantic conventions for systems (such as processes, runti
 System semantic conventions are defined for the following metrics:
 
 * [System](system-metrics.md): For standard system metrics.
+* [Container](container-metrics.md): For container-related metrics.
+* [K8s](k8s-metrics.md): For K8s-related metrics.
 * [Hardware](hardware-metrics.md): For hardware-related metrics.
 * [Process](process-metrics.md): For standard process metrics.
 * [Runtime Environment](/docs/runtime/README.md#metrics): For runtime environment metrics.

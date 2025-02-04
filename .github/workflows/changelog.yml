@@ -6,7 +6,7 @@ name: 'Changelog'
 
 on:
   pull_request:
-    types: [opened, ready_for_review, synchronize, reopened, labeled, unlabeled]
+    types: [opened, ready_for_review, edited, synchronize, reopened, labeled, unlabeled]
     branches:
       - main
 
@@ -75,14 +75,7 @@ jobs:
             || { echo "New ./.chloggen/*.yaml file failed validation."; exit 1; }
 
       # In order to validate any links in the yaml file, render the config to markdown
-      - name: Render .chloggen changelog entries
-        run: make chlog-preview > changelog_preview.md
-      - name: Install markdown-link-check
-        run: npm install -g markdown-link-check
-      - name: Run markdown-link-check
+      - name: Run markdown-link-check on the changelog
         run: |
-          markdown-link-check \
-            --verbose \
-            --config .markdown_link_check_config.json \
-            changelog_preview.md \
-            || { echo "Check that anchor links are lowercase"; exit 1; }
+          make chlog-preview &> changelog_preview.md
+          make markdown-link-check-changelog-preview

@@ -1,15 +1,13 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Go Runtime
+linkTitle: Go
 --->
 
-# Semantic Conventions for Go Runtime Metrics
+# Semantic conventions for Go runtime metrics
 
 **Status**: [Experimental][DocumentStatus]
 
 This document describes semantic conventions for Go runtime metrics in OpenTelemetry.
 These metrics are obtained from Go's [`runtime/metrics`][RuntimeMetrics] package.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
@@ -55,6 +53,8 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`go.memory.type`](/docs/attributes-registry/go.md) | string | The type of memory. | `other`; `stack` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `go.memory.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

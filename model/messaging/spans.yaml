@@ -28,7 +28,7 @@ groups:
         # - ref: messaging.system
         #   sampling_relevant: true
 
-  - id: messaging
+  - id: span.messaging
     type: span
     stability: experimental
     brief: >
@@ -118,6 +118,22 @@ groups:
           Message [correlation Id](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property.
       - ref: messaging.message.body.size
         requirement_level: opt_in
+      - ref: messaging.destination.name
+        note: |
+          In RabbitMQ, the destination is defined by an *exchange*, a *routing key* and for consumers, a *queue*.
+
+          `messaging.destination.name` SHOULD be set to:
+
+          - **On the producer side**: `{exchange}:{routing key}` when both values are present and non-empty.
+          When only one is available, only that value SHOULD be used. E.g., `{exchange}` or `{routing key}`.
+          Otherwise: `amq.default` when the default exchange is used and no routing key is provided
+
+          - **On the consumer side**: `{exchange}:{routing key}:{queue}` when all values are present and non-empty.
+          If any has an empty value (e.g., the default exchange is used) it SHOULD be omitted.
+          For cases when `{routing key}` and `{queue}` are equal, only one of them SHOULD
+          be used, e.g., `{exchange}:{routing key}`.
+        examples: ['direct_logs:warning', 'logs']
+        requirement_level: required
 
   - id: messaging.kafka
     type: attribute_group
@@ -265,7 +281,7 @@ groups:
       Attributes for Azure Event Hubs
     attributes:
       - ref: messaging.consumer.group.name
-        brief: "Azure Event Hubs [consumer group name](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features#consumer-groups)."
+        brief: "Azure Event Hubs [consumer group name](https://learn.microsoft.com/azure/event-hubs/event-hubs-features#consumer-groups)."
         note: ""
         requirement_level:
           conditionally_required: On consumer spans.

@@ -2,7 +2,7 @@
 linkTitle: Profiles
 --->
 
-# General Profiles Attributes
+# General profiles attributes
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -30,10 +30,13 @@ They may be used in any Profiles record they apply to.
 |---|---|---|---|---|---|
 | [`profile.frame.type`](/docs/attributes-registry/profile.md) | string | Describes the interpreter or compiler of a single frame. | `cpython` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
+---
+
 `profile.frame.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
+| `beam` | [Erlang](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `cpython` | [Python](https://wikipedia.org/wiki/Python_(programming_language)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `dotnet` | [.NET](https://wikipedia.org/wiki/.NET) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `jvm` | [JVM](https://wikipedia.org/wiki/Java_virtual_machine) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |

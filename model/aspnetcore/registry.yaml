@@ -31,7 +31,6 @@ groups:
         stability: stable
         brief: Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
         examples: ["acquired", "request_canceled"]
-        requirement_level: required
       - id: aspnetcore.routing.is_fallback
         type: boolean
         stability: stable
@@ -43,8 +42,6 @@ groups:
         brief: Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler)
           implementation that handled the exception.
         examples: ["Contoso.MyHandler"]
-        requirement_level:
-          conditionally_required: if and only if the exception was handled by this handler.
       - id: aspnetcore.request.is_unhandled
         type: boolean
         stability: stable

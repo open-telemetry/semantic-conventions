@@ -7,28 +7,20 @@ groups:
     attributes:
       - id: db.collection.name
         type: string
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
         brief: The name of a collection (table, container) within the database.
         note: |
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-          A single database query may involve multiple collections.
-
-          If the collection name is parsed from the query text, it SHOULD only be captured for queries that
-          contain a single collection and it SHOULD match the value provided in
-          the query text including any schema and database name prefix.
+          The collection name SHOULD NOT be extracted from `db.query.text`,
+          unless the query format is known to only ever have a single collection name present.
 
           For batch operations, if the individual operations are known to have the same collection name
           then that collection name SHOULD be used.
-
-          If the operation or query involves multiple collections, `db.collection.name`
-          SHOULD NOT be captured.
-
-          This attribute has stability level RELEASE CANDIDATE.
         examples: ["public.users", "customers"]
       - id: db.namespace
         type: string
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
         brief: >
           The name of the database, fully qualified within the server address and port.
         note: >
@@ -41,37 +33,31 @@ groups:
           means in the context of that system.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-
-          This attribute has stability level RELEASE CANDIDATE.
         examples: ["customers", "test.users"]
       - id: db.operation.name
         type: string
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
         brief: >
           The name of the operation or command being executed.
         note: |
           It is RECOMMENDED to capture the value as provided by the application
           without attempting to do any case normalization.
 
-          A single database query may involve multiple operations. If the operation
-          name is parsed from the query text, it SHOULD only be captured for queries that
-          contain a single operation or when the operation name describing the
-          whole query is available by other means.
+          The operation name SHOULD NOT be extracted from `db.query.text`,
+          unless the query format is known to only ever have a single operation name present.
 
           For batch operations, if the individual operations are known to have the same operation name
           then that operation name SHOULD be used prepended by `BATCH `,
           otherwise `db.operation.name` SHOULD be `BATCH` or some other database
           system specific term if more applicable.
-
-          This attribute has stability level RELEASE CANDIDATE.
         examples: ["findAndModify", "HMSET", "SELECT"]
       - id: db.query.text
         type: string
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
         brief: >
           The database query being executed.
         note: >
-          For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+          For sanitization see [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
 
           For batch operations, if the individual operations are known to have the same query text
           then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated
@@ -80,30 +66,27 @@ groups:
           Even though parameterized query text can potentially have sensitive data, by using a parameterized query
           the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit
           to observability of capturing the static part of the query text by default outweighs the risk.
-
-          This attribute has stability level RELEASE CANDIDATE.
         examples:
           [
             "SELECT * FROM wuser_table where username = ?",
             'SET mykey ?',
           ]
-      - id: db.query.parameter
+      - id: db.operation.parameter
         type: template[string]
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
         brief: >
-          A query parameter used in `db.query.text`, with `<key>` being the parameter name,
+          A database operation parameter, with `<key>` being the parameter name,
           and the attribute value being a string representation of the parameter value.
         note: >
-          Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
-
           If a parameter has no name and instead is referenced only by index,
           then `<key>` SHOULD be the 0-based index.
 
-          This attribute has stability level RELEASE CANDIDATE.
+          If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match
+          up with the parameterized placeholders present in `db.query.text`.
         examples: ["someval", "55"]
       - id: db.query.summary
         type: string
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
         brief: >
           Low cardinality representation of a database query text.
         note: >
@@ -114,10 +97,8 @@ groups:
           Summary may be available to the instrumentation through
           instrumentation hooks or other means. If it is not available, instrumentations
           that support query parsing SHOULD generate a summary following
-          [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-quey-text)
+          [Generating query summary](../database/database-spans.md#generating-a-summary-of-the-query-text)
           section.
-
-          This attribute has stability level RELEASE CANDIDATE.
         examples:
           [
             'SELECT wuser_table',
@@ -126,17 +107,15 @@ groups:
           ]
       - id: db.operation.batch.size
         type: int
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
         brief: The number of queries included in a batch operation.
         note: >
           Operations are only considered batches when they contain two or more operations,
           and so `db.operation.batch.size` SHOULD never be `1`.
-
-          This attribute has stability level RELEASE CANDIDATE.
         examples: [2, 3, 4]
       - id: db.response.status_code
         type: string
-        stability: experimental  # RELEASE CANDIDATE
+        stability: release_candidate
         brief: Database response status code.
         note: >
           The status code returned by the database. Usually it represents an error code,
@@ -145,242 +124,185 @@ groups:
 
           Semantic conventions for individual database systems SHOULD document what
           `db.response.status_code` means in the context of that system.
-
-          This attribute has stability level RELEASE CANDIDATE.
         examples: ["102", "ORA-17002", "08P01", "404"]
-
-      - id: db.system
+      - id: db.response.returned_rows
+        type: int
+        stability: development
+        brief: Number of rows returned by the operation.
+        examples: [10, 30, 1000]
+      - id: db.system.name
         brief: The database management system (DBMS) product as identified by the client instrumentation.
         note: >
           The actual DBMS may differ from the one identified by the client.
-          For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system`
+          For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name`
           is set to `postgresql` based on the instrumentation's best knowledge.
-
-          This attribute has stability level RELEASE CANDIDATE.
         type:
           members:
             - id: other_sql
               value: "other_sql"
-              brief: "Some other SQL database. Fallback only. See notes."
-              stability: experimental
-            - id: adabas
-              value: "adabas"
-              brief: "Adabas (Adaptable Database System)"
-              stability: experimental
-            - id: cache
-              value: "cache"
-              deprecated: "Replaced by `intersystems_cache`."
-              brief: "Deprecated, use `intersystems_cache` instead."
-              stability: experimental
-            - id: intersystems_cache
-              value: "intersystems_cache"
-              brief: "InterSystems Caché"
-              stability: experimental
+              brief: "Some other SQL database. Fallback only."
+              stability: development
+            - id: softwareag.adabas
+              value: "softwareag.adabas"
+              brief: "[Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas)"
+              stability: development
+            - id: actian.ingres
+              value: "actian.ingres"
+              brief: "[Actian Ingres](https://www.actian.com/databases/ingres/)"
+              stability: development
+            - id: aws.dynamodb
+              value: "aws.dynamodb"
+              brief: "[Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/)"
+              stability: development
+            - id: aws.redshift
+              value: "aws.redshift"
+              brief: "[Amazon Redshift](https://aws.amazon.com/redshift/)"
+              stability: development
+            - id: azure.cosmosdb
+              value: "azure.cosmosdb"
+              brief: "[Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db)"
+              stability: development
+            - id: intersystems.cache
+              value: "intersystems.cache"
+              brief: "[InterSystems Caché](https://www.intersystems.com/products/cache/)"
+              stability: development
             - id: cassandra
               value: "cassandra"
-              brief: "Apache Cassandra"
-              stability: experimental
+              brief: "[Apache Cassandra](https://cassandra.apache.org/)"
+              stability: development
             - id: clickhouse
               value: "clickhouse"
-              brief: "ClickHouse"
-              stability: experimental
-            - id: cloudscape
-              value: "cloudscape"
-              deprecated: "Replaced by `other_sql`."
-              brief: "Deprecated, use `other_sql` instead."
-              stability: experimental
+              brief: "[ClickHouse](https://clickhouse.com/)"
+              stability: development
             - id: cockroachdb
               value: "cockroachdb"
-              brief: "CockroachDB"
-              stability: experimental
-            - id: coldfusion
-              value: "coldfusion"
-              deprecated: "Removed."
-              brief: "Deprecated, no replacement at this time."
-              stability: experimental
-            - id: cosmosdb
-              value: "cosmosdb"
-              brief: "Microsoft Azure Cosmos DB"
-              stability: experimental
+              brief: "[CockroachDB](https://www.cockroachlabs.com/)"
+              stability: development
             - id: couchbase
               value: "couchbase"
-              brief: "Couchbase"
-              stability: experimental
+              brief: "[Couchbase](https://www.couchbase.com/)"
+              stability: development
             - id: couchdb
               value: "couchdb"
-              brief: "CouchDB"
-              stability: experimental
-            - id: db2
-              value: "db2"
-              brief: "IBM Db2"
-              stability: experimental
+              brief: "[Apache CouchDB](https://couchdb.apache.org/)"
+              stability: development
             - id: derby
               value: "derby"
-              brief: "Apache Derby"
-              stability: experimental
-            - id: dynamodb
-              value: "dynamodb"
-              brief: "Amazon DynamoDB"
-              stability: experimental
-            - id: edb
-              value: "edb"
-              brief: "EnterpriseDB"
-              stability: experimental
+              brief: "[Apache Derby](https://db.apache.org/derby/)"
+              stability: development
             - id: elasticsearch
               value: "elasticsearch"
-              brief: "Elasticsearch"
-              stability: experimental
-            - id: filemaker
-              value: "filemaker"
-              brief: "FileMaker"
-              stability: experimental
-            - id: firebird
-              value: "firebird"
-              brief: "Firebird"
-              stability: experimental
-            - id: firstsql
-              value: "firstsql"
-              deprecated: "Replaced by `other_sql`."
-              brief: "Deprecated, use `other_sql` instead."
-              stability: experimental
+              brief: "[Elasticsearch](https://www.elastic.co/elasticsearch)"
+              stability: development
+            - id: firebirdsql
+              value: "firebirdsql"
+              brief: "[Firebird](https://www.firebirdsql.org/)"
+              stability: development
+            - id: gcp.spanner
+              value: "gcp.spanner"
+              brief: "[Google Cloud Spanner](https://cloud.google.com/spanner)"
+              stability: development
             - id: geode
               value: "geode"
-              brief: "Apache Geode"
-              stability: experimental
-            - id: h2
-              value: "h2"
-              brief: "H2"
-              stability: experimental
-            - id: hanadb
-              value: "hanadb"
-              brief: "SAP HANA"
-              stability: experimental
+              brief: "[Apache Geode](https://geode.apache.org/)"
+              stability: development
+            - id: h2database
+              value: "h2database"
+              brief: "[H2 Database](https://h2database.com/)"
+              stability: development
             - id: hbase
               value: "hbase"
-              brief: "Apache HBase"
-              stability: experimental
+              brief: "[Apache HBase](https://hbase.apache.org/)"
+              stability: development
             - id: hive
               value: "hive"
-              brief: "Apache Hive"
-              stability: experimental
+              brief: "[Apache Hive](https://hive.apache.org/)"
+              stability: development
             - id: hsqldb
               value: "hsqldb"
-              brief: "HyperSQL DataBase"
-              stability: experimental
+              brief: "[HyperSQL Database](https://hsqldb.org/)"
+              stability: development
+            - id: ibm.db2
+              value: "ibm.db2"
+              brief: "[IBM Db2](https://www.ibm.com/db2)"
+              stability: development
+            - id: ibm.informix
+              value: "ibm.informix"
+              brief: "[IBM Informix](https://www.ibm.com/products/informix)"
+              stability: development
+            - id: ibm.netezza
+              value: "ibm.netezza"
+              brief: "[IBM Netezza](https://www.ibm.com/products/netezza)"
+              stability: development
             - id: influxdb
               value: "influxdb"
-              brief: "InfluxDB"
-              stability: experimental
-            - id: informix
-              value: "informix"
-              brief: "Informix"
-              stability: experimental
-            - id: ingres
-              value: "ingres"
-              brief: "Ingres"
-              stability: experimental
+              brief: "[InfluxDB](https://www.influxdata.com/)"
+              stability: development
             - id: instantdb
               value: "instantdb"
-              brief: "InstantDB"
-              stability: experimental
-            - id: interbase
-              value: "interbase"
-              brief: "InterBase"
-              stability: experimental
+              brief: "[Instant](https://www.instantdb.com/)"
+              stability: development
             - id: mariadb
               value: "mariadb"
-              brief: "MariaDB (This value has stability level RELEASE CANDIDATE)"
-              stability: experimental  # RELEASE CANDIDATE
-            - id: maxdb
-              value: "maxdb"
-              brief: "SAP MaxDB"
-              stability: experimental
+              brief: "[MariaDB](https://mariadb.org/)"
+              stability: release_candidate
             - id: memcached
               value: "memcached"
-              brief: "Memcached"
-              stability: experimental
+              brief: "[Memcached](https://memcached.org/)"
+              stability: development
             - id: mongodb
               value: "mongodb"
-              brief: "MongoDB"
-              stability: experimental
-            - id: mssql
-              value: "mssql"
-              brief: "Microsoft SQL Server (This value has stability level RELEASE CANDIDATE)"
-              stability: experimental  # RELEASE CANDIDATE
-            - id: mssqlcompact
-              value: "mssqlcompact"
-              deprecated: "Removed, use `other_sql` instead."
-              brief: "Deprecated, Microsoft SQL Server Compact is discontinued."
-              stability: experimental
+              brief: "[MongoDB](https://www.mongodb.com/)"
+              stability: development
+            - id: microsoft.sql_server
+              value: "microsoft.sql_server"
+              brief: "[Microsoft SQL Server](https://www.microsoft.com/sql-server)"
+              stability: release_candidate
             - id: mysql
               value: "mysql"
-              brief: "MySQL (This value has stability level RELEASE CANDIDATE)"
-              stability: experimental  # RELEASE CANDIDATE
+              brief: "[MySQL](https://www.mysql.com/)"
+              stability: release_candidate
             - id: neo4j
               value: "neo4j"
-              brief: "Neo4j"
-              stability: experimental
-            - id: netezza
-              value: "netezza"
-              brief: "Netezza"
-              stability: experimental
+              brief: "[Neo4j](https://neo4j.com/)"
+              stability: development
             - id: opensearch
               value: "opensearch"
-              brief: "OpenSearch"
-              stability: experimental
-            - id: oracle
-              value: "oracle"
-              brief: "Oracle Database"
-              stability: experimental
-            - id: pervasive
-              value: "pervasive"
-              brief: "Pervasive PSQL"
-              stability: experimental
-            - id: pointbase
-              value: "pointbase"
-              brief: "PointBase"
-              stability: experimental
+              brief: "[OpenSearch](https://opensearch.org/)"
+              stability: development
+            - id: oracle.db
+              value: "oracle.db"
+              brief: "[Oracle Database](https://www.oracle.com/database/)"
+              stability: development
             - id: postgresql
               value: "postgresql"
-              brief: "PostgreSQL (This value has stability level RELEASE CANDIDATE)"
-              stability: experimental  # RELEASE CANDIDATE
-            - id: progress
-              value: "progress"
-              brief: "Progress Database"
-              stability: experimental
+              brief: "[PostgreSQL](https://www.postgresql.org/)"
+              stability: release_candidate
             - id: redis
               value: "redis"
-              brief: "Redis"
-              stability: experimental
-            - id: redshift
-              value: "redshift"
-              brief: "Amazon Redshift"
-              stability: experimental
-            - id: spanner
-              value: "spanner"
-              brief: "Cloud Spanner"
-              stability: experimental
+              brief: "[Redis](https://redis.io/)"
+              stability: development
+            - id: sap.hana
+              value: "sap.hana"
+              brief: "[SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html)"
+              stability: development
+            - id: sap.maxdb
+              value: "sap.maxdb"
+              brief: "[SAP MaxDB](https://maxdb.sap.com/)"
+              stability: development
             - id: sqlite
               value: "sqlite"
-              brief: "SQLite"
-              stability: experimental
-            - id: sybase
-              value: "sybase"
-              brief: "Sybase"
-              stability: experimental
+              brief: "[SQLite](https://www.sqlite.org/)"
+              stability: development
             - id: teradata
               value: "teradata"
-              brief: "Teradata"
-              stability: experimental
+              brief: "[Teradata](https://www.teradata.com/)"
+              stability: development
             - id: trino
               value: "trino"
-              brief: "Trino"
-              stability: experimental
-            - id: vertica
-              value: "vertica"
-              brief: "Vertica"
-              stability: experimental
-        stability: experimental  # RELEASE CANDIDATE
+              brief: "[Trino](https://trino.io/)"
+              stability: development
+        stability: release_candidate
       - id: db.client.connection.state
         stability: experimental
         type:
@@ -405,193 +327,3 @@ groups:
           Instrumentations that generate connection pool name following different patterns
           SHOULD document it.
         examples: ["myDataSource"]
-  - id: registry.db.cassandra
-    type: attribute_group
-    display_name: Cassandra Attributes
-    brief: >
-      This group defines attributes for Cassandra.
-    attributes:
-      - id: db.cassandra.coordinator.dc
-        type: string
-        stability: experimental
-        brief: >
-          The data center of the coordinating node for a query.
-        examples: "us-west-2"
-      - id: db.cassandra.coordinator.id
-        type: string
-        stability: experimental
-        brief: >
-          The ID of the coordinating node for a query.
-        examples: "be13faa2-8574-4d71-926d-27f16cf8a7af"
-      - id: db.cassandra.consistency_level
-        brief: >
-          The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
-        type:
-          members:
-            - id: all
-              value: "all"
-              stability: experimental
-            - id: each_quorum
-              value: "each_quorum"
-              stability: experimental
-            - id: quorum
-              value: "quorum"
-              stability: experimental
-            - id: local_quorum
-              value: "local_quorum"
-              stability: experimental
-            - id: one
-              value: "one"
-              stability: experimental
-            - id: two
-              value: "two"
-              stability: experimental
-            - id: three
-              value: "three"
-              stability: experimental
-            - id: local_one
-              value: "local_one"
-              stability: experimental
-            - id: any
-              value: "any"
-              stability: experimental
-            - id: serial
-              value: "serial"
-              stability: experimental
-            - id: local_serial
-              value: "local_serial"
-              stability: experimental
-        stability: experimental
-      - id: db.cassandra.idempotence
-        type: boolean
-        stability: experimental
-        brief: >
-          Whether or not the query is idempotent.
-      - id: db.cassandra.page_size
-        type: int
-        stability: experimental
-        brief: >
-          The fetch size used for paging, i.e. how many rows will be returned at once.
-        examples: [5000]
-      - id: db.cassandra.speculative_execution_count
-        type: int
-        stability: experimental
-        brief: >
-          The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively.
-        examples: [0, 2]
-  - id: registry.db.cosmosdb
-    type: attribute_group
-    display_name: Azure Cosmos DB Attributes
-    stability: experimental
-    brief: >
-      This group defines attributes for Azure Cosmos DB.
-    attributes:
-      - id: db.cosmosdb.client_id
-        type: string
-        stability: experimental
-        brief: Unique Cosmos client instance id.
-        examples: "3ba4827d-4422-483f-b59f-85b74211c11d"
-      - id: db.cosmosdb.connection_mode
-        type:
-          members:
-            - id: gateway
-              value: "gateway"
-              brief: Gateway (HTTP) connections mode
-              stability: experimental
-            - id: direct
-              value: "direct"
-              brief: Direct connection.
-              stability: experimental
-        stability: experimental
-        brief: Cosmos client connection mode.
-      - id: db.cosmosdb.operation_type
-        type:
-          members:
-            - id: batch
-              value: "batch"
-              stability: experimental
-            - id: create
-              value: "create"
-              stability: experimental
-            - id: delete
-              value: "delete"
-              stability: experimental
-            - id: execute
-              value: "execute"
-              stability: experimental
-            - id: execute_javascript
-              value: "execute_javascript"
-              stability: experimental
-            - id: invalid
-              value: "invalid"
-              stability: experimental
-            - id: head
-              value: "head"
-              stability: experimental
-            - id: head_feed
-              value: "head_feed"
-              stability: experimental
-            - id: patch
-              value: "patch"
-              stability: experimental
-            - id: query
-              value: "query"
-              stability: experimental
-            - id: query_plan
-              value: "query_plan"
-              stability: experimental
-            - id: read
-              value: "read"
-              stability: experimental
-            - id: read_feed
-              value: "read_feed"
-              stability: experimental
-            - id: replace
-              value: "replace"
-              stability: experimental
-            - id: upsert
-              value: "upsert"
-              stability: experimental
-        stability: experimental
-        brief: Cosmos DB Operation Type.
-      - id: db.cosmosdb.request_charge
-        type: double
-        stability: experimental
-        brief: RU consumed for that operation
-        examples: [46.18, 1.0]
-      - id: db.cosmosdb.request_content_length
-        type: int
-        stability: experimental
-        brief: Request payload size in bytes
-      - id: db.cosmosdb.sub_status_code
-        type: int
-        stability: experimental
-        brief: Cosmos DB sub status code.
-        examples: [1000, 1002]
-  - id: registry.db.elasticsearch
-    type: attribute_group
-    display_name: Elasticsearch Attributes
-    brief: >
-      This group defines attributes for Elasticsearch.
-    attributes:
-      - id: db.elasticsearch.node.name
-        type: string
-        stability: experimental
-        brief: >
-          Represents the human-readable identifier of the node/instance to which a request was routed.
-        examples: ["instance-0000000001"]
-      - id: db.elasticsearch.path_parts
-        type: template[string]
-        stability: experimental
-        brief: >
-          A dynamic value in the url path.
-        note: >
-          Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format
-          `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD
-          reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)
-          in order to map the path part values to their names.
-        examples:
-          [
-            "db.elasticsearch.path_parts.index=test-index",
-            "db.elasticsearch.path_parts.doc_id=123",
-          ]

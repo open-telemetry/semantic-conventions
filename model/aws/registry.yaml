@@ -3,15 +3,21 @@ groups:
     type: attribute_group
     display_name: General AWS Attributes
     brief: >
-      This document defines generic attributes for AWS services.
+      This section defines generic attributes for AWS services.
     attributes:
       - id: aws.request_id
         type: string
         stability: experimental
-        brief: "The AWS request ID as returned in the response headers `x-amz-request-id` or `x-amz-requestid`."
+        brief: "The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`."
         examples:
           - 79b9da39-b7ae-508a-a6bc-864b2829c622
           - C9ER4AJX75574TDJ
+      - id: aws.extended_request_id
+        type: string
+        stability: experimental
+        brief: "The AWS extended request ID as returned in the response header `x-amz-id-2`."
+        examples:
+          - wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=
   - id: registry.aws.dynamodb
     type: attribute_group
     display_name: Amazon DynamoDB Attributes
@@ -303,8 +309,6 @@ groups:
         stability: experimental
         brief: >
           The ID of a running ECS task. The ID MUST be extracted from `task.arn`.
-        requirement_level:
-          conditionally_required: If and only if `task.arn` is populated.
         examples:
           [
             "10838bed-421f-43ef-870a-f43feacbbb5b",

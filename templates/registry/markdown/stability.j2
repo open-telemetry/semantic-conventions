@@ -1,7 +1,11 @@
 {% macro badge(stability, deprecated) -%}
 {%- if deprecated %}![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>{{ deprecated | trim }}
+{%- elif stability == "mixed" %}![Mixed](https://img.shields.io/badge/-mixed-yellow)
 {%- elif stability == "stable" %}![Stable](https://img.shields.io/badge/-stable-lightgreen)
+{%- elif stability == "release_candidate" %}![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
 {%- elif stability == "deprecated" %}![Deprecated](https://img.shields.io/badge/-deprecated-red)
-{%- else %}![Experimental](https://img.shields.io/badge/-experimental-blue)
+{%- elif stability == "experimental" %}![Experimental](https://img.shields.io/badge/-experimental-blue)
+{%- elif stability == "development" %}![Experimental](https://img.shields.io/badge/-experimental-blue)
+{%- else %}{{ "Unknown stability." }}
 {%- endif %}
 {%- endmacro %}

@@ -1,6 +1,7 @@
 groups:
-  - id: android
+  - id: resource.android
     type: resource
+    stability: experimental
     name: android
     brief: >
       The Android platform on which the Android application is running.

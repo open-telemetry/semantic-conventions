@@ -1,8 +1,10 @@
-# Semantic Conventions for Messaging Spans
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Spans
+--->
+
+# Semantic conventions for messaging spans
 
 **Status**: [Experimental][DocumentStatus]
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
@@ -22,6 +24,7 @@
   - [Span name](#span-name)
   - [Operation types](#operation-types)
   - [Span kind](#span-kind)
+  - [Span status](#span-status)
   - [Trace structure](#trace-structure)
     - [Producer spans](#producer-spans)
     - [Consumer spans](#consumer-spans)
@@ -36,12 +39,33 @@
 
 <!-- tocstop -->
 
-> **Warning**
+> [!Warning]
+>
 > Existing messaging instrumentations that are using
 > [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-spans.md)
-> (or prior) SHOULD NOT change the version of the messaging conventions that they emit by default
-> until a transition plan to the (future) stable semantic conventions has been published.
-> Conventions include, but are not limited to, attributes, metric and span names, and unit of measure.
+> (or prior):
+>
+> * SHOULD NOT change the version of the messaging conventions that they emit by default
+>   until the messaging semantic conventions are marked stable.
+>   Conventions include, but are not limited to, attributes,
+>   metric and span names, span kind and unit of measure.
+> * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
+>   in the existing major version which is a comma-separated list of values.
+>   The list of values includes:
+>   * `messaging` - emit the new, stable messaging conventions,
+>     and stop emitting the old experimental messaging conventions
+>     that the instrumentation emitted previously.
+>   * `messaging/dup` - emit both the old and the stable messaging conventions,
+>     allowing for a seamless transition.
+>   * The default behavior (in the absence of one of these values) is to continue
+>     emitting whatever version of the old experimental messaging conventions
+>     the instrumentation was emitting previously.
+>   * Note: `messaging/dup` has higher precedence than `messaging` in case both values are present
+> * SHOULD maintain (security patching at a minimum) the existing major version
+>   for at least six months after it starts emitting both sets of conventions.
+> * SHOULD drop the environment variable in the next major version.
+> * SHOULD emit the new, stable values for span name, span kind and similar "single"
+> valued concepts when `messaging/dup` is present in the list.
 
 ## Definitions
 
@@ -166,23 +190,28 @@ in such a way that it cannot be changed by intermediaries.
 
 ### Span name
 
-Messaging spans SHOULD follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#span).
+Messaging spans SHOULD follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/trace/api.md#span).
 
 <!-- markdown-link-check-disable -->
 <!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
-The **span name** SHOULD be `{messaging.operation.name} {destination}` (see below for the exact definition of the [`{destination}`](#destination-placeholder) placeholder).
+The **span name** SHOULD be `{messaging.operation.name} {destination}`
+(see below for the exact definition of the [`{destination}`](#destination-placeholder) placeholder).
 <!-- markdown-link-check-enable -->
 
-Semantic conventions for individual messaging systems MAY specify different span name format and then MUST document it in semantic conventions for specific messaging technologies.
+Semantic conventions for individual messaging systems MAY specify different
+span name format and then MUST document it in semantic conventions
+for specific messaging technologies.
 
-The <span id="destination-placeholder">`{destination}`</span> SHOULD describe the entity that the operation is performed against
+The <span id="destination-placeholder">`{destination}`</span>
+SHOULD describe the entity that the operation is performed against
 and SHOULD adhere to one of the following values, provided they are accessible:
 
 1. `messaging.destination.template` SHOULD be used when it is available.
 2. `messaging.destination.name` SHOULD be used when the destination is known to be neither [temporary nor anonymous](#temporary-and-anonymous-destinations).
 3. `server.address:server.port` SHOULD be used only for operations not targeting any specific destination(s).
 
-If a corresponding `{destination}` value is not available for a specific operation, the instrumentation SHOULD omit the `{destination}`.
+If a (low-cardinality) corresponding `{destination}` value is not available for
+a specific operation, the instrumentation SHOULD omit the `{destination}`.
 
 Examples:
 
@@ -220,6 +249,11 @@ Span kind SHOULD be set according to the following table, based on the operation
 
 Setting span kinds according to this table allows analysis tools to interpret spans
 and relationships between them without the need for additional semantic hints.
+
+### Span status
+
+Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
+details on how to record span status.
 
 ### Trace structure
 
@@ -335,7 +369,7 @@ Messaging attributes are organized into the following namespaces:
 
 Messaging system-specific attributes MUST be defined in the corresponding `messaging.{system}` namespace.
 
-<!-- semconv messaging -->
+<!-- semconv span.messaging -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -366,9 +400,9 @@ Messaging system-specific attributes MUST be defined in the corresponding `messa
 | [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [17] | `1439` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`messaging.message.envelope.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body and metadata in bytes. [18] | `2738` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
+**[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
-**[2]:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[2] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
@@ -388,41 +422,41 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[3]:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
+**[3] `messaging.batch.message_count`:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
-**[4]:** If the span describes an operation on a batch of messages.
+**[4] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
-**[5]:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system.
+**[5] `messaging.consumer.group.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system.
 
-**[6]:** If value is `true`. When missing, the value is assumed to be `false`.
+**[6] `messaging.destination.anonymous`:** If value is `true`. When missing, the value is assumed to be `false`.
 
-**[7]:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+**[7] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[8]:** If span describes operation on a single message or if the value applies to all messages in the batch.
+**[8] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[9]:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.destination.subscription.name` is applicable and what it means in the context of that system.
+**[9] `messaging.destination.subscription.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.destination.subscription.name` is applicable and what it means in the context of that system.
 
-**[10]:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[10] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[11]:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
+**[11] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[12]:** If value is `true`. When missing, the value is assumed to be `false`.
+**[12] `messaging.destination.temporary`:** If value is `true`. When missing, the value is assumed to be `false`.
 
-**[13]:** If a custom value is used, it MUST be of low cardinality.
+**[13] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[14]:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[14] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
-**[15]:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
+**[15] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[16]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[16] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[17]:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[17] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
-**[18]:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
+**[18] `messaging.message.envelope.size`:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
 size should be used.
 
 The following attributes can be important for making sampling decisions
@@ -439,11 +473,15 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
 
+---
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -454,6 +492,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -576,7 +616,7 @@ flowchart LR;
 | Links |  |  | Span Send A, Span Send B |
 | Link attributes |  |  | Span Send A: `messaging.message.id`: `"a1"`  |
 |                 |  |  | Span Send B: `messaging.message.id`: `"a2"`  |
-| SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` |
+| SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
@@ -625,7 +665,7 @@ flowchart LR;
 | Span name | `create Q` | `create Q` | `send Q` | `poll Q` | `poll Q` |
 | Parent |  | | | | |
 | Links |  |  |  | Span Create A | Span Create B |
-| SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` | `CONSUMER` | `CONSUMER` |
+| SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` | `CLIENT` | `CLIENT` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
@@ -670,7 +710,7 @@ flowchart LR;
 | Span name | `send Q` | `poll Q` | `poll Q` |
 | Parent | | | |
 | Links |  | Span Publish | Span Publish |
-| SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` |
+| SpanKind | `PRODUCER` | `CLIENT` | `CLIENT` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
