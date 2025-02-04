@@ -265,7 +265,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `process.open_file_descriptor.count` | UpDownCounter | `{open_file_descriptor}` | Number of file descriptors in use by the process. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.open_file_descriptor.count` | UpDownCounter | `{file_descriptor}` | Number of file descriptors in use by the process. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
