@@ -1,7 +1,7 @@
 groups:
   - id: trace.gen_ai.client.common_attributes
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: >
       Describes GenAI operation span.
     attributes:
@@ -28,9 +28,12 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.request.seed
         requirement_level:
-          conditionally_required: if appliable and if the request includes a seed
+          conditionally_required: if applicable and if the request includes a seed
       - ref: gen_ai.request.encoding_formats
         requirement_level: recommended
+      - ref: gen_ai.output.type
+        requirement_level:
+          conditionally_required: when applicable and if the request includes an output format.
       - ref: gen_ai.response.id
         requirement_level: recommended
       - ref: gen_ai.response.model
@@ -61,7 +64,7 @@ groups:
           Instrumentations SHOULD document the list of errors they report.
   - id: span.gen_ai.client
     type: span
-    stability: experimental
+    stability: development
     span_kind: client
     brief: >
       Describes GenAI operation span.
@@ -76,18 +79,37 @@ groups:
       - gen_ai.content.prompt
       - gen_ai.content.completion
 
-  - id: span.gen_ai.openai.client
+  - id: attributes.gen_ai.openai_based
     extends: trace.gen_ai.client.common_attributes
-    stability: experimental
+    type: attribute_group
+    stability: development
+    brief: >
+      Describes attributes that are common to OpenAI-based Generative AI services.
+    attributes:
+      - ref: gen_ai.output.type
+        note: >
+          This attribute SHOULD be set to the output type requested by the client:
+          - `json` for structured outputs with defined or undefined schema
+          - `image` for image output
+          - `speech` for speech output
+          - `text` for plain text output
+
+          The attribute specifies the output modality and not the actual output format.
+          For example, if an image is requested, the actual output could be a
+          URL pointing to an image file.
+
+          Additional output format details may be recorded in the future in the
+          `gen_ai.output.{type}.*` attributes.
+  - id: span.gen_ai.openai.client
+    extends: attributes.gen_ai.openai_based
+    stability: development
     span_kind: client
+    type: span
     brief: >
       Describes an OpenAI operation span.
     attributes:
       - ref: gen_ai.request.model
         requirement_level: required
-      - ref: gen_ai.openai.request.response_format
-        requirement_level:
-          conditionally_required: if the request includes a response_format
       - ref: gen_ai.openai.request.service_tier
         requirement_level:
           conditionally_required: if the request includes a service_tier and the value is not 'auto'
@@ -101,10 +123,12 @@ groups:
       - ref: gen_ai.usage.output_tokens
         brief: The number of tokens used in the completions from OpenAI.
 
-  - id: trace.gen_ai.az.ai.inference.client
-    extends: trace.gen_ai.client.common_attributes
-    stability: experimental
-    type: attribute_group
+
+  - id: span.gen_ai.az.ai.inference.client
+    extends: attributes.gen_ai.openai_based
+    stability: development
+    type: span
+    span_kind: client
     brief: >
       Describes Azure AI Inference span attributes.
     attributes:

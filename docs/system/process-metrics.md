@@ -15,8 +15,6 @@ measurements from the operating system. For runtime environment metrics see
 [semantic conventions for runtime environment
 metrics](/docs/runtime/README.md#metrics).
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [Process Metrics](#process-metrics)
@@ -267,7 +265,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `process.open_file_descriptor.count` | UpDownCounter | `{count}` | Number of file descriptors in use by the process. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.open_file_descriptor.count` | UpDownCounter | `{file_descriptor}` | Number of file descriptors in use by the process. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -287,7 +285,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `process.context_switches` | Counter | `{count}` | Number of times the process has been context switched. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `process.context_switches` | Counter | `{context_switch}` | Number of times the process has been context switched. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

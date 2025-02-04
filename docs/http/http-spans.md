@@ -10,8 +10,6 @@ This document defines semantic conventions for HTTP client and server Spans.
 They can be used for http and https schemes
 and various HTTP versions like 1.1, 2 and SPDY.
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [Name](#name)

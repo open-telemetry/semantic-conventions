@@ -6,8 +6,6 @@ linkTitle: Spans
 
 **Status**: [Experimental][DocumentStatus]
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [Definitions](#definitions)

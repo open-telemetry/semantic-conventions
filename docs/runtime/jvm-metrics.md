@@ -8,8 +8,6 @@ linkTitle: JVM
 
 This document describes semantic conventions for JVM metrics in OpenTelemetry.
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [JVM Memory](#jvm-memory)

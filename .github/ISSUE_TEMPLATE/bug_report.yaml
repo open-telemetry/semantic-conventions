@@ -45,6 +45,7 @@ body:
         - area:dns
         - area:dotnet
         - area:elasticsearch
+        - area:enduser
         - area:error
         - area:exception
         - area:faas

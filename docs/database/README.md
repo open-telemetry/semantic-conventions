@@ -1,8 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Database
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/database/_index.md
-  to: database/README.md
 --->
 
 # Semantic conventions for database calls and systems

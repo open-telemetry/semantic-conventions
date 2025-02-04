@@ -8,9 +8,6 @@ cascade:
 cSpell:ignore: semconv CICD
 auto_gen: below
 linkTitle: Semantic conventions
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/_index.md
-  to: README.md
 --->
 
 # OpenTelemetry semantic conventions

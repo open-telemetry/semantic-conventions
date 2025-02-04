@@ -8,8 +8,6 @@ linkTitle: DNS
 
 This document defines semantic conventions to apply when instrumenting DNS queries.
 
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
-
 <!-- toc -->
 
 - [Metrics](#metrics)

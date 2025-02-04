@@ -1,8 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Azure
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/azure/_index.md
-  to: azure/README.md
 --->
 
 # Semantic conventions for Azure resource logs
