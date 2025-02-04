@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Logs
+--->
+
 # AWS logs
 
 <!-- semconv resource.aws.log -->
