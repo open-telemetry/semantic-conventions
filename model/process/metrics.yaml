@@ -81,7 +81,7 @@ groups:
     stability: experimental
     brief: "Number of file descriptors in use by the process."
     instrument: updowncounter
-    unit: "{count}"
+    unit: "{file_descriptor}"
 
   - id: metric.process.context_switches
     type: metric
@@ -89,7 +89,7 @@ groups:
     stability: experimental
     brief: "Number of times the process has been context switched."
     instrument: counter
-    unit: "{count}"
+    unit: "{context_switch}"
     attributes:
       - ref: process.context_switch_type
 
