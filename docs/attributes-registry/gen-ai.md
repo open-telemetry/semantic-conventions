@@ -36,7 +36,7 @@ This document defines the attributes used to describe telemetry in the context o
 | <a id="gen-ai-token-type" href="#gen-ai-token-type">`gen_ai.token.type`</a> | string | The type of token being counted. | `input`; `output` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-tool-call-id" href="#gen-ai-tool-call-id">`gen_ai.tool.call.id`</a> | string | The tool call identifier. | `call_mszuSIzqtI65i1wAUOE8w5H4` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-tool-name" href="#gen-ai-tool-name">`gen_ai.tool.name`</a> | string | Name of the tool utilized by the agent. | `Flights` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-tool-type" href="#gen-ai-tool-type">`gen_ai.tool.type`</a> | string | Type of the tool utilized by the agent [4] | `function`; `extension`; `datastore` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-tool-type" href="#gen-ai-tool-type">`gen_ai.tool.type`</a> | string | Type of the tool utilized by the agent [5] | `function`; `extension`; `datastore` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-usage-input-tokens" href="#gen-ai-usage-input-tokens">`gen_ai.usage.input_tokens`</a> | int | The number of tokens used in the GenAI input (prompt). | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-usage-output-tokens" href="#gen-ai-usage-output-tokens">`gen_ai.usage.output_tokens`</a> | int | The number of tokens used in the GenAI response (completion). | `180` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -60,7 +60,7 @@ attribute may help identify the actual system in use for `openai`.
 For custom model, a custom friendly name SHOULD be used.
 If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
-**[4] `gen_ai.tool.type`:** Extension: A tool executed on the agent-side to directly call external APIs, bridging the gap between the agent and real-world systems.
+**[5] `gen_ai.tool.type`:** Extension: A tool executed on the agent-side to directly call external APIs, bridging the gap between the agent and real-world systems.
   Agent-side operations involve actions that are performed by the agent on the server or within the agent's controlled environment.
 Function: A tool executed on the client-side, where the agent generates parameters for a predefined function, and the client executes the logic.
   Client-side operations are actions taken on the user's end or within the client application.
