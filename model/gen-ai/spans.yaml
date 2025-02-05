@@ -164,6 +164,12 @@ groups:
       - ref: gen_ai.agent.id
         requirement_level:
           conditionally_required: if applicable.
+      - ref: gen_ai.agent.version
+        requirement_level:
+          conditionally_required: if applicable.
+      - ref: gen_ai.agent.role
+        requirement_level:
+          conditionally_required: if applicable.
       - ref: gen_ai.agent.name
         requirement_level:
           conditionally_required: If provided by the application.
