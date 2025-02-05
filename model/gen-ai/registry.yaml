@@ -182,6 +182,42 @@ groups:
               brief: 'Output tokens (completion, response, etc.)'
         brief: The type of token being counted.
         examples: ['input', 'output']
+      - id: gen_ai.agent.id   # alternatives: assistant (openai)
+        stability: development
+        type: string
+        brief: The unique identifier of the GenAI agent.
+        examples: ['asst_5j66UpCpwteGg4YSxUnt7lPY']
+      - id: gen_ai.agent.name
+        stability: development
+        type: string
+        brief: Human-readable name of the GenAI agent provided by the application.
+        examples: ["Math Tutor", "Fiction Writer"]
+      - id: gen_ai.agent.description
+        stability: development
+        type: string
+        brief: Free-form description of the GenAI agent provided by the application.
+        examples: ["Helps with math problems", "Generates fiction stories"]
+      - id: gen_ai.tool.name
+        stability: development
+        type: string
+        brief: Name of the tool utilized by the agent.
+        examples: ["Flights"]
+      - id: gen_ai.tool.call.id
+        stability: development
+        type: string
+        brief: The tool call identifier.
+        examples: ['call_mszuSIzqtI65i1wAUOE8w5H4']
+      - id: gen_ai.tool.type
+        stability: development
+        type: string
+        brief: Type of the tool utilized by the agent
+        note: >
+          Extension: A tool executed on the agent-side to directly call external APIs, bridging the gap between the agent and real-world systems.
+            Agent-side operations involve actions that are performed by the agent on the server or within the agent's controlled environment.
+          Function: A tool executed on the client-side, where the agent generates parameters for a predefined function, and the client executes the logic.
+            Client-side operations are actions taken on the user's end or within the client application.
+          Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
+        examples: ['function', 'extension', 'datastore']
       - id: gen_ai.operation.name
         stability: experimental
         type:
@@ -197,6 +233,14 @@ groups:
             - id: embeddings
               value: "embeddings"
               brief: 'Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create)'
+              stability: experimental
+            - id: create_agent
+              value: "create_agent"
+              brief: 'Create GenAI agent'
+              stability: experimental
+            - id: execute_tool
+              value: "execute_tool"
+              brief: 'Execute a tool'
               stability: experimental
         brief: The name of the operation being performed.
         note: >

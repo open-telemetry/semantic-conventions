@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: MSSQL
+linkTitle: SQL Server
 --->
 
-# Semantic conventions for MSSQL
+# Semantic conventions for Microsoft SQL Server
 
 **Status**: [Release Candidate][DocumentStatus]
 
