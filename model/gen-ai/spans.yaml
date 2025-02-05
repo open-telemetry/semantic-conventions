@@ -146,3 +146,65 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: If not default (443).
+
+  - id: span.gen_ai.client.create_agent
+    type: span
+    stability: experimental
+    brief: >
+      Describes GenAI agent creation and is usually applicable when working
+      with remote agent services.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `create_agent`.
+      The **span name** SHOULD be `create_agent {gen_ai.agent.name}`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+    extends: trace.gen_ai.client.common_attributes
+    attributes:
+      - ref: gen_ai.system
+        requirement_level: required
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: if applicable.
+      - ref: gen_ai.agent.name
+        requirement_level:
+          conditionally_required: If provided by the application.
+      - ref: gen_ai.agent.description
+        requirement_level:
+          conditionally_required: If provided by the application.
+      - ref: gen_ai.request.model
+        requirement_level:
+          conditionally_required: If provided by the application.
+        note: >
+            The name of the GenAI model a request is being made to. If the model is supplied by a vendor,
+            then the value must be the exact name of the model requested. If the model is a fine-tuned
+            custom model, the value should have a more specific name than the base model that's been fine-tuned.
+      - ref: gen_ai.request.temperature
+        requirement_level:
+          conditionally_required: If provided by the application.
+      - ref: gen_ai.request.top_p
+        requirement_level:
+          conditionally_required: If provided by the application.
+
+  - id: span.gen_ai.client.execute_tool
+    type: span
+    stability: experimental
+    brief: Describes tool execution span.
+    note: |
+      `gen_ai.operation.name` SHOULD be `execute_tool`.
+      Span name SHOULD be `execute_tool {gen_ai.tool.name}`.
+      GenAI instrumentations that are able to instrument tool execution call SHOULD do so.
+      However, it's common for tools to be executed by the application code. It's recommended
+      for the application developers to follow this semantic conventions for tool invoked
+      by the application code.
+    attributes:
+      - ref: gen_ai.tool.name
+        requirement_level: recommended
+      - ref: gen_ai.tool.call.id
+        requirement_level:
+          recommended: if available
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
+        note: |
+          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
