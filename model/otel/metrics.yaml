@@ -7,8 +7,8 @@ groups:
     instrument: updowncounter
     unit: "{span}"
     note: |
-      For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
-      For spans with `recording=false` implementations SHOULD record this metric, they MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count` or none.
+      For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
+      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.ended.count` or not declare none.
     attributes:
       - ref: otel.span.sampling_result
 
@@ -20,7 +20,7 @@ groups:
     instrument: counter
     unit: "{span}"
     note: |
-      For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
+      For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
       For spans with `recording=false` implementations SHOULD record this metric, they MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count` or none.
     attributes:
       - ref: otel.span.sampling_result
@@ -57,7 +57,7 @@ groups:
     stability: development
     brief: "The number of spans for which the processing has finished, either successful or failed"
     note: |
-      For successful processing, `error.type` must be empty. For failed processing, `error.type` must contain the failure cause.
+      For successful processing, `error.type` SHOULD NOT be set. For failed processing, `error.type` must contain the failure cause.
       For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
     instrument: counter
     unit: "{span}"
