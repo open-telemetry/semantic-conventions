@@ -16,7 +16,7 @@ groups:
       - id: android.state
         stability: development
         brief: >
-          This attribute represents the state the application.
+          This attribute represents the state of the application.
         note: >
           The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc),
           and from which the `OS identifiers` are derived.
