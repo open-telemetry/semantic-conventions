@@ -14,7 +14,6 @@ groups:
           [here](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels).
         examples: ['33', '32']
       - id: android.state
-        type: enum
         stability: development
         brief: >
           This attribute represents the state the application.
