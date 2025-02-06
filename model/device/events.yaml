@@ -24,12 +24,12 @@ groups:
           The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate),
           and from which the `OS terminology` column values are derived.
         brief: >
-          This attribute represents the state the application has transitioned into at the occurrence of the event.
+          This attribute represents the state of the application.
       - ref: android.state
         requirement_level:
           conditionally_required: if and only if `os.name` is `android`
         brief: >
-          This attribute represents the state the application has transitioned into at the occurrence of the event.
+          This attribute represents the state of the application.
         note: >
           The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc),
           and from which the `OS identifiers` are derived.
