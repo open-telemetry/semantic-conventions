@@ -65,7 +65,6 @@ groups:
           The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc),
           and from which the `OS identifiers` are derived.
         examples: ["created"]
-        type: enumeration
         members:
           - id: created
             value: 'created'
