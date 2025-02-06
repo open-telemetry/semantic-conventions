@@ -40,8 +40,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `otel.sdk.span.live.count` | UpDownCounter | `{span}` | The number of created spans for which the end operation has not been called yet [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
-For spans with `recording=false` implementations SHOULD record this metric, they MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count` or none.
+**[1]:** For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
+For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.ended.count`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -77,8 +77,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `otel.sdk.span.ended.count` | Counter | `{span}` | The number of created spans for which the end operation was called [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** For spans with `recording=true` implementations MUST record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
-For spans with `recording=false` implementations SHOULD record this metric, they MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count` or none.
+**[1]:** For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
+For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.live.count`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -226,7 +226,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `otel.sdk.processor.span.processed.count` | Counter | `{span}` | The number of spans for which the processing has finished, either successful or failed [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** For successful processing, `error.type` must be empty. For failed processing, `error.type` must contain the failure cause.
+**[1]:** For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` must contain the failure cause.
 For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -312,7 +312,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `otel.sdk.exporter.span.inflight.count` | UpDownCounter | `{span}` | The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed) [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** For successful exports, `error.type` must be empty. For failed exports, `error.type` must contain the failure cause.
+**[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -374,7 +374,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `otel.sdk.exporter.span.exported.count` | Counter | `{span}` | The number of spans for which the export has finished, either successful or failed [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1]:** For successful exports, `error.type` must be empty. For failed exports, `error.type` must contain the failure cause.
+**[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
 For exporters with partial success semantics (e.g. OTLP with `rejected_spans`), rejected spans must count as failed and only non-rejected spans count as success.
 If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
 

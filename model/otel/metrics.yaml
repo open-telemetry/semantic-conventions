@@ -8,7 +8,7 @@ groups:
     unit: "{span}"
     note: |
       For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
-      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.ended.count` or not declare none.
+      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.ended.count`.
     attributes:
       - ref: otel.span.sampling_result
 
@@ -21,7 +21,7 @@ groups:
     unit: "{span}"
     note: |
       For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
-      For spans with `recording=false` implementations SHOULD record this metric, they MUST either record both `metric.otel.sdk.span.live.count` and `otel.sdk.span.ended.count` or none.
+      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.live.count`.
     attributes:
       - ref: otel.span.sampling_result
 
@@ -57,7 +57,7 @@ groups:
     stability: development
     brief: "The number of spans for which the processing has finished, either successful or failed"
     note: |
-      For successful processing, `error.type` SHOULD NOT be set. For failed processing, `error.type` must contain the failure cause.
+      For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` must contain the failure cause.
       For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
     instrument: counter
     unit: "{span}"
@@ -75,7 +75,7 @@ groups:
     stability: development
     brief: "The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
     note: |
-      For successful exports, `error.type` must be empty. For failed exports, `error.type` must contain the failure cause.
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
     instrument: updowncounter
     unit: "{span}"
     attributes:
@@ -94,7 +94,7 @@ groups:
     stability: development
     brief: "The number of spans for which the export has finished, either successful or failed"
     note: |
-      For successful exports, `error.type` must be empty. For failed exports, `error.type` must contain the failure cause.
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
       For exporters with partial success semantics (e.g. OTLP with `rejected_spans`), rejected spans must count as failed and only non-rejected spans count as success.
       If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
     instrument: counter
