@@ -9,7 +9,7 @@ groups:
         stability: experimental
         deprecated: "Moved to a payload field of `device.app.lifecycle`."
         note: >
-          The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902),
+          The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate),
           and from which the `OS terminology` column values are derived.
         brief: >
           Deprecated use the `device.app.lifecycle` event definition including
