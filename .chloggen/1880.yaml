@@ -6,4 +6,3 @@ subtext: |
   The `device.app.lifecycle` event has been reworked to use attributes instead
   of event body fields. The `ios.state` and `android.state` attributes have
   been reintroduced to the attribute registry.
-
