@@ -12,7 +12,6 @@ groups:
         note: >
           The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate),
           and from which the `OS terminology` column values are derived.
-        type: enumeration
         members:
           - id: active
             value: 'active'
