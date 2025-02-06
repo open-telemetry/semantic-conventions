@@ -10,7 +10,7 @@ The Android platform on which the Android application is running.
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="android-os-api-level" href="#android-os-api-level">`android.os.api_level`</a> | string | Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found [here](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels). | `33`; `32` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="android-state" href="#android-state">`android.state`</a> | string | This attribute represents the state the application. [1] | `created` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="android-state" href="#android-state">`android.state`</a> | string | This attribute represents the state of the application. [1] | `created` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `android.state`:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
 
