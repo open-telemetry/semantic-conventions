@@ -18,7 +18,6 @@ groups:
       `os.name` value.
     attributes:
       - ref: ios.state
-        stability: development
         requirement_level:
           conditionally_required: if and only if `os.name` is `ios`
         note: >
@@ -27,7 +26,6 @@ groups:
         brief: >
           This attribute represents the state the application has transitioned into at the occurrence of the event.
       - ref: android.state
-        stability: development
         requirement_level:
           conditionally_required: if and only if `os.name` is `android`
         brief: >
