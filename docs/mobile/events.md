@@ -43,8 +43,8 @@ The `android.state` and `ios.state` fields are mutually exclusive and MUST NOT b
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`android.state`](/docs/attributes-registry/android.md) | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `created` | `Conditionally Required` if and only if `os.name` is `android` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`ios.state`](/docs/attributes-registry/ios.md) | string | This attribute represents the state the application has transitioned into at the occurrence of the event. [2] | `active`; `inactive`; `background` | `Conditionally Required` if and only if `os.name` is `ios` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`android.state`](/docs/attributes-registry/android.md) | string | This attribute represents the state of the application. [1] | `created` | `Conditionally Required` if and only if `os.name` is `android` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`ios.state`](/docs/attributes-registry/ios.md) | string | This attribute represents the state of the application. [2] | `active`; `inactive`; `background` | `Conditionally Required` if and only if `os.name` is `ios` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `android.state`:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
 
