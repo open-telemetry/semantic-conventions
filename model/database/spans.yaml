@@ -9,11 +9,10 @@ groups:
       #   sampling_relevant: true
       - ref: db.operation.name
         sampling_relevant: true
-        requirement_level:  # TODO (trask) simplify
+        requirement_level:
           conditionally_required: >
             If readily available and if there is a single operation name that describes the
-            database call. The operation name MAY be parsed from the query text,
-            in which case it SHOULD be the single operation name found in the query.
+            database call.
       - ref: db.operation.batch.size
       - ref: server.address
         sampling_relevant: true
@@ -273,7 +272,8 @@ groups:
       - ref: db.collection.name
         brief: The name of the Cassandra table that the operation is acting upon.
         note: |
-          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+          It is RECOMMENDED to capture the value as provided by the application
+          without attempting to do any case normalization.
 
           For batch operations, if the individual operations are known to have the same collection name
           then that collection name SHOULD be used.
@@ -321,10 +321,12 @@ groups:
         examples: ['mytable', 'ns:table']
       - ref: db.operation.name
         note: |
+          It is RECOMMENDED to capture the value as provided by the application
+          without attempting to do any case normalization.
+
           For batch operations, if the individual operations are known to have the same operation name
           then that operation name SHOULD be used prepended by `BATCH `,
-          otherwise `db.operation.name` SHOULD be `BATCH` or some other database
-          system specific term if more applicable.
+          otherwise `db.operation.name` SHOULD be `BATCH`.
         requirement_level:
           conditionally_required: If readily available.
       - ref: db.response.status_code
@@ -467,6 +469,9 @@ groups:
           The MongoDB collection being accessed within the database stated in `db.namespace`.
         note: >
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+          For batch operations, if the individual operations are known to have the same collection name
+          then that collection name SHOULD be used.
         requirement_level: required
       - ref: db.namespace
         sampling_relevant: true
@@ -499,6 +504,10 @@ groups:
         note: >
           The `db.operation.name` SHOULD match the endpoint identifier provided in the request
           (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
+
+          For batch operations, if the individual operations are known to have the same operation name
+          then that operation name SHOULD be used prepended by `bulk `,
+          otherwise `db.operation.name` SHOULD be `bulk`.
         examples: [ 'search', 'ml.close_job', 'cat.aliases' ]
       - ref: url.full
         sampling_relevant: true

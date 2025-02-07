@@ -46,6 +46,7 @@ The following table outlines the span attributes applicable to MongoDB.
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used.
 
 **[2] `db.response.status_code`:** All MongoDB error codes SHOULD be considered errors.
 

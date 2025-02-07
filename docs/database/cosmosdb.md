@@ -342,7 +342,7 @@ Explaining bucket configuration:
 |---|---|---|---|---|---|
 | [`azure.cosmosdb.consistency.level`](/docs/attributes-registry/azure.md) | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`azure.cosmosdb.response.sub_status_code`](/docs/attributes-registry/azure.md) | int | Cosmos DB sub status code. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` if available | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [2] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` If readily available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [3] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` [4] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
@@ -353,17 +353,11 @@ Explaining bucket configuration:
 
 **[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-The collection name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single collection name present.
-
-For batch operations, if the individual operations are known to have the same collection name
-then that collection name SHOULD be used.
-
 **[2] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
 The operation name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single operation name present.
+when the database system supports cross-table queries in non-batch operations.
 
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,

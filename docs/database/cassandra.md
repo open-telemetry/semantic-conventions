@@ -53,12 +53,13 @@ The following table outlines the span attributes applicable to Cassandra.
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [17] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [18] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
-**[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
 
 For batch operations, if the individual operations are known to have the same collection name
 then that collection name SHOULD be used.
 
-**[2] `db.collection.name`:** If readily available and if a database call is performed on a single collection. The collection name MAY be parsed from the query text, in which case it SHOULD be the single collection name in the query.
+**[2] `db.collection.name`:** If readily available and if a database call is performed on a single collection.
 
 **[3] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
@@ -68,14 +69,14 @@ It is RECOMMENDED to capture the value as provided by the application without at
 without attempting to do any case normalization.
 
 The operation name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single operation name present.
+when the database system supports cross-table queries in non-batch operations.
 
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,
 otherwise `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
-**[5] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[5] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call.
 
 **[6] `db.response.status_code`:** All Cassandra protocol error codes SHOULD be considered errors.
 

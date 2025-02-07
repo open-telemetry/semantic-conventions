@@ -50,7 +50,7 @@ Instrumentation SHOULD document if `db.namespace` reflects the database index pr
 **[2] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 For [transactions and pipelined calls](https://redis.io/docs/latest/develop/clients/redis-py/transpipe/), if the individual operations are known to have the same command then that command SHOULD be used prepended by `MULTI ` or `PIPELINE `. Otherwise `db.operation.name` SHOULD be `MULTI` or `PIPELINE`.
 
-**[3] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[3] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call.
 
 **[4] `db.response.status_code`:** All Redis error prefixes SHOULD be considered errors.
 

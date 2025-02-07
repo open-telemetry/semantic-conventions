@@ -47,10 +47,12 @@ The following table outlines the span attributes applicable to HBase.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[3] `db.operation.name`:** For batch operations, if the individual operations are known to have the same operation name
+**[3] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
+
+For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,
-otherwise `db.operation.name` SHOULD be `BATCH` or some other database
-system specific term if more applicable.
+otherwise `db.operation.name` SHOULD be `BATCH`.
 
 **[4] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
