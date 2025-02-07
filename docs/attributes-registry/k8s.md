@@ -17,6 +17,8 @@ Kubernetes resource attributes.
 | <a id="k8s-container-name" href="#k8s-container-name">`k8s.container.name`</a> | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="k8s-container-restart-count" href="#k8s-container-restart-count">`k8s.container.restart_count`</a> | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="k8s-container-status-last-terminated-reason" href="#k8s-container-status-last-terminated-reason">`k8s.container.status.last_terminated_reason`</a> | string | Last terminated reason of the Container. | `Evicted`; `Error` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="k8s-container-status-reason" href="#k8s-container-status-reason">`k8s.container.status.reason`</a> | string | The reason for the container state. | `ContainerCreating`; `CrashLoopBackOff`; `CreateContainerConfigError`; `ErrImagePull`; `ImagePullBackOff`; `OOMKilled`; `Completed`; `Error`; `ContainerCannotRun` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="k8s-container-status-state" href="#k8s-container-status-state">`k8s.container.status.state`</a> | string | The state of the container. | `terminated`; `running`; `waiting` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="k8s-cronjob-name" href="#k8s-cronjob-name">`k8s.cronjob.name`</a> | string | The name of the CronJob. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="k8s-cronjob-uid" href="#k8s-cronjob-uid">`k8s.cronjob.uid`</a> | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="k8s-daemonset-name" href="#k8s-daemonset-name">`k8s.daemonset.name`</a> | string | The name of the DaemonSet. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -71,6 +73,33 @@ conflict.
 
 **[2] `k8s.namespace.phase`:** This attribute aligns with the `phase` field of the
 [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
+
+---
+
+`k8s.container.status.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `` | Reason unknown. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Completed` | The container has completed execution. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ContainerCannotRun` | The container cannot run. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ContainerCreating` | The container is being created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `CrashLoopBackOff` | The container is in a crash loop back off state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `CreateContainerConfigError` | There was an error creating the container configuration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ErrImagePull` | There was an error pulling the container image. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `Error` | There was an error with the container. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ImagePullBackOff` | The container image pull is in back off state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `OOMKilled` | The container was killed due to out of memory. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+---
+
+`k8s.container.status.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `running` | The container is running. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `terminated` | The container has terminated. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `waiting` | The container is waiting. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 
