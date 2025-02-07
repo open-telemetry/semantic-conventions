@@ -11,6 +11,11 @@ groups:
       - ref: azure.cosmosdb.operation.contacted_regions
         requirement_level:
           recommended: If available
+      - ref: db.collection.name
+        brief: >
+          Cosmos DB container name.
+        note: >
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
   - id: metric.azure.cosmosdb.client.active_instance.count
     type: metric

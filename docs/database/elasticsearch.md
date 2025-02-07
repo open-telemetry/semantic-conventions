@@ -50,6 +50,7 @@ The following table outlines the span attributes applicable to Elasticsearch.
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `db.operation.name`:** The `db.operation.name` SHOULD match the endpoint identifier provided in the request (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
+For batch operations, if the individual operations are known to have the same operation name then that operation name SHOULD be used prepended by `bulk `, otherwise `db.operation.name` SHOULD be `bulk`.
 
 **[2] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)

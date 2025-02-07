@@ -2,7 +2,7 @@ groups:
   - id: metric.db.client.connections.usage
     type: metric
     metric_name: db.client.connections.usage
-    stability: experimental
+    stability: development
     deprecated: "Replaced by `db.client.connection.count`."
     brief: "Deprecated, use `db.client.connection.count` instead."
     instrument: updowncounter
@@ -16,7 +16,7 @@ groups:
   - id: metric.db.client.connections.idle.max
     type: metric
     metric_name: db.client.connections.idle.max
-    stability: experimental
+    stability: development
     deprecated: "Replaced by `db.client.connection.idle.max`."
     brief: "Deprecated, use `db.client.connection.idle.max` instead."
     instrument: updowncounter
@@ -28,7 +28,7 @@ groups:
   - id: metric.db.client.connections.idle.min
     type: metric
     metric_name: db.client.connections.idle.min
-    stability: experimental
+    stability: development
     deprecated: "Replaced by `db.client.connection.idle.min`."
     brief: "Deprecated, use `db.client.connection.idle.min` instead."
     instrument: updowncounter
@@ -40,7 +40,7 @@ groups:
   - id: metric.db.client.connections.max
     type: metric
     metric_name: db.client.connections.max
-    stability: experimental
+    stability: development
     deprecated: "Replaced by `db.client.connection.max`."
     brief: "Deprecated, use `db.client.connection.max` instead."
     instrument: updowncounter
@@ -52,7 +52,7 @@ groups:
   - id: metric.db.client.connections.pending_requests
     type: metric
     metric_name: db.client.connections.pending_requests
-    stability: experimental
+    stability: development
     deprecated: "Replaced by `db.client.connection.pending_requests`."
     brief: "Deprecated, use `db.client.connection.pending_requests` instead."
     instrument: updowncounter
@@ -64,7 +64,7 @@ groups:
   - id: metric.db.client.connections.timeouts
     type: metric
     metric_name: db.client.connections.timeouts
-    stability: experimental
+    stability: development
     deprecated: "Replaced by `db.client.connection.timeouts`."
     brief: "Deprecated, use `db.client.connection.timeouts` instead."
     instrument: counter
@@ -76,7 +76,7 @@ groups:
   - id: metric.db.client.connections.create_time
     type: metric
     metric_name: db.client.connections.create_time
-    stability: experimental
+    stability: development
     deprecated: "Replaced by `db.client.connection.create_time`. Note: the unit also changed from `ms` to `s`."
     brief: "Deprecated, use `db.client.connection.create_time` instead. Note: the unit also changed from `ms` to `s`."
     instrument: histogram
@@ -88,7 +88,7 @@ groups:
   - id: metric.db.client.connections.wait_time
     type: metric
     metric_name: db.client.connections.wait_time
-    stability: experimental
+    stability: development
     deprecated: "Replaced by `db.client.connection.wait_time`. Note: the unit also changed from `ms` to `s`."
     brief: "Deprecated, use `db.client.connection.wait_time` instead. Note: the unit also changed from `ms` to `s`."
     instrument: histogram
@@ -100,7 +100,7 @@ groups:
   - id: metric.db.client.connections.use_time
     type: metric
     metric_name: db.client.connections.use_time
-    stability: experimental
+    stability: development
     deprecated: "Replaced by `db.client.connection.use_time`. Note: the unit also changed from `ms` to `s`."
     brief: "Deprecated, use `db.client.connection.use_time` instead. Note: the unit also changed from `ms` to `s`."
     instrument: histogram
@@ -116,7 +116,7 @@ groups:
     deprecated: "Replaced by `azure.cosmosdb.client.operation.request_charge`."
     instrument: histogram
     unit: "{request_unit}"
-    stability: experimental
+    stability: development
     attributes:
       - ref: db.operation.name
         requirement_level:
@@ -149,7 +149,7 @@ groups:
     deprecated: "Replaced by `azure.cosmosdb.client.active_instance.count`."
     instrument: updowncounter
     unit: "{instance}"
-    stability: experimental
+    stability: development
     attributes:
       - ref: server.address
         brief: >

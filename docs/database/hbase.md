@@ -41,7 +41,7 @@ The following table outlines the span attributes applicable to HBase.
 | [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [8] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `db.collection.name`:** If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
+**[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization. If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
 
 **[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
@@ -50,13 +50,9 @@ It is RECOMMENDED to capture the value as provided by the application without at
 **[3] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
-The operation name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single operation name present.
-
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,
-otherwise `db.operation.name` SHOULD be `BATCH` or some other database
-system specific term if more applicable.
+otherwise `db.operation.name` SHOULD be `BATCH`.
 
 **[4] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
