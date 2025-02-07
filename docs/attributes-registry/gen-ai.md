@@ -17,9 +17,11 @@ This document defines the attributes used to describe telemetry in the context o
 | <a id="gen-ai-agent-description" href="#gen-ai-agent-description">`gen_ai.agent.description`</a> | string | Free-form description of the GenAI agent provided by the application. | `Helps with math problems`; `Generates fiction stories` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-agent-id" href="#gen-ai-agent-id">`gen_ai.agent.id`</a> | string | The unique identifier of the GenAI agent. | `asst_5j66UpCpwteGg4YSxUnt7lPY` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-agent-name" href="#gen-ai-agent-name">`gen_ai.agent.name`</a> | string | Human-readable name of the GenAI agent provided by the application. | `Math Tutor`; `Fiction Writer` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-operation-name" href="#gen-ai-operation-name">`gen_ai.operation.name`</a> | string | The name of the operation being performed. [1] | `chat`; `text_completion`; `embeddings` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-output-type" href="#gen-ai-output-type">`gen_ai.output.type`</a> | string | Represents the content type requested by the client. [2] | `text`; `json`; `image` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-request-encoding-formats" href="#gen-ai-request-encoding-formats">`gen_ai.request.encoding_formats`</a> | string[] | The encoding formats requested in an embeddings operation, if specified. [3] | `["base64"]`; `["float", "binary"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-agent-role" href="#gen-ai-agent-role">`gen_ai.agent.role`</a> | string | Roles based on job responsibilities [1] | `1.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-agent-version" href="#gen-ai-agent-version">`gen_ai.agent.version`</a> | string | Human-readable version of the GenAI agent provided by the application. [2] | `1.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-operation-name" href="#gen-ai-operation-name">`gen_ai.operation.name`</a> | string | The name of the operation being performed. [3] | `chat`; `text_completion`; `embeddings` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-output-type" href="#gen-ai-output-type">`gen_ai.output.type`</a> | string | Represents the content type requested by the client. [4] | `text`; `json`; `image` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-request-encoding-formats" href="#gen-ai-request-encoding-formats">`gen_ai.request.encoding_formats`</a> | string[] | The encoding formats requested in an embeddings operation, if specified. [5] | `["base64"]`; `["float", "binary"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-frequency-penalty" href="#gen-ai-request-frequency-penalty">`gen_ai.request.frequency_penalty`</a> | double | The frequency penalty setting for the GenAI request. | `0.1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-max-tokens" href="#gen-ai-request-max-tokens">`gen_ai.request.max_tokens`</a> | int | The maximum number of tokens the model generates for a request. | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-request-model" href="#gen-ai-request-model">`gen_ai.request.model`</a> | string | The name of the GenAI model a request is being made to. | `gpt-4` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
@@ -32,23 +34,27 @@ This document defines the attributes used to describe telemetry in the context o
 | <a id="gen-ai-response-finish-reasons" href="#gen-ai-response-finish-reasons">`gen_ai.response.finish_reasons`</a> | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `["stop"]`; `["stop", "length"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-response-id" href="#gen-ai-response-id">`gen_ai.response.id`</a> | string | The unique identifier for the completion. | `chatcmpl-123` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-response-model" href="#gen-ai-response-model">`gen_ai.response.model`</a> | string | The name of the model that generated the response. | `gpt-4-0613` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-system" href="#gen-ai-system">`gen_ai.system`</a> | string | The Generative AI product as identified by the client or server instrumentation. [4] | `openai` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-system" href="#gen-ai-system">`gen_ai.system`</a> | string | The Generative AI product as identified by the client or server instrumentation. [6] | `openai` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-token-type" href="#gen-ai-token-type">`gen_ai.token.type`</a> | string | The type of token being counted. | `input`; `output` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-tool-call-id" href="#gen-ai-tool-call-id">`gen_ai.tool.call.id`</a> | string | The tool call identifier. | `call_mszuSIzqtI65i1wAUOE8w5H4` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-tool-name" href="#gen-ai-tool-name">`gen_ai.tool.name`</a> | string | Name of the tool utilized by the agent. | `Flights` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="gen-ai-tool-type" href="#gen-ai-tool-type">`gen_ai.tool.type`</a> | string | Type of the tool utilized by the agent [5] | `function`; `extension`; `datastore` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-tool-type" href="#gen-ai-tool-type">`gen_ai.tool.type`</a> | string | Type of the tool utilized by the agent [7] | `function`; `extension`; `datastore` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-usage-input-tokens" href="#gen-ai-usage-input-tokens">`gen_ai.usage.input_tokens`</a> | int | The number of tokens used in the GenAI input (prompt). | `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="gen-ai-usage-output-tokens" href="#gen-ai-usage-output-tokens">`gen_ai.usage.output_tokens`</a> | int | The number of tokens used in the GenAI response (completion). | `180` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
+**[1] `gen_ai.agent.role`:** Agent roles are classified based on job responsibilities. Worker agents perform specific tasks such as “Researcher” or “Writer” within a team, leveraging their skills for assigned duties. Coordinator agents manage multiple worker agents, ensuring task execution and providing instructions. Users can create custom roles or modify existing ones to fit their needs. Worker agents function independently on designated tasks, while coordinator oversee and direct them for efficient collaboration. This hierarchical structure allows for scalable and organized agent operations, enabling automation and improved workflow management in various domains.
 
-**[2] `gen_ai.output.type`:** This attribute SHOULD be used when the client requests output of a specific type. The model may return zero or more outputs of this type.
+**[2] `gen_ai.agent.version`:** AI Agent Version refers to a specific iteration of an AI-powered agent, incorporating updates, improvements, and optimizations in functionality, performance, and learning capabilities for enhanced decision-making and task execution.
+
+**[3] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
+
+**[4] `gen_ai.output.type`:** This attribute SHOULD be used when the client requests output of a specific type. The model may return zero or more outputs of this type.
 This attribute specifies the output modality and not the actual output format. For example, if an image is requested, the actual output could be a URL pointing to an image file.
 Additional output format details may be recorded in the future in the `gen_ai.output.{type}.*` attributes.
 
-**[3] `gen_ai.request.encoding_formats`:** In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
+**[5] `gen_ai.request.encoding_formats`:** In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
 
-**[4] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+**[6] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
@@ -60,11 +66,20 @@ attribute may help identify the actual system in use for `openai`.
 For custom model, a custom friendly name SHOULD be used.
 If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
-**[5] `gen_ai.tool.type`:** Extension: A tool executed on the agent-side to directly call external APIs, bridging the gap between the agent and real-world systems.
+**[7] `gen_ai.tool.type`:** Extension: A tool executed on the agent-side to directly call external APIs, bridging the gap between the agent and real-world systems.
   Agent-side operations involve actions that are performed by the agent on the server or within the agent's controlled environment.
 Function: A tool executed on the client-side, where the agent generates parameters for a predefined function, and the client executes the logic.
   Client-side operations are actions taken on the user's end or within the client application.
 Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
+
+---
+
+`gen_ai.agent.role` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `coordinator` | A coordinator for multiple agents, the subordinate agents follow the instructions of the coordinator | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `worker` | Agent with specific skills and responsibilities | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 

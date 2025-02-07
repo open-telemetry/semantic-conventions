@@ -192,6 +192,37 @@ groups:
         type: string
         brief: Human-readable name of the GenAI agent provided by the application.
         examples: ["Math Tutor", "Fiction Writer"]
+      - id: gen_ai.agent.version
+        stability: development
+        type: string
+        brief: Human-readable version of the GenAI agent provided by the application.
+        note: >
+          AI Agent Version refers to a specific iteration of an AI-powered agent, incorporating
+          updates, improvements, and optimizations in functionality, performance, and learning
+          capabilities for enhanced decision-making and task execution.
+        examples: ["1.0"]
+      - id: gen_ai.agent.role
+        stability: development
+        type:
+          members:
+            - id: worker
+              value: "worker"
+              brief: 'Agent with specific skills and responsibilities'
+              stability: development
+            - id: coordinator
+              value: "coordinator"
+              brief: 'A coordinator for multiple agents, the subordinate agents follow the instructions of the coordinator'
+              stability: development
+        brief: Roles based on job responsibilities
+        note: >
+          Agent roles are classified based on job responsibilities. Worker agents perform specific tasks
+          such as “Researcher” or “Writer” within a team, leveraging their skills for assigned duties.
+          Coordinator agents manage multiple worker agents, ensuring task execution and providing instructions.
+          Users can create custom roles or modify existing ones to fit their needs. Worker agents function
+          independently on designated tasks, while coordinator oversee and direct them for efficient collaboration.
+          This hierarchical structure allows for scalable and organized agent operations, enabling automation and
+          improved workflow management in various domains.
+        examples: ["1.0"]
       - id: gen_ai.agent.description
         stability: development
         type: string
