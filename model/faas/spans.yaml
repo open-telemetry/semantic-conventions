@@ -1,6 +1,6 @@
 groups:
-  - id: span.faas
-    type: span
+  - id: faas.attributes
+    type: attribute_group
     stability: development
     brief: >
       This semantic convention describes an instance of a function that
@@ -21,8 +21,9 @@ groups:
       - ref: faas.invocation_id
       - ref: cloud.resource_id
 
-  - id: span.faas.datasource
+  - id: span.faas.datasource.server
     type: span
+    span_kind: server
     stability: development
     brief: >
       Semantic Convention for FaaS triggered as a response to some data
@@ -35,8 +36,9 @@ groups:
       - ref: faas.document.time
       - ref: faas.document.name
 
-  - id: span.faas.timer
+  - id: span.faas.timer.server
     type: span
+    span_kind: server
     stability: development
     brief: >
       Semantic Convention for FaaS scheduled to be executed regularly.
@@ -49,7 +51,7 @@ groups:
     type: span
     stability: development
     brief: >
-      Contains additional attributes for incoming FaaS spans.
+      Describes an incoming FaaS span.
     attributes:
       - ref: faas.coldstart
       - ref: faas.trigger

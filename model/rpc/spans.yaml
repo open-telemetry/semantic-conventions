@@ -61,44 +61,34 @@ groups:
       - ref: network.type
         requirement_level: recommended
 
-  - id: span.rpc.grpc
-    type: span
+  - id: rpc.grpc.attributes
     stability: development
-    extends: rpc
+    type: attribute_group
     brief: 'Tech-specific attributes for gRPC.'
     attributes:
       - ref: rpc.grpc.status_code
-        tag: grpc-tech-specific
         requirement_level: required
       - ref: rpc.grpc.request.metadata
-        tag: grpc-tech-specific
         requirement_level: opt_in
       - ref: rpc.grpc.response.metadata
-        tag: grpc-tech-specific
         requirement_level: opt_in
 
-  - id: span.rpc.jsonrpc
-    type: span
+  - id: rpc.jsonrpc.attributes
+    type: attribute_group
     stability: development
-    extends: rpc
     brief: 'Tech-specific attributes for [JSON RPC](https://www.jsonrpc.org/).'
     attributes:
       - ref: rpc.jsonrpc.version
-        tag: jsonrpc-tech-specific
         requirement_level:
           conditionally_required: If other than the default version (`1.0`)
       - ref: rpc.jsonrpc.request_id
-        tag: jsonrpc-tech-specific
         requirement_level: recommended
       - ref: rpc.jsonrpc.error_code
-        tag: jsonrpc-tech-specific
         requirement_level:
           conditionally_required: If response is not successful.
       - ref: rpc.jsonrpc.error_message
-        tag: jsonrpc-tech-specific
         requirement_level: recommended
       - ref: rpc.method
-        tag: jsonrpc-tech-specific
         requirement_level: required
         note: >
           This is always required for jsonrpc. See the note in the general
@@ -123,19 +113,15 @@ groups:
       - ref: rpc.message.uncompressed_size
         requirement_level: recommended
 
-  - id: span.rpc.connect_rpc
-    type: span
+  - id: rpc.connect_rpc.attributes
+    type: attribute_group
     stability: development
-    extends: rpc
     brief: 'Tech-specific attributes for Connect RPC.'
     attributes:
       - ref: rpc.connect_rpc.error_code
-        tag: connect_rpc-tech-specific
         requirement_level:
           conditionally_required: If response is not successful and if error code available.
       - ref: rpc.connect_rpc.request.metadata
-        tag: connect_rpc-tech-specific
         requirement_level: opt_in
       - ref: rpc.connect_rpc.response.metadata
-        tag: connect_rpc-tech-specific
         requirement_level: opt_in
