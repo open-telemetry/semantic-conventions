@@ -1,7 +1,8 @@
 groups:
-  - id: span.aws.lambda
+  - id: span.aws.lambda.server
     type: span
-    stability: experimental
+    span_kind: server
+    stability: development
     brief: >
       Span attributes used by AWS Lambda (in addition to general `faas` attributes).
     attributes:
