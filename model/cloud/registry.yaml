@@ -11,47 +11,47 @@ groups:
             - id: 'alibaba_cloud'
               value: 'alibaba_cloud'
               brief: 'Alibaba Cloud'
-              stability: experimental
+              stability: development
             - id: 'aws'
               value: 'aws'
               brief: 'Amazon Web Services'
-              stability: experimental
+              stability: development
             - id: 'azure'
               value: 'azure'
               brief: 'Microsoft Azure'
-              stability: experimental
+              stability: development
             - id: 'gcp'
               value: 'gcp'
               brief: 'Google Cloud Platform'
-              stability: experimental
+              stability: development
             - id: 'heroku'
               value: 'heroku'
               brief: 'Heroku Platform as a Service'
-              stability: experimental
+              stability: development
             - id: 'ibm_cloud'
               value: 'ibm_cloud'
               brief: 'IBM Cloud'
-              stability: experimental
+              stability: development
             - id: 'oracle_cloud'
               value: 'oracle_cloud'
               brief: 'Oracle Cloud Infrastructure (OCI)'
-              stability: experimental
+              stability: development
             - id: 'tencent_cloud'
               value: 'tencent_cloud'
               brief: 'Tencent Cloud'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           Name of the cloud provider.
       - id: cloud.account.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The cloud account ID the resource is assigned to.
         examples: ['111111111111', 'opentelemetry']
       - id: cloud.region
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The geographical region the resource is running.
         note: >
@@ -64,7 +64,7 @@ groups:
         examples: ['us-central1', 'us-east-1']
       - id: cloud.resource_id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Cloud provider-specific native identifier of the monitored cloud resource
           (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS,
@@ -94,7 +94,7 @@ groups:
           - '/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>'
       - id: cloud.availability_zone
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Cloud regions often have multiple, isolated locations known as zones
           to increase availability. Availability zone represents the
@@ -108,124 +108,124 @@ groups:
             - id: alibaba_cloud_ecs
               value: 'alibaba_cloud_ecs'
               brief: Alibaba Cloud Elastic Compute Service
-              stability: experimental
+              stability: development
             - id: alibaba_cloud_fc
               value: 'alibaba_cloud_fc'
               brief: Alibaba Cloud Function Compute
-              stability: experimental
+              stability: development
             - id: alibaba_cloud_openshift
               value: 'alibaba_cloud_openshift'
               brief: Red Hat OpenShift on Alibaba Cloud
-              stability: experimental
+              stability: development
             - id: aws_ec2
               value: 'aws_ec2'
               brief: AWS Elastic Compute Cloud
-              stability: experimental
+              stability: development
             - id: aws_ecs
               value: 'aws_ecs'
               brief: AWS Elastic Container Service
-              stability: experimental
+              stability: development
             - id: aws_eks
               value: 'aws_eks'
               brief: AWS Elastic Kubernetes Service
-              stability: experimental
+              stability: development
             - id: aws_lambda
               value: 'aws_lambda'
               brief: AWS Lambda
-              stability: experimental
+              stability: development
             - id: aws_elastic_beanstalk
               value: 'aws_elastic_beanstalk'
               brief: AWS Elastic Beanstalk
-              stability: experimental
+              stability: development
             - id: aws_app_runner
               value: 'aws_app_runner'
               brief: AWS App Runner
-              stability: experimental
+              stability: development
             - id: aws_openshift
               value: 'aws_openshift'
               brief: Red Hat OpenShift on AWS (ROSA)
-              stability: experimental
+              stability: development
             - id: azure_vm
               value: 'azure_vm'
               brief: Azure Virtual Machines
-              stability: experimental
+              stability: development
             - id: azure_container_apps
               value: 'azure_container_apps'
               brief: Azure Container Apps
-              stability: experimental
+              stability: development
             - id: azure_container_instances
               value: 'azure_container_instances'
               brief: Azure Container Instances
-              stability: experimental
+              stability: development
             - id: azure_aks
               value: 'azure_aks'
               brief: Azure Kubernetes Service
-              stability: experimental
+              stability: development
             - id: azure_functions
               value: 'azure_functions'
               brief: Azure Functions
-              stability: experimental
+              stability: development
             - id: azure_app_service
               value: 'azure_app_service'
               brief: Azure App Service
-              stability: experimental
+              stability: development
             - id: azure_openshift
               value: 'azure_openshift'
               brief: Azure Red Hat OpenShift
-              stability: experimental
+              stability: development
             - id: gcp_bare_metal_solution
               value: 'gcp_bare_metal_solution'
               brief: Google Bare Metal Solution (BMS)
-              stability: experimental
+              stability: development
             - id: gcp_compute_engine
               value: 'gcp_compute_engine'
               brief: Google Cloud Compute Engine (GCE)
-              stability: experimental
+              stability: development
             - id: gcp_cloud_run
               value: 'gcp_cloud_run'
               brief: Google Cloud Run
-              stability: experimental
+              stability: development
             - id: gcp_kubernetes_engine
               value: 'gcp_kubernetes_engine'
               brief: Google Cloud Kubernetes Engine (GKE)
-              stability: experimental
+              stability: development
             - id: gcp_cloud_functions
               value: 'gcp_cloud_functions'
               brief: Google Cloud Functions (GCF)
-              stability: experimental
+              stability: development
             - id: gcp_app_engine
               value: 'gcp_app_engine'
               brief: Google Cloud App Engine (GAE)
-              stability: experimental
+              stability: development
             - id: gcp_openshift
               value: 'gcp_openshift'
               brief: Red Hat OpenShift on Google Cloud
-              stability: experimental
+              stability: development
             - id: ibm_cloud_openshift
               value: 'ibm_cloud_openshift'
               brief: Red Hat OpenShift on IBM Cloud
-              stability: experimental
+              stability: development
             - id: oracle_cloud_compute
               value: 'oracle_cloud_compute'
               brief: Compute on Oracle Cloud Infrastructure (OCI)
-              stability: experimental
+              stability: development
             - id: oracle_cloud_oke
               value: 'oracle_cloud_oke'
               brief: Kubernetes Engine (OKE) on Oracle Cloud Infrastructure (OCI)
-              stability: experimental
+              stability: development
             - id: tencent_cloud_cvm
               value: 'tencent_cloud_cvm'
               brief: Tencent Cloud Cloud Virtual Machine (CVM)
-              stability: experimental
+              stability: development
             - id: tencent_cloud_eks
               value: 'tencent_cloud_eks'
               brief: Tencent Cloud Elastic Kubernetes Service (EKS)
-              stability: experimental
+              stability: development
             - id: tencent_cloud_scf
               value: 'tencent_cloud_scf'
               brief: Tencent Cloud Serverless Cloud Function (SCF)
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The cloud platform in use.
         note: >

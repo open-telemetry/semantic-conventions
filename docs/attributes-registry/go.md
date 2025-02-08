@@ -9,7 +9,7 @@ This document defines Go related attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="go-memory-type" href="#go-memory-type">`go.memory.type`</a> | string | The type of memory. | `other`; `stack` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="go-memory-type" href="#go-memory-type">`go.memory.type`</a> | string | The type of memory. | `other`; `stack` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -17,7 +17,7 @@ This document defines Go related attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `other` | Memory used by the Go runtime, excluding other categories of memory usage described in this enumeration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | Memory used by the Go runtime, excluding other categories of memory usage described in this enumeration. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Computed from `/memory/classes/heap/stacks:bytes`.

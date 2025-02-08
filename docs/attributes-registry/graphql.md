@@ -9,9 +9,9 @@ This document defines attributes for GraphQL.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="graphql-document" href="#graphql-document">`graphql.document`</a> | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="graphql-operation-name" href="#graphql-operation-name">`graphql.operation.name`</a> | string | The name of the operation being executed. | `findBookById` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="graphql-operation-type" href="#graphql-operation-type">`graphql.operation.type`</a> | string | The type of the operation being executed. | `query`; `mutation`; `subscription` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="graphql-document" href="#graphql-document">`graphql.document`</a> | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="graphql-operation-name" href="#graphql-operation-name">`graphql.operation.name`</a> | string | The name of the operation being executed. | `findBookById` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="graphql-operation-type" href="#graphql-operation-type">`graphql.operation.type`</a> | string | The type of the operation being executed. | `query`; `mutation`; `subscription` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `graphql.document`:** The value may be sanitized to exclude sensitive information.
 
@@ -21,6 +21,6 @@ This document defines attributes for GraphQL.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `mutation` | GraphQL mutation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `query` | GraphQL query | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `subscription` | GraphQL subscription | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mutation` | GraphQL mutation | ![Development](https://img.shields.io/badge/-development-blue) |
+| `query` | GraphQL query | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription` | GraphQL subscription | ![Development](https://img.shields.io/badge/-development-blue) |

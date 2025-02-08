@@ -4,7 +4,7 @@ linkTitle: Spans
 
 # Semantic conventions for FaaS spans
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines how to describe an instance of a function that runs without provisioning
 or managing of servers (also known as serverless functions or Function as a Service (FaaS)) with spans.
@@ -47,9 +47,9 @@ If Spans following this convention are produced, a Resource of type `faas` MUST 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cloud.resource_id`](/docs/attributes-registry/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.invocation_id`](/docs/attributes-registry/faas.md) | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. [2] | `datasource`; `http`; `pubsub` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.resource_id`](/docs/attributes-registry/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.invocation_id`](/docs/attributes-registry/faas.md) | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. [2] | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
@@ -85,11 +85,11 @@ call to invoke the lambda, which is often HTTP).
 
 | Value  | Description | Stability |
 |---|---|---|
-| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Development](https://img.shields.io/badge/-development-blue) |
+| `http` | To provide an answer to an inbound HTTP request | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
+| `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -140,8 +140,8 @@ For incoming FaaS spans, the span kind SHOULD be `SERVER`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. [1] | `datasource`; `http`; `pubsub` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.coldstart`](/docs/attributes-registry/faas.md) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. [1] | `datasource`; `http`; `pubsub` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.coldstart`](/docs/attributes-registry/faas.md) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `faas.trigger`:** For the server/consumer span on the incoming side,
 `faas.trigger` MUST be set.
@@ -159,11 +159,11 @@ call to invoke the lambda, which is often HTTP).
 
 | Value  | Description | Stability |
 |---|---|---|
-| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `http` | To provide an answer to an inbound HTTP request | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other` | If none of the others apply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `timer` | A function is scheduled to be executed regularly | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Development](https://img.shields.io/badge/-development-blue) |
+| `http` | To provide an answer to an inbound HTTP request | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
+| `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -201,9 +201,9 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.invoked_name`](/docs/attributes-registry/faas.md) | string | The name of the invoked function. [1] | `my-function` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.invoked_provider`](/docs/attributes-registry/faas.md) | string | The cloud provider of the invoked function. [2] | `alibaba_cloud`; `aws`; `azure` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.invoked_region`](/docs/attributes-registry/faas.md) | string | The cloud region of the invoked function. [3] | `eu-central-1` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.invoked_name`](/docs/attributes-registry/faas.md) | string | The name of the invoked function. [1] | `my-function` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.invoked_provider`](/docs/attributes-registry/faas.md) | string | The cloud provider of the invoked function. [2] | `alibaba_cloud`; `aws`; `azure` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.invoked_region`](/docs/attributes-registry/faas.md) | string | The cloud region of the invoked function. [3] | `eu-central-1` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `faas.invoked_name`:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
 
@@ -219,11 +219,11 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `alibaba_cloud` | Alibaba Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws` | Amazon Web Services | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `azure` | Microsoft Azure | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp` | Google Cloud Platform | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tencent_cloud` | Tencent Cloud | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `alibaba_cloud` | Alibaba Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws` | Amazon Web Services | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure` | Microsoft Azure | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp` | Google Cloud Platform | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tencent_cloud` | Tencent Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -251,10 +251,10 @@ FaaS instrumentations that produce `faas` spans with trigger `datasource`, SHOUL
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.document.collection`](/docs/attributes-registry/faas.md) | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.document.operation`](/docs/attributes-registry/faas.md) | string | Describes the type of the operation that was performed on the data. | `insert`; `edit`; `delete` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.document.name`](/docs/attributes-registry/faas.md) | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.document.time`](/docs/attributes-registry/faas.md) | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.document.collection`](/docs/attributes-registry/faas.md) | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.document.operation`](/docs/attributes-registry/faas.md) | string | Describes the type of the operation that was performed on the data. | `insert`; `edit`; `delete` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.document.name`](/docs/attributes-registry/faas.md) | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.document.time`](/docs/attributes-registry/faas.md) | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -262,9 +262,9 @@ FaaS instrumentations that produce `faas` spans with trigger `datasource`, SHOUL
 
 | Value  | Description | Stability |
 |---|---|---|
-| `delete` | When an object is deleted. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `edit` | When an object is modified. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `insert` | When a new object is created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `delete` | When an object is deleted. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `edit` | When an object is modified. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `insert` | When a new object is created. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -296,8 +296,8 @@ A function is scheduled to be executed regularly. The following additional attri
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.cron`](/docs/attributes-registry/faas.md) | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.time`](/docs/attributes-registry/faas.md) | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.cron`](/docs/attributes-registry/faas.md) | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.time`](/docs/attributes-registry/faas.md) | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

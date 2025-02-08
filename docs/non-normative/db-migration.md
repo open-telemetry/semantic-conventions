@@ -94,7 +94,7 @@ See [Metric `db.client.operation.duration` v1.28.0 (RC)](https://github.com/open
 
 ### Experimental connection metrics
 
-Database connection metrics are still experimental, but there have been several changes in the latest release.
+Database connection metrics are still not stable, but there have been several changes in the latest release.
 
 #### Database client connection count
 

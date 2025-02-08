@@ -6,7 +6,7 @@ groups:
     attributes:
       - id: vcs.repository.ref.name
         type: string
-        stability: experimental
+        stability: development
         deprecated: 'Deprecated, use `vcs.ref.head.name` instead.'
         brief: >
           Deprecated, use `vcs.ref.head.name` instead.
@@ -17,19 +17,19 @@ groups:
             - id: branch
               value: branch
               brief: "[branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)"
-              stability: experimental
+              stability: development
             - id: tag
               value: tag
               brief: "[tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)"
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         deprecated: 'Deprecated, use `vcs.ref.head.type` instead.'
         brief: >
           Deprecated, use `vcs.ref.head.type` instead.
         examples: ["branch", "tag"]
       - id: vcs.repository.ref.revision
         type: string
-        stability: experimental
+        stability: development
         deprecated: 'Deprecated, use `vcs.ref.head.revision` instead.'
         brief: >
           Deprecated, use `vcs.ref.head.revision` instead.
@@ -42,7 +42,7 @@ groups:
           ]
       - id: vcs.repository.change.title
         type: string
-        stability: experimental
+        stability: development
         deprecated: 'Deprecated, use `vcs.change.title` instead.'
         brief: >
           Deprecated, use `vcs.change.title` instead.
@@ -54,7 +54,7 @@ groups:
           ]
       - id: vcs.repository.change.id
         type: string
-        stability: experimental
+        stability: development
         deprecated: 'Deprecated, use `vcs.change.id` instead.'
         brief: >
           Deprecated, use `vcs.change.id` instead.

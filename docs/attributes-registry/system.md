@@ -17,7 +17,7 @@ Describes System attributes
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="system-device" href="#system-device">`system.device`</a> | string | The device identifier | `(identifier)` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="system-device" href="#system-device">`system.device`</a> | string | The device identifier | `(identifier)` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## System CPU Attributes
 
@@ -25,7 +25,7 @@ Describes System CPU attributes
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="system-cpu-logical-number" href="#system-cpu-logical-number">`system.cpu.logical_number`</a> | int | The logical CPU number [0..n-1] | `1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="system-cpu-logical-number" href="#system-cpu-logical-number">`system.cpu.logical_number`</a> | int | The logical CPU number [0..n-1] | `1` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Filesystem Attributes
 
@@ -33,10 +33,10 @@ Describes Filesystem attributes
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="system-filesystem-mode" href="#system-filesystem-mode">`system.filesystem.mode`</a> | string | The filesystem mode | `rw, ro` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="system-filesystem-mountpoint" href="#system-filesystem-mountpoint">`system.filesystem.mountpoint`</a> | string | The filesystem mount path | `/mnt/data` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="system-filesystem-state" href="#system-filesystem-state">`system.filesystem.state`</a> | string | The filesystem state | `used` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="system-filesystem-type" href="#system-filesystem-type">`system.filesystem.type`</a> | string | The filesystem type | `ext4` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="system-filesystem-mode" href="#system-filesystem-mode">`system.filesystem.mode`</a> | string | The filesystem mode | `rw, ro` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="system-filesystem-mountpoint" href="#system-filesystem-mountpoint">`system.filesystem.mountpoint`</a> | string | The filesystem mount path | `/mnt/data` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="system-filesystem-state" href="#system-filesystem-state">`system.filesystem.state`</a> | string | The filesystem state | `used` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="system-filesystem-type" href="#system-filesystem-type">`system.filesystem.type`</a> | string | The filesystem type | `ext4` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -44,9 +44,9 @@ Describes Filesystem attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `reserved` | reserved | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reserved` | reserved | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -54,12 +54,12 @@ Describes Filesystem attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `exfat` | exfat | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ext4` | ext4 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fat32` | fat32 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hfsplus` | hfsplus | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ntfs` | ntfs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `refs` | refs | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `exfat` | exfat | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ext4` | ext4 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fat32` | fat32 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hfsplus` | hfsplus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ntfs` | ntfs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `refs` | refs | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## System Memory Attributes
 
@@ -67,7 +67,7 @@ Describes System Memory attributes
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="system-memory-state" href="#system-memory-state">`system.memory.state`</a> | string | The memory state | `free`; `cached` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="system-memory-state" href="#system-memory-state">`system.memory.state`</a> | string | The memory state | `free`; `cached` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -75,10 +75,10 @@ Describes System Memory attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `buffers` | buffers | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cached` | cached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `buffers` | buffers | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cached` | cached | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## System Paging Attributes
 
@@ -86,9 +86,9 @@ Describes System Memory Paging attributes
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="system-paging-direction" href="#system-paging-direction">`system.paging.direction`</a> | string | The paging access direction | `in` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="system-paging-state" href="#system-paging-state">`system.paging.state`</a> | string | The memory paging state | `free` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="system-paging-type" href="#system-paging-type">`system.paging.type`</a> | string | The memory paging type | `minor` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="system-paging-direction" href="#system-paging-direction">`system.paging.direction`</a> | string | The paging access direction | `in` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="system-paging-state" href="#system-paging-state">`system.paging.state`</a> | string | The memory paging state | `free` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="system-paging-type" href="#system-paging-type">`system.paging.type`</a> | string | The memory paging type | `minor` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -96,8 +96,8 @@ Describes System Memory Paging attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `in` | in | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `out` | out | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `in` | in | ![Development](https://img.shields.io/badge/-development-blue) |
+| `out` | out | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -105,8 +105,8 @@ Describes System Memory Paging attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `free` | free | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -114,8 +114,8 @@ Describes System Memory Paging attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | major | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `minor` | minor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## System Process Attributes
 
@@ -123,7 +123,7 @@ Describes System Process attributes
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="system-process-status" href="#system-process-status">`system.process.status`</a> | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="system-process-status" href="#system-process-status">`system.process.status`</a> | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -131,10 +131,10 @@ Describes System Process attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `defunct` | defunct | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `running` | running | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sleeping` | sleeping | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stopped` | stopped | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `defunct` | defunct | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | running | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sleeping` | sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | stopped | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated System Attributes
 
@@ -152,13 +152,13 @@ Deprecated system attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `interrupt` | interrupt | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `iowait` | iowait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nice` | nice | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `interrupt` | interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iowait` | iowait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nice` | nice | ![Development](https://img.shields.io/badge/-development-blue) |
+| `steal` | steal | ![Development](https://img.shields.io/badge/-development-blue) |
+| `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -166,18 +166,18 @@ Deprecated system attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `close` | close | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `close_wait` | close_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `closing` | closing | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `delete` | delete | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `established` | established | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fin_wait_1` | fin_wait_1 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fin_wait_2` | fin_wait_2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `last_ack` | last_ack | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `listen` | listen | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `syn_recv` | syn_recv | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `syn_sent` | syn_sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `time_wait` | time_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `close` | close | ![Development](https://img.shields.io/badge/-development-blue) |
+| `close_wait` | close_wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `closing` | closing | ![Development](https://img.shields.io/badge/-development-blue) |
+| `delete` | delete | ![Development](https://img.shields.io/badge/-development-blue) |
+| `established` | established | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fin_wait_1` | fin_wait_1 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fin_wait_2` | fin_wait_2 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `last_ack` | last_ack | ![Development](https://img.shields.io/badge/-development-blue) |
+| `listen` | listen | ![Development](https://img.shields.io/badge/-development-blue) |
+| `syn_recv` | syn_recv | ![Development](https://img.shields.io/badge/-development-blue) |
+| `syn_sent` | syn_sent | ![Development](https://img.shields.io/badge/-development-blue) |
+| `time_wait` | time_wait | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -185,7 +185,7 @@ Deprecated system attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `defunct` | defunct | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `running` | running | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sleeping` | sleeping | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stopped` | stopped | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `defunct` | defunct | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | running | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sleeping` | sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | stopped | ![Development](https://img.shields.io/badge/-development-blue) |

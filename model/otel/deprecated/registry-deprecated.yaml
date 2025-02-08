@@ -7,12 +7,12 @@ groups:
       - id: otel.library.name
         type: string
         deprecated: "Use the `otel.scope.name` attribute."
-        stability: experimental
+        stability: development
         brief: "Deprecated. Use the `otel.scope.name` attribute"
         examples: ['io.opentelemetry.contrib.mongodb']
       - id: otel.library.version
         type: string
         deprecated: "Use the `otel.scope.version` attribute."
-        stability: experimental
+        stability: development
         brief: "Deprecated. Use the `otel.scope.version` attribute."
         examples: ['1.0.0']

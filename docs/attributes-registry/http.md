@@ -12,16 +12,16 @@ This document defines semantic convention attributes in the HTTP namespace.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="http-connection-state" href="#http-connection-state">`http.connection.state`</a> | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="http-request-body-size" href="#http-request-body-size">`http.request.body.size`</a> | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="http-connection-state" href="#http-connection-state">`http.connection.state`</a> | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="http-request-body-size" href="#http-request-body-size">`http.request.body.size`</a> | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="http-request-header" href="#http-request-header">`http.request.header.<key>`</a> | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [1] | `http.request.header.content-type=["application/json"]`; `http.request.header.x-forwarded-for=["1.2.3.4", "1.2.3.5"]` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="http-request-method" href="#http-request-method">`http.request.method`</a> | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="http-request-method-original" href="#http-request-method-original">`http.request.method_original`</a> | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="http-request-resend-count" href="#http-request-resend-count">`http.request.resend_count`</a> | int | The ordinal number of request resending attempt (for any reason, including redirects). [3] | `3` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="http-request-size" href="#http-request-size">`http.request.size`</a> | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="http-response-body-size" href="#http-response-body-size">`http.response.body.size`</a> | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="http-request-size" href="#http-request-size">`http.request.size`</a> | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="http-response-body-size" href="#http-response-body-size">`http.response.body.size`</a> | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="http-response-header" href="#http-response-header">`http.response.header.<key>`</a> | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [4] | `http.response.header.content-type=["application/json"]`; `http.response.header.my-custom-header=["abc", "def"]` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="http-response-size" href="#http-response-size">`http.response.size`</a> | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="http-response-size" href="#http-response-size">`http.response.size`</a> | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="http-response-status-code" href="#http-response-status-code">`http.response.status_code`</a> | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="http-route" href="#http-route">`http.route`</a> | string | The matched route, that is, the path template in the format used by the respective server framework. [5] | `/users/:userID?`; `{controller}/{action}/{id?}` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
@@ -59,8 +59,8 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 | Value  | Description | Stability |
 |---|---|---|
-| `active` | active state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `idle` | idle state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `active` | active state. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | idle state. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -106,9 +106,9 @@ Describes deprecated HTTP attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `1.0` | HTTP/1.0 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `1.1` | HTTP/1.1 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `2.0` | HTTP/2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `3.0` | HTTP/3 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `QUIC` | QUIC protocol. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `SPDY` | SPDY protocol. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `1.0` | HTTP/1.0 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `1.1` | HTTP/1.1 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `2.0` | HTTP/2 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `3.0` | HTTP/3 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `QUIC` | QUIC protocol. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `SPDY` | SPDY protocol. | ![Development](https://img.shields.io/badge/-development-blue) |

@@ -4,7 +4,7 @@ linkTitle: gRPC
 
 # Semantic conventions for gRPC
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 The Semantic Conventions for [gRPC](https://grpc.io/) extend and override the [RPC spans](rpc-spans.md) and [RPC metrics](rpc-metrics.md) Semantic Conventions
 that describe common RPC operations attributes in addition to the Semantic Conventions
@@ -25,9 +25,9 @@ Below is a table of attributes that SHOULD be included on client and server gRPC
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.grpc.status_code`](/docs/attributes-registry/rpc.md) | int | The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request. | `0`; `1`; `2` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.grpc.request.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [1] | `rpc.grpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.grpc.response.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [2] | `rpc.grpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.grpc.status_code`](/docs/attributes-registry/rpc.md) | int | The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.grpc.request.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [1] | `rpc.grpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.grpc.response.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [2] | `rpc.grpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.grpc.request.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
@@ -39,23 +39,23 @@ Below is a table of attributes that SHOULD be included on client and server gRPC
 
 | Value  | Description | Stability |
 |---|---|---|
-| `0` | OK | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `1` | CANCELLED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `2` | UNKNOWN | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `3` | INVALID_ARGUMENT | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `4` | DEADLINE_EXCEEDED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `5` | NOT_FOUND | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `6` | ALREADY_EXISTS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `7` | PERMISSION_DENIED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `8` | RESOURCE_EXHAUSTED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `9` | FAILED_PRECONDITION | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `10` | ABORTED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `11` | OUT_OF_RANGE | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `12` | UNIMPLEMENTED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `13` | INTERNAL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `14` | UNAVAILABLE | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `15` | DATA_LOSS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `16` | UNAUTHENTICATED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `0` | OK | ![Development](https://img.shields.io/badge/-development-blue) |
+| `1` | CANCELLED | ![Development](https://img.shields.io/badge/-development-blue) |
+| `2` | UNKNOWN | ![Development](https://img.shields.io/badge/-development-blue) |
+| `3` | INVALID_ARGUMENT | ![Development](https://img.shields.io/badge/-development-blue) |
+| `4` | DEADLINE_EXCEEDED | ![Development](https://img.shields.io/badge/-development-blue) |
+| `5` | NOT_FOUND | ![Development](https://img.shields.io/badge/-development-blue) |
+| `6` | ALREADY_EXISTS | ![Development](https://img.shields.io/badge/-development-blue) |
+| `7` | PERMISSION_DENIED | ![Development](https://img.shields.io/badge/-development-blue) |
+| `8` | RESOURCE_EXHAUSTED | ![Development](https://img.shields.io/badge/-development-blue) |
+| `9` | FAILED_PRECONDITION | ![Development](https://img.shields.io/badge/-development-blue) |
+| `10` | ABORTED | ![Development](https://img.shields.io/badge/-development-blue) |
+| `11` | OUT_OF_RANGE | ![Development](https://img.shields.io/badge/-development-blue) |
+| `12` | UNIMPLEMENTED | ![Development](https://img.shields.io/badge/-development-blue) |
+| `13` | INTERNAL | ![Development](https://img.shields.io/badge/-development-blue) |
+| `14` | UNAVAILABLE | ![Development](https://img.shields.io/badge/-development-blue) |
+| `15` | DATA_LOSS | ![Development](https://img.shields.io/badge/-development-blue) |
+| `16` | UNAUTHENTICATED | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

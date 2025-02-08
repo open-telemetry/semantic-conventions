@@ -19,7 +19,7 @@ See also:
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `faas`
 
@@ -27,11 +27,11 @@ See also:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.name`](/docs/attributes-registry/faas.md) | string | The name of the single function that this runtime instance executes. [1] | `my-function`; `myazurefunctionapp/some-function-name` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`cloud.resource_id`](/docs/attributes-registry/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [2] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.instance`](/docs/attributes-registry/faas.md) | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [3] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.max_memory`](/docs/attributes-registry/faas.md) | int | The amount of memory available to the serverless function converted to Bytes. [4] | `134217728` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`faas.version`](/docs/attributes-registry/faas.md) | string | The immutable version of the function being executed. [5] | `26`; `pinkfroid-00002` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`faas.name`](/docs/attributes-registry/faas.md) | string | The name of the single function that this runtime instance executes. [1] | `my-function`; `myazurefunctionapp/some-function-name` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cloud.resource_id`](/docs/attributes-registry/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [2] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.instance`](/docs/attributes-registry/faas.md) | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [3] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.max_memory`](/docs/attributes-registry/faas.md) | int | The amount of memory available to the serverless function converted to Bytes. [4] | `134217728` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.version`](/docs/attributes-registry/faas.md) | string | The immutable version of the function being executed. [5] | `26`; `pinkfroid-00002` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `faas.name`:** This is the name of the function as configured/deployed on the FaaS
 platform and is usually different from the name of the callback

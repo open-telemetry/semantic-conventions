@@ -1,7 +1,7 @@
 groups:
   - id: resource.deployment
     type: resource
-    stability: experimental
+    stability: development
     name: deployment
     brief: >
       The software deployment.

@@ -4,7 +4,7 @@ linkTitle: JSON-RPC
 
 # Semantic conventions for JSON-RPC
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 The Semantic Conventions for [JSON-RPC](https://www.jsonrpc.org/) extend and override the [RPC spans](rpc-spans.md) and [RPC metrics](rpc-metrics.md) Semantic Conventions
 that describe common RPC operations attributes in addition to the Semantic Conventions
@@ -23,11 +23,11 @@ described on this page.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response is not successful. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.jsonrpc.version`](/docs/attributes-registry/rpc.md) | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` | `Conditionally Required` If other than the default version (`1.0`) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.jsonrpc.error_message`](/docs/attributes-registry/rpc.md) | string | `error.message` property of response if it is an error response. | `Parse error`; `User already exists` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.jsonrpc.request_id`](/docs/attributes-registry/rpc.md) | string | `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. | `10`; `request-7`; `` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response is not successful. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.jsonrpc.version`](/docs/attributes-registry/rpc.md) | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` | `Conditionally Required` If other than the default version (`1.0`) | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.jsonrpc.error_message`](/docs/attributes-registry/rpc.md) | string | `error.message` property of response if it is an error response. | `Parse error`; `User already exists` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.jsonrpc.request_id`](/docs/attributes-registry/rpc.md) | string | `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. | `10`; `request-7`; `` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is always required for jsonrpc. See the note in the general RPC conventions for more information.
 

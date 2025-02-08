@@ -4,7 +4,7 @@ linkTitle: System
 
 # System semantic conventions
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for systems (such as processes, runtimes, hardware, etc.).
 

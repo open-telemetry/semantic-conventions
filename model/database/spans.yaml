@@ -2,7 +2,7 @@ groups:
   - id: trace.db.common.minimal
     extends: attributes.db.client.minimal
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: This group defines the attributes used to perform database client calls.
     attributes:
       # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
@@ -24,7 +24,7 @@ groups:
   - id: trace.db.common.query
     extends: attributes.db.client.with_query
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: This group defines the attributes used to perform database client calls.
     attributes:
       - ref: server.address
@@ -52,7 +52,7 @@ groups:
   - id: trace.db.common.query_and_collection
     extends: attributes.db.client.with_query_and_collection
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: This group defines the attributes used to perform database client calls.
     attributes:
       - ref: db.collection.name
@@ -83,7 +83,7 @@ groups:
 
   - id: trace.db.common.full
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: This group documents attributes that describe database call along with network information.
     extends: trace.db.common.query_and_collection
     attributes:
@@ -110,14 +110,14 @@ groups:
 
   - id: span.db.client
     type: span
-    stability: experimental
+    stability: development
     brief: This span defines the attributes used to perform database client calls.
     span_kind: client
     extends: trace.db.common.full
 
   - id: span.db.mssql.client
     type: span
-    stability: experimental
+    stability: development
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -155,7 +155,7 @@ groups:
 
   - id: span.db.postgresql.client
     type: span
-    stability: experimental
+    stability: development
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -192,7 +192,7 @@ groups:
         examples: ["08000", "08P01"]
   - id: span.db.mysql.client
     type: span
-    stability: experimental
+    stability: development
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -222,7 +222,7 @@ groups:
 
   - id: span.db.mariadb.client
     type: span
-    stability: experimental
+    stability: development
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -261,7 +261,7 @@ groups:
   - id: span.db.cassandra.client
     type: span
     span_kind: client
-    stability: experimental
+    stability: development
     extends: trace.db.common.query_and_collection
     brief: >
       Attributes for Cassandra
@@ -298,7 +298,7 @@ groups:
   - id: span.db.hbase.client
     type: span
     span_kind: client
-    stability: experimental
+    stability: development
     extends: trace.db.common.minimal
     brief: >
       Attributes for HBase
@@ -329,7 +329,7 @@ groups:
   - id: span.db.couchdb.client
     type: span
     span_kind: client
-    stability: experimental
+    stability: development
     extends: trace.db.common.minimal
     brief: >
       Attributes for CouchDB
@@ -363,7 +363,7 @@ groups:
 
   - id: span.db.redis.client
     type: span
-    stability: experimental
+    stability: development
     span_kind: client
     extends: trace.db.common.minimal
     brief: >
@@ -429,7 +429,7 @@ groups:
 
   - id: span.db.mongodb.client
     type: span
-    stability: experimental
+    stability: development
     span_kind: client
     extends: trace.db.common.minimal
     brief: >
@@ -466,7 +466,7 @@ groups:
 
   - id: span.db.elasticsearch.client
     type: span
-    stability: experimental
+    stability: development
     span_kind: client
     extends: trace.db.common.minimal
     brief: >
@@ -538,7 +538,7 @@ groups:
   - id: span.db.sql.client
     type: span
     span_kind: client
-    stability: experimental
+    stability: development
     extends: trace.db.common.query
     brief: >
       Attributes for SQL databases

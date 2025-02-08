@@ -1,7 +1,7 @@
 groups:
   - id: attributes.messaging.trace.minimal
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: >
         Defines minimal set of attributes used by all messaging systems.
     extends: attributes.messaging.common.minimal
@@ -30,7 +30,7 @@ groups:
 
   - id: span.messaging
     type: span
-    stability: experimental
+    stability: development
     brief: >
         Defines a full set of attributes used in messaging systems.
     extends: attributes.messaging.trace.minimal
@@ -89,7 +89,7 @@ groups:
 
   - id: messaging.network.attributes
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: Attributes that describe messaging operation along with network information.
     extends: attributes.messaging.trace.minimal
     attributes:
@@ -102,7 +102,7 @@ groups:
 
   - id: messaging.rabbitmq
     type: attribute_group
-    stability: experimental
+    stability: development
     extends: messaging.network.attributes
     brief: >
       Attributes for RabbitMQ
@@ -137,7 +137,7 @@ groups:
 
   - id: messaging.kafka
     type: attribute_group
-    stability: experimental
+    stability: development
     extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Apache Kafka
@@ -170,7 +170,7 @@ groups:
 
   - id: messaging.rocketmq
     type: attribute_group
-    stability: experimental
+    stability: development
     extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Apache RocketMQ
@@ -204,7 +204,7 @@ groups:
 
   - id: messaging.gcp_pubsub
     type: attribute_group
-    stability: experimental
+    stability: development
     extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Google Cloud Pub/Sub
@@ -234,7 +234,7 @@ groups:
           - `create` and `receive` for [common messaging operations](/docs/messaging/messaging-spans.md#operation-types)
   - id: messaging.servicebus
     type: attribute_group
-    stability: experimental
+    stability: development
     extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Azure Service Bus
@@ -275,7 +275,7 @@ groups:
 
   - id: messaging.eventhubs
     type: attribute_group
-    stability: experimental
+    stability: development
     extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Azure Event Hubs

@@ -1,7 +1,7 @@
 groups:
   - id: span.faas
     type: span
-    stability: experimental
+    stability: development
     brief: >
       This semantic convention describes an instance of a function that
       runs without provisioning or managing of servers (also known as
@@ -23,7 +23,7 @@ groups:
 
   - id: span.faas.datasource
     type: span
-    stability: experimental
+    stability: development
     brief: >
       Semantic Convention for FaaS triggered as a response to some data
       source operation such as a database or filesystem read/write.
@@ -37,7 +37,7 @@ groups:
 
   - id: span.faas.timer
     type: span
-    stability: experimental
+    stability: development
     brief: >
       Semantic Convention for FaaS scheduled to be executed regularly.
     attributes:
@@ -47,7 +47,7 @@ groups:
   - id: span.faas.server
     span_kind: server
     type: span
-    stability: experimental
+    stability: development
     brief: >
       Contains additional attributes for incoming FaaS spans.
     attributes:
@@ -68,7 +68,7 @@ groups:
   - id: span.faas.client
     span_kind: client
     type: span
-    stability: experimental
+    stability: development
     brief: >
       Contains additional attributes for outgoing FaaS spans.
     attributes:

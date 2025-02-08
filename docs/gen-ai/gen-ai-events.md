@@ -4,7 +4,7 @@ linkTitle: Events
 
 # Semantic conventions for generative AI events
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 <!-- toc -->
 
@@ -24,7 +24,7 @@ linkTitle: Events
 GenAI instrumentations MAY capture user inputs sent to the model and responses received from it as [events](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.41.0/specification/logs/data-model.md#events).
 
 > Note:
-> Events are experimental and not yet available in some languages. Check [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/spec-compliance-matrix.md#logs) to see the implementation status in corresponding language.
+> Events are in-development and not yet available in some languages. Check [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/spec-compliance-matrix.md#logs) to see the implementation status in corresponding language.
 
 Instrumentations MAY capture inputs and outputs if and only if application has enabled the collection of this data.
 This is for three primary reasons:
@@ -53,7 +53,7 @@ Instrumentations MAY offer configuration options allowing to disable events or a
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 The event name MUST be `gen_ai.system.message`.
 
@@ -61,7 +61,7 @@ This event describes the system instructions passed to the GenAI model.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
@@ -81,27 +81,27 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mistral_ai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
+| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gemini` | Gemini | ![Development](https://img.shields.io/badge/-development-blue) |
+| `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vertex_ai` | Vertex AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Body fields:**
 
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `content` | undefined | The contents of the system message. | `You're a helpful bot` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `role` | string | The actual role of the message author as passed in the message. | `system`; `instruction` | `Conditionally Required` if available and not equal to `system`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `content` | undefined | The contents of the system message. | `You're a helpful bot` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `role` | string | The actual role of the message author as passed in the message. | `system`; `instruction` | `Conditionally Required` if available and not equal to `system`. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -117,7 +117,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 The event name MUST be `gen_ai.user.message`.
 
@@ -125,7 +125,7 @@ This event describes the user message passed to the GenAI model.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
@@ -145,27 +145,27 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mistral_ai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
+| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gemini` | Gemini | ![Development](https://img.shields.io/badge/-development-blue) |
+| `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vertex_ai` | Vertex AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Body fields:**
 
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `content` | undefined | The contents of the user message. | `What's the weather in Paris?` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `role` | string | The actual role of the message author as passed in the message. | `user`; `customer` | `Conditionally Required` if available and not equal to `user`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `content` | undefined | The contents of the user message. | `What's the weather in Paris?` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `role` | string | The actual role of the message author as passed in the message. | `user`; `customer` | `Conditionally Required` if available and not equal to `user`. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -181,7 +181,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 The event name MUST be `gen_ai.assistant.message`.
 
@@ -189,7 +189,7 @@ This event describes the assistant message passed to GenAI system.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
@@ -209,33 +209,33 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mistral_ai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
+| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gemini` | Gemini | ![Development](https://img.shields.io/badge/-development-blue) |
+| `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vertex_ai` | Vertex AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Body fields:**
 
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `content` | undefined | The contents of the tool message. | `The weather in Paris is rainy and overcast, with temperatures around 57°F` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `role` | string | The actual role of the message author as passed in the message. | `assistant`; `bot` | `Conditionally Required` if available and not equal to `assistant`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tool_calls`: | map[] | The tool calls generated by the model, such as function calls. |  | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;`function`: | map | The function call. |  | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;&nbsp;&nbsp;`arguments` | undefined | The arguments of the function as provided in the LLM response. [1] | `{\"location\": \"Paris\"}` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;&nbsp;&nbsp;`name` | string | The name of the function. | `get_weather` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;`id` | string | The id of the tool call. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;`type` | enum | The type of the tool. | `function` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `content` | undefined | The contents of the tool message. | `The weather in Paris is rainy and overcast, with temperatures around 57°F` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `role` | string | The actual role of the message author as passed in the message. | `assistant`; `bot` | `Conditionally Required` if available and not equal to `assistant`. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tool_calls`: | map[] | The tool calls generated by the model, such as function calls. |  | `Conditionally Required` if available | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;`function`: | map | The function call. |  | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;&nbsp;&nbsp;`arguments` | undefined | The arguments of the function as provided in the LLM response. [1] | `{\"location\": \"Paris\"}` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;&nbsp;&nbsp;`name` | string | The name of the function. | `get_weather` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;`id` | string | The id of the tool call. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;`type` | enum | The type of the tool. | `function` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Models usually return arguments as a JSON string. In this case, it's RECOMMENDED to provide arguments as is without attempting to deserialize them.
 Semantic conventions for individual systems MAY specify a different type for arguments field.
@@ -244,7 +244,7 @@ Semantic conventions for individual systems MAY specify a different type for arg
 
 | Value  | Description | Stability |
 |---|---|---|
-| `function` | Function | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `function` | Function | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -260,7 +260,7 @@ Semantic conventions for individual systems MAY specify a different type for arg
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 The event name MUST be `gen_ai.tool.message`.
 
@@ -268,7 +268,7 @@ This event describes the response from a tool or function call passed to the Gen
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
@@ -288,28 +288,28 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mistral_ai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
+| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gemini` | Gemini | ![Development](https://img.shields.io/badge/-development-blue) |
+| `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vertex_ai` | Vertex AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Body fields:**
 
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `content` | undefined | The contents of the tool message. | `rainy, 57°F` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `id` | string | Tool call id that this message is responding to. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `role` | string | The actual role of the message author as passed in the message. | `tool`; `function` | `Conditionally Required` if available and not equal to `tool`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `content` | undefined | The contents of the tool message. | `rainy, 57°F` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `id` | string | Tool call id that this message is responding to. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `role` | string | The actual role of the message author as passed in the message. | `tool`; `function` | `Conditionally Required` if available and not equal to `tool`. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -325,7 +325,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 The event name MUST be `gen_ai.choice`.
 
@@ -333,7 +333,7 @@ This event describes the Gen AI response message.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
@@ -353,36 +353,36 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mistral_ai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
+| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gemini` | Gemini | ![Development](https://img.shields.io/badge/-development-blue) |
+| `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vertex_ai` | Vertex AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Body fields:**
 
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `finish_reason` | enum | The reason the model stopped generating tokens. | `stop`; `tool_calls`; `content_filter` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `index` | int | The index of the choice in the list of choices. | `0`; `1` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `message`: | map | GenAI response message. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;`content` | undefined | The contents of the assistant message. | `The weather in Paris is rainy and overcast, with temperatures around 57°F` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;`role` | string | The actual role of the message author as passed in the message. | `assistant`; `bot` | `Conditionally Required` if available and not equal to `assistant`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tool_calls`: | map[] | The tool calls generated by the model, such as function calls. |  | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;`function`: | map | The function that the model called. |  | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;&nbsp;&nbsp;`arguments` | undefined | The arguments of the function as provided in the LLM response. [1] | `{\"location\": \"Paris\"}` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;&nbsp;&nbsp;`name` | string | The name of the function. | `get_weather` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;`id` | string | The id of the tool call. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;`type` | enum | The type of the tool. | `function` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `finish_reason` | enum | The reason the model stopped generating tokens. | `stop`; `tool_calls`; `content_filter` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `index` | int | The index of the choice in the list of choices. | `0`; `1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `message`: | map | GenAI response message. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;`content` | undefined | The contents of the assistant message. | `The weather in Paris is rainy and overcast, with temperatures around 57°F` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;`role` | string | The actual role of the message author as passed in the message. | `assistant`; `bot` | `Conditionally Required` if available and not equal to `assistant`. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tool_calls`: | map[] | The tool calls generated by the model, such as function calls. |  | `Conditionally Required` if available | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;`function`: | map | The function that the model called. |  | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;&nbsp;&nbsp;`arguments` | undefined | The arguments of the function as provided in the LLM response. [1] | `{\"location\": \"Paris\"}` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;&nbsp;&nbsp;`name` | string | The name of the function. | `get_weather` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;`id` | string | The id of the tool call. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;`type` | enum | The type of the tool. | `function` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Models usually return arguments as a JSON string. In this case, it's RECOMMENDED to provide arguments as is without attempting to deserialize them.
 Semantic conventions for individual systems MAY specify a different type for arguments field.
@@ -391,17 +391,17 @@ Semantic conventions for individual systems MAY specify a different type for arg
 
 | Value  | Description | Stability |
 |---|---|---|
-| `content_filter` | Content Filter | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `error` | Error | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `length` | Length | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stop` | Stop | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tool_calls` | Tool Calls | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `content_filter` | Content Filter | ![Development](https://img.shields.io/badge/-development-blue) |
+| `error` | Error | ![Development](https://img.shields.io/badge/-development-blue) |
+| `length` | Length | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stop` | Stop | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tool_calls` | Tool Calls | ![Development](https://img.shields.io/badge/-development-blue) |
 
 `type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `function` | Function | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `function` | Function | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
