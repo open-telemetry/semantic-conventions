@@ -35,7 +35,7 @@ for the details.
 
 ## Group Stability
 
-Semantic Convention groups can have the following [stability levels]([MaturityLevel]):
+Semantic Convention groups can have the following [stability levels][MaturityLevel]:
 `development`, `alpha`, `beta`, `release_candidate`, and `stable`.
 
 Stability level is required on groups of all types except `attribute_group`.
@@ -86,5 +86,5 @@ users to opt into it.
 <!-- https://github.com/open-telemetry/semantic-conventions/issues/1511 -->
 
 [Stability]: https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability
-[MaturityLevel]: https://github.com/open-telemetry/oteps/blob/main/text/0232-maturity-of-otel.md
+[MaturityLevel]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/oteps/0232-maturity-of-otel.md
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
