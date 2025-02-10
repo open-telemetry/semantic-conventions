@@ -74,7 +74,6 @@ body:
         - area:test
         - area:thread
         - area:tls
-        - area:tps
         - area:url
         - area:user
         - area:user-agent

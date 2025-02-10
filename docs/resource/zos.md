@@ -11,7 +11,6 @@
 **type:** `zos.software`
 
 **Description:** A software resource running on a z/OS system.
-
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`os.type`](/docs/attributes-registry/os.md) | string | The operating system type. | `z_os` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
