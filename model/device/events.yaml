@@ -20,11 +20,6 @@ groups:
       - ref: ios.state
         requirement_level:
           conditionally_required: if and only if `os.name` is `ios`
-        note: >
-          The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate),
-          and from which the `OS terminology` column values are derived.
-        brief: >
-          This attribute represents the state of the application.
       - ref: android.state
         requirement_level:
           conditionally_required: if and only if `os.name` is `android`
