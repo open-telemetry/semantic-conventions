@@ -105,7 +105,7 @@ groups:
         examples: ["http/1.1"]
       - id: tls.protocol.name
         brief: >
-          Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES)
+          Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values)
         type:
           members:
             - id: ssl
@@ -117,7 +117,7 @@ groups:
         stability: experimental
       - id: tls.protocol.version
         brief: >
-          Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES)
+          Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values)
         type: string
         stability: experimental
         examples: ["1.2", "3"]
