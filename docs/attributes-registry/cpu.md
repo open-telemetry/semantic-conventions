@@ -9,6 +9,7 @@ Attributes specific to a cpu instance.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
+| <a id="cpu-logical-number" href="#cpu-logical-number">`cpu.logical_number`</a> | int | The logical CPU number [0..n-1] | `1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | <a id="cpu-mode" href="#cpu-mode">`cpu.mode`</a> | string | The mode of the CPU | `user`; `system` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
