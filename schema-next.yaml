@@ -2,6 +2,11 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
+    all:
+      changes:
+        - rename_attributes:
+            attribute_map:
+              device.id: installation.id
     metrics:
       changes:
         - rename_metrics:
