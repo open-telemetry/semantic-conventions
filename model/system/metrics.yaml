@@ -11,6 +11,7 @@ groups:
     instrument: gauge
     unit: "s"
 
+  # system.cpu.* metrics
   - id: metric.system.cpu.physical.count
     type: metric
     metric_name: system.cpu.physical.count

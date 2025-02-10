@@ -7,6 +7,17 @@ linkTitle: CPU
 
 **Status**: [Experimental][DocumentStatus]
 
+This document describes instruments and attributes for common CPU level metrics
+in OpenTelemetry.
+
+<!-- toc -->
+
+- [CPU Metrics](#cpu-metrics)
+  - [Metric: `cpu.time`](#metric-cputime)
+  - [Metric: `cpu.utilization`](#metric-cpuutilization)
+
+<!-- tocstop -->
+
 ## CPU Metrics
 
 ### Metric: `cpu.time`
