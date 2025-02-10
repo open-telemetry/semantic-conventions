@@ -3,7 +3,7 @@ groups:
     type: attribute_group
     display_name: iOS Attributes
     brief: >
-      The iOS platform on which the iOS application is running.
+      This group describes iOS-specific attributes.
     attributes:
       - id: ios.state
         stability: development
