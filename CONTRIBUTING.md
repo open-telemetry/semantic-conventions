@@ -227,7 +227,7 @@ Semantic conventions are validated for name formatting and backward compatibilit
 Here's [the full list of compatibility checks](./policies/compatibility.rego).
 
 Removing attributes, metrics, or enum members is not allowed, they should be deprecated instead.
-It applies to stable and experimental conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
+It applies to stable and unstable conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
 
 You can run backward compatibility check (along with other policies) in all yaml files with the following command:
 

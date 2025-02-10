@@ -28,7 +28,7 @@ Language SIGs that ship semantic conventions library may decide to ship a stable
 Possible solutions include:
 
 - Generate all Semantic Conventions for a given version in specific folder while keeping old versions intact. It is used by [opentelemetry-go](https://github.com/open-telemetry/opentelemetry-go/tree/main/semconv/) but could be problematic if the artifact size is a concern.
-- Follow language-specific conventions to annotate experimental parts. For example, Semantic Conventions in Python puts experimental attributes in `opentelemetry.semconv._incubating` import path which is considered (following Python underscore convention) to be internal and subject to change.
+- Follow language-specific conventions to annotate unstable parts. For example, Semantic Conventions in Python puts unstable attributes in `opentelemetry.semconv._incubating` import path which is considered (following Python underscore convention) to be internal and subject to change.
 - Ship two different artifacts: one that contains stable Semantic Conventions and another one with all available conventions. For example, [semantic-conventions in Java](https://github.com/open-telemetry/semantic-conventions-java) are shipped in two artifacts: `opentelemetry-semconv` and `opentelemetry-semconv-incubating`.
 
 > Note:
@@ -37,16 +37,16 @@ Possible solutions include:
 > experimental conventions, the latter would be resolved leading to compilation or runtime issues in the application.
 
 Instrumentation libraries should depend on the stable (part of) semantic convention artifact or copy relevant definitions into their own code base.
-Experimental semantic conventions are intended for end-user applications.
+Unstable semantic conventions artifact is intended for end-user applications.
 
 ### Deprecated Conventions
 
 It's recommended to generate code for deprecated attributes, metrics, and other conventions. Use appropriate annotations to mark them as deprecated.
-Conventions have a `stability` property which provide the stability level at the deprecation time (`experimental` or `stable`) and
+Conventions have a `stability` property which provide the stability level at the deprecation time (`development`, `alpha`, `beta`, `release_candidate` or `stable`) and
 the `deprecated` property that describes deprecation reason which can be used to generate documentation.
 
 - Deprecated conventions that reached stability should not be removed without major version update according to SemVer.
-- Conventions that were deprecated while being experimental should still be generated and kept in the preview (part of) semantic conventions artifact. It minimizes runtime issues
+- Conventions that were deprecated while being unstable should still be generated and kept in the preview (part of) semantic conventions artifact. It minimizes runtime issues
   and breaking changes in user applications.
 
 Keep stable convention definitions inside the preview (part of) semantic conversions artifact. It prevents user code from breaking when semantic convention stabilizes. Deprecate stable definitions inside the preview artifact and point users to the stable location in generated documentation.
@@ -58,7 +58,7 @@ This section contains suggestions on how to structure semantic convention artifa
 
 - Artifact name:
   - `opentelemetry-semconv` - stable conventions
-  - `opentelemetry-semconv-incubating` - (if applicable) the preview artifact containing all (stable and experimental) conventions
+  - `opentelemetry-semconv-incubating` - (if applicable) the preview artifact containing all (stable and unstable) conventions
 - Namespace: `opentelemetry.semconv` and `opentelemetry.semconv.incubating`
 - All supported Schema URLs should be listed to allow different instrumentations in the same application to provide the exact version of conventions they follow.
 - Attributes, metrics, and other convention definitions should be grouped by the convention type and the root namespace. See the example below:
@@ -181,7 +181,6 @@ Notable changes on helper methods:
 - `attr.brief | to_doc_brief | indent` -> `attr.brief | comment(indent=4)`, check out extensive [comment formatting configuration](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md#comment-filter)
 - stability/deprecation checks:
   - `attribute is stable` if checking one attribute, `attributes | select("stable")` to filter stable attributes
-  - `attribute is experimental` if checking one attribute, `attributes | select("experimental")` to filter experimental attributes
   - `attribute is deprecated` if checking one attribute, `attributes | select("deprecated")` to filter deprecated attributes
 - check if attribute is a template: `attribute.type is template_type`
 - new way to simplify switch-like logic: `key | map_text("map_name")`. Maps can be defined in the weaver config.
