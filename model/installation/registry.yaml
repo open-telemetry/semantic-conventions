@@ -1,0 +1,43 @@
+groups:
+  - id: registry.installation
+    type: attribute_group
+    display_name: Installation Attributes
+    brief: >
+      Describes installation attributes.
+    stability: development
+    attributes:
+      - id: installation.id
+        type: string
+        stability: development
+        brief: >
+          A unique identifier representing the installation of an application on a specific device
+        note: |
+          Its value MUST remain the same between launches of the same installation of an application.
+          On a particular device it MIGHT be the same across different applications of the same vendor, however, it MUST be different across applications of different vendors.
+          It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
+          Hardware IDs (e.g. serial number, IMEI, MAC address) MUST NOT be used as the installation identifier.
+          The `installation.id` SHOULD be prefixed with the type of the identifier and a colon separator (e.g. `firebase:`).
+
+          On iOS this value SHOULD be equal to the [vendor identifier](https://developer.apple.com/documentation/uikit/uidevice/identifierforvendor).
+
+          On Android this value SHOULD be equal to either:
+
+          - [Firebase Installation ID](https://firebase.google.com/docs/projects/manage-installations).
+          - A globally unique UUID which is persisted across sessions in your application.
+
+          But it MAY be equal to other identifiers such as:
+
+          - [App set ID](https://developer.android.com/identity/app-set-id).
+          - [`Settings.getString(Settings.Secure.ANDROID_ID)`](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
+
+          More information about Android identifier best practices can be found [here](https://developer.android.com/training/articles/user-data-ids).
+
+          > [!WARNING]
+          >
+          > Caution should be taken when storing personal data or anything which can identify a user. GDPR and laws may apply, ensure you do your own due diligence.
+        examples:
+          - identifier_for_vendor:2ab2916d-a51f-4ac8-80ee-45ac31a28092
+          - firebase:2ab2916d-a51f-4ac8-80ee-45ac31a28092
+          - guid:2ab2916d-a51f-4ac8-80ee-45ac31a28092
+          - app_set_id:2ab2916d-a51f-4ac8-80ee-45ac31a28092
+          - android_id:2ab2916d-a51f-4ac8-80ee-45ac31a28092
