@@ -94,3 +94,8 @@ groups:
         stability: experimental
         brief: "Deprecated, use `network.connection.state` instead."
         examples: [ "close_wait" ]
+      - id: system.cpu.logical_number
+        type: int
+        stability: experimental
+        brief: "Deprecated, use `cpu.logical_number` instead."
+        examples: [1]
