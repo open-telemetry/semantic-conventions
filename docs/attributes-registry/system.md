@@ -4,7 +4,6 @@
 # System
 
 - [General System Attributes](#general-system-attributes)
-- [System CPU Attributes](#system-cpu-attributes)
 - [Filesystem Attributes](#filesystem-attributes)
 - [System Memory Attributes](#system-memory-attributes)
 - [System Paging Attributes](#system-paging-attributes)
@@ -18,14 +17,6 @@ Describes System attributes
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="system-device" href="#system-device">`system.device`</a> | string | The device identifier | `(identifier)` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-## System CPU Attributes
-
-Describes System CPU attributes
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="system-cpu-logical-number" href="#system-cpu-logical-number">`system.cpu.logical_number`</a> | int | The logical CPU number [0..n-1] | `1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Filesystem Attributes
 
