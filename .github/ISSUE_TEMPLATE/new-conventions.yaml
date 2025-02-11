@@ -31,6 +31,7 @@ body:
         - area:aws
         - area:azure
         - area:browser
+        - area:cassandra
         - area:cicd
         - area:client
         - area:cloud
@@ -46,6 +47,8 @@ body:
         - area:disk
         - area:dns
         - area:dotnet
+        - area:elasticsearch
+        - area:enduser
         - area:error
         - area:exception
         - area:faas
