@@ -150,7 +150,8 @@ The following [service resource attributes](../attributes-registry/service.md) a
 There are different ways to calculate the service attributes.
 
 1. [Well-Known Labels](https://kubernetes.io/docs/reference/labels-annotations-taints/)
-2. Annotations on the pod template that have the `resource.opentelemetry.io/` prefix as described above
+2. Annotations on the pod template that have the `resource.opentelemetry.io/` prefix as described in  
+    [resource attributes using Kubernetes annotations)](k8s.md#specify-resource-attributes-using-kubernetes-annotations)
 3. A function of the Kubernetes resource attributes defined above
 
 This translation can typically be done by an OpenTelemetry Collector component like the
