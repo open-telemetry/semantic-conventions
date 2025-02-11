@@ -72,4 +72,3 @@ groups:
       - ref: telemetry.sdk.language
       - ref: telemetry.sdk.name
       - ref: telemetry.sdk.version
-      
