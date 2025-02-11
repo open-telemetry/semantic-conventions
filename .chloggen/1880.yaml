@@ -1,4 +1,4 @@
-change_type: enhancement
+change_type: breaking 
 component: mobile
 note: Rework `device.app.lifecycle` mobile event.
 issues: [1880]
