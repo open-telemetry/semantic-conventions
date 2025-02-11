@@ -41,6 +41,17 @@ groups:
         brief: "Unit of work executed by the program"
         examples: 'DF308CBF385A3C05'
 
+  - id: registry.ibm.cics
+    type: attribute_group
+    display_name: IBM Customer Information Control System (CICS)
+    brief: This group defines attributes for the IBM CICS Transaction Server for z/OS
+    attributes:
+      - id: ibm.cics.transaction.group_id
+        type: string
+        stability: experimental
+        brief: Describes the group ID assigned at transaction attach time and can be used to correlate the transactions that CICS runs for the same incoming work request.
+        examples: ['TRNGROUP']
+
   - id: registry.ibm.ims
     type: attribute_group
     display_name: IBM Information Management System (IMS) Attributes
