@@ -1,45 +1,43 @@
 groups:
-  - id: registry.ios.deprecated
+  - id: registry.ios
     type: attribute_group
-    display_name: Deprecated iOS Attributes
+    display_name: iOS Attributes
     brief: >
-        The iOS platform on which the iOS application is running.
+      This group describes iOS-specific attributes.
     attributes:
-      - id: ios.state
-        stability: experimental
-        deprecated: "Renamed to `ios.app.state`"
+      - id: ios.app.state
+        stability: development
+        brief: >
+          This attribute represents the state of the application.
         note: >
           The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate),
           and from which the `OS terminology` column values are derived.
-        brief: >
-          Deprecated use the `device.app.lifecycle` event definition including
-          `ios.state` as a payload field instead.
         type:
           members:
             - id: active
               value: 'active'
               brief: >
                 The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`.
-              stability: experimental
+              stability: development
             - id: inactive
               value: 'inactive'
               brief: >
                 The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`.
-              stability: experimental
+              stability: development
             - id: background
               value: 'background'
               brief: >
                 The app is now in the background.
                 This value is associated with UIKit notification `applicationDidEnterBackground`.
-              stability: experimental
+              stability: development
             - id: foreground
               value: 'foreground'
               brief: >
                 The app is now in the foreground.
                 This value is associated with UIKit notification `applicationWillEnterForeground`.
-              stability: experimental
+              stability: development
             - id: terminate
               value: 'terminate'
               brief: >
                 The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`.
-              stability: experimental
+              stability: development
