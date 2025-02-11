@@ -3,6 +3,9 @@
 
 # Android
 
+- [Android Attributes](#android-attributes)
+- [Deprecated Android Attributes](#deprecated-android-attributes)
+
 ## Android Attributes
 
 The Android platform on which the Android application is running.
@@ -23,3 +26,23 @@ The Android platform on which the Android application is running.
 | `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Deprecated Android Attributes
+
+This document defines attributes that represents an occurrence of a lifecycle transition on the Android platform.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="android-state" href="#android-state">`android.state`</a> | string | Deprecated use the `device.app.lifecycle` event definition including `android.state` as a payload field instead. [2] | `created`; `background`; `foreground` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Renamed to `android.app.state` |
+
+**[2] `android.state`:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
+
+---
+
+`android.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
