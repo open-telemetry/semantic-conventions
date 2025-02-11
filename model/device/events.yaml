@@ -13,13 +13,13 @@ groups:
       [resource semantic convention](/docs/resource/os.md) to identify the
       mobile operating system (e.g. Android, iOS).
 
-      The `android.state` and `ios.state` fields are mutually exclusive and MUST
-      NOT be used together, each field MUST be used with its corresponding
-      `os.name` value.
+      The `android.app.state` and `ios.app.state` fields are mutually
+      exclusive and MUST NOT be used together, each field MUST be
+      used with its corresponding `os.name` value.
     attributes:
-      - ref: ios.state
+      - ref: ios.app.state
         requirement_level:
           conditionally_required: if and only if `os.name` is `ios`
-      - ref: android.state
+      - ref: android.app.state
         requirement_level:
           conditionally_required: if and only if `os.name` is `android`

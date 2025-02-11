@@ -5,7 +5,7 @@ groups:
     brief: >
       This group describes iOS-specific attributes.
     attributes:
-      - id: ios.state
+      - id: ios.app.state
         stability: development
         brief: >
           This attribute represents the state of the application.

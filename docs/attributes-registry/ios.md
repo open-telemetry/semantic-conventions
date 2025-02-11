@@ -5,17 +5,17 @@
 
 ## iOS Attributes
 
-The iOS platform on which the iOS application is running.
+This group describes iOS-specific attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="ios-state" href="#ios-state">`ios.state`</a> | string | This attribute represents the state of the application. [1] | `active`; `inactive`; `background` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="ios-app-state" href="#ios-app-state">`ios.app.state`</a> | string | This attribute represents the state of the application. [1] | `active`; `inactive`; `background` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
-**[1] `ios.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
+**[1] `ios.app.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
 
 ---
 
-`ios.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`ios.app.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
