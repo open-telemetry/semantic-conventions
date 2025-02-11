@@ -3,6 +3,17 @@
 
 # Ibm
 
+- [IBM Customer Information Control System (CICS)](#ibm-customer-information-control-system-cics)
+- [IBM Information Management System (IMS) Attributes](#ibm-information-management-system-ims-attributes)
+
+## IBM Customer Information Control System (CICS)
+
+This group defines attributes for the IBM CICS Transaction Server for z/OS
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="ibm-cics-transaction-group-id" href="#ibm-cics-transaction-group-id">`ibm.cics.transaction.group_id`</a> | string | Describes the group ID assigned at transaction attach time and can be used to correlate the transactions that CICS runs for the same incoming work request. | `TRNGROUP` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
 ## IBM Information Management System (IMS) Attributes
 
 This group defines attributes for IBM Information Management System (IMS) for z/OS

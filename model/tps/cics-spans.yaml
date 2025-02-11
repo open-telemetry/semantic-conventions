@@ -9,6 +9,7 @@ groups:
       - ref: tps.system
         requirement_level: required
         examples: 'ibm.cics'
+      - ref: ibm.cics.transaction.group_id
 
   - id: span.ibm.cics.rpc.server
     type: span
@@ -24,3 +25,4 @@ groups:
         examples: ['ipic', 'mro']
       - ref: rpc.system
         examples: ['dpl', 'rmi']
+      - ref: ibm.cics.transaction.group_id
