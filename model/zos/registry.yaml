@@ -2,7 +2,7 @@ groups:
   - id: registry.zos
     type: attribute_group
     display_name: z/OS attributes
-    brief: > 
+    brief: >
       This document defines attributes of a z/OS resource.
     attributes:
       - id: zos.smf.id
