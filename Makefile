@@ -5,13 +5,14 @@ PWD := $(shell pwd)
 # Determine OS & Arch for specific OS only tools on Unix based systems
 OS := $(shell uname | tr '[:upper:]' '[:lower:]')
 ifeq ($(OS),darwin)
-	SED := gsed
+	SED ?= gsed
 else
-	SED := sed
+	SED ?= sed
 endif
 
 TOOLS_DIR := $(PWD)/internal/tools
 
+MARKDOWN_LINK_CHECK_ARG= # pass extra arguments such as --exclude '^http'
 MISSPELL_BINARY=bin/misspell
 MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
 
@@ -66,14 +67,27 @@ misspell:	$(MISSPELL)
 misspell-correction:	$(MISSPELL)
 	$(MISSPELL) -w $(ALL_DOCS)
 
+.PHONY: normalized-link-check
+# NOTE: we check `model/[a-z]*` to avoid `model/README.md`, which contains
+# valid occurrences of `../docs/`.
+normalized-link-check:
+	@if grep -R '\.\./docs/' docs model/[a-z]*; then \
+		echo "\nERROR: Found occurrences of '../docs/'; see above."; \
+		echo "       Remove the '../docs/' from doc page links referencing doc pages."; \
+		exit 1; \
+	else \
+		echo "Normalized-link check passed."; \
+	fi
+
 .PHONY: markdown-link-check
-markdown-link-check:
+markdown-link-check: normalized-link-check
 	docker run --rm \
 		--mount 'type=bind,source=$(PWD),target=/home/repo' \
 		lycheeverse/lychee \
 		--config home/repo/.lychee.toml \
 		--root-dir /home/repo \
 		--verbose \
+		$(MARKDOWN_LINK_CHECK_ARG) \
 		home/repo
 
 .PHONY: markdown-link-check-changelog-preview
@@ -101,6 +115,8 @@ markdown-toc:
 		if grep -q '<!-- tocstop -->' $$f; then \
 			echo markdown-toc: processing $$f; \
 			npx --no -- markdown-toc --bullets "-" --no-first-h1 --no-stripHeadingTags -i $$f || exit 1; \
+		elif grep -q '<!-- toc -->' $$f; then \
+			echo markdown-toc: ERROR: '<!-- tocstop -->' missing from $$f; exit 1; \
 		else \
 			echo markdown-toc: no TOC markers, skipping $$f; \
 		fi; \

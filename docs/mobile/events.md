@@ -1,4 +1,8 @@
-# Semantic Conventions for mobile events
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Events
+--->
+
+# Semantic conventions for mobile events
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -46,7 +50,7 @@ The `android.state` and `ios.state` fields are mutually exclusive and MUST NOT b
 
 **[1]:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
 
-**[2]:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902), and from which the `OS terminology` column values are derived.
+**[2]:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
 
 `android.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

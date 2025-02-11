@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Common Hardware Metrics
+linkTitle: Common
 --->
 
-# Semantic Conventions for Common Hardware Metrics
+# Semantic conventions for common hardware metrics
 
 **Status**: [Experimental][DocumentStatus]
 

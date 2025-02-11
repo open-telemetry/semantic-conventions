@@ -26,7 +26,7 @@ groups:
           requirement_level:
             conditionally_required: if and only if `os.name` is `ios`
           note: >
-            The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902),
+            The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate),
             and from which the `OS terminology` column values are derived.
           brief: >
             This attribute represents the state the application has transitioned into at the occurrence of the event.
@@ -37,24 +37,29 @@ groups:
               value: 'active'
               brief: >
                 The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`.
+              stability: development
             - id: inactive
               value: 'inactive'
               brief: >
                 The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`.
+              stability: development
             - id: background
               value: 'background'
               brief: >
                 The app is now in the background.
                 This value is associated with UIKit notification `applicationDidEnterBackground`.
+              stability: development
             - id: foreground
               value: 'foreground'
               brief: >
                 The app is now in the foreground.
                 This value is associated with UIKit notification `applicationWillEnterForeground`.
+              stability: development
             - id: terminate
               value: 'terminate'
               brief: >
                 The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`.
+              stability: development
         - id: android.state
           stability: experimental
           requirement_level:
@@ -72,13 +77,16 @@ groups:
               brief: >
                 Any time before Activity.onResume() or, if the app has no Activity, Context.startService()
                 has been called in the app for the first time.
+              stability: development
             - id: background
               value: 'background'
               brief: >
                 Any time after Activity.onPause() or, if the app has no Activity,
                 Context.stopService() has been called when the app was in the foreground state.
+              stability: development
             - id: foreground
               value: 'foreground'
               brief: >
                 Any time after Activity.onResume() or, if the app has no Activity,
                 Context.startService() has been called when the app was in either the created or background states.
+              stability: development

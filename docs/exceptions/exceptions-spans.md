@@ -2,7 +2,7 @@
 linkTitle: Spans
 --->
 
-# Semantic Conventions for Exceptions on Spans
+# Semantic conventions for exceptions on spans
 
 **Status**: [Stable][DocumentStatus]
 
@@ -10,6 +10,11 @@ This document defines semantic conventions for recording application
 exceptions associated with spans.
 
 <!-- toc -->
+
+- [Exception event](#exception-event)
+  - [Stacktrace Representation](#stacktrace-representation)
+
+<!-- tocstop -->
 
 ## Exception event
 
@@ -73,6 +78,6 @@ grained information from a stacktrace, if necessary.
 [csharp-stacktrace]: https://docs.microsoft.com/dotnet/api/system.exception.tostring
 [go-stacktrace]: https://pkg.go.dev/runtime/debug#Stack
 [telemetry-sdk-resource]: ../resource/README.md#telemetry-sdk
-[erlang-stacktrace]: https://www.erlang.org/doc/man/erl_error.html#format_exception-3
+[erlang-stacktrace]: https://www.erlang.org/doc/apps/stdlib/erl_error.html#format_exception/3
 [elixir-stacktrace]: https://hexdocs.pm/elixir/1.14.3/Exception.html#format/3
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

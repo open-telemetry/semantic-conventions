@@ -1,12 +1,10 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Generative AI metrics
+linkTitle: Metrics
 --->
 
-# Semantic Conventions for Generative AI Metrics
+# Semantic conventions for generative AI metrics
 
 **Status**: [Experimental][DocumentStatus]
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
@@ -94,7 +92,9 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | Value  | Description | Stability |
 |---|---|---|
 | `chat` | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create_agent` | Create GenAI agent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `embeddings` | Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute_tool` | Execute a tool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
@@ -196,7 +196,9 @@ Instrumentations SHOULD document the list of errors they report.
 | Value  | Description | Stability |
 |---|---|---|
 | `chat` | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create_agent` | Create GenAI agent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `embeddings` | Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute_tool` | Execute a tool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
@@ -296,7 +298,9 @@ Instrumentations SHOULD document the list of errors they report.
 | Value  | Description | Stability |
 |---|---|---|
 | `chat` | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create_agent` | Create GenAI agent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `embeddings` | Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute_tool` | Execute a tool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
@@ -383,7 +387,9 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | Value  | Description | Stability |
 |---|---|---|
 | `chat` | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create_agent` | Create GenAI agent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `embeddings` | Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute_tool` | Execute a tool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
@@ -469,7 +475,9 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | Value  | Description | Stability |
 |---|---|---|
 | `chat` | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create_agent` | Create GenAI agent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `embeddings` | Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `execute_tool` | Execute a tool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
@@ -501,4 +509,4 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
 [MetricRequired]: /docs/general/metric-requirement-level.md#required
 [MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
-[ExplicitBucketBoundaries]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/metrics/api.md#instrument-advisory-parameters
+[ExplicitBucketBoundaries]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/metrics/api.md#instrument-advisory-parameters

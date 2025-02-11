@@ -2,7 +2,7 @@
 linkTitle: System
 --->
 
-# Semantic Conventions for System Metrics
+# Semantic conventions for system metrics
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -16,8 +16,6 @@ The `system.*` namespace SHOULD only be used when the metrics are collected from
 Metrics collected from technology-specific, well-defined APIs (e.g. Kubelet's API or container runtimes)
 should be reported under their respective namespace (e.g. k8s.*, container.*).
 Resource attributes related to a host, SHOULD be reported under the `host.*` namespace.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
@@ -201,7 +199,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.cpu.physical.count` | UpDownCounter | `{cpu}` | Reports the number of actual physical processor cores on the hardware | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.cpu.physical.count` | UpDownCounter | `{cpu}` | Reports the number of actual physical processor cores on the hardware [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Calculated by multiplying the number of sockets by the number of cores per socket
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -221,7 +221,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `system.cpu.logical.count` | UpDownCounter | `{cpu}` | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `system.cpu.logical.count` | UpDownCounter | `{cpu}` | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+**[1]:** Calculated by multiplying the number of sockets by the number of cores per socket, and then by the number of threads per core
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

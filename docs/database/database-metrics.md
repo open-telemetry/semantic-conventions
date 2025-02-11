@@ -2,11 +2,9 @@
 linkTitle: Metrics
 --->
 
-# Semantic Conventions for Database Client Metrics
+# Semantic conventions for database client metrics
 
 **Status**: [Mixed][DocumentStatus]
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
@@ -65,7 +63,7 @@ This metric is [required][MetricRequired].
 When this metric is reported alongside a database operation span, the metric value SHOULD be the same as the database operation span duration.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 
 <!-- semconv metric.db.client.operation.duration -->
@@ -83,7 +81,7 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.system`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `adabas`; `cache` | `Required` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.system.name`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` | `Required` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
@@ -96,7 +94,7 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [16] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
-**[1] `db.system`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
+**[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
 **[2] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
@@ -139,7 +137,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[11] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[12] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
+Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../database/database-spans.md#generating-a-summary-of-the-query-text) section.
 
 **[13] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
 
@@ -148,65 +146,57 @@ If a database operation involved multiple network calls (for example retries), t
 
 **[15] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[16] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[16] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 ---
 
-`db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`db.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `adabas` | Adabas (Adaptable Database System) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cassandra` | Apache Cassandra | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `clickhouse` | ClickHouse | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cockroachdb` | CockroachDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cosmosdb` | Microsoft Azure Cosmos DB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `couchbase` | Couchbase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `couchdb` | CouchDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db2` | IBM Db2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `derby` | Apache Derby | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dynamodb` | Amazon DynamoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `edb` | EnterpriseDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `elasticsearch` | Elasticsearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `filemaker` | FileMaker | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `firebird` | Firebird | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `geode` | Apache Geode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `h2` | H2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hanadb` | SAP HANA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hbase` | Apache HBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hive` | Apache Hive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hsqldb` | HyperSQL DataBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `influxdb` | InfluxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `informix` | Informix | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ingres` | Ingres | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `instantdb` | InstantDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `interbase` | InterBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `intersystems_cache` | InterSystems Caché | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mariadb` | MariaDB (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `maxdb` | SAP MaxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `memcached` | Memcached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mongodb` | MongoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mssql` | Microsoft SQL Server (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `mysql` | MySQL (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `neo4j` | Neo4j | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `netezza` | Netezza | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `opensearch` | OpenSearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `oracle` | Oracle Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pervasive` | Pervasive PSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pointbase` | PointBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `postgresql` | PostgreSQL (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `progress` | Progress Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `redis` | Redis | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `redshift` | Amazon Redshift | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `spanner` | Cloud Spanner | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sqlite` | SQLite | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sybase` | Sybase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `teradata` | Teradata | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `trino` | Trino | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertica` | Vertica | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `actian.ingres` | [Actian Ingres](https://www.actian.com/databases/ingres/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws.dynamodb` | [Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws.redshift` | [Amazon Redshift](https://aws.amazon.com/redshift/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure.cosmosdb` | [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cassandra` | [Apache Cassandra](https://cassandra.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `clickhouse` | [ClickHouse](https://clickhouse.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cockroachdb` | [CockroachDB](https://www.cockroachlabs.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `couchbase` | [Couchbase](https://www.couchbase.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `couchdb` | [Apache CouchDB](https://couchdb.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `derby` | [Apache Derby](https://db.apache.org/derby/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `elasticsearch` | [Elasticsearch](https://www.elastic.co/elasticsearch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `firebirdsql` | [Firebird](https://www.firebirdsql.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp.spanner` | [Google Cloud Spanner](https://cloud.google.com/spanner) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `geode` | [Apache Geode](https://geode.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `h2database` | [H2 Database](https://h2database.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hbase` | [Apache HBase](https://hbase.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hive` | [Apache Hive](https://hive.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hsqldb` | [HyperSQL Database](https://hsqldb.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ibm.db2` | [IBM Db2](https://www.ibm.com/db2) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ibm.informix` | [IBM Informix](https://www.ibm.com/products/informix) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ibm.netezza` | [IBM Netezza](https://www.ibm.com/products/netezza) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `influxdb` | [InfluxDB](https://www.influxdata.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `instantdb` | [Instant](https://www.instantdb.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `intersystems.cache` | [InterSystems Caché](https://www.intersystems.com/products/cache/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mariadb` | [MariaDB](https://mariadb.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `memcached` | [Memcached](https://memcached.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `microsoft.sql_server` | [Microsoft SQL Server](https://www.microsoft.com/sql-server) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `mongodb` | [MongoDB](https://www.mongodb.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mysql` | [MySQL](https://www.mysql.com/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `neo4j` | [Neo4j](https://neo4j.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `opensearch` | [OpenSearch](https://opensearch.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `oracle.db` | [Oracle Database](https://www.oracle.com/database/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other_sql` | Some other SQL database. Fallback only. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `postgresql` | [PostgreSQL](https://www.postgresql.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `redis` | [Redis](https://redis.io/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sap.hana` | [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sap.maxdb` | [SAP MaxDB](https://maxdb.sap.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `softwareag.adabas` | [Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sqlite` | [SQLite](https://www.sqlite.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `teradata` | [Teradata](https://www.teradata.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `trino` | [Trino](https://trino.io/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 
@@ -232,7 +222,7 @@ The following metric instruments describe database query response.
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000]`.
 
 Explaining bucket configuration:
@@ -255,7 +245,7 @@ Explaining bucket configuration:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.system`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `adabas`; `cache` | `Required` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.system.name`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` | `Required` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
@@ -268,7 +258,7 @@ Explaining bucket configuration:
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [16] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
-**[1] `db.system`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
+**[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
 **[2] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
@@ -311,7 +301,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[11] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[12] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
+Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../database/database-spans.md#generating-a-summary-of-the-query-text) section.
 
 **[13] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
 
@@ -320,65 +310,57 @@ If a database operation involved multiple network calls (for example retries), t
 
 **[15] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[16] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[16] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 ---
 
-`db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`db.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `adabas` | Adabas (Adaptable Database System) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cassandra` | Apache Cassandra | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `clickhouse` | ClickHouse | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cockroachdb` | CockroachDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cosmosdb` | Microsoft Azure Cosmos DB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `couchbase` | Couchbase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `couchdb` | CouchDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db2` | IBM Db2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `derby` | Apache Derby | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dynamodb` | Amazon DynamoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `edb` | EnterpriseDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `elasticsearch` | Elasticsearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `filemaker` | FileMaker | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `firebird` | Firebird | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `geode` | Apache Geode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `h2` | H2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hanadb` | SAP HANA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hbase` | Apache HBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hive` | Apache Hive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hsqldb` | HyperSQL DataBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `influxdb` | InfluxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `informix` | Informix | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ingres` | Ingres | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `instantdb` | InstantDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `interbase` | InterBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `intersystems_cache` | InterSystems Caché | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mariadb` | MariaDB (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `maxdb` | SAP MaxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `memcached` | Memcached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mongodb` | MongoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mssql` | Microsoft SQL Server (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `mysql` | MySQL (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `neo4j` | Neo4j | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `netezza` | Netezza | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `opensearch` | OpenSearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `oracle` | Oracle Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pervasive` | Pervasive PSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pointbase` | PointBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `postgresql` | PostgreSQL (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `progress` | Progress Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `redis` | Redis | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `redshift` | Amazon Redshift | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `spanner` | Cloud Spanner | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sqlite` | SQLite | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sybase` | Sybase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `teradata` | Teradata | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `trino` | Trino | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertica` | Vertica | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `actian.ingres` | [Actian Ingres](https://www.actian.com/databases/ingres/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws.dynamodb` | [Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aws.redshift` | [Amazon Redshift](https://aws.amazon.com/redshift/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `azure.cosmosdb` | [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cassandra` | [Apache Cassandra](https://cassandra.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `clickhouse` | [ClickHouse](https://clickhouse.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cockroachdb` | [CockroachDB](https://www.cockroachlabs.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `couchbase` | [Couchbase](https://www.couchbase.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `couchdb` | [Apache CouchDB](https://couchdb.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `derby` | [Apache Derby](https://db.apache.org/derby/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `elasticsearch` | [Elasticsearch](https://www.elastic.co/elasticsearch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `firebirdsql` | [Firebird](https://www.firebirdsql.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `gcp.spanner` | [Google Cloud Spanner](https://cloud.google.com/spanner) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `geode` | [Apache Geode](https://geode.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `h2database` | [H2 Database](https://h2database.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hbase` | [Apache HBase](https://hbase.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hive` | [Apache Hive](https://hive.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hsqldb` | [HyperSQL Database](https://hsqldb.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ibm.db2` | [IBM Db2](https://www.ibm.com/db2) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ibm.informix` | [IBM Informix](https://www.ibm.com/products/informix) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `ibm.netezza` | [IBM Netezza](https://www.ibm.com/products/netezza) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `influxdb` | [InfluxDB](https://www.influxdata.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `instantdb` | [Instant](https://www.instantdb.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `intersystems.cache` | [InterSystems Caché](https://www.intersystems.com/products/cache/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mariadb` | [MariaDB](https://mariadb.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `memcached` | [Memcached](https://memcached.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `microsoft.sql_server` | [Microsoft SQL Server](https://www.microsoft.com/sql-server) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `mongodb` | [MongoDB](https://www.mongodb.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mysql` | [MySQL](https://www.mysql.com/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `neo4j` | [Neo4j](https://neo4j.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `opensearch` | [OpenSearch](https://opensearch.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `oracle.db` | [Oracle Database](https://www.oracle.com/database/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other_sql` | Some other SQL database. Fallback only. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `postgresql` | [PostgreSQL](https://www.postgresql.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `redis` | [Redis](https://redis.io/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sap.hana` | [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sap.maxdb` | [SAP MaxDB](https://maxdb.sap.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `softwareag.adabas` | [Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `sqlite` | [SQLite](https://www.sqlite.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `teradata` | [Teradata](https://www.teradata.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `trino` | [Trino](https://trino.io/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ---
 

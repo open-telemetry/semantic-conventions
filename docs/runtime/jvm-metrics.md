@@ -2,13 +2,11 @@
 linkTitle: JVM
 --->
 
-# Semantic Conventions for JVM Metrics
+# Semantic conventions for JVM metrics
 
 **Status**: [Mixed][DocumentStatus]
 
 This document describes semantic conventions for JVM metrics in OpenTelemetry.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
@@ -206,7 +204,7 @@ This metric is obtained by subscribing to
 [`GarbageCollectionNotificationInfo`](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/GarbageCollectionNotificationInfo.html) events provided by [`GarbageCollectorMXBean`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/GarbageCollectorMXBean.html). The duration value is obtained from [`GcInfo`](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/GcInfo.html#getDuration--)
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.40.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.01, 0.1, 1, 10 ]`.
 
 <!-- semconv metric.jvm.gc.duration -->

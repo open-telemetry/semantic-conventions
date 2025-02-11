@@ -2,7 +2,7 @@
 linkTitle: Spans
 --->
 
-# Semantic Conventions for FaaS Spans
+# Semantic conventions for FaaS spans
 
 **Status**: [Experimental][DocumentStatus]
 
@@ -10,8 +10,6 @@ This document defines how to describe an instance of a function that runs withou
 or managing of servers (also known as serverless functions or Function as a Service (FaaS)) with spans.
 
 See also the [additional instructions for instrumenting AWS Lambda](aws-lambda.md).
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
@@ -49,7 +47,7 @@ If Spans following this convention are produced, a Resource of type `faas` MUST 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cloud.resource_id`](/docs/attributes-registry/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP) [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloud.resource_id`](/docs/attributes-registry/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`faas.invocation_id`](/docs/attributes-registry/faas.md) | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. [2] | `datasource`; `http`; `pubsub` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
@@ -123,7 +121,7 @@ The span attribute `faas.invocation_id` differs from the [resource attribute][Fa
 
 [AWS lambda]: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
 [Azure functions]: https://docs.microsoft.com/azure/azure-functions/manage-connections#static-clients
-[Google functions]: https://cloud.google.com/functions/docs/concepts/exec#function_scope_versus_global_scope
+[Google functions]: https://cloud.google.com/functions/docs/concepts/execution-environment#scope
 
 ## Incoming Invocations
 
