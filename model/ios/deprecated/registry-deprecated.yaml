@@ -1,0 +1,10 @@
+groups:
+  - id: registry.ios.deprecated
+    type: attribute_group
+    display_name: Deprecated iOS Attributes
+    brief: >
+        The iOS platform on which the iOS application is running.
+    attributes:
+      - id: ios.state
+        stability: experimental
+        deprecated: "Renamed to ios.app.state"
