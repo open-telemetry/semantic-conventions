@@ -11,4 +11,4 @@ groups:
         examples: 'ibm.ims'
       - ref: ibm.ims.commit_mode
       - ref: rpc.system
-        examples: ['otma','odbm']
+        examples: ['otma', 'odbm']
