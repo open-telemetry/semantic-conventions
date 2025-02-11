@@ -7,7 +7,7 @@ groups:
     attributes:
       - ref: service.name
         note: For z/OS system software, SHOULD be set to an appreviated name of the z/OS system software.
-        examples: ['CICS TS','Datacom', 'ADABAS']
+        examples: ['CICS TS', 'Datacom', 'ADABAS']
         requirement_level: required
       - ref: service.version
         note: For z/OS system software, SHOULD be set to the version of the z/OS system software.
