@@ -2,14 +2,14 @@ groups:
   - id: registry.tps
     type: attribute_group
     display_name: Transaction Processing System Attributes
-    brief: > 
+    brief: >
       This group defines generic attributes for Transaction Processing Systems (TPS).
     attributes:
       - id: tps.system
         type: string
         stability: experimental
         brief: "Type of Transaction Processing System"
-        examples: ['jta','oracle.tuxedo','ibm.cics','ibm.ims','ibm.ztpf']
+        examples: ['jta', 'oracle.tuxedo', 'ibm.cics', 'ibm.ims', 'ibm.ztpf']
       - id: tps.transaction.id
         type: string
         stability: experimental
@@ -50,6 +50,4 @@ groups:
         type: string
         stability: experimental
         brief: Determines the type of commit mode processing that IMS performs.
-        examples: ['0','1']
-
-    
+        examples: ['0', '1']
