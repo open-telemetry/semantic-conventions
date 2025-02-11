@@ -15,4 +15,3 @@ groups:
         stability: experimental
         brief: "The name of the SYSPLEX to which the z/OS system belongs too."
         examples: ["SYSPLEX1"]
-        
