@@ -4,7 +4,7 @@ linkTitle: CouchDB
 
 # Semantic conventions for CouchDB
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 <!-- toc -->
 

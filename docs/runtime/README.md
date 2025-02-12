@@ -4,7 +4,7 @@ linkTitle: Runtime environment
 
 # Semantic conventions for runtime environment
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for
 runtime environment spans, metrics and logs.

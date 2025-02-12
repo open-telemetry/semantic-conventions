@@ -4,7 +4,7 @@ linkTitle: Mobile
 
 # Semantic conventions for mobile platform
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for mobile platform spans, metrics and logs.
 

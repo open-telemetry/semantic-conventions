@@ -4,7 +4,7 @@ linkTitle: HBase
 
 # Semantic conventions for HBase
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 <!-- toc -->
 

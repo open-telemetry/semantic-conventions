@@ -7,7 +7,7 @@ groups:
     attributes:
       - id: event.name
         type: string
-        stability: experimental
+        stability: development
         deprecated: "Replaced by EventName top-level field on the LogRecord"
         brief: >
           Identifies the class / type of event.

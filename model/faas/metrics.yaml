@@ -2,7 +2,7 @@ groups:
   - id: metric.faas.invoke_duration
     type: metric
     metric_name: faas.invoke_duration
-    stability: experimental
+    stability: development
     brief: "Measures the duration of the function's logic execution"
     instrument: histogram
     unit: "s"
@@ -12,7 +12,7 @@ groups:
   - id: metric.faas.init_duration
     type: metric
     metric_name: faas.init_duration
-    stability: experimental
+    stability: development
     brief: "Measures the duration of the function's initialization, such as a cold start"
     instrument: histogram
     unit: "s"
@@ -22,7 +22,7 @@ groups:
   - id: metric.faas.coldstarts
     type: metric
     metric_name: faas.coldstarts
-    stability: experimental
+    stability: development
     brief: "Number of invocation cold starts"
     instrument: counter
     unit: "{coldstart}"
@@ -32,7 +32,7 @@ groups:
   - id: metric.faas.errors
     type: metric
     metric_name: faas.errors
-    stability: experimental
+    stability: development
     brief: "Number of invocation errors"
     instrument: counter
     unit: "{error}"
@@ -42,7 +42,7 @@ groups:
   - id: metric.faas.invocations
     type: metric
     metric_name: faas.invocations
-    stability: experimental
+    stability: development
     brief: "Number of successful invocations"
     instrument: counter
     unit: "{invocation}"
@@ -52,7 +52,7 @@ groups:
   - id: metric.faas.timeouts
     type: metric
     metric_name: faas.timeouts
-    stability: experimental
+    stability: development
     brief: "Number of invocation timeouts"
     instrument: counter
     unit: "{timeout}"
@@ -62,7 +62,7 @@ groups:
   - id: metric.faas.mem_usage
     type: metric
     metric_name: faas.mem_usage
-    stability: experimental
+    stability: development
     brief: "Distribution of max memory usage per invocation"
     instrument: histogram
     unit: "By"
@@ -72,7 +72,7 @@ groups:
   - id: metric.faas.cpu_usage
     type: metric
     metric_name: faas.cpu_usage
-    stability: experimental
+    stability: development
     brief: "Distribution of CPU usage per invocation"
     instrument: histogram
     unit: "s"
@@ -82,7 +82,7 @@ groups:
   - id: metric.faas.net_io
     type: metric
     metric_name: faas.net_io
-    stability: experimental
+    stability: development
     brief: "Distribution of net I/O usage per invocation"
     instrument: histogram
     unit: "By"

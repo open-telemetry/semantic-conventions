@@ -5,7 +5,7 @@ aliases: [group-stability]
 
 # Semantic convention groups
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 Spans, metrics, events, and resources are defined in semantic convention groups in YAML schema.
 Each group has a `type` property that could be one of the following:

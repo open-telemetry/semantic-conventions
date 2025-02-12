@@ -8,5 +8,5 @@ groups:
         type: template[string]
         examples: ['k8s.pod.label.app=my-app']
         brief: "Deprecated, use `k8s.pod.label` instead."
-        stability: experimental
+        stability: development
         deprecated: "Replaced by `k8s.pod.label`."

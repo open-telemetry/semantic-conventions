@@ -9,24 +9,24 @@ Describes file attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="file-accessed" href="#file-accessed">`file.accessed`</a> | string | Time when the file was last accessed, in ISO 8601 format. [1] | `2021-01-01T12:00:00Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-attributes" href="#file-attributes">`file.attributes`</a> | string[] | Array of file attributes. [2] | `["readonly", "hidden"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-changed" href="#file-changed">`file.changed`</a> | string | Time when the file attributes or metadata was last changed, in ISO 8601 format. [3] | `2021-01-01T12:00:00Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-created" href="#file-created">`file.created`</a> | string | Time when the file was created, in ISO 8601 format. [4] | `2021-01-01T12:00:00Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-directory" href="#file-directory">`file.directory`</a> | string | Directory where the file is located. It should include the drive letter, when appropriate. | `/home/user`; `C:\Program Files\MyApp` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-extension" href="#file-extension">`file.extension`</a> | string | File extension, excluding the leading dot. [5] | `png`; `gz` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-fork-name" href="#file-fork-name">`file.fork_name`</a> | string | Name of the fork. A fork is additional data associated with a filesystem object. [6] | `Zone.Identifer` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-group-id" href="#file-group-id">`file.group.id`</a> | string | Primary Group ID (GID) of the file. | `1000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-group-name" href="#file-group-name">`file.group.name`</a> | string | Primary group name of the file. | `users` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-inode" href="#file-inode">`file.inode`</a> | string | Inode representing the file in the filesystem. | `256383` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-mode" href="#file-mode">`file.mode`</a> | string | Mode of the file in octal representation. | `0640` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-modified" href="#file-modified">`file.modified`</a> | string | Time when the file content was last modified, in ISO 8601 format. | `2021-01-01T12:00:00Z` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-name" href="#file-name">`file.name`</a> | string | Name of the file including the extension, without the directory. | `example.png` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-owner-id" href="#file-owner-id">`file.owner.id`</a> | string | The user ID (UID) or security identifier (SID) of the file owner. | `1000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-owner-name" href="#file-owner-name">`file.owner.name`</a> | string | Username of the file owner. | `root` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-path" href="#file-path">`file.path`</a> | string | Full path to the file, including the file name. It should include the drive letter, when appropriate. | `/home/alice/example.png`; `C:\Program Files\MyApp\myapp.exe` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-size" href="#file-size">`file.size`</a> | int | File size in bytes. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="file-symbolic-link-target-path" href="#file-symbolic-link-target-path">`file.symbolic_link.target_path`</a> | string | Path to the target of a symbolic link. [7] | `/usr/bin/python3` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="file-accessed" href="#file-accessed">`file.accessed`</a> | string | Time when the file was last accessed, in ISO 8601 format. [1] | `2021-01-01T12:00:00Z` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-attributes" href="#file-attributes">`file.attributes`</a> | string[] | Array of file attributes. [2] | `["readonly", "hidden"]` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-changed" href="#file-changed">`file.changed`</a> | string | Time when the file attributes or metadata was last changed, in ISO 8601 format. [3] | `2021-01-01T12:00:00Z` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-created" href="#file-created">`file.created`</a> | string | Time when the file was created, in ISO 8601 format. [4] | `2021-01-01T12:00:00Z` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-directory" href="#file-directory">`file.directory`</a> | string | Directory where the file is located. It should include the drive letter, when appropriate. | `/home/user`; `C:\Program Files\MyApp` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-extension" href="#file-extension">`file.extension`</a> | string | File extension, excluding the leading dot. [5] | `png`; `gz` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-fork-name" href="#file-fork-name">`file.fork_name`</a> | string | Name of the fork. A fork is additional data associated with a filesystem object. [6] | `Zone.Identifer` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-group-id" href="#file-group-id">`file.group.id`</a> | string | Primary Group ID (GID) of the file. | `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-group-name" href="#file-group-name">`file.group.name`</a> | string | Primary group name of the file. | `users` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-inode" href="#file-inode">`file.inode`</a> | string | Inode representing the file in the filesystem. | `256383` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-mode" href="#file-mode">`file.mode`</a> | string | Mode of the file in octal representation. | `0640` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-modified" href="#file-modified">`file.modified`</a> | string | Time when the file content was last modified, in ISO 8601 format. | `2021-01-01T12:00:00Z` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-name" href="#file-name">`file.name`</a> | string | Name of the file including the extension, without the directory. | `example.png` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-owner-id" href="#file-owner-id">`file.owner.id`</a> | string | The user ID (UID) or security identifier (SID) of the file owner. | `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-owner-name" href="#file-owner-name">`file.owner.name`</a> | string | Username of the file owner. | `root` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-path" href="#file-path">`file.path`</a> | string | Full path to the file, including the file name. It should include the drive letter, when appropriate. | `/home/alice/example.png`; `C:\Program Files\MyApp\myapp.exe` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-size" href="#file-size">`file.size`</a> | int | File size in bytes. |  | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-symbolic-link-target-path" href="#file-symbolic-link-target-path">`file.symbolic_link.target_path`</a> | string | Path to the target of a symbolic link. [7] | `/usr/bin/python3` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `file.accessed`:** This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
 

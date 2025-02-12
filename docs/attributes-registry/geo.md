@@ -10,13 +10,13 @@ Note: Geo attributes are typically used under another namespace, such as client.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="geo-continent-code" href="#geo-continent-code">`geo.continent.code`</a> | string | Two-letter code representing continent’s name. | `AF`; `AN`; `AS` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="geo-country-iso-code" href="#geo-country-iso-code">`geo.country.iso_code`</a> | string | Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://wikipedia.org/wiki/ISO_3166-1#Codes)). | `CA` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="geo-locality-name" href="#geo-locality-name">`geo.locality.name`</a> | string | Locality name. Represents the name of a city, town, village, or similar populated place. | `Montreal`; `Berlin` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="geo-location-lat" href="#geo-location-lat">`geo.location.lat`</a> | double | Latitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84). | `45.505918` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="geo-location-lon" href="#geo-location-lon">`geo.location.lon`</a> | double | Longitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84). | `-73.61483` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="geo-postal-code" href="#geo-postal-code">`geo.postal_code`</a> | string | Postal code associated with the location. Values appropriate for this field may also be known as a postcode or ZIP code and will vary widely from country to country. | `94040` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="geo-region-iso-code" href="#geo-region-iso-code">`geo.region.iso_code`</a> | string | Region ISO code ([ISO 3166-2](https://wikipedia.org/wiki/ISO_3166-2)). | `CA-QC` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="geo-continent-code" href="#geo-continent-code">`geo.continent.code`</a> | string | Two-letter code representing continent’s name. | `AF`; `AN`; `AS` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="geo-country-iso-code" href="#geo-country-iso-code">`geo.country.iso_code`</a> | string | Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://wikipedia.org/wiki/ISO_3166-1#Codes)). | `CA` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="geo-locality-name" href="#geo-locality-name">`geo.locality.name`</a> | string | Locality name. Represents the name of a city, town, village, or similar populated place. | `Montreal`; `Berlin` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="geo-location-lat" href="#geo-location-lat">`geo.location.lat`</a> | double | Latitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84). | `45.505918` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="geo-location-lon" href="#geo-location-lon">`geo.location.lon`</a> | double | Longitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84). | `-73.61483` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="geo-postal-code" href="#geo-postal-code">`geo.postal_code`</a> | string | Postal code associated with the location. Values appropriate for this field may also be known as a postcode or ZIP code and will vary widely from country to country. | `94040` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="geo-region-iso-code" href="#geo-region-iso-code">`geo.region.iso_code`</a> | string | Region ISO code ([ISO 3166-2](https://wikipedia.org/wiki/ISO_3166-2)). | `CA-QC` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -24,10 +24,10 @@ Note: Geo attributes are typically used under another namespace, such as client.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `AF` | Africa | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `AN` | Antarctica | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `AS` | Asia | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `EU` | Europe | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `NA` | North America | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `OC` | Oceania | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `SA` | South America | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `AF` | Africa | ![Development](https://img.shields.io/badge/-development-blue) |
+| `AN` | Antarctica | ![Development](https://img.shields.io/badge/-development-blue) |
+| `AS` | Asia | ![Development](https://img.shields.io/badge/-development-blue) |
+| `EU` | Europe | ![Development](https://img.shields.io/badge/-development-blue) |
+| `NA` | North America | ![Development](https://img.shields.io/badge/-development-blue) |
+| `OC` | Oceania | ![Development](https://img.shields.io/badge/-development-blue) |
+| `SA` | South America | ![Development](https://img.shields.io/badge/-development-blue) |

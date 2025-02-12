@@ -2,7 +2,7 @@ groups:
   - id: attributes.db.client.minimal
     type: attribute_group
     brief: 'Database Client attributes'
-    stability: experimental
+    stability: development
     attributes:
       - ref: server.address
         brief: >
@@ -60,7 +60,7 @@ groups:
   - id: attributes.db.client.with_query
     extends: attributes.db.client.minimal
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: This group defines the attributes describing database operations that
       may have queries.
     attributes:
@@ -72,7 +72,7 @@ groups:
   - id: attributes.db.client.with_query_and_collection
     extends: attributes.db.client.with_query
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: This group defines the attributes describing database operations that
       have operation name, collection name and query.
     attributes:

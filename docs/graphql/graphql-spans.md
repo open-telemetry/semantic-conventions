@@ -4,7 +4,7 @@ linkTitle: GraphQL server
 
 # Semantic conventions for GraphQL server
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions to apply when instrumenting the GraphQL implementation. They map GraphQL
 operations to attributes on a Span.
@@ -31,9 +31,9 @@ the span SHOULD be named `GraphQL Operation`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`graphql.document`](/docs/attributes-registry/graphql.md) | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`graphql.operation.name`](/docs/attributes-registry/graphql.md) | string | The name of the operation being executed. | `findBookById` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`graphql.operation.type`](/docs/attributes-registry/graphql.md) | string | The type of the operation being executed. | `query`; `mutation`; `subscription` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`graphql.document`](/docs/attributes-registry/graphql.md) | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`graphql.operation.name`](/docs/attributes-registry/graphql.md) | string | The name of the operation being executed. | `findBookById` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`graphql.operation.type`](/docs/attributes-registry/graphql.md) | string | The type of the operation being executed. | `query`; `mutation`; `subscription` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `graphql.document`:** The value may be sanitized to exclude sensitive information.
 
@@ -43,9 +43,9 @@ the span SHOULD be named `GraphQL Operation`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `mutation` | GraphQL mutation | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `query` | GraphQL query | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `subscription` | GraphQL subscription | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mutation` | GraphQL mutation | ![Development](https://img.shields.io/badge/-development-blue) |
+| `query` | GraphQL query | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription` | GraphQL subscription | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

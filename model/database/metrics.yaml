@@ -34,7 +34,7 @@ groups:
   - id: metric.db.client.connection.count
     type: metric
     metric_name: db.client.connection.count
-    stability: experimental
+    stability: development
     brief: "The number of connections that are currently in state described by the `state` attribute"
     instrument: updowncounter
     unit: "{connection}"
@@ -47,7 +47,7 @@ groups:
   - id: metric.db.client.connection.idle.max
     type: metric
     metric_name: db.client.connection.idle.max
-    stability: experimental
+    stability: development
     brief: "The maximum number of idle open connections allowed"
     instrument: updowncounter
     unit: "{connection}"
@@ -58,7 +58,7 @@ groups:
   - id: metric.db.client.connection.idle.min
     type: metric
     metric_name: db.client.connection.idle.min
-    stability: experimental
+    stability: development
     brief: "The minimum number of idle open connections allowed"
     instrument: updowncounter
     unit: "{connection}"
@@ -69,7 +69,7 @@ groups:
   - id: metric.db.client.connection.max
     type: metric
     metric_name: db.client.connection.max
-    stability: experimental
+    stability: development
     brief: "The maximum number of open connections allowed"
     instrument: updowncounter
     unit: "{connection}"
@@ -80,7 +80,7 @@ groups:
   - id: metric.db.client.connection.pending_requests
     type: metric
     metric_name: db.client.connection.pending_requests
-    stability: experimental
+    stability: development
     brief: "The number of current pending requests for an open connection"
     instrument: updowncounter
     unit: "{request}"
@@ -91,7 +91,7 @@ groups:
   - id: metric.db.client.connection.timeouts
     type: metric
     metric_name: db.client.connection.timeouts
-    stability: experimental
+    stability: development
     brief: "The number of connection timeouts that have occurred trying to obtain a connection from the pool"
     instrument: counter
     unit: "{timeout}"
@@ -102,7 +102,7 @@ groups:
   - id: metric.db.client.connection.create_time
     type: metric
     metric_name: db.client.connection.create_time
-    stability: experimental
+    stability: development
     brief: "The time it took to create a new connection"
     instrument: histogram
     unit: "s"
@@ -113,7 +113,7 @@ groups:
   - id: metric.db.client.connection.wait_time
     type: metric
     metric_name: db.client.connection.wait_time
-    stability: experimental
+    stability: development
     brief: "The time it took to obtain an open connection from the pool"
     instrument: histogram
     unit: "s"
@@ -124,7 +124,7 @@ groups:
   - id: metric.db.client.connection.use_time
     type: metric
     metric_name: db.client.connection.use_time
-    stability: experimental
+    stability: development
     brief: "The time between borrowing a connection and returning it to the pool"
     instrument: histogram
     unit: "s"
@@ -138,7 +138,7 @@ groups:
     brief: "The actual number of records returned by the database operation."
     instrument: histogram
     unit: "{row}"
-    stability: experimental
+    stability: development
     extends: attributes.db.client.with_query_and_collection
     attributes:
       - ref: db.system.name

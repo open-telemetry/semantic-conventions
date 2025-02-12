@@ -12,7 +12,7 @@ linkTitle: Logs
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `aws.log`
 
@@ -20,10 +20,10 @@ linkTitle: Logs
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`aws.log.group.arns`](/docs/attributes-registry/aws.md) | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [1] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.log.group.names`](/docs/attributes-registry/aws.md) | string[] | The name(s) of the AWS log group(s) an application is writing to. [2] | `["/aws/lambda/my-function", "opentelemetry-service"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.log.stream.arns`](/docs/attributes-registry/aws.md) | string[] | The ARN(s) of the AWS log stream(s). [3] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.log.stream.names`](/docs/attributes-registry/aws.md) | string[] | The name(s) of the AWS log stream(s) an application is writing to. | `["logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`aws.log.group.arns`](/docs/attributes-registry/aws.md) | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [1] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.log.group.names`](/docs/attributes-registry/aws.md) | string[] | The name(s) of the AWS log group(s) an application is writing to. [2] | `["/aws/lambda/my-function", "opentelemetry-service"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.log.stream.arns`](/docs/attributes-registry/aws.md) | string[] | The ARN(s) of the AWS log stream(s). [3] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.log.stream.names`](/docs/attributes-registry/aws.md) | string[] | The name(s) of the AWS log stream(s) an application is writing to. | `["logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `aws.log.group.arns`:** See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
 

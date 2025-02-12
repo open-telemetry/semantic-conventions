@@ -9,5 +9,5 @@ These attributes may be used for any operation to store information about a thre
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="thread-id" href="#thread-id">`thread.id`</a> | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="thread-name" href="#thread-name">`thread.name`</a> | string | Current thread name. | `main` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="thread-id" href="#thread-id">`thread.id`</a> | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="thread-name" href="#thread-name">`thread.name`</a> | string | Current thread name. | `main` | ![Development](https://img.shields.io/badge/-development-blue) |

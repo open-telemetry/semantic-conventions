@@ -6,63 +6,63 @@ groups:
       This document defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models requests and responses.
     attributes:
       - id: gen_ai.system
-        stability: experimental
+        stability: development
         type:
           members:
             - id: openai
-              stability: experimental
+              stability: development
               value: "openai"
               brief: 'OpenAI'
             - id: vertex_ai
-              stability: experimental
+              stability: development
               value: "vertex_ai"
               brief: 'Vertex AI'
             - id: gemini
-              stability: experimental
+              stability: development
               value: "gemini"
               brief: 'Gemini'
             - id: anthropic
-              stability: experimental
+              stability: development
               value: "anthropic"
               brief: 'Anthropic'
             - id: cohere
-              stability: experimental
+              stability: development
               value: "cohere"
               brief: 'Cohere'
             - id: az.ai.inference
-              stability: experimental
+              stability: development
               value: "az.ai.inference"
               brief: 'Azure AI Inference'
             - id: az.ai.openai
-              stability: experimental
+              stability: development
               value: "az.ai.openai"
               brief: 'Azure OpenAI'
             - id: ibm.watsonx.ai
-              stability: experimental
+              stability: development
               value: "ibm.watsonx.ai"
               brief: 'IBM Watsonx AI'
             - id: aws.bedrock
-              stability: experimental
+              stability: development
               value: "aws.bedrock"
               brief: 'AWS Bedrock'
             - id: perplexity
-              stability: experimental
+              stability: development
               value: "perplexity"
               brief: 'Perplexity'
             - id: xai
-              stability: experimental
+              stability: development
               value: "xai"
               brief: 'xAI'
             - id: deepseek
-              stability: experimental
+              stability: development
               value: "deepseek"
               brief: 'DeepSeek'
             - id: groq
-              stability: experimental
+              stability: development
               value: "groq"
               brief: 'Groq'
             - id: mistral_ai
-              stability: experimental
+              stability: development
               value: "mistral_ai"
               brief: 'Mistral AI'
 
@@ -81,48 +81,48 @@ groups:
           If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
         examples: 'openai'
       - id: gen_ai.request.model
-        stability: experimental
+        stability: development
         type: string
         brief: The name of the GenAI model a request is being made to.
         examples: 'gpt-4'
       - id: gen_ai.request.max_tokens
-        stability: experimental
+        stability: development
         type: int
         brief: The maximum number of tokens the model generates for a request.
         examples: [100]
       - id: gen_ai.request.temperature
-        stability: experimental
+        stability: development
         type: double
         brief: The temperature setting for the GenAI request.
         examples: [0.0]
       - id: gen_ai.request.top_p
-        stability: experimental
+        stability: development
         type: double
         brief: The top_p sampling setting for the GenAI request.
         examples: [1.0]
       - id: gen_ai.request.top_k
-        stability: experimental
+        stability: development
         type: double
         brief: The top_k sampling setting for the GenAI request.
         examples: [1.0]
       - id: gen_ai.request.stop_sequences
-        stability: experimental
+        stability: development
         type: string[]
         brief: List of sequences that the model will use to stop generating further tokens.
         examples:
           - [forest, lived]
       - id: gen_ai.request.frequency_penalty
-        stability: experimental
+        stability: development
         type: double
         brief: The frequency penalty setting for the GenAI request.
         examples: [0.1]
       - id: gen_ai.request.presence_penalty
-        stability: experimental
+        stability: development
         type: double
         brief: The presence penalty setting for the GenAI request.
         examples: [0.1]
       - id: gen_ai.request.encoding_formats
-        stability: experimental
+        stability: development
         type: string[]
         brief: The encoding formats requested in an embeddings operation, if specified.
         examples:
@@ -132,34 +132,34 @@ groups:
           In some GenAI systems the encoding formats are called embedding types.
           Also, some GenAI systems only accept a single format per request.
       - id: gen_ai.request.seed
-        stability: experimental
+        stability: development
         type: int
         brief: Requests with same seed value more likely to return same result.
         examples: [100]
       - id: gen_ai.response.id
-        stability: experimental
+        stability: development
         type: string
         brief: The unique identifier for the completion.
         examples: ['chatcmpl-123']
       - id: gen_ai.response.model
-        stability: experimental
+        stability: development
         type: string
         brief: The name of the model that generated the response.
         examples: ['gpt-4-0613']
       - id: gen_ai.response.finish_reasons
-        stability: experimental
+        stability: development
         type: string[]
         brief: Array of reasons the model stopped generating tokens, corresponding to each generation received.
         examples:
           - [stop]
           - [stop, length]
       - id: gen_ai.usage.input_tokens
-        stability: experimental
+        stability: development
         type: int
         brief: The number of tokens used in the GenAI input (prompt).
         examples: [100]
       - id: gen_ai.usage.output_tokens
-        stability: experimental
+        stability: development
         type: int
         brief: The number of tokens used in the GenAI response (completion).
         examples: [180]
@@ -219,29 +219,29 @@ groups:
           Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
         examples: ['function', 'extension', 'datastore']
       - id: gen_ai.operation.name
-        stability: experimental
+        stability: development
         type:
           members:
             - id: chat
               value: "chat"
               brief: 'Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)'
-              stability: experimental
+              stability: development
             - id: text_completion
               value: "text_completion"
               brief: 'Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions)'
-              stability: experimental
+              stability: development
             - id: embeddings
               value: "embeddings"
               brief: 'Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create)'
-              stability: experimental
+              stability: development
             - id: create_agent
               value: "create_agent"
               brief: 'Create GenAI agent'
-              stability: experimental
+              stability: development
             - id: execute_tool
               value: "execute_tool"
               brief: 'Execute a tool'
-              stability: experimental
+              stability: development
         brief: The name of the operation being performed.
         note: >
           If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic
@@ -288,26 +288,26 @@ groups:
       This group defines attributes for OpenAI.
     attributes:
       - id: gen_ai.openai.request.service_tier
-        stability: experimental
+        stability: development
         type:
           members:
             - id: auto
               value: "auto"
               brief: The system will utilize scale tier credits until they are exhausted.
-              stability: experimental
+              stability: development
             - id: default
               value: "default"
               brief: The system will utilize the default scale tier.
-              stability: experimental
+              stability: development
         brief: The service tier requested. May be a specific tier, default, or auto.
         examples: ['auto', 'default']
       - id: gen_ai.openai.response.service_tier
-        stability: experimental
+        stability: development
         type: string
         brief: The service tier used for the response.
         examples: ['scale', 'default']
       - id: gen_ai.openai.response.system_fingerprint
-        stability: experimental
+        stability: development
         type: string
         brief: A fingerprint to track any eventual change in the Generative AI environment.
         examples: ["fp_44709d6fcb"]

@@ -202,7 +202,7 @@ OpenTelemetry specification.
 
 ### Signal-specific Attributes
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 Attributes are defined in semantic conventions in a signal-agnostic way. The same attribute
 is expected to be used on multiple signals.
@@ -228,7 +228,7 @@ Metric `http.server.request.duration` uses attributes from the registry such as
 
 ## Metrics
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 ### Naming Rules for Counters and UpDownCounters
 
@@ -268,7 +268,7 @@ be confusing in delta backends.
 
 ### Instrument Naming
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 - **limit** - an instrument that measures the constant, known total amount of
 something should be called `entity.limit`. For example, `system.memory.limit`

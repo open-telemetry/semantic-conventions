@@ -4,7 +4,7 @@ linkTitle: GCP
 
 # GCP semantic conventions
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This directory defines standards for resource attributes that only apply to
 Google Cloud Platform (GCP). If an attribute could apply to resources from more than one cloud

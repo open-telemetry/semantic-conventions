@@ -7,7 +7,7 @@ groups:
     attributes:
       - id: peer.service
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The [`service.name`](/docs/resource/README.md#service)
           of the remote service. SHOULD be equal to the actual `service.name`

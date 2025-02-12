@@ -4,7 +4,7 @@ linkTitle: MongoDB
 
 # Semantic conventions for MongoDB
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 <!-- toc -->
 
