@@ -7,67 +7,87 @@ groups:
     attributes:
       - id: net.sock.peer.name
         type: string
-        deprecated: "Removed."
+        deprecated:
+          reason: obsoleted
+          note: "Removed. No replacement at this time."
         stability: development
         brief: Deprecated, no replacement at this time.
         examples: ['/var/my.sock']
       - id: net.sock.peer.addr
         type: string
-        deprecated: "Replaced by `network.peer.address`."
+        deprecated:
+          reason: renamed
+          renamed_to: network.peer.address
         stability: development
         brief: Deprecated, use `network.peer.address`.
         examples: ['192.168.0.1']
       - id: net.sock.peer.port
         type: int
-        deprecated: "Replaced by `network.peer.port`."
+        deprecated:
+          reason: renamed
+          renamed_to: network.peer.port
         stability: development
         examples: [65531]
         brief: Deprecated, use `network.peer.port`.
       - id: net.peer.name
         type: string
-        deprecated: "Replaced by `server.address` on client spans and `client.address` on server spans."
+        deprecated:
+          reason: uncategorized
         stability: development
         brief: Deprecated, use `server.address` on client spans and `client.address` on server spans.
         examples: ['example.com']
       - id: net.peer.port
         type: int
-        deprecated: "Replaced by `server.port` on client spans and `client.port` on server spans."
+        deprecated:
+          reason: uncategorized
         stability: development
         brief: Deprecated, use `server.port` on client spans and `client.port` on server spans.
         examples: [8080]
       - id: net.peer.ip
         type: string
-        deprecated: "Replaced by `network.peer.address`."
+        deprecated:
+          reason: renamed
+          renamed_to: network.peer.address
         stability: development
         brief: Deprecated, use `network.peer.address`.
         examples: '127.0.0.1'
       - id: net.host.name
         type: string
-        deprecated: "Replaced by `server.address`."
+        deprecated:
+          reason: renamed
+          renamed_to: server.address
         stability: development
         brief: Deprecated, use `server.address`.
         examples: ['example.com']
       - id: net.host.ip
         type: string
-        deprecated: "Replaced by `network.local.address`."
+        deprecated:
+          reason: renamed
+          renamed_to: network.local.address
         stability: development
         brief: Deprecated, use `network.local.address`.
         examples: '192.168.0.1'
       - id: net.host.port
         type: int
-        deprecated: "Replaced by `server.port`."
+        deprecated:
+          reason: renamed
+          renamed_to: server.port
         stability: development
         brief: Deprecated, use `server.port`.
         examples: [8080]
       - id: net.sock.host.addr
         type: string
-        deprecated: "Replaced by `network.local.address`."
+        deprecated:
+          reason: renamed
+          renamed_to: network.local.address
         stability: development
         brief: Deprecated, use `network.local.address`.
         examples: ['/var/my.sock']
       - id: net.sock.host.port
         type: int
-        deprecated: "Replaced by `network.local.port`."
+        deprecated:
+          reason: renamed
+          renamed_to: network.local.port
         stability: development
         brief: Deprecated, use `network.local.port`.
         examples: [8080]
@@ -96,18 +116,24 @@ groups:
               value: "other"
               stability: development
               brief: 'Something else (non IP-based).'
-        deprecated: "Replaced by `network.transport`."
+        deprecated:
+          reason: renamed
+          renamed_to: network.transport
         stability: development
         brief: Deprecated, use `network.transport`.
       - id: net.protocol.name
         type: string
-        deprecated: "Replaced by `network.protocol.name`."
+        deprecated:
+          reason: renamed
+          renamed_to: network.protocol.name
         stability: development
         brief: Deprecated, use `network.protocol.name`.
         examples: ['amqp', 'http', 'mqtt']
       - id: net.protocol.version
         type: string
-        deprecated: "Replaced by `network.protocol.version`."
+        deprecated:
+          reason: renamed
+          renamed_to: network.protocol.version
         stability: development
         brief: Deprecated, use `network.protocol.version`.
         examples: '3.1.1'
@@ -126,6 +152,7 @@ groups:
               value: 'unix'
               brief: "Unix domain socket path"
               stability: development
-        deprecated: "Split to `network.transport` and `network.type`."
+        deprecated:
+          reason: uncategorized
         stability: development
         brief: Deprecated, use `network.transport` and `network.type`.
