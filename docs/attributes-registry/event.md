@@ -9,4 +9,4 @@ Attributes for Events represented using Log Records.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="event-name" href="#event-name">`event.name`</a> | string | Identifies the class / type of event. | `browser.mouse.click`; `device.app.lifecycle` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) (obsoleted) |
+| <a id="event-name" href="#event-name">`event.name`</a> | string | Identifies the class / type of event. | `browser.mouse.click`; `device.app.lifecycle` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Identifies the class / type of event. |

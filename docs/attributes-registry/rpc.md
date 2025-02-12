@@ -118,10 +118,10 @@ Deprecated rpc message attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="message-compressed-size" href="#message-compressed-size">`message.compressed_size`</a> | int | Deprecated, use `rpc.message.compressed_size` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red) (obsoleted) |
-| <a id="message-id" href="#message-id">`message.id`</a> | int | Deprecated, use `rpc.message.id` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red) (obsoleted) |
-| <a id="message-type" href="#message-type">`message.type`</a> | string | Deprecated, use `rpc.message.type` instead. | `SENT`; `RECEIVED` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) (obsoleted) |
-| <a id="message-uncompressed-size" href="#message-uncompressed-size">`message.uncompressed_size`</a> | int | Deprecated, use `rpc.message.uncompressed_size` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red) (obsoleted) |
+| <a id="message-compressed-size" href="#message-compressed-size">`message.compressed_size`</a> | int | Deprecated, use `rpc.message.compressed_size` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use `rpc.message.compressed_size` instead. |
+| <a id="message-id" href="#message-id">`message.id`</a> | int | Deprecated, use `rpc.message.id` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use `rpc.message.id` instead. |
+| <a id="message-type" href="#message-type">`message.type`</a> | string | Deprecated, use `rpc.message.type` instead. | `SENT`; `RECEIVED` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use `rpc.message.type` instead. |
+| <a id="message-uncompressed-size" href="#message-uncompressed-size">`message.uncompressed_size`</a> | int | Deprecated, use `rpc.message.uncompressed_size` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use `rpc.message.uncompressed_size` instead. |
 
 ---
 

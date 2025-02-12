@@ -86,8 +86,8 @@ Deprecated process attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) (obsoleted) |
-| <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) (obsoleted) |
+| <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use `cpu.mode` instead. |
+| <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) "Deprecated, use `process.executable.build_id.htlhash` instead." |
 
 ---
 

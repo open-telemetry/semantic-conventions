@@ -44,8 +44,8 @@ Describes deprecated container attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) (obsoleted) |
-| <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | string | Deprecated, use `container.label` instead. | `container.label.app=nginx` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) (obsoleted) |
+| <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use `cpu.mode` instead. |
+| <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | string | Deprecated, use `container.label` instead. | `container.label.app=nginx` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use `container.label` instead. |
 
 ---
 

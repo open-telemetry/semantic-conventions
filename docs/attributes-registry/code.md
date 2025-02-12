@@ -25,7 +25,7 @@ These deprecated attributes provide context about source code
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="code-column" href="#code-column">`code.column`</a> | int | Deprecated, use `code.column.number` | `16` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) (obsoleted) |
+| <a id="code-column" href="#code-column">`code.column`</a> | int | Deprecated, use `code.column.number` | `16` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use `code.column.number` |
 | <a id="code-filepath" href="#code-filepath">`code.filepath`</a> | string | Deprecated, use `code.file.path` instead | `/usr/local/MyApplication/content_root/app/index.php` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="code-function" href="#code-function">`code.function`</a> | string | Deprecated, use `code.function.name` instead | `serveRequest` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) (obsoleted) |
-| <a id="code-lineno" href="#code-lineno">`code.lineno`</a> | int | Deprecated, use `code.line.number` instead | `42` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) (obsoleted) |
+| <a id="code-function" href="#code-function">`code.function`</a> | string | Deprecated, use `code.function.name` instead | `serveRequest` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use `code.function.name` instead |
+| <a id="code-lineno" href="#code-lineno">`code.lineno`</a> | int | Deprecated, use `code.line.number` instead | `42` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use `code.line.number` instead |

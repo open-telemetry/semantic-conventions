@@ -100,4 +100,4 @@ Describes deprecated k8s attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="k8s-pod-labels" href="#k8s-pod-labels">`k8s.pod.labels.<key>`</a> | string | Deprecated, use `k8s.pod.label` instead. | `k8s.pod.label.app=my-app` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) (obsoleted) |
+| <a id="k8s-pod-labels" href="#k8s-pod-labels">`k8s.pod.labels.<key>`</a> | string | Deprecated, use `k8s.pod.label` instead. | `k8s.pod.label.app=my-app` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use `k8s.pod.label` instead. |
