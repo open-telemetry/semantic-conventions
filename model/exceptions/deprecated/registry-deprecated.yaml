@@ -8,7 +8,10 @@ groups:
       - id: exception.escaped
         type: boolean
         stability: stable
-        deprecated: "It's no longer recommended to record exceptions that are handled
-          and do not escape the scope of a span."
+        deprecated:
+          reason: obsoleted
+          note: >
+            It's no longer recommended to record exceptions that are handled
+            and do not escape the scope of a span.
         brief: >
           Indicates that the exception is escaping the scope of the span.

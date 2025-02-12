@@ -6,13 +6,17 @@ groups:
     attributes:
       - id: otel.library.name
         type: string
-        deprecated: "Use the `otel.scope.name` attribute."
+        deprecated:
+          reason: renamed
+          renamed_to: otel.scope.name
         stability: development
         brief: "Deprecated. Use the `otel.scope.name` attribute"
         examples: ['io.opentelemetry.contrib.mongodb']
       - id: otel.library.version
         type: string
-        deprecated: "Use the `otel.scope.version` attribute."
+        deprecated:
+          reason: renamed
+          renamed_to: otel.scope.version
         stability: development
         brief: "Deprecated. Use the `otel.scope.version` attribute."
         examples: ['1.0.0']
