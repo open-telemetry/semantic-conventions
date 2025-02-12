@@ -439,3 +439,17 @@ A ResourceQuota provides constraints that limit aggregate resource consumption p
 <!-- endsemconv -->
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+
+## Specify resource attributes using Kubernetes annotations
+
+All annotations with the `resource.opentelemetry.io/` prefix should be translated into the corresponding resource
+attributes.
+
+For example, the annotation `resource.opentelemetry.io/service.name` should be translated into the `service.name`
+attribute.
+
+## Kubernetes specific guidelines
+
+The following guidelines are specific to Kubernetes:
+
+- [Service in Kubernetes](README.md#service-in-kubernetes)
