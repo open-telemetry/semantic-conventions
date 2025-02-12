@@ -14,7 +14,7 @@ Attributes reserved for OpenTelemetry
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="otel-span-sampling-result" href="#otel-span-sampling-result">`otel.span.sampling_result`</a> | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="otel-span-sampling-result" href="#otel-span-sampling-result">`otel.span.sampling_result`</a> | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="otel-status-code" href="#otel-status-code">`otel.status_code`</a> | string | Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET. | `OK`; `ERROR` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="otel-status-description" href="#otel-status-description">`otel.status_description`</a> | string | Description of the Status if it has a value, otherwise not set. | `resource not found` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
@@ -24,9 +24,9 @@ Attributes reserved for OpenTelemetry
 
 | Value  | Description | Stability |
 |---|---|---|
-| `DROP` | The span is not sampled and not recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `RECORD_AND_SAMPLE` | The span is sampled and recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `RECORD_ONLY` | The span is not sampled, but recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `DROP` | The span is not sampled and not recording | ![Development](https://img.shields.io/badge/-development-blue) |
+| `RECORD_AND_SAMPLE` | The span is sampled and recording | ![Development](https://img.shields.io/badge/-development-blue) |
+| `RECORD_ONLY` | The span is not sampled, but recording | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -43,8 +43,8 @@ Attributes used for OpenTelemetry component self-monitoring
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="otel-component-name" href="#otel-component-name">`otel.component.name`</a> | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="otel-component-type" href="#otel-component-type">`otel.component.type`</a> | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="otel-component-name" href="#otel-component-name">`otel.component.name`</a> | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="otel-component-type" href="#otel-component-type">`otel.component.type`</a> | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -69,11 +69,11 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `batching_span_processor` | The builtin SDK Batching Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_http_json_span_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `simple_span_processor` | The builtin SDK Simple Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `batching_span_processor` | The builtin SDK Batching Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_json_span_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## OTel Scope Attributes
 

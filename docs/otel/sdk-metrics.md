@@ -38,14 +38,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.span.live.count` | UpDownCounter | `{span}` | The number of created spans for which the end operation has not been called yet [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.span.live.count` | UpDownCounter | `{span}` | The number of created spans for which the end operation has not been called yet [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
 For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.ended.count`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`otel.span.sampling_result`](/docs/attributes-registry/otel.md) | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.span.sampling_result`](/docs/attributes-registry/otel.md) | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -53,9 +53,9 @@ For spans with `recording=false`: If implementations decide to record this metri
 
 | Value  | Description | Stability |
 |---|---|---|
-| `DROP` | The span is not sampled and not recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `RECORD_AND_SAMPLE` | The span is sampled and recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `RECORD_ONLY` | The span is not sampled, but recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `DROP` | The span is not sampled and not recording | ![Development](https://img.shields.io/badge/-development-blue) |
+| `RECORD_AND_SAMPLE` | The span is sampled and recording | ![Development](https://img.shields.io/badge/-development-blue) |
+| `RECORD_ONLY` | The span is not sampled, but recording | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -75,14 +75,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.span.ended.count` | Counter | `{span}` | The number of created spans for which the end operation was called [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.span.ended.count` | Counter | `{span}` | The number of created spans for which the end operation was called [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
 For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.live.count`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`otel.span.sampling_result`](/docs/attributes-registry/otel.md) | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.span.sampling_result`](/docs/attributes-registry/otel.md) | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -90,9 +90,9 @@ For spans with `recording=false`: If implementations decide to record this metri
 
 | Value  | Description | Stability |
 |---|---|---|
-| `DROP` | The span is not sampled and not recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `RECORD_AND_SAMPLE` | The span is sampled and recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `RECORD_ONLY` | The span is not sampled, but recording | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `DROP` | The span is not sampled and not recording | ![Development](https://img.shields.io/badge/-development-blue) |
+| `RECORD_AND_SAMPLE` | The span is sampled and recording | ![Development](https://img.shields.io/badge/-development-blue) |
+| `RECORD_ONLY` | The span is not sampled, but recording | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -112,14 +112,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.processor.span.queue.size` | UpDownCounter | `{span}` | The number of spans in the queue of a given instance of an SDK span processor [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.processor.span.queue.size` | UpDownCounter | `{span}` | The number of spans in the queue of a given instance of an SDK span processor [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`otel.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`otel.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -144,11 +144,11 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `batching_span_processor` | The builtin SDK Batching Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_http_json_span_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `simple_span_processor` | The builtin SDK Simple Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `batching_span_processor` | The builtin SDK Batching Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_json_span_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -168,14 +168,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.processor.span.queue.capacity` | UpDownCounter | `{span}` | The maximum number of spans the queue of a given instance of an SDK span processor can hold [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.processor.span.queue.capacity` | UpDownCounter | `{span}` | The maximum number of spans the queue of a given instance of an SDK span processor can hold [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`otel.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`otel.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -200,11 +200,11 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `batching_span_processor` | The builtin SDK Batching Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_http_json_span_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `simple_span_processor` | The builtin SDK Simple Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `batching_span_processor` | The builtin SDK Batching Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_json_span_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -224,7 +224,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.processor.span.processed.count` | Counter | `{span}` | The number of spans for which the processing has finished, either successful or failed [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.processor.span.processed.count` | Counter | `{span}` | The number of spans for which the processing has finished, either successful or failed [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` must contain the failure cause.
 For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
@@ -232,8 +232,8 @@ For the SDK Simple and Batching Span Processor a span is considered to be proces
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`error.type`](/docs/attributes-registry/error.md) | string | A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue. [1] | `queue_full` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`otel.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`otel.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -286,11 +286,11 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `batching_span_processor` | The builtin SDK Batching Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_http_json_span_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `simple_span_processor` | The builtin SDK Simple Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `batching_span_processor` | The builtin SDK Batching Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_json_span_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -310,14 +310,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.exporter.span.inflight.count` | UpDownCounter | `{span}` | The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed) [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.exporter.span.inflight.count` | UpDownCounter | `{span}` | The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed) [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`otel.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`otel.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` when applicable | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Recommended` when applicable | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
@@ -348,11 +348,11 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `batching_span_processor` | The builtin SDK Batching Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_http_json_span_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `simple_span_processor` | The builtin SDK Simple Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `batching_span_processor` | The builtin SDK Batching Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_json_span_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -372,7 +372,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.exporter.span.exported.count` | Counter | `{span}` | The number of spans for which the export has finished, either successful or failed [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `otel.sdk.exporter.span.exported.count` | Counter | `{span}` | The number of spans for which the export has finished, either successful or failed [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
 For exporters with partial success semantics (e.g. OTLP with `rejected_spans`), rejected spans must count as failed and only non-rejected spans count as success.
@@ -381,8 +381,8 @@ If no rejection reason is available, `rejected` SHOULD be used as value for `err
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `rejected`; `timeout`; `500`; `java.net.UnknownHostException` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`otel.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`otel.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`otel.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`otel.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` when applicable | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Recommended` when applicable | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
@@ -441,11 +441,11 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `batching_span_processor` | The builtin SDK Batching Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_http_json_span_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `simple_span_processor` | The builtin SDK Simple Span Processor | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `batching_span_processor` | The builtin SDK Batching Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_json_span_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
