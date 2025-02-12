@@ -58,4 +58,4 @@ Describes deprecated `tls` attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="tls-client-server-name" href="#tls-client-server-name">`tls.client.server_name`</a> | string | Deprecated, use `server.address` instead. | `opentelemetry.io` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use `server.address` instead. |
+| <a id="tls-client-server-name" href="#tls-client-server-name">`tls.client.server_name`</a> | string | Deprecated, use `server.address` instead. | `opentelemetry.io` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `server.address` instead. |

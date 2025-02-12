@@ -144,10 +144,10 @@ Describes deprecated `gen_ai` attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="gen-ai-completion" href="#gen-ai-completion">`gen_ai.completion`</a> | string | Deprecated, use Event API to report completions contents. | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use Event API to report completions contents. |
-| <a id="gen-ai-prompt" href="#gen-ai-prompt">`gen_ai.prompt`</a> | string | Deprecated, use Event API to report prompt contents. | `[{'role': 'user', 'content': 'What is the capital of France?'}]` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use Event API to report prompt contents. |
-| <a id="gen-ai-usage-completion-tokens" href="#gen-ai-usage-completion-tokens">`gen_ai.usage.completion_tokens`</a> | int | Deprecated, use `gen_ai.usage.output_tokens` instead. | `42` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use `gen_ai.usage.output_tokens` instead. |
-| <a id="gen-ai-usage-prompt-tokens" href="#gen-ai-usage-prompt-tokens">`gen_ai.usage.prompt_tokens`</a> | int | Deprecated, use `gen_ai.usage.input_tokens` instead. | `42` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use `gen_ai.usage.input_tokens` instead. |
+| <a id="gen-ai-completion" href="#gen-ai-completion">`gen_ai.completion`</a> | string | Deprecated, use Event API to report completions contents. | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use Event API to report completions contents. |
+| <a id="gen-ai-prompt" href="#gen-ai-prompt">`gen_ai.prompt`</a> | string | Deprecated, use Event API to report prompt contents. | `[{'role': 'user', 'content': 'What is the capital of France?'}]` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use Event API to report prompt contents. |
+| <a id="gen-ai-usage-completion-tokens" href="#gen-ai-usage-completion-tokens">`gen_ai.usage.completion_tokens`</a> | int | Deprecated, use `gen_ai.usage.output_tokens` instead. | `42` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `gen_ai.usage.output_tokens` instead. |
+| <a id="gen-ai-usage-prompt-tokens" href="#gen-ai-usage-prompt-tokens">`gen_ai.usage.prompt_tokens`</a> | int | Deprecated, use `gen_ai.usage.input_tokens` instead. | `42` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `gen_ai.usage.input_tokens` instead. |
 
 ## Deprecated OpenAI GenAI Attributes
 
@@ -155,8 +155,8 @@ Describes deprecated `gen_ai.openai` attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="gen-ai-openai-request-response-format" href="#gen-ai-openai-request-response-format">`gen_ai.openai.request.response_format`</a> | string | Deprecated, use `gen_ai.output.type`. | `text`; `json_object`; `json_schema` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use `gen_ai.output.type`. |
-| <a id="gen-ai-openai-request-seed" href="#gen-ai-openai-request-seed">`gen_ai.openai.request.seed`</a> | int | Deprecated, use `gen_ai.request.seed`. | `100` | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Deprecated, use `gen_ai.request.seed`. |
+| <a id="gen-ai-openai-request-response-format" href="#gen-ai-openai-request-response-format">`gen_ai.openai.request.response_format`</a> | string | Deprecated, use `gen_ai.output.type`. | `text`; `json_object`; `json_schema` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `gen_ai.output.type`. |
+| <a id="gen-ai-openai-request-seed" href="#gen-ai-openai-request-seed">`gen_ai.openai.request.seed`</a> | int | Deprecated, use `gen_ai.request.seed`. | `100` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `gen_ai.request.seed`. |
 
 ---
 

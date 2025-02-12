@@ -22,4 +22,4 @@ Deprecated exception attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="exception-escaped" href="#exception-escaped">`exception.escaped`</a> | boolean | Indicates that the exception is escaping the scope of the span. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Indicates that the exception is escaping the scope of the span. |
+| <a id="exception-escaped" href="#exception-escaped">`exception.escaped`</a> | boolean | Indicates that the exception is escaping the scope of the span. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Indicates that the exception is escaping the scope of the span. |
