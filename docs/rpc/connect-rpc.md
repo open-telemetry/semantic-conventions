@@ -4,7 +4,7 @@ linkTitle: Connect
 
 # Semantic conventions for Connect RPC
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 The Semantic Conventions for [Connect](http://connect.build) extend and override the [RPC spans](rpc-spans.md) and [RPC metrics](rpc-metrics.md) Semantic Conventions
 that describe common RPC operations attributes in addition to the Semantic Conventions
@@ -25,9 +25,9 @@ Below is a table of attributes that SHOULD be included on client and server Conn
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.connect_rpc.error_code`](/docs/attributes-registry/rpc.md) | string | The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled`; `unknown`; `invalid_argument` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.connect_rpc.request.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [2] | `rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.connect_rpc.response.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [3] | `rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.connect_rpc.error_code`](/docs/attributes-registry/rpc.md) | string | The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled`; `unknown`; `invalid_argument` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.connect_rpc.request.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [2] | `rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.connect_rpc.response.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [3] | `rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.connect_rpc.error_code`:** If response is not successful and if error code available.
 
@@ -41,22 +41,22 @@ Below is a table of attributes that SHOULD be included on client and server Conn
 
 | Value  | Description | Stability |
 |---|---|---|
-| `aborted` | aborted | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `already_exists` | already_exists | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cancelled` | cancelled | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `data_loss` | data_loss | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deadline_exceeded` | deadline_exceeded | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `failed_precondition` | failed_precondition | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `internal` | internal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid_argument` | invalid_argument | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `not_found` | not_found | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `out_of_range` | out_of_range | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `permission_denied` | permission_denied | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `resource_exhausted` | resource_exhausted | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unauthenticated` | unauthenticated | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unavailable` | unavailable | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unimplemented` | unimplemented | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unknown` | unknown | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aborted` | aborted | ![Development](https://img.shields.io/badge/-development-blue) |
+| `already_exists` | already_exists | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cancelled` | cancelled | ![Development](https://img.shields.io/badge/-development-blue) |
+| `data_loss` | data_loss | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deadline_exceeded` | deadline_exceeded | ![Development](https://img.shields.io/badge/-development-blue) |
+| `failed_precondition` | failed_precondition | ![Development](https://img.shields.io/badge/-development-blue) |
+| `internal` | internal | ![Development](https://img.shields.io/badge/-development-blue) |
+| `invalid_argument` | invalid_argument | ![Development](https://img.shields.io/badge/-development-blue) |
+| `not_found` | not_found | ![Development](https://img.shields.io/badge/-development-blue) |
+| `out_of_range` | out_of_range | ![Development](https://img.shields.io/badge/-development-blue) |
+| `permission_denied` | permission_denied | ![Development](https://img.shields.io/badge/-development-blue) |
+| `resource_exhausted` | resource_exhausted | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unauthenticated` | unauthenticated | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unavailable` | unavailable | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unimplemented` | unimplemented | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unknown` | unknown | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

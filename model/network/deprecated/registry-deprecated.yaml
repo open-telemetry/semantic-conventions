@@ -8,67 +8,67 @@ groups:
       - id: net.sock.peer.name
         type: string
         deprecated: "Removed."
-        stability: experimental
+        stability: development
         brief: Deprecated, no replacement at this time.
         examples: ['/var/my.sock']
       - id: net.sock.peer.addr
         type: string
         deprecated: "Replaced by `network.peer.address`."
-        stability: experimental
+        stability: development
         brief: Deprecated, use `network.peer.address`.
         examples: ['192.168.0.1']
       - id: net.sock.peer.port
         type: int
         deprecated: "Replaced by `network.peer.port`."
-        stability: experimental
+        stability: development
         examples: [65531]
         brief: Deprecated, use `network.peer.port`.
       - id: net.peer.name
         type: string
         deprecated: "Replaced by `server.address` on client spans and `client.address` on server spans."
-        stability: experimental
+        stability: development
         brief: Deprecated, use `server.address` on client spans and `client.address` on server spans.
         examples: ['example.com']
       - id: net.peer.port
         type: int
         deprecated: "Replaced by `server.port` on client spans and `client.port` on server spans."
-        stability: experimental
+        stability: development
         brief: Deprecated, use `server.port` on client spans and `client.port` on server spans.
         examples: [8080]
       - id: net.peer.ip
         type: string
         deprecated: "Replaced by `network.peer.address`."
-        stability: experimental
+        stability: development
         brief: Deprecated, use `network.peer.address`.
         examples: '127.0.0.1'
       - id: net.host.name
         type: string
         deprecated: "Replaced by `server.address`."
-        stability: experimental
+        stability: development
         brief: Deprecated, use `server.address`.
         examples: ['example.com']
       - id: net.host.ip
         type: string
         deprecated: "Replaced by `network.local.address`."
-        stability: experimental
+        stability: development
         brief: Deprecated, use `network.local.address`.
         examples: '192.168.0.1'
       - id: net.host.port
         type: int
         deprecated: "Replaced by `server.port`."
-        stability: experimental
+        stability: development
         brief: Deprecated, use `server.port`.
         examples: [8080]
       - id: net.sock.host.addr
         type: string
         deprecated: "Replaced by `network.local.address`."
-        stability: experimental
+        stability: development
         brief: Deprecated, use `network.local.address`.
         examples: ['/var/my.sock']
       - id: net.sock.host.port
         type: int
         deprecated: "Replaced by `network.local.port`."
-        stability: experimental
+        stability: development
         brief: Deprecated, use `network.local.port`.
         examples: [8080]
       - id: net.transport
@@ -76,39 +76,39 @@ groups:
           members:
             - id: ip_tcp
               value: "ip_tcp"
-              stability: experimental
+              stability: development
             - id: ip_udp
               value: "ip_udp"
-              stability: experimental
+              stability: development
             - id: pipe
               value: "pipe"
               brief: 'Named or anonymous pipe.'
-              stability: experimental
+              stability: development
             - id: inproc
               value: "inproc"
               brief: 'In-process communication.'
-              stability: experimental
+              stability: development
               note: >
                 Signals that there is only in-process communication not using a "real" network protocol
                 in cases where network attributes would normally be expected. Usually all other network
                 attributes can be left out in that case.
             - id: other
               value: "other"
-              stability: experimental
+              stability: development
               brief: 'Something else (non IP-based).'
         deprecated: "Replaced by `network.transport`."
-        stability: experimental
+        stability: development
         brief: Deprecated, use `network.transport`.
       - id: net.protocol.name
         type: string
         deprecated: "Replaced by `network.protocol.name`."
-        stability: experimental
+        stability: development
         brief: Deprecated, use `network.protocol.name`.
         examples: ['amqp', 'http', 'mqtt']
       - id: net.protocol.version
         type: string
         deprecated: "Replaced by `network.protocol.version`."
-        stability: experimental
+        stability: development
         brief: Deprecated, use `network.protocol.version`.
         examples: '3.1.1'
       - id: net.sock.family
@@ -117,15 +117,15 @@ groups:
             - id: inet
               value: 'inet'
               brief: "IPv4 address"
-              stability: experimental
+              stability: development
             - id: inet6
               value: 'inet6'
               brief: "IPv6 address"
-              stability: experimental
+              stability: development
             - id: unix
               value: 'unix'
               brief: "Unix domain socket path"
-              stability: experimental
+              stability: development
         deprecated: "Split to `network.transport` and `network.type`."
-        stability: experimental
+        stability: development
         brief: Deprecated, use `network.transport` and `network.type`.

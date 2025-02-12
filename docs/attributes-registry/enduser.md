@@ -12,8 +12,8 @@ Describes the end user.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="enduser-id" href="#enduser-id">`enduser.id`</a> | string | Unique identifier of an end user in the system. It maybe a username, email address, or other identifier. [1] | `username` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="enduser-pseudo-id" href="#enduser-pseudo-id">`enduser.pseudo.id`</a> | string | Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity. [2] | `QdH5CAWJgqVT4rOr0qtumf` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="enduser-id" href="#enduser-id">`enduser.id`</a> | string | Unique identifier of an end user in the system. It maybe a username, email address, or other identifier. [1] | `username` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="enduser-pseudo-id" href="#enduser-pseudo-id">`enduser.pseudo.id`</a> | string | Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity. [2] | `QdH5CAWJgqVT4rOr0qtumf` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `enduser.id`:** Unique identifier of an end user in the system.
 

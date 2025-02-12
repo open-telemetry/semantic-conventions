@@ -4,13 +4,13 @@ linkTitle: V8 JS engine
 
 # Semantic conventions for V8 JS engine runtime metrics
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document describes semantic conventions for V8 JS Engine Runtime metrics in OpenTelemetry. This engine is used in some javascript runtime such as Node.js and Deno.
 
 <!-- toc -->
 
-- [Experimental](#experimental)
+- [Development](#development)
   - [Metric: `v8js.gc.duration`](#metric-v8jsgcduration)
   - [Metric: `v8js.memory.heap.limit`](#metric-v8jsmemoryheaplimit)
   - [Metric: `v8js.memory.heap.used`](#metric-v8jsmemoryheapused)
@@ -19,9 +19,9 @@ This document describes semantic conventions for V8 JS Engine Runtime metrics in
 
 <!-- tocstop -->
 
-## Experimental
+## Development
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 **Description:** Experimental V8 JS Engine Runtime metrics captured under `v8js`.
 
@@ -42,13 +42,13 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `v8js.gc.duration` | Histogram | `s` | Garbage collection duration. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8js.gc.duration` | Histogram | `s` | Garbage collection duration. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** The values can be retrieve from [`perf_hooks.PerformanceObserver(...).observe({ entryTypes: ['gc'] })`](https://nodejs.org/api/perf_hooks.html#performanceobserverobserveoptions)
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8js.gc.type`](/docs/attributes-registry/v8js.md) | string | The type of garbage collection. | `major`; `minor`; `incremental` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8js.gc.type`](/docs/attributes-registry/v8js.md) | string | The type of garbage collection. | `major`; `minor`; `incremental` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -56,10 +56,10 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `incremental` | Incremental (Incremental Marking). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `major` | Major (Mark Sweep Compact). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `minor` | Minor (Scavenge). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `weakcb` | Weak Callbacks (Process Weak Callbacks). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `incremental` | Incremental (Incremental Marking). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major (Mark Sweep Compact). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor (Scavenge). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `weakcb` | Weak Callbacks (Process Weak Callbacks). | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -79,13 +79,13 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `v8js.memory.heap.limit` | UpDownCounter | `By` | Total heap memory size pre-allocated. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8js.memory.heap.limit` | UpDownCounter | `By` | Total heap memory size pre-allocated. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** The value can be retrieved from value `space_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
@@ -95,11 +95,11 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `code_space` | Code memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `large_object_space` | Large object memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `map_space` | Map memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `new_space` | New memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `old_space` | Old memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `code_space` | Code memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `large_object_space` | Large object memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `map_space` | Map memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `new_space` | New memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `old_space` | Old memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -119,13 +119,13 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `v8js.memory.heap.used` | UpDownCounter | `By` | Heap Memory size allocated. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8js.memory.heap.used` | UpDownCounter | `By` | Heap Memory size allocated. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** The value can be retrieved from value `space_used_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
@@ -135,11 +135,11 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `code_space` | Code memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `large_object_space` | Large object memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `map_space` | Map memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `new_space` | New memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `old_space` | Old memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `code_space` | Code memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `large_object_space` | Large object memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `map_space` | Map memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `new_space` | New memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `old_space` | Old memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -159,13 +159,13 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `v8js.heap.space.available_size` | UpDownCounter | `By` | Heap space available size. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8js.heap.space.available_size` | UpDownCounter | `By` | Heap space available size. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Value can be retrieved from value `space_available_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
@@ -175,11 +175,11 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `code_space` | Code memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `large_object_space` | Large object memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `map_space` | Map memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `new_space` | New memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `old_space` | Old memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `code_space` | Code memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `large_object_space` | Large object memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `map_space` | Map memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `new_space` | New memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `old_space` | Old memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -199,13 +199,13 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `v8js.heap.space.physical_size` | UpDownCounter | `By` | Committed size of a heap space. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `v8js.heap.space.physical_size` | UpDownCounter | `By` | Committed size of a heap space. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Value can be retrieved from value `physical_space_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`v8js.heap.space.name`](/docs/attributes-registry/v8js.md) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
@@ -215,11 +215,11 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `code_space` | Code memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `large_object_space` | Large object memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `map_space` | Map memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `new_space` | New memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `old_space` | Old memory space. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `code_space` | Code memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `large_object_space` | Large object memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `map_space` | Map memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `new_space` | New memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `old_space` | Old memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

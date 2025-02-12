@@ -1,6 +1,6 @@
 # Instrumenting AWS Lambda
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines how to apply semantic conventions when instrumenting an AWS Lambda request handler. AWS
 Lambda largely follows the conventions for [FaaS][faas] while [HTTP](/docs/http/http-spans.md) conventions are also
@@ -51,7 +51,7 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`aws.lambda.invoked_arn`](/docs/attributes-registry/aws.md) | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`aws.lambda.invoked_arn`](/docs/attributes-registry/aws.md) | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `aws.lambda.invoked_arn`:** This may be different from `cloud.resource_id` if an alias is involved.
 

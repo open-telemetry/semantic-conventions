@@ -12,23 +12,23 @@ This document defines attributes for remote procedure calls.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="rpc-connect-rpc-error-code" href="#rpc-connect-rpc-error-code">`rpc.connect_rpc.error_code`</a> | string | The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled`; `unknown`; `invalid_argument` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-connect-rpc-request-metadata" href="#rpc-connect-rpc-request-metadata">`rpc.connect_rpc.request.metadata.<key>`</a> | string[] | Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [1] | `rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-connect-rpc-response-metadata" href="#rpc-connect-rpc-response-metadata">`rpc.connect_rpc.response.metadata.<key>`</a> | string[] | Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [2] | `rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-grpc-request-metadata" href="#rpc-grpc-request-metadata">`rpc.grpc.request.metadata.<key>`</a> | string[] | gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [3] | `rpc.grpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-grpc-response-metadata" href="#rpc-grpc-response-metadata">`rpc.grpc.response.metadata.<key>`</a> | string[] | gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [4] | `rpc.grpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-grpc-status-code" href="#rpc-grpc-status-code">`rpc.grpc.status_code`</a> | int | The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request. | `0`; `1`; `2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-jsonrpc-error-code" href="#rpc-jsonrpc-error-code">`rpc.jsonrpc.error_code`</a> | int | `error.code` property of response if it is an error response. | `-32700`; `100` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-jsonrpc-error-message" href="#rpc-jsonrpc-error-message">`rpc.jsonrpc.error_message`</a> | string | `error.message` property of response if it is an error response. | `Parse error`; `User already exists` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-jsonrpc-request-id" href="#rpc-jsonrpc-request-id">`rpc.jsonrpc.request_id`</a> | string | `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. | `10`; `request-7`; `` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-jsonrpc-version" href="#rpc-jsonrpc-version">`rpc.jsonrpc.version`</a> | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-message-compressed-size" href="#rpc-message-compressed-size">`rpc.message.compressed_size`</a> | int | Compressed size of the message in bytes. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-message-id" href="#rpc-message-id">`rpc.message.id`</a> | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [5] |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-message-type" href="#rpc-message-type">`rpc.message.type`</a> | string | Whether this is a received or sent message. | `SENT`; `RECEIVED` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-message-uncompressed-size" href="#rpc-message-uncompressed-size">`rpc.message.uncompressed_size`</a> | int | Uncompressed size of the message in bytes. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-method" href="#rpc-method">`rpc.method`</a> | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [6] | `exampleMethod` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-service" href="#rpc-service">`rpc.service`</a> | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="rpc-system" href="#rpc-system">`rpc.system`</a> | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="rpc-connect-rpc-error-code" href="#rpc-connect-rpc-error-code">`rpc.connect_rpc.error_code`</a> | string | The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled`; `unknown`; `invalid_argument` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-connect-rpc-request-metadata" href="#rpc-connect-rpc-request-metadata">`rpc.connect_rpc.request.metadata.<key>`</a> | string[] | Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [1] | `rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-connect-rpc-response-metadata" href="#rpc-connect-rpc-response-metadata">`rpc.connect_rpc.response.metadata.<key>`</a> | string[] | Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [2] | `rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-grpc-request-metadata" href="#rpc-grpc-request-metadata">`rpc.grpc.request.metadata.<key>`</a> | string[] | gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [3] | `rpc.grpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-grpc-response-metadata" href="#rpc-grpc-response-metadata">`rpc.grpc.response.metadata.<key>`</a> | string[] | gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [4] | `rpc.grpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-grpc-status-code" href="#rpc-grpc-status-code">`rpc.grpc.status_code`</a> | int | The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request. | `0`; `1`; `2` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-jsonrpc-error-code" href="#rpc-jsonrpc-error-code">`rpc.jsonrpc.error_code`</a> | int | `error.code` property of response if it is an error response. | `-32700`; `100` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-jsonrpc-error-message" href="#rpc-jsonrpc-error-message">`rpc.jsonrpc.error_message`</a> | string | `error.message` property of response if it is an error response. | `Parse error`; `User already exists` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-jsonrpc-request-id" href="#rpc-jsonrpc-request-id">`rpc.jsonrpc.request_id`</a> | string | `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. | `10`; `request-7`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-jsonrpc-version" href="#rpc-jsonrpc-version">`rpc.jsonrpc.version`</a> | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-message-compressed-size" href="#rpc-message-compressed-size">`rpc.message.compressed_size`</a> | int | Compressed size of the message in bytes. |  | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-message-id" href="#rpc-message-id">`rpc.message.id`</a> | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [5] |  | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-message-type" href="#rpc-message-type">`rpc.message.type`</a> | string | Whether this is a received or sent message. | `SENT`; `RECEIVED` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-message-uncompressed-size" href="#rpc-message-uncompressed-size">`rpc.message.uncompressed_size`</a> | int | Uncompressed size of the message in bytes. |  | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-method" href="#rpc-method">`rpc.method`</a> | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [6] | `exampleMethod` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-service" href="#rpc-service">`rpc.service`</a> | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-system" href="#rpc-system">`rpc.system`</a> | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.connect_rpc.request.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
@@ -50,22 +50,22 @@ This document defines attributes for remote procedure calls.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `aborted` | aborted | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `already_exists` | already_exists | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cancelled` | cancelled | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `data_loss` | data_loss | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deadline_exceeded` | deadline_exceeded | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `failed_precondition` | failed_precondition | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `internal` | internal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid_argument` | invalid_argument | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `not_found` | not_found | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `out_of_range` | out_of_range | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `permission_denied` | permission_denied | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `resource_exhausted` | resource_exhausted | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unauthenticated` | unauthenticated | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unavailable` | unavailable | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unimplemented` | unimplemented | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unknown` | unknown | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aborted` | aborted | ![Development](https://img.shields.io/badge/-development-blue) |
+| `already_exists` | already_exists | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cancelled` | cancelled | ![Development](https://img.shields.io/badge/-development-blue) |
+| `data_loss` | data_loss | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deadline_exceeded` | deadline_exceeded | ![Development](https://img.shields.io/badge/-development-blue) |
+| `failed_precondition` | failed_precondition | ![Development](https://img.shields.io/badge/-development-blue) |
+| `internal` | internal | ![Development](https://img.shields.io/badge/-development-blue) |
+| `invalid_argument` | invalid_argument | ![Development](https://img.shields.io/badge/-development-blue) |
+| `not_found` | not_found | ![Development](https://img.shields.io/badge/-development-blue) |
+| `out_of_range` | out_of_range | ![Development](https://img.shields.io/badge/-development-blue) |
+| `permission_denied` | permission_denied | ![Development](https://img.shields.io/badge/-development-blue) |
+| `resource_exhausted` | resource_exhausted | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unauthenticated` | unauthenticated | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unavailable` | unavailable | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unimplemented` | unimplemented | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unknown` | unknown | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -73,23 +73,23 @@ This document defines attributes for remote procedure calls.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `0` | OK | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `1` | CANCELLED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `2` | UNKNOWN | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `3` | INVALID_ARGUMENT | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `4` | DEADLINE_EXCEEDED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `5` | NOT_FOUND | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `6` | ALREADY_EXISTS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `7` | PERMISSION_DENIED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `8` | RESOURCE_EXHAUSTED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `9` | FAILED_PRECONDITION | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `10` | ABORTED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `11` | OUT_OF_RANGE | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `12` | UNIMPLEMENTED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `13` | INTERNAL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `14` | UNAVAILABLE | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `15` | DATA_LOSS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `16` | UNAUTHENTICATED | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `0` | OK | ![Development](https://img.shields.io/badge/-development-blue) |
+| `1` | CANCELLED | ![Development](https://img.shields.io/badge/-development-blue) |
+| `2` | UNKNOWN | ![Development](https://img.shields.io/badge/-development-blue) |
+| `3` | INVALID_ARGUMENT | ![Development](https://img.shields.io/badge/-development-blue) |
+| `4` | DEADLINE_EXCEEDED | ![Development](https://img.shields.io/badge/-development-blue) |
+| `5` | NOT_FOUND | ![Development](https://img.shields.io/badge/-development-blue) |
+| `6` | ALREADY_EXISTS | ![Development](https://img.shields.io/badge/-development-blue) |
+| `7` | PERMISSION_DENIED | ![Development](https://img.shields.io/badge/-development-blue) |
+| `8` | RESOURCE_EXHAUSTED | ![Development](https://img.shields.io/badge/-development-blue) |
+| `9` | FAILED_PRECONDITION | ![Development](https://img.shields.io/badge/-development-blue) |
+| `10` | ABORTED | ![Development](https://img.shields.io/badge/-development-blue) |
+| `11` | OUT_OF_RANGE | ![Development](https://img.shields.io/badge/-development-blue) |
+| `12` | UNIMPLEMENTED | ![Development](https://img.shields.io/badge/-development-blue) |
+| `13` | INTERNAL | ![Development](https://img.shields.io/badge/-development-blue) |
+| `14` | UNAVAILABLE | ![Development](https://img.shields.io/badge/-development-blue) |
+| `15` | DATA_LOSS | ![Development](https://img.shields.io/badge/-development-blue) |
+| `16` | UNAUTHENTICATED | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -97,8 +97,8 @@ This document defines attributes for remote procedure calls.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `RECEIVED` | received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `SENT` | sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECEIVED` | received | ![Development](https://img.shields.io/badge/-development-blue) |
+| `SENT` | sent | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -106,11 +106,11 @@ This document defines attributes for remote procedure calls.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated RPC Attributes
 
@@ -129,5 +129,5 @@ Deprecated rpc message attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `RECEIVED` | received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `SENT` | sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `RECEIVED` | received | ![Development](https://img.shields.io/badge/-development-blue) |
+| `SENT` | sent | ![Development](https://img.shields.io/badge/-development-blue) |

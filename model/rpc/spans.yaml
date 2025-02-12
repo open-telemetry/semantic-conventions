@@ -27,7 +27,7 @@ groups:
 
   - id: span.rpc.client
     type: span
-    stability: experimental
+    stability: development
     brief: 'This document defines semantic conventions for remote procedure call client spans.'
     extends: rpc
     span_kind: client
@@ -41,7 +41,7 @@ groups:
 
   - id: span.rpc.server
     type: span
-    stability: experimental
+    stability: development
     extends: rpc
     span_kind: server
     brief: 'Semantic Convention for RPC server spans'
@@ -63,7 +63,7 @@ groups:
 
   - id: span.rpc.grpc
     type: span
-    stability: experimental
+    stability: development
     extends: rpc
     brief: 'Tech-specific attributes for gRPC.'
     attributes:
@@ -79,7 +79,7 @@ groups:
 
   - id: span.rpc.jsonrpc
     type: span
-    stability: experimental
+    stability: development
     extends: rpc
     brief: 'Tech-specific attributes for [JSON RPC](https://www.jsonrpc.org/).'
     attributes:
@@ -106,7 +106,7 @@ groups:
 
   - id: event.rpc.message
     type: event
-    stability: experimental
+    stability: development
     name: rpc.message
     brief: Describes a message sent or received within the context of an RPC call.
     note: >
@@ -125,7 +125,7 @@ groups:
 
   - id: span.rpc.connect_rpc
     type: span
-    stability: experimental
+    stability: development
     extends: rpc
     brief: 'Tech-specific attributes for Connect RPC.'
     attributes:

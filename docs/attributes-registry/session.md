@@ -11,5 +11,5 @@ When a session reaches end of life, typically due to user inactivity or session 
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="session-id" href="#session-id">`session.id`</a> | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="session-previous-id" href="#session-previous-id">`session.previous_id`</a> | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="session-id" href="#session-id">`session.id`</a> | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="session-previous-id" href="#session-previous-id">`session.previous_id`</a> | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` | ![Development](https://img.shields.io/badge/-development-blue) |

@@ -149,7 +149,7 @@ groups:
 
   - id: span.gen_ai.client.create_agent
     type: span
-    stability: experimental
+    stability: development
     brief: >
       Describes GenAI agent creation and is usually applicable when working
       with remote agent services.
@@ -186,7 +186,7 @@ groups:
 
   - id: span.gen_ai.client.execute_tool
     type: span
-    stability: experimental
+    stability: development
     brief: Describes tool execution span.
     note: |
       `gen_ai.operation.name` SHOULD be `execute_tool`.

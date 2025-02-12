@@ -7,7 +7,7 @@ groups:
     attributes:
       - id: cloudfoundry.system.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           A guid or another name describing the event source.
         note: |
@@ -24,7 +24,7 @@ groups:
           - 'cf/gorouter'
       - id: cloudfoundry.system.instance.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           A guid describing the concrete instance of the event source.
         note: |
@@ -39,7 +39,7 @@ groups:
           - '218fc5a9-a5f1-4b54-aa05-46717d0ab26d'
       - id: cloudfoundry.app.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the application.
         note: |
@@ -49,7 +49,7 @@ groups:
         examples: ['my-app-name']
       - id: cloudfoundry.app.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The guid of the application.
         note: |
@@ -59,7 +59,7 @@ groups:
         examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
       - id: cloudfoundry.app.instance.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The index of the application instance. 0 when just one instance is active.
         note: |
@@ -75,7 +75,7 @@ groups:
           - '1'
       - id: cloudfoundry.space.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the CloudFoundry space the application is running in.
         note: |
@@ -85,7 +85,7 @@ groups:
         examples: ['my-space-name']
       - id: cloudfoundry.space.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The guid of the CloudFoundry space the application is running in.
         note: |
@@ -95,7 +95,7 @@ groups:
         examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
       - id: cloudfoundry.org.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the CloudFoundry organization the app is running in.
         note: |
@@ -105,7 +105,7 @@ groups:
         examples: ['my-org-name']
       - id: cloudfoundry.org.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The guid of the CloudFoundry org the application is running in.
         note: |
@@ -115,7 +115,7 @@ groups:
         examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
       - id: cloudfoundry.process.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The UID identifying the process.
         note: |
@@ -126,7 +126,7 @@ groups:
         examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
       - id: cloudfoundry.process.type
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The type of process.
         note: |
