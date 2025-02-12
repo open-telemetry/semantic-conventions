@@ -1,4 +1,4 @@
-{% macro badge(stability, deprecated) -%}
+{% macro badge(stability, deprecated, note) -%}
 {%- if deprecated %}![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>{{ deprecated.note | trim }}
 {%- elif stability == "mixed" %}![Mixed](https://img.shields.io/badge/-mixed-yellow)
 {%- elif stability == "stable" %}![Stable](https://img.shields.io/badge/-stable-lightgreen)
