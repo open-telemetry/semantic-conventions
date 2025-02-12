@@ -3,7 +3,9 @@ groups:
     type: metric
     metric_name: jvm.buffer.memory.usage
     stability: development
-    deprecated: "Replaced by `jvm.buffer.memory.used`."
+    deprecated:
+      reason: renamed
+      renamed_to: jvm.buffer.memory.used
     brief: "Deprecated, use `jvm.buffer.memory.used` instead."
     extends: attributes.jvm.buffer
     instrument: updowncounter

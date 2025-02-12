@@ -7,11 +7,10 @@ groups:
     attributes:
       - id: android.state
         stability: development
-        deprecated: "Renamed to `android.app.state`"
         brief: Deprecated. Use `android.app.state` instead.
-        note: >
-          The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc),
-          and from which the `OS identifiers` are derived.
+        deprecated:
+          reason: uncategorized
+          note: Use the `device.app.lifecycle` event definition including `android.app.state` as a body field instead.
         type:
           members:
             - id: created
