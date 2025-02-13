@@ -12,7 +12,8 @@ linkTitle: Generative AI traces
 
 - [Spans](#spans)
   - [Create Agent Span](#create-agent-span)
-- [Agent Execute Tool Span](#agent-execute-tool-span)
+  - [Invoke Agent Span](#invoke-agent-span)
+  - [Agent Execute Tool Span](#agent-execute-tool-span)
 
 <!-- tocstop -->
 
@@ -47,6 +48,101 @@ Semantic conventions for individual GenAI systems and frameworks MAY specify dif
 |---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `text_completion`; `embeddings` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.agent.description`](/docs/attributes-registry/gen-ai.md) | string | Free-form description of the GenAI agent provided by the application. | `Helps with math problems`; `Generates fiction stories` | `Conditionally Required` If provided by the application. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.agent.name`](/docs/attributes-registry/gen-ai.md) | string | Human-readable name of the GenAI agent provided by the application. | `Math Tutor`; `Fiction Writer` | `Conditionally Required` If provided by the application. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the GenAI model a request is being made to. [3] | `gpt-4` | `Conditionally Required` If provided by the application. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.request.seed`](/docs/attributes-registry/gen-ai.md) | int | Requests with same seed value more likely to return same result. | `100` | `Conditionally Required` if applicable and if the request includes a seed | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | GenAI server port. [4] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`gen_ai.request.encoding_formats`](/docs/attributes-registry/gen-ai.md) | string[] | The encoding formats requested in an embeddings operation, if specified. [5] | `["base64"]`; `["float", "binary"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.request.frequency_penalty`](/docs/attributes-registry/gen-ai.md) | double | The frequency penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.request.max_tokens`](/docs/attributes-registry/gen-ai.md) | int | The maximum number of tokens the model generates for a request. | `100` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.request.presence_penalty`](/docs/attributes-registry/gen-ai.md) | double | The presence penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.request.stop_sequences`](/docs/attributes-registry/gen-ai.md) | string[] | List of sequences that the model will use to stop generating further tokens. | `["forest", "lived"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.request.temperature`](/docs/attributes-registry/gen-ai.md) | double | The temperature setting for the GenAI request. | `0.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.request.top_p`](/docs/attributes-registry/gen-ai.md) | double | The top_p sampling setting for the GenAI request. | `1.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | GenAI server address. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+**[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
+
+**[2] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+
+The actual GenAI product may differ from the one identified by the client.
+Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
+libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
+instrumentation's best knowledge, instead of the actual system. The `server.address`
+attribute may help identify the actual system in use for `openai`.
+
+For custom model, a custom friendly name SHOULD be used.
+If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+
+**[3] `gen_ai.request.model`:** The name of the GenAI model a request is being made to. If the model is supplied by a vendor, then the value must be the exact name of the model requested. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+
+**[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[5] `gen_ai.request.encoding_formats`:** In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
+
+**[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+
+---
+
+`gen_ai.operation.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `chat` | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `create_agent` | Create GenAI agent | ![Development](https://img.shields.io/badge/-development-blue) |
+| `embeddings` | Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `execute_tool` | Execute a tool | ![Development](https://img.shields.io/badge/-development-blue) |
+| `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
+| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gemini` | Gemini | ![Development](https://img.shields.io/badge/-development-blue) |
+| `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vertex_ai` | Vertex AI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+### Invoke Agent Span
+
+Describes GenAI agent invoke and is usually applicable when working with remote agent
+services.
+
+The `gen_ai.operation.name` SHOULD be `invoke_agent`.
+
+The **span name** SHOULD be `invoke_agent {gen_ai.agent.name}`.
+Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+
+<!-- semconv span.gen_ai.invoke_agent.client -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `text_completion`; `embeddings` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.agent.description`](/docs/attributes-registry/gen-ai.md) | string | Free-form description of the GenAI agent provided by the application. | `Helps with math problems`; `Generates fiction stories` | `Conditionally Required` If provided by the application. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.agent.id`](/docs/attributes-registry/gen-ai.md) | string | The unique identifier of the GenAI agent. | `asst_5j66UpCpwteGg4YSxUnt7lPY` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -54,14 +150,14 @@ Semantic conventions for individual GenAI systems and frameworks MAY specify dif
 | [`gen_ai.output.type`](/docs/attributes-registry/gen-ai.md) | string | Represents the content type requested by the client. [4] | `text`; `json`; `image` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the GenAI model a request is being made to. [6] | `gpt-4` | `Conditionally Required` If provided by the application. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.seed`](/docs/attributes-registry/gen-ai.md) | int | Requests with same seed value more likely to return same result. | `100` | `Conditionally Required` if applicable and if the request includes a seed | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.request.temperature`](/docs/attributes-registry/gen-ai.md) | double | The temperature setting for the GenAI request. | `0.0` | `Conditionally Required` If provided by the application. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.request.top_p`](/docs/attributes-registry/gen-ai.md) | double | The top_p sampling setting for the GenAI request. | `1.0` | `Conditionally Required` If provided by the application. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | GenAI server port. [7] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.request.encoding_formats`](/docs/attributes-registry/gen-ai.md) | string[] | The encoding formats requested in an embeddings operation, if specified. [8] | `["base64"]`; `["float", "binary"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.frequency_penalty`](/docs/attributes-registry/gen-ai.md) | double | The frequency penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.max_tokens`](/docs/attributes-registry/gen-ai.md) | int | The maximum number of tokens the model generates for a request. | `100` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.presence_penalty`](/docs/attributes-registry/gen-ai.md) | double | The presence penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.stop_sequences`](/docs/attributes-registry/gen-ai.md) | string[] | List of sequences that the model will use to stop generating further tokens. | `["forest", "lived"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.request.temperature`](/docs/attributes-registry/gen-ai.md) | double | The temperature setting for the GenAI request. | `0.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.request.top_p`](/docs/attributes-registry/gen-ai.md) | double | The top_p sampling setting for the GenAI request. | `1.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.response.finish_reasons`](/docs/attributes-registry/gen-ai.md) | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `["stop"]`; `["stop", "length"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.response.id`](/docs/attributes-registry/gen-ai.md) | string | The unique identifier for the completion. | `chatcmpl-123` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.response.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the model that generated the response. [9] | `gpt-4-0613` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -160,7 +256,7 @@ Additional output format details may be recorded in the future in the `gen_ai.ou
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## Agent Execute Tool Span
+### Agent Execute Tool Span
 
 If you are using some tools in your agent, refer to [Execute Tool Span](./gen-ai-spans.md#execute-tool-span).
 
