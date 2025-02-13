@@ -40,4 +40,4 @@ considered to be identifying the same service:
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="deployment-environment" href="#deployment-environment">`deployment.environment`</a> | string | 'Deprecated, use `deployment.environment.name` instead.' | `staging`; `production` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>'Deprecated, use `deployment.environment.name` instead.' |
+| <a id="deployment-environment" href="#deployment-environment">`deployment.environment`</a> | string | 'Deprecated, use `deployment.environment.name` instead.' | `staging`; `production` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `deployment.environment.name` instead. |

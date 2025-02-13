@@ -142,9 +142,9 @@ Deprecated system attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="system-cpu-state" href="#system-cpu-state">`system.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `idle`; `interrupt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `cpu.mode` instead. |
-| <a id="system-network-state" href="#system-network-state">`system.network.state`</a> | string | Deprecated, use `network.connection.state` instead. | `close_wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `network.connection.state` instead. |
-| <a id="system-processes-status" href="#system-processes-status">`system.processes.status`</a> | string | Deprecated, use `system.process.status` instead. | `running` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, use `system.process.status` instead. |
+| <a id="system-cpu-state" href="#system-cpu-state">`system.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `idle`; `interrupt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode` |
+| <a id="system-network-state" href="#system-network-state">`system.network.state`</a> | string | Deprecated, use `network.connection.state` instead. | `close_wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, report network connection state with `network.connection.state` attribute |
+| <a id="system-processes-status" href="#system-processes-status">`system.processes.status`</a> | string | Deprecated, use `system.process.status` instead. | `running` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. |
 
 ---
 
