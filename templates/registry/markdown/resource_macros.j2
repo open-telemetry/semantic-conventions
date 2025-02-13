@@ -2,9 +2,9 @@
 {% import 'stability.j2' as stability %}
 {% macro real_stability(resource) %}
 {% if resource.attributes | map(attribute='stability') | unique | length > 1 -%}
-{{ stability.badge("mixed", "", "") }}
+{{ stability.badge("mixed", "") }}
 {%- else -%}
-{{ stability.badge(resource.stability, resource.deprecated, resource.brief) }}
+{{ stability.badge(resource.stability, resource.deprecated) }}
 {%- endif %}
 {% endmacro %}
 {% macro header(resource) %}

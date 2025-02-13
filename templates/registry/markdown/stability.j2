@@ -1,4 +1,4 @@
-{% macro badge(stability, deprecated, note) -%}
+{% macro badge(stability, deprecated) -%}
 {%- if deprecated %}![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>{{ deprecated.note }}
 {%- elif stability == "mixed" %}![Mixed](https://img.shields.io/badge/-mixed-yellow)
 {%- elif stability == "stable" %}![Stable](https://img.shields.io/badge/-stable-lightgreen)
@@ -7,11 +7,5 @@
 {%- elif stability == "experimental" %}![Development](https://img.shields.io/badge/-development-blue)
 {%- elif stability == "development" %}![Development](https://img.shields.io/badge/-development-blue)
 {%- else %}{{ "Unknown stability." }}
-{%- endif %}
-{%- endmacro %}
-
-{% macro deprecated_note(deprecated, note) %}
-{%- if deprecated.reason == "renamed" %}{{ "Replaced by `" ~ deprecated.renamed_to | trim ~ "`" }}
-{%- else %}{{ note | trim }}
 {%- endif %}
 {%- endmacro %}
