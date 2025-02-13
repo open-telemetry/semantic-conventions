@@ -41,7 +41,7 @@ their own [Resource Semantic Conventions](/docs/resource/README.md).
 
 ## General Guidelines
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 When defining new metric names and attributes, consider the prior art of
 existing standard metrics and metrics from frameworks/libraries.
@@ -126,7 +126,7 @@ implementation detail. Both choices are compliant with this specification.
 
 ### Consistent UpDownCounter timeseries
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 When recording `UpDownCounter` metrics, the same attribute values used to record an increment SHOULD be used to record
 any associated decrement, otherwise those increments and decrements will end up as different timeseries.

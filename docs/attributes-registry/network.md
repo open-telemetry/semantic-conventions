@@ -12,15 +12,15 @@ These attributes may be used for any network related operation.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="network-carrier-icc" href="#network-carrier-icc">`network.carrier.icc`</a> | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="network-carrier-mcc" href="#network-carrier-mcc">`network.carrier.mcc`</a> | string | The mobile carrier country code. | `310` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="network-carrier-mnc" href="#network-carrier-mnc">`network.carrier.mnc`</a> | string | The mobile carrier network code. | `001` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="network-carrier-name" href="#network-carrier-name">`network.carrier.name`</a> | string | The name of the mobile carrier. | `sprint` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="network-connection-state" href="#network-connection-state">`network.connection.state`</a> | string | The state of network connection [1] | `close_wait` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="network-connection-subtype" href="#network-connection-subtype">`network.connection.subtype`</a> | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="network-connection-type" href="#network-connection-type">`network.connection.type`</a> | string | The internet connection type. | `wifi` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="network-interface-name" href="#network-interface-name">`network.interface.name`</a> | string | The network interface name. | `lo`; `eth0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="network-io-direction" href="#network-io-direction">`network.io.direction`</a> | string | The network IO operation direction. | `transmit` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="network-carrier-icc" href="#network-carrier-icc">`network.carrier.icc`</a> | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="network-carrier-mcc" href="#network-carrier-mcc">`network.carrier.mcc`</a> | string | The mobile carrier country code. | `310` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="network-carrier-mnc" href="#network-carrier-mnc">`network.carrier.mnc`</a> | string | The mobile carrier network code. | `001` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="network-carrier-name" href="#network-carrier-name">`network.carrier.name`</a> | string | The name of the mobile carrier. | `sprint` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="network-connection-state" href="#network-connection-state">`network.connection.state`</a> | string | The state of network connection [1] | `close_wait` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="network-connection-subtype" href="#network-connection-subtype">`network.connection.subtype`</a> | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="network-connection-type" href="#network-connection-type">`network.connection.type`</a> | string | The internet connection type. | `wifi` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="network-interface-name" href="#network-interface-name">`network.interface.name`</a> | string | The network interface name. | `lo`; `eth0` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="network-io-direction" href="#network-io-direction">`network.io.direction`</a> | string | The network IO operation direction. | `transmit` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="network-local-address" href="#network-local-address">`network.local.address`</a> | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="network-local-port" href="#network-local-port">`network.local.port`</a> | int | Local port number of the network connection. | `65123` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="network-peer-address" href="#network-peer-address">`network.peer.address`</a> | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -50,17 +50,17 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `close_wait` | close_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `closed` | closed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `closing` | closing | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `established` | established | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fin_wait_1` | fin_wait_1 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fin_wait_2` | fin_wait_2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `last_ack` | last_ack | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `listen` | listen | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `syn_received` | syn_received | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `syn_sent` | syn_sent | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `time_wait` | time_wait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `close_wait` | close_wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `closed` | closed | ![Development](https://img.shields.io/badge/-development-blue) |
+| `closing` | closing | ![Development](https://img.shields.io/badge/-development-blue) |
+| `established` | established | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fin_wait_1` | fin_wait_1 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fin_wait_2` | fin_wait_2 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `last_ack` | last_ack | ![Development](https://img.shields.io/badge/-development-blue) |
+| `listen` | listen | ![Development](https://img.shields.io/badge/-development-blue) |
+| `syn_received` | syn_received | ![Development](https://img.shields.io/badge/-development-blue) |
+| `syn_sent` | syn_sent | ![Development](https://img.shields.io/badge/-development-blue) |
+| `time_wait` | time_wait | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -68,27 +68,27 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `cdma` | CDMA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cdma2000_1xrtt` | CDMA2000 1XRTT | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `edge` | EDGE | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ehrpd` | EHRPD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `evdo_0` | EVDO Rel. 0 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `evdo_a` | EVDO Rev. A | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `evdo_b` | EVDO Rev. B | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gprs` | GPRS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gsm` | GSM | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hsdpa` | HSDPA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hspa` | HSPA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hspap` | HSPAP | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hsupa` | HSUPA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `iden` | IDEN | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `iwlan` | IWLAN | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `lte` | LTE | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `lte_ca` | LTE CA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nr` | 5G NR (New Radio) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nrnsa` | 5G NRNSA (New Radio Non-Standalone) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `td_scdma` | TD-SCDMA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `umts` | UMTS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cdma` | CDMA | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cdma2000_1xrtt` | CDMA2000 1XRTT | ![Development](https://img.shields.io/badge/-development-blue) |
+| `edge` | EDGE | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ehrpd` | EHRPD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `evdo_0` | EVDO Rel. 0 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `evdo_a` | EVDO Rev. A | ![Development](https://img.shields.io/badge/-development-blue) |
+| `evdo_b` | EVDO Rev. B | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gprs` | GPRS | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gsm` | GSM | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hsdpa` | HSDPA | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hspa` | HSPA | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hspap` | HSPAP | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hsupa` | HSUPA | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iden` | IDEN | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iwlan` | IWLAN | ![Development](https://img.shields.io/badge/-development-blue) |
+| `lte` | LTE | ![Development](https://img.shields.io/badge/-development-blue) |
+| `lte_ca` | LTE CA | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nr` | 5G NR (New Radio) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nrnsa` | 5G NRNSA (New Radio Non-Standalone) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `td_scdma` | TD-SCDMA | ![Development](https://img.shields.io/badge/-development-blue) |
+| `umts` | UMTS | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -96,11 +96,11 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `cell` | cell | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unavailable` | unavailable | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unknown` | unknown | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `wifi` | wifi | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `wired` | wired | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cell` | cell | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unavailable` | unavailable | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unknown` | unknown | ![Development](https://img.shields.io/badge/-development-blue) |
+| `wifi` | wifi | ![Development](https://img.shields.io/badge/-development-blue) |
+| `wired` | wired | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -108,8 +108,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -118,7 +118,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -160,9 +160,9 @@ These attributes may be used for any network related operation.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `inet` | IPv4 address | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `inet6` | IPv6 address | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unix` | Unix domain socket path | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `inet` | IPv4 address | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inet6` | IPv6 address | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unix` | Unix domain socket path | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -170,10 +170,10 @@ These attributes may be used for any network related operation.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `inproc` | In-process communication. [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ip_tcp` | ip_tcp | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ip_udp` | ip_udp | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other` | Something else (non IP-based). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pipe` | Named or anonymous pipe. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `inproc` | In-process communication. [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ip_tcp` | ip_tcp | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ip_udp` | ip_udp | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other` | Something else (non IP-based). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pipe` | Named or anonymous pipe. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[6]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.

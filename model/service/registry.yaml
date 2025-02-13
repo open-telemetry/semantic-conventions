@@ -24,7 +24,7 @@ groups:
         stability: stable
       - id: service.namespace
         type: string
-        stability: experimental
+        stability: development
         brief: >
           A namespace for `service.name`.
         note: >
@@ -38,7 +38,7 @@ groups:
         examples: ["Shop"]
       - id: service.instance.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The string ID of the service instance.
         note: |

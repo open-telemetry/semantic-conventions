@@ -4,7 +4,7 @@ linkTitle: RPC
 
 # Semantic conventions for RPC
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for remote procedure calls (RPC)
 , also called "remote method invocations" (RMI).

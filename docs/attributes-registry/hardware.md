@@ -9,11 +9,11 @@ Attributes for hardware.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="hw-id" href="#hw-id">`hw.id`</a> | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="hw-name" href="#hw-name">`hw.name`</a> | string | An easily-recognizable name for the hardware component | `eth0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="hw-parent" href="#hw-parent">`hw.parent`</a> | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="hw-state" href="#hw-state">`hw.state`</a> | string | The current state of the component | `ok`; `degraded`; `failed` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="hw-type" href="#hw-type">`hw.type`</a> | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="hw-id" href="#hw-id">`hw.id`</a> | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-name" href="#hw-name">`hw.name`</a> | string | An easily-recognizable name for the hardware component | `eth0` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-parent" href="#hw-parent">`hw.parent`</a> | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-state" href="#hw-state">`hw.state`</a> | string | The current state of the component | `ok`; `degraded`; `failed` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-type" href="#hw-type">`hw.type`</a> | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
@@ -23,9 +23,9 @@ Attributes for hardware.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `degraded` | Degraded | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `failed` | Failed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ok` | Ok | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
+| `failed` | Failed | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ok` | Ok | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -33,17 +33,17 @@ Attributes for hardware.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `battery` | Battery | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cpu` | CPU | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `disk_controller` | Disk controller | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `enclosure` | Enclosure | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fan` | Fan | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gpu` | GPU | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `logical_disk` | Logical disk | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `memory` | Memory | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network` | Network | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `physical_disk` | Physical disk | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `power_supply` | Power supply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tape_drive` | Tape drive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `temperature` | Temperature | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `voltage` | Voltage | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `battery` | Battery | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cpu` | CPU | ![Development](https://img.shields.io/badge/-development-blue) |
+| `disk_controller` | Disk controller | ![Development](https://img.shields.io/badge/-development-blue) |
+| `enclosure` | Enclosure | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fan` | Fan | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gpu` | GPU | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logical_disk` | Logical disk | ![Development](https://img.shields.io/badge/-development-blue) |
+| `memory` | Memory | ![Development](https://img.shields.io/badge/-development-blue) |
+| `network` | Network | ![Development](https://img.shields.io/badge/-development-blue) |
+| `physical_disk` | Physical disk | ![Development](https://img.shields.io/badge/-development-blue) |
+| `power_supply` | Power supply | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tape_drive` | Tape drive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `temperature` | Temperature | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voltage` | Voltage | ![Development](https://img.shields.io/badge/-development-blue) |

@@ -4,7 +4,7 @@ linkTitle: DynamoDB
 
 # Semantic conventions for AWS DynamoDB
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 <!-- toc -->
 
@@ -48,13 +48,13 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | The keys in the `RequestItems` object field. | `["Users", "Cats"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | The keys in the `RequestItems` object field. | `["Users", "Cats"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -66,11 +66,11 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -88,14 +88,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.item_collection_metrics`](/docs/attributes-registry/aws.md) | string | The JSON-serialized value of the `ItemCollectionMetrics` response field. | `{ "string" : [ { "ItemCollectionKey": { "string" : { "B": blob, "BOOL": boolean, "BS": [ blob ], "L": [ "AttributeValue" ], "M": { "string" : "AttributeValue" }, "N": "string", "NS": [ "string" ], "NULL": boolean, "S": "string", "SS": [ "string" ] } }, "SizeEstimateRangeGB": [ number ] } ] }` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | The keys in the `RequestItems` object field. | `["Users", "Cats"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.item_collection_metrics`](/docs/attributes-registry/aws.md) | string | The JSON-serialized value of the `ItemCollectionMetrics` response field. | `{ "string" : [ { "ItemCollectionKey": { "string" : { "B": blob, "BOOL": boolean, "BS": [ blob ], "L": [ "AttributeValue" ], "M": { "string" : "AttributeValue" }, "N": "string", "NS": [ "string" ], "NULL": boolean, "S": "string", "SS": [ "string" ] } }, "SizeEstimateRangeGB": [ number ] } ] }` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | The keys in the `RequestItems` object field. | `["Users", "Cats"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -107,11 +107,11 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -129,18 +129,18 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.global_secondary_indexes`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field | `["{ \"IndexName\": \"string\", \"KeySchema\": [ { \"AttributeName\": \"string\", \"KeyType\": \"string\" } ], \"Projection\": { \"NonKeyAttributes\": [ \"string\" ], \"ProjectionType\": \"string\" }, \"ProvisionedThroughput\": { \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.item_collection_metrics`](/docs/attributes-registry/aws.md) | string | The JSON-serialized value of the `ItemCollectionMetrics` response field. | `{ "string" : [ { "ItemCollectionKey": { "string" : { "B": blob, "BOOL": boolean, "BS": [ blob ], "L": [ "AttributeValue" ], "M": { "string" : "AttributeValue" }, "N": "string", "NS": [ "string" ], "NULL": boolean, "S": "string", "SS": [ "string" ] } }, "SizeEstimateRangeGB": [ number ] } ] }` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.local_secondary_indexes`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item of the `LocalSecondaryIndexes` request field. | `["{ \"IndexArn\": \"string\", \"IndexName\": \"string\", \"IndexSizeBytes\": number, \"ItemCount\": number, \"KeySchema\": [ { \"AttributeName\": \"string\", \"KeyType\": \"string\" } ], \"Projection\": { \"NonKeyAttributes\": [ \"string\" ], \"ProjectionType\": \"string\" } }"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.provisioned_read_capacity`](/docs/attributes-registry/aws.md) | double | The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter. | `1.0`; `2.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.provisioned_write_capacity`](/docs/attributes-registry/aws.md) | double | The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter. | `1.0`; `2.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.global_secondary_indexes`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field | `["{ \"IndexName\": \"string\", \"KeySchema\": [ { \"AttributeName\": \"string\", \"KeyType\": \"string\" } ], \"Projection\": { \"NonKeyAttributes\": [ \"string\" ], \"ProjectionType\": \"string\" }, \"ProvisionedThroughput\": { \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.item_collection_metrics`](/docs/attributes-registry/aws.md) | string | The JSON-serialized value of the `ItemCollectionMetrics` response field. | `{ "string" : [ { "ItemCollectionKey": { "string" : { "B": blob, "BOOL": boolean, "BS": [ blob ], "L": [ "AttributeValue" ], "M": { "string" : "AttributeValue" }, "N": "string", "NS": [ "string" ], "NULL": boolean, "S": "string", "SS": [ "string" ] } }, "SizeEstimateRangeGB": [ number ] } ] }` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.local_secondary_indexes`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item of the `LocalSecondaryIndexes` request field. | `["{ \"IndexArn\": \"string\", \"IndexName\": \"string\", \"IndexSizeBytes\": number, \"ItemCount\": number, \"KeySchema\": [ { \"AttributeName\": \"string\", \"KeyType\": \"string\" } ], \"Projection\": { \"NonKeyAttributes\": [ \"string\" ], \"ProjectionType\": \"string\" } }"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.provisioned_read_capacity`](/docs/attributes-registry/aws.md) | double | The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter. | `1.0`; `2.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.provisioned_write_capacity`](/docs/attributes-registry/aws.md) | double | The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter. | `1.0`; `2.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -152,11 +152,11 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -174,14 +174,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.item_collection_metrics`](/docs/attributes-registry/aws.md) | string | The JSON-serialized value of the `ItemCollectionMetrics` response field. | `{ "string" : [ { "ItemCollectionKey": { "string" : { "B": blob, "BOOL": boolean, "BS": [ blob ], "L": [ "AttributeValue" ], "M": { "string" : "AttributeValue" }, "N": "string", "NS": [ "string" ], "NULL": boolean, "S": "string", "SS": [ "string" ] } }, "SizeEstimateRangeGB": [ number ] } ] }` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.item_collection_metrics`](/docs/attributes-registry/aws.md) | string | The JSON-serialized value of the `ItemCollectionMetrics` response field. | `{ "string" : [ { "ItemCollectionKey": { "string" : { "B": blob, "BOOL": boolean, "BS": [ blob ], "L": [ "AttributeValue" ], "M": { "string" : "AttributeValue" }, "N": "string", "NS": [ "string" ], "NULL": boolean, "S": "string", "SS": [ "string" ] } }, "SizeEstimateRangeGB": [ number ] } ] }` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -193,11 +193,11 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -215,12 +215,12 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -232,11 +232,11 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -254,12 +254,12 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -271,11 +271,11 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -293,15 +293,15 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.consistent_read`](/docs/attributes-registry/aws.md) | boolean | The value of the `ConsistentRead` request parameter. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.projection`](/docs/attributes-registry/aws.md) | string | The value of the `ProjectionExpression` request parameter. | `Title`; `Title, Price, Color`; `Title, Description, RelatedItems, ProductReviews` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.consistent_read`](/docs/attributes-registry/aws.md) | boolean | The value of the `ConsistentRead` request parameter. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.projection`](/docs/attributes-registry/aws.md) | string | The value of the `ProjectionExpression` request parameter. | `Title`; `Title, Price, Color`; `Title, Description, RelatedItems, ProductReviews` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -313,11 +313,11 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -335,14 +335,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.exclusive_start_table`](/docs/attributes-registry/aws.md) | string | The value of the `ExclusiveStartTableName` request parameter. | `Users`; `CatsTable` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.limit`](/docs/attributes-registry/aws.md) | int | The value of the `Limit` request parameter. | `10` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.table_count`](/docs/attributes-registry/aws.md) | int | The number of items in the `TableNames` response parameter. | `20` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.exclusive_start_table`](/docs/attributes-registry/aws.md) | string | The value of the `ExclusiveStartTableName` request parameter. | `Users`; `CatsTable` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.limit`](/docs/attributes-registry/aws.md) | int | The value of the `Limit` request parameter. | `10` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.table_count`](/docs/attributes-registry/aws.md) | int | The number of items in the `TableNames` response parameter. | `20` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -354,11 +354,11 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -376,14 +376,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.item_collection_metrics`](/docs/attributes-registry/aws.md) | string | The JSON-serialized value of the `ItemCollectionMetrics` response field. | `{ "string" : [ { "ItemCollectionKey": { "string" : { "B": blob, "BOOL": boolean, "BS": [ blob ], "L": [ "AttributeValue" ], "M": { "string" : "AttributeValue" }, "N": "string", "NS": [ "string" ], "NULL": boolean, "S": "string", "SS": [ "string" ] } }, "SizeEstimateRangeGB": [ number ] } ] }` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | The keys in the `RequestItems` object field. | `["Users", "Cats"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.item_collection_metrics`](/docs/attributes-registry/aws.md) | string | The JSON-serialized value of the `ItemCollectionMetrics` response field. | `{ "string" : [ { "ItemCollectionKey": { "string" : { "B": blob, "BOOL": boolean, "BS": [ blob ], "L": [ "AttributeValue" ], "M": { "string" : "AttributeValue" }, "N": "string", "NS": [ "string" ], "NULL": boolean, "S": "string", "SS": [ "string" ] } }, "SizeEstimateRangeGB": [ number ] } ] }` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | The keys in the `RequestItems` object field. | `["Users", "Cats"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -395,11 +395,11 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -417,20 +417,20 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.attributes_to_get`](/docs/attributes-registry/aws.md) | string[] | The value of the `AttributesToGet` request parameter. | `["lives", "id"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.consistent_read`](/docs/attributes-registry/aws.md) | boolean | The value of the `ConsistentRead` request parameter. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.index_name`](/docs/attributes-registry/aws.md) | string | The value of the `IndexName` request parameter. | `name_to_group` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.limit`](/docs/attributes-registry/aws.md) | int | The value of the `Limit` request parameter. | `10` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.projection`](/docs/attributes-registry/aws.md) | string | The value of the `ProjectionExpression` request parameter. | `Title`; `Title, Price, Color`; `Title, Description, RelatedItems, ProductReviews` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.scan_forward`](/docs/attributes-registry/aws.md) | boolean | The value of the `ScanIndexForward` request parameter. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.select`](/docs/attributes-registry/aws.md) | string | The value of the `Select` request parameter. | `ALL_ATTRIBUTES`; `COUNT` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.attributes_to_get`](/docs/attributes-registry/aws.md) | string[] | The value of the `AttributesToGet` request parameter. | `["lives", "id"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.consistent_read`](/docs/attributes-registry/aws.md) | boolean | The value of the `ConsistentRead` request parameter. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.index_name`](/docs/attributes-registry/aws.md) | string | The value of the `IndexName` request parameter. | `name_to_group` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.limit`](/docs/attributes-registry/aws.md) | int | The value of the `Limit` request parameter. | `10` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.projection`](/docs/attributes-registry/aws.md) | string | The value of the `ProjectionExpression` request parameter. | `Title`; `Title, Price, Color`; `Title, Description, RelatedItems, ProductReviews` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.scan_forward`](/docs/attributes-registry/aws.md) | boolean | The value of the `ScanIndexForward` request parameter. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.select`](/docs/attributes-registry/aws.md) | string | The value of the `Select` request parameter. | `ALL_ATTRIBUTES`; `COUNT` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -442,11 +442,11 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -464,23 +464,23 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.attributes_to_get`](/docs/attributes-registry/aws.md) | string[] | The value of the `AttributesToGet` request parameter. | `["lives", "id"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.consistent_read`](/docs/attributes-registry/aws.md) | boolean | The value of the `ConsistentRead` request parameter. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.count`](/docs/attributes-registry/aws.md) | int | The value of the `Count` response parameter. | `10` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.index_name`](/docs/attributes-registry/aws.md) | string | The value of the `IndexName` request parameter. | `name_to_group` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.limit`](/docs/attributes-registry/aws.md) | int | The value of the `Limit` request parameter. | `10` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.projection`](/docs/attributes-registry/aws.md) | string | The value of the `ProjectionExpression` request parameter. | `Title`; `Title, Price, Color`; `Title, Description, RelatedItems, ProductReviews` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.scanned_count`](/docs/attributes-registry/aws.md) | int | The value of the `ScannedCount` response parameter. | `50` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.segment`](/docs/attributes-registry/aws.md) | int | The value of the `Segment` request parameter. | `10` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.select`](/docs/attributes-registry/aws.md) | string | The value of the `Select` request parameter. | `ALL_ATTRIBUTES`; `COUNT` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.total_segments`](/docs/attributes-registry/aws.md) | int | The value of the `TotalSegments` request parameter. | `100` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.attributes_to_get`](/docs/attributes-registry/aws.md) | string[] | The value of the `AttributesToGet` request parameter. | `["lives", "id"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.consistent_read`](/docs/attributes-registry/aws.md) | boolean | The value of the `ConsistentRead` request parameter. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.count`](/docs/attributes-registry/aws.md) | int | The value of the `Count` response parameter. | `10` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.index_name`](/docs/attributes-registry/aws.md) | string | The value of the `IndexName` request parameter. | `name_to_group` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.limit`](/docs/attributes-registry/aws.md) | int | The value of the `Limit` request parameter. | `10` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.projection`](/docs/attributes-registry/aws.md) | string | The value of the `ProjectionExpression` request parameter. | `Title`; `Title, Price, Color`; `Title, Description, RelatedItems, ProductReviews` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.scanned_count`](/docs/attributes-registry/aws.md) | int | The value of the `ScannedCount` response parameter. | `50` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.segment`](/docs/attributes-registry/aws.md) | int | The value of the `Segment` request parameter. | `10` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.select`](/docs/attributes-registry/aws.md) | string | The value of the `Select` request parameter. | `ALL_ATTRIBUTES`; `COUNT` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.total_segments`](/docs/attributes-registry/aws.md) | int | The value of the `TotalSegments` request parameter. | `100` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -492,11 +492,11 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -514,14 +514,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.item_collection_metrics`](/docs/attributes-registry/aws.md) | string | The JSON-serialized value of the `ItemCollectionMetrics` response field. | `{ "string" : [ { "ItemCollectionKey": { "string" : { "B": blob, "BOOL": boolean, "BS": [ blob ], "L": [ "AttributeValue" ], "M": { "string" : "AttributeValue" }, "N": "string", "NS": [ "string" ], "NULL": boolean, "S": "string", "SS": [ "string" ] } }, "SizeEstimateRangeGB": [ number ] } ] }` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.item_collection_metrics`](/docs/attributes-registry/aws.md) | string | The JSON-serialized value of the `ItemCollectionMetrics` response field. | `{ "string" : [ { "ItemCollectionKey": { "string" : { "B": blob, "BOOL": boolean, "BS": [ blob ], "L": [ "AttributeValue" ], "M": { "string" : "AttributeValue" }, "N": "string", "NS": [ "string" ], "NULL": boolean, "S": "string", "SS": [ "string" ] } }, "SizeEstimateRangeGB": [ number ] } ] }` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -533,11 +533,11 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -555,17 +555,17 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.attribute_definitions`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `AttributeDefinitions` request field. | `["{ \"AttributeName\": \"string\", \"AttributeType\": \"string\" }"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.global_secondary_index_updates`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field. | `["{ \"Create\": { \"IndexName\": \"string\", \"KeySchema\": [ { \"AttributeName\": \"string\", \"KeyType\": \"string\" } ], \"Projection\": { \"NonKeyAttributes\": [ \"string\" ], \"ProjectionType\": \"string\" }, \"ProvisionedThroughput\": { \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.provisioned_read_capacity`](/docs/attributes-registry/aws.md) | double | The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter. | `1.0`; `2.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.provisioned_write_capacity`](/docs/attributes-registry/aws.md) | double | The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter. | `1.0`; `2.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.attribute_definitions`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `AttributeDefinitions` request field. | `["{ \"AttributeName\": \"string\", \"AttributeType\": \"string\" }"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.consumed_capacity`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.global_secondary_index_updates`](/docs/attributes-registry/aws.md) | string[] | The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field. | `["{ \"Create\": { \"IndexName\": \"string\", \"KeySchema\": [ { \"AttributeName\": \"string\", \"KeyType\": \"string\" } ], \"Projection\": { \"NonKeyAttributes\": [ \"string\" ], \"ProjectionType\": \"string\" }, \"ProvisionedThroughput\": { \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.provisioned_read_capacity`](/docs/attributes-registry/aws.md) | double | The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter. | `1.0`; `2.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.provisioned_write_capacity`](/docs/attributes-registry/aws.md) | double | The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter. | `1.0`; `2.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.dynamodb.table_names`](/docs/attributes-registry/aws.md) | string[] | A single-element array with the value of the TableName request parameter. | `["Users"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -577,11 +577,11 @@ The following table outlines the span attributes applicable to DynamoDB.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

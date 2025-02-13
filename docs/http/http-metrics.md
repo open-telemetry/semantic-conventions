@@ -89,7 +89,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [7] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [9] | `80`; `8080`; `443` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`user_agent.synthetic.type`](/docs/attributes-registry/user-agent.md) | string | Specifies the category of synthetic traffic, such as tests or bots. [10] | `bot`; `test` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`user_agent.synthetic.type`](/docs/attributes-registry/user-agent.md) | string | Specifies the category of synthetic traffic, such as tests or bots. [10] | `bot`; `test` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -177,8 +177,8 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 | Value  | Description | Stability |
 |---|---|---|
-| `bot` | Bot source. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `test` | Synthetic test source. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `bot` | Bot source. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `test` | Synthetic test source. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -198,7 +198,7 @@ This metric is optional.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `http.server.active_requests` | UpDownCounter | `{request}` | Number of active HTTP server requests. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http.server.active_requests` | UpDownCounter | `{request}` | Number of active HTTP server requests. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -267,7 +267,7 @@ This metric is optional.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `http.server.request.body.size` | Histogram | `By` | Size of HTTP server request bodies. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http.server.request.body.size` | Histogram | `By` | Size of HTTP server request bodies. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 
@@ -282,7 +282,7 @@ This metric is optional.
 | [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [7] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [9] | `80`; `8080`; `443` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`user_agent.synthetic.type`](/docs/attributes-registry/user-agent.md) | string | Specifies the category of synthetic traffic, such as tests or bots. [10] | `bot`; `test` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`user_agent.synthetic.type`](/docs/attributes-registry/user-agent.md) | string | Specifies the category of synthetic traffic, such as tests or bots. [10] | `bot`; `test` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -370,8 +370,8 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 | Value  | Description | Stability |
 |---|---|---|
-| `bot` | Bot source. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `test` | Synthetic test source. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `bot` | Bot source. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `test` | Synthetic test source. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -391,7 +391,7 @@ This metric is optional.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `http.server.response.body.size` | Histogram | `By` | Size of HTTP server response bodies. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http.server.response.body.size` | Histogram | `By` | Size of HTTP server response bodies. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 
@@ -406,7 +406,7 @@ This metric is optional.
 | [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [7] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [9] | `80`; `8080`; `443` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`user_agent.synthetic.type`](/docs/attributes-registry/user-agent.md) | string | Specifies the category of synthetic traffic, such as tests or bots. [10] | `bot`; `test` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`user_agent.synthetic.type`](/docs/attributes-registry/user-agent.md) | string | Specifies the category of synthetic traffic, such as tests or bots. [10] | `bot`; `test` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -494,8 +494,8 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 | Value  | Description | Stability |
 |---|---|---|
-| `bot` | Bot source. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `test` | Synthetic test source. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `bot` | Bot source. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `test` | Synthetic test source. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -535,7 +535,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [5] | `http`; `spdy` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [7] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.template`](/docs/attributes-registry/url.md) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [8] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`url.template`](/docs/attributes-registry/url.md) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [8] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -624,7 +624,7 @@ This metric is optional.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `http.client.request.body.size` | Histogram | `By` | Size of HTTP client request bodies. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http.client.request.body.size` | Histogram | `By` | Size of HTTP client request bodies. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 
@@ -636,7 +636,7 @@ This metric is optional.
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If request has ended with an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`http.response.status_code`](/docs/attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required` If and only if one was received/sent. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [5] | `http`; `spdy` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.template`](/docs/attributes-registry/url.md) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [7] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`url.template`](/docs/attributes-registry/url.md) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [7] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [8] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
@@ -727,7 +727,7 @@ This metric is optional.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `http.client.response.body.size` | Histogram | `By` | Size of HTTP client response bodies. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http.client.response.body.size` | Histogram | `By` | Size of HTTP client response bodies. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 
@@ -739,7 +739,7 @@ This metric is optional.
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If request has ended with an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`http.response.status_code`](/docs/attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required` If and only if one was received/sent. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [5] | `http`; `spdy` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.template`](/docs/attributes-registry/url.md) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [7] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`url.template`](/docs/attributes-registry/url.md) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [7] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [8] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
@@ -830,11 +830,11 @@ This metric is optional.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `http.client.open_connections` | UpDownCounter | `{connection}` | Number of outbound HTTP connections that are currently active or idle on the client. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http.client.open_connections` | UpDownCounter | `{connection}` | Number of outbound HTTP connections that are currently active or idle on the client. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`http.connection.state`](/docs/attributes-registry/http.md) | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`http.connection.state`](/docs/attributes-registry/http.md) | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -853,8 +853,8 @@ This metric is optional.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `active` | active state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `idle` | idle state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `active` | active state. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | idle state. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -878,7 +878,7 @@ This metric is optional.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `http.client.connection.duration` | Histogram | `s` | The duration of the successfully established outbound HTTP connections. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http.client.connection.duration` | Histogram | `s` | The duration of the successfully established outbound HTTP connections. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -901,7 +901,7 @@ This metric is optional.
 
 ### Metric: `http.client.active_requests`
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This metric is optional.
 
@@ -914,13 +914,13 @@ This metric is optional.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `http.client.active_requests` | UpDownCounter | `{request}` | Number of active HTTP requests. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `http.client.active_requests` | UpDownCounter | `{request}` | Number of active HTTP requests. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.template`](/docs/attributes-registry/url.md) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [3] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`url.template`](/docs/attributes-registry/url.md) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [3] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [4] | `GET`; `POST`; `HEAD` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 

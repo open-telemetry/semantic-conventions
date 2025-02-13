@@ -4,7 +4,7 @@ linkTitle: Common
 
 # Semantic conventions for common hardware metrics
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 <!-- toc -->
 
@@ -35,10 +35,10 @@ monitored component:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
@@ -48,20 +48,20 @@ monitored component:
 
 | Value  | Description | Stability |
 |---|---|---|
-| `battery` | Battery | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cpu` | CPU | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `disk_controller` | Disk controller | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `enclosure` | Enclosure | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fan` | Fan | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gpu` | GPU | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `logical_disk` | Logical disk | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `memory` | Memory | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network` | Network | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `physical_disk` | Physical disk | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `power_supply` | Power supply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tape_drive` | Tape drive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `temperature` | Temperature | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `voltage` | Voltage | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `battery` | Battery | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cpu` | CPU | ![Development](https://img.shields.io/badge/-development-blue) |
+| `disk_controller` | Disk controller | ![Development](https://img.shields.io/badge/-development-blue) |
+| `enclosure` | Enclosure | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fan` | Fan | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gpu` | GPU | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logical_disk` | Logical disk | ![Development](https://img.shields.io/badge/-development-blue) |
+| `memory` | Memory | ![Development](https://img.shields.io/badge/-development-blue) |
+| `network` | Network | ![Development](https://img.shields.io/badge/-development-blue) |
+| `physical_disk` | Physical disk | ![Development](https://img.shields.io/badge/-development-blue) |
+| `power_supply` | Power supply | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tape_drive` | Tape drive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `temperature` | Temperature | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voltage` | Voltage | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -81,14 +81,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `hw.energy` | Counter | `J` | Energy consumed by the component | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hw.energy` | Counter | `J` | Energy consumed by the component | ![Development](https://img.shields.io/badge/-development-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
@@ -98,20 +98,20 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `battery` | Battery | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cpu` | CPU | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `disk_controller` | Disk controller | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `enclosure` | Enclosure | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fan` | Fan | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gpu` | GPU | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `logical_disk` | Logical disk | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `memory` | Memory | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network` | Network | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `physical_disk` | Physical disk | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `power_supply` | Power supply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tape_drive` | Tape drive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `temperature` | Temperature | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `voltage` | Voltage | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `battery` | Battery | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cpu` | CPU | ![Development](https://img.shields.io/badge/-development-blue) |
+| `disk_controller` | Disk controller | ![Development](https://img.shields.io/badge/-development-blue) |
+| `enclosure` | Enclosure | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fan` | Fan | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gpu` | GPU | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logical_disk` | Logical disk | ![Development](https://img.shields.io/badge/-development-blue) |
+| `memory` | Memory | ![Development](https://img.shields.io/badge/-development-blue) |
+| `network` | Network | ![Development](https://img.shields.io/badge/-development-blue) |
+| `physical_disk` | Physical disk | ![Development](https://img.shields.io/badge/-development-blue) |
+| `power_supply` | Power supply | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tape_drive` | Tape drive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `temperature` | Temperature | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voltage` | Voltage | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -131,15 +131,15 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `hw.errors` | Counter | `{error}` | Number of errors encountered by the component | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hw.errors` | Counter | `{error}` | Number of errors encountered by the component | ![Development](https://img.shields.io/badge/-development-blue) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | The type of error encountered by the component [2] | `uncorrected`; `zero_buffer_credit`; `crc`; `bad_sector` | `Conditionally Required` if and only if an error has occurred | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
@@ -159,20 +159,20 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `battery` | Battery | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cpu` | CPU | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `disk_controller` | Disk controller | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `enclosure` | Enclosure | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fan` | Fan | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gpu` | GPU | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `logical_disk` | Logical disk | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `memory` | Memory | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network` | Network | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `physical_disk` | Physical disk | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `power_supply` | Power supply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tape_drive` | Tape drive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `temperature` | Temperature | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `voltage` | Voltage | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `battery` | Battery | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cpu` | CPU | ![Development](https://img.shields.io/badge/-development-blue) |
+| `disk_controller` | Disk controller | ![Development](https://img.shields.io/badge/-development-blue) |
+| `enclosure` | Enclosure | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fan` | Fan | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gpu` | GPU | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logical_disk` | Logical disk | ![Development](https://img.shields.io/badge/-development-blue) |
+| `memory` | Memory | ![Development](https://img.shields.io/badge/-development-blue) |
+| `network` | Network | ![Development](https://img.shields.io/badge/-development-blue) |
+| `physical_disk` | Physical disk | ![Development](https://img.shields.io/badge/-development-blue) |
+| `power_supply` | Power supply | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tape_drive` | Tape drive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `temperature` | Temperature | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voltage` | Voltage | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -192,16 +192,16 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `hw.power` | Gauge | `W` | Instantaneous power consumed by the component [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hw.power` | Gauge | `W` | Instantaneous power consumed by the component [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** It is recommended to report `hw.energy` instead of `hw.power` when possible.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
@@ -211,20 +211,20 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `battery` | Battery | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cpu` | CPU | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `disk_controller` | Disk controller | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `enclosure` | Enclosure | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fan` | Fan | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gpu` | GPU | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `logical_disk` | Logical disk | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `memory` | Memory | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network` | Network | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `physical_disk` | Physical disk | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `power_supply` | Power supply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tape_drive` | Tape drive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `temperature` | Temperature | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `voltage` | Voltage | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `battery` | Battery | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cpu` | CPU | ![Development](https://img.shields.io/badge/-development-blue) |
+| `disk_controller` | Disk controller | ![Development](https://img.shields.io/badge/-development-blue) |
+| `enclosure` | Enclosure | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fan` | Fan | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gpu` | GPU | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logical_disk` | Logical disk | ![Development](https://img.shields.io/badge/-development-blue) |
+| `memory` | Memory | ![Development](https://img.shields.io/badge/-development-blue) |
+| `network` | Network | ![Development](https://img.shields.io/badge/-development-blue) |
+| `physical_disk` | Physical disk | ![Development](https://img.shields.io/badge/-development-blue) |
+| `power_supply` | Power supply | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tape_drive` | Tape drive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `temperature` | Temperature | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voltage` | Voltage | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -244,17 +244,17 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `hw.status` | UpDownCounter | `1` | Operational status: `1` (true) or `0` (false) for each of the possible states [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `hw.status` | UpDownCounter | `1` | Operational status: `1` (true) or `0` (false) for each of the possible states [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** `hw.status` is currently specified as an *UpDownCounter* but would ideally be represented using a [*StateSet* as defined in OpenMetrics](https://github.com/prometheus/OpenMetrics/blob/v1.0.0/specification/OpenMetrics.md#stateset). This semantic convention will be updated once *StateSet* is specified in OpenTelemetry. This planned change is not expected to have any consequence on the way users query their timeseries backend to retrieve the values of `hw.status` over time.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.state`](/docs/attributes-registry/hardware.md) | string | The current state of the component | `ok`; `degraded`; `failed` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.state`](/docs/attributes-registry/hardware.md) | string | The current state of the component | `ok`; `degraded`; `failed` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.type`](/docs/attributes-registry/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
@@ -264,9 +264,9 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `degraded` | Degraded | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `failed` | Failed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ok` | Ok | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
+| `failed` | Failed | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ok` | Ok | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -274,20 +274,20 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `battery` | Battery | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cpu` | CPU | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `disk_controller` | Disk controller | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `enclosure` | Enclosure | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fan` | Fan | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gpu` | GPU | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `logical_disk` | Logical disk | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `memory` | Memory | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `network` | Network | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `physical_disk` | Physical disk | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `power_supply` | Power supply | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tape_drive` | Tape drive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `temperature` | Temperature | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `voltage` | Voltage | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `battery` | Battery | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cpu` | CPU | ![Development](https://img.shields.io/badge/-development-blue) |
+| `disk_controller` | Disk controller | ![Development](https://img.shields.io/badge/-development-blue) |
+| `enclosure` | Enclosure | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fan` | Fan | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gpu` | GPU | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logical_disk` | Logical disk | ![Development](https://img.shields.io/badge/-development-blue) |
+| `memory` | Memory | ![Development](https://img.shields.io/badge/-development-blue) |
+| `network` | Network | ![Development](https://img.shields.io/badge/-development-blue) |
+| `physical_disk` | Physical disk | ![Development](https://img.shields.io/badge/-development-blue) |
+| `power_supply` | Power supply | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tape_drive` | Tape drive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `temperature` | Temperature | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voltage` | Voltage | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

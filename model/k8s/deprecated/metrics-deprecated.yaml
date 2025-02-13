@@ -2,7 +2,7 @@ groups:
   - id: metric.k8s.replication_controller.desired_pods
     type: metric
     metric_name: k8s.replication_controller.desired_pods
-    stability: experimental
+    stability: development
     deprecated: "Replaced by `k8s.replicationcontroller.desired_pods`."
     brief: "Deprecated, use `k8s.replicationcontroller.desired_pods` instead."
     note: |
@@ -16,7 +16,7 @@ groups:
   - id: metric.k8s.replication_controller.available_pods
     type: metric
     metric_name: k8s.replication_controller.available_pods
-    stability: experimental
+    stability: development
     deprecated: "Replaced by `k8s.replicationcontroller.available_pods`."
     brief: "Deprecated, use `k8s.replicationcontroller.available_pods` instead."
     note: |

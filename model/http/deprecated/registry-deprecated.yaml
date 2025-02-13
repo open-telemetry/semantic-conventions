@@ -7,72 +7,72 @@ groups:
       - id: http.method
         type: string
         brief: 'Deprecated, use `http.request.method` instead.'
-        stability: experimental
+        stability: development
         deprecated: "Replaced by `http.request.method`."
         examples: ["GET", "POST", "HEAD"]
       - id: http.status_code
         type: int
         brief: 'Deprecated, use `http.response.status_code` instead.'
-        stability: experimental
+        stability: development
         deprecated: "Replaced by `http.response.status_code`."
         examples: [200]
       - id: http.scheme
         type: string
         brief: 'Deprecated, use `url.scheme` instead.'
-        stability: experimental
+        stability: development
         deprecated: "Replaced by `url.scheme` instead."
         examples: ['http', 'https']
       - id: http.url
         type: string
         brief: 'Deprecated, use `url.full` instead.'
-        stability: experimental
+        stability: development
         deprecated: "Replaced by `url.full`."
         examples: ['https://www.foo.bar/search?q=OpenTelemetry#SemConv']
       - id: http.target
         type: string
         brief: 'Deprecated, use `url.path` and `url.query` instead.'
-        stability: experimental
+        stability: development
         deprecated: "Split to `url.path` and `url.query."
         examples: ['/search?q=OpenTelemetry#SemConv']
       - id: http.request_content_length
         type: int
         brief: 'Deprecated, use `http.request.header.<key>` instead.'
-        stability: experimental
+        stability: development
         deprecated: "Replaced by `http.request.header.<key>`."
         examples: 3495
       - id: http.response_content_length
         type: int
         brief: 'Deprecated, use `http.response.header.<key>` instead.'
-        stability: experimental
+        stability: development
         deprecated: "Replaced by `http.response.header.<key>`."
         examples: 3495
       - id: http.client_ip
         type: string
-        stability: experimental
+        stability: development
         deprecated: "Replaced by `client.address`."
         brief: "Deprecated, use `client.address` instead."
         examples: '83.164.160.102'
       - id: http.host
         type: string
-        stability: experimental
+        stability: development
         deprecated: "Replaced by one of `server.address`, `client.address` or `http.request.header.host`, depending on the usage."
         brief: "Deprecated, use one of `server.address`, `client.address` or `http.request.header.host` instead, depending on the usage."
         examples: ['www.example.org']
       - id: http.request_content_length_uncompressed
-        stability: experimental
+        stability: development
         deprecated: "Replaced by `http.request.body.size`."
         type: int
         brief: "Deprecated, use `http.request.body.size` instead."
         examples: 5493
       - id: http.response_content_length_uncompressed
-        stability: experimental
+        stability: development
         deprecated: "Replace by `http.response.body.size`."
         type: int
         brief: "Deprecated, use `http.response.body.size` instead."
         examples: 5493
       - id: http.server_name
         type: string
-        stability: experimental
+        stability: development
         deprecated: "Replaced by `server.address`."
         brief: "Deprecated, use `server.address` instead."
         examples: ['example.com']
@@ -82,34 +82,34 @@ groups:
             - id: http_1_0
               value: '1.0'
               brief: 'HTTP/1.0'
-              stability: experimental
+              stability: development
             - id: http_1_1
               value: '1.1'
               brief: 'HTTP/1.1'
-              stability: experimental
+              stability: development
             - id: http_2_0
               value: '2.0'
               brief: 'HTTP/2'
-              stability: experimental
+              stability: development
             - id: http_3_0
               value: '3.0'
               brief: 'HTTP/3'
-              stability: experimental
+              stability: development
             - id: spdy
               value: 'SPDY'
               brief: 'SPDY protocol.'
-              stability: experimental
+              stability: development
             - id: quic
               value: 'QUIC'
               brief: 'QUIC protocol.'
-              stability: experimental
+              stability: development
         brief: 'Deprecated, use `network.protocol.name` instead.'
         deprecated: "Replaced by `network.protocol.name`."
-        stability: experimental
+        stability: development
       - id: http.user_agent
         type: string
         brief: 'Deprecated, use `user_agent.original` instead.'
         examples: ['CERN-LineMode/2.15 libwww/2.17b3',
                    'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1']
         deprecated: "Replaced by `user_agent.original`."
-        stability: experimental
+        stability: development

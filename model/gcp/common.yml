@@ -2,7 +2,7 @@ groups:
 - id: gcp.client.attributes
   type: attribute_group
   brief: Conventions for official Google Cloud client libraries.
-  stability: experimental
+  stability: development
   attributes:
   - ref: gcp.client.service
     requirement_level:

@@ -15,7 +15,7 @@ groups:
     attributes:
       - id: cicd.pipeline.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The human readable name of the pipeline within a CI/CD system.
         examples:
@@ -27,13 +27,13 @@ groups:
           ]
       - id: cicd.pipeline.run.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The unique identifier of a pipeline run within a CI/CD system.
         examples: ["120912"]
       - id: cicd.pipeline.run.url.full
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The [URL](https://wikipedia.org/wiki/URL) of the pipeline run,
           providing the complete address in order to locate and identify the pipeline run.
@@ -48,22 +48,22 @@ groups:
               value: pending
               brief: >
                 The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
-              stability: experimental
+              stability: development
             - id: executing
               value: executing
               brief: The executing state spans the execution of any run tasks (eg. build, test).
-              stability: experimental
+              stability: development
             - id: finalizing
               value: finalizing
               brief: The finalizing state spans from when the run has finished executing (eg. cleanup of run resources).
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The pipeline run goes through these states during its lifecycle.
         examples: ["pending", "executing", "finalizing"]
       - id: cicd.pipeline.task.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The human readable name of a task within a pipeline. Task here most
           closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing))
@@ -72,13 +72,13 @@ groups:
         examples: ["Run GoLang Linter", "Go Build", "go-test", "deploy_binary"]
       - id: cicd.pipeline.task.run.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The unique identifier of a task run within a pipeline.
         examples: ["12097"]
       - id: cicd.pipeline.task.run.url.full
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run,
           providing the complete address in order to locate and identify the pipeline task run.
@@ -92,16 +92,16 @@ groups:
             - id: build
               value: build
               brief: build
-              stability: experimental
+              stability: development
             - id: test
               value: test
               brief: test
-              stability: experimental
+              stability: development
             - id: deploy
               value: deploy
               brief: deploy
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The type of the task within a pipeline.
         examples: ["build", "test", "deploy"]
@@ -111,31 +111,31 @@ groups:
             - id: success
               value: success
               brief: "The pipeline run finished successfully."
-              stability: experimental
+              stability: development
             - id: failure
               value: failure
               brief: >-
                 The pipeline run did not finish successfully, eg. due to a compile error or a failing test.
                 Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run.
-              stability: experimental
+              stability: development
             - id: error
               value: error
               brief: >-
                 The pipeline run failed due to an error in the CICD system, eg. due to the worker being killed.
-              stability: experimental
+              stability: development
             - id: timeout
               value: timeout
               brief: "A timeout caused the pipeline run to be interrupted."
-              stability: experimental
+              stability: development
             - id: cancellation
               value: cancellation
               brief: "The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run."
-              stability: experimental
+              stability: development
             - id: skip
               value: skip
               brief: "The pipeline run was skipped, eg. due to a precondition not being met."
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The result of a pipeline run.
         examples: ["success", "failure", "timeout", "skipped"]
@@ -148,22 +148,22 @@ groups:
                 The worker is not performing work for the CICD system.
                 It is available to the CICD system to perform work on (online / idle).
               note: "Pipelines might have conditions on which workers they are able to run so not every worker might be available to every pipeline."
-              stability: experimental
+              stability: development
             - id: busy
               value: busy
               brief: "The worker is performing work for the CICD system."
-              stability: experimental
+              stability: development
             - id: offline
               value: offline
               brief: "The worker is not available to the CICD system (disconnected / down)."
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The state of a CICD worker / agent.
         examples: ["idle", "busy", "down"]
       - id: cicd.system.component
         type: string
-        stability: experimental
+        stability: development
         brief: The name of a component of the CICD system.
         examples:
           [

@@ -6,25 +6,25 @@ groups:
     attributes:
       - id: gen_ai.usage.prompt_tokens
         type: int
-        stability: experimental
+        stability: development
         deprecated: Replaced by `gen_ai.usage.input_tokens` attribute.
         brief: "Deprecated, use `gen_ai.usage.input_tokens` instead."
         examples: [42]
       - id: gen_ai.usage.completion_tokens
         type: int
-        stability: experimental
+        stability: development
         deprecated: Replaced by `gen_ai.usage.output_tokens` attribute.
         brief: "Deprecated, use `gen_ai.usage.output_tokens` instead."
         examples: [42]
       - id: gen_ai.prompt
         type: string
-        stability: experimental
+        stability: development
         deprecated: "Removed, no replacement at this time."
         brief: "Deprecated, use Event API to report prompt contents."
         examples: ["[{'role': 'user', 'content': 'What is the capital of France?'}]"]
       - id: gen_ai.completion
         type: string
-        stability: experimental
+        stability: development
         deprecated: "Removed, no replacement at this time."
         brief: "Deprecated, use Event API to report completions contents."
         examples: ["[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]"]
@@ -34,27 +34,27 @@ groups:
     display_name: Deprecated OpenAI GenAI Attributes
     attributes:
       - id: gen_ai.openai.request.seed
-        stability: experimental
+        stability: development
         type: int
         deprecated: Replaced by `gen_ai.request.seed` attribute.
         brief: "Deprecated, use `gen_ai.request.seed`."
         examples: [100]
       - id: gen_ai.openai.request.response_format
-        stability: experimental
+        stability: development
         type:
           members:
             - id: text
               value: "text"
               brief: 'Text response format'
-              stability: experimental
+              stability: development
             - id: json_object
               value: "json_object"
               brief: 'JSON object response format'
-              stability: experimental
+              stability: development
             - id: json_schema
               value: "json_schema"
               brief: 'JSON schema response format'
-              stability: experimental
+              stability: development
         brief: >
           Deprecated, use `gen_ai.output.type`.
         deprecated: "Replaced by `gen_ai.output.type`."
