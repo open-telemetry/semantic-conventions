@@ -433,7 +433,7 @@ Note that the JVM does not provide a definition of what "recent" means.
 
 **Status**: [Development][DocumentStatus]
 
-**Description:** Experimental Java Virtual Machine (JVM) metrics captured under `jvm.`
+**Description:** In-development Java Virtual Machine (JVM) metrics captured under `jvm.`
 
 ### Metric: `jvm.memory.init`
 

@@ -35,13 +35,13 @@ for the details.
 
 ## Group Stability
 
-<!-- TODO: this section will need to change when https://github.com/open-telemetry/semantic-conventions/issues/1096 is implemented -->
+Semantic Convention groups can have the following [stability levels][MaturityLevel]:
+`development`, `alpha`, `beta`, `release_candidate`, and `stable`.
 
-Semantic Convention groups can be `stable` (corresponds to
-[Stable maturity level][MaturityLevel]) or `experimental` (corresponds to [Development maturity level][MaturityLevel])
-if stability level is not specified, it's assumed to be `experimental`.
+Stability level is required on groups of all types except `attribute_group`.
+If stability level is not specified, it's assumed to be `development`.
 
-Group stability MUST NOT change from `stable` to `experimental`.
+Group stability MUST NOT change from `stable` to any other level.
 
 Semantic convention group of any stability level MUST NOT be removed
 to preserve code generation and documentation for legacy instrumentations.
@@ -60,31 +60,31 @@ Stability guarantees on a group apply to the group properties (such as type, id 
 signal-specific properties) as well as overridden properties of stable attributes
 referenced by this group.
 
-Stability guarantees on a group level **do not** apply to experimental attribute references.
+Stability guarantees on a group level **do not** apply to unstable attribute references.
 
-**Experimental groups:**
+**Unstable groups:**
 
-- MAY add or remove references to stable or experimental attributes
+- MAY add or remove references to stable or unstable attributes
 - MAY change requirement level and other properties of attribute references
 
 **Stable groups:**
 
-- MAY add or remove references to experimental attributes with `opt_in`
+- MAY add or remove references to unstable attributes with `opt_in`
   requirement level.
-- SHOULD NOT have references to experimental attributes with requirement level
+- SHOULD NOT have references to unstable attributes with requirement level
   other than `opt_in`.
-  The requirement level of an experimental attribute reference
+  The requirement level of an unstable attribute reference
   MAY be changed when this attribute becomes stable in cases allowed by the
   [Versioning and Stability][Stability].
 - MUST NOT remove references to stable attributes.
 
-Stable instrumentations MUST NOT report telemetry following the experimental part
-of semantic conventions by default. They MAY support experimental part and allow
+Stable instrumentations MUST NOT report telemetry following the unstable part
+of semantic conventions by default. They MAY support unstable part and allow
 users to opt into it.
 
 <!-- TODO: SchemaURL needs to contain some indication of stability level, e.g. as a suffix -->
 <!-- https://github.com/open-telemetry/semantic-conventions/issues/1511 -->
 
 [Stability]: https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability
-[MaturityLevel]: https://github.com/open-telemetry/oteps/blob/main/text/0232-maturity-of-otel.md
+[MaturityLevel]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/oteps/0232-maturity-of-otel.md
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
