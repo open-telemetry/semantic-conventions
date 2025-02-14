@@ -52,6 +52,7 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aws.lambda.invoked_arn`](/docs/attributes-registry/aws.md) | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.lambda.resource_mapping.id`](/docs/attributes-registry/aws.md) | string | The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. | `587ad24b-03b9-4413-8202-bbd56b36e5b7` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `aws.lambda.invoked_arn`:** This may be different from `cloud.resource_id` if an alias is involved.
 

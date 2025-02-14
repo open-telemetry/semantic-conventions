@@ -297,3 +297,57 @@ groups:
         requirement_level: recommended
       - ref: aws.s3.part_number
         requirement_level: recommended
+  
+  - id: span.aws.sqs.client
+    extends: span.aws.client
+    type: span
+    stability: development
+    span_kind: client
+    brief: "Attributes that exist for SQS request types."
+    attributes:
+      - ref: aws.sqs.queue.url
+        requirement_level: recommended
+      - ref: messaging.destination.name
+        requirement_level: recommended
+
+  - id: span.aws.sns.client
+    extends: span.aws.client
+    type: span
+    stability: development
+    span_kind: client
+    brief: "Attributes that exist for SNS request types."
+    attributes:
+      - ref: aws.sns.topic.arn
+        requirement_level: recommended
+
+  - id: span.aws.kinesis.client
+    extends: span.aws.client
+    type: span
+    stability: development
+    span_kind: client
+    brief: "Attributes that exist for Kinesis request types."
+    attributes:
+      - ref: aws.kinesis.stream_name
+        requirement_level: recommended
+
+  - id: span.aws.stepfunctions.client
+    extends: span.aws.client
+    type: span
+    stability: development
+    span_kind: client
+    brief: "Attributes that exist for Step Functions request types."
+    attributes:
+      - ref: aws.stepfunctions.activity.arn
+        requirement_level: recommended
+      - ref: aws.stepfunctions.state_machine.arn
+        requirement_level: recommended
+
+  - id: span.aws.secretsmanager.client
+    extends: span.aws.client
+    type: span
+    stability: development
+    span_kind: client
+    brief: "Attributes that exist for Secrets Manager request types."
+    attributes:
+      - ref: aws.secretsmanager.secret.arn
+        requirement_level: recommended

@@ -209,3 +209,18 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
+
+  - id: span.gen_ai.aws.bedrock.client
+    extends: span.gen_ai.client.create_agent
+    stability: development
+    span_kind: client
+    type: span
+    brief: >
+      Describes an AWS Bedrock operation span.
+    attributes:
+      - ref: gen_ai.aws.bedrock.guardrail.id
+        requirement_level: required
+      - ref: gen_ai.aws.bedrock.knowledge_base.id
+        requirement_level: recommended
+      - ref: gen_ai.data_source.id
+        requirement_level: recommended

@@ -4,6 +4,7 @@
 # Gen AI
 
 - [GenAI Attributes](#genai-attributes)
+- [Amazon Bedrock Attributes](#amazon-bedrock-attributes)
 - [OpenAI Attributes](#openai-attributes)
 - [Deprecated GenAI Attributes](#deprecated-genai-attributes)
 - [Deprecated OpenAI GenAI Attributes](#deprecated-openai-genai-attributes)
@@ -17,6 +18,7 @@ This document defines the attributes used to describe telemetry in the context o
 | <a id="gen-ai-agent-description" href="#gen-ai-agent-description">`gen_ai.agent.description`</a> | string | Free-form description of the GenAI agent provided by the application. | `Helps with math problems`; `Generates fiction stories` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-agent-id" href="#gen-ai-agent-id">`gen_ai.agent.id`</a> | string | The unique identifier of the GenAI agent. | `asst_5j66UpCpwteGg4YSxUnt7lPY` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-agent-name" href="#gen-ai-agent-name">`gen_ai.agent.name`</a> | string | Human-readable name of the GenAI agent provided by the application. | `Math Tutor`; `Fiction Writer` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gen-ai-data-source-id" href="#gen-ai-data-source-id">`gen_ai.data_source.id`</a> | string | The data source identifier. | `H7STPQYOND` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-operation-name" href="#gen-ai-operation-name">`gen_ai.operation.name`</a> | string | The name of the operation being performed. [1] | `chat`; `text_completion`; `embeddings` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-output-type" href="#gen-ai-output-type">`gen_ai.output.type`</a> | string | Represents the content type requested by the client. [2] | `text`; `json`; `image` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-request-encoding-formats" href="#gen-ai-request-encoding-formats">`gen_ai.request.encoding_formats`</a> | string[] | The encoding formats requested in an embeddings operation, if specified. [3] | `["base64"]`; `["float", "binary"]` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -118,6 +120,15 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 |---|---|---|
 | `input` | Input tokens (prompt, input, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `output` | Output tokens (completion, response, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Amazon Bedrock Attributes
+
+This document defines attributes for AWS Bedrock.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="gen-ai-aws-bedrock-guardrail-id" href="#gen-ai-aws-bedrock-guardrail-id">`gen_ai.aws.bedrock.guardrail.id`</a> | string | The unique identifier of the AWS Bedrock Guardrail. A [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) helps safeguard and prevent unwanted behavior from model responses or user messages. | `sgi5gkybzqak` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gen-ai-aws-bedrock-knowledge-base-id" href="#gen-ai-aws-bedrock-knowledge-base-id">`gen_ai.aws.bedrock.knowledge_base.id`</a> | string | The unique identifier of the AWS Bedrock Knowledge base. A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information that can be queried by models to generate more relevant responses and augment prompts. | `XFWUPB9PAW` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## OpenAI Attributes
 
