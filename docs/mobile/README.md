@@ -1,13 +1,10 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Mobile
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/mobile/_index.md
-  to: mobile/README.md
 --->
 
-# Semantic Convention for Mobile Platform
+# Semantic conventions for mobile platform
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for mobile platform spans, metrics and logs.
 

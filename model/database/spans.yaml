@@ -2,11 +2,11 @@ groups:
   - id: trace.db.common.minimal
     extends: attributes.db.client.minimal
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: This group defines the attributes used to perform database client calls.
     attributes:
       # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
-      # - ref: db.system
+      # - ref: db.system.name
       #   sampling_relevant: true
       - ref: db.operation.name
         sampling_relevant: true
@@ -24,7 +24,7 @@ groups:
   - id: trace.db.common.query
     extends: attributes.db.client.with_query
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: This group defines the attributes used to perform database client calls.
     attributes:
       - ref: server.address
@@ -39,11 +39,11 @@ groups:
           recommended: >
             Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
             sensitive data, e.g. by redacting all literal values present in the query text.
-            See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+            See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
+            see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
       - ref: db.query.summary
         sampling_relevant: true
       - ref: db.operation.parameter
@@ -52,7 +52,7 @@ groups:
   - id: trace.db.common.query_and_collection
     extends: attributes.db.client.with_query_and_collection
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: This group defines the attributes used to perform database client calls.
     attributes:
       - ref: db.collection.name
@@ -71,11 +71,11 @@ groups:
           recommended: >
             Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
             sensitive data, e.g. by redacting all literal values present in the query text.
-            See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+            See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
+            see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
       - ref: db.query.summary
         sampling_relevant: true
       - ref: db.operation.parameter
@@ -83,7 +83,7 @@ groups:
 
   - id: trace.db.common.full
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: This group documents attributes that describe database call along with network information.
     extends: trace.db.common.query_and_collection
     attributes:
@@ -99,7 +99,7 @@ groups:
       - ref: network.peer.port
         requirement_level:
           recommended: if and only if `network.peer.address` is set.
-      - ref: db.system
+      - ref: db.system.name
         sampling_relevant: true
         # TODO: Not adding to the minimal because of https://github.com/open-telemetry/build-tools/issues/192
         requirement_level: required
@@ -110,14 +110,14 @@ groups:
 
   - id: span.db.client
     type: span
-    stability: experimental
+    stability: development
     brief: This span defines the attributes used to perform database client calls.
     span_kind: client
     extends: trace.db.common.full
 
   - id: span.db.mssql.client
     type: span
-    stability: experimental
+    stability: development
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -155,7 +155,7 @@ groups:
 
   - id: span.db.postgresql.client
     type: span
-    stability: experimental
+    stability: development
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -192,7 +192,7 @@ groups:
         examples: ["08000", "08P01"]
   - id: span.db.mysql.client
     type: span
-    stability: experimental
+    stability: development
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -222,7 +222,7 @@ groups:
 
   - id: span.db.mariadb.client
     type: span
-    stability: experimental
+    stability: development
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -261,7 +261,7 @@ groups:
   - id: span.db.cassandra.client
     type: span
     span_kind: client
-    stability: experimental
+    stability: development
     extends: trace.db.common.query_and_collection
     brief: >
       Attributes for Cassandra
@@ -272,14 +272,14 @@ groups:
         examples: ["mykeyspace"]
         requirement_level:
           conditionally_required: If available.
-      - ref: db.cassandra.page_size
-      - ref: db.cassandra.consistency_level
+      - ref: cassandra.page.size
+      - ref: cassandra.consistency.level
       - ref: db.collection.name
         brief: The name of the Cassandra table that the operation is acting upon.
-      - ref: db.cassandra.idempotence
-      - ref: db.cassandra.speculative_execution_count
-      - ref: db.cassandra.coordinator.id
-      - ref: db.cassandra.coordinator.dc
+      - ref: cassandra.query.idempotent
+      - ref: cassandra.speculative_execution.count
+      - ref: cassandra.coordinator.id
+      - ref: cassandra.coordinator.dc
       - ref: network.peer.address
         brief: Peer address of the database node where the operation was performed.
         requirement_level:
@@ -298,7 +298,7 @@ groups:
   - id: span.db.hbase.client
     type: span
     span_kind: client
-    stability: experimental
+    stability: development
     extends: trace.db.common.minimal
     brief: >
       Attributes for HBase
@@ -329,7 +329,7 @@ groups:
   - id: span.db.couchdb.client
     type: span
     span_kind: client
-    stability: experimental
+    stability: development
     extends: trace.db.common.minimal
     brief: >
       Attributes for CouchDB
@@ -363,7 +363,7 @@ groups:
 
   - id: span.db.redis.client
     type: span
-    stability: experimental
+    stability: development
     span_kind: client
     extends: trace.db.common.minimal
     brief: >
@@ -396,11 +396,11 @@ groups:
             Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
             sensitive data, e.g. by redacting all literal values present in the query text.
 
-            See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+            See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
+            see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
         note: >
           For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI.
           If, for example, the [`HMSET` command](https://redis.io/docs/latest/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
@@ -429,7 +429,7 @@ groups:
 
   - id: span.db.mongodb.client
     type: span
-    stability: experimental
+    stability: development
     span_kind: client
     extends: trace.db.common.minimal
     brief: >
@@ -466,7 +466,7 @@ groups:
 
   - id: span.db.elasticsearch.client
     type: span
-    stability: experimental
+    stability: development
     span_kind: client
     extends: trace.db.common.minimal
     brief: >
@@ -507,13 +507,26 @@ groups:
           When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
         brief: The name of the Elasticsearch cluster which the client connects to.
         requirement_level: recommended
-      - ref: db.elasticsearch.node.name
+      - ref: elasticsearch.node.name
         note: >
           When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
         requirement_level: recommended
-      - ref: db.elasticsearch.path_parts
+      - ref: db.operation.parameter
+        stability: development
+        brief: >
+          A dynamic value in the url path.
+        note: >
+          Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format
+          `db.operation.parameter.<key>`, where `<key>` is the path parameter name. The implementation SHOULD
+          reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)
+          in order to map the path parameter values to their names.
+        examples:
+          [
+            'db.operation.parameter.index="test-index"',
+            'db.operation.parameter="123"',
+          ]
         requirement_level:
-          conditionally_required: when the url has dynamic values
+          conditionally_required: when the url has path parameters
       - ref: db.response.status_code
         brief: >
           The HTTP response code returned by the Elasticsearch cluster.
@@ -525,7 +538,7 @@ groups:
   - id: span.db.sql.client
     type: span
     span_kind: client
-    stability: experimental
+    stability: development
     extends: trace.db.common.query
     brief: >
       Attributes for SQL databases
@@ -597,15 +610,15 @@ groups:
         examples: ["ORA-17027", "1052", "2201B"]
         requirement_level:
           conditionally_required: If response has ended with warning or an error.
-  - id: span.db.cosmosdb.client
+  - id: span.azure.cosmosdb.client
     type: span
-    stability: experimental
+    stability: development
     span_kind: client
     extends: trace.db.common.query_and_collection
     brief: >
       Attributes for Cosmos DB.
     attributes:
-      - ref: db.cosmosdb.client_id
+      - ref: azure.client.id
       - ref: user_agent.original
         brief: 'Full user-agent string is generated by Cosmos DB SDK'
         note: >
@@ -620,7 +633,7 @@ groups:
              Format Reg-{D (Disabled discovery)}-S(application region)|L(List of preferred regions)|N(None, user did not configure it).
              Default value is "NS".
         examples: ['cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|']
-      - ref: db.cosmosdb.connection_mode
+      - ref: azure.cosmosdb.connection.mode
         requirement_level:
           conditionally_required: if not `gateway` (the default value is assumed to be `gateway`).
       - ref: db.collection.name
@@ -630,7 +643,7 @@ groups:
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         requirement_level:
           conditionally_required: if available
-      - ref: db.cosmosdb.request_content_length
+      - ref: azure.cosmosdb.request.body.size
       - ref: db.response.status_code
         brief: >
           Cosmos DB status code.
@@ -645,10 +658,10 @@ groups:
         examples: [10, 20]
         requirement_level:
           conditionally_required: if response was received and returned any rows
-      - ref: db.cosmosdb.sub_status_code
+      - ref: azure.cosmosdb.response.sub_status_code
         requirement_level:
           conditionally_required: when response was received and contained sub-code.
-      - ref: db.cosmosdb.request_charge
+      - ref: azure.cosmosdb.operation.request_charge
         requirement_level:
           conditionally_required: when available
       - ref: db.namespace
@@ -791,9 +804,9 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: If not default (443).
-      - ref: db.cosmosdb.consistency_level
+      - ref: azure.cosmosdb.consistency.level
         requirement_level:
           conditionally_required: If available.
-      - ref: db.cosmosdb.regions_contacted
+      - ref: azure.cosmosdb.operation.contacted_regions
         requirement_level:
           conditionally_required: If available.

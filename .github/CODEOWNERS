@@ -20,12 +20,11 @@
 /internal/tools/schema_check.sh           @open-telemetry/specs-semconv-approvers @tigrannajaryan
 
 # Logs and events semantic conventions
-/docs/exceptions/exceptions-logs.md       @open-telemetry/specs-semconv-approvers @tigrannajaryan
-/docs/general/events-general.md           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-event-approvers @tigrannajaryan
-/docs/general/logs-general.md             @open-telemetry/specs-semconv-approvers @tigrannajaryan
-/docs/logs/                               @open-telemetry/specs-semconv-approvers @tigrannajaryan
-/model/log/                               @open-telemetry/specs-semconv-approvers @tigrannajaryan
-/model/event/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-event-approvers
+/docs/exceptions/exceptions-logs.md       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-log-approvers
+/docs/general/events.md                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-log-approvers
+/docs/general/logs.md                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-log-approvers
+/model/log/                               @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-log-approvers
+/model/event/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-log-approvers
 
 # JVM semantic conventions
 /docs/jvm/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers

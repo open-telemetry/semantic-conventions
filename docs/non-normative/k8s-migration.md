@@ -2,7 +2,7 @@
 linkTitle: K8s migration
 --->
 
-# K8s semantic conventions stability migration
+# K8s semantic convention stability migration
 
 Due to the significant number of modifications and the extensive user base
 affected by them, existing K8s instrumentations published by
@@ -129,10 +129,10 @@ The changes in their metric names and types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                 |
-|------------------------------------------------------------------------------------|---------------------------------------------------------------------|
-| `k8s.replication_controller.desired`           (type: `gauge`)                     | `k8s.replication_controller.desired_pods` (type: `updowncounter`)   |
-| `k8s.replication_controller.available`         (type: `gauge`)                     | `k8s.replication_controller.available_pods` (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                |
+|------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+| `k8s.replication_controller.desired`           (type: `gauge`)                     | `k8s.replicationcontroller.desired_pods` (type: `updowncounter`)   |
+| `k8s.replication_controller.available`         (type: `gauge`)                     | `k8s.replicationcontroller.available_pods` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 

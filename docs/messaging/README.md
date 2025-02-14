@@ -1,13 +1,10 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Messaging Systems
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/messaging/_index.md
-  to: messaging/README.md
+linkTitle: Messaging
 --->
 
-# Semantic Conventions for Messaging Systems
+# Semantic conventions for messaging systems
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for messaging systems spans, metrics and logs.
 

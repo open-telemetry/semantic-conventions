@@ -1,6 +1,6 @@
 groups:
   - id: event.device.app.lifecycle
-    stability: experimental
+    stability: development
     type: event
     name: device.app.lifecycle
     brief: >
@@ -20,13 +20,14 @@ groups:
       id: device_lifecycle_state
       type: map
       requirement_level: required
+      stability: development
       fields:
         - id: ios.state
-          stability: experimental
+          stability: development
           requirement_level:
             conditionally_required: if and only if `os.name` is `ios`
           note: >
-            The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#1656902),
+            The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate),
             and from which the `OS terminology` column values are derived.
           brief: >
             This attribute represents the state the application has transitioned into at the occurrence of the event.
@@ -61,7 +62,7 @@ groups:
                 The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`.
               stability: development
         - id: android.state
-          stability: experimental
+          stability: development
           requirement_level:
             conditionally_required: if and only if `os.name` is `android`
           brief: >
