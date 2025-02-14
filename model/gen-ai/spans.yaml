@@ -147,9 +147,10 @@ groups:
         requirement_level:
           conditionally_required: If not default (443).
 
-  - id: span.gen_ai.client.create_agent
+  - id: span.gen_ai.create_agent.client
     type: span
     stability: development
+    span_kind: client
     brief: >
       Describes GenAI agent creation and is usually applicable when working
       with remote agent services.
