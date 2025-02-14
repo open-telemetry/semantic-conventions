@@ -8,3 +8,5 @@ groups:
     attributes:
       - ref: aws.lambda.invoked_arn
         requirement_level: recommended
+      - ref: aws.lambda.resource_mapping.id
+        requirement_level: recommended
