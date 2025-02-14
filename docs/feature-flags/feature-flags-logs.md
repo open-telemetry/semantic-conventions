@@ -4,7 +4,7 @@ linkTitle: Logs
 
 # Semantic conventions for feature flags in logs
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for recording feature flag evaluations as
 a [log record](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/logs/data-model.md#log-and-event-record-definition) emitted through the
@@ -48,7 +48,7 @@ The table below indicates which attributes should be added to the
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 The event name MUST be `feature_flag.evaluation`.
 
@@ -58,28 +58,28 @@ A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag valu
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`feature_flag.key`](/docs/attributes-registry/feature-flag.md) | string | The lookup key of the feature flag. | `logo-color` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`feature_flag.key`](/docs/attributes-registry/feature-flag.md) | string | The lookup key of the feature flag. | `logo-color` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `provider_not_ready`; `targeting_key_missing`; `provider_fatal`; `general` | `Conditionally Required` [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`feature_flag.variant`](/docs/attributes-registry/feature-flag.md) | string | A semantic identifier for an evaluated flag value. [3] | `red`; `true`; `on` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`feature_flag.context.id`](/docs/attributes-registry/feature-flag.md) | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`feature_flag.evaluation.error.message`](/docs/attributes-registry/feature-flag.md) | string | A message explaining the nature of an error occurring during flag evaluation. | `Flag `header-color` expected type `string` but found type `number`` | `Recommended` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`feature_flag.evaluation.reason`](/docs/attributes-registry/feature-flag.md) | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`feature_flag.provider_name`](/docs/attributes-registry/feature-flag.md) | string | Identifies the feature flag provider. | `Flag Manager` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`feature_flag.set.id`](/docs/attributes-registry/feature-flag.md) | string | The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs. | `proj-1`; `ab98sgs`; `service1/dev` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`feature_flag.version`](/docs/attributes-registry/feature-flag.md) | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`feature_flag.variant`](/docs/attributes-registry/feature-flag.md) | string | A semantic identifier for an evaluated flag value. [3] | `red`; `true`; `on` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`feature_flag.context.id`](/docs/attributes-registry/feature-flag.md) | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`feature_flag.evaluation.error.message`](/docs/attributes-registry/feature-flag.md) | string | A message explaining the nature of an error occurring during flag evaluation. | `Flag `header-color` expected type `string` but found type `number`` | `Recommended` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`feature_flag.evaluation.reason`](/docs/attributes-registry/feature-flag.md) | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`feature_flag.provider_name`](/docs/attributes-registry/feature-flag.md) | string | Identifies the feature flag provider. | `Flag Manager` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`feature_flag.set.id`](/docs/attributes-registry/feature-flag.md) | string | The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs. | `proj-1`; `ab98sgs`; `service1/dev` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`feature_flag.version`](/docs/attributes-registry/feature-flag.md) | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** If one of these values applies, then it MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `flag_not_found` | The flag could not be found. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid_context` | The evaluation context does not meet provider requirements. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `parse_error` | An error was encountered parsing data, such as a flag configuration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `provider_fatal` | The provider has entered an irrecoverable error state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `provider_not_ready` | The value was resolved before the provider was initialized. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `targeting_key_missing` | The provider requires a targeting key and one was not provided in the evaluation context. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `type_mismatch` | The type of the flag value does not match the expected type. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `general` | The error was for a reason not enumerated above. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `flag_not_found` | The flag could not be found. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `invalid_context` | The evaluation context does not meet provider requirements. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `parse_error` | An error was encountered parsing data, such as a flag configuration. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `provider_fatal` | The provider has entered an irrecoverable error state. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `provider_not_ready` | The value was resolved before the provider was initialized. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `targeting_key_missing` | The provider requires a targeting key and one was not provided in the evaluation context. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `type_mismatch` | The type of the flag value does not match the expected type. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `general` | The error was for a reason not enumerated above. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[2] `error.type`:** If and only if an error occurred during flag evaluation.
 
@@ -106,21 +106,21 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `cached` | The resolved value was retrieved from cache. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `default` | The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `disabled` | The resolved value was the result of the flag being disabled in the management system. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `error` | The resolved value was the result of an error. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `split` | The resolved value was the result of pseudorandom assignment. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stale` | The resolved value is non-authoritative or possibly out of date | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `static` | The resolved value is static (no dynamic evaluation). | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unknown` | The reason for the resolved value could not be determined. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cached` | The resolved value was retrieved from cache. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `default` | The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `disabled` | The resolved value was the result of the flag being disabled in the management system. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `error` | The resolved value was the result of an error. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `split` | The resolved value was the result of pseudorandom assignment. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stale` | The resolved value is non-authoritative or possibly out of date | ![Development](https://img.shields.io/badge/-development-blue) |
+| `static` | The resolved value is static (no dynamic evaluation). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unknown` | The reason for the resolved value could not be determined. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Body fields:**
 
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `value` | undefined | The evaluated value of the feature flag. | `#ff0000`; `1`; `true` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `value` | undefined | The evaluated value of the feature flag. | `#ff0000`; `1`; `true` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `value`:** If and only if feature flag provider does not supply variant or equivalent concept. Otherwise, `value` should be treated as opt-in.
 

@@ -304,20 +304,20 @@ groups:
               stability: development
         stability: release_candidate
       - id: db.client.connection.state
-        stability: experimental
+        stability: development
         type:
           members:
             - id: idle
               value: "idle"
-              stability: experimental
+              stability: development
             - id: used
               value: "used"
-              stability: experimental
+              stability: development
         brief: "The state of a connection in the pool"
         examples: ["idle"]
       - id: db.client.connection.pool.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the connection pool; unique within the instrumented application.
           In case the connection pool implementation doesn't provide a name,

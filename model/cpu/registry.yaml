@@ -10,33 +10,33 @@ groups:
           # TODO: Fix how enum members are used in semantic conventions after https://github.com/open-telemetry/build-tools/issues/192 is merged
           members:
             - id: user
-              value: "user"
-              stability: experimental
+              value: 'user'
+              stability: development
             - id: system
-              value: "system"
-              stability: experimental
+              value: 'system'
+              stability: development
             - id: nice
-              value: "nice"
-              stability: experimental
+              value: 'nice'
+              stability: development
             - id: idle
-              value: "idle"
-              stability: experimental
+              value: 'idle'
+              stability: development
             - id: iowait
-              value: "iowait"
-              stability: experimental
+              value: 'iowait'
+              stability: development
             - id: interrupt
-              value: "interrupt"
-              stability: experimental
+              value: 'interrupt'
+              stability: development
             - id: steal
-              value: "steal"
-              stability: experimental
+              value: 'steal'
+              stability: development
             - id: kernel
-              value: "kernel"
-              stability: experimental
-        stability: experimental
-        examples: ["user", "system"]
+              value: 'kernel'
+              stability: development
+        stability: development
+        examples: [ "user", "system" ]
       - id: cpu.logical_number
         type: int
-        stability: experimental
+        stability: development
         brief: "The logical CPU number [0..n-1]"
         examples: [1]

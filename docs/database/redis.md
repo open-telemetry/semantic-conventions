@@ -4,7 +4,7 @@ linkTitle: Redis
 
 # Semantic conventions for Redis
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 The Semantic Conventions for [Redis](https://redis.com/) extend and override the [Database Semantic Conventions](database-spans.md).
 

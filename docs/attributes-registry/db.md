@@ -13,8 +13,8 @@ This group defines the attributes used to describe telemetry in the context of d
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="db-client-connection-pool-name" href="#db-client-connection-pool-name">`db.client.connection.pool.name`</a> | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="db-client-connection-state" href="#db-client-connection-state">`db.client.connection.state`</a> | string | The state of a connection in the pool | `idle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-client-connection-pool-name" href="#db-client-connection-pool-name">`db.client.connection.pool.name`</a> | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="db-client-connection-state" href="#db-client-connection-state">`db.client.connection.state`</a> | string | The state of a connection in the pool | `idle` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="db-collection-name" href="#db-collection-name">`db.collection.name`</a> | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-namespace" href="#db-namespace">`db.namespace`</a> | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-operation-batch-size" href="#db-operation-batch-size">`db.operation.batch.size`</a> | int | The number of queries included in a batch operation. [3] | `2`; `3`; `4` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
@@ -22,7 +22,7 @@ This group defines the attributes used to describe telemetry in the context of d
 | <a id="db-operation-parameter" href="#db-operation-parameter">`db.operation.parameter.<key>`</a> | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [5] | `someval`; `55` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-query-summary" href="#db-query-summary">`db.query.summary`</a> | string | Low cardinality representation of a database query text. [6] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-query-text" href="#db-query-text">`db.query.text`</a> | string | The database query being executed. [7] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| <a id="db-response-returned-rows" href="#db-response-returned-rows">`db.response.returned_rows`</a> | int | Number of rows returned by the operation. | `10`; `30`; `1000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="db-response-returned-rows" href="#db-response-returned-rows">`db.response.returned_rows`</a> | int | Number of rows returned by the operation. | `10`; `30`; `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="db-response-status-code" href="#db-response-status-code">`db.response.status_code`</a> | string | Database response status code. [8] | `102`; `ORA-17002`; `08P01`; `404` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-system-name" href="#db-system-name">`db.system.name`</a> | string | The database management system (DBMS) product as identified by the client instrumentation. [9] | `other_sql`; `softwareag.adabas`; `actian.ingres` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
@@ -72,8 +72,8 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -81,47 +81,47 @@ Semantic conventions for individual database systems SHOULD document what `db.re
 
 | Value  | Description | Stability |
 |---|---|---|
-| `actian.ingres` | [Actian Ingres](https://www.actian.com/databases/ingres/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws.dynamodb` | [Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws.redshift` | [Amazon Redshift](https://aws.amazon.com/redshift/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `azure.cosmosdb` | [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cassandra` | [Apache Cassandra](https://cassandra.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `clickhouse` | [ClickHouse](https://clickhouse.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cockroachdb` | [CockroachDB](https://www.cockroachlabs.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `couchbase` | [Couchbase](https://www.couchbase.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `couchdb` | [Apache CouchDB](https://couchdb.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `derby` | [Apache Derby](https://db.apache.org/derby/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `elasticsearch` | [Elasticsearch](https://www.elastic.co/elasticsearch) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `firebirdsql` | [Firebird](https://www.firebirdsql.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gcp.spanner` | [Google Cloud Spanner](https://cloud.google.com/spanner) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `geode` | [Apache Geode](https://geode.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `h2database` | [H2 Database](https://h2database.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hbase` | [Apache HBase](https://hbase.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hive` | [Apache Hive](https://hive.apache.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hsqldb` | [HyperSQL Database](https://hsqldb.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm.db2` | [IBM Db2](https://www.ibm.com/db2) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm.informix` | [IBM Informix](https://www.ibm.com/products/informix) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm.netezza` | [IBM Netezza](https://www.ibm.com/products/netezza) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `influxdb` | [InfluxDB](https://www.influxdata.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `instantdb` | [Instant](https://www.instantdb.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `intersystems.cache` | [InterSystems Caché](https://www.intersystems.com/products/cache/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `actian.ingres` | [Actian Ingres](https://www.actian.com/databases/ingres/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.dynamodb` | [Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.redshift` | [Amazon Redshift](https://aws.amazon.com/redshift/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.cosmosdb` | [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cassandra` | [Apache Cassandra](https://cassandra.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `clickhouse` | [ClickHouse](https://clickhouse.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cockroachdb` | [CockroachDB](https://www.cockroachlabs.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `couchbase` | [Couchbase](https://www.couchbase.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `couchdb` | [Apache CouchDB](https://couchdb.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `derby` | [Apache Derby](https://db.apache.org/derby/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `elasticsearch` | [Elasticsearch](https://www.elastic.co/elasticsearch) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `firebirdsql` | [Firebird](https://www.firebirdsql.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.spanner` | [Google Cloud Spanner](https://cloud.google.com/spanner) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `geode` | [Apache Geode](https://geode.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `h2database` | [H2 Database](https://h2database.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hbase` | [Apache HBase](https://hbase.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hive` | [Apache Hive](https://hive.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hsqldb` | [HyperSQL Database](https://hsqldb.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.db2` | [IBM Db2](https://www.ibm.com/db2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.informix` | [IBM Informix](https://www.ibm.com/products/informix) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.netezza` | [IBM Netezza](https://www.ibm.com/products/netezza) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `influxdb` | [InfluxDB](https://www.influxdata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `instantdb` | [Instant](https://www.instantdb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `intersystems.cache` | [InterSystems Caché](https://www.intersystems.com/products/cache/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mariadb` | [MariaDB](https://mariadb.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `memcached` | [Memcached](https://memcached.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `memcached` | [Memcached](https://memcached.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `microsoft.sql_server` | [Microsoft SQL Server](https://www.microsoft.com/sql-server) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `mongodb` | [MongoDB](https://www.mongodb.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `mongodb` | [MongoDB](https://www.mongodb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mysql` | [MySQL](https://www.mysql.com/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `neo4j` | [Neo4j](https://neo4j.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `opensearch` | [OpenSearch](https://opensearch.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `oracle.db` | [Oracle Database](https://www.oracle.com/database/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other_sql` | Some other SQL database. Fallback only. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `neo4j` | [Neo4j](https://neo4j.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `opensearch` | [OpenSearch](https://opensearch.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `oracle.db` | [Oracle Database](https://www.oracle.com/database/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other_sql` | Some other SQL database. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `postgresql` | [PostgreSQL](https://www.postgresql.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `redis` | [Redis](https://redis.io/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sap.hana` | [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sap.maxdb` | [SAP MaxDB](https://maxdb.sap.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `softwareag.adabas` | [Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sqlite` | [SQLite](https://www.sqlite.org/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `teradata` | [Teradata](https://www.teradata.com/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `trino` | [Trino](https://trino.io/) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `redis` | [Redis](https://redis.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sap.hana` | [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sap.maxdb` | [SAP MaxDB](https://maxdb.sap.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `softwareag.adabas` | [Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sqlite` | [SQLite](https://www.sqlite.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `teradata` | [Teradata](https://www.teradata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `trino` | [Trino](https://trino.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated Database Attributes
 
@@ -169,17 +169,17 @@ Describes deprecated database attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `all` | all | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `any` | any | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `each_quorum` | each_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_one` | local_one | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_quorum` | local_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_serial` | local_serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `one` | one | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `quorum` | quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `serial` | serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `three` | three | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `two` | two | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `all` | all | ![Development](https://img.shields.io/badge/-development-blue) |
+| `any` | any | ![Development](https://img.shields.io/badge/-development-blue) |
+| `each_quorum` | each_quorum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_one` | local_one | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_quorum` | local_quorum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_serial` | local_serial | ![Development](https://img.shields.io/badge/-development-blue) |
+| `one` | one | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quorum` | quorum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `serial` | serial | ![Development](https://img.shields.io/badge/-development-blue) |
+| `three` | three | ![Development](https://img.shields.io/badge/-development-blue) |
+| `two` | two | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -187,8 +187,8 @@ Describes deprecated database attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `direct` | Direct connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gateway` | Gateway (HTTP) connection. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `direct` | Direct connection. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gateway` | Gateway (HTTP) connection. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -196,11 +196,11 @@ Describes deprecated database attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `BoundedStaleness` | bounded_staleness | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ConsistentPrefix` | consistent_prefix | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Eventual` | eventual | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Session` | session | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `Strong` | strong | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `BoundedStaleness` | bounded_staleness | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ConsistentPrefix` | consistent_prefix | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Eventual` | eventual | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Session` | session | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Strong` | strong | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -208,21 +208,21 @@ Describes deprecated database attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `batch` | batch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `create` | create | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `delete` | delete | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `execute` | execute | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `execute_javascript` | execute_javascript | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `head` | head | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `head_feed` | head_feed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `invalid` | invalid | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `patch` | patch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `query` | query | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `query_plan` | query_plan | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `read_feed` | read_feed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `replace` | replace | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `upsert` | upsert | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `batch` | batch | ![Development](https://img.shields.io/badge/-development-blue) |
+| `create` | create | ![Development](https://img.shields.io/badge/-development-blue) |
+| `delete` | delete | ![Development](https://img.shields.io/badge/-development-blue) |
+| `execute` | execute | ![Development](https://img.shields.io/badge/-development-blue) |
+| `execute_javascript` | execute_javascript | ![Development](https://img.shields.io/badge/-development-blue) |
+| `head` | head | ![Development](https://img.shields.io/badge/-development-blue) |
+| `head_feed` | head_feed | ![Development](https://img.shields.io/badge/-development-blue) |
+| `invalid` | invalid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `patch` | patch | ![Development](https://img.shields.io/badge/-development-blue) |
+| `query` | query | ![Development](https://img.shields.io/badge/-development-blue) |
+| `query_plan` | query_plan | ![Development](https://img.shields.io/badge/-development-blue) |
+| `read` | read | ![Development](https://img.shields.io/badge/-development-blue) |
+| `read_feed` | read_feed | ![Development](https://img.shields.io/badge/-development-blue) |
+| `replace` | replace | ![Development](https://img.shields.io/badge/-development-blue) |
+| `upsert` | upsert | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -230,55 +230,55 @@ Describes deprecated database attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `adabas` | Adabas (Adaptable Database System) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cassandra` | Apache Cassandra | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `clickhouse` | ClickHouse | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cockroachdb` | CockroachDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cosmosdb` | Microsoft Azure Cosmos DB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `couchbase` | Couchbase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `couchdb` | CouchDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db2` | IBM Db2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `derby` | Apache Derby | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dynamodb` | Amazon DynamoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `edb` | EnterpriseDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `elasticsearch` | Elasticsearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `filemaker` | FileMaker | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `firebird` | Firebird | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `geode` | Apache Geode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `h2` | H2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hanadb` | SAP HANA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hbase` | Apache HBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hive` | Apache Hive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hsqldb` | HyperSQL DataBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `influxdb` | InfluxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `informix` | Informix | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ingres` | Ingres | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `instantdb` | InstantDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `interbase` | InterBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `intersystems_cache` | InterSystems Caché | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `adabas` | Adabas (Adaptable Database System) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cassandra` | Apache Cassandra | ![Development](https://img.shields.io/badge/-development-blue) |
+| `clickhouse` | ClickHouse | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cockroachdb` | CockroachDB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cosmosdb` | Microsoft Azure Cosmos DB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `couchbase` | Couchbase | ![Development](https://img.shields.io/badge/-development-blue) |
+| `couchdb` | CouchDB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `db2` | IBM Db2 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `derby` | Apache Derby | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dynamodb` | Amazon DynamoDB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `edb` | EnterpriseDB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `elasticsearch` | Elasticsearch | ![Development](https://img.shields.io/badge/-development-blue) |
+| `filemaker` | FileMaker | ![Development](https://img.shields.io/badge/-development-blue) |
+| `firebird` | Firebird | ![Development](https://img.shields.io/badge/-development-blue) |
+| `geode` | Apache Geode | ![Development](https://img.shields.io/badge/-development-blue) |
+| `h2` | H2 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hanadb` | SAP HANA | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hbase` | Apache HBase | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hive` | Apache Hive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hsqldb` | HyperSQL DataBase | ![Development](https://img.shields.io/badge/-development-blue) |
+| `influxdb` | InfluxDB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `informix` | Informix | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ingres` | Ingres | ![Development](https://img.shields.io/badge/-development-blue) |
+| `instantdb` | InstantDB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `interbase` | InterBase | ![Development](https://img.shields.io/badge/-development-blue) |
+| `intersystems_cache` | InterSystems Caché | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mariadb` | MariaDB (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `maxdb` | SAP MaxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `memcached` | Memcached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mongodb` | MongoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `maxdb` | SAP MaxDB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `memcached` | Memcached | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mongodb` | MongoDB | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mssql` | Microsoft SQL Server (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `mysql` | MySQL (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `neo4j` | Neo4j | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `netezza` | Netezza | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `opensearch` | OpenSearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `oracle` | Oracle Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pervasive` | Pervasive PSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pointbase` | PointBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `neo4j` | Neo4j | ![Development](https://img.shields.io/badge/-development-blue) |
+| `netezza` | Netezza | ![Development](https://img.shields.io/badge/-development-blue) |
+| `opensearch` | OpenSearch | ![Development](https://img.shields.io/badge/-development-blue) |
+| `oracle` | Oracle Database | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other_sql` | Some other SQL database. Fallback only. See notes. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pervasive` | Pervasive PSQL | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pointbase` | PointBase | ![Development](https://img.shields.io/badge/-development-blue) |
 | `postgresql` | PostgreSQL (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `progress` | Progress Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `redis` | Redis | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `redshift` | Amazon Redshift | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `spanner` | Cloud Spanner | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sqlite` | SQLite | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sybase` | Sybase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `teradata` | Teradata | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `trino` | Trino | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertica` | Vertica | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `progress` | Progress Database | ![Development](https://img.shields.io/badge/-development-blue) |
+| `redis` | Redis | ![Development](https://img.shields.io/badge/-development-blue) |
+| `redshift` | Amazon Redshift | ![Development](https://img.shields.io/badge/-development-blue) |
+| `spanner` | Cloud Spanner | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sqlite` | SQLite | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sybase` | Sybase | ![Development](https://img.shields.io/badge/-development-blue) |
+| `teradata` | Teradata | ![Development](https://img.shields.io/badge/-development-blue) |
+| `trino` | Trino | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vertica` | Vertica | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated Database Metrics
 
@@ -297,8 +297,8 @@ Describes deprecated database attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -306,5 +306,5 @@ Describes deprecated database attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |

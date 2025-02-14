@@ -4,7 +4,7 @@ linkTitle: Messaging
 
 # Semantic conventions for messaging systems
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for messaging systems spans, metrics and logs.
 

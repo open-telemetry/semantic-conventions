@@ -1,7 +1,7 @@
 groups:
   - id: resource.container
     type: resource
-    stability: experimental
+    stability: development
     name: container
     brief: >
       A container instance.

@@ -4,7 +4,7 @@ linkTitle: Events
 
 # Semantic conventions for mobile events
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for instrumentations that emit
 events on mobile platforms. All mobile events MUST use a namespace of
@@ -31,7 +31,7 @@ application lifecycle.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 The event name MUST be `device.app.lifecycle`.
 
@@ -45,8 +45,8 @@ The `android.state` and `ios.state` fields are mutually exclusive and MUST NOT b
 
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `android.state` | enum | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `created` | `Conditionally Required` if and only if `os.name` is `android` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ios.state` | enum | This attribute represents the state the application has transitioned into at the occurrence of the event. [2] | `active` | `Conditionally Required` if and only if `os.name` is `ios` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `android.state` | enum | This attribute represents the state the application has transitioned into at the occurrence of the event. [1] | `created` | `Conditionally Required` if and only if `os.name` is `android` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ios.state` | enum | This attribute represents the state the application has transitioned into at the occurrence of the event. [2] | `active` | `Conditionally Required` if and only if `os.name` is `ios` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
 
@@ -56,19 +56,19 @@ The `android.state` and `ios.state` fields are mutually exclusive and MUST NOT b
 
 | Value  | Description | Stability |
 |---|---|---|
-| `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 `ios.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `active` | The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `background` | The app is now in the background. This value is associated with UIKit notification `applicationDidEnterBackground`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `foreground` | The app is now in the foreground. This value is associated with UIKit notification `applicationWillEnterForeground`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `inactive` | The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `terminate` | The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `active` | The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `background` | The app is now in the background. This value is associated with UIKit notification `applicationDidEnterBackground`. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `foreground` | The app is now in the foreground. This value is associated with UIKit notification `applicationWillEnterForeground`. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inactive` | The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `terminate` | The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

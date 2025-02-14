@@ -7,38 +7,38 @@ groups:
     attributes:
       - id: code.function.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The method or function name, or equivalent (usually rightmost part of the code unit's name).
         examples: serveRequest
       - id: code.namespace
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The "namespace" within which `code.function.name` is defined. Usually the qualified class or module name,
           such that `code.namespace` + some separator + `code.function.name` form a unique identifier for the code unit.
         examples: com.example.MyHttpService
       - id: code.file.path
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path).
         examples: /usr/local/MyApplication/content_root/app/index.php
       - id: code.line.number
         type: int
-        stability: experimental
+        stability: development
         brief: >
           The line number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`.
         examples: 42
       - id: code.column.number
         type: int
-        stability: experimental
+        stability: development
         brief: >
           The column number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`.
         examples: 16
       - id: code.stacktrace
         type: string
-        stability: experimental
+        stability: development
         brief: >
           A stacktrace as a string in the natural representation for the language runtime.
           The representation is to be determined and documented by each language SIG.

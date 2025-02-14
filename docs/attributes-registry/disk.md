@@ -9,7 +9,7 @@ These attributes may be used for any disk related operation.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="disk-io-direction" href="#disk-io-direction">`disk.io.direction`</a> | string | The disk IO operation direction. | `read` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="disk-io-direction" href="#disk-io-direction">`disk.io.direction`</a> | string | The disk IO operation direction. | `read` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -17,5 +17,5 @@ These attributes may be used for any disk related operation.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `write` | write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read` | read | ![Development](https://img.shields.io/badge/-development-blue) |
+| `write` | write | ![Development](https://img.shields.io/badge/-development-blue) |

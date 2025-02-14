@@ -1,7 +1,7 @@
 groups:
   - id: resource.host
     type: resource
-    stability: experimental
+    stability: development
     name: host
     brief: >
         A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
@@ -46,7 +46,7 @@ groups:
 
   - id: resource.host.cpu
     type: resource
-    stability: experimental
+    stability: development
     name: host.cpu
     brief: >
       A host's CPU information
