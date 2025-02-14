@@ -3,7 +3,7 @@ groups:
   - id: metric.k8s.pod.uptime
     type: metric
     metric_name: k8s.pod.uptime
-    stability: experimental
+    stability: development
     brief: "The time the Pod has been running"
     note: |
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
@@ -14,7 +14,7 @@ groups:
   - id: metric.k8s.pod.cpu.time
     type: metric
     metric_name: k8s.pod.cpu.time
-    stability: experimental
+    stability: development
     brief: "Total CPU time consumed"
     note: >
       Total CPU time consumed by the specific Pod on all available CPU cores
@@ -23,7 +23,7 @@ groups:
   - id: metric.k8s.pod.cpu.usage
     type: metric
     metric_name: k8s.pod.cpu.usage
-    stability: experimental
+    stability: development
     brief: "Pod's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs"
     note: >
       CPU usage of the specific Pod on all available CPU cores, averaged over the sample window
@@ -34,7 +34,7 @@ groups:
   - id: metric.k8s.pod.memory.usage
     type: metric
     metric_name: k8s.pod.memory.usage
-    stability: experimental
+    stability: development
     brief: "Memory usage of the Pod"
     note: >
       Total memory usage of the Pod
@@ -45,7 +45,7 @@ groups:
   - id: metric.k8s.pod.network.io
     type: metric
     metric_name: k8s.pod.network.io
-    stability: experimental
+    stability: development
     brief: "Network bytes for the Pod"
     instrument: counter
     unit: "By"
@@ -55,7 +55,7 @@ groups:
   - id: metric.k8s.pod.network.errors
     type: metric
     metric_name: k8s.pod.network.errors
-    stability: experimental
+    stability: development
     brief: "Pod network errors"
     instrument: counter
     unit: "{error}"
@@ -67,7 +67,7 @@ groups:
   - id: metric.k8s.node.uptime
     type: metric
     metric_name: k8s.node.uptime
-    stability: experimental
+    stability: development
     brief: "The time the Node has been running"
     note: |
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
@@ -78,7 +78,7 @@ groups:
   - id: metric.k8s.node.cpu.time
     type: metric
     metric_name: k8s.node.cpu.time
-    stability: experimental
+    stability: development
     brief: "Total CPU time consumed"
     note: >
       Total CPU time consumed by the specific Node on all available CPU cores
@@ -87,7 +87,7 @@ groups:
   - id: metric.k8s.node.cpu.usage
     type: metric
     metric_name: k8s.node.cpu.usage
-    stability: experimental
+    stability: development
     brief: "Node's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs"
     note: >
       CPU usage of the specific Node on all available CPU cores, averaged over the sample window
@@ -98,7 +98,7 @@ groups:
   - id: metric.k8s.node.memory.usage
     type: metric
     metric_name: k8s.node.memory.usage
-    stability: experimental
+    stability: development
     brief: "Memory usage of the Node"
     note: >
       Total memory usage of the Node
@@ -109,7 +109,7 @@ groups:
   - id: metric.k8s.node.network.io
     type: metric
     metric_name: k8s.node.network.io
-    stability: experimental
+    stability: development
     brief: "Network bytes for the Node"
     instrument: counter
     unit: "By"
@@ -119,7 +119,7 @@ groups:
   - id: metric.k8s.node.network.errors
     type: metric
     metric_name: k8s.node.network.errors
-    stability: experimental
+    stability: development
     brief: "Node network errors"
     instrument: counter
     unit: "{error}"
@@ -131,7 +131,7 @@ groups:
   - id: metric.k8s.deployment.desired_pods
     type: metric
     metric_name: k8s.deployment.desired_pods
-    stability: experimental
+    stability: development
     brief: "Number of desired replica pods in this deployment"
     note: |
       This metric aligns with the `replicas` field of the
@@ -144,7 +144,7 @@ groups:
   - id: metric.k8s.deployment.available_pods
     type: metric
     metric_name: k8s.deployment.available_pods
-    stability: experimental
+    stability: development
     brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this deployment"
     note: |
       This metric aligns with the `availableReplicas` field of the
@@ -159,7 +159,7 @@ groups:
   - id: metric.k8s.replicaset.desired_pods
     type: metric
     metric_name: k8s.replicaset.desired_pods
-    stability: experimental
+    stability: development
     brief: "Number of desired replica pods in this replicaset"
     note: |
       This metric aligns with the `replicas` field of the
@@ -172,7 +172,7 @@ groups:
   - id: metric.k8s.replicaset.available_pods
     type: metric
     metric_name: k8s.replicaset.available_pods
-    stability: experimental
+    stability: development
     brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this replicaset"
     note: |
       This metric aligns with the `availableReplicas` field of the
@@ -187,7 +187,7 @@ groups:
   - id: metric.k8s.replicationcontroller.desired_pods
     type: metric
     metric_name: k8s.replicationcontroller.desired_pods
-    stability: experimental
+    stability: development
     brief: "Number of desired replica pods in this replication controller"
     note: |
       This metric aligns with the `replicas` field of the
@@ -200,7 +200,7 @@ groups:
   - id: metric.k8s.replicationcontroller.available_pods
     type: metric
     metric_name: k8s.replicationcontroller.available_pods
-    stability: experimental
+    stability: development
     brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this replication controller"
     note: |
       This metric aligns with the `availableReplicas` field of the
@@ -215,7 +215,7 @@ groups:
   - id: metric.k8s.statefulset.desired_pods
     type: metric
     metric_name: k8s.statefulset.desired_pods
-    stability: experimental
+    stability: development
     brief: "Number of desired replica pods in this statefulset"
     note: |
       This metric aligns with the `replicas` field of the
@@ -228,7 +228,7 @@ groups:
   - id: metric.k8s.statefulset.ready_pods
     type: metric
     metric_name: k8s.statefulset.ready_pods
-    stability: experimental
+    stability: development
     brief: "The number of replica pods created for this statefulset with a Ready Condition"
     note: |
       This metric aligns with the `readyReplicas` field of the
@@ -241,7 +241,7 @@ groups:
   - id: metric.k8s.statefulset.current_pods
     type: metric
     metric_name: k8s.statefulset.current_pods
-    stability: experimental
+    stability: development
     brief: "The number of replica pods created by the statefulset controller from the statefulset version indicated by currentRevision"
     note: |
       This metric aligns with the `currentReplicas` field of the
@@ -254,7 +254,7 @@ groups:
   - id: metric.k8s.statefulset.updated_pods
     type: metric
     metric_name: k8s.statefulset.updated_pods
-    stability: experimental
+    stability: development
     brief: "Number of replica pods created by the statefulset controller from the statefulset version indicated by updateRevision"
     note: |
       This metric aligns with the `updatedReplicas` field of the
@@ -269,7 +269,7 @@ groups:
   - id: metric.k8s.hpa.desired_pods
     type: metric
     metric_name: k8s.hpa.desired_pods
-    stability: experimental
+    stability: development
     brief: "Desired number of replica pods managed by this horizontal pod autoscaler, as last calculated by the autoscaler"
     note: |
       This metric aligns with the `desiredReplicas` field of the
@@ -282,7 +282,7 @@ groups:
   - id: metric.k8s.hpa.current_pods
     type: metric
     metric_name: k8s.hpa.current_pods
-    stability: experimental
+    stability: development
     brief: "Current number of replica pods managed by this horizontal pod autoscaler, as last seen by the autoscaler"
     note: |
       This metric aligns with the `currentReplicas` field of the
@@ -295,7 +295,7 @@ groups:
   - id: metric.k8s.hpa.max_pods
     type: metric
     metric_name: k8s.hpa.max_pods
-    stability: experimental
+    stability: development
     brief: "The upper limit for the number of replica pods to which the autoscaler can scale up"
     note: |
       This metric aligns with the `maxReplicas` field of the
@@ -308,7 +308,7 @@ groups:
   - id: metric.k8s.hpa.min_pods
     type: metric
     metric_name: k8s.hpa.min_pods
-    stability: experimental
+    stability: development
     brief: "The lower limit for the number of replica pods to which the autoscaler can scale down"
     note: |
       This metric aligns with the `minReplicas` field of the
@@ -323,7 +323,7 @@ groups:
   - id: metric.k8s.daemonset.current_scheduled_nodes
     type: metric
     metric_name: k8s.daemonset.current_scheduled_nodes
-    stability: experimental
+    stability: development
     brief: "Number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod"
     note: |
       This metric aligns with the `currentNumberScheduled` field of the
@@ -336,7 +336,7 @@ groups:
   - id: metric.k8s.daemonset.desired_scheduled_nodes
     type: metric
     metric_name: k8s.daemonset.desired_scheduled_nodes
-    stability: experimental
+    stability: development
     brief: "Number of nodes that should be running the daemon pod (including nodes currently running the daemon pod)"
     note: |
       This metric aligns with the `desiredNumberScheduled` field of the
@@ -349,7 +349,7 @@ groups:
   - id: metric.k8s.daemonset.misscheduled_nodes
     type: metric
     metric_name: k8s.daemonset.misscheduled_nodes
-    stability: experimental
+    stability: development
     brief: "Number of nodes that are running the daemon pod, but are not supposed to run the daemon pod"
     note: |
       This metric aligns with the `numberMisscheduled` field of the
@@ -362,7 +362,7 @@ groups:
   - id: metric.k8s.daemonset.ready_nodes
     type: metric
     metric_name: k8s.daemonset.ready_nodes
-    stability: experimental
+    stability: development
     brief: "Number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready"
     note: |
       This metric aligns with the `numberReady` field of the
@@ -377,7 +377,7 @@ groups:
   - id: metric.k8s.job.active_pods
     type: metric
     metric_name: k8s.job.active_pods
-    stability: experimental
+    stability: development
     brief: "The number of pending and actively running pods for a job"
     instrument: updowncounter
     unit: "{pod}"
@@ -390,7 +390,7 @@ groups:
   - id: metric.k8s.job.failed_pods
     type: metric
     metric_name: k8s.job.failed_pods
-    stability: experimental
+    stability: development
     brief: "The number of pods which reached phase Failed for a job"
     instrument: updowncounter
     unit: "{pod}"
@@ -403,7 +403,7 @@ groups:
   - id: metric.k8s.job.successful_pods
     type: metric
     metric_name: k8s.job.successful_pods
-    stability: experimental
+    stability: development
     brief: "The number of pods which reached phase Succeeded for a job"
     instrument: updowncounter
     unit: "{pod}"
@@ -416,7 +416,7 @@ groups:
   - id: metric.k8s.job.desired_successful_pods
     type: metric
     metric_name: k8s.job.desired_successful_pods
-    stability: experimental
+    stability: development
     brief: "The desired number of successfully finished pods the job should be run with"
     instrument: updowncounter
     unit: "{pod}"
@@ -429,7 +429,7 @@ groups:
   - id: metric.k8s.job.max_parallel_pods
     type: metric
     metric_name: k8s.job.max_parallel_pods
-    stability: experimental
+    stability: development
     brief: "The max desired number of pods the job should run at any given time"
     instrument: updowncounter
     unit: "{pod}"
@@ -444,7 +444,7 @@ groups:
   - id: metric.k8s.cronjob.active_jobs
     type: metric
     metric_name: k8s.cronjob.active_jobs
-    stability: experimental
+    stability: development
     brief: "The number of actively running jobs for a cronjob"
     instrument: updowncounter
     unit: "{job}"
@@ -459,7 +459,7 @@ groups:
   - id: metric.k8s.namespace.phase
     type: metric
     metric_name: k8s.namespace.phase
-    stability: experimental
+    stability: development
     brief: "Describes number of K8s namespaces that are currently in a given phase."
     instrument: updowncounter
     unit: "{namespace}"

@@ -7,19 +7,19 @@ groups:
     attributes:
       - id: heroku.release.creation_timestamp
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Time and date the release was created
         examples: [ '2022-10-23T18:00:42Z' ]
       - id: heroku.release.commit
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Commit hash for the current release
         examples: [ 'e6134959463efd8966b20e75b913cafe3f5ec' ]
       - id: heroku.app.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Unique identifier for the application
         examples: [ '2daa2797-e42b-4624-9322-ec3f968df4da' ]

@@ -12,7 +12,7 @@ The Android platform on which the Android application is running.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="android-os-api-level" href="#android-os-api-level">`android.os.api_level`</a> | string | Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found [here](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels). | `33`; `32` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="android-os-api-level" href="#android-os-api-level">`android.os.api_level`</a> | string | Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found [here](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels). | `33`; `32` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated Android Attributes
 
@@ -30,6 +30,6 @@ This document defines attributes that represents an occurrence of a lifecycle tr
 
 | Value  | Description | Stability |
 |---|---|---|
-| `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. | ![Development](https://img.shields.io/badge/-development-blue) |

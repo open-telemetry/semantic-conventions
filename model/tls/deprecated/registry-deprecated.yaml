@@ -5,7 +5,7 @@ groups:
     attributes:
       - id: tls.client.server_name
         type: string
-        stability: experimental
+        stability: development
         deprecated: "Replaced by `server.address`."
         brief: "Deprecated, use `server.address` instead."
         examples: ["opentelemetry.io"]

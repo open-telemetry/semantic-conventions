@@ -11,16 +11,16 @@ groups:
           members:
             - id: system
               value: 'system'
-              stability: experimental
+              stability: development
             - id: user
               value: 'user'
-              stability: experimental
+              stability: development
             - id: wait
               value: 'wait'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
       - id: process.executable.build_id.profiling
-        stability: experimental
+        stability: development
         type: string
         deprecated: 'Replaced by `process.executable.build_id.htlhash`'
         brief: >

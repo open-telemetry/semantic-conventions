@@ -7,19 +7,19 @@ groups:
     attributes:
       - id: process.pid
         type: int
-        stability: experimental
+        stability: development
         brief: >
           Process identifier (PID).
         examples: [1234]
       - id: process.parent_pid
         type: int
-        stability: experimental
+        stability: development
         brief: >
           Parent Process identifier (PPID).
         examples: [111]
       - id: process.vpid
         type: int
-        stability: experimental
+        stability: development
         brief: >
           Virtual process identifier.
         note: >
@@ -29,32 +29,32 @@ groups:
         examples: [12]
       - id: process.session_leader.pid
         type: int
-        stability: experimental
+        stability: development
         brief: >
           The PID of the process's session leader. This is also the session ID
           (SID) of the process.
         examples: [14]
       - id: process.group_leader.pid
         type: int
-        stability: experimental
+        stability: development
         brief: >
           The PID of the process's group leader. This is also the process group
           ID (PGID) of the process.
         examples: [23]
       - id: process.executable.build_id.gnu
-        stability: experimental
+        stability: development
         type: string
         brief: >
           The GNU build ID as found in the `.note.gnu.build-id` ELF section (hex string).
         examples: ['c89b11207f6479603b0d49bf291c092c2b719293']
       - id: process.executable.build_id.go
-        stability: experimental
+        stability: development
         type: string
         brief: >
           The Go build ID as retrieved by `go tool buildid <go executable>`.
         examples: ['foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY']
       - id: process.executable.build_id.htlhash
-        stability: experimental
+        stability: development
         type: string
         brief: >
           Profiling specific build ID for executables. See the OTel specification
@@ -62,7 +62,7 @@ groups:
         examples: ['600DCAFE4A110000F2BF38C493F5FB92']
       - id: process.executable.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the process executable. On Linux based systems, can be set
           to the `Name` in `proc/[pid]/status`. On Windows, can be set to the
@@ -70,7 +70,7 @@ groups:
         examples: ['otelcol']
       - id: process.executable.path
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The full path to the process executable. On Linux based systems, can
           be set to the target of `proc/[pid]/exe`. On Windows, can be set to the
@@ -78,7 +78,7 @@ groups:
         examples: ['/usr/bin/cmd/otelcol']
       - id: process.command
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The command used to launch the process (i.e. the command name). On Linux
           based systems, can be set to the zeroth string in `proc/[pid]/cmdline`.
@@ -86,7 +86,7 @@ groups:
         examples: ['cmd/otelcol']
       - id: process.command_line
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The full command used to launch the process as a single string representing
           the full command. On Windows, can be set to the result of `GetCommandLineW`.
@@ -95,7 +95,7 @@ groups:
         examples: ['C:\cmd\otecol --config="my directory\config.yaml"']
       - id: process.command_args
         type: string[]
-        stability: experimental
+        stability: development
         brief: >
           All the command arguments (including the command/executable itself) as
           received by the process. On Linux-based systems (and some other Unixoid
@@ -106,7 +106,7 @@ groups:
           - ['cmd/otecol', '--config=config.yaml']
       - id: process.args_count
         type: int
-        stability: experimental
+        stability: development
         brief: >
           Length of the process.command_args array
         note: >
@@ -116,69 +116,69 @@ groups:
         examples: [4]
       - id: process.owner
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The username of the user that owns the process.
         examples: ['root']
       - id: process.user.id
         type: int
-        stability: experimental
+        stability: development
         brief: >
           The effective user ID (EUID) of the process.
         examples: [1001]
       - id: process.user.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The username of the effective user of the process.
         examples: ['root']
       - id: process.real_user.id
         type: int
-        stability: experimental
+        stability: development
         brief: >
           The real user ID (RUID) of the process.
         examples: [1000]
       - id: process.real_user.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The username of the real user of the process.
         examples: ['operator']
       - id: process.saved_user.id
         type: int
-        stability: experimental
+        stability: development
         brief: >
           The saved user ID (SUID) of the process.
         examples: [1002]
       - id: process.saved_user.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The username of the saved user.
         examples: ['operator']
       - id: process.runtime.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the runtime of this process.
         examples: ['OpenJDK Runtime Environment']
       - id: process.runtime.version
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The version of the runtime of this process, as returned by the runtime
           without modification.
         examples: '14.0.2'
       - id: process.runtime.description
         type: string
-        stability: experimental
+        stability: development
         brief: >
           An additional description about the runtime of the process, for example
           a specific vendor customization of the runtime environment.
         examples: 'Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0'
       - id: process.title
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Process title (proctitle)
         note: >
@@ -188,30 +188,30 @@ groups:
         examples: ["cat /etc/hostname", "xfce4-session", "bash"]
       - id: process.creation.time
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The date and time the process was created, in ISO 8601 format.
         examples: ['2023-11-21T09:25:34.853Z']
       - id: process.exit.time
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The date and time the process exited, in ISO 8601 format.
         examples: ['2023-11-21T09:26:12.315Z']
       - id: process.exit.code
         type: int
-        stability: experimental
+        stability: development
         brief: >
           The exit code of the process.
         examples: [127]
       - id: process.interactive
         type: boolean
-        stability: experimental
+        stability: development
         brief: >
           Whether the process is connected to an interactive shell.
       - id: process.working_directory
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The working directory of the process.
         examples: ["/root"]
@@ -221,11 +221,11 @@ groups:
           members:
             - id: voluntary
               value: 'voluntary'
-              stability: experimental
+              stability: development
             - id: involuntary
               value: 'involuntary'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
       - id: process.paging.fault_type
         brief: >
           The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor`
@@ -234,11 +234,11 @@ groups:
           members:
             - id: major
               value: 'major'
-              stability: experimental
+              stability: development
             - id: minor
               value: 'minor'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
   # process.linux* attribute group
   - id: registry.process.linux
     type: attribute_group
@@ -246,7 +246,7 @@ groups:
     attributes:
       - id: process.linux.cgroup
         type: string
-        stability: experimental
+        stability: development
         brief: The control group associated with the process.
         examples: ["1:name=systemd:/user.slice/user-1000.slice/session-3.scope", "0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope"]
         note: >

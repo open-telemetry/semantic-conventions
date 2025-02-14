@@ -7,7 +7,7 @@ groups:
     attributes:
       - id: android.os.api_level
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Uniquely identifies the framework API revision offered by a version
           (`os.version`) of the android operating system. More information can be found
