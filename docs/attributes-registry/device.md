@@ -15,10 +15,10 @@ Describes device attributes.
 | <a id="device-model-name" href="#device-model-name">`device.model.name`</a> | string | The marketing name for the device model [4] | `iPhone 6s Plus`; `Samsung Galaxy S6` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 **[1] `device.id`:** **The `device.id` SHOULD NOT be used in most user-facing applications due to privacy regulations.
-Consequently, instrumentations MUST provide it as an OPT-IN feature.**
+Consequently, instrumentations that provide it MUST provide it as an opt-in feature.**
 
 Its value SHOULD be identical for all apps on a device and it SHOULD NOT change if an app is uninstalled and re-installed.
-However, it MIGHT be resettable by the user for all apps on a device.
+However, it might be resettable by the user for all apps on a device.
 Hardware IDs (e.g. vendor-specific serial number, IMEI or MAC address) MIGHT be used as values.
 The `device.id` SHOULD be prefixed with the type of the identifier and a colon separator (e.g. `imei:`).
 
