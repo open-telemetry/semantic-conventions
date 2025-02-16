@@ -23,7 +23,7 @@ groups:
 
           > [!WARNING]
           >
-          > Caution should be taken when storing personal data or anything which can identify a user. GDPR and data protection laws may apply, ensure you do your own due diligence.
+          > This attribute contains sensitive (PII) information. Caution should be taken when storing personal data or anything which can identify a user. GDPR and data protection laws may apply, ensure you do your own due diligence.
           > See [`installation.id`](../attributes-registry/installation.md#installation-id) as a more privacy-preserving alternative.
         examples:
           - my_vendor:1234567890
