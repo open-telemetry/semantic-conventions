@@ -4,7 +4,7 @@ linkTitle: Generative AI
 
 # Semantic conventions for generative AI systems
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 **Warning**:
 The semantic conventions for GenAI and LLM are currently in development.

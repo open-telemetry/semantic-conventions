@@ -4,7 +4,7 @@ linkTitle: AWS SDK
 
 # Semantic conventions for AWS SDK
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions to apply when instrumenting the AWS SDK. They map request or response
 parameters in AWS SDK API calls to attributes on a Span. The conventions have been collected over time based
@@ -33,11 +33,11 @@ with the naming guidelines for RPC client spans.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -49,11 +49,11 @@ with the naming guidelines for RPC client spans.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

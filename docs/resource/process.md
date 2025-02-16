@@ -4,7 +4,7 @@ linkTitle: Process
 
 # Process and process runtime resources
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 <!-- toc -->
 
@@ -31,7 +31,7 @@ linkTitle: Process
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `process`
 
@@ -39,15 +39,15 @@ linkTitle: Process
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`process.command`](/docs/attributes-registry/process.md) | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` | `Conditionally Required` [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.command_args`](/docs/attributes-registry/process.md) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `["cmd/otecol", "--config=config.yaml"]` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.command_line`](/docs/attributes-registry/process.md) | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. | `C:\cmd\otecol --config="my directory\config.yaml"` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.executable.name`](/docs/attributes-registry/process.md) | string | The name of the process executable. On Linux based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.executable.path`](/docs/attributes-registry/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.linux.cgroup`](/docs/attributes-registry/process.md) | string | The control group associated with the process. [6] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.owner`](/docs/attributes-registry/process.md) | string | The username of the user that owns the process. | `root` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.parent_pid`](/docs/attributes-registry/process.md) | int | Parent Process identifier (PPID). | `111` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.pid`](/docs/attributes-registry/process.md) | int | Process identifier (PID). | `1234` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.command`](/docs/attributes-registry/process.md) | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.command_args`](/docs/attributes-registry/process.md) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `["cmd/otecol", "--config=config.yaml"]` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.command_line`](/docs/attributes-registry/process.md) | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. | `C:\cmd\otecol --config="my directory\config.yaml"` | `Conditionally Required` [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.executable.name`](/docs/attributes-registry/process.md) | string | The name of the process executable. On Linux based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.executable.path`](/docs/attributes-registry/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.linux.cgroup`](/docs/attributes-registry/process.md) | string | The control group associated with the process. [6] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.owner`](/docs/attributes-registry/process.md) | string | The username of the user that owns the process. | `root` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.parent_pid`](/docs/attributes-registry/process.md) | int | Parent Process identifier (PPID). | `111` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.pid`](/docs/attributes-registry/process.md) | int | Process identifier (PID). | `1234` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `process.command`:** See [Selecting process attributes](#selecting-process-attributes) for details.
 
@@ -90,7 +90,7 @@ On Windows and other systems where the native format of process commands is a si
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `process.runtime`
 
@@ -98,9 +98,9 @@ On Windows and other systems where the native format of process commands is a si
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`process.runtime.description`](/docs/attributes-registry/process.md) | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.runtime.name`](/docs/attributes-registry/process.md) | string | The name of the runtime of this process. | `OpenJDK Runtime Environment` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.runtime.version`](/docs/attributes-registry/process.md) | string | The version of the runtime of this process, as returned by the runtime without modification. | `14.0.2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.runtime.description`](/docs/attributes-registry/process.md) | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.runtime.name`](/docs/attributes-registry/process.md) | string | The name of the runtime of this process. | `OpenJDK Runtime Environment` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.runtime.version`](/docs/attributes-registry/process.md) | string | The version of the runtime of this process, as returned by the runtime without modification. | `14.0.2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

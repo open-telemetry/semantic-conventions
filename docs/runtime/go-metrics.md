@@ -4,7 +4,7 @@ linkTitle: Go
 
 # Semantic conventions for Go runtime metrics
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document describes semantic conventions for Go runtime metrics in OpenTelemetry.
 These metrics are obtained from Go's [`runtime/metrics`][RuntimeMetrics] package.
@@ -46,13 +46,13 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.memory.used` | UpDownCounter | `By` | Memory used by the Go runtime. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.memory.used` | UpDownCounter | `By` | Memory used by the Go runtime. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Computed from `(/memory/classes/total:bytes - /memory/classes/heap/released:bytes)`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`go.memory.type`](/docs/attributes-registry/go.md) | string | The type of memory. | `other`; `stack` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`go.memory.type`](/docs/attributes-registry/go.md) | string | The type of memory. | `other`; `stack` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -60,8 +60,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `other` | Memory used by the Go runtime, excluding other categories of memory usage described in this enumeration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `other` | Memory used by the Go runtime, excluding other categories of memory usage described in this enumeration. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Computed from `/memory/classes/heap/stacks:bytes`.
 
@@ -83,7 +83,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.memory.limit` | UpDownCounter | `By` | Go runtime memory limit configured by the user, if a limit exists. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.memory.limit` | UpDownCounter | `By` | Go runtime memory limit configured by the user, if a limit exists. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Computed from `/gc/gomemlimit:bytes`. This metric is excluded if the limit obtained from the Go runtime is math.MaxInt64.
 
@@ -105,7 +105,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.memory.allocated` | Counter | `By` | Memory allocated to the heap by the application. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.memory.allocated` | Counter | `By` | Memory allocated to the heap by the application. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Computed from `/gc/heap/allocs:bytes`.
 
@@ -127,7 +127,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.memory.allocations` | Counter | `{allocation}` | Count of allocations to the heap by the application. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.memory.allocations` | Counter | `{allocation}` | Count of allocations to the heap by the application. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Computed from `/gc/heap/allocs:objects`.
 
@@ -153,7 +153,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.memory.gc.goal` | UpDownCounter | `By` | Heap size target for the end of the GC cycle. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.memory.gc.goal` | UpDownCounter | `By` | Heap size target for the end of the GC cycle. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Computed from `/gc/heap/goal:bytes`.
 
@@ -179,7 +179,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.goroutine.count` | UpDownCounter | `{goroutine}` | Count of live goroutines. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.goroutine.count` | UpDownCounter | `{goroutine}` | Count of live goroutines. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Computed from `/sched/goroutines:goroutines`.
 
@@ -205,7 +205,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.processor.limit` | UpDownCounter | `{thread}` | The number of OS threads that can execute user-level Go code simultaneously. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.processor.limit` | UpDownCounter | `{thread}` | The number of OS threads that can execute user-level Go code simultaneously. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Computed from `/sched/gomaxprocs:threads`.
 
@@ -231,7 +231,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.schedule.duration` | Histogram | `s` | The time goroutines have spent in the scheduler in a runnable state before actually running. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.schedule.duration` | Histogram | `s` | The time goroutines have spent in the scheduler in a runnable state before actually running. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Computed from `/sched/latencies:seconds`. Bucket boundaries are provided by the runtime, and are subject to change.
 
@@ -257,7 +257,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `go.config.gogc` | UpDownCounter | `%` | Heap size target percentage configured by the user, otherwise 100. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `go.config.gogc` | UpDownCounter | `%` | Heap size target percentage configured by the user, otherwise 100. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** The value range is [0.0,100.0]. Computed from `/gc/gogc:percent`.
 

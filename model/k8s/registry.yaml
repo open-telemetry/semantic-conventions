@@ -7,13 +7,13 @@ groups:
     attributes:
       - id: k8s.cluster.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the cluster.
         examples: ['opentelemetry-cluster']
       - id: k8s.cluster.uid
         type: string
-        stability: experimental
+        stability: development
         brief: >
           A pseudo-ID for the cluster, set to the UID of the `kube-system`
           namespace.
@@ -43,49 +43,49 @@ groups:
         examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
       - id: k8s.node.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the Node.
         examples: ['node-1']
       - id: k8s.node.uid
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The UID of the Node.
         examples: ['1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2']
       - id: k8s.namespace.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the namespace that the pod is running in.
         examples: ['default']
       - id: k8s.pod.uid
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The UID of the Pod.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.pod.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the Pod.
         examples: ['opentelemetry-pod-autoconf']
       - id: k8s.pod.label
         type: template[string]
-        stability: experimental
+        stability: development
         brief: >
           The label key-value pairs placed on the Pod, the `<key>` being the label name, the value being the label value.
         examples: ['k8s.pod.label.app=my-app', 'k8s.pod.label.mycompany.io/arch=x64', 'k8s.pod.label.data=']
       - id: k8s.pod.annotation
         type: template[string]
-        stability: experimental
+        stability: development
         brief: >
           The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value.
         examples: [ 'k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true', 'k8s.pod.annotation.mycompany.io/arch=x64', 'k8s.pod.annotation.data=' ]
       - id: k8s.container.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the Container from Pod specification, must be unique
           within a Pod. Container runtime usually uses different globally unique
@@ -93,134 +93,134 @@ groups:
         examples: ['redis']
       - id: k8s.container.restart_count
         type: int
-        stability: experimental
+        stability: development
         brief: >
           Number of times the container was restarted. This attribute can be
           used to identify a particular container (running or stopped) within a
           container spec.
       - id: k8s.container.status.last_terminated_reason
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Last terminated reason of the Container.
         examples: ["Evicted", "Error"]
 
       - id: k8s.replicaset.uid
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The UID of the ReplicaSet.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.replicaset.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the ReplicaSet.
         examples: ['opentelemetry']
       - id: k8s.replicationcontroller.uid
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The UID of the replication controller.
         examples: [ '275ecb36-5aa8-4c2a-9c47-d8bb681b9aff' ]
       - id: k8s.replicationcontroller.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the replication controller.
         examples: [ 'opentelemetry' ]
       - id: k8s.resourcequota.uid
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The UID of the resource quota.
         examples: [ '275ecb36-5aa8-4c2a-9c47-d8bb681b9aff' ]
       - id: k8s.resourcequota.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the resource quota.
         examples: [ 'opentelemetry' ]
       - id: k8s.deployment.uid
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The UID of the Deployment.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.deployment.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the Deployment.
         examples: ['opentelemetry']
       - id: k8s.statefulset.uid
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The UID of the StatefulSet.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.statefulset.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the StatefulSet.
         examples: ['opentelemetry']
       - id: k8s.daemonset.uid
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The UID of the DaemonSet.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.daemonset.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the DaemonSet.
         examples: ['opentelemetry']
       - id: k8s.hpa.uid
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The UID of the horizontal pod autoscaler.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.hpa.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the horizontal pod autoscaler.
         examples: ['opentelemetry']
       - id: k8s.job.uid
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The UID of the Job.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.job.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the Job.
         examples: ['opentelemetry']
       - id: k8s.cronjob.uid
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The UID of the CronJob.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.cronjob.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the CronJob.
         examples: ['opentelemetry']
       - id: k8s.volume.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the K8s volume.
         examples: [ 'volume0' ]
       - id: k8s.volume.type
-        stability: experimental
+        stability: development
         brief: >
           The type of the K8s volume.
         examples: [ "emptyDir", "persistentVolumeClaim" ]
@@ -229,29 +229,29 @@ groups:
             - id: persistent_volume_claim
               value: 'persistentVolumeClaim'
               brief: "A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume"
-              stability: experimental
+              stability: development
             - id: config_map
               value: 'configMap'
               brief: "A [configMap](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume"
-              stability: experimental
+              stability: development
             - id: downward_api
               value: 'downwardAPI'
               brief: "A [downwardAPI](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume"
-              stability: experimental
+              stability: development
             - id: empty_dir
               value: 'emptyDir'
               brief: "An [emptyDir](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume"
-              stability: experimental
+              stability: development
             - id: secret
               value: 'secret'
               brief: "A [secret](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
-              stability: experimental
+              stability: development
             - id: local
               value: 'local'
               brief: "A [local](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume"
-              stability: experimental
+              stability: development
       - id: k8s.namespace.phase
-        stability: experimental
+        stability: development
         brief: >
           The phase of the K8s namespace.
         note: |
@@ -263,8 +263,8 @@ groups:
             - id: active
               value: 'active'
               brief: "Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)"
-              stability: experimental
+              stability: development
             - id: terminating
               value: 'terminating'
               brief: "Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)"
-              stability: experimental
+              stability: development

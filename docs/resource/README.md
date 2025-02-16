@@ -84,8 +84,8 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`service.name`](/docs/attributes-registry/service.md) | string | Logical name of the service. [1] | `shoppingcart` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`service.instance.id`](/docs/attributes-registry/service.md) | string | The string ID of the service instance. [2] | `627cc493-f310-47de-96bd-71410b7dec09` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`service.namespace`](/docs/attributes-registry/service.md) | string | A namespace for `service.name`. [3] | `Shop` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`service.instance.id`](/docs/attributes-registry/service.md) | string | The string ID of the service instance. [2] | `627cc493-f310-47de-96bd-71410b7dec09` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`service.namespace`](/docs/attributes-registry/service.md) | string | A namespace for `service.name`. [3] | `Shop` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`service.version`](/docs/attributes-registry/service.md) | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
@@ -201,7 +201,7 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `telemetry.distro`
 
@@ -209,8 +209,8 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`telemetry.distro.name`](/docs/attributes-registry/telemetry.md) | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`telemetry.distro.version`](/docs/attributes-registry/telemetry.md) | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`telemetry.distro.name`](/docs/attributes-registry/telemetry.md) | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`telemetry.distro.version`](/docs/attributes-registry/telemetry.md) | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `telemetry.distro.name`:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
@@ -222,7 +222,7 @@ a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentatio
 
 ## Compute Unit
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 Attributes defining a compute unit (e.g. Container, Process, Function as a Service):
 
@@ -233,7 +233,7 @@ Attributes defining a compute unit (e.g. Container, Process, Function as a Servi
 
 ## Compute Instance
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 Attributes defining a computing instance (e.g. host):
 
@@ -241,7 +241,7 @@ Attributes defining a computing instance (e.g. host):
 
 ## Environment
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 Attributes defining a running environment (e.g. Operating System, Cloud, Data Center, Deployment Service):
 
@@ -264,7 +264,7 @@ the exact version used to identify an artifact. This may be a semantic version, 
 
 ## Cloud-Provider-Specific Attributes
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 Attributes that are only applicable to resources from a specific cloud provider. Currently, these
 resources can only be defined for providers listed as a valid `cloud.provider` in

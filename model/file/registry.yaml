@@ -10,7 +10,7 @@ groups:
           Time when the file was last accessed, in ISO 8601 format.
         note: >
           This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
-        stability: experimental
+        stability: development
         examples: ['2021-01-01T12:00:00Z']
       - id: file.attributes
         type: string[]
@@ -19,7 +19,7 @@ groups:
         note: >
           Attributes names depend on the OS or file system. Here’s a non-exhaustive list of values expected for this
           attribute: `archive`, `compressed`, `directory`, `encrypted`, `execute`, `hidden`, `immutable`, `journaled`, `read`, `readonly`, `symbolic link`, `system`, `temporary`, `write`.
-        stability: experimental
+        stability: development
         examples:
           - ['readonly', 'hidden']
       - id: file.created
@@ -28,7 +28,7 @@ groups:
           Time when the file was created, in ISO 8601 format.
         note: >
           This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
-        stability: experimental
+        stability: development
         examples: ['2021-01-01T12:00:00Z']
       - id: file.changed
         type: string
@@ -38,19 +38,19 @@ groups:
           `file.changed` captures the time when any of the file's properties or attributes
           (including the content) are changed, while `file.modified` captures the timestamp
           when the file content is modified.
-        stability: experimental
+        stability: development
         examples: ['2021-01-01T12:00:00Z']
       - id: file.directory
         type: string
         brief: >
           Directory where the file is located. It should include the drive letter, when appropriate.
-        stability: experimental
+        stability: development
         examples: ['/home/user', 'C:\Program Files\MyApp']
       - id: file.extension
         type: string
         brief: >
           File extension, excluding the leading dot.
-        stability: experimental
+        stability: development
         examples: ['png', 'gz']
         note: >
           When the file name has multiple extensions (example.tar.gz), only the last one should
@@ -68,72 +68,72 @@ groups:
           An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the
           value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension`
           should populate `file.extension`. The full path, `file.path`, will include the fork name.
-        stability: experimental
+        stability: development
         examples: ['Zone.Identifer']
       - id: file.group.id
         type: string
         brief: >
           Primary Group ID (GID) of the file.
-        stability: experimental
+        stability: development
         examples: ["1000"]
       - id: file.group.name
         type: string
         brief: >
           Primary group name of the file.
-        stability: experimental
+        stability: development
         examples: ['users']
       - id: file.inode
         type: string
         brief: >
           Inode representing the file in the filesystem.
-        stability: experimental
+        stability: development
         examples: ['256383']
       - id: file.mode
         type: string
         brief: >
           Mode of the file in octal representation.
-        stability: experimental
+        stability: development
         examples: ['0640']
       - id: file.modified
         type: string
         brief: >
           Time when the file content was last modified, in ISO 8601 format.
-        stability: experimental
+        stability: development
         examples: ['2021-01-01T12:00:00Z']
       - id: file.name
         type: string
         brief: >
           Name of the file including the extension, without the directory.
-        stability: experimental
+        stability: development
         examples: ['example.png']
       - id: file.owner.id
         type: string
         brief: >
           The user ID (UID) or security identifier (SID) of the file owner.
-        stability: experimental
+        stability: development
         examples: ["1000"]
       - id: file.owner.name
         type: string
         brief: >
           Username of the file owner.
-        stability: experimental
+        stability: development
         examples: ['root']
       - id: file.path
         type: string
         brief: >
           Full path to the file, including the file name. It should include the drive letter, when appropriate.
-        stability: experimental
+        stability: development
         examples: ['/home/alice/example.png', 'C:\Program Files\MyApp\myapp.exe']
       - id: file.size
         type: int
         brief: >
           File size in bytes.
-        stability: experimental
+        stability: development
       - id: file.symbolic_link.target_path
         type: string
         brief: >
           Path to the target of a symbolic link.
         note: >
           This attribute is only applicable to symbolic links.
-        stability: experimental
+        stability: development
         examples: ['/usr/bin/python3']

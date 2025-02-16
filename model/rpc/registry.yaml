@@ -9,57 +9,57 @@ groups:
           members:
             - id: cancelled
               value: cancelled
-              stability: experimental
+              stability: development
             - id: unknown
               value: unknown
-              stability: experimental
+              stability: development
             - id: invalid_argument
               value: invalid_argument
-              stability: experimental
+              stability: development
             - id: deadline_exceeded
               value: deadline_exceeded
-              stability: experimental
+              stability: development
             - id: not_found
               value: not_found
-              stability: experimental
+              stability: development
             - id: already_exists
               value: already_exists
-              stability: experimental
+              stability: development
             - id: permission_denied
               value: permission_denied
-              stability: experimental
+              stability: development
             - id: resource_exhausted
               value: resource_exhausted
-              stability: experimental
+              stability: development
             - id: failed_precondition
               value: failed_precondition
-              stability: experimental
+              stability: development
             - id: aborted
               value: aborted
-              stability: experimental
+              stability: development
             - id: out_of_range
               value: out_of_range
-              stability: experimental
+              stability: development
             - id: unimplemented
               value: unimplemented
-              stability: experimental
+              stability: development
             - id: internal
               value: internal
-              stability: experimental
+              stability: development
             - id: unavailable
               value: unavailable
-              stability: experimental
+              stability: development
             - id: data_loss
               value: data_loss
-              stability: experimental
+              stability: development
             - id: unauthenticated
               value: unauthenticated
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: "The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values."
       - id: rpc.connect_rpc.request.metadata
         type: template[string[]]
-        stability: experimental
+        stability: development
         brief: >
           Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
         note: >
@@ -68,7 +68,7 @@ groups:
         examples: ['rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]']
       - id: rpc.connect_rpc.response.metadata
         type: template[string[]]
-        stability: experimental
+        stability: development
         brief: >
           Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
         note: >
@@ -80,77 +80,77 @@ groups:
           members:
             - id: ok
               brief: OK
-              stability: experimental
+              stability: development
               value: 0
             - id: cancelled
               brief: CANCELLED
-              stability: experimental
+              stability: development
               value: 1
             - id: unknown
               brief: UNKNOWN
-              stability: experimental
+              stability: development
               value: 2
             - id: invalid_argument
               brief: INVALID_ARGUMENT
-              stability: experimental
+              stability: development
               value: 3
             - id: deadline_exceeded
               brief: DEADLINE_EXCEEDED
-              stability: experimental
+              stability: development
               value: 4
             - id: not_found
               brief: NOT_FOUND
-              stability: experimental
+              stability: development
               value: 5
             - id: already_exists
               brief: ALREADY_EXISTS
-              stability: experimental
+              stability: development
               value: 6
             - id: permission_denied
               brief: PERMISSION_DENIED
-              stability: experimental
+              stability: development
               value: 7
             - id: resource_exhausted
               brief: RESOURCE_EXHAUSTED
-              stability: experimental
+              stability: development
               value: 8
             - id: failed_precondition
               brief: FAILED_PRECONDITION
-              stability: experimental
+              stability: development
               value: 9
             - id: aborted
               brief: ABORTED
-              stability: experimental
+              stability: development
               value: 10
             - id: out_of_range
               brief: OUT_OF_RANGE
-              stability: experimental
+              stability: development
               value: 11
             - id: unimplemented
               brief: UNIMPLEMENTED
-              stability: experimental
+              stability: development
               value: 12
             - id: internal
               brief: INTERNAL
-              stability: experimental
+              stability: development
               value: 13
             - id: unavailable
               brief: UNAVAILABLE
-              stability: experimental
+              stability: development
               value: 14
             - id: data_loss
               brief: DATA_LOSS
-              stability: experimental
+              stability: development
               value: 15
             - id: unauthenticated
               brief: UNAUTHENTICATED
-              stability: experimental
+              stability: development
               value: 16
-        stability: experimental
+        stability: development
         brief: "The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request."
       - id: rpc.grpc.request.metadata
         type: template[string[]]
-        stability: experimental
+        stability: development
         brief: >
           gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
         note: >
@@ -159,7 +159,7 @@ groups:
         examples: ['rpc.grpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]']
       - id: rpc.grpc.response.metadata
         type: template[string[]]
-        stability: experimental
+        stability: development
         brief: >
           gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
         note: >
@@ -168,17 +168,17 @@ groups:
         examples: ['rpc.grpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]']
       - id: rpc.jsonrpc.error_code
         type: int
-        stability: experimental
+        stability: development
         brief: "`error.code` property of response if it is an error response."
         examples: [-32700, 100]
       - id: rpc.jsonrpc.error_message
         type: string
-        stability: experimental
+        stability: development
         brief: "`error.message` property of response if it is an error response."
         examples: ['Parse error', 'User already exists']
       - id: rpc.jsonrpc.request_id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           `id` property of request or response.
           Since protocol allows id to be int, string, `null` or missing (for notifications),
@@ -187,12 +187,12 @@ groups:
         examples: ['10', 'request-7', '']
       - id: rpc.jsonrpc.version
         type: string
-        stability: experimental
+        stability: development
         brief: "Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted."
         examples: ['2.0', '1.0']
       - id: rpc.method
         type: string
-        stability: experimental
+        stability: development
         brief: 'The name of the (logical) method being called, must be equal to the $method part in the span name.'
         note: >
           This is the logical name of the method from the RPC interface perspective,
@@ -203,7 +203,7 @@ groups:
         examples: "exampleMethod"
       - id: rpc.service
         type: string
-        stability: experimental
+        stability: development
         brief: 'The full (logical) name of the service being called, including its package name, if applicable.'
         note: >
           This is the logical name of the service from the RPC interface perspective,
@@ -220,45 +220,45 @@ groups:
             - id: grpc
               value: 'grpc'
               brief: 'gRPC'
-              stability: experimental
+              stability: development
             - id: java_rmi
               value: 'java_rmi'
               brief: 'Java RMI'
-              stability: experimental
+              stability: development
             - id: dotnet_wcf
               value: 'dotnet_wcf'
               brief: '.NET WCF'
-              stability: experimental
+              stability: development
             - id: apache_dubbo
               value: 'apache_dubbo'
               brief: 'Apache Dubbo'
-              stability: experimental
+              stability: development
             - id: connect_rpc
               value: 'connect_rpc'
               brief: 'Connect RPC'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
       - id: rpc.message.type
         type:
           members:
             - id: sent
               value: "SENT"
-              stability: experimental
+              stability: development
             - id: received
               value: "RECEIVED"
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: "Whether this is a received or sent message."
       - id: rpc.message.id
         type: int
-        stability: experimental
+        stability: development
         brief: "MUST be calculated as two different counters starting from `1` one for sent messages and one for received message."
         note: "This way we guarantee that the values will be consistent between different implementations."
       - id: rpc.message.compressed_size
         type: int
-        stability: experimental
+        stability: development
         brief: "Compressed size of the message in bytes."
       - id: rpc.message.uncompressed_size
         type: int
-        stability: experimental
+        stability: development
         brief: "Uncompressed size of the message in bytes."

@@ -4,7 +4,7 @@ linkTitle: Spans
 
 # Semantic conventions for CloudEvents spans
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 <!-- prettier-ignore-start -->
 
@@ -56,11 +56,11 @@ attributes on spans created from the conventions described above.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cloudevents.event_id`](/docs/attributes-registry/cloudevents.md) | string | The [event_id](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id) uniquely identifies the event. | `123e4567-e89b-12d3-a456-426614174000`; `0001` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`cloudevents.event_source`](/docs/attributes-registry/cloudevents.md) | string | The [source](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1) identifies the context in which an event happened. | `https://github.com/cloudevents`; `/cloudevents/spec/pull/123`; `my-service` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`cloudevents.event_spec_version`](/docs/attributes-registry/cloudevents.md) | string | The [version of the CloudEvents specification](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) which the event uses. | `1.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`cloudevents.event_subject`](/docs/attributes-registry/cloudevents.md) | string | The [subject](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#subject) of the event in the context of the event producer (identified by source). | `mynewfile.jpg` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`cloudevents.event_type`](/docs/attributes-registry/cloudevents.md) | string | The [event_type](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) contains a value describing the type of event related to the originating occurrence. | `com.github.pull_request.opened`; `com.example.object.deleted.v2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cloudevents.event_id`](/docs/attributes-registry/cloudevents.md) | string | The [event_id](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id) uniquely identifies the event. | `123e4567-e89b-12d3-a456-426614174000`; `0001` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cloudevents.event_source`](/docs/attributes-registry/cloudevents.md) | string | The [source](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1) identifies the context in which an event happened. | `https://github.com/cloudevents`; `/cloudevents/spec/pull/123`; `my-service` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cloudevents.event_spec_version`](/docs/attributes-registry/cloudevents.md) | string | The [version of the CloudEvents specification](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) which the event uses. | `1.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cloudevents.event_subject`](/docs/attributes-registry/cloudevents.md) | string | The [subject](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#subject) of the event in the context of the event producer (identified by source). | `mynewfile.jpg` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cloudevents.event_type`](/docs/attributes-registry/cloudevents.md) | string | The [event_type](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) contains a value describing the type of event related to the originating occurrence. | `com.github.pull_request.opened`; `com.example.object.deleted.v2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

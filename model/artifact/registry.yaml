@@ -11,7 +11,7 @@ groups:
     attributes:
       - id: artifact.filename
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The human readable file name of the artifact, typically generated
           during build and release processes. Often includes the package name
@@ -30,13 +30,13 @@ groups:
           ]
       - id: artifact.version
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The version of the artifact.
         examples: ["v0.1.0", "1.2.1", "122691-build"]
       - id: artifact.purl
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The [Package URL](https://github.com/package-url/purl-spec) of the
           [package artifact](https://slsa.dev/spec/v1.0/terminology#package-model)
@@ -48,7 +48,7 @@ groups:
           ]
       - id: artifact.hash
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
           often found in checksum.txt on a release of the artifact and used to
@@ -66,13 +66,13 @@ groups:
           ["9ff4c52759e2c4ac70b7d517bc7fcdc1cda631ca0045271ddd1b192544f8a3e9"]
       - id: artifact.attestation.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The id of the build [software attestation](https://slsa.dev/attestation-model).
         examples: ["123"]
       - id: artifact.attestation.filename
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The provenance filename of the built attestation which directly
           relates to the build artifact filename. This filename SHOULD
@@ -88,7 +88,7 @@ groups:
           ]
       - id: artifact.attestation.hash
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
           of the built attestation. Some envelopes in the [software attestation
