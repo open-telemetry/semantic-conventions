@@ -29,7 +29,3 @@ But it MAY be equal to other identifiers such as:
 - [`Settings.getString(Settings.Secure.ANDROID_ID)`](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
 
 More information about Android identifier best practices can be found [here](https://developer.android.com/training/articles/user-data-ids).
-
-> [!WARNING]
->
-> Caution should be taken when storing personal data or anything which can identify a user. GDPR and laws may apply, ensure you do your own due diligence.
