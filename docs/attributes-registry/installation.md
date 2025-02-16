@@ -14,7 +14,7 @@ Describes installation attributes.
 **[1] `installation.id`:** Its value SHOULD remain the same between launches of the same installation of an application.
 It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
 Hardware IDs (e.g. serial number, IMEI, MAC address) MUST NOT be used as the installation identifier.
-The `installation.id` SHOULD be prefixed with the type of the identifier and a colon separator (e.g. `firebase:`).
+The `installation.id` value SHOULD be prefixed with the type of the identifier and a colon separator (e.g. `firebase:`).
 
 On iOS this value SHOULD be equal to the [vendor identifier](https://developer.apple.com/documentation/uikit/uidevice/identifierforvendor).
 
