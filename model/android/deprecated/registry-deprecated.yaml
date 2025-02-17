@@ -6,7 +6,7 @@ groups:
         This document defines attributes that represents an occurrence of a lifecycle transition on the Android platform.
     attributes:
       - id: android.state
-        stability: experimental
+        stability: development
         deprecated: "Renamed to `android.app.state`"
         brief: >
           Deprecated use the `device.app.lifecycle` event definition including
