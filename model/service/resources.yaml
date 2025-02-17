@@ -11,3 +11,4 @@ groups:
       - ref: service.version
       - ref: service.namespace
       - ref: service.instance.id
+      - ref: service.instance.pool
