@@ -810,3 +810,26 @@ groups:
       - ref: azure.cosmosdb.operation.contacted_regions
         requirement_level:
           conditionally_required: If available.
+  - id: span.db.oracledb.client
+    type: span
+    stability: experimental
+    extends: span.db.sql.client
+    span_kind: client
+    brief: >
+      Attributes for Oracle Database
+    attributes:
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: The service name associated with the connection.
+        note: |
+          Instrumentation SHOULD document if `db.namespace` reflects the service name provided when the connection was established.
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        examples: ["db_high.adb.oraclecloud.com", "db_low.adb.oraclecloud.com"]
+      - ref: db.response.status_code
+        brief: >
+          [Oracle Database error number](https://docs.oracle.com/en/error-help/db/) recorded as a string.
+        note: >
+          Oracle Database error codes are vendor specific error codes and don't follow [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE)
+          conventions. All Oracle Database error codes SHOULD be considered errors.
+        examples: ["ORA-02813", "ORA-02613"]

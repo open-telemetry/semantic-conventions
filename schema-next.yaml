@@ -7,6 +7,22 @@ versions:
         - rename_metrics:
             k8s.replication_controller.desired_pods: k8s.replicationcontroller.desired_pods
             k8s.replication_controller.available_pods: k8s.replicationcontroller.available_pods
+    all:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/TODO
+        # add semantic conventions for Oracle Database
+        - add_attributes:
+            db.system.name
+            db.namespace
+            db.response.status_code
+            error.type
+            server.port
+            db.operation.batch.size
+            db.query.summary
+            db.query.text
+            db.response.returned_rows
+            server.address
+            db.operation.parameter.<key>
   1.30.0:
     all:
       changes:
