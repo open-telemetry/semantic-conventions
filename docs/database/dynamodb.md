@@ -593,6 +593,6 @@ The following table outlines the span attributes applicable to DynamoDB.
 AWS DynamoDB client instrumentations SHOULD collect metrics according to the general
 [Semantic Conventions for Database Client Metrics](database-metrics.md).
 
-`db.system.name` MUST be set to `"dynamodb"`.
+`db.system.name` MUST be set to `"aws.dynamodb"`.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
