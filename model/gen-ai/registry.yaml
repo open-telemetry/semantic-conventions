@@ -218,6 +218,11 @@ groups:
             Client-side operations are actions taken on the user's end or within the client application.
           Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
         examples: ['function', 'extension', 'datastore']
+      - id: gen_ai.data_source.id
+        stability: development
+        type: string
+        brief: The data source identifier.
+        examples: ['H7STPQYOND']
       - id: gen_ai.operation.name
         stability: development
         type:
@@ -311,3 +316,21 @@ groups:
         type: string
         brief: A fingerprint to track any eventual change in the Generative AI environment.
         examples: ["fp_44709d6fcb"]
+  - id: registry.gen_ai.aws.bedrock
+    type: attribute_group
+    display_name: Amazon Bedrock Attributes
+    brief: >
+        This document defines attributes for AWS Bedrock.
+    attributes:
+      - id: gen_ai.aws.bedrock.guardrail.id
+        type: string
+        stability: experimental
+        brief: >
+          The unique identifier of the AWS Bedrock Guardrail. A [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) helps safeguard and prevent unwanted behavior from model responses or user messages.
+        examples: ["sgi5gkybzqak"]
+      - id: gen_ai.aws.bedrock.knowledge_base.id
+        type: string
+        stability: experimental
+        brief: >
+          The unique identifier of the AWS Bedrock Knowledge base. A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information that can be queried by models to generate more relevant responses and augment prompts.
+        examples: ["XFWUPB9PAW"]
