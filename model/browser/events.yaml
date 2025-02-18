@@ -6,7 +6,11 @@ groups:
     brief: >
       This event represents a browser page load/view.
     note: >
-      The primary use case is to capture metrics about the number of views of a page. Page view can be a hard page load in a browser as well as virtual navigation in a SPA (single-page application). The event should be collected as soon as possible without waiting for potentially delayed data such as the Navigation timing browser API.
+      The primary use case is to capture metrics about the number of views of
+      a page. Page view can be a hard page load in a browser as well as virtual
+      navigation in a SPA (single-page application). The event should be
+      collected as soon as possible without waiting for potentially delayed
+      data such as the Navigation timing browser API.
     body:
       id: browser.page_view
       requirement_level: required
@@ -25,11 +29,17 @@ groups:
             - id: physical_page
               value: 0
               stability: development
-              brief: Initial page load within the browser which will generally also precede a PageNavigationTiming event.
+              brief: >
+                Initial page load within the browser which will generally also
+                precede a PageNavigationTiming event.
             - id: virtual_page
               value: 1
               stability: development
-              brief: This is for Single Page Applications (SPA) where the framework provides the ability to perform client side only page "navigation", the exact definition of what a virtual page change is determined by the SPA and the framework it is using.
+              brief: >
+                This is for Single Page Applications (SPA) where the framework
+                provides the ability to perform client side only page
+                "navigation", the exact definition of what a virtual page
+                change is determined by the SPA and the framework it is using.
           stability: development
           requirement_level: required
           brief: Type of navigation
@@ -45,7 +55,9 @@ groups:
           stability: development
           requirement_level: required
           brief: >
-            Full HTTP request URL in the form scheme://host[:port]/path?query[#fragment]. Usually the fragment is not transmitted over HTTP, but if it is known, it should be included nevertheless.
+            Full HTTP request URL in the form scheme://host[:port]/path?query[#fragment].
+            Usually the fragment is not transmitted over HTTP, but if it is
+            known, it should be included nevertheless.
           examples: ["https://en.wikipedia.org/wiki/Main_Page", "https://en.wikipedia.org/wiki/Main_Page#foo"]
         - id: change_state
           type: string
