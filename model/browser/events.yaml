@@ -1,0 +1,85 @@
+groups:
+  - id: event.browser.navigation_timing
+    stability: development
+    type: event
+    name: browser.navigation_timing
+    brief: >
+      This event describes the timing metrics of a page navigation as provided
+      by the PerformanceNavigationTiming Performance API.
+    note: >
+      This event captures data from the [Navigation Timing API](https://www.w3.org/TR/navigation-timing-2/).
+      It is recommended to be captured by using the PerformanceObserver API, or
+      when the window load event fires. If the page starts unloading before
+      the page loads, then the partial data can be captured by calling the
+      [performance.getEntriesByType][https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByType]
+      method.
+
+      This event definition elevates a few key data points to body fields in
+      order to make it easier to access. In addition, the complete set of data
+      from the API may be sent in the body of the event as stringified JSON.
+    body:
+      id: browser.navigation_timing
+      requirement_level: required
+      stability: development
+      type: map
+      fields:
+        - id: name 
+          type: string
+          stability: development
+          brief: 
+          requirement_level: recommended
+          examples: ["https://en.wikipedia.org/wiki/Main_Page"]
+        - id: fetchStart
+          type: double
+          stability: development
+          brief: >
+            The time immediately before the browser starts to fetch the
+            resource. The value is relative to the start of the navigation, and
+            it is measured in milliseconds.
+          requirement_level: recommended
+          examples: [9.600000000558794]
+        - id: unloadEventStart
+          type: double
+          stability: development
+          brief: >
+            The time immediately before the current document's unload event
+            handler starts. The value is relative to the start of the
+            navigation, and it is measured in milliseconds.
+          requirement_level: recommended
+          examples: [0]
+        - id: domInteractive
+          type: double
+          stability: development
+          brief: >
+            the time immediately before the user agent sets the document's
+            readyState to "interactive". The value is relative to the start of
+            the navigation, and it is measured in milliseconds.
+          requirement_level: recommended
+          examples: [147.70000000018626]
+        - id: domContentLoadedEventEnd
+          type: double
+          stability: development
+          brief: >
+             The time immediately after the current document's DOMContentLoaded
+             event handler completes. The value is relative to the start of the
+             navigation, and it is measured in milliseconds.
+          requirement_level: recommended
+          examples: [189]
+        - id: domComplete
+          type: double
+          stability: development
+          brief: >
+            The time immediately before the user agent sets the document's
+            readyState to "complete". The value is relative to the start of the
+            navigation, and it is measured in milliseconds.
+          requirement_level: recommended
+          examples: [506.5]
+        - id: loadEventEnd
+          type: double
+          stability: development
+          brief: >
+            The time immediately after the current document's load event handler
+            completes. The value is relative to the start of the navigation, and
+            it is measured in milliseconds.
+          requirement_level: recommended
+          examples: [506.70000000018626]
