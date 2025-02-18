@@ -12,42 +12,6 @@ groups:
     unit: "s"
 
   # system.cpu.* metrics
-  - id: metric.system.cpu.time
-    type: metric
-    metric_name: system.cpu.time
-    stability: development
-    brief: "Seconds each logical CPU spent on each mode"
-    instrument: counter
-    unit: "s"
-    attributes:
-      - ref: cpu.mode
-        brief: "The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels."
-        note: "Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
-      - ref: system.cpu.logical_number
-
-  - id: metric.system.cpu.utilization
-    type: metric
-    metric_name: system.cpu.utilization
-    stability: development
-    brief: "Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of logical CPUs"
-    instrument: gauge
-    unit: "1"
-    attributes:
-      - ref: cpu.mode
-        brief: "The CPU mode for this data point. A system's CPU SHOULD be characterized *either* by data points with no `mode` labels, *or only* data points with `mode` labels."
-        note: "Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
-      - ref: system.cpu.logical_number
-
-  - id: metric.system.cpu.frequency
-    type: metric
-    metric_name: system.cpu.frequency
-    stability: development
-    brief: "Reports the current frequency of the CPU in Hz"
-    instrument: gauge
-    unit: "{Hz}"
-    attributes:
-      - ref: system.cpu.logical_number
-
   - id: metric.system.cpu.physical.count
     type: metric
     metric_name: system.cpu.physical.count
@@ -193,12 +157,12 @@ groups:
     instrument: counter
     unit: "s"
     note: |
-       The real elapsed time ("wall clock") used in the I/O path (time from operations running in parallel are not counted). Measured as:
+      The real elapsed time ("wall clock") used in the I/O path (time from operations running in parallel are not counted). Measured as:
 
-       - Linux: Field 13 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
-       - Windows: The complement of
-         ["Disk\% Idle Time"](https://learn.microsoft.com/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
-         performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
+      - Linux: Field 13 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
+      - Windows: The complement of
+        ["Disk\% Idle Time"](https://learn.microsoft.com/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
+        performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
     attributes:
       - ref: system.device
 
@@ -210,10 +174,10 @@ groups:
     instrument: counter
     unit: "s"
     note: |
-       Because it is the sum of time each request took, parallel-issued requests each contribute to make the count grow. Measured as:
+      Because it is the sum of time each request took, parallel-issued requests each contribute to make the count grow. Measured as:
 
-       - Linux: Fields 7 & 11 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
-       - Windows: "Avg. Disk sec/Read" perf counter multiplied by "Disk Reads/sec" perf counter (similar for Writes)
+      - Linux: Fields 7 & 11 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
+      - Windows: "Avg. Disk sec/Read" perf counter multiplied by "Disk Reads/sec" perf counter (similar for Writes)
     attributes:
       - ref: system.device
       - ref: disk.io.direction
