@@ -182,6 +182,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 Elasticsearch client instrumentations SHOULD collect metrics according to the general
 [Semantic Conventions for Database Client Metrics](database-metrics.md).
 
-`db.system` MUST be set to `"elasticsearch"`.
+`db.system.name` MUST be set to `"elasticsearch"`.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
