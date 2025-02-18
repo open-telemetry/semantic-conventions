@@ -439,3 +439,9 @@ A ResourceQuota provides constraints that limit aggregate resource consumption p
 <!-- endsemconv -->
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+
+## Kubernetes specific guidelines
+
+The following guidelines are specific to Kubernetes:
+
+- [Service in Kubernetes](../non-normative/k8s-attributes.md#service-attributes)
