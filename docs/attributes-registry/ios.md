@@ -34,7 +34,7 @@ The iOS platform on which the iOS application is running.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="ios-state" href="#ios-state">`ios.state`</a> | string | Deprecated use the `device.app.lifecycle` event definition including `ios.state` as a payload field instead. [2] | `active`; `inactive`; `background` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Renamed to `ios.app.state` |
+| <a id="ios-state" href="#ios-state">`ios.state`</a> | string | Deprecated. use the `ios.app.state` instead. [2] | `active`; `inactive`; `background` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Renamed to `ios.app.state` |
 
 **[2] `ios.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
 
