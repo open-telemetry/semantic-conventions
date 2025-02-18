@@ -26,7 +26,7 @@ groups:
         - id: name 
           type: string
           stability: development
-          brief: 
+          brief: The resolved URL of the requested resource. 
           requirement_level: recommended
           examples: ["https://en.wikipedia.org/wiki/Main_Page"]
         - id: fetchStart
@@ -46,7 +46,7 @@ groups:
             handler starts. The value is relative to the start of the
             navigation, and it is measured in milliseconds.
           requirement_level: recommended
-          examples: [0]
+          examples: [0.0]
         - id: domInteractive
           type: double
           stability: development
@@ -64,7 +64,7 @@ groups:
              event handler completes. The value is relative to the start of the
              navigation, and it is measured in milliseconds.
           requirement_level: recommended
-          examples: [189]
+          examples: [189.0]
         - id: domComplete
           type: double
           stability: development
