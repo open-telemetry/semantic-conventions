@@ -109,6 +109,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 MySQL client instrumentations SHOULD collect metrics according to the general
 [Semantic Conventions for Database Client Metrics](database-metrics.md).
 
-`db.system` MUST be set to `"mysql"`.
+`db.system.name` MUST be set to `"mysql"`.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
