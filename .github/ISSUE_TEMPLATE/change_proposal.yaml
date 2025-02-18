@@ -52,6 +52,7 @@ body:
         - area:heroku
         - area:host
         - area:http
+        - area:installation
         - area:jvm
         - area:k8s
         - area:linux
