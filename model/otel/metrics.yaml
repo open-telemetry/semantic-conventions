@@ -152,7 +152,8 @@ groups:
     brief: "The number of LogRecords for which the processing has finished, either successful or failed"
     note: |
       For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` must contain the failure cause.
-      For the SDK Simple and Batching LogRecord Processor a LogRecord is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
+      For the SDK Simple and Batching LogRecord Processor a LogRecord is considered to be processed already when it has been submitted to the exporter,
+      not when the corresponding export call has finished.
     instrument: counter
     unit: "{LogRecord}"
     attributes:
