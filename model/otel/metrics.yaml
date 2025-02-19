@@ -110,3 +110,97 @@ groups:
           recommended: when applicable
       - ref: error.type
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
+
+  - id: metric.otel.sdk.log.count
+    type: metric
+    metric_name: otel.sdk.log.count
+    stability: development
+    brief: "The number of logs submitted to enabled SDK Loggers"
+    instrument: counter
+    unit: "{LogRecord}"
+
+  - id: metric.otel.sdk.processor.log.queue.size
+    type: metric
+    metric_name: otel.sdk.processor.log.queue.size
+    stability: development
+    brief: "The number of LogRecords in the queue of a given instance of an SDK log processor"
+    note: |
+      Only applies to LogRecord processors which use a queue, e.g. the SDK Batching LogRecord Processor.
+    instrument: updowncounter
+    unit: "{LogRecord}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+
+  - id: metric.otel.sdk.processor.log.queue.capacity
+    type: metric
+    metric_name: otel.sdk.processor.log.queue.capacity
+    stability: development
+    brief: "The maximum number of LogRecords the queue of a given instance of an SDK LogRecord processor can hold"
+    note: |
+      Only applies to LogRecord processors which use a queue, e.g. the SDK Batching LogRecord Processor.
+    instrument: updowncounter
+    unit: "{LogRecord}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+
+  - id: metric.otel.sdk.processor.log.processed.count
+    type: metric
+    metric_name: otel.sdk.processor.log.processed.count
+    stability: development
+    brief: "The number of LogRecords for which the processing has finished, either successful or failed"
+    note: |
+      For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` must contain the failure cause.
+      For the SDK Simple and Batching LogRecord Processor a LogRecord is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
+    instrument: counter
+    unit: "{LogRecord}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: error.type
+        brief: >
+          A low-cardinality description of the failure reason. SDK Batching LogRecord Processors MUST use `queue_full` for LogRecords dropped due to a full queue.
+        examples: ["queue_full"]
+
+  - id: metric.otel.sdk.exporter.log.inflight.count
+    type: metric
+    metric_name: otel.sdk.exporter.log.inflight.count
+    stability: development
+    brief: "The number of LogRecords which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
+    note: |
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
+    instrument: updowncounter
+    unit: "{LogRecord}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
+
+  - id: metric.otel.sdk.exporter.log.exported.count
+    type: metric
+    metric_name: otel.sdk.exporter.log.exported.count
+    stability: development
+    brief: "The number of LogRecords for which the export has finished, either successful or failed"
+    note: |
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
+      For exporters with partial success semantics (e.g. OTLP with `rejected_spans`), rejected spans must count as failed and only non-rejected LogRecords count as success.
+      If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
+    instrument: counter
+    unit: "{LogRecord}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
+      - ref: error.type
+        examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
