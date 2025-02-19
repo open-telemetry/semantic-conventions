@@ -1,14 +1,14 @@
 groups:
-  - id: registry.ios.deprecated
+  - id: registry.ios
     type: attribute_group
-    display_name: Deprecated iOS Attributes
+    display_name: iOS Attributes
     brief: >
-        The iOS platform on which the iOS application is running.
+      This group describes iOS-specific attributes.
     attributes:
-      - id: ios.state
+      - id: ios.app.state
         stability: development
-        deprecated: "Renamed to `ios.app.state`"
-        brief: Deprecated. use the `ios.app.state` instead.
+        brief: >
+          This attribute represents the state of the application.
         note: >
           The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate),
           and from which the `OS terminology` column values are derived.
