@@ -90,6 +90,18 @@ groups:
         type: int
         brief: The maximum number of tokens the model generates for a request.
         examples: [100]
+      - id: gen_ai.request.min_response_candidates
+        stability: development
+        type: int
+        brief: The minimum number of candidate responses to return.
+        examples: [3]
+        note: Includes the specified value (a value of 3 means ">=3").
+      - id: gen_ai.request.max_response_candidates
+        stability: development
+        type: int
+        brief: The maximum number of candidate responses to return.
+        examples: [10]
+        note: Includes the specified value (a value of 10 means "<=10").
       - id: gen_ai.request.temperature
         stability: development
         type: double
