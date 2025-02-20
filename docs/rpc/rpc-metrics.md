@@ -4,7 +4,7 @@ linkTitle: Metrics
 
 # Semantic conventions for RPC metrics
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 The conventions described in this section are RPC specific. When RPC operations
 occur, measurements about those operations are recorded to instruments. The
@@ -83,7 +83,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `rpc.server.duration` | Histogram | `ms` | Measures the duration of inbound RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.server.duration` | Histogram | `ms` | Measures the duration of inbound RPC. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** While streaming RPCs may record this metric as start-of-batch
 to end-of-batch, it's hard to interpret in practice.
@@ -108,7 +108,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `rpc.server.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.server.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** **Streaming**: Recorded per message in a streaming batch
 
@@ -130,7 +130,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `rpc.server.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.server.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** **Streaming**: Recorded per response in a streaming batch
 
@@ -152,7 +152,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `rpc.server.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.server.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Should be 1 for all non-streaming RPCs.
 
@@ -176,7 +176,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `rpc.server.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.server.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Should be 1 for all non-streaming RPCs.
 
@@ -205,7 +205,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `rpc.client.duration` | Histogram | `ms` | Measures the duration of outbound RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.client.duration` | Histogram | `ms` | Measures the duration of outbound RPC. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** While streaming RPCs may record this metric as start-of-batch
 to end-of-batch, it's hard to interpret in practice.
@@ -230,7 +230,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `rpc.client.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.client.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** **Streaming**: Recorded per message in a streaming batch
 
@@ -252,7 +252,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `rpc.client.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.client.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** **Streaming**: Recorded per response in a streaming batch
 
@@ -274,7 +274,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `rpc.client.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.client.requests_per_rpc` | Histogram | `{count}` | Measures the number of messages received per RPC. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Should be 1 for all non-streaming RPCs.
 
@@ -298,7 +298,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `rpc.client.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `rpc.client.responses_per_rpc` | Histogram | `{count}` | Measures the number of messages sent per RPC. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Should be 1 for all non-streaming RPCs.
 
@@ -323,11 +323,11 @@ measurements.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [2] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [3] | `exampleMethod` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [4] | `myservice.EchoService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [3] | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [4] | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
@@ -354,7 +354,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -374,11 +374,11 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

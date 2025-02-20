@@ -12,39 +12,39 @@ Kubernetes resource attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="k8s-cluster-name" href="#k8s-cluster-name">`k8s.cluster.name`</a> | string | The name of the cluster. | `opentelemetry-cluster` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-cluster-uid" href="#k8s-cluster-uid">`k8s.cluster.uid`</a> | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-container-name" href="#k8s-container-name">`k8s.container.name`</a> | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-container-restart-count" href="#k8s-container-restart-count">`k8s.container.restart_count`</a> | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. |  | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-container-status-last-terminated-reason" href="#k8s-container-status-last-terminated-reason">`k8s.container.status.last_terminated_reason`</a> | string | Last terminated reason of the Container. | `Evicted`; `Error` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-cronjob-name" href="#k8s-cronjob-name">`k8s.cronjob.name`</a> | string | The name of the CronJob. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-cronjob-uid" href="#k8s-cronjob-uid">`k8s.cronjob.uid`</a> | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-daemonset-name" href="#k8s-daemonset-name">`k8s.daemonset.name`</a> | string | The name of the DaemonSet. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-daemonset-uid" href="#k8s-daemonset-uid">`k8s.daemonset.uid`</a> | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-deployment-name" href="#k8s-deployment-name">`k8s.deployment.name`</a> | string | The name of the Deployment. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-deployment-uid" href="#k8s-deployment-uid">`k8s.deployment.uid`</a> | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-hpa-name" href="#k8s-hpa-name">`k8s.hpa.name`</a> | string | The name of the horizontal pod autoscaler. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-hpa-uid" href="#k8s-hpa-uid">`k8s.hpa.uid`</a> | string | The UID of the horizontal pod autoscaler. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-job-name" href="#k8s-job-name">`k8s.job.name`</a> | string | The name of the Job. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-job-uid" href="#k8s-job-uid">`k8s.job.uid`</a> | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-namespace-name" href="#k8s-namespace-name">`k8s.namespace.name`</a> | string | The name of the namespace that the pod is running in. | `default` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-namespace-phase" href="#k8s-namespace-phase">`k8s.namespace.phase`</a> | string | The phase of the K8s namespace. [2] | `active`; `terminating` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-node-name" href="#k8s-node-name">`k8s.node.name`</a> | string | The name of the Node. | `node-1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-node-uid" href="#k8s-node-uid">`k8s.node.uid`</a> | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-pod-annotation" href="#k8s-pod-annotation">`k8s.pod.annotation.<key>`</a> | string | The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. | `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true`; `k8s.pod.annotation.mycompany.io/arch=x64`; `k8s.pod.annotation.data=` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-pod-label" href="#k8s-pod-label">`k8s.pod.label.<key>`</a> | string | The label key-value pairs placed on the Pod, the `<key>` being the label name, the value being the label value. | `k8s.pod.label.app=my-app`; `k8s.pod.label.mycompany.io/arch=x64`; `k8s.pod.label.data=` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-pod-name" href="#k8s-pod-name">`k8s.pod.name`</a> | string | The name of the Pod. | `opentelemetry-pod-autoconf` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-pod-uid" href="#k8s-pod-uid">`k8s.pod.uid`</a> | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-replicaset-name" href="#k8s-replicaset-name">`k8s.replicaset.name`</a> | string | The name of the ReplicaSet. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-replicaset-uid" href="#k8s-replicaset-uid">`k8s.replicaset.uid`</a> | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-replicationcontroller-name" href="#k8s-replicationcontroller-name">`k8s.replicationcontroller.name`</a> | string | The name of the replication controller. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-replicationcontroller-uid" href="#k8s-replicationcontroller-uid">`k8s.replicationcontroller.uid`</a> | string | The UID of the replication controller. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-resourcequota-name" href="#k8s-resourcequota-name">`k8s.resourcequota.name`</a> | string | The name of the resource quota. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-resourcequota-uid" href="#k8s-resourcequota-uid">`k8s.resourcequota.uid`</a> | string | The UID of the resource quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-statefulset-name" href="#k8s-statefulset-name">`k8s.statefulset.name`</a> | string | The name of the StatefulSet. | `opentelemetry` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-statefulset-uid" href="#k8s-statefulset-uid">`k8s.statefulset.uid`</a> | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-volume-name" href="#k8s-volume-name">`k8s.volume.name`</a> | string | The name of the K8s volume. | `volume0` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="k8s-volume-type" href="#k8s-volume-type">`k8s.volume.type`</a> | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="k8s-cluster-name" href="#k8s-cluster-name">`k8s.cluster.name`</a> | string | The name of the cluster. | `opentelemetry-cluster` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-cluster-uid" href="#k8s-cluster-uid">`k8s.cluster.uid`</a> | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-container-name" href="#k8s-container-name">`k8s.container.name`</a> | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-container-restart-count" href="#k8s-container-restart-count">`k8s.container.restart_count`</a> | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. |  | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-container-status-last-terminated-reason" href="#k8s-container-status-last-terminated-reason">`k8s.container.status.last_terminated_reason`</a> | string | Last terminated reason of the Container. | `Evicted`; `Error` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-cronjob-name" href="#k8s-cronjob-name">`k8s.cronjob.name`</a> | string | The name of the CronJob. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-cronjob-uid" href="#k8s-cronjob-uid">`k8s.cronjob.uid`</a> | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-daemonset-name" href="#k8s-daemonset-name">`k8s.daemonset.name`</a> | string | The name of the DaemonSet. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-daemonset-uid" href="#k8s-daemonset-uid">`k8s.daemonset.uid`</a> | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-deployment-name" href="#k8s-deployment-name">`k8s.deployment.name`</a> | string | The name of the Deployment. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-deployment-uid" href="#k8s-deployment-uid">`k8s.deployment.uid`</a> | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-hpa-name" href="#k8s-hpa-name">`k8s.hpa.name`</a> | string | The name of the horizontal pod autoscaler. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-hpa-uid" href="#k8s-hpa-uid">`k8s.hpa.uid`</a> | string | The UID of the horizontal pod autoscaler. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-job-name" href="#k8s-job-name">`k8s.job.name`</a> | string | The name of the Job. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-job-uid" href="#k8s-job-uid">`k8s.job.uid`</a> | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-namespace-name" href="#k8s-namespace-name">`k8s.namespace.name`</a> | string | The name of the namespace that the pod is running in. | `default` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-namespace-phase" href="#k8s-namespace-phase">`k8s.namespace.phase`</a> | string | The phase of the K8s namespace. [2] | `active`; `terminating` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-node-name" href="#k8s-node-name">`k8s.node.name`</a> | string | The name of the Node. | `node-1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-node-uid" href="#k8s-node-uid">`k8s.node.uid`</a> | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-pod-annotation" href="#k8s-pod-annotation">`k8s.pod.annotation.<key>`</a> | string | The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. | `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true`; `k8s.pod.annotation.mycompany.io/arch=x64`; `k8s.pod.annotation.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-pod-label" href="#k8s-pod-label">`k8s.pod.label.<key>`</a> | string | The label key-value pairs placed on the Pod, the `<key>` being the label name, the value being the label value. | `k8s.pod.label.app=my-app`; `k8s.pod.label.mycompany.io/arch=x64`; `k8s.pod.label.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-pod-name" href="#k8s-pod-name">`k8s.pod.name`</a> | string | The name of the Pod. | `opentelemetry-pod-autoconf` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-pod-uid" href="#k8s-pod-uid">`k8s.pod.uid`</a> | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-replicaset-name" href="#k8s-replicaset-name">`k8s.replicaset.name`</a> | string | The name of the ReplicaSet. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-replicaset-uid" href="#k8s-replicaset-uid">`k8s.replicaset.uid`</a> | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-replicationcontroller-name" href="#k8s-replicationcontroller-name">`k8s.replicationcontroller.name`</a> | string | The name of the replication controller. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-replicationcontroller-uid" href="#k8s-replicationcontroller-uid">`k8s.replicationcontroller.uid`</a> | string | The UID of the replication controller. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-resourcequota-name" href="#k8s-resourcequota-name">`k8s.resourcequota.name`</a> | string | The name of the resource quota. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-resourcequota-uid" href="#k8s-resourcequota-uid">`k8s.resourcequota.uid`</a> | string | The UID of the resource quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-statefulset-name" href="#k8s-statefulset-name">`k8s.statefulset.name`</a> | string | The name of the StatefulSet. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-statefulset-uid" href="#k8s-statefulset-uid">`k8s.statefulset.uid`</a> | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-volume-name" href="#k8s-volume-name">`k8s.volume.name`</a> | string | The name of the K8s volume. | `volume0` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-volume-type" href="#k8s-volume-type">`k8s.volume.type`</a> | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `k8s.cluster.uid`:** K8s doesn't have support for obtaining a cluster ID. If this is ever
 added, we will recommend collecting the `k8s.cluster.uid` through the
@@ -78,8 +78,8 @@ conflict.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `active` | Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `terminating` | Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `active` | Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `terminating` | Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -87,12 +87,12 @@ conflict.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `configMap` | A [configMap](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `downwardAPI` | A [downwardAPI](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `emptyDir` | An [emptyDir](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local` | A [local](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `persistentVolumeClaim` | A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `secret` | A [secret](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `configMap` | A [configMap](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `downwardAPI` | A [downwardAPI](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `emptyDir` | An [emptyDir](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local` | A [local](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `persistentVolumeClaim` | A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `secret` | A [secret](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated Kubernetes Attributes
 

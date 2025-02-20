@@ -1,7 +1,7 @@
 groups:
   - id: resource.browser
     type: resource
-    stability: experimental
+    stability: development
     name: browser
     brief: >
         The web browser in which the application represented by the resource is running.

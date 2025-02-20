@@ -4,7 +4,7 @@ linkTitle: MongoDB
 
 # Semantic conventions for MongoDB
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 <!-- toc -->
 
@@ -107,6 +107,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 MongoDB client instrumentations SHOULD collect metrics according to the general
 [Semantic Conventions for Database Client Metrics](database-metrics.md).
 
-`db.system` MUST be set to `"mongodb"`.
+`db.system.name` MUST be set to `"mongodb"`.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

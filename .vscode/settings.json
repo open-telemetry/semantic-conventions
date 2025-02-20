@@ -10,7 +10,7 @@
         "MD040": false,
     },
     "yaml.schemas": {
-        "https://raw.githubusercontent.com/open-telemetry/weaver/v0.12.0/schemas/semconv.schema.json": [
+        "https://raw.githubusercontent.com/open-telemetry/weaver/v0.13.2/schemas/semconv.schema.json": [
             "model/**/*.yaml"
         ]
     },

@@ -7,7 +7,7 @@ groups:
       Describes the origin of a single frame in a Profile.
     attributes:
       - id: profile.frame.type
-        stability: experimental
+        stability: development
         brief: >
           Describes the interpreter or compiler of a single frame.
         examples: ['cpython']
@@ -17,17 +17,17 @@ groups:
               brief: >
                 [.NET](https://wikipedia.org/wiki/.NET)
               value: "dotnet"
-              stability: experimental
+              stability: development
             - id: jvm
               brief: >
                 [JVM](https://wikipedia.org/wiki/Java_virtual_machine)
               value: "jvm"
-              stability: experimental
+              stability: development
             - id: kernel
               brief: >
                 [Kernel](https://wikipedia.org/wiki/Kernel_(operating_system))
               value: "kernel"
-              stability: experimental
+              stability: development
             - id: native
               brief: >
                 [C](https://wikipedia.org/wiki/C_(programming_language)),
@@ -35,34 +35,34 @@ groups:
                 [Go](https://wikipedia.org/wiki/Go_(programming_language)),
                 [Rust](https://wikipedia.org/wiki/Rust_(programming_language))
               value: "native"
-              stability: experimental
+              stability: development
             - id: perl
               brief: >
                 [Perl](https://wikipedia.org/wiki/Perl)
               value: "perl"
-              stability: experimental
+              stability: development
             - id: php
               brief: >
                 [PHP](https://wikipedia.org/wiki/PHP)
               value: "php"
-              stability: experimental
+              stability: development
             - id: cpython
               brief: >
                 [Python](https://wikipedia.org/wiki/Python_(programming_language))
               value: "cpython"
-              stability: experimental
+              stability: development
             - id: ruby
               brief: >
                 [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language))
               value: "ruby"
-              stability: experimental
+              stability: development
             - id: v8js
               brief: >
                 [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine))
               value: "v8js"
-              stability: experimental
+              stability: development
             - id: beam
               brief: >
                 [Erlang](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine))
               value: "beam"
-              stability: experimental
+              stability: development

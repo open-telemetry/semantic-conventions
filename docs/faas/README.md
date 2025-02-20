@@ -4,7 +4,7 @@ linkTitle: FaaS
 
 # Semantic conventions for Function-as-a-Service
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for Function as a Service (FaaS) spans, metrics and logs.
 

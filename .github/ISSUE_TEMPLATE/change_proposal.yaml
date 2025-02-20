@@ -37,6 +37,7 @@ body:
         - area:dns
         - area:dotnet
         - area:elasticsearch
+        - area:enduser
         - area:error
         - area:exception
         - area:faas
@@ -51,6 +52,7 @@ body:
         - area:heroku
         - area:host
         - area:http
+        - area:ios
         - area:jvm
         - area:k8s
         - area:linux

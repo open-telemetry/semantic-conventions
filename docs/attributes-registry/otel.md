@@ -4,6 +4,7 @@
 # OTel
 
 - [OTel Attributes](#otel-attributes)
+- [OTel Component Attributes](#otel-component-attributes)
 - [OTel Scope Attributes](#otel-scope-attributes)
 - [Deprecated OTel Library Attributes](#deprecated-otel-library-attributes)
 
@@ -13,8 +14,19 @@ Attributes reserved for OpenTelemetry
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
+| <a id="otel-span-sampling-result" href="#otel-span-sampling-result">`otel.span.sampling_result`</a> | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="otel-status-code" href="#otel-status-code">`otel.status_code`</a> | string | Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET. | `OK`; `ERROR` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="otel-status-description" href="#otel-status-description">`otel.status_description`</a> | string | Description of the Status if it has a value, otherwise not set. | `resource not found` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
+
+`otel.span.sampling_result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `DROP` | The span is not sampled and not recording | ![Development](https://img.shields.io/badge/-development-blue) |
+| `RECORD_AND_SAMPLE` | The span is sampled and recording | ![Development](https://img.shields.io/badge/-development-blue) |
+| `RECORD_ONLY` | The span is not sampled, but recording | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -24,6 +36,44 @@ Attributes reserved for OpenTelemetry
 |---|---|---|
 | `ERROR` | The operation contains an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `OK` | The operation has been validated by an Application developer or Operator to have completed successfully. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+## OTel Component Attributes
+
+Attributes used for OpenTelemetry component self-monitoring
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="otel-component-name" href="#otel-component-name">`otel.component.name`</a> | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="otel-component-type" href="#otel-component-type">`otel.component.type`</a> | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
+E.g. implementations MUST NOT use UUIDs as values for this attribute.
+
+Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
+Hereby `otel.component.type` refers to the corresponding attribute value of the component.
+
+The value of `instance-counter` MAY be automatically assigned by the component and uniqueness within the enclosing SDK instance MUST be guaranteed.
+For example, `<instance-counter>` MAY be implemented by using a monotonically increasing counter (starting with `0`), which is incremented every time an
+instance of the given component type is started.
+
+With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
+as `otel.component.name`, the second one `batching_span_processor/1` and so on.
+These values will therefore be reused in the case of an application restart.
+
+**[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
+E.g. for Java the fully qualified classname SHOULD be used in this case.
+
+---
+
+`otel.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `batching_span_processor` | The builtin SDK Batching Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_json_span_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## OTel Scope Attributes
 

@@ -2,6 +2,18 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
+    all:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1880
+        - rename_attributes:
+            attribute_map:
+              android.state: android.app.state
+              io.state: ios.app.state
+    metrics:
+      changes:
+        - rename_metrics:
+            k8s.replication_controller.desired_pods: k8s.replicationcontroller.desired_pods
+            k8s.replication_controller.available_pods: k8s.replicationcontroller.available_pods
   1.30.0:
     all:
       changes:

@@ -9,7 +9,7 @@ These attributes may be used to describe the receiver of a network exchange/pack
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="destination-address" href="#destination-address">`destination.address`</a> | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="destination-port" href="#destination-port">`destination.port`</a> | int | Destination port number | `3389`; `2888` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="destination-address" href="#destination-address">`destination.address`</a> | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="destination-port" href="#destination-port">`destination.port`</a> | int | Destination port number | `3389`; `2888` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `destination.address`:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.

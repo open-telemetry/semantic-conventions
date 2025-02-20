@@ -1,6 +1,6 @@
 # Kubernetes
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 Useful resources to understand Kubernetes objects and metadata:
 
@@ -25,7 +25,7 @@ Kubernetes object, but "name" is usually more user friendly so can be also set.
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `k8s.cluster`
 
@@ -33,8 +33,8 @@ Kubernetes object, but "name" is usually more user friendly so can be also set.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.cluster.name`](/docs/attributes-registry/k8s.md) | string | The name of the cluster. | `opentelemetry-cluster` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.cluster.uid`](/docs/attributes-registry/k8s.md) | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.cluster.name`](/docs/attributes-registry/k8s.md) | string | The name of the cluster. | `opentelemetry-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.cluster.uid`](/docs/attributes-registry/k8s.md) | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `k8s.cluster.uid`:** K8s doesn't have support for obtaining a cluster ID. If this is ever
 added, we will recommend collecting the `k8s.cluster.uid` through the
@@ -74,7 +74,7 @@ conflict.
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `k8s.node`
 
@@ -82,8 +82,8 @@ conflict.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.node.name`](/docs/attributes-registry/k8s.md) | string | The name of the Node. | `node-1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.node.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.node.name`](/docs/attributes-registry/k8s.md) | string | The name of the Node. | `node-1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.node.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -103,7 +103,7 @@ a namespace, but not across namespaces.
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `k8s.namespace`
 
@@ -111,7 +111,7 @@ a namespace, but not across namespaces.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.namespace.name`](/docs/attributes-registry/k8s.md) | string | The name of the namespace that the pod is running in. | `default` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.namespace.name`](/docs/attributes-registry/k8s.md) | string | The name of the namespace that the pod is running in. | `default` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -131,7 +131,7 @@ containers on your cluster.
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `k8s.pod`
 
@@ -139,10 +139,10 @@ containers on your cluster.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.pod.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the Pod, the `<key>` being the label name, the value being the label value. | `k8s.pod.label.app=my-app`; `k8s.pod.label.mycompany.io/arch=x64`; `k8s.pod.label.data=` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.pod.name`](/docs/attributes-registry/k8s.md) | string | The name of the Pod. | `opentelemetry-pod-autoconf` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.pod.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.pod.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. | `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true`; `k8s.pod.annotation.mycompany.io/arch=x64`; `k8s.pod.annotation.data=` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.pod.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the Pod, the `<key>` being the label name, the value being the label value. | `k8s.pod.label.app=my-app`; `k8s.pod.label.mycompany.io/arch=x64`; `k8s.pod.label.data=` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.pod.name`](/docs/attributes-registry/k8s.md) | string | The name of the Pod. | `opentelemetry-pod-autoconf` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.pod.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.pod.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. | `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true`; `k8s.pod.annotation.mycompany.io/arch=x64`; `k8s.pod.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -166,7 +166,7 @@ to a running container.
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `k8s.container`
 
@@ -174,9 +174,9 @@ to a running container.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.container.name`](/docs/attributes-registry/k8s.md) | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.container.restart_count`](/docs/attributes-registry/k8s.md) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.container.status.last_terminated_reason`](/docs/attributes-registry/k8s.md) | string | Last terminated reason of the Container. | `Evicted`; `Error` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.container.name`](/docs/attributes-registry/k8s.md) | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.container.restart_count`](/docs/attributes-registry/k8s.md) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.container.status.last_terminated_reason`](/docs/attributes-registry/k8s.md) | string | Last terminated reason of the Container. | `Evicted`; `Error` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -193,7 +193,7 @@ to a running container.
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `k8s.replicaset`
 
@@ -201,8 +201,8 @@ to a running container.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.replicaset.name`](/docs/attributes-registry/k8s.md) | string | The name of the ReplicaSet. | `opentelemetry` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.replicaset.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.replicaset.name`](/docs/attributes-registry/k8s.md) | string | The name of the ReplicaSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.replicaset.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -223,7 +223,7 @@ distributed among the nodes of a cluster.
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `k8s.deployment`
 
@@ -231,8 +231,8 @@ distributed among the nodes of a cluster.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.deployment.name`](/docs/attributes-registry/k8s.md) | string | The name of the Deployment. | `opentelemetry` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.deployment.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.deployment.name`](/docs/attributes-registry/k8s.md) | string | The name of the Deployment. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.deployment.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -252,7 +252,7 @@ about the ordering and uniqueness of these Pods.
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `k8s.statefulset`
 
@@ -260,8 +260,8 @@ about the ordering and uniqueness of these Pods.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.statefulset.name`](/docs/attributes-registry/k8s.md) | string | The name of the StatefulSet. | `opentelemetry` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.statefulset.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.statefulset.name`](/docs/attributes-registry/k8s.md) | string | The name of the StatefulSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.statefulset.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -280,7 +280,7 @@ A DaemonSet ensures that all (or some) Nodes run a copy of a Pod.
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `k8s.daemonset`
 
@@ -288,8 +288,8 @@ A DaemonSet ensures that all (or some) Nodes run a copy of a Pod.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.daemonset.name`](/docs/attributes-registry/k8s.md) | string | The name of the DaemonSet. | `opentelemetry` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.daemonset.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.daemonset.name`](/docs/attributes-registry/k8s.md) | string | The name of the DaemonSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.daemonset.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -309,7 +309,7 @@ successfully terminate.
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `k8s.job`
 
@@ -317,8 +317,8 @@ successfully terminate.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.job.name`](/docs/attributes-registry/k8s.md) | string | The name of the Job. | `opentelemetry` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.job.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.job.name`](/docs/attributes-registry/k8s.md) | string | The name of the Job. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.job.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -337,7 +337,7 @@ A CronJob creates Jobs on a repeating schedule.
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `k8s.cronjob`
 
@@ -345,8 +345,8 @@ A CronJob creates Jobs on a repeating schedule.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.cronjob.name`](/docs/attributes-registry/k8s.md) | string | The name of the CronJob. | `opentelemetry` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.cronjob.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.cronjob.name`](/docs/attributes-registry/k8s.md) | string | The name of the CronJob. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.cronjob.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -365,7 +365,7 @@ A ReplicationController ensures that a specified number of pod replicas are runn
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `k8s.replicationcontroller`
 
@@ -373,8 +373,8 @@ A ReplicationController ensures that a specified number of pod replicas are runn
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.replicationcontroller.name`](/docs/attributes-registry/k8s.md) | string | The name of the replication controller. | `opentelemetry` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.replicationcontroller.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the replication controller. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.replicationcontroller.name`](/docs/attributes-registry/k8s.md) | string | The name of the replication controller. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.replicationcontroller.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the replication controller. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -394,7 +394,7 @@ A HorizontalPodAutoscaler (HPA for short) automatically updates a workload resou
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `k8s.hpa`
 
@@ -402,8 +402,8 @@ A HorizontalPodAutoscaler (HPA for short) automatically updates a workload resou
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.hpa.name`](/docs/attributes-registry/k8s.md) | string | The name of the horizontal pod autoscaler. | `opentelemetry` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.hpa.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the horizontal pod autoscaler. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.hpa.name`](/docs/attributes-registry/k8s.md) | string | The name of the horizontal pod autoscaler. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.hpa.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the horizontal pod autoscaler. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -422,7 +422,7 @@ A ResourceQuota provides constraints that limit aggregate resource consumption p
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `k8s.resourcequota`
 
@@ -430,8 +430,8 @@ A ResourceQuota provides constraints that limit aggregate resource consumption p
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.resourcequota.name`](/docs/attributes-registry/k8s.md) | string | The name of the resource quota. | `opentelemetry` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`k8s.resourcequota.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the resource quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`k8s.resourcequota.name`](/docs/attributes-registry/k8s.md) | string | The name of the resource quota. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.resourcequota.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the resource quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -9,21 +9,21 @@ A host is defined as a computing instance. For example, physical servers, virtua
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="host-arch" href="#host-arch">`host.arch`</a> | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="host-cpu-cache-l2-size" href="#host-cpu-cache-l2-size">`host.cpu.cache.l2.size`</a> | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="host-cpu-family" href="#host-cpu-family">`host.cpu.family`</a> | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="host-cpu-model-id" href="#host-cpu-model-id">`host.cpu.model.id`</a> | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="host-cpu-model-name" href="#host-cpu-model-name">`host.cpu.model.name`</a> | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="host-cpu-stepping" href="#host-cpu-stepping">`host.cpu.stepping`</a> | string | Stepping or core revisions. | `1`; `r1p1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="host-cpu-vendor-id" href="#host-cpu-vendor-id">`host.cpu.vendor.id`</a> | string | Processor manufacturer identifier. A maximum 12-character string. [1] | `GenuineIntel` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="host-id" href="#host-id">`host.id`</a> | string | Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system. | `fdbf79e8af94cb7f9e8df36789187052` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="host-image-id" href="#host-image-id">`host.image.id`</a> | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `ami-07b06b442921831e5` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="host-image-name" href="#host-image-name">`host.image.name`</a> | string | Name of the VM image or OS install the host was instantiated from. | `infra-ami-eks-worker-node-7d4ec78312`; `CentOS-8-x86_64-1905` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="host-image-version" href="#host-image-version">`host.image.version`</a> | string | The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `0.1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="host-ip" href="#host-ip">`host.ip`</a> | string[] | Available IP addresses of the host, excluding loopback interfaces. [2] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="host-mac" href="#host-mac">`host.mac`</a> | string[] | Available MAC addresses of the host, excluding loopback interfaces. [3] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="host-name" href="#host-name">`host.name`</a> | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| <a id="host-type" href="#host-type">`host.type`</a> | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="host-arch" href="#host-arch">`host.arch`</a> | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="host-cpu-cache-l2-size" href="#host-cpu-cache-l2-size">`host.cpu.cache.l2.size`</a> | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="host-cpu-family" href="#host-cpu-family">`host.cpu.family`</a> | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="host-cpu-model-id" href="#host-cpu-model-id">`host.cpu.model.id`</a> | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="host-cpu-model-name" href="#host-cpu-model-name">`host.cpu.model.name`</a> | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="host-cpu-stepping" href="#host-cpu-stepping">`host.cpu.stepping`</a> | string | Stepping or core revisions. | `1`; `r1p1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="host-cpu-vendor-id" href="#host-cpu-vendor-id">`host.cpu.vendor.id`</a> | string | Processor manufacturer identifier. A maximum 12-character string. [1] | `GenuineIntel` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="host-id" href="#host-id">`host.id`</a> | string | Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system. | `fdbf79e8af94cb7f9e8df36789187052` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="host-image-id" href="#host-image-id">`host.image.id`</a> | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `ami-07b06b442921831e5` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="host-image-name" href="#host-image-name">`host.image.name`</a> | string | Name of the VM image or OS install the host was instantiated from. | `infra-ami-eks-worker-node-7d4ec78312`; `CentOS-8-x86_64-1905` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="host-image-version" href="#host-image-version">`host.image.version`</a> | string | The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `0.1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="host-ip" href="#host-ip">`host.ip`</a> | string[] | Available IP addresses of the host, excluding loopback interfaces. [2] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="host-mac" href="#host-mac">`host.mac`</a> | string[] | Available MAC addresses of the host, excluding loopback interfaces. [3] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="host-name" href="#host-name">`host.name`</a> | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="host-type" href="#host-type">`host.type`</a> | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
 
@@ -37,11 +37,11 @@ A host is defined as a computing instance. For example, physical servers, virtua
 
 | Value  | Description | Stability |
 |---|---|---|
-| `amd64` | AMD64 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `arm32` | ARM32 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `arm64` | ARM64 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ia64` | Itanium | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ppc32` | 32-bit PowerPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ppc64` | 64-bit PowerPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `s390x` | IBM z/Architecture | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `x86` | 32-bit x86 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `amd64` | AMD64 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `arm32` | ARM32 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `arm64` | ARM64 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ia64` | Itanium | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ppc32` | 32-bit PowerPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ppc64` | 64-bit PowerPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `s390x` | IBM z/Architecture | ![Development](https://img.shields.io/badge/-development-blue) |
+| `x86` | 32-bit x86 | ![Development](https://img.shields.io/badge/-development-blue) |

@@ -9,7 +9,7 @@ Describes Node.js related attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="nodejs-eventloop-state" href="#nodejs-eventloop-state">`nodejs.eventloop.state`</a> | string | The state of event loop time. | `active`; `idle` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="nodejs-eventloop-state" href="#nodejs-eventloop-state">`nodejs.eventloop.state`</a> | string | The state of event loop time. | `active`; `idle` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -17,5 +17,5 @@ Describes Node.js related attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `active` | Active time. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `idle` | Idle time. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `active` | Active time. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | Idle time. | ![Development](https://img.shields.io/badge/-development-blue) |
