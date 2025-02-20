@@ -201,7 +201,7 @@ flowchart LR;
 | Status | `UNSET` | `UNSET` | `UNSET` | `UNSET` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` | `"T"` |
-| `messaging.destination.consumer.group` |  | `"my-group"` | `"my-group"` | `"my-group"` |
+| `messaging.consumer.group.name` |  | `"my-group"` | `"my-group"` | `"my-group"` |
 | `messaging.destination.partition.id` | `"1"` | `"1"` | `"1"` | `"1"` |
 | `messaging.operation.name` | `"send"` | `"poll"` | `"process"` | `"commit"` |
 | `messaging.operation.type` | `"send"`  | `"receive"` | `"process"` | `"settle"` |

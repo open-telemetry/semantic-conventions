@@ -21,10 +21,10 @@ linkTitle: Events
 
 <!-- tocstop -->
 
-GenAI instrumentations MAY capture user inputs sent to the model and responses received from it as [events](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.41.0/specification/logs/data-model.md#events).
+GenAI instrumentations MAY capture user inputs sent to the model and responses received from it as [events](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/logs/data-model.md#events).
 
 > Note:
-> Events are in-development and not yet available in some languages. Check [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/spec-compliance-matrix.md#logs) to see the implementation status in corresponding language.
+> Events are in-development and not yet available in some languages. Check [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/spec-compliance-matrix.md#logs) to see the implementation status in corresponding language.
 
 Instrumentations MAY capture inputs and outputs if and only if application has enabled the collection of this data.
 This is for three primary reasons:
