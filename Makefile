@@ -48,8 +48,6 @@ SEMCONVGEN_CONTAINER=$(SEMCONVGEN_CONTAINER_REPOSITORY)/$(VERSIONED_SEMCONVGEN_C
 OPA_CONTAINER=$(OPA_CONTAINER_REPOSITORY)/$(VERSIONED_OPA_CONTAINER_NO_REPO)
 
 
-DOCKER_USER=$(shell id -u):$(shell id -g)
-
 CHECK_TARGETS=install-tools markdownlint misspell table-check compatibility-check \
 			schema-check check-file-and-folder-names-in-docs
 
@@ -61,16 +59,16 @@ else
  DOCKER_COMMAND=podman
 endif
 
-# Determine extra arguments to supply to "docker run"
-DOCKER_RUN_ARGS=
+DOCKER_RUN=$(DOCKER_COMMAND) run
+DOCKER_USER=$(shell id -u):$(shell id -g)
+DOCKER_USER_IS_HOST_USER_ARG=-u $(DOCKER_USER)
 ifeq ($(DOCKER_COMMAND),podman)
- # The argument --userns=keep-id is necessary to avoid:
+ # On podman, additional arguments are needed to make "-u" work
+ # correctly with the host user ID and host group ID.
  #
  #      Error: OCI runtime error: crun: setgroups: Invalid argument
- DOCKER_RUN_ARGS=--userns=keep-id
+ DOCKER_USER_IS_HOST_USER_ARG=--userns=keep-id -u $(DOCKER_USER)
 endif
-
-DOCKER_RUN=$(DOCKER_COMMAND) run $(DOCKER_RUN_ARGS)
 
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
@@ -173,7 +171,7 @@ yamllint:
 .PHONY: table-generation
 table-generation:
 	$(DOCKER_RUN) --rm \
-		-u $(DOCKER_USER) \
+		$(DOCKER_USER_IS_HOST_USER_ARG) \
 		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
@@ -189,7 +187,7 @@ table-generation:
 .PHONY: attribute-registry-generation
 attribute-registry-generation:
 	$(DOCKER_RUN) --rm \
-		-u $(DOCKER_USER) \
+		$(DOCKER_USER_IS_HOST_USER_ARG) \
 		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
@@ -262,7 +260,7 @@ chlog-update: $(CHLOGGEN)
 generate-gh-issue-templates:
 	mkdir -p $(TOOLS_DIR)/bin
 	$(DOCKER_RUN) --rm \
-	-u $(id -u ${USER}):$(id -g ${USER}) \
+	$(DOCKER_USER_IS_HOST_USER_ARG) \
 	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
 	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 	--mount 'type=bind,source=$(TOOLS_DIR)/bin,target=/home/weaver/target' \
