@@ -1,10 +1,5 @@
 groups:
   # HOST METRICS
-#  - id: metric.hw.host.attributes
-#    type: attribute_group
-#    brief: "Attributes for hardware metrics"
-#    extends: hardware.attributes.common
-
   - id: metric.hw.host.ambient_temperature
     type: metric
     metric_name: hw.host.ambient_temperature
