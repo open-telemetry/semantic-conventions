@@ -226,6 +226,10 @@ groups:
               value: "chat"
               brief: 'Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)'
               stability: development
+            - id: generate_content
+              value: "generate_content"
+              briref: 'Multimodal content generation operation such as [Gemini Generate Content](https://ai.google.dev/api/generate-content)'
+              stability: development
             - id: text_completion
               value: "text_completion"
               brief: 'Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions)'
