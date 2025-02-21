@@ -1,0 +1,39 @@
+groups:
+  - id: metric.cpython.gc.collections
+    type: metric
+    metric_name: cpython.gc.collections
+    brief: "The number of times a generation was collected since interpreter start."
+    note: >
+      This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats)
+    instrument: counter
+    unit: "{collection}"
+    stability: development
+    attributes:
+      - ref: cpython.gc.generation
+        requirement_level: required
+
+  - id: metric.cpython.gc.collected
+    type: metric
+    metric_name: cpython.gc.collected
+    brief: "The total number of objects collected inside a generation that have occurred since interpreter start."
+    note: >
+      This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats)
+    instrument: counter
+    unit: "{collection}"
+    stability: development
+    attributes:
+      - ref: cpython.gc.generation
+        requirement_level: required
+
+  - id: metric.cpython.gc.uncollectable
+    type: metric
+    metric_name: cpython.gc.uncollectable
+    brief: "The total number of uncollectable objects inside a generation that have occurred since interpreter start."
+    note: >
+      This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats)
+    instrument: counter
+    unit: "{collection}"
+    stability: development
+    attributes:
+      - ref: cpython.gc.generation
+        requirement_level: required
