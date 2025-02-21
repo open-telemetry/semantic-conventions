@@ -26,13 +26,14 @@ This group defines the attributes used to describe telemetry in the context of d
 | <a id="db-response-status-code" href="#db-response-status-code">`db.response.status_code`</a> | string | Database response status code. [8] | `102`; `ORA-17002`; `08P01`; `404` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-system-name" href="#db-system-name">`db.system.name`</a> | string | The database management system (DBMS) product as identified by the client instrumentation. [9] | `other_sql`; `softwareag.adabas`; `actian.ingres` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
-**[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
 
 The collection name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single collection name present.
+when the database system supports cross-table queries in non-batch operations.
 
-For batch operations, if the individual operations are known to have the same collection name
-then that collection name SHOULD be used.
+For batch operations, if the individual operations are known to have the same
+collection name then that collection name SHOULD be used.
 
 **[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
@@ -44,7 +45,7 @@ It is RECOMMENDED to capture the value as provided by the application without at
 without attempting to do any case normalization.
 
 The operation name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single operation name present.
+when the database system supports cross-table queries in non-batch operations.
 
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,
