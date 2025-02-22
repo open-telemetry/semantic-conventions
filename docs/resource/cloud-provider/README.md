@@ -1,13 +1,6 @@
-<!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Resource Cloud Provider
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/resource/cloud-provider/_index.md
-  to: resource/cloud-provider/README.md
---->
+# Cloud provider
 
-# Resource Cloud Provider Semantic Conventions
-
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for resource cloud providers.
 

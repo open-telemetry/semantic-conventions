@@ -6,7 +6,7 @@ groups:
     attributes:
       - id: url.domain
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Domain extracted from the `url.full`, such as "opentelemetry.io".
         note: >
@@ -23,7 +23,7 @@ groups:
           ]
       - id: url.extension
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The file extension extracted from the `url.full`, excluding the leading dot.
         note: >
@@ -51,7 +51,7 @@ groups:
 
           Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
 
-          ![Experimental](https://img.shields.io/badge/-experimental-blue)
+          ![Development](https://img.shields.io/badge/-development-blue)
           Query string values for the following keys SHOULD be redacted by default and replaced by the
           value `REDACTED`:
 
@@ -68,7 +68,7 @@ groups:
           ["https://www.foo.bar/search?q=OpenTelemetry#SemConv", "//localhost"]
       - id: url.original
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Unmodified original URL as seen in the event source.
         note: >
@@ -92,7 +92,7 @@ groups:
           Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
       - id: url.port
         type: int
-        stability: experimental
+        stability: development
         brief: >
           Port extracted from the `url.full`
         examples: [443]
@@ -105,7 +105,7 @@ groups:
         note: |
           Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
 
-          ![Experimental](https://img.shields.io/badge/-experimental-blue)
+          ![Development](https://img.shields.io/badge/-development-blue)
           Query string values for the following keys SHOULD be redacted by default and replaced by the value `REDACTED`:
 
           * [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
@@ -119,7 +119,7 @@ groups:
           `q=OpenTelemetry&sig=REDACTED`.
       - id: url.registered_domain
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The highest registered url domain, stripped of the subdomain.
         examples: ["example.com", "foo.co.uk"]
@@ -135,7 +135,7 @@ groups:
         examples: ["https", "ftp", "telnet"]
       - id: url.subdomain
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The subdomain portion of a fully qualified domain name includes all of the names except the host name
           under the registered_domain. In a partially qualified domain, or if the qualification level of the
@@ -146,13 +146,13 @@ groups:
           such as `sub2.sub1.example.com`, the subdomain field should contain `sub2.sub1`, with no trailing period.
       - id: url.template
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2).
         examples: ["/users/{id}", "/users/:id", "/users?id={id}"]
       - id: url.top_level_domain
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The effective top level domain (eTLD), also known as the domain suffix, is the last part of the domain name.
           For example, the top level domain for example.com is `com`.

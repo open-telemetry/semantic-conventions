@@ -1,15 +1,13 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Runtime Environment
+linkTitle: Runtime environment
 --->
 
-# Semantic Conventions for Runtime Environment
+# Semantic conventions for runtime environment
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for
 runtime environment spans, metrics and logs.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 

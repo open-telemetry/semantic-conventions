@@ -7,7 +7,7 @@ groups:
     attributes:
       - id: dns.question.name
         type: string
-        stability: experimental
+        stability: development
         brief: The name being queried.
         examples: ["www.example.com", "opentelemetry.io"]
         note: >

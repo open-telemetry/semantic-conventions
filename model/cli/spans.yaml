@@ -2,7 +2,7 @@ groups:
   - id: span.cli.internal
     type: span
     span_kind: internal
-    stability: experimental
+    stability: development
     brief: >
       Describes span of CLI (Command Line Interfaces) programs.
     attributes:
@@ -23,7 +23,7 @@ groups:
   - id: span.cli.client
     type: span
     span_kind: client
-    stability: experimental
+    stability: development
     brief: >
       Describes span to calls of CLI (Command Line Interfaces) programs.
     attributes:

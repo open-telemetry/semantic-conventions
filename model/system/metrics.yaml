@@ -3,7 +3,7 @@ groups:
   - id: metric.system.uptime
     type: metric
     metric_name: system.uptime
-    stability: experimental
+    stability: development
     brief: "The time the system has been running"
     note: |
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
@@ -15,7 +15,7 @@ groups:
   - id: metric.system.cpu.time
     type: metric
     metric_name: system.cpu.time
-    stability: experimental
+    stability: development
     brief: "Seconds each logical CPU spent on each mode"
     instrument: counter
     unit: "s"
@@ -28,7 +28,7 @@ groups:
   - id: metric.system.cpu.utilization
     type: metric
     metric_name: system.cpu.utilization
-    stability: experimental
+    stability: development
     brief: "Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of logical CPUs"
     instrument: gauge
     unit: "1"
@@ -41,7 +41,7 @@ groups:
   - id: metric.system.cpu.frequency
     type: metric
     metric_name: system.cpu.frequency
-    stability: experimental
+    stability: development
     brief: "Reports the current frequency of the CPU in Hz"
     instrument: gauge
     unit: "{Hz}"
@@ -51,7 +51,7 @@ groups:
   - id: metric.system.cpu.physical.count
     type: metric
     metric_name: system.cpu.physical.count
-    stability: experimental
+    stability: development
     brief: "Reports the number of actual physical processor cores on the hardware"
     note: "Calculated by multiplying the number of sockets by the number of cores per socket"
     instrument: updowncounter
@@ -61,7 +61,7 @@ groups:
   - id: metric.system.cpu.logical.count
     type: metric
     metric_name: system.cpu.logical.count
-    stability: experimental
+    stability: development
     brief: "Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking"
     note: "Calculated by multiplying the number of sockets by the number of cores per socket, and then by the number of threads per core"
     instrument: updowncounter
@@ -72,7 +72,7 @@ groups:
   - id: metric.system.memory.usage
     type: metric
     metric_name: system.memory.usage
-    stability: experimental
+    stability: development
     brief: "Reports memory in use by state."
     note: |
       The sum over all `system.memory.state` values SHOULD equal the total memory
@@ -85,7 +85,7 @@ groups:
   - id: metric.system.memory.limit
     type: metric
     metric_name: system.memory.limit
-    stability: experimental
+    stability: development
     brief: "Total memory available in the system."
     note: |
       Its value SHOULD equal the sum of `system.memory.state` over all states.
@@ -96,7 +96,7 @@ groups:
   - id: metric.system.memory.shared
     type: metric
     metric_name: system.memory.shared
-    stability: experimental
+    stability: development
     brief: "Shared memory used (mostly by tmpfs)."
     note: |
       Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
@@ -107,7 +107,7 @@ groups:
   - id: metric.system.memory.utilization
     type: metric
     metric_name: system.memory.utilization
-    stability: experimental
+    stability: development
     brief: ""
     instrument: gauge
     unit: "1"
@@ -118,7 +118,7 @@ groups:
   - id: metric.system.paging.usage
     type: metric
     metric_name: system.paging.usage
-    stability: experimental
+    stability: development
     brief: "Unix swap or windows pagefile usage"
     instrument: updowncounter
     unit: "By"
@@ -131,7 +131,7 @@ groups:
   - id: metric.system.paging.utilization
     type: metric
     metric_name: system.paging.utilization
-    stability: experimental
+    stability: development
     brief: ""
     instrument: gauge
     unit: "1"
@@ -144,7 +144,7 @@ groups:
   - id: metric.system.paging.faults
     type: metric
     metric_name: system.paging.faults
-    stability: experimental
+    stability: development
     brief: ""
     instrument: counter
     unit: "{fault}"
@@ -154,7 +154,7 @@ groups:
   - id: metric.system.paging.operations
     type: metric
     metric_name: system.paging.operations
-    stability: experimental
+    stability: development
     brief: ""
     instrument: counter
     unit: "{operation}"
@@ -166,7 +166,7 @@ groups:
   - id: metric.system.disk.io
     type: metric
     metric_name: system.disk.io
-    stability: experimental
+    stability: development
     brief: ""
     instrument: counter
     unit: "By"
@@ -177,7 +177,7 @@ groups:
   - id: metric.system.disk.operations
     type: metric
     metric_name: system.disk.operations
-    stability: experimental
+    stability: development
     brief: ""
     instrument: counter
     unit: "{operation}"
@@ -188,7 +188,7 @@ groups:
   - id: metric.system.disk.io_time
     type: metric
     metric_name: system.disk.io_time
-    stability: experimental
+    stability: development
     brief: "Time disk spent activated"
     instrument: counter
     unit: "s"
@@ -205,7 +205,7 @@ groups:
   - id: metric.system.disk.operation_time
     type: metric
     metric_name: system.disk.operation_time
-    stability: experimental
+    stability: development
     brief: "Sum of the time each operation took to complete"
     instrument: counter
     unit: "s"
@@ -221,7 +221,7 @@ groups:
   - id: metric.system.disk.merged
     type: metric
     metric_name: system.disk.merged
-    stability: experimental
+    stability: development
     brief: ""
     instrument: counter
     unit: "{operation}"
@@ -232,7 +232,7 @@ groups:
   - id: metric.system.disk.limit
     type: metric
     metric_name: system.disk.limit
-    stability: experimental
+    stability: development
     brief: "The total storage capacity of the disk"
     instrument: updowncounter
     unit: "By"
@@ -243,7 +243,7 @@ groups:
   - id: metric.system.filesystem.usage
     type: metric
     metric_name: system.filesystem.usage
-    stability: experimental
+    stability: development
     brief: "Reports a filesystem's space usage across different states."
     note: |
       The sum of all `system.filesystem.usage` values over the different `system.filesystem.state` attributes
@@ -262,7 +262,7 @@ groups:
   - id: metric.system.filesystem.utilization
     type: metric
     metric_name: system.filesystem.utilization
-    stability: experimental
+    stability: development
     brief: ""
     instrument: gauge
     unit: "1"
@@ -278,7 +278,7 @@ groups:
   - id: metric.system.filesystem.limit
     type: metric
     metric_name: system.filesystem.limit
-    stability: experimental
+    stability: development
     brief: "The total storage capacity of the filesystem"
     instrument: updowncounter
     unit: "By"
@@ -294,7 +294,7 @@ groups:
   - id: metric.system.network.dropped
     type: metric
     metric_name: system.network.dropped
-    stability: experimental
+    stability: development
     brief: "Count of packets that are dropped or discarded even though there was no error"
     instrument: counter
     unit: "{packet}"
@@ -311,7 +311,7 @@ groups:
   - id: metric.system.network.packets
     type: metric
     metric_name: system.network.packets
-    stability: experimental
+    stability: development
     brief: ""
     instrument: counter
     unit: "{packet}"
@@ -322,7 +322,7 @@ groups:
   - id: metric.system.network.errors
     type: metric
     metric_name: system.network.errors
-    stability: experimental
+    stability: development
     brief: "Count of network errors detected"
     instrument: counter
     unit: "{error}"
@@ -339,7 +339,7 @@ groups:
   - id: metric.system.network.io
     type: metric
     metric_name: system.network.io
-    stability: experimental
+    stability: development
     brief: ""
     instrument: counter
     unit: "By"
@@ -350,7 +350,7 @@ groups:
   - id: metric.system.network.connections
     type: metric
     metric_name: system.network.connections
-    stability: experimental
+    stability: development
     brief: ""
     instrument: updowncounter
     unit: "{connection}"
@@ -363,7 +363,7 @@ groups:
   - id: metric.system.process.count
     type: metric
     metric_name: system.process.count
-    stability: experimental
+    stability: development
     brief: "Total number of processes in each state"
     instrument: updowncounter
     unit: "{process}"
@@ -373,7 +373,7 @@ groups:
   - id: metric.system.process.created
     type: metric
     metric_name: system.process.created
-    stability: experimental
+    stability: development
     brief: "Total number of processes created over uptime of the host"
     instrument: counter
     unit: "{process}"
@@ -383,7 +383,7 @@ groups:
   - id: metric.system.linux.memory.available
     type: metric
     metric_name: system.linux.memory.available
-    stability: experimental
+    stability: development
     brief: "An estimate of how much memory is available for starting new applications, without causing swapping"
     note: |
       This is an alternative to `system.memory.usage` metric with `state=free`.
@@ -398,7 +398,7 @@ groups:
   - id: metric.system.linux.memory.slab.usage
     type: metric
     metric_name: system.linux.memory.slab.usage
-    stability: experimental
+    stability: development
     brief: "Reports the memory used by the Linux kernel for managing caches of frequently used objects."
     note: |
       The sum over the `reclaimable` and `unreclaimable` state values in `linux.memory.slab.usage` SHOULD be equal to the total slab memory available on the system.

@@ -1,7 +1,7 @@
 groups:
   - id: span.graphql.server
     type: span
-    stability: experimental
+    stability: development
     span_kind: server
     brief: >
       This document defines semantic conventions to apply when instrumenting the GraphQL implementation. They map

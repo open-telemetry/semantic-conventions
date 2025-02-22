@@ -1,7 +1,7 @@
 groups:
   - id: resource.process
     type: resource
-    stability: experimental
+    stability: development
     name: process
     brief: >
         An operating system process.
@@ -28,7 +28,7 @@ groups:
 
   - id: resource.process.runtime
     type: resource
-    stability: experimental
+    stability: development
     name: process.runtime
     brief: >
       The single (language) runtime instance which is monitored.

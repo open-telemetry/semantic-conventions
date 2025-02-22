@@ -2,7 +2,6 @@ groups:
   - id: attributes.db.client.minimal
     type: attribute_group
     brief: 'Database Client attributes'
-    stability: experimental
     attributes:
       - ref: server.address
         brief: >
@@ -26,22 +25,19 @@ groups:
 
           Instrumentations SHOULD document how `error.type` is populated.
 
-  - id: attributes.db.cosmosdb.minimal
+  - id: attributes.azure.cosmosdb.minimal
     type: attribute_group
     brief: 'Azure Cosmos DB Client attributes'
-    stability: experimental
+    stability: development
     extends: attributes.db.client.minimal
     attributes:
       # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
-      # - ref: db.system
+      # - ref: db.system.name
       #   requirement_level:
       #     conditionally_required: if available
       - ref: db.operation.name
-        requirement_level:  # TODO (trask) simplify
-          conditionally_required: >
-            If readily available and if there is a single operation name that describes the
-            database call. The operation name MAY be parsed from the query text,
-            in which case it SHOULD be the single operation name found in the query.
+        requirement_level:
+          conditionally_required: If readily available.
       - ref: db.collection.name
         brief: Cosmos DB container name.
         requirement_level:
@@ -50,17 +46,16 @@ groups:
         requirement_level:
           conditionally_required: If available.
         note: ""  # overriding the base note
-      - ref: db.cosmosdb.sub_status_code
+      - ref: azure.cosmosdb.response.sub_status_code
         requirement_level:
           conditionally_required: when response was received and contained sub-code.
-      - ref: db.cosmosdb.consistency_level
+      - ref: azure.cosmosdb.consistency.level
         requirement_level:
           conditionally_required: If available.
 
   - id: attributes.db.client.with_query
     extends: attributes.db.client.minimal
     type: attribute_group
-    stability: experimental
     brief: This group defines the attributes describing database operations that
       may have queries.
     attributes:
@@ -72,19 +67,15 @@ groups:
   - id: attributes.db.client.with_query_and_collection
     extends: attributes.db.client.with_query
     type: attribute_group
-    stability: experimental
     brief: This group defines the attributes describing database operations that
       have operation name, collection name and query.
     attributes:
       - ref: db.operation.name
-        requirement_level:  # TODO (trask) simplify
+        requirement_level:
           conditionally_required: >
             If readily available and if there is a single operation name that describes the
-            database call. The operation name MAY be parsed from the query text,
-            in which case it SHOULD be the single operation name found in the query.
+            database call.
       - ref: db.collection.name
-        requirement_level:  # TODO (trask) simplify
+        requirement_level:
           conditionally_required: >
             If readily available and if a database call is performed on a single collection.
-            The collection name MAY be parsed from the query text,
-            in which case it SHOULD be the single collection name in the query.

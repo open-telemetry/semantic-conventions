@@ -5,13 +5,14 @@ PWD := $(shell pwd)
 # Determine OS & Arch for specific OS only tools on Unix based systems
 OS := $(shell uname | tr '[:upper:]' '[:lower:]')
 ifeq ($(OS),darwin)
-	SED := gsed
+	SED ?= gsed
 else
-	SED := sed
+	SED ?= sed
 endif
 
 TOOLS_DIR := $(PWD)/internal/tools
 
+MARKDOWN_LINK_CHECK_ARG= # pass extra arguments such as --exclude '^http'
 MISSPELL_BINARY=bin/misspell
 MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
 
@@ -25,13 +26,27 @@ CONTAINER_REPOSITORY=docker.io
 # Per container overrides for the repository resolution.
 WEAVER_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 SEMCONVGEN_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
+OPA_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 
-# Fully qualified references to containers used in this Makefile.
+# Versioned, non-qualified references to containers used in this Makefile.
 # These are parsed from dependencies.Dockerfile so dependabot will autoupdate
 # the versions of docker files we use.
-WEAVER_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="weaver" {print $$2}')
-SEMCONVGEN_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="semconvgen" {print $$2}')
-OPA_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}')
+VERSIONED_WEAVER_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="weaver" {print $$2}')
+VERSIONED_SEMCONVGEN_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="semconvgen" {print $$2}')
+VERSIONED_OPA_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}')
+
+# Fully qualified references to containers used in this Makefile. These
+# include the container repository, so that the build will work with tools
+# like "podman" with a default "/etc/containers/registries.conf", where
+# a default respository of "docker.io" is not assumed. This is intended to
+# eliminate errors from podman such as:
+#
+#    Error: short-name "otel/weaver:v1.2.3" did not resolve to an alias
+#    and no unqualified-search registries are defined in "/etc/containers/registries.conf"
+WEAVER_CONTAINER=$(WEAVER_CONTAINER_REPOSITORY)/$(VERSIONED_WEAVER_CONTAINER_NO_REPO)
+SEMCONVGEN_CONTAINER=$(SEMCONVGEN_CONTAINER_REPOSITORY)/$(VERSIONED_SEMCONVGEN_CONTAINER_NO_REPO)
+OPA_CONTAINER=$(OPA_CONTAINER_REPOSITORY)/$(VERSIONED_OPA_CONTAINER_NO_REPO)
+
 
 DOCKER_USER=$(shell id -u):$(shell id -g)
 
@@ -66,14 +81,27 @@ misspell:	$(MISSPELL)
 misspell-correction:	$(MISSPELL)
 	$(MISSPELL) -w $(ALL_DOCS)
 
+.PHONY: normalized-link-check
+# NOTE: we check `model/[a-z]*` to avoid `model/README.md`, which contains
+# valid occurrences of `../docs/`.
+normalized-link-check:
+	@if grep -R '\.\./docs/' docs model/[a-z]*; then \
+		echo "\nERROR: Found occurrences of '../docs/'; see above."; \
+		echo "       Remove the '../docs/' from doc page links referencing doc pages."; \
+		exit 1; \
+	else \
+		echo "Normalized-link check passed."; \
+	fi
+
 .PHONY: markdown-link-check
-markdown-link-check:
+markdown-link-check: normalized-link-check
 	docker run --rm \
 		--mount 'type=bind,source=$(PWD),target=/home/repo' \
 		lycheeverse/lychee \
 		--config home/repo/.lychee.toml \
 		--root-dir /home/repo \
 		--verbose \
+		$(MARKDOWN_LINK_CHECK_ARG) \
 		home/repo
 
 .PHONY: markdown-link-check-changelog-preview
@@ -101,6 +129,8 @@ markdown-toc:
 		if grep -q '<!-- tocstop -->' $$f; then \
 			echo markdown-toc: processing $$f; \
 			npx --no -- markdown-toc --bullets "-" --no-first-h1 --no-stripHeadingTags -i $$f || exit 1; \
+		elif grep -q '<!-- toc -->' $$f; then \
+			echo markdown-toc: ERROR: '<!-- tocstop -->' missing from $$f; exit 1; \
 		else \
 			echo markdown-toc: no TOC markers, skipping $$f; \
 		fi; \

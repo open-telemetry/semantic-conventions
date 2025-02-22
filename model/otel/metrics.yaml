@@ -1,0 +1,112 @@
+groups:
+  - id: metric.otel.sdk.span.live.count
+    type: metric
+    metric_name: otel.sdk.span.live.count
+    stability: development
+    brief: "The number of created spans for which the end operation has not been called yet"
+    instrument: updowncounter
+    unit: "{span}"
+    note: |
+      For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
+      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.ended.count`.
+    attributes:
+      - ref: otel.span.sampling_result
+
+  - id: metric.otel.sdk.span.ended.count
+    type: metric
+    metric_name: otel.sdk.span.ended.count
+    stability: development
+    brief: "The number of created spans for which the end operation was called"
+    instrument: counter
+    unit: "{span}"
+    note: |
+      For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
+      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.live.count`.
+    attributes:
+      - ref: otel.span.sampling_result
+
+  - id: metric.otel.sdk.processor.span.queue.size
+    type: metric
+    metric_name: otel.sdk.processor.span.queue.size
+    stability: development
+    brief: "The number of spans in the queue of a given instance of an SDK span processor"
+    note: |
+      Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
+    instrument: updowncounter
+    unit: "{span}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+
+  - id: metric.otel.sdk.processor.span.queue.capacity
+    type: metric
+    metric_name: otel.sdk.processor.span.queue.capacity
+    stability: development
+    brief: "The maximum number of spans the queue of a given instance of an SDK span processor can hold"
+    note: |
+      Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
+    instrument: updowncounter
+    unit: "{span}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+
+  - id: metric.otel.sdk.processor.span.processed.count
+    type: metric
+    metric_name: otel.sdk.processor.span.processed.count
+    stability: development
+    brief: "The number of spans for which the processing has finished, either successful or failed"
+    note: |
+      For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` must contain the failure cause.
+      For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
+    instrument: counter
+    unit: "{span}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: error.type
+        brief: >
+          A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue.
+        examples: ["queue_full"]
+
+  - id: metric.otel.sdk.exporter.span.inflight.count
+    type: metric
+    metric_name: otel.sdk.exporter.span.inflight.count
+    stability: development
+    brief: "The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
+    note: |
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
+    instrument: updowncounter
+    unit: "{span}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
+
+  - id: metric.otel.sdk.exporter.span.exported.count
+    type: metric
+    metric_name: otel.sdk.exporter.span.exported.count
+    stability: development
+    brief: "The number of spans for which the export has finished, either successful or failed"
+    note: |
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
+      For exporters with partial success semantics (e.g. OTLP with `rejected_spans`), rejected spans must count as failed and only non-rejected spans count as success.
+      If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
+    instrument: counter
+    unit: "{span}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
+      - ref: error.type
+        examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]

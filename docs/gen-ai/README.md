@@ -1,13 +1,10 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Generative AI
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/gen-ai/_index.md
-  to: gen-ai/README.md
 --->
 
-# Semantic Conventions for Generative AI systems
+# Semantic conventions for generative AI systems
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 **Warning**:
 The semantic conventions for GenAI and LLM are currently in development.

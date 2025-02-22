@@ -1,10 +1,10 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: CLI
+linkTitle: CLI programs
 --->
 
-# Semantic Conventions for CLI (Command Line Interface) programs
+# Semantic conventions for CLI (command line interface) programs
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions to apply when instrumenting CLI programs, both as a caller and as callee. This document is intended for short-lived programs that end their execution, i.e. not daemon or long running background tasks.
 
@@ -33,8 +33,8 @@ additional details on how to record span status.
 | [`process.exit.code`](/docs/attributes-registry/process.md) | int | The exit code of the process. | `127` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`process.pid`](/docs/attributes-registry/process.md) | int | Process identifier (PID). | `1234` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if and only if process.exit.code is not 0 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`process.command_args`](/docs/attributes-registry/process.md) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `["cmd/otecol", "--config=config.yaml"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.executable.path`](/docs/attributes-registry/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.command_args`](/docs/attributes-registry/process.md) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `["cmd/otecol", "--config=config.yaml"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.executable.path`](/docs/attributes-registry/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -84,8 +84,8 @@ it's RECOMMENDED to:
 | [`process.exit.code`](/docs/attributes-registry/process.md) | int | The exit code of the process. | `127` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`process.pid`](/docs/attributes-registry/process.md) | int | Process identifier (PID). | `1234` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if and only if process.exit.code is not 0 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`process.command_args`](/docs/attributes-registry/process.md) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `["cmd/otecol", "--config=config.yaml"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.executable.path`](/docs/attributes-registry/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`process.command_args`](/docs/attributes-registry/process.md) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `["cmd/otecol", "--config=config.yaml"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.executable.path`](/docs/attributes-registry/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 

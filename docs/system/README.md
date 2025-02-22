@@ -1,13 +1,10 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: System
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/system/_index.md
-  to: system/README.md
 --->
 
-# System Semantic Conventions
+# System semantic conventions
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for systems (such as processes, runtimes, hardware, etc.).
 
