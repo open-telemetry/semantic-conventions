@@ -19,7 +19,7 @@ groups:
     note: >
       This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats)
     instrument: counter
-    unit: "{collection}"
+    unit: "{object}"
     stability: development
     attributes:
       - ref: cpython.gc.generation
@@ -32,7 +32,7 @@ groups:
     note: >
       This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats)
     instrument: counter
-    unit: "{collection}"
+    unit: "{object}"
     stability: development
     attributes:
       - ref: cpython.gc.generation
