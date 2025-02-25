@@ -1,0 +1,107 @@
+groups:
+  - id: event.browser.resource_timing
+    stability: development
+    type: event
+    name: browser.resource_timing
+    brief: >
+      This event describes the timing metrics as provided by PerformanceResourceTiming Performance API.
+      These metrics are related to fetching a resource, such as
+      XMLHttpRequest, Fetch, sendBeacon APIs, SVG, image or script.
+    note: >
+      This event captures data from the [ResourceTiming](https://www.w3.org/TR/resource-timing/).
+      It is recommended to be captured by using the PerformanceResourceTiming API.
+      If the page starts unloading before the page loads,
+      then the partial data can be captured by calling the [performance.getEntriesByType][https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByType] method.
+
+      This event definition elevates a few key data points to body fields in
+      order to make it easier to access. In addition, the complete set of data
+      from the API may be sent in the body of the event as stringified JSON.
+    body:
+      id: browser.resource_timing
+      requirement_level: required
+      stability: development
+      type: map
+      fields:
+        - id: name 
+          type: string
+          stability: development
+          brief: The resolved URL of the requested resource. 
+          requirement_level: recommended
+          examples: ["https://en.wikipedia.org/wiki/Main_Page"]
+        - id: fetchStart
+          type: double
+          stability: development
+          brief: >
+            The time immediately before the browser starts to fetch the resource,
+            and it is measured in milliseconds.
+          requirement_level: recommended
+          examples: [9.600000000558794]
+        - id: domainLookupStart
+          type: double
+          stability: development
+          brief: >
+            The time immediately before the browser starts the domain name lookup for the resource,
+            and it is measured in milliseconds.
+          requirement_level: recommended
+          examples: [100.6000000014901]
+        - id: domainLookupEnd
+          type: double
+          stability: development
+          brief: >
+            The time immediately after the browser finishes the domain name lookup for the resource,
+            and it is measured in milliseconds.
+          requirement_level: recommended
+          examples: [100.6000000014906]
+        - id: connectStart
+          type: double
+          stability: development
+          brief: >
+             The time immediately immediately before the user agent starts establishing the connection to the server to retrieve the resource,
+             and it is measured in milliseconds.
+          requirement_level: recommended
+          examples: [476.6000000014901]
+        - id: secureConnectionStart
+          type: double
+          stability: development
+          brief: >
+            The time immediately before immediately before the browser starts the handshake process to secure the current connection,
+            and it is measured in milliseconds.
+          requirement_level: recommended
+          examples: [476.6000000014903]
+        - id: connectEnd
+          type: double
+          stability: development
+          brief: >
+            The time immediately after the browser finishes establishing the connection to the server to retrieve the resource. 
+            The timestamp value includes the time interval to establish the transport connection, 
+            as well as other time intervals such as SSL handshake and SOCKS authentication.
+            completes, and it is measured in milliseconds.
+          requirement_level: recommended
+          examples: [476.6000000014906]
+        - id: requestStart
+          type: double
+          stability: development
+          brief: >
+            The time immediately before the browser starts requesting the resource from the server, cache, or local resource.
+            If the transport connection fails and the browser retires the request,
+            the value returned will be the start of the retry request,
+            and it is measured in milliseconds.
+          requirement_level: recommended
+          examples: [506.70000000298023]
+        - id: responseStart
+          type: double
+          stability: development
+          brief: >
+            The time immediately after the browser receives the first byte of the response from the server, cache, or local resource,
+            and it is measured in milliseconds.
+          requirement_level: recommended
+          examples: [508.6000000014901]
+        - id: responseEnd
+          type: double
+          stability: development
+          brief: >
+            The time immediately after the browser receives the last byte of the resource
+            or immediately before the transport connection is closed, whichever comes first,
+            and it is measured in milliseconds.
+          requirement_level: recommended
+          examples: [510.6000000014906]
