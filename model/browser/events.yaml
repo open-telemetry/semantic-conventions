@@ -11,7 +11,7 @@ groups:
       stability: development
       type: map
       fields:
-        - id: name 
+        - id: name
           type: enum
           members:
             - id: cls
@@ -34,22 +34,21 @@ groups:
           brief: Name of the web vital.
           requirement_level: required
           examples: ["cls"]
-        - id: value 
+        - id: value
           type: double
           stability: development
-          brief: Value of the web vital. 
+          brief: Value of the web vital.
           requirement_level: required
           examples: [1.0]
-        - id: delta 
+        - id: delta
           type: double
           stability: development
           brief: The delta between the current value and the last-reported value.
           requirement_level: required
           examples: [0.2]
-        - id: id 
+        - id: id
           type: string
           stability: development
           brief: A unique ID representing this particular metric instance.
           requirement_level: required
           examples: ["v3-1677874579383-6381583661209"]
-       
