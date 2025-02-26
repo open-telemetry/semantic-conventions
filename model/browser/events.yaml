@@ -11,7 +11,7 @@ groups:
       stability: development
       type: map
       fields:
-        - id: element 
+        - id: element
           type: string
           stability: development
           brief: Target element tag name and it is obtained via event.target.tagName.
@@ -20,64 +20,66 @@ groups:
         - id: element_xpath 
           type: string
           stability: development
-          brief: Target element xpath 
+          brief: Target element xpath
           requirement_level: recommended
           examples: ["//*[@id='testBtn']"]
-        - id: user_action_type 
-          type:
-            members:
-              - id: clickleft
-                value: "cl"
-                stability: development
-                brief: An element is left clicked by a user.
-              - id: clickright
-                value: "cr"
-                stability: development
-                brief: An element is right clicked by a user.
-              - id: clickmiddle
-                value: "cm"
-                stability: development
-                brief: An element is middle clicked by a user.
-              - id: scroll
-                value: "s"
-                stability: development
-                brief: An element is scrolled by a user.
-              - id: zoom
-                value: "z"
-                stability: development
-                brief: An element is zoomed by a user.
-              - id: resize
-                value: "r"
-                stability: development
-                brief: An element is resized by a user.
-              - id: keyboardenter
-                value: "ke"
-                stability: development
-                brief: An element is entered via keyboard by a user.
-              - id: keyboardspace
-                value: "ks"
-                stability: development
-                brief: A space is entered via keyboard by a user.
-              - id: other
-                value: "o"
-                stability: development
-                brief: User actions that are not listed above.
+        - id: user_action_type
+          type: enum
+          members:
+            - id: clickleft
+              value: "cl"
+              stability: development
+              brief: An element is left clicked by a user.
+            - id: clickright
+              value: "cr"
+              stability: development
+              brief: An element is right clicked by a user.
+            - id: clickmiddle
+              value: "cm"
+              stability: development
+              brief: An element is middle clicked by a user.
+            - id: scroll
+              value: "s"
+              stability: development
+              brief: An element is scrolled by a user.
+            - id: zoom
+              value: "z"
+              stability: development
+              brief: An element is zoomed by a user.
+            - id: resize
+              value: "r"
+              stability: development
+              brief: An element is resized by a user.
+            - id: keyboardenter
+              value: "ke"
+              stability: development
+              brief: An element is entered via keyboard by a user.
+            - id: keyboardspace
+              value: "ks"
+              stability: development
+              brief: A space is entered via keyboard by a user.
+            - id: other
+              value: "o"
+              stability: development
+              brief: User actions that are not listed above.
           stability: development
           brief: >
             Type of interaction. 
-            See enum [here](https://github.com/microsoft/ApplicationInsights-JS/blob/main/extensions/applicationinsights-clickanalytics-js/src/Enums.ts) for potential values we could add support for.
+            See enum [here](https://github.com/microsoft/ApplicationInsights-JS/blob/main/extensions/applicationinsights-clickanalytics-js/src/Enums.ts)
+            for potential values we could add support for.
           requirement_level: required
           examples: ["cl"]
-        - id: click_coordinates 
+        - id: click_coordinates
           type: string
           stability: development
           brief: Click coordinates captured as a string in the format {x}X{y}.
           requirement_level: recommended
           examples: ["345X23"]
-        - id: tags 
+        - id: tags
           type: string
           stability: development
           brief:  Grab data from data-otel-* attributes in tree.
           requirement_level: recommended
           examples: ["id"]
+
        
