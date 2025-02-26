@@ -1,5 +1,5 @@
 change_type: enhancement
 component: gen-ai
 note: Adds `gen_ai.request.choice.count` span attribute
-issues: [1888]s
+issues: [1888]
 subtext: Enables recording target number of completions to generate
