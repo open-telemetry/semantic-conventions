@@ -48,10 +48,27 @@ SEMCONVGEN_CONTAINER=$(SEMCONVGEN_CONTAINER_REPOSITORY)/$(VERSIONED_SEMCONVGEN_C
 OPA_CONTAINER=$(OPA_CONTAINER_REPOSITORY)/$(VERSIONED_OPA_CONTAINER_NO_REPO)
 
 
-DOCKER_USER=$(shell id -u):$(shell id -g)
-
 CHECK_TARGETS=install-tools markdownlint misspell table-check compatibility-check \
 			schema-check check-file-and-folder-names-in-docs
+
+# Determine if "docker" is actually podman
+DOCKER_IS_PODMAN=$(docker --version | grep podman | wc -l)
+ifeq ($(DOCKER_IS_PODMAN),0)
+ DOCKER_COMMAND=docker
+else
+ DOCKER_COMMAND=podman
+endif
+
+DOCKER_RUN=$(DOCKER_COMMAND) run
+DOCKER_USER=$(shell id -u):$(shell id -g)
+DOCKER_USER_IS_HOST_USER_ARG=-u $(DOCKER_USER)
+ifeq ($(DOCKER_COMMAND),podman)
+ # On podman, additional arguments are needed to make "-u" work
+ # correctly with the host user ID and host group ID.
+ #
+ #      Error: OCI runtime error: crun: setgroups: Invalid argument
+ DOCKER_USER_IS_HOST_USER_ARG=--userns=keep-id -u $(DOCKER_USER)
+endif
 
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
@@ -95,7 +112,7 @@ normalized-link-check:
 
 .PHONY: markdown-link-check
 markdown-link-check: normalized-link-check
-	docker run --rm \
+	$(DOCKER_RUN) --rm \
 		--mount 'type=bind,source=$(PWD),target=/home/repo' \
 		lycheeverse/lychee \
 		--config home/repo/.lychee.toml \
@@ -106,7 +123,7 @@ markdown-link-check: normalized-link-check
 
 .PHONY: markdown-link-check-changelog-preview
 markdown-link-check-changelog-preview:
-	docker run --rm \
+	$(DOCKER_RUN) --rm \
 		--mount 'type=bind,source=$(PWD),target=/home/repo' \
 		lycheeverse/lychee \
 		--config /home/repo/.lychee.toml \
@@ -153,8 +170,8 @@ yamllint:
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
-	docker run --rm \
-		-u $(DOCKER_USER) \
+	$(DOCKER_RUN) --rm \
+		$(DOCKER_USER_IS_HOST_USER_ARG) \
 		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
@@ -169,8 +186,8 @@ table-generation:
 # Generate attribute registry markdown.
 .PHONY: attribute-registry-generation
 attribute-registry-generation:
-	docker run --rm \
-		-u $(DOCKER_USER) \
+	$(DOCKER_RUN) --rm \
+		$(DOCKER_USER_IS_HOST_USER_ARG) \
 		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
@@ -183,7 +200,7 @@ attribute-registry-generation:
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
 .PHONY: table-check
 table-check:
-	docker run --rm \
+	$(DOCKER_RUN) --rm \
 		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target,readonly' \
@@ -242,8 +259,8 @@ chlog-update: $(CHLOGGEN)
 .PHONY: generate-gh-issue-templates
 generate-gh-issue-templates:
 	mkdir -p $(TOOLS_DIR)/bin
-	docker run --rm \
-	-u $(id -u ${USER}):$(id -g ${USER}) \
+	$(DOCKER_RUN) --rm \
+	$(DOCKER_USER_IS_HOST_USER_ARG) \
 	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
 	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 	--mount 'type=bind,source=$(TOOLS_DIR)/bin,target=/home/weaver/target' \
@@ -271,7 +288,7 @@ generate-gh-issue-templates:
 LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | $(SED) 's/v//g')
 .PHONY: check-policies
 check-policies:
-	docker run --rm \
+	$(DOCKER_RUN) --rm \
 		--mount 'type=bind,source=$(PWD)/policies,target=/home/weaver/policies,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		${WEAVER_CONTAINER} registry check \
@@ -282,7 +299,7 @@ check-policies:
 # Test rego policies
 .PHONY: test-policies
 test-policies:
-	docker run --rm -v $(PWD)/policies:/policies -v $(PWD)/policies_test:/policies_test \
+	$(DOCKER_RUN) --rm -v $(PWD)/policies:/policies -v $(PWD)/policies_test:/policies_test \
 	${OPA_CONTAINER} test \
     --var-values \
 	--explain fails \
@@ -293,5 +310,5 @@ test-policies:
 # once github action requirements are updated.
 .PHONY: compatibility-check
 compatibility-check:
-	docker run --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
+	$(DOCKER_RUN) --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
 		$(SEMCONVGEN_CONTAINER) --continue-on-validation-errors -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
