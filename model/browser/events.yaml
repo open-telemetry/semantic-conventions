@@ -65,8 +65,7 @@ groups:
           stability: development
           brief: >
             Type of interaction.
-            See enum [here](https://github.com/microsoft/ApplicationInsights-JS/blob/main/extensions/applicationinsights-clickanalytics-js/src/Enums.ts)
-            for potential values we could add support for.
+            See enum [here](https://github.com/microsoft/ApplicationInsights-JS/blob/main/extensions/applicationinsights-clickanalytics-js/src/Enums.ts) for potential values we could add support for.
           requirement_level: required
           examples: ["cl"]
         - id: click_coordinates
