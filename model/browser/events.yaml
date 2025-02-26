@@ -12,24 +12,24 @@ groups:
       type: map
       fields:
         - id: name 
-          type:
-            members:
-              - id: cls
-                value: 'cls'
-                brief: Cumulative Layout Shift.
-                stability: development
-              - id: lcp
-                value: 'lcp'
-                brief: Largest Contentful Paint.
-                stability: development
-              - id: fid
-                value: 'fid'
-                brief: First Input Delay.
-                stability: development
-              - id: inp
-                value: 'inp'
-                brief: Interation to Next Paint.
-                stability: development
+          type: enum
+          members:
+            - id: cls
+              value: 'cls'
+              brief: Cumulative Layout Shift.
+              stability: development
+            - id: lcp
+              value: 'lcp'
+              brief: Largest Contentful Paint.
+              stability: development
+            - id: fid
+              value: 'fid'
+              brief: First Input Delay.
+              stability: development
+            - id: inp
+              value: 'inp'
+              brief: Interation to Next Paint.
+              stability: development
           stability: development
           brief: Name of the web vital.
           requirement_level: required
