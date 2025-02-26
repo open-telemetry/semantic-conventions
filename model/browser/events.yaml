@@ -11,7 +11,7 @@ groups:
       stability: development
       type: map
       fields:
-        - id: file_name 
+        - id: file_name
           type: string
           stability: development
           brief: Name of the file that generated the error.
@@ -35,14 +35,14 @@ groups:
           brief: The exception message.
           requirement_level: recommended
           examples: ["Can't convert 'int' object to str implicitly"]
-        - id: stacktrace 
+        - id: stacktrace
           type: string
           stability: development
           brief: >
             A stacktrace as a string in the natural representation for the language runtime.
             The representation is to be determined and documented by each language SIG.
           requirement_level: recommended
-          examples: ["Exception in thread main java.lang.RuntimeException: 
+          examples: ["Exception in thread main java.lang.RuntimeException:
                     Test exception at com.example.GenerateTrace.methodB(GenerateTrace.java:13)"]
         - id: type
           type: string
