@@ -207,6 +207,6 @@ flowchart LR;
 | `messaging.operation.type` | `"send"`  | `"receive"` | `"process"` | `"settle"` |
 | `messaging.client.id` | `"5"` | `"8"` | `"8"` | `"8"` |
 | `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` |  |
-| `messaging.kafka.message.offset` |  | `"12"` | `"12"` | `"12"` |
+| `messaging.kafka.offset` |  | `"12"` | `"12"` | `"12"` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
