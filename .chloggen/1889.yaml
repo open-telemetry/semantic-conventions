@@ -1,4 +1,0 @@
-change_type: enhancement
-component: all
-note: Use `development` stability instead of `experimental` across semantic conventions
-issues: [1096, 1889]

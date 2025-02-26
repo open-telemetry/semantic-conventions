@@ -34,9 +34,10 @@ The following semantic conventions surrounding metrics are defined:
   * [K8s](/docs/system/k8s-metrics.md): For K8s metrics.
   * [Process](/docs/system/process-metrics.md): For standard process metrics.
   * [Runtime Environment](/docs/runtime/README.md#metrics): For runtime environment metrics.
+* [OTel SDK Telemetry](/docs/otel/sdk-metrics.md): Metrics emitted by the OpenTelemetry SDK components.
 
 Apart from semantic conventions for metrics, [traces](trace.md), [logs](logs.md), and [events](events.md), OpenTelemetry also
-defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/resource/sdk.md) with
+defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/resource/sdk.md) with
 their own [Resource Semantic Conventions](/docs/resource/README.md).
 
 ## General Guidelines
@@ -87,14 +88,14 @@ usable.
 
 When building components that interoperate between OpenTelemetry and a system
 using the OpenMetrics exposition format, use the
-[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/compatibility/prometheus_and_openmetrics.md).
+[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/compatibility/prometheus_and_openmetrics.md).
 
 ### Instrument Units
 
 **Status**: [Stable][DocumentStatus]
 
 Units should follow the
-[Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html).
+[Unified Code for Units of Measure](https://unitsofmeasure.org/ucum.html).
 
 - Instruments for **utilization** metrics (that measure the fraction out of a
 total) are dimensionless and SHOULD use the default unit `1` (the unity).

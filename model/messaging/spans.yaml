@@ -28,8 +28,8 @@ groups:
         # - ref: messaging.system
         #   sampling_relevant: true
 
-  - id: span.messaging
-    type: span
+  - id: messaging.attributes
+    type: attribute_group  # TODO: this should be a span - https://github.com/open-telemetry/semantic-conventions/issues/1891
     stability: development
     brief: >
         Defines a full set of attributes used in messaging systems.

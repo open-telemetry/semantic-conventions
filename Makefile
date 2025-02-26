@@ -26,13 +26,27 @@ CONTAINER_REPOSITORY=docker.io
 # Per container overrides for the repository resolution.
 WEAVER_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 SEMCONVGEN_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
+OPA_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 
-# Fully qualified references to containers used in this Makefile.
+# Versioned, non-qualified references to containers used in this Makefile.
 # These are parsed from dependencies.Dockerfile so dependabot will autoupdate
 # the versions of docker files we use.
-WEAVER_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="weaver" {print $$2}')
-SEMCONVGEN_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="semconvgen" {print $$2}')
-OPA_CONTAINER=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}')
+VERSIONED_WEAVER_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="weaver" {print $$2}')
+VERSIONED_SEMCONVGEN_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="semconvgen" {print $$2}')
+VERSIONED_OPA_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}')
+
+# Fully qualified references to containers used in this Makefile. These
+# include the container repository, so that the build will work with tools
+# like "podman" with a default "/etc/containers/registries.conf", where
+# a default respository of "docker.io" is not assumed. This is intended to
+# eliminate errors from podman such as:
+#
+#    Error: short-name "otel/weaver:v1.2.3" did not resolve to an alias
+#    and no unqualified-search registries are defined in "/etc/containers/registries.conf"
+WEAVER_CONTAINER=$(WEAVER_CONTAINER_REPOSITORY)/$(VERSIONED_WEAVER_CONTAINER_NO_REPO)
+SEMCONVGEN_CONTAINER=$(SEMCONVGEN_CONTAINER_REPOSITORY)/$(VERSIONED_SEMCONVGEN_CONTAINER_NO_REPO)
+OPA_CONTAINER=$(OPA_CONTAINER_REPOSITORY)/$(VERSIONED_OPA_CONTAINER_NO_REPO)
+
 
 DOCKER_USER=$(shell id -u):$(shell id -g)
 
