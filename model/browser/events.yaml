@@ -11,21 +11,18 @@ groups:
       This event captures data from the [ResourceTiming](https://www.w3.org/TR/resource-timing/).
       It is recommended to be captured by using the PerformanceResourceTiming API.
       If the page starts unloading before the page loads,
-      then the partial data can be captured by calling the [performance.getEntriesByType][https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByType] method.
+      then the partial data can be captured by calling the [performance.getEntriesByType](https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByType) method.
 
-      This event definition elevates a few key data points to body fields in
-      order to make it easier to access. In addition, the complete set of data
-      from the API may be sent in the body of the event as stringified JSON.
     body:
       id: browser.resource_timing
       requirement_level: required
       stability: development
       type: map
       fields:
-        - id: name 
+        - id: name
           type: string
           stability: development
-          brief: The resolved URL of the requested resource. 
+          brief: The resolved URL of the requested resource.
           requirement_level: recommended
           examples: ["https://en.wikipedia.org/wiki/Main_Page"]
         - id: fetchStart
@@ -72,8 +69,8 @@ groups:
           type: double
           stability: development
           brief: >
-            The time immediately after the browser finishes establishing the connection to the server to retrieve the resource. 
-            The timestamp value includes the time interval to establish the transport connection, 
+            The time immediately after the browser finishes establishing the connection to the server to retrieve the resource.
+            The timestamp value includes the time interval to establish the transport connection,
             as well as other time intervals such as SSL handshake and SOCKS authentication.
             completes, and it is measured in milliseconds.
           requirement_level: recommended
