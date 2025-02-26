@@ -32,7 +32,7 @@ This event describes actions performed by the user such as click, scroll, zoom, 
 | `element` | string | Target element tag name and it is obtained via event.target.tagName. | `button` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `element_xpath` | string | Target element xpath | `//*[@id='testBtn']` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tags` | string | Grab data from data-otel-* attributes in tree. | `id` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user_action_type` | enum | Type of interaction.  See enum [here](https://github.com/microsoft/ApplicationInsights-JS/blob/main/extensions/applicationinsights-clickanalytics-js/src/Enums.ts) for potential values we could add support for. | `cl` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user_action_type` | enum | Type of interaction. See enum [here](https://github.com/microsoft/ApplicationInsights-JS/blob/main/extensions/applicationinsights-clickanalytics-js/src/Enums.ts) for potential values we could add support for. | `cl` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 `user_action_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
