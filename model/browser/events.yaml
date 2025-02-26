@@ -17,7 +17,7 @@ groups:
           brief: Target element tag name and it is obtained via event.target.tagName.
           requirement_level: recommended
           examples: ["button"]
-        - id: element_xpath 
+        - id: element_xpath
           type: string
           stability: development
           brief: Target element xpath
@@ -64,7 +64,7 @@ groups:
               brief: User actions that are not listed above.
           stability: development
           brief: >
-            Type of interaction. 
+            Type of interaction.
             See enum [here](https://github.com/microsoft/ApplicationInsights-JS/blob/main/extensions/applicationinsights-clickanalytics-js/src/Enums.ts)
             for potential values we could add support for.
           requirement_level: required
@@ -78,8 +78,6 @@ groups:
         - id: tags
           type: string
           stability: development
-          brief:  Grab data from data-otel-* attributes in tree.
+          brief: Grab data from data-otel-* attributes in tree.
           requirement_level: recommended
           examples: ["id"]
-
-       
