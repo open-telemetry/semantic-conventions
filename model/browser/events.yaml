@@ -14,7 +14,7 @@ groups:
         - id: file_name 
           type: string
           stability: development
-          brief: Name of the file that generated the error. 
+          brief: Name of the file that generated the error.
           requirement_level: recommended
           examples: ["foo.js"]
         - id: line_number
@@ -29,10 +29,10 @@ groups:
           brief: Column number where the error occurred.
           requirement_level: recommended
           examples: [5]
-        - id: message 
+        - id: message
           type: string
           stability: development
-          brief: The exception message. 
+          brief: The exception message.
           requirement_level: recommended
           examples: ["Can't convert 'int' object to str implicitly"]
         - id: stacktrace 
@@ -44,11 +44,11 @@ groups:
           requirement_level: recommended
           examples: ["Exception in thread main java.lang.RuntimeException: 
                     Test exception at com.example.GenerateTrace.methodB(GenerateTrace.java:13)"]
-        - id: type 
+        - id: type
           type: string
           stability: development
           brief: >
             The type of the exception (its fully-qualified class name, if applicable).
             The dynamic type of the exception should be preferred over the static type in languages that support it.
+          requirement_level: recommended
           examples: ["TypeError", "java.net.ConnectException", "OSError"]
-        
