@@ -1,0 +1,54 @@
+groups:
+  - id: event.browser.exception
+    stability: development
+    type: event
+    name: browser.exception
+    brief: >
+      This event describes an error or exception that occurs in a browser application.
+    body:
+      id: browser.exception
+      requirement_level: required
+      stability: development
+      type: map
+      fields:
+        - id: file_name 
+          type: string
+          stability: development
+          brief: Name of the file that generated the error. 
+          requirement_level: recommended
+          examples: ["foo.js"]
+        - id: line_number
+          type: int
+          stability: development
+          brief: Line number where the error occurred.
+          requirement_level: recommended
+          examples: [3]
+        - id: column_number
+          type: int
+          stability: development
+          brief: Column number where the error occurred.
+          requirement_level: recommended
+          examples: [5]
+        - id: message 
+          type: string
+          stability: development
+          brief: The exception message. 
+          requirement_level: recommended
+          examples: ["Can't convert 'int' object to str implicitly"]
+        - id: stacktrace 
+          type: string
+          stability: development
+          brief: >
+            A stacktrace as a string in the natural representation for the language runtime.
+            The representation is to be determined and documented by each language SIG.
+          requirement_level: recommended
+          examples: ["Exception in thread main java.lang.RuntimeException: 
+                    Test exception at com.example.GenerateTrace.methodB(GenerateTrace.java:13)"]
+        - id: type 
+          type: string
+          stability: development
+          brief: >
+            The type of the exception (its fully-qualified class name, if applicable).
+            The dynamic type of the exception should be preferred over the static type in languages that support it.
+          examples: ["TypeError", "java.net.ConnectException", "OSError"]
+        
