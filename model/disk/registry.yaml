@@ -10,10 +10,10 @@ groups:
           members:
             - id: read
               value: 'read'
-              stability: experimental
+              stability: development
             - id: write
               value: 'write'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: "The disk IO operation direction."
         examples: ["read"]

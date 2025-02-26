@@ -2,7 +2,7 @@
 linkTitle: AWS
 --->
 
-# Compatibility Considerations for AWS
+# Compatibility considerations for AWS
 
 This page highlights compatibility considerations for OpenTelemetry
 instrumentations when interacting with AWS managed services using an aws-sdk,

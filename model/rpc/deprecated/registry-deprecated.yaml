@@ -9,25 +9,25 @@ groups:
           members:
             - id: sent
               value: "SENT"
-              stability: experimental
+              stability: development
             - id: received
               value: "RECEIVED"
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: "Deprecated, use `rpc.message.type` instead."
         deprecated: "Replaced by `rpc.message.type`."
       - id: message.id
         type: int
-        stability: experimental
+        stability: development
         brief: "Deprecated, use `rpc.message.id` instead."
         deprecated: "Replaced by `rpc.message.id`."
       - id: message.compressed_size
         type: int
-        stability: experimental
+        stability: development
         brief: "Deprecated, use `rpc.message.compressed_size` instead."
         deprecated: "Replaced by `rpc.message.compressed_size`."
       - id: message.uncompressed_size
         type: int
-        stability: experimental
+        stability: development
         brief: "Deprecated, use `rpc.message.uncompressed_size` instead."
         deprecated: "Replaced by `rpc.message.uncompressed_size`."

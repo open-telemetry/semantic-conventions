@@ -2,7 +2,7 @@ groups:
   - id: event.feature_flag.evaluation
     type: event
     name: feature_flag.evaluation
-    stability: experimental
+    stability: development
     brief: >
       Defines feature flag evaluation as an event.
     note: >
@@ -38,14 +38,14 @@ groups:
 
           | Value  | Description | Stability |
           |---|---|---|
-          | `flag_not_found` | The flag could not be found. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-          | `invalid_context` | The evaluation context does not meet provider requirements. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-          | `parse_error` | An error was encountered parsing data, such as a flag configuration. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-          | `provider_fatal` | The provider has entered an irrecoverable error state. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-          | `provider_not_ready` | The value was resolved before the provider was initialized. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-          | `targeting_key_missing` | The provider requires a targeting key and one was not provided in the evaluation context. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-          | `type_mismatch` | The type of the flag value does not match the expected type. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-          | `general` | The error was for a reason not enumerated above. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+          | `flag_not_found` | The flag could not be found. | ![Development](https://img.shields.io/badge/-development-blue) |
+          | `invalid_context` | The evaluation context does not meet provider requirements. | ![Development](https://img.shields.io/badge/-development-blue) |
+          | `parse_error` | An error was encountered parsing data, such as a flag configuration. | ![Development](https://img.shields.io/badge/-development-blue) |
+          | `provider_fatal` | The provider has entered an irrecoverable error state. | ![Development](https://img.shields.io/badge/-development-blue) |
+          | `provider_not_ready` | The value was resolved before the provider was initialized. | ![Development](https://img.shields.io/badge/-development-blue) |
+          | `targeting_key_missing` | The provider requires a targeting key and one was not provided in the evaluation context. | ![Development](https://img.shields.io/badge/-development-blue) |
+          | `type_mismatch` | The type of the flag value does not match the expected type. | ![Development](https://img.shields.io/badge/-development-blue) |
+          | `general` | The error was for a reason not enumerated above. | ![Development](https://img.shields.io/badge/-development-blue) |
       - ref: feature_flag.evaluation.error.message
         requirement_level:
           recommended: If and only if an error occurred. It's NOT RECOMMENDED to duplicate the value of `error.type` in `feature_flag.evaluation.error.message`.
@@ -53,10 +53,11 @@ groups:
       id: feature_flag.evaluation
       type: map
       requirement_level: recommended
+      stability: development
       fields:
         - id: value
           type: undefined
-          stability: experimental
+          stability: development
           brief: The evaluated value of the feature flag.
           requirement_level:
             conditionally_required: >

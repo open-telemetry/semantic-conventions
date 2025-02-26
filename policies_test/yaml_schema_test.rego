@@ -52,6 +52,7 @@ test_fails_on_referenced_event_name_on_event if {
     event := [{ "id": "event.foo",
                 "type": "event",
                 "name": "foo",
+                "stability": "rc",
                 "attributes": [{"ref": "event.name"}]}]
     count(deny) == 1 with input as {"groups": event}
 }
@@ -101,22 +102,22 @@ test_fails_on_invalid_resource_id if {
 }
 
 create_attribute_group(attr) = json if {
-    json := [{"id": "yaml_schema.test", "attributes": [{"id": attr}]}]
+    json := [{"id": "yaml_schema.test", "attributes": [{"id": attr, "stability": "rc"}]}]
 }
 
 create_metric(name) = json if {
     id := sprintf("metric.%s", [name])
-    json := [{"id": id, "type": "metric", "metric_name": name}]
+    json := [{"id": id, "type": "metric", "metric_name": name, "stability": "rc"}]
 }
 
 create_event(name) = json if {
     id := sprintf("event.%s", [name])
-    json := [{"id": id, "type": "event", "name": name}]
+    json := [{"id": id, "type": "event", "name": name, "stability": "rc"}]
 }
 
 create_resource(name) = json if {
     id := sprintf("resource.%s", [name])
-    json := [{"id": id, "type": "resource", "name": name}]
+    json := [{"id": id, "type": "resource", "name": name, "stability": "rc"}]
 }
 
 invalid_names := [

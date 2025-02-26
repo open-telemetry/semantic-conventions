@@ -2,7 +2,7 @@ groups:
   - id: attributes.messaging.common.minimal
     type: attribute_group
     brief: "Common cross-signal messaging attributes."
-    stability: experimental
+    stability: development
     attributes:
       # TODO: Not adding `messaging.system` to the minimal because of https://github.com/open-telemetry/build-tools/issues/192
       - ref: error.type

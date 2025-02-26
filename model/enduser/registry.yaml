@@ -1,0 +1,28 @@
+groups:
+  - id: registry.enduser
+    type: attribute_group
+    display_name: End User Attributes
+    brief: >
+      Describes the end user.
+    attributes:
+      - id: enduser.id
+        type: string
+        brief: "Unique identifier of an end user in the system. It maybe a username, email address, or other identifier."
+        note: |
+          Unique identifier of an end user in the system.
+
+          > [!Warning]
+          > This field contains sensitive (PII) information.
+        examples: [ 'username' ]
+        stability: development
+      - id: enduser.pseudo.id
+        type: string
+        stability: development
+        brief: >
+          Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity.
+        note: |
+          Pseudonymous identifier of an end user.
+
+          > [!Warning]
+          > This field contains sensitive (linkable PII) information.
+        examples: ['QdH5CAWJgqVT4rOr0qtumf']

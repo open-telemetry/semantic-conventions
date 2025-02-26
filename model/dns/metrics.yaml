@@ -2,7 +2,7 @@ groups:
   - id: metric.dns.lookup.duration
     type: metric
     metric_name: dns.lookup.duration
-    stability: experimental
+    stability: development
     brief: Measures the time taken to perform a DNS lookup.
     instrument: histogram
     unit: "s"

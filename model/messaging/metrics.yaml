@@ -1,7 +1,7 @@
 groups:
   - id: metric.messaging.attributes
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: "Common messaging metrics attributes."
     extends: attributes.messaging.common.minimal
     attributes:
@@ -17,7 +17,7 @@ groups:
 
   - id: metric.messaging.consumer.attributes
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: "Messaging consumer metrics attributes."
     extends: metric.messaging.attributes
     attributes:
@@ -35,7 +35,7 @@ groups:
     brief: "Duration of messaging operation initiated by a producer or consumer client."
     note: >
       This metric SHOULD NOT be used to report processing duration - processing duration is reported in `messaging.process.duration` metric.
-    stability: experimental
+    stability: development
     instrument: histogram
     unit: "s"
     extends: metric.messaging.consumer.attributes
@@ -52,7 +52,7 @@ groups:
     brief: "Duration of processing operation."
     note: >
       This metric MUST be reported for operations with `messaging.operation.type` that matches `process`.
-    stability: experimental
+    stability: development
     instrument: histogram
     unit: "s"
     extends: metric.messaging.consumer.attributes
@@ -67,7 +67,7 @@ groups:
     brief: "Number of messages producer attempted to send to the broker."
     note: >
       This metric MUST NOT count messages that were created but haven't yet been sent.
-    stability: experimental
+    stability: development
     instrument: counter
     unit: "{message}"
     extends: metric.messaging.attributes
@@ -85,7 +85,7 @@ groups:
       The metric SHOULD be reported once per message delivery. For example, if receiving and
       processing operations are both instrumented for a single message delivery, this counter
       is incremented when the message is received and not reported when it is processed.
-    stability: experimental
+    stability: development
     instrument: counter
     unit: "{message}"
     extends: metric.messaging.consumer.attributes

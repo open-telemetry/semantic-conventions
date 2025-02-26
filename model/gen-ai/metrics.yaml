@@ -45,7 +45,7 @@ groups:
     brief: 'Measures number of input and output tokens used'
     instrument: histogram
     unit: "{token}"
-    stability: experimental
+    stability: development
     extends: metric_attributes.gen_ai
     attributes:
       - ref: gen_ai.token.type
@@ -56,7 +56,7 @@ groups:
     brief: 'GenAI operation duration'
     instrument: histogram
     unit: "s"
-    stability: experimental
+    stability: development
     extends: metric_attributes.gen_ai
     attributes:
       - ref: error.type
@@ -72,7 +72,7 @@ groups:
     brief: 'Generative AI server request duration such as time-to-last byte or last output token'
     instrument: histogram
     unit: "s"
-    stability: experimental
+    stability: development
     extends: metric_attributes.gen_ai.server
   - id: metric.gen_ai.server.time_per_output_token
     type: metric
@@ -80,7 +80,7 @@ groups:
     brief: 'Time per output token generated after the first token for successful responses'
     instrument: histogram
     unit: "s"
-    stability: experimental
+    stability: development
     extends: metric_attributes.gen_ai
   - id: metric.gen_ai.server.time_to_first_token
     type: metric
@@ -88,5 +88,5 @@ groups:
     brief: 'Time to generate first token for successful responses'
     instrument: histogram
     unit: "s"
-    stability: experimental
+    stability: development
     extends: metric_attributes.gen_ai

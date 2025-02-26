@@ -5,7 +5,7 @@ groups:
     brief: "Garbage collection duration."
     instrument: histogram
     unit: "s"
-    stability: experimental
+    stability: development
     attributes:
       - ref: v8js.gc.type
         requirement_level: required
@@ -18,7 +18,7 @@ groups:
     brief: "Total heap memory size pre-allocated."
     instrument: updowncounter
     unit: "By"
-    stability: experimental
+    stability: development
     attributes:
       - ref: v8js.heap.space.name
         requirement_level: required
@@ -32,7 +32,7 @@ groups:
     brief: "Heap Memory size allocated."
     instrument: updowncounter
     unit: "By"
-    stability: experimental
+    stability: development
     attributes:
       - ref: v8js.heap.space.name
         requirement_level: required
@@ -46,7 +46,7 @@ groups:
     brief: "Heap space available size."
     instrument: updowncounter
     unit: "By"
-    stability: experimental
+    stability: development
     attributes:
       - ref: v8js.heap.space.name
         requirement_level: required
@@ -59,7 +59,7 @@ groups:
     brief: "Committed size of a heap space."
     instrument: updowncounter
     unit: "By"
-    stability: experimental
+    stability: development
     attributes:
       - ref: v8js.heap.space.name
         requirement_level: required

@@ -1,5 +1,5 @@
 {% import 'stability.j2' as stability %}
-{% macro filter(member) %}{% if snippet_type is not defined or (member.deprecated is none or member.deprecated == "") %}{{ "True" }}{% else %}{{ "False" }}{% endif %}{% endmacro %}
+{% macro filter(member) %}{% if (member.deprecated is none or member.deprecated == "") %}{{ "True" }}{% else %}{{ "False" }}{% endif %}{% endmacro %}
 {% macro table(enum, notes) %}
 ---
 

@@ -15,7 +15,7 @@ groups:
   - id: resource.telemetry.distro
     name: 'telemetry.distro'
     type: resource
-    stability: experimental
+    stability: development
     brief: >
       The distribution of telemetry SDK used to capture data recorded by the instrumentation libraries.
     attributes:

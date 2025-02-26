@@ -10,10 +10,10 @@ groups:
           members:
             - id: reclaimable
               value: 'reclaimable'
-              stability: experimental
+              stability: development
             - id: unreclaimable
               value: 'unreclaimable'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: "The Linux Slab memory state"
         examples: ["reclaimable", "unreclaimable"]

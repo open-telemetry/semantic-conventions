@@ -1,7 +1,7 @@
 groups:
   - id: resource.webengine
     type: resource
-    stability: experimental
+    stability: development
     name: webengine
     brief: >
        Resource describing the packaged software running the application code. Web engines are typically executed using process.runtime.

@@ -91,7 +91,7 @@ groups:
           | `stream_creation_error` | The HTTP/3 connection received a stream that it wouldn't accept. For example, the client created duplicate control streams. |
           | `stream_reset_limit_exceeded` | The connection received an excessive number of HTTP/2 stream resets and was closed with `ENHANCE_YOUR_CALM`. For more information, see [Microsoft Security Advisory CVE-2023-44487](https://github.com/dotnet/runtime/issues/93303). |
           | `stream_self_dependency` | The connection received an HTTP/2 frame that caused a frame to depend on itself. |
-          | `tls_handshake_failed` | An error occurred during the TLS handshake for a connection. Only reported for HTTP/1.1 and HTTP/2 connections. The TLS handshake for HTTP/3 is internal to QUIC transport. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+          | `tls_handshake_failed` | An error occurred during the TLS handshake for a connection. Only reported for HTTP/1.1 and HTTP/2 connections. The TLS handshake for HTTP/3 is internal to QUIC transport. ![Development](https://img.shields.io/badge/-development-blue) |
           | `tls_not_supported` | A TLS handshake was received by an endpoint that isn't configured to support TLS. |
           | `unexpected_end_of_request_content` | The HTTP/1.1 request body ended before the data specified by the `content-length` header or chunked transfer encoding mechanism was received. |
           | `unexpected_frame` | An unexpected HTTP/2 or HTTP/3 frame type was received. The frame type is either unknown, unsupported, or invalid for the current stream state. |

@@ -1,4 +1,4 @@
-# Attribute Requirement Levels
+# Attribute requirement levels
 
 **Status**: [Stable][DocumentStatus]
 
@@ -59,7 +59,7 @@ example of a Required attribute.
 
 _Note: Consumers of telemetry can detect if a telemetry item follows a specific
 semantic convention by checking for the presence of a `Required` attribute
-defined by such convention. For example, the presence of the `db.system`
+defined by such convention. For example, the presence of the `db.system.name`
 attribute on a span can be used as an indication that the span follows database
 semantics._
 

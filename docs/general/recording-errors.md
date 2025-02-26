@@ -1,7 +1,3 @@
-<!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Recording errors
---->
-
 # Recording errors
 
 **Status**: [Development][DocumentStatus].
@@ -61,7 +57,7 @@ When the operation ends with an error, instrumentation:
   When the operation fails with an exception, the span status description SHOULD be set to
   the exception message.
 
-Refer to the [recording exceptions](#recording-errors) on capturing exception
+Refer to the [recording exceptions](#recording-exceptions) on capturing exception
 details.
 
 ## Recording errors on metrics
@@ -126,4 +122,4 @@ public boolean createIfNotExists(String resourceId) throws IOException {
 ```
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/trace/api.md#set-status
+[SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/trace/api.md#set-status

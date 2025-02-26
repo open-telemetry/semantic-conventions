@@ -11,27 +11,27 @@ groups:
           members:
             - id: user
               value: 'user'
-              stability: experimental
+              stability: development
             - id: system
               value: 'system'
-              stability: experimental
+              stability: development
             - id: nice
               value: 'nice'
-              stability: experimental
+              stability: development
             - id: idle
               value: 'idle'
-              stability: experimental
+              stability: development
             - id: iowait
               value: 'iowait'
-              stability: experimental
+              stability: development
             - id: interrupt
               value: 'interrupt'
-              stability: experimental
+              stability: development
             - id: steal
               value: 'steal'
-              stability: experimental
+              stability: development
             - id: kernel
               value: 'kernel'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         examples: [ "user", "system" ]

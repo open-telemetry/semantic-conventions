@@ -14,6 +14,7 @@ requirements and recommendations.
 - [Sign the CLA](#sign-the-cla)
 - [How to Contribute](#how-to-contribute)
   - [Which semantic conventions belong in this repo](#which-semantic-conventions-belong-in-this-repo)
+  - [Suggesting conventions for a new area](#suggesting-conventions-for-a-new-area)
   - [Prerequisites](#prerequisites)
   - [1. Modify the YAML model](#1-modify-the-yaml-model)
     - [Code structure](#code-structure)
@@ -32,9 +33,8 @@ requirements and recommendations.
   - [Auto formatting](#auto-formatting)
   - [Markdown style](#markdown-style)
   - [Misspell check](#misspell-check)
+  - [Update the tables of content](#update-the-tables-of-content)
   - [Markdown link check](#markdown-link-check)
-- [Updating the referenced specification version](#updating-the-referenced-specification-version)
-- [Making a Release](#making-a-release)
 - [Merging existing ECS conventions](#merging-existing-ecs-conventions)
 
 <!-- tocstop -->
@@ -81,6 +81,18 @@ and helps to keep conventions consistent and backward compatible.
 
 Want to define your own conventions outside this repo while building on OTel’s?
 Come help us [decentralize semantic conventions](https://github.com/open-telemetry/weaver/issues/215).
+
+### Suggesting conventions for a new area
+
+Defining semantic conventions requires a group of people who are familiar with the domain,
+are involved with instrumentation efforts, and are committed to be the point of contact for
+pull requests, issues, and questions in this area.
+
+Check out [project management](https://github.com/open-telemetry/community/blob/main/project-management.md)
+for the details on how to start.
+
+Refer to the [How to define new conventions](/docs/general/how-to-define-semantic-conventions.md)
+document for guidance.
 
 ### Prerequisites
 
@@ -215,7 +227,7 @@ Semantic conventions are validated for name formatting and backward compatibilit
 Here's [the full list of compatibility checks](./policies/compatibility.rego).
 
 Removing attributes, metrics, or enum members is not allowed, they should be deprecated instead.
-It applies to stable and experimental conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
+It applies to stable and unstable conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
 
 You can run backward compatibility check (along with other policies) in all yaml files with the following command:
 
@@ -343,6 +355,7 @@ You can also run these fixes individually.
 See:
 
 - [Misspell Correction](#misspell-check)
+- [Update the tables of content](#update-the-tables-of-content)
 - [Update the markdown files](#2-update-the-markdown-files)
 
 ### Markdown style
@@ -389,6 +402,14 @@ To quickly fix typos, use
 make misspell-correction
 ```
 
+### Update the tables of content
+
+To update the tables of content, run:
+
+```bash
+make markdown-toc
+```
+
 ### Markdown link check
 
 To check the validity of links in all markdown files, run the following command:
@@ -396,41 +417,6 @@ To check the validity of links in all markdown files, run the following command:
 ```bash
 make markdown-link-check
 ```
-
-## Updating the referenced specification version
-
-1. Open the `./internal/tools/update_specification_version.sh` script.
-2. Modify the `PREVIOUS_SPECIFICATION_VERSION` to be the same value as `LATEST_SPECIFICATION_VERSION`
-3. Modify `LATEST_SPECIFICATION_VERSION` to the latest specification tag, e.g. `1.21`
-4. Run the script from the root directory, e.g. `semantic-conventions$ ./internal/tools/update_specification_version.sh`.
-5. Add all modified files to the change submit and submit a PR.
-
-## Making a Release
-
-- Ensure the referenced specification version is up to date. Use
-  [tooling to update the spec](#updating-the-referenced-specification-version)
-  if needed.
-- Run [opentelemetry.io workflow](https://github.com/open-telemetry/opentelemetry.io/actions/workflows/build-dev.yml)
-  against `semantic-conventions` submodule as a smoke-test for docs. Fix broken links, if any.
-- Create a staging branch for the release.
-  - Update `schema-next.yaml` file and move to `schemas/{version}`
-    - Ensure the `next` version is appropriately configured as the `{version}`.
-    - Copy `schema-next.yaml` to `schemas/{version}`.
-    - Add `next` as a version in `schema-next.yaml` version.
-  - Run `make chlog-update VERSION=v{version}`
-    - `make chlog-update` will clean up all the current `.yaml` files inside the
-      `.chloggen` folder automatically
-    - Double check that `CHANGELOG.md` is updated with the proper `v{version}`
-  - Send staging branch as PR for review.
-- After the release PR is merged, create a [new release](https://github.com/open-telemetry/semantic-conventions/releases/new):
-  - Set title and tag to `v{version}`
-  - Set target to the commit of the merged release PR
-  - Copy changelog to the release notes
-  - Verify that the release looks like expected
-  - Publish release
-
-New release is then auto-discovered by [opentelemetry.io](https://github.com/open-telemetry/opentelemetry.io) pipelines which (via bot-generated PR)
-eventually results in new version of schema file being published.
 
 ## Merging existing ECS conventions
 

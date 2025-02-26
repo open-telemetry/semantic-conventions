@@ -6,7 +6,7 @@ groups:
       This document defines Go related attributes.
     attributes:
       - id: go.memory.type
-        stability: experimental
+        stability: development
         type:
           members:
             - id: stack
@@ -14,10 +14,10 @@ groups:
               brief: 'Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use.'
               note: >
                 Computed from `/memory/classes/heap/stacks:bytes`.
-              stability: experimental
+              stability: development
             - id: other
               value: 'other'
               brief: 'Memory used by the Go runtime, excluding other categories of memory usage described in this enumeration.'
-              stability: experimental
+              stability: development
         brief: The type of memory.
         examples: ["other", "stack"]

@@ -1,4 +1,12 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: Database migration
+--->
+
 # Database semantic convention stability migration guide
+
+> [!WARNING]
+> This document is a work in progress and the database semantic conventions
+> have not been marked stable yet and changes are still being made.
 
 Due to the significant number of modifications and the extensive user base
 affected by them, existing database instrumentations published by
@@ -21,6 +29,10 @@ updated to the stable database semantic conventions, they:
   for at least six months after it starts emitting both sets of conventions.
 - May drop the environment variable in their next major version and emit only
   the stable database conventions.
+
+> [!NOTE]
+> `OTEL_SEMCONV_STABILITY_OPT_IN` is only intended to be used when migrating
+> from an experimental semantic convention to its initial stable version.
 
 ## Summary of changes
 
@@ -82,7 +94,7 @@ See [Metric `db.client.operation.duration` v1.28.0 (RC)](https://github.com/open
 
 ### Experimental connection metrics
 
-Database connection metrics are still experimental, but there have been several changes in the latest release.
+Database connection metrics are not stable yet, but there have been several changes in the latest release.
 
 #### Database client connection count
 

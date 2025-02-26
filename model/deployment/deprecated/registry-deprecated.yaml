@@ -6,7 +6,7 @@ groups:
     attributes:
       - id: deployment.environment
         type: string
-        stability: experimental
+        stability: development
         deprecated: 'Deprecated, use `deployment.environment.name` instead.'
         brief: >
           'Deprecated, use `deployment.environment.name` instead.'

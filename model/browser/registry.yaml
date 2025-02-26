@@ -7,7 +7,7 @@ groups:
     attributes:
       - id: browser.brands
         type: string[]
-        stability: experimental
+        stability: development
         brief: 'Array of brand name and version separated by a space'
         note: >
           This value is intended to be taken from the
@@ -17,7 +17,7 @@ groups:
           - [ ' Not A;Brand 99', 'Chromium 99', 'Chrome 99' ]
       - id: browser.platform
         type: string
-        stability: experimental
+        stability: development
         brief: 'The platform on which the browser is running'
         note: >
           This value is intended to be taken from the
@@ -35,7 +35,7 @@ groups:
         examples: ['Windows', 'macOS', 'Android']
       - id: browser.mobile
         type: boolean
-        stability: experimental
+        stability: development
         brief: 'A boolean that is true if the browser is running on a mobile device'
         note: >
           This value is intended to be taken from the
@@ -44,7 +44,7 @@ groups:
           SHOULD be left unset.
       - id: browser.language
         type: string
-        stability: experimental
+        stability: development
         brief: 'Preferred language of the user using the browser'
         note: >
           This value is intended to be taken from the Navigator API

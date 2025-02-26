@@ -1,13 +1,10 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Feature Flags
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/feature-flags/_index.md
-  to: feature-flags/README.md
+linkTitle: Feature flags
 --->
 
-# Semantic Conventions for Feature Flags
+# Semantic conventions for feature flags
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for recording dynamic feature flag
 evaluations in spans and logs.

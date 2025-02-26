@@ -1,7 +1,7 @@
 groups:
   - id: resource.heroku
     type: resource
-    stability: experimental
+    stability: development
     name: heroku
     brief: >
       [Heroku dyno metadata](https://devcenter.heroku.com/articles/dyno-metadata)

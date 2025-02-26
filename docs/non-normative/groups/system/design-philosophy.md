@@ -1,4 +1,4 @@
-# System Semantic Conventions: Instrumentation Design Philosophy
+# System semantic conventions: instrumentation design philosophy
 
 The System Semantic Conventions are caught in a strange dichotomy that is unique
 among other semconv groups. While we want to make sure we cover obvious generic

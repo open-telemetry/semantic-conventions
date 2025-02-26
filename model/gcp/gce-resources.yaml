@@ -1,7 +1,7 @@
 groups:
   - id: resource.gcp.gce
     type: resource
-    stability: experimental
+    stability: development
     name: gcp.gce
     brief: >
       Resources used by Google Compute Engine (GCE).

@@ -11,7 +11,7 @@ groups:
           is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
           header. For requests using transport encoding, this should be the compressed size.
         examples: 3495
-        stability: experimental  # this should not be marked stable with other HTTP attributes
+        stability: development  # this should not be marked stable with other HTTP attributes
       - id: http.request.header
         stability: stable
         type: template[string[]]
@@ -110,7 +110,7 @@ groups:
           The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1),
           framing (HTTP/2 and HTTP/3), headers, and request body if any.
         examples: 1437
-        stability: experimental
+        stability: development
       - id: http.response.body.size
         type: int
         brief: >
@@ -118,7 +118,7 @@ groups:
           is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
           header. For requests using transport encoding, this should be the compressed size.
         examples: 3495
-        stability: experimental  # this should not be marked stable with other HTTP attributes
+        stability: development  # this should not be marked stable with other HTTP attributes
       - id: http.response.header
         stability: stable
         type: template[string[]]
@@ -140,7 +140,7 @@ groups:
           The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1),
           framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any.
         examples: 1437
-        stability: experimental
+        stability: development
       - id: http.response.status_code
         stability: stable
         type: int
@@ -162,11 +162,11 @@ groups:
             - id: active
               value: "active"
               brief: 'active state.'
-              stability: experimental
+              stability: development
             - id: idle
               value: "idle"
               brief: 'idle state.'
-              stability: experimental
+              stability: development
         brief: State of the HTTP connection in the HTTP connection pool.
-        stability: experimental
+        stability: development
         examples: ["active", "idle"]

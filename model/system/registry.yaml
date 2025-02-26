@@ -7,7 +7,7 @@ groups:
     attributes:
       - id: system.device
         type: string
-        stability: experimental
+        stability: development
         brief: "The device identifier"
         examples: ["(identifier)"]
   # system.cpu.* attribute group
@@ -18,7 +18,7 @@ groups:
     attributes:
       - id: system.cpu.logical_number
         type: int
-        stability: experimental
+        stability: development
         brief: "The logical CPU number [0..n-1]"
         examples: [1]
   # system.memory.* attribute group
@@ -32,21 +32,21 @@ groups:
           members:
             - id: used
               value: 'used'
-              stability: experimental
+              stability: development
             - id: free
               value: 'free'
-              stability: experimental
+              stability: development
             - id: shared
               value: 'shared'
-              stability: experimental
+              stability: development
               deprecated: 'Removed, report shared memory usage with `metric.system.memory.shared` metric'
             - id: buffers
               value: 'buffers'
-              stability: experimental
+              stability: development
             - id: cached
               value: 'cached'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: "The memory state"
         examples: ["free", "cached"]
   # system.paging.* attribute group
@@ -60,11 +60,11 @@ groups:
           members:
             - id: used
               value: 'used'
-              stability: experimental
+              stability: development
             - id: free
               value: 'free'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: "The memory paging state"
         examples: ["free"]
       - id: system.paging.type
@@ -72,11 +72,11 @@ groups:
           members:
             - id: major
               value: 'major'
-              stability: experimental
+              stability: development
             - id: minor
               value: 'minor'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: "The memory paging type"
         examples: ["minor"]
       - id: system.paging.direction
@@ -84,11 +84,11 @@ groups:
           members:
             - id: in
               value: 'in'
-              stability: experimental
+              stability: development
             - id: out
               value: 'out'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: "The paging access direction"
         examples: ["in"]
   - id: registry.system.filesystem
@@ -102,47 +102,47 @@ groups:
           members:
             - id: used
               value: 'used'
-              stability: experimental
+              stability: development
             - id: free
               value: 'free'
-              stability: experimental
+              stability: development
             - id: reserved
               value: 'reserved'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         examples: ["used"]
       - id: system.filesystem.type
         type:
           members:
             - id: fat32
               value: 'fat32'
-              stability: experimental
+              stability: development
             - id: exfat
               value: 'exfat'
-              stability: experimental
+              stability: development
             - id: ntfs
               value: 'ntfs'
-              stability: experimental
+              stability: development
             - id: refs
               value: 'refs'
-              stability: experimental
+              stability: development
             - id: hfsplus
               value: 'hfsplus'
-              stability: experimental
+              stability: development
             - id: ext4
               value: 'ext4'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: "The filesystem type"
         examples: ["ext4"]
       - id: system.filesystem.mode
         type: string
-        stability: experimental
+        stability: development
         brief: "The filesystem mode"
         examples: ["rw, ro"]
       - id: system.filesystem.mountpoint
         type: string
-        stability: experimental
+        stability: development
         brief: "The filesystem mount path"
         examples: ["/mnt/data"]
   # system.process.* attribute group
@@ -156,17 +156,17 @@ groups:
           members:
             - id: running
               value: 'running'
-              stability: experimental
+              stability: development
             - id: sleeping
               value: 'sleeping'
-              stability: experimental
+              stability: development
             - id: stopped
               value: 'stopped'
-              stability: experimental
+              stability: development
             - id: defunct
               value: 'defunct'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
         examples: ["running"]

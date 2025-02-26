@@ -26,3 +26,11 @@
 {%- endif %}{% endmacro %}
 
 {% macro heading_link_fragments(title) %}{{ title | trim | lower | replace(" ", "-") | replace("(", "") | replace(")", "") | replace("/", "") | replace("\\", "") | replace(".", "") | replace("!", "") | replace("?", "") | replace("~", "") | replace("#", "")}}{% endmacro %}
+
+{% macro humanize(text) %}
+  {{- text.replace('_', ' ') -}}
+{% endmacro %}
+
+{% macro sentence_case(text) %}
+  {{- text[:1].upper() + text[1:].lower() -}}
+{% endmacro %}

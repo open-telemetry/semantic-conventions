@@ -1,7 +1,7 @@
 groups:
   - id: resource.cloudfoundry.system
     type: resource
-    stability: experimental
+    stability: development
     name: cloudfoundry.system
     brief: >
       The system component which is monitored.
@@ -10,7 +10,7 @@ groups:
       - ref: cloudfoundry.system.instance.id
   - id: resource.cloudfoundry.app
     type: resource
-    stability: experimental
+    stability: development
     name: cloudfoundry.app
     brief: >
       The application which is monitored.
@@ -19,7 +19,7 @@ groups:
       - ref: cloudfoundry.app.name
   - id: resource.cloudfoundry.space
     type: resource
-    stability: experimental
+    stability: development
     name: cloudfoundry.space
     brief: >
       The space of the application which is monitored.
@@ -28,7 +28,7 @@ groups:
       - ref: cloudfoundry.space.name
   - id: resource.cloudfoundry.org
     type: resource
-    stability: experimental
+    stability: development
     name: cloudfoundry.org
     brief: >
       The organization of the application which is monitored.
@@ -37,7 +37,7 @@ groups:
       - ref: cloudfoundry.org.name
   - id: resource.cloudfoundry.process
     type: resource
-    stability: experimental
+    stability: development
     name: cloudfoundry.process
     brief: >
       The process of the application which is monitored.

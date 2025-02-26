@@ -48,7 +48,7 @@ groups:
   - id: metric.http.server.active_requests
     type: metric
     metric_name: http.server.active_requests
-    stability: experimental
+    stability: development
     brief: "Number of active HTTP server requests."
     instrument: updowncounter
     unit: "{request}"
@@ -80,7 +80,7 @@ groups:
   - id: metric.http.server.request.body.size
     type: metric
     metric_name: http.server.request.body.size
-    stability: experimental
+    stability: development
     brief: "Size of HTTP server request bodies."
     instrument: histogram
     unit: "By"
@@ -93,7 +93,7 @@ groups:
   - id: metric.http.server.response.body.size
     type: metric
     metric_name: http.server.response.body.size
-    stability: experimental
+    stability: development
     brief: "Size of HTTP server response bodies."
     instrument: histogram
     unit: "By"
@@ -115,7 +115,7 @@ groups:
   - id: metric.http.client.request.body.size
     type: metric
     metric_name: http.client.request.body.size
-    stability: experimental
+    stability: development
     brief: "Size of HTTP client request bodies."
     instrument: histogram
     unit: "By"
@@ -128,7 +128,7 @@ groups:
   - id: metric.http.client.response.body.size
     type: metric
     metric_name: http.client.response.body.size
-    stability: experimental
+    stability: development
     brief: "Size of HTTP client response bodies."
     instrument: histogram
     unit: "By"
@@ -141,7 +141,7 @@ groups:
   - id: metric.http.client.open_connections
     type: metric
     metric_name: http.client.open_connections
-    stability: experimental
+    stability: development
     brief: "Number of outbound HTTP connections that are currently active or idle on the client."
     instrument: updowncounter
     unit: "{connection}"
@@ -165,7 +165,7 @@ groups:
   - id: metric.http.client.connection.duration
     type: metric
     metric_name: http.client.connection.duration
-    stability: experimental
+    stability: development
     brief: "The duration of the successfully established outbound HTTP connections."
     instrument: histogram
     unit: "s"
@@ -187,7 +187,7 @@ groups:
   - id: metric.http.client.active_requests
     type: metric
     metric_name: http.client.active_requests
-    stability: experimental
+    stability: development
     brief: "Number of active HTTP requests."
     instrument: updowncounter
     unit: "{request}"

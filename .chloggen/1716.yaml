@@ -1,4 +1,0 @@
-change_type: enhancement
-component: docs, db
-note: Add common guidance for recording errors on spans and metrics, clarify DB conventions.
-issues: [1516, 1536, 1716]

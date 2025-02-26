@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+aliases: [attribute-naming]
+--->
+
 # Naming
 
 **Status**: [Stable][DocumentStatus], Unless otherwise specified.
@@ -204,7 +208,7 @@ OpenTelemetry specification.
 
 ### Signal-specific Attributes
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 Attributes are defined in semantic conventions in a signal-agnostic way. The same attribute
 is expected to be used on multiple signals.
@@ -270,7 +274,7 @@ be confusing in delta backends.
 
 ### Instrument Naming
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 - **limit** - an instrument that measures the constant, known total amount of
 something should be called `entity.limit`. For example, `system.memory.limit`

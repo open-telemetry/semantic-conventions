@@ -79,7 +79,7 @@ groups:
               stability: stable
       - id: jvm.buffer.pool.name
         type: string
-        stability: experimental
+        stability: development
         brief: Name of the buffer pool.
         examples: [ "mapped", "direct" ]
         note: >

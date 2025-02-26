@@ -9,46 +9,46 @@ groups:
           members:
             - id: running
               value: 'running'
-              stability: experimental
+              stability: development
             - id: sleeping
               value: 'sleeping'
-              stability: experimental
+              stability: development
             - id: stopped
               value: 'stopped'
-              stability: experimental
+              stability: development
             - id: defunct
               value: 'defunct'
-              stability: experimental
+              stability: development
         brief: "Deprecated, use `system.process.status` instead."
         deprecated: "Replaced by `system.process.status`."
-        stability: experimental
+        stability: development
         examples: ["running"]
       - id: system.cpu.state
         type:
           members:
             - id: user
               value: 'user'
-              stability: experimental
+              stability: development
             - id: system
               value: 'system'
-              stability: experimental
+              stability: development
             - id: nice
               value: 'nice'
-              stability: experimental
+              stability: development
             - id: idle
               value: 'idle'
-              stability: experimental
+              stability: development
             - id: iowait
               value: 'iowait'
-              stability: experimental
+              stability: development
             - id: interrupt
               value: 'interrupt'
-              stability: experimental
+              stability: development
             - id: steal
               value: 'steal'
-              stability: experimental
+              stability: development
         brief: "Deprecated, use `cpu.mode` instead."
-        stability: experimental
+        stability: development
         deprecated: 'Replaced by `cpu.mode`'
         examples: [ "idle", "interrupt" ]
       - id: system.network.state
@@ -57,40 +57,40 @@ groups:
           members:
             - id: close
               value: 'close'
-              stability: experimental
+              stability: development
             - id: close_wait
               value: 'close_wait'
-              stability: experimental
+              stability: development
             - id: closing
               value: 'closing'
-              stability: experimental
+              stability: development
             - id: delete
               value: 'delete'
-              stability: experimental
+              stability: development
             - id: established
               value: 'established'
-              stability: experimental
+              stability: development
             - id: fin_wait_1
               value: 'fin_wait_1'
-              stability: experimental
+              stability: development
             - id: fin_wait_2
               value: 'fin_wait_2'
-              stability: experimental
+              stability: development
             - id: last_ack
               value: 'last_ack'
-              stability: experimental
+              stability: development
             - id: listen
               value: 'listen'
-              stability: experimental
+              stability: development
             - id: syn_recv
               value: 'syn_recv'
-              stability: experimental
+              stability: development
             - id: syn_sent
               value: 'syn_sent'
-              stability: experimental
+              stability: development
             - id: time_wait
               value: 'time_wait'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: "Deprecated, use `network.connection.state` instead."
         examples: [ "close_wait" ]

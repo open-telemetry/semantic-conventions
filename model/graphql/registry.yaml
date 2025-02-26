@@ -7,29 +7,29 @@ groups:
       - id: graphql.operation.name
         brief: "The name of the operation being executed."
         type: string
-        stability: experimental
+        stability: development
         examples: 'findBookById'
       - id: graphql.operation.type
         brief: "The type of the operation being executed."
-        stability: experimental
+        stability: development
         type:
           members:
             - id: query
               value: "query"
               brief: "GraphQL query"
-              stability: experimental
+              stability: development
             - id: mutation
               value: "mutation"
               brief: "GraphQL mutation"
-              stability: experimental
+              stability: development
             - id: subscription
               value: "subscription"
               brief: "GraphQL subscription"
-              stability: experimental
+              stability: development
         examples: ['query', 'mutation', 'subscription']
       - id: graphql.document
         brief: "The GraphQL document being executed."
         type: string
-        stability: experimental
+        stability: development
         note: The value may be sanitized to exclude sensitive information.
         examples: 'query findBookById { bookById(id: ?) { name } }'

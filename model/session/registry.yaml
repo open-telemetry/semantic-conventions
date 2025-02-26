@@ -16,11 +16,11 @@ groups:
     attributes:
       - id: session.id
         type: string
-        stability: experimental
+        stability: development
         brief: "A unique id to identify a session."
         examples: "00112233-4455-6677-8899-aabbccddeeff"
       - id: session.previous_id
         type: string
-        stability: experimental
+        stability: development
         brief: "The previous `session.id` for this user, when known."
         examples: "00112233-4455-6677-8899-aabbccddeeff"
