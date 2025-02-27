@@ -1,12 +1,12 @@
 groups:
-  - id: registry.installation
+  - id: registry.app
     type: attribute_group
-    display_name: Installation Attributes
+    display_name: App Attributes
     brief: >
-      Describes installation attributes.
+      Describes attributes related to client-side applications (e.g. web apps or mobile apps).
     stability: development
     attributes:
-      - id: installation.id
+      - id: app.installation.id
         type: string
         stability: development
         brief: >

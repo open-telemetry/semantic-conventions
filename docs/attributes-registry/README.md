@@ -34,6 +34,7 @@ All registered attributes are listed by namespace in this registry.
 Currently, the following namespaces exist:
 
 - [Android](android.md)
+- [App](app.md)
 - [Artifact](artifact.md)
 - [Aspnetcore](aspnetcore.md)
 - [AWS](aws.md)
@@ -72,7 +73,6 @@ Currently, the following namespaces exist:
 - [Heroku](heroku.md)
 - [Host](host.md)
 - [HTTP](http.md)
-- [Installation](installation.md)
 - [iOS](ios.md)
 - [JVM](jvm.md)
 - [K8s](k8s.md)

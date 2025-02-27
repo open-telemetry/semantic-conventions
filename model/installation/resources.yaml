@@ -1,9 +1,0 @@
-groups:
-  - id: resource.installation
-    type: resource
-    stability: development
-    name: installation
-    brief: >
-      The installation of the application represented by this resource on a specific device.
-    attributes:
-      - ref: installation.id
