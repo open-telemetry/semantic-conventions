@@ -13,7 +13,7 @@ groups:
           runtime, which is also likely the same used within `code.stacktrace` attribute value.
         examples: >
           com.example.MyHttpService.serveRequest (Java)
-          com.mycompany.Main$1.myMethod (Java anynymous class)
+          com.mycompany.Main$1.myMethod (Java anonymous class)
           com.mycompany.Main$$Lambda/0x0000748ae4149c00.myMethod (Java lambda)
           GuzzleHttp\Client::transfer (PHP)
           github.com/my/repo/pkg.foo.func5 (Go)
