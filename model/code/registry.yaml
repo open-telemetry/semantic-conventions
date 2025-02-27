@@ -9,15 +9,17 @@ groups:
         type: string
         stability: development
         brief: >
-          The method or function name, or equivalent (usually rightmost part of the code unit's name).
-        examples: serveRequest
-      - id: code.namespace
-        type: string
-        stability: development
-        brief: >
-          The "namespace" within which `code.function.name` is defined. Usually the qualified class or module name,
-          such that `code.namespace` + some separator + `code.function.name` form a unique identifier for the code unit.
-        examples: com.example.MyHttpService
+          The method or function fully-qualified name. The value should be in a language/platform specific format that
+          is commonly used to refer to those methods, for example in `code.stacktrace`.
+        examples: >
+          com.example.MyHttpService.serveRequest (Java)
+          com.mycompany.Main$1.myMethod (Java anynymous class)
+          com.mycompany.Main$$Lambda/0x0000748ae4149c00.myMethod (Java lambda)
+          GuzzleHttp\Client::transfer (PHP)
+          github.com/my/repo/pkg.foo.func5 (Go)
+          OpenTelemetry.Ctx.new (Elixir)
+          opentelemetry_ctx:new (Erlang)
+          playground::my_module::my_cool_func (Rust)
       - id: code.file.path
         type: string
         stability: development
