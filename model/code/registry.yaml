@@ -20,6 +20,7 @@ groups:
           OpenTelemetry.Ctx.new (Elixir)
           opentelemetry_ctx:new (Erlang)
           playground::my_module::my_cool_func (Rust)
+          fopen (C)
       - id: code.file.path
         type: string
         stability: development
