@@ -15,6 +15,7 @@ groups:
       - id: code.filepath
         type: string
         stability: development
+        deprecated: Replaced by `code.file.path`
         brief: >
           Deprecated, use `code.file.path` instead
         examples: /usr/local/MyApplication/content_root/app/index.php
