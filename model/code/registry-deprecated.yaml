@@ -32,3 +32,11 @@ groups:
         brief: >
           Deprecated, use `code.column.number`
         examples: 16
+      - id: code.namespace
+        type: string
+        stability: development
+        deprecated: Value should be included in `code.function.name` which is expected to be a fully-qualified name.
+        brief: >
+          The "namespace" within which `code.function.name` is defined. Usually the qualified class or module name,
+          such that `code.namespace` + some separator + `code.function.name` form a unique identifier for the code unit.
+        examples: com.example.MyHttpService
