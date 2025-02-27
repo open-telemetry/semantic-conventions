@@ -13,7 +13,9 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
 
 **[1] `app.installation.id`:** Its value SHOULD remain the same between launches of the same installation of an application.
 It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
-Hardware IDs (e.g. serial number, IMEI, MAC address) MUST NOT be used as the installation identifier.
+Additionally, users might be able to reset this value (e.g. by clearing application data).
+If an app is installed multiple times on the same device (e.g. in different accounts on Android), each `app.installation.id` SHOULD have a different value.
+Hardware IDs (e.g. serial number, IMEI, MAC address) MUST NOT be used as the `app.installation.id`.
 
 On iOS this value SHOULD be equal to the [vendor identifier](https://developer.apple.com/documentation/uikit/uidevice/identifierforvendor).
 
@@ -22,7 +24,7 @@ On Android this value SHOULD be equal to either:
 - [Firebase Installation ID](https://firebase.google.com/docs/projects/manage-installations).
 - A globally unique UUID which is persisted across sessions in your application.
 
-But it MAY be equal to other identifiers as well, if the above implementations are not preferred for some reason, such as:
+But it might be equal to other identifiers as well, if the above implementations are not preferred for some reason, such as:
 
 - [App set ID](https://developer.android.com/identity/app-set-id).
 - [`Settings.getString(Settings.Secure.ANDROID_ID)`](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
