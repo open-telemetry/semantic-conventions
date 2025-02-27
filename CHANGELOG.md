@@ -8,6 +8,10 @@
 
 <!-- next version -->
 
+### 🛑 Breaking changes 🛑
+
+- `code.function.name` value should contain fully qualified function name, `code.namespace` is now deprecated ([#1677](https://github.com/open-telemetry/semantic-conventions/issues/1677))
+
 ## v1.30.0
 
 ### 🛑 Breaking changes 🛑
