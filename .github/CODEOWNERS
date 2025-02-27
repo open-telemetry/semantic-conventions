@@ -56,8 +56,8 @@
 
 # Mobile semantic conventions
 /docs/mobile/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
+/model/app/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
 /model/device/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
-/model/installation/              @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
 
 # K8s semantic conventions
 /docs/resource/k8s.md                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
