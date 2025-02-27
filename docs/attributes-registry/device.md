@@ -9,7 +9,7 @@ Describes device attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="device-id" href="#device-id">`device.id`</a> | string | A unique identifier representing the device [1] | `my_vendor:1234567890`; `imei:123456789012345`; `mac:01:23:45:67:89:AB` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="device-id" href="#device-id">`device.id`</a> | string | A unique identifier representing the device [1] | `123456789012345`; `01:23:45:67:89:AB` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="device-manufacturer" href="#device-manufacturer">`device.manufacturer`</a> | string | The name of the device manufacturer [2] | `Apple`; `Samsung` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="device-model-identifier" href="#device-model-identifier">`device.model.identifier`</a> | string | The model identifier for the device [3] | `iPhone3,4`; `SM-G920F` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="device-model-name" href="#device-model-name">`device.model.name`</a> | string | The marketing name for the device model [4] | `iPhone 6s Plus`; `Samsung Galaxy S6` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -20,7 +20,6 @@ Consequently, instrumentations that provide it MUST provide it as an opt-in feat
 Its value SHOULD be identical for all apps on a device and it SHOULD NOT change if an app is uninstalled and re-installed.
 However, it might be resettable by the user for all apps on a device.
 Hardware IDs (e.g. vendor-specific serial number, IMEI or MAC address) MIGHT be used as values.
-The `device.id` SHOULD be prefixed with the type of the identifier and a colon separator (e.g. `imei:`).
 
 More information about Android identifier best practices can be found [here](https://developer.android.com/training/articles/user-data-ids).
 

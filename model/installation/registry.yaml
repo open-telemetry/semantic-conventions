@@ -15,7 +15,6 @@ groups:
           Its value SHOULD remain the same between launches of the same installation of an application.
           It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
           Hardware IDs (e.g. serial number, IMEI, MAC address) MUST NOT be used as the installation identifier.
-          The `installation.id` value SHOULD be prefixed with the type of the identifier and a colon separator (e.g. `firebase:`).
 
           On iOS this value SHOULD be equal to the [vendor identifier](https://developer.apple.com/documentation/uikit/uidevice/identifierforvendor).
 
@@ -31,8 +30,4 @@ groups:
 
           More information about Android identifier best practices can be found [here](https://developer.android.com/training/articles/user-data-ids).
         examples:
-          - identifier_for_vendor:2ab2916d-a51f-4ac8-80ee-45ac31a28092
-          - firebase:2ab2916d-a51f-4ac8-80ee-45ac31a28092
-          - guid:2ab2916d-a51f-4ac8-80ee-45ac31a28092
-          - app_set_id:2ab2916d-a51f-4ac8-80ee-45ac31a28092
-          - android_id:2ab2916d-a51f-4ac8-80ee-45ac31a28092
+          - 2ab2916d-a51f-4ac8-80ee-45ac31a28092

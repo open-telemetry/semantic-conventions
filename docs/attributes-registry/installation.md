@@ -9,12 +9,11 @@ Describes installation attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="installation-id" href="#installation-id">`installation.id`</a> | string | A unique identifier representing the installation of an application on a specific device [1] | `identifier_for_vendor:2ab2916d-a51f-4ac8-80ee-45ac31a28092`; `firebase:2ab2916d-a51f-4ac8-80ee-45ac31a28092`; `guid:2ab2916d-a51f-4ac8-80ee-45ac31a28092`; `app_set_id:2ab2916d-a51f-4ac8-80ee-45ac31a28092`; `android_id:2ab2916d-a51f-4ac8-80ee-45ac31a28092` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="installation-id" href="#installation-id">`installation.id`</a> | string | A unique identifier representing the installation of an application on a specific device [1] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `installation.id`:** Its value SHOULD remain the same between launches of the same installation of an application.
 It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
 Hardware IDs (e.g. serial number, IMEI, MAC address) MUST NOT be used as the installation identifier.
-The `installation.id` value SHOULD be prefixed with the type of the identifier and a colon separator (e.g. `firebase:`).
 
 On iOS this value SHOULD be equal to the [vendor identifier](https://developer.apple.com/documentation/uikit/uidevice/identifierforvendor).
 
