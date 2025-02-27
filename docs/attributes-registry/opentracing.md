@@ -9,7 +9,7 @@ Attributes used by the OpenTracing Shim layer.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="opentracing-ref-type" href="#opentracing-ref-type">`opentracing.ref_type`</a> | string | Parent-child Reference type [1] | `child_of`; `follows_from` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="opentracing-ref-type" href="#opentracing-ref-type">`opentracing.ref_type`</a> | string | Parent-child Reference type [1] | `child_of`; `follows_from` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `opentracing.ref_type`:** The causal relationship between a child Span and a parent Span.
 
@@ -19,5 +19,5 @@ Attributes used by the OpenTracing Shim layer.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `child_of` | The parent Span depends on the child Span in some capacity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `follows_from` | The parent Span doesn't depend in any way on the result of the child Span | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `child_of` | The parent Span depends on the child Span in some capacity | ![Development](https://img.shields.io/badge/-development-blue) |
+| `follows_from` | The parent Span doesn't depend in any way on the result of the child Span | ![Development](https://img.shields.io/badge/-development-blue) |

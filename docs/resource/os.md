@@ -10,7 +10,7 @@ In case of virtualized environments, this is the operating system as it is obser
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `os`
 
@@ -18,11 +18,11 @@ In case of virtualized environments, this is the operating system as it is obser
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`os.type`](/docs/attributes-registry/os.md) | string | The operating system type. | `windows`; `linux`; `darwin` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`os.build_id`](/docs/attributes-registry/os.md) | string | Unique identifier for a particular build or compilation of the operating system. [1] | `TQ3C.230805.001.B2`; `20E247`; `22621` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`os.description`](/docs/attributes-registry/os.md) | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`os.name`](/docs/attributes-registry/os.md) | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`os.version`](/docs/attributes-registry/os.md) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`os.type`](/docs/attributes-registry/os.md) | string | The operating system type. | `windows`; `linux`; `darwin` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.build_id`](/docs/attributes-registry/os.md) | string | Unique identifier for a particular build or compilation of the operating system. [1] | `TQ3C.230805.001.B2`; `20E247`; `22621` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.description`](/docs/attributes-registry/os.md) | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.name`](/docs/attributes-registry/os.md) | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.version`](/docs/attributes-registry/os.md) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `os.build_id`:** `build_id` values SHOULD be obtained from the following sources:
 
@@ -38,17 +38,17 @@ In case of virtualized environments, this is the operating system as it is obser
 
 | Value  | Description | Stability |
 |---|---|---|
-| `aix` | AIX (Advanced Interactive eXecutive) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `darwin` | Apple Darwin | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dragonflybsd` | DragonFly BSD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `freebsd` | FreeBSD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hpux` | HP-UX (Hewlett Packard Unix) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `linux` | Linux | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `netbsd` | NetBSD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `openbsd` | OpenBSD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `solaris` | SunOS, Oracle Solaris | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `windows` | Microsoft Windows | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `z_os` | IBM z/OS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aix` | AIX (Advanced Interactive eXecutive) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `darwin` | Apple Darwin | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dragonflybsd` | DragonFly BSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `freebsd` | FreeBSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hpux` | HP-UX (Hewlett Packard Unix) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `linux` | Linux | ![Development](https://img.shields.io/badge/-development-blue) |
+| `netbsd` | NetBSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openbsd` | OpenBSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `solaris` | SunOS, Oracle Solaris | ![Development](https://img.shields.io/badge/-development-blue) |
+| `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
+| `z_os` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

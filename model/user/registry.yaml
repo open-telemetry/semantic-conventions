@@ -6,19 +6,19 @@ groups:
     attributes:
       - id: user.email
         type: string
-        stability: experimental
+        stability: development
         brief: >
           User email address.
         examples: ['a.einstein@example.com']
       - id: user.full_name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           User's full name
         examples: ['Albert Einstein']
       - id: user.hash
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Unique user hash to correlate information for a user in anonymized form.
         note: >
@@ -26,19 +26,19 @@ groups:
         examples: ['364fc68eaf4c8acec74a4e52d7d1feaa']
       - id: user.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Unique identifier of the user.
         examples: ['S-1-5-21-202424912787-2692429404-2351956786-1000']
       - id: user.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Short name or login/username of the user.
         examples: ['a.einstein']
       - id: user.roles
         type: string[]
-        stability: experimental
+        stability: development
         brief: >
           Array of user roles at the time of the event.
         examples:

@@ -4,7 +4,7 @@ linkTitle: CloudEvents
 
 # Semantic conventions for CloudEvents
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for the [CloudEvents specification](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#overview).
 

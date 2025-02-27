@@ -4,7 +4,7 @@ linkTitle: Container
 
 # Semantic conventions for container metrics
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 ## Container Metrics
 
@@ -25,7 +25,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `container.uptime` | Gauge | `s` | The time the container has been running [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `container.uptime` | Gauge | `s` | The time the container has been running [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
 The actual accuracy would depend on the instrumentation and operating system.
@@ -48,13 +48,13 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `container.cpu.time` | Counter | `s` | Total CPU time consumed [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `container.cpu.time` | Counter | `s` | Total CPU time consumed [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Total CPU time consumed by the specific container on all available CPU cores
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `kernel`
 
@@ -66,14 +66,14 @@ This metric is [opt-in][MetricOptIn].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `interrupt` | interrupt | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `iowait` | iowait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `kernel` | kernel | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nice` | nice | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `interrupt` | interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iowait` | iowait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `kernel` | kernel | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nice` | nice | ![Development](https://img.shields.io/badge/-development-blue) |
+| `steal` | steal | ![Development](https://img.shields.io/badge/-development-blue) |
+| `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -93,13 +93,13 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `container.cpu.usage` | Gauge | `{cpu}` | Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `container.cpu.usage` | Gauge | `{cpu}` | Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** CPU usage of the specific container on all available CPU cores, averaged over the sample window
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Conditionally Required` [2] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `kernel`
 
@@ -111,14 +111,14 @@ This metric is [opt-in][MetricOptIn].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `interrupt` | interrupt | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `iowait` | iowait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `kernel` | kernel | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nice` | nice | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `interrupt` | interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iowait` | iowait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `kernel` | kernel | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nice` | nice | ![Development](https://img.shields.io/badge/-development-blue) |
+| `steal` | steal | ![Development](https://img.shields.io/badge/-development-blue) |
+| `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -138,7 +138,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `container.memory.usage` | Counter | `By` | Memory usage of the container. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `container.memory.usage` | Counter | `By` | Memory usage of the container. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Memory usage of the container.
 
@@ -160,14 +160,14 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `container.disk.io` | Counter | `By` | Disk bytes for the container. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `container.disk.io` | Counter | `By` | Disk bytes for the container. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** The total number of bytes read/written successfully (aggregated from all disks).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`disk.io.direction`](/docs/attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`disk.io.direction`](/docs/attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -175,8 +175,8 @@ This metric is [opt-in][MetricOptIn].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `read` | read | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `write` | write | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `read` | read | ![Development](https://img.shields.io/badge/-development-blue) |
+| `write` | write | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -196,14 +196,14 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `container.network.io` | Counter | `By` | Network bytes for the container. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `container.network.io` | Counter | `By` | Network bytes for the container. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** The number of bytes sent/received on all network interfaces by the container.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -211,8 +211,8 @@ This metric is [opt-in][MetricOptIn].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `receive` | receive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `transmit` | transmit | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

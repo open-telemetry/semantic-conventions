@@ -15,7 +15,7 @@ groups:
           - "YourApp/1.0.0 grpc-java-okhttp/1.27.2"
       - id: user_agent.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Name of the user-agent extracted from original. Usually refers to the browser's name.
         examples: ["Safari", "YourApp"]
@@ -26,7 +26,7 @@ groups:
           `user_agent.version`
       - id: user_agent.version
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Version of the user-agent extracted from original. Usually refers to the browser's version
         examples: ["14.1.2", "1.0.0"]
@@ -43,14 +43,14 @@ groups:
     attributes:
       - id: user_agent.os.name
         type: string
-        stability: experimental
+        stability: development
         brief: 'Human readable operating system name.'
         examples: ['iOS', 'Android', 'Ubuntu']
         note: >
           For mapping user agent strings to OS names, libraries such as [ua-parser](https://github.com/ua-parser) can be utilized.
       - id: user_agent.os.version
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The version string of the operating system as defined in
           [Version Attributes](/docs/resource/README.md#version-attributes).
@@ -59,7 +59,7 @@ groups:
           For mapping user agent strings to OS versions, libraries such as [ua-parser](https://github.com/ua-parser) can be utilized.
 
       - id: user_agent.synthetic.type
-        stability: experimental
+        stability: development
         brief: >
          Specifies the category of synthetic traffic, such as tests or bots.
         note: >
@@ -72,8 +72,8 @@ groups:
             - id: bot
               value: "bot"
               brief: 'Bot source.'
-              stability: experimental
+              stability: development
             - id: test
               value: "test"
               brief: 'Synthetic test source.'
-              stability: experimental
+              stability: development

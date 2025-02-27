@@ -4,7 +4,7 @@ linkTitle: RocketMQ
 
 # Semantic conventions for RocketMQ
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 The Semantic Conventions for [Apache RocketMQ](https://rocketmq.apache.org/) extend and override the [Messaging Semantic Conventions](README.md).
 
@@ -51,25 +51,25 @@ Specific attributes for Apache RocketMQ are defined below.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md) | string | RocketMQ [consumer group name](https://rocketmq.apache.org/docs/domainModel/07consumergroup). | `my-group`; `indexer` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.namespace`](/docs/attributes-registry/messaging.md) | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md) | string | RocketMQ [consumer group name](https://rocketmq.apache.org/docs/domainModel/07consumergroup). | `my-group`; `indexer` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.rocketmq.namespace`](/docs/attributes-registry/messaging.md) | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [2] | `0`; `1`; `2` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [6] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.message.delay_time_level`](/docs/attributes-registry/messaging.md) | int | The delay time level for delay message, which determines the message delay time. | `3` | `Conditionally Required` [7] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.message.delivery_timestamp`](/docs/attributes-registry/messaging.md) | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer. | `1665987217045` | `Conditionally Required` [8] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.message.group`](/docs/attributes-registry/messaging.md) | string | It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group. | `myMessageGroup` | `Conditionally Required` If the message type is FIFO. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [2] | `0`; `1`; `2` | `Conditionally Required` [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [6] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.rocketmq.message.delay_time_level`](/docs/attributes-registry/messaging.md) | int | The delay time level for delay message, which determines the message delay time. | `3` | `Conditionally Required` [7] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.rocketmq.message.delivery_timestamp`](/docs/attributes-registry/messaging.md) | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer. | `1665987217045` | `Conditionally Required` [8] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.rocketmq.message.group`](/docs/attributes-registry/messaging.md) | string | It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group. | `myMessageGroup` | `Conditionally Required` If the message type is FIFO. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.client.id`](/docs/attributes-registry/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.message.id`](/docs/attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.consumption_model`](/docs/attributes-registry/messaging.md) | string | Model of message consumption. This only applies to consumer spans. | `clustering`; `broadcasting` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.message.keys`](/docs/attributes-registry/messaging.md) | string[] | Key(s) of message, another way to mark message besides message id. | `["keyA", "keyB"]` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.message.tag`](/docs/attributes-registry/messaging.md) | string | The secondary classifier of message besides topic. | `tagA` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.rocketmq.message.type`](/docs/attributes-registry/messaging.md) | string | Type of message. | `normal`; `fifo`; `delay` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.client.id`](/docs/attributes-registry/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.message.id`](/docs/attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.rocketmq.consumption_model`](/docs/attributes-registry/messaging.md) | string | Model of message consumption. This only applies to consumer spans. | `clustering`; `broadcasting` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.rocketmq.message.keys`](/docs/attributes-registry/messaging.md) | string[] | Key(s) of message, another way to mark message besides message id. | `["keyA", "keyB"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.rocketmq.message.tag`](/docs/attributes-registry/messaging.md) | string | The secondary classifier of message besides topic. | `tagA` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.rocketmq.message.type`](/docs/attributes-registry/messaging.md) | string | Type of message. | `normal`; `fifo`; `delay` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [11] | `1439` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`messaging.message.body.size`](/docs/attributes-registry/messaging.md) | int | The size of the message body in bytes. [11] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -137,11 +137,11 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 | Value  | Description | Stability |
 |---|---|---|
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `process` | One or more messages are processed by a consumer. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -149,8 +149,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 | Value  | Description | Stability |
 |---|---|---|
-| `broadcasting` | Broadcasting consumption model | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `clustering` | Clustering consumption model | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `broadcasting` | Broadcasting consumption model | ![Development](https://img.shields.io/badge/-development-blue) |
+| `clustering` | Clustering consumption model | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -158,10 +158,10 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 | Value  | Description | Stability |
 |---|---|---|
-| `delay` | Delay message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `fifo` | FIFO message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `normal` | Normal message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `transaction` | Transaction message | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `delay` | Delay message | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fifo` | FIFO message | ![Development](https://img.shields.io/badge/-development-blue) |
+| `normal` | Normal message | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transaction` | Transaction message | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -4,7 +4,7 @@ linkTitle: CouchDB
 
 # Semantic conventions for CouchDB
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 <!-- toc -->
 
@@ -84,6 +84,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 CouchDB client instrumentations SHOULD collect metrics according to the general
 [Semantic Conventions for Database Client Metrics](database-metrics.md).
 
-`db.system` MUST be set to `"couchdb"`.
+`db.system.name` MUST be set to `"couchdb"`.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

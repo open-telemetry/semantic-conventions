@@ -7,22 +7,22 @@ groups:
     attributes:
       - id: network.carrier.icc
         type: string
-        stability: experimental
+        stability: development
         brief: "The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network."
         examples: "DE"
       - id: network.carrier.mcc
         type: string
-        stability: experimental
+        stability: development
         brief: "The mobile carrier country code."
         examples: "310"
       - id: network.carrier.mnc
         type: string
-        stability: experimental
+        stability: development
         brief: "The mobile carrier network code."
         examples: "001"
       - id: network.carrier.name
         type: string
-        stability: experimental
+        stability: development
         brief: "The name of the mobile carrier."
         examples: "sprint"
       - id: network.connection.subtype
@@ -31,88 +31,88 @@ groups:
             - id: gprs
               brief: GPRS
               value: "gprs"
-              stability: experimental
+              stability: development
             - id: edge
               brief: EDGE
               value: "edge"
-              stability: experimental
+              stability: development
             - id: umts
               brief: UMTS
               value: "umts"
-              stability: experimental
+              stability: development
             - id: cdma
               brief: CDMA
               value: "cdma"
-              stability: experimental
+              stability: development
             - id: evdo_0
               brief: EVDO Rel. 0
               value: "evdo_0"
-              stability: experimental
+              stability: development
             - id: evdo_a
               brief: "EVDO Rev. A"
               value: "evdo_a"
-              stability: experimental
+              stability: development
             - id: cdma2000_1xrtt
               brief: CDMA2000 1XRTT
               value: "cdma2000_1xrtt"
-              stability: experimental
+              stability: development
             - id: hsdpa
               brief: HSDPA
               value: "hsdpa"
-              stability: experimental
+              stability: development
             - id: hsupa
               brief: HSUPA
               value: "hsupa"
-              stability: experimental
+              stability: development
             - id: hspa
               brief: HSPA
               value: "hspa"
-              stability: experimental
+              stability: development
             - id: iden
               brief: IDEN
               value: "iden"
-              stability: experimental
+              stability: development
             - id: evdo_b
               brief: "EVDO Rev. B"
               value: "evdo_b"
-              stability: experimental
+              stability: development
             - id: lte
               brief: LTE
               value: "lte"
-              stability: experimental
+              stability: development
             - id: ehrpd
               brief: EHRPD
               value: "ehrpd"
-              stability: experimental
+              stability: development
             - id: hspap
               brief: HSPAP
               value: "hspap"
-              stability: experimental
+              stability: development
             - id: gsm
               brief: GSM
               value: "gsm"
-              stability: experimental
+              stability: development
             - id: td_scdma
               brief: TD-SCDMA
               value: "td_scdma"
-              stability: experimental
+              stability: development
             - id: iwlan
               brief: IWLAN
               value: "iwlan"
-              stability: experimental
+              stability: development
             - id: nr
               brief: "5G NR (New Radio)"
               value: "nr"
-              stability: experimental
+              stability: development
             - id: nrnsa
               brief: "5G NRNSA (New Radio Non-Standalone)"
               value: "nrnsa"
-              stability: experimental
+              stability: development
             - id: lte_ca
               brief: LTE CA
               value: "lte_ca"
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: 'This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.'
         examples: 'LTE'
       - id: network.connection.type
@@ -120,20 +120,20 @@ groups:
           members:
             - id: wifi
               value: "wifi"
-              stability: experimental
+              stability: development
             - id: wired
               value: "wired"
-              stability: experimental
+              stability: development
             - id: cell
               value: "cell"
-              stability: experimental
+              stability: development
             - id: unavailable
               value: "unavailable"
-              stability: experimental
+              stability: development
             - id: unknown
               value: "unknown"
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: 'The internet connection type.'
         examples: 'wifi'
       - id: network.local.address
@@ -194,7 +194,7 @@ groups:
             - id: quic
               value: 'quic'
               brief: "QUIC"
-              stability: experimental
+              stability: development
         brief: >
           [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or
           [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
@@ -225,11 +225,11 @@ groups:
           members:
             - id: transmit
               value: 'transmit'
-              stability: experimental
+              stability: development
             - id: receive
               value: 'receive'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: "The network IO operation direction."
         examples: ["transmit"]
       - id: network.interface.name
@@ -242,38 +242,38 @@ groups:
           members:
             - id: closed
               value: 'closed'
-              stability: experimental
+              stability: development
             - id: close_wait
               value: 'close_wait'
-              stability: experimental
+              stability: development
             - id: closing
               value: 'closing'
-              stability: experimental
+              stability: development
             - id: established
               value: 'established'
-              stability: experimental
+              stability: development
             - id: fin_wait_1
               value: 'fin_wait_1'
-              stability: experimental
+              stability: development
             - id: fin_wait_2
               value: 'fin_wait_2'
-              stability: experimental
+              stability: development
             - id: last_ack
               value: 'last_ack'
-              stability: experimental
+              stability: development
             - id: listen
               value: 'listen'
-              stability: experimental
+              stability: development
             - id: syn_received
               value: 'syn_received'
-              stability: experimental
+              stability: development
             - id: syn_sent
               value: 'syn_sent'
-              stability: experimental
+              stability: development
             - id: time_wait
               value: 'time_wait'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: "The state of network connection"
         note: "Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)"
         examples: [ "close_wait" ]

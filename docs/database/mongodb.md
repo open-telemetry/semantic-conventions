@@ -4,7 +4,7 @@ linkTitle: MongoDB
 
 # Semantic conventions for MongoDB
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 <!-- toc -->
 
@@ -38,38 +38,31 @@ The following table outlines the span attributes applicable to MongoDB.
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.namespace`. [1] | `public.users`; `customers` | `Required` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The MongoDB database name. | `customers`; `test.users` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the command being executed. [2] | `findAndModify`; `getMore`; `update` | `Conditionally Required` If readily available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [MongoDB error code](https://www.mongodb.com/docs/manual/reference/error-codes/) represented as a string. [3] | `36`; `11602` | `Conditionally Required` [4] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [5] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Conditionally Required` [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [8] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the [MongoDB command](https://www.mongodb.com/docs/manual/reference/command/) being executed. | `findAndModify`; `getMore`; `insertMany`; `bulkWrite` | `Conditionally Required` If readily available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [MongoDB error code](https://www.mongodb.com/docs/manual/reference/error-codes/) represented as a string. [2] | `36`; `11602` | `Conditionally Required` [3] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [7] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used.
 
-The collection name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single collection name present.
+**[2] `db.response.status_code`:** All MongoDB error codes SHOULD be considered errors.
 
-For batch operations, if the individual operations are known to have the same collection name
-then that collection name SHOULD be used.
+**[3] `db.response.status_code`:** If the operation failed and error code is available.
 
-**[2] `db.operation.name`:** See [MongoDB database commands](https://www.mongodb.com/docs/manual/reference/command/).
-
-**[3] `db.response.status_code`:** All MongoDB error codes SHOULD be considered errors.
-
-**[4] `db.response.status_code`:** If the operation failed and error code is available.
-
-**[5] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[4] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[7] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[6] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[8] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+**[7] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 
-**[9] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[8] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -114,6 +107,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 MongoDB client instrumentations SHOULD collect metrics according to the general
 [Semantic Conventions for Database Client Metrics](database-metrics.md).
 
-`db.system` MUST be set to `"mongodb"`.
+`db.system.name` MUST be set to `"mongodb"`.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

@@ -8,7 +8,7 @@
 <!-- markdownlint-disable -->
 
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `heroku`
 
@@ -16,9 +16,9 @@
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`heroku.app.id`](/docs/attributes-registry/heroku.md) | string | Unique identifier for the application | `2daa2797-e42b-4624-9322-ec3f968df4da` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`heroku.release.commit`](/docs/attributes-registry/heroku.md) | string | Commit hash for the current release | `e6134959463efd8966b20e75b913cafe3f5ec` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`heroku.release.creation_timestamp`](/docs/attributes-registry/heroku.md) | string | Time and date the release was created | `2022-10-23T18:00:42Z` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`heroku.app.id`](/docs/attributes-registry/heroku.md) | string | Unique identifier for the application | `2daa2797-e42b-4624-9322-ec3f968df4da` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`heroku.release.commit`](/docs/attributes-registry/heroku.md) | string | Commit hash for the current release | `e6134959463efd8966b20e75b913cafe3f5ec` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`heroku.release.creation_timestamp`](/docs/attributes-registry/heroku.md) | string | Time and date the release was created | `2022-10-23T18:00:42Z` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -14,71 +14,71 @@ groups:
             - id: windows
               value: 'windows'
               brief: "Microsoft Windows"
-              stability: experimental
+              stability: development
             - id: linux
               value: 'linux'
               brief: "Linux"
-              stability: experimental
+              stability: development
             - id: darwin
               value: 'darwin'
               brief: "Apple Darwin"
-              stability: experimental
+              stability: development
             - id: freebsd
               value: 'freebsd'
               brief: "FreeBSD"
-              stability: experimental
+              stability: development
             - id: netbsd
               value: 'netbsd'
               brief: "NetBSD"
-              stability: experimental
+              stability: development
             - id: openbsd
               value: 'openbsd'
               brief: "OpenBSD"
-              stability: experimental
+              stability: development
             - id: dragonflybsd
               value: 'dragonflybsd'
               brief: "DragonFly BSD"
-              stability: experimental
+              stability: development
             - id: hpux
               value: 'hpux'
               brief: "HP-UX (Hewlett Packard Unix)"
-              stability: experimental
+              stability: development
             - id: aix
               value: 'aix'
               brief: "AIX (Advanced Interactive eXecutive)"
-              stability: experimental
+              stability: development
             - id: solaris
               value: 'solaris'
               brief: "SunOS, Oracle Solaris"
-              stability: experimental
+              stability: development
             - id: z_os
               value: 'z_os'
               brief: "IBM z/OS"
-              stability: experimental
+              stability: development
         brief: >
           The operating system type.
-        stability: experimental
+        stability: development
       - id: os.description
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Human readable (not intended to be parsed) OS version information,
           like e.g. reported by `ver` or `lsb_release -a` commands.
         examples: ['Microsoft Windows [Version 10.0.18363.778]', 'Ubuntu 18.04.1 LTS']
       - id: os.name
         type: string
-        stability: experimental
+        stability: development
         brief: 'Human readable operating system name.'
         examples: ['iOS', 'Android', 'Ubuntu']
       - id: os.version
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The version string of the operating system as defined in
           [Version Attributes](/docs/resource/README.md#version-attributes).
         examples: ['14.2.1', '18.04.1']
       - id: os.build_id
         type: string
-        stability: experimental
+        stability: development
         brief: 'Unique identifier for a particular build or compilation of the operating system.'
         examples: ['TQ3C.230805.001.B2', '20E247', '22621']

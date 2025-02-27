@@ -88,7 +88,7 @@ This metric reports the same values as accessing the corresponding processor tim
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The mode of the CPU | `user`; `system` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The mode of the CPU | `user`; `system` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -96,14 +96,14 @@ This metric reports the same values as accessing the corresponding processor tim
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `interrupt` | interrupt | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `iowait` | iowait | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `kernel` | kernel | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nice` | nice | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `steal` | steal | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `system` | system | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `user` | user | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `interrupt` | interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iowait` | iowait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `kernel` | kernel | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nice` | nice | ![Development](https://img.shields.io/badge/-development-blue) |
+| `steal` | steal | ![Development](https://img.shields.io/badge/-development-blue) |
+| `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

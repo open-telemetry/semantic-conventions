@@ -9,7 +9,7 @@ Describes Linux Memory attributes
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="linux-memory-slab-state" href="#linux-memory-slab-state">`linux.memory.slab.state`</a> | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="linux-memory-slab-state" href="#linux-memory-slab-state">`linux.memory.slab.state`</a> | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -17,5 +17,5 @@ Describes Linux Memory attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `reclaimable` | reclaimable | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unreclaimable` | unreclaimable | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `reclaimable` | reclaimable | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unreclaimable` | unreclaimable | ![Development](https://img.shields.io/badge/-development-blue) |

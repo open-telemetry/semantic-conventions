@@ -4,7 +4,7 @@ linkTitle: Cassandra
 
 # Semantic conventions for Cassandra
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 <!-- toc -->
 
@@ -38,30 +38,28 @@ The following table outlines the span attributes applicable to Cassandra.
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [Cassandra protocol error code](https://github.com/apache/cassandra/blob/cassandra-5.0/doc/native_protocol_v5.spec) represented as a string. [6] | `102`; `40020` | `Conditionally Required` [7] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [8] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`cassandra.consistency.level`](/docs/attributes-registry/cassandra.md) | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all`; `each_quorum`; `quorum` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`cassandra.coordinator.dc`](/docs/attributes-registry/cassandra.md) | string | The data center of the coordinating node for a query. | `us-west-2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`cassandra.coordinator.id`](/docs/attributes-registry/cassandra.md) | string | The ID of the coordinating node for a query. | `be13faa2-8574-4d71-926d-27f16cf8a7af` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`cassandra.page.size`](/docs/attributes-registry/cassandra.md) | int | The fetch size used for paging, i.e. how many rows will be returned at once. | `5000` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`cassandra.query.idempotent`](/docs/attributes-registry/cassandra.md) | boolean | Whether or not the query is idempotent. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`cassandra.speculative_execution.count`](/docs/attributes-registry/cassandra.md) | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`cassandra.consistency.level`](/docs/attributes-registry/cassandra.md) | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all`; `each_quorum`; `quorum` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cassandra.coordinator.dc`](/docs/attributes-registry/cassandra.md) | string | The data center of the coordinating node for a query. | `us-west-2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cassandra.coordinator.id`](/docs/attributes-registry/cassandra.md) | string | The ID of the coordinating node for a query. | `be13faa2-8574-4d71-926d-27f16cf8a7af` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cassandra.page.size`](/docs/attributes-registry/cassandra.md) | int | The fetch size used for paging, i.e. how many rows will be returned at once. | `5000` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cassandra.query.idempotent`](/docs/attributes-registry/cassandra.md) | boolean | Whether or not the query is idempotent. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cassandra.speculative_execution.count`](/docs/attributes-registry/cassandra.md) | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [11] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a database query text. [12] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [13] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [14] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [15] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [16] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [17] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [18] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
-**[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-
-The collection name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single collection name present.
+**[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
 
 For batch operations, if the individual operations are known to have the same collection name
 then that collection name SHOULD be used.
 
-**[2] `db.collection.name`:** If readily available and if a database call is performed on a single collection. The collection name MAY be parsed from the query text, in which case it SHOULD be the single collection name in the query.
+**[2] `db.collection.name`:** If readily available and if a database call is performed on a single collection.
 
 **[3] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
@@ -71,14 +69,14 @@ It is RECOMMENDED to capture the value as provided by the application without at
 without attempting to do any case normalization.
 
 The operation name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single operation name present.
+when the database system supports cross-table queries in non-batch operations.
 
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,
 otherwise `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
-**[5] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[5] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call.
 
 **[6] `db.response.status_code`:** All Cassandra protocol error codes SHOULD be considered errors.
 
@@ -130,17 +128,17 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 | Value  | Description | Stability |
 |---|---|---|
-| `all` | all | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `any` | any | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `each_quorum` | each_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_one` | local_one | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_quorum` | local_quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `local_serial` | local_serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `one` | one | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `quorum` | quorum | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `serial` | serial | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `three` | three | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `two` | two | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `all` | all | ![Development](https://img.shields.io/badge/-development-blue) |
+| `any` | any | ![Development](https://img.shields.io/badge/-development-blue) |
+| `each_quorum` | each_quorum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_one` | local_one | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_quorum` | local_quorum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_serial` | local_serial | ![Development](https://img.shields.io/badge/-development-blue) |
+| `one` | one | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quorum` | quorum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `serial` | serial | ![Development](https://img.shields.io/badge/-development-blue) |
+| `three` | three | ![Development](https://img.shields.io/badge/-development-blue) |
+| `two` | two | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -160,6 +158,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 Cassandra client instrumentations SHOULD collect metrics according to the general
 [Semantic Conventions for Database Client Metrics](database-metrics.md).
 
-`db.system` MUST be set to `"cassandra"`.
+`db.system.name` MUST be set to `"cassandra"`.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

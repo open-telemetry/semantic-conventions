@@ -4,7 +4,7 @@ linkTitle: AWS
 
 # AWS semantic conventions
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This directory defines standards for resource attributes that only apply to Amazon
 Web Services (AWS) resources. If an attribute could apply to resources from more than one cloud
