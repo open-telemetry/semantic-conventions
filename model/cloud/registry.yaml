@@ -49,6 +49,12 @@ groups:
         brief: >
           The cloud account ID the resource is assigned to.
         examples: ['111111111111', 'opentelemetry']
+      - id: cloud.account.name
+        type: string
+        brief: >
+          The human-readable name or alias used to identify cloud accounts.
+        examples: [ 'development', 'aws-prod' ]
+        stability: development
       - id: cloud.region
         type: string
         stability: development

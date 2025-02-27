@@ -8,6 +8,7 @@ groups:
     attributes:
       - ref: cloud.provider
       - ref: cloud.account.id
+      - ref: cloud.account.name
       - ref: cloud.region
       - ref: cloud.resource_id
       - ref: cloud.availability_zone
