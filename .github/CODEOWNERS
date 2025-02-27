@@ -60,9 +60,10 @@
 /model/installation/              @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
 
 # K8s semantic conventions
-/docs/resource/k8s.md                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
-/model/k8s/                          @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
-/docs/non-normative/k8s-migration.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/docs/resource/k8s.md                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/model/k8s/                           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/docs/non-normative/k8s-attributes.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/docs/non-normative/k8s-migration.md  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
 
 # Container semantic conventions
 /docs/resource/container.md       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
