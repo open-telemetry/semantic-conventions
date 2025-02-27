@@ -24,7 +24,7 @@ groups:
           - [Firebase Installation ID](https://firebase.google.com/docs/projects/manage-installations).
           - A globally unique UUID which is persisted across sessions in your application.
 
-          But it MAY be equal to other identifiers such as:
+          But it MAY be equal to other identifiers as well, if the above implementations are not preferred for some reason, such as:
 
           - [App set ID](https://developer.android.com/identity/app-set-id).
           - [`Settings.getString(Settings.Secure.ANDROID_ID)`](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
