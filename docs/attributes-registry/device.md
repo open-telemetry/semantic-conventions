@@ -25,8 +25,9 @@ More information about Android identifier best practices can be found [here](htt
 
 > [!WARNING]
 >
-> This attribute contains sensitive (PII) information. Caution should be taken when storing personal data or anything which can identify a user. GDPR and data protection laws may apply, ensure you do your own due diligence.
-> See [`installation.id`](/docs/attributes-registry/installation.md#installation-id) as a more privacy-preserving alternative.
+> This attribute contains sensitive (PII) information. Caution should be taken when storing personal data or anything which can identify a user. GDPR and data protection laws may apply,
+> ensure you do your own due diligence.
+> See [`app.installation.id`](/docs/attributes-registry/app.md#app-installation-id) as a more privacy-preserving alternative.
 
 **[2] `device.manufacturer`:** The Android OS provides this field via [Build](https://developer.android.com/reference/android/os/Build#MANUFACTURER). iOS apps SHOULD hardcode the value `Apple`.
 
