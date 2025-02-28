@@ -11,16 +11,24 @@ groups:
         brief: >
           The method or function fully-qualified name without arguments. The value should fit the natural representation of the language
           runtime, which is also likely the same used within `code.stacktrace` attribute value.
-        examples: >
-          com.example.MyHttpService.serveRequest (Java)
-          com.mycompany.Main$1.myMethod (Java anonymous class)
-          com.mycompany.Main$$Lambda/0x0000748ae4149c00.myMethod (Java lambda)
-          GuzzleHttp\Client::transfer (PHP)
-          github.com/my/repo/pkg.foo.func5 (Go)
-          OpenTelemetry.Ctx.new (Elixir)
-          opentelemetry_ctx:new (Erlang)
-          playground::my_module::my_cool_func (Rust)
-          fopen (C)
+        examples:
+          - 'com.example.MyHttpService.serveRequest'
+          - 'GuzzleHttp\Client::transfer'
+          - 'fopen'
+        note: |
+          Values and format depends on each language runtime, thus it is impossible to provide an exhaustive list of examples.
+          The values are usually the same (or prefixes of) the ones found in native stack trace representation stored in
+          `code.stacktrace` without information on arguments.
+
+          * Java method: `com.example.MyHttpService.serveRequest`
+          * Java anonymous class method: `com.mycompany.Main$1.myMethod`
+          * Java lambda method: `com.mycompany.Main$$Lambda/0x0000748ae4149c00.myMethod`
+          * PHP function: `GuzzleHttp\Client::transfer
+          * Go function: `github.com/my/repo/pkg.foo.func5`
+          * Elixir: `OpenTelemetry.Ctx.new`
+          * Erlang: `opentelemetry_ctx:new`
+          * Rust: `playground::my_module::my_cool_func`
+          * C function: `fopen`
       - id: code.file.path
         type: string
         stability: development
