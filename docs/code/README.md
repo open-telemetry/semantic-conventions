@@ -15,6 +15,6 @@ This document defines semantic conventions for source code.
 > (or prior):
 >
 > * SHOULD NOT change the version of the `code` conventions that they emit by default
-    >   until the `code` semantic conventions are marked stable.
+>   until the `code` semantic conventions are marked stable.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
