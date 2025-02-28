@@ -38,6 +38,5 @@ groups:
         stability: development
         deprecated: Value should be included in `code.function.name` which is expected to be a fully-qualified name.
         brief: >
-          The "namespace" within which `code.function.name` is defined. Usually the qualified class or module name,
-          such that `code.namespace` + some separator + `code.function.name` form a unique identifier for the code unit.
+          Deprecated, namespace is now included into `code.function.name`
         examples: com.example.MyHttpService
