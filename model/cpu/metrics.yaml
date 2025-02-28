@@ -30,6 +30,6 @@ groups:
     stability: development
     brief: "Operating frequency of the logical CPU in Hertz."
     instrument: gauge
-    unit: "{Hz}"
+    unit: "Hz"
     attributes:
       - ref: cpu.logical_number
