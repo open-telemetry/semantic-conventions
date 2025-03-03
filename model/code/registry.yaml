@@ -54,7 +54,7 @@ groups:
         stability: release_candidate
         brief: >
           A stacktrace as a string in the natural representation for the language runtime.
-          The representation is to be determined and documented by each language SIG.
+          The representation is identical to `exception.stacktrace`.
         examples: >
           at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n
           at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n
