@@ -1,7 +1,7 @@
 groups:
   - id: trace.gen_ai.client.common_attributes
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: >
       Describes GenAI operation span.
     attributes:
@@ -26,6 +26,14 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.request.presence_penalty
         requirement_level: recommended
+      - ref: gen_ai.request.seed
+        requirement_level:
+          conditionally_required: if applicable and if the request includes a seed
+      - ref: gen_ai.request.encoding_formats
+        requirement_level: recommended
+      - ref: gen_ai.output.type
+        requirement_level:
+          conditionally_required: when applicable and if the request includes an output format.
       - ref: gen_ai.response.id
         requirement_level: recommended
       - ref: gen_ai.response.model
@@ -56,7 +64,7 @@ groups:
           Instrumentations SHOULD document the list of errors they report.
   - id: span.gen_ai.client
     type: span
-    stability: experimental
+    stability: development
     span_kind: client
     brief: >
       Describes GenAI operation span.
@@ -71,21 +79,37 @@ groups:
       - gen_ai.content.prompt
       - gen_ai.content.completion
 
-  - id: span.gen_ai.openai.client
+  - id: attributes.gen_ai.openai_based
     extends: trace.gen_ai.client.common_attributes
-    stability: experimental
+    type: attribute_group
+    stability: development
+    brief: >
+      Describes attributes that are common to OpenAI-based Generative AI services.
+    attributes:
+      - ref: gen_ai.output.type
+        note: >
+          This attribute SHOULD be set to the output type requested by the client:
+          - `json` for structured outputs with defined or undefined schema
+          - `image` for image output
+          - `speech` for speech output
+          - `text` for plain text output
+
+          The attribute specifies the output modality and not the actual output format.
+          For example, if an image is requested, the actual output could be a
+          URL pointing to an image file.
+
+          Additional output format details may be recorded in the future in the
+          `gen_ai.output.{type}.*` attributes.
+  - id: span.gen_ai.openai.client
+    extends: attributes.gen_ai.openai_based
+    stability: development
     span_kind: client
+    type: span
     brief: >
       Describes an OpenAI operation span.
     attributes:
       - ref: gen_ai.request.model
         requirement_level: required
-      - ref: gen_ai.openai.request.seed
-        requirement_level:
-          conditionally_required: if the request includes a seed
-      - ref: gen_ai.openai.request.response_format
-        requirement_level:
-          conditionally_required: if the request includes a response_format
       - ref: gen_ai.openai.request.service_tier
         requirement_level:
           conditionally_required: if the request includes a service_tier and the value is not 'auto'
@@ -99,10 +123,12 @@ groups:
       - ref: gen_ai.usage.output_tokens
         brief: The number of tokens used in the completions from OpenAI.
 
-  - id: trace.gen_ai.az.ai.inference.client
-    extends: trace.gen_ai.client.common_attributes
-    stability: experimental
-    type: attribute_group
+
+  - id: span.gen_ai.az.ai.inference.client
+    extends: attributes.gen_ai.openai_based
+    stability: development
+    type: span
+    span_kind: client
     brief: >
       Describes Azure AI Inference span attributes.
     attributes:
@@ -120,3 +146,67 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: If not default (443).
+
+  - id: span.gen_ai.create_agent.client
+    type: span
+    stability: development
+    span_kind: client
+    brief: >
+      Describes GenAI agent creation and is usually applicable when working
+      with remote agent services.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `create_agent`.
+      The **span name** SHOULD be `create_agent {gen_ai.agent.name}`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+    extends: trace.gen_ai.client.common_attributes
+    attributes:
+      - ref: gen_ai.system
+        requirement_level: required
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: if applicable.
+      - ref: gen_ai.agent.name
+        requirement_level:
+          conditionally_required: If provided by the application.
+      - ref: gen_ai.agent.description
+        requirement_level:
+          conditionally_required: If provided by the application.
+      - ref: gen_ai.request.model
+        requirement_level:
+          conditionally_required: If provided by the application.
+        note: >
+            The name of the GenAI model a request is being made to. If the model is supplied by a vendor,
+            then the value must be the exact name of the model requested. If the model is a fine-tuned
+            custom model, the value should have a more specific name than the base model that's been fine-tuned.
+      - ref: gen_ai.request.temperature
+        requirement_level:
+          conditionally_required: If provided by the application.
+      - ref: gen_ai.request.top_p
+        requirement_level:
+          conditionally_required: If provided by the application.
+
+  - id: span.gen_ai.execute_tool.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: Describes tool execution span.
+    note: |
+      `gen_ai.operation.name` SHOULD be `execute_tool`.
+      Span name SHOULD be `execute_tool {gen_ai.tool.name}`.
+      GenAI instrumentations that are able to instrument tool execution call SHOULD do so.
+      However, it's common for tools to be executed by the application code. It's recommended
+      for the application developers to follow this semantic conventions for tool invoked
+      by the application code.
+    attributes:
+      - ref: gen_ai.tool.name
+        requirement_level: recommended
+      - ref: gen_ai.tool.call.id
+        requirement_level:
+          recommended: if available
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
+        note: |
+          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.

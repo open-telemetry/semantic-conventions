@@ -2,7 +2,7 @@
 linkTitle: SignalR
 --->
 
-# Semantic Conventions for SignalR server metrics
+# Semantic conventions for SignalR server metrics
 
 **Status**: [Stable][DocumentStatus]
 
@@ -18,7 +18,7 @@ This article defines semantic conventions for SignalR metrics emitted by .NET co
 ## Metric: `signalr.server.connection.duration`
 
 this metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 <!-- semconv metric.signalr.server.connection.duration -->

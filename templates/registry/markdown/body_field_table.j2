@@ -6,7 +6,10 @@
 {% macro flatten(fields, ns, depth) %}{% if fields %}{% for f in fields | sort(attribute="id") %}
 {% set ns.flat = [ns.flat, [{'field':f,'depth':depth}]] | flatten %}{% if f.fields %}{% set _= flatten(f.fields, ns, depth + 1) %}{% endif %}
 {% endfor %}{% endif %}{% endmacro %}
-{% macro field_name(field, depth) %}{% set name= "&nbsp;" * 2 * depth ~ '`' ~ field.id ~ '`' %}{% if field.type == "map" %}{{ name ~ ":"}}{% else %}{{ name }}{% endif %}{% endmacro %}
+{% macro field_name(field, depth) -%}
+{%- set name= "&nbsp;" * 2 * depth ~ '`' ~ field.id ~ '`' -%}
+{%- if (field.type == "map") or (field.type == "map[]") %}{{ name ~ ":"}}{% else -%}
+{{ name }}{% endif %}{% endmacro %}
 {#- Macro for creating body table -#}
 {% macro generate(fields) %}{% if (fields | length > 0) %}{% set ns = namespace(flat=[])%}{% set _ = flatten(fields, ns, 0) %}| Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

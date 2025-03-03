@@ -1,7 +1,7 @@
 groups:
   - id: attributes.messaging.trace.minimal
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: >
         Defines minimal set of attributes used by all messaging systems.
     extends: attributes.messaging.common.minimal
@@ -28,9 +28,9 @@ groups:
         # - ref: messaging.system
         #   sampling_relevant: true
 
-  - id: span.messaging
-    type: span
-    stability: experimental
+  - id: messaging.attributes
+    type: attribute_group  # TODO: this should be a span - https://github.com/open-telemetry/semantic-conventions/issues/1891
+    stability: development
     brief: >
         Defines a full set of attributes used in messaging systems.
     extends: attributes.messaging.trace.minimal
@@ -89,7 +89,7 @@ groups:
 
   - id: messaging.network.attributes
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: Attributes that describe messaging operation along with network information.
     extends: attributes.messaging.trace.minimal
     attributes:
@@ -102,7 +102,7 @@ groups:
 
   - id: messaging.rabbitmq
     type: attribute_group
-    stability: experimental
+    stability: development
     extends: messaging.network.attributes
     brief: >
       Attributes for RabbitMQ
@@ -118,10 +118,26 @@ groups:
           Message [correlation Id](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property.
       - ref: messaging.message.body.size
         requirement_level: opt_in
+      - ref: messaging.destination.name
+        note: |
+          In RabbitMQ, the destination is defined by an *exchange*, a *routing key* and for consumers, a *queue*.
+
+          `messaging.destination.name` SHOULD be set to:
+
+          - **On the producer side**: `{exchange}:{routing key}` when both values are present and non-empty.
+          When only one is available, only that value SHOULD be used. E.g., `{exchange}` or `{routing key}`.
+          Otherwise: `amq.default` when the default exchange is used and no routing key is provided
+
+          - **On the consumer side**: `{exchange}:{routing key}:{queue}` when all values are present and non-empty.
+          If any has an empty value (e.g., the default exchange is used) it SHOULD be omitted.
+          For cases when `{routing key}` and `{queue}` are equal, only one of them SHOULD
+          be used, e.g., `{exchange}:{routing key}`.
+        examples: ['direct_logs:warning', 'logs']
+        requirement_level: required
 
   - id: messaging.kafka
     type: attribute_group
-    stability: experimental
+    stability: development
     extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Apache Kafka
@@ -154,7 +170,7 @@ groups:
 
   - id: messaging.rocketmq
     type: attribute_group
-    stability: experimental
+    stability: development
     extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Apache RocketMQ
@@ -188,7 +204,7 @@ groups:
 
   - id: messaging.gcp_pubsub
     type: attribute_group
-    stability: experimental
+    stability: development
     extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Google Cloud Pub/Sub
@@ -218,7 +234,7 @@ groups:
           - `create` and `receive` for [common messaging operations](/docs/messaging/messaging-spans.md#operation-types)
   - id: messaging.servicebus
     type: attribute_group
-    stability: experimental
+    stability: development
     extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Azure Service Bus
@@ -259,13 +275,13 @@ groups:
 
   - id: messaging.eventhubs
     type: attribute_group
-    stability: experimental
+    stability: development
     extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Azure Event Hubs
     attributes:
       - ref: messaging.consumer.group.name
-        brief: "Azure Event Hubs [consumer group name](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features#consumer-groups)."
+        brief: "Azure Event Hubs [consumer group name](https://learn.microsoft.com/azure/event-hubs/event-hubs-features#consumer-groups)."
         note: ""
         requirement_level:
           conditionally_required: On consumer spans.

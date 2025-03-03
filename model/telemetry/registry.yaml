@@ -8,7 +8,6 @@ groups:
       - id: telemetry.sdk.name
         type: string
         stability: stable
-        requirement_level: required
         brief: >
           The name of the telemetry SDK as defined above.
         note: |
@@ -59,19 +58,17 @@ groups:
               value: "webjs"
               stability: stable
         stability: stable
-        requirement_level: required
         brief: >
           The language of the telemetry SDK.
       - id: telemetry.sdk.version
         type: string
         stability: stable
-        requirement_level: required
         brief: >
           The version string of the telemetry SDK.
         examples: ["1.2.3"]
       - id: telemetry.distro.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the auto instrumentation agent or distribution, if used.
         note: |
@@ -80,7 +77,7 @@ groups:
         examples: ["parts-unlimited-java"]
       - id: telemetry.distro.version
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The version string of the auto instrumentation agent or distribution, if used.
         examples: ["1.2.3"]

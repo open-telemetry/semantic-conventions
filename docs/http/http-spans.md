@@ -2,15 +2,13 @@
 linkTitle: Spans
 --->
 
-# Semantic Conventions for HTTP Spans
+# Semantic conventions for HTTP spans
 
 **Status**: [Stable][DocumentStatus], Unless otherwise specified.
 
 This document defines semantic conventions for HTTP client and server Spans.
 They can be used for http and https schemes
 and various HTTP versions like 1.1, 2 and SPDY.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
@@ -64,7 +62,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 
 ## Name
 
-HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#span).
+HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/trace/api.md#span).
 
 HTTP span names SHOULD be `{method} {target}` if there is a (low-cardinality) `target` available. If there is no (low-cardinality) `{target}` available, HTTP span names SHOULD be `{method}`.
 
@@ -79,19 +77,19 @@ In other cases (when `{http.request.method}` is set to `_OTHER`), `{method}` MUS
 The <span id="target-placeholder">`{target}`</span> SHOULD be one of the following:
 
 - [`http.route`](/docs/attributes-registry/http.md) for HTTP Server spans
-- [`url.template`](/docs/attributes-registry/url.md) for HTTP Client spans if enabled and available (![Experimental](https://img.shields.io/badge/-experimental-blue))
+- [`url.template`](/docs/attributes-registry/url.md) for HTTP Client spans if enabled and available (![Development](https://img.shields.io/badge/-development-blue))
 - Other value MAY be provided through custom hooks at span start time or later.
 
 Instrumentation MUST NOT default to using URI path as a `{target}`.
 
 ## Status
 
-[Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#set-status) MUST be left unset if HTTP status code was in the
+[Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/trace/api.md#set-status) MUST be left unset if HTTP status code was in the
 1xx, 2xx or 3xx ranges, unless there was another error (e.g., network error receiving
 the response body; or 3xx codes with max redirects exceeded), in which case status
 MUST be set to `Error`.
 
-> **Note:**
+> [!NOTE]
 >
 > The classification of an HTTP status code as an error depends on the context.
 > For example, a 404 "Not Found" status code indicates an error if the application
@@ -116,6 +114,9 @@ the client or server from sending/receiving the request/response fully.
 
 When instrumentation detects such errors it SHOULD set span status to `Error`
 and SHOULD set the `error.type` attribute.
+
+**Status**: [Development][DocumentStatus] - Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
+general considerations on how to record span status.
 
 ## HTTP client
 
@@ -152,16 +153,17 @@ For an HTTP client span, `SpanKind` MUST be `CLIENT`.
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [10] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.request.body.size`](/docs/attributes-registry/http.md) | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`http.request.body.size`](/docs/attributes-registry/http.md) | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`http.request.header.<key>`](/docs/attributes-registry/http.md) | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [11] | `http.request.header.content-type=["application/json"]`; `http.request.header.x-forwarded-for=["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.request.size`](/docs/attributes-registry/http.md) | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`http.response.body.size`](/docs/attributes-registry/http.md) | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`http.request.size`](/docs/attributes-registry/http.md) | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`http.response.body.size`](/docs/attributes-registry/http.md) | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`http.response.header.<key>`](/docs/attributes-registry/http.md) | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [12] | `http.response.header.content-type=["application/json"]`; `http.response.header.my-custom-header=["abc", "def"]` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.response.size`](/docs/attributes-registry/http.md) | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`http.response.size`](/docs/attributes-registry/http.md) | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [13] | `tcp`; `udp` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.template`](/docs/attributes-registry/url.md) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [14] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`url.template`](/docs/attributes-registry/url.md) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [14] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`user_agent.original`](/docs/attributes-registry/user-agent.md) | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`user_agent.synthetic.type`](/docs/attributes-registry/user-agent.md) | string | Specifies the category of synthetic traffic, such as tests or bots. [15] | `bot`; `test` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -192,13 +194,13 @@ In such case username and password SHOULD be redacted and attribute's value SHOU
 
 Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
 
-![Experimental](https://img.shields.io/badge/-experimental-blue)
+![Development](https://img.shields.io/badge/-development-blue)
 Query string values for the following keys SHOULD be redacted by default and replaced by the
 value `REDACTED`:
 
 * [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
 * [`Signature`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
-* [`sig`](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview#sas-token)
+* [`sig`](https://learn.microsoft.com/azure/storage/common/storage-sas-overview#sas-token)
 * [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
 
 This list is subject to change over time.
@@ -245,6 +247,8 @@ The attribute value MUST consist of either multiple header values as an array of
 
 **[14] `url.template`:** The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
 
+**[15] `user_agent.synthetic.type`:** This attribute MAY be derived from the contents of the `user_agent.original` attribute. Components that populate the attribute are responsible for determining what they consider to be synthetic bot or test traffic. This attribute can either be set for self-identification purposes, or on telemetry detected to be generated as a result of a synthetic request. This attribute is useful for distinguishing between genuine client traffic and synthetic traffic generated by bots or tests.
+
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
@@ -285,10 +289,19 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
+
+`user_agent.synthetic.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `bot` | Bot source. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `test` | Synthetic test source. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -392,7 +405,7 @@ For an HTTP server span, `SpanKind` MUST be `SERVER`.
 | [`http.response.status_code`](/docs/attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required` If and only if one was received/sent. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`http.route`](/docs/attributes-registry/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [6] | `/users/:userID?`; `{controller}/{action}/{id?}` | `Conditionally Required` If and only if it's available | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [7] | `http`; `spdy` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [9] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Port of the local HTTP server that received the request. [9] | `80`; `8080`; `443` | `Conditionally Required` If available and `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.query`](/docs/attributes-registry/url.md) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [10] | `q=OpenTelemetry` | `Conditionally Required` If and only if one was received/sent. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`client.address`](/docs/attributes-registry/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [11] | `83.164.160.102` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -401,15 +414,16 @@ For an HTTP server span, `SpanKind` MUST be `SERVER`.
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the local HTTP server that received the request. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`user_agent.original`](/docs/attributes-registry/user-agent.md) | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`client.port`](/docs/attributes-registry/client.md) | int | The port of whichever client was captured in `client.address`. [14] | `65123` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.request.body.size`](/docs/attributes-registry/http.md) | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`http.request.body.size`](/docs/attributes-registry/http.md) | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`http.request.header.<key>`](/docs/attributes-registry/http.md) | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [15] | `http.request.header.content-type=["application/json"]`; `http.request.header.x-forwarded-for=["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.request.size`](/docs/attributes-registry/http.md) | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`http.response.body.size`](/docs/attributes-registry/http.md) | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`http.request.size`](/docs/attributes-registry/http.md) | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`http.response.body.size`](/docs/attributes-registry/http.md) | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`http.response.header.<key>`](/docs/attributes-registry/http.md) | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [16] | `http.response.header.content-type=["application/json"]`; `http.response.header.my-custom-header=["abc", "def"]` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.response.size`](/docs/attributes-registry/http.md) | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`http.response.size`](/docs/attributes-registry/http.md) | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`network.local.address`](/docs/attributes-registry/network.md) | string | Local socket address. Useful in case of a multi-IP host. | `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.local.port`](/docs/attributes-registry/network.md) | int | Local socket port. Useful in case of a multi-port host. | `65123` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [17] | `tcp`; `udp` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`user_agent.synthetic.type`](/docs/attributes-registry/user-agent.md) | string | Specifies the category of synthetic traffic, such as tests or bots. [18] | `bot`; `test` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -460,12 +474,12 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 **[10] `url.query`:** Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
 
-![Experimental](https://img.shields.io/badge/-experimental-blue)
+![Development](https://img.shields.io/badge/-development-blue)
 Query string values for the following keys SHOULD be redacted by default and replaced by the value `REDACTED`:
 
 * [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
 * [`Signature`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
-* [`sig`](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview#sas-token)
+* [`sig`](https://learn.microsoft.com/azure/storage/common/storage-sas-overview#sas-token)
 * [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
 
 This list is subject to change over time.
@@ -490,6 +504,8 @@ Users MAY explicitly configure instrumentations to capture them even though it i
 The attribute value MUST consist of either multiple header values as an array of strings or a single-item array containing a possibly comma-concatenated string, depending on the way the HTTP library provides access to headers.
 
 **[17] `network.transport`:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
+
+**[18] `user_agent.synthetic.type`:** This attribute MAY be derived from the contents of the `user_agent.original` attribute. Components that populate the attribute are responsible for determining what they consider to be synthetic bot or test traffic. This attribute can either be set for self-identification purposes, or on telemetry detected to be generated as a result of a synthetic request. This attribute is useful for distinguishing between genuine client traffic and synthetic traffic generated by bots or tests.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -536,10 +552,19 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
+
+`user_agent.synthetic.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `bot` | Bot source. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `test` | Synthetic test source. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -711,7 +736,7 @@ Span name: `POST /uploads/:document_id`.
 
 |   Attribute name     |                      Value                      |
 | :------------------- | :---------------------------------------------- |
-| `http.request.method`| `"GET"`                                         |
+| `http.request.method`| `"POST"`                                         |
 | `url.path`           | `"/uploads/4"`                                  |
 | `url.scheme`         | `"https"`                                       |
 | `http.route`         | `"/uploads/:document_id"`                       |
@@ -719,4 +744,4 @@ Span name: `POST /uploads/:document_id`.
 | `error.type`         | `WebSocketDisconnect`                           |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[SpanProcessor]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/sdk.md#span-processor
+[SpanProcessor]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/trace/sdk.md#span-processor

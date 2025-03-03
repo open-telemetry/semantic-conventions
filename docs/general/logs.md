@@ -3,14 +3,12 @@ linkTitle: Logs
 aliases: [logs-general]
 --->
 
-# General Logs Attributes
+# General logs attributes
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 The attributes described in this section are rather generic.
 They may be used in any Log Record they apply to.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
@@ -28,7 +26,7 @@ The following semantic conventions for logs are defined:
 * [Feature Flags](/docs/feature-flags/feature-flags-logs.md): Semantic attributes that may be used in describing feature flag evaluations in logs.
 
 Apart from semantic conventions for logs, [events](events.md), [traces](trace.md), and [metrics](metrics.md),
-OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/resource/sdk.md) with their own
+OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/resource/sdk.md) with their own
 [Resource Semantic Conventions](/docs/resource/README.md).
 
 ## General log identification attributes
@@ -44,8 +42,8 @@ These attributes may be used for identifying a Log Record.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`log.record.original`](/docs/attributes-registry/log.md) | string | The complete original Log Record. [1] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`log.record.uid`](/docs/attributes-registry/log.md) | string | A unique identifier for the Log Record. [2] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`log.record.original`](/docs/attributes-registry/log.md) | string | The complete original Log Record. [1] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`log.record.uid`](/docs/attributes-registry/log.md) | string | A unique identifier for the Log Record. [2] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `log.record.original`:** This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)
 
@@ -61,7 +59,7 @@ The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID
 
 This section describes attributes for log media in OpenTelemetry. Log media are mechanisms by which logs are transmitted. Types of media include files, streams, network protocols, and os-specific logging services such as journald and Windows Event Log.
 
-**Note:** The OpenTelemetry specification defines a [Resource](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/resource/sdk.md) as `an immutable representation of the entity producing telemetry`.
+**Note:** The OpenTelemetry specification defines a [Resource](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/resource/sdk.md) as `an immutable representation of the entity producing telemetry`.
 The following attributes do not describe entities that produce telemetry. Rather, they describe mechanisms of log transmission.
 As such, these should be recorded as Log Record attributes when applicable. They should not be recorded as Resource attributes.
 
@@ -78,10 +76,10 @@ As such, these should be recorded as Log Record attributes when applicable. They
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`log.file.name`](/docs/attributes-registry/log.md) | string | The basename of the file. | `audit.log` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`log.file.name_resolved`](/docs/attributes-registry/log.md) | string | The basename of the file, with symlinks resolved. | `uuid.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`log.file.path`](/docs/attributes-registry/log.md) | string | The full path to the file. | `/var/log/mysql/audit.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`log.file.path_resolved`](/docs/attributes-registry/log.md) | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`log.file.name`](/docs/attributes-registry/log.md) | string | The basename of the file. | `audit.log` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`log.file.name_resolved`](/docs/attributes-registry/log.md) | string | The basename of the file, with symlinks resolved. | `uuid.log` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`log.file.path`](/docs/attributes-registry/log.md) | string | The full path to the file. | `/var/log/mysql/audit.log` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`log.file.path_resolved`](/docs/attributes-registry/log.md) | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -101,7 +99,7 @@ As such, these should be recorded as Log Record attributes when applicable. They
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`log.iostream`](/docs/attributes-registry/log.md) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`log.iostream`](/docs/attributes-registry/log.md) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -109,8 +107,8 @@ As such, these should be recorded as Log Record attributes when applicable. They
 
 | Value  | Description | Stability |
 |---|---|---|
-| `stderr` | Events from stderr stream | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stdout` | Logs from stdout stream | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `stderr` | Events from stderr stream | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stdout` | Logs from stdout stream | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

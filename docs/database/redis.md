@@ -2,13 +2,13 @@
 linkTitle: Redis
 --->
 
-# Semantic Conventions for Redis
+# Semantic conventions for Redis
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 The Semantic Conventions for [Redis](https://redis.com/) extend and override the [Database Semantic Conventions](database-spans.md).
 
-`db.system` MUST be set to `"redis"` and SHOULD be provided **at span creation time**.
+`db.system.name` MUST be set to `"redis"` and SHOULD be provided **at span creation time**.
 
 ## Span name
 
@@ -27,17 +27,17 @@ looking confusing.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The [database index] associated with the connection, represented as a string. [1] | `0`; `1`; `15` | `Conditionally Required` If and only if it can be captured reliably. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [2] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [3] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix. [4] | `ERR`; `WRONGTYPE`; `CLUSTERDOWN` | `Conditionally Required` [5] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The [database index] associated with the connection, represented as a string. [1] | `0`; `1`; `15` | `Conditionally Required` If and only if it can be captured reliably. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The Redis command name. [2] | `HMSET`; `GET`; `SET` | `Conditionally Required` [3] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix. [4] | `ERR`; `WRONGTYPE`; `CLUSTERDOWN` | `Conditionally Required` [5] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [9] | `2`; `3`; `4` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The full syntax of the Redis CLI command. [10] | `HMSET myhash field1 'Hello' field2 'World'` | `Recommended` [11] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [9] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.query.text`](/docs/attributes-registry/db.md) | string | The full syntax of the Redis CLI command. [10] | `HMSET myhash field1 'Hello' field2 'World'` | `Recommended` [11] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [12] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [14] | `someval`; `55` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [14] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1] `db.namespace`:** A connection's currently associated database index may change during its lifetime, e.g. from executing `SELECT <index>`.
 
@@ -47,26 +47,12 @@ then it is RECOMMENDED to fallback and use the database index provided when the 
 
 Instrumentation SHOULD document if `db.namespace` reflects the database index provided when the connection was established.
 
-**[2] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
-without attempting to do any case normalization.
+**[2] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+For [transactions and pipelined calls](https://redis.io/docs/latest/develop/clients/redis-py/transpipe/), if the individual operations are known to have the same command then that command SHOULD be used prepended by `MULTI ` or `PIPELINE `. Otherwise `db.operation.name` SHOULD be `MULTI` or `PIPELINE`.
 
-A single database query may involve multiple operations. If the operation
-name is parsed from the query text, it SHOULD only be captured for queries that
-contain a single operation or when the operation name describing the
-whole query is available by other means.
+**[3] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call.
 
-For batch operations, if the individual operations are known to have the same operation name
-then that operation name SHOULD be used prepended by `BATCH `,
-otherwise `db.operation.name` SHOULD be `BATCH` or some other database
-system specific term if more applicable.
-
-This attribute has stability level RELEASE CANDIDATE.
-
-**[3] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
-
-**[4] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
-Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
-This attribute has stability level RELEASE CANDIDATE.
+**[4] `db.response.status_code`:** All Redis error prefixes SHOULD be considered errors.
 
 **[5] `db.response.status_code`:** If the operation failed and status code is available.
 
@@ -79,13 +65,12 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[8] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[9] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
-This attribute has stability level RELEASE CANDIDATE.
 
-**[10] `db.query.text`:** For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI. If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
+**[10] `db.query.text`:** For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI. If, for example, the [`HMSET` command](https://redis.io/docs/latest/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
 
 **[11] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text.
-See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
-Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
+See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
+Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
 
 **[12] `network.peer.address`:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
@@ -93,7 +78,6 @@ Parameterized query text SHOULD be collected by default (the query parameter val
 
 **[14] `db.operation.parameter`:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
-This attribute has stability level RELEASE CANDIDATE.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -123,8 +107,8 @@ In this example, Redis is connected using a unix domain socket and therefore the
 
 | Key                       | Value |
 |:--------------------------| :-------------------------------------------- |
-| Span name                 | `"HMSET 15"` |
-| `db.system`               | `"redis"` |
+| Span name                 | `"HMSET"` |
+| `db.system.name`          | `"redis"` |
 | `network.peer.address`    | `"/tmp/redis.sock"` |
 | `network.transport`       | `"unix"` |
 | `db.namespace`            | `"15"` |

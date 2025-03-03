@@ -7,7 +7,7 @@ groups:
     attributes:
       - id: gcp.client.service
         type: string
-        stability: experimental
+        stability: development
         brief: Identifies the Google Cloud service for which the official client library is intended.
         note: >
           Intended to be a stable identifier for Google Cloud client libraries
@@ -23,7 +23,7 @@ groups:
     attributes:
       - id: gcp.cloud_run.job.execution
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the Cloud Run
           [execution](https://cloud.google.com/run/docs/managing/job-executions)
@@ -33,7 +33,7 @@ groups:
         examples: ['job-name-xxxx', 'sample-job-mdw84']
       - id: gcp.cloud_run.job.task_index
         type: int
-        stability: experimental
+        stability: development
         brief: >
           The index for a task within an execution as provided by the
           [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars)
@@ -47,7 +47,7 @@ groups:
     attributes:
       - id: gcp.gce.instance.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The instance name of a GCE instance. This is the value
           provided by `host.name`, the visible name of the instance in
@@ -58,7 +58,7 @@ groups:
         examples: ['instance-1', 'my-vm-name']
       - id: gcp.gce.instance.hostname
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm).
         examples: ['my-host1234.example.com', 'sample-vm.us-west1-b.c.my-project.internal']

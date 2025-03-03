@@ -1,11 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Database
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/database/_index.md
-  to: database/README.md
 --->
 
-# Semantic Conventions for Database Calls and Systems
+# Semantic conventions for database calls and systems
 
 **Status**: [Mixed][DocumentStatus]
 
@@ -24,7 +21,7 @@ database metrics and logs.
 >   metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   in the existing major version which is a comma-separated list of values.
->   If the list of values includes:
+>   The list of values includes:
 >   * `database` - emit the new, stable database conventions,
 >     and stop emitting the old experimental database conventions
 >     that the instrumentation emitted previously.
@@ -47,12 +44,12 @@ Technology specific semantic conventions are defined for the following databases
 
 * [AWS DynamoDB](dynamodb.md): Semantic Conventions for *AWS DynamoDB*.
 * [Cassandra](cassandra.md): Semantic Conventions for *Cassandra*.
-* [Cosmos DB](cosmosdb.md): Semantic Conventions for *Microsoft Cosmos DB*.
+* [Azure Cosmos DB](cosmosdb.md): Semantic Conventions for *Azure Cosmos DB*.
 * [CouchDB](couchdb.md): Semantic Conventions for *CouchDB*.
 * [Elasticsearch](elasticsearch.md): Semantic Conventions for *Elasticsearch*.
 * [HBase](hbase.md): Semantic Conventions for *HBase*.
 * [MongoDB](mongodb.md): Semantic Conventions for *MongoDB*.
-* [MSSQL](mssql.md): Semantic Conventions for *MSSQL*.
+* [Microsoft SQL Server](mssql.md): Semantic Conventions for *Microsoft SQL Server*.
 * [Redis](redis.md): Semantic Conventions for *Redis*.
 * [SQL](sql.md): Semantic Conventions for *SQL* databases.
 

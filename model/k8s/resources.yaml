@@ -1,6 +1,7 @@
 groups:
   - id: resource.k8s.cluster
     type: resource
+    stability: development
     name: k8s.cluster
     brief: >
       A Kubernetes Cluster.
@@ -10,6 +11,7 @@ groups:
 
   - id: resource.k8s.node
     type: resource
+    stability: development
     name: k8s.node
     brief: >
       A Kubernetes Node object.
@@ -19,6 +21,7 @@ groups:
 
   - id: resource.k8s.namespace
     type: resource
+    stability: development
     name: k8s.namespace
     brief: >
       A Kubernetes Namespace.
@@ -27,6 +30,7 @@ groups:
 
   - id: resource.k8s.pod
     type: resource
+    stability: development
     name: k8s.pod
     brief: >
       A Kubernetes Pod object.
@@ -39,6 +43,7 @@ groups:
 
   - id: resource.k8s.container
     type: resource
+    stability: development
     name: k8s.container
     brief: >
       A container in a [PodTemplate](https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates).
@@ -49,6 +54,7 @@ groups:
 
   - id: resource.k8s.replicaset
     type: resource
+    stability: development
     name: k8s.replicaset
     brief: >
       A Kubernetes ReplicaSet object.
@@ -58,6 +64,7 @@ groups:
 
   - id: resource.k8s.deployment
     type: resource
+    stability: development
     name: k8s.deployment
     brief: >
       A Kubernetes Deployment object.
@@ -67,6 +74,7 @@ groups:
 
   - id: resource.k8s.statefulset
     type: resource
+    stability: development
     name: k8s.statefulset
     brief: >
       A Kubernetes StatefulSet object.
@@ -76,6 +84,7 @@ groups:
 
   - id: resource.k8s.daemonset
     type: resource
+    stability: development
     name: k8s.daemonset
     brief: >
       A Kubernetes DaemonSet object.
@@ -85,6 +94,7 @@ groups:
 
   - id: resource.k8s.job
     type: resource
+    stability: development
     name: k8s.job
     brief: >
       A Kubernetes Job object.
@@ -94,9 +104,40 @@ groups:
 
   - id: resource.k8s.cronjob
     type: resource
+    stability: development
     name: k8s.cronjob
     brief: >
       A Kubernetes CronJob object.
     attributes:
       - ref: k8s.cronjob.uid
       - ref: k8s.cronjob.name
+
+  - id: resource.k8s.replicationcontroller
+    type: resource
+    stability: development
+    name: k8s.replicationcontroller
+    brief: >
+      A Kubernetes ReplicationController object.
+    attributes:
+      - ref: k8s.replicationcontroller.uid
+      - ref: k8s.replicationcontroller.name
+
+  - id: resource.k8s.hpa
+    type: resource
+    stability: development
+    name: k8s.hpa
+    brief: >
+      A Kubernetes HorizontalPodAutoscaler object.
+    attributes:
+      - ref: k8s.hpa.uid
+      - ref: k8s.hpa.name
+
+  - id: resource.k8s.resourcequota
+    type: resource
+    stability: development
+    name: k8s.resourcequota
+    brief: >
+      A Kubernetes ResourceQuota object.
+    attributes:
+      - ref: k8s.resourcequota.uid
+      - ref: k8s.resourcequota.name

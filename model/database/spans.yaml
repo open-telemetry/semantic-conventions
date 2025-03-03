@@ -2,41 +2,55 @@ groups:
   - id: trace.db.common.minimal
     extends: attributes.db.client.minimal
     type: attribute_group
-    stability: experimental
     brief: This group defines the attributes used to perform database client calls.
     attributes:
       # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
-      # - ref: db.system
+      # - ref: db.system.name
       #   sampling_relevant: true
       - ref: db.operation.name
         sampling_relevant: true
+        requirement_level:
+          conditionally_required: >
+            If readily available and if there is a single operation name that describes the
+            database call.
       - ref: db.operation.batch.size
       - ref: server.address
         sampling_relevant: true
       - ref: server.port
         sampling_relevant: true
 
-  - id: trace.db.common.query_and_collection
-    extends: attributes.db.client.with_query_and_collection
+  - id: trace.db.common.query
+    extends: attributes.db.client.with_query
     type: attribute_group
-    stability: experimental
     brief: This group defines the attributes used to perform database client calls.
     attributes:
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: db.operation.batch.size
+      - ref: db.response.returned_rows
       - ref: db.query.text
         sampling_relevant: true
         requirement_level:
           recommended: >
             Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
             sensitive data, e.g. by redacting all literal values present in the query text.
-            See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+            See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
+            see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
       - ref: db.query.summary
         sampling_relevant: true
       - ref: db.operation.parameter
         requirement_level: opt_in
+
+  - id: trace.db.common.query_and_collection
+    extends: attributes.db.client.with_query_and_collection
+    type: attribute_group
+    brief: This group defines the attributes used to perform database client calls.
+    attributes:
       - ref: db.collection.name
         sampling_relevant: true
       - ref: db.operation.name
@@ -47,10 +61,24 @@ groups:
       - ref: server.port
         sampling_relevant: true
       - ref: db.response.returned_rows
+      - ref: db.query.text
+        sampling_relevant: true
+        requirement_level:
+          recommended: >
+            Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
+            sensitive data, e.g. by redacting all literal values present in the query text.
+            See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
+
+            Parameterized query text SHOULD be collected by default
+            (the query parameter values themselves are opt-in,
+            see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
+      - ref: db.query.summary
+        sampling_relevant: true
+      - ref: db.operation.parameter
+        requirement_level: opt_in
 
   - id: trace.db.common.full
     type: attribute_group
-    stability: experimental
     brief: This group documents attributes that describe database call along with network information.
     extends: trace.db.common.query_and_collection
     attributes:
@@ -66,7 +94,7 @@ groups:
       - ref: network.peer.port
         requirement_level:
           recommended: if and only if `network.peer.address` is set.
-      - ref: db.system
+      - ref: db.system.name
         sampling_relevant: true
         # TODO: Not adding to the minimal because of https://github.com/open-telemetry/build-tools/issues/192
         requirement_level: required
@@ -77,14 +105,14 @@ groups:
 
   - id: span.db.client
     type: span
-    stability: experimental
+    stability: development
     brief: This span defines the attributes used to perform database client calls.
     span_kind: client
     extends: trace.db.common.full
 
   - id: span.db.mssql.client
     type: span
-    stability: experimental
+    stability: development
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -115,10 +143,14 @@ groups:
           represented as a string.
         note: >
           Microsoft SQL Server does not report SQLSTATE.
+
+          Instrumentations SHOULD use [error severity](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-error-severities)
+          returned along with the status code to determine the status of the span. Response codes with severity 11 or higher SHOULD be considered errors.
         examples: ["102", "40020"]
 
   - id: span.db.postgresql.client
     type: span
+    stability: development
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -149,10 +181,13 @@ groups:
       - ref: db.response.status_code
         brief: >
           [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html).
+        note: >
+          PostgreSQL follows SQL standard conventions for [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE).
+          Response codes of "Class 02" or higher SHOULD be considered errors.
         examples: ["08000", "08P01"]
-
   - id: span.db.mysql.client
     type: span
+    stability: development
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -174,11 +209,15 @@ groups:
         examples: ["products", "customers"]
       - ref: db.response.status_code
         brief: >
-          [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html).
+          [MySQL error number](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html) recorded as a string.
+        note: >
+          MySQL error codes are vendor specific error codes and don't follow [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE)
+          conventions. All MySQL error codes SHOULD be considered errors.
         examples: ["1005", "MY-010016"]
 
   - id: span.db.mariadb.client
     type: span
+    stability: development
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -202,12 +241,22 @@ groups:
         brief: >
           [Maria DB error code](https://mariadb.com/kb/en/mariadb-error-code-reference/)
           represented as a string.
-        examples: ["1008", "3058"]
+        note: >
+          MariaDB uses vendor-specific error codes on all errors and reports
+          [SQLSTATE](https://mariadb.com/kb/en/sqlstate/) in some cases.
 
+          MariaDB error codes are more granular than SQLSTATE, so MariaDB instrumentations
+          SHOULD set the `db.response.status_code` to this known error code.
+
+          When SQLSTATE is available, SQLSTATE of "Class 02" or higher SHOULD be
+          considered errors. When SQLSTATE is not available, all MariaDB error
+          codes SHOULD be considered errors.
+
+        examples: ["1008", "3058"]
   - id: span.db.cassandra.client
     type: span
     span_kind: client
-    stability: experimental
+    stability: development
     extends: trace.db.common.query_and_collection
     brief: >
       Attributes for Cassandra
@@ -218,14 +267,20 @@ groups:
         examples: ["mykeyspace"]
         requirement_level:
           conditionally_required: If available.
-      - ref: db.cassandra.page_size
-      - ref: db.cassandra.consistency_level
+      - ref: cassandra.page.size
+      - ref: cassandra.consistency.level
       - ref: db.collection.name
         brief: The name of the Cassandra table that the operation is acting upon.
-      - ref: db.cassandra.idempotence
-      - ref: db.cassandra.speculative_execution_count
-      - ref: db.cassandra.coordinator.id
-      - ref: db.cassandra.coordinator.dc
+        note: |
+          It is RECOMMENDED to capture the value as provided by the application
+          without attempting to do any case normalization.
+
+          For batch operations, if the individual operations are known to have the same collection name
+          then that collection name SHOULD be used.
+      - ref: cassandra.query.idempotent
+      - ref: cassandra.speculative_execution.count
+      - ref: cassandra.coordinator.id
+      - ref: cassandra.coordinator.dc
       - ref: network.peer.address
         brief: Peer address of the database node where the operation was performed.
         requirement_level:
@@ -238,11 +293,13 @@ groups:
       - ref: db.response.status_code
         brief: >
           [Cassandra protocol error code](https://github.com/apache/cassandra/blob/cassandra-5.0/doc/native_protocol_v5.spec) represented as a string.
+        note: >
+          All Cassandra protocol error codes SHOULD be considered errors.
         examples: ["102", "40020"]
   - id: span.db.hbase.client
     type: span
     span_kind: client
-    stability: experimental
+    stability: development
     extends: trace.db.common.minimal
     brief: >
       Attributes for HBase
@@ -259,21 +316,29 @@ groups:
         requirement_level:
           conditionally_required: If applicable.
         note: >
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
           If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
         examples: ['mytable', 'ns:table']
       - ref: db.operation.name
+        note: |
+          It is RECOMMENDED to capture the value as provided by the application
+          without attempting to do any case normalization.
+
+          For batch operations, if the individual operations are known to have the same operation name
+          then that operation name SHOULD be used prepended by `BATCH `,
+          otherwise `db.operation.name` SHOULD be `BATCH`.
         requirement_level:
           conditionally_required: If readily available.
       - ref: db.response.status_code
         brief: >
-          Protocol-specific response code recorded as string.
+          Protocol-specific response code recorded as a string.
         examples: ["200", "409", "14"]
         requirement_level:
           conditionally_required: If response was received.
   - id: span.db.couchdb.client
     type: span
     span_kind: client
-    stability: experimental
+    stability: development
     extends: trace.db.common.minimal
     brief: >
       Attributes for CouchDB
@@ -298,16 +363,18 @@ groups:
         note: ""  # overriding the base note
       - ref: db.response.status_code
         brief: >
-          The HTTP response code returned by the Couch DB.
+          The HTTP response code returned by the Couch DB recorded as a string.
+        note: >
+          HTTP response codes in the 4xx and 5xx range SHOULD be considered errors.
         examples: ["200", "201", "429"]
         requirement_level:
           conditionally_required: If response was received and the HTTP response code is available.
 
   - id: span.db.redis.client
     type: span
-    stability: experimental
+    stability: development
     span_kind: client
-    extends: attributes.db.client.minimal
+    extends: trace.db.common.minimal
     brief: >
       Attributes for Redis
     attributes:
@@ -327,6 +394,17 @@ groups:
           Instrumentation SHOULD document if `db.namespace` reflects the database index provided when the connection was established.
         examples: ["0", "1", "15"]
       - ref: db.operation.name
+        brief: >
+          The Redis command name.
+        examples: ["HMSET", "GET", "SET"]
+        note: >
+          It is RECOMMENDED to capture the value as provided by the application
+          without attempting to do any case normalization.
+
+          For [transactions and pipelined calls](https://redis.io/docs/latest/develop/clients/redis-py/transpipe/),
+          if the individual operations are known to have the same command then that
+          command SHOULD be used prepended by `MULTI ` or `PIPELINE `.
+          Otherwise `db.operation.name` SHOULD be `MULTI` or `PIPELINE`.
         sampling_relevant: true
       - ref: db.query.text
         sampling_relevant: true
@@ -338,14 +416,14 @@ groups:
             Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
             sensitive data, e.g. by redacting all literal values present in the query text.
 
-            See [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+            See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.operation.parameter.<key>`](../../docs/attributes-registry/db.md)).
+            see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
         note: >
           For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI.
-          If, for example, the [`HMSET` command](https://redis.io/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
+          If, for example, the [`HMSET` command](https://redis.io/docs/latest/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
       - ref: network.peer.address
         brief: Peer address of the database node where the operation was performed.
         requirement_level:
@@ -359,6 +437,8 @@ groups:
         brief: >
           The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix.
         examples: ["ERR", "WRONGTYPE", "CLUSTERDOWN"]
+        note: >
+          All Redis error prefixes SHOULD be considered errors.
       - ref: db.operation.batch.size
       - ref: db.operation.parameter
         requirement_level: opt_in
@@ -369,7 +449,7 @@ groups:
 
   - id: span.db.mongodb.client
     type: span
-    stability: experimental
+    stability: development
     span_kind: client
     extends: trace.db.common.minimal
     brief: >
@@ -378,16 +458,20 @@ groups:
       - ref: db.operation.name
         sampling_relevant: true
         brief: >
-          The name of the command being executed.
-        note: >
-          See [MongoDB database commands](https://www.mongodb.com/docs/manual/reference/command/).
-        examples: ['findAndModify', 'getMore', 'update']
+          The name of the [MongoDB command](https://www.mongodb.com/docs/manual/reference/command/) being executed.
+        note: ""
+        examples: ['findAndModify', 'getMore', 'insertMany', 'bulkWrite']
         requirement_level:
           conditionally_required: If readily available.
       - ref: db.collection.name
         sampling_relevant: true
         brief:
           The MongoDB collection being accessed within the database stated in `db.namespace`.
+        note: >
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+          For batch operations, if the individual operations are known to have the same collection name
+          then that collection name SHOULD be used.
         requirement_level: required
       - ref: db.namespace
         sampling_relevant: true
@@ -398,13 +482,15 @@ groups:
       - ref: db.response.status_code
         brief: >
           [MongoDB error code](https://www.mongodb.com/docs/manual/reference/error-codes/) represented as a string.
+        note: >
+          All MongoDB error codes SHOULD be considered errors.
         requirement_level:
           conditionally_required: If the operation failed and error code is available.
         examples: ["36", "11602"]
 
   - id: span.db.elasticsearch.client
     type: span
-    stability: experimental
+    stability: development
     span_kind: client
     extends: trace.db.common.minimal
     brief: >
@@ -418,6 +504,10 @@ groups:
         note: >
           The `db.operation.name` SHOULD match the endpoint identifier provided in the request
           (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
+
+          For batch operations, if the individual operations are known to have the same operation name
+          then that operation name SHOULD be used prepended by `bulk `,
+          otherwise `db.operation.name` SHOULD be `bulk`.
         examples: [ 'search', 'ml.close_job', 'cat.aliases' ]
       - ref: url.full
         sampling_relevant: true
@@ -445,36 +535,42 @@ groups:
           When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
         brief: The name of the Elasticsearch cluster which the client connects to.
         requirement_level: recommended
-      - ref: db.elasticsearch.node.name
+      - ref: elasticsearch.node.name
         note: >
           When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
         requirement_level: recommended
-      - ref: db.elasticsearch.path_parts
+      - ref: db.operation.parameter
+        stability: development
+        brief: >
+          A dynamic value in the url path.
+        note: >
+          Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format
+          `db.operation.parameter.<key>`, where `<key>` is the path parameter name. The implementation SHOULD
+          reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)
+          in order to map the path parameter values to their names.
+        examples:
+          [
+            'db.operation.parameter.index="test-index"',
+            'db.operation.parameter="123"',
+          ]
         requirement_level:
-          conditionally_required: when the url has dynamic values
+          conditionally_required: when the url has path parameters
       - ref: db.response.status_code
         brief: >
           The HTTP response code returned by the Elasticsearch cluster.
         examples: ["200", "201", "429"]
+        note: >
+          HTTP response codes in the 4xx and 5xx range SHOULD be considered errors.
         requirement_level:
           conditionally_required: If response was received.
   - id: span.db.sql.client
     type: span
     span_kind: client
-    stability: experimental
-    extends: trace.db.common.query_and_collection
+    stability: development
+    extends: trace.db.common.query
     brief: >
       Attributes for SQL databases
     attributes:
-      - ref: db.operation.name
-        note: >
-          This SHOULD be the SQL command such as `SELECT`, `INSERT`, `UPDATE`, `CREATE`, `DROP`.
-
-          In the case of `EXEC`, this SHOULD be the stored procedure name that is being executed.
-        examples: ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'mystoredproc']
-      - ref: db.collection.name
-        brief: The name of the SQL table that the operation is acting upon.
-        examples: ['users', 'dbo.products']
       - ref: db.namespace
         brief: >
           The database associated with the connection,
@@ -501,7 +597,7 @@ groups:
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
       - ref: db.response.status_code
         brief: >
-          Database response code recorded as string.
+          Database response code recorded as a string.
         note: |
           SQL defines [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) as a database
           return code which is adopted by some database systems like PostgreSQL.
@@ -542,15 +638,15 @@ groups:
         examples: ["ORA-17027", "1052", "2201B"]
         requirement_level:
           conditionally_required: If response has ended with warning or an error.
-  - id: span.db.cosmosdb.client
+  - id: span.azure.cosmosdb.client
     type: span
-    stability: experimental
+    stability: development
     span_kind: client
     extends: trace.db.common.query_and_collection
     brief: >
       Attributes for Cosmos DB.
     attributes:
-      - ref: db.cosmosdb.client_id
+      - ref: azure.client.id
       - ref: user_agent.original
         brief: 'Full user-agent string is generated by Cosmos DB SDK'
         note: >
@@ -565,7 +661,7 @@ groups:
              Format Reg-{D (Disabled discovery)}-S(application region)|L(List of preferred regions)|N(None, user did not configure it).
              Default value is "NS".
         examples: ['cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|']
-      - ref: db.cosmosdb.connection_mode
+      - ref: azure.cosmosdb.connection.mode
         requirement_level:
           conditionally_required: if not `gateway` (the default value is assumed to be `gateway`).
       - ref: db.collection.name
@@ -575,11 +671,13 @@ groups:
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         requirement_level:
           conditionally_required: if available
-      - ref: db.cosmosdb.request_content_length
+      - ref: azure.cosmosdb.request.body.size
       - ref: db.response.status_code
         brief: >
           Cosmos DB status code.
         examples: ["200", "201"]
+        note: >
+          Response codes in the 4xx and 5xx range SHOULD be considered errors.
         requirement_level:
           conditionally_required: if response was received
       - ref: db.response.returned_rows
@@ -588,10 +686,10 @@ groups:
         examples: [10, 20]
         requirement_level:
           conditionally_required: if response was received and returned any rows
-      - ref: db.cosmosdb.sub_status_code
+      - ref: azure.cosmosdb.response.sub_status_code
         requirement_level:
           conditionally_required: when response was received and contained sub-code.
-      - ref: db.cosmosdb.request_charge
+      - ref: azure.cosmosdb.operation.request_charge
         requirement_level:
           conditionally_required: when available
       - ref: db.namespace
@@ -734,9 +832,9 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: If not default (443).
-      - ref: db.cosmosdb.consistency_level
+      - ref: azure.cosmosdb.consistency.level
         requirement_level:
           conditionally_required: If available.
-      - ref: db.cosmosdb.regions_contacted
+      - ref: azure.cosmosdb.operation.contacted_regions
         requirement_level:
           conditionally_required: If available.

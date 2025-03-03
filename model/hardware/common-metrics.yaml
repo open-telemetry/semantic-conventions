@@ -11,7 +11,7 @@ groups:
   - id: metric.hw.energy
     type: metric
     metric_name: hw.energy
-    stability: experimental
+    stability: development
     brief: "Energy consumed by the component"
     instrument: counter
     unit: "J"
@@ -20,7 +20,7 @@ groups:
   - id: metric.hw.errors
     type: metric
     metric_name: hw.errors
-    stability: experimental
+    stability: development
     brief: "Number of errors encountered by the component"
     instrument: counter
     unit: "{error}"
@@ -38,7 +38,7 @@ groups:
   - id: metric.hw.power
     type: metric
     metric_name: hw.power
-    stability: experimental
+    stability: development
     brief: "Instantaneous power consumed by the component"
     note: >
       It is recommended to report `hw.energy` instead of `hw.power` when possible.
@@ -49,14 +49,14 @@ groups:
   - id: metric.hw.status
     type: metric
     metric_name: hw.status
-    stability: experimental
+    stability: development
     brief: "Operational status: `1` (true) or `0` (false) for each of the possible states"
     instrument: updowncounter
     unit: "1"
     extends: metric.hw.attributes
     note: >
       `hw.status` is currently specified as an *UpDownCounter* but would ideally be represented using a
-      [*StateSet* as defined in OpenMetrics](https://github.com/OpenObservability/OpenMetrics/blob/main/specification/OpenMetrics.md#stateset).
+      [*StateSet* as defined in OpenMetrics](https://github.com/prometheus/OpenMetrics/blob/v1.0.0/specification/OpenMetrics.md#stateset).
       This semantic convention will be updated once *StateSet* is specified in OpenTelemetry. This planned change
       is not expected to have any consequence on the way users query their timeseries backend to retrieve the
       values of `hw.status` over time.

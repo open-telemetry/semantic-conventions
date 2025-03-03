@@ -2,9 +2,9 @@
 linkTitle: URL
 --->
 
-# Semantic Conventions for URL
+# Semantic conventions for URL
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions that describe URL and its components.
 
@@ -47,13 +47,13 @@ In such case username and password SHOULD be redacted and attribute's value SHOU
 
 Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
 
-![Experimental](https://img.shields.io/badge/-experimental-blue)
+![Development](https://img.shields.io/badge/-development-blue)
 Query string values for the following keys SHOULD be redacted by default and replaced by the
 value `REDACTED`:
 
 * [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
 * [`Signature`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
-* [`sig`](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview#sas-token)
+* [`sig`](https://learn.microsoft.com/azure/storage/common/storage-sas-overview#sas-token)
 * [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
 
 This list is subject to change over time.
@@ -65,12 +65,12 @@ When a query string value is redacted, the query string key SHOULD still be pres
 
 **[3] `url.query`:** Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
 
-![Experimental](https://img.shields.io/badge/-experimental-blue)
+![Development](https://img.shields.io/badge/-development-blue)
 Query string values for the following keys SHOULD be redacted by default and replaced by the value `REDACTED`:
 
 * [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
 * [`Signature`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
-* [`sig`](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview#sas-token)
+* [`sig`](https://learn.microsoft.com/azure/storage/common/storage-sas-overview#sas-token)
 * [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
 
 This list is subject to change over time.

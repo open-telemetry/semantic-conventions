@@ -1,15 +1,13 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Tracing Compatibility
+linkTitle: Tracing compatibility
 --->
 
-# Semantic Conventions for Tracing Compatibility Components
+# Semantic conventions for tracing compatibility components
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines trace semantic conventions used by the
 compatibility components, e.g. OpenTracing Shim layer.
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
@@ -33,7 +31,7 @@ between a child Span and a parent Span, as defined by
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`opentracing.ref_type`](/docs/attributes-registry/opentracing.md) | string | Parent-child Reference type [1] | `child_of`; `follows_from` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`opentracing.ref_type`](/docs/attributes-registry/opentracing.md) | string | Parent-child Reference type [1] | `child_of`; `follows_from` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `opentracing.ref_type`:** The causal relationship between a child Span and a parent Span.
 
@@ -43,8 +41,8 @@ between a child Span and a parent Span, as defined by
 
 | Value  | Description | Stability |
 |---|---|---|
-| `child_of` | The parent Span depends on the child Span in some capacity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `follows_from` | The parent Span doesn't depend in any way on the result of the child Span | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `child_of` | The parent Span depends on the child Span in some capacity | ![Development](https://img.shields.io/badge/-development-blue) |
+| `follows_from` | The parent Span doesn't depend in any way on the result of the child Span | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
