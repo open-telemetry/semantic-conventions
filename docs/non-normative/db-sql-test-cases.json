@@ -6,7 +6,7 @@
         "sanitized": [
             "SELECT ?, ?, ?"
         ],
-        "summary": "SELECT"
+        "db.query.summary": "SELECT"
     },
     {
         "name": "numeric_literal_with_decimal_point",
@@ -15,7 +15,7 @@
         "sanitized": [
             "SELECT ?, ?, ?, ?, ?"
         ],
-        "summary": "SELECT"
+        "db.query.summary": "SELECT"
     },
     {
         "name": "numeric_literal_exponential",
@@ -24,7 +24,7 @@
         "sanitized": [
             "SELECT ?, ?, ?"
         ],
-        "summary": "SELECT"
+        "db.query.summary": "SELECT"
     },
     {
         "name": "numeric_literal_negative_exponential",
@@ -33,7 +33,7 @@
         "sanitized": [
             "SELECT ?, ?, ?"
         ],
-        "summary": "SELECT"
+        "db.query.summary": "SELECT"
     },
     {
         "name": "arithmetic_on_numeric_literals",
@@ -42,7 +42,7 @@
         "sanitized": [
             "SELECT ??"
         ],
-        "summary": "SELECT"
+        "db.query.summary": "SELECT"
     },
     {
         "name": "hex_literal",
@@ -51,7 +51,7 @@
         "sanitized": [
             "SELECT ?, ?"
         ],
-        "summary": "SELECT"
+        "db.query.summary": "SELECT"
     },
     {
         "name": "string_literal",
@@ -60,7 +60,7 @@
         "sanitized": [
             "SELECT ?"
         ],
-        "summary": "SELECT"
+        "db.query.summary": "SELECT"
     },
     {
         "name": "string_literal_escaped_single_quote",
@@ -69,7 +69,7 @@
         "sanitized": [
             "SELECT ?"
         ],
-        "summary": "SELECT"
+        "db.query.summary": "SELECT"
     },
     {
         "name": "string_with_embedded_newline",
@@ -78,7 +78,7 @@
         "sanitized": [
             "SELECT ?"
         ],
-        "summary": "SELECT"
+        "db.query.summary": "SELECT"
     },
     {
         "name": "numbers_in_identifiers",
@@ -87,7 +87,7 @@
         "sanitized": [
             "SELECT c3po, r2d2 FROM covid19 WHERE n1h1=?"
         ],
-        "summary": "SELECT covid19"
+        "db.query.summary": "SELECT covid19"
     },
     {
         "name": "periods_in_identifiers",
@@ -96,7 +96,7 @@
         "sanitized": [
             "SELECT a FROM dbo.Table JOIN dbo.AnotherTable"
         ],
-        "summary": "SELECT dbo.Table dbo.AnotherTable"
+        "db.query.summary": "SELECT dbo.Table dbo.AnotherTable"
     },
     {
         "name": "insert_into",
@@ -105,7 +105,7 @@
         "sanitized": [
             "INSERT INTO X VALUES(?, ?, ?, ??)"
         ],
-        "summary": "INSERT X"
+        "db.query.summary": "INSERT X"
     },
     {
         "name": "uuid",
@@ -114,7 +114,7 @@
         "sanitized": [
             "SELECT { guid ? }"
         ],
-        "summary": "SELECT"
+        "db.query.summary": "SELECT"
     },
     {
         "name": "in_clause",
@@ -124,7 +124,7 @@
             "SELECT * FROM table WHERE value IN (?)",
             "SELECT * FROM table WHERE value IN (?, ?, ?)"
         ],
-        "summary": "SELECT table"
+        "db.query.summary": "SELECT table"
     },
     {
         "name": "comments",
@@ -133,7 +133,7 @@
         "sanitized": [
             "SELECT column \nFROM  table"
         ],
-        "summary": "SELECT table"
+        "db.query.summary": "SELECT table"
     },
     {
         "name": "insert_into_select",
@@ -142,7 +142,7 @@
         "sanitized": [
             "INSERT INTO shipping_details\n(order_id,\naddress)\nSELECT order_id,\naddress\nFROM   orders\nWHERE  order_id = ?"
         ],
-        "summary": "INSERT shipping_details SELECT orders"
+        "db.query.summary": "INSERT shipping_details SELECT orders"
     },
     {
         "name": "select_nested_query",
@@ -151,7 +151,7 @@
         "sanitized": [
             "SELECT order_date\nFROM   (SELECT *\nFROM   orders o\nJOIN customers c\nON o.customer_id = c.customer_id)"
         ],
-        "summary": "SELECT SELECT orders customers"
+        "db.query.summary": "SELECT SELECT orders customers"
     },
     {
         "name": "select_nested_query_case_preserved",
@@ -160,7 +160,7 @@
         "sanitized": [
             "SELEcT order_date\nFROM   (sELECT *\nFROM   orders o\nJOIN customers c\nON o.customer_id = c.customer_id)"
         ],
-        "summary": "SELEcT sELECT orders customers"
+        "db.query.summary": "SELEcT sELECT orders customers"
     },
     {
         "name": "case_preserved",
@@ -169,7 +169,7 @@
         "sanitized": [
             "SELEcT order_date\nFROM ORders"
         ],
-        "summary": "SELEcT ORders"
+        "db.query.summary": "SELEcT ORders"
     },
     {
         "name": "cross_join",
@@ -178,7 +178,7 @@
         "sanitized": [
             "SELECT * FROM Orders o CROSS JOIN OrderDetails od"
         ],
-        "summary": "SELECT Orders OrderDetails"
+        "db.query.summary": "SELECT Orders OrderDetails"
     },
     {
         "name": "cross_join_comma_separated_syntax",
@@ -187,7 +187,7 @@
         "sanitized": [
             "SELECT * FROM Orders o, OrderDetails od"
         ],
-        "summary": "SELECT Orders"
+        "db.query.summary": "SELECT Orders"
     },
     {
         "name": "create_table",
@@ -196,7 +196,7 @@
         "sanitized": [
             "CREATE  TABLE MyTable (\n    ID NOT NULL IDENTITY(?,?) PRIMARY KEY\n)"
         ],
-        "summary": "CREATE  TABLE MyTable"
+        "db.query.summary": "CREATE  TABLE MyTable"
     },
     {
         "name": "alter_table",
@@ -205,7 +205,7 @@
         "sanitized": [
             "ALTER  TABLE MyTable ADD Name varchar(?)"
         ],
-        "summary": "ALTER  TABLE MyTable"
+        "db.query.summary": "ALTER  TABLE MyTable"
     },
     {
         "name": "drop_table",
@@ -214,6 +214,6 @@
         "sanitized": [
             "DROP  TABLE MyTable"
         ],
-        "summary": "DROP  TABLE MyTable"
+        "db.query.summary": "DROP  TABLE MyTable"
     }
 ]
