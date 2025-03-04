@@ -6,8 +6,6 @@
             "SELECT ?, ?, ?"
         ],
         "summary": "SELECT",
-        "operation": "SELECT",
-        "collection": null,
         "dialects": [
             "mssql"
         ]
@@ -19,8 +17,6 @@
             "SELECT ?, ?, ?, ?, ?"
         ],
         "summary": "SELECT",
-        "operation": "SELECT",
-        "collection": null,
         "dialects": [
             "mssql"
         ]
@@ -32,8 +28,6 @@
             "SELECT ?, ?, ?"
         ],
         "summary": "SELECT",
-        "operation": "SELECT",
-        "collection": null,
         "dialects": [
             "mssql"
         ]
@@ -45,8 +39,6 @@
             "SELECT ?, ?, ?"
         ],
         "summary": "SELECT",
-        "operation": "SELECT",
-        "collection": null,
         "dialects": [
             "mssql"
         ]
@@ -58,8 +50,6 @@
             "SELECT ??"
         ],
         "summary": "SELECT",
-        "operation": "SELECT",
-        "collection": null,
         "dialects": [
             "mssql"
         ]
@@ -71,8 +61,6 @@
             "SELECT ?, ?"
         ],
         "summary": "SELECT",
-        "operation": "SELECT",
-        "collection": null,
         "dialects": [
             "mssql"
         ]
@@ -84,8 +72,6 @@
             "SELECT ?"
         ],
         "summary": "SELECT",
-        "operation": "SELECT",
-        "collection": null,
         "dialects": [
             "mssql"
         ]
@@ -97,8 +83,6 @@
             "SELECT ?"
         ],
         "summary": "SELECT",
-        "operation": "SELECT",
-        "collection": null,
         "dialects": [
             "mssql"
         ]
@@ -110,8 +94,6 @@
             "SELECT ?"
         ],
         "summary": "SELECT",
-        "operation": "SELECT",
-        "collection": null,
         "dialects": [
             "mssql"
         ]
@@ -123,8 +105,6 @@
             "SELECT c3po, r2d2 FROM covid19 WHERE n1h1=?"
         ],
         "summary": "SELECT covid19",
-        "operation": "SELECT",
-        "collection": "covid19",
         "dialects": [
             "mssql"
         ]
@@ -136,8 +116,6 @@
             "SELECT a FROM dbo.Table JOIN dbo.AnotherTable"
         ],
         "summary": "SELECT dbo.Table dbo.AnotherTable",
-        "operation": "SELECT",
-        "collection": null,
         "dialects": [
             "mssql"
         ]
@@ -149,8 +127,6 @@
             "INSERT INTO X VALUES(?, ?, ?, ??)"
         ],
         "summary": "INSERT X",
-        "operation": "INSERT",
-        "collection": "X",
         "dialects": [
             "mssql"
         ]
@@ -162,8 +138,6 @@
             "SELECT { guid ? }"
         ],
         "summary": "SELECT",
-        "operation": "SELECT",
-        "collection": null,
         "dialects": [
             "mssql"
         ]
@@ -176,8 +150,6 @@
             "SELECT * FROM table WHERE value IN (?, ?, ?)"
         ],
         "summary": "SELECT table",
-        "operation": "SELECT",
-        "collection": "table",
         "dialects": [
             "mssql"
         ]
@@ -189,8 +161,6 @@
             "SELECT column \nFROM  table"
         ],
         "summary": "SELECT table",
-        "operation": "SELECT",
-        "collection": "table",
         "dialects": [
             "mssql"
         ]
@@ -202,8 +172,6 @@
             "INSERT INTO shipping_details\n(order_id,\naddress)\nSELECT order_id,\naddress\nFROM   orders\nWHERE  order_id = ?"
         ],
         "summary": "INSERT shipping_details SELECT orders",
-        "operation": null,
-        "collection": null,
         "dialects": [
             "mssql"
         ]
@@ -215,8 +183,6 @@
             "SELECT order_date\nFROM   (SELECT *\nFROM   orders o\nJOIN customers c\nON o.customer_id = c.customer_id)"
         ],
         "summary": "SELECT SELECT orders customers",
-        "operation": null,
-        "collection": null,
         "dialects": [
             "mssql"
         ]
@@ -228,8 +194,6 @@
             "SELEcT order_date\nFROM   (sELECT *\nFROM   orders o\nJOIN customers c\nON o.customer_id = c.customer_id)"
         ],
         "summary": "SELEcT sELECT orders customers",
-        "operation": null,
-        "collection": null,
         "dialects": [
             "mssql"
         ]
@@ -241,8 +205,6 @@
             "SELEcT order_date\nFROM ORders"
         ],
         "summary": "SELEcT ORders",
-        "operation": "SELEcT",
-        "collection": "ORders",
         "dialects": [
             "mssql"
         ]
@@ -254,8 +216,6 @@
             "SELECT * FROM Orders o CROSS JOIN OrderDetails od"
         ],
         "summary": "SELECT Orders OrderDetails",
-        "operation": "SELECT",
-        "collection": null,
         "dialects": [
             "mssql"
         ]
@@ -267,8 +227,6 @@
             "SELECT * FROM Orders o, OrderDetails od"
         ],
         "summary": "SELECT Orders",
-        "operation": "SELECT",
-        "collection": null,
         "dialects": [
             "mssql"
         ]
@@ -280,8 +238,6 @@
             "CREATE  TABLE MyTable (\n    ID NOT NULL IDENTITY(?,?) PRIMARY KEY\n)"
         ],
         "summary": "CREATE  TABLE MyTable",
-        "operation": "CREATE  TABLE",
-        "collection": "MyTable",
         "dialects": [
             "mssql"
         ]
@@ -293,8 +249,6 @@
             "ALTER  TABLE MyTable ADD Name varchar(?)"
         ],
         "summary": "ALTER  TABLE MyTable",
-        "operation": "ALTER  TABLE",
-        "collection": "MyTable",
         "dialects": [
             "mssql"
         ]
@@ -306,8 +260,6 @@
             "DROP  TABLE MyTable"
         ],
         "summary": "DROP  TABLE MyTable",
-        "operation": "DROP  TABLE",
-        "collection": "MyTable",
         "dialects": [
             "mssql"
         ]
