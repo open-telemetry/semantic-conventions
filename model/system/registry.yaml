@@ -10,17 +10,6 @@ groups:
         stability: development
         brief: "The device identifier"
         examples: ["(identifier)"]
-  # system.cpu.* attribute group
-  - id: registry.system.cpu
-    type: attribute_group
-    display_name: System CPU Attributes
-    brief: "Describes System CPU attributes"
-    attributes:
-      - id: system.cpu.logical_number
-        type: int
-        stability: development
-        brief: "The logical CPU number [0..n-1]"
-        examples: [1]
   # system.memory.* attribute group
   - id: registry.system.memory
     type: attribute_group
