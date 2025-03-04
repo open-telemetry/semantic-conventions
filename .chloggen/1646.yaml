@@ -1,0 +1,5 @@
+change_type: breaking
+component: code
+note: "`code.function.name` value should contain the fully qualified function name, `code.namespace` is now deprecated"
+issues: [1677]
+subtext:
