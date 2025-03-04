@@ -1,267 +1,219 @@
 [
     {
         "name": "numeric_literal_integers",
+        "db.system.name": "other_sql",
         "sql": "SELECT 12, -12, +12",
         "sanitized": [
             "SELECT ?, ?, ?"
         ],
-        "summary": "SELECT",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT"
     },
     {
         "name": "numeric_literal_with_decimal_point",
+        "db.system.name": "other_sql",
         "sql": "SELECT 12.34, -12.34, +12.34, .01, -.01",
         "sanitized": [
             "SELECT ?, ?, ?, ?, ?"
         ],
-        "summary": "SELECT",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT"
     },
     {
         "name": "numeric_literal_exponential",
+        "db.system.name": "other_sql",
         "sql": "SELECT 12.34e56, -12.34e56, +12.34e56",
         "sanitized": [
             "SELECT ?, ?, ?"
         ],
-        "summary": "SELECT",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT"
     },
     {
         "name": "numeric_literal_negative_exponential",
+        "db.system.name": "other_sql",
         "sql": "SELECT 12.34e-56, -12.34e-56, +12.34e-56",
         "sanitized": [
             "SELECT ?, ?, ?"
         ],
-        "summary": "SELECT",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT"
     },
     {
         "name": "arithmetic_on_numeric_literals",
+        "db.system.name": "other_sql",
         "sql": "SELECT 99+100",
         "sanitized": [
             "SELECT ??"
         ],
-        "summary": "SELECT",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT"
     },
     {
         "name": "hex_literal",
+        "db.system.name": "other_sql",
         "sql": "SELECT 0xDEADBEEF, 0XdeadBEEF",
         "sanitized": [
             "SELECT ?, ?"
         ],
-        "summary": "SELECT",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT"
     },
     {
         "name": "string_literal",
+        "db.system.name": "other_sql",
         "sql": "SELECT 'hello'",
         "sanitized": [
             "SELECT ?"
         ],
-        "summary": "SELECT",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT"
     },
     {
         "name": "string_literal_escaped_single_quote",
+        "db.system.name": "other_sql",
         "sql": "SELECT 'My name''s not important'",
         "sanitized": [
             "SELECT ?"
         ],
-        "summary": "SELECT",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT"
     },
     {
         "name": "string_with_embedded_newline",
+        "db.system.name": "other_sql",
         "sql": "SELECT 'My name is \n not important'",
         "sanitized": [
             "SELECT ?"
         ],
-        "summary": "SELECT",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT"
     },
     {
         "name": "numbers_in_identifiers",
+        "db.system.name": "other_sql",
         "sql": "SELECT c3po, r2d2 FROM covid19 WHERE n1h1=1234",
         "sanitized": [
             "SELECT c3po, r2d2 FROM covid19 WHERE n1h1=?"
         ],
-        "summary": "SELECT covid19",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT covid19"
     },
     {
         "name": "periods_in_identifiers",
+        "db.system.name": "other_sql",
         "sql": "SELECT a FROM dbo.Table JOIN dbo.AnotherTable",
         "sanitized": [
             "SELECT a FROM dbo.Table JOIN dbo.AnotherTable"
         ],
-        "summary": "SELECT dbo.Table dbo.AnotherTable",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT dbo.Table dbo.AnotherTable"
     },
     {
         "name": "insert_into",
+        "db.system.name": "other_sql",
         "sql": "INSERT INTO X VALUES(1, 23456, 123.456, 99+100)",
         "sanitized": [
             "INSERT INTO X VALUES(?, ?, ?, ??)"
         ],
-        "summary": "INSERT X",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "INSERT X"
     },
     {
         "name": "uuid",
+        "db.system.name": "other_sql",
         "sql": "SELECT { guid '01234567-89ab-cdef-0123-456789abcdef' }",
         "sanitized": [
             "SELECT { guid ? }"
         ],
-        "summary": "SELECT",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT"
     },
     {
         "name": "in_clause",
+        "db.system.name": "other_sql",
         "sql": "SELECT * FROM table WHERE value IN (123, 456, 'abc')",
         "sanitized": [
             "SELECT * FROM table WHERE value IN (?)",
             "SELECT * FROM table WHERE value IN (?, ?, ?)"
         ],
-        "summary": "SELECT table",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT table"
     },
     {
         "name": "comments",
+        "db.system.name": "other_sql",
         "sql": "SELECT column -- end of line comment\nFROM /* block \n comment */ table",
         "sanitized": [
             "SELECT column \nFROM  table"
         ],
-        "summary": "SELECT table",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT table"
     },
     {
         "name": "insert_into_select",
+        "db.system.name": "other_sql",
         "sql": "INSERT INTO shipping_details\n(order_id,\naddress)\nSELECT order_id,\naddress\nFROM   orders\nWHERE  order_id = 1",
         "sanitized": [
             "INSERT INTO shipping_details\n(order_id,\naddress)\nSELECT order_id,\naddress\nFROM   orders\nWHERE  order_id = ?"
         ],
-        "summary": "INSERT shipping_details SELECT orders",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "INSERT shipping_details SELECT orders"
     },
     {
         "name": "select_nested_query",
+        "db.system.name": "other_sql",
         "sql": "SELECT order_date\nFROM   (SELECT *\nFROM   orders o\nJOIN customers c\nON o.customer_id = c.customer_id)",
         "sanitized": [
             "SELECT order_date\nFROM   (SELECT *\nFROM   orders o\nJOIN customers c\nON o.customer_id = c.customer_id)"
         ],
-        "summary": "SELECT SELECT orders customers",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT SELECT orders customers"
     },
     {
         "name": "select_nested_query_case_preserved",
+        "db.system.name": "other_sql",
         "sql": "SELEcT order_date\nFROM   (sELECT *\nFROM   orders o\nJOIN customers c\nON o.customer_id = c.customer_id)",
         "sanitized": [
             "SELEcT order_date\nFROM   (sELECT *\nFROM   orders o\nJOIN customers c\nON o.customer_id = c.customer_id)"
         ],
-        "summary": "SELEcT sELECT orders customers",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELEcT sELECT orders customers"
     },
     {
         "name": "case_preserved",
+        "db.system.name": "other_sql",
         "sql": "SELEcT order_date\nFROM ORders",
         "sanitized": [
             "SELEcT order_date\nFROM ORders"
         ],
-        "summary": "SELEcT ORders",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELEcT ORders"
     },
     {
         "name": "cross_join",
+        "db.system.name": "other_sql",
         "sql": "SELECT * FROM Orders o CROSS JOIN OrderDetails od",
         "sanitized": [
             "SELECT * FROM Orders o CROSS JOIN OrderDetails od"
         ],
-        "summary": "SELECT Orders OrderDetails",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT Orders OrderDetails"
     },
     {
         "name": "cross_join_comma_separated_syntax",
+        "db.system.name": "other_sql",
         "sql": "SELECT * FROM Orders o, OrderDetails od",
         "sanitized": [
             "SELECT * FROM Orders o, OrderDetails od"
         ],
-        "summary": "SELECT Orders",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "SELECT Orders"
     },
     {
         "name": "create_table",
+        "db.system.name": "other_sql",
         "sql": "CREATE  TABLE MyTable (\n    ID NOT NULL IDENTITY(1,1) PRIMARY KEY\n)",
         "sanitized": [
             "CREATE  TABLE MyTable (\n    ID NOT NULL IDENTITY(?,?) PRIMARY KEY\n)"
         ],
-        "summary": "CREATE  TABLE MyTable",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "CREATE  TABLE MyTable"
     },
     {
         "name": "alter_table",
+        "db.system.name": "other_sql",
         "sql": "ALTER  TABLE MyTable ADD Name varchar(255)",
         "sanitized": [
             "ALTER  TABLE MyTable ADD Name varchar(?)"
         ],
-        "summary": "ALTER  TABLE MyTable",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "ALTER  TABLE MyTable"
     },
     {
         "name": "drop_table",
+        "db.system.name": "other_sql",
         "sql": "DROP  TABLE MyTable",
         "sanitized": [
             "DROP  TABLE MyTable"
         ],
-        "summary": "DROP  TABLE MyTable",
-        "dialects": [
-            "mssql"
-        ]
+        "summary": "DROP  TABLE MyTable"
     }
 ]
