@@ -9,20 +9,6 @@ versions:
             attribute_map:
               android.state: android.app.state
               io.state: ios.app.state
-        # https://github.com/open-telemetry/semantic-conventions/pull/TODO
-        # add semantic conventions for Oracle Database
-        - add_attributes:
-            db.system.name
-            db.namespace
-            db.response.status_code
-            error.type
-            server.port
-            db.operation.batch.size
-            db.query.summary
-            db.query.text
-            db.response.returned_rows
-            server.address
-            db.operation.parameter.<key>
     metrics:
       changes:
         - rename_metrics:
