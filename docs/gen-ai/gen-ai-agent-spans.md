@@ -146,7 +146,8 @@ services.
 
 The `gen_ai.operation.name` SHOULD be `invoke_agent`.
 
-The **span name** SHOULD be `invoke_agent {gen_ai.agent.name}`.
+The **span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
+When `gen_ai.agent.name` is not available, it SHOULD be `invoke_agent`.
 Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
 
 <!-- semconv span.gen_ai.invoke_agent.client -->
