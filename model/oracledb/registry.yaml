@@ -28,13 +28,6 @@ groups:
         stability: development
         brief: The name of the Oracle Database instance.
         examples: "ORCL1"
-      - id: oracledb.bind.values
-        type: string[]
-        stability: development
-        brief: >
-          Array of bind values passed to parameterized queries.
-        examples: 
-          - ['true...', '42...']
       - id: oracledb.pdb_name
         type: string
         stability: development

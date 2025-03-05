@@ -9,7 +9,6 @@ This section defines attributes for Oracle Database.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="oracledb-bind-values" href="#oracledb-bind-values">`oracledb.bind.values`</a> | string[] | Array of bind values passed to parameterized queries. | `["true...", "42..."]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="oracledb-implicit-release" href="#oracledb-implicit-release">`oracledb.implicit_release`</a> | boolean | Boolean flag Indicating if the internal connection is released back to pool or not after executing a query. | `true` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="oracledb-instance" href="#oracledb-instance">`oracledb.instance`</a> | string | The name of the Oracle Database instance. | `ORCL1` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="oracledb-pdb-name" href="#oracledb-pdb-name">`oracledb.pdb_name`</a> | string | The name of the pluggable database (PDB) the connection is using. | `PDB1` | ![Development](https://img.shields.io/badge/-development-blue) |
