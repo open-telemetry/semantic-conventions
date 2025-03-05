@@ -1,0 +1,48 @@
+groups:
+  - id: registry.oracledb
+    type: attribute_group
+    display_name: Oracle Database Attributes
+    brief: >
+      This section defines attributes for Oracle Database.
+    attributes:
+      - id: oracledb.pool.min
+        type: int
+        stability: development
+        brief: >
+          The minimum number of connections that the pool maintains.
+        examples: 10
+      - id: oracledb.pool.max
+        type: int
+        stability: development
+        brief: >
+          The maximum number of connections that can be open in the pool.
+        examples: 30
+      - id: oracledb.pool.increment
+        type: int
+        stability: development
+        brief: >
+          The number of connections added when the pool needs to expand.
+        examples: 5
+      - id: oracledb.instance
+        type: string
+        stability: development
+        brief: The name of the Oracle Database instance.
+        examples: "ORCL1"
+      - id: oracledb.bind.values
+        type: string[]
+        stability: development
+        brief: >
+          Array of bind values passed to parameterized queries.
+        examples: ["true", "42"]
+      - id: oracledb.pdb_name
+        type: string
+        stability: development
+        brief: >
+          The name of the pluggable database (PDB) the connection is using.
+        examples: "PDB1"
+      - id: oracledb.implicit_release
+        type: boolean
+        stability: development
+        brief: >
+          Boolean flag Indicating if the internal connection is released back to pool or not after executing a query.
+        examples: [true]
