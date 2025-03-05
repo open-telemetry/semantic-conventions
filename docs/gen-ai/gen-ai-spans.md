@@ -26,7 +26,7 @@ instrumented protocol such as HTTP.
 
 ## Name
 
-GenAI spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/trace/api.md#span).
+GenAI spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/trace/api.md#span).
 The **span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
 Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
 
@@ -53,6 +53,7 @@ Many of these attributes only apply to specific GenAI operations. For example, G
 | [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.output.type`](/docs/attributes-registry/gen-ai.md) | string | Represents the content type requested by the client. [4] | `text`; `json`; `image` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.request.choice.count`](/docs/attributes-registry/gen-ai.md) | int | The target number of candidate completions to return. | `3` | `Conditionally Required` if available, in the request, and !=1 | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the GenAI model a request is being made to. [6] | `gpt-4` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.seed`](/docs/attributes-registry/gen-ai.md) | int | Requests with same seed value more likely to return same result. | `100` | `Conditionally Required` if applicable and if the request includes a seed | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | GenAI server port. [7] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

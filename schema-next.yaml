@@ -2,13 +2,13 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
-    metrics:
-      changes:
-        - rename_metrics:
-            k8s.replication_controller.desired_pods: k8s.replicationcontroller.desired_pods
-            k8s.replication_controller.available_pods: k8s.replicationcontroller.available_pods
     all:
       changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1880
+        - rename_attributes:
+            attribute_map:
+              android.state: android.app.state
+              io.state: ios.app.state
         # https://github.com/open-telemetry/semantic-conventions/pull/TODO
         # add semantic conventions for Oracle Database
         - add_attributes:
@@ -23,6 +23,20 @@ versions:
             db.response.returned_rows
             server.address
             db.operation.parameter.<key>
+    metrics:
+      changes:
+        - rename_metrics:
+            k8s.replication_controller.desired_pods: k8s.replicationcontroller.desired_pods
+            k8s.replication_controller.available_pods: k8s.replicationcontroller.available_pods
+        # https://github.com/open-telemetry/semantic-conventions/pull/1896
+        - rename_metrics:
+            system.cpu.time: cpu.time
+            system.cpu.utilization: cpu.utilization
+            system.cpu.frequency: cpu.frequency
+        # https://github.com/open-telemetry/semantic-conventions/pull/1896
+        - rename_attributes:
+            attribute_map:
+              system.cpu.logical_number: cpu.logical_number
   1.30.0:
     all:
       changes:
