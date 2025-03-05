@@ -415,7 +415,7 @@ Examples of where `thread.id` and `thread.name` can be extracted from:
 
 ## Source Code Attributes
 
-**Status**: [Mixed][DocumentStatus]
+**Status**: [Release Candidate][DocumentStatus]
 
 Often a span is closely tied to a certain unit of code that is logically responsible for handling
 the operation that the span describes (usually the method that starts the span).
