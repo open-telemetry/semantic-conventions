@@ -7,7 +7,7 @@ groups:
     attributes:
       - ref: gen_ai.request.model
         requirement_level:
-          conditionally_required: If provided by the application.
+          conditionally_required: If available.
         note: >
             The name of the GenAI model a request is being made to. If the model is supplied by a vendor,
             then the value must be the exact name of the model requested. If the model is a fine-tuned
@@ -41,6 +41,13 @@ groups:
         brief: GenAI server port.
         requirement_level:
           conditionally_required: If `server.address` is set.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
+        note: |
+          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
   - id: trace.gen_ai.client.common_attributes
     type: attribute_group
     stability: development
@@ -65,13 +72,6 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.usage.output_tokens
         requirement_level: recommended
-      - ref: error.type
-        requirement_level:
-          conditionally_required: "if the operation ended in an error"
-        note: |
-          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
-          the canonical name of exception that occurred, or another low-cardinality error identifier.
-          Instrumentations SHOULD document the list of errors they report.
   - id: span.gen_ai.client
     type: span
     stability: development
@@ -172,10 +172,26 @@ groups:
     attributes:
       - ref: gen_ai.system
         requirement_level: required
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: if applicable.
       - ref: gen_ai.agent.name
         requirement_level:
           conditionally_required: If provided by the application.
       - ref: gen_ai.agent.description
+        requirement_level:
+          conditionally_required: If provided by the application.
+      - ref: gen_ai.request.model
+        requirement_level:
+          conditionally_required: If provided by the application.
+        note: >
+            The name of the GenAI model a request is being made to. If the model is supplied by a vendor,
+            then the value must be the exact name of the model requested. If the model is a fine-tuned
+            custom model, the value should have a more specific name than the base model that's been fine-tuned.
+      - ref: gen_ai.request.temperature
+        requirement_level:
+          conditionally_required: If provided by the application.
+      - ref: gen_ai.request.top_p
         requirement_level:
           conditionally_required: If provided by the application.
 
@@ -188,7 +204,8 @@ groups:
       with remote agent services.
     note: |
       The `gen_ai.operation.name` SHOULD be `invoke_agent`.
-      The **span name** SHOULD be `invoke_agent {gen_ai.agent.name}`.
+      The **span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
+      When `gen_ai.agent.name` is not available, it SHOULD be `invoke_agent`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
     extends: trace.gen_ai.client.common_attributes
     attributes:
@@ -199,10 +216,10 @@ groups:
           conditionally_required: if applicable.
       - ref: gen_ai.agent.name
         requirement_level:
-          conditionally_required: If provided by the application.
+          conditionally_required: when available
       - ref: gen_ai.agent.description
         requirement_level:
-          conditionally_required: If provided by the application.
+          conditionally_required: when available
 
   - id: span.gen_ai.execute_tool.internal
     type: span
