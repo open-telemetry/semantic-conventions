@@ -33,7 +33,8 @@ groups:
         stability: development
         brief: >
           Array of bind values passed to parameterized queries.
-        examples: ["true", "42"]
+        examples: 
+          - ['true...', '42...']
       - id: oracledb.pdb_name
         type: string
         stability: development
