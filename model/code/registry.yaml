@@ -7,7 +7,7 @@ groups:
     attributes:
       - id: code.function.name
         type: string
-        stability: development
+        stability: release_candidate
         brief: >
           The method or function fully-qualified name without arguments. The value should fit the natural representation of the language
           runtime, which is also likely the same used within `code.stacktrace` attribute value.
@@ -33,28 +33,28 @@ groups:
           * C function: `fopen`
       - id: code.file.path
         type: string
-        stability: development
+        stability: release_candidate
         brief: >
           The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path).
         examples: /usr/local/MyApplication/content_root/app/index.php
       - id: code.line.number
         type: int
-        stability: development
+        stability: release_candidate
         brief: >
           The line number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`.
         examples: 42
       - id: code.column.number
         type: int
-        stability: development
+        stability: release_candidate
         brief: >
           The column number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`.
         examples: 16
       - id: code.stacktrace
         type: string
-        stability: development
+        stability: release_candidate
         brief: >
           A stacktrace as a string in the natural representation for the language runtime.
-          The representation is to be determined and documented by each language SIG.
+          The representation is identical to [`exception.stacktrace`](/docs/exceptions/exceptions-spans.md#stacktrace-representation).
         examples: >
           at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n
           at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n
