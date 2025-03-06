@@ -14,7 +14,7 @@ groups:
 
   - id: metric.cpython.gc.collected
     type: metric
-    metric_name: cpython.gc.collected
+    metric_name: cpython.gc.collected.objects
     brief: "The total number of objects collected inside a generation that have occurred since interpreter start."
     note: >
       This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats)
@@ -27,7 +27,7 @@ groups:
 
   - id: metric.cpython.gc.uncollectable
     type: metric
-    metric_name: cpython.gc.uncollectable
+    metric_name: cpython.gc.uncollectable.objects
     brief: "The total number of uncollectable objects inside a generation that have occurred since interpreter start."
     note: >
       This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats)
