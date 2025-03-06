@@ -9,9 +9,9 @@ This section defines attributes for Oracle Database.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="oracledb-implicit-release" href="#oracledb-implicit-release">`oracledb.implicit_release`</a> | boolean | Boolean flag Indicating if the internal connection is released back to pool or not after executing a query. | `true` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="oracledb-instance" href="#oracledb-instance">`oracledb.instance`</a> | string | The name of the Oracle Database instance. | `ORCL1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="oracledb-pdb-name" href="#oracledb-pdb-name">`oracledb.pdb_name`</a> | string | The name of the pluggable database (PDB) the connection is using. | `PDB1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="oracledb-pool-increment" href="#oracledb-pool-increment">`oracledb.pool.increment`</a> | int | The number of connections added when the pool needs to expand. | `5` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="oracledb-pool-max" href="#oracledb-pool-max">`oracledb.pool.max`</a> | int | The maximum number of connections that can be open in the pool. | `30` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="oracledb-pool-min" href="#oracledb-pool-min">`oracledb.pool.min`</a> | int | The minimum number of connections that the pool maintains. | `10` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="oracle-db-implicit-release" href="#oracle-db-implicit-release">`oracle.db.implicit_release`</a> | boolean | Boolean flag Indicating if the internal connection is released back to pool or not after executing a query. | `true` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="oracle-db-instance" href="#oracle-db-instance">`oracle.db.instance`</a> | string | The name of the Oracle Database instance. | `ORCL1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="oracle-db-pdb-name" href="#oracle-db-pdb-name">`oracle.db.pdb_name`</a> | string | The name of the pluggable database (PDB) the connection is using. | `PDB1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="oracle-db-pool-increment" href="#oracle-db-pool-increment">`oracle.db.pool.increment`</a> | int | The number of connections added when the pool needs to expand. | `5` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="oracle-db-pool-max" href="#oracle-db-pool-max">`oracle.db.pool.max`</a> | int | The maximum number of connections that can be open in the pool. | `30` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="oracle-db-pool-min" href="#oracle-db-pool-min">`oracle.db.pool.min`</a> | int | The minimum number of connections that the pool maintains. | `10` | ![Development](https://img.shields.io/badge/-development-blue) |

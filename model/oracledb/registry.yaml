@@ -5,36 +5,36 @@ groups:
     brief: >
       This section defines attributes for Oracle Database.
     attributes:
-      - id: oracledb.implicit_release
+      - id: oracle.db.implicit_release
         type: boolean
         stability: development
         brief: >
           Boolean flag Indicating if the internal connection is released back to pool or not after executing a query.
         examples: [true]
-      - id: oracledb.instance
+      - id: oracle.db.instance
         type: string
         stability: development
         brief: The name of the Oracle Database instance.
         examples: "ORCL1"
-      - id: oracledb.pdb_name
+      - id: oracle.db.pdb_name
         type: string
         stability: development
         brief: >
           The name of the pluggable database (PDB) the connection is using.
         examples: "PDB1"
-      - id: oracledb.pool.increment
+      - id: oracle.db.pool.increment
         type: int
         stability: development
         brief: >
           The number of connections added when the pool needs to expand.
         examples: 5
-      - id: oracledb.pool.max
+      - id: oracle.db.pool.max
         type: int
         stability: development
         brief: >
           The maximum number of connections that can be open in the pool.
         examples: 30
-      - id: oracledb.pool.min
+      - id: oracle.db.pool.min
         type: int
         stability: development
         brief: >

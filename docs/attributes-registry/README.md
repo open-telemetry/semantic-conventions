@@ -82,7 +82,7 @@ Currently, the following namespaces exist:
 - [NodeJS](nodejs.md)
 - [OCI](oci.md)
 - [OpenTracing](opentracing.md)
-- [Oracledb](oracledb.md)
+- [OracleDB](oracledb.md)
 - [OS](os.md)
 - [OTel](otel.md)
 - [Peer](peer.md)
