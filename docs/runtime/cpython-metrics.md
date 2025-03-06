@@ -72,7 +72,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `cpython.gc.collected` | Counter | `{object}` | The total number of objects collected inside a generation that have occurred since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cpython.gc.collected.objects` | Counter | `{object}` | The total number of objects collected inside a generation that have occurred since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats)
 
@@ -108,7 +108,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `cpython.gc.uncollectable` | Counter | `{object}` | The total number of uncollectable objects inside a generation that have occurred since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cpython.gc.uncollectable.objects` | Counter | `{object}` | The total number of uncollectable objects inside a generation that have occurred since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats)
 
