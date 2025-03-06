@@ -840,7 +840,7 @@ groups:
           conditionally_required: If available.
   - id: span.db.oracledb.client
     type: span
-    stability: experimental
+    stability: development
     extends: span.db.sql.client
     span_kind: client
     brief: >
