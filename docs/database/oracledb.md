@@ -33,54 +33,50 @@ The following table outlines the span attributes applicable to Oracle Database.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The service name associated with the connection. [1] | `db_high.adb.oraclecloud.com`; `db_low.adb.oraclecloud.com` | `Conditionally Required` If available without an additional network call. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [Oracle Database error number](https://docs.oracle.com/en/error-help/db/) recorded as a string. | `ORA-02813`; `ORA-024459` | `Conditionally Required` If response has ended with warning or an error. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [3] | `1521`; `1522`; | `Conditionally Required` [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [5] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a database query text. [6] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [7] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [8] | `VARIABLE mykey VARCHAR2(50) = 'some_val'`; `SELECT * FROM wuser_table where username = :mykey`; | `Recommended` [9] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [10] | `example.com`; `10.1.2.80`; | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [11] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`oracledb.pool.min`](/docs/attributes-registry/oracledb.md) | int | This read-only property is a number which specifies the minimum number of connections a connection pool maintains, even when there is no activity to the target database. | `0`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`oracledb.pool.max`](/docs/attributes-registry/oracledb.md) | int | This read-only property is a number which specifies the maximum number of connections that can be open in the connection pool. | `2`; `30`; `70` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`oracledb.pool.incr`](/docs/attributes-registry/oracledb.md) | int | This read-only property is a number which specifies the number of connections that are opened whenever a connection request exceeds the number of currently open connections. | `2`; `10`; `15` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`oracledb.bind.values`](/docs/attributes-registry/oracledb.md) | string[] | Array of bind values passed to parameterized queries. | `['43', 'scott', 'true'` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`oracledb.instance`](/docs/attributes-registry/oracledb.md) | string | Oracle Database Instance. | `ORCL1`; `ORCL2`; | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`oracledb.pdbname`](/docs/attributes-registry/oracledb.md) | string | Pluggable Database (PDB) name in a Multitenant Container Database (CDB) environment. | `PDB1`; `PDB2`; | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`oracledb.implicit_release`](/docs/attributes-registry/oracledb.md) | boolean | Indicates if the internal connection is released back to pool or not after executing a query. | `true` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [Oracle Database error number](https://docs.oracle.com/en/error-help/db/) recorded as a string. [2] | `ORA-02813`; `ORA-02613` | `Conditionally Required` If response has ended with warning or an error. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Conditionally Required` [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [6] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a database query text. [7] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [8] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [9] | `SELECT * FROM wuser_table where username = :mykey` | `Recommended` [10] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`oracle.db.client.connection.implicit_release`](/docs/attributes-registry/oracledb.md) | boolean | Boolean flag Indicating if the internal connection is released back to pool or not after executing a query. [11] | `true` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`oracle.db.client.connection.increment`](/docs/attributes-registry/oracledb.md) | int | The number of connections added when the pool needs to expand. | `5` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`oracle.db.instance`](/docs/attributes-registry/oracledb.md) | string | The name of the Oracle Database instance. | `ORCL1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`oracle.db.pdb_name`](/docs/attributes-registry/oracledb.md) | string | The name of the pluggable database (PDB) the connection is using. | `PDB1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [13] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
-**[1] `db.namespace`:** `db.namespace` SHOULD be set to the service name used to connect to the database.
-
-Instrumentation SHOULD document if `db.namespace` reflects the service name provided when the connection was established.
+**[1] `db.namespace`:** Instrumentation SHOULD document if `db.namespace` reflects the service name provided when the connection was established.
 
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[2] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[2] `db.response.status_code`:** Oracle Database error codes are vendor specific error codes and don't follow [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) conventions. All Oracle Database error codes SHOULD be considered errors.
+
+**[3] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[4] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[5] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[5] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+**[6] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 
-**[6] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-A Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../database/database-spans.md#generating-a-summary-of-the-query-text) section.
+**[7] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
+Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../database/database-spans.md#generating-a-summary-of-the-query-text) section.
 
-**[7] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
+**[8] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
 
-**[8] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
-For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
-Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
+**[9] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext). For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 
-**[9] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless explicitly configured and sanitized to exclude sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
-Parameterized query text MUST also NOT be collected by default unless explicitly configured. The query parameter values themselves are opt-in, see [`db.operation.parameter.<key>`](../attributes-registry/db.md).
+**[10] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless explicitly configured and sanitized to exclude sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext). Parameterized query text MUST also NOT be collected by default unless explicitly configured. The query parameter values themselves are opt-in, see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
 
-**[10] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[11] `oracle.db.client.connection.implicit_release`:** This attribute appears in the span when an implicit release occurs, and its value is always true.
 
-**[11] `db.operation.parameter`:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
+**[12] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+
+**[13] `db.operation.parameter`:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
 
 The following attributes can be important for making sampling decisions
@@ -89,6 +85,10 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`db.namespace`](/docs/attributes-registry/db.md)
 * [`db.query.summary`](/docs/attributes-registry/db.md)
 * [`db.query.text`](/docs/attributes-registry/db.md)
+* [`oracle.db.client.connection.implicit_release`](/docs/attributes-registry/oracledb.md)
+* [`oracle.db.client.connection.increment`](/docs/attributes-registry/oracledb.md)
+* [`oracle.db.instance`](/docs/attributes-registry/oracledb.md)
+* [`oracle.db.pdb_name`](/docs/attributes-registry/oracledb.md)
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
 

@@ -861,3 +861,41 @@ groups:
           Oracle Database error codes are vendor specific error codes and don't follow [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE)
           conventions. All Oracle Database error codes SHOULD be considered errors.
         examples: ["ORA-02813", "ORA-02613"]
+      - ref: db.query.text
+        sampling_relevant: true
+        brief: >
+          The database query being executed.
+        requirement_level:
+          recommended: >
+            Non-parameterized query text SHOULD NOT be collected by default unless explicitly configured
+            and sanitized to exclude sensitive data, e.g. by redacting all literal values present
+            in the query text. See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
+            Parameterized query text MUST also NOT be collected by default unless explicitly configured.
+            The query parameter values themselves are opt-in,
+            see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
+        note: >
+          For sanitization see [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
+          For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used,
+          otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
+        examples: ["SELECT * FROM wuser_table where username = :mykey"]
+      - ref: oracle.db.client.connection.implicit_release
+        sampling_relevant: true
+        brief: >
+          Boolean flag Indicating if the internal connection is released back to pool or not after executing a query.
+        note: >
+          This attribute appears in the span when an implicit release occurs, and its value is always true.
+        examples: [true]
+      - ref: oracle.db.client.connection.increment
+        sampling_relevant: true
+        brief: >
+          The number of connections added when the pool needs to expand.
+      - ref: oracle.db.instance
+        sampling_relevant: true
+        brief: >
+          The name of the Oracle Database instance.
+        examples: ["ORCL1"]
+      - ref: oracle.db.pdb_name
+        sampling_relevant: true
+        brief: >
+          The name of the pluggable database (PDB) the connection is using.
+        examples: ["PDB1"]
