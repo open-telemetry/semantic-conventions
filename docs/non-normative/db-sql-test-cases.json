@@ -2,8 +2,8 @@
     {
         "name": "numeric_literal_integers",
         "db.system.name": "other_sql",
-        "sql": "SELECT 12, -12, +12",
-        "sanitized": [
+        "query": "SELECT 12, -12, +12",
+        "db.query.text": [
             "SELECT ?, ?, ?"
         ],
         "db.query.summary": "SELECT"
@@ -11,8 +11,8 @@
     {
         "name": "numeric_literal_with_decimal_point",
         "db.system.name": "other_sql",
-        "sql": "SELECT 12.34, -12.34, +12.34, .01, -.01",
-        "sanitized": [
+        "query": "SELECT 12.34, -12.34, +12.34, .01, -.01",
+        "db.query.text": [
             "SELECT ?, ?, ?, ?, ?"
         ],
         "db.query.summary": "SELECT"
@@ -20,8 +20,8 @@
     {
         "name": "numeric_literal_exponential",
         "db.system.name": "other_sql",
-        "sql": "SELECT 12.34e56, -12.34e56, +12.34e56",
-        "sanitized": [
+        "query": "SELECT 12.34e56, -12.34e56, +12.34e56",
+        "db.query.text": [
             "SELECT ?, ?, ?"
         ],
         "db.query.summary": "SELECT"
@@ -29,8 +29,8 @@
     {
         "name": "numeric_literal_negative_exponential",
         "db.system.name": "other_sql",
-        "sql": "SELECT 12.34e-56, -12.34e-56, +12.34e-56",
-        "sanitized": [
+        "query": "SELECT 12.34e-56, -12.34e-56, +12.34e-56",
+        "db.query.text": [
             "SELECT ?, ?, ?"
         ],
         "db.query.summary": "SELECT"
@@ -38,8 +38,8 @@
     {
         "name": "arithmetic_on_numeric_literals",
         "db.system.name": "other_sql",
-        "sql": "SELECT 99+100",
-        "sanitized": [
+        "query": "SELECT 99+100",
+        "db.query.text": [
             "SELECT ??"
         ],
         "db.query.summary": "SELECT"
@@ -47,8 +47,8 @@
     {
         "name": "hex_literal",
         "db.system.name": "other_sql",
-        "sql": "SELECT 0xDEADBEEF, 0XdeadBEEF",
-        "sanitized": [
+        "query": "SELECT 0xDEADBEEF, 0XdeadBEEF",
+        "db.query.text": [
             "SELECT ?, ?"
         ],
         "db.query.summary": "SELECT"
@@ -56,8 +56,8 @@
     {
         "name": "string_literal",
         "db.system.name": "other_sql",
-        "sql": "SELECT 'hello'",
-        "sanitized": [
+        "query": "SELECT 'hello'",
+        "db.query.text": [
             "SELECT ?"
         ],
         "db.query.summary": "SELECT"
@@ -65,8 +65,8 @@
     {
         "name": "string_literal_escaped_single_quote",
         "db.system.name": "other_sql",
-        "sql": "SELECT 'My name''s not important'",
-        "sanitized": [
+        "query": "SELECT 'My name''s not important'",
+        "db.query.text": [
             "SELECT ?"
         ],
         "db.query.summary": "SELECT"
@@ -74,8 +74,8 @@
     {
         "name": "string_with_embedded_newline",
         "db.system.name": "other_sql",
-        "sql": "SELECT 'My name is \n not important'",
-        "sanitized": [
+        "query": "SELECT 'My name is \n not important'",
+        "db.query.text": [
             "SELECT ?"
         ],
         "db.query.summary": "SELECT"
@@ -83,8 +83,8 @@
     {
         "name": "numbers_in_identifiers",
         "db.system.name": "other_sql",
-        "sql": "SELECT c3po, r2d2 FROM covid19 WHERE n1h1=1234",
-        "sanitized": [
+        "query": "SELECT c3po, r2d2 FROM covid19 WHERE n1h1=1234",
+        "db.query.text": [
             "SELECT c3po, r2d2 FROM covid19 WHERE n1h1=?"
         ],
         "db.query.summary": "SELECT covid19"
@@ -92,8 +92,8 @@
     {
         "name": "periods_in_identifiers",
         "db.system.name": "other_sql",
-        "sql": "SELECT a FROM dbo.Table JOIN dbo.AnotherTable",
-        "sanitized": [
+        "query": "SELECT a FROM dbo.Table JOIN dbo.AnotherTable",
+        "db.query.text": [
             "SELECT a FROM dbo.Table JOIN dbo.AnotherTable"
         ],
         "db.query.summary": "SELECT dbo.Table dbo.AnotherTable"
@@ -101,8 +101,8 @@
     {
         "name": "insert_into",
         "db.system.name": "other_sql",
-        "sql": "INSERT INTO X VALUES(1, 23456, 123.456, 99+100)",
-        "sanitized": [
+        "query": "INSERT INTO X VALUES(1, 23456, 123.456, 99+100)",
+        "db.query.text": [
             "INSERT INTO X VALUES(?, ?, ?, ??)"
         ],
         "db.query.summary": "INSERT X"
@@ -110,8 +110,8 @@
     {
         "name": "uuid",
         "db.system.name": "other_sql",
-        "sql": "SELECT { guid '01234567-89ab-cdef-0123-456789abcdef' }",
-        "sanitized": [
+        "query": "SELECT { guid '01234567-89ab-cdef-0123-456789abcdef' }",
+        "db.query.text": [
             "SELECT { guid ? }"
         ],
         "db.query.summary": "SELECT"
@@ -119,8 +119,8 @@
     {
         "name": "in_clause",
         "db.system.name": "other_sql",
-        "sql": "SELECT * FROM table WHERE value IN (123, 456, 'abc')",
-        "sanitized": [
+        "query": "SELECT * FROM table WHERE value IN (123, 456, 'abc')",
+        "db.query.text": [
             "SELECT * FROM table WHERE value IN (?)",
             "SELECT * FROM table WHERE value IN (?, ?, ?)"
         ],
@@ -129,8 +129,8 @@
     {
         "name": "comments",
         "db.system.name": "other_sql",
-        "sql": "SELECT column -- end of line comment\nFROM /* block \n comment */ table",
-        "sanitized": [
+        "query": "SELECT column -- end of line comment\nFROM /* block \n comment */ table",
+        "db.query.text": [
             "SELECT column \nFROM  table"
         ],
         "db.query.summary": "SELECT table"
@@ -138,8 +138,8 @@
     {
         "name": "insert_into_select",
         "db.system.name": "other_sql",
-        "sql": "INSERT INTO shipping_details\n(order_id,\naddress)\nSELECT order_id,\naddress\nFROM   orders\nWHERE  order_id = 1",
-        "sanitized": [
+        "query": "INSERT INTO shipping_details\n(order_id,\naddress)\nSELECT order_id,\naddress\nFROM   orders\nWHERE  order_id = 1",
+        "db.query.text": [
             "INSERT INTO shipping_details\n(order_id,\naddress)\nSELECT order_id,\naddress\nFROM   orders\nWHERE  order_id = ?"
         ],
         "db.query.summary": "INSERT shipping_details SELECT orders"
@@ -147,8 +147,8 @@
     {
         "name": "select_nested_query",
         "db.system.name": "other_sql",
-        "sql": "SELECT order_date\nFROM   (SELECT *\nFROM   orders o\nJOIN customers c\nON o.customer_id = c.customer_id)",
-        "sanitized": [
+        "query": "SELECT order_date\nFROM   (SELECT *\nFROM   orders o\nJOIN customers c\nON o.customer_id = c.customer_id)",
+        "db.query.text": [
             "SELECT order_date\nFROM   (SELECT *\nFROM   orders o\nJOIN customers c\nON o.customer_id = c.customer_id)"
         ],
         "db.query.summary": "SELECT SELECT orders customers"
@@ -156,8 +156,8 @@
     {
         "name": "select_nested_query_case_preserved",
         "db.system.name": "other_sql",
-        "sql": "SELEcT order_date\nFROM   (sELECT *\nFROM   orders o\nJOIN customers c\nON o.customer_id = c.customer_id)",
-        "sanitized": [
+        "query": "SELEcT order_date\nFROM   (sELECT *\nFROM   orders o\nJOIN customers c\nON o.customer_id = c.customer_id)",
+        "db.query.text": [
             "SELEcT order_date\nFROM   (sELECT *\nFROM   orders o\nJOIN customers c\nON o.customer_id = c.customer_id)"
         ],
         "db.query.summary": "SELEcT sELECT orders customers"
@@ -165,8 +165,8 @@
     {
         "name": "case_preserved",
         "db.system.name": "other_sql",
-        "sql": "SELEcT order_date\nFROM ORders",
-        "sanitized": [
+        "query": "SELEcT order_date\nFROM ORders",
+        "db.query.text": [
             "SELEcT order_date\nFROM ORders"
         ],
         "db.query.summary": "SELEcT ORders"
@@ -174,8 +174,8 @@
     {
         "name": "cross_join",
         "db.system.name": "other_sql",
-        "sql": "SELECT * FROM Orders o CROSS JOIN OrderDetails od",
-        "sanitized": [
+        "query": "SELECT * FROM Orders o CROSS JOIN OrderDetails od",
+        "db.query.text": [
             "SELECT * FROM Orders o CROSS JOIN OrderDetails od"
         ],
         "db.query.summary": "SELECT Orders OrderDetails"
@@ -183,8 +183,8 @@
     {
         "name": "cross_join_comma_separated_syntax",
         "db.system.name": "other_sql",
-        "sql": "SELECT * FROM Orders o, OrderDetails od",
-        "sanitized": [
+        "query": "SELECT * FROM Orders o, OrderDetails od",
+        "db.query.text": [
             "SELECT * FROM Orders o, OrderDetails od"
         ],
         "db.query.summary": "SELECT Orders"
@@ -192,8 +192,8 @@
     {
         "name": "create_table",
         "db.system.name": "other_sql",
-        "sql": "CREATE  TABLE MyTable (\n    ID NOT NULL IDENTITY(1,1) PRIMARY KEY\n)",
-        "sanitized": [
+        "query": "CREATE  TABLE MyTable (\n    ID NOT NULL IDENTITY(1,1) PRIMARY KEY\n)",
+        "db.query.text": [
             "CREATE  TABLE MyTable (\n    ID NOT NULL IDENTITY(?,?) PRIMARY KEY\n)"
         ],
         "db.query.summary": "CREATE  TABLE MyTable"
@@ -201,8 +201,8 @@
     {
         "name": "alter_table",
         "db.system.name": "other_sql",
-        "sql": "ALTER  TABLE MyTable ADD Name varchar(255)",
-        "sanitized": [
+        "query": "ALTER  TABLE MyTable ADD Name varchar(255)",
+        "db.query.text": [
             "ALTER  TABLE MyTable ADD Name varchar(?)"
         ],
         "db.query.summary": "ALTER  TABLE MyTable"
@@ -210,8 +210,8 @@
     {
         "name": "drop_table",
         "db.system.name": "other_sql",
-        "sql": "DROP  TABLE MyTable",
-        "sanitized": [
+        "query": "DROP  TABLE MyTable",
+        "db.query.text": [
             "DROP  TABLE MyTable"
         ],
         "db.query.summary": "DROP  TABLE MyTable"
