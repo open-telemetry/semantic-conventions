@@ -118,12 +118,12 @@ groups:
     unit: "{request_unit}"
     stability: development
     attributes:
-      - ref: db.operation.name
+      - ref: db.command.name
         requirement_level:
           conditionally_required: >
-            If readily available and if there is a single operation name that describes the
-            database call. The operation name MAY be parsed from the query text,
-            in which case it SHOULD be the single operation name found in the query.
+            If readily available and if there is a single command name that describes the
+            database call. The command name MAY be parsed from the query text,
+            in which case it SHOULD be the single command name found in the query.
       - ref: db.collection.name
         brief: Cosmos DB container name.
         requirement_level:

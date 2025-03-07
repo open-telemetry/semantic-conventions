@@ -35,7 +35,7 @@ groups:
       # - ref: db.system.name
       #   requirement_level:
       #     conditionally_required: if available
-      - ref: db.operation.name
+      - ref: db.command.name
         requirement_level:
           conditionally_required: If readily available.
       - ref: db.collection.name
@@ -68,13 +68,13 @@ groups:
     extends: attributes.db.client.with_query
     type: attribute_group
     brief: This group defines the attributes describing database operations that
-      have operation name, collection name and query.
+      have command name, collection name and query.
     attributes:
-      - ref: db.operation.name
+      - ref: db.command.name
         requirement_level:
           conditionally_required: >
-            If readily available and if there is a single operation name that describes the
-            database call.
+            If readily available and if there is a single command name that describes the
+            database operation.
       - ref: db.collection.name
         requirement_level:
           conditionally_required: >
