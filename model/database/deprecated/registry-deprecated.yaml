@@ -83,7 +83,7 @@ groups:
       - id: db.operation.name
         type: string
         stability: development
-        brief: 'Deprecated, use `db.operation.command` instead.'
+        brief: 'Deprecated, use `db.command.name` instead.'
         examples: ["findAndModify", "HMSET", "SELECT"]
       - id: db.mssql.instance_name
         type: string
