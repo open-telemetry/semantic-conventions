@@ -12,7 +12,7 @@ groups:
       - ref: cpython.gc.generation
         requirement_level: required
 
-  - id: metric.cpython.gc.collected
+  - id: metric.cpython.gc.collected.objects
     type: metric
     metric_name: cpython.gc.collected.objects
     brief: "The total number of objects collected inside a generation that have occurred since interpreter start."
