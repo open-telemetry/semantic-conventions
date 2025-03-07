@@ -107,8 +107,8 @@ These attributes are commonly used across different database systems.
 |---|---|---|---|---|---|
 | [`db.system.name`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` | `Required` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.command.name`](/docs/attributes-registry/db.md) | string | The name of the command being executed. [4] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [5] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [6] | `customers`; `test.users` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [7] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` [8] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -134,22 +134,22 @@ collection name then that collection name SHOULD be used.
 
 **[3] `db.collection.name`:** If readily available and if a database call is performed on a single collection.
 
-**[4] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
-Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
-It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-
-**[5] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
+**[4] `db.command.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
-The operation name SHOULD NOT be extracted from `db.query.text`,
+The command name SHOULD NOT be extracted from `db.query.text`
 when the database system supports cross-table queries in non-batch operations.
 
-For batch operations, if the individual operations are known to have the same operation name
-then that operation name SHOULD be used prepended by `BATCH `,
-otherwise `db.operation.name` SHOULD be `BATCH` or some other database
+For batch operations, if the individual operations are known to have the same command name
+then that command name SHOULD be used prepended by `BATCH `,
+otherwise `db.command.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
-**[6] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call.
+**[5] `db.command.name`:** If readily available and if there is a single command name that describes the database operation.
+
+**[6] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
+It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 **[7] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
@@ -190,8 +190,8 @@ The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
 * [`db.collection.name`](/docs/attributes-registry/db.md)
+* [`db.command.name`](/docs/attributes-registry/db.md)
 * [`db.namespace`](/docs/attributes-registry/db.md)
-* [`db.operation.name`](/docs/attributes-registry/db.md)
 * [`db.query.summary`](/docs/attributes-registry/db.md)
 * [`db.query.text`](/docs/attributes-registry/db.md)
 * [`db.system.name`](/docs/attributes-registry/db.md)

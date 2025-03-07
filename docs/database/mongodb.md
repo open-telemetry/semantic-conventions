@@ -37,8 +37,8 @@ The following table outlines the span attributes applicable to MongoDB.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The MongoDB collection being accessed within the database stated in `db.namespace`. [1] | `public.users`; `customers` | `Required` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.command.name`](/docs/attributes-registry/db.md) | string | The name of the [MongoDB command](https://www.mongodb.com/docs/manual/reference/command/) being executed. | `findAndModify`; `getMore`; `insertMany`; `bulkWrite` | `Conditionally Required` If readily available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The MongoDB database name. | `customers`; `test.users` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the [MongoDB command](https://www.mongodb.com/docs/manual/reference/command/) being executed. | `findAndModify`; `getMore`; `insertMany`; `bulkWrite` | `Conditionally Required` If readily available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [MongoDB error code](https://www.mongodb.com/docs/manual/reference/error-codes/) represented as a string. [2] | `36`; `11602` | `Conditionally Required` [3] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -68,8 +68,8 @@ The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
 * [`db.collection.name`](/docs/attributes-registry/db.md)
+* [`db.command.name`](/docs/attributes-registry/db.md)
 * [`db.namespace`](/docs/attributes-registry/db.md)
-* [`db.operation.name`](/docs/attributes-registry/db.md)
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
 
