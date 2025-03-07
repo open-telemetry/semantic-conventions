@@ -35,7 +35,7 @@ The following table outlines the span attributes applicable to Elasticsearch.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [1] | `search`; `ml.close_job`; `cat.aliases` | `Required` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.command.name`](/docs/attributes-registry/db.md) | string | The name of the command being executed. [1] | `search`; `ml.close_job`; `cat.aliases` | `Required` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.full`](/docs/attributes-registry/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://localhost:9200/index/_search?q=user.id:kimchy` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md) | string | A dynamic value in the url path. [4] | `db.operation.parameter.index="test-index"`; `db.operation.parameter="123"` | `Conditionally Required` when the url has path parameters | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -49,8 +49,8 @@ The following table outlines the span attributes applicable to Elasticsearch.
 | [`elasticsearch.node.name`](/docs/attributes-registry/elasticsearch.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. [14] | `instance-0000000001` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `db.operation.name`:** The `db.operation.name` SHOULD match the endpoint identifier provided in the request (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
-For batch operations, if the individual operations are known to have the same operation name then that operation name SHOULD be used prepended by `bulk `, otherwise `db.operation.name` SHOULD be `bulk`.
+**[1] `db.command.name`:** The `db.command.name` SHOULD match the endpoint identifier provided in the request (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
+For batch operations, if the individual operations are known to have the same command name then that command name SHOULD be used prepended by `bulk `, otherwise `db.command.name` SHOULD be `bulk`.
 
 **[2] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -123,8 +123,8 @@ The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
 * [`db.collection.name`](/docs/attributes-registry/db.md)
+* [`db.command.name`](/docs/attributes-registry/db.md)
 * [`db.namespace`](/docs/attributes-registry/db.md)
-* [`db.operation.name`](/docs/attributes-registry/db.md)
 * [`db.query.text`](/docs/attributes-registry/db.md)
 * [`http.request.method`](/docs/attributes-registry/http.md)
 * [`server.address`](/docs/attributes-registry/server.md)

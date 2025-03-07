@@ -16,9 +16,9 @@ This group defines the attributes used to describe telemetry in the context of d
 | <a id="db-client-connection-pool-name" href="#db-client-connection-pool-name">`db.client.connection.pool.name`</a> | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="db-client-connection-state" href="#db-client-connection-state">`db.client.connection.state`</a> | string | The state of a connection in the pool | `idle` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="db-collection-name" href="#db-collection-name">`db.collection.name`</a> | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| <a id="db-namespace" href="#db-namespace">`db.namespace`</a> | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| <a id="db-operation-batch-size" href="#db-operation-batch-size">`db.operation.batch.size`</a> | int | The number of queries included in a batch operation. [3] | `2`; `3`; `4` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| <a id="db-operation-name" href="#db-operation-name">`db.operation.name`</a> | string | The name of the operation or command being executed. [4] | `findAndModify`; `HMSET`; `SELECT` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="db-command-name" href="#db-command-name">`db.command.name`</a> | string | The name of the command being executed. [2] | `findAndModify`; `HMSET`; `SELECT` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="db-namespace" href="#db-namespace">`db.namespace`</a> | string | The name of the database, fully qualified within the server address and port. [3] | `customers`; `test.users` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="db-operation-batch-size" href="#db-operation-batch-size">`db.operation.batch.size`</a> | int | The number of queries included in a batch operation. [4] | `2`; `3`; `4` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-operation-parameter" href="#db-operation-parameter">`db.operation.parameter.<key>`</a> | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [5] | `someval`; `55` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-query-summary" href="#db-query-summary">`db.query.summary`</a> | string | Low cardinality representation of a database query text. [6] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-query-text" href="#db-query-text">`db.query.text`</a> | string | The database query being executed. [7] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
@@ -35,22 +35,22 @@ when the database system supports cross-table queries in non-batch operations.
 For batch operations, if the individual operations are known to have the same
 collection name then that collection name SHOULD be used.
 
-**[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+**[2] `db.command.name`:** It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
+
+The command name SHOULD NOT be extracted from `db.query.text`
+when the database system supports cross-table queries in non-batch operations.
+
+For batch operations, if the individual operations are known to have the same command name
+then that command name SHOULD be used prepended by `BATCH `,
+otherwise `db.command.name` SHOULD be `BATCH` or some other database
+system specific term if more applicable.
+
+**[3] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[3] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
-
-**[4] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
-without attempting to do any case normalization.
-
-The operation name SHOULD NOT be extracted from `db.query.text`,
-when the database system supports cross-table queries in non-batch operations.
-
-For batch operations, if the individual operations are known to have the same operation name
-then that operation name SHOULD be used prepended by `BATCH `,
-otherwise `db.operation.name` SHOULD be `BATCH` or some other database
-system specific term if more applicable.
+**[4] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 
 **[5] `db.operation.parameter`:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
@@ -156,7 +156,8 @@ Describes deprecated database attributes.
 | <a id="db-mongodb-collection" href="#db-mongodb-collection">`db.mongodb.collection`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
 | <a id="db-mssql-instance-name" href="#db-mssql-instance-name">`db.mssql.instance_name`</a> | string | Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute. | `MSSQLSERVER` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. |
 | <a id="db-name" href="#db-name">`db.name`</a> | string | Deprecated, use `db.namespace` instead. | `customers`; `main` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
-| <a id="db-operation" href="#db-operation">`db.operation`</a> | string | Deprecated, use `db.operation.name` instead. | `findAndModify`; `HMSET`; `SELECT` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.operation.name`. |
+| <a id="db-operation" href="#db-operation">`db.operation`</a> | string | Deprecated, use `db.command.name` instead. | `findAndModify`; `HMSET`; `SELECT` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.command.name`. |
+| <a id="db-operation-name" href="#db-operation-name">`db.operation.name`</a> | string | Deprecated, use `db.command.name` instead. | `findAndModify`; `HMSET`; `SELECT` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="db-query-parameter" href="#db-query-parameter">`db.query.parameter.<key>`</a> | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. | `someval`; `55` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.operation.parameter`. |
 | <a id="db-redis-database-index" href="#db-redis-database-index">`db.redis.database_index`</a> | int | Deprecated, use `db.namespace` instead. | `0`; `1`; `15` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
 | <a id="db-sql-table" href="#db-sql-table">`db.sql.table`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |

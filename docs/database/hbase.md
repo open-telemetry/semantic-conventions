@@ -33,8 +33,8 @@ The following table outlines the span attributes applicable to HBase.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The HBase table name. [1] | `mytable`; `ns:table` | `Conditionally Required` If applicable. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The HBase namespace. [2] | `mynamespace` | `Conditionally Required` If applicable. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [3] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` If readily available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.command.name`](/docs/attributes-registry/db.md) | string | The name of the command being executed. [2] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` If readily available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The HBase namespace. [3] | `mynamespace` | `Conditionally Required` If applicable. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Protocol-specific response code recorded as a string. [4] | `200`; `409`; `14` | `Conditionally Required` If response was received. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [5] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Conditionally Required` [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -43,16 +43,16 @@ The following table outlines the span attributes applicable to HBase.
 
 **[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization. If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
 
-**[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
-Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
-It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-
-**[3] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
+**[2] `db.command.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
-For batch operations, if the individual operations are known to have the same operation name
-then that operation name SHOULD be used prepended by `BATCH `,
-otherwise `db.operation.name` SHOULD be `BATCH`.
+For batch operations, if the individual operations are known to have the same command name
+then that command name SHOULD be used prepended by `BATCH `,
+otherwise `db.command.name` SHOULD be `BATCH`.
+
+**[3] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
+It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 **[4] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
@@ -73,8 +73,8 @@ The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
 * [`db.collection.name`](/docs/attributes-registry/db.md)
+* [`db.command.name`](/docs/attributes-registry/db.md)
 * [`db.namespace`](/docs/attributes-registry/db.md)
-* [`db.operation.name`](/docs/attributes-registry/db.md)
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
 

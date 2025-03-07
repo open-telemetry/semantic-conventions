@@ -47,8 +47,8 @@ The following table outlines the span attributes applicable to Cosmos DB.
 | [`azure.cosmosdb.operation.request_charge`](/docs/attributes-registry/azure.md) | double | The number of request units consumed by the operation. | `46.18`; `1.0` | `Conditionally Required` when available | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`azure.cosmosdb.response.sub_status_code`](/docs/attributes-registry/azure.md) | int | Cosmos DB sub status code. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [3] | `public.users`; `customers` | `Conditionally Required` if available | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.command.name`](/docs/attributes-registry/db.md) | string | The name of the command being executed. [4] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [5] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `create_item`; `query_items`; `read_item` | `Conditionally Required` [5] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Cosmos DB row count in result set. | `10`; `20` | `Conditionally Required` if response was received and returned any rows | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Cosmos DB status code. [6] | `200`; `201` | `Conditionally Required` if response was received | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [7] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -69,7 +69,7 @@ The following table outlines the span attributes applicable to Cosmos DB.
 
 **[3] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[4] `db.operation.name`:** The `db.operation.name` has the following list of well-known values.
+**[4] `db.command.name`:** The `db.command.name` has the following list of well-known values.
 If one of them applies, then the respective value MUST be used.
 
 Batch operations:
@@ -193,7 +193,7 @@ If none of them applies, it's RECOMMENDED to use language-agnostic representatio
 client method name in snake_case. Instrumentations SHOULD document
 additional values when introducing new operations.
 
-**[5] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call.
+**[5] `db.command.name`:** If readily available and if there is a single command name that describes the database operation.
 
 **[6] `db.response.status_code`:** Response codes in the 4xx and 5xx range SHOULD be considered errors.
 
@@ -232,8 +232,8 @@ The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
 * [`db.collection.name`](/docs/attributes-registry/db.md)
+* [`db.command.name`](/docs/attributes-registry/db.md)
 * [`db.namespace`](/docs/attributes-registry/db.md)
-* [`db.operation.name`](/docs/attributes-registry/db.md)
 * [`db.query.summary`](/docs/attributes-registry/db.md)
 * [`db.query.text`](/docs/attributes-registry/db.md)
 * [`server.address`](/docs/attributes-registry/server.md)
@@ -344,8 +344,8 @@ Explaining bucket configuration:
 | [`azure.cosmosdb.consistency.level`](/docs/attributes-registry/azure.md) | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`azure.cosmosdb.response.sub_status_code`](/docs/attributes-registry/azure.md) | int | Cosmos DB sub status code. | `1000`; `1002` | `Conditionally Required` when response was received and contained sub-code. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | Cosmos DB container name. [1] | `public.users`; `customers` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.command.name`](/docs/attributes-registry/db.md) | string | The name of the command being executed. [2] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` If readily available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. | `customers`; `test.users` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [2] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` If readily available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [3] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` [4] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [5] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Conditionally Required` [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -354,15 +354,15 @@ Explaining bucket configuration:
 
 **[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[2] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
+**[2] `db.command.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
-The operation name SHOULD NOT be extracted from `db.query.text`,
+The command name SHOULD NOT be extracted from `db.query.text`
 when the database system supports cross-table queries in non-batch operations.
 
-For batch operations, if the individual operations are known to have the same operation name
-then that operation name SHOULD be used prepended by `BATCH `,
-otherwise `db.operation.name` SHOULD be `BATCH` or some other database
+For batch operations, if the individual operations are known to have the same command name
+then that command name SHOULD be used prepended by `BATCH `,
+otherwise `db.command.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
 **[3] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
