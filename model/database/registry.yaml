@@ -35,21 +35,21 @@ groups:
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         examples: ["customers", "test.users"]
-      - id: db.operation.name
+      - id: db.operation.command
         type: string
         stability: release_candidate
         brief: >
-          The name of the operation or command being executed.
+          The name of the command being executed.
         note: |
           It is RECOMMENDED to capture the value as provided by the application
           without attempting to do any case normalization.
 
-          The operation name SHOULD NOT be extracted from `db.query.text`,
-          when the database system supports cross-table queries in non-batch operations.
+          The command name SHOULD NOT be extracted from `db.query.text`,
+          when the database system supports cross-table queries in non-batch commands.
 
-          For batch operations, if the individual operations are known to have the same operation name
-          then that operation name SHOULD be used prepended by `BATCH `,
-          otherwise `db.operation.name` SHOULD be `BATCH` or some other database
+          For batch commands, if the individual commands are known to be the same
+          then that command name SHOULD be used prepended by `BATCH `,
+          otherwise `db.operation.command` SHOULD be `BATCH` or some other database
           system specific term if more applicable.
         examples: ["findAndModify", "HMSET", "SELECT"]
       - id: db.query.text
