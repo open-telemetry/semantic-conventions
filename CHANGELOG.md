@@ -8,6 +8,45 @@
 
 <!-- next version -->
 
+## v1.31.0
+
+### 🛑 Breaking changes 🛑
+
+- `code`: `code.function.name` value should contain the fully qualified function name, `code.namespace` is now deprecated ([#1677](https://github.com/open-telemetry/semantic-conventions/issues/1677))
+- `gen-ai`: Introduce `gen_ai.output.type`and deprecate `gen_ai.openai.request.response_format` ([#1757](https://github.com/open-telemetry/semantic-conventions/issues/1757))
+- `mobile`: Rework `device.app.lifecycle` mobile event. ([#1880](https://github.com/open-telemetry/semantic-conventions/issues/1880))
+  The `device.app.lifecycle` event has been reworked to use attributes instead
+  of event body fields. The `ios.app.state` and `android.app.state` attributes
+  have been reintroduced to the attribute registry.
+  
+- `system`: Move CPU-related system.cpu.* metrics to CPU namespace ([#1873](https://github.com/open-telemetry/semantic-conventions/issues/1873))
+- `k8s`: Change k8s.replication_controller metrics to k8s.replicationcontroller ([#1848](https://github.com/open-telemetry/semantic-conventions/issues/1848))
+- `db`: Rename `db.system` to `db.system.name` in database metrics, and update the values to be consistent with database spans. ([#1581](https://github.com/open-telemetry/semantic-conventions/issues/1581))
+- `session`: Move `session.id` and `session.previous_id` from body fields to event attributes, and yamlize `session.start` and `session.end` events. ([#1845](https://github.com/open-telemetry/semantic-conventions/issues/1845))
+  As part of the ongoing migration of event fields from LogRecord body to extended/complex attributes, the `session.start` and `session.end` events have been redefined.
+  
+
+### 💡 Enhancements 💡
+
+- `code`: Mark `code.*` semantic conventions as release candidate ([#1377](https://github.com/open-telemetry/semantic-conventions/issues/1377))
+- `gen-ai`: Added AI Agent Semantic Convention ([#1732](https://github.com/open-telemetry/semantic-conventions/issues/1732), [#1739](https://github.com/open-telemetry/semantic-conventions/issues/1739))
+- `db`: Add database-specific notes on db.operation.name and db.collection.name for Cassandra, Cosmos DB, HBase, MongoDB, and Redis, covering their batch/bulk terms and lack of cross-table queries. ([#1863](https://github.com/open-telemetry/semantic-conventions/issues/1863), [#1573](https://github.com/open-telemetry/semantic-conventions/issues/1573))
+- `gen-ai`: Adds `gen_ai.request.choice.count` span attribute ([#1888](https://github.com/open-telemetry/semantic-conventions/issues/1888))
+  Enables recording target number of completions to generate
+- `enduser`: Undeprecate 'enduser.id' and introduce new attribute `enduser.pseudo.id` ([#1104](https://github.com/open-telemetry/semantic-conventions/issues/1104))
+  The new attribute `enduser.pseudo.id` is intended to provide a unique identifier of a pseudonymous enduser.
+  
+- `k8s`: Add `k8s.hpa`, `k8s.resourcequota` and `k8s.replicationcontroller`  attributes and resources ([#1656](https://github.com/open-telemetry/semantic-conventions/issues/1656))
+- `k8s`: How to populate resource attributes based on attributes, labels and transformation ([#236](https://github.com/open-telemetry/semantic-conventions/issues/236))
+- `process`: Adjust the semantic expectations for `process.executable.name` ([#1736](https://github.com/open-telemetry/semantic-conventions/issues/1736))
+- `otel`: Adds SDK self-monitoring metrics for span processing ([#1631](https://github.com/open-telemetry/semantic-conventions/issues/1631))
+- `cicd`: Adds a new attribute `cicd.pipeline.run.url.full` and corrects the attribute description of `cicd.pipeline.task.run.url.full` ([#1796](https://github.com/open-telemetry/semantic-conventions/issues/1796))
+- `user-agent`: Add `user_agent.os.name` and `user_agent.os.version` attributes ([#1433](https://github.com/open-telemetry/semantic-conventions/issues/1433))
+
+### 🧰 Bug fixes 🧰
+
+- `process`: Fix units of process.open_file_descriptor.count and process.context_switches ([#1662](https://github.com/open-telemetry/semantic-conventions/issues/1662))
+
 ## v1.30.0
 
 ### 🛑 Breaking changes 🛑

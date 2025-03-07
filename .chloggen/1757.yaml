@@ -1,4 +1,0 @@
-change_type: breaking
-component: gen-ai
-note: "Introduce `gen_ai.output.type`and deprecate `gen_ai.openai.request.response_format`"
-issues: [1757]
