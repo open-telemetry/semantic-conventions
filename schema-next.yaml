@@ -39,8 +39,6 @@ versions:
               code.filepath: code.file.path
               code.lineno: code.line.number
               code.column: code.column.number
-    metrics:
-      changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/1734
         - rename_attributes:
             attribute_map:
@@ -62,6 +60,8 @@ versions:
               # db.elasticsearch.path_parts is a template attribute, schema transformation
               # does not support it, adding as a comment for consistency
               # db.elasticsearch.path_parts.<key> -> db.operation.parameter.<key>
+    metrics:
+      changes:
         - rename_metrics:
             db.client.cosmosdb.operation.request_charge: azure.cosmosdb.client.operation.request_charge
             db.client.cosmosdb.active_instance.count: azure.cosmosdb.client.active_instance.count
