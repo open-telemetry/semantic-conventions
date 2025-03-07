@@ -25,7 +25,7 @@ groups:
       - ref: cpython.gc.generation
         requirement_level: required
 
-  - id: metric.cpython.gc.uncollectable
+  - id: metric.cpython.gc.uncollectable.objects
     type: metric
     metric_name: cpython.gc.uncollectable.objects
     brief: "The total number of uncollectable objects inside a generation that have occurred since interpreter start."
