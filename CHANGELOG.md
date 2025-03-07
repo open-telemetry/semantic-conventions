@@ -24,7 +24,6 @@
 - `db`: Rename `db.system` to `db.system.name` in database metrics, and update the values to be consistent with database spans. ([#1581](https://github.com/open-telemetry/semantic-conventions/issues/1581))
 - `session`: Move `session.id` and `session.previous_id` from body fields to event attributes, and yamlize `session.start` and `session.end` events. ([#1845](https://github.com/open-telemetry/semantic-conventions/issues/1845))
   As part of the ongoing migration of event fields from LogRecord body to extended/complex attributes, the `session.start` and `session.end` events have been redefined.
-  
 
 ### 💡 Enhancements 💡
 
