@@ -1,6 +1,10 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: K8s attributes
+linkTitle: Resource attributes in K8s
 --->
+
+# Populating resources attributes in Kubernetes
+
+This document describes how to specify resource attributes for Kubernetes services.
 
 ## Specify resource attributes using Kubernetes annotations
 
@@ -17,7 +21,7 @@ The following [service resource attributes](../attributes-registry/service.md) a
 There are different ways to calculate the service attributes.
 
 1. [Well-Known Labels](https://kubernetes.io/docs/reference/labels-annotations-taints/)
-2. Annotations on the pod template that have the `resource.opentelemetry.io/` prefix as described in  
+2. Annotations on the pod template that have the `resource.opentelemetry.io/` prefix as described in
     [resource attributes using Kubernetes annotations](#specify-resource-attributes-using-kubernetes-annotations)
 3. A function of the Kubernetes resource attributes defined above
 
