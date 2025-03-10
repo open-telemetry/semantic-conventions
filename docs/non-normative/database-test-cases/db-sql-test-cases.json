@@ -187,7 +187,7 @@
         "db.query.text": [
             "SELECT * FROM Orders o, OrderDetails od"
         ],
-        "db.query.summary": "SELECT Orders"
+        "db.query.summary": "SELECT Orders OrderDetails"
     },
     {
         "name": "create_table",
