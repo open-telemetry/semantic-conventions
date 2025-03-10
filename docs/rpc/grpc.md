@@ -65,10 +65,10 @@ Below is a table of attributes that SHOULD be included on client and server gRPC
 ## gRPC Status
 
 The table below describes when
-the [Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/trace/api.md#set-status) MUST be set
+the [Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/trace/api.md#set-status) MUST be set
 to `Error` or remain unset
 depending on the [gRPC status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md)
-and [Span Kind](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/trace/api.md#spankind).
+and [Span Kind](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/trace/api.md#spankind).
 
 | gRPC Status Code | `SpanKind.SERVER` Span Status | `SpanKind.CLIENT` Span Status |
 |---|---|---|
