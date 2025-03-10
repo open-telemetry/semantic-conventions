@@ -14,6 +14,15 @@ versions:
         - rename_metrics:
             k8s.replication_controller.desired_pods: k8s.replicationcontroller.desired_pods
             k8s.replication_controller.available_pods: k8s.replicationcontroller.available_pods
+        # https://github.com/open-telemetry/semantic-conventions/pull/1896
+        - rename_metrics:
+            system.cpu.time: cpu.time
+            system.cpu.utilization: cpu.utilization
+            system.cpu.frequency: cpu.frequency
+        # https://github.com/open-telemetry/semantic-conventions/pull/1896
+        - rename_attributes:
+            attribute_map:
+              system.cpu.logical_number: cpu.logical_number
   1.30.0:
     all:
       changes:
@@ -29,8 +38,6 @@ versions:
               code.filepath: code.file.path
               code.lineno: code.line.number
               code.column: code.column.number
-    metrics:
-      changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/1734
         - rename_attributes:
             attribute_map:
@@ -52,6 +59,8 @@ versions:
               # db.elasticsearch.path_parts is a template attribute, schema transformation
               # does not support it, adding as a comment for consistency
               # db.elasticsearch.path_parts.<key> -> db.operation.parameter.<key>
+    metrics:
+      changes:
         - rename_metrics:
             db.client.cosmosdb.operation.request_charge: azure.cosmosdb.client.operation.request_charge
             db.client.cosmosdb.active_instance.count: azure.cosmosdb.client.active_instance.count
