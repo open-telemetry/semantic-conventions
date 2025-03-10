@@ -20,9 +20,9 @@ groups:
         examples: ['org.postgresql.Driver', 'com.microsoft.sqlserver.jdbc.SQLServerDriver']
       - id: db.operation
         type: string
-        brief: 'Deprecated, use `db.operation.name` instead.'
+        brief: 'Deprecated, use `db.command.name` instead.'
         stability: development
-        deprecated: "Replaced by `db.operation.name`."
+        deprecated: "Replaced by `db.command.name`."
         examples: ['findAndModify', 'HMSET', 'SELECT']
       - id: db.user
         type: string
@@ -80,6 +80,11 @@ groups:
         brief: 'Deprecated, use `db.namespace` instead.'
         deprecated: "Replaced by `db.namespace`."
         examples: [ 'customers', 'main' ]
+      - id: db.operation.name
+        type: string
+        stability: development
+        brief: 'Deprecated, use `db.command.name` instead.'
+        examples: ["findAndModify", "HMSET", "SELECT"]
       - id: db.mssql.instance_name
         type: string
         stability: development

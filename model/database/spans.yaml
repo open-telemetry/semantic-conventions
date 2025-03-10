@@ -7,12 +7,12 @@ groups:
       # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
       # - ref: db.system.name
       #   sampling_relevant: true
-      - ref: db.operation.name
+      - ref: db.command.name
         sampling_relevant: true
         requirement_level:
           conditionally_required: >
-            If readily available and if there is a single operation name that describes the
-            database call.
+            If readily available and if there is a single command name that describes the
+            database operation.
       - ref: db.operation.batch.size
       - ref: server.address
         sampling_relevant: true
@@ -53,7 +53,7 @@ groups:
     attributes:
       - ref: db.collection.name
         sampling_relevant: true
-      - ref: db.operation.name
+      - ref: db.command.name
         sampling_relevant: true
       - ref: db.operation.batch.size
       - ref: server.address
@@ -319,14 +319,14 @@ groups:
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
           If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
         examples: ['mytable', 'ns:table']
-      - ref: db.operation.name
+      - ref: db.command.name
         note: |
           It is RECOMMENDED to capture the value as provided by the application
           without attempting to do any case normalization.
 
-          For batch operations, if the individual operations are known to have the same operation name
-          then that operation name SHOULD be used prepended by `BATCH `,
-          otherwise `db.operation.name` SHOULD be `BATCH`.
+          For batch operations, if the individual operations are known to have the same command name
+          then that command name SHOULD be used prepended by `BATCH `,
+          otherwise `db.command.name` SHOULD be `BATCH`.
         requirement_level:
           conditionally_required: If readily available.
       - ref: db.response.status_code
@@ -343,15 +343,15 @@ groups:
     brief: >
       Attributes for CouchDB
     attributes:
-      - ref: db.operation.name
+      - ref: db.command.name
         sampling_relevant: true
         brief: >
           The HTTP method + the target REST route.
         examples: ['GET /{db}/{docid}']
         note: >
-          In **CouchDB**, `db.operation.name` should be set to the HTTP method +
+          In **CouchDB**, `db.command.name` should be set to the HTTP method +
           the target REST route according to the API reference documentation.
-          For example, when retrieving a document, `db.operation.name` would be set to
+          For example, when retrieving a document, `db.command.name` would be set to
           (literally, i.e., without replacing the placeholders with concrete values):
           [`GET /{db}/{docid}`](https://docs.couchdb.org/en/stable/api/document/common.html#get--db-docid).
         requirement_level:
@@ -393,7 +393,7 @@ groups:
 
           Instrumentation SHOULD document if `db.namespace` reflects the database index provided when the connection was established.
         examples: ["0", "1", "15"]
-      - ref: db.operation.name
+      - ref: db.command.name
         brief: >
           The Redis command name.
         examples: ["HMSET", "GET", "SET"]
@@ -402,9 +402,9 @@ groups:
           without attempting to do any case normalization.
 
           For [transactions and pipelined calls](https://redis.io/docs/latest/develop/clients/redis-py/transpipe/),
-          if the individual operations are known to have the same command then that
-          command SHOULD be used prepended by `MULTI ` or `PIPELINE `.
-          Otherwise `db.operation.name` SHOULD be `MULTI` or `PIPELINE`.
+          if the individual operations are known to have the same command name then that
+          command name SHOULD be used prepended by `MULTI ` or `PIPELINE `.
+          Otherwise `db.command.name` SHOULD be `MULTI` or `PIPELINE`.
         sampling_relevant: true
       - ref: db.query.text
         sampling_relevant: true
@@ -455,7 +455,7 @@ groups:
     brief: >
       Attributes for MongoDB
     attributes:
-      - ref: db.operation.name
+      - ref: db.command.name
         sampling_relevant: true
         brief: >
           The name of the [MongoDB command](https://www.mongodb.com/docs/manual/reference/command/) being executed.
@@ -499,15 +499,15 @@ groups:
       - ref: http.request.method
         sampling_relevant: true
         requirement_level: required
-      - ref: db.operation.name
+      - ref: db.command.name
         requirement_level: required
         note: >
-          The `db.operation.name` SHOULD match the endpoint identifier provided in the request
+          The `db.command.name` SHOULD match the endpoint identifier provided in the request
           (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
 
-          For batch operations, if the individual operations are known to have the same operation name
-          then that operation name SHOULD be used prepended by `bulk `,
-          otherwise `db.operation.name` SHOULD be `bulk`.
+          For batch operations, if the individual operations are known to have the same command name
+          then that command name SHOULD be used prepended by `bulk `,
+          otherwise `db.command.name` SHOULD be `bulk`.
         examples: [ 'search', 'ml.close_job', 'cat.aliases' ]
       - ref: url.full
         sampling_relevant: true
@@ -702,9 +702,9 @@ groups:
           When `az.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all
           operations performed by Cosmos DB client.
         examples: ["Microsoft.DocumentDB"]
-      - ref: db.operation.name
+      - ref: db.command.name
         note: |
-          The `db.operation.name` has the following list of well-known values.
+          The `db.command.name` has the following list of well-known values.
           If one of them applies, then the respective value MUST be used.
 
           Batch operations:
