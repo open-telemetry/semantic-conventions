@@ -1,5 +1,5 @@
 groups:
-  - id: trace.gen_ai.client.common_attributes
+  - id: trace.gen_ai.client.common_request_attributes
     type: attribute_group
     stability: development
     brief: >
@@ -34,6 +34,27 @@ groups:
           conditionally_required: if applicable and if the request includes a seed
       - ref: gen_ai.request.encoding_formats
         requirement_level: recommended
+      - ref: server.address
+        brief: GenAI server address.
+        requirement_level: recommended
+      - ref: server.port
+        brief: GenAI server port.
+        requirement_level:
+          conditionally_required: If `server.address` is set.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
+        note: |
+          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
+  - id: trace.gen_ai.client.common_attributes
+    type: attribute_group
+    stability: development
+    brief: >
+      Describes GenAI operation span.
+    extends: trace.gen_ai.client.common_request_attributes
+    attributes:
       - ref: gen_ai.output.type
         requirement_level:
           conditionally_required: when applicable and if the request includes an output format.
@@ -51,20 +72,6 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.usage.output_tokens
         requirement_level: recommended
-      - ref: server.address
-        brief: GenAI server address.
-        requirement_level: recommended
-      - ref: server.port
-        brief: GenAI server port.
-        requirement_level:
-          conditionally_required: If `server.address` is set.
-      - ref: error.type
-        requirement_level:
-          conditionally_required: "if the operation ended in an error"
-        note: |
-          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
-          the canonical name of exception that occurred, or another low-cardinality error identifier.
-          Instrumentations SHOULD document the list of errors they report.
   - id: span.gen_ai.client
     type: span
     stability: development
@@ -161,7 +168,7 @@ groups:
       The `gen_ai.operation.name` SHOULD be `create_agent`.
       The **span name** SHOULD be `create_agent {gen_ai.agent.name}`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
-    extends: trace.gen_ai.client.common_attributes
+    extends: trace.gen_ai.client.common_request_attributes
     attributes:
       - ref: gen_ai.system
         requirement_level: required
@@ -187,6 +194,32 @@ groups:
       - ref: gen_ai.request.top_p
         requirement_level:
           conditionally_required: If provided by the application.
+
+  - id: span.gen_ai.invoke_agent.client
+    type: span
+    stability: experimental
+    span_kind: client
+    brief: >
+      Describes GenAI agent invocation and is usually applicable when working
+      with remote agent services.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `invoke_agent`.
+      The **span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
+      When `gen_ai.agent.name` is not available, it SHOULD be `invoke_agent`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+    extends: trace.gen_ai.client.common_attributes
+    attributes:
+      - ref: gen_ai.system
+        requirement_level: required
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: if applicable.
+      - ref: gen_ai.agent.name
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.agent.description
+        requirement_level:
+          conditionally_required: when available
 
   - id: span.gen_ai.execute_tool.internal
     type: span
