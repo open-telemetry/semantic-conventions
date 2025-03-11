@@ -4,7 +4,7 @@ versions:
   next:
     all:
       changes:
-        # todo pull number
+        # https://github.com/open-telemetry/semantic-conventions/pull/1982
         - rename_attributes:
             attribute_map:
               feature_flag.provider_name: feature_flag.provider.name
