@@ -64,9 +64,9 @@ groups:
         type: string
         stability: development
         brief: >
-          The name of the process executable. On Linux based systems, can be set
-          to the `Name` in `proc/[pid]/status`. On Windows, can be set to the
-          base name of `GetProcessImageFileNameW`.
+          The name of the process executable. On Linux based systems, this SHOULD be
+          set to the base name of the target of `/proc/[pid]/exe`. On Windows,
+          this SHOULD be set to the base name of `GetProcessImageFileNameW`.
         examples: ['otelcol']
       - id: process.executable.path
         type: string

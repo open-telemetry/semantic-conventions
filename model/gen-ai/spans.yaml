@@ -16,6 +16,9 @@ groups:
         requirement_level: required
       - ref: gen_ai.request.max_tokens
         requirement_level: recommended
+      - ref: gen_ai.request.choice.count
+        requirement_level:
+          conditionally_required: if available, in the request, and !=1
       - ref: gen_ai.request.temperature
         requirement_level: recommended
       - ref: gen_ai.request.top_p
