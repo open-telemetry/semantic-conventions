@@ -3,6 +3,9 @@
 
 # Feature flag
 
+- [Feature Flag Attributes](#feature-flag-attributes)
+- [Deprecated Feature Flag Attributes](#deprecated-feature-flag-attributes)
+
 ## Feature Flag Attributes
 
 This document defines attributes for Feature Flags.
@@ -38,3 +41,11 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 | `static` | The resolved value is static (no dynamic evaluation). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | The reason for the resolved value could not be determined. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Deprecated Feature Flag Attributes
+
+Describes deprecated feature flag attributes.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | string | Deprecated, use `feature_flag.provider.name` instead. | `Flag Manager` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.provider.name`. |
