@@ -2,6 +2,12 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/1.31.0
 versions:
   next:
+    all:
+      changes:
+        # todo pull number
+        - rename_attributes:
+            attribute_map:
+              feature_flag.provider_name: feature_flag.provider.name
   1.31.0:
     all:
       changes:
