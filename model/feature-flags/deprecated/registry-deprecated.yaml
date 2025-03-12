@@ -1,0 +1,18 @@
+groups:
+   - id: registry.feature_flag.deprecated
+     type: attribute_group
+     display_name: Deprecated Feature Flag Attributes
+     brief: "Describes deprecated feature flag attributes."
+     attributes:
+       - id: feature_flag.evaluation.reason
+         type: string
+         brief: 'Deprecated, use `feature_flag.result.reason` instead.'
+         stability: development
+         deprecated: "Replaced by `feature_flag.result.reason`."
+         examples: ["static", "targeting_match", "error", "default"]
+       - id: feature_flag.variant
+         type: string
+         brief: 'Deprecated, use `feature_flag.result.variant` instead.'
+         stability: development
+         deprecated: "Replaced by `feature_flag.result.variant`."
+         examples: ["red", "true", "on"]
