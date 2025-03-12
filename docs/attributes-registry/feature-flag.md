@@ -11,21 +11,21 @@ This document defines attributes for Feature Flags.
 |---|---|---|---|---|
 | <a id="feature-flag-context-id" href="#feature-flag-context-id">`feature_flag.context.id`</a> | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="feature-flag-evaluation-error-message" href="#feature-flag-evaluation-error-message">`feature_flag.evaluation.error.message`</a> | string | A message explaining the nature of an error occurring during flag evaluation. | `Flag `header-color` expected type `string` but found type `number`` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="feature-flag-evaluation-reason" href="#feature-flag-evaluation-reason">`feature_flag.evaluation.reason`</a> | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="feature-flag-key" href="#feature-flag-key">`feature_flag.key`</a> | string | The lookup key of the feature flag. | `logo-color` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | string | Identifies the feature flag provider. | `Flag Manager` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="feature-flag-result-reason" href="#feature-flag-result-reason">`feature_flag.result.reason`</a> | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="feature-flag-result-variant" href="#feature-flag-result-variant">`feature_flag.result.variant`</a> | string | A semantic identifier for an evaluated flag value. [1] | `red`; `true`; `on` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="feature-flag-set-id" href="#feature-flag-set-id">`feature_flag.set.id`</a> | string | The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs. | `proj-1`; `ab98sgs`; `service1/dev` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="feature-flag-variant" href="#feature-flag-variant">`feature_flag.variant`</a> | string | A semantic identifier for an evaluated flag value. [1] | `red`; `true`; `on` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="feature-flag-version" href="#feature-flag-version">`feature_flag.version`</a> | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `feature_flag.variant`:** A semantic identifier, commonly referred to as a variant, provides a means
+**[1] `feature_flag.result.variant`:** A semantic identifier, commonly referred to as a variant, provides a means
 for referring to a value without including the value itself. This can
 provide additional context for understanding the meaning behind a value.
 For example, the variant `red` maybe be used for the value `#c05543`.
 
 ---
 
-`feature_flag.evaluation.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`feature_flag.result.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
