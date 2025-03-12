@@ -23,7 +23,7 @@ This document defines attributes for Feature Flags.
 **[1] `feature_flag.result.value`:** With some feature flag providers, feature flag results can be quite large or contain private or sensitive details.
 Because of this, `feature_flag.result.variant` is often the preferred attribute if it is available.
 
-It may be desireable to redact or otherwise limit the size and scope of `feature_flag.result.value` if possible.
+It may be desirable to redact or otherwise limit the size and scope of `feature_flag.result.value` if possible.
 Because the evaluated flag value is unstructured and may be any type, it left to the instrumentation author to determine how best to achieve this.
 
 **[2] `feature_flag.variant`:** A semantic identifier, commonly referred to as a variant, provides a means
