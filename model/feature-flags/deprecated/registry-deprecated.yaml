@@ -5,6 +5,7 @@ groups:
     brief: "Describes deprecated feature flag attributes."
     attributes:
       - id: feature_flag.evaluation.reason
+        type:
           members:
             - id: static
               value: "static"

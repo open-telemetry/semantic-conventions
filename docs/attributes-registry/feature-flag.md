@@ -3,6 +3,9 @@
 
 # Feature flag
 
+- [Feature Flag Attributes](#feature-flag-attributes)
+- [Deprecated Feature Flag Attributes](#deprecated-feature-flag-attributes)
+
 ## Feature Flag Attributes
 
 This document defines attributes for Feature Flags.
@@ -26,6 +29,31 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 ---
 
 `feature_flag.result.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `cached` | The resolved value was retrieved from cache. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `default` | The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `disabled` | The resolved value was the result of the flag being disabled in the management system. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `error` | The resolved value was the result of an error. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `split` | The resolved value was the result of pseudorandom assignment. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stale` | The resolved value is non-authoritative or possibly out of date | ![Development](https://img.shields.io/badge/-development-blue) |
+| `static` | The resolved value is static (no dynamic evaluation). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unknown` | The reason for the resolved value could not be determined. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Deprecated Feature Flag Attributes
+
+Describes deprecated feature flag attributes.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="feature-flag-evaluation-reason" href="#feature-flag-evaluation-reason">`feature_flag.evaluation.reason`</a> | string | Deprecated, use `feature_flag.result.reason` instead. | `static`; `targeting_match`; `error`; `default` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.result.reason`. |
+| <a id="feature-flag-variant" href="#feature-flag-variant">`feature_flag.variant`</a> | string | Deprecated, use `feature_flag.result.variant` instead. | `red`; `true`; `on` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.result.variant`. |
+
+---
+
+`feature_flag.evaluation.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
