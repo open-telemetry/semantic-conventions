@@ -98,6 +98,12 @@ groups:
         stability: development
         examples: ["#ff0000", "1", "true"]
         brief: The evaluated value of the feature flag represented as a JSON string.
+        note: |
+          With some feature flag providers, feature flag results can be quite large or contain private or sensitive details.
+          Because of this, `feature_flag.result.variant` is often the preferred attribute if it is available.
+
+          It may be desireable to redact or otherwise limit the size and scope of `feature_flag.result.value` if possible.
+          Because the evaluated flag value is unstructured and may be any type, it left to the instrumentation author to determine how best to achieve this.
       - id: feature_flag.result.type
         type:
           members:
