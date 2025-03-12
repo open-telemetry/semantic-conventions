@@ -42,6 +42,9 @@ groups:
         stability: development
         examples: ["TypeError: Cannot read properties of undefined (reading 'toString')"]
         brief: A message providing more detail about an error in human-readable form.
-        note: >
+        note: |
           `error.message` should provide additional context and detail about an error.
           It is NOT RECOMMENDED to duplicate the value of `error.type` in `error.message`.
+
+          `error.message` is recommended for logs, events, and span events,
+          but not metrics or spans due to its unbounded cardinality and overlap with span status.
