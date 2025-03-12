@@ -4,7 +4,7 @@ versions:
   next:
     all:
       changes:
-        # todo link
+        # https://github.com/open-telemetry/semantic-conventions/pull/1989
         - rename_attributes:
             attribute_map:
               feature_flag.evaluation.reason: feature_flag.result.reason
