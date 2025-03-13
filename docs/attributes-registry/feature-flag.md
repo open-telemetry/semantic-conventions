@@ -3,6 +3,9 @@
 
 # Feature flag
 
+- [Feature Flag Attributes](#feature-flag-attributes)
+- [Deprecated Feature Flag Attributes](#deprecated-feature-flag-attributes)
+
 ## Feature Flag Attributes
 
 This document defines attributes for Feature Flags.
@@ -13,7 +16,7 @@ This document defines attributes for Feature Flags.
 | <a id="feature-flag-evaluation-error-message" href="#feature-flag-evaluation-error-message">`feature_flag.evaluation.error.message`</a> | string | A message explaining the nature of an error occurring during flag evaluation. | `Flag `header-color` expected type `string` but found type `number`` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="feature-flag-evaluation-reason" href="#feature-flag-evaluation-reason">`feature_flag.evaluation.reason`</a> | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="feature-flag-key" href="#feature-flag-key">`feature_flag.key`</a> | string | The lookup key of the feature flag. | `logo-color` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | string | Identifies the feature flag provider. | `Flag Manager` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider.name`</a> | string | Identifies the feature flag provider. | `Flag Manager` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="feature-flag-set-id" href="#feature-flag-set-id">`feature_flag.set.id`</a> | string | The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs. | `proj-1`; `ab98sgs`; `service1/dev` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="feature-flag-variant" href="#feature-flag-variant">`feature_flag.variant`</a> | string | A semantic identifier for an evaluated flag value. [1] | `red`; `true`; `on` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="feature-flag-version" href="#feature-flag-version">`feature_flag.version`</a> | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -38,3 +41,11 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 | `static` | The resolved value is static (no dynamic evaluation). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | The reason for the resolved value could not be determined. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Deprecated Feature Flag Attributes
+
+Describes deprecated feature flag attributes.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | string | Deprecated, use `feature_flag.provider.name` instead. | `Flag Manager` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.provider.name`. |
