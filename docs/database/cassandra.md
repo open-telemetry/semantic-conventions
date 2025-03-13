@@ -33,8 +33,8 @@ The following table outlines the span attributes applicable to Cassandra.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of the Cassandra table that the operation is acting upon. [1] | `public.users`; `customers` | `Conditionally Required` [2] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The keyspace associated with the session. [3] | `mykeyspace` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [4] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [5] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.command.name`](/docs/attributes-registry/db.md) | string | The name of the command being executed. [3] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [4] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The keyspace associated with the session. [5] | `mykeyspace` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [Cassandra protocol error code](https://github.com/apache/cassandra/blob/cassandra-5.0/doc/native_protocol_v5.spec) represented as a string. [6] | `102`; `40020` | `Conditionally Required` [7] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [8] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Conditionally Required` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -61,22 +61,22 @@ then that collection name SHOULD be used.
 
 **[2] `db.collection.name`:** If readily available and if a database call is performed on a single collection.
 
-**[3] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
-Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
-It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-
-**[4] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
+**[3] `db.command.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
-The operation name SHOULD NOT be extracted from `db.query.text`,
+The command name SHOULD NOT be extracted from `db.query.text`
 when the database system supports cross-table queries in non-batch operations.
 
-For batch operations, if the individual operations are known to have the same operation name
-then that operation name SHOULD be used prepended by `BATCH `,
-otherwise `db.operation.name` SHOULD be `BATCH` or some other database
+For batch operations, if the individual operations are known to have the same command name
+then that command name SHOULD be used prepended by `BATCH `,
+otherwise `db.command.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
-**[5] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call.
+**[4] `db.command.name`:** If readily available and if there is a single command name that describes the database operation.
+
+**[5] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
+It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
 **[6] `db.response.status_code`:** All Cassandra protocol error codes SHOULD be considered errors.
 
@@ -115,8 +115,8 @@ The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
 * [`db.collection.name`](/docs/attributes-registry/db.md)
+* [`db.command.name`](/docs/attributes-registry/db.md)
 * [`db.namespace`](/docs/attributes-registry/db.md)
-* [`db.operation.name`](/docs/attributes-registry/db.md)
 * [`db.query.summary`](/docs/attributes-registry/db.md)
 * [`db.query.text`](/docs/attributes-registry/db.md)
 * [`server.address`](/docs/attributes-registry/server.md)
