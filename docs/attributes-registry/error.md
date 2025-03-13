@@ -15,7 +15,7 @@ This document defines the shared attributes used to report an error.
 **[1] `error.message`:** `error.message` should provide additional context and detail about an error.
 It is NOT RECOMMENDED to duplicate the value of `error.type` in `error.message`.
 
-`error.message` is recommended for logs, events, and span events,
+`error.message` is recommended for events
 but not metrics or spans due to its unbounded cardinality and overlap with span status.
 
 **[2] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
