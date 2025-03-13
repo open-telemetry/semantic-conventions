@@ -123,6 +123,10 @@ groups:
               value: "object"
               brief: The `feature_flag.result.value` is a stringified object.
               stability: development
+            - id: array
+              value: "array"
+              brief: The `feature_flag.result.value` is a stringified array.
+              stability: development
         stability: development
         examples: ["string", "boolean", "number"]
         brief: The JSON type of the `feature_flag.result.value`.
