@@ -60,15 +60,12 @@ Database spans MUST follow the overall [guidelines for span names](https://githu
 
 The **span name** SHOULD be `{db.query.summary}` if a summary is available.
 
-<!-- markdown-link-check-disable -->
-<!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
 If no summary is available, the span name SHOULD be `{db.operation.name} {target}`
 provided that a (low-cardinality) `db.operation.name` is available (see below for
 the exact definition of the [`{target}`](#target-placeholder) placeholder).
 
 If a (low-cardinality) `db.operation.name` is not available, database span names
 SHOULD default to the [`{target}`](#target-placeholder).
-<!-- markdown-link-check-enable -->
 
 If neither `{db.operation.name}` nor `{target}` are available, span name SHOULD be `{db.system}`.
 

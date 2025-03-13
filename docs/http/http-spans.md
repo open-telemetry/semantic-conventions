@@ -66,10 +66,7 @@ HTTP spans MUST follow the overall [guidelines for span names](https://github.co
 
 HTTP span names SHOULD be `{method} {target}` if there is a (low-cardinality) `target` available. If there is no (low-cardinality) `{target}` available, HTTP span names SHOULD be `{method}`.
 
-<!-- markdown-link-check-disable -->
-<!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
 (see below for the exact definition of the [`{method}`](#method-placeholder) and [`{target}`](#target-placeholder) placeholders).
-<!-- markdown-link-check-enable -->
 
 The <span id="method-placeholder">`{method}`</span> MUST be `{http.request.method}` if the method represents the original method known to the instrumentation.
 In other cases (when `{http.request.method}` is set to `_OTHER`), `{method}` MUST be `HTTP`.
