@@ -383,7 +383,7 @@ or other attributes, it SHOULD match the value used in the `db.query.summary`.
            'artists'
     ```
 
-    the corresponding `db.query.summary` is `SELECT "songs list" 'artists'`.
+    the corresponding `db.query.summary` is `SELECT "song list" 'artists'`.
 
 Semantic conventions for individual database systems or specialized instrumentations
 MAY specify a different `db.query.summary` format as long as produced summary remains
