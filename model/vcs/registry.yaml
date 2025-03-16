@@ -239,3 +239,23 @@ groups:
         brief: >
           The state of the change (pull request/merge request/changelist).
         examples: ["open", "closed", "merged"]
+      - id: vcs.owner.name
+        type: string
+        stability: development
+        brief: >
+           The group owner within the version control system.
+        examples:
+          [
+            "my-org",
+            "myteam",
+          ]
+      - id: vcs.vendor.name
+        type: string
+        stability: development
+        brief: >
+          The vendor name of the version control system.
+        examples:
+          [
+            "github",
+            "gitlab",
+          ] 
