@@ -1,8 +1,0 @@
-change_type: breaking
-component: mobile
-note: Rework `device.app.lifecycle` mobile event.
-issues: [1880]
-subtext: |
-  The `device.app.lifecycle` event has been reworked to use attributes instead
-  of event body fields. The `ios.app.state` and `android.app.state` attributes
-  have been reintroduced to the attribute registry.

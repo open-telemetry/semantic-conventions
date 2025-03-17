@@ -52,11 +52,20 @@ CHECK_TARGETS=install-tools markdownlint misspell table-check compatibility-chec
 			schema-check check-file-and-folder-names-in-docs
 
 # Determine if "docker" is actually podman
-DOCKER_IS_PODMAN=$(docker --version | grep podman | wc -l)
+DOCKER_VERSION_OUTPUT := $(shell docker --version 2>&1)
+DOCKER_IS_PODMAN := $(shell echo $(DOCKER_VERSION_OUTPUT) | grep -c podman)
+
 ifeq ($(DOCKER_IS_PODMAN),0)
- DOCKER_COMMAND=docker
+    DOCKER_COMMAND := docker
 else
- DOCKER_COMMAND=podman
+    DOCKER_COMMAND := podman
+endif
+
+# Debug printing
+ifdef DEBUG
+$(info Docker version output: $(DOCKER_VERSION_OUTPUT))
+$(info Is Docker actually Podman? $(DOCKER_IS_PODMAN))
+$(info Using command: $(DOCKER_COMMAND))
 endif
 
 DOCKER_RUN=$(DOCKER_COMMAND) run
