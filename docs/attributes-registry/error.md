@@ -9,14 +9,14 @@ This document defines the shared attributes used to report an error.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="error-message" href="#error-message">`error.message`</a> | string | A message providing more detail about an error in human-readable form. [1] | `TypeError: Cannot read properties of undefined (reading 'toString')` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="error-message" href="#error-message">`error.message`</a> | string | A message providing more detail about an error in human-readable form. [1] | `Unexpected input type: string`; `The user has exceeded their storage quota` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="error-type" href="#error-type">`error.type`</a> | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `error.message`:** `error.message` should provide additional context and detail about an error.
 It is NOT RECOMMENDED to duplicate the value of `error.type` in `error.message`.
+It is also NOT RECOMMENDED to duplicate the value of `exception.message` in `error.message`.
 
-`error.message` is recommended for events
-but not metrics or spans due to its unbounded cardinality and overlap with span status.
+`error.message` is recommended for events but not metrics or spans due to its unbounded cardinality and overlap with span status.
 
 **[2] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
