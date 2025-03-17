@@ -800,7 +800,7 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.exporter.log.exported.count` | Counter | `{LogRecord}` | The number of LogRecords for which the export has finished, either successful or failed [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
-For exporters with partial success semantics (e.g. OTLP with `rejected_spans`), rejected spans must count as failed and only non-rejected LogRecords count as success.
+For exporters with partial success semantics (e.g. OTLP with `rejected_log_records`), rejected LogRecords must count as failed and only non-rejected LogRecords count as success.
 If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
