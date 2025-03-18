@@ -117,8 +117,8 @@ groups:
     stability: development
     brief: "The duration of any http request(s) made from the exporter during export."
     note: |
-      This metric defines successful requests using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1). Anything else is defined as an unsuccessful request. 
-      For successful requests, `error.type` MUST NOT be set. For unsuccessful requests, `error.type` must contain a relevant failure cause.
+      This metric defines successful requests using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1).
+      Anything else is defined as an unsuccessful request. For successful requests, `error.type` MUST NOT be set. For unsuccessful requests, `error.type` must contain a relevant failure cause.
     instrument: histogram
     unit: "s"
     attributes:
