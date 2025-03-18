@@ -110,3 +110,61 @@ groups:
           recommended: when applicable
       - ref: error.type
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
+
+  - id: metric.otel.sdk.metricreader.collection.count
+    type: metric
+    metric_name: metric.otel.sdk.metricreader.collection.count
+    stability: development
+    brief: "The number of invocations of the collect operation of the metric reader."
+    note: |
+      For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` must contain the failure cause.
+      It can happen that metrics collection is successful for some MetricProducers, while others fail. In that case `error.type` SHOULD be set to any of the failures.
+    instrument: counter
+    unit: "1"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: error.type
+
+  - id: metric.otel.sdk.exporter.metric.inflight.count
+    type: metric
+    metric_name: otel.sdk.exporter.metric.inflight.count
+    stability: development
+    brief: "The number of metric data points which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
+    note: |
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
+    instrument: updowncounter
+    unit: "{data point}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
+
+  - id: metric.otel.sdk.exporter.metric.exported.count
+    type: metric
+    metric_name: otel.sdk.exporter.metric.exported.count
+    stability: development
+    brief: "The number of metric data points for which the export has finished, either successful or failed"
+    note: |
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
+      For exporters with partial success semantics (e.g. OTLP with `rejected_data_points`), rejected data points must count as failed and only non-rejected data points count as success.
+      If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
+    instrument: counter
+    unit: "{data point}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
+      - ref: error.type
+        examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
+
