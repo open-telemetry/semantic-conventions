@@ -50,7 +50,7 @@ groups:
         type: string
         stability: development
         brief: >
-          The container within GCP where the AppHub applciation is defined.
+          The container within GCP where the AppHub application is defined.
         examples: ['projects/my-container-project']
       - id: gcp.apphub.application.location
         type: string
