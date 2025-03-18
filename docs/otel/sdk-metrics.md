@@ -475,8 +475,8 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `otel.sdk.exporter.http.request.duration` | Histogram | `s` | The duration of any http request(s) made from the exporter during export. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** This metric defines successful requests using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1). Anything else is defined as an unsuccessful request. 
-For successful requests, `error.type` MUST NOT be set. For unsuccessful requests, `error.type` must contain a relevant failure cause.
+**[1]:** This metric defines successful requests using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1).
+Anything else is defined as an unsuccessful request. For successful requests, `error.type` MUST NOT be set. For unsuccessful requests, `error.type` must contain a relevant failure cause.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
