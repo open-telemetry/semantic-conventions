@@ -145,9 +145,9 @@ groups:
       - ref: otel.component.type
       - ref: otel.component.name
 
-  - id: metric.otel.sdk.processor.log.processed.count
+  - id: metric.otel.sdk.processor.log.processed_logs
     type: metric
-    metric_name: otel.sdk.processor.log.processed.count
+    metric_name: otel.sdk.processor.log.processed_logs
     stability: development
     brief: "The number of LogRecords for which the processing has finished, either successful or failed"
     note: |
@@ -164,9 +164,9 @@ groups:
           A low-cardinality description of the failure reason. SDK Batching LogRecord Processors MUST use `queue_full` for LogRecords dropped due to a full queue.
         examples: ["queue_full"]
 
-  - id: metric.otel.sdk.exporter.log.inflight.count
+  - id: metric.otel.sdk.exporter.log.inflight_logs
     type: metric
-    metric_name: otel.sdk.exporter.log.inflight.count
+    metric_name: otel.sdk.exporter.log.inflight_logs
     stability: development
     brief: "The number of LogRecords which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
     note: |
@@ -183,9 +183,9 @@ groups:
         requirement_level:
           recommended: when applicable
 
-  - id: metric.otel.sdk.exporter.log.exported.count
+  - id: metric.otel.sdk.exporter.log.exported_logs
     type: metric
-    metric_name: otel.sdk.exporter.log.exported.count
+    metric_name: otel.sdk.exporter.log.exported_logs
     stability: development
     brief: "The number of LogRecords for which the export has finished, either successful or failed"
     note: |
