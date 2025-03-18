@@ -27,10 +27,7 @@
 
 **[3] `device.model.name`:** It's recommended this value represents a human-readable version of the device model rather than a machine-readable alternative.
 
-**[4] `device.id`:** **The `device.id` SHOULD NOT be used in most user-facing applications due to privacy regulations.
-Consequently, instrumentations that provide it MUST provide it as an opt-in feature.**
-
-Its value SHOULD be identical for all apps on a device and it SHOULD NOT change if an app is uninstalled and re-installed.
+**[4] `device.id`:** Its value SHOULD be identical for all apps on a device and it SHOULD NOT change if an app is uninstalled and re-installed.
 However, it might be resettable by the user for all apps on a device.
 Hardware IDs (e.g. vendor-specific serial number, IMEI or MAC address) MIGHT be used as values.
 
@@ -38,9 +35,14 @@ More information about Android identifier best practices can be found [here](htt
 
 > [!WARNING]
 >
-> This attribute contains sensitive (PII) information. Caution should be taken when storing personal data or anything which can identify a user. GDPR and data protection laws may apply,
+> This attribute may contain sensitive (PII) information. Caution should be taken when storing personal data or anything which can identify a user. GDPR and data protection laws may apply,
 > ensure you do your own due diligence.
-> See [`app.installation.id`](/docs/attributes-registry/app.md#app-installation-id) as a more privacy-preserving alternative.
+>
+> Due to these reasons, this identifier is not recommended for consumer applications and will likely result in rejection from both Google Play and App Store.
+> However, it may be appropriate for specific enterprise scenarios, such as kiosk devices or enterprise-managed devices, with appropriate compliance clearance.
+> Any instrumentation providing this identifier MUST implement it as an opt-in feature.
+>
+> See [`app.installation.id`](/docs/attributes-registry/app.md#app-installation-id) for a more privacy-preserving alternative.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

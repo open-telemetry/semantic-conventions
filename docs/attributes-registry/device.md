@@ -14,10 +14,7 @@ Describes device attributes.
 | <a id="device-model-identifier" href="#device-model-identifier">`device.model.identifier`</a> | string | The model identifier for the device [3] | `iPhone3,4`; `SM-G920F` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="device-model-name" href="#device-model-name">`device.model.name`</a> | string | The marketing name for the device model [4] | `iPhone 6s Plus`; `Samsung Galaxy S6` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `device.id`:** **The `device.id` SHOULD NOT be used in most user-facing applications due to privacy regulations.
-Consequently, instrumentations that provide it MUST provide it as an opt-in feature.**
-
-Its value SHOULD be identical for all apps on a device and it SHOULD NOT change if an app is uninstalled and re-installed.
+**[1] `device.id`:** Its value SHOULD be identical for all apps on a device and it SHOULD NOT change if an app is uninstalled and re-installed.
 However, it might be resettable by the user for all apps on a device.
 Hardware IDs (e.g. vendor-specific serial number, IMEI or MAC address) MIGHT be used as values.
 
@@ -25,9 +22,14 @@ More information about Android identifier best practices can be found [here](htt
 
 > [!WARNING]
 >
-> This attribute contains sensitive (PII) information. Caution should be taken when storing personal data or anything which can identify a user. GDPR and data protection laws may apply,
+> This attribute may contain sensitive (PII) information. Caution should be taken when storing personal data or anything which can identify a user. GDPR and data protection laws may apply,
 > ensure you do your own due diligence.
-> See [`app.installation.id`](/docs/attributes-registry/app.md#app-installation-id) as a more privacy-preserving alternative.
+>
+> Due to these reasons, this identifier is not recommended for consumer applications and will likely result in rejection from both Google Play and App Store.
+> However, it may be appropriate for specific enterprise scenarios, such as kiosk devices or enterprise-managed devices, with appropriate compliance clearance.
+> Any instrumentation providing this identifier MUST implement it as an opt-in feature.
+>
+> See [`app.installation.id`](/docs/attributes-registry/app.md#app-installation-id) for a more privacy-preserving alternative.
 
 **[2] `device.manufacturer`:** The Android OS provides this field via [Build](https://developer.android.com/reference/android/os/Build#MANUFACTURER). iOS apps SHOULD hardcode the value `Apple`.
 
