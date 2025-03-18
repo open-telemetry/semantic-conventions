@@ -28,7 +28,7 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gcp.apphub.application.container`](/docs/attributes-registry/gcp.md) | string | The container within GCP where the AppHub applciation is defined. | `projects/my-container-project` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gcp.apphub.application.container`](/docs/attributes-registry/gcp.md) | string | The container within GCP where the AppHub application is defined. | `projects/my-container-project` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gcp.apphub.application.id`](/docs/attributes-registry/gcp.md) | string | The name of the application as configured in AppHub. | `my-application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gcp.apphub.application.location`](/docs/attributes-registry/gcp.md) | string | The GCP zone or region where the application is defined. | `us-central1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 

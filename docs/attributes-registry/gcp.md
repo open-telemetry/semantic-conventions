@@ -14,7 +14,7 @@ This document defines attributes AppHub will apply to resources in GCP. See [App
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="gcp-apphub-application-container" href="#gcp-apphub-application-container">`gcp.apphub.application.container`</a> | string | The container within GCP where the AppHub applciation is defined. | `projects/my-container-project` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gcp-apphub-application-container" href="#gcp-apphub-application-container">`gcp.apphub.application.container`</a> | string | The container within GCP where the AppHub application is defined. | `projects/my-container-project` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gcp-apphub-application-id" href="#gcp-apphub-application-id">`gcp.apphub.application.id`</a> | string | The name of the application as configured in AppHub. | `my-application` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gcp-apphub-application-location" href="#gcp-apphub-application-location">`gcp.apphub.application.location`</a> | string | The GCP zone or region where the application is defined. | `us-central1` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gcp-apphub-service-criticality-type" href="#gcp-apphub-service-criticality-type">`gcp.apphub.service.criticality_type`</a> | string | Criticality of an application, service, or workload indicates its importance to the business. [1] | `CRITICAL`; `HIGH`; `MEDIUM`; `LOW` | ![Development](https://img.shields.io/badge/-development-blue) |
