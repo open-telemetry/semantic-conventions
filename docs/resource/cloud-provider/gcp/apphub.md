@@ -2,7 +2,7 @@
 
 **Status**: [Development][DocumentStatus]
 
-These conventions are used by Google Cloud when using AppHub. Observability
+These conventions are used by Google Cloud when using [AppHub](https://cloud.google.com/app-hub/docs/overview). Observability
 data from Google Cloud will be annotated with these resource types, depending
 on the source of telemetry. For example, metrics coming from a Google Cloud
 service will be annotated with the appropriate `gcp.apphub.application` and
