@@ -32,7 +32,7 @@ The following table outlines the span attributes applicable to Oracle Database.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The service name associated with the connection. [1] | `db_high.adb.oraclecloud.com`; `db_low.adb.oraclecloud.com` | `Conditionally Required` If available without an additional network call. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.namespace`](/docs/attributes-registry/db.md) | string | The database associated with the connection, qualified by the instance name, database name and service name. [1] | `ORCL1|PDB1|db_high.adb.oraclecloud.com`; `ORCL1|DB1|db_low.adb.oraclecloud.com` | `Conditionally Required` If available without an additional network call. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | [Oracle Database error number](https://docs.oracle.com/en/error-help/db/) recorded as a string. [2] | `ORA-02813`; `ORA-02613` | `Conditionally Required` If response has ended with warning or an error. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Conditionally Required` [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -41,15 +41,13 @@ The following table outlines the span attributes applicable to Oracle Database.
 | [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [9] | `SELECT * FROM wuser_table where username = :mykey` | `Recommended` [10] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`oracle.db.client.connection.implicit_release`](/docs/attributes-registry/oracledb.md) | boolean | Boolean flag Indicating if the internal connection is released back to pool or not after executing a query. [11] | `true` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`oracle.db.client.connection.increment`](/docs/attributes-registry/oracledb.md) | int | The number of connections added when the pool needs to expand. | `5` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`oracle.db.instance`](/docs/attributes-registry/oracledb.md) | string | The name of the Oracle Database instance. | `ORCL1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`oracle.db.pdb_name`](/docs/attributes-registry/oracledb.md) | string | The name of the pluggable database (PDB) the connection is using. | `PDB1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [13] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
-**[1] `db.namespace`:** Instrumentation SHOULD document if `db.namespace` reflects the service name provided when the connection was established.
-
-It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[1] `db.namespace`:** `db.namespace` SHOULD be set to the combination of instance name, database name and
+service name following the `{instance_name}|{database_name}|{service_name}` pattern.
+For CDB architecture, database name would be pdb name. For Non-CDB, it would be
+`DB_NAME` parameter.
 
 **[2] `db.response.status_code`:** Oracle Database error codes are vendor specific error codes and don't follow [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE) conventions. All Oracle Database error codes SHOULD be considered errors.
 
@@ -86,9 +84,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`db.query.summary`](/docs/attributes-registry/db.md)
 * [`db.query.text`](/docs/attributes-registry/db.md)
 * [`oracle.db.client.connection.implicit_release`](/docs/attributes-registry/oracledb.md)
-* [`oracle.db.client.connection.increment`](/docs/attributes-registry/oracledb.md)
-* [`oracle.db.instance`](/docs/attributes-registry/oracledb.md)
-* [`oracle.db.pdb_name`](/docs/attributes-registry/oracledb.md)
 * [`server.address`](/docs/attributes-registry/server.md)
 * [`server.port`](/docs/attributes-registry/server.md)
 
