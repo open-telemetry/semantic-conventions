@@ -35,7 +35,7 @@ groups:
                 [C++](https://wikipedia.org/wiki/C%2B%2B),
                 [Go](https://wikipedia.org/wiki/Go_(programming_language)) or
                 [Rust](https://wikipedia.org/wiki/Rust_(programming_language)).
-                If possible, a more precise attribute MUST be used.
+                If possible, a more precise value MUST be used.
               value: "native"
               stability: development
             - id: perl

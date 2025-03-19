@@ -23,7 +23,7 @@ Describes the origin of a single frame in a Profile.
 | `go` | [Go](https://wikipedia.org/wiki/Go_(programming_language)), | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jvm` | [JVM](https://wikipedia.org/wiki/Java_virtual_machine) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kernel` | [Kernel](https://wikipedia.org/wiki/Kernel_(operating_system)) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `native` | Can be one of but not limited to [C](https://wikipedia.org/wiki/C_(programming_language)), [C++](https://wikipedia.org/wiki/C%2B%2B), [Go](https://wikipedia.org/wiki/Go_(programming_language)) or [Rust](https://wikipedia.org/wiki/Rust_(programming_language)). If possible, a more precise attribute MUST be used. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `native` | Can be one of but not limited to [C](https://wikipedia.org/wiki/C_(programming_language)), [C++](https://wikipedia.org/wiki/C%2B%2B), [Go](https://wikipedia.org/wiki/Go_(programming_language)) or [Rust](https://wikipedia.org/wiki/Rust_(programming_language)). If possible, a more precise value MUST be used. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `perl` | [Perl](https://wikipedia.org/wiki/Perl) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `php` | [PHP](https://wikipedia.org/wiki/PHP) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ruby` | [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
