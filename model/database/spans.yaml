@@ -848,12 +848,15 @@ groups:
     attributes:
       - ref: db.namespace
         sampling_relevant: true
-        brief: The service name associated with the connection.
+        brief: >
+          The database associated with the connection, qualified by the instance name,
+          database name and service name.
         note: |
-          Instrumentation SHOULD document if `db.namespace` reflects the service name provided when the connection was established.
-
-          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-        examples: ["db_high.adb.oraclecloud.com", "db_low.adb.oraclecloud.com"]
+          `db.namespace` SHOULD be set to the combination of instance name, database name and
+          service name following the `{instance_name}|{database_name}|{service_name}` pattern.
+          For CDB architecture, database name would be pdb name. For Non-CDB, it would be
+          `DB_NAME` parameter.
+        examples: ["ORCL1|PDB1|db_high.adb.oraclecloud.com", "ORCL1|DB1|db_low.adb.oraclecloud.com"]
       - ref: db.response.status_code
         brief: >
           [Oracle Database error number](https://docs.oracle.com/en/error-help/db/) recorded as a string.
@@ -885,17 +888,3 @@ groups:
         note: >
           This attribute appears in the span when an implicit release occurs, and its value is always true.
         examples: [true]
-      - ref: oracle.db.client.connection.increment
-        sampling_relevant: true
-        brief: >
-          The number of connections added when the pool needs to expand.
-      - ref: oracle.db.instance
-        sampling_relevant: true
-        brief: >
-          The name of the Oracle Database instance.
-        examples: ["ORCL1"]
-      - ref: oracle.db.pdb_name
-        sampling_relevant: true
-        brief: >
-          The name of the pluggable database (PDB) the connection is using.
-        examples: ["PDB1"]

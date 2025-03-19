@@ -10,6 +10,3 @@ This section defines attributes for Oracle Database.
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="oracle-db-client-connection-implicit-release" href="#oracle-db-client-connection-implicit-release">`oracle.db.client.connection.implicit_release`</a> | boolean | Boolean flag Indicating if the internal connection is released back to pool or not after executing a query. | `true` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="oracle-db-client-connection-increment" href="#oracle-db-client-connection-increment">`oracle.db.client.connection.increment`</a> | int | The number of connections added when the pool needs to expand. | `5` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="oracle-db-instance" href="#oracle-db-instance">`oracle.db.instance`</a> | string | The name of the Oracle Database instance. | `ORCL1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="oracle-db-pdb-name" href="#oracle-db-pdb-name">`oracle.db.pdb_name`</a> | string | The name of the pluggable database (PDB) the connection is using. | `PDB1` | ![Development](https://img.shields.io/badge/-development-blue) |
