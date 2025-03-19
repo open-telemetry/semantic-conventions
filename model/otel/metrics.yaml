@@ -111,9 +111,9 @@ groups:
       - ref: error.type
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
 
-  - id: metric.otel.sdk.log.count
+  - id: metric.otel.sdk.log.created
     type: metric
-    metric_name: otel.sdk.log.count
+    metric_name: otel.sdk.log.created
     stability: development
     brief: "The number of logs submitted to enabled SDK Loggers"
     instrument: counter
@@ -145,9 +145,9 @@ groups:
       - ref: otel.component.type
       - ref: otel.component.name
 
-  - id: metric.otel.sdk.processor.log.processed_logs
+  - id: metric.otel.sdk.processor.log.processed
     type: metric
-    metric_name: otel.sdk.processor.log.processed_logs
+    metric_name: otel.sdk.processor.log.processed
     stability: development
     brief: "The number of log records for which the processing has finished, either successful or failed"
     note: |
@@ -164,9 +164,9 @@ groups:
           A low-cardinality description of the failure reason. SDK Batching Log Record Processors MUST use `queue_full` for log records dropped due to a full queue.
         examples: ["queue_full"]
 
-  - id: metric.otel.sdk.exporter.log.inflight_logs
+  - id: metric.otel.sdk.exporter.log.inflight
     type: metric
-    metric_name: otel.sdk.exporter.log.inflight_logs
+    metric_name: otel.sdk.exporter.log.inflight
     stability: development
     brief: "The number of log records which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
     note: |
@@ -183,9 +183,9 @@ groups:
         requirement_level:
           recommended: when applicable
 
-  - id: metric.otel.sdk.exporter.log.exported_logs
+  - id: metric.otel.sdk.exporter.log.exported
     type: metric
-    metric_name: otel.sdk.exporter.log.exported_logs
+    metric_name: otel.sdk.exporter.log.exported
     stability: development
     brief: "The number of log records for which the export has finished, either successful or failed"
     note: |
