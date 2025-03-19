@@ -56,7 +56,7 @@ with all retries.
 
 ## Name
 
-Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/trace/api.md#span).
+Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/trace/api.md#span).
 
 The **span name** SHOULD be `{db.query.summary}` if a summary is available.
 
@@ -383,7 +383,7 @@ or other attributes, it SHOULD match the value used in the `db.query.summary`.
            'artists'
     ```
 
-    the corresponding `db.query.summary` is `SELECT "songs list" 'artists'`.
+    the corresponding `db.query.summary` is `SELECT "song list" 'artists'`.
 
 Semantic conventions for individual database systems or specialized instrumentations
 MAY specify a different `db.query.summary` format as long as produced summary remains
