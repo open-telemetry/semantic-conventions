@@ -283,7 +283,7 @@
             "db.query.text": [
                 "CREATE  TABLE MyTable (\n    ID NOT NULL IDENTITY(?,?) PRIMARY KEY\n)"
             ],
-            "db.query.summary": "CREATE  TABLE MyTable"
+            "db.query.summary": "CREATE TABLE MyTable"
         }
     },
     {
@@ -296,7 +296,7 @@
             "db.query.text": [
                 "ALTER  TABLE MyTable ADD Name varchar(?)"
             ],
-            "db.query.summary": "ALTER  TABLE MyTable"
+            "db.query.summary": "ALTER TABLE MyTable"
         }
     },
     {
@@ -309,7 +309,7 @@
             "db.query.text": [
                 "DROP  TABLE MyTable"
             ],
-            "db.query.summary": "DROP  TABLE MyTable"
+            "db.query.summary": "DROP TABLE MyTable"
         }
     }
 ]
