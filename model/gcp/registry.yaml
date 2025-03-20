@@ -74,7 +74,7 @@ groups:
         type: string
         stability: development
         brief: >
-          Environment of an application, service, or workload is the stage of a software lifecycle, for example, production, staging, or development.
+          Environment of a service is the stage of a software lifecycle, for example, production, staging, or development.
         note: >
           [See AppHub properties and attributes](https://cloud.google.com/app-hub/docs/overview#properties-attributes)
         examples: ['DEVELOPMENT', 'TEST', 'STAGING', 'PRODUCTION']
@@ -82,7 +82,7 @@ groups:
         type: string
         stability: development
         brief: >
-          Criticality of an application, service, or workload indicates its importance to the business.
+          Criticality of a service indicates its importance to the business.
         note: >
           [See AppHub properties and attributes](https://cloud.google.com/app-hub/docs/overview#properties-attributes)
         examples: ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW']
@@ -96,7 +96,7 @@ groups:
         type: string
         stability: development
         brief: >
-          Environment of an application, service, or workload is the stage of a software lifecycle, for example, production, staging, or development.
+          Environment of a workload is the stage of a software lifecycle, for example, production, staging, or development.
         note: >
           [See AppHub properties and attributes](https://cloud.google.com/app-hub/docs/overview#properties-attributes)
         examples: ['DEVELOPMENT', 'TEST', 'STAGING', 'PRODUCTION']
@@ -104,7 +104,7 @@ groups:
         type: string
         stability: development
         brief: >
-          Criticality of an application, service, or workload indicates its importance to the business.
+          Criticality of a workload indicates its importance to the business.
         note: >
           [See AppHub properties and attributes](https://cloud.google.com/app-hub/docs/overview#properties-attributes)
         examples: ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW']
