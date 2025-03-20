@@ -111,14 +111,15 @@ groups:
       - ref: error.type
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
 
-  - id: metric.otel.sdk.exporter.http.request.duration
+  - id: metric.otel.sdk.exporter.request.duration
     type: metric
-    metric_name: otel.sdk.exporter.http.request.duration
+    metric_name: otel.sdk.exporter.request.duration
     stability: development
-    brief: "The duration of any http request(s) made from the exporter during export."
+    brief: "The duration of any request(s) made from the exporter during export."
     note: |
-      This metric defines successful requests using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1).
-      Anything else is defined as an unsuccessful request. For successful requests, `error.type` MUST NOT be set. For unsuccessful requests, `error.type` must contain a relevant failure cause.
+      This metric defines successful requests using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1)
+      and [grpc](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success). Anything else is defined as an unsuccessful request. For successful requests,
+      `error.type` MUST NOT be set. For unsuccessful requests, `error.type` must contain a relevant failure cause.
     instrument: histogram
     unit: "s"
     attributes:
@@ -136,4 +137,7 @@ groups:
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
       - ref: http.response.status_code
         requirement_level:
-          conditionally_required: If and only if one was received/sent.
+          recommended: when applicable
+      - ref: rpc.grpc.status_code
+        requirement_level:
+          recommended: when applicable
