@@ -151,22 +151,22 @@ groups:
       - id: gcp.apphub.workload.criticality_type
         type:
           members:
-          - id: mission_critical
-            value: "MISSION_CRITICAL"
-            brief: Mission critical service.
-            stability: development
-          - id: high
-            value: "HIGH"
-            brief: High impact.
-            stability: development
-          - id: medium
-            value: "MEDIUM"
-            brief: Medium impact.
-            stability: development
-          - id: low
-            value: "LOW"
-            brief: Low impact.
-            stability: development
+            - id: mission_critical
+              value: "MISSION_CRITICAL"
+              brief: Mission critical service.
+              stability: development
+            - id: high
+              value: "HIGH"
+              brief: High impact.
+              stability: development
+            - id: medium
+              value: "MEDIUM"
+              brief: Medium impact.
+              stability: development
+            - id: low
+              value: "LOW"
+              brief: Low impact.
+              stability: development
         stability: development
         brief: >
           Criticality of a workload indicates its importance to the business.
