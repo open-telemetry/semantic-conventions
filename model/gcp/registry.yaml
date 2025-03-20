@@ -71,21 +71,53 @@ groups:
           The name of the service as configured in AppHub.
         examples: ['my-service']
       - id: gcp.apphub.service.environment_type
-        type: string
+        type:
+          members:
+            - id: production
+              value: "PRODUCTION"
+              brief: Production environment.
+              stability: development
+            - id: staging
+              value: "STAGING"
+              brief: Staging environment.
+              stability: development
+            - id: test
+              value: "TEST"
+              brief: Test environment.
+              stability: development
+            - id: development
+              value: "DEVELOPMENT"
+              brief: Development environment.
+              stability: development
         stability: development
         brief: >
           Environment of a service is the stage of a software lifecycle, for example, production, staging, or development.
         note: >
-          [See AppHub properties and attributes](https://cloud.google.com/app-hub/docs/overview#properties-attributes)
-        examples: ['DEVELOPMENT', 'TEST', 'STAGING', 'PRODUCTION']
+          [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type_1)
       - id: gcp.apphub.service.criticality_type
-        type: string
+        type:
+          members:
+            - id: mission_critical
+              value: "MISSION_CRITICAL"
+              brief: Mission critical service.
+              stability: development
+            - id: high
+              value: "HIGH"
+              brief: High impact.
+              stability: development
+            - id: medium
+              value: "MEDIUM"
+              brief: Medium impact.
+              stability: development
+            - id: low
+              value: "LOW"
+              brief: Low impact.
+              stability: development
         stability: development
         brief: >
           Criticality of a service indicates its importance to the business.
         note: >
-          [See AppHub properties and attributes](https://cloud.google.com/app-hub/docs/overview#properties-attributes)
-        examples: ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW']
+          [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type)
       - id: gcp.apphub.workload.id
         type: string
         stability: development
@@ -93,21 +125,53 @@ groups:
           The name of the workload as configured in AppHub.
         examples: ['my-workload']
       - id: gcp.apphub.workload.environment_type
-        type: string
+        type:
+          members:
+            - id: production
+              value: "PRODUCTION"
+              brief: Production environment.
+              stability: development
+            - id: staging
+              value: "STAGING"
+              brief: Staging environment.
+              stability: development
+            - id: test
+              value: "TEST"
+              brief: Test environment.
+              stability: development
+            - id: development
+              value: "DEVELOPMENT"
+              brief: Development environment.
+              stability: development
         stability: development
         brief: >
           Environment of a workload is the stage of a software lifecycle, for example, production, staging, or development.
         note: >
-          [See AppHub properties and attributes](https://cloud.google.com/app-hub/docs/overview#properties-attributes)
-        examples: ['DEVELOPMENT', 'TEST', 'STAGING', 'PRODUCTION']
+          [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type_1)
       - id: gcp.apphub.workload.criticality_type
-        type: string
+        type:
+          members:
+          - id: mission_critical
+            value: "MISSION_CRITICAL"
+            brief: Mission critical service.
+            stability: development
+          - id: high
+            value: "HIGH"
+            brief: High impact.
+            stability: development
+          - id: medium
+            value: "MEDIUM"
+            brief: Medium impact.
+            stability: development
+          - id: low
+            value: "LOW"
+            brief: Low impact.
+            stability: development
         stability: development
         brief: >
           Criticality of a workload indicates its importance to the business.
         note: >
-          [See AppHub properties and attributes](https://cloud.google.com/app-hub/docs/overview#properties-attributes)
-        examples: ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW']
+          [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type)
   - id: registry.gcp.gce
     type: attribute_group
     display_name: GCP - Google Compute Engine (GCE) Attributes
