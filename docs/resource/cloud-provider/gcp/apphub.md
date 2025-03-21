@@ -56,7 +56,7 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gcp.apphub.service.criticality_type`](/docs/attributes-registry/gcp.md) | string | Criticality of a service indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gcp.apphub.service.environment_type`](/docs/attributes-registry/gcp.md) | string | Environment of a service is the stage of a software lifecycle, for example, production, staging, or development. [2] | `PRODUCTION`; `STAGING`; `TEST` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gcp.apphub.service.environment_type`](/docs/attributes-registry/gcp.md) | string | Environment of a service is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gcp.apphub.service.id`](/docs/attributes-registry/gcp.md) | string | The name of the service as configured in AppHub. | `my-service` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gcp.apphub.service.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type)
@@ -109,7 +109,7 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gcp.apphub.workload.criticality_type`](/docs/attributes-registry/gcp.md) | string | Criticality of a workload indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gcp.apphub.workload.environment_type`](/docs/attributes-registry/gcp.md) | string | Environment of a workload is the stage of a software lifecycle, for example, production, staging, or development. [2] | `PRODUCTION`; `STAGING`; `TEST` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gcp.apphub.workload.environment_type`](/docs/attributes-registry/gcp.md) | string | Environment of a workload is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gcp.apphub.workload.id`](/docs/attributes-registry/gcp.md) | string | The name of the workload as configured in AppHub. | `my-workload` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gcp.apphub.workload.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type)
