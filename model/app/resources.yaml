@@ -1,0 +1,9 @@
+groups:
+  - id: resource.app
+    type: resource
+    stability: development
+    name: app
+    brief: >
+      A client-side application.
+    attributes:
+      - ref: app.installation.id
