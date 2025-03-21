@@ -24,13 +24,13 @@ This document defines attributes AppHub will apply to resources in GCP. See [App
 | <a id="gcp-apphub-workload-environment-type" href="#gcp-apphub-workload-environment-type">`gcp.apphub.workload.environment_type`</a> | string | Environment of a workload is the stage of a software lifecycle. [4] | `PRODUCTION`; `STAGING`; `TEST` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gcp-apphub-workload-id" href="#gcp-apphub-workload-id">`gcp.apphub.workload.id`</a> | string | The name of the workload as configured in AppHub. | `my-workload` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `gcp.apphub.service.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type)
+**[1] `gcp.apphub.service.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
-**[2] `gcp.apphub.service.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type_1)
+**[2] `gcp.apphub.service.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
 
-**[3] `gcp.apphub.workload.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type)
+**[3] `gcp.apphub.workload.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
-**[4] `gcp.apphub.workload.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type_1)
+**[4] `gcp.apphub.workload.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
 
 ---
 

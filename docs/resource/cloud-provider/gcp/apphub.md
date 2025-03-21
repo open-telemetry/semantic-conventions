@@ -59,9 +59,9 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 | [`gcp.apphub.service.environment_type`](/docs/attributes-registry/gcp.md) | string | Environment of a service is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gcp.apphub.service.id`](/docs/attributes-registry/gcp.md) | string | The name of the service as configured in AppHub. | `my-service` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `gcp.apphub.service.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type)
+**[1] `gcp.apphub.service.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
-**[2] `gcp.apphub.service.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type_1)
+**[2] `gcp.apphub.service.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
 
 ---
 
@@ -112,9 +112,9 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 | [`gcp.apphub.workload.environment_type`](/docs/attributes-registry/gcp.md) | string | Environment of a workload is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gcp.apphub.workload.id`](/docs/attributes-registry/gcp.md) | string | The name of the workload as configured in AppHub. | `my-workload` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `gcp.apphub.workload.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type)
+**[1] `gcp.apphub.workload.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
-**[2] `gcp.apphub.workload.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type_1)
+**[2] `gcp.apphub.workload.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
 
 ---
 
