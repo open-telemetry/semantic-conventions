@@ -93,7 +93,7 @@ groups:
         brief: >
           Environment of a service is the stage of a software lifecycle.
         note: >
-          [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type_1)
+          [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
       - id: gcp.apphub.service.criticality_type
         type:
           members:
@@ -117,7 +117,7 @@ groups:
         brief: >
           Criticality of a service indicates its importance to the business.
         note: >
-          [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type)
+          [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
       - id: gcp.apphub.workload.id
         type: string
         stability: development
@@ -147,7 +147,7 @@ groups:
         brief: >
           Environment of a workload is the stage of a software lifecycle.
         note: >
-          [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type_1)
+          [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
       - id: gcp.apphub.workload.criticality_type
         type:
           members:
@@ -171,7 +171,7 @@ groups:
         brief: >
           Criticality of a workload indicates its importance to the business.
         note: >
-          [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type)
+          [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
   - id: registry.gcp.gce
     type: attribute_group
     display_name: GCP - Google Compute Engine (GCE) Attributes
