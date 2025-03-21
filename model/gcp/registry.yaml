@@ -91,7 +91,7 @@ groups:
               stability: development
         stability: development
         brief: >
-          Environment of a service is the stage of a software lifecycle, for example, production, staging, or development.
+          Environment of a service is the stage of a software lifecycle.
         note: >
           [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1alpha/Attributes#type_1)
       - id: gcp.apphub.service.criticality_type
