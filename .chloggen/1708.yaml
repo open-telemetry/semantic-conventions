@@ -1,0 +1,4 @@
+change_type: enhancement
+component: docs
+note: Document system-specific naming conventions
+issues: [608, 1494, 1708]
