@@ -248,6 +248,7 @@ groups:
           [
             "my-org",
             "myteam",
+            "business-unit",
           ]
       - id: vcs.vendor.name
         type: string
@@ -258,4 +259,6 @@ groups:
           [
             "github",
             "gitlab",
+            "gittea",
+            "bitbucket",
           ]
