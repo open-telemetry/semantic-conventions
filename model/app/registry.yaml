@@ -12,7 +12,7 @@ groups:
         brief: >
           A unique identifier representing the installation of an application on a specific device
         note: |
-          Its value SHOULD remain the same between launches of the same installation of an application.
+          Its value SHOULD persist across launches of the same application installation, including through application upgrades.
           It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
           Additionally, users might be able to reset this value (e.g. by clearing application data).
           If an app is installed multiple times on the same device (e.g. in different accounts on Android), each `app.installation.id` SHOULD have a different value.

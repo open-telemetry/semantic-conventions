@@ -11,7 +11,7 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
 |---|---|---|---|---|
 | <a id="app-installation-id" href="#app-installation-id">`app.installation.id`</a> | string | A unique identifier representing the installation of an application on a specific device [1] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `app.installation.id`:** Its value SHOULD remain the same between launches of the same installation of an application.
+**[1] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
 It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
 Additionally, users might be able to reset this value (e.g. by clearing application data).
 If an app is installed multiple times on the same device (e.g. in different accounts on Android), each `app.installation.id` SHOULD have a different value.
