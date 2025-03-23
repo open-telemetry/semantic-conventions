@@ -20,13 +20,10 @@ Hardware IDs (e.g. serial number, IMEI, MAC address) MUST NOT be used as the `ap
 
 On iOS this value SHOULD be equal to the [vendor identifier](https://developer.apple.com/documentation/uikit/uidevice/identifierforvendor).
 
-On Android this value SHOULD be equal to either:
+For Android the following identifiers are examples for possible `app.installation.id` implementations:
 
 - [Firebase Installation ID](https://firebase.google.com/docs/projects/manage-installations).
 - A globally unique UUID which is persisted across sessions in your application.
-
-But it might be equal to other identifiers as well, if the above implementations are not preferred for some reason, such as:
-
 - [App set ID](https://developer.android.com/identity/app-set-id).
 - [`Settings.getString(Settings.Secure.ANDROID_ID)`](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
 
