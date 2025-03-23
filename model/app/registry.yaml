@@ -16,6 +16,7 @@ groups:
           It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
           Additionally, users might be able to reset this value (e.g. by clearing application data).
           If an app is installed multiple times on the same device (e.g. in different accounts on Android), each `app.installation.id` SHOULD have a different value.
+          If multiple OpenTelemetry SDKs are used within the same application, they SHOULD use the same value for `app.installation.id`.
           Hardware IDs (e.g. serial number, IMEI, MAC address) MUST NOT be used as the `app.installation.id`.
 
           On iOS this value SHOULD be equal to the [vendor identifier](https://developer.apple.com/documentation/uikit/uidevice/identifierforvendor).
