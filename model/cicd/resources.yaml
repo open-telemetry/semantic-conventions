@@ -1,8 +1,8 @@
 groups:
-  - id: resource.pipeline
+  - id: resource.cicd.pipeline
     type: resource
     stability: development
-    name: pipeline
+    name: cicd.pipeline
     brief: >
         A pipeline is a series of automated steps that helps software teams deliver code.
     attributes:
