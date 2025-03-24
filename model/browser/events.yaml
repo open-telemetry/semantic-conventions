@@ -1,12 +1,12 @@
 groups:
-  - id: event.browser.user_action
+  - id: event.enduser.user_action
     stability: development
     type: event
-    name: browser.user_action
+    name: enduser.user_action
     brief: >
       This event describes actions performed by the user such as click, scroll, zoom, resize, etc.
     body:
-      id: browser.user_action
+      id: enduser.user_action
       requirement_level: required
       stability: development
       type: map
@@ -14,10 +14,10 @@ groups:
         - id: element
           type: string
           stability: development
-          brief: Target element tag name and it is obtained via event.target.tagName.
+          brief: Target element tag name and it is obtained via `event.target.tagName`.
           requirement_level: recommended
           examples: ["button"]
-        - id: element_xpath
+        - id: xpath
           type: string
           stability: development
           brief: Target element xpath
@@ -27,39 +27,39 @@ groups:
           type: enum
           members:
             - id: clickleft
-              value: "cl"
+              value: "clickleft"
               stability: development
               brief: An element is left clicked by a user.
             - id: clickright
-              value: "cr"
+              value: "clickright"
               stability: development
               brief: An element is right clicked by a user.
             - id: clickmiddle
-              value: "cm"
+              value: "clickmiddle"
               stability: development
               brief: An element is middle clicked by a user.
             - id: scroll
-              value: "s"
+              value: "scroll"
               stability: development
               brief: An element is scrolled by a user.
             - id: zoom
-              value: "z"
+              value: "zoom"
               stability: development
               brief: An element is zoomed by a user.
             - id: resize
-              value: "r"
+              value: "resize"
               stability: development
               brief: An element is resized by a user.
             - id: keyboardenter
-              value: "ke"
+              value: "keyboardenter"
               stability: development
               brief: An element is entered via keyboard by a user.
             - id: keyboardspace
-              value: "ks"
+              value: "keyboardspace"
               stability: development
               brief: A space is entered via keyboard by a user.
             - id: other
-              value: "o"
+              value: "other"
               stability: development
               brief: User actions that are not listed above.
           stability: development
@@ -69,11 +69,12 @@ groups:
           requirement_level: required
           examples: ["cl"]
         - id: click_coordinates
-          type: string
+          type: int[]
           stability: development
-          brief: Click coordinates captured as a string in the format {x}X{y}.
+          brief: Click coordinates(in pixels) relative to the entire document with format [x(horizontal),y(vertical)].
           requirement_level: recommended
-          examples: ["345X23"]
+          examples: 
+            - [10, 10]
         - id: tags
           type: string
           stability: development
