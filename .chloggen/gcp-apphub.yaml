@@ -7,14 +7,14 @@
 change_type: enhancement
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: process
+component: gcp
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Adjust the semantic expectations for `process.executable.name`
+note: Adds GCP AppHub labels for resource.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-issues: [1736]
+issues: [2006]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.

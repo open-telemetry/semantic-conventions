@@ -5,8 +5,7 @@ groups:
       These attributes provide context about source code
     attributes:
       - ref: code.function.name
-      - ref: code.namespace
-      - ref: code.filepath
+      - ref: code.file.path
       - ref: code.line.number
       - ref: code.column.number
       - ref: code.stacktrace
