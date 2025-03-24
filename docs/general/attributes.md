@@ -431,11 +431,27 @@ about the span.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`code.column.number`](/docs/attributes-registry/code.md) | int | The column number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`. | `16` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`code.filepath`](/docs/attributes-registry/code.md) | string | Deprecated, use `code.file.path` instead | `/usr/local/MyApplication/content_root/app/index.php` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`code.function.name`](/docs/attributes-registry/code.md) | string | The method or function name, or equivalent (usually rightmost part of the code unit's name). | `serveRequest` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`code.filepath`](/docs/attributes-registry/code.md) | string | Deprecated, use `code.file.path` instead | `/usr/local/MyApplication/content_root/app/index.php` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `code.file.path` |
+| [`code.function.name`](/docs/attributes-registry/code.md) | string | The method or function fully-qualified name without arguments. The value should fit the natural representation of the language runtime, which is also likely the same used within `code.stacktrace` attribute value. [1] | `com.example.MyHttpService.serveRequest`; `GuzzleHttp\Client::transfer`; `fopen` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`code.line.number`](/docs/attributes-registry/code.md) | int | The line number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`. | `42` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`code.namespace`](/docs/attributes-registry/code.md) | string | The "namespace" within which `code.function.name` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function.name` form a unique identifier for the code unit. | `com.example.MyHttpService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`code.namespace`](/docs/attributes-registry/code.md) | string | Deprecated, namespace is now included into `code.function.name` | `com.example.MyHttpService` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `code.function.name` which is expected to be a fully-qualified name. |
 | [`code.stacktrace`](/docs/attributes-registry/code.md) | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `code.function.name`:** Values and format depends on each language runtime, thus it is impossible to provide an exhaustive list of examples.
+The values are usually the same (or prefixes of) the ones found in native stack trace representation stored in
+`code.stacktrace` without information on arguments.
+
+Examples:
+
+* Java method: `com.example.MyHttpService.serveRequest`
+* Java anonymous class method: `com.mycompany.Main$1.myMethod`
+* Java lambda method: `com.mycompany.Main$$Lambda/0x0000748ae4149c00.myMethod`
+* PHP function: `GuzzleHttp\Client::transfer
+* Go function: `github.com/my/repo/pkg.foo.func5`
+* Elixir: `OpenTelemetry.Ctx.new`
+* Erlang: `opentelemetry_ctx:new`
+* Rust: `playground::my_module::my_cool_func`
+* C function: `fopen`
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

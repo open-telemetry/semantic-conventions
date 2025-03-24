@@ -15,6 +15,7 @@ groups:
       - id: code.filepath
         type: string
         stability: development
+        deprecated: Replaced by `code.file.path`
         brief: >
           Deprecated, use `code.file.path` instead
         examples: /usr/local/MyApplication/content_root/app/index.php
@@ -32,3 +33,10 @@ groups:
         brief: >
           Deprecated, use `code.column.number`
         examples: 16
+      - id: code.namespace
+        type: string
+        stability: development
+        deprecated: Value should be included in `code.function.name` which is expected to be a fully-qualified name.
+        brief: >
+          Deprecated, namespace is now included into `code.function.name`
+        examples: com.example.MyHttpService

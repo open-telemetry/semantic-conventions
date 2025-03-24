@@ -9,15 +9,28 @@ groups:
         type: string
         stability: development
         brief: >
-          The method or function name, or equivalent (usually rightmost part of the code unit's name).
-        examples: serveRequest
-      - id: code.namespace
-        type: string
-        stability: development
-        brief: >
-          The "namespace" within which `code.function.name` is defined. Usually the qualified class or module name,
-          such that `code.namespace` + some separator + `code.function.name` form a unique identifier for the code unit.
-        examples: com.example.MyHttpService
+          The method or function fully-qualified name without arguments. The value should fit the natural representation of the language
+          runtime, which is also likely the same used within `code.stacktrace` attribute value.
+        examples:
+          - 'com.example.MyHttpService.serveRequest'
+          - 'GuzzleHttp\Client::transfer'
+          - 'fopen'
+        note: |
+          Values and format depends on each language runtime, thus it is impossible to provide an exhaustive list of examples.
+          The values are usually the same (or prefixes of) the ones found in native stack trace representation stored in
+          `code.stacktrace` without information on arguments.
+
+          Examples:
+
+          * Java method: `com.example.MyHttpService.serveRequest`
+          * Java anonymous class method: `com.mycompany.Main$1.myMethod`
+          * Java lambda method: `com.mycompany.Main$$Lambda/0x0000748ae4149c00.myMethod`
+          * PHP function: `GuzzleHttp\Client::transfer
+          * Go function: `github.com/my/repo/pkg.foo.func5`
+          * Elixir: `OpenTelemetry.Ctx.new`
+          * Erlang: `opentelemetry_ctx:new`
+          * Rust: `playground::my_module::my_cool_func`
+          * C function: `fopen`
       - id: code.file.path
         type: string
         stability: development
