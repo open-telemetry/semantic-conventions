@@ -67,13 +67,13 @@ groups:
             Type of interaction.
             See enum [here](https://github.com/microsoft/ApplicationInsights-JS/blob/main/extensions/applicationinsights-clickanalytics-js/src/Enums.ts) for potential values we could add support for.
           requirement_level: required
-          examples: ["cl"]
+          examples: ["clickright"]
         - id: click_coordinates
           type: int[]
           stability: development
           brief: Click coordinates(in pixels) relative to the entire document with format [x(horizontal),y(vertical)].
           requirement_level: recommended
-          examples: 
+          examples:
             - [10, 10]
         - id: tags
           type: string
