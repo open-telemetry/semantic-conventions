@@ -30,7 +30,7 @@ This event captures data from the [ResourceTiming](https://www.w3.org/TR/resourc
 |---|---|---|---|---|---|
 | [`url.full`](/docs/attributes-registry/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [1] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `url.full`:** Generally the url doesn't include any query strings or any leading credentials, and it's formatted as scheme://full domain/path only, for example https://user:pwd@www.example.com/path?a=b&c=d  would be sent as https://www.example.com/path by both removing any potential PII and reducing the cardinality of the name.
+**[1] `url.full`:** Generally the url doesn't include any query strings or any leading credentials, and it's formatted as scheme://full domain/path only, for example https://user:pwd@www.example.com/path?a=b&c=d would be sent as https://www.example.com/path by both removing any potential PII and reducing the cardinality of the name.
 
 **Body fields:**
 
