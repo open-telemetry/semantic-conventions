@@ -26,6 +26,12 @@ This event describes the timing metrics as provided by PerformanceResourceTiming
 
 This event captures data from the [ResourceTiming](https://www.w3.org/TR/resource-timing/). It is recommended to be captured by using the PerformanceResourceTiming API. If the page starts unloading before the page loads, then the partial data can be captured by calling the [performance.getEntriesByType](https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByType) method.
 
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`url.full`](/docs/attributes-registry/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [1] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+**[1] `url.full`:** Generally the url doesn't include any query strings or any leading credentials, and it's formatted as scheme://full domain/path only, for example https://user:pwd@www.example.com/path?a=b&c=d  would be sent as https://www.example.com/path by both removing any potential PII and reducing the cardinality of the name.
+
 **Body fields:**
 
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -35,7 +41,6 @@ This event captures data from the [ResourceTiming](https://www.w3.org/TR/resourc
 | `domainLookupEnd` | double | The time immediately after the browser finishes the domain name lookup for the resource, and it is measured in milliseconds. | `100.6000000014906` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `domainLookupStart` | double | The time immediately before the browser starts the domain name lookup for the resource, and it is measured in milliseconds. | `100.6000000014901` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `fetchStart` | double | The time immediately before the browser starts to fetch the resource, and it is measured in milliseconds. | `9.600000000558794` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `name` | string | The resolved URL of the requested resource. | `https://en.wikipedia.org/wiki/Main_Page` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `requestStart` | double | The time immediately before the browser starts requesting the resource from the server, cache, or local resource. If the transport connection fails and the browser retires the request, the value returned will be the start of the retry request, and it is measured in milliseconds. | `506.70000000298023` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `responseEnd` | double | The time immediately after the browser receives the last byte of the resource or immediately before the transport connection is closed, whichever comes first, and it is measured in milliseconds. | `510.6000000014906` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `responseStart` | double | The time immediately after the browser receives the first byte of the response from the server, cache, or local resource, and it is measured in milliseconds. | `508.6000000014901` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
