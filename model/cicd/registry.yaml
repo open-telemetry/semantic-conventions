@@ -139,6 +139,34 @@ groups:
         brief: >
           The result of a pipeline run.
         examples: ["success", "failure", "timeout", "skipped"]
+      - id: cicd.worker.id
+        type: string
+        stability: development
+        brief: The unique identifier of a worker within a CICD system.
+        examples:
+          [
+            "abc123",
+            "10.0.0.1",
+            "controller",
+          ]
+      - id: cicd.worker.name
+        type: string
+        stability: development
+        brief: The name of a worker within a CICD system.
+        examples:
+          [
+            "agent-abc123",
+            "controller",
+          ]
+      - id: cicd.worker.url.full
+        type: string
+        stability: development
+        brief: The [URL](https://wikipedia.org/wiki/URL) of the worker,
+          providing the complete address in order to locate and identify the worker.
+        examples:
+          [
+            "https://cicd.example.org/worker/abc123",
+          ]
       - id: cicd.worker.state
         type:
           members:
