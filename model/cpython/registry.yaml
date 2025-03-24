@@ -9,15 +9,15 @@ groups:
         stability: development
         type:
           members:
-            - id: '0'
+            - id: gen0
               value: 0
               brief: "Generation 0"
               stability: development
-            - id: '1'
+            - id: gen1
               value: 1
               brief: "Generation 1"
               stability: development
-            - id: '2'
+            - id: gen2
               value: 2
               brief: "Generation 2"
               stability: development
