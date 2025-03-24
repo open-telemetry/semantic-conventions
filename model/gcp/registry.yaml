@@ -39,6 +39,139 @@ groups:
           [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars)
           environment variable.
         examples: [0, 1]
+  - id: registry.gcp.apphub
+    type: attribute_group
+    display_name: GCP - AppHub Attributes
+    brief: >
+      This document defines attributes AppHub will apply to resources in GCP.
+      See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
+    attributes:
+      - id: gcp.apphub.application.container
+        type: string
+        stability: development
+        brief: >
+          The container within GCP where the AppHub application is defined.
+        examples: ['projects/my-container-project']
+      - id: gcp.apphub.application.location
+        type: string
+        stability: development
+        brief: >
+          The GCP zone or region where the application is defined.
+        examples: ['us-central1']
+      - id: gcp.apphub.application.id
+        type: string
+        stability: development
+        brief: >
+          The name of the application as configured in AppHub.
+        examples: ['my-application']
+      - id: gcp.apphub.service.id
+        type: string
+        stability: development
+        brief: >
+          The name of the service as configured in AppHub.
+        examples: ['my-service']
+      - id: gcp.apphub.service.environment_type
+        type:
+          members:
+            - id: production
+              value: "PRODUCTION"
+              brief: Production environment.
+              stability: development
+            - id: staging
+              value: "STAGING"
+              brief: Staging environment.
+              stability: development
+            - id: test
+              value: "TEST"
+              brief: Test environment.
+              stability: development
+            - id: development
+              value: "DEVELOPMENT"
+              brief: Development environment.
+              stability: development
+        stability: development
+        brief: >
+          Environment of a service is the stage of a software lifecycle.
+        note: >
+          [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+      - id: gcp.apphub.service.criticality_type
+        type:
+          members:
+            - id: mission_critical
+              value: "MISSION_CRITICAL"
+              brief: Mission critical service.
+              stability: development
+            - id: high
+              value: "HIGH"
+              brief: High impact.
+              stability: development
+            - id: medium
+              value: "MEDIUM"
+              brief: Medium impact.
+              stability: development
+            - id: low
+              value: "LOW"
+              brief: Low impact.
+              stability: development
+        stability: development
+        brief: >
+          Criticality of a service indicates its importance to the business.
+        note: >
+          [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+      - id: gcp.apphub.workload.id
+        type: string
+        stability: development
+        brief: >
+          The name of the workload as configured in AppHub.
+        examples: ['my-workload']
+      - id: gcp.apphub.workload.environment_type
+        type:
+          members:
+            - id: production
+              value: "PRODUCTION"
+              brief: Production environment.
+              stability: development
+            - id: staging
+              value: "STAGING"
+              brief: Staging environment.
+              stability: development
+            - id: test
+              value: "TEST"
+              brief: Test environment.
+              stability: development
+            - id: development
+              value: "DEVELOPMENT"
+              brief: Development environment.
+              stability: development
+        stability: development
+        brief: >
+          Environment of a workload is the stage of a software lifecycle.
+        note: >
+          [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+      - id: gcp.apphub.workload.criticality_type
+        type:
+          members:
+            - id: mission_critical
+              value: "MISSION_CRITICAL"
+              brief: Mission critical service.
+              stability: development
+            - id: high
+              value: "HIGH"
+              brief: High impact.
+              stability: development
+            - id: medium
+              value: "MEDIUM"
+              brief: Medium impact.
+              stability: development
+            - id: low
+              value: "LOW"
+              brief: Low impact.
+              stability: development
+        stability: development
+        brief: >
+          Criticality of a workload indicates its importance to the business.
+        note: >
+          [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
   - id: registry.gcp.gce
     type: attribute_group
     display_name: GCP - Google Compute Engine (GCE) Attributes
