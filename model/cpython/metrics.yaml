@@ -12,9 +12,9 @@ groups:
       - ref: cpython.gc.generation
         requirement_level: required
 
-  - id: metric.cpython.gc.collected.objects
+  - id: metric.cpython.gc.collected_objects
     type: metric
-    metric_name: cpython.gc.collected.objects
+    metric_name: cpython.gc.collected_objects
     brief: "The total number of objects collected inside a generation that have occurred since interpreter start."
     note: >
       This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats)
@@ -25,9 +25,9 @@ groups:
       - ref: cpython.gc.generation
         requirement_level: required
 
-  - id: metric.cpython.gc.uncollectable.objects
+  - id: metric.cpython.gc.uncollectable_objects
     type: metric
-    metric_name: cpython.gc.uncollectable.objects
+    metric_name: cpython.gc.uncollectable_objects
     brief: "The total number of uncollectable objects inside a generation that have occurred since interpreter start."
     note: >
       This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats)
