@@ -202,6 +202,41 @@ groups:
         type: string
         brief: Free-form description of the GenAI agent provided by the application.
         examples: ["Helps with math problems", "Generates fiction stories"]
+      - id: gen_ai.agent.tools
+        stability: development
+        type: string[]
+        brief: Lists the name of the tools configured with agent.
+        example: ["search-web","summarise-searched-results","publish-results"]
+      - id: gen_ai.agent.llm
+        stability: development
+        type: string
+        brief: Name of the llm configured with Agent application.
+        example: ["OpenAI", "Ollama", "Anthropic"]
+      - id: gen_ai.multiagent.id
+        stability: development
+        type: string
+        brief: The unique identifier of the GenAI multiagent.
+        example: ['multiasst_5j66UpCpwteGg4YSxUnt7lPY']
+      - id: gen_ai.multiagent.name
+        stability: development
+        type: string
+        brief: Human-readable name of the MultiAgent GenAI agent provided by the application.
+        example: ["TripPlanner", "InvestmentRecommender"]
+      - id: gen_ai.multiagent.description
+        stability: development
+        type: string
+        brief: Free-form description of the GenAI multiagent provided by the application.
+        example: ["Helps with planning your trip as per your requirements with a best cost option"]
+      - id: gen_ai.multiagent.agentlist
+        stability: development
+        type : string[]
+        brief: List of agents used for composing the underlying multiagent application.
+        example: ["SearchDestination", "RecommendPlace", "MakeReservation"]
+      - id: gen_ai.multiagent.topology
+        stability: development
+        type: string[]
+        brief: Nature of multiagent topology expressed by array of strings.
+        example: ["Agent1:Agent2","Agent2:Agent3","Agent1:Agent3"]
       - id: gen_ai.tool.name
         stability: development
         type: string
