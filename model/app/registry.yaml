@@ -1,7 +1,7 @@
 groups:
   - id: registry.app
     type: attribute_group
-    display_name: App Attributes
+    display_name: Application Attributes
     brief: >
       Describes attributes related to client-side applications (e.g. web apps or mobile apps).
     stability: development

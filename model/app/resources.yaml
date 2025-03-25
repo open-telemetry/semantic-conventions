@@ -4,6 +4,6 @@ groups:
     stability: development
     name: app
     brief: >
-      A client-side application.
+      An app used directly by end users — like mobile, web, or desktop.
     attributes:
       - ref: app.installation.id
