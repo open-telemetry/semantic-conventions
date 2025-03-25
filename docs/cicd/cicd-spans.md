@@ -23,7 +23,7 @@ but more may be added in the future.
 
 Also consider setting other attributes of the [CICD and VCS resource conventions][cicdres].
 
-[cicdres]: /docs/resource/cicd.md (CICD resource conventions)
+[cicdres]: /docs/resource/cicd.md (CICD and VCS resource conventions)
 
 ### Pipeline run
 
