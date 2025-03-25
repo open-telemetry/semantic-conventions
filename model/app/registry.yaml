@@ -19,9 +19,9 @@ groups:
           If multiple OpenTelemetry SDKs are used within the same application, they SHOULD use the same value for `app.installation.id`.
           Hardware IDs (e.g. serial number, IMEI, MAC address) MUST NOT be used as the `app.installation.id`.
 
-          On iOS this value SHOULD be equal to the [vendor identifier](https://developer.apple.com/documentation/uikit/uidevice/identifierforvendor).
+          For iOS, this value SHOULD be equal to the [vendor identifier](https://developer.apple.com/documentation/uikit/uidevice/identifierforvendor).
 
-          For Android examples of `app.installation.id` implementations include:
+          For Android, examples of `app.installation.id` implementations include:
 
           - [Firebase Installation ID](https://firebase.google.com/docs/projects/manage-installations).
           - A globally unique UUID which is persisted across sessions in your application.
