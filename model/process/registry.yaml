@@ -239,7 +239,7 @@ groups:
               value: 'minor'
               stability: development
         stability: development
-      - id: process.environment_variable.<key>
+      - id: process.environment_variable
         brief: >
           Process environment variables, <key> being the environment variable
           name, the value being the environment variable value.
