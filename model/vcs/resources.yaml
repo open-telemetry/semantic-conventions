@@ -1,18 +1,18 @@
 groups:
-  - id: resource.vcs
+  - id: resource.vcs.repo
     type: resource
     stability: development
-    name: vcs
+    name: vcs.repo
     brief: >
-        A Version Control System tracks changes to source code.
+        A repository in the Version Control System.
     attributes:
       - ref: vcs.repository.url.full
       - ref: vcs.repository.name
 
-  - id: resource.vcsref
+  - id: resource.vcs.ref
     type: resource
     stability: development
-    name: vcsref
+    name: vcs.ref
     brief: >
         A reference to a specific version in the Version Control System.
     attributes:

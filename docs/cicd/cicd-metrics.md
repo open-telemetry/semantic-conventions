@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: CICD
+linkTitle: Metrics
 --->
 
 # Semantic conventions for CICD metrics
