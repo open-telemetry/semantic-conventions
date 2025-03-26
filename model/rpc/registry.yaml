@@ -56,7 +56,7 @@ groups:
               value: unauthenticated
               stability: development
         stability: development
-        brief: "The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values."
+        brief: "The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values."
       - id: rpc.connect_rpc.request.metadata
         type: template[string[]]
         stability: development

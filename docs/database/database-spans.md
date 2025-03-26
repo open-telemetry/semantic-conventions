@@ -56,19 +56,16 @@ with all retries.
 
 ## Name
 
-Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/trace/api.md#span).
+Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/trace/api.md#span).
 
 The **span name** SHOULD be `{db.query.summary}` if a summary is available.
 
-<!-- markdown-link-check-disable -->
-<!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
 If no summary is available, the span name SHOULD be `{db.operation.name} {target}`
 provided that a (low-cardinality) `db.operation.name` is available (see below for
 the exact definition of the [`{target}`](#target-placeholder) placeholder).
 
 If a (low-cardinality) `db.operation.name` is not available, database span names
 SHOULD default to the [`{target}`](#target-placeholder).
-<!-- markdown-link-check-enable -->
 
 If neither `{db.operation.name}` nor `{target}` are available, span name SHOULD be `{db.system}`.
 
@@ -123,15 +120,16 @@ These attributes are commonly used across different database systems.
 
 **[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
-**[2] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[2] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
 
 The collection name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single collection name present.
+when the database system supports cross-table queries in non-batch operations.
 
-For batch operations, if the individual operations are known to have the same collection name
-then that collection name SHOULD be used.
+For batch operations, if the individual operations are known to have the same
+collection name then that collection name SHOULD be used.
 
-**[3] `db.collection.name`:** If readily available and if a database call is performed on a single collection. The collection name MAY be parsed from the query text, in which case it SHOULD be the single collection name in the query.
+**[3] `db.collection.name`:** If readily available and if a database call is performed on a single collection.
 
 **[4] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
@@ -141,14 +139,14 @@ It is RECOMMENDED to capture the value as provided by the application without at
 without attempting to do any case normalization.
 
 The operation name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single operation name present.
+when the database system supports cross-table queries in non-batch operations.
 
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,
 otherwise `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
-**[6] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[6] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call.
 
 **[7] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
@@ -385,7 +383,7 @@ or other attributes, it SHOULD match the value used in the `db.query.summary`.
            'artists'
     ```
 
-    the corresponding `db.query.summary` is `SELECT "songs list" 'artists'`.
+    the corresponding `db.query.summary` is `SELECT "song list" 'artists'`.
 
 Semantic conventions for individual database systems or specialized instrumentations
 MAY specify a different `db.query.summary` format as long as produced summary remains
