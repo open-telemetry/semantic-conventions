@@ -106,7 +106,6 @@ the `.git` extension.
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other_provider` | Some other version control system provider. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
