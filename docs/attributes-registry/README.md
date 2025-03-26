@@ -34,6 +34,7 @@ All registered attributes are listed by namespace in this registry.
 Currently, the following namespaces exist:
 
 - [Android](android.md)
+- [App](app.md)
 - [Artifact](artifact.md)
 - [Aspnetcore](aspnetcore.md)
 - [AWS](aws.md)
