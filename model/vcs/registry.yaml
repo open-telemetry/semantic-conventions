@@ -239,3 +239,47 @@ groups:
         brief: >
           The state of the change (pull request/merge request/changelist).
         examples: ["open", "closed", "merged"]
+      - id: vcs.owner.name
+        type: string
+        stability: development
+        brief: >
+           The group owner within the version control system.
+        examples:
+          [
+            "my-org",
+            "myteam",
+            "business-unit",
+          ]
+      - id: vcs.provider.name
+        type:
+          members:
+            - id: other_provider
+              value: other_provider
+              brief: "Some other version control system provider. Fallback only."
+              stability: development
+            - id: github
+              value: github
+              brief: "[GitHub](https://github.com)"
+              stability: development
+            - id: gitlab
+              value: gitlab
+              brief: "[GitLab](https://gitlab.com)"
+              stability: development
+            - id: gittea
+              value: gittea
+              brief: "[Gitea](https://gitea.io)"
+              stability: development
+            - id: bitbucket
+              value: bitbucket
+              brief: "[Bitbucket](https://bitbucket.org)"
+              stability: development
+        stability: development
+        brief: >
+          The name of the version control system provider.
+        examples:
+          [
+            "github",
+            "gitlab",
+            "gittea",
+            "bitbucket",
+          ]
