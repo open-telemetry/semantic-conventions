@@ -134,7 +134,7 @@ groups:
     note: |
       For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
     instrument: updowncounter
-    unit: "{data point}"
+    unit: "{data_point}"
     attributes:
       - ref: otel.component.type
       - ref: otel.component.name
@@ -155,7 +155,7 @@ groups:
       For exporters with partial success semantics (e.g. OTLP with `rejected_data_points`), rejected data points must count as failed and only non-rejected data points count as success.
       If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
     instrument: counter
-    unit: "{data point}"
+    unit: "{data_point}"
     attributes:
       - ref: otel.component.type
       - ref: otel.component.name

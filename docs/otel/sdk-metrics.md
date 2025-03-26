@@ -554,7 +554,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.exporter.metric.inflight` | UpDownCounter | `{data point}` | The number of metric data points which were passed to the exporter, but that have not been exported yet (neither successful, nor failed) [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otel.sdk.exporter.metric.inflight` | UpDownCounter | `{data_point}` | The number of metric data points which were passed to the exporter, but that have not been exported yet (neither successful, nor failed) [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
 
@@ -616,7 +616,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.exporter.metric.exported` | Counter | `{data point}` | The number of metric data points for which the export has finished, either successful or failed [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otel.sdk.exporter.metric.exported` | Counter | `{data_point}` | The number of metric data points for which the export has finished, either successful or failed [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
 For exporters with partial success semantics (e.g. OTLP with `rejected_data_points`), rejected data points must count as failed and only non-rejected data points count as success.
