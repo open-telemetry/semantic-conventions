@@ -113,7 +113,7 @@ groups:
 
   - id: metric.otel.sdk.metricreader.collections
     type: metric
-    metric_name: metric.otel.sdk.metricreader.collections
+    metric_name: otel.sdk.metricreader.collections
     stability: development
     brief: "The number of invocations of the collect operation of the metric reader."
     note: |

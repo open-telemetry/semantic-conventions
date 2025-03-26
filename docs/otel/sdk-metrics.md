@@ -468,7 +468,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `metric.otel.sdk.metricreader.collections` | Counter | `1` | The number of invocations of the collect operation of the metric reader. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otel.sdk.metricreader.collections` | Counter | `1` | The number of invocations of the collect operation of the metric reader. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** For successful collections, `error.type` MUST NOT be set. For failed collections, `error.type` SHOULD contain the failure cause.
 It can happen that metrics collection is successful for some MetricProducers, while others fail. In that case `error.type` SHOULD be set to any of the failure causes.
