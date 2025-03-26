@@ -16,7 +16,7 @@ Describes device attributes.
 
 **[1] `device.id`:** Its value SHOULD be identical for all apps on a device and it SHOULD NOT change if an app is uninstalled and re-installed.
 However, it might be resettable by the user for all apps on a device.
-Hardware IDs (e.g. vendor-specific serial number, IMEI or MAC address) MIGHT be used as values.
+Hardware IDs (e.g. vendor-specific serial number, IMEI or MAC address) MAY be used as values.
 
 More information about Android identifier best practices can be found [here](https://developer.android.com/training/articles/user-data-ids).
 
