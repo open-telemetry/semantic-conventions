@@ -15,6 +15,7 @@ body:
         # DO NOT manually edit it.
         # Start semconv area list
         - area:android
+        - area:app
         - area:artifact
         - area:aspnetcore
         - area:aws
