@@ -17,7 +17,7 @@ This document defines attributes for remote procedure calls.
 | <a id="rpc-connect-rpc-response-metadata" href="#rpc-connect-rpc-response-metadata">`rpc.connect_rpc.response.metadata.<key>`</a> | string[] | Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [2] | `rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-grpc-request-metadata" href="#rpc-grpc-request-metadata">`rpc.grpc.request.metadata.<key>`</a> | string[] | gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [3] | `rpc.grpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-grpc-response-metadata" href="#rpc-grpc-response-metadata">`rpc.grpc.response.metadata.<key>`</a> | string[] | gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [4] | `rpc.grpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="rpc-grpc-status-code" href="#rpc-grpc-status-code">`rpc.grpc.status_code`</a> | int | The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request. | `0`; `1`; `2` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-grpc-response-status-code" href="#rpc-grpc-response-status-code">`rpc.grpc.response.status_code`</a> | int | The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request. | `0`; `1`; `2` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-jsonrpc-error-code" href="#rpc-jsonrpc-error-code">`rpc.jsonrpc.error_code`</a> | int | `error.code` property of response if it is an error response. | `-32700`; `100` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-jsonrpc-error-message" href="#rpc-jsonrpc-error-message">`rpc.jsonrpc.error_message`</a> | string | `error.message` property of response if it is an error response. | `Parse error`; `User already exists` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-jsonrpc-request-id" href="#rpc-jsonrpc-request-id">`rpc.jsonrpc.request_id`</a> | string | `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. | `10`; `request-7`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -69,7 +69,7 @@ This document defines attributes for remote procedure calls.
 
 ---
 
-`rpc.grpc.status_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`rpc.grpc.response.status_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
