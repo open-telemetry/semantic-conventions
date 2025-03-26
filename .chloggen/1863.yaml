@@ -1,6 +1,0 @@
-change_type: enhancement
-component: db
-note: Add database-specific notes on db.operation.name and db.collection.name for
-      Cassandra, Cosmos DB, HBase, MongoDB, and Redis, covering their batch/bulk
-      terms and lack of cross-table queries.
-issues: [1863, 1573]
