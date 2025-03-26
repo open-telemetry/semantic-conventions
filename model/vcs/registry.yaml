@@ -250,11 +250,32 @@ groups:
             "myteam",
             "business-unit",
           ]
-      - id: vcs.vendor.name
-        type: string
+      - id: vcs.provider.name
+        type:
+          members:
+            - id: other_provider
+              value: other_provider
+              brief: "Some other version control system provider. Fallback only."
+              stability: development
+            - id: github
+              value: github
+              brief: "[GitHub](https://github.com)"
+              stability: development
+            - id: gitlab
+              value: gitlab
+              brief: "[GitLab](https://gitlab.com)"
+              stability: development
+            - id: gittea
+              value: gittea
+              brief: "[Gitea](https://gitea.io)"
+              stability: development
+            - id: bitbucket
+              value: bitbucket
+              brief: "[Bitbucket](https://bitbucket.org)"
+              stability: development
         stability: development
         brief: >
-          The vendor name of the version control system.
+          The name of the version control system provider.
         examples:
           [
             "github",
