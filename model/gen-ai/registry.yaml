@@ -90,6 +90,11 @@ groups:
         type: int
         brief: The maximum number of tokens the model generates for a request.
         examples: [100]
+      - id: gen_ai.request.choice.count
+        stability: development
+        type: int
+        brief: The target number of candidate completions to return.
+        examples: [3]
       - id: gen_ai.request.temperature
         stability: development
         type: double
