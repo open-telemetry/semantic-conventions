@@ -38,7 +38,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `cpython.gc.collections` | Counter | `{collection}` | The number of times a generation was collected since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats)
+**[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -72,9 +72,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `cpython.gc.collected_objects` | Counter | `{object}` | The total number of objects collected inside a generation that have occurred since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cpython.gc.collected_objects` | Counter | `{object}` | The total number of objects collected inside a generation since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats)
+**[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -108,9 +108,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `cpython.gc.uncollectable_objects` | Counter | `{object}` | The total number of uncollectable objects inside a generation that have occurred since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cpython.gc.uncollectable_objects` | Counter | `{object}` | The total number of objects which were found to be uncollectable inside a generation since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats)
+**[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
