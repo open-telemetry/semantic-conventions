@@ -26,16 +26,16 @@ groups:
         - id: user_action_type
           type: enum
           members:
-            - id: clickleft
-              value: "clickleft"
+            - id: click.left
+              value: "click.left"
               stability: development
               brief: An element is left clicked by a user.
-            - id: clickright
-              value: "clickright"
+            - id: click.right
+              value: "click.right"
               stability: development
               brief: An element is right clicked by a user.
-            - id: clickmiddle
-              value: "clickmiddle"
+            - id: click.middle
+              value: "click.middle"
               stability: development
               brief: An element is middle clicked by a user.
             - id: scroll
@@ -67,7 +67,7 @@ groups:
             Type of interaction.
             See enum [here](https://github.com/microsoft/ApplicationInsights-JS/blob/main/extensions/applicationinsights-clickanalytics-js/src/Enums.ts) for potential values we could add support for.
           requirement_level: required
-          examples: ["clickright"]
+          examples: ["click.right"]
         - id: click_coordinates
           type: int[]
           stability: development
