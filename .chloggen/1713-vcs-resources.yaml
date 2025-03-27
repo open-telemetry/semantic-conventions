@@ -20,4 +20,4 @@ issues: [1713]
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
 subtext: |
-  Define resources `vcs` and `vcsref`.
+  Define resources `vcs.repo` and `vcs.ref`.
