@@ -37,10 +37,10 @@ This event describes the website performance metrics introduced by Google, See [
 
 | Value  | Description | Stability |
 |---|---|---|
-| `cls` | Cumulative Layout Shift. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fid` | First Input Delay. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `inp` | Interation to Next Paint. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `lcp` | Largest Contentful Paint. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cls` | Cumulative Layout Shift. See [cls](https://web.dev/articles/cls). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fid` | First Input Delay. See [fid](https://web.dev/articles/fid). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inp` | Interation to Next Paint. See [inp](https://web.dev/articles/inp). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `lcp` | Largest Contentful Paint. See [lcp](https://web.dev/articles/lcp). | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

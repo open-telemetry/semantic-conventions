@@ -16,19 +16,19 @@ groups:
           members:
             - id: cls
               value: 'cls'
-              brief: Cumulative Layout Shift.
+              brief: Cumulative Layout Shift. See [cls](https://web.dev/articles/cls).
               stability: development
             - id: lcp
               value: 'lcp'
-              brief: Largest Contentful Paint.
+              brief: Largest Contentful Paint. See [lcp](https://web.dev/articles/lcp).
               stability: development
             - id: fid
               value: 'fid'
-              brief: First Input Delay.
+              brief: First Input Delay. See [fid](https://web.dev/articles/fid).
               stability: development
             - id: inp
               value: 'inp'
-              brief: Interation to Next Paint.
+              brief: Interation to Next Paint. See [inp](https://web.dev/articles/inp).
               stability: development
           stability: development
           brief: Name of the web vital.
