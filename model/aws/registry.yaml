@@ -332,6 +332,21 @@ groups:
         brief: >
           The ARN of an EKS cluster.
         examples: ["arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster"]
+      - id: aws.eks.node_type
+        type:
+          members:
+            - id: 'fargate'
+              value: 'fargate'
+              brief: 'Fargate Node'
+              stability: development
+            - id: 'ec2'
+              value: 'ec2'
+              brief: 'EC2 Node'
+              stability: development
+        stability: development
+        brief: >
+          The type of the aws eks node.
+        examples: ["arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster"]
   - id: registry.aws.log
     type: attribute_group
     display_name: Amazon Logs Attributes

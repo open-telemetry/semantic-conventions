@@ -8,3 +8,5 @@ groups:
     attributes:
       - ref: aws.eks.cluster.arn
         requirement_level: recommended
+      - ref: aws.eks.node_type
+        requirement_level: recommended
