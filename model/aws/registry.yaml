@@ -332,7 +332,7 @@ groups:
         brief: >
           The ARN of an EKS cluster.
         examples: ["arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster"]
-      - id: aws.eks.node_type
+      - id: aws.eks.node.type
         type:
           members:
             - id: 'fargate'

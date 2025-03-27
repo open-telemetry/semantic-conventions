@@ -79,11 +79,11 @@ This document defines attributes for AWS Elastic Kubernetes Service (EKS).
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="aws-eks-cluster-arn" href="#aws-eks-cluster-arn">`aws.eks.cluster.arn`</a> | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="aws-eks-node-type" href="#aws-eks-node-type">`aws.eks.node_type`</a> | string | The type of the aws eks node. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aws-eks-node-type" href="#aws-eks-node-type">`aws.eks.node.type`</a> | string | The type of the aws eks node. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
-`aws.eks.node_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`aws.eks.node.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

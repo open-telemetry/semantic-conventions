@@ -21,11 +21,11 @@ linkTitle: EKS
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aws.eks.cluster.arn`](/docs/attributes-registry/aws.md) | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`aws.eks.node_type`](/docs/attributes-registry/aws.md) | string | The type of the aws eks node. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.eks.node.type`](/docs/attributes-registry/aws.md) | string | The type of the aws eks node. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
-`aws.eks.node_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`aws.eks.node.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
