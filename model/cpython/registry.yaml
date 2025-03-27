@@ -1,0 +1,25 @@
+groups:
+  - id: registry.cpython
+    type: attribute_group
+    display_name: CPython attributes
+    brief: >
+      This document defines CPython related attributes.
+    attributes:
+      - id: cpython.gc.generation
+        stability: development
+        type:
+          members:
+            - id: generation_0
+              value: 0
+              brief: "Generation 0"
+              stability: development
+            - id: generation_1
+              value: 1
+              brief: "Generation 1"
+              stability: development
+            - id: generation_2
+              value: 2
+              brief: "Generation 2"
+              stability: development
+        brief: Value of the garbage collector collection generation.
+        examples: [0, 1, 2]
