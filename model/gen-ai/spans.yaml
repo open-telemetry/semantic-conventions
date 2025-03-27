@@ -184,6 +184,9 @@ groups:
       - ref: gen_ai.request.top_p
         requirement_level:
           conditionally_required: If provided by the application.
+      - ref: gen_ai.data_source.id
+        requirement_level:
+          conditionally_required: if applicable.
 
   - id: span.gen_ai.execute_tool.internal
     type: span
@@ -212,7 +215,7 @@ groups:
           Instrumentations SHOULD document the list of errors they report.
 
   - id: span.gen_ai.aws.bedrock.client
-    extends: span.gen_ai.client.create_agent
+    extends: span.gen_ai.create_agent.client
     stability: development
     span_kind: client
     type: span
@@ -222,6 +225,4 @@ groups:
       - ref: gen_ai.aws.bedrock.guardrail.id
         requirement_level: required
       - ref: gen_ai.aws.bedrock.knowledge_base.id
-        requirement_level: recommended
-      - ref: gen_ai.data_source.id
         requirement_level: recommended

@@ -222,6 +222,8 @@ groups:
         stability: development
         type: string
         brief: The data source identifier.
+        note: > 
+          Data sources are used by AI agents and RAG applications to store grounding data. A data source may be an external database, object store, document collection, website, or any other storage system used by the GenAI agent or application. The `gen_ai.data_source.id` SHOULD match the identifier used by the GenAI system rather than a name specific to the external storage, such as a database or object store. Semantic conventions referencing `gen_ai.data_source.id` MAY also leverage additional attributes, such as `db.*`, to further identify and describe the data source.
         examples: ['H7STPQYOND']
       - id: gen_ai.operation.name
         stability: development
