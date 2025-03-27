@@ -31,3 +31,77 @@ groups:
         stability: development
         brief: "Deprecated, use `rpc.message.uncompressed_size` instead."
         deprecated: "Replaced by `rpc.message.uncompressed_size`."
+      - id: rpc.grpc.status_code
+        type:
+          members:
+            - id: ok
+              brief: OK
+              stability: development
+              value: 0
+            - id: cancelled
+              brief: CANCELLED
+              stability: development
+              value: 1
+            - id: unknown
+              brief: UNKNOWN
+              stability: development
+              value: 2
+            - id: invalid_argument
+              brief: INVALID_ARGUMENT
+              stability: development
+              value: 3
+            - id: deadline_exceeded
+              brief: DEADLINE_EXCEEDED
+              stability: development
+              value: 4
+            - id: not_found
+              brief: NOT_FOUND
+              stability: development
+              value: 5
+            - id: already_exists
+              brief: ALREADY_EXISTS
+              stability: development
+              value: 6
+            - id: permission_denied
+              brief: PERMISSION_DENIED
+              stability: development
+              value: 7
+            - id: resource_exhausted
+              brief: RESOURCE_EXHAUSTED
+              stability: development
+              value: 8
+            - id: failed_precondition
+              brief: FAILED_PRECONDITION
+              stability: development
+              value: 9
+            - id: aborted
+              brief: ABORTED
+              stability: development
+              value: 10
+            - id: out_of_range
+              brief: OUT_OF_RANGE
+              stability: development
+              value: 11
+            - id: unimplemented
+              brief: UNIMPLEMENTED
+              stability: development
+              value: 12
+            - id: internal
+              brief: INTERNAL
+              stability: development
+              value: 13
+            - id: unavailable
+              brief: UNAVAILABLE
+              stability: development
+              value: 14
+            - id: data_loss
+              brief: DATA_LOSS
+              stability: development
+              value: 15
+            - id: unauthenticated
+              brief: UNAUTHENTICATED
+              stability: development
+              value: 16
+        stability: development
+        brief: "Deprecated, use `rpc.grpc.response.status_code` instead."
+        deprecated: "Replaced by `rpc.grpc.response.status_code`."
