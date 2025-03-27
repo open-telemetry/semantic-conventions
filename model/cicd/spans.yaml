@@ -7,7 +7,6 @@ groups:
     attributes:
       - ref: cicd.pipeline.result
         requirement_level: required
-        sampling_relevant: true
   - id: span.cicd.pipeline.task.server
     type: span
     span_kind: server
@@ -25,4 +24,3 @@ groups:
         sampling_relevant: true
       - ref: cicd.pipeline.task.run.result
         requirement_level: required
-        sampling_relevant: true

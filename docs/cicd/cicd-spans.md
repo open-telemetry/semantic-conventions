@@ -38,11 +38,6 @@ Also consider setting other attributes of the [CICD and VCS resource conventions
 |---|---|---|---|---|---|
 | [`cicd.pipeline.result`](/docs/attributes-registry/cicd.md) | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-The following attributes can be important for making sampling decisions
-and SHOULD be provided **at span creation time** (if provided at all):
-
-* [`cicd.pipeline.result`](/docs/attributes-registry/cicd.md)
-
 ---
 
 `cicd.pipeline.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -82,7 +77,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 * [`cicd.pipeline.task.name`](/docs/attributes-registry/cicd.md)
 * [`cicd.pipeline.task.run.id`](/docs/attributes-registry/cicd.md)
-* [`cicd.pipeline.task.run.result`](/docs/attributes-registry/cicd.md)
 * [`cicd.pipeline.task.run.url.full`](/docs/attributes-registry/cicd.md)
 
 ---
