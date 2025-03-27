@@ -22,4 +22,4 @@ issues: [1713]
 subtext: |
   Define spans `cicd.pipeline.run.server` and `cicd.pipeline.task.server`.
   Add `cicd.worker.id`, `cicd.worker.name`, `cicd.worker.url.full` and`cicd.pipeline.task.run.result` to attribute registry.
-  Define resources `cicd.pipeline`, `cicd.pipelinerun` and `cicd.worker`.
+  Define resources `cicd.pipeline`, `cicd.pipeline.run` and `cicd.worker`.

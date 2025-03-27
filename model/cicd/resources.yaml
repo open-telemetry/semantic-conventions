@@ -8,10 +8,10 @@ groups:
     attributes:
       - ref: cicd.pipeline.name
 
-  - id: resource.cicd.pipelinerun
+  - id: resource.cicd.pipeline.run
     type: resource
     stability: development
-    name: cicd.pipelinerun
+    name: cicd.pipeline.run
     brief: >
       A pipeline run is a singular execution of a given pipeline's tasks.
     attributes:
