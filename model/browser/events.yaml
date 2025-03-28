@@ -56,53 +56,47 @@ groups:
           type: double
           stability: development
           brief: >
-             The [timestamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before
-             the user agent starts establishing the connection to the server to retrieve the resource, in milliseconds.
-             See [connectStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectStart).
+             The time immediately before the user agent starts establishing the connection to the server to retrieve the resource,
+             in milliseconds. See [connectStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectStart).
           requirement_level: recommended
           examples: [476.6000000014901]
         - id: secureConnectionStart
           type: double
           stability: development
           brief: >
-            The [timestamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before 
-            the browser starts the handshake process to secure the current connection, in milliseconds.
-            See [secureConnectionStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/secureConnectionStart).
+            The time immediately before the browser starts the handshake process to secure the current connection,
+            in milliseconds. See [secureConnectionStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/secureConnectionStart).
           requirement_level: recommended
           examples: [476.6000000014903]
         - id: connectEnd
           type: double
           stability: development
           brief: >
-            The [timestamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after
-            the browser finishes establishing the connection to the server to retrieve the resource, in milliseconds.
-            See [connectEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectEnd).
+            The time immediately after the browser finishes establishing the connection to the server to retrieve the resource,
+            in milliseconds. See [connectEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectEnd).
           requirement_level: recommended
           examples: [476.6000000014906]
         - id: requestStart
           type: double
           stability: development
           brief: >
-            The [timestamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before 
-            the browser starts requesting the resource from the server, cache, or local resource, in milliseconds.
-            See [requestStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/requestStart).
+            The time immediately before the browser starts requesting the resource from the server, cache, or local resource,
+            in milliseconds. See [requestStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/requestStart).
           requirement_level: recommended
           examples: [506.70000000298023]
         - id: responseStart
           type: double
           stability: development
           brief: >
-            The [timestamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after
-            the browser receives the first byte of the response from the server, cache, or local resource, in milliseconds.
-            See [responseStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseStart).
+            The time immediately after the browser receives the first byte of the response from the server, cache, or local resource,
+            in milliseconds. See [responseStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseStart).
           requirement_level: recommended
           examples: [508.6000000014901]
         - id: responseEnd
           type: double
           stability: development
           brief: >
-            The [timestamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after 
-            the browser receives the last byte of the resource
+            The time immediately after the browser receives the last byte of the resource
             or immediately before the transport connection is closed, whichever comes first, in milliseconds.
             See [responseEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseEnd).
           requirement_level: recommended
