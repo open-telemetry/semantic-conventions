@@ -50,12 +50,12 @@ groups:
               value: "resize"
               stability: development
               brief: An element is resized by a user.
-            - id: keyboardenter
-              value: "keyboardenter"
+            - id: keyboard.enter
+              value: "keyboard.enter"
               stability: development
               brief: An element is entered via keyboard by a user.
-            - id: keyboardspace
-              value: "keyboardspace"
+            - id: keyboard.space
+              value: "keyboard.space"
               stability: development
               brief: A space is entered via keyboard by a user.
             - id: other

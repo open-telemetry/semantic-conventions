@@ -41,8 +41,8 @@ This event describes actions performed by the user such as click, scroll, zoom, 
 | `click.left` | An element is left clicked by a user. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `click.middle` | An element is middle clicked by a user. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `click.right` | An element is right clicked by a user. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `keyboardenter` | An element is entered via keyboard by a user. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `keyboardspace` | A space is entered via keyboard by a user. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `keyboard.enter` | An element is entered via keyboard by a user. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `keyboard.space` | A space is entered via keyboard by a user. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `other` | User actions that are not listed above. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resize` | An element is resized by a user. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `scroll` | An element is scrolled by a user. | ![Development](https://img.shields.io/badge/-development-blue) |
