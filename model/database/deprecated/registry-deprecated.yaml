@@ -65,8 +65,8 @@ groups:
       - id: db.sql.table
         type: string
         stability: development
-        brief: 'Deprecated, use `db.collection.name` instead.'
-        deprecated: "Replaced by `db.collection.name`."
+        brief: 'Deprecated, use `db.collection.name` instead, but only if not extracting the value from `db.query.text`.'
+        deprecated: "Replaced by `db.collection.name`, but only if not extracting the value from `db.query.text`."
         examples: 'mytable'
       - id: db.redis.database_index
         type: int
