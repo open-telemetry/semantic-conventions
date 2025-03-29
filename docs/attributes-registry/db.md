@@ -47,6 +47,9 @@ without attempting to do any case normalization.
 The operation name SHOULD NOT be extracted from `db.query.text`,
 when the database system supports cross-table queries in non-batch operations.
 
+If spaces can occur in the operation name, multiple consecutive spaces
+SHOULD be normalized to a single space.
+
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,
 otherwise `db.operation.name` SHOULD be `BATCH` or some other database
@@ -54,6 +57,7 @@ system specific term if more applicable.
 
 **[5] `db.operation.parameter`:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
+`db.operation.parameter.<key>` SHOULD NOT be captured on batch operations.
 
 **[6] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
 Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../database/database-spans.md#generating-a-summary-of-the-query-text) section.
