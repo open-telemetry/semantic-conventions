@@ -185,6 +185,7 @@ If a database operation involved multiple network calls (for example retries), t
 
 **[19] `db.operation.parameter`:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
+`db.operation.parameter.<key>` SHOULD NOT be captured on batch operations.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
