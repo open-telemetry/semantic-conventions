@@ -118,6 +118,10 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 
 **Body fields:**
 
+:warning: Body fields will be moved to complex attributes once the
+semantic convention tooling supports complex attributes
+(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
+
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | `value` | undefined | The evaluated value of the feature flag. | `#ff0000`; `1`; `true` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
