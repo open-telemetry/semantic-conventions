@@ -84,6 +84,8 @@ groups:
 
           If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match
           up with the parameterized placeholders present in `db.query.text`.
+
+          `db.operation.parameter.<key>` SHOULD NOT be captured on batch operations.
         examples: ["someval", "55"]
       - id: db.query.summary
         type: string
