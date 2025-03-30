@@ -65,6 +65,7 @@ to
 | New: `db.operation.batch.size`                      |                                                                                                             |
 | New: `db.response.status_code`                      |                                                                                                             |
 | New: `db.operation.parameter.<key>`                 | Opt-In                                                                                                      |
+| New: `db.stored_procedure.name`                     |                                                                                                             |
 | New: `error.type`                                   |                                                                                                             |
 <!-- prettier-ignore-end -->
 
