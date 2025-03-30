@@ -236,6 +236,7 @@ stored procedure name then that stored procedure name SHOULD be used.
 
 **[19] `db.operation.parameter`:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
+`db.operation.parameter.<key>` SHOULD NOT be captured on batch operations.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -368,6 +369,9 @@ without attempting to do any case normalization.
 
 The operation name SHOULD NOT be extracted from `db.query.text`,
 when the database system supports cross-table queries in non-batch operations.
+
+If spaces can occur in the operation name, multiple consecutive spaces
+SHOULD be normalized to a single space.
 
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,

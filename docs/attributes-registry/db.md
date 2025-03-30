@@ -49,6 +49,9 @@ without attempting to do any case normalization.
 The operation name SHOULD NOT be extracted from `db.query.text`,
 when the database system supports cross-table queries in non-batch operations.
 
+If spaces can occur in the operation name, multiple consecutive spaces
+SHOULD be normalized to a single space.
+
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,
 otherwise `db.operation.name` SHOULD be `BATCH` or some other database
@@ -56,6 +59,7 @@ system specific term if more applicable.
 
 **[5] `db.operation.parameter`:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
+`db.operation.parameter.<key>` SHOULD NOT be captured on batch operations.
 
 **[6] `db.prepared_statement.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
@@ -173,7 +177,7 @@ Describes deprecated database attributes.
 | <a id="db-operation" href="#db-operation">`db.operation`</a> | string | Deprecated, use `db.operation.name` instead. | `findAndModify`; `HMSET`; `SELECT` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.operation.name`. |
 | <a id="db-query-parameter" href="#db-query-parameter">`db.query.parameter.<key>`</a> | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. | `someval`; `55` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.operation.parameter`. |
 | <a id="db-redis-database-index" href="#db-redis-database-index">`db.redis.database_index`</a> | int | Deprecated, use `db.namespace` instead. | `0`; `1`; `15` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
-| <a id="db-sql-table" href="#db-sql-table">`db.sql.table`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
+| <a id="db-sql-table" href="#db-sql-table">`db.sql.table`</a> | string | Deprecated, use `db.collection.name` instead, but only if not extracting the value from `db.query.text`. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`, but only if not extracting the value from `db.query.text`. |
 | <a id="db-statement" href="#db-statement">`db.statement`</a> | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`. |
 | <a id="db-system" href="#db-system">`db.system`</a> | string | Deprecated, use `db.system.name` instead. | `other_sql`; `adabas`; `cache` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.system.name`. |
 | <a id="db-user" href="#db-user">`db.user`</a> | string | Deprecated, no replacement at this time. | `readonly_user`; `reporting_user` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>No replacement at this time. |
