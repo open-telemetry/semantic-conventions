@@ -424,6 +424,14 @@ groups:
         note: >
           For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI.
           If, for example, the [`HMSET` command](https://redis.io/docs/latest/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
+      - ref: db.stored_procedure.name
+        brief: >
+          The name or sha1 digest of a Lua script in the database.
+        note: >
+          See [FCALL](https://redis.io/docs/latest/commands/fcall/)
+          and [EVALSHA](https://redis.io/docs/latest/commands/evalsha/).
+        requirement_level:
+          recommended: If operation represents Lua script execution.
       - ref: network.peer.address
         brief: Peer address of the database node where the operation was performed.
         requirement_level:
