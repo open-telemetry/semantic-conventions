@@ -7,6 +7,31 @@
 
 <!-- next version -->
 
+## v1.32.0
+
+### 🛑 Breaking changes 🛑
+
+- `device`: Change the definition of `device.id` and make it opt-in. ([#1874](https://github.com/open-telemetry/semantic-conventions/issues/1874), [#1951](https://github.com/open-telemetry/semantic-conventions/issues/1951))
+- `feature_flag`: Rename `evaluation` to `result` for feature flag evaluation result attributes ([#1989](https://github.com/open-telemetry/semantic-conventions/issues/1989))
+
+### 🚀 New components 🚀
+
+- `app`: Create `app.installation.id` attribute ([#1874](https://github.com/open-telemetry/semantic-conventions/issues/1874), [#1897](https://github.com/open-telemetry/semantic-conventions/issues/1897))
+- `cpython`: Add CPython runtime garbage collector metrics ([#1930](https://github.com/open-telemetry/semantic-conventions/issues/1930))
+
+### 💡 Enhancements 💡
+
+- `vcs`: Add owner and provider name to VCS attribute registry ([#1452](https://github.com/open-telemetry/semantic-conventions/issues/1452))
+- `vcs`: Remove fallback value for VCS provider name attribute ([#2020](https://github.com/open-telemetry/semantic-conventions/issues/2020))
+- `db`: Truncate `db.query.summary` to 255 characters if parsed from the query ([#1978](https://github.com/open-telemetry/semantic-conventions/issues/1978))
+- `db`: Normalize spaces in `db.operation.name` (if any) ([#2028](https://github.com/open-telemetry/semantic-conventions/issues/2028))
+- `db`: `db.operation.parameter.<key>` should not be captured for batch operations ([#2026](https://github.com/open-telemetry/semantic-conventions/issues/2026))
+- `db`: Add `db.stored_procedure.name` ([#1491](https://github.com/open-telemetry/semantic-conventions/issues/1491))
+- `gcp`: Adds GCP AppHub labels for resource. ([#2006](https://github.com/open-telemetry/semantic-conventions/issues/2006))
+- `error`: Add `error.message` property for human-readable error message on events. ([#1992](https://github.com/open-telemetry/semantic-conventions/issues/1992))
+- `profile`: Extend the list of known frame types with a value for Go and Rust ([#2003](https://github.com/open-telemetry/semantic-conventions/issues/2003))
+- `otel`: Adds SDK self-monitoring metrics for log processing ([#1921](https://github.com/open-telemetry/semantic-conventions/issues/1921))
+
 ## v1.31.0
 
 ### 🛑 Breaking changes 🛑
