@@ -1,0 +1,41 @@
+groups:
+  - id: metric.otel.sdk.span.live.count
+    type: metric
+    metric_name: otel.sdk.span.live.count
+    stability: development
+    deprecated: "Renamed to `otel.sdk.live_spans`."
+    brief: "Deprecated, use `otel.sdk.live_spans` instead."
+    instrument: updowncounter
+    unit: "{span}"
+  - id: metric.otel.sdk.span.ended.count
+    type: metric
+    metric_name: otel.sdk.span.ended.count
+    stability: development
+    deprecated: "Renamed to `otel.sdk.ended_spans`."
+    brief: "Deprecated, use `otel.sdk.ended_spans` instead."
+    instrument: counter
+    unit: "{span}"
+  - id: metric.otel.sdk.processor.span.processed.count
+    type: metric
+    metric_name: otel.sdk.processor.span.processed.count
+    stability: development
+    deprecated: "Renamed to `otel.sdk.processor.span.processed`."
+    brief: "Deprecated, use `otel.sdk.processor.span.processed` instead."
+    instrument: updowncounter
+    unit: "{span}"
+  - id: metric.otel.sdk.exporter.span.inflight.count
+    type: metric
+    metric_name: otel.sdk.exporter.span.inflight.count
+    stability: development
+    deprecated: "Renamed to `otel.sdk.exporter.span.inflight`."
+    brief: "Deprecated, use `otel.sdk.exporter.span.inflight` instead."
+    instrument: updowncounter
+    unit: "{span}"
+  - id: metric.otel.sdk.exporter.span.exported.count
+    type: metric
+    metric_name: otel.sdk.exporter.span.exported.count
+    stability: development
+    deprecated: "Renamed to `otel.sdk.exporter.span.exported`."
+    brief: "Deprecated, use `otel.sdk.exporter.span.exported` instead."
+    instrument: updowncounter
+    unit: "{span}"
