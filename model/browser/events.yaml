@@ -43,7 +43,7 @@ groups:
         - id: delta
           type: double
           stability: development
-          brief: The delta between the current value and the last-reported value.
+          brief: The delta between the current value and the last-reported value. See [delta](https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#report-only-the-delta-of-changes).
           requirement_level: required
           examples: [0.2]
         - id: id
