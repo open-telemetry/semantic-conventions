@@ -49,6 +49,7 @@ Currently, the following namespaces exist:
 - [Code](code.md)
 - [Container](container.md)
 - [CPU](cpu.md)
+- [CPython](cpython.md)
 - [DB](db.md)
 - [Deployment](deployment.md)
 - [Destination](destination.md)

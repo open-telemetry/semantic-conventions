@@ -13,6 +13,10 @@ groups:
         requirement_level: required
       - ref: vcs.repository.name
         requirement_level: recommended
+      - ref: vcs.owner.name
+        requirement_level: recommended
+      - ref: vcs.provider.name
+        requirement_level: opt_in
   - id: metric.vcs.change.duration
     type: metric
     metric_name: vcs.change.duration
@@ -29,6 +33,10 @@ groups:
         requirement_level: required
       - ref: vcs.change.state
         requirement_level: required
+      - ref: vcs.owner.name
+        requirement_level: recommended
+      - ref: vcs.provider.name
+        requirement_level: opt_in
   - id: metric.vcs.change.time_to_approval
     type: metric
     metric_name: vcs.change.time_to_approval
@@ -48,6 +56,10 @@ groups:
       - ref: vcs.ref.base.name
         requirement_level: recommended
       - ref: vcs.ref.base.revision
+        requirement_level: opt_in
+      - ref: vcs.owner.name
+        requirement_level: recommended
+      - ref: vcs.provider.name
         requirement_level: opt_in
   - id: metric.vcs.change.time_to_merge
     type: metric
@@ -69,6 +81,10 @@ groups:
         requirement_level: recommended
       - ref: vcs.ref.base.revision
         requirement_level: opt_in
+      - ref: vcs.owner.name
+        requirement_level: recommended
+      - ref: vcs.provider.name
+        requirement_level: opt_in
   - id: metric.vcs.repository.count
     type: metric
     metric_name: vcs.repository.count
@@ -76,7 +92,11 @@ groups:
     instrument: updowncounter
     unit: "{repository}"
     stability: development
-    attributes: []
+    attributes:
+      - ref: vcs.owner.name
+        requirement_level: recommended
+      - ref: vcs.provider.name
+        requirement_level: opt_in
   - id: metric.vcs.ref.count
     type: metric
     metric_name: vcs.ref.count
@@ -91,6 +111,10 @@ groups:
         requirement_level: recommended
       - ref: vcs.ref.type
         requirement_level: required
+      - ref: vcs.owner.name
+        requirement_level: recommended
+      - ref: vcs.provider.name
+        requirement_level: opt_in
   - id: metric.vcs.ref.lines_delta
     type: metric
     metric_name: vcs.ref.lines_delta
@@ -120,6 +144,10 @@ groups:
         requirement_level: required
       - ref: vcs.line_change.type
         requirement_level: required
+      - ref: vcs.owner.name
+        requirement_level: recommended
+      - ref: vcs.provider.name
+        requirement_level: opt_in
   - id: metric.vcs.ref.revisions_delta
     type: metric
     metric_name: vcs.ref.revisions_delta
@@ -148,6 +176,10 @@ groups:
         requirement_level: required
       - ref: vcs.revision_delta.direction
         requirement_level: required
+      - ref: vcs.owner.name
+        requirement_level: recommended
+      - ref: vcs.provider.name
+        requirement_level: opt_in
   - id: metric.vcs.ref.time
     type: metric
     metric_name: vcs.ref.time
@@ -164,6 +196,10 @@ groups:
         requirement_level: required
       - ref: vcs.ref.head.type
         requirement_level: required
+      - ref: vcs.owner.name
+        requirement_level: recommended
+      - ref: vcs.provider.name
+        requirement_level: opt_in
   - id: metric.vcs.contributor.count
     type: metric
     metric_name: vcs.contributor.count
@@ -176,3 +212,7 @@ groups:
         requirement_level: required
       - ref: vcs.repository.name
         requirement_level: recommended
+      - ref: vcs.owner.name
+        requirement_level: recommended
+      - ref: vcs.provider.name
+        requirement_level: opt_in
