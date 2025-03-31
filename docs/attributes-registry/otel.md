@@ -69,10 +69,15 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 | Value  | Description | Stability |
 |---|---|---|
+| `batching_log_processor` | The builtin SDK Batching LogRecord Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK Batching Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_grpc_log_exporter` | OTLP LogRecord exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_json_log_exporter` | OTLP LogRecord exporter over HTTP with JSON serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_json_span_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_log_exporter` | OTLP LogRecord exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `simple_log_processor` | The builtin SDK Simple LogRecord Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## OTel Scope Attributes
