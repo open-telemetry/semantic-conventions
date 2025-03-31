@@ -19,7 +19,6 @@ linkTitle: Spans
 The conventions described in this section are specific to Continuous Integration / Continuous Deployment (CICD) systems.
 
 Any resources of the [CICD and VCS resource conventions][cicdres] that apply SHOULD be used.
-If resources cannot be used for technical reasons, the resource attributes MAY be set as span attributes.
 
 [cicdres]: /docs/resource/cicd.md (CICD and VCS resource conventions)
 
