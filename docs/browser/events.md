@@ -26,6 +26,10 @@ This event describes actions performed by the user such as click, scroll, zoom, 
 
 **Body fields:**
 
+:warning: Body fields will be moved to complex attributes once the
+semantic convention tooling supports complex attributes
+(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
+
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | `click_coordinates` | int[] | Click coordinates(in pixels) relative to the entire document with format [x(horizontal),y(vertical)]. | `[10, 10]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
