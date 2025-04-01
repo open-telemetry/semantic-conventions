@@ -10,19 +10,19 @@ repository:
   accepts-change-request: true
   accepts-automated-change-request: true
   core-team:
-    - name:        Alexander Wert
+    - name: Alexander Wert
       affiliation: Elastic
-    - name:        Armin Ruech
+    - name: Armin Ruech
       affiliation: Dynatrace
-    - name:        Joao Grassi
+    - name: Joao Grassi
       affiliation: Dynatrace
-    - name:        Johannes Tax
+    - name: Johannes Tax
       affiliation: Grafana Labs
-    - name:        Josh Suereth
+    - name: Josh Suereth
       affiliation: Google
-    - name:        Liudmila Molkova
+    - name: Liudmila Molkova
       affiliation: Microsoft
-    - name:        Trask Stalnaker
+    - name: Trask Stalnaker
       affiliation: Microsoft
   license:
     url: https://github.com/open-telemetry/semantic-conventions/blob/main/LICENSE
