@@ -39,7 +39,7 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 | -------- | --------------- | ----------- | -------------- | --------- |
 | `v8js.gc.duration` | Histogram | `s` | Garbage collection duration. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** The values can be retrieve from [`perf_hooks.PerformanceObserver(...).observe({ entryTypes: ['gc'] })`](https://nodejs.org/api/perf_hooks.html#performanceobserverobserveoptions)
+**[1]:** The values can be retrieved from [`perf_hooks.PerformanceObserver(...).observe({ entryTypes: ['gc'] })`](https://nodejs.org/api/perf_hooks.html#performanceobserverobserveoptions)
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

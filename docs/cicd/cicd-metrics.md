@@ -355,7 +355,6 @@ the same backends.
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other_provider` | Some other version control system provider. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -417,7 +416,6 @@ the same backends.
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other_provider` | Some other version control system provider. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -500,7 +498,6 @@ revision based on the VCS system and situational context.
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other_provider` | Some other version control system provider. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -583,7 +580,6 @@ revision based on the VCS system and situational context.
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other_provider` | Some other version control system provider. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -620,7 +616,6 @@ This metric is [recommended][MetricRecommended].
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other_provider` | Some other version control system provider. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -667,7 +662,6 @@ the same backends.
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other_provider` | Some other version control system provider. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -755,7 +749,6 @@ the same backends.
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other_provider` | Some other version control system provider. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -842,7 +835,6 @@ the same backends.
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other_provider` | Some other version control system provider. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -923,7 +915,6 @@ the same backends.
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other_provider` | Some other version control system provider. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -978,7 +969,6 @@ the same backends.
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other_provider` | Some other version control system provider. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
