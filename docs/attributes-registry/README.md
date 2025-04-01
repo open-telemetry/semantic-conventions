@@ -79,6 +79,7 @@ Currently, the following namespaces exist:
 - [K8s](k8s.md)
 - [Linux](linux.md)
 - [Log](log.md)
+- [Mainframe](mainframe.md)
 - [Messaging](messaging.md)
 - [Network](network.md)
 - [NodeJS](nodejs.md)
@@ -107,5 +108,6 @@ Currently, the following namespaces exist:
 - [V8js](v8js.md)
 - [VCS](vcs.md)
 - [Webengine](webengine.md)
+- [Zos](zos.md)
 
 [developers recommendations]: ../general/naming.md#recommendations-for-application-developers
