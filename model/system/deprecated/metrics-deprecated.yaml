@@ -3,8 +3,10 @@ groups:
     type: metric
     metric_name: system.cpu.time
     brief: "Deprecated. Use `cpu.time` instead."
-    deprecated: "Replaced by `cpu.time`."
-    stability: experimental
+    deprecated:
+      reason: renamed
+      renamed_to: cpu.time
+    stability: development
     instrument: counter
     unit: "s"
 
@@ -12,8 +14,10 @@ groups:
     type: metric
     metric_name: system.cpu.utilization
     brief: "Deprecated. Use `cpu.utilization` instead."
-    deprecated: "Replaced by `cpu.utilization`."
-    stability: experimental
+    deprecated:
+      reason: renamed
+      renamed_to: cpu.utilization
+    stability: development
     instrument: gauge
     unit: "1"
 
@@ -21,7 +25,9 @@ groups:
     type: metric
     metric_name: system.cpu.frequency
     brief: "Deprecated. Use `cpu.frequency` instead."
-    deprecated: "Replaced by `cpu.frequency`."
-    stability: experimental
+    deprecated:
+      reason: renamed
+      renamed_to: cpu.frequency
+    stability: development
     instrument: gauge
     unit: "{Hz}"

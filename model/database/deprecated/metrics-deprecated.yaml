@@ -3,7 +3,9 @@ groups:
     type: metric
     metric_name: db.client.connections.usage
     stability: development
-    deprecated: "Replaced by `db.client.connection.count`."
+    deprecated:
+      reason: renamed
+      renamed_to: db.client.connection.count
     brief: "Deprecated, use `db.client.connection.count` instead."
     instrument: updowncounter
     unit: "{connection}"
@@ -17,7 +19,9 @@ groups:
     type: metric
     metric_name: db.client.connections.idle.max
     stability: development
-    deprecated: "Replaced by `db.client.connection.idle.max`."
+    deprecated:
+      reason: renamed
+      renamed_to: db.client.connection.idle.max
     brief: "Deprecated, use `db.client.connection.idle.max` instead."
     instrument: updowncounter
     unit: "{connection}"
@@ -29,7 +33,9 @@ groups:
     type: metric
     metric_name: db.client.connections.idle.min
     stability: development
-    deprecated: "Replaced by `db.client.connection.idle.min`."
+    deprecated:
+      reason: renamed
+      renamed_to: db.client.connection.idle.min
     brief: "Deprecated, use `db.client.connection.idle.min` instead."
     instrument: updowncounter
     unit: "{connection}"
@@ -41,7 +47,9 @@ groups:
     type: metric
     metric_name: db.client.connections.max
     stability: development
-    deprecated: "Replaced by `db.client.connection.max`."
+    deprecated:
+      reason: renamed
+      renamed_to: db.client.connection.max
     brief: "Deprecated, use `db.client.connection.max` instead."
     instrument: updowncounter
     unit: "{connection}"
@@ -53,7 +61,9 @@ groups:
     type: metric
     metric_name: db.client.connections.pending_requests
     stability: development
-    deprecated: "Replaced by `db.client.connection.pending_requests`."
+    deprecated:
+      reason: renamed
+      renamed_to: db.client.connection.pending_requests
     brief: "Deprecated, use `db.client.connection.pending_requests` instead."
     instrument: updowncounter
     unit: "{request}"
@@ -65,7 +75,9 @@ groups:
     type: metric
     metric_name: db.client.connections.timeouts
     stability: development
-    deprecated: "Replaced by `db.client.connection.timeouts`."
+    deprecated:
+      reason: renamed
+      renamed_to: db.client.connection.timeouts
     brief: "Deprecated, use `db.client.connection.timeouts` instead."
     instrument: counter
     unit: "{timeout}"
@@ -77,7 +89,8 @@ groups:
     type: metric
     metric_name: db.client.connections.create_time
     stability: development
-    deprecated: "Replaced by `db.client.connection.create_time`. Note: the unit also changed from `ms` to `s`."
+    deprecated:
+      reason: uncategorized
     brief: "Deprecated, use `db.client.connection.create_time` instead. Note: the unit also changed from `ms` to `s`."
     instrument: histogram
     unit: "ms"
@@ -89,7 +102,8 @@ groups:
     type: metric
     metric_name: db.client.connections.wait_time
     stability: development
-    deprecated: "Replaced by `db.client.connection.wait_time`. Note: the unit also changed from `ms` to `s`."
+    deprecated:
+      reason: uncategorized
     brief: "Deprecated, use `db.client.connection.wait_time` instead. Note: the unit also changed from `ms` to `s`."
     instrument: histogram
     unit: "ms"
@@ -101,7 +115,8 @@ groups:
     type: metric
     metric_name: db.client.connections.use_time
     stability: development
-    deprecated: "Replaced by `db.client.connection.use_time`. Note: the unit also changed from `ms` to `s`."
+    deprecated:
+      reason: uncategorized
     brief: "Deprecated, use `db.client.connection.use_time` instead. Note: the unit also changed from `ms` to `s`."
     instrument: histogram
     unit: "ms"
@@ -113,7 +128,9 @@ groups:
     type: metric
     metric_name: db.client.cosmosdb.operation.request_charge
     brief: "Deprecated, use `azure.cosmosdb.client.operation.request_charge` instead."
-    deprecated: "Replaced by `azure.cosmosdb.client.operation.request_charge`."
+    deprecated:
+      reason: renamed
+      renamed_to: azure.cosmosdb.client.operation.request_charge
     instrument: histogram
     unit: "{request_unit}"
     stability: development
@@ -146,7 +163,9 @@ groups:
     type: metric
     metric_name: db.client.cosmosdb.active_instance.count
     brief: "Deprecated, use `azure.cosmosdb.client.active_instance.count` instead."
-    deprecated: "Replaced by `azure.cosmosdb.client.active_instance.count`."
+    deprecated:
+      reason: renamed
+      renamed_to: azure.cosmosdb.client.active_instance.count
     instrument: updowncounter
     unit: "{instance}"
     stability: development
