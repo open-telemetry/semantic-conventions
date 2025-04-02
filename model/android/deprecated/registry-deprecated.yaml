@@ -7,10 +7,10 @@ groups:
     attributes:
       - id: android.state
         stability: development
-        brief: Deprecated. Use `android.app.state` instead.
+        brief: Deprecated. Use `android.app.state` body field instead.
         deprecated:
           reason: uncategorized
-          note: Use the `device.app.lifecycle` event definition including `android.app.state` as a body field instead.
+          note: Use `android.app.state` body field instead.
         type:
           members:
             - id: created
