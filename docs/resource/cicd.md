@@ -51,7 +51,7 @@ CICD aims to increase early defect discovery, increase productivity, and provide
 
 ### CICD pipeline run resource attributes
 
-To efficiently set these attributes for all spans of a pipeline run they should be defined as the following resource.
+To efficiently set the following attributes for all spans of a pipeline run they should be defined as the following resource.
 
 Since this resource is unique for each pipeline run, this means instantiating separate [TracerProviders](https://opentelemetry.io/docs/specs/otel/trace/api/#tracerprovider) for each pipeline run in order to be able to configure the resources of any spans emitted through that tracer.
 
