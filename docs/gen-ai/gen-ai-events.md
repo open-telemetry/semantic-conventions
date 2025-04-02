@@ -61,30 +61,30 @@ This event describes the system instructions passed to the GenAI model.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+**[1] `gen_ai.provider.name`:** This attribute describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
 Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
+libraries. In such cases, the `gen_ai.provider.name` is set to `openai` based on the
 instrumentation's best knowledge, instead of the actual system. The `server.address`
 attribute may help identify the actual system in use for `openai`.
 
 For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+If none of these options apply, the `gen_ai.provider.name` SHOULD be set to `_OTHER`.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gemini` | Gemini [2] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -136,30 +136,30 @@ This event describes the user message passed to the GenAI model.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+**[1] `gen_ai.provider.name`:** This attribute describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
 Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
+libraries. In such cases, the `gen_ai.provider.name` is set to `openai` based on the
 instrumentation's best knowledge, instead of the actual system. The `server.address`
 attribute may help identify the actual system in use for `openai`.
 
 For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+If none of these options apply, the `gen_ai.provider.name` SHOULD be set to `_OTHER`.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gemini` | Gemini [2] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -211,30 +211,30 @@ This event describes the assistant message passed to GenAI system.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+**[1] `gen_ai.provider.name`:** This attribute describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
 Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
+libraries. In such cases, the `gen_ai.provider.name` is set to `openai` based on the
 instrumentation's best knowledge, instead of the actual system. The `server.address`
 attribute may help identify the actual system in use for `openai`.
 
 For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+If none of these options apply, the `gen_ai.provider.name` SHOULD be set to `_OTHER`.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gemini` | Gemini [2] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -301,30 +301,30 @@ This event describes the response from a tool or function call passed to the Gen
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+**[1] `gen_ai.provider.name`:** This attribute describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
 Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
+libraries. In such cases, the `gen_ai.provider.name` is set to `openai` based on the
 instrumentation's best knowledge, instead of the actual system. The `server.address`
 attribute may help identify the actual system in use for `openai`.
 
 For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+If none of these options apply, the `gen_ai.provider.name` SHOULD be set to `_OTHER`.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gemini` | Gemini [2] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -377,30 +377,30 @@ This event describes the Gen AI response message.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
+**[1] `gen_ai.provider.name`:** This attribute describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
 The actual GenAI product may differ from the one identified by the client.
 Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
+libraries. In such cases, the `gen_ai.provider.name` is set to `openai` based on the
 instrumentation's best knowledge, instead of the actual system. The `server.address`
 attribute may help identify the actual system in use for `openai`.
 
 For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+If none of these options apply, the `gen_ai.provider.name` SHOULD be set to `_OTHER`.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gemini` | Gemini [2] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -497,7 +497,7 @@ sequenceDiagram
 |   Attribute name                |                     Value                  |
 |---------------------------------|--------------------------------------------|
 | Span name                       | `"chat gpt-4"`                             |
-| `gen_ai.system`                 | `"openai"`                                 |
+| `gen_ai.provider.name`            | `"openai"`                                 |
 | `gen_ai.request.model`          | `"gpt-4"`                                  |
 | `gen_ai.request.max_tokens`     | `200`                                      |
 | `gen_ai.request.top_p`          | `1.0`                                      |
@@ -513,21 +513,21 @@ sequenceDiagram
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
-   | `gen_ai.system`     | `"openai"`                                            |
+   | `gen_ai.provider.name`| `"openai"`                                            |
    | Event body (with content enabled) | `{"content": "You're a helpful bot"}` |
 
 2. `gen_ai.user.message`
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
-   | `gen_ai.system`     | `"openai"`                                            |
+   | `gen_ai.provider.name`| `"openai"`                                            |
    | Event body (with content enabled) | `{"content":"Tell me a joke about OpenTelemetry"}` |
 
 3. `gen_ai.choice`
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
-   | `gen_ai.system`     | `"openai"`                                            |
+   | `gen_ai.provider.name`| `"openai"`                                            |
    | Event body (with content enabled) | `{"index":0,"finish_reason":"stop","message":{"content":"Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"}}` |
    | Event body (without content) | `{"index":0,"finish_reason":"stop","message":{}}` |
 
@@ -568,7 +568,7 @@ Here's the telemetry generated for each step in this scenario:
 |   Attribute name    |                     Value                             |
 |---------------------|-------------------------------------------------------|
 | Span name           | `"chat gpt-4"`                             |
-| `gen_ai.system`     | `"openai"`                                            |
+| `gen_ai.provider.name`| `"openai"`                                            |
 | `gen_ai.request.model`| `"gpt-4"`                                           |
 | `gen_ai.request.max_tokens`| `200`                                          |
 | `gen_ai.request.top_p`| `1.0`                                               |
@@ -586,14 +586,14 @@ Here's the telemetry generated for each step in this scenario:
 
      |   Property          |                     Value                             |
      |---------------------|-------------------------------------------------------|
-     | `gen_ai.system`     | `"openai"`                                            |
+     | `gen_ai.provider.name`| `"openai"`                                            |
      | Event body          | `{"content":"What's the weather in Paris?"}` |
 
   2. `gen_ai.choice`
 
      |   Property          |                     Value                             |
      |---------------------|-------------------------------------------------------|
-     | `gen_ai.system`     | `"openai"`                                            |
+     | `gen_ai.provider.name`| `"openai"`                                            |
      | Event body (with content)    | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":"{\"location\":\"Paris\"}"},"type":"function"}]}` |
      | Event body (without content) | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather"},"type":"function"}]}` |
 
@@ -602,7 +602,7 @@ Here's the telemetry generated for each step in this scenario:
    |   Attribute name                |                     Value                             |
    |---------------------------------|-------------------------------------------------------|
    | Span name                       | `"chat gpt-4"`                                        |
-   | `gen_ai.system`                 | `"openai"`                                            |
+   | `gen_ai.provider.name`            | `"openai"`                                            |
    | `gen_ai.request.model`          | `"gpt-4"`                                             |
    | `gen_ai.request.max_tokens`     | `200`                                                 |
    | `gen_ai.request.top_p`          | `1.0`                                                 |
@@ -622,14 +622,14 @@ Here's the telemetry generated for each step in this scenario:
 
      |   Property                       |                     Value                                  |
      |----------------------------------|------------------------------------------------------------|
-     | `gen_ai.system`                  | `"openai"`                                                 |
+     | `gen_ai.provider.name`             | `"openai"`                                                 |
      | Event body                       | `{"content":"What's the weather in Paris?"}` |
 
   2. `gen_ai.assistant.message`
 
      |   Property                       |                     Value                                                                                                                  |
      |----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
-     | `gen_ai.system`                  | `"openai"`                                                                                                                                 |
+     | `gen_ai.provider.name`             | `"openai"`                                                                                                                                 |
      | Event body (content enabled)     | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":"{\"location\":\"Paris\"}"},"type":"function"}]}` |
      | Event body (content not enabled) | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather"},"type":"function"}]}`                 |
 
@@ -637,7 +637,7 @@ Here's the telemetry generated for each step in this scenario:
 
      |   Property                       |                     Value                                                                      |
      |----------------------------------|------------------------------------------------------------------------------------------------|
-     | `gen_ai.system`                  | `"openai"`                                                                                     |
+     | `gen_ai.provider.name`             | `"openai"`                                                                                     |
      | Event body (content enabled)     | `{"content":"rainy, 57°F","id":"call_VSPygqKTWdrhaFErNvMV18Yl"}` |
      | Event body (content not enabled) | `{"id":"call_VSPygqKTWdrhaFErNvMV18Yl"}`                                             |
 
@@ -645,7 +645,7 @@ Here's the telemetry generated for each step in this scenario:
 
      |   Property                       |                     Value                                                                                                     |
      |----------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-     | `gen_ai.system`                  | `"openai"`                                                                                                                    |
+     | `gen_ai.provider.name`             | `"openai"`                                                                                                                    |
      | Event body (content enabled)     | `{"index":0,"finish_reason":"stop","message":{"content":"The weather in Paris is rainy and overcast, with temperatures around 57°F"}}` |
      | Event body (content not enabled) | `{"index":0,"finish_reason":"stop","message":{}}` |
 
@@ -676,7 +676,7 @@ sequenceDiagram
 |   Attribute name    |                     Value                  |
 |---------------------|--------------------------------------------|
 | Span name           | `"chat gpt-4"`                             |
-| `gen_ai.system`     | `"openai"`                                 |
+| `gen_ai.provider.name`| `"openai"`                                 |
 | `gen_ai.request.model`| `"gpt-4"`                                |
 | `gen_ai.request.max_tokens`| `200`                               |
 | `gen_ai.request.top_p`| `1.0`                                    |
@@ -696,14 +696,14 @@ All events are parented to the GenAI chat span above.
 
    |   Property                   |                     Value                             |
    |------------------------------|-------------------------------------------------------|
-   | `gen_ai.system`              | `"openai"`                                            |
+   | `gen_ai.provider.name`         | `"openai"`                                            |
    | Event body (content enabled) | `{"index":0,"finish_reason":"stop","message":{"content":"Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"}}` |
 
 4. `gen_ai.choice`
 
    |   Property                   |                     Value                             |
    |------------------------------|-------------------------------------------------------|
-   | `gen_ai.system`              | `"openai"`                                            |
+   | `gen_ai.provider.name`         | `"openai"`                                            |
    | Event body (content enabled) | `{"index":1,"finish_reason":"stop","message":{"content":"Why did OpenTelemetry get promoted? It had great span of control!"}}` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

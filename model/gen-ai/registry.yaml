@@ -5,7 +5,7 @@ groups:
     brief: >
       This document defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models requests and responses.
     attributes:
-      - id: gen_ai.system
+      - id: gen_ai.provider.name
         stability: development
         type:
           members:
@@ -53,13 +53,13 @@ groups:
               stability: development
               value: "cohere"
               brief: 'Cohere'
-            - id: az.ai.inference
+            - id: azure.ai.inference
               stability: development
-              value: "az.ai.inference"
+              value: "azure.ai.inference"
               brief: 'Azure AI Inference'
-            - id: az.ai.openai
+            - id: azure.ai.openai
               stability: development
-              value: "az.ai.openai"
+              value: "azure.ai.openai"
               brief: 'Azure OpenAI'
             - id: ibm.watsonx.ai
               stability: development
@@ -92,18 +92,17 @@ groups:
 
         brief: The Generative AI product as identified by the client or server instrumentation.
         note: |
-          The `gen_ai.system` describes a family of GenAI models with specific model identified
+          This attribute describes a family of GenAI models with specific model identified
           by `gen_ai.request.model` and `gen_ai.response.model` attributes.
 
           The actual GenAI product may differ from the one identified by the client.
           Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-          libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
+          libraries. In such cases, the `gen_ai.provider.name` is set to `openai` based on the
           instrumentation's best knowledge, instead of the actual system. The `server.address`
           attribute may help identify the actual system in use for `openai`.
 
           For custom model, a custom friendly name SHOULD be used.
-          If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
-        examples: 'openai'
+          If none of these options apply, the `gen_ai.provider.name` SHOULD be set to `_OTHER`.
       - id: gen_ai.request.model
         stability: development
         type: string
@@ -216,7 +215,7 @@ groups:
         type: string
         brief: The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation.
         examples: ["conv_5j66UpCpwteGg4YSxUnt7lPY"]
-      - id: gen_ai.agent.id   # alternatives: assistant (openai)
+      - id: gen_ai.agent.id
         stability: development
         type: string
         brief: The unique identifier of the GenAI agent.
@@ -338,33 +337,3 @@ groups:
 
           Additional output format details may be recorded in the future in the
           `gen_ai.output.{type}.*` attributes.
-  - id: registry.gen_ai.openai
-    type: attribute_group
-    display_name: OpenAI Attributes
-    brief: >
-      This group defines attributes for OpenAI.
-    attributes:
-      - id: gen_ai.openai.request.service_tier
-        stability: development
-        type:
-          members:
-            - id: auto
-              value: "auto"
-              brief: The system will utilize scale tier credits until they are exhausted.
-              stability: development
-            - id: default
-              value: "default"
-              brief: The system will utilize the default scale tier.
-              stability: development
-        brief: The service tier requested. May be a specific tier, default, or auto.
-        examples: ['auto', 'default']
-      - id: gen_ai.openai.response.service_tier
-        stability: development
-        type: string
-        brief: The service tier used for the response.
-        examples: ['scale', 'default']
-      - id: gen_ai.openai.response.system_fingerprint
-        stability: development
-        type: string
-        brief: A fingerprint to track any eventual change in the Generative AI environment.
-        examples: ["fp_44709d6fcb"]

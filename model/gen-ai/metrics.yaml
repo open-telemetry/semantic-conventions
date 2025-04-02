@@ -15,7 +15,7 @@ groups:
       - ref: gen_ai.request.model
         requirement_level:
           conditionally_required: If available.
-      - ref: gen_ai.system
+      - ref: gen_ai.provider.name
         requirement_level: required
       - ref: gen_ai.operation.name
         requirement_level: required
@@ -31,13 +31,13 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI service,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
-  - id: metric_attributes.gen_ai.openai
+  - id: metric_attributes.openai
     type: attribute_group
     brief: 'This group describes GenAI server metrics attributes'
     attributes:
-      - ref: gen_ai.openai.response.service_tier
+      - ref: openai.response.service_tier
         requirement_level: recommended
-      - ref: gen_ai.openai.response.system_fingerprint
+      - ref: openai.response.system_fingerprint
         requirement_level: recommended
   - id: metric.gen_ai.client.token.usage
     type: metric
