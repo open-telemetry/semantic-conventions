@@ -233,7 +233,7 @@ groups:
               stability: development
             - id: generate_content
               value: "generate_content"
-              briref: 'Multimodal content generation operation such as [Gemini Generate Content](https://ai.google.dev/api/generate-content)'
+              brief: 'Multimodal content generation operation such as [Gemini Generate Content](https://ai.google.dev/api/generate-content)'
               stability: development
             - id: text_completion
               value: "text_completion"
