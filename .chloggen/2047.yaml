@@ -1,0 +1,12 @@
+change_type: breaking
+component: all
+note: Convert deprecated text to structured format.
+issues: [ 2047 ]
+
+subtext: >
+  This is a breaking change from the schema perspective, but does not change anything for instrumentations
+  or the end users.
+  It breaks compatibility with the (old) [code generation toolings](https://github.com/open-telemetry/build-tools/issues/322).
+  Please use [weaver](https://github.com/open-telemetry/weaver) to generate Semantic Conventions markdown or code.
+
+
