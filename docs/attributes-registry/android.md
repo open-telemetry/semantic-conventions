@@ -33,7 +33,7 @@ This document defines attributes that represents an occurrence of a lifecycle tr
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="android-state" href="#android-state">`android.state`</a> | string | Deprecated. Use `android.app.state` instead. | `created`; `background`; `foreground` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use the `device.app.lifecycle` event definition including `android.app.state` as a body field instead. |
+| <a id="android-state" href="#android-state">`android.state`</a> | string | Deprecated. Use `android.app.state` body field instead. | `created`; `background`; `foreground` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use `android.app.state` body field instead. |
 
 ---
 
