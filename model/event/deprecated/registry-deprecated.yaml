@@ -13,5 +13,5 @@ groups:
           note: >
             Replaced by EventName top-level field on the LogRecord.
         brief: >
-          Replaced by EventName top-level field on the LogRecord.
+          Identifies the class / type of event.
         examples: ["browser.mouse.click", "device.app.lifecycle"]
