@@ -38,10 +38,10 @@ groups:
   - id: metric.messaging.publish.messages
     type: metric
     metric_name: messaging.publish.messages
-    brief: "Deprecated. Use `messaging.client.produced.messages` instead."
+    brief: "Deprecated. Use `messaging.client.sent.messages` instead."
     deprecated:
       reason: renamed
-      renamed_to: messaging.client.produced.messages
+      renamed_to: messaging.client.sent.messages
     stability: development
     instrument: counter
     unit: "{message}"

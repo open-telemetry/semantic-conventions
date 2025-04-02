@@ -10,7 +10,7 @@ groups:
         deprecated:
           reason: uncategorized
           note:
-            Deprecated. use the `ios.app.state` event body field instead.
+            Replaced by the `ios.app.state` event body field.
         note: >
           The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate),
           and from which the `OS terminology` column values are derived.

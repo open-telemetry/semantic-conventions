@@ -33,6 +33,7 @@ groups:
         type: string
         deprecated:
           reason: uncategorized
+          note: Replaced by `server.address` on client spans and `client.address` on server spans.
         stability: development
         brief: Deprecated, use `server.address` on client spans and `client.address` on server spans.
         examples: ['example.com']
@@ -40,6 +41,7 @@ groups:
         type: int
         deprecated:
           reason: uncategorized
+          note: Replaced by `server.port` on client spans and `client.port` on server spans.
         stability: development
         brief: Deprecated, use `server.port` on client spans and `client.port` on server spans.
         examples: [8080]
@@ -154,5 +156,6 @@ groups:
               stability: development
         deprecated:
           reason: uncategorized
+          note: Split to `network.transport` and `network.type`.
         stability: development
         brief: Deprecated, use `network.transport` and `network.type`.

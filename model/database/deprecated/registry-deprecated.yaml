@@ -37,6 +37,7 @@ groups:
         brief: 'Deprecated, no replacement at this time.'
         deprecated:
           reason: obsoleted
+          note: Removed, no replacement at this time.
         stability: development
         examples: ['readonly_user', 'reporting_user']
       - id: db.statement
@@ -101,8 +102,7 @@ groups:
         brief: 'Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute.'
         deprecated:
           reason: obsoleted
-          note: >
-            Removed, SQL Server instance is now populated as a part of `db.namespace` attribute.
+          note: Removed, no replacement at this time.
         examples: 'MSSQLSERVER'
       - id: db.instance.id
         type: string

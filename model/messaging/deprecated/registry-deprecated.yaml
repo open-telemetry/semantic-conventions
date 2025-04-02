@@ -51,8 +51,9 @@ groups:
         stability: development
         examples: 'myConsumerGroup'
         deprecated:
-          reason: renamed
-          renamed_to: messaging.consumer.group.name
+          reason: uncategorized
+          note: >
+            Replaced by `messaging.consumer.group.name` on the consumer spans. No replacement for producer spans.
       - id: messaging.eventhubs.consumer.group
         type: string
         brief: >
