@@ -12,4 +12,3 @@ groups:
         deprecated:
           reason: renamed
           renamed_to: k8s.pod.label
-
