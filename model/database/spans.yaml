@@ -870,7 +870,7 @@ groups:
           service name following the `{instance_name}|{database_name}|{service_name}` pattern.
           For CDB architecture, database name would be pdb name. For Non-CDB, it would be
           `DB_NAME` parameter.
-        examples: ["ORCL1|PDB1|db_high.adb.oraclecloud.com", "ORCL1|DB1|db_low.adb.oraclecloud.com"]
+        examples: ["ORCL1|PDB1|db_high.adb.oraclecloud.com", "ORCL1|DB1|db_low.adb.oraclecloud.com", "ORCL1|DB1|order-processing-service"]
       - ref: db.response.status_code
         brief: >
           [Oracle Database error number](https://docs.oracle.com/en/error-help/db/) recorded as a string.
