@@ -7,12 +7,12 @@ linkTitle: CICD
 <!-- toc -->
 
 - [Continuous Integration and Continuous Deployment (CICD)](#continuous-integration-and-continuous-deployment-cicd)
-  - [CICD pipeline resource attributes](#cicd-pipeline-resource-attributes)
-  - [CICD pipeline run resource attributes](#cicd-pipeline-run-resource-attributes)
-  - [CICD worker resource attributes](#cicd-worker-resource-attributes)
+  - [CICD pipeline](#cicd-pipeline)
+  - [CICD pipeline run](#cicd-pipeline-run)
+  - [CICD worker](#cicd-worker)
 - [Version Control System (VCS)](#version-control-system-vcs)
-  - [VCS repository resource attributes](#vcs-repository-resource-attributes)
-  - [VCS reference resource attributes](#vcs-reference-resource-attributes)
+  - [VCS repository](#vcs-repository)
+  - [VCS reference](#vcs-reference)
 
 <!-- tocstop -->
 
