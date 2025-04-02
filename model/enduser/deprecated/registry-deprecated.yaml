@@ -16,6 +16,7 @@ groups:
         type: string
         deprecated:
           reason: obsoleted
+          note: Removed, no replacement at this time.
         stability: development
         brief: "Deprecated, no replacement at this time."
         examples: 'read:message, write:files'
