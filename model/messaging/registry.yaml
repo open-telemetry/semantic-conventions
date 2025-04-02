@@ -204,6 +204,10 @@ groups:
               value: 'pulsar'
               brief: 'Apache Pulsar'
               stability: development
+            - id: celery
+              value: 'celery'
+              brief: 'Celery'
+              stability: development
         stability: development
   - id: registry.messaging.kafka
     type: attribute_group
