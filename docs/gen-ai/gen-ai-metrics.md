@@ -109,14 +109,21 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gemini` | Gemini | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai` | Any Google AI endpoint [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai.gemini` | Gemini [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai.vertex_ai` | Vertex AI [7] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
-| `vertex_ai` | Vertex AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[5]:** May be used when specific backend is unknown. May be accompanied by 'gcp.client.service' attribute differentiating the endpoint.
+
+**[6]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May be accompanied by 'gcp.client.service' with value 'generativelanguage'.
+
+**[7]:** This refers to the 'aiplatform.googleapis.com' endpoint. May be accompanied by 'gcp.client.service' with value 'aiplatform'.
 
 ---
 
@@ -213,14 +220,21 @@ Instrumentations SHOULD document the list of errors they report.
 | `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gemini` | Gemini | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai` | Any Google AI endpoint [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai.gemini` | Gemini [7] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai.vertex_ai` | Vertex AI [8] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
-| `vertex_ai` | Vertex AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[6]:** May be used when specific backend is unknown. May be accompanied by 'gcp.client.service' attribute differentiating the endpoint.
+
+**[7]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May be accompanied by 'gcp.client.service' with value 'generativelanguage'.
+
+**[8]:** This refers to the 'aiplatform.googleapis.com' endpoint. May be accompanied by 'gcp.client.service' with value 'aiplatform'.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -315,14 +329,21 @@ Instrumentations SHOULD document the list of errors they report.
 | `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gemini` | Gemini | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai` | Any Google AI endpoint [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai.gemini` | Gemini [7] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai.vertex_ai` | Vertex AI [8] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
-| `vertex_ai` | Vertex AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[6]:** May be used when specific backend is unknown. May be accompanied by 'gcp.client.service' attribute differentiating the endpoint.
+
+**[7]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May be accompanied by 'gcp.client.service' with value 'generativelanguage'.
+
+**[8]:** This refers to the 'aiplatform.googleapis.com' endpoint. May be accompanied by 'gcp.client.service' with value 'aiplatform'.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -404,14 +425,21 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gemini` | Gemini | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai` | Any Google AI endpoint [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai.gemini` | Gemini [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai.vertex_ai` | Vertex AI [7] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
-| `vertex_ai` | Vertex AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[5]:** May be used when specific backend is unknown. May be accompanied by 'gcp.client.service' attribute differentiating the endpoint.
+
+**[6]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May be accompanied by 'gcp.client.service' with value 'generativelanguage'.
+
+**[7]:** This refers to the 'aiplatform.googleapis.com' endpoint. May be accompanied by 'gcp.client.service' with value 'aiplatform'.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -492,14 +520,21 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gemini` | Gemini | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai` | Any Google AI endpoint [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai.gemini` | Gemini [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai.vertex_ai` | Vertex AI [7] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
-| `vertex_ai` | Vertex AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[5]:** May be used when specific backend is unknown. May be accompanied by 'gcp.client.service' attribute differentiating the endpoint.
+
+**[6]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May be accompanied by 'gcp.client.service' with value 'generativelanguage'.
+
+**[7]:** This refers to the 'aiplatform.googleapis.com' endpoint. May be accompanied by 'gcp.client.service' with value 'aiplatform'.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
