@@ -56,19 +56,16 @@ with all retries.
 
 ## Name
 
-Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/trace/api.md#span).
+Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/trace/api.md#span).
 
 The **span name** SHOULD be `{db.query.summary}` if a summary is available.
 
-<!-- markdown-link-check-disable -->
-<!-- HTML anchors are not supported https://github.com/tcort/markdown-link-check/issues/225-->
 If no summary is available, the span name SHOULD be `{db.operation.name} {target}`
 provided that a (low-cardinality) `db.operation.name` is available (see below for
 the exact definition of the [`{target}`](#target-placeholder) placeholder).
 
 If a (low-cardinality) `db.operation.name` is not available, database span names
 SHOULD default to the [`{target}`](#target-placeholder).
-<!-- markdown-link-check-enable -->
 
 If neither `{db.operation.name}` nor `{target}` are available, span name SHOULD be `{db.system}`.
 
@@ -144,6 +141,9 @@ without attempting to do any case normalization.
 The operation name SHOULD NOT be extracted from `db.query.text`,
 when the database system supports cross-table queries in non-batch operations.
 
+If spaces can occur in the operation name, multiple consecutive spaces
+SHOULD be normalized to a single space.
+
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,
 otherwise `db.operation.name` SHOULD be `BATCH` or some other database
@@ -185,6 +185,7 @@ If a database operation involved multiple network calls (for example retries), t
 
 **[19] `db.operation.parameter`:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
+`db.operation.parameter.<key>` SHOULD NOT be captured on batch operations.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -292,6 +293,9 @@ Placeholders in a parameterized query SHOULD not be sanitized. E.g. `where id = 
 e.g. from `IN (?, ?, ?, ?)` to `IN (?)`, as this can help with extremely long IN-clauses,
 and can help control cardinality for users who choose to (optionally) add `db.query.text` to their metric attributes.
 
+When performing sanitization, instrumentation MAY truncate the sanitized value
+for performance considerations (since sanitizing has a performance cost).
+
 ## Generating a summary of the query text
 
 The `db.query.summary` attribute captures a shortened representation of a query text
@@ -328,6 +332,10 @@ Instrumentations SHOULD capture the values of operations and targets as provided
 by the application without attempting to do any case normalization. If the operation
 and target value is populated on `db.operation.name`, `db.collection.name`,
 or other attributes, it SHOULD match the value used in the `db.query.summary`.
+
+Instrumentations that parse the query to set `db.query.summary` SHOULD truncate the
+summary to 255 characters (ensuring truncation does not occur within an operation
+name or target).
 
 **Examples**:
 
@@ -386,7 +394,7 @@ or other attributes, it SHOULD match the value used in the `db.query.summary`.
            'artists'
     ```
 
-    the corresponding `db.query.summary` is `SELECT "songs list" 'artists'`.
+    the corresponding `db.query.summary` is `SELECT "song list" 'artists'`.
 
 Semantic conventions for individual database systems or specialized instrumentations
 MAY specify a different `db.query.summary` format as long as produced summary remains

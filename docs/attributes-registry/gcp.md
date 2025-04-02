@@ -3,9 +3,78 @@
 
 # GCP
 
+- [GCP - AppHub Attributes](#gcp---apphub-attributes)
 - [GCP Client Attributes](#gcp-client-attributes)
 - [GCP - Google Cloud Run Attributes](#gcp---google-cloud-run-attributes)
 - [GCP - Google Compute Engine (GCE) Attributes](#gcp---google-compute-engine-gce-attributes)
+
+## GCP - AppHub Attributes
+
+This document defines attributes AppHub will apply to resources in GCP. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="gcp-apphub-application-container" href="#gcp-apphub-application-container">`gcp.apphub.application.container`</a> | string | The container within GCP where the AppHub application is defined. | `projects/my-container-project` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gcp-apphub-application-id" href="#gcp-apphub-application-id">`gcp.apphub.application.id`</a> | string | The name of the application as configured in AppHub. | `my-application` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gcp-apphub-application-location" href="#gcp-apphub-application-location">`gcp.apphub.application.location`</a> | string | The GCP zone or region where the application is defined. | `us-central1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gcp-apphub-service-criticality-type" href="#gcp-apphub-service-criticality-type">`gcp.apphub.service.criticality_type`</a> | string | Criticality of a service indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gcp-apphub-service-environment-type" href="#gcp-apphub-service-environment-type">`gcp.apphub.service.environment_type`</a> | string | Environment of a service is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gcp-apphub-service-id" href="#gcp-apphub-service-id">`gcp.apphub.service.id`</a> | string | The name of the service as configured in AppHub. | `my-service` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gcp-apphub-workload-criticality-type" href="#gcp-apphub-workload-criticality-type">`gcp.apphub.workload.criticality_type`</a> | string | Criticality of a workload indicates its importance to the business. [3] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gcp-apphub-workload-environment-type" href="#gcp-apphub-workload-environment-type">`gcp.apphub.workload.environment_type`</a> | string | Environment of a workload is the stage of a software lifecycle. [4] | `PRODUCTION`; `STAGING`; `TEST` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gcp-apphub-workload-id" href="#gcp-apphub-workload-id">`gcp.apphub.workload.id`</a> | string | The name of the workload as configured in AppHub. | `my-workload` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `gcp.apphub.service.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+
+**[2] `gcp.apphub.service.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+
+**[3] `gcp.apphub.workload.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+
+**[4] `gcp.apphub.workload.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+
+---
+
+`gcp.apphub.service.criticality_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `HIGH` | High impact. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `LOW` | Low impact. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `MEDIUM` | Medium impact. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `MISSION_CRITICAL` | Mission critical service. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`gcp.apphub.service.environment_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `DEVELOPMENT` | Development environment. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `PRODUCTION` | Production environment. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `STAGING` | Staging environment. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `TEST` | Test environment. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`gcp.apphub.workload.criticality_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `HIGH` | High impact. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `LOW` | Low impact. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `MEDIUM` | Medium impact. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `MISSION_CRITICAL` | Mission critical service. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`gcp.apphub.workload.environment_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `DEVELOPMENT` | Development environment. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `PRODUCTION` | Production environment. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `STAGING` | Staging environment. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `TEST` | Test environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## GCP Client Attributes
 
@@ -13,9 +82,9 @@ Attributes for Google Cloud client libraries.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="gcp-client-service" href="#gcp-client-service">`gcp.client.service`</a> | string | Identifies the Google Cloud service for which the official client library is intended. [1] | `appengine`; `run`; `firestore`; `alloydb`; `spanner` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gcp-client-service" href="#gcp-client-service">`gcp.client.service`</a> | string | Identifies the Google Cloud service for which the official client library is intended. [5] | `appengine`; `run`; `firestore`; `alloydb`; `spanner` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `gcp.client.service`:** Intended to be a stable identifier for Google Cloud client libraries that is uniform across implementation languages. The value should be derived from the canonical service domain for the service; for example, 'foo.googleapis.com' should result in a value of 'foo'.
+**[5] `gcp.client.service`:** Intended to be a stable identifier for Google Cloud client libraries that is uniform across implementation languages. The value should be derived from the canonical service domain for the service; for example, 'foo.googleapis.com' should result in a value of 'foo'.
 
 ## GCP - Google Cloud Run Attributes
 
