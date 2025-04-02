@@ -64,7 +64,6 @@ body:
         - area:nodejs
         - area:oci
         - area:opentracing
-        - area:oracle
         - area:os
         - area:otel
         - area:peer
