@@ -895,10 +895,3 @@ groups:
           For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used,
           otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
         examples: ["SELECT * FROM wuser_table where username = :mykey"]
-      - ref: oracle.db.client.connection.implicit_release
-        sampling_relevant: true
-        brief: >
-          Boolean flag Indicating if the internal connection is released back to pool or not after executing a query.
-        note: >
-          This attribute appears in the span when an implicit release occurs, and its value is always true.
-        examples: [true]
