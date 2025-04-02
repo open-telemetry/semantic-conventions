@@ -6,5 +6,5 @@ note: |
   - Remove `gen_ai` prefix from `gen_ai.openai.*` attributes.
   - Rename `az.ai.*` system names to `azure.ai.*`.
 
-issues: [TODO]
+issues: [ 2046 ]
 subtext:
