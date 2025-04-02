@@ -17,6 +17,7 @@
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cloud.account.id`](/docs/attributes-registry/cloud.md) | string | The cloud account ID the resource is assigned to. | `111111111111`; `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cloud.account.name`](/docs/attributes-registry/cloud.md) | string | The human-readable name or alias used to identify cloud accounts. | `development`; `aws-prod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`cloud.availability_zone`](/docs/attributes-registry/cloud.md) | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [1] | `us-east-1c` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`cloud.platform`](/docs/attributes-registry/cloud.md) | string | The cloud platform in use. [2] | `alibaba_cloud_ecs`; `alibaba_cloud_fc`; `alibaba_cloud_openshift` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`cloud.provider`](/docs/attributes-registry/cloud.md) | string | Name of the cloud provider. | `alibaba_cloud`; `aws`; `azure` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
