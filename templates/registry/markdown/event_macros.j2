@@ -12,5 +12,9 @@ The event name MUST be `{{ event.name }}`.
 {% endmacro %}
 {% macro body(body) %}{% if body %}**Body fields:**
 
+:warning: Body fields will be moved to complex attributes once the
+semantic convention tooling supports complex attributes
+(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
+
 {{ body_table.generate(body.fields) }}
 {% endif %}{% endmacro %}

@@ -72,6 +72,16 @@ groups:
               brief: >
                 The builtin SDK Simple Span Processor
               stability: development
+            - id: batching_log_processor
+              value: "batching_log_processor"
+              brief: >
+                The builtin SDK Batching LogRecord Processor
+              stability: development
+            - id: simple_log_processor
+              value: "simple_log_processor"
+              brief: >
+                The builtin SDK Simple LogRecord Processor
+              stability: development
             - id: otlp_grpc_span_exporter
               value: "otlp_grpc_span_exporter"
               brief: >
@@ -86,6 +96,21 @@ groups:
               value: "otlp_http_json_span_exporter"
               brief: >
                 OTLP span exporter over HTTP with JSON serialization
+              stability: development
+            - id: otlp_grpc_log_exporter
+              value: "otlp_grpc_log_exporter"
+              brief: >
+                OTLP LogRecord exporter over gRPC with protobuf serialization
+              stability: development
+            - id: otlp_http_log_exporter
+              value: "otlp_http_log_exporter"
+              brief: >
+                OTLP LogRecord exporter over HTTP with protobuf serialization
+              stability: development
+            - id: otlp_http_json_log_exporter
+              value: "otlp_http_json_log_exporter"
+              brief: >
+                OTLP LogRecord exporter over HTTP with JSON serialization
               stability: development
         stability: development
         brief: >
