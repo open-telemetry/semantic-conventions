@@ -4,7 +4,7 @@ groups:
     span_kind: internal
     stability: development
     brief: >
-      Describes span of CLI (Command Line Interfaces) programs.
+      This span describes CLI (Command Line Interfaces) program execution from a callee perspective.
     attributes:
       - ref: process.executable.name
         requirement_level: required
@@ -25,7 +25,7 @@ groups:
     span_kind: client
     stability: development
     brief: >
-      Describes span to calls of CLI (Command Line Interfaces) programs.
+      This span describes CLI (Command Line Interfaces) program execution from a caller perspective.
     attributes:
       - ref: process.executable.name
         requirement_level: required

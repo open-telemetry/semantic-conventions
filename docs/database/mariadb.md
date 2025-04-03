@@ -2,7 +2,7 @@
 linkTitle: MariaDB
 --->
 
-# Semantic conventions for MariaDB
+# Semantic conventions for MariaDB client operations
 
 **Status**: [Release Candidate][DocumentStatus]
 
@@ -12,8 +12,6 @@ linkTitle: MariaDB
 - [Metrics](#metrics)
 
 <!-- tocstop -->
-
-The Semantic Conventions for *MariaDB* extend and override the [Database Semantic Conventions](README.md).
 
 ## Spans
 
@@ -29,6 +27,14 @@ The following table outlines the span attributes applicable to MariaDB.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+Spans representing calls to MariaDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/README.md).
+
+`db.system.name` MUST be set to `"mariadb"` and SHOULD be provided **at span creation time**.
+
+**Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
+
+**Span kind**: `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

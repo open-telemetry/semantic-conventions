@@ -70,7 +70,28 @@ groups:
     stability: development
     span_kind: client
     brief: >
-      Describes GenAI operation span.
+      This span represents client call to Generative AI model or service.
+    note: |
+      GenAI spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#span).
+      The **span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+
+      Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
+      details on how to record **span status**.
+
+      **Span kind** MAY be set to `INTERNAL` on spans representing call to models
+      running in the same process.
+
+      It's RECOMMENDED to use `CLIENT` kind when GenAI system being instrumented usually
+      runs in a different process than its client or when GenAI call happens over
+      instrumented protocol such as HTTP.
+
+      These attributes track input data and metadata for a request to a GenAI model.
+      Each attribute represents a concept that is common to most Generative AI clients.
+      Many of these attributes only apply to specific GenAI operations.
+
+      For example, GenAI embeddings requests don't use output tokens,
+      so `gen_ai.usage.output_tokens` does not apply to embeddings operations.
     extends: trace.gen_ai.client.common_attributes
     attributes:
       - ref: gen_ai.system
@@ -109,7 +130,10 @@ groups:
     span_kind: client
     type: span
     brief: >
-      Describes an OpenAI operation span.
+      Semantic Conventions for [OpenAI](https://openai.com/) client spans extend
+      and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md).
+    note: >
+      `gen_ai.system` MUST be set to `"openai"`.
     attributes:
       - ref: gen_ai.request.model
         requirement_level: required
@@ -133,7 +157,10 @@ groups:
     type: span
     span_kind: client
     brief: >
-      Describes Azure AI Inference span attributes.
+      Semantic Conventions for [Azure AI Inference](https://learn.microsoft.com/azure/ai-studio/reference/reference-model-inference-api)
+      client spans extend and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md).
+    note: >
+      `gen_ai.system` MUST be set to `"az.ai.inference"` and SHOULD be provided **at span creation time**.
     attributes:
       - ref: az.namespace
         note: >

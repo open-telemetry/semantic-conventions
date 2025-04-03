@@ -2,25 +2,24 @@
 linkTitle: OpenAI
 --->
 
-# Semantic conventions for OpenAI operations
+# Semantic conventions for OpenAI client operations
 
 **Status**: [Development][DocumentStatus]
 
 <!-- toc -->
 
-- [OpenAI Spans](#openai-spans)
+- [OpenAI client Spans](#openai-client-spans)
 - [OpenAI Metrics](#openai-metrics)
   - [Metric: `gen_ai.client.token.usage`](#metric-gen_aiclienttokenusage)
   - [Metric: `gen_ai.client.operation.duration`](#metric-gen_aiclientoperationduration)
 
 <!-- tocstop -->
 
-The Semantic Conventions for [OpenAI](https://openai.com/) extend and override the semantic conventions
-for [Gen AI Spans](gen-ai-spans.md) and [Gen AI Metrics](gen-ai-metrics.md).
+The Semantic Conventions for [OpenAI](https://openai.com/) extend and override the [Gen AI Semantic Conventions(/docs/gen-ai/README.md).
 
 `gen_ai.system` MUST be set to `"openai"`.
 
-## OpenAI Spans
+## OpenAI client Spans
 
 These attributes track input data and metadata for a request to an OpenAI model. The attributes include general Generative AI
 attributes and ones specific the OpenAI.
@@ -31,6 +30,14 @@ attributes and ones specific the OpenAI.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+Semantic Conventions for [OpenAI](https://openai.com/) client spans extend and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md).
+
+`gen_ai.system` MUST be set to `"openai"`.
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**Span kind**: `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

@@ -8,7 +8,7 @@ linkTitle: Spans
 
 <!-- toc -->
 
-- [Name](#name)
+  - [Name](#name)
 - [Status](#status)
 - [Common attributes](#common-attributes)
   - [Notes and well-known identifiers for `db.system.name`](#notes-and-well-known-identifiers-for-dbsystemname)
@@ -50,11 +50,7 @@ It's RECOMMENDED to use `CLIENT` kind when database system being instrumented us
 runs in a different process than its client or when database calls happen over
 instrumented protocol such as HTTP.
 
-Span that describes database call SHOULD cover the duration of the corresponding call as if it was observed by the caller (such as client application).
-For example, if a transient issue happened and was retried within this database call, the corresponding span should cover the duration of the logical operation
-with all retries.
-
-## Name
+### Name
 
 Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/trace/api.md#span).
 
@@ -99,6 +95,18 @@ These attributes are commonly used across different database systems.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+This span defines the attributes used to perform database client calls.
+
+Span that describes database call SHOULD cover the duration of the corresponding call as if it was observed by the caller (such as client application).
+For example, if a transient issue happened and was retried within this database call, the corresponding span should cover the duration of the logical operation
+with all retries.
+
+Refer to the [Name](../../docs/attributes-registry/db.md#name) section for details on naming spans.
+
+**Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
+
+**Span kind**: `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

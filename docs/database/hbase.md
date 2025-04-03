@@ -2,7 +2,7 @@
 linkTitle: HBase
 --->
 
-# Semantic conventions for HBase
+# Semantic conventions for HBase client operations
 
 **Status**: [Development][DocumentStatus]
 
@@ -29,6 +29,14 @@ The following table outlines the span attributes applicable to HBase.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+Spans representing calls to an HBase database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
+
+`db.system.name` MUST be set to `"hbase"` and SHOULD be provided **at span creation time**.
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**Span kind**: `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

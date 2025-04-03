@@ -2,7 +2,7 @@
 linkTitle: Elasticsearch
 --->
 
-# Semantic conventions for Elasticsearch
+# Semantic conventions for Elasticsearch client operations
 
 **Status**: [Development][DocumentStatus]
 
@@ -22,7 +22,7 @@ Spans representing calls to Elasticsearch adhere to the general [Semantic Conven
 
 The **span name** follows the [general database span name guidelines](database-spans.md#name) with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
 
-`db.system` MUST be set to `"elasticsearch"` and SHOULD be provided **at span creation time**.
+`db.system.name` MUST be set to `"elasticsearch"` and SHOULD be provided **at span creation time**.
 
 The following table outlines the span attributes applicable to Elasticsearch.
 
@@ -32,6 +32,17 @@ The following table outlines the span attributes applicable to Elasticsearch.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+Spans representing calls to Elasticsearch adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
+
+`db.system.name` MUST be set to `"elasticsearch"` and SHOULD be provided **at span creation time**.
+
+The **span name** follows the [general database span name guidelines](database-spans.md#name)
+with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**Span kind**: `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

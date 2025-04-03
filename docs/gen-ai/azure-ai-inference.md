@@ -2,11 +2,9 @@
 linkTitle: Azure AI Inference
 --->
 
-# Semantic conventions for Azure AI Inference
+# Semantic conventions for Azure AI Inference client operations
 
 **Status**: [Development][DocumentStatus]
-
-The Semantic Conventions for [Azure AI Inference](https://learn.microsoft.com/azure/ai-studio) extend and override the [GenAI Semantic Conventions](README.md).
 
 ## Azure AI Inference Spans
 
@@ -20,6 +18,14 @@ The Semantic Conventions for [Azure AI Inference](https://learn.microsoft.com/az
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+Semantic Conventions for [Azure AI Inference](https://learn.microsoft.com/azure/ai-studio/reference/reference-model-inference-api) client spans extend and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md).
+
+`gen_ai.system` MUST be set to `"az.ai.inference"` and SHOULD be provided **at span creation time**.
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**Span kind**: `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
