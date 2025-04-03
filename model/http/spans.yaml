@@ -3,8 +3,25 @@ groups:
     type: span
     extends: attributes.http.client
     span_kind: client
-    brief: 'Semantic Convention for HTTP Client'
     stability: stable
+    brief: >
+      This span represents an outbound HTTP request.
+    note: |
+      There are two ways HTTP client spans can be implemented in an instrumentation:
+
+      1. Instrumentations SHOULD create an HTTP span for each attempt to send an HTTP request over the wire.
+         In case the request is resent, the resend attempts MUST follow the [HTTP resend spec](#http-request-retries-and-redirects).
+         In this case, instrumentations SHOULD NOT (also) emit a logical encompassing HTTP client span.
+
+      2. If for some reason it is not possible to emit a span for each send attempt (because e.g. the instrumented library does not expose hooks that would allow this),
+         instrumentations MAY create an HTTP span for the top-most operation of the HTTP client.
+         In this case, the `url.full` MUST be the absolute URL that was originally requested, before any HTTP-redirects that may happen when executing the request.
+
+      **Span name:** refer to the [Span Name](#span-name) section.
+
+      **Span kind** MUST be `SERVER`.
+
+      **Span status:** refer to the [Span Status](#span-status) section.
     attributes:
       - ref: http.request.method
         sampling_relevant: true
@@ -52,7 +69,14 @@ groups:
     type: span
     extends: attributes.http.server
     span_kind: server
-    brief: 'Semantic Convention for HTTP Server'
+    brief: >
+      This span represents an inbound HTTP request.
+    note: |
+      **Span name:** refer to the [Span Name](#span-name) section.
+
+      **Span kind** MUST be `SERVER`.
+
+      **Span status:** refer to the [Span Status](#span-status) section.
     stability: stable
     attributes:
       - ref: http.request.method
