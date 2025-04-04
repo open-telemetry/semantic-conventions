@@ -149,9 +149,9 @@ Additional output format details may be recorded in the future in the `gen_ai.ou
 | `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gen_ai` | Any Google AI endpoint [11] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gen_ai.gemini` | Gemini [12] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gen_ai.vertex_ai` | Vertex AI [13] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp` | Any Google generative AI endpoint [11] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gemini` | Gemini [12] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.vertex_ai` | Vertex AI [13] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -161,9 +161,9 @@ Additional output format details may be recorded in the future in the `gen_ai.ou
 
 **[11]:** May be used when specific backend is unknown. May be accompanied by 'gcp.client.service' attribute differentiating the endpoint.
 
-**[12]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May be accompanied by 'gcp.client.service' with value 'generativelanguage'.
+**[12]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May be accompanied by 'gcp.client.service' with value 'generativelanguage'. May make use of common attributes from 'gcp.gen_ai.' prefix.
 
-**[13]:** This refers to the 'aiplatform.googleapis.com' endpoint. May be accompanied by 'gcp.client.service' with value 'aiplatform'.
+**[13]:** This refers to the 'aiplatform.googleapis.com' endpoint. May be accompanied by 'gcp.client.service' with value 'aiplatform'. May make use of common attributes from 'gcp.gen_ai.' prefix.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
