@@ -2,26 +2,15 @@
 linkTitle: AWS SDK
 --->
 
-# Semantic conventions for AWS SDK
+# Semantic conventions for AWS SDK client spans
 
 **Status**: [Development][DocumentStatus]
 
-This document defines semantic conventions to apply when instrumenting the AWS SDK. They map request or response
-parameters in AWS SDK API calls to attributes on a Span. The conventions have been collected over time based
-on feedback from AWS users of tracing and will continue to increase as new interesting conventions
-are found.
-
-Some descriptions are also provided for populating general OpenTelemetry semantic conventions based on these APIs.
-
-## Context Propagation
+## Context propagation
 
 See [compatibility](../non-normative/compatibility/aws.md#context-propagation).
 
-## Common Attributes
-
-The span name MUST be of the format `Service.Operation` as per the AWS HTTP API, e.g., `DynamoDB.GetItem`,
-`S3.ListBuckets`. This is equivalent to concatenating `rpc.service` and `rpc.method` with `.` and consistent
-with the naming guidelines for RPC client spans.
+## AWS SDK spans
 
 <!-- prettier-ignore-start -->
 <!-- semconv span.aws.client -->
@@ -30,6 +19,25 @@ with the naming guidelines for RPC client spans.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This span describes AWS SDK client call.
+
+**Span name:** MUST be of the format `Service.Operation` as per the
+AWS HTTP API, e.g., `DynamoDB.GetItem`, `S3.ListBuckets`. This is
+equivalent to concatenating `rpc.service` and `rpc.method` with `.` and
+consistent with the naming guidelines for RPC client spans.
+
+**Span status:** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+document for details on how to record span status.
+
+AWS SDK span attributes are based on the request or response parameters
+in AWS SDK API calls. The conventions have been collected over time based
+on feedback from AWS users of tracing and will continue to increase as new
+interesting conventions are found.
+
+**Span kind:** SHOULD be `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

@@ -2,7 +2,7 @@
 linkTitle: DynamoDB
 --->
 
-# Semantic conventions for AWS DynamoDB
+# Semantic conventions for AWS DynamoDB client operations
 
 **Status**: [Development][DocumentStatus]
 
@@ -46,6 +46,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This span represents `DynamoDB.BatchGetItem` call.
+
+`db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+
+**Span kind:** SHOULD be `CLIENT`.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -85,6 +93,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This span represents `DynamoDB.BatchWriteItem` call.
+
+`db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+
+**Span kind:** SHOULD be `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -126,6 +142,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This span represents `DynamoDB.CreateTable` call.
+
+`db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+
+**Span kind:** SHOULD be `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -172,6 +196,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This span represents `DynamoDB.DeleteItem` call.
+
+`db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+
+**Span kind:** SHOULD be `CLIENT`.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -213,6 +245,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This span represents `DynamoDB.DeleteTable` call.
+
+`db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+
+**Span kind:** SHOULD be `CLIENT`.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -252,6 +292,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This span represents `DynamoDB.DescribeTable` call.
+
+`db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+
+**Span kind:** SHOULD be `CLIENT`.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -290,6 +338,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This span represents `DynamoDB.GetItem` call.
+
+`db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+
+**Span kind:** SHOULD be `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -333,6 +389,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This span represents `DynamoDB.ListTables` call.
+
+`db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+
+**Span kind:** SHOULD be `CLIENT`.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -374,6 +438,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This span represents `DynamoDB.PutItem` call.
+
+`db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+
+**Span kind:** SHOULD be `CLIENT`.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -414,6 +486,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This span represents `DynamoDB.Query` call.
+
+`db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+
+**Span kind:** SHOULD be `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -461,6 +541,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This span represents `DynamoDB.Scan` call.
+
+`db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+
+**Span kind:** SHOULD be `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -512,6 +600,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This span represents `DynamoDB.UpdateItem` call.
+
+`db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+
+**Span kind:** SHOULD be `CLIENT`.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -552,6 +648,14 @@ The following table outlines the span attributes applicable to DynamoDB.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This span represents `DynamoDB.UpdateTable` call.
+
+`db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
+
+**Span kind:** SHOULD be `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
