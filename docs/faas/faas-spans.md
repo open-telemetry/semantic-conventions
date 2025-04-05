@@ -126,6 +126,7 @@ The span attribute `faas.invocation_id` differs from the [resource attribute][Fa
 ## Incoming Invocations
 
 This section describes incoming FaaS invocations as they are reported by the FaaS instance itself.
+
 ### Incoming FaaS Span attributes
 
 <!-- semconv span.faas.server -->
@@ -135,11 +136,11 @@ This section describes incoming FaaS invocations as they are reported by the Faa
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-This span represents server (incoming) side of the FaaS invocation.
-
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**Span kind**: `SERVER`.
+This span represents server (incoming) side of the FaaS invocation.
+
+**Span kind:** SHOULD be `SERVER`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -200,15 +201,15 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 This span represents outgoing call to FaaS service.
 
 The values reported by the client for the attributes listed below SHOULD be equal to
 the corresponding [FaaS resource attributes][] and [Cloud resource attributes][],
 which the invoked FaaS instance reports about itself, if it's instrumented.
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**Span kind**: `CLIENT`.
+**Span kind:** SHOULD be `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -257,11 +258,11 @@ This section describes how to handle the span creation and additional attributes
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-This span represents server side if the FaaS invocations triggered in response response to some data source operation such as a database or filesystem read/write.
-
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**Span kind**: `SERVER`.
+This span represents server side if the FaaS invocations triggered in response response to some data source operation such as a database or filesystem read/write.
+
+**Span kind:** SHOULD be `SERVER`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -308,11 +309,11 @@ A function is scheduled to be executed regularly. The following additional attri
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-This span represents server side if the FaaS invocations triggered by a timer.
-
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**Span kind**: `SERVER`.
+This span represents server side if the FaaS invocations triggered by a timer.
+
+**Span kind:** SHOULD be `SERVER`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

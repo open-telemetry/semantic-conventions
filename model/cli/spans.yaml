@@ -5,6 +5,13 @@ groups:
     stability: development
     brief: >
       This span describes CLI (Command Line Interfaces) program execution from a callee perspective.
+    note: |
+      **Span name:** SHOULD be set to {process.executable.name}.
+      Instrumentations that have additional context about executed commands MAY use
+      a different low-cardinality span name format and SHOULD document it.
+
+      **Span status:** SHOULD be set to Error if {process.exit.code} is not 0. Refer to
+      the [Recording Errors](/docs/general/recording-errors.md) document for details on how to record span status.
     attributes:
       - ref: process.executable.name
         requirement_level: required
@@ -26,6 +33,13 @@ groups:
     stability: development
     brief: >
       This span describes CLI (Command Line Interfaces) program execution from a caller perspective.
+    note: |
+      **Span name:** SHOULD be set to {process.executable.name}.
+      Instrumentations that have additional context about executed commands MAY use
+      a different low-cardinality span name format and SHOULD document it.
+
+      **Span status:** SHOULD be set to Error if {process.exit.code} is not 0. Refer to
+      the [Recording Errors](/docs/general/recording-errors.md) document for details on how to record span status.
     attributes:
       - ref: process.executable.name
         requirement_level: required

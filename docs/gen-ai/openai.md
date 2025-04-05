@@ -19,7 +19,7 @@ The Semantic Conventions for [OpenAI](https://openai.com/) extend and override t
 
 `gen_ai.system` MUST be set to `"openai"`.
 
-## OpenAI client Spans
+## Spans
 
 These attributes track input data and metadata for a request to an OpenAI model. The attributes include general Generative AI
 attributes and ones specific the OpenAI.
@@ -31,13 +31,13 @@ attributes and ones specific the OpenAI.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 Semantic Conventions for [OpenAI](https://openai.com/) client spans extend and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md).
 
 `gen_ai.system` MUST be set to `"openai"`.
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**Span kind**: `CLIENT`.
+**Span kind:** SHOULD be `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

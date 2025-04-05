@@ -106,13 +106,24 @@ groups:
   - id: span.db.client
     type: span
     stability: release_candidate
-    brief: This span defines the attributes used to perform database client calls.
+    brief: This span describes database client call.
     note: |
-      Span that describes database call SHOULD cover the duration of the corresponding call as if it was observed by the caller (such as client application).
+      It SHOULD cover the duration of the corresponding call as if it was observed by the caller (such as client application).
       For example, if a transient issue happened and was retried within this database call, the corresponding span should cover the duration of the logical operation
       with all retries.
 
-      Refer to the [Name](../../docs/attributes-registry/db.md#name) section for details on naming spans.
+      **Span name:** Refer to the [Name](/docs/database/database-spans.md#name) section.
+
+      **Span kind:** SHOULD be `CLIENT`. It MAY be set to `INTERNAL` on spans representing
+      in-memory database calls.
+      It's RECOMMENDED to use `CLIENT` kind when database system being instrumented usually
+      runs in a different process than its client or when database calls happen over
+      instrumented protocol such as HTTP.
+
+      **Span status:**: Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. Semantic conventions for
+      individual systems SHOULD specify which values of `db.response.status_code`
+      classify as errors.
     span_kind: client
     extends: trace.db.common.full
 
@@ -397,8 +408,12 @@ groups:
     extends: trace.db.common.minimal
     brief: >
       Spans representing calls to Redis adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
-    note: >
+    note: |
       `db.system.name` MUST be set to `"redis"` and SHOULD be provided **at span creation time**.
+
+      **Span name:** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name),
+      except that `db.namespace` SHOULD NOT be used in the span name since it is a numeric value that ends up
+      looking confusing.
     attributes:
       - ref: db.namespace
         sampling_relevant: true

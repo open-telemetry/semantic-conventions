@@ -24,13 +24,13 @@ The Semantic Conventions for [Cassandra](https://cassandra.apache.org/) extend a
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 Spans representing calls to a Cassandra database adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
 
 `db.system.name` MUST be set to `"cassandra"` and SHOULD be provided **at span creation time**.
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**Span kind**: `CLIENT`.
+**Span kind:** SHOULD be `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

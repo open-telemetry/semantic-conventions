@@ -33,7 +33,10 @@ groups:
       Remote procedure calls can only be represented with these semantic conventions,
       when the names of the called service and method are known and available.
 
-      Refer to the [Span Name](#span-name) section for details on naming spans.
+      **Span name:** Refer to the [Span Name](#span-name) section.
+
+      **Span status:** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status.
     extends: rpc
     span_kind: client
     events: [rpc.message]
@@ -55,7 +58,10 @@ groups:
       Remote procedure calls can only be represented with these semantic conventions,
       when the names of the called service and method are known and available.
 
-      Refer to the [Span Name](#span-name) section for details on naming spans.
+      **Span name:** Refer to the [Span Name](#span-name) section.
+
+      **Span status:** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status.
     attributes:
       - ref: client.address
         requirement_level: recommended

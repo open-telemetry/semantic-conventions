@@ -20,21 +20,24 @@ See [compatibility](../non-normative/compatibility/aws.md#context-propagation).
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 This span describes AWS SDK client call.
 
-The span name MUST be of the format `Service.Operation` as per the
+**Span name:** MUST be of the format `Service.Operation` as per the
 AWS HTTP API, e.g., `DynamoDB.GetItem`, `S3.ListBuckets`. This is
 equivalent to concatenating `rpc.service` and `rpc.method` with `.` and
 consistent with the naming guidelines for RPC client spans.
+
+**Span status:** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+document for details on how to record span status.
 
 AWS SDK span attributes are based on the request or response parameters
 in AWS SDK API calls. The conventions have been collected over time based
 on feedback from AWS users of tracing and will continue to increase as new
 interesting conventions are found.
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**Span kind**: `CLIENT`.
+**Span kind:** SHOULD be `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

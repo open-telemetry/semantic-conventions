@@ -8,12 +8,6 @@ linkTitle: CLI programs
 
 This document defines semantic conventions to apply when instrumenting CLI programs, both as a caller and as callee. This document is intended for short-lived programs that end their execution, i.e. not daemon or long running background tasks.
 
-The span name SHOULD be set to `{process.executable.name}`.
-Instrumentations that have additional context about executed commands MAY use a different low-cardinality span name format and SHOULD document it.
-
-Span status SHOULD be set to `Error` if `{process.exit.code}` is not 0. Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
-additional details on how to record span status.
-
 <!-- TODO: context propagation https://github.com/open-telemetry/semantic-conventions/issues/1612 -->
 
 ## Execution (callee) spans
@@ -25,11 +19,18 @@ additional details on how to record span status.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-This span describes CLI (Command Line Interfaces) program execution from a callee perspective.
-
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**Span kind**: `INTERNAL`.
+This span describes CLI (Command Line Interfaces) program execution from a callee perspective.
+
+**Span name:** SHOULD be set to {process.executable.name}.
+Instrumentations that have additional context about executed commands MAY use
+a different low-cardinality span name format and SHOULD document it.
+
+**Span status:** SHOULD be set to Error if {process.exit.code} is not 0. Refer to
+the [Recording Errors](/docs/general/recording-errors.md) document for details on how to record span status.
+
+**Span kind:** SHOULD be `INTERNAL`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -82,11 +83,18 @@ it's RECOMMENDED to:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-This span describes CLI (Command Line Interfaces) program execution from a caller perspective.
-
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**Span kind**: `CLIENT`.
+This span describes CLI (Command Line Interfaces) program execution from a caller perspective.
+
+**Span name:** SHOULD be set to {process.executable.name}.
+Instrumentations that have additional context about executed commands MAY use
+a different low-cardinality span name format and SHOULD document it.
+
+**Span status:** SHOULD be set to Error if {process.exit.code} is not 0. Refer to
+the [Recording Errors](/docs/general/recording-errors.md) document for details on how to record span status.
+
+**Span kind:** SHOULD be `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

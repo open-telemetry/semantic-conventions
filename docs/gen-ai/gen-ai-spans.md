@@ -29,21 +29,24 @@ A request to an Generative AI is modeled as a span in a trace.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 This span represents client call to Generative AI model or service.
 
-GenAI spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#span).
+**Span name:** GenAI spans MUST follow the overall [guidelines for
+span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#span).
 The **span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
 Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
 
-Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
-details on how to record **span status**.
-
-**Span kind** MAY be set to `INTERNAL` on spans representing call to models
-running in the same process.
+**Span kind** SHOULD be `CLIENT`and MAY be set to `INTERNAL` on spans representing
+call to models running in the same process.
 
 It's RECOMMENDED to use `CLIENT` kind when GenAI system being instrumented usually
 runs in a different process than its client or when GenAI call happens over
 instrumented protocol such as HTTP.
+
+**Span status:** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+document for details on how to record span status.
 
 These attributes track input data and metadata for a request to a GenAI model.
 Each attribute represents a concept that is common to most Generative AI clients.
@@ -51,10 +54,6 @@ Many of these attributes only apply to specific GenAI operations.
 
 For example, GenAI embeddings requests don't use output tokens,
 so `gen_ai.usage.output_tokens` does not apply to embeddings operations.
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**Span kind**: `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -181,6 +180,8 @@ Additional output format details may be recorded in the future in the `gen_ai.ou
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 Describes tool execution span.
 
 `gen_ai.operation.name` SHOULD be `execute_tool`.
@@ -190,9 +191,7 @@ However, it's common for tools to be executed by the application code. It's reco
 for the application developers to follow this semantic conventions for tool invoked
 by the application code.
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**Span kind**: `INTERNAL`.
+**Span kind:** SHOULD be `INTERNAL`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

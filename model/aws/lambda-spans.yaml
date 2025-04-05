@@ -6,14 +6,17 @@ groups:
     brief: >
       This span represents AWS Lambda invocation.
     note: |
-      For all events, a span with kind `SERVER` MUST be created corresponding to the function invocation unless stated
-      otherwise below.
-
-      Unless stated otherwise below, the name of the span MUST be set to the function name from the
-      Lambda `Context`.
-
       Consider setting other attributes of the [`faas` resource][faasres] and [trace][faas] conventions
       and the [cloud resource conventions][cloud].
+
+      **Span name:** MUST be set to the function name from the Lambda `Context`
+      unless stated otherwise.
+
+      **Span kind:** MUST be set to `SERVER` unless stated otherwise.
+
+      **Span status:** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status.
+
     attributes:
       - ref: aws.lambda.invoked_arn
         requirement_level: recommended

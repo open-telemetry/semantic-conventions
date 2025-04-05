@@ -13,6 +13,8 @@ linkTitle: GraphQL server
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 This span represents incoming operation on GraphQL server implementation.
 
 The **span name** SHOULD be of the format `{graphql.operation.type}` provided
@@ -28,9 +30,7 @@ the span SHOULD be named `GraphQL Operation`.
 > span name following `{graphql.operation.type} {graphql.operation.name}` format
 > when `graphql.operation.name` is available.
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**Span kind**: `SERVER`.
+**Span kind:** SHOULD be `SERVER`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

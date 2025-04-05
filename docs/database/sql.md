@@ -15,6 +15,8 @@ linkTitle: SQL
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
+
 The SQL databases Semantic Conventions describes how common [Database Semantic Conventions](/docs/database/database-spans.md) apply to SQL databases.
 
 The following database systems (defined in the [`db.system.name`](./database-spans.md#notes-and-well-known-identifiers-for-dbsystemname) set) are known to use SQL as their primary query language:
@@ -39,9 +41,7 @@ The following database systems (defined in the [`db.system.name`](./database-spa
 Many other database systems support SQL and can be accessed via generic database driver such as JDBC or ODBC.
 Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic conventions.
 
-**Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
-
-**Span kind**: `CLIENT`.
+**Span kind:** SHOULD be `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

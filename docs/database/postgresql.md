@@ -24,13 +24,13 @@ The Semantic Conventions for *PostgreSQL* extend and override the [Database Sema
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
+
 Spans representing calls to a PostgreSQL database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
 
 `db.system.name` MUST be set to `"postgresql"` and SHOULD be provided **at span creation time**.
 
-**Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
-
-**Span kind**: `CLIENT`.
+**Span kind:** SHOULD be `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

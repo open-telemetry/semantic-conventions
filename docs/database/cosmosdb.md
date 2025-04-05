@@ -30,6 +30,8 @@ extend and override the [Database Semantic Conventions](README.md).
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 Cosmos DB instrumentations include call-level spans that represent logical database calls and adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
 
 Additional spans representing network calls may also be created depending on the connection mode (Gateway or Direct).
@@ -37,9 +39,7 @@ Semantic conventions described in this document apply to the call-level spans on
 
 `db.system.name` MUST be set to `"azure.cosmosdb"` and SHOULD be provided **at span creation time**.
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**Span kind**: `CLIENT`.
+**Span kind:** SHOULD be `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

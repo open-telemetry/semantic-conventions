@@ -72,10 +72,6 @@ Examples of span names:
   `MyServiceReference.ICalculator/Add` reported by the client for .NET WCF calls
 - `MyServiceWithNoPackage/theMethod`
 
-### Span status
-
-Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
-details on how to record span status.
 
 ### Service name
 
@@ -100,16 +96,19 @@ Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 This span represents an outgoing Remote Procedure (RPC) call.
 
 Remote procedure calls can only be represented with these semantic conventions,
 when the names of the called service and method are known and available.
 
-Refer to the [Span Name](#span-name) section for details on naming spans.
+**Span name:** Refer to the [Span Name](#span-name) section.
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Span status:** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+document for details on how to record span status.
 
-**Span kind**: `CLIENT`.
+**Span kind:** SHOULD be `CLIENT`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -188,16 +187,19 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 This span represents an incoming Remote Procedure (RPC) call.
 
 Remote procedure calls can only be represented with these semantic conventions,
 when the names of the called service and method are known and available.
 
-Refer to the [Span Name](#span-name) section for details on naming spans.
+**Span name:** Refer to the [Span Name](#span-name) section.
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Span status:** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+document for details on how to record span status.
 
-**Span kind**: `SERVER`.
+**Span kind:** SHOULD be `SERVER`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

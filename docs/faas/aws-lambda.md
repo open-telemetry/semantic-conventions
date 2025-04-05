@@ -44,20 +44,20 @@ The following attributes SHOULD be set:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 This span represents AWS Lambda invocation.
-
-For all events, a span with kind `SERVER` MUST be created corresponding to the function invocation unless stated
-otherwise below.
-
-Unless stated otherwise below, the name of the span MUST be set to the function name from the
-Lambda `Context`.
 
 Consider setting other attributes of the [`faas` resource][faasres] and [trace][faas] conventions
 and the [cloud resource conventions][cloud].
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Span name:** MUST be set to the function name from the Lambda `Context`
+unless stated otherwise.
 
-**Span kind**: `SERVER`.
+**Span kind:** MUST be set to `SERVER` unless stated otherwise.
+
+**Span status:** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+document for details on how to record span status.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
