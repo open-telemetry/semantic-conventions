@@ -138,11 +138,11 @@ There are two ways HTTP client spans can be implemented in an instrumentation:
    instrumentations MAY create an HTTP span for the top-most operation of the HTTP client.
    In this case, the `url.full` MUST be the absolute URL that was originally requested, before any HTTP-redirects that may happen when executing the request.
 
-**Span name:** refer to the [Span Name](#span-name) section.
+**Span name:** refer to the [Span Name](/docs/http/http-spans.md#name) section.
 
 **Span kind** MUST be `SERVER`.
 
-**Span status:** refer to the [Span Status](#span-status) section.
+**Span status:** refer to the [Span Status](/docs/http/http-spans.md#status) section.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -400,11 +400,11 @@ Application developers MAY overwrite potentially inaccurate values of `server.*`
 
 This span represents an inbound HTTP request.
 
-**Span name:** refer to the [Span Name](#span-name) section.
+**Span name:** refer to the [Span Name](/docs/http/http-spans.md#name) section.
 
 **Span kind** MUST be `SERVER`.
 
-**Span status:** refer to the [Span Status](#span-status) section.
+**Span status:** refer to the [Span Status](/docs/http/http-spans.md#status) section.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

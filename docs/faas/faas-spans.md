@@ -32,7 +32,7 @@ See also the [additional instructions for instrumenting AWS Lambda](aws-lambda.m
 
 ## General attributes
 
-Span `name` should be set to the function name being executed. Depending on the value of the `faas.trigger` attribute, additional attributes MUST be set. For example, an `http` trigger SHOULD follow the [HTTP Server semantic conventions](/docs/http/http-spans.md#http-server-semantic-conventions). For more information, refer to the [Function Trigger Type](#function-trigger-type) section.
+Span `name` should be set to the function name being executed. Depending on the value of the `faas.trigger` attribute, additional attributes MUST be set. For example, an `http` trigger SHOULD follow the [HTTP Server semantic conventions](/docs/http/http-spans.md#http-server-span). For more information, refer to the [Function Trigger Type](#function-trigger-type) section.
 
 Refer to the [Recording Errors](/docs/general/recording-errors.md) document for details on how to record span status.
 
@@ -294,7 +294,7 @@ This span represents server side if the FaaS invocations triggered in response r
 
 ### HTTP
 
-The function responsibility is to provide an answer to an inbound HTTP request. The `faas` span SHOULD follow the recommendations described in the [HTTP Server semantic conventions](/docs/http/http-spans.md#http-server-semantic-conventions).
+The function responsibility is to provide an answer to an inbound HTTP request. The `faas` span SHOULD follow the recommendations described in the [HTTP Server semantic conventions](/docs/http/http-spans.md#http-server-span).
 
 ### PubSub
 

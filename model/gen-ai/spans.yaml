@@ -123,7 +123,7 @@ groups:
     note: |
       `gen_ai.system` MUST be set to `"openai"` and SHOULD be provided **at span creation time**.
 
-      **Span name** SHOULD follow the general [GenAI span name convention](/docs/gen-ai/spans.md#span-name).
+      **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
     attributes:
       - ref: gen_ai.request.model
         requirement_level: required
@@ -152,7 +152,8 @@ groups:
     note: |
       `gen_ai.system` MUST be set to `"az.ai.inference"` and SHOULD be provided **at span creation time**.
 
-      **Span name** SHOULD follow the general [GenAI span name convention](/docs/gen-ai/spans.md#span-name).
+      **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}` when the
+      model name is available and `{gen_ai.operation.name}` otherwise.
     attributes:
       - ref: az.namespace
         note: >

@@ -139,7 +139,7 @@ configuration for a REST API, in which case only a deserialized body payload is 
 gateway is configured to proxy to the Lambda function, the instrumented request handler will have access to all
 the information about the HTTP request in the form of an API Gateway Proxy Request Event.
 
-The Lambda span name and the [`http.route` span attribute](/docs/http/http-spans.md#http-server-semantic-conventions) SHOULD
+The Lambda span name and the [`http.route` span attribute](/docs/http/http-spans.md#http-server-span) SHOULD
 be set to the [resource property][] from the proxy request event, which corresponds to the user configured HTTP
 route instead of the function name.
 

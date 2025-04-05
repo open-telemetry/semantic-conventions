@@ -23,7 +23,8 @@ Semantic Conventions for [Azure AI Inference](https://learn.microsoft.com/azure/
 
 `gen_ai.system` MUST be set to `"az.ai.inference"` and SHOULD be provided **at span creation time**.
 
-**Span name** SHOULD follow the general [GenAI span name convention](/docs/gen-ai/spans.md#span-name).
+**Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}` when the
+model name is available and `{gen_ai.operation.name}` otherwise.
 
 **Span kind** SHOULD be `CLIENT`.
 

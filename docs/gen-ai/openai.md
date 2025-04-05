@@ -32,7 +32,7 @@ Semantic Conventions for [OpenAI](https://openai.com/) client spans extend and o
 
 `gen_ai.system` MUST be set to `"openai"` and SHOULD be provided **at span creation time**.
 
-**Span name** SHOULD follow the general [GenAI span name convention](/docs/gen-ai/spans.md#span-name).
+**Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
 
 **Span kind** SHOULD be `CLIENT`.
 
