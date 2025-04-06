@@ -321,7 +321,7 @@ freely. For example, `system.paging.faults` and `system.network.packets`.
 Units do not need to be specified in the names since they are included during
 instrument creation, but can be added if there is ambiguity.
 
-### Client and Server Metrics
+### Client and server metrics
 
 Metrics that measure some aspect of a physical or logical network call SHOULD include
 an indication of which side the metric is being recorded from.
@@ -358,7 +358,7 @@ Such conventions SHOULD define an attribute to represent the system name followi
 
 For example, database conventions include the `db.system.name` attribute.
 
-### Choosing a System Name
+### Choosing a system name
 
 When adding new a system to the semantic conventions, follow these principles in descending order of priority:
 
@@ -387,7 +387,7 @@ When adding new a system to the semantic conventions, follow these principles in
    The company (organization, division, or group) name SHOULD remain consistent
    across multiple product names in different semantic convention areas.
 
-### System-specific Attributes
+### System-specific attributes
 
 When an attribute is specific to a particular system (project, provider, product),
 the corresponding attribute name SHOULD start with the system name following the
@@ -407,10 +407,10 @@ attribute MUST match the root namespace used in the system specific attribute be
 For example, both `cassandra.consistency.level` attribute name and `db.system.name=cassandra`
 use the same system name (`cassandra`).
 
-### System-specific Metrics
+### System-specific metrics
 
 When a metric is specific to a system (project, provider, product),
-the system name should be included in the instrument name following the
+the corresponding instrument name SHOULD start with the system name following the
 `{system_name}.*.{metric_name}` pattern.
 
 For example, `azure.cosmosdb.client.operation.request_charge`
