@@ -18,7 +18,7 @@ in OpenTelemetry.
 
 <!-- tocstop -->
 
-## CPU Metrics
+## CPU metrics
 
 ### Metric: `cpu.time`
 

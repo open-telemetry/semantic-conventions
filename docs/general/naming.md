@@ -31,7 +31,7 @@ aliases: [attribute-naming]
 
 </details>
 
-## General Naming Considerations
+## General naming considerations
 
 _This section applies to attribute names (also
 known as the "attribute keys"), as well as Metric and Event names. For brevity

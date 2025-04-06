@@ -20,7 +20,7 @@ for [Gen AI Spans](gen-ai-spans.md) and [Gen AI Metrics](gen-ai-metrics.md).
 
 `gen_ai.system` MUST be set to `"openai"`.
 
-## OpenAI Spans
+## OpenAI spans
 
 These attributes track input data and metadata for a request to an OpenAI model. The attributes include general Generative AI
 attributes and ones specific the OpenAI.

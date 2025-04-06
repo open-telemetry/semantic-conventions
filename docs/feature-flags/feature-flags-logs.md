@@ -29,7 +29,7 @@ This can be used to determine the impact a feature has on a request, enabling en
 
 <!-- tocstop -->
 
-## Recording an Evaluation
+## Recording an evaluation
 
 Feature flag evaluations SHOULD be recorded as attributes on the
 [LogRecord](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/logs/api.md#logger) emit

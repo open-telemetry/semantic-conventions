@@ -17,7 +17,7 @@ This document describes semantic conventions for CPython Runtime metrics in Open
 
 <!-- tocstop -->
 
-## CPython Garbage Collection
+## CPython garbage collection
 
 **Status**: [development][DocumentStatus]
 

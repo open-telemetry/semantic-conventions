@@ -413,7 +413,7 @@ Examples of where `thread.id` and `thread.name` can be extracted from:
 | C++                   | `std::this_thread::get_id()`           |                                                |
 | Erlang                | `erlang:self()`                        | `erlang:process_info(self(), registered_name)` |
 
-## Source Code Attributes
+## Source code attributes
 
 **Status**: [Release Candidate][DocumentStatus]
 

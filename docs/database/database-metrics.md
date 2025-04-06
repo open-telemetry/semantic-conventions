@@ -228,7 +228,7 @@ Even though parameterized query text can potentially have sensitive data, by usi
 
 **Status**: [Development][DocumentStatus]
 
-### Database Response
+### Database response
 
 The following metric instruments describe database query response.
 

@@ -305,7 +305,7 @@ HTTP calls can generally be represented using just [HTTP spans](/docs/http/http-
 If they address a particular remote service and method known to the caller, i.e., when it is a remote procedure call transported over HTTP, the `rpc.*` attributes might be added additionally on that span, or in a separate RPC span that is a parent of the transporting HTTP call.
 Note that *method* in this context is about the called remote procedure and *not* the HTTP verb (GET, POST, etc.).
 
-## Semantic Conventions for specific RPC technologies
+## Semantic conventions for specific RPC technologies
 
 More specific Semantic Conventions are defined for the following RPC technologies:
 

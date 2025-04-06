@@ -31,11 +31,11 @@ operations. By adding FaaS attributes to metric events it allows for finely tune
 
 <!-- tocstop -->
 
-## Metric Instruments
+## Metric instruments
 
 The following metric instruments describe FaaS operations.
 
-### FaaS Instance
+### FaaS instance
 
 The following metrics are recorded by the FaaS instance.
 
@@ -377,7 +377,7 @@ This metric is [recommended][MetricRecommended].
 
 ## References
 
-### Metric References
+### Metric references
 
 Below are links to documentation regarding metrics that are available with different
 FaaS providers. This list is not exhaustive.
