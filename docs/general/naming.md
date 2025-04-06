@@ -324,11 +324,11 @@ instrument creation, but can be added if there is ambiguity.
 ### Client and Server Metrics
 
 Metrics that measure some aspect of a physical or logical network call SHOULD include
-an indication of the side metric being recorded.
+an indication of which side the metric is being recorded from.
 
 Such metrics SHOULD follow the `{area}.{client|server}.{metric_name}`
-pattern if communication side is ambiguous for given `{area}` and `{metric_name}`.
-Otherwise, when a specific communication side is implied by given `{area}` or
+pattern if the communication side is ambiguous for a given `{area}` and `{metric_name}`.
+Otherwise, when the communication side can be inferred from the given `{area}` or
 `{metric_name}`, the `{area}.{metric_name}` pattern SHOULD be used.
 
 Examples:
@@ -353,14 +353,14 @@ Semantic conventions for a certain area are usually applicable to multiple syste
 For example, database semantic conventions can be used to describe telemetry for a
 broad range of database systems.
 
-Such conventions SHOULD define an attribute to represent system name following
+Such conventions SHOULD define an attribute to represent the system name following
 `{area}.system|provider|protocol.name` pattern.
 
 For example, database conventions include the `db.system.name` attribute.
 
 ### Choosing a System Name
 
-When adding new system to the semantic conventions, follow these principles in descending order of priority:
+When adding new a system to the semantic conventions, follow these principles in descending order of priority:
 
 1. The system name SHOULD adhere to the general attribute naming guidelines outlined in this document,
    as it will be used as a namespace in [system-specific attribute names](#system-specific-attributes).
@@ -405,7 +405,7 @@ The value of the [`*.system.name`](#system-projectproductprovider-name-attribute
 attribute MUST match the root namespace used in the system specific attribute being defined.
 
 For example, both `cassandra.consistency.level` attribute name and `db.system.name=cassandra`
- use the same system name (`cassandra`).
+use the same system name (`cassandra`).
 
 ### System-specific Metrics
 
