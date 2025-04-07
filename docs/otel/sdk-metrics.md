@@ -906,19 +906,19 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.exporter.request.duration` | Histogram | `s` | The duration of any request(s) made from the exporter during export. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otel.sdk.exporter.operation.duration` | Histogram | `s` | The duration of exporting a batch of telemetry items. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** This metric defines successful requests using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1)
-and [grpc](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success). Anything else is defined as an unsuccessful request. For successful requests,
-`error.type` MUST NOT be set. For unsuccessful requests, `error.type` must contain a relevant failure cause.
+**[1]:** This metric defines successful operations using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1)
+and [grpc](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success). Anything else is defined as an unsuccessful operation. For successful operations,
+`error.type` MUST NOT be set. For unsuccessful export operations, `error.type` must contain a relevant failure cause.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `rejected`; `timeout`; `500`; `java.net.UnknownHostException` | `Conditionally Required` If request has ended with an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.response.status_code`](/docs/attributes-registry/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Recommended` when applicable | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `rejected`; `timeout`; `500`; `java.net.UnknownHostException` | `Conditionally Required` If operation has ended with an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.response.status_code`](/docs/attributes-registry/http.md) | int | The HTTP status code of the last HTTP request performed in scope of this export call. | `200` | `Recommended` when applicable | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`otel.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`otel.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.grpc.status_code`](/docs/attributes-registry/rpc.md) | int | The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request. | `0`; `1`; `2` | `Recommended` when applicable | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.grpc.status_code`](/docs/attributes-registry/rpc.md) | int | The gRPC status code of the last gRPC requests performed in scope of this export call. | `0`; `1`; `2` | `Recommended` when applicable | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` when applicable | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Recommended` when applicable | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
@@ -977,10 +977,15 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 | Value  | Description | Stability |
 |---|---|---|
+| `batching_log_processor` | The builtin SDK Batching LogRecord Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK Batching Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_grpc_log_exporter` | OTLP LogRecord exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_json_log_exporter` | OTLP LogRecord exporter over HTTP with JSON serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_json_span_exporter` | OTLP span exporter over HTTP with JSON serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otlp_http_log_exporter` | OTLP LogRecord exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
+| `simple_log_processor` | The builtin SDK Simple LogRecord Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---

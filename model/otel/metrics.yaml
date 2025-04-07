@@ -208,7 +208,7 @@ groups:
 
   - id: metric.otel.sdk.exporter.operation.duration
     type: metric
-    metric_name: otel.sdk.exporter.request.duration
+    metric_name: otel.sdk.exporter.operation.duration
     stability: development
     brief: "The duration of exporting a batch of telemetry items."
     note: |
@@ -218,6 +218,14 @@ groups:
     instrument: histogram
     unit: "s"
     attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
       - ref: error.type
         requirement_level:
           conditionally_required: If operation has ended with an error
