@@ -30,14 +30,14 @@ An MCP operation represents a complete client-server interaction for methods suc
 
 | Attribute | Type | Description | Examples | Required |
 |---|---|---|---|---|
-| `mcp.request.method` | string | The MCP operation being performed | `tools.call`, `prompts.get` | Yes |
+| `mcp.request.type` | string | The MCP operation being performed | `tools.call`, `prompts.get` | Yes |
 | `mcp.session.id` | string | Identifier for the MCP session | `c52f5ef3-c7a1-4f7a-a2e3-e38a7a4966d2` | No |
 | `mcp.request.id` | string | Identifier for the message | `msg_01234567` | No |
 | `mcp.client.name` | string | Name of the MCP client | `mcp-js-client` | No |
 | `mcp.client.version` | string | Version of the MCP client | `1.0.0` | No |
 | `mcp.server.name` | string | Name of the MCP server | `mcp-cs-server` | No |
 | `mcp.server.version` | string | Version of the MCP server | `1.0.0` | No |
-| `mcp.request.params.name` | string | Name of the tool or prompt | `GetFileInfo` | No |
+| `mcp.request.name` | string | Name of the tool or prompt | `GetFileInfo` | No |
 | `mcp.request.params.uri` | string | URI of a requested resource | `file://path/to/file` | No |
 | `mcp.notification.method` | string | Method for resource change notifications | `notifications/resources/list_changed` | No | 
 
