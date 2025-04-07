@@ -186,7 +186,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents an incoming Remote Procedure (RPC) call.
+This span represents an incoming Remote Procedure Call (RPC).
 
 Remote procedure calls can only be represented with these semantic conventions
 when the names of the called service and method are known and available.

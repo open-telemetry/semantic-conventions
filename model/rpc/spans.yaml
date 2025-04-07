@@ -51,7 +51,7 @@ groups:
     stability: development
     extends: rpc
     span_kind: server
-    brief: 'This span represents an incoming Remote Procedure (RPC) call.'
+    brief: This span represents an incoming Remote Procedure Call (RPC).
     events: [rpc.message]
     note: |
       Remote procedure calls can only be represented with these semantic conventions
