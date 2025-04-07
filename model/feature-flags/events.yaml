@@ -48,7 +48,10 @@ groups:
           | `general` | The error was for a reason not enumerated above. | ![Development](https://img.shields.io/badge/-development-blue) |
       - ref: error.message
         requirement_level:
-          recommended: If and only if an error occurred during flag evaluation.
+          recommended: If and only if an error occurred during flag evaluation and `error.type` does not sufficiently describe the error.
+        note: >
+          Should not simply duplicate the value of `error.type`, but should provide more context.
+          For example, if `error.type` is `invalid_context` the `error.message` may enumerate which context keys are missing or invalid.
     body:
       id: feature_flag.evaluation
       type: map

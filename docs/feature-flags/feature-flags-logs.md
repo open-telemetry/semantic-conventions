@@ -90,13 +90,9 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 
 **[4] `feature_flag.result.variant`:** If feature flag provider supplies a variant or equivalent concept.
 
-**[5] `error.message`:** `error.message` should provide additional context and detail about an error.
-It is NOT RECOMMENDED to duplicate the value of `error.type` in `error.message`.
-It is also NOT RECOMMENDED to duplicate the value of `exception.message` in `error.message`.
+**[5] `error.message`:** Should not simply duplicate the value of `error.type`, but should provide more context. For example, if `error.type` is `invalid_context` the `error.message` may enumerate which context keys are missing or invalid.
 
-`error.message` is NOT RECOMMENDED for metrics or spans due to its unbounded cardinality and overlap with span status.
-
-**[6] `error.message`:** If and only if an error occurred during flag evaluation.
+**[6] `error.message`:** If and only if an error occurred during flag evaluation and `error.type` does not sufficiently describe the error.
 
 ---
 
