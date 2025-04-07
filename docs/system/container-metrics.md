@@ -6,7 +6,7 @@ linkTitle: Container
 
 **Status**: [Development][DocumentStatus]
 
-## Container Metrics
+## Container metrics
 
 This document describes instruments and attributes for common container level
 metrics in OpenTelemetry. These metrics are collected from technology-specific,

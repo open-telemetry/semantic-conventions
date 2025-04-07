@@ -14,7 +14,7 @@ linkTitle: Spans
   - [Notes and well-known identifiers for `db.system.name`](#notes-and-well-known-identifiers-for-dbsystemname)
 - [Sanitization of `db.query.text`](#sanitization-of-dbquerytext)
 - [Generating a summary of the query text](#generating-a-summary-of-the-query-text)
-- [Semantic Conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
+- [Semantic conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 
 <!-- tocstop -->
 
@@ -400,7 +400,7 @@ Semantic conventions for individual database systems or specialized instrumentat
 MAY specify a different `db.query.summary` format as long as produced summary remains
 relatively short and its cardinality remains low comparing to the `db.query.text`.
 
-## Semantic Conventions for specific database technologies
+## Semantic conventions for specific database technologies
 
 More specific Semantic Conventions are defined for the following database technologies:
 

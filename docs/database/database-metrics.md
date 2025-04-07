@@ -11,7 +11,7 @@ linkTitle: Metrics
 - [Database operation](#database-operation)
   - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
 - [Development](#development)
-  - [Database Response](#database-response)
+  - [Database response](#database-response)
     - [Metric: `db.client.response.returned_rows`](#metric-dbclientresponsereturned_rows)
   - [Connection pools](#connection-pools)
     - [Metric: `db.client.connection.count`](#metric-dbclientconnectioncount)
@@ -228,7 +228,7 @@ Even though parameterized query text can potentially have sensitive data, by usi
 
 **Status**: [Development][DocumentStatus]
 
-### Database Response
+### Database response
 
 The following metric instruments describe database query response.
 
