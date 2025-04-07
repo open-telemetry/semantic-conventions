@@ -261,8 +261,8 @@ groups:
               value: gitlab
               brief: "[GitLab](https://gitlab.com)"
               stability: development
-            - id: gittea
-              value: gittea
+            - id: gitea
+              value: gitea
               brief: "[Gitea](https://gitea.io)"
               stability: development
             - id: bitbucket
@@ -276,6 +276,6 @@ groups:
           [
             "github",
             "gitlab",
-            "gittea",
+            "gitea",
             "bitbucket",
           ]
