@@ -43,7 +43,7 @@ Semantic conventions described in this document apply to the call-level spans on
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

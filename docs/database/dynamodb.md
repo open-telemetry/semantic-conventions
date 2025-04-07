@@ -44,13 +44,13 @@ Spans representing calls to AWS DynamoDB adhere to the general [Semantic Convent
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents `DynamoDB.BatchGetItem` call.
+This span represents a `DynamoDB.BatchGetItem` call.
 
 `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -94,13 +94,13 @@ This span represents `DynamoDB.BatchGetItem` call.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents `DynamoDB.BatchWriteItem` call.
+This span represents a `DynamoDB.BatchWriteItem` call.
 
 `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -145,13 +145,13 @@ This span represents `DynamoDB.BatchWriteItem` call.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents `DynamoDB.CreateTable` call.
+This span represents a `DynamoDB.CreateTable` call.
 
 `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -200,13 +200,13 @@ This span represents `DynamoDB.CreateTable` call.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents `DynamoDB.DeleteItem` call.
+This span represents a `DynamoDB.DeleteItem` call.
 
 `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -251,13 +251,13 @@ This span represents `DynamoDB.DeleteItem` call.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents `DynamoDB.DeleteTable` call.
+This span represents a `DynamoDB.DeleteTable` call.
 
 `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -300,13 +300,13 @@ This span represents `DynamoDB.DeleteTable` call.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents `DynamoDB.DescribeTable` call.
+This span represents a `DynamoDB.DescribeTable` call.
 
 `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -349,13 +349,13 @@ This span represents `DynamoDB.DescribeTable` call.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents `DynamoDB.GetItem` call.
+This span represents a `DynamoDB.GetItem` call.
 
 `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -401,13 +401,13 @@ This span represents `DynamoDB.GetItem` call.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents `DynamoDB.ListTables` call.
+This span represents a `DynamoDB.ListTables` call.
 
 `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -452,13 +452,13 @@ This span represents `DynamoDB.ListTables` call.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents `DynamoDB.PutItem` call.
+This span represents a `DynamoDB.PutItem` call.
 
 `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -503,13 +503,13 @@ This span represents `DynamoDB.PutItem` call.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents `DynamoDB.Query` call.
+This span represents a `DynamoDB.Query` call.
 
 `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -560,13 +560,13 @@ This span represents `DynamoDB.Query` call.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents `DynamoDB.Scan` call.
+This span represents a `DynamoDB.Scan` call.
 
 `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -620,13 +620,13 @@ This span represents `DynamoDB.Scan` call.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents `DynamoDB.UpdateItem` call.
+This span represents a `DynamoDB.UpdateItem` call.
 
 `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -671,13 +671,13 @@ This span represents `DynamoDB.UpdateItem` call.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents `DynamoDB.UpdateTable` call.
+This span represents a `DynamoDB.UpdateTable` call.
 
 `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

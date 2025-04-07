@@ -142,7 +142,7 @@ This span represents server (incoming) side of the FaaS invocation.
 
 **Span kind** SHOULD be `SERVER`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -205,7 +205,7 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents outgoing call to FaaS service.
+This span represents an outgoing call to a FaaS service.
 
 The values reported by the client for the attributes listed below SHOULD be equal to
 the corresponding [FaaS resource attributes][] and [Cloud resource attributes][],
@@ -213,7 +213,7 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -268,7 +268,7 @@ This span represents server side if the FaaS invocations triggered in response r
 
 **Span kind** SHOULD be `SERVER`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -321,7 +321,7 @@ This span represents server side if the FaaS invocations triggered by a timer.
 
 **Span kind** SHOULD be `SERVER`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

@@ -371,7 +371,7 @@ groups:
   - id: span.db.couchdb.client
     type: span
     span_kind: client
-    stability: release_candidate
+    stability: development
     extends: trace.db.common.minimal
     brief: >
       Spans representing calls to CouchDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).

@@ -22,7 +22,7 @@ See [compatibility](../non-normative/compatibility/aws.md#context-propagation).
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span describes AWS SDK client call.
+This span describes an AWS SDK client call.
 
 **Span name** MUST be of the format `Service.Operation` as per the
 AWS HTTP API, e.g., `DynamoDB.GetItem`, `S3.ListBuckets`. This is
@@ -36,7 +36,7 @@ interesting conventions are found.
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

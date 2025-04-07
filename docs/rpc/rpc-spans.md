@@ -96,16 +96,16 @@ Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents an outgoing Remote Procedure (RPC) call.
+This span represents an outgoing Remote Procedure Call (RPC).
 
-Remote procedure calls can only be represented with these semantic conventions,
+Remote procedure calls can only be represented with these semantic conventions
 when the names of the called service and method are known and available.
 
 **Span name:** refer to the [Span Name](#span-name) section.
 
-**Span kind** SHOULD be `CLIENT`.
+**Span kind** MUST be `CLIENT`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -188,14 +188,14 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 This span represents an incoming Remote Procedure (RPC) call.
 
-Remote procedure calls can only be represented with these semantic conventions,
+Remote procedure calls can only be represented with these semantic conventions
 when the names of the called service and method are known and available.
 
 **Span name:** refer to the [Span Name](#span-name) section.
 
-**Span kind** SHOULD be `SERVER`.
+**Span kind** MUST be `SERVER`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

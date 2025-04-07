@@ -37,7 +37,7 @@ so `gen_ai.usage.output_tokens` does not apply to embeddings operations.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents client call to Generative AI model or service.
+This span represents a client call to Generative AI model or service.
 
 **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
 Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
@@ -45,10 +45,10 @@ and MUST follow the overall [guidelines for span names](https://github.com/open-
 
 **Span kind** SHOULD be `CLIENT`and MAY be set to `INTERNAL` on spans representing
 call to models running in the same process. It's RECOMMENDED to use `CLIENT` kind
-when GenAI system being instrumented usually runs in a different process than its
-client or when GenAI call happens over instrumented protocol such as HTTP.
+when the GenAI system being instrumented usually runs in a different process than its
+client or when the GenAI call happens over instrumented protocol such as HTTP.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -185,12 +185,12 @@ Describes tool execution span.
 
 GenAI instrumentations that are able to instrument tool execution call SHOULD do so.
 However, it's common for tools to be executed by the application code. It's recommended
-for the application developers to follow this semantic conventions for tool invoked
+for the application developers to follow this semantic convention for tools invoked
 by the application code.
 
 **Span kind** SHOULD be `INTERNAL`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

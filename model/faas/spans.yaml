@@ -78,7 +78,7 @@ groups:
     type: span
     stability: development
     brief: >
-      This span represents outgoing call to FaaS service.
+      This span represents an outgoing call to a FaaS service.
     note: |
       The values reported by the client for the attributes listed below SHOULD be equal to
       the corresponding [FaaS resource attributes][] and [Cloud resource attributes][],

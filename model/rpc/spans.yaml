@@ -28,12 +28,14 @@ groups:
   - id: span.rpc.client
     type: span
     stability: development
-    brief: This span represents an outgoing Remote Procedure (RPC) call.
+    brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
-      Remote procedure calls can only be represented with these semantic conventions,
+      Remote procedure calls can only be represented with these semantic conventions
       when the names of the called service and method are known and available.
 
       **Span name:** refer to the [Span Name](#span-name) section.
+
+      **Span kind** MUST be `CLIENT`.
     extends: rpc
     span_kind: client
     events: [rpc.message]
@@ -52,10 +54,12 @@ groups:
     brief: 'This span represents an incoming Remote Procedure (RPC) call.'
     events: [rpc.message]
     note: |
-      Remote procedure calls can only be represented with these semantic conventions,
+      Remote procedure calls can only be represented with these semantic conventions
       when the names of the called service and method are known and available.
 
       **Span name:** refer to the [Span Name](#span-name) section.
+
+      **Span kind** MUST be `SERVER`.
     attributes:
       - ref: client.address
         requirement_level: recommended

@@ -15,7 +15,7 @@ linkTitle: GraphQL server
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents incoming operation on GraphQL server implementation.
+This span represents an incoming operation on a GraphQL server implementation.
 
 **Span name** SHOULD be of the format `{graphql.operation.type}` provided
 `graphql.operation.type` is available. If `graphql.operation.type` is not available,
@@ -32,7 +32,7 @@ the span SHOULD be named `GraphQL Operation`.
 
 **Span kind** SHOULD be `SERVER`.
 
-**Span status** SHOULD follow [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

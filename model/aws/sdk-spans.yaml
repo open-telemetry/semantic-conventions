@@ -4,7 +4,7 @@ groups:
     stability: development
     span_kind: client
     brief: >
-        This span describes AWS SDK client call.
+        This span describes an AWS SDK client call.
     note: |
         **Span name** MUST be of the format `Service.Operation` as per the
         AWS HTTP API, e.g., `DynamoDB.GetItem`, `S3.ListBuckets`. This is
@@ -39,7 +39,7 @@ groups:
 
   - id: span.dynamodb.batchgetitem.client
     brief: >
-      This span represents `DynamoDB.BatchGetItem` call.
+      This span represents a `DynamoDB.BatchGetItem` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
@@ -54,7 +54,7 @@ groups:
 
   - id: span.dynamodb.batchwriteitem.client
     brief: >
-      This span represents `DynamoDB.BatchWriteItem` call.
+      This span represents a `DynamoDB.BatchWriteItem` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
@@ -71,7 +71,7 @@ groups:
 
   - id: span.dynamodb.createtable.client
     brief: >
-      This span represents `DynamoDB.CreateTable` call.
+      This span represents a `DynamoDB.CreateTable` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
@@ -99,7 +99,7 @@ groups:
 
   - id: span.dynamodb.deleteitem.client
     brief: >
-      This span represents `DynamoDB.DeleteItem` call.
+      This span represents a `DynamoDB.DeleteItem` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
@@ -119,7 +119,7 @@ groups:
 
   - id: span.dynamodb.deletetable.client
     brief: >
-      This span represents `DynamoDB.DeleteTable` call.
+      This span represents a `DynamoDB.DeleteTable` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
@@ -135,7 +135,7 @@ groups:
 
   - id: span.dynamodb.describetable.client
     brief: >
-      This span represents `DynamoDB.DescribeTable` call.
+      This span represents a `DynamoDB.DescribeTable` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
@@ -151,7 +151,7 @@ groups:
 
   - id: span.dynamodb.getitem.client
     brief: >
-      This span represents `DynamoDB.GetItem` call.
+      This span represents a `DynamoDB.GetItem` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
@@ -173,7 +173,7 @@ groups:
 
   - id: span.dynamodb.listtables.client
     brief: >
-      This span represents `DynamoDB.ListTables` call.
+      This span represents a `DynamoDB.ListTables` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
@@ -190,7 +190,7 @@ groups:
 
   - id: span.dynamodb.putitem.client
     brief: >
-      This span represents `DynamoDB.PutItem` call.
+      This span represents a `DynamoDB.PutItem` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
@@ -207,7 +207,7 @@ groups:
 
   - id: span.dynamodb.query.client
     brief: >
-      This span represents `DynamoDB.Query` call.
+      This span represents a `DynamoDB.Query` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
@@ -239,7 +239,7 @@ groups:
 
   - id: span.dynamodb.scan.client
     brief: >
-      This span represents `DynamoDB.Scan` call.
+      This span represents a `DynamoDB.Scan` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
@@ -277,7 +277,7 @@ groups:
 
   - id: span.dynamodb.updateitem.client
     brief: >
-      This span represents `DynamoDB.UpdateItem` call.
+      This span represents a `DynamoDB.UpdateItem` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client
@@ -297,7 +297,7 @@ groups:
 
   - id: span.dynamodb.updatetable.client
     brief: >
-      This span represents `DynamoDB.UpdateTable` call.
+      This span represents a `DynamoDB.UpdateTable` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
     extends: span.aws.client

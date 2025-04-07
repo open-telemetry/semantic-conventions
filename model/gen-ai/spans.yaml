@@ -70,7 +70,7 @@ groups:
     stability: development
     span_kind: client
     brief: >
-      This span represents client call to Generative AI model or service.
+      This span represents a client call to Generative AI model or service.
     note: |
       **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
@@ -78,8 +78,8 @@ groups:
 
       **Span kind** SHOULD be `CLIENT`and MAY be set to `INTERNAL` on spans representing
       call to models running in the same process. It's RECOMMENDED to use `CLIENT` kind
-      when GenAI system being instrumented usually runs in a different process than its
-      client or when GenAI call happens over instrumented protocol such as HTTP.
+      when the GenAI system being instrumented usually runs in a different process than its
+      client or when the GenAI call happens over instrumented protocol such as HTTP.
     extends: trace.gen_ai.client.common_attributes
     attributes:
       - ref: gen_ai.system
@@ -221,7 +221,7 @@ groups:
 
       GenAI instrumentations that are able to instrument tool execution call SHOULD do so.
       However, it's common for tools to be executed by the application code. It's recommended
-      for the application developers to follow this semantic conventions for tool invoked
+      for the application developers to follow this semantic convention for tools invoked
       by the application code.
     attributes:
       - ref: gen_ai.tool.name

@@ -4,7 +4,7 @@ groups:
     stability: development
     span_kind: server
     brief: >
-      This span represents incoming operation on GraphQL server implementation.
+      This span represents an incoming operation on a GraphQL server implementation.
     note: |
       **Span name** SHOULD be of the format `{graphql.operation.type}` provided
       `graphql.operation.type` is available. If `graphql.operation.type` is not available,
