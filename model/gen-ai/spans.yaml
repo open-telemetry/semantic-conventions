@@ -206,6 +206,9 @@ groups:
       - ref: gen_ai.tool.call.id
         requirement_level:
           recommended: if available
+      - ref: gen_ai.tool.description
+        requirement_level:
+          recommended: if available
       - ref: error.type
         requirement_level:
           conditionally_required: "if the operation ended in an error"
