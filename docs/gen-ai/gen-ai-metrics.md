@@ -8,10 +8,10 @@ linkTitle: Metrics
 
 <!-- toc -->
 
-- [Generative AI Client Metrics](#generative-ai-client-metrics)
+- [Generative AI client metrics](#generative-ai-client-metrics)
   - [Metric: `gen_ai.client.token.usage`](#metric-gen_aiclienttokenusage)
   - [Metric: `gen_ai.client.operation.duration`](#metric-gen_aiclientoperationduration)
-- [Generative AI Model Server Metrics](#generative-ai-model-server-metrics)
+- [Generative AI model server metrics](#generative-ai-model-server-metrics)
   - [Metric: `gen_ai.server.request.duration`](#metric-gen_aiserverrequestduration)
   - [Metric: `gen_ai.server.time_per_output_token`](#metric-gen_aiservertime_per_output_token)
   - [Metric: `gen_ai.server.time_to_first_token`](#metric-gen_aiservertime_to_first_token)

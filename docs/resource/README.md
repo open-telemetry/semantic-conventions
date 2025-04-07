@@ -12,18 +12,18 @@ This document defines standard attributes for resources. These attributes are ty
 <!-- toc -->
 
 - [TODOs](#todos)
-- [Document Conventions](#document-conventions)
-- [Attributes with Special Handling](#attributes-with-special-handling)
-  - [Semantic Attributes with Dedicated Environment Variable](#semantic-attributes-with-dedicated-environment-variable)
-  - [Semantic Attributes with SDK-provided Default Value](#semantic-attributes-with-sdk-provided-default-value)
+- [Document conventions](#document-conventions)
+- [Attributes with special handling](#attributes-with-special-handling)
+  - [Semantic attributes with dedicated environment variable](#semantic-attributes-with-dedicated-environment-variable)
+  - [Semantic attributes with SDK-provided default value](#semantic-attributes-with-sdk-provided-default-value)
 - [Service](#service)
 - [Telemetry SDK](#telemetry-sdk)
-- [Telemetry Distro](#telemetry-distro)
-- [Compute Unit](#compute-unit)
-- [Compute Instance](#compute-instance)
+- [Telemetry distro](#telemetry-distro)
+- [Compute unit](#compute-unit)
+- [Compute instance](#compute-instance)
 - [Environment](#environment)
 - [Version attributes](#version-attributes)
-- [Cloud-Provider-Specific Attributes](#cloud-provider-specific-attributes)
+- [Cloud-Provider-specific attributes](#cloud-provider-specific-attributes)
 
 <!-- tocstop -->
 

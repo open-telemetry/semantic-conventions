@@ -11,8 +11,8 @@ linkTitle: Generative AI traces
 <!-- toc -->
 
 - [Spans](#spans)
-  - [Create Agent Span](#create-agent-span)
-- [Agent Execute Tool Span](#agent-execute-tool-span)
+  - [Create agent span](#create-agent-span)
+- [Agent execute tool span](#agent-execute-tool-span)
 
 <!-- tocstop -->
 

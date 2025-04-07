@@ -14,12 +14,12 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 
 <!-- toc -->
 
-- [HTTP Server](#http-server)
+- [HTTP server](#http-server)
   - [Metric: `http.server.request.duration`](#metric-httpserverrequestduration)
   - [Metric: `http.server.active_requests`](#metric-httpserveractive_requests)
   - [Metric: `http.server.request.body.size`](#metric-httpserverrequestbodysize)
   - [Metric: `http.server.response.body.size`](#metric-httpserverresponsebodysize)
-- [HTTP Client](#http-client)
+- [HTTP client](#http-client)
   - [Metric: `http.client.request.duration`](#metric-httpclientrequestduration)
   - [Metric: `http.client.request.body.size`](#metric-httpclientrequestbodysize)
   - [Metric: `http.client.response.body.size`](#metric-httpclientresponsebodysize)

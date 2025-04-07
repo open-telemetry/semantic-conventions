@@ -24,7 +24,7 @@ This can be used to determine the impact a feature has on a request, enabling en
 
 <!-- toc -->
 
-- [Recording an Evaluation](#recording-an-evaluation)
+- [Recording an evaluation](#recording-an-evaluation)
 - [Evaluation event](#evaluation-event)
 
 <!-- tocstop -->

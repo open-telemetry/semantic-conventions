@@ -15,8 +15,8 @@ operations. By adding FaaS attributes to metric events it allows for finely tune
 
 <!-- toc -->
 
-- [Metric Instruments](#metric-instruments)
-  - [FaaS Instance](#faas-instance)
+- [Metric instruments](#metric-instruments)
+  - [FaaS instance](#faas-instance)
     - [Metric: `faas.invoke_duration`](#metric-faasinvoke_duration)
     - [Metric: `faas.init_duration`](#metric-faasinit_duration)
     - [Metric: `faas.coldstarts`](#metric-faascoldstarts)
@@ -27,7 +27,7 @@ operations. By adding FaaS attributes to metric events it allows for finely tune
     - [Metric: `faas.cpu_usage`](#metric-faascpu_usage)
     - [Metric: `faas.net_io`](#metric-faasnet_io)
 - [References](#references)
-  - [Metric References](#metric-references)
+  - [Metric references](#metric-references)
 
 <!-- tocstop -->
 

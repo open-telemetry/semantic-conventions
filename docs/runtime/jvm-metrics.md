@@ -10,16 +10,16 @@ This document describes semantic conventions for JVM metrics in OpenTelemetry.
 
 <!-- toc -->
 
-- [JVM Memory](#jvm-memory)
+- [JVM memory](#jvm-memory)
   - [Metric: `jvm.memory.used`](#metric-jvmmemoryused)
   - [Metric: `jvm.memory.committed`](#metric-jvmmemorycommitted)
   - [Metric: `jvm.memory.limit`](#metric-jvmmemorylimit)
   - [Metric: `jvm.memory.used_after_last_gc`](#metric-jvmmemoryused_after_last_gc)
-- [JVM Garbage Collection](#jvm-garbage-collection)
+- [JVM garbage collection](#jvm-garbage-collection)
   - [Metric: `jvm.gc.duration`](#metric-jvmgcduration)
-- [JVM Threads](#jvm-threads)
+- [JVM threads](#jvm-threads)
   - [Metric: `jvm.thread.count`](#metric-jvmthreadcount)
-- [JVM Classes](#jvm-classes)
+- [JVM classes](#jvm-classes)
   - [Metric: `jvm.class.loaded`](#metric-jvmclassloaded)
   - [Metric: `jvm.class.unloaded`](#metric-jvmclassunloaded)
   - [Metric: `jvm.class.count`](#metric-jvmclasscount)

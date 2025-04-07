@@ -12,7 +12,7 @@ This document describes metrics emitted by the OpenTelemetry SDK components them
 
 <!-- toc -->
 
-- [Span Metrics](#span-metrics)
+- [Span metrics](#span-metrics)
   - [Metric: `otel.sdk.span.live.count`](#metric-otelsdkspanlivecount)
   - [Metric: `otel.sdk.span.ended.count`](#metric-otelsdkspanendedcount)
   - [Metric: `otel.sdk.processor.span.queue.size`](#metric-otelsdkprocessorspanqueuesize)

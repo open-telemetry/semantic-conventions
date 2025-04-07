@@ -11,20 +11,20 @@ These metrics are obtained from Go's [`runtime/metrics`][RuntimeMetrics] package
 
 <!-- toc -->
 
-- [Go Memory](#go-memory)
+- [Go memory](#go-memory)
   - [Metric: `go.memory.used`](#metric-gomemoryused)
   - [Metric: `go.memory.limit`](#metric-gomemorylimit)
   - [Metric: `go.memory.allocated`](#metric-gomemoryallocated)
   - [Metric: `go.memory.allocations`](#metric-gomemoryallocations)
-- [Go Garbage Collection](#go-garbage-collection)
+- [Go garbage collection](#go-garbage-collection)
   - [Metric: `go.memory.gc.goal`](#metric-gomemorygcgoal)
-- [Go Goroutines](#go-goroutines)
+- [Go goroutines](#go-goroutines)
   - [Metric: `go.goroutine.count`](#metric-gogoroutinecount)
-- [Go Processor](#go-processor)
+- [Go processor](#go-processor)
   - [Metric: `go.processor.limit`](#metric-goprocessorlimit)
-- [Go Scheduler](#go-scheduler)
+- [Go scheduler](#go-scheduler)
   - [Metric: `go.schedule.duration`](#metric-goscheduleduration)
-- [Go Runtime Configuration](#go-runtime-configuration)
+- [Go runtime configuration](#go-runtime-configuration)
   - [Metric: `go.config.gogc`](#metric-goconfiggogc)
 
 <!-- tocstop -->

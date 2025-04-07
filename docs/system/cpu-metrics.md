@@ -11,7 +11,7 @@ in OpenTelemetry.
 
 <!-- toc -->
 
-- [CPU Metrics](#cpu-metrics)
+- [CPU metrics](#cpu-metrics)
   - [Metric: `cpu.time`](#metric-cputime)
   - [Metric: `cpu.utilization`](#metric-cpuutilization)
   - [Metric: `cpu.frequency`](#metric-cpufrequency)

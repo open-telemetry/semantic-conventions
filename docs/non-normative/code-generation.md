@@ -2,9 +2,9 @@
 
 <!-- toc -->
 
-- [Stability and Versioning](#stability-and-versioning)
-  - [Deprecated Conventions](#deprecated-conventions)
-- [Semantic Conventions Artifact Structure](#semantic-conventions-artifact-structure)
+- [Stability and versioning](#stability-and-versioning)
+  - [Deprecated conventions](#deprecated-conventions)
+- [Semantic conventions artifact structure](#semantic-conventions-artifact-structure)
 - [Generating semantic conventions](#generating-semantic-conventions)
   - [Migrating from build-tools](#migrating-from-build-tools)
     - [Weaver config](#weaver-config)

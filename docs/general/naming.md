@@ -11,7 +11,7 @@ aliases: [attribute-naming]
 
 <!-- toc -->
 
-- [General Naming Considerations](#general-naming-considerations)
+- [General naming considerations](#general-naming-considerations)
 - [Name Abbreviation Guidelines](#name-abbreviation-guidelines)
 - [Name Reuse Prohibition](#name-reuse-prohibition)
 - [Recommendations for OpenTelemetry Authors](#recommendations-for-opentelemetry-authors)

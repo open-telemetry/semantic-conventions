@@ -11,13 +11,13 @@ linkTitle: Process
 - [Process](#process)
   - [Selecting process attributes](#selecting-process-attributes)
 - [Process runtimes](#process-runtimes)
-  - [Erlang Runtimes](#erlang-runtimes)
-  - [Go Runtimes](#go-runtimes)
+  - [Erlang runtimes](#erlang-runtimes)
+  - [Go runtimes](#go-runtimes)
   - [Java runtimes](#java-runtimes)
   - [JavaScript runtimes](#javascript-runtimes)
-  - [.NET Runtimes](#net-runtimes)
-  - [Python Runtimes](#python-runtimes)
-  - [Ruby Runtimes](#ruby-runtimes)
+  - [.NET runtimes](#net-runtimes)
+  - [Python runtimes](#python-runtimes)
+  - [Ruby runtimes](#ruby-runtimes)
 
 <!-- tocstop -->
 

@@ -17,7 +17,7 @@ metrics](/docs/runtime/README.md#metrics).
 
 <!-- toc -->
 
-- [Process Metrics](#process-metrics)
+- [Process metrics](#process-metrics)
   - [Metric: `process.cpu.time`](#metric-processcputime)
   - [Metric: `process.cpu.utilization`](#metric-processcpuutilization)
   - [Metric: `process.memory.usage`](#metric-processmemoryusage)

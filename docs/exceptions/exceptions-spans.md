@@ -12,7 +12,7 @@ exceptions associated with spans.
 <!-- toc -->
 
 - [Exception event](#exception-event)
-  - [Stacktrace Representation](#stacktrace-representation)
+  - [Stacktrace representation](#stacktrace-representation)
 
 <!-- tocstop -->
 

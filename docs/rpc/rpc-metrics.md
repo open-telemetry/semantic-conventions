@@ -15,13 +15,13 @@ metrics can be filtered for finer grain analysis.
 <!-- toc -->
 
 - [Metric instruments](#metric-instruments)
-  - [RPC Server](#rpc-server)
+  - [RPC server](#rpc-server)
     - [Metric: `rpc.server.duration`](#metric-rpcserverduration)
     - [Metric: `rpc.server.request.size`](#metric-rpcserverrequestsize)
     - [Metric: `rpc.server.response.size`](#metric-rpcserverresponsesize)
     - [Metric: `rpc.server.requests_per_rpc`](#metric-rpcserverrequests_per_rpc)
     - [Metric: `rpc.server.responses_per_rpc`](#metric-rpcserverresponses_per_rpc)
-  - [RPC Client](#rpc-client)
+  - [RPC client](#rpc-client)
     - [Metric: `rpc.client.duration`](#metric-rpcclientduration)
     - [Metric: `rpc.client.request.size`](#metric-rpcclientrequestsize)
     - [Metric: `rpc.client.response.size`](#metric-rpcclientresponsesize)

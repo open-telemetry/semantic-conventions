@@ -12,13 +12,13 @@ use cases.
 <!-- toc -->
 
 - [All triggers](#all-triggers)
-  - [AWS X-Ray Active Tracing Considerations](#aws-x-ray-active-tracing-considerations)
-    - [`xray-lambda` Propagator Functionality](#xray-lambda-propagator-functionality)
+  - [AWS X-Ray active tracing considerations](#aws-x-ray-active-tracing-considerations)
+    - [`xray-lambda` propagator functionality](#xray-lambda-propagator-functionality)
     - [`xray-lambda` Propagator Configuration](#xray-lambda-propagator-configuration)
 - [API Gateway](#api-gateway)
 - [SQS](#sqs)
-  - [SQS Event](#sqs-event)
-  - [SQS Message](#sqs-message)
+  - [SQS event](#sqs-event)
+  - [SQS message](#sqs-message)
 - [Examples](#examples)
   - [API Gateway Request Proxy (Lambda tracing passive)](#api-gateway-request-proxy-lambda-tracing-passive)
   - [API Gateway Request Proxy (Lambda tracing active)](#api-gateway-request-proxy-lambda-tracing-active)

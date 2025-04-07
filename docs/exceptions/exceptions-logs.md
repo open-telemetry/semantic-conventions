@@ -12,9 +12,9 @@ emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry
 
 <!-- toc -->
 
-- [Recording an Exception](#recording-an-exception)
+- [Recording an exception](#recording-an-exception)
 - [Attributes](#attributes)
-  - [Stacktrace Representation](#stacktrace-representation)
+  - [Stacktrace representation](#stacktrace-representation)
 
 <!-- tocstop -->
 

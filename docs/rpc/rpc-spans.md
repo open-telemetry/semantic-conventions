@@ -20,7 +20,7 @@ This document defines how to describe remote procedure calls
   - [Events](#events)
     - [Message event](#message-event)
   - [Distinction from HTTP spans](#distinction-from-http-spans)
-- [Semantic Conventions for specific RPC technologies](#semantic-conventions-for-specific-rpc-technologies)
+- [Semantic conventions for specific RPC technologies](#semantic-conventions-for-specific-rpc-technologies)
 
 <!-- tocstop -->
 

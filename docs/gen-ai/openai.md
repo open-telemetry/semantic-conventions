@@ -8,7 +8,7 @@ linkTitle: OpenAI
 
 <!-- toc -->
 
-- [OpenAI Spans](#openai-spans)
+- [OpenAI spans](#openai-spans)
 - [OpenAI Metrics](#openai-metrics)
   - [Metric: `gen_ai.client.token.usage`](#metric-gen_aiclienttokenusage)
   - [Metric: `gen_ai.client.operation.duration`](#metric-gen_aiclientoperationduration)

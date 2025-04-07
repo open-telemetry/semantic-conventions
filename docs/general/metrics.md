@@ -9,10 +9,10 @@ aliases: [metrics-general]
 
 <!-- toc -->
 
-- [General Guidelines](#general-guidelines)
+- [General guidelines](#general-guidelines)
   - [Units](#units)
-  - [Instrument Units](#instrument-units)
-  - [Instrument Types](#instrument-types)
+  - [Instrument units](#instrument-units)
+  - [Instrument types](#instrument-types)
   - [Consistent UpDownCounter timeseries](#consistent-updowncounter-timeseries)
 
 <!-- tocstop -->
