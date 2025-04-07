@@ -909,8 +909,8 @@ of `[ 1 ]`.
 | `otel.sdk.exporter.operation.duration` | Histogram | `s` | The duration of exporting a batch of telemetry items. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** This metric defines successful operations using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1)
-and [grpc](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success). Anything else is defined as an unsuccessful operation. For successful operations,
-`error.type` MUST NOT be set. For unsuccessful export operations, `error.type` must contain a relevant failure cause.
+and [grpc](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success). Anything else is defined as an unsuccessful operation. For successful
+operations, `error.type` MUST NOT be set. For unsuccessful export operations, `error.type` must contain a relevant failure cause.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
