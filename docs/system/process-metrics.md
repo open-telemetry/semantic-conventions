@@ -42,7 +42,7 @@ metrics](/docs/runtime/README.md#metrics).
 > * SHOULD introduce a control mechanism to allow users to opt-in to the new
 >   conventions once the migration plan is finalized.
 
-## Process Metrics
+## Process metrics
 
 ### Metric: `process.cpu.time`
 
