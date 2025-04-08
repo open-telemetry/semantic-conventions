@@ -1,4 +1,12 @@
 groups:
+  - id: mcp.metrics.attributes
+    type: attribute_group
+    brief: MCP metrics attributes
+    extends: mcp.common.attributes
+    attributes:
+      - ref: mcp.resource.uri
+        requirement_level: opt_in
+
   - id: metric.mcp.client.request.duration
     type: metric
     metric_name: mcp.client.request.duration
@@ -6,7 +14,7 @@ groups:
     unit: s
     instrument: histogram
     stability: development
-    extends: mcp.common.attributes
+    extends: mcp.metrics.attributes
 
   - id: metric.mcp.server.request.duration
     type: metric
@@ -15,7 +23,7 @@ groups:
     unit: s
     instrument: histogram
     stability: development
-    extends: mcp.common.attributes
+    extends: mcp.metrics.attributes
 
   - id: metric.mcp.client.session.duration
     type: metric
@@ -24,7 +32,7 @@ groups:
     unit: s
     instrument: histogram
     stability: development
-    extends: mcp.common.attributes
+    extends: mcp.metrics.attributes
 
   - id: metric.mcp.server.session.duration
     type: metric
@@ -33,4 +41,4 @@ groups:
     unit: s
     instrument: histogram
     stability: development
-    extends: mcp.common.attributes
+    extends: mcp.metrics.attributes

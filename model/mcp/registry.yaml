@@ -84,14 +84,19 @@ groups:
         brief: Identifies MCP session.
         stability: development
         examples: ["191c4850af6c49e08843a3f6c80e5046"]
-      - id: mcp.request.name
+      - id: mcp.tool.name
+        # This is effectively the same as `gen_ai.tool.name`, but it's not clear
+        # which one of them should survive. MCP can be used outside of GenAI domain,
+        # and GenAI can be used without MCP.
         type: string
-        brief: The value of the name parameter of the request.
-        note: >
-          This is a tool name when the request type is `call_tool` or a prompt
-          name when the request type is `get_prompt`.
+        brief: The name of the tool provided in the request.
         stability: development
-        examples: ["get-weather", "analyze-code"]
+        examples: ["get-weather", "execute_command"]
+      - id: mcp.prompt.name
+        type: string
+        brief: The name of the prompt or prompt template provided in the request or response.
+        stability: development
+        examples: ["analyze-code"]
       - id: mcp.resource.uri
         type: string
         brief: The value of the resource uri.
@@ -100,3 +105,15 @@ groups:
           `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
         stability: development
         examples: ["postgres://database/customers/schema", "file:///home/user/documents/report.pdf"]
+      - id: mcp.request.argument
+        type: template[string]
+        brief: Additional arguments passed to the request within `params` object.
+          `<key>` being the normalized argument name name (lowercase), the value being the argument value.
+        note: >
+          Instrumentations SHOULD require an explicit configuration of which arguments
+          are to be captured. Including all request arguments can be a security risk -
+          explicit configuration helps avoid leaking sensitive information.
+
+          Argument values SHOULD be recorded as JSON strings.
+        stability: development
+        examples: ['mcp.request.argument.location=Seattle, WA', 'mcp.request.argument.a=42']
