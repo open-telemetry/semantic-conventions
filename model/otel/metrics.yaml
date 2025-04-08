@@ -160,6 +160,9 @@ groups:
       - ref: otel.component.type
       - ref: otel.component.name
       - ref: error.type
+        brief: >
+          A low-cardinality description of the failure reason. SDK Batching Log Record Processors MUST use `queue_full` for log records dropped due to a full queue.
+        examples: ["queue_full"]
   
   - id: metric.otel.sdk.exporter.log.inflight
     type: metric
