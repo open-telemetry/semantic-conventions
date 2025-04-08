@@ -1,5 +1,5 @@
 groups:
-  - id: event.app.screen.click.id
+  - id: event.app.screen.click
     stability: development
     type: event
     name: app.screen.click
@@ -19,7 +19,7 @@ groups:
         requirement_level: required
       - ref: app.screen.coordinate.y
         requirement_level: required
-  - id: event.app.widget.click.id
+  - id: event.app.widget.click
     stability: development
     type: event
     name: app.widget.click
