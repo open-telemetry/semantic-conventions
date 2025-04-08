@@ -13,11 +13,11 @@ are found.
 
 Some descriptions are also provided for populating general OpenTelemetry semantic conventions based on these APIs.
 
-## Context Propagation
+## Context propagation
 
 See [compatibility](../non-normative/compatibility/aws.md#context-propagation).
 
-## Common Attributes
+## Common attributes
 
 The span name MUST be of the format `Service.Operation` as per the AWS HTTP API, e.g., `DynamoDB.GetItem`,
 `S3.ListBuckets`. This is equivalent to concatenating `rpc.service` and `rpc.method` with `.` and consistent
