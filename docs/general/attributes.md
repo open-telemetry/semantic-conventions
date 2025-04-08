@@ -30,7 +30,7 @@ Particular operations may refer to or require some of these attributes.
     - [Network connection and carrier attributes](#network-connection-and-carrier-attributes)
 - [General remote service attributes](#general-remote-service-attributes)
 - [General thread attributes](#general-thread-attributes)
-- [Source Code Attributes](#source-code-attributes)
+- [Source code attributes](#source-code-attributes)
 
 <!-- tocstop -->
 
@@ -413,7 +413,7 @@ Examples of where `thread.id` and `thread.name` can be extracted from:
 | C++                   | `std::this_thread::get_id()`           |                                                |
 | Erlang                | `erlang:self()`                        | `erlang:process_info(self(), registered_name)` |
 
-## Source Code Attributes
+## Source code attributes
 
 **Status**: [Release Candidate][DocumentStatus]
 

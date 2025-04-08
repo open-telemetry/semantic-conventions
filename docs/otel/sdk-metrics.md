@@ -2,7 +2,7 @@
 linkTitle: SDK Metrics
 --->
 
-# Semantic Conventions for OpenTelemetry SDK metrics
+# Semantic conventions for OpenTelemetry SDK metrics
 
 **Status**: [Development][DocumentStatus]
 
@@ -12,7 +12,7 @@ This document describes metrics emitted by the OpenTelemetry SDK components them
 
 <!-- toc -->
 
-- [Span Metrics](#span-metrics)
+- [Span metrics](#span-metrics)
   - [Metric: `otel.sdk.live_spans`](#metric-otelsdklive_spans)
   - [Metric: `otel.sdk.ended_spans`](#metric-otelsdkended_spans)
   - [Metric: `otel.sdk.processor.span.queue.size`](#metric-otelsdkprocessorspanqueuesize)
@@ -29,7 +29,7 @@ This document describes metrics emitted by the OpenTelemetry SDK components them
 
 <!-- tocstop -->
 
-## Span Metrics
+## Span metrics
 
 ### Metric: `otel.sdk.live_spans`
 

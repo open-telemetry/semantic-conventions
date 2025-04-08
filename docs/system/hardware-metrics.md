@@ -47,7 +47,7 @@ Please note that this is an [ongoing process](https://github.com/open-telemetry/
 > * SHOULD introduce a control mechanism to allow users to opt-in to the new
 >   conventions once the migration plan is finalized.
 
-## Metric Instruments
+## Metric instruments
 
 ### `hw.battery.` - Battery metrics
 
