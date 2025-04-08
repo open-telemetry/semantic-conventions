@@ -9,9 +9,12 @@ groups:
       - ref: mcp.notification.type
         requirement_level:
           conditionally_required: When sending or receiving a notification.
-      - ref: mcp.request.name
+      - ref: mcp.tool.name
         requirement_level:
-          conditionally_required: When the request being sent or processed includes a name parameter.
+          conditionally_required: When operation is related to a specific tool.
+      - ref: mcp.prompt.name
+        requirement_level:
+          conditionally_required: When operation is related to a specific prompt.
       - ref: network.transport
       - ref: server.address
       - ref: server.port

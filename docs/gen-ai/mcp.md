@@ -78,16 +78,17 @@ if the message is available.
 | [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`mcp.notification.type`](/docs/attributes-registry/mcp.md) | string | MCP notification type. | `initialized`; `progress`; `resource_updated` | `Conditionally Required` When sending or receiving a notification. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.request.name`](/docs/attributes-registry/mcp.md) | string | The value of the name parameter of the request. [3] | `get-weather`; `analyze-code` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.request.type`](/docs/attributes-registry/mcp.md) | string | MCP request type. | `call_tool`; `create_message`; `get_prompt` | `Conditionally Required` When sending or processing a request. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [5] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Conditionally Required` [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [3] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.request_id`](/docs/attributes-registry/rpc.md) | string | `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. | `10`; `request-7` | `Conditionally Required` When client executes a request. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`mcp.session.id`](/docs/attributes-registry/mcp.md) | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [8] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [9] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [6] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [7] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -96,25 +97,21 @@ error code if the operation fails with a JSON RPC error and/or MCP
 error message is returned. It SHOULD be set to `tool_error` if
 `CallToolResult.isError` is true.
 
-**[3] `mcp.request.name`:** This is a tool name when the request type is `call_tool` or a prompt name when the request type is `get_prompt`.
+**[3] `mcp.resource.uri`:** This is a URI of the resource when the request type is `read_resource`, `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
 
-**[4] `mcp.request.name`:** When the request being sent or processed includes a name parameter.
+**[4] `mcp.resource.uri`:** When client executes a request type that has a resource uri parameter
 
-**[5] `mcp.resource.uri`:** This is a URI of the resource when the request type is `read_resource`, `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
+**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[6] `mcp.resource.uri`:** When client executes a request type that has a resource uri parameter
+**[6] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[8] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
-
-**[9] `network.transport`:** The value SHOULD be normalized to lowercase.
+**[7] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[10] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[8] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 
@@ -201,16 +198,17 @@ if the message is available.
 | [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`mcp.notification.type`](/docs/attributes-registry/mcp.md) | string | MCP notification type. | `initialized`; `progress`; `resource_updated` | `Conditionally Required` When sending or receiving a notification. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.request.name`](/docs/attributes-registry/mcp.md) | string | The value of the name parameter of the request. [3] | `get-weather`; `analyze-code` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.request.type`](/docs/attributes-registry/mcp.md) | string | MCP request type. | `call_tool`; `create_message`; `get_prompt` | `Conditionally Required` When sending or processing a request. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [5] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Conditionally Required` [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [3] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.request_id`](/docs/attributes-registry/rpc.md) | string | `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. | `10`; `request-7` | `Conditionally Required` When client executes a request. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`mcp.session.id`](/docs/attributes-registry/mcp.md) | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [8] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [9] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [6] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [7] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -219,25 +217,21 @@ error code if the operation fails with a JSON RPC error and/or MCP
 error message is returned. It SHOULD be set to `tool_error` if
 `CallToolResult.isError` is true.
 
-**[3] `mcp.request.name`:** This is a tool name when the request type is `call_tool` or a prompt name when the request type is `get_prompt`.
+**[3] `mcp.resource.uri`:** This is a URI of the resource when the request type is `read_resource`, `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
 
-**[4] `mcp.request.name`:** When the request being sent or processed includes a name parameter.
+**[4] `mcp.resource.uri`:** When client executes a request type that has a resource uri parameter
 
-**[5] `mcp.resource.uri`:** This is a URI of the resource when the request type is `read_resource`, `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
+**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[6] `mcp.resource.uri`:** When client executes a request type that has a resource uri parameter
+**[6] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[8] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
-
-**[9] `network.transport`:** The value SHOULD be normalized to lowercase.
+**[7] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[10] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[8] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 
@@ -320,13 +314,15 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`mcp.notification.type`](/docs/attributes-registry/mcp.md) | string | MCP notification type. | `initialized`; `progress`; `resource_updated` | `Conditionally Required` When sending or receiving a notification. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.request.name`](/docs/attributes-registry/mcp.md) | string | The value of the name parameter of the request. [3] | `get-weather`; `analyze-code` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.request.type`](/docs/attributes-registry/mcp.md) | string | MCP request type. | `call_tool`; `create_message`; `get_prompt` | `Conditionally Required` When sending or processing a request. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [6] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [7] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [4] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [5] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [7] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -335,21 +331,19 @@ error code if the operation fails with a JSON RPC error and/or MCP
 error message is returned. It SHOULD be set to `tool_error` if
 `CallToolResult.isError` is true.
 
-**[3] `mcp.request.name`:** This is a tool name when the request type is `call_tool` or a prompt name when the request type is `get_prompt`.
+**[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[4] `mcp.request.name`:** When the request being sent or processed includes a name parameter.
+**[4] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[6] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
-
-**[7] `network.transport`:** The value SHOULD be normalized to lowercase.
+**[5] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[8] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+
+**[7] `mcp.resource.uri`:** This is a URI of the resource when the request type is `read_resource`, `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
 
 ---
 
@@ -430,13 +424,15 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`mcp.notification.type`](/docs/attributes-registry/mcp.md) | string | MCP notification type. | `initialized`; `progress`; `resource_updated` | `Conditionally Required` When sending or receiving a notification. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.request.name`](/docs/attributes-registry/mcp.md) | string | The value of the name parameter of the request. [3] | `get-weather`; `analyze-code` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.request.type`](/docs/attributes-registry/mcp.md) | string | MCP request type. | `call_tool`; `create_message`; `get_prompt` | `Conditionally Required` When sending or processing a request. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [6] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [7] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [4] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [5] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [7] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -445,21 +441,19 @@ error code if the operation fails with a JSON RPC error and/or MCP
 error message is returned. It SHOULD be set to `tool_error` if
 `CallToolResult.isError` is true.
 
-**[3] `mcp.request.name`:** This is a tool name when the request type is `call_tool` or a prompt name when the request type is `get_prompt`.
+**[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[4] `mcp.request.name`:** When the request being sent or processed includes a name parameter.
+**[4] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[6] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
-
-**[7] `network.transport`:** The value SHOULD be normalized to lowercase.
+**[5] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[8] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+
+**[7] `mcp.resource.uri`:** This is a URI of the resource when the request type is `read_resource`, `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
 
 ---
 
@@ -540,13 +534,15 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`mcp.notification.type`](/docs/attributes-registry/mcp.md) | string | MCP notification type. | `initialized`; `progress`; `resource_updated` | `Conditionally Required` When sending or receiving a notification. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.request.name`](/docs/attributes-registry/mcp.md) | string | The value of the name parameter of the request. [3] | `get-weather`; `analyze-code` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.request.type`](/docs/attributes-registry/mcp.md) | string | MCP request type. | `call_tool`; `create_message`; `get_prompt` | `Conditionally Required` When sending or processing a request. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [6] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [7] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [4] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [5] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [7] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -555,21 +551,19 @@ error code if the operation fails with a JSON RPC error and/or MCP
 error message is returned. It SHOULD be set to `tool_error` if
 `CallToolResult.isError` is true.
 
-**[3] `mcp.request.name`:** This is a tool name when the request type is `call_tool` or a prompt name when the request type is `get_prompt`.
+**[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[4] `mcp.request.name`:** When the request being sent or processed includes a name parameter.
+**[4] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[6] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
-
-**[7] `network.transport`:** The value SHOULD be normalized to lowercase.
+**[5] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[8] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+
+**[7] `mcp.resource.uri`:** This is a URI of the resource when the request type is `read_resource`, `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
 
 ---
 
@@ -650,13 +644,15 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`mcp.notification.type`](/docs/attributes-registry/mcp.md) | string | MCP notification type. | `initialized`; `progress`; `resource_updated` | `Conditionally Required` When sending or receiving a notification. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.request.name`](/docs/attributes-registry/mcp.md) | string | The value of the name parameter of the request. [3] | `get-weather`; `analyze-code` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.request.type`](/docs/attributes-registry/mcp.md) | string | MCP request type. | `call_tool`; `create_message`; `get_prompt` | `Conditionally Required` When sending or processing a request. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [6] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [7] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [4] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [5] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [7] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -665,21 +661,19 @@ error code if the operation fails with a JSON RPC error and/or MCP
 error message is returned. It SHOULD be set to `tool_error` if
 `CallToolResult.isError` is true.
 
-**[3] `mcp.request.name`:** This is a tool name when the request type is `call_tool` or a prompt name when the request type is `get_prompt`.
+**[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[4] `mcp.request.name`:** When the request being sent or processed includes a name parameter.
+**[4] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[6] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
-
-**[7] `network.transport`:** The value SHOULD be normalized to lowercase.
+**[5] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[8] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+
+**[7] `mcp.resource.uri`:** This is a URI of the resource when the request type is `read_resource`, `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
 
 ---
 
