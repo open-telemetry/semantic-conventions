@@ -9,10 +9,10 @@ aliases: [metrics-general]
 
 <!-- toc -->
 
-- [General Guidelines](#general-guidelines)
+- [General guidelines](#general-guidelines)
   - [Units](#units)
-  - [Instrument Units](#instrument-units)
-  - [Instrument Types](#instrument-types)
+  - [Instrument units](#instrument-units)
+  - [Instrument types](#instrument-types)
   - [Consistent UpDownCounter timeseries](#consistent-updowncounter-timeseries)
 
 <!-- tocstop -->
@@ -40,7 +40,7 @@ Apart from semantic conventions for metrics, [traces](trace.md), [logs](logs.md)
 defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/resource/sdk.md) with
 their own [Resource Semantic Conventions](/docs/resource/README.md).
 
-## General Guidelines
+## General guidelines
 
 **Status**: [Development][DocumentStatus]
 
@@ -90,7 +90,7 @@ When building components that interoperate between OpenTelemetry and a system
 using the OpenMetrics exposition format, use the
 [OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/compatibility/prometheus_and_openmetrics.md).
 
-### Instrument Units
+### Instrument units
 
 **Status**: [Stable][DocumentStatus]
 
@@ -115,7 +115,7 @@ use `{packet}`, `{error}`, `{fault}`, etc.
   unless there is good technical reason to not do so.
 - When instruments are measuring durations, seconds (i.e. `s`) SHOULD be used.
 
-### Instrument Types
+### Instrument types
 
 **Status**: [Stable][DocumentStatus]
 
