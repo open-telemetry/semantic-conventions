@@ -210,7 +210,7 @@ groups:
     type: metric
     metric_name: otel.sdk.exporter.operation.duration
     stability: development
-    brief: "The duration of exporting a batch of telemetry items."
+    brief: "The duration of exporting a batch of telemetry records."
     note: |
       This metric defines successful operations using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1)
       and [grpc](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success). Anything else is defined as an unsuccessful operation. For successful

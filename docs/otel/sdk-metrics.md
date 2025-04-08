@@ -906,7 +906,7 @@ with a single bucket with no boundaries.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.exporter.operation.duration` | Histogram | `s` | The duration of exporting a batch of telemetry items. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otel.sdk.exporter.operation.duration` | Histogram | `s` | The duration of exporting a batch of telemetry records. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** This metric defines successful operations using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1)
 and [grpc](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success). Anything else is defined as an unsuccessful operation. For successful
