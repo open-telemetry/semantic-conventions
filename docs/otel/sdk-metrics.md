@@ -891,7 +891,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 ### Metric: `otel.sdk.exporter.operation.duration`
 
-This metric is [opt-in][MetricOptIn].
+This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/metrics/api.md#instrument-advisory-parameters)
@@ -917,7 +917,7 @@ operations, `error.type` MUST NOT be set. For unsuccessful export operations, `e
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `rejected`; `timeout`; `500`; `java.net.UnknownHostException` | `Conditionally Required` If operation has ended with an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`http.response.status_code`](/docs/attributes-registry/http.md) | int | The HTTP status code of the last HTTP request performed in scope of this export call. | `200` | `Recommended` when applicable | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`otel.component.name`](/docs/attributes-registry/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`otel.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`otel.component.type`](/docs/attributes-registry/otel.md) | string | A name identifying the type of the OpenTelemetry component. [3] | `otlp_grpc_span_exporter`; `com.example.MySpanExporter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.grpc.status_code`](/docs/attributes-registry/rpc.md) | int | The gRPC status code of the last gRPC requests performed in scope of this export call. | `0`; `1`; `2` | `Recommended` when applicable | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` when applicable | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Recommended` when applicable | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -1018,5 +1018,4 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 <!-- endsemconv -->
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[MetricOptIn]: /docs/general/metric-requirement-level.md#opt-in
 [MetricRecommended]: /docs/general/metric-requirement-level.md#recommended

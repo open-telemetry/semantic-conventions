@@ -219,6 +219,7 @@ groups:
     unit: "s"
     attributes:
       - ref: otel.component.type
+        examples: ["otlp_grpc_span_exporter", "com.example.MySpanExporter"]
       - ref: otel.component.name
       - ref: server.address
         requirement_level:
