@@ -78,6 +78,7 @@ Currently, the following namespaces exist:
 - [Linux](linux.md)
 - [Log](log.md)
 - [Mainframe](mainframe.md)
+- [MCP](mcp.md)
 - [Messaging](messaging.md)
 - [Network](network.md)
 - [NFS](nfs.md)
