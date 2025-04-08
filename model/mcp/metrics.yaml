@@ -1,0 +1,36 @@
+groups:
+  - id: metric.mcp.client.request.duration
+    type: metric
+    metric_name: mcp.client.request.duration
+    brief: The duration of the MCP request or notification as observed on the sender.
+    unit: s
+    instrument: histogram
+    stability: development
+    extends: mcp.common.attributes
+
+  - id: metric.mcp.server.request.duration
+    type: metric
+    metric_name: mcp.server.request.duration
+    brief: MCP request or notification duration as observed on the receiver.
+    unit: s
+    instrument: histogram
+    stability: development
+    extends: mcp.common.attributes
+
+  - id: metric.mcp.client.session.duration
+    type: metric
+    metric_name: mcp.client.session.duration
+    brief: The duration of the MCP session as observed on the MCP client.
+    unit: s
+    instrument: histogram
+    stability: development
+    extends: mcp.common.attributes
+
+  - id: metric.mcp.server.session.duration
+    type: metric
+    metric_name: mcp.server.session.duration
+    brief: The duration of the MCP session as observed on the MCP server.
+    unit: s
+    instrument: histogram
+    stability: development
+    extends: mcp.common.attributes
