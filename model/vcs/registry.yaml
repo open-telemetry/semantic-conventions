@@ -261,6 +261,11 @@ groups:
               value: gitlab
               brief: "[GitLab](https://gitlab.com)"
               stability: development
+            - id: gittea
+              value: gittea
+              brief: "Deprecated, use `gitea` instead."
+              deprecated: "Replaced by `gitea`."
+              stability: development
             - id: gitea
               value: gitea
               brief: "[Gitea](https://gitea.io)"
