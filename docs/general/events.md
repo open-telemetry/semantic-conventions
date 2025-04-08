@@ -12,7 +12,7 @@ in the data model by `LogRecord`s.
 
 Semantically, an Event is a named occurrence at an instant in time. It signals that
 "this thing happened at this time" and provides additional specifics about the occurrence.
-Examples of Events might include things like uncaught exceptions, button clicks, user logout,
+Examples of Events might include things like button clicks, user logout,
 network connection severed, etc.
 
 In OpenTelemetry, Events are implemented as a specific type of [`LogRecord`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/logs/api.md) that conforms to the conventions included here.
@@ -50,7 +50,7 @@ Recommendations for defining events:
   collection of [standard](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/common#attribute)
   attributes.
 * Events SHOULD be generated / produced / recorded using the
-    [Log API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/logs/api.md#emit-a-logrecord)
+    [Logs API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/logs/api.md#emit-a-logrecord)
     to ensure that the event is created using the configured SDK instance.
   * The Emit Event API is not yet available in all OpenTelemetry SDKs. Check [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/spec-compliance-matrix.md#logs) to see the implementation status in corresponding language.
 * It's NOT RECOMMENDED to prefix the _payload_ (body) _fields_ with the `EventName` to
