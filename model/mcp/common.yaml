@@ -1,0 +1,41 @@
+groups:
+  - id: mcp.common.attributes
+    type: attribute_group
+    brief: Common MCP attributes
+    attributes:
+      - ref: mcp.tool.name
+        requirement_level:
+          conditionally_required: When operation is related to a specific tool.
+      - ref: mcp.prompt.name
+        requirement_level:
+          conditionally_required: When operation is related to a specific prompt.
+      - ref: network.transport
+        brief: The transport protocol used for the MCP session.
+        note: |
+          This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
+          is HTTP.
+          It SHOULD be set to `pipe` if the transport is stdio.
+
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation fails.
+        note: |
+          This attribute SHOULD be set to the string representation of the JSON RPC
+          error code, if one is returned.
+
+          When JSON RPC call is successful, but an error is returned within the
+          result payload, this attribute SHOULD be set to the low-cardinality
+          string representation of the error. When
+          [CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/9c8a44e47e16b789a1f9d47c89ea23ed13a37cf9/schema/2025-06-18/schema.ts#L715)
+          is returned with `isError` set to `true`, this attribute SHOULD be set to
+          `tool_error`.
+      - ref: mcp.method.name
+        requirement_level: required
+      - ref: rpc.jsonrpc.error_code
+        requirement_level:
+          conditionally_required: If response contains an error code.
+      - ref: network.protocol.version
+        brief: The version of JSON RPC protocol used.
+        note: ""  # overriding the default note
+        requirement_level:
+          recommended: when it's not `2.0`.
