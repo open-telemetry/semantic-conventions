@@ -17,17 +17,24 @@ groups:
               stability: development
               value: "gcp"
               brief: "Any Google generative AI endpoint"
-              note: "May be used when specific backend is unknown. May be accompanied by 'gcp.client.service' attribute differentiating the endpoint."
+              note:  >
+                May be used when specific backend is unknown.
+                May use common attributes prefixed with 'gcp.gen_ai.'.
             - id: gcp.vertex_ai
               stability: development
               value: "gcp.vertex_ai"
               brief: 'Vertex AI'
-              note: "This refers to the 'aiplatform.googleapis.com' endpoint. May be accompanied by 'gcp.client.service' with value 'aiplatform'. May make use of common attributes from 'gcp.gen_ai.' prefix."
+              note: >
+                This refers to the 'aiplatform.googleapis.com' endpoint.
+                May use common attributes prefixed with 'gcp.gen_ai.'.
             - id: gcp.gemini
               stability: development
               value: "gcp.gemini"
               brief: 'Gemini'
-              note: "This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May be accompanied by 'gcp.client.service' with value 'generativelanguage'. May make use of common attributes from 'gcp.gen_ai.' prefix."
+              note: >
+                This refers to the 'generativelanguage.googleapis.com' endpoint.
+                Also known as the AI Studio API.
+                May use common attributes prefixed with 'gcp.gen_ai.'.
             - id: vertex_ai
               stability: development
               value: "vertex_ai"

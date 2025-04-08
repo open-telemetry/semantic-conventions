@@ -157,11 +157,11 @@ Additional output format details may be recorded in the future in the `gen_ai.ou
 | `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
 | `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[11]:** May be used when specific backend is unknown. May be accompanied by 'gcp.client.service' attribute differentiating the endpoint.
+**[11]:** May be used when specific backend is unknown. May use common attributes prefixed with 'gcp.gen_ai.'.
 
-**[12]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May be accompanied by 'gcp.client.service' with value 'generativelanguage'. May make use of common attributes from 'gcp.gen_ai.' prefix.
+**[12]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May use common attributes prefixed with 'gcp.gen_ai.'.
 
-**[13]:** This refers to the 'aiplatform.googleapis.com' endpoint. May be accompanied by 'gcp.client.service' with value 'aiplatform'. May make use of common attributes from 'gcp.gen_ai.' prefix.
+**[13]:** This refers to the 'aiplatform.googleapis.com' endpoint. May use common attributes prefixed with 'gcp.gen_ai.'.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
