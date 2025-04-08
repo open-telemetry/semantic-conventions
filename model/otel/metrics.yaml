@@ -111,6 +111,98 @@ groups:
       - ref: error.type
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
 
+  - id: metric.otel.sdk.log.created
+    type: metric
+    metric_name: otel.sdk.log.created
+    stability: development
+    brief: "The number of logs submitted to enabled SDK Loggers"
+    instrument: counter
+    unit: "{log_record}"
+
+  - id: metric.otel.sdk.processor.log.queue.size
+    type: metric
+    metric_name: otel.sdk.processor.log.queue.size
+    stability: development
+    brief: "The number of log records in the queue of a given instance of an SDK log processor"
+    note: |
+      Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+    instrument: updowncounter
+    unit: "{log_record}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+
+  - id: metric.otel.sdk.processor.log.queue.capacity
+    type: metric
+    metric_name: otel.sdk.processor.log.queue.capacity
+    stability: development
+    brief: "The maximum number of log records the queue of a given instance of an SDK Log Record processor can hold"
+    note: |
+      Only applies to Log Record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+    instrument: updowncounter
+    unit: "{log_record}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+
+  - id: metric.otel.sdk.processor.log.processed
+    type: metric
+    metric_name: otel.sdk.processor.log.processed
+    stability: development
+    brief: "The number of log records for which the processing has finished, either successful or failed"
+    note: |
+      For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` must contain the failure cause.
+      For the SDK Simple and Batching Log Record Processor a log record is considered to be processed already when it has been submitted to the exporter,
+      not when the corresponding export call has finished.
+    instrument: counter
+    unit: "{log_record}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: error.type
+  
+  - id: metric.otel.sdk.exporter.log.inflight
+    type: metric
+    metric_name: otel.sdk.exporter.log.inflight
+    stability: development
+    brief: "The number of log records which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
+    note: |
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
+    instrument: updowncounter
+    unit: "{log_record}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
+
+  - id: metric.otel.sdk.exporter.log.exported
+    type: metric
+    metric_name: otel.sdk.exporter.log.exported
+    stability: development
+    brief: "The number of log records for which the export has finished, either successful or failed"
+    note: |
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
+      For exporters with partial success semantics (e.g. OTLP with `rejected_log_records`), rejected log records must count as failed and only non-rejected log records count as success.
+      If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
+    instrument: counter
+    unit: "{log_record}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
+      - ref: error.type
+        examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
+
   - id: metric.otel.sdk.metricreader.collections
     type: metric
     metric_name: otel.sdk.metricreader.collections
@@ -125,7 +217,7 @@ groups:
       - ref: otel.component.type
       - ref: otel.component.name
       - ref: error.type
-
+    
   - id: metric.otel.sdk.exporter.metric.inflight
     type: metric
     metric_name: otel.sdk.exporter.metric.inflight
@@ -167,3 +259,4 @@ groups:
           recommended: when applicable
       - ref: error.type
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
+        
