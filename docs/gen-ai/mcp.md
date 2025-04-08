@@ -531,39 +531,40 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.notification.type`](/docs/attributes-registry/mcp.md) | string | MCP notification type. | `initialized`; `progress`; `resource_updated` | `Conditionally Required` When sending or receiving a notification. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.request.type`](/docs/attributes-registry/mcp.md) | string | MCP request type. | `call_tool`; `create_message`; `get_prompt` | `Conditionally Required` When sending or processing a request. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [4] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [5] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [7] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if session ends with an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
-**[2] `error.type`:** This attribute SHOULD be set to string representation of the JSON RPC
-error code if the operation fails with a JSON RPC error and/or MCP
-error message is returned. It SHOULD be set to `tool_error` if
-`CallToolResult.isError` is true.
+When `error.type` is set to a type (e.g., an exception type), its
+canonical class name identifying the type within the artifact SHOULD be used.
 
-**[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+Instrumentations SHOULD document the list of errors they report.
 
-**[4] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+The cardinality of `error.type` within one instrumentation library SHOULD be low.
+Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.type` to have high cardinality at query time when no
+additional filters are applied.
 
-**[5] `network.transport`:** The value SHOULD be normalized to lowercase.
+If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
+
+If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+it's RECOMMENDED to:
+
+- Use a domain-specific attribute
+- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+
+**[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[3] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
-
-**[7] `mcp.resource.uri`:** This is a URI of the resource when the request type is `read_resource`, `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
+**[4] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 
@@ -572,36 +573,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`mcp.notification.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `initialized` | Represents a notification about client initialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `progress` | Represents a notification about progress update for a long-running request | ![Development](https://img.shields.io/badge/-development-blue) |
-| `resource_updated` | Represents a notification about resource update | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`mcp.request.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `call_tool` | Represents tool call and corresponding `CallToolRequest` and `CallToolResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `complete` | Represents completion call and corresponding `CompleteRequest` and `CompleteResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `create_message` | Represents a server request to client to make LLM call and corresponding `CreateMessageRequest` and `CreateMessageResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `get_prompt` | Represents getting prompt call and corresponding `GetPromptRequest` and `GetPromptResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `initialize` | Represents initialize call and corresponding `InitializeRequest` and `InitializeResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_prompts` | Represents listing prompts call and corresponding `ListPromptsRequest` and `ListPromptsResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_resources` | Represents listing resources call and corresponding `ListResourcesRequest` and `ListResourcesResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_tools` | Represents listing tools call and corresponding `ListToolsRequest` and `ListToolsResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ping` | Represents ping call and corresponding `PingRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `read_resource` | Represents reading resource call and corresponding `ReadResourceRequest` and `ReadResourceResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `set_level` | Represents setting log level call and corresponding `SetLevelRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `subscribe` | Represents subscription call and corresponding `SubscribeRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unsubscribe` | Represents unsubscription call and corresponding `UnsubscribeRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -641,39 +612,40 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.notification.type`](/docs/attributes-registry/mcp.md) | string | MCP notification type. | `initialized`; `progress`; `resource_updated` | `Conditionally Required` When sending or receiving a notification. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.request.type`](/docs/attributes-registry/mcp.md) | string | MCP request type. | `call_tool`; `create_message`; `get_prompt` | `Conditionally Required` When sending or processing a request. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [4] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [5] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [7] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if session ends with an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
-**[2] `error.type`:** This attribute SHOULD be set to string representation of the JSON RPC
-error code if the operation fails with a JSON RPC error and/or MCP
-error message is returned. It SHOULD be set to `tool_error` if
-`CallToolResult.isError` is true.
+When `error.type` is set to a type (e.g., an exception type), its
+canonical class name identifying the type within the artifact SHOULD be used.
 
-**[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+Instrumentations SHOULD document the list of errors they report.
 
-**[4] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+The cardinality of `error.type` within one instrumentation library SHOULD be low.
+Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.type` to have high cardinality at query time when no
+additional filters are applied.
 
-**[5] `network.transport`:** The value SHOULD be normalized to lowercase.
+If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
+
+If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+it's RECOMMENDED to:
+
+- Use a domain-specific attribute
+- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+
+**[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[3] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
-
-**[7] `mcp.resource.uri`:** This is a URI of the resource when the request type is `read_resource`, `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
+**[4] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 
@@ -682,36 +654,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`mcp.notification.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `initialized` | Represents a notification about client initialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `progress` | Represents a notification about progress update for a long-running request | ![Development](https://img.shields.io/badge/-development-blue) |
-| `resource_updated` | Represents a notification about resource update | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`mcp.request.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `call_tool` | Represents tool call and corresponding `CallToolRequest` and `CallToolResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `complete` | Represents completion call and corresponding `CompleteRequest` and `CompleteResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `create_message` | Represents a server request to client to make LLM call and corresponding `CreateMessageRequest` and `CreateMessageResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `get_prompt` | Represents getting prompt call and corresponding `GetPromptRequest` and `GetPromptResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `initialize` | Represents initialize call and corresponding `InitializeRequest` and `InitializeResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_prompts` | Represents listing prompts call and corresponding `ListPromptsRequest` and `ListPromptsResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_resources` | Represents listing resources call and corresponding `ListResourcesRequest` and `ListResourcesResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_tools` | Represents listing tools call and corresponding `ListToolsRequest` and `ListToolsResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ping` | Represents ping call and corresponding `PingRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `read_resource` | Represents reading resource call and corresponding `ReadResourceRequest` and `ReadResourceResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `set_level` | Represents setting log level call and corresponding `SetLevelRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `subscribe` | Represents subscription call and corresponding `SubscribeRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unsubscribe` | Represents unsubscription call and corresponding `UnsubscribeRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

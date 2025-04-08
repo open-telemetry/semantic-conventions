@@ -1,11 +1,24 @@
 groups:
-  - id: mcp.metrics.attributes
+  - id: mcp.request.metrics.attributes
     type: attribute_group
-    brief: MCP metrics attributes
+    brief: MCP request metrics attributes
     extends: mcp.common.attributes
     attributes:
       - ref: mcp.resource.uri
         requirement_level: opt_in
+
+  - id: mcp.session.metrics.attributes
+    type: attribute_group
+    brief: MCP session metrics attributes
+    attributes:
+      - ref: network.transport
+      - ref: server.address
+      - ref: server.port
+        requirement_level:
+          conditionally_required: When `server.address` is set
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if session ends with an error.
 
   - id: metric.mcp.client.request.duration
     type: metric
@@ -14,7 +27,7 @@ groups:
     unit: s
     instrument: histogram
     stability: development
-    extends: mcp.metrics.attributes
+    extends: mcp.request.metrics.attributes
 
   - id: metric.mcp.server.request.duration
     type: metric
@@ -23,7 +36,7 @@ groups:
     unit: s
     instrument: histogram
     stability: development
-    extends: mcp.metrics.attributes
+    extends: mcp.request.metrics.attributes
 
   - id: metric.mcp.client.session.duration
     type: metric
@@ -32,7 +45,7 @@ groups:
     unit: s
     instrument: histogram
     stability: development
-    extends: mcp.metrics.attributes
+    extends: mcp.session.metrics.attributes
 
   - id: metric.mcp.server.session.duration
     type: metric
@@ -41,4 +54,4 @@ groups:
     unit: s
     instrument: histogram
     stability: development
-    extends: mcp.metrics.attributes
+    extends: mcp.session.metrics.attributes
