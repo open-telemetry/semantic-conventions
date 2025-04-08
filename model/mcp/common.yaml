@@ -1,0 +1,36 @@
+groups:
+  - id: mcp.common.attributes
+    type: attribute_group
+    brief: Common MCP attributes
+    attributes:
+      - ref: mcp.request.type
+        requirement_level:
+          conditionally_required: When sending or processing a request.
+      - ref: mcp.notification.type
+        requirement_level:
+          conditionally_required: When sending or receiving a notification.
+      - ref: mcp.request.name
+        requirement_level:
+          conditionally_required: When the request being sent or processed includes a name parameter.
+      - ref: network.transport
+      - ref: server.address
+      - ref: server.port
+        requirement_level:
+          conditionally_required: When `server.address` is set
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation fails.
+        note: |
+          This attribute SHOULD be set to string representation of the JSON RPC
+          error code if the operation fails with a JSON RPC error and/or MCP
+          error message is returned. It SHOULD be set to `tool_error` if
+          `CallToolResult.isError` is true.
+      - ref: rpc.method
+        requirement_level: required
+      - ref: rpc.jsonrpc.error_code
+        requirement_level:
+          conditionally_required: If response contains an error code.
+      - ref: network.protocol.version
+        brief: The version of JSON RPC protocol used.
+        requirement_level:
+          recommended: when it's not `2.0`.
