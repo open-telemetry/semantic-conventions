@@ -91,6 +91,7 @@ groups:
     stability: development
     deprecated:
       reason: uncategorized
+      note: Replaced by `db.client.connection.create_time` with a `s` unit.
     brief: "Deprecated, use `db.client.connection.create_time` instead. Note: the unit also changed from `ms` to `s`."
     instrument: histogram
     unit: "ms"
@@ -104,6 +105,7 @@ groups:
     stability: development
     deprecated:
       reason: uncategorized
+      note: Replaced by `db.client.connection.wait_time` with a `s` unit.
     brief: "Deprecated, use `db.client.connection.wait_time` instead. Note: the unit also changed from `ms` to `s`."
     instrument: histogram
     unit: "ms"
@@ -117,6 +119,7 @@ groups:
     stability: development
     deprecated:
       reason: uncategorized
+      note: Replaced by `db.client.connection.use_time` with a `s` unit.
     brief: "Deprecated, use `db.client.connection.use_time` instead. Note: the unit also changed from `ms` to `s`."
     instrument: histogram
     unit: "ms"
