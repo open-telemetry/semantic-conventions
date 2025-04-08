@@ -20,8 +20,8 @@ versions:
       changes:
         # https://github.com/open-telemetry/semantic-conventions/pull/2042
         - rename_metrics:
-            otel.sdk.span.live.count: otel.sdk.live_spans
-            otel.sdk.span.ended.count: otel.sdk.ended_spans
+            otel.sdk.span.live.count: otel.sdk.span.live
+            otel.sdk.span.ended.count: otel.sdk.span.ended
             otel.sdk.processor.span.processed.count: otel.sdk.processor.span.processed
             otel.sdk.exporter.span.inflight.count: otel.sdk.exporter.span.inflight
             otel.sdk.exporter.span.exported.count: otel.sdk.exporter.span.exported

@@ -1,27 +1,27 @@
 groups:
-  - id: metric.otel.sdk.live_spans
+  - id: metric.otel.sdk.span.live
     type: metric
-    metric_name: otel.sdk.live_spans
+    metric_name: otel.sdk.span.live
     stability: development
     brief: "The number of created spans for which the end operation has not been called yet"
     instrument: updowncounter
     unit: "{span}"
     note: |
-      For spans with `recording=true`: Implementations MUST record both `otel.sdk.live_spans` and `otel.sdk.ended_spans`.
-      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.ended_spans`.
+      For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live` and `otel.sdk.span.ended`.
+      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.ended`.
     attributes:
       - ref: otel.span.sampling_result
 
-  - id: metric.otel.sdk.ended_spans
+  - id: metric.otel.sdk.span.ended
     type: metric
-    metric_name: otel.sdk.ended_spans
+    metric_name: otel.sdk.span.ended
     stability: development
     brief: "The number of created spans for which the end operation was called"
     instrument: counter
     unit: "{span}"
     note: |
-      For spans with `recording=true`: Implementations MUST record both `otel.sdk.live_spans` and `otel.sdk.ended_spans`.
-      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.live_spans`.
+      For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live` and `otel.sdk.span.ended`.
+      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.live`.
     attributes:
       - ref: otel.span.sampling_result
 
