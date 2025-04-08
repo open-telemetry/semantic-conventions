@@ -220,7 +220,7 @@ groups:
       - ref: otel.component.type
       - ref: otel.component.name
       - ref: error.type
-    
+
   - id: metric.otel.sdk.exporter.metric.inflight
     type: metric
     metric_name: otel.sdk.exporter.metric.inflight
@@ -262,4 +262,3 @@ groups:
           recommended: when applicable
       - ref: error.type
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
-        
