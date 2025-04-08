@@ -112,6 +112,26 @@ groups:
               brief: >
                 OTLP LogRecord exporter over HTTP with JSON serialization
               stability: development
+            - id: periodic_metric_reader
+              value: "periodic_metric_reader"
+              brief: >
+                The builtin SDK periodic exporting metric reader
+              stability: development
+            - id: otlp_grpc_metric_exporter
+              value: "otlp_grpc_metric_exporter"
+              brief: >
+                OTLP metric exporter over gRPC with protobuf serialization
+              stability: development
+            - id: otlp_http_metric_exporter
+              value: "otlp_http_metric_exporter"
+              brief: >
+                OTLP metric exporter over HTTP with protobuf serialization
+              stability: development
+            - id: otlp_http_json_metric_exporter
+              value: "otlp_http_json_metric_exporter"
+              brief: >
+                OTLP metric exporter over HTTP with JSON serialization
+              stability: development
         stability: development
         brief: >
           A name identifying the type of the OpenTelemetry component.
