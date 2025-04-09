@@ -303,6 +303,9 @@ LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.c
 check-policies:
 	$(DOCKER_RUN) --rm \
 	    $(DOCKER_USER_IS_HOST_USER_ARG) \
+		--env USER=weaver \
+		--env HOME=/home/weaver \
+		-v /home/weaver/.weaver/semconv_registry_cache \
 		--mount 'type=bind,source=$(PWD)/policies,target=/home/weaver/policies,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		${WEAVER_CONTAINER} registry check \

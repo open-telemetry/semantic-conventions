@@ -77,6 +77,15 @@ jobs:
     - name: verify semantic convention tables
       run: make table-check
 
+  semantic-conventions-podman:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: install podman and podman-docker
+      run: sudo apt-get install podman podman-docker
+    - name: verify semantic convention tables
+      run: make table-check
+
   semantic-conventions-registry:
     runs-on: ubuntu-latest
     steps:
@@ -86,10 +95,30 @@ jobs:
         make attribute-registry-generation
         git diff --exit-code './docs/attributes-registry/*.md' || (echo 'Attribute registry markdown is out of date, please run "make attribute-registry-generation" and commit the changes in this PR.' && exit 1)
 
+  semantic-conventions-registry-podman:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: install podman and podman-docker
+      run: sudo apt-get install podman podman-docker
+    - name: verify registry tables
+      run: |
+        make attribute-registry-generation
+        git diff --exit-code './docs/attributes-registry/*.md' || (echo 'Attribute registry markdown is out of date, please run "make attribute-registry-generation" and commit the changes in this PR.' && exit 1)
+
   schemas-check:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    - name: verify schemas
+      run: make schema-check
+
+  schemas-check-podman:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: install podman and podman-docker
+      run: sudo apt-get install podman podman-docker
     - name: verify schemas
       run: make schema-check
 
@@ -109,10 +138,28 @@ jobs:
     - name: verify semantic conventions yaml definitions
       run: make check-policies
 
+  policies-check-podman:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: install podman and podman-docker
+      run: sudo apt-get install podman podman-docker
+    - name: verify semantic conventions yaml definitions
+      run: make check-policies
+
   polices-test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    - name: verify semantic conventions yaml definitions
+      run: make test-policies
+
+  polices-test-podman:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: install podman and podman-docker
+      run: sudo apt-get install podman podman-docker
     - name: verify semantic conventions yaml definitions
       run: make test-policies
 
@@ -123,18 +170,3 @@ jobs:
     - uses: actions/checkout@v1
     - name: verify semantic convention compatibility with latest released version
       run: make compatibility-check
-
-  build-supports-podman:
-    runs-on: ubuntu-latest
-    steps:
-    - name: check out code
-      uses: actions/checkout@v2
-
-    - name: install podman and podman-docker
-      run: sudo apt-get install podman podman-docker
-
-    - name: install dependencies
-      run: npm install
-
-    - name: execute makefile
-      run: make
