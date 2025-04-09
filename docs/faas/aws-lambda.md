@@ -12,13 +12,13 @@ use cases.
 <!-- toc -->
 
 - [All triggers](#all-triggers)
-  - [AWS X-Ray Active Tracing Considerations](#aws-x-ray-active-tracing-considerations)
-    - [`xray-lambda` Propagator Functionality](#xray-lambda-propagator-functionality)
+  - [AWS X-Ray active tracing considerations](#aws-x-ray-active-tracing-considerations)
+    - [`xray-lambda` propagator functionality](#xray-lambda-propagator-functionality)
     - [`xray-lambda` Propagator Configuration](#xray-lambda-propagator-configuration)
 - [API Gateway](#api-gateway)
 - [SQS](#sqs)
-  - [SQS Event](#sqs-event)
-  - [SQS Message](#sqs-message)
+  - [SQS event](#sqs-event)
+  - [SQS message](#sqs-message)
 - [Examples](#examples)
   - [API Gateway Request Proxy (Lambda tracing passive)](#api-gateway-request-proxy-lambda-tracing-passive)
   - [API Gateway Request Proxy (Lambda tracing active)](#api-gateway-request-proxy-lambda-tracing-active)
@@ -64,7 +64,7 @@ and the [cloud resource conventions][cloud]. The following AWS Lambda-specific a
 [faasres]: /docs/resource/faas.md (FaaS resource conventions)
 [cloud]: /docs/resource/cloud.md (Cloud resource conventions)
 
-### AWS X-Ray Active Tracing Considerations
+### AWS X-Ray active tracing considerations
 
 When [AWS X-Ray Active Tracing](https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html) is enabled for a Lambda,
 the runtime will automatically generate a span based on configured sampling rates and propagate the span context
@@ -74,7 +74,7 @@ This span context is encoded using the [X-Ray Tracing Header Format](https://doc
 Users MUST be able to [configure the propagator](#xray-lambda-propagator-configuration) to prioritize propagating this X-Ray "Active Tracing" span context.
 (FYI: Users probably want this enabled if OpenTelemetry is configured to report spans to AWS X-Ray so their trace is linked together properly.)
 
-#### `xray-lambda` Propagator Functionality
+#### `xray-lambda` propagator functionality
 
 SDK's that have instrumentation for AWS Lambda SHOULD provide an additional propagator alongside the X-Ray propagator
 that can [be configured](#xray-lambda-propagator-configuration) via the `OTEL_PROPAGATORS` environment variable setting as `xray-lambda`.
@@ -153,7 +153,7 @@ for creating message processing spans within user code.
 
 The span kind for both types of SQS spans SHOULD be `CONSUMER`.
 
-### SQS Event
+### SQS event
 
 For the SQS event span, if all the messages in the event have the same event source, the name of the span MUST
 be `<event source> process`. If there are multiple sources in the batch, the name MUST be
@@ -161,7 +161,7 @@ be `<event source> process`. If there are multiple sources in the batch, the nam
 
 For every message in the event, the [message system attributes][] (not message attributes, which are provided by
 the user) SHOULD be checked for the key `AWSTraceHeader`. If it is present, an OpenTelemetry `Context` SHOULD be
-parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/context/api-propagators.md) and
+parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/context/api-propagators.md) and
 added as a link to the span. This means the span may have as many links as messages in the batch.
 See [compatibility](../non-normative/compatibility/aws.md#context-propagation) for more info.
 
@@ -169,12 +169,12 @@ See [compatibility](../non-normative/compatibility/aws.md#context-propagation) f
 - [`messaging.operation.type`](/docs/messaging/messaging-spans.md) MUST be set to `process`.
 - [`messaging.system`](/docs/messaging/messaging-spans.md) MUST be set to `aws_sqs`.
 
-### SQS Message
+### SQS message
 
 For the SQS message span, the name MUST be `<event source> process`.  The parent MUST be the `CONSUMER` span
 corresponding to the SQS event. The [message system attributes][] (not message attributes, which are provided by
 the user) SHOULD be checked for the key `AWSTraceHeader`. If it is present, an OpenTelemetry `Context` SHOULD be
-parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/context/api-propagators.md) and
+parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/context/api-propagators.md) and
 added as a link to the span.
 See [compatibility](../non-normative/compatibility/aws.md#context-propagation) for more info.
 

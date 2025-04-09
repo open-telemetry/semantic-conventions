@@ -2,6 +2,29 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/1.31.0
 versions:
   next:
+    all:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1994
+        - rename_attributes:
+            attribute_map:
+              feature_flag.evaluation.error.message: error.message
+  1.32.0:
+    all:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/1989
+        - rename_attributes:
+            attribute_map:
+              feature_flag.evaluation.reason: feature_flag.result.reason
+              feature_flag.variant: feature_flag.result.variant
+    metrics:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/2042
+        - rename_metrics:
+            otel.sdk.span.live.count: otel.sdk.span.live
+            otel.sdk.span.ended.count: otel.sdk.span.ended
+            otel.sdk.processor.span.processed.count: otel.sdk.processor.span.processed
+            otel.sdk.exporter.span.inflight.count: otel.sdk.exporter.span.inflight
+            otel.sdk.exporter.span.exported.count: otel.sdk.exporter.span.exported
   1.31.0:
     all:
       changes:

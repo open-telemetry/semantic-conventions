@@ -37,7 +37,7 @@ Please note that this is an [ongoing process](https://github.com/open-telemetry/
   - [`hw.voltage.` - Voltage sensor metrics](#hwvoltage---voltage-sensor-metrics)
 
 > **Warning**
-> Existing instrumentations and collector that are using<!-- markdown-link-check-disable-next-line -->
+> Existing instrumentations and collector that are using
 > [v1.21.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.21.0/docs/system/hardware-metrics.md)
 > (or prior):
 >
@@ -47,7 +47,7 @@ Please note that this is an [ongoing process](https://github.com/open-telemetry/
 > * SHOULD introduce a control mechanism to allow users to opt-in to the new
 >   conventions once the migration plan is finalized.
 
-## Metric Instruments
+## Metric instruments
 
 ### `hw.battery.` - Battery metrics
 
