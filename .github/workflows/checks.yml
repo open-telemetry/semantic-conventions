@@ -45,6 +45,7 @@ jobs:
 
     - name: run markdown-link-check
       run: make markdown-link-check
+      timeout-minutes: 5
 
   markdown-toc-check:
     runs-on: ubuntu-latest

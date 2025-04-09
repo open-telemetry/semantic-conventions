@@ -129,6 +129,7 @@ markdown-link-check: normalized-link-check
 		--config home/repo/.lychee.toml \
 		--root-dir /home/repo \
 		--verbose \
+		--timeout=60 \
 		$(MARKDOWN_LINK_CHECK_ARG) \
 		home/repo
 
