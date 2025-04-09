@@ -245,7 +245,7 @@ groups:
           name, the value being the environment variable value.
         type: template[string]
         stability: development
-        examples: ['process.environment_variable.USER="ubuntu"', 'proccess.environment_variable.PATH="/usr/local/bin;/usr/bin"']
+        examples: ['process.environment_variable.USER="ubuntu"', 'process.environment_variable.PATH="/usr/local/bin:/usr/bin"']
   # process.linux* attribute group
   - id: registry.process.linux
     type: attribute_group
