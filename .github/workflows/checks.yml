@@ -130,8 +130,8 @@ jobs:
     - name: check out code
       uses: actions/checkout@v2
 
-    - name: install podman-is-docker
-      run: sudo apt-get install podman podman-is-docker
+    - name: install podman and podman-docker
+      run: sudo apt-get install podman podman-docker
 
     - name: install dependencies
       run: npm install
