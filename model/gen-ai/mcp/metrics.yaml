@@ -1,0 +1,36 @@
+groups:
+  - id: metric_attributes.mcp
+    type: attribute_group
+    brief: 'MCP attributes'
+    attributes:
+      - ref: mcp.request.method
+        requirement_level: required
+      - ref: mcp.request.name
+        requirement_level: optional
+
+  - id: metric.mcp.session.duration
+    type: metric
+    metric_name: mcp.session.duration
+    brief: "Duration of MCP sessions."
+    instrument: histogram
+    unit: "s"
+    stability: development
+    extends: metric_attributes.mcp
+    note: >
+      This metric SHOULD be specified with explicit bucket boundaries of:
+      `[0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300]`.
+
+  - id: metric.mcp.request.duration
+    type: metric
+    metric_name: mcp.request.duration
+    brief: "Duration of MCP requests."
+    instrument: histogram
+    unit: "s"
+    stability: development
+    extends: metric_attributes.mcp
+    attributes:
+      - ref: mcp.response.is_error
+        requirement_level: optional
+    note: >
+      This metric SHOULD be specified with explicit bucket boundaries of:
+      `[0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10]`.
