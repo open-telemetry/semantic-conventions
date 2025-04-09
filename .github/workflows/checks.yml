@@ -123,3 +123,18 @@ jobs:
     - uses: actions/checkout@v1
     - name: verify semantic convention compatibility with latest released version
       run: make compatibility-check
+
+  build-supports-podman:
+    runs-on: ubuntu-latest
+    steps:
+    - name: check out code
+      uses: actions/checkout@v2
+
+    - name: install podman-is-docker
+      run: sudo apt-get install podman podman-is-docker
+
+    - name: install dependencies
+      run: npm install
+
+    - name: execute makefile
+      run: make
