@@ -9,8 +9,10 @@ groups:
         type: string
         stability: development
         deprecated:
-          reason: renamed
-          renamed_to: code.function.name
+          reason: uncategorized
+          note: >
+            Value should be included in `code.function.name` which is expected
+            to be a fully-qualified name.
         brief: >
           Deprecated, use `code.function.name` instead
         examples: serveRequest
