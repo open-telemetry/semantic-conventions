@@ -57,6 +57,7 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 |---|---|---|
 | `array` | The `feature_flag.result.value` is a stringified array. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `boolean` | The `feature_flag.result.value` is a stringified boolean. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `null` | The `feature_flag.result.value` is a stringified null. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `number` | The `feature_flag.result.value` is a stringified number. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `object` | The `feature_flag.result.value` is a stringified object. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `string` | The `feature_flag.result.value` is a string. | ![Development](https://img.shields.io/badge/-development-blue) |

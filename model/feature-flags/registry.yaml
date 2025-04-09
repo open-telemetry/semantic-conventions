@@ -122,6 +122,10 @@ groups:
               value: "array"
               brief: The `feature_flag.result.value` is a stringified array.
               stability: development
+            - id: "null"
+              value: "null"
+              brief: The `feature_flag.result.value` is a stringified null.
+              stability: development
         stability: development
         examples: ["string", "boolean", "number"]
         brief: The JSON type of the `feature_flag.result.value`.
