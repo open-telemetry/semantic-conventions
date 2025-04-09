@@ -8,3 +8,28 @@ groups:
     attributes:
       - ref: deployment.environment.name
         requirement_level: recommended
+  - id: entity.deployment
+    type: entity
+    stability: development
+    name: deployment
+    brief: >
+      Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment)
+      (aka deployment tier).
+    attributes:
+      - ref: deployment.id
+    descriptive_attributes:
+      - ref: deployment.name
+      - ref: deployment.status
+    relationships:
+      - has_many: deployment.environment
+  - id: entity.deployment.environment
+    type: entity
+    stability: development
+    name: deployment.environment
+    brief: >
+      Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment)
+      (aka deployment tier).
+    attributes:
+      - ref: deployment.environment.name
+    relationships:
+      - belongs_to: deployment
