@@ -7,9 +7,14 @@
 - [Amazon DynamoDB Attributes](#amazon-dynamodb-attributes)
 - [Amazon ECS Attributes](#amazon-ecs-attributes)
 - [Amazon EKS Attributes](#amazon-eks-attributes)
+- [Amazon Kinesis Attributes](#amazon-kinesis-attributes)
 - [Amazon Lambda Attributes](#amazon-lambda-attributes)
 - [Amazon Logs Attributes](#amazon-logs-attributes)
 - [Amazon S3 Attributes](#amazon-s3-attributes)
+- [Amazon Secrets Manager Attributes](#amazon-secrets-manager-attributes)
+- [Amazon SNS Attributes](#amazon-sns-attributes)
+- [Amazon SQS Attributes](#amazon-sqs-attributes)
+- [Amazon Step Functions Attributes](#amazon-step-functions-attributes)
 
 ## General AWS Attributes
 
@@ -80,6 +85,14 @@ This document defines attributes for AWS Elastic Kubernetes Service (EKS).
 |---|---|---|---|---|
 | <a id="aws-eks-cluster-arn" href="#aws-eks-cluster-arn">`aws.eks.cluster.arn`</a> | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | ![Development](https://img.shields.io/badge/-development-blue) |
 
+## Amazon Kinesis Attributes
+
+This document defines attributes for AWS Kinesis.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="aws-kinesis-stream-name" href="#aws-kinesis-stream-name">`aws.kinesis.stream_name`</a> | string | The name of the AWS Kinesis [stream](https://docs.aws.amazon.com/streams/latest/dev/introduction.html) the request refers to. Corresponds to the `--stream-name` parameter of the Kinesis [describe-stream](https://docs.aws.amazon.com/cli/latest/reference/kinesis/describe-stream.html) operation. | `some-stream-name` | ![Development](https://img.shields.io/badge/-development-blue) |
+
 ## Amazon Lambda Attributes
 
 This document defines attributes for AWS Lambda.
@@ -87,6 +100,7 @@ This document defines attributes for AWS Lambda.
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="aws-lambda-invoked-arn" href="#aws-lambda-invoked-arn">`aws.lambda.invoked_arn`</a> | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aws-lambda-resource-mapping-id" href="#aws-lambda-resource-mapping-id">`aws.lambda.resource_mapping.id`</a> | string | The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. | `587ad24b-03b9-4413-8202-bbd56b36e5b7` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `aws.lambda.invoked_arn`:** This may be different from `cloud.resource_id` if an alias is involved.
 
@@ -165,3 +179,36 @@ This applies in particular to the following operations:
 - [list-parts](https://docs.aws.amazon.com/cli/latest/reference/s3api/list-parts.html)
 - [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
 - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
+
+## Amazon Secrets Manager Attributes
+
+This document defines attributes for AWS Secrets Manager.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="aws-secretsmanager-secret-arn" href="#aws-secretsmanager-secret-arn">`aws.secretsmanager.secret.arn`</a> | string | The ARN of the Secret stored in the Secrets Mangger | `arn:aws:secretsmanager:us-east-1:123456789012:secret:SecretName-6RandomCharacters` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Amazon SNS Attributes
+
+This document defines attributes for AWS SNS.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="aws-sns-topic-arn" href="#aws-sns-topic-arn">`aws.sns.topic.arn`</a> | string | The ARN of the AWS SNS Topic. An Amazon SNS [topic](https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html) is a logical access point that acts as a communication channel. | `arn:aws:sns:us-east-1:123456789012:mystack-mytopic-NZJ5JSMVGFIE` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Amazon SQS Attributes
+
+This document defines attributes for AWS SQS.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="aws-sqs-queue-url" href="#aws-sqs-queue-url">`aws.sqs.queue.url`</a> | string | The URL of the AWS SQS Queue. It's a unique identifier for a queue in Amazon Simple Queue Service (SQS) and is used to access the queue and perform actions on it. | `https://sqs.us-east-1.amazonaws.com/123456789012/MyQueue` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Amazon Step Functions Attributes
+
+This document defines attributes for AWS Step Functions.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="aws-stepfunctions-activity-arn" href="#aws-stepfunctions-activity-arn">`aws.stepfunctions.activity.arn`</a> | string | The ARN of the AWS Step Functions Activity. | `arn:aws:states:us-east-1:123456789012:activity:get-greeting` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aws-stepfunctions-state-machine-arn" href="#aws-stepfunctions-state-machine-arn">`aws.stepfunctions.state_machine.arn`</a> | string | The ARN of the AWS Step Functions State Machine. | `arn:aws:states:us-east-1:123456789012:stateMachine:myStateMachine:1` | ![Development](https://img.shields.io/badge/-development-blue) |
