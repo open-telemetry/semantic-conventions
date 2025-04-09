@@ -944,7 +944,9 @@ groups:
     extends: span.db.sql.client
     span_kind: client
     brief: >
-      Attributes for Oracle Database
+      Spans representing calls to a Oracle SQL Database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
+    note: |
+      `db.system.name` MUST be set to `"oracle.db"` and SHOULD be provided **at span creation time**.
     attributes:
       - ref: db.namespace
         sampling_relevant: true
