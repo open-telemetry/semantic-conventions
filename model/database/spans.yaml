@@ -36,11 +36,11 @@ groups:
           recommended: >
             Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
             sensitive data, e.g. by redacting all literal values present in the query text.
-            See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
+            See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
+            see [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md)).
       - ref: db.query.summary
         sampling_relevant: true
       - ref: db.operation.parameter
@@ -67,11 +67,11 @@ groups:
           recommended: >
             Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
             sensitive data, e.g. by redacting all literal values present in the query text.
-            See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
+            See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
+            see [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md)).
       - ref: db.query.summary
         sampling_relevant: true
       - ref: db.operation.parameter
@@ -105,18 +105,37 @@ groups:
 
   - id: span.db.client
     type: span
-    stability: development
-    brief: This span defines the attributes used to perform database client calls.
+    stability: release_candidate
+    brief: This span describes database client call.
+    note: |
+      It SHOULD cover the duration of the corresponding call as if it was observed by the caller (such as client application).
+      For example, if a transient issue happened and was retried within this database call, the corresponding span should cover the duration of the logical operation
+      with all retries.
+
+      **Span name** is covered in the [Name](/docs/database/database-spans.md#name) section.
+
+      **Span kind** SHOULD be `CLIENT`. It MAY be set to `INTERNAL` on spans representing
+      in-memory database calls.
+      It's RECOMMENDED to use `CLIENT` kind when database system being instrumented usually
+      runs in a different process than its client or when database calls happen over
+      instrumented protocol such as HTTP.
+
+      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. Semantic conventions for
+      individual systems SHOULD specify which values of `db.response.status_code`
+      classify as errors.
     span_kind: client
     extends: trace.db.common.full
 
   - id: span.db.mssql.client
     type: span
-    stability: development
+    stability: release_candidate
     extends: span.db.sql.client
     span_kind: client
     brief: >
-      Attributes for Microsoft SQL Server
+      Spans representing calls to Microsoft SQL Server adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
+    note: |
+      `db.system.name` MUST be set to `"microsoft.sql_server"` and SHOULD be provided **at span creation time**.
     attributes:
       - ref: db.namespace
         sampling_relevant: true
@@ -150,11 +169,13 @@ groups:
 
   - id: span.db.postgresql.client
     type: span
-    stability: development
+    stability: release_candidate
     extends: span.db.sql.client
     span_kind: client
     brief: >
-      Attributes for PostgreSQL
+      Spans representing calls to a PostgreSQL database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
+    note: |
+      `db.system.name` MUST be set to `"postgresql"` and SHOULD be provided **at span creation time**.
     attributes:
       - ref: db.namespace
         sampling_relevant: true
@@ -187,11 +208,13 @@ groups:
         examples: ["08000", "08P01"]
   - id: span.db.mysql.client
     type: span
-    stability: development
+    stability: release_candidate
     extends: span.db.sql.client
     span_kind: client
     brief: >
-      Attributes for MySQL
+      Spans representing calls to a MySQL Server adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
+    note: |
+      `db.system.name` MUST be set to `"microsoft.sql_server"` and SHOULD be provided **at span creation time**.
     attributes:
       - ref: db.namespace
         sampling_relevant: true
@@ -217,11 +240,13 @@ groups:
 
   - id: span.db.mariadb.client
     type: span
-    stability: development
+    stability: release_candidate
     extends: span.db.sql.client
     span_kind: client
     brief: >
-      Attributes for MariaDB
+      Spans representing calls to MariaDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/README.md).
+    note: >
+      `db.system.name` MUST be set to `"mariadb"` and SHOULD be provided **at span creation time**.
     attributes:
       - ref: db.namespace
         sampling_relevant: true
@@ -259,7 +284,11 @@ groups:
     stability: development
     extends: trace.db.common.query_and_collection
     brief: >
-      Attributes for Cassandra
+      Spans representing calls to a Cassandra database adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
+    note: |
+      `db.system.name` MUST be set to `"cassandra"` and SHOULD be provided **at span creation time**.
+
+      **Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
     attributes:
       - ref: db.namespace
         sampling_relevant: true
@@ -302,7 +331,11 @@ groups:
     stability: development
     extends: trace.db.common.minimal
     brief: >
-      Attributes for HBase
+      Spans representing calls to an HBase database adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
+    note: |
+      `db.system.name` MUST be set to `"hbase"` and SHOULD be provided **at span creation time**.
+
+      **Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
     attributes:
       - ref: db.namespace
         sampling_relevant: true
@@ -341,7 +374,11 @@ groups:
     stability: development
     extends: trace.db.common.minimal
     brief: >
-      Attributes for CouchDB
+      Spans representing calls to CouchDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
+    note: |
+      `db.system.name` MUST be set to `"couchdb"` and SHOULD be provided **at span creation time**.
+
+      **Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
     attributes:
       - ref: db.operation.name
         sampling_relevant: true
@@ -376,7 +413,13 @@ groups:
     span_kind: client
     extends: trace.db.common.minimal
     brief: >
-      Attributes for Redis
+      Spans representing calls to Redis adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
+    note: |
+      `db.system.name` MUST be set to `"redis"` and SHOULD be provided **at span creation time**.
+
+      **Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
+      except that `db.namespace` SHOULD NOT be used in the span name since it is a numeric value that ends up
+      looking confusing.
     attributes:
       - ref: db.namespace
         sampling_relevant: true
@@ -416,11 +459,11 @@ groups:
             Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
             sensitive data, e.g. by redacting all literal values present in the query text.
 
-            See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
+            See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
+            see [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md)).
         note: >
           For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI.
           If, for example, the [`HMSET` command](https://redis.io/docs/latest/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
@@ -461,7 +504,11 @@ groups:
     span_kind: client
     extends: trace.db.common.minimal
     brief: >
-      Attributes for MongoDB
+      Spans representing calls to MongoDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
+    note: >
+      `db.system.name` MUST be set to `"mongodb"` and SHOULD be provided **at span creation time**.
+
+      **Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
     attributes:
       - ref: db.operation.name
         sampling_relevant: true
@@ -502,7 +549,12 @@ groups:
     span_kind: client
     extends: trace.db.common.minimal
     brief: >
-      Attributes for Elasticsearch
+      Spans representing calls to Elasticsearch adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
+    note: |
+      `db.system.name` MUST be set to `"elasticsearch"` and SHOULD be provided **at span creation time**.
+
+      **Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
+      with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
     attributes:
       - ref: http.request.method
         sampling_relevant: true
@@ -574,10 +626,36 @@ groups:
   - id: span.db.sql.client
     type: span
     span_kind: client
-    stability: development
+    stability: release_candidate
     extends: trace.db.common.query
     brief: >
-      Attributes for SQL databases
+      The SQL databases Semantic Conventions describes how common [Database Semantic Conventions](/docs/database/database-spans.md) apply to SQL databases.
+    note: |
+      The following database systems (defined in the
+      [`db.system.name`](/docs/database/database-spans.md#notes-and-well-known-identifiers-for-dbsystemname) set)
+      are known to use SQL as their primary query language:
+
+      - `actian.ingres`
+      - `cockroachdb`
+      - `derby`
+      - `firebirdsql`
+      - `h2database`
+      - `hsqldb`
+      - `ibm.db2`
+      - `mariadb`
+      - `microsoft.sql_server`
+      - `mysql`
+      - `oracle.db`
+      - `other_sql`
+      - `postgresql`
+      - `sap.maxdb`
+      - `sqlite`
+      - `trino`
+
+      Many other database systems support SQL and can be accessed via generic database driver such as JDBC or ODBC.
+      Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic conventions.
+
+      **Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
     attributes:
       - ref: db.namespace
         brief: >
@@ -655,7 +733,15 @@ groups:
     span_kind: client
     extends: trace.db.common.query_and_collection
     brief: >
-      Attributes for Cosmos DB.
+      Cosmos DB instrumentations include call-level spans that represent logical database
+      calls and adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
+    note: |
+      Additional spans representing network calls may also be created depending on the connection mode (Gateway or Direct).
+      Semantic conventions described in this document apply to the call-level spans only.
+
+      `db.system.name` MUST be set to `"azure.cosmosdb"` and SHOULD be provided **at span creation time**.
+
+      **Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
     attributes:
       - ref: azure.client.id
       - ref: user_agent.original
@@ -858,7 +944,9 @@ groups:
     extends: span.db.sql.client
     span_kind: client
     brief: >
-      Attributes for Oracle Database
+      Spans representing calls to a Oracle SQL Database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
+    note: |
+      `db.system.name` MUST be set to `"oracle.db"` and SHOULD be provided **at span creation time**.
     attributes:
       - ref: db.namespace
         sampling_relevant: true
