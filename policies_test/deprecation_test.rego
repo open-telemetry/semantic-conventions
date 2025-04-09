@@ -4,7 +4,7 @@ import future.keywords
 test_fails_on_attribute_deprecated_without_reason if {
     count(deny) >= 1 with input as {"groups": [{
         "id": "deprecation.test", "stability": "development", "type": "attribute_group",
-        "attributes": [ {"id": "test.me", "stability": "development", "deprecated": "text"}]}]}
+        "attributes": [ {"name": "test.me", "stability": "development", "deprecated": "text"}]}]}
 }
 
 test_fails_on_group_deprecated_without_reason if {
@@ -17,7 +17,7 @@ test_fails_on_attribute_renamed_to_not_existing_attribute if {
         {
             "id": "deprecation.test", "stability": "development", "type": "attribute_group",
             "attributes": [
-                {"id": "test.me", "stability": "development", "deprecated": {"reason": "renamed", "renamed_to": "some.other.name"}}
+                {"name": "test.me", "stability": "development", "deprecated": {"reason": "renamed", "renamed_to": "some.other.name"}}
             ]
         },
         {
@@ -32,8 +32,8 @@ test_fails_on_attribute_renamed_to_deprecated_attribute if {
         {
             "id": "deprecation.test", "stability": "development", "type": "attribute_group",
             "attributes": [
-                {"id": "test.me", "stability": "development", "deprecated": {"reason": "renamed", "renamed_to": "some.other.name"}},
-                {"id": "some.other.name", "stability": "development", "deprecated": {"reason": "obsoleted"}}
+                {"name": "test.me", "stability": "development", "deprecated": {"reason": "renamed", "renamed_to": "some.other.name"}},
+                {"name": "some.other.name", "stability": "development", "deprecated": {"reason": "obsoleted"}}
 
             ]
         },

@@ -2,7 +2,7 @@ package after_resolution
 
 import rego.v1
 
-registry_attribute_ids := {attr.id |
+registry_attribute_names := {attr.name |
     some g in input.groups
     some attr in g.attributes
     not attr.deprecated
@@ -26,8 +26,9 @@ deny contains deprecation_violation(description, group.id, "") if {
     attr := group.attributes[_]
     attr.deprecated != null
     attr.deprecated.renamed_to != null
-    not attr.deprecated.renamed_to in registry_attribute_ids
-    description := sprintf("Attribute '%s' was renamed to '%s', but the new attribute does not exist or is deprecated.", [attr.id, attr.deprecated.renamed_to])
+
+    not attr.deprecated.renamed_to in registry_attribute_names
+    description := sprintf("Attribute '%s' was renamed to '%s', but the new attribute does not exist or is deprecated.", [attr.name, attr.deprecated.renamed_to])
 }
 
 # metric.deprecated.renamed_to must be another metric
@@ -56,7 +57,7 @@ deny contains deprecation_violation(description, group.id, "") if {
 deny contains deprecation_violation(description, group.id, name) if {
     group := input.groups[_]
     attr := group.attributes[_]
-    name := attr.id
+    name := attr.name
 
     attr.deprecated != null
     not attr.deprecated.reason

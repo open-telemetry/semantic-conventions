@@ -42,23 +42,23 @@ groups:
         stability: development
         deprecated:
           reason: obsoleted
-          note: Split to `url.path` and `url.query.
+          note: Split to `url.path` and `url.query`.
         examples: ['/search?q=OpenTelemetry#SemConv']
       - id: http.request_content_length
         type: int
-        brief: 'Deprecated, use `http.request.header.<key>` instead.'
+        brief: 'Deprecated, use `http.request.header.content-length` instead.'
         stability: development
         deprecated:
           reason: uncategorized
-          note: Replaced by `http.request.header.<key>`.
+          note: Replaced by `http.request.header.content-length`.
         examples: 3495
       - id: http.response_content_length
         type: int
-        brief: 'Deprecated, use `http.response.header.<key>` instead.'
+        brief: 'Deprecated, use `http.response.header.content-length` instead.'
         stability: development
         deprecated:
           reason: uncategorized
-          note: Replaced by `http.response.header.<key>`.
+          note: hp.response.header.content-length
         examples: 3495
       - id: http.client_ip
         type: string
