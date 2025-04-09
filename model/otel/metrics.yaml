@@ -1,27 +1,27 @@
 groups:
-  - id: metric.otel.sdk.span.live.count
+  - id: metric.otel.sdk.span.live
     type: metric
-    metric_name: otel.sdk.span.live.count
+    metric_name: otel.sdk.span.live
     stability: development
     brief: "The number of created spans for which the end operation has not been called yet"
     instrument: updowncounter
     unit: "{span}"
     note: |
-      For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
-      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.ended.count`.
+      For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live` and `otel.sdk.span.ended`.
+      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.ended`.
     attributes:
       - ref: otel.span.sampling_result
 
-  - id: metric.otel.sdk.span.ended.count
+  - id: metric.otel.sdk.span.ended
     type: metric
-    metric_name: otel.sdk.span.ended.count
+    metric_name: otel.sdk.span.ended
     stability: development
     brief: "The number of created spans for which the end operation was called"
     instrument: counter
     unit: "{span}"
     note: |
-      For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live.count` and `otel.sdk.span.ended.count`.
-      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.live.count`.
+      For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live` and `otel.sdk.span.ended`.
+      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.live`.
     attributes:
       - ref: otel.span.sampling_result
 
@@ -51,9 +51,9 @@ groups:
       - ref: otel.component.type
       - ref: otel.component.name
 
-  - id: metric.otel.sdk.processor.span.processed.count
+  - id: metric.otel.sdk.processor.span.processed
     type: metric
-    metric_name: otel.sdk.processor.span.processed.count
+    metric_name: otel.sdk.processor.span.processed
     stability: development
     brief: "The number of spans for which the processing has finished, either successful or failed"
     note: |
@@ -69,9 +69,9 @@ groups:
           A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue.
         examples: ["queue_full"]
 
-  - id: metric.otel.sdk.exporter.span.inflight.count
+  - id: metric.otel.sdk.exporter.span.inflight
     type: metric
-    metric_name: otel.sdk.exporter.span.inflight.count
+    metric_name: otel.sdk.exporter.span.inflight
     stability: development
     brief: "The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
     note: |
@@ -88,9 +88,9 @@ groups:
         requirement_level:
           recommended: when applicable
 
-  - id: metric.otel.sdk.exporter.span.exported.count
+  - id: metric.otel.sdk.exporter.span.exported
     type: metric
-    metric_name: otel.sdk.exporter.span.exported.count
+    metric_name: otel.sdk.exporter.span.exported
     stability: development
     brief: "The number of spans for which the export has finished, either successful or failed"
     note: |
