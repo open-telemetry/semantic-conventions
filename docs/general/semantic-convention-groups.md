@@ -33,7 +33,7 @@ In addition to common properties, semantic convention groups have type-specific 
 [Schema documentation](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md)
 for the details.
 
-## Group Stability
+## Group stability
 
 Semantic Convention groups can have the following [stability levels][MaturityLevel]:
 `development`, `alpha`, `beta`, `release_candidate`, and `stable`.

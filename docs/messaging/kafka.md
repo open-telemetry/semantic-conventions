@@ -10,7 +10,7 @@ linkTitle: Kafka
 
 - [Span attributes](#span-attributes)
 - [Examples](#examples)
-  - [Apache Kafka with Quarkus or Spring Boot Example](#apache-kafka-with-quarkus-or-spring-boot-example)
+  - [Apache Kafka with Quarkus or Spring Boot example](#apache-kafka-with-quarkus-or-spring-boot-example)
 
 <!-- tocstop -->
 
@@ -161,7 +161,7 @@ If an intermediary broker is present, `service.name` and `peer.service` will not
 
 ## Examples
 
-### Apache Kafka with Quarkus or Spring Boot Example
+### Apache Kafka with Quarkus or Spring Boot example
 
 In this example, the producer publishes a message to a topic T on Apache Kafka.
 Consumer receives the message, processes it and commits the offset.

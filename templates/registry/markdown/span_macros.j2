@@ -1,0 +1,17 @@
+{#- Macros for simplifying creating "Span" documentation. -#}
+{% import 'stability.j2' as stability %}
+{% macro header(span) -%}
+**Status:** {{ stability.badge(span.stability, span.deprecated) }}
+
+{{ span.brief | trim }}
+{%- if span.note %}
+
+{{ span.note | trim }}{% endif %}
+{%- if "**Span kind" not in span.note %}
+
+**Span kind** SHOULD be `{{ span.span_kind | upper }}`.{% endif %}
+{%- if "**Span status" not in span.note %}
+
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.{% endif %}
+
+{% endmacro %}
