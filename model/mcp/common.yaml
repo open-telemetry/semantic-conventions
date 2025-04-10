@@ -3,12 +3,6 @@ groups:
     type: attribute_group
     brief: Common MCP attributes
     attributes:
-      - ref: mcp.request.type
-        requirement_level:
-          conditionally_required: When sending or processing a request.
-      - ref: mcp.notification.type
-        requirement_level:
-          conditionally_required: When sending or receiving a notification.
       - ref: mcp.tool.name
         requirement_level:
           conditionally_required: When operation is related to a specific tool.

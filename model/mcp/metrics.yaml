@@ -1,7 +1,7 @@
 groups:
-  - id: mcp.request.metrics.attributes
+  - id: mcp.message.metrics.attributes
     type: attribute_group
-    brief: MCP request metrics attributes
+    brief: MCP and notification metrics attributes
     extends: mcp.common.attributes
     attributes:
       - ref: mcp.resource.uri
@@ -19,24 +19,6 @@ groups:
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if session ends with an error.
-
-  - id: metric.mcp.client.request.duration
-    type: metric
-    metric_name: mcp.client.request.duration
-    brief: The duration of the MCP request or notification as observed on the sender.
-    unit: s
-    instrument: histogram
-    stability: development
-    extends: mcp.request.metrics.attributes
-
-  - id: metric.mcp.server.request.duration
-    type: metric
-    metric_name: mcp.server.request.duration
-    brief: MCP request or notification duration as observed on the receiver.
-    unit: s
-    instrument: histogram
-    stability: development
-    extends: mcp.request.metrics.attributes
 
   - id: metric.mcp.client.session.duration
     type: metric
