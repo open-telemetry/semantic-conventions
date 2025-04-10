@@ -9,10 +9,8 @@
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="mcp-notification-type" href="#mcp-notification-type">`mcp.notification.type`</a> | string | MCP notification type. | `initialized`; `progress`; `resource_updated` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="mcp-prompt-name" href="#mcp-prompt-name">`mcp.prompt.name`</a> | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="mcp-request-argument" href="#mcp-request-argument">`mcp.request.argument.<key>`</a> | string | Additional arguments passed to the request within `params` object. `<key>` being the normalized argument name name (lowercase), the value being the argument value. [1] | `mcp.request.argument.location=Seattle, WA`; `mcp.request.argument.a=42` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="mcp-request-type" href="#mcp-request-type">`mcp.request.type`</a> | string | MCP request type. | `call_tool`; `create_message`; `get_prompt` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="mcp-resource-uri" href="#mcp-resource-uri">`mcp.resource.uri`</a> | string | The value of the resource uri. [2] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="mcp-session-id" href="#mcp-session-id">`mcp.session.id`</a> | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="mcp-tool-name" href="#mcp-tool-name">`mcp.tool.name`</a> | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -20,34 +18,4 @@
 **[1] `mcp.request.argument`:** Instrumentations SHOULD require an explicit configuration of which arguments are to be captured. Including all request arguments can be a security risk - explicit configuration helps avoid leaking sensitive information.
 Argument values SHOULD be recorded as JSON strings.
 
-**[2] `mcp.resource.uri`:** This is a URI of the resource when the request type is `read_resource`, `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
-
----
-
-`mcp.notification.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `initialized` | Represents a notification about client initialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `progress` | Represents a notification about progress update for a long-running request | ![Development](https://img.shields.io/badge/-development-blue) |
-| `resource_updated` | Represents a notification about resource update | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`mcp.request.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `call_tool` | Represents tool call and corresponding `CallToolRequest` and `CallToolResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `complete` | Represents completion call and corresponding `CompleteRequest` and `CompleteResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `create_message` | Represents a server request to client to make LLM call and corresponding `CreateMessageRequest` and `CreateMessageResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `get_prompt` | Represents getting prompt call and corresponding `GetPromptRequest` and `GetPromptResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `initialize` | Represents initialize call and corresponding `InitializeRequest` and `InitializeResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_prompts` | Represents listing prompts call and corresponding `ListPromptsRequest` and `ListPromptsResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_resources` | Represents listing resources call and corresponding `ListResourcesRequest` and `ListResourcesResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_tools` | Represents listing tools call and corresponding `ListToolsRequest` and `ListToolsResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ping` | Represents ping call and corresponding `PingRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `read_resource` | Represents reading resource call and corresponding `ReadResourceRequest` and `ReadResourceResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `set_level` | Represents setting log level call and corresponding `SetLevelRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `subscribe` | Represents subscription call and corresponding `SubscribeRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unsubscribe` | Represents unsubscription call and corresponding `UnsubscribeRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
+**[2] `mcp.resource.uri`:** This is a URI of the resource when the method is is `resources/read`, `resources/subscribe`, `resources/unsubscribe` or `notifications/resources/updated`.

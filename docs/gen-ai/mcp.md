@@ -30,7 +30,7 @@ JSON RPC can run on top of different transports including stdio and HTTP Server 
 Use top-level JSON object properties to propagate trace context about individual MCP calls (either requests or notifications).
 
 For example, when using [W3C Trace Context](https://www.w3.org/TR/trace-context/) propagation,
-inject `traceparent` and `tracestate` properties to the request or notification when creating the
+inject `traceparent` and `tracestate` params to the request or notification when creating the
 message and extract them on the receiver side to use as the remote parent.
 
 Here's an example of tool call request with injected trace context.
@@ -40,11 +40,11 @@ Here's an example of tool call request with injected trace context.
   "jsonrpc": "2.0",
   "method": "tools/call",
   "params": {
-    "name": "get-weather"
+    "name": "get-weather",
+    "traceparent": "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01",
+    "tracestate": "rojo=00f067aa0ba902b7,congo=t61rcWkgMzE"
   },
   "id": 1,
-  "traceparent": "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01",
-  "tracestate": "rojo=00f067aa0ba902b7,congo=t61rcWkgMzE"
 }
 ```
 
@@ -77,9 +77,7 @@ if the message is available.
 |---|---|---|---|---|---|
 | [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.notification.type`](/docs/attributes-registry/mcp.md) | string | MCP notification type. | `initialized`; `progress`; `resource_updated` | `Conditionally Required` When sending or receiving a notification. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.request.type`](/docs/attributes-registry/mcp.md) | string | MCP request type. | `call_tool`; `create_message`; `get_prompt` | `Conditionally Required` When sending or processing a request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [3] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -97,7 +95,7 @@ error code if the operation fails with a JSON RPC error and/or MCP
 error message is returned. It SHOULD be set to `tool_error` if
 `CallToolResult.isError` is true.
 
-**[3] `mcp.resource.uri`:** This is a URI of the resource when the request type is `read_resource`, `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
+**[3] `mcp.resource.uri`:** This is a URI of the resource when the method is is `resources/read`, `resources/subscribe`, `resources/unsubscribe` or `notifications/resources/updated`.
 
 **[4] `mcp.resource.uri`:** When client executes a request type that has a resource uri parameter
 
@@ -120,36 +118,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`mcp.notification.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `initialized` | Represents a notification about client initialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `progress` | Represents a notification about progress update for a long-running request | ![Development](https://img.shields.io/badge/-development-blue) |
-| `resource_updated` | Represents a notification about resource update | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`mcp.request.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `call_tool` | Represents tool call and corresponding `CallToolRequest` and `CallToolResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `complete` | Represents completion call and corresponding `CompleteRequest` and `CompleteResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `create_message` | Represents a server request to client to make LLM call and corresponding `CreateMessageRequest` and `CreateMessageResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `get_prompt` | Represents getting prompt call and corresponding `GetPromptRequest` and `GetPromptResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `initialize` | Represents initialize call and corresponding `InitializeRequest` and `InitializeResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_prompts` | Represents listing prompts call and corresponding `ListPromptsRequest` and `ListPromptsResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_resources` | Represents listing resources call and corresponding `ListResourcesRequest` and `ListResourcesResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_tools` | Represents listing tools call and corresponding `ListToolsRequest` and `ListToolsResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ping` | Represents ping call and corresponding `PingRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `read_resource` | Represents reading resource call and corresponding `ReadResourceRequest` and `ReadResourceResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `set_level` | Represents setting log level call and corresponding `SetLevelRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `subscribe` | Represents subscription call and corresponding `SubscribeRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unsubscribe` | Represents unsubscription call and corresponding `UnsubscribeRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -197,9 +165,7 @@ if the message is available.
 |---|---|---|---|---|---|
 | [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.notification.type`](/docs/attributes-registry/mcp.md) | string | MCP notification type. | `initialized`; `progress`; `resource_updated` | `Conditionally Required` When sending or receiving a notification. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.request.type`](/docs/attributes-registry/mcp.md) | string | MCP request type. | `call_tool`; `create_message`; `get_prompt` | `Conditionally Required` When sending or processing a request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [3] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -217,7 +183,7 @@ error code if the operation fails with a JSON RPC error and/or MCP
 error message is returned. It SHOULD be set to `tool_error` if
 `CallToolResult.isError` is true.
 
-**[3] `mcp.resource.uri`:** This is a URI of the resource when the request type is `read_resource`, `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
+**[3] `mcp.resource.uri`:** This is a URI of the resource when the method is is `resources/read`, `resources/subscribe`, `resources/unsubscribe` or `notifications/resources/updated`.
 
 **[4] `mcp.resource.uri`:** When client executes a request type that has a resource uri parameter
 
@@ -240,36 +206,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`mcp.notification.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `initialized` | Represents a notification about client initialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `progress` | Represents a notification about progress update for a long-running request | ![Development](https://img.shields.io/badge/-development-blue) |
-| `resource_updated` | Represents a notification about resource update | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`mcp.request.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `call_tool` | Represents tool call and corresponding `CallToolRequest` and `CallToolResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `complete` | Represents completion call and corresponding `CompleteRequest` and `CompleteResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `create_message` | Represents a server request to client to make LLM call and corresponding `CreateMessageRequest` and `CreateMessageResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `get_prompt` | Represents getting prompt call and corresponding `GetPromptRequest` and `GetPromptResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `initialize` | Represents initialize call and corresponding `InitializeRequest` and `InitializeResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_prompts` | Represents listing prompts call and corresponding `ListPromptsRequest` and `ListPromptsResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_resources` | Represents listing resources call and corresponding `ListResourcesRequest` and `ListResourcesResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_tools` | Represents listing tools call and corresponding `ListToolsRequest` and `ListToolsResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ping` | Represents ping call and corresponding `PingRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `read_resource` | Represents reading resource call and corresponding `ReadResourceRequest` and `ReadResourceResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `set_level` | Represents setting log level call and corresponding `SetLevelRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `subscribe` | Represents subscription call and corresponding `SubscribeRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unsubscribe` | Represents unsubscription call and corresponding `UnsubscribeRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -313,9 +249,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 |---|---|---|---|---|---|
 | [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.notification.type`](/docs/attributes-registry/mcp.md) | string | MCP notification type. | `initialized`; `progress`; `resource_updated` | `Conditionally Required` When sending or receiving a notification. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.request.type`](/docs/attributes-registry/mcp.md) | string | MCP request type. | `call_tool`; `create_message`; `get_prompt` | `Conditionally Required` When sending or processing a request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -343,7 +277,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[7] `mcp.resource.uri`:** This is a URI of the resource when the request type is `read_resource`, `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
+**[7] `mcp.resource.uri`:** This is a URI of the resource when the method is is `resources/read`, `resources/subscribe`, `resources/unsubscribe` or `notifications/resources/updated`.
 
 ---
 
@@ -352,36 +286,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`mcp.notification.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `initialized` | Represents a notification about client initialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `progress` | Represents a notification about progress update for a long-running request | ![Development](https://img.shields.io/badge/-development-blue) |
-| `resource_updated` | Represents a notification about resource update | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`mcp.request.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `call_tool` | Represents tool call and corresponding `CallToolRequest` and `CallToolResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `complete` | Represents completion call and corresponding `CompleteRequest` and `CompleteResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `create_message` | Represents a server request to client to make LLM call and corresponding `CreateMessageRequest` and `CreateMessageResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `get_prompt` | Represents getting prompt call and corresponding `GetPromptRequest` and `GetPromptResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `initialize` | Represents initialize call and corresponding `InitializeRequest` and `InitializeResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_prompts` | Represents listing prompts call and corresponding `ListPromptsRequest` and `ListPromptsResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_resources` | Represents listing resources call and corresponding `ListResourcesRequest` and `ListResourcesResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_tools` | Represents listing tools call and corresponding `ListToolsRequest` and `ListToolsResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ping` | Represents ping call and corresponding `PingRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `read_resource` | Represents reading resource call and corresponding `ReadResourceRequest` and `ReadResourceResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `set_level` | Represents setting log level call and corresponding `SetLevelRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `subscribe` | Represents subscription call and corresponding `SubscribeRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unsubscribe` | Represents unsubscription call and corresponding `UnsubscribeRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -423,9 +327,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 |---|---|---|---|---|---|
 | [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.notification.type`](/docs/attributes-registry/mcp.md) | string | MCP notification type. | `initialized`; `progress`; `resource_updated` | `Conditionally Required` When sending or receiving a notification. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.request.type`](/docs/attributes-registry/mcp.md) | string | MCP request type. | `call_tool`; `create_message`; `get_prompt` | `Conditionally Required` When sending or processing a request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -453,7 +355,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[7] `mcp.resource.uri`:** This is a URI of the resource when the request type is `read_resource`, `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
+**[7] `mcp.resource.uri`:** This is a URI of the resource when the method is is `resources/read`, `resources/subscribe`, `resources/unsubscribe` or `notifications/resources/updated`.
 
 ---
 
@@ -462,36 +364,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`mcp.notification.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `initialized` | Represents a notification about client initialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `progress` | Represents a notification about progress update for a long-running request | ![Development](https://img.shields.io/badge/-development-blue) |
-| `resource_updated` | Represents a notification about resource update | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`mcp.request.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `call_tool` | Represents tool call and corresponding `CallToolRequest` and `CallToolResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `complete` | Represents completion call and corresponding `CompleteRequest` and `CompleteResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `create_message` | Represents a server request to client to make LLM call and corresponding `CreateMessageRequest` and `CreateMessageResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `get_prompt` | Represents getting prompt call and corresponding `GetPromptRequest` and `GetPromptResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `initialize` | Represents initialize call and corresponding `InitializeRequest` and `InitializeResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_prompts` | Represents listing prompts call and corresponding `ListPromptsRequest` and `ListPromptsResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_resources` | Represents listing resources call and corresponding `ListResourcesRequest` and `ListResourcesResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `list_tools` | Represents listing tools call and corresponding `ListToolsRequest` and `ListToolsResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ping` | Represents ping call and corresponding `PingRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `read_resource` | Represents reading resource call and corresponding `ReadResourceRequest` and `ReadResourceResult` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `set_level` | Represents setting log level call and corresponding `SetLevelRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `subscribe` | Represents subscription call and corresponding `SubscribeRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unsubscribe` | Represents unsubscription call and corresponding `UnsubscribeRequest` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
