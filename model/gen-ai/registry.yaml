@@ -13,9 +13,9 @@ groups:
               stability: development
               value: "openai"
               brief: 'OpenAI'
-            - id: gcp
+            - id: gcp.gen_ai
               stability: development
-              value: "gcp"
+              value: "gcp.gen_ai"
               brief: "Any Google generative AI endpoint"
               note:  >
                 May be used when specific backend is unknown.
