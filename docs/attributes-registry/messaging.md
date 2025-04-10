@@ -76,6 +76,7 @@ size should be used.
 |---|---|---|
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `celery` | Celery | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
