@@ -1,0 +1,53 @@
+groups:
+  - id: trace.mcp.common.attributes
+    type: attribute_group
+    extends: mcp.common.attributes
+    brief: MCP common span attributes
+    attributes:
+      - ref: mcp.session.id
+      - ref: mcp.resource.uri
+        requirement_level:
+          conditionally_required: When client executes a request type that has a resource uri parameter
+      - ref: rpc.jsonrpc.request_id
+        requirement_level:
+          conditionally_required: When client executes a request.
+
+  - id: span.mcp.client
+    type: span
+    span_kind: client
+    brief: This span describes the MCP call initiated by the client.
+    note: |
+      It's reported by the MCP client when it initiates the request
+      or notification or by the MCP server when server initiates the operation.
+      It covers the time to receive the response or ack from the peer.
+
+      **Span name** SHOULD follow the format `{rpc.method} {target}`
+      where target is the `{mcp.tool.name}`, `{mcp.prompt.name}` or `{mcp.resource.uri}`
+      depending on the request or notification type.
+
+      **Span status** SHOULD be set to `ERROR` using the same condition as the `error.type`
+      attribute. Refer to the [Record error](/docs/general/record-error) document
+      for more details. The status description SHOULD match the `JSONRPCError.message`
+      if the message is available.
+    stability: development
+    extends: trace.mcp.common.attributes
+
+  - id: span.mcp.server
+    type: span
+    span_kind: server
+    brief: This span describes the processing of the MCP request or notification initiated
+      by the peer.
+    note: |
+      It's reported by the MCP server when client initiates the request
+      (or notification) or by the MCP client when server initiates the operation.
+
+      **Span name** SHOULD follow the format `{rpc.method} {target}`
+      where target is the `{mcp.tool.name}`, `{mcp.prompt.name}` or `{mcp.resource.uri}`
+      depending on the request or notification type.
+
+      **Span status** SHOULD be set to `ERROR` using the same condition as the `error.type`
+      attribute. Refer to the [Record error](/docs/general/record-error) document
+      for more details. The status description SHOULD match the `JSONRPCError.message`
+      if the message is available.
+    stability: development
+    extends: trace.mcp.common.attributes

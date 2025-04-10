@@ -79,6 +79,7 @@ Currently, the following namespaces exist:
 - [K8s](k8s.md)
 - [Linux](linux.md)
 - [Log](log.md)
+- [MCP](mcp.md)
 - [Messaging](messaging.md)
 - [Network](network.md)
 - [NodeJS](nodejs.md)
