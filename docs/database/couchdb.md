@@ -2,7 +2,7 @@
 linkTitle: CouchDB
 --->
 
-# Semantic conventions for CouchDB
+# Semantic conventions for CouchDB client operations
 
 **Status**: [Development][DocumentStatus]
 
@@ -29,6 +29,18 @@ The following table outlines the span attributes applicable to CouchDB.
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+Spans representing calls to CouchDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
+
+`db.system.name` MUST be set to `"couchdb"` and SHOULD be provided **at span creation time**.
+
+**Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
+
+**Span kind** SHOULD be `CLIENT`.
+
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

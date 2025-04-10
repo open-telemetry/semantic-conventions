@@ -325,7 +325,7 @@ This metric is [recommended][MetricRecommended].
 | [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.owner.name`](/docs/attributes-registry/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gittea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
@@ -352,9 +352,9 @@ the same backends.
 | Value  | Description | Stability |
 |---|---|---|
 | `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -383,7 +383,7 @@ This metric is [recommended][MetricRecommended].
 | [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.owner.name`](/docs/attributes-registry/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [3] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gittea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
@@ -413,9 +413,9 @@ the same backends.
 | Value  | Description | Stability |
 |---|---|---|
 | `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -444,7 +444,7 @@ This metric is [recommended][MetricRecommended].
 | [`vcs.owner.name`](/docs/attributes-registry/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.ref.base.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gittea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.ref.base.revision`](/docs/attributes-registry/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [5] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.ref.head.revision`](/docs/attributes-registry/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [6] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -495,9 +495,9 @@ revision based on the VCS system and situational context.
 | Value  | Description | Stability |
 |---|---|---|
 | `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -526,7 +526,7 @@ This metric is [recommended][MetricRecommended].
 | [`vcs.owner.name`](/docs/attributes-registry/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.ref.base.name`](/docs/attributes-registry/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gittea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.ref.base.revision`](/docs/attributes-registry/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [5] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.ref.head.revision`](/docs/attributes-registry/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [6] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -577,9 +577,9 @@ revision based on the VCS system and situational context.
 | Value  | Description | Stability |
 |---|---|---|
 | `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -604,7 +604,7 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`vcs.owner.name`](/docs/attributes-registry/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gittea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -613,9 +613,9 @@ This metric is [recommended][MetricRecommended].
 | Value  | Description | Stability |
 |---|---|---|
 | `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -643,7 +643,7 @@ This metric is [recommended][MetricRecommended].
 | [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.owner.name`](/docs/attributes-registry/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gittea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
@@ -659,9 +659,9 @@ the same backends.
 | Value  | Description | Stability |
 |---|---|---|
 | `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -707,7 +707,7 @@ If number of lines added/removed should be calculated from the start of time, th
 | [`vcs.change.id`](/docs/attributes-registry/vcs.md) | string | The ID of the change (pull request/merge request/changelist) if applicable. This is usually a unique (within repository) identifier generated by the VCS system. | `123` | `Conditionally Required` if a change is associate with the ref. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.owner.name`](/docs/attributes-registry/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [6] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gittea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `vcs.ref.base.name`:** `base` refers to the starting point of a change. For example, `main`
 would be the base reference of type branch if you've created a new
@@ -746,9 +746,9 @@ the same backends.
 | Value  | Description | Stability |
 |---|---|---|
 | `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -802,7 +802,7 @@ instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers) 
 | [`vcs.change.id`](/docs/attributes-registry/vcs.md) | string | The ID of the change (pull request/merge request/changelist) if applicable. This is usually a unique (within repository) identifier generated by the VCS system. | `123` | `Conditionally Required` if a change is associate with the ref. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.owner.name`](/docs/attributes-registry/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [6] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gittea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `vcs.ref.base.name`:** `base` refers to the starting point of a change. For example, `main`
 would be the base reference of type branch if you've created a new
@@ -832,9 +832,9 @@ the same backends.
 | Value  | Description | Stability |
 |---|---|---|
 | `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -890,7 +890,7 @@ This metric is [recommended][MetricRecommended].
 | [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [3] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.owner.name`](/docs/attributes-registry/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gittea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
@@ -912,9 +912,9 @@ the same backends.
 | Value  | Description | Stability |
 |---|---|---|
 | `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -950,7 +950,7 @@ This metric is [opt-in][MetricOptIn].
 | [`vcs.repository.url.full`](/docs/attributes-registry/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.owner.name`](/docs/attributes-registry/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`vcs.repository.name`](/docs/attributes-registry/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gittea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`vcs.provider.name`](/docs/attributes-registry/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
@@ -966,9 +966,9 @@ the same backends.
 | Value  | Description | Stability |
 |---|---|---|
 | `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

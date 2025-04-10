@@ -4,17 +4,17 @@
 # your pull request title with [chore] or use the "Skip Changelog" label.
 
 # One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
-change_type: enhancement
+change_type: 'breaking'
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: error
+component: 'otel'
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Add `error.message` property for human-readable error message on events.
+note: Rename span health metrics to remove the .count suffixes
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-issues: [1992]
+issues: [1979]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
