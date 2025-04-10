@@ -10,6 +10,7 @@ A cloud environment (e.g. GCP, Azure, AWS).
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="cloud-account-id" href="#cloud-account-id">`cloud.account.id`</a> | string | The cloud account ID the resource is assigned to. | `111111111111`; `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="cloud-account-name" href="#cloud-account-name">`cloud.account.name`</a> | string | The human-readable name or alias used to identify cloud accounts. | `development`; `aws-prod` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cloud-availability-zone" href="#cloud-availability-zone">`cloud.availability_zone`</a> | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [1] | `us-east-1c` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cloud-platform" href="#cloud-platform">`cloud.platform`</a> | string | The cloud platform in use. [2] | `alibaba_cloud_ecs`; `alibaba_cloud_fc`; `alibaba_cloud_openshift` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cloud-provider" href="#cloud-provider">`cloud.provider`</a> | string | Name of the cloud provider. | `alibaba_cloud`; `aws`; `azure` | ![Development](https://img.shields.io/badge/-development-blue) |
