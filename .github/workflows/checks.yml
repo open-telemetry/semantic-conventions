@@ -5,9 +5,17 @@ on:
   pull_request:
 
 jobs:
+
   markdownlint:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container-runner: ["docker", "podman"]
     steps:
+    - name: install podman and podman-docker
+      if: ${{ matrix.container-runner == 'podman' }}
+      run: sudo apt-get install podman podman-docker
+
     - name: check out code
       uses: actions/checkout@v2
 
@@ -36,12 +44,19 @@ jobs:
 
   markdown-link-check:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container-runner: ["docker", "podman"]
     steps:
     - name: check out code
       uses: actions/checkout@v2
 
     - name: install dependencies
       run: npm install
+
+    - name: install podman and podman-docker
+      if: ${{ matrix.container-runner == 'podman' }}
+      run: sudo apt-get install podman podman-docker
 
     - name: run markdown-link-check
       run: make markdown-link-check
@@ -72,15 +87,27 @@ jobs:
 
   semantic-conventions:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container-runner: ["docker", "podman"]
     steps:
     - uses: actions/checkout@v1
+    - name: install podman and podman-docker
+      if: ${{ matrix.container-runner == 'podman' }}
+      run: sudo apt-get install podman podman-docker
     - name: verify semantic convention tables
       run: make table-check
 
   semantic-conventions-registry:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container-runner: ["docker", "podman"]
     steps:
     - uses: actions/checkout@v1
+    - name: install podman and podman-docker
+      if: ${{ matrix.container-runner == 'podman' }}
+      run: sudo apt-get install podman podman-docker
     - name: verify registry tables
       run: |
         make attribute-registry-generation
@@ -88,8 +115,14 @@ jobs:
 
   schemas-check:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container-runner: ["docker", "podman"]
     steps:
     - uses: actions/checkout@v1
+    - name: install podman and podman-docker
+      if: ${{ matrix.container-runner == 'podman' }}
+      run: sudo apt-get install podman podman-docker
     - name: verify schemas
       run: make schema-check
 
@@ -104,15 +137,27 @@ jobs:
 
   policies-check:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container-runner: ["docker", "podman"]
     steps:
     - uses: actions/checkout@v1
+    - name: install podman and podman-docker
+      if: ${{ matrix.container-runner == 'podman' }}
+      run: sudo apt-get install podman podman-docker
     - name: verify semantic conventions yaml definitions
       run: make check-policies
 
   polices-test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container-runner: ["docker", "podman"]
     steps:
     - uses: actions/checkout@v1
+    - name: install podman and podman-docker
+      if: ${{ matrix.container-runner == 'podman' }}
+      run: sudo apt-get install podman podman-docker
     - name: verify semantic conventions yaml definitions
       run: make test-policies
 

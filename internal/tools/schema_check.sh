@@ -84,8 +84,10 @@ for file in $schemas_dir/*; do
     exit 2
   fi
 
-  docker run -v $schemas_dir:/schemas \
-  		otel/build-tool-schemas:$BUILD_TOOL_SCHEMAS_VERSION --file /schemas/$ver --version=$ver
+  PODMAN_USERNS=keep-id docker run \
+      -u $(id -u):$(id -g) \
+      -v $schemas_dir:/schemas \
+  		docker.io/otel/build-tool-schemas:$BUILD_TOOL_SCHEMAS_VERSION --file /schemas/$ver --version=$ver
 
   echo "OK"
 done
