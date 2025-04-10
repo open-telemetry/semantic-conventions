@@ -63,6 +63,19 @@ groups:
       - ref: network.interface.name
       - ref: network.io.direction
 
+  # k8s.container.* metrics
+  - id: metric.k8s.container.status.state
+    type: metric
+    metric_name: k8s.container.status.state
+    stability: experimental
+    brief: ""
+    instrument: updowncounter
+    unit: ""
+    attributes:
+      - ref: k8s.container.status.state
+        requirement_level: required
+      - ref: k8s.container.status.reason
+
   # k8s.node.* metrics
   - id: metric.k8s.node.uptime
     type: metric
