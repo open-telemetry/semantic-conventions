@@ -262,3 +262,37 @@ groups:
           recommended: when applicable
       - ref: error.type
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
+
+  - id: metric.otel.sdk.exporter.operation.duration
+    type: metric
+    metric_name: otel.sdk.exporter.operation.duration
+    stability: development
+    brief: "The duration of exporting a batch of telemetry records."
+    note: |
+      This metric defines successful operations using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1)
+      and [grpc](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success). Anything else is defined as an unsuccessful operation. For successful
+      operations, `error.type` MUST NOT be set. For unsuccessful export operations, `error.type` must contain a relevant failure cause.
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: otel.component.type
+        examples: ["otlp_grpc_span_exporter", "com.example.MySpanExporter"]
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If operation has ended with an error
+        examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
+      - ref: http.response.status_code
+        brief: The HTTP status code of the last HTTP request performed in scope of this export call.
+        requirement_level:
+          recommended: when applicable
+      - ref: rpc.grpc.status_code
+        brief: The gRPC status code of the last gRPC requests performed in scope of this export call.
+        requirement_level:
+          recommended: when applicable
