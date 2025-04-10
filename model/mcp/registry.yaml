@@ -4,81 +4,6 @@ groups:
     brief: >
       [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol/specification) attributes
     attributes:
-      - id: mcp.request.type
-        type:
-          members:
-            - id: call_tool
-              value: call_tool
-              brief: Represents tool call and corresponding `CallToolRequest` and `CallToolResult`
-              stability: development
-            - id: create_message
-              value: create_message
-              brief: Represents a server request to client to make LLM call and corresponding `CreateMessageRequest` and `CreateMessageResult`
-              stability: development
-            - id: get_prompt
-              value: get_prompt
-              brief: Represents getting prompt call and corresponding `GetPromptRequest` and `GetPromptResult`
-              stability: development
-            - id: list_tools
-              value: list_tools
-              brief: Represents listing tools call and corresponding `ListToolsRequest` and `ListToolsResult`
-              stability: development
-            - id: list_resources
-              value: list_resources
-              brief: Represents listing resources call and corresponding `ListResourcesRequest` and `ListResourcesResult`
-              stability: development
-            - id: list_prompts
-              value: list_prompts
-              brief: Represents listing prompts call and corresponding `ListPromptsRequest` and `ListPromptsResult`
-              stability: development
-            - id: read_resource
-              value: read_resource
-              brief: Represents reading resource call and corresponding `ReadResourceRequest` and `ReadResourceResult`
-              stability: development
-            - id: ping
-              value: ping
-              brief: Represents ping call and corresponding `PingRequest`
-              stability: development
-            - id: initialize
-              value: initialize
-              brief: Represents initialize call and corresponding `InitializeRequest` and `InitializeResult`
-              stability: development
-            - id: complete
-              value: complete
-              brief: Represents completion call and corresponding `CompleteRequest` and `CompleteResult`
-              stability: development
-            - id: subscribe
-              value: subscribe
-              brief: Represents subscription call and corresponding `SubscribeRequest`
-              stability: development
-            - id: unsubscribe
-              value: unsubscribe
-              brief: Represents unsubscription call and corresponding `UnsubscribeRequest`
-              stability: development
-            - id: set_level
-              value: set_level
-              brief: Represents setting log level call and corresponding `SetLevelRequest`
-              stability: development
-        brief: MCP request type.
-        stability: development
-      - id: mcp.notification.type
-        brief: MCP notification type.
-        type:
-          members:
-            - id: initialized
-              value: initialized
-              brief: Represents a notification about client initialization
-              stability: development
-            - id: progress
-              value: progress
-              brief: Represents a notification about progress update for a long-running request
-              stability: development
-            - id: resource_updated
-              value: resource_updated
-              brief: Represents a notification about resource update
-              stability: development
-        # TODO
-        stability: development
       - id: mcp.session.id
         type: string
         brief: Identifies MCP session.
@@ -101,8 +26,8 @@ groups:
         type: string
         brief: The value of the resource uri.
         note: >
-          This is a URI of the resource when the request type is `read_resource`,
-          `subscribe`, or `unsubscribe`. Or when notification type is `resource_updated`.
+          This is a URI of the resource when the method is is `resources/read`,
+          `resources/subscribe`, `resources/unsubscribe` or `notifications/resources/updated`.
         stability: development
         examples: ["postgres://database/customers/schema", "file:///home/user/documents/report.pdf"]
       - id: mcp.request.argument
