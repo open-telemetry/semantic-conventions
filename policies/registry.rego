@@ -95,3 +95,4 @@ get_attribute_name(attr, group) := name if {
     # if there was no prefix, we have a leading dot
     name := trim(full_name, ".")
 }
+
