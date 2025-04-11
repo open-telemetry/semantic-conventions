@@ -15,7 +15,7 @@ groups:
       - ref: server.address
       - ref: server.port
         requirement_level:
-          conditionally_required: When `server.address` is set
+          recommended: When `server.address` is set
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if session ends with an error.

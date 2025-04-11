@@ -8,7 +8,7 @@ groups:
       - ref: mcp.resource.uri
         requirement_level:
           conditionally_required: When client executes a request type that has a resource uri parameter
-      - ref: rpc.jsonrpc.request_id
+      - ref: mcp.request.id
         requirement_level:
           conditionally_required: When client executes a request.
 
@@ -21,7 +21,7 @@ groups:
       or notification or by the MCP server when server initiates the operation.
       It covers the time to receive the response or ack from the peer.
 
-      **Span name** SHOULD follow the format `{rpc.method} {target}`
+      **Span name** SHOULD follow the format `{mcp.method.name} {target}`
       where target is the `{mcp.tool.name}`, `{mcp.prompt.name}` or `{mcp.resource.uri}`
       depending on the request or notification type.
 
@@ -41,7 +41,7 @@ groups:
       It's reported by the MCP server when client initiates the request
       (or notification) or by the MCP client when server initiates the operation.
 
-      **Span name** SHOULD follow the format `{rpc.method} {target}`
+      **Span name** SHOULD follow the format `{mcp.method.name} {target}`
       where target is the `{mcp.tool.name}`, `{mcp.prompt.name}` or `{mcp.resource.uri}`
       depending on the request or notification type.
 
