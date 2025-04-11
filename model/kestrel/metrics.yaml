@@ -43,7 +43,7 @@ groups:
         brief: The full name of exception type.
         requirement_level:
           conditionally_required: if and only if an error has occurred.
-        examples: ['System.OperationCanceledException', 'Contoso.MyException']
+        examples: ['connection_reset', 'invalid_handshake']
         # TODO: move note to yaml once https://github.com/open-telemetry/build-tools/issues/192 is supported
         note: |
           Starting from .NET 9, Kestrel `kestrel.connection.duration` metric reports
