@@ -11,3 +11,27 @@ groups:
       - ref: service.version
       - ref: service.namespace
       - ref: service.instance.id
+  - id: entity.service
+    type: entity
+    name: service
+    brief: >
+      A service.
+    stability: development
+    attributes:
+      - ref: service.name
+      - ref: service.namespace
+    descriptive_attributes:
+      - ref: service.version
+    relationships:
+      - has_many: service.instance
+      - has_many: deployment.environment
+  - id: entity.service.instance
+    type: entity
+    name: service.instance
+    brief: >
+      A service instance.
+    stability: development
+    attributes:
+      - ref: service.instance.id
+    relationships:
+      - belongs_to: service
