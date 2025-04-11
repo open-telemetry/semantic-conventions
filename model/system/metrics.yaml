@@ -38,7 +38,10 @@ groups:
     stability: development
     brief: Fraction of total CPU time spent in active (non-idle) modes.
     note: >
-      This metric provides a standardized and opinionated definition of CPU utilization. It is defined as the proportion of CPU time spent in non-idle and non-iowait modes, following a formula similar to: 1 - (idle + iowait). This represents time spent actively executing work, including time delayed by the hypervisor (steal), which reflects CPU demand in virtualized environments. As a result, in cases of high CPU contention — such as 100% steal time — this metric will report 100% utilization, making such issues easy to detect.
+      This metric provides a standardized and opinionated definition of CPU utilization.
+      It is defined as the proportion of CPU time spent in non-idle and non-iowait modes, following a formula similar to: 1 - (idle + iowait).
+      This represents time spent actively executing work, including time delayed by the hypervisor (steal), which reflects CPU demand in virtualized environments.
+      As a result, in cases of high CPU contention — such as 100% steal time — this metric will report 100% utilization, making such issues easy to detect.
     instrument: gauge
     unit: "1"
     attributes: []
