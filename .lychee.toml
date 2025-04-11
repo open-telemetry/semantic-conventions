@@ -14,5 +14,8 @@ exclude = [
 # better to be safe and avoid failures
 max_retries = 6
 
+# better to be safe and avoid failures
+timeout = 60
+
 # insecure is currently needed for https://osi-model.com
 insecure = true

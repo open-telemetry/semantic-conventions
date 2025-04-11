@@ -121,9 +121,10 @@ normalized-link-check:
 
 .PHONY: markdown-link-check
 markdown-link-check: normalized-link-check
+    # pinning lychee to 0.18.1
 	$(DOCKER_RUN) --rm \
 		--mount 'type=bind,source=$(PWD),target=/home/repo' \
-		lycheeverse/lychee \
+		lycheeverse/lychee:sha-2aa22f8 \
 		--config home/repo/.lychee.toml \
 		--root-dir /home/repo \
 		--verbose \
@@ -132,9 +133,10 @@ markdown-link-check: normalized-link-check
 
 .PHONY: markdown-link-check-changelog-preview
 markdown-link-check-changelog-preview:
+    # pinning lychee to 0.18.1
 	$(DOCKER_RUN) --rm \
 		--mount 'type=bind,source=$(PWD),target=/home/repo' \
-		lycheeverse/lychee \
+		lycheeverse/lychee:sha-2aa22f8 \
 		--config /home/repo/.lychee.toml \
 		--root-dir /home/repo \
 		--verbose \
