@@ -54,10 +54,22 @@
 /model/system/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 /docs/non-normative/groups/system @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 
+# Browser semantic conventions
+/docs/browser/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers
+/model/browser/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers
+
+# Android semantic conventions
+/docs/android/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-android-approvers
+/model/android/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-android-approvers
+
 # Mobile semantic conventions
 /docs/mobile/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
-/model/app/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
-/model/device/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
+
+# Client-side semantic conventions
+/docs/enduser/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers @open-telemetry/semconv-android-approvers
+/model/enduser/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers @open-telemetry/semconv-android-approvers
+/model/app/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers @open-telemetry/semconv-android-approvers @open-telemetry/semconv-mobile-approvers
+/model/device/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers @open-telemetry/semconv-android-approvers @open-telemetry/semconv-mobile-approvers
 
 # K8s semantic conventions
 /docs/resource/k8s.md                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
