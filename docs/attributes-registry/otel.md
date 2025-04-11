@@ -80,7 +80,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_log_exporter` | OTLP log_record exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_metric_exporter` | OTLP metric exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `periodic_metric_reader` | The builtin SDK periodic exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
+| `periodic_metric_reader` | The builtin SDK periodically exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK Simple log_record Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 

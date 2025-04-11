@@ -115,7 +115,7 @@ groups:
             - id: periodic_metric_reader
               value: "periodic_metric_reader"
               brief: >
-                The builtin SDK periodic exporting metric reader
+                The builtin SDK periodically exporting metric reader
               stability: development
             - id: otlp_grpc_metric_exporter
               value: "otlp_grpc_metric_exporter"

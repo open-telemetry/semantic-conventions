@@ -31,7 +31,7 @@ This document describes metrics emitted by the OpenTelemetry SDK components them
   - [Metric: `otel.sdk.exporter.metric.inflight`](#metric-otelsdkexportermetricinflight)
   - [Metric: `otel.sdk.exporter.metric.exported`](#metric-otelsdkexportermetricexported)
 - [Operation Metrics](#operation-metrics)
-  - [Metric: `otel.sdk.metricreader.collection.duration`](#metric-otelsdkmetricreadercollectionduration)
+  - [Metric: `otel.sdk.metric_reader.collection.duration`](#metric-otelsdkmetric_readercollectionduration)
   - [Metric: `otel.sdk.exporter.operation.duration`](#metric-otelsdkexporteroperationduration)
 
 <!-- tocstop -->
@@ -168,7 +168,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_log_exporter` | OTLP log_record exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_metric_exporter` | OTLP metric exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `periodic_metric_reader` | The builtin SDK periodic exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
+| `periodic_metric_reader` | The builtin SDK periodically exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK Simple log_record Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -233,7 +233,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_log_exporter` | OTLP log_record exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_metric_exporter` | OTLP metric exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `periodic_metric_reader` | The builtin SDK periodic exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
+| `periodic_metric_reader` | The builtin SDK periodically exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK Simple log_record Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -328,7 +328,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_log_exporter` | OTLP log_record exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_metric_exporter` | OTLP metric exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `periodic_metric_reader` | The builtin SDK periodic exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
+| `periodic_metric_reader` | The builtin SDK periodically exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK Simple log_record Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -399,7 +399,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_log_exporter` | OTLP log_record exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_metric_exporter` | OTLP metric exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `periodic_metric_reader` | The builtin SDK periodic exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
+| `periodic_metric_reader` | The builtin SDK periodically exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK Simple log_record Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -501,7 +501,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_log_exporter` | OTLP log_record exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_metric_exporter` | OTLP metric exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `periodic_metric_reader` | The builtin SDK periodic exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
+| `periodic_metric_reader` | The builtin SDK periodically exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK Simple log_record Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -588,7 +588,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_log_exporter` | OTLP log_record exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_metric_exporter` | OTLP metric exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `periodic_metric_reader` | The builtin SDK periodic exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
+| `periodic_metric_reader` | The builtin SDK periodically exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK Simple log_record Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -653,7 +653,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_log_exporter` | OTLP log_record exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_metric_exporter` | OTLP metric exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `periodic_metric_reader` | The builtin SDK periodic exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
+| `periodic_metric_reader` | The builtin SDK periodically exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK Simple log_record Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -749,7 +749,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_log_exporter` | OTLP log_record exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_metric_exporter` | OTLP metric exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `periodic_metric_reader` | The builtin SDK periodic exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
+| `periodic_metric_reader` | The builtin SDK periodically exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK Simple log_record Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -820,7 +820,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_log_exporter` | OTLP log_record exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_metric_exporter` | OTLP metric exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `periodic_metric_reader` | The builtin SDK periodic exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
+| `periodic_metric_reader` | The builtin SDK periodically exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK Simple log_record Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -922,7 +922,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_log_exporter` | OTLP log_record exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_metric_exporter` | OTLP metric exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `periodic_metric_reader` | The builtin SDK periodic exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
+| `periodic_metric_reader` | The builtin SDK periodically exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK Simple log_record Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -995,7 +995,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_log_exporter` | OTLP log_record exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_metric_exporter` | OTLP metric exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `periodic_metric_reader` | The builtin SDK periodic exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
+| `periodic_metric_reader` | The builtin SDK periodically exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK Simple log_record Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -1097,7 +1097,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_log_exporter` | OTLP log_record exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_metric_exporter` | OTLP metric exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `periodic_metric_reader` | The builtin SDK periodic exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
+| `periodic_metric_reader` | The builtin SDK periodically exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK Simple log_record Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -1108,7 +1108,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 ## Operation Metrics
 
-### Metric: `otel.sdk.metricreader.collection.duration`
+### Metric: `otel.sdk.metric_reader.collection.duration`
 
 This metric is [recommended][MetricRecommended].
 
@@ -1116,7 +1116,7 @@ This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/metrics/api.md#instrument-advisory-parameters)
 with a single bucket with no boundaries.
 
-<!-- semconv metric.otel.sdk.metricreader.collection.duration -->
+<!-- semconv metric.otel.sdk.metric_reader.collection.duration -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1125,7 +1125,7 @@ with a single bucket with no boundaries.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `otel.sdk.metricreader.collection.duration` | Histogram | `s` | The duration of the collect operation of the metric reader. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `otel.sdk.metric_reader.collection.duration` | Histogram | `s` | The duration of the collect operation of the metric reader. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** For successful collections, `error.type` MUST NOT be set. For failed collections, `error.type` SHOULD contain the failure cause.
 It can happen that metrics collection is successful for some MetricProducers, while others fail. In that case `error.type` SHOULD be set to any of the failure causes.
@@ -1198,7 +1198,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_log_exporter` | OTLP log_record exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_metric_exporter` | OTLP metric exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `periodic_metric_reader` | The builtin SDK periodic exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
+| `periodic_metric_reader` | The builtin SDK periodically exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK Simple log_record Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -1306,7 +1306,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_log_exporter` | OTLP log_record exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_metric_exporter` | OTLP metric exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
-| `periodic_metric_reader` | The builtin SDK periodic exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
+| `periodic_metric_reader` | The builtin SDK periodically exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK Simple log_record Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK Simple Span Processor | ![Development](https://img.shields.io/badge/-development-blue) |
 

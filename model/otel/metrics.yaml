@@ -248,9 +248,9 @@ groups:
       - ref: error.type
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
 
-  - id: metric.otel.sdk.metricreader.collection.duration
+  - id: metric.otel.sdk.metric_reader.collection.duration
     type: metric
-    metric_name: otel.sdk.metricreader.collection.duration
+    metric_name: otel.sdk.metric_reader.collection.duration
     stability: development
     brief: "The duration of the collect operation of the metric reader."
     note: |
