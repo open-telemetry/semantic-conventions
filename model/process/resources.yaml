@@ -36,3 +36,16 @@ groups:
       - ref: process.runtime.name
       - ref: process.runtime.version
       - ref: process.runtime.description
+  - id: entity.process
+    type: entity
+    name: process
+    brief: >
+        An operating system process.
+    stability: development
+    attributes:
+      - ref: process.pid
+      - ref: process.executable.name
+    descriptive_attributes:
+      - ref: process.parent_pid
+    relationships:
+      - runs_on: host

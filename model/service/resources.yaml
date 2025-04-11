@@ -25,6 +25,8 @@ groups:
     relationships:
       - has_many: service.instance
       - has_many: deployment.environment
+      - instrumented_by: telemetry.sdk
+      - instrumented_by: telemetry.distro
   - id: entity.service.instance
     type: entity
     name: service.instance
@@ -34,4 +36,4 @@ groups:
     attributes:
       - ref: service.instance.id
     relationships:
-      - belongs_to: service
+      - runs_on: host

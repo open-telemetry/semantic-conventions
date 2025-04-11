@@ -1,0 +1,10 @@
+groups:
+  - id: entity.server
+    type: entity
+    name: server
+    brief: >
+      A server.
+    stability: development
+    attributes:
+      - ref: server.address
+      - ref: server.port
