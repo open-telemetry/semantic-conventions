@@ -215,7 +215,7 @@ groups:
       - id: gen_ai.tool.description
         stability: development
         type: string
-        brief: The tool description in simple text
+        brief: The tool description.
         examples: ["Multiply two numbers"]
       - id: gen_ai.tool.type
         stability: development
