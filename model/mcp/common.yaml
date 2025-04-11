@@ -13,16 +13,20 @@ groups:
       - ref: server.address
       - ref: server.port
         requirement_level:
-          conditionally_required: When `server.address` is set
+          recommended: When `server.address` is set
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if the operation fails.
         note: |
-          This attribute SHOULD be set to string representation of the JSON RPC
-          error code if the operation fails with a JSON RPC error and/or MCP
-          error message is returned. It SHOULD be set to `tool_error` if
-          `CallToolResult.isError` is true.
-      - ref: rpc.method
+          This attribute SHOULD be set to the string representation of the JSON RPC
+          error code if the operation fails with a JSON RPC error.type
+
+          When JSON RPC call is successful, but an error is returned within the
+          result payload, this attribute SHOULD be set to the low-cardinality
+          string representation of the error. When [CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/d59fb7e3c1936730fbc93f6ef47790151b2e318a/schema/2025-03-26/schema.ts#L698)
+          is return with `isError` set to `true`, this attribute SHOULD be set to
+          `tool_error`.
+      - ref: mcp.method.name
         requirement_level: required
       - ref: rpc.jsonrpc.error_code
         requirement_level:
