@@ -38,14 +38,11 @@ groups:
       - ref: network.protocol.version
         examples: ["1.1", "2"]
       - ref: tls.protocol.version
-      - ref: error.type
-        brief: The full name of exception type.
-        requirement_level:
-          conditionally_required: if and only if an error has occurred.
-        note: "Captures the exception type when a connection fails."
-        examples: ['System.OperationCanceledException', 'Contoso.MyException']
       # yamllint disable rule:line-length
       - ref: error.type
+        brief: Captures the error type when a connection fails.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
         # TODO: move note to yaml once https://github.com/open-telemetry/build-tools/issues/192 is supported
         note: |
           Starting from .NET 9, Kestrel `kestrel.connection.duration` metric reports
