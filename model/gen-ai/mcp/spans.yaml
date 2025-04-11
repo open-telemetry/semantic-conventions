@@ -1,0 +1,60 @@
+groups:
+  - id: span.mcp.session
+    type: span
+    span_kind: [server]
+    stability: stable
+    brief: >
+      This span represents the lifecycle of an MCP session.
+    note: |
+      Create a span when an MCP session is established and end it when the session is terminated.
+
+      **Span name:** `mcp.session`
+
+      **Span kind** MUST be `SERVER`.
+
+    attributes:
+      - ref: mcp.session.id
+        requirement_level: required
+        sampling_relevant: true
+      - ref: mcp.transport
+        requirement_level: optional
+
+  - id: span.mcp.operation
+    type: span
+    span_kind: client
+    stability: stable
+    brief: >
+      This span represents a complete client-server interaction for MCP operations.
+    note: |
+      For: 
+      - Requests - Create a span when an MCP request is initiated and end it when the response is received.
+      - Notifications - Create a span when an MCP notification is sent as there is no active response.
+
+      **Span name:** `mcp.<request.type>/<name>` (e.g., `mcp.tools.call/GetFileInfo`)
+
+      **Span kind** MAY be `CLIENT` or `SERVER`.
+
+    attributes:
+      - ref: mcp.session.id
+        requirement_level: optional
+      - ref: mcp.request.method
+        requirement_level: required
+        sampling_relevant: true
+      - ref: mcp.request.name
+        requirement_level: optional
+      - ref: mcp.request.arguments.<key>
+        requirement_level: optional
+      - ref: mcp.request.id
+        requirement_level: optional
+      - ref: mcp.response.error
+        requirement_level: optional
+      - ref: mcp.client.name
+        requirement_level: optional
+      - ref: mcp.client.version
+        requirement_level: optional
+      - ref: mcp.server.name
+        requirement_level: optional
+      - ref: mcp.server.version
+        requirement_level: optional
+      - ref: mcp.notification.method
+        requirement_level: optional

@@ -1,0 +1,96 @@
+groups:
+  - id: registry.mcp
+    type: attribute_group
+    display_name: MCP Attributes
+    brief: 'This document defines semantic convention attributes in the MCP namespace.'
+    attributes:
+      - id: mcp.session.id
+        type: string
+        brief: Identifier for the MCP session.
+        examples: ['c52f5ef3-c7a1-4f7a-a2e3-e38a7a4966d2']
+        stability: development
+
+      - id: mcp.transport
+        type: string
+        brief: Transport mechanism used.
+        examples: ['streamable-http', 'stdio']
+        stability: development
+
+      - id: mcp.request.method
+        type: string
+        brief: The MCP operation being performed, referred to as the method in the MCP specification.
+        examples: ['tools/call', 'prompts/get']
+        stability: development
+
+      - id: mcp.request.name
+        type: string
+        brief: Name of the tool or prompt, or URI template for resource. 
+        note: >
+          For Tools and Prompts, this maps to the `params/name` field in the MCP specification.
+
+          For URI templates, this maps to the `params/uri` field in the MCP specification.
+
+          For Resources with a URI template, the URI template should be reported using this field, without the value substitutions.
+          Optionally the template values can be reported with the `mcp.request.arguments.<key>` fields.
+        examples: ['GetFileInfo', 'file://{path_to_file}', 'https://api.example.com/resource/{resource_id}']
+        stability: development
+
+      - id: mcp.request.arguments.<key>
+        type: string
+        brief: Argument values for tool calls, prompts, or substitutions in URI templates.
+        note: >
+          `mcp.request.parameter.<key>` should be used to enumerate the arguments and values for requests:
+          - Prompts: `mcp.request.arguments.<key>` should be used for arguments pased when calling the prompt.
+          - Tools: `mcp.request.arguments.<key>` should be used for arguments passed when calling the tool.
+          can be used to log parameters for MCP tool calls and prompts, and for URI template substitutions for resources.
+          As the parameter values are the most likely to contain sensitive or PII information, emitting these values should be guarded behind a flag or other implementation specific control mechanism to only emit the data when safe to do so, for example when running in a debug environment.
+        examples: ['New York']
+        stability: development
+
+      - id: mcp.request.id
+        type: string
+        brief: Identifier for the message.
+        examples: ['msg_01234567']
+        stability: development
+
+      - id: mcp.response.error
+        type: string
+        brief: If the response was an error, the error message should be returned using this field. This can be used to log both protocol errors and application errors.
+        examples: ['Unknown tool: invalid_tool_name', 'Failed to fetch weather data: API rate limit exceeded']
+        stability: development
+
+      - id: mcp.client.name
+        type: string
+        brief: Name of the MCP client.
+        examples: ['mcp-js-client']
+        stability: development
+
+      - id: mcp.client.version
+        type: string
+        brief: Version of the MCP client.
+        examples: ['1.0.0']
+        stability: development
+
+      - id: mcp.server.name
+        type: string
+        brief: Name of the MCP server.
+        examples: ['mcp-cs-server']
+        stability: development
+
+      - id: mcp.server.version
+        type: string
+        brief: Version of the MCP server.
+        examples: ['1.0.0']
+        stability: development
+
+      - id: mcp.notification.method
+        type: string
+        brief: Method for change notifications, including the lists of prompts, tools and resources or change notifications for resources subscription requests
+        examples: ['notifications/resources/list_changed']
+        stability: development
+
+      - id: mcp.response.is_error
+        type: bool
+        brief: Used for metrics to indicate if the request was an error or not.
+        examples: ['notifications/resources/list_changed']
+        stability: development
