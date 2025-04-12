@@ -57,5 +57,3 @@ groups:
       - ref: client.port
         requirement_level:
           recommended: When `client.address` is set
-
-

@@ -95,12 +95,13 @@ if the message is available.
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Recommended` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
-error code if the operation fails with a JSON RPC error.type
+error code if one is returned.
 
 When JSON RPC call is successful, but an error is returned within the
 result payload, this attribute SHOULD be set to the low-cardinality
-string representation of the error. When [CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/d59fb7e3c1936730fbc93f6ef47790151b2e318a/schema/2025-03-26/schema.ts#L698)
-is return with `isError` set to `true`, this attribute SHOULD be set to
+string representation of the error. When
+[CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/d59fb7e3c1936730fbc93f6ef47790151b2e318a/schema/2025-03-26/schema.ts#L698)
+is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
 **[2] `mcp.resource.uri`:** This is a URI of the resource when the method is is `resources/read`, `resources/subscribe`, `resources/unsubscribe` or `notifications/resources/updated`.
@@ -235,12 +236,13 @@ if the message is available.
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Recommended` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
-error code if the operation fails with a JSON RPC error.type
+error code if one is returned.
 
 When JSON RPC call is successful, but an error is returned within the
 result payload, this attribute SHOULD be set to the low-cardinality
-string representation of the error. When [CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/d59fb7e3c1936730fbc93f6ef47790151b2e318a/schema/2025-03-26/schema.ts#L698)
-is return with `isError` set to `true`, this attribute SHOULD be set to
+string representation of the error. When
+[CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/d59fb7e3c1936730fbc93f6ef47790151b2e318a/schema/2025-03-26/schema.ts#L698)
+is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
 **[2] `mcp.resource.uri`:** This is a URI of the resource when the method is is `resources/read`, `resources/subscribe`, `resources/unsubscribe` or `notifications/resources/updated`.
@@ -353,12 +355,13 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [6] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
-error code if the operation fails with a JSON RPC error.type
+error code if one is returned.
 
 When JSON RPC call is successful, but an error is returned within the
 result payload, this attribute SHOULD be set to the low-cardinality
-string representation of the error. When [CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/d59fb7e3c1936730fbc93f6ef47790151b2e318a/schema/2025-03-26/schema.ts#L698)
-is return with `isError` set to `true`, this attribute SHOULD be set to
+string representation of the error. When
+[CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/d59fb7e3c1936730fbc93f6ef47790151b2e318a/schema/2025-03-26/schema.ts#L698)
+is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
 **[2] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
@@ -465,12 +468,13 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [8] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
-error code if the operation fails with a JSON RPC error.type
+error code if one is returned.
 
 When JSON RPC call is successful, but an error is returned within the
 result payload, this attribute SHOULD be set to the low-cardinality
-string representation of the error. When [CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/d59fb7e3c1936730fbc93f6ef47790151b2e318a/schema/2025-03-26/schema.ts#L698)
-is return with `isError` set to `true`, this attribute SHOULD be set to
+string representation of the error. When
+[CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/d59fb7e3c1936730fbc93f6ef47790151b2e318a/schema/2025-03-26/schema.ts#L698)
+is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
 **[2] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.

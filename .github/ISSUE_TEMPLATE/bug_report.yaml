@@ -67,6 +67,7 @@ body:
         - area:k8s
         - area:linux
         - area:log
+        - area:mcp
         - area:messaging
         - area:network
         - area:nodejs
