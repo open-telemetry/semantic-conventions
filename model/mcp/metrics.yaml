@@ -41,6 +41,12 @@ groups:
     instrument: histogram
     stability: development
     extends: mcp.operation.metrics.attributes
+    attributes:
+      - ref: client.address
+        requirement_level: recommended
+      - ref: client.port
+        requirement_level:
+          recommended: When `client.address` is set
 
   - id: metric.mcp.client.session.duration
     type: metric
@@ -59,3 +65,9 @@ groups:
     instrument: histogram
     stability: development
     extends: mcp.session.metrics.attributes
+    attributes:
+      - ref: client.address
+        requirement_level: recommended
+      - ref: client.port
+        requirement_level:
+          recommended: When `client.address` is set

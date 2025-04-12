@@ -51,3 +51,11 @@ groups:
       if the message is available.
     stability: development
     extends: trace.mcp.common.attributes
+    attributes:
+      - ref: client.address
+        requirement_level: recommended
+      - ref: client.port
+        requirement_level:
+          recommended: When `client.address` is set
+
+
