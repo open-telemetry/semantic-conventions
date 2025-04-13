@@ -57,8 +57,7 @@ then that operation name SHOULD be used prepended by `BATCH `,
 otherwise `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
-**[5] `db.operation.parameter`:** If an operation parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
-`db.query.text` parameters SHOULD be captured using `db.query.parameter.<key>` instead of `db.operation.parameter.<key>`.
+**[5] `db.operation.parameter`:** `db.query.text` parameters SHOULD be captured using `db.query.parameter.<key>` instead of `db.operation.parameter.<key>`.
 
 **[6] `db.query.parameter`:** If a query parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
 `db.query.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
