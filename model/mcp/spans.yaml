@@ -31,6 +31,11 @@ groups:
       if the message is available.
     stability: development
     extends: trace.mcp.common.attributes
+    attributes:
+      - ref: server.address
+      - ref: server.port
+        requirement_level:
+          recommended: When `server.address` is set
 
   - id: span.mcp.server
     type: span
