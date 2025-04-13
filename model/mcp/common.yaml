@@ -10,10 +10,6 @@ groups:
         requirement_level:
           conditionally_required: When operation is related to a specific prompt.
       - ref: network.transport
-      - ref: server.address
-      - ref: server.port
-        requirement_level:
-          recommended: When `server.address` is set
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if the operation fails.
