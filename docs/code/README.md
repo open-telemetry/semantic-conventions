@@ -4,7 +4,7 @@ linkTitle: Code
 
 # Semantic conventions for code
 
-**Status**: [Release Candidate][DocumentStatus]
+**Status**: [Stable][DocumentStatus]
 
 This document defines semantic conventions for source code.
 
