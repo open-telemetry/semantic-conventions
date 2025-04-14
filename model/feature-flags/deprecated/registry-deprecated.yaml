@@ -9,6 +9,9 @@ groups:
         brief: 'Deprecated, use `feature_flag.provider.name` instead.'
         stability: development
         deprecated: "Replaced by `feature_flag.provider.name`."
+        annotations:
+          code_generation:
+            exclude: true
         examples: ["Flag Manager"]
       - id: feature_flag.evaluation.reason
         type:
