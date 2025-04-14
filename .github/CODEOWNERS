@@ -54,9 +54,22 @@
 /model/system/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 /docs/non-normative/groups/system @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 
+# Browser semantic conventions
+/docs/browser/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers
+/model/browser/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers
+
+# Android semantic conventions
+/docs/android/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-android-approvers
+/model/android/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-android-approvers
+
 # Mobile semantic conventions
 /docs/mobile/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
-/model/device/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
+
+# Client-side semantic conventions
+/docs/enduser/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers @open-telemetry/semconv-android-approvers
+/model/enduser/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers @open-telemetry/semconv-android-approvers
+/model/app/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers @open-telemetry/semconv-android-approvers @open-telemetry/semconv-mobile-approvers
+/model/device/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers @open-telemetry/semconv-android-approvers @open-telemetry/semconv-mobile-approvers
 
 # K8s semantic conventions
 /docs/resource/k8s.md                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
@@ -92,10 +105,13 @@
 /docs/cicd/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/artifact/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/cicd/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
-/model/code/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/deployment/                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/test/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/vcs/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
+
+# Code attribute semantic conventions
+/docs/code/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-code-attribute-approvers
+/model/code/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-code-attribute-approvers
 
 # Database semantic conventions
 /docs/database/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
@@ -113,6 +129,10 @@
 # Profiling semantic conventions
 /docs/general/profiles.md          @open-telemetry/specs-semconv-approvers @open-telemetry/profiling-approvers
 /model/profile/                    @open-telemetry/specs-semconv-approvers @open-telemetry/profiling-approvers
+
+# SDK health semantic conventions
+/docs/otel/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-sdk-health-approvers
+/model/otel/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-sdk-health-approvers
 
 # Tooling
 /policies/                              @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-approvers

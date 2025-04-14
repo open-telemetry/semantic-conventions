@@ -21,10 +21,10 @@ linkTitle: Events
 
 <!-- tocstop -->
 
-GenAI instrumentations MAY capture user inputs sent to the model and responses received from it as [events](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/logs/data-model.md#events).
+GenAI instrumentations MAY capture user inputs sent to the model and responses received from it as [events](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/logs/data-model.md#events).
 
 > Note:
-> Events are in-development and not yet available in some languages. Check [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/spec-compliance-matrix.md#logs) to see the implementation status in corresponding language.
+> Events are in-development and not yet available in some languages. Check [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/spec-compliance-matrix.md#logs) to see the implementation status in corresponding language.
 
 Instrumentations MAY capture inputs and outputs if and only if application has enabled the collection of this data.
 This is for three primary reasons:
@@ -98,6 +98,10 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 **Body fields:**
 
+:warning: Body fields will be moved to complex attributes once the
+semantic convention tooling supports complex attributes
+(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
+
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | `content` | undefined | The contents of the system message. | `You're a helpful bot` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -162,6 +166,10 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 **Body fields:**
 
+:warning: Body fields will be moved to complex attributes once the
+semantic convention tooling supports complex attributes
+(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
+
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | `content` | undefined | The contents of the user message. | `What's the weather in Paris?` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -225,6 +233,10 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Body fields:**
+
+:warning: Body fields will be moved to complex attributes once the
+semantic convention tooling supports complex attributes
+(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
 
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -305,6 +317,10 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 **Body fields:**
 
+:warning: Body fields will be moved to complex attributes once the
+semantic convention tooling supports complex attributes
+(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
+
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | `content` | undefined | The contents of the tool message. | `rainy, 57°F` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -369,6 +385,10 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 | `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Body fields:**
+
+:warning: Body fields will be moved to complex attributes once the
+semantic convention tooling supports complex attributes
+(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
 
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

@@ -33,7 +33,7 @@ In addition to common properties, semantic convention groups have type-specific 
 [Schema documentation](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md)
 for the details.
 
-## Group Stability
+## Group stability
 
 Semantic Convention groups can have the following [stability levels][MaturityLevel]:
 `development`, `alpha`, `beta`, `release_candidate`, and `stable`.
@@ -86,5 +86,5 @@ users to opt into it.
 <!-- https://github.com/open-telemetry/semantic-conventions/issues/1511 -->
 
 [Stability]: https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability
-[MaturityLevel]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/oteps/0232-maturity-of-otel.md
+[MaturityLevel]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/oteps/0232-maturity-of-otel.md
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

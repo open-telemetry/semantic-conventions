@@ -12,6 +12,7 @@ acronyms:
   - CloudEvents
   - CloudFoundry
   - CLR
+  - CPython
   - CPU
   - CSI
   - DB
@@ -28,6 +29,7 @@ acronyms:
   - NodeJS
   - OCI
   - OpenTracing
+  - OracleDB
   - OS
   - OTel
   - RabbitMQ

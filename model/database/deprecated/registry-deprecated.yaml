@@ -36,14 +36,6 @@ groups:
         deprecated: "Replaced by `db.query.text`."
         stability: development
         examples: ['SELECT * FROM wuser_table', 'SET mykey "WuValue"']
-      - id: db.query.parameter
-        type: template[string]
-        brief: >
-          A query parameter used in `db.query.text`, with `<key>` being the parameter name,
-          and the attribute value being a string representation of the parameter value.
-        deprecated: "Replaced by `db.operation.parameter`."
-        stability: development
-        examples: ["someval", "55"]
       - id: db.cassandra.table
         type: string
         stability: development
@@ -65,8 +57,8 @@ groups:
       - id: db.sql.table
         type: string
         stability: development
-        brief: 'Deprecated, use `db.collection.name` instead.'
-        deprecated: "Replaced by `db.collection.name`."
+        brief: 'Deprecated, use `db.collection.name` instead, but only if not extracting the value from `db.query.text`.'
+        deprecated: "Replaced by `db.collection.name`, but only if not extracting the value from `db.query.text`."
         examples: 'mytable'
       - id: db.redis.database_index
         type: int

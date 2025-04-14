@@ -31,6 +31,10 @@ Describes Azure Resource Log event, see [Azure Resource Log Top-level Schema](ht
 
 **Body fields:**
 
+:warning: Body fields will be moved to complex attributes once the
+semantic convention tooling supports complex attributes
+(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
+
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | `category` | string | The Azure category of the log entry. | `AuditEvent`; `GatewayLogs`; `ApplicationGatewayAccessLog` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
