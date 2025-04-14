@@ -30,7 +30,7 @@ resource consumption, unexpected errors due to resource exhaustion or
 malfunction of core components of a host or fleet of hosts (network stack,
 memory, CPU, etc.).
 
-### General Information
+### General information
 
 - Machine name
 - ID (relevant to its context, could be a cloud provider ID or just base machine
@@ -91,7 +91,7 @@ provided by the OS. Reasons a user may want this:
    monitor stuff and it's an easier lift for them to move to basic process
    instrumentation, then move to other specific semconv over time.
 
-### General Information
+### General information
 
 - Process name
 - Pid

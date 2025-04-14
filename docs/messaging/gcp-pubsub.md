@@ -146,7 +146,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ## Examples
 
-### Asynchronous Batch Publish Example
+### Asynchronous batch publish example
 
 Given is a process P that asynchronously publishes 2 messages in a batch to a topic T on Pub/Sub.
 
@@ -183,7 +183,7 @@ flowchart LR;
 | `messaging.message.envelope.size` | `1` | `1` | |
 | `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |
 
-### Unary Pull Example
+### Unary pull example
 
 ```mermaid
 flowchart TD;
