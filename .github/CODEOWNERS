@@ -105,10 +105,13 @@
 /docs/cicd/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/artifact/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/cicd/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
-/model/code/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/deployment/                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/test/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/vcs/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
+
+# Code attribute semantic conventions
+/docs/code/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-code-attribute-approvers
+/model/code/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-code-attribute-approvers
 
 # Database semantic conventions
 /docs/database/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
@@ -126,6 +129,10 @@
 # Profiling semantic conventions
 /docs/general/profiles.md          @open-telemetry/specs-semconv-approvers @open-telemetry/profiling-approvers
 /model/profile/                    @open-telemetry/specs-semconv-approvers @open-telemetry/profiling-approvers
+
+# SDK health semantic conventions
+/docs/otel/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-sdk-health-approvers
+/model/otel/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-sdk-health-approvers
 
 # Tooling
 /policies/                              @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-approvers
