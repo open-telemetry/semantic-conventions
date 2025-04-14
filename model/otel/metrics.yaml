@@ -206,9 +206,9 @@ groups:
       - ref: error.type
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
 
-  - id: metric.otel.sdk.exporter.metric.inflight
+  - id: metric.otel.sdk.exporter.metric_data_point.inflight
     type: metric
-    metric_name: otel.sdk.exporter.metric.inflight
+    metric_name: otel.sdk.exporter.metric_data_point.inflight
     stability: development
     brief: "The number of metric data points which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
     note: |
@@ -225,9 +225,9 @@ groups:
         requirement_level:
           recommended: when applicable
 
-  - id: metric.otel.sdk.exporter.metric.exported
+  - id: metric.otel.sdk.exporter.metric_data_point.exported
     type: metric
-    metric_name: otel.sdk.exporter.metric.exported
+    metric_name: otel.sdk.exporter.metric_data_point.exported
     stability: development
     brief: "The number of metric data points for which the export has finished, either successful or failed"
     note: |
