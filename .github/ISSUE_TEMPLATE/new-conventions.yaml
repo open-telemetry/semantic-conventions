@@ -26,6 +26,7 @@ body:
         # DO NOT manually edit it.
         # Start semconv area list
         - area:android
+        - area:app
         - area:artifact
         - area:aspnetcore
         - area:aws
@@ -40,6 +41,7 @@ body:
         - area:code
         - area:container
         - area:cpu
+        - area:cpython
         - area:db
         - area:deployment
         - area:destination
@@ -63,6 +65,7 @@ body:
         - area:heroku
         - area:host
         - area:http
+        - area:ios
         - area:jvm
         - area:k8s
         - area:linux

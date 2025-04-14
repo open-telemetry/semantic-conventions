@@ -13,29 +13,29 @@
 **Description:** A software resource running on a z/OS system.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`os.type`](/docs/attributes-registry/os.md) | string | The operating system type. | `z_os` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.command`](/docs/attributes-registry/process.md) | string | The command used to launch the process (i.e. the command name). On z/OS, SHOULD be set to the name of the job used to start the z/OS system software. | `CICSSTRT` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.pid`](/docs/attributes-registry/process.md) | int | Process identifier (PID). [1] | `008A` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`service.instance.id`](/docs/attributes-registry/service.md) | string | The string ID of the service instance. [2] | `CICSPROD` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`os.type`](/docs/attributes-registry/os.md) | string | The operating system type. | `z_os` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.command`](/docs/attributes-registry/process.md) | string | The command used to launch the process (i.e. the command name). On z/OS, SHOULD be set to the name of the job used to start the z/OS system software. | `CICSSTRT` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.pid`](/docs/attributes-registry/process.md) | int | Process identifier (PID). [1] | `008A` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`service.instance.id`](/docs/attributes-registry/service.md) | string | The string ID of the service instance. [2] | `CICSPROD` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`service.name`](/docs/attributes-registry/service.md) | string | Logical name of the service. [3] | `CICS TS`; `Datacom`; `ADABAS` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`service.namespace`](/docs/attributes-registry/service.md) | string | A namespace for `service.name`. [4] | `CICSPLX2` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`service.namespace`](/docs/attributes-registry/service.md) | string | A namespace for `service.name`. [4] | `CICSPLX2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`service.version`](/docs/attributes-registry/service.md) | string | The version string of the service API or implementation. The format is not defined by these conventions. [5] | `5.6` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`zos.smf.id`](/docs/attributes-registry/zos.md) | string | The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis. | `SYS1` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`zos.sysplex`](/docs/attributes-registry/zos.md) | string | The name of the SYSPLEX to which the z/OS system belongs too. | `SYSPLEX1` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`host.arch`](/docs/attributes-registry/host.md) | string | The CPU architecture the host system is running on. | `s390x` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`host.name`](/docs/attributes-registry/host.md) | string | Name of the host. On z/OS, SHOULD be the full qualified hostname used to register the z/OS system in DNS. | `SYS1.DOMAIN.COM` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`mainframe.lpar.name`](/docs/attributes-registry/mainframe.md) | string | Name of the logical partition that hosts a systems with a mainframe operating system. | `LPAR01` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`os.version`](/docs/attributes-registry/os.md) | string | The version string of the operating system. On z/OS, SHOULD be the release returned by the command `d iplinfo`. | `3.1.0` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`zos.smf.id`](/docs/attributes-registry/zos.md) | string | The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis. | `SYS1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`zos.sysplex`](/docs/attributes-registry/zos.md) | string | The name of the SYSPLEX to which the z/OS system belongs too. | `SYSPLEX1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`host.arch`](/docs/attributes-registry/host.md) | string | The CPU architecture the host system is running on. | `s390x` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`host.name`](/docs/attributes-registry/host.md) | string | Name of the host. On z/OS, SHOULD be the full qualified hostname used to register the z/OS system in DNS. | `SYS1.DOMAIN.COM` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mainframe.lpar.name`](/docs/attributes-registry/mainframe.md) | string | Name of the logical partition that hosts a systems with a mainframe operating system. | `LPAR01` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.version`](/docs/attributes-registry/os.md) | string | The version string of the operating system. On z/OS, SHOULD be the release returned by the command `d iplinfo`. | `3.1.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`telemetry.sdk.language`](/docs/attributes-registry/telemetry.md) | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`telemetry.sdk.name`](/docs/attributes-registry/telemetry.md) | string | The name of the telemetry SDK as defined above. [6] | `opentelemetry` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`telemetry.sdk.version`](/docs/attributes-registry/telemetry.md) | string | The version string of the telemetry SDK. | `1.2.3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`host.id`](/docs/attributes-registry/host.md) | string | Unique host ID. On z/OS, SHOULD be the concatenation of sysplex name and SMFID, separated by a dash | `SYSPLEX1-SYS1` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`os.description`](/docs/attributes-registry/os.md) | string | Human readable OS version information, e.g., as reported by command `d iplinfo`. | `IBM z/OS 3.1` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`os.name`](/docs/attributes-registry/os.md) | string | Human readable operating system name. | `z/OS` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.owner`](/docs/attributes-registry/process.md) | string | The username of the user that owns the process. [7] | `CICSUSR` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.runtime.description`](/docs/attributes-registry/process.md) | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `IBM Customer Information Control System (CICS) Transaction Server for z/OS Version 5.6` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.runtime.name`](/docs/attributes-registry/process.md) | string | The name of the runtime of this process. | `CICS Transaction Server z/OS Version 5.6` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`process.runtime.version`](/docs/attributes-registry/process.md) | string | The version of the runtime of this process, as returned by the runtime without modification. | `5.6` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`host.id`](/docs/attributes-registry/host.md) | string | Unique host ID. On z/OS, SHOULD be the concatenation of sysplex name and SMFID, separated by a dash | `SYSPLEX1-SYS1` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.description`](/docs/attributes-registry/os.md) | string | Human readable OS version information, e.g., as reported by command `d iplinfo`. | `IBM z/OS 3.1` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.name`](/docs/attributes-registry/os.md) | string | Human readable operating system name. | `z/OS` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.owner`](/docs/attributes-registry/process.md) | string | The username of the user that owns the process. [7] | `CICSUSR` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.runtime.description`](/docs/attributes-registry/process.md) | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `IBM Customer Information Control System (CICS) Transaction Server for z/OS Version 5.6` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.runtime.name`](/docs/attributes-registry/process.md) | string | The name of the runtime of this process. | `CICS Transaction Server z/OS Version 5.6` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.runtime.version`](/docs/attributes-registry/process.md) | string | The version of the runtime of this process, as returned by the runtime without modification. | `5.6` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `process.pid`:** On z/OS, SHOULD be set to the Address Space Identifier.
 
@@ -62,14 +62,14 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 | Value  | Description | Stability |
 |---|---|---|
-| `amd64` | AMD64 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `arm32` | ARM32 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `arm64` | ARM64 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ia64` | Itanium | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ppc32` | 32-bit PowerPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ppc64` | 64-bit PowerPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `s390x` | IBM z/Architecture | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `x86` | 32-bit x86 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `amd64` | AMD64 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `arm32` | ARM32 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `arm64` | ARM64 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ia64` | Itanium | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ppc32` | 32-bit PowerPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ppc64` | 64-bit PowerPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `s390x` | IBM z/Architecture | ![Development](https://img.shields.io/badge/-development-blue) |
+| `x86` | 32-bit x86 | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -77,17 +77,17 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 | Value  | Description | Stability |
 |---|---|---|
-| `aix` | AIX (Advanced Interactive eXecutive) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `darwin` | Apple Darwin | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dragonflybsd` | DragonFly BSD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `freebsd` | FreeBSD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hpux` | HP-UX (Hewlett Packard Unix) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `linux` | Linux | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `netbsd` | NetBSD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `openbsd` | OpenBSD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `solaris` | SunOS, Oracle Solaris | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `windows` | Microsoft Windows | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `z_os` | IBM z/OS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `aix` | AIX (Advanced Interactive eXecutive) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `darwin` | Apple Darwin | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dragonflybsd` | DragonFly BSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `freebsd` | FreeBSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hpux` | HP-UX (Hewlett Packard Unix) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `linux` | Linux | ![Development](https://img.shields.io/badge/-development-blue) |
+| `netbsd` | NetBSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openbsd` | OpenBSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `solaris` | SunOS, Oracle Solaris | ![Development](https://img.shields.io/badge/-development-blue) |
+| `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
+| `z_os` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
