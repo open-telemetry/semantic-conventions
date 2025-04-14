@@ -212,6 +212,11 @@ groups:
         type: string
         brief: The tool call identifier.
         examples: ['call_mszuSIzqtI65i1wAUOE8w5H4']
+      - id: gen_ai.tool.description
+        stability: development
+        type: string
+        brief: The tool description.
+        examples: ["Multiply two numbers"]
       - id: gen_ai.tool.type
         stability: development
         type: string

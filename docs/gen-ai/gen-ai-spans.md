@@ -197,6 +197,7 @@ by the application code.
 |---|---|---|---|---|---|
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.tool.call.id`](/docs/attributes-registry/gen-ai.md) | string | The tool call identifier. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Recommended` if available | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.tool.description`](/docs/attributes-registry/gen-ai.md) | string | The tool description. | `Multiply two numbers` | `Recommended` if available | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.tool.name`](/docs/attributes-registry/gen-ai.md) | string | Name of the tool utilized by the agent. | `Flights` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
