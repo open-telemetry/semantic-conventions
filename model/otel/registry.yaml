@@ -65,22 +65,22 @@ groups:
             - id: batching_span_processor
               value: "batching_span_processor"
               brief: >
-                The builtin SDK Batching Span Processor
+                The builtin SDK batching span processor
               stability: development
             - id: simple_span_processor
               value: "simple_span_processor"
               brief: >
-                The builtin SDK Simple Span Processor
+                The builtin SDK simple span processor
               stability: development
             - id: batching_log_processor
               value: "batching_log_processor"
               brief: >
-                The builtin SDK Batching log_record Processor
+                The builtin SDK batching log record processor
               stability: development
             - id: simple_log_processor
               value: "simple_log_processor"
               brief: >
-                The builtin SDK Simple log_record Processor
+                The builtin SDK simple log record processor
               stability: development
             - id: otlp_grpc_span_exporter
               value: "otlp_grpc_span_exporter"
@@ -100,17 +100,17 @@ groups:
             - id: otlp_grpc_log_exporter
               value: "otlp_grpc_log_exporter"
               brief: >
-                OTLP log_record exporter over gRPC with protobuf serialization
+                OTLP log record exporter over gRPC with protobuf serialization
               stability: development
             - id: otlp_http_log_exporter
               value: "otlp_http_log_exporter"
               brief: >
-                OTLP log_record exporter over HTTP with protobuf serialization
+                OTLP log record exporter over HTTP with protobuf serialization
               stability: development
             - id: otlp_http_json_log_exporter
               value: "otlp_http_json_log_exporter"
               brief: >
-                OTLP log_record exporter over HTTP with JSON serialization
+                OTLP log record exporter over HTTP with JSON serialization
               stability: development
             - id: periodic_metric_reader
               value: "periodic_metric_reader"

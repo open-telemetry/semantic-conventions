@@ -57,7 +57,7 @@ groups:
     stability: development
     brief: "The number of spans for which the processing has finished, either successful or failed"
     note: |
-      For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` must contain the failure cause.
+      For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
       For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
     instrument: counter
     unit: "{span}"
@@ -75,7 +75,7 @@ groups:
     stability: development
     brief: "The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
     note: |
-      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
     instrument: updowncounter
     unit: "{span}"
     attributes:
@@ -94,8 +94,8 @@ groups:
     stability: development
     brief: "The number of spans for which the export has finished, either successful or failed"
     note: |
-      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
-      For exporters with partial success semantics (e.g. OTLP with `rejected_spans`), rejected spans must count as failed and only non-rejected spans count as success.
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
+      For exporters with partial success semantics (e.g. OTLP with `rejected_spans`), rejected spans MUST count as failed and only non-rejected spans count as success.
       If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
     instrument: counter
     unit: "{span}"
@@ -151,7 +151,7 @@ groups:
     stability: development
     brief: "The number of log records for which the processing has finished, either successful or failed"
     note: |
-      For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` must contain the failure cause.
+      For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
       For the SDK Simple and Batching Log Record Processor a log record is considered to be processed already when it has been submitted to the exporter,
       not when the corresponding export call has finished.
     instrument: counter
@@ -170,7 +170,7 @@ groups:
     stability: development
     brief: "The number of log records which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
     note: |
-      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
     instrument: updowncounter
     unit: "{log_record}"
     attributes:
@@ -189,8 +189,8 @@ groups:
     stability: development
     brief: "The number of log records for which the export has finished, either successful or failed"
     note: |
-      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
-      For exporters with partial success semantics (e.g. OTLP with `rejected_log_records`), rejected log records must count as failed and only non-rejected log records count as success.
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
+      For exporters with partial success semantics (e.g. OTLP with `rejected_log_records`), rejected log records MUST count as failed and only non-rejected log records count as success.
       If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
     instrument: counter
     unit: "{log_record}"
@@ -212,7 +212,7 @@ groups:
     stability: development
     brief: "The number of metric data points which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
     note: |
-      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
     instrument: updowncounter
     unit: "{data_point}"
     attributes:
@@ -231,8 +231,8 @@ groups:
     stability: development
     brief: "The number of metric data points for which the export has finished, either successful or failed"
     note: |
-      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` must contain the failure cause.
-      For exporters with partial success semantics (e.g. OTLP with `rejected_data_points`), rejected data points must count as failed and only non-rejected data points count as success.
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
+      For exporters with partial success semantics (e.g. OTLP with `rejected_data_points`), rejected data points MUST count as failed and only non-rejected data points count as success.
       If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
     instrument: counter
     unit: "{data_point}"
@@ -271,7 +271,7 @@ groups:
     note: |
       This metric defines successful operations using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1)
       and [grpc](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success). Anything else is defined as an unsuccessful operation. For successful
-      operations, `error.type` MUST NOT be set. For unsuccessful export operations, `error.type` must contain a relevant failure cause.
+      operations, `error.type` MUST NOT be set. For unsuccessful export operations, `error.type` MUST contain a relevant failure cause.
     instrument: histogram
     unit: "s"
     attributes:
