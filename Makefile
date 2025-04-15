@@ -10,6 +10,13 @@ else
 	SED ?= sed
 endif
 
+
+ifeq ($(LYCHEE_GITHUB_TOKEN),)
+  LYCHEE_GITHUB_TOKEN_ARG :=
+else:
+  LYCHEE_GITHUB_TOKEN_ARG := --env GITHUB_TOKEN=$(LYCHEE_GITHUB_TOKEN)
+endif
+
 TOOLS_DIR := $(PWD)/internal/tools
 
 MARKDOWN_LINK_CHECK_ARG= # pass extra arguments such as --exclude '^http'
@@ -27,6 +34,7 @@ CONTAINER_REPOSITORY=docker.io
 WEAVER_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 SEMCONVGEN_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 OPA_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
+LYCHEE_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 
 # Versioned, non-qualified references to containers used in this Makefile.
 # These are parsed from dependencies.Dockerfile so dependabot will autoupdate
@@ -34,6 +42,7 @@ OPA_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 VERSIONED_WEAVER_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="weaver" {print $$2}')
 VERSIONED_SEMCONVGEN_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="semconvgen" {print $$2}')
 VERSIONED_OPA_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}')
+VERSIONED_LYCHEE_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="lychee" {print $$2}')
 
 # Fully qualified references to containers used in this Makefile. These
 # include the container repository, so that the build will work with tools
@@ -46,7 +55,7 @@ VERSIONED_OPA_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4==
 WEAVER_CONTAINER=$(WEAVER_CONTAINER_REPOSITORY)/$(VERSIONED_WEAVER_CONTAINER_NO_REPO)
 SEMCONVGEN_CONTAINER=$(SEMCONVGEN_CONTAINER_REPOSITORY)/$(VERSIONED_SEMCONVGEN_CONTAINER_NO_REPO)
 OPA_CONTAINER=$(OPA_CONTAINER_REPOSITORY)/$(VERSIONED_OPA_CONTAINER_NO_REPO)
-
+LYCHEE_CONTAINER=$(LYCHEE_CONTAINER_REPOSITORY)/$(VERSIONED_LYCHEE_CONTAINER_NO_REPO)
 
 CHECK_TARGETS=install-tools markdownlint misspell table-check compatibility-check \
 			schema-check check-file-and-folder-names-in-docs
@@ -121,22 +130,23 @@ normalized-link-check:
 
 .PHONY: markdown-link-check
 markdown-link-check: normalized-link-check
-    # pinning lychee to 0.18.1
 	$(DOCKER_RUN) --rm \
-		--mount 'type=bind,source=$(PWD),target=/home/repo' \
-		lycheeverse/lychee:sha-2aa22f8 \
+	    $(DOCKER_USER_IS_HOST_USER_ARG) \
+		--mount 'type=bind,source=$(PWD),target=/home/repo' $(LYCHEE_GITHUB_TOKEN_ARG) \
+		$(LYCHEE_CONTAINER) \
 		--config home/repo/.lychee.toml \
 		--root-dir /home/repo \
 		--verbose \
+		--timeout=60 \
 		$(MARKDOWN_LINK_CHECK_ARG) \
 		home/repo
 
 .PHONY: markdown-link-check-changelog-preview
 markdown-link-check-changelog-preview:
-    # pinning lychee to 0.18.1
 	$(DOCKER_RUN) --rm \
-		--mount 'type=bind,source=$(PWD),target=/home/repo' \
-		lycheeverse/lychee:sha-2aa22f8 \
+	   $(DOCKER_USER_IS_HOST_USER_ARG) \
+		--mount 'type=bind,source=$(PWD),target=/home/repo' $(LYCHEE_GITHUB_TOKEN_ARG) \
+		$(LYCHEE_CONTAINER) \
 		--config /home/repo/.lychee.toml \
 		--root-dir /home/repo \
 		--verbose \
@@ -212,6 +222,7 @@ attribute-registry-generation:
 .PHONY: table-check
 table-check:
 	$(DOCKER_RUN) --rm \
+     	$(DOCKER_USER_IS_HOST_USER_ARG) \
 		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target,readonly' \
@@ -300,6 +311,10 @@ LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.c
 .PHONY: check-policies
 check-policies:
 	$(DOCKER_RUN) --rm \
+	    $(DOCKER_USER_IS_HOST_USER_ARG) \
+		--env USER=weaver \
+		--env HOME=/home/weaver \
+		-v $(shell mktemp -d):/home/weaver/.weaver \
 		--mount 'type=bind,source=$(PWD)/policies,target=/home/weaver/policies,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		${WEAVER_CONTAINER} registry check \
@@ -310,7 +325,7 @@ check-policies:
 # Test rego policies
 .PHONY: test-policies
 test-policies:
-	$(DOCKER_RUN) --rm -v $(PWD)/policies:/policies -v $(PWD)/policies_test:/policies_test \
+	$(DOCKER_RUN) --rm $(DOCKER_USER_IS_HOST_USER_ARG) -v $(PWD)/policies:/policies -v $(PWD)/policies_test:/policies_test \
 	${OPA_CONTAINER} test \
     --var-values \
 	--explain fails \
@@ -321,5 +336,5 @@ test-policies:
 # once github action requirements are updated.
 .PHONY: compatibility-check
 compatibility-check:
-	$(DOCKER_RUN) --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
+	$(DOCKER_RUN) --rm $(DOCKER_USER_IS_HOST_USER_ARG) -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
 		$(SEMCONVGEN_CONTAINER) --continue-on-validation-errors -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
