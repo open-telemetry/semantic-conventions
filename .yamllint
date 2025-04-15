@@ -5,6 +5,7 @@ ignore-from-file:
 
 ignore: |
   node_modules/*
+  .github/workflows/*
 
 rules:
   document-start: disable
