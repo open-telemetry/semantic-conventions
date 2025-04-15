@@ -36,10 +36,11 @@ groups:
     type: metric
     metric_name: system.cpu.utilization
     stability: development
-    brief: Fraction of total CPU time spent in active (non-idle) modes.
+    brief: Fraction of total CPU time spent in active modes, aggregated across all system CPU cores.
     note: >
       This metric provides a standardized and opinionated definition of CPU utilization.
-      It is defined as the proportion of CPU time spent in non-idle and non-iowait modes, following a formula similar to: 1 - (idle + iowait).
+      It is defined as the proportion of total system CPU time spent in non-idle and non-iowait modes — that is, the time spent in user, system, nice, interrupt, and steal modes. It is computed by aggregating `cpu.utilization` across all logical CPUs for these modes, and dividing the result by `system.cpu.logical.count` to produce a normalized, system-wide utilization value between 0.0 and 1.0:
+        system.cpu.utilization = sum(cpu.utilization{mode != "idle" and mode != "iowait"}) / system.cpu.logical.count
       This represents time spent actively executing work, including time delayed by the hypervisor (steal), which reflects CPU demand in virtualized environments.
       As a result, in cases of high CPU contention — such as 100% steal time — this metric will report 100% utilization, making such issues easy to detect.
     instrument: gauge
