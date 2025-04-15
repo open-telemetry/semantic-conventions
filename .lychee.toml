@@ -8,11 +8,15 @@ exclude = [
     "^https://github.com/open-telemetry/semantic-conventions/(pull|issues)/\\d+$",
     "^https://github.com/open-telemetry/opentelemetry-specification/(pull|issues)/\\d+$",
     # TODO (lmolkova) treat timeout as not a failure?
-    "^https://www.intersystems.com"
+    "^https://www.intersystems.com",
+    "^https://gcc.gnu.org"
 ]
 
 # better to be safe and avoid failures
 max_retries = 6
+
+# better to be safe and avoid failures
+timeout = 60
 
 # insecure is currently needed for https://osi-model.com
 insecure = true
