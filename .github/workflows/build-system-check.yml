@@ -33,6 +33,8 @@ jobs:
 
     - name: invoke make
       run: make
+      env:
+        LYCHEE_GITHUB_TOKEN: ${{ github.token }}
 
 
   # The "CONTRIBUTING.md" guide provides these make targets for regenerating the files;
@@ -97,3 +99,5 @@ jobs:
 
     - name: invoke make
       run: make check
+      env:
+        LYCHEE_GITHUB_TOKEN: ${{ github.token }}

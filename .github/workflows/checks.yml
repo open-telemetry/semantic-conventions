@@ -46,6 +46,8 @@ jobs:
 
     - name: run markdown-link-check
       run: make markdown-link-check
+      env:
+        LYCHEE_GITHUB_TOKEN: ${{ github.token }}
 
   markdown-toc-check:
     runs-on: ubuntu-latest

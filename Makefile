@@ -10,6 +10,13 @@ else
 	SED ?= sed
 endif
 
+
+ifeq ($(LYCHEE_GITHUB_TOKEN),)
+  LYCHEE_GITHUB_TOKEN_ARG :=
+else:
+  LYCHEE_GITHUB_TOKEN_ARG := --env GITHUB_TOKEN=$(LYCHEE_GITHUB_TOKEN)
+endif
+
 TOOLS_DIR := $(PWD)/internal/tools
 
 MARKDOWN_LINK_CHECK_ARG= # pass extra arguments such as --exclude '^http'
@@ -125,7 +132,7 @@ normalized-link-check:
 markdown-link-check: normalized-link-check
 	$(DOCKER_RUN) --rm \
 	    $(DOCKER_USER_IS_HOST_USER_ARG) \
-		--mount 'type=bind,source=$(PWD),target=/home/repo' \
+		--mount 'type=bind,source=$(PWD),target=/home/repo' $(LYCHEE_GITHUB_TOKEN_ARG) \
 		$(LYCHEE_CONTAINER) \
 		--config home/repo/.lychee.toml \
 		--root-dir /home/repo \
@@ -138,7 +145,7 @@ markdown-link-check: normalized-link-check
 markdown-link-check-changelog-preview:
 	$(DOCKER_RUN) --rm \
 	   $(DOCKER_USER_IS_HOST_USER_ARG) \
-		--mount 'type=bind,source=$(PWD),target=/home/repo' \
+		--mount 'type=bind,source=$(PWD),target=/home/repo' $(LYCHEE_GITHUB_TOKEN_ARG) \
 		$(LYCHEE_CONTAINER) \
 		--config /home/repo/.lychee.toml \
 		--root-dir /home/repo \
