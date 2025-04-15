@@ -17,7 +17,7 @@ jobs:
       run: sudo apt-get install podman podman-docker
 
     - name: check out code
-      uses: actions/checkout@v2
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: install dependencies
       run: npm install
@@ -32,9 +32,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: check out code
-      uses: actions/checkout@v2
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
-    - uses: actions/setup-python@v2
+    - uses: actions/setup-python@8d9ed9ac5c53483de85588cdf95a591a75ab9f55 # v5.5.0
 
     - name: install yamllint
       run: make install-yamllint
@@ -49,7 +49,7 @@ jobs:
         container-runner: ["docker", "podman"]
     steps:
     - name: check out code
-      uses: actions/checkout@v2
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: install dependencies
       run: npm install
@@ -65,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: check out code
-      uses: actions/checkout@v2
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: install dependencies
       run: npm install
@@ -80,7 +80,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: check out code
-      uses: actions/checkout@v2
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: run misspell
       run: make misspell
@@ -91,7 +91,8 @@ jobs:
       matrix:
         container-runner: ["docker", "podman"]
     steps:
-    - uses: actions/checkout@v1
+    - name: check out code
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
     - name: install podman and podman-docker
       if: ${{ matrix.container-runner == 'podman' }}
       run: sudo apt-get install podman podman-docker
@@ -104,7 +105,8 @@ jobs:
       matrix:
         container-runner: ["docker", "podman"]
     steps:
-    - uses: actions/checkout@v1
+    - name: check out code
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
     - name: install podman and podman-docker
       if: ${{ matrix.container-runner == 'podman' }}
       run: sudo apt-get install podman podman-docker
@@ -119,7 +121,8 @@ jobs:
       matrix:
         container-runner: ["docker", "podman"]
     steps:
-    - uses: actions/checkout@v1
+    - name: check out code
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
     - name: install podman and podman-docker
       if: ${{ matrix.container-runner == 'podman' }}
       run: sudo apt-get install podman podman-docker
@@ -129,7 +132,7 @@ jobs:
   areas-dropdown-check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
     - name: Components dropdown in issue templates
       run: |
         make generate-gh-issue-templates
@@ -141,7 +144,8 @@ jobs:
       matrix:
         container-runner: ["docker", "podman"]
     steps:
-    - uses: actions/checkout@v1
+    - name: check out code
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
     - name: install podman and podman-docker
       if: ${{ matrix.container-runner == 'podman' }}
       run: sudo apt-get install podman podman-docker
@@ -154,7 +158,8 @@ jobs:
       matrix:
         container-runner: ["docker", "podman"]
     steps:
-    - uses: actions/checkout@v1
+    - name: check out code
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
     - name: install podman and podman-docker
       if: ${{ matrix.container-runner == 'podman' }}
       run: sudo apt-get install podman podman-docker
@@ -165,6 +170,6 @@ jobs:
   semantic-conventions-compatibility:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
     - name: verify semantic convention compatibility with latest released version
       run: make compatibility-check

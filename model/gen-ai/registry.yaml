@@ -212,6 +212,11 @@ groups:
         type: string
         brief: The tool call identifier.
         examples: ['call_mszuSIzqtI65i1wAUOE8w5H4']
+      - id: gen_ai.tool.description
+        stability: development
+        type: string
+        brief: The tool description.
+        examples: ["Multiply two numbers"]
       - id: gen_ai.tool.type
         stability: development
         type: string
@@ -230,6 +235,10 @@ groups:
             - id: chat
               value: "chat"
               brief: 'Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)'
+              stability: development
+            - id: generate_content
+              value: "generate_content"
+              brief: 'Multimodal content generation operation such as [Gemini Generate Content](https://ai.google.dev/api/generate-content)'
               stability: development
             - id: text_completion
               value: "text_completion"

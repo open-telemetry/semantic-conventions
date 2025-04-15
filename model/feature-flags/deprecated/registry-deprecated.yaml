@@ -4,6 +4,15 @@ groups:
     display_name: Deprecated Feature Flag Attributes
     brief: "Describes deprecated feature flag attributes."
     attributes:
+      - id: feature_flag.provider_name
+        type: string
+        brief: 'Deprecated, use `feature_flag.provider.name` instead.'
+        stability: development
+        deprecated: "Replaced by `feature_flag.provider.name`."
+        annotations:
+          code_generation:
+            exclude: true
+        examples: ["Flag Manager"]
       - id: feature_flag.evaluation.reason
         type:
           members:

@@ -19,13 +19,14 @@ This group defines the attributes used to describe telemetry in the context of d
 | <a id="db-namespace" href="#db-namespace">`db.namespace`</a> | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-operation-batch-size" href="#db-operation-batch-size">`db.operation.batch.size`</a> | int | The number of queries included in a batch operation. [3] | `2`; `3`; `4` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-operation-name" href="#db-operation-name">`db.operation.name`</a> | string | The name of the operation or command being executed. [4] | `findAndModify`; `HMSET`; `SELECT` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| <a id="db-operation-parameter" href="#db-operation-parameter">`db.operation.parameter.<key>`</a> | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [5] | `someval`; `55` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| <a id="db-query-summary" href="#db-query-summary">`db.query.summary`</a> | string | Low cardinality representation of a database query text. [6] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| <a id="db-query-text" href="#db-query-text">`db.query.text`</a> | string | The database query being executed. [7] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="db-operation-parameter" href="#db-operation-parameter">`db.operation.parameter.<key>`</a> | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [5] | `someval`; `55` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="db-query-parameter" href="#db-query-parameter">`db.query.parameter.<key>`</a> | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [6] | `someval`; `55` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="db-query-summary" href="#db-query-summary">`db.query.summary`</a> | string | Low cardinality representation of a database query text. [7] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="db-query-text" href="#db-query-text">`db.query.text`</a> | string | The database query being executed. [8] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-response-returned-rows" href="#db-response-returned-rows">`db.response.returned_rows`</a> | int | Number of rows returned by the operation. | `10`; `30`; `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="db-response-status-code" href="#db-response-status-code">`db.response.status_code`</a> | string | Database response status code. [8] | `102`; `ORA-17002`; `08P01`; `404` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| <a id="db-stored-procedure-name" href="#db-stored-procedure-name">`db.stored_procedure.name`</a> | string | The name of a stored procedure within the database. [9] | `GetCustomer` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| <a id="db-system-name" href="#db-system-name">`db.system.name`</a> | string | The database management system (DBMS) product as identified by the client instrumentation. [10] | `other_sql`; `softwareag.adabas`; `actian.ingres` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="db-response-status-code" href="#db-response-status-code">`db.response.status_code`</a> | string | Database response status code. [9] | `102`; `ORA-17002`; `08P01`; `404` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="db-stored-procedure-name" href="#db-stored-procedure-name">`db.stored_procedure.name`</a> | string | The name of a stored procedure within the database. [10] | `GetCustomer` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="db-system-name" href="#db-system-name">`db.system.name`</a> | string | The database management system (DBMS) product as identified by the client instrumentation. [11] | `other_sql`; `softwareag.adabas`; `actian.ingres` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
@@ -56,27 +57,29 @@ then that operation name SHOULD be used prepended by `BATCH `,
 otherwise `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
-**[5] `db.operation.parameter`:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
-If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
-`db.operation.parameter.<key>` SHOULD NOT be captured on batch operations.
+**[5] `db.operation.parameter`:** `db.query.text` parameters SHOULD be captured using `db.query.parameter.<key>` instead of `db.operation.parameter.<key>`.
 
-**[6] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
+**[6] `db.query.parameter`:** If a query parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
+`db.query.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
+`db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
+
+**[7] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
 Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
 
-**[7] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[8] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
-**[8] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+**[9] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 
-**[9] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
+**[10] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
 For batch operations, if the individual operations are known to have the same
 stored procedure name then that stored procedure name SHOULD be used.
 
-**[10] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
+**[11] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
 ---
 
@@ -168,7 +171,6 @@ Describes deprecated database attributes.
 | <a id="db-mssql-instance-name" href="#db-mssql-instance-name">`db.mssql.instance_name`</a> | string | Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute. | `MSSQLSERVER` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. |
 | <a id="db-name" href="#db-name">`db.name`</a> | string | Deprecated, use `db.namespace` instead. | `customers`; `main` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
 | <a id="db-operation" href="#db-operation">`db.operation`</a> | string | Deprecated, use `db.operation.name` instead. | `findAndModify`; `HMSET`; `SELECT` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.operation.name`. |
-| <a id="db-query-parameter" href="#db-query-parameter">`db.query.parameter.<key>`</a> | string | A query parameter used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. | `someval`; `55` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.operation.parameter`. |
 | <a id="db-redis-database-index" href="#db-redis-database-index">`db.redis.database_index`</a> | int | Deprecated, use `db.namespace` instead. | `0`; `1`; `15` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
 | <a id="db-sql-table" href="#db-sql-table">`db.sql.table`</a> | string | Deprecated, use `db.collection.name` instead, but only if not extracting the value from `db.query.text`. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`, but only if not extracting the value from `db.query.text`. |
 | <a id="db-statement" href="#db-statement">`db.statement`</a> | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`. |

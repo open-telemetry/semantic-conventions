@@ -35,6 +35,7 @@ LYCHEE_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 VERSIONED_WEAVER_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="weaver" {print $$2}')
 VERSIONED_SEMCONVGEN_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="semconvgen" {print $$2}')
 VERSIONED_OPA_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}')
+VERSIONED_LYCHEE_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="lychee" {print $$2}')
 
 # Fully qualified references to containers used in this Makefile. These
 # include the container repository, so that the build will work with tools
@@ -47,7 +48,7 @@ VERSIONED_OPA_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4==
 WEAVER_CONTAINER=$(WEAVER_CONTAINER_REPOSITORY)/$(VERSIONED_WEAVER_CONTAINER_NO_REPO)
 SEMCONVGEN_CONTAINER=$(SEMCONVGEN_CONTAINER_REPOSITORY)/$(VERSIONED_SEMCONVGEN_CONTAINER_NO_REPO)
 OPA_CONTAINER=$(OPA_CONTAINER_REPOSITORY)/$(VERSIONED_OPA_CONTAINER_NO_REPO)
-LYCHEE_CONTAINER=$(LYCHEE_CONTAINER_REPOSITORY)/lycheeverse/lychee
+LYCHEE_CONTAINER=$(LYCHEE_CONTAINER_REPOSITORY)/$(VERSIONED_LYCHEE_CONTAINER_NO_REPO)
 
 CHECK_TARGETS=install-tools markdownlint misspell table-check compatibility-check \
 			schema-check check-file-and-folder-names-in-docs
