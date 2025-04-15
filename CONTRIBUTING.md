@@ -35,6 +35,7 @@ requirements and recommendations.
   - [Misspell check](#misspell-check)
   - [Update the tables of content](#update-the-tables-of-content)
   - [Markdown link check](#markdown-link-check)
+  - [Yamllint check](#yamllint-check)
 - [Merging existing ECS conventions](#merging-existing-ecs-conventions)
 
 <!-- tocstop -->
@@ -339,6 +340,7 @@ For more information on each check, see:
 - [Markdown style](#markdown-style)
 - [Misspell check](#misspell-check)
 - [Markdown link check](#markdown-link-check)
+- [Yamllint check](#yamllint-check)
 - Prettier formatting
 
 ### Auto formatting
@@ -416,6 +418,20 @@ To check the validity of links in all markdown files, run the following command:
 
 ```bash
 make markdown-link-check
+```
+
+### Yamllint check
+
+To check the validity of all yaml files, run the following command:
+
+```bash
+make yamllint
+```
+
+If it is the first time to run this command, install `yamllint` first:
+
+```bash
+make install-yamllint
 ```
 
 ## Merging existing ECS conventions
