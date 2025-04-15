@@ -46,7 +46,7 @@ Spans representing calls to a Oracle SQL Database adhere to the general [Semanti
 | [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`db.stored_procedure.name`](/docs/attributes-registry/db.md) | string | The name of a stored procedure within the database. [11] | `GetCustomer` | `Recommended` [12] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [14] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [14] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1] `db.namespace`:** `db.namespace` SHOULD be set to the combination of instance name, database name and
 service name following the `{instance_name}|{database_name}|{service_name}` pattern.
@@ -72,7 +72,7 @@ Summary may be available to the instrumentation through instrumentation hooks or
 
 **[9] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext). For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 
-**[10] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless explicitly configured and sanitized to exclude sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext). Parameterized query text MUST also NOT be collected by default unless explicitly configured. The query parameter values themselves are opt-in, see [`db.operation.parameter.<key>`](../attributes-registry/db.md)).
+**[10] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless explicitly configured and sanitized to exclude sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext). Parameterized query text MUST also NOT be collected by default unless explicitly configured. The query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](../attributes-registry/db.md)).
 
 **[11] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
@@ -84,9 +84,9 @@ stored procedure name then that stored procedure name SHOULD be used.
 
 **[13] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[14] `db.operation.parameter`:** If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
-If `db.query.text` is also captured, then `db.operation.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
-`db.operation.parameter.<key>` SHOULD NOT be captured on batch operations.
+**[14] `db.query.parameter`:** If a query parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
+`db.query.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
+`db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
