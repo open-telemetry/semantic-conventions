@@ -5,8 +5,6 @@
 
 # Changelog
 
-oops
-
 <!-- next version -->
 
 ## v1.32.0
