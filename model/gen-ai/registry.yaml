@@ -13,14 +13,38 @@ groups:
               stability: development
               value: "openai"
               brief: 'OpenAI'
+            - id: gcp.gen_ai
+              stability: development
+              value: "gcp.gen_ai"
+              brief: "Any Google generative AI endpoint"
+              note: >
+                May be used when specific backend is unknown.
+                May use common attributes prefixed with 'gcp.gen_ai.'.
+            - id: gcp.vertex_ai
+              stability: development
+              value: "gcp.vertex_ai"
+              brief: 'Vertex AI'
+              note: >
+                This refers to the 'aiplatform.googleapis.com' endpoint.
+                May use common attributes prefixed with 'gcp.gen_ai.'.
+            - id: gcp.gemini
+              stability: development
+              value: "gcp.gemini"
+              brief: 'Gemini'
+              note: >
+                This refers to the 'generativelanguage.googleapis.com' endpoint.
+                Also known as the AI Studio API.
+                May use common attributes prefixed with 'gcp.gen_ai.'.
             - id: vertex_ai
               stability: development
               value: "vertex_ai"
               brief: 'Vertex AI'
+              deprecated: "Use 'gcp.vertex_ai' instead."
             - id: gemini
               stability: development
               value: "gemini"
               brief: 'Gemini'
+              deprecated: "Use 'gcp.gemini' instead."
             - id: anthropic
               stability: development
               value: "anthropic"
