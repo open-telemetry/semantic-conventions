@@ -2,10 +2,7 @@ extends: default
 
 ignore-from-file:
   - .gitignore
-
-ignore: |
-  node_modules/*
-  .github/workflows/*
+  - .yamllint-ignore
 
 rules:
   document-start: disable
