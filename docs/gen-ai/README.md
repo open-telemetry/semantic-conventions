@@ -21,5 +21,6 @@ Technology specific semantic conventions are defined for the following GenAI sys
 
 * [Azure AI Inference](./azure-ai-inference.md): Semantic Conventions for Azure AI Inference.
 * [OpenAI](./openai.md): Semantic Conventions for OpenAI.
+* [Google Generative AI](./gcp.md): Semantic Conventions for Gemini and Vertex AI.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

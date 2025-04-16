@@ -7,6 +7,7 @@
 - [GCP Client Attributes](#gcp-client-attributes)
 - [GCP - Google Cloud Run Attributes](#gcp---google-cloud-run-attributes)
 - [GCP - Google Compute Engine (GCE) Attributes](#gcp---google-compute-engine-gce-attributes)
+- [Generative AI Attributes](#generative-ai-attributes)
 
 ## GCP - AppHub Attributes
 
@@ -103,3 +104,15 @@ This document defines attributes for Google Compute Engine (GCE).
 |---|---|---|---|---|
 | <a id="gcp-gce-instance-hostname" href="#gcp-gce-instance-hostname">`gcp.gce.instance.hostname`</a> | string | The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm). | `my-host1234.example.com`; `sample-vm.us-west1-b.c.my-project.internal` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gcp-gce-instance-name" href="#gcp-gce-instance-name">`gcp.gce.instance.name`</a> | string | The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names). | `instance-1`; `my-vm-name` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Generative AI Attributes
+
+This documents defines attributes for Google generative AI systems.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="gcp-gen-ai-request" href="#gcp-gen-ai-request">`gcp.gen_ai.request.<key>`</a> | string[] | Request configuration options named in a Google-specific manner. [6] |  | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[6] `gcp.gen_ai.request`:** Key names are derived from the data structures in the Google Gen AI SDK ("google.genai.types.*" in https://github.com/googleapis/python-genai).
+Key names are dependent on the particular operation in question. Each operation has its corresponding "*Config" data structure; for example, the "generate_content" operation has "GenerateContentConfig", while "generate_images" has a corresponding "GenerateImagesConfig".
+Key names correspond to a flattened version of the config data structure. For example {"foo": {"bar": {"baz": 5}}} results in a key called "gcp.gen_ai.request.foo.bar.baz" with value 5.

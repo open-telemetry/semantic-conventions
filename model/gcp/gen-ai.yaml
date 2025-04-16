@@ -1,0 +1,33 @@
+groups:
+  - id: attributes.gcp.gen_ai
+    type: attribute_group
+    name: gcp.gen_ai
+    stability: development
+    brief: >
+      Attributes that are used for Google generative AI systems
+      and that are common to multiple Google endpoints (i.e. common
+      to both the Vertex AI and to the Gemini API endpoints).
+    attributes:
+      - ref: gcp.gen_ai.request
+
+  - id: attributes.gcp.vertex_ai
+    type: attribute_group
+    extends: attributes.gcp.gen_ai
+    name: gcp.vertex_ai
+    stability: development
+    brief: >
+      Attributes that are used for Vertex AI.
+    attributes:
+    - ref: gcp.client.service
+      note: Should be "aiplatform" for the Vertex AI endpoint.
+
+  - id: attributes.gcp.gemini
+    type: attribute_group
+    extends: attributes.gcp.gen_ai
+    name: gcp.gemini
+    stability: development
+    brief: >
+      Attributes that are used for Gemini.
+    attributes:
+    - ref: gcp.client.service
+      note: Should be "generativelanguage" for the Gemini endpoint.

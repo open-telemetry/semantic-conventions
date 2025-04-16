@@ -195,3 +195,28 @@ groups:
         brief: >
           The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm).
         examples: ['my-host1234.example.com', 'sample-vm.us-west1-b.c.my-project.internal']
+
+  - id: registry.gcp.gen_ai
+    type: attribute_group
+    display_name: Generative AI Attributes
+    brief: >
+      This documents defines attributes for Google generative AI systems.
+    stability: development
+    attributes:
+      - id: gcp.gen_ai.request
+        stability: development
+        type: template[string[]]
+        brief: >
+          Request configuration options named in a Google-specific manner.
+        note: >
+          Key names are derived from the data structures in the Google
+          Gen AI SDK ("google.genai.types.*" in https://github.com/googleapis/python-genai).
+
+          Key names are dependent on the particular operation in question.
+          Each operation has its corresponding "*Config" data structure; for
+          example, the "generate_content" operation has "GenerateContentConfig",
+          while "generate_images" has a corresponding "GenerateImagesConfig".
+
+          Key names correspond to a flattened version of the config data
+          structure. For example {"foo": {"bar": {"baz": 5}}} results in
+          a key called "gcp.gen_ai.request.foo.bar.baz" with value 5.

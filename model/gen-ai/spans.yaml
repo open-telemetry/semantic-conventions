@@ -177,6 +177,22 @@ groups:
         requirement_level:
           conditionally_required: If not default (443).
 
+  - id: span.gen_ai.gcp.client
+    type: span
+    extends: trace.gen_ai.client.common_attributes
+    stability: development
+    brief: Semantic Conventions for model inference spans when calling Google systems.
+    span_kind: client
+    note: |
+      `gen_ai.system` MUST be set to `"gcp.gen_ai"`, `"gcp.vertex_ai"`, or `"gcp.gemini"`.
+    attributes:
+     - ref: gcp.gen_ai.request
+       requirement_level: opt_in
+     - ref: gcp.client.service
+       requirement_level:
+         note: Expected to be "aiplatform" (Vertex AI) or "generativelanguage" (Gemini).
+         conditionally_required: If available
+
   - id: span.gen_ai.create_agent.client
     type: span
     stability: development
