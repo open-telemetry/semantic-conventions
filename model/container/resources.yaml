@@ -21,3 +21,26 @@ groups:
         requirement_level: opt_in
       - ref: container.label
       - ref: oci.manifest.digest
+  - id: entity.container
+    type: entity
+    name: container
+    brief: >
+        A container instance.
+    stability: development
+    attributes:
+      - ref: container.id
+    descriptive_attributes:
+      - ref: container.name
+      - ref: container.id
+      - ref: container.runtime
+      - ref: container.image.name
+      - ref: container.image.tags
+      - ref: container.image.id
+      - ref: container.image.repo_digests
+      - ref: container.command
+      - ref: container.command_line
+      - ref: container.command_args
+      - ref: container.label
+      - ref: oci.manifest.digest
+    relationships:
+      - runs_on: host
