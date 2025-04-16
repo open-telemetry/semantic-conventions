@@ -351,7 +351,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `process.uptime` | Gauge | `s` | The time the process has been running. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `process2` |
+| `process.uptime` | Gauge | `s` | The time the process has been running. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `process` |
 
 **[1]:** Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
 The actual accuracy would depend on the instrumentation and operating system.

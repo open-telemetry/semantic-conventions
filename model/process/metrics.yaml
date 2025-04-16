@@ -134,4 +134,4 @@ groups:
     instrument: gauge
     unit: "s"
     entity_associations:
-      - process2
+      - process
