@@ -64,9 +64,9 @@ groups:
         type: string
         stability: development
         brief: >
-          The name of the process executable. On Linux based systems, can be set
-          to the `Name` in `proc/[pid]/status`. On Windows, can be set to the
-          base name of `GetProcessImageFileNameW`.
+          The name of the process executable. On Linux based systems, this SHOULD be
+          set to the base name of the target of `/proc/[pid]/exe`. On Windows,
+          this SHOULD be set to the base name of `GetProcessImageFileNameW`.
         examples: ['otelcol']
       - id: process.executable.path
         type: string
@@ -239,6 +239,13 @@ groups:
               value: 'minor'
               stability: development
         stability: development
+      - id: process.environment_variable
+        brief: >
+          Process environment variables, <key> being the environment variable
+          name, the value being the environment variable value.
+        type: template[string]
+        stability: development
+        examples: ['process.environment_variable.USER="ubuntu"', 'process.environment_variable.PATH="/usr/local/bin:/usr/bin"']
   # process.linux* attribute group
   - id: registry.process.linux
     type: attribute_group

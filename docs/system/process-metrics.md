@@ -17,7 +17,7 @@ metrics](/docs/runtime/README.md#metrics).
 
 <!-- toc -->
 
-- [Process Metrics](#process-metrics)
+- [Process metrics](#process-metrics)
   - [Metric: `process.cpu.time`](#metric-processcputime)
   - [Metric: `process.cpu.utilization`](#metric-processcpuutilization)
   - [Metric: `process.memory.usage`](#metric-processmemoryusage)
@@ -32,7 +32,7 @@ metrics](/docs/runtime/README.md#metrics).
 
 <!-- tocstop -->
 
-> **Warning** Existing instrumentations and collector that are using<!-- markdown-link-check-disable-next-line -->
+> **Warning** Existing instrumentations and collector that are using
 > [v1.21.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.21.0/docs/system/process-metrics.md)
 > (or prior):
 >
@@ -42,7 +42,7 @@ metrics](/docs/runtime/README.md#metrics).
 > * SHOULD introduce a control mechanism to allow users to opt-in to the new
 >   conventions once the migration plan is finalized.
 
-## Process Metrics
+## Process metrics
 
 ### Metric: `process.cpu.time`
 

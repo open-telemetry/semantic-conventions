@@ -11,13 +11,13 @@ linkTitle: Process
 - [Process](#process)
   - [Selecting process attributes](#selecting-process-attributes)
 - [Process runtimes](#process-runtimes)
-  - [Erlang Runtimes](#erlang-runtimes)
-  - [Go Runtimes](#go-runtimes)
+  - [Erlang runtimes](#erlang-runtimes)
+  - [Go runtimes](#go-runtimes)
   - [Java runtimes](#java-runtimes)
   - [JavaScript runtimes](#javascript-runtimes)
-  - [.NET Runtimes](#net-runtimes)
-  - [Python Runtimes](#python-runtimes)
-  - [Ruby Runtimes](#ruby-runtimes)
+  - [.NET runtimes](#net-runtimes)
+  - [Python runtimes](#python-runtimes)
+  - [Ruby runtimes](#ruby-runtimes)
 
 <!-- tocstop -->
 
@@ -42,7 +42,7 @@ linkTitle: Process
 | [`process.command`](/docs/attributes-registry/process.md) | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`process.command_args`](/docs/attributes-registry/process.md) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. | `["cmd/otecol", "--config=config.yaml"]` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`process.command_line`](/docs/attributes-registry/process.md) | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. | `C:\cmd\otecol --config="my directory\config.yaml"` | `Conditionally Required` [3] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`process.executable.name`](/docs/attributes-registry/process.md) | string | The name of the process executable. On Linux based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.executable.name`](/docs/attributes-registry/process.md) | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`process.executable.path`](/docs/attributes-registry/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`process.linux.cgroup`](/docs/attributes-registry/process.md) | string | The control group associated with the process. [6] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`process.owner`](/docs/attributes-registry/process.md) | string | The username of the user that owns the process. | `root` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -111,7 +111,7 @@ How to set these attributes for particular runtime kinds is described in the fol
 
 In addition to these attributes, [`telemetry.sdk.language`](README.md#telemetry-sdk) can be used to determine the general kind of runtime used.
 
-### Erlang Runtimes
+### Erlang runtimes
 
 - `process.runtime.name` - The name of the Erlang VM being used, i.e., `erlang:system_info(machine)`.
 - `process.runtime.version` -  The version of the runtime (ERTS - Erlang Runtime System), i.e., `erlang:system_info(version)`.
@@ -123,7 +123,7 @@ Example:
 | --- | --- | --- |
 | BEAM | 11.1 |  Erlang/OTP 23 erts-11.1 |
 
-### Go Runtimes
+### Go runtimes
 
 Go Runtimes SHOULD fill in the as follows:
 
@@ -194,7 +194,7 @@ Examples for some JavaScript runtimes
 | Node.js | nodejs | 14.15.4 |
 | Web Browser | browser | Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36 |
 
-### .NET Runtimes
+### .NET runtimes
 
 .NET instrumentation SHOULD fill in the values by following values:
 
@@ -218,7 +218,7 @@ Examples for some .NET runtimes
 | .NET Framework | .NET Framework | 4.8 | .NET Framework 4.8.9195.0 |
 | .NET | .NET | 7.0.14 | .NET 7.0.14 |
 
-### Python Runtimes
+### Python runtimes
 
 Python instrumentation SHOULD fill in the values as follows:
 
@@ -256,7 +256,7 @@ Examples for some Python runtimes:
 
 Note that on CPython GCC/Clang Linux builds (up to and including 3.9) and PyPy, there is an actual newline in the `sys.version` string.
 
-### Ruby Runtimes
+### Ruby runtimes
 
 Ruby instrumentation SHOULD fill in the values by copying from built-in runtime constants.
 

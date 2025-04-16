@@ -15,8 +15,8 @@ operations. By adding FaaS attributes to metric events it allows for finely tune
 
 <!-- toc -->
 
-- [Metric Instruments](#metric-instruments)
-  - [FaaS Instance](#faas-instance)
+- [Metric instruments](#metric-instruments)
+  - [FaaS instance](#faas-instance)
     - [Metric: `faas.invoke_duration`](#metric-faasinvoke_duration)
     - [Metric: `faas.init_duration`](#metric-faasinit_duration)
     - [Metric: `faas.coldstarts`](#metric-faascoldstarts)
@@ -27,15 +27,15 @@ operations. By adding FaaS attributes to metric events it allows for finely tune
     - [Metric: `faas.cpu_usage`](#metric-faascpu_usage)
     - [Metric: `faas.net_io`](#metric-faasnet_io)
 - [References](#references)
-  - [Metric References](#metric-references)
+  - [Metric references](#metric-references)
 
 <!-- tocstop -->
 
-## Metric Instruments
+## Metric instruments
 
 The following metric instruments describe FaaS operations.
 
-### FaaS Instance
+### FaaS instance
 
 The following metrics are recorded by the FaaS instance.
 
@@ -44,7 +44,7 @@ The following metrics are recorded by the FaaS instance.
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.faas.invoke_duration -->
@@ -84,7 +84,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.faas.init_duration -->
@@ -304,7 +304,7 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.faas.cpu_usage -->
@@ -377,7 +377,7 @@ This metric is [recommended][MetricRecommended].
 
 ## References
 
-### Metric References
+### Metric references
 
 Below are links to documentation regarding metrics that are available with different
 FaaS providers. This list is not exhaustive.
