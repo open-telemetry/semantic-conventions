@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Generative AI traces
+linkTitle: Agent spans
 --->
 
 # Semantic Conventions for GenAI agent and framework spans
@@ -56,18 +56,9 @@ Semantic conventions for individual GenAI systems and frameworks MAY specify dif
 | [`gen_ai.agent.description`](/docs/attributes-registry/gen-ai.md) | string | Free-form description of the GenAI agent provided by the application. | `Helps with math problems`; `Generates fiction stories` | `Conditionally Required` If provided by the application. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.agent.id`](/docs/attributes-registry/gen-ai.md) | string | The unique identifier of the GenAI agent. | `asst_5j66UpCpwteGg4YSxUnt7lPY` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.agent.name`](/docs/attributes-registry/gen-ai.md) | string | Human-readable name of the GenAI agent provided by the application. | `Math Tutor`; `Fiction Writer` | `Conditionally Required` If provided by the application. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.request.choice.count`](/docs/attributes-registry/gen-ai.md) | int | The target number of candidate completions to return. | `3` | `Conditionally Required` if available, in the request, and !=1 | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the GenAI model a request is being made to. [4] | `gpt-4` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.request.seed`](/docs/attributes-registry/gen-ai.md) | int | Requests with same seed value more likely to return same result. | `100` | `Conditionally Required` if applicable and if the request includes a seed | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | GenAI server port. [5] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`gen_ai.request.encoding_formats`](/docs/attributes-registry/gen-ai.md) | string[] | The encoding formats requested in an embeddings operation, if specified. [6] | `["base64"]`; `["float", "binary"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.request.frequency_penalty`](/docs/attributes-registry/gen-ai.md) | double | The frequency penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.request.max_tokens`](/docs/attributes-registry/gen-ai.md) | int | The maximum number of tokens the model generates for a request. | `100` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.request.presence_penalty`](/docs/attributes-registry/gen-ai.md) | double | The presence penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.request.stop_sequences`](/docs/attributes-registry/gen-ai.md) | string[] | List of sequences that the model will use to stop generating further tokens. | `["forest", "lived"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.request.temperature`](/docs/attributes-registry/gen-ai.md) | double | The temperature setting for the GenAI request. | `0.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.request.top_p`](/docs/attributes-registry/gen-ai.md) | double | The top_p sampling setting for the GenAI request. | `1.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | GenAI server address. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | GenAI server address. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
@@ -91,9 +82,7 @@ Instrumentations SHOULD document the list of errors they report.
 
 **[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[6] `gen_ai.request.encoding_formats`:** In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
-
-**[7] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 
