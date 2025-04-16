@@ -210,7 +210,7 @@ groups:
           Request configuration options named in a Google-specific manner.
         note: >
           Key names are derived from the data structures in the Google
-          Gen AI SDK ("google.genai.types.*" in https://github.com/googleapis/python-genai).
+          Gen AI SDK ("google.genai.types.*" in <https://github.com/googleapis/python-genai>).
 
           Key names are dependent on the particular operation in question.
           Each operation has its corresponding "*Config" data structure; for

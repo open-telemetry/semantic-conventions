@@ -113,6 +113,6 @@ This documents defines attributes for Google generative AI systems.
 |---|---|---|---|---|
 | <a id="gcp-gen-ai-request" href="#gcp-gen-ai-request">`gcp.gen_ai.request.<key>`</a> | string[] | Request configuration options named in a Google-specific manner. [6] |  | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[6] `gcp.gen_ai.request`:** Key names are derived from the data structures in the Google Gen AI SDK ("google.genai.types.*" in https://github.com/googleapis/python-genai).
+**[6] `gcp.gen_ai.request`:** Key names are derived from the data structures in the Google Gen AI SDK ("google.genai.types.*" in <https://github.com/googleapis/python-genai>).
 Key names are dependent on the particular operation in question. Each operation has its corresponding "*Config" data structure; for example, the "generate_content" operation has "GenerateContentConfig", while "generate_images" has a corresponding "GenerateImagesConfig".
 Key names correspond to a flattened version of the config data structure. For example {"foo": {"bar": {"baz": 5}}} results in a key called "gcp.gen_ai.request.foo.bar.baz" with value 5.

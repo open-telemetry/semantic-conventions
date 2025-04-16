@@ -76,7 +76,7 @@ Additional output format details may be recorded in the future in the `gen_ai.ou
 
 **[10] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[11] `gcp.gen_ai.request`:** Key names are derived from the data structures in the Google Gen AI SDK ("google.genai.types.*" in https://github.com/googleapis/python-genai).
+**[11] `gcp.gen_ai.request`:** Key names are derived from the data structures in the Google Gen AI SDK ("google.genai.types.*" in <https://github.com/googleapis/python-genai>).
 Key names are dependent on the particular operation in question. Each operation has its corresponding "*Config" data structure; for example, the "generate_content" operation has "GenerateContentConfig", while "generate_images" has a corresponding "GenerateImagesConfig".
 Key names correspond to a flattened version of the config data structure. For example {"foo": {"bar": {"baz": 5}}} results in a key called "gcp.gen_ai.request.foo.bar.baz" with value 5.
 
