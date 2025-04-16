@@ -182,7 +182,7 @@ markdownlint:
 .PHONY: install-yamllint
 install-yamllint:
     # Using a venv is recommended
-	pip install -U yamllint~=1.26.1
+	pip install -U yamllint~=1.37.0
 
 .PHONY: yamllint
 yamllint:
