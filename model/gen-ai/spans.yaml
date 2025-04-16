@@ -1,5 +1,5 @@
 groups:
-  - id: trace.gen_ai.client.common_attributes
+  - id: trace.gen_ai.client.common_request_attributes
     type: attribute_group
     stability: development
     brief: >
@@ -34,6 +34,27 @@ groups:
           conditionally_required: if applicable and if the request includes a seed
       - ref: gen_ai.request.encoding_formats
         requirement_level: recommended
+      - ref: server.address
+        brief: GenAI server address.
+        requirement_level: recommended
+      - ref: server.port
+        brief: GenAI server port.
+        requirement_level:
+          conditionally_required: If `server.address` is set.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
+        note: |
+          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
+  - id: trace.gen_ai.client.common_attributes
+    type: attribute_group
+    stability: development
+    brief: >
+      Describes GenAI operation span.
+    extends: trace.gen_ai.client.common_request_attributes
+    attributes:
       - ref: gen_ai.output.type
         requirement_level:
           conditionally_required: when applicable and if the request includes an output format.
@@ -51,20 +72,6 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.usage.output_tokens
         requirement_level: recommended
-      - ref: server.address
-        brief: GenAI server address.
-        requirement_level: recommended
-      - ref: server.port
-        brief: GenAI server port.
-        requirement_level:
-          conditionally_required: If `server.address` is set.
-      - ref: error.type
-        requirement_level:
-          conditionally_required: "if the operation ended in an error"
-        note: |
-          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
-          the canonical name of exception that occurred, or another low-cardinality error identifier.
-          Instrumentations SHOULD document the list of errors they report.
   - id: span.gen_ai.client
     type: span
     stability: development
@@ -182,7 +189,7 @@ groups:
 
       **Span name** SHOULD be `create_agent {gen_ai.agent.name}`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
-    extends: trace.gen_ai.client.common_attributes
+    extends: trace.gen_ai.client.common_request_attributes
     attributes:
       - ref: gen_ai.system
         requirement_level: required
@@ -193,19 +200,6 @@ groups:
         requirement_level:
           conditionally_required: If provided by the application.
       - ref: gen_ai.agent.description
-        requirement_level:
-          conditionally_required: If provided by the application.
-      - ref: gen_ai.request.model
-        requirement_level:
-          conditionally_required: If provided by the application.
-        note: >
-            The name of the GenAI model a request is being made to. If the model is supplied by a vendor,
-            then the value must be the exact name of the model requested. If the model is a fine-tuned
-            custom model, the value should have a more specific name than the base model that's been fine-tuned.
-      - ref: gen_ai.request.temperature
-        requirement_level:
-          conditionally_required: If provided by the application.
-      - ref: gen_ai.request.top_p
         requirement_level:
           conditionally_required: If provided by the application.
 
@@ -227,6 +221,9 @@ groups:
       - ref: gen_ai.tool.name
         requirement_level: recommended
       - ref: gen_ai.tool.call.id
+        requirement_level:
+          recommended: if available
+      - ref: gen_ai.tool.description
         requirement_level:
           recommended: if available
       - ref: error.type
