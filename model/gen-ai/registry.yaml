@@ -17,7 +17,7 @@ groups:
               stability: development
               value: "gcp.gen_ai"
               brief: "Any Google generative AI endpoint"
-              note:  >
+              note: >
                 May be used when specific backend is unknown.
                 May use common attributes prefixed with 'gcp.gen_ai.'.
             - id: gcp.vertex_ai
