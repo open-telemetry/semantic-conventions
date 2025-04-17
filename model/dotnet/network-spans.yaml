@@ -5,7 +5,8 @@ groups:
     span_kind: internal
     brief: The span describes the time it takes for the HTTP request to obtain a connection from the connection pool.
     note: |
-      The span is reported only if there is no connection that's readily available. It's reported as a child of *HTTP client request* span.
+      The span is reported only if there was no connection readily available when request has started.
+      It's reported as a child of *HTTP client request* span.
 
       The span ends when the connection is obtained - it could happen when an existing connection becomes available or once
       a new connection is established, so the duration of *Wait For Connection* span is different from duration of the
@@ -147,6 +148,8 @@ groups:
         brief: The domain name or an IP address being queried.
       - ref: dns.answers
         brief: List of resolved IP addresses (for DNS lookup) or a single element containing domain name (for reverse lookup).
+        requirement_level:
+          recommended: if DNS lookup was successful.
       - ref: error.type
         brief: The error code or exception name returned by [System.Net.Dns](https://learn.microsoft.com/dotnet/api/system.net.dns).
         requirement_level:

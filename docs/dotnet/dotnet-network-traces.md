@@ -26,7 +26,8 @@ This article defines semantic conventions for HTTP client, DNS and TLS spans emi
 
 .NET `HttpClient` reports HTTP client request spans according to [HTTP Semantic Conventions](/docs/http/http-spans.md#http-client-span).
 
-In addition to stable HTTP client request spans, `HttpClient` reports experimental spans describing HTTP connection establishment and its stages.
+In addition to stable HTTP client request spans, `HttpClient` handlers reports experimental
+spans describing HTTP connection establishment and its stages.
 
 The connection lifetime is usually measured in minutes, so when application is under the load but connection pool is not
 overloaded, the rate of connection-related spans is expected to be much lower than the rate of
@@ -36,6 +37,10 @@ Applications are encouraged to enable *HTTP client request* spans by default in 
 
 Connection-level spans are experimental - their semantics may be changed in the future in a breaking manner.
 Using connection-level instrumentation in production environments should be done after appropriate validation.
+
+The connection-related spans are reported only by [HttpClientHandler](https://learn.microsoft.com/dotnet/api/system.net.http.httpclienthandler)
+and [SocketsHttpHandler](https://learn.microsoft.com/dotnet/api/system.net.http.socketshttphandler) which may not be supported
+on certain platforms or may not be used by a particular application.
 
 ## HTTP client request
 
@@ -67,7 +72,8 @@ Span with HTTP semantics was added in .NET 9.
 
 The span describes the time it takes for the HTTP request to obtain a connection from the connection pool.
 
-The span is reported only if there is no connection that's readily available. It's reported as a child of *HTTP client request* span.
+The span is reported only if there was no connection readily available when request has started.
+It's reported as a child of *HTTP client request* span.
 
 The span ends when the connection is obtained - it could happen when an existing connection becomes available or once
 a new connection is established, so the duration of *Wait For Connection* span is different from duration of the
@@ -193,7 +199,7 @@ and `DNS reverse lookup {dns.question.name}` for reverse lookup (host names from
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`error.type`](/docs/attributes-registry/error.md) | string | The error code or exception name returned by [System.Net.Dns](https://learn.microsoft.com/dotnet/api/system.net.dns). [1] | `host_not_found`; `try_again` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`dns.answers`](/docs/attributes-registry/dns.md) | string[] | List of resolved IP addresses (for DNS lookup) or a single element containing domain name (for reverse lookup). | `["10.0.0.1", "2001:0db8:85a3:0000:0000:8a2e:0370:7334"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`dns.answers`](/docs/attributes-registry/dns.md) | string[] | List of resolved IP addresses (for DNS lookup) or a single element containing domain name (for reverse lookup). | `["10.0.0.1", "2001:0db8:85a3:0000:0000:8a2e:0370:7334"]` | `Recommended` if DNS lookup was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`dns.question.name`](/docs/attributes-registry/dns.md) | string | The domain name or an IP address being queried. [2] | `www.example.com`; `opentelemetry.io` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The following errors are reported:
@@ -397,14 +403,14 @@ associated with this connection (the *HTTP connection_setup* span has already en
 <--- DNS --->
              <--- socket connect --->
                                      <--- TLS -->
-                                                       <--- GET / (INTERNAL, trace=t2, span=s2, link_to=t1,s1) --->
+                                                  <--- GET / (INTERNAL, trace=t2, span=s2, link_to=t1,s1) --->
 ```
 
 ### HTTP request has to wait for connection setup
 
-If connection was not immediately available for the request, `HttpClient` creates span for HTTP request and
-*Wait for connection* span. In this example, a new connection was created and the request was executed on it immediately after
-connection was created. Instrumentation added a link to *HTTP connection_setup* span on HTTP request `GET` span.
+If connection was not immediately available for the request, HTTP client and handlers create HTTP request and
+*Wait for connection* spans. In this example, a new connection was created and the request was executed on it immediately
+after the connection was created. Instrumentation added a link to *HTTP connection_setup* span on the HTTP request `GET` span.
 
 ```
 <--------- HTTP connection_setup (trace=t1, span=s1) -------->
@@ -414,24 +420,26 @@ connection was created. Instrumentation added a link to *HTTP connection_setup* 
 
 
 <----------------------- GET / (trace=t2, span=s2, link_to=t1,s1) -------------------------------->
-<--------- HTTP wait_for_connection (trace=t2, span=s3) ---------->
+<--------- HTTP wait_for_connection (trace=t2, span=s3) ------>
 ```
 
 ### HTTP request has to wait for connection setup and other requests on that connection to complete
 
-If connection was not immediately available for the request, `HttpClient` creates span for HTTP request and
-*Wait for connection* span. In this example, request was performed on a new connection, but this connection
-served other requests in the queue before it became available for this request.
+If connection was not immediately available for the request, HTTP client and handlers create HTTP request and
+*Wait for connection* spans. In this example, request was performed on an existing connection,
+but this connection served other requests in the queue before it became available for this request.
 
 ```
-<- HTTP connection_setup - (trace=t1, span=s1) ->
-                                <--------------------- GET / (trace=t2, span=s2) ------------------------------>
-                                <---- HTTP wait_for_connection (trace=t2, span=s3, link_to=t1,s1) ---->
+<- HTTP connection_setup - (t1,s1) ->
+                                        <--------------------- GET / (trace=t2, span=s2) ----------------------------------------->
+                                        <---- HTTP wait_for_connection (trace=t2, span=s2, link_to=t1,s1) ---->
 ```
 
-The *HTTP connection_setup* span has started before this request, it also ended much earlier than
-*Wait for connection* span, indicating that there is a queue of requests and high demand for
-connections in the pool.
+The *HTTP connection_setup* span has started before this request, the corresponding connection
+was serving other requests until it became available to the GET request above.
+
+The long *Wait for connection* span here is indicating that there is a queue of requests
+and a high demand for connections in the pool.
 
 ### HTTP request fails because connection cannot be established
 
