@@ -2,15 +2,17 @@ name: Build System Check
 
 on:
   push:
-   paths:
-   - 'Makefile'
-   - 'dependencies.Dockerfile'
-   - 'internal/tools/**'
+    branches:
+      - main
+    paths:
+      - 'Makefile'
+      - 'dependencies.Dockerfile'
+      - 'internal/tools/**'
   pull_request:
-   paths:
-   - 'Makefile'
-   - 'dependencies.Dockerfile'
-   - 'internal/tools/**'
+    paths:
+      - 'Makefile'
+      - 'dependencies.Dockerfile'
+      - 'internal/tools/**'
 
 jobs:
 
