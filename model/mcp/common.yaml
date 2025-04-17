@@ -10,12 +10,18 @@ groups:
         requirement_level:
           conditionally_required: When operation is related to a specific prompt.
       - ref: network.transport
+        brief: The transport protocol used for the MCP session.
+        note: |
+          This attribute SHOULD be set to `tpc` if the transport protocol is HTTP
+          with SSE (Server-Sent Events). It SHOULD be set to `pipe` if the transport
+          is stdio.
+
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if the operation fails.
         note: |
           This attribute SHOULD be set to the string representation of the JSON RPC
-          error code if one is returned.
+          error code, if one is returned.
 
           When JSON RPC call is successful, but an error is returned within the
           result payload, this attribute SHOULD be set to the low-cardinality
@@ -30,5 +36,6 @@ groups:
           conditionally_required: If response contains an error code.
       - ref: network.protocol.version
         brief: The version of JSON RPC protocol used.
+        note: ""  # overriding the default note
         requirement_level:
           recommended: when it's not `2.0`.

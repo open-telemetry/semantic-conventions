@@ -5,7 +5,7 @@ groups:
       [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol/specification) attributes
     attributes:
       - id: mcp.method.name
-        brief: The request or notification method name.
+        brief: The name of the request or notification method.
         stability: development
         type:
           members:
@@ -152,8 +152,8 @@ groups:
         type: string
         brief: The value of the resource uri.
         note: >
-          This is a URI of the resource when the method is is `resources/read`,
-          `resources/subscribe`, `resources/unsubscribe` or `notifications/resources/updated`.
+          This is a URI of the resource provided in the following requests or notifications:
+          `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
         stability: development
         examples: ["postgres://database/customers/schema", "file:///home/user/documents/report.pdf"]
       - id: mcp.request.argument
@@ -167,4 +167,4 @@ groups:
 
           Argument values SHOULD be recorded as JSON strings.
         stability: development
-        examples: ['mcp.request.argument.location=Seattle, WA', 'mcp.request.argument.a=42']
+        examples: ['mcp.request.argument.location="Seattle, WA"', 'mcp.request.argument.a="42"']
