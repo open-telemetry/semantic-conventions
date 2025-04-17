@@ -1,7 +1,8 @@
 name: 'Generate registry area labels'
 on:
   push:
-    branches: [main]
+    branches:
+      - main
     paths:
       - model/**
       - ./.github/workflows/generate-registry-area-labels.yml
