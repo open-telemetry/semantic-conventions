@@ -50,7 +50,7 @@ Semantic Conventions for model inference spans when calling Google systems.
 | [`gen_ai.usage.input_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of tokens used in the GenAI input (prompt). | `100` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.usage.output_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of tokens used in the GenAI response (completion). | `180` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | GenAI server address. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`gcp.gen_ai.request.<key>`](/docs/attributes-registry/gcp.md) | string[] | Request configuration options named in a Google-specific manner. [11] |  | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gcp.gen_ai.operation.config.<key>`](/docs/attributes-registry/gcp.md) | string | Request configuration options named in a Google-specific manner. [11] |  | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
@@ -76,9 +76,11 @@ Additional output format details may be recorded in the future in the `gen_ai.ou
 
 **[10] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[11] `gcp.gen_ai.request`:** Key names are derived from the data structures in the Google Gen AI SDK ("google.genai.types.*" in <https://github.com/googleapis/python-genai>).
+**[11] `gcp.gen_ai.operation.config`:** Values are actually of ANY valid attribute type -- primitives or lists of primitives (string, bool, int, double, list[string], list[bool], list[int], list[double]). The value type is presently documented as string due to to limitations in tooling; see <https://github.com/open-telemetry/weaver/issues/705>.
+Key names are derived from the data structures in the Google Gen AI SDK ("google.genai.types.*" in <https://github.com/googleapis/python-genai>). Note that similar types are present in other languages, using similar code generation; see, for example `com.google.genai.types.*` in <https://github.com/googleapis/java-genai>. However, the naming in Python is canonical (e.g. key names use `lower_with_underscore` rather than `camelCase`) and should be used for formal reference.
 Key names are dependent on the particular operation in question. Each operation has its corresponding "*Config" data structure; for example, the "generate_content" operation has "GenerateContentConfig", while "generate_images" has a corresponding "GenerateImagesConfig".
-Key names correspond to a flattened version of the config data structure. For example {"foo": {"bar": {"baz": 5}}} results in a key called "gcp.gen_ai.request.foo.bar.baz" with value 5.
+Key names correspond to a flattened version of the config data structure. For example {"foo": {"bar": {"baz": 5}}} results in a key called "gcp.gen_ai.operation.config.foo.bar.baz" with value 5.
+Lists containing heterogenous types or containing non-primitive types are expressed using multiple keys: a `.length` key indicating the total number of elements in the list and a `[index]` key for Each index. For example, {"foo": ["abc", 123]} results in the keys `gcp.gen_ai.operation.config.foo.length`, `gcp.gen_ai.operation.config.foo[0]`, and `gcp.gen_ai.operation.config.foo[1]`. Lists of homogenous primitive type (e.g. list[string], list[bool], list[int], list[double]) are stored in a single key; for example, {"foo": [123, 456]} results in a single key `gcp.gen_ai.operation.config.foo` whose value is `[123, 456]`.
 
 ---
 

@@ -186,7 +186,7 @@ groups:
     note: |
       `gen_ai.system` MUST be set to `"gcp.gen_ai"`, `"gcp.vertex_ai"`, or `"gcp.gemini"`.
     attributes:
-     - ref: gcp.gen_ai.request
+     - ref: gcp.gen_ai.operation.config
        requirement_level: opt_in
      - ref: gcp.client.service
        requirement_level:

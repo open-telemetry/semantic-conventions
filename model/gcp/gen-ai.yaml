@@ -8,7 +8,7 @@ groups:
       and that are common to multiple Google endpoints (i.e. common
       to both the Vertex AI and to the Gemini API endpoints).
     attributes:
-      - ref: gcp.gen_ai.request
+      - ref: gcp.gen_ai.operation.config
 
   - id: attributes.gcp.vertex_ai
     type: attribute_group

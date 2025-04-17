@@ -203,14 +203,23 @@ groups:
       This documents defines attributes for Google generative AI systems.
     stability: development
     attributes:
-      - id: gcp.gen_ai.request
+      - id: gcp.gen_ai.operation.config
         stability: development
-        type: template[string[]]
+        type: template[string]
         brief: >
           Request configuration options named in a Google-specific manner.
         note: >
+          Values are actually of ANY valid attribute type -- primitives or
+          lists of primitives (string, bool, int, double, list[string], list[bool],
+          list[int], list[double]). The value type is presently documented as
+          string due to to limitations in tooling; see <https://github.com/open-telemetry/weaver/issues/705>.
+
           Key names are derived from the data structures in the Google
           Gen AI SDK ("google.genai.types.*" in <https://github.com/googleapis/python-genai>).
+          Note that similar types are present in other languages, using similar code generation;
+          see, for example `com.google.genai.types.*` in <https://github.com/googleapis/java-genai>.
+          However, the naming in Python is canonical (e.g. key names use `lower_with_underscore`
+          rather than `camelCase`) and should be used for formal reference.
 
           Key names are dependent on the particular operation in question.
           Each operation has its corresponding "*Config" data structure; for
@@ -219,4 +228,14 @@ groups:
 
           Key names correspond to a flattened version of the config data
           structure. For example {"foo": {"bar": {"baz": 5}}} results in
-          a key called "gcp.gen_ai.request.foo.bar.baz" with value 5.
+          a key called "gcp.gen_ai.operation.config.foo.bar.baz" with value 5.
+
+          Lists containing heterogenous types or containing non-primitive types
+          are expressed using multiple keys: a `.length` key indicating the
+          total number of elements in the list and a `[index]` key for Each
+          index. For example, {"foo": ["abc", 123]} results in the keys
+          `gcp.gen_ai.operation.config.foo.length`, `gcp.gen_ai.operation.config.foo[0]`,
+          and `gcp.gen_ai.operation.config.foo[1]`. Lists of homogenous primitive type
+          (e.g. list[string], list[bool], list[int], list[double]) are stored in a
+          single key; for example, {"foo": [123, 456]} results in a single key
+          `gcp.gen_ai.operation.config.foo` whose value is `[123, 456]`.
