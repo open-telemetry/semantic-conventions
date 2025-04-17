@@ -66,8 +66,6 @@
 /docs/ios/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-ios-approvers
 /model/ios/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-ios-approvers
 
-# Mobile semantic conventions
-
 # Client-side semantic conventions
 /docs/enduser/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
 /docs/app/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
