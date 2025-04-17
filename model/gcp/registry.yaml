@@ -212,7 +212,7 @@ groups:
           Values are actually of ANY valid attribute type -- primitives or
           lists of primitives (string, bool, int, double, list[string], list[bool],
           list[int], list[double]). The value type is presently documented as
-          string due to to limitations in tooling; see <https://github.com/open-telemetry/weaver/issues/705>.
+          string due to limitations in tooling; see <https://github.com/open-telemetry/weaver/issues/705>.
 
           Key names are derived from the data structures in the Google
           Gen AI SDK ("google.genai.types.*" in <https://github.com/googleapis/python-genai>).
