@@ -26,7 +26,7 @@ This article defines semantic conventions for HTTP client, DNS and TLS spans emi
 
 .NET `HttpClient` reports HTTP client request spans according to [HTTP Semantic Conventions](/docs/http/http-spans.md#http-client-span).
 
-In addition to stable HTTP client request spans, `HttpClient` handlers reports experimental
+In addition to stable HTTP client request spans, HTTP client handlers reports experimental
 spans describing HTTP connection establishment and its stages.
 
 The connection lifetime is usually measured in minutes, so when application is under the load but connection pool is not
@@ -46,7 +46,7 @@ on certain platforms or may not be used by a particular application.
 
 **Status**: [Stable][DocumentStatus]
 
-.NET `HttpClient` reports client request spans according to [HTTP Client Semantic Conventions](/docs/http/http-spans.md#http-client) with the following
+.NET `HttpClient` reports client request spans according to [HTTP Client Semantic Conventions](/docs/http/http-spans.md#http-client-span) with the following
 specific details:
 
 - `network.protocol.name`, `network.peer.port`, and `http.request.resend_count` attributes are not reported
@@ -122,7 +122,9 @@ Added in .NET 9.
 The span describes the establishment of the HTTP connection. It includes the time it takes to resolve the DNS, establish the socket connection, and perform the TLS handshake.
 
 There is no parent-child relationship between the [*HTTP client request*](/docs/dotnet/dotnet-network-traces.md#http-client-request) and the
-[*HTTP connection setup*]/docs/dotnet/dotnet-network-traces.md(/docs/dotnet/dotnet-network-traces.md#http-connection-setup) spans; the latter will always be a root span, defining a separate trace.
+[*HTTP connection setup*]/docs/dotnet/dotnet-network-traces.md(/docs/dotnet/dotnet-network-traces.md#http-connection-setup) spans;
+the latter will always be a root span, defining a separate trace.
+
 However, if the connection attempt represented by the [*HTTP connection setup*](/docs/dotnet/dotnet-network-traces.md#http-connection-setup) span results in a
 successful HTTP connection, and that connection is picked up by a request to serve it, the instrumentation adds a link
 to the [*HTTP client request*](/docs/dotnet/dotnet-network-traces.md#http-client-request) span pointing to the *HTTP connection setup* span.
@@ -200,7 +202,7 @@ and `DNS reverse lookup {dns.question.name}` for reverse lookup (host names from
 |---|---|---|---|---|---|
 | [`error.type`](/docs/attributes-registry/error.md) | string | The error code or exception name returned by [System.Net.Dns](https://learn.microsoft.com/dotnet/api/system.net.dns). [1] | `host_not_found`; `try_again` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`dns.answers`](/docs/attributes-registry/dns.md) | string[] | List of resolved IP addresses (for DNS lookup) or a single element containing domain name (for reverse lookup). | `["10.0.0.1", "2001:0db8:85a3:0000:0000:8a2e:0370:7334"]` | `Recommended` if DNS lookup was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`dns.question.name`](/docs/attributes-registry/dns.md) | string | The domain name or an IP address being queried. [2] | `www.example.com`; `opentelemetry.io` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`dns.question.name`](/docs/attributes-registry/dns.md) | string | The domain name or an IP address being queried. | `www.example.com`; `opentelemetry.io` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The following errors are reported:
 
@@ -211,8 +213,6 @@ and `DNS reverse lookup {dns.question.name}` for reverse lookup (host names from
 - the full exception type name
 
 See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.socketerror) for more details.
-
-**[2] `dns.question.name`:** If the name field contains non-printable characters (below 32 or above 126), those characters should be represented as escaped base 10 integers (\DDD). Back slashes and quotes should be escaped. Tabs, carriage returns, and line feeds should be converted to \t, \r, and \n respectively.
 
 ---
 
@@ -395,8 +395,10 @@ side and `TLS server handshake` when authenticating the server.
 
 ### HTTP request was performed on a connection that was immediately available
 
-If connection is immediately available for the request, `HttpClient` creates one span for HTTP request and links it to the *HTTP connection_setup* span
-associated with this connection (the *HTTP connection_setup* span has already ended at this point).
+If connection is immediately available for the request, `HttpClient` creates one span for HTTP request
+and links it to the *HTTP connection_setup* span associated with this connection.
+
+The *HTTP connection_setup* span has already ended at this point.
 
 ```
 <- HTTP connection_setup - (trace=t1, span=s1) ->

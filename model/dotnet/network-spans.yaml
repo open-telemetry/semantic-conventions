@@ -37,7 +37,9 @@ groups:
       to resolve the DNS, establish the socket connection, and perform the TLS handshake.
     note: |
       There is no parent-child relationship between the [*HTTP client request*](/docs/dotnet/dotnet-network-traces.md#http-client-request) and the
-      [*HTTP connection setup*]/docs/dotnet/dotnet-network-traces.md(/docs/dotnet/dotnet-network-traces.md#http-connection-setup) spans; the latter will always be a root span, defining a separate trace.
+      [*HTTP connection setup*]/docs/dotnet/dotnet-network-traces.md(/docs/dotnet/dotnet-network-traces.md#http-connection-setup) spans;
+      the latter will always be a root span, defining a separate trace.
+
       However, if the connection attempt represented by the [*HTTP connection setup*](/docs/dotnet/dotnet-network-traces.md#http-connection-setup) span results in a
       successful HTTP connection, and that connection is picked up by a request to serve it, the instrumentation adds a link
       to the [*HTTP client request*](/docs/dotnet/dotnet-network-traces.md#http-client-request) span pointing to the *HTTP connection setup* span.
@@ -146,6 +148,7 @@ groups:
     attributes:
       - ref: dns.question.name
         brief: The domain name or an IP address being queried.
+        note: ""
       - ref: dns.answers
         brief: List of resolved IP addresses (for DNS lookup) or a single element containing domain name (for reverse lookup).
         requirement_level:
