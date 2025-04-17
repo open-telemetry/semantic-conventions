@@ -20,17 +20,33 @@ linkTitle: Model Context Protocol
 
 <!-- tocstop -->
 
-Model Context Protocol is based on JSON RPC. When instrumenting MCP calls, is RECOMMENDED to follow MCP conventions instead of [RPC semantic conventions](/docs/rpc/README.md)
-since MCP spans and metrics provide domain-specific details and record details such as message exchange within one RPC streaming calls not covered by the RPC conventions.
+[Model Context Protocol](https://github.com/modelcontextprotocol/modelcontextprotocol) (MCP) is based on JSON RPC.
+
+When instrumenting MCP calls, it's RECOMMENDED to follow MCP conventions instead of [RPC semantic conventions](/docs/rpc/README.md)
+since MCP spans and metrics provide domain-specific context and record details
+that are not covered by the RPC conventions such as message exchange within streaming calls,
+
+HTTP conventions (when HTTP used as transport) do not adequately cover MCP requests
+and notifications either, given that they could be sent over SSE stream and MCP method and
+other important properties are passed within message payloads.
 
 ## Spans
 
 ### Context propagation
 
-Model Context Protocol works on top of JSON RPC which does not define a standard Trace Context propagation mechanism.
-JSON RPC can run on top of different transports including stdio and HTTP Server Sent Events (individual messages within a stream).
+Model Context Protocol works on top of JSON RPC and does not define a standard Trace Context propagation mechanism.
+It also works on top of different transports including stdio and HTTP Server Sent Events (individual messages within a stream).
 
-Use top-level JSON object properties to propagate trace context about individual MCP calls (either requests or notifications).
+HTTP trace context propagation only covers the HTTP request, but not individual messages client and server exchange
+within the response stream.
+
+> [!NOTE]
+>
+> The propagation format defined here is very likely to change. Please check
+> [Context propagation discussion in MCP repository](https://github.com/modelcontextprotocol/modelcontextprotocol/issues/246).
+
+Instrumentations SHOULD propagate trace context inside MCP requests and notifications
+as JSON RPC object top-level params.
 
 For example, when using [W3C Trace Context](https://www.w3.org/TR/trace-context/) propagation,
 inject `traceparent` and `tracestate` to the MCP message params when creating request or response
@@ -81,7 +97,7 @@ if the message is available.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`mcp.method.name`](/docs/attributes-registry/mcp.md) | string | The request or notification method name. | `notifications/cancelled`; `initialize`; `notifications/initialized` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.method.name`](/docs/attributes-registry/mcp.md) | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.request.id`](/docs/attributes-registry/mcp.md) | string | This is a unique identifier for the request. | `42` | `Conditionally Required` When client executes a request. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -89,13 +105,14 @@ if the message is available.
 | [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.session.id`](/docs/attributes-registry/mcp.md) | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [4] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [5] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Recommended` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | The transport protocol used for the MCP session. [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Recommended` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.request.argument.<key>`](/docs/attributes-registry/mcp.md) | string | Additional arguments passed to the request within `params` object. `<key>` being the normalized argument name name (lowercase), the value being the argument value. [7] | `mcp.request.argument.location="Seattle, WA"`; `mcp.request.argument.a="42"` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
-error code if one is returned.
+error code, if one is returned.
 
 When JSON RPC call is successful, but an error is returned within the
 result payload, this attribute SHOULD be set to the low-cardinality
@@ -104,21 +121,20 @@ string representation of the error. When
 is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
-**[2] `mcp.resource.uri`:** This is a URI of the resource when the method is is `resources/read`, `resources/subscribe`, `resources/unsubscribe` or `notifications/resources/updated`.
+**[2] `mcp.resource.uri`:** This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
 
-**[3] `mcp.resource.uri`:** When client executes a request type that has a resource uri parameter
+**[3] `mcp.resource.uri`:** When the client executes a request type that includes a resource URI parameter.
 
-**[4] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+**[4] `network.transport`:** This attribute SHOULD be set to `tpc` if the transport protocol is HTTP
+with SSE (Server-Sent Events). It SHOULD be set to `pipe` if the transport
+is stdio.
 
-**[5] `network.transport`:** The value SHOULD be normalized to lowercase.
+**[5] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-Consider always setting the transport when setting a port number, since
-a port number is ambiguous without knowing the transport. For example
-different processes could be listening on TCP port 12345 and UDP port 12345.
+**[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
-
-**[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[7] `mcp.request.argument`:** Instrumentations SHOULD require an explicit configuration of which arguments are to be captured. Including all request arguments can be a security risk - explicit configuration helps avoid leaking sensitive information.
+Argument values SHOULD be recorded as JSON strings.
 
 ---
 
@@ -220,7 +236,7 @@ if the message is available.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`mcp.method.name`](/docs/attributes-registry/mcp.md) | string | The request or notification method name. | `notifications/cancelled`; `initialize`; `notifications/initialized` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.method.name`](/docs/attributes-registry/mcp.md) | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.request.id`](/docs/attributes-registry/mcp.md) | string | This is a unique identifier for the request. | `42` | `Conditionally Required` When client executes a request. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -230,11 +246,12 @@ if the message is available.
 | [`client.address`](/docs/attributes-registry/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`client.port`](/docs/attributes-registry/client.md) | int | Client port number. [5] | `65123` | `Recommended` When `client.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`mcp.session.id`](/docs/attributes-registry/mcp.md) | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [6] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [7] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | The transport protocol used for the MCP session. [6] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.request.argument.<key>`](/docs/attributes-registry/mcp.md) | string | Additional arguments passed to the request within `params` object. `<key>` being the normalized argument name name (lowercase), the value being the argument value. [7] | `mcp.request.argument.location="Seattle, WA"`; `mcp.request.argument.a="42"` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
-error code if one is returned.
+error code, if one is returned.
 
 When JSON RPC call is successful, but an error is returned within the
 result payload, this attribute SHOULD be set to the low-cardinality
@@ -243,21 +260,20 @@ string representation of the error. When
 is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
-**[2] `mcp.resource.uri`:** This is a URI of the resource when the method is is `resources/read`, `resources/subscribe`, `resources/unsubscribe` or `notifications/resources/updated`.
+**[2] `mcp.resource.uri`:** This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
 
-**[3] `mcp.resource.uri`:** When client executes a request type that has a resource uri parameter
+**[3] `mcp.resource.uri`:** When the client executes a request type that includes a resource URI parameter.
 
 **[4] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
 
 **[5] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
 
-**[6] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+**[6] `network.transport`:** This attribute SHOULD be set to `tpc` if the transport protocol is HTTP
+with SSE (Server-Sent Events). It SHOULD be set to `pipe` if the transport
+is stdio.
 
-**[7] `network.transport`:** The value SHOULD be normalized to lowercase.
-
-Consider always setting the transport when setting a port number, since
-a port number is ambiguous without knowing the transport. For example
-different processes could be listening on TCP port 12345 and UDP port 12345.
+**[7] `mcp.request.argument`:** Instrumentations SHOULD require an explicit configuration of which arguments are to be captured. Including all request arguments can be a security risk - explicit configuration helps avoid leaking sensitive information.
+Argument values SHOULD be recorded as JSON strings.
 
 ---
 
@@ -337,19 +353,19 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`mcp.method.name`](/docs/attributes-registry/mcp.md) | string | The request or notification method name. | `notifications/cancelled`; `initialize`; `notifications/initialized` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.method.name`](/docs/attributes-registry/mcp.md) | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [2] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Recommended` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [6] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | The transport protocol used for the MCP session. [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Recommended` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [5] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
-error code if one is returned.
+error code, if one is returned.
 
 When JSON RPC call is successful, but an error is returned within the
 result payload, this attribute SHOULD be set to the low-cardinality
@@ -358,19 +374,15 @@ string representation of the error. When
 is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
-**[2] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+**[2] `network.transport`:** This attribute SHOULD be set to `tpc` if the transport protocol is HTTP
+with SSE (Server-Sent Events). It SHOULD be set to `pipe` if the transport
+is stdio.
 
-**[3] `network.transport`:** The value SHOULD be normalized to lowercase.
+**[3] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-Consider always setting the transport when setting a port number, since
-a port number is ambiguous without knowing the transport. For example
-different processes could be listening on TCP port 12345 and UDP port 12345.
+**[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[4] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
-
-**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[6] `mcp.resource.uri`:** This is a URI of the resource when the method is is `resources/read`, `resources/subscribe`, `resources/unsubscribe` or `notifications/resources/updated`.
+**[5] `mcp.resource.uri`:** This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
 
 ---
 
@@ -448,17 +460,17 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`mcp.method.name`](/docs/attributes-registry/mcp.md) | string | The request or notification method name. | `notifications/cancelled`; `initialize`; `notifications/initialized` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.method.name`](/docs/attributes-registry/mcp.md) | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. [2] | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [4] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | The transport protocol used for the MCP session. [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [3] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
-error code if one is returned.
+error code, if one is returned.
 
 When JSON RPC call is successful, but an error is returned within the
 result payload, this attribute SHOULD be set to the low-cardinality
@@ -467,15 +479,11 @@ string representation of the error. When
 is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
-**[2] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+**[2] `network.transport`:** This attribute SHOULD be set to `tpc` if the transport protocol is HTTP
+with SSE (Server-Sent Events). It SHOULD be set to `pipe` if the transport
+is stdio.
 
-**[3] `network.transport`:** The value SHOULD be normalized to lowercase.
-
-Consider always setting the transport when setting a port number, since
-a port number is ambiguous without knowing the transport. For example
-different processes could be listening on TCP port 12345 and UDP port 12345.
-
-**[4] `mcp.resource.uri`:** This is a URI of the resource when the method is is `resources/read`, `resources/subscribe`, `resources/unsubscribe` or `notifications/resources/updated`.
+**[3] `mcp.resource.uri`:** This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
 
 ---
 

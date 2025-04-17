@@ -9,9 +9,9 @@
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="mcp-method-name" href="#mcp-method-name">`mcp.method.name`</a> | string | The request or notification method name. | `notifications/cancelled`; `initialize`; `notifications/initialized` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="mcp-method-name" href="#mcp-method-name">`mcp.method.name`</a> | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="mcp-prompt-name" href="#mcp-prompt-name">`mcp.prompt.name`</a> | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="mcp-request-argument" href="#mcp-request-argument">`mcp.request.argument.<key>`</a> | string | Additional arguments passed to the request within `params` object. `<key>` being the normalized argument name name (lowercase), the value being the argument value. [1] | `mcp.request.argument.location=Seattle, WA`; `mcp.request.argument.a=42` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="mcp-request-argument" href="#mcp-request-argument">`mcp.request.argument.<key>`</a> | string | Additional arguments passed to the request within `params` object. `<key>` being the normalized argument name name (lowercase), the value being the argument value. [1] | `mcp.request.argument.location="Seattle, WA"`; `mcp.request.argument.a="42"` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="mcp-request-id" href="#mcp-request-id">`mcp.request.id`</a> | string | This is a unique identifier for the request. | `42` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="mcp-resource-uri" href="#mcp-resource-uri">`mcp.resource.uri`</a> | string | The value of the resource uri. [2] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="mcp-session-id" href="#mcp-session-id">`mcp.session.id`</a> | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -20,7 +20,7 @@
 **[1] `mcp.request.argument`:** Instrumentations SHOULD require an explicit configuration of which arguments are to be captured. Including all request arguments can be a security risk - explicit configuration helps avoid leaking sensitive information.
 Argument values SHOULD be recorded as JSON strings.
 
-**[2] `mcp.resource.uri`:** This is a URI of the resource when the method is is `resources/read`, `resources/subscribe`, `resources/unsubscribe` or `notifications/resources/updated`.
+**[2] `mcp.resource.uri`:** This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
 
 ---
 
