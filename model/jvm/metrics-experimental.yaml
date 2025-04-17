@@ -67,3 +67,11 @@ groups:
     brief: "Number of buffers in the pool."
     instrument: updowncounter
     unit: "{buffer}"
+
+  - id: metric.jvm.file_descriptor.count
+    type: metric
+    metric_name: jvm.file_descriptor.count
+    stability: development
+    brief: "Number of open file descriptors by the JVM."
+    instrument: updowncounter
+    unit: "{buffer}"
