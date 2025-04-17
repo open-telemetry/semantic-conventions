@@ -207,7 +207,7 @@ groups:
         stability: development
         type: template[string]
         brief: >
-          Request configuration options named in a Google-specific manner.
+          Gen AI operation options, `<key>` being the flattened name of the configuration option passed to the client library.
         note: >
           Values are actually of ANY valid attribute type -- primitives or
           lists of primitives (string, bool, int, double, list[string], list[bool],

@@ -111,7 +111,7 @@ This documents defines attributes for Google generative AI systems.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="gcp-gen-ai-operation-config" href="#gcp-gen-ai-operation-config">`gcp.gen_ai.operation.config.<key>`</a> | string | Request configuration options named in a Google-specific manner. [6] |  | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gcp-gen-ai-operation-config" href="#gcp-gen-ai-operation-config">`gcp.gen_ai.operation.config.<key>`</a> | string | Gen AI operation options, `<key>` being the flattened name of the configuration option passed to the client library. [6] |  | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[6] `gcp.gen_ai.operation.config`:** Values are actually of ANY valid attribute type -- primitives or lists of primitives (string, bool, int, double, list[string], list[bool], list[int], list[double]). The value type is presently documented as string due to limitations in tooling; see <https://github.com/open-telemetry/weaver/issues/705>.
 Key names are derived from the data structures in the Google Gen AI SDK ("google.genai.types.*" in <https://github.com/googleapis/python-genai>). Note that similar types are present in other languages, using similar code generation; see, for example `com.google.genai.types.*` in <https://github.com/googleapis/java-genai>. However, the naming in Python is canonical (e.g. key names use `lower_with_underscore` rather than `camelCase`) and should be used for formal reference.

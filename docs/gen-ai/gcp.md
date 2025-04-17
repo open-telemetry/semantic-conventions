@@ -50,7 +50,7 @@ Semantic Conventions for model inference spans when calling Google systems.
 | [`gen_ai.usage.input_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of tokens used in the GenAI input (prompt). | `100` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.usage.output_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of tokens used in the GenAI response (completion). | `180` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | GenAI server address. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`gcp.gen_ai.operation.config.<key>`](/docs/attributes-registry/gcp.md) | string | Request configuration options named in a Google-specific manner. [11] |  | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gcp.gen_ai.operation.config.<key>`](/docs/attributes-registry/gcp.md) | string | Gen AI operation options, `<key>` being the flattened name of the configuration option passed to the client library. [11] |  | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
