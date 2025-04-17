@@ -2,9 +2,7 @@ extends: default
 
 ignore-from-file:
   - .gitignore
-
-ignore: |
-  node_modules/*
+  - .yamllint-ignore
 
 rules:
   document-start: disable
