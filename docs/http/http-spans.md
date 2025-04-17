@@ -431,10 +431,14 @@ This span represents an inbound HTTP request.
 | [`http.response.body.size`](/docs/attributes-registry/http.md) | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`http.response.header.<key>`](/docs/attributes-registry/http.md) | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [16] | `http.response.header.content-type=["application/json"]`; `http.response.header.my-custom-header=["abc", "def"]` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`http.response.size`](/docs/attributes-registry/http.md) | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`http.sse.events.avg_interval`](/docs/attributes-registry/http.md) | int | The average interval time in milliseconds among responded events. [17] | `420` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`http.sse.events.count`](/docs/attributes-registry/http.md) | int | The number of responded events. [18] | `42` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`http.sse.events.max_interval`](/docs/attributes-registry/http.md) | int | The maximum interval time in milliseconds among responded events. [19] | `12138` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`http.sse.events.min_interval`](/docs/attributes-registry/http.md) | int | The minimum interval time in milliseconds among responded events. [20] | `7` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`network.local.address`](/docs/attributes-registry/network.md) | string | Local socket address. Useful in case of a multi-IP host. | `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.local.port`](/docs/attributes-registry/network.md) | int | Local socket port. Useful in case of a multi-port host. | `65123` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [17] | `tcp`; `udp` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`user_agent.synthetic.type`](/docs/attributes-registry/user-agent.md) | string | Specifies the category of synthetic traffic, such as tests or bots. [18] | `bot`; `test` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [21] | `tcp`; `udp` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`user_agent.synthetic.type`](/docs/attributes-registry/user-agent.md) | string | Specifies the category of synthetic traffic, such as tests or bots. [22] | `bot`; `test` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -514,9 +518,17 @@ The attribute value MUST consist of either multiple header values as an array of
 Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
 The attribute value MUST consist of either multiple header values as an array of strings or a single-item array containing a possibly comma-concatenated string, depending on the way the HTTP library provides access to headers.
 
-**[17] `network.transport`:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
+**[17] `http.sse.events.avg_interval`:** **Streaming**: This attribute is only opt_in for SSE.
 
-**[18] `user_agent.synthetic.type`:** This attribute MAY be derived from the contents of the `user_agent.original` attribute. Components that populate the attribute are responsible for determining what they consider to be synthetic bot or test traffic. This attribute can either be set for self-identification purposes, or on telemetry detected to be generated as a result of a synthetic request. This attribute is useful for distinguishing between genuine client traffic and synthetic traffic generated by bots or tests.
+**[18] `http.sse.events.count`:** **Streaming**: This attribute is only opt_in for SSE.
+
+**[19] `http.sse.events.max_interval`:** **Streaming**: This attribute is only opt_in for SSE.
+
+**[20] `http.sse.events.min_interval`:** **Streaming**: This attribute is only opt_in for SSE.
+
+**[21] `network.transport`:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
+
+**[22] `user_agent.synthetic.type`:** This attribute MAY be derived from the contents of the `user_agent.original` attribute. Components that populate the attribute are responsible for determining what they consider to be synthetic bot or test traffic. This attribute can either be set for self-identification purposes, or on telemetry detected to be generated as a result of a synthetic request. This attribute is useful for distinguishing between genuine client traffic and synthetic traffic generated by bots or tests.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):

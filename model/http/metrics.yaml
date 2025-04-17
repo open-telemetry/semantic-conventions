@@ -103,6 +103,26 @@ groups:
       header. For requests using transport encoding, this should be the compressed size.
     extends: metric_attributes.http.server
 
+  - id: metric.http.server.time_to_first_event
+    type: metric
+    metric_name: rpc.server.time_to_first_event
+    stability: development
+    brief: Time to send first event for all events
+    instrument: histogram
+    unit: "s"
+    note: |
+      **Streaming**: This metric is only required for SSE
+
+  - id: metric.http.server.time_per_event
+    type: metric
+    metric_name: rpc.server.time_per_event
+    stability: development
+    brief: Time per event after the first sent event
+    instrument: histogram
+    unit: "s"
+    note: |
+      **Streaming**: This metric is only required for SSE
+
   - id: metric.http.client.request.duration
     type: metric
     metric_name: http.client.request.duration

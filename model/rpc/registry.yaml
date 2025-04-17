@@ -262,3 +262,23 @@ groups:
         type: int
         stability: development
         brief: "Uncompressed size of the message in bytes."
+      - id: rpc.streaming.messages.count
+        type: int
+        brief: The total number of streaming messages.
+        stability: development
+        examples: 42
+      - id: rpc.streaming.messages.max_interval
+        type: int
+        brief: The maximum interval time in milliseconds among messages.
+        stability: development
+        examples: 12138
+      - id: rpc.streaming.messages.min_interval
+        type: int
+        brief: The minimum interval time in milliseconds among messages.
+        stability: development
+        examples: 7
+      - id: rpc.streaming.messages.avg_interval
+        type: int
+        brief: The average interval time in milliseconds among messages.
+        stability: development
+        examples: 420
