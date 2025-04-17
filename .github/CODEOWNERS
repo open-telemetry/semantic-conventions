@@ -62,14 +62,21 @@
 /docs/android/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-android-approvers
 /model/android/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-android-approvers
 
+# iOS semantic conventions
+/docs/ios/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-ios-approvers
+/model/ios/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-ios-approvers
+
 # Mobile semantic conventions
-/docs/mobile/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
 
 # Client-side semantic conventions
-/docs/enduser/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers @open-telemetry/semconv-android-approvers
-/model/enduser/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers @open-telemetry/semconv-android-approvers
-/model/app/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers @open-telemetry/semconv-android-approvers @open-telemetry/semconv-mobile-approvers
-/model/device/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers @open-telemetry/semconv-android-approvers @open-telemetry/semconv-mobile-approvers
+/docs/enduser/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
+/docs/app/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
+/docs/device/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
+/docs/mobile/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
+/model/enduser/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
+/model/app/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
+/model/device/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
+/model/mobile/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
 
 # K8s semantic conventions
 /docs/resource/k8s.md                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
