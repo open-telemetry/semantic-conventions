@@ -29,8 +29,8 @@ Kubernetes resource attributes.
 | <a id="k8s-job-uid" href="#k8s-job-uid">`k8s.job.uid`</a> | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-namespace-name" href="#k8s-namespace-name">`k8s.namespace.name`</a> | string | The name of the namespace that the pod is running in. | `default` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-namespace-phase" href="#k8s-namespace-phase">`k8s.namespace.phase`</a> | string | The phase of the K8s namespace. [2] | `active`; `terminating` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-node-annotation" href="#k8s-node-annotation">`k8s.node.annotation.<key>`</a> | string | The annotation key-value pairs placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. | `k8s.node.annotation.node.alpha.kubernetes.io/ttl=0`; `k8s.node.annotation.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-node-label" href="#k8s-node-label">`k8s.node.label.<key>`</a> | string | The label key-value pairs placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty. | `k8s.node.label.kubernetes.io/arch=arm64`; `k8s.node.label.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-node-annotation" href="#k8s-node-annotation">`k8s.node.annotation.<key>`</a> | string | The annotation key-value pairs placed on the Node. [3] | `k8s.node.annotation.node.alpha.kubernetes.io/ttl=0`; `k8s.node.annotation.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-node-label" href="#k8s-node-label">`k8s.node.label.<key>`</a> | string | The label key-value pairs placed on the Node. [4] | `k8s.node.label.kubernetes.io/arch=arm64`; `k8s.node.label.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-node-name" href="#k8s-node-name">`k8s.node.name`</a> | string | The name of the Node. | `node-1` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-node-uid" href="#k8s-node-uid">`k8s.node.uid`</a> | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-pod-annotation" href="#k8s-pod-annotation">`k8s.pod.annotation.<key>`</a> | string | The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. | `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true`; `k8s.pod.annotation.mycompany.io/arch=x64`; `k8s.pod.annotation.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -73,6 +73,10 @@ conflict.
 
 **[2] `k8s.namespace.phase`:** This attribute aligns with the `phase` field of the
 [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
+
+**[3] `k8s.node.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[4] `k8s.node.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 ---
 
