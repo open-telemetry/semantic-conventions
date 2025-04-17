@@ -609,7 +609,9 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
 | -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.file_descriptor.count` | UpDownCounter | `{buffer}` | Number of open file descriptors by the JVM. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `jvm.file_descriptor.count` | UpDownCounter | `{file_descriptor}` | Number of open file descriptors by the JVM. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1]:** This metric is sourced from the `UnixOperatingSystemMXBean` which is only available on Unix-like systems. [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/UnixOperatingSystemMXBean.html#getOpenFileDescriptorCount()).
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

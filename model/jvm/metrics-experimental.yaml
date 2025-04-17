@@ -74,4 +74,7 @@ groups:
     stability: development
     brief: "Number of open file descriptors by the JVM."
     instrument: updowncounter
-    unit: "{buffer}"
+    unit: "{file_descriptor}"
+    note: >
+      This metric is sourced from the `UnixOperatingSystemMXBean` which is only available on Unix-like systems.
+      [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/UnixOperatingSystemMXBean.html#getOpenFileDescriptorCount()).
