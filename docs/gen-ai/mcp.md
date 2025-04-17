@@ -228,7 +228,7 @@ where target is the `{mcp.tool.name}`, `{mcp.prompt.name}` or `{mcp.resource.uri
 depending on the request or notification type.
 
 **Span status** SHOULD be set to `ERROR` using the same condition as the `error.type`
-attribute. Refer to the [Record error](/docs/general/record-error) document
+attribute. Refer to the [Recording Errors](/docs/general/recording-errors.md) document
 for more details. The status description SHOULD match the `JSONRPCError.message`
 if the message is available.
 
