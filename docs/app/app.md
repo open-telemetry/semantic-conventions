@@ -9,9 +9,8 @@ linkTitle: App
 This document defines events related to client-side applications
 (e.g. web apps or mobile apps).
 
-* Click events
-  * [`app.screen.click`](#event-appscreenclick)
-  * [`app.widget.click`](#event-appwidgetclick)
+<!-- toc -->
+<!-- tocstop -->
 
 ## Click Events
 
