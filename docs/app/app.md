@@ -10,7 +10,7 @@ This document defines events and attributes related to client-side applications 
 
 ## Attributes
 
-See the [app attributes](/docs/attributes-registry/app.md) registry for details. 
+See the [app attributes](/docs/attributes-registry/app.md) registry for details.
 
 ## Click Events
 
