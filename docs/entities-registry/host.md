@@ -6,8 +6,11 @@
 # Host
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `host`
+
 **Description:** A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

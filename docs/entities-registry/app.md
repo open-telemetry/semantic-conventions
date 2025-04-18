@@ -6,8 +6,11 @@
 # App
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `app`
+
 **Description:** An app used directly by end users — like mobile, web, or desktop.
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

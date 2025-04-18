@@ -6,8 +6,11 @@
 # Cloudfoundry System
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `cloudfoundry.system`
+
 **Description:** The system component which is monitored.
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

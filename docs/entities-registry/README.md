@@ -47,11 +47,11 @@ Currently, the following namespaces exist:
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
-  <td><a href="aws-ecs.md">aws.ecs</a></td>
+  <td><a href="aws-log.md">aws.log</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
-  <td><a href="aws-log.md">aws.log</a></td>
+  <td><a href="aws-ecs.md">aws.ecs</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
 <td>Browser</td><td></td><td></td>
@@ -115,10 +115,6 @@ Currently, the following namespaces exist:
 <td>GCP</td><td></td><td></td>
 </tr><tr>
   <td></td>
-  <td><a href="gcp-cloud-run.md">gcp.cloud_run</a></td>
-  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
-</tr><tr>
-  <td></td>
   <td><a href="gcp-apphub-application.md">gcp.apphub.application</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
@@ -132,6 +128,10 @@ Currently, the following namespaces exist:
 </tr><tr>
   <td></td>
   <td><a href="gcp-gce.md">gcp.gce</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="gcp-cloud-run.md">gcp.cloud_run</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
 <td>Heroku</td><td></td><td></td>

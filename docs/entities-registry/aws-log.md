@@ -6,8 +6,11 @@
 # Aws Log
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `aws.log`
+
 **Description:** Resources specific to Amazon Web Services.
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

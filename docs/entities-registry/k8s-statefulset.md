@@ -6,8 +6,11 @@
 # K8s Statefulset
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `k8s.statefulset`
+
 **Description:** A Kubernetes StatefulSet object.
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

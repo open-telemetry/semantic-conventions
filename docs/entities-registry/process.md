@@ -6,8 +6,11 @@
 # Process
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `process`
+
 **Description:** An operating system process.
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

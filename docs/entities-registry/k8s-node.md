@@ -6,8 +6,11 @@
 # K8s Node
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `k8s.node`
+
 **Description:** A Kubernetes Node object.
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

@@ -6,8 +6,11 @@
 # Otel Scope
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `otel.scope`
+
 **Description:** Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
+
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

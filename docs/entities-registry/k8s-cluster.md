@@ -6,8 +6,11 @@
 # K8s Cluster
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `k8s.cluster`
+
 **Description:** A Kubernetes Cluster.
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

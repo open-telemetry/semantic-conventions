@@ -6,8 +6,11 @@
 # Aws Ecs
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `aws.ecs`
+
 **Description:** Resources used by AWS Elastic Container Service (ECS).
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

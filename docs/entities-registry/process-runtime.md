@@ -6,8 +6,11 @@
 # Process Runtime
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `process.runtime`
+
 **Description:** The single (language) runtime instance which is monitored.
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

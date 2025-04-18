@@ -6,8 +6,11 @@
 # Cloudfoundry Space
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `cloudfoundry.space`
+
 **Description:** The space of the application which is monitored.
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

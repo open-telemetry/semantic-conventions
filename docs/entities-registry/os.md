@@ -6,8 +6,11 @@
 # Os
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `os`
+
 **Description:** The operating system (OS) on which the process represented by this resource is running.
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

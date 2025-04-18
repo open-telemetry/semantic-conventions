@@ -6,8 +6,11 @@
 # Aws Eks
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `aws.eks`
+
 **Description:** Resources used by AWS Elastic Kubernetes Service (EKS).
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

@@ -6,8 +6,11 @@
 # Telemetry Distro
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `telemetry.distro`
+
 **Description:** The distribution of telemetry SDK used to capture data recorded by the instrumentation libraries.
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

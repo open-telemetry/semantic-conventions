@@ -6,8 +6,11 @@
 # K8s Daemonset
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `k8s.daemonset`
+
 **Description:** A Kubernetes DaemonSet object.
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

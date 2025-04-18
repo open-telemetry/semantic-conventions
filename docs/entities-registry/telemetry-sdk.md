@@ -6,8 +6,11 @@
 # Telemetry Sdk
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
+
 **type:** `telemetry.sdk`
+
 **Description:** The telemetry SDK used to capture data recorded by the instrumentation libraries.
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

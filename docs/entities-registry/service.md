@@ -6,8 +6,11 @@
 # Service
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
+
 **type:** `service`
+
 **Description:** A service instance.
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

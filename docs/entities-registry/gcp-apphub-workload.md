@@ -6,8 +6,11 @@
 # Gcp Apphub Workload
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
 **type:** `gcp.apphub.workload`
+
 **Description:** Attributes denoting data from a Workload in AppHub. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
+
 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
