@@ -6,11 +6,17 @@ linkTitle: App
 
 **Status**: [Development][DocumentStatus]
 
-This document defines events and attributes related to client-side applications (e.g. web apps or mobile apps).
+This document defines events related to client-side applications
+(e.g. web apps or mobile apps).
+
+* Click events
+  *  [`app.screen.click`](#event-appscreenclick)
+  *  [`app.widget.click`](#event-appwidgetclick)
 
 ## Attributes
 
-See the [app attributes](/docs/attributes-registry/app.md) registry for details.
+See the [app attributes](/docs/attributes-registry/app.md) registry for all
+application-related attributes that may appear on telemetry items.
 
 ## Click Events
 
