@@ -1,0 +1,4 @@
+change_type: enhancement
+component: [gcp, gen-ai]
+note: Define dynamic request attributes for Google generative AI systems.
+issues: [2053]
