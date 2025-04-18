@@ -24,6 +24,22 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: if the port is supported by the network transport used for communication.
+      - ref: rpc.streaming.messages.count
+        requirement_level: opt_in
+        note: >
+          **Streaming**: This attribute is only opt_in for server and client streaming RPCs.
+      - ref: rpc.streaming.messages.max_interval
+        requirement_level: opt_in
+        note: >
+          **Streaming**: This attribute is only opt_in for server and client streaming RPCs.
+      - ref: rpc.streaming.messages.min_interval
+        requirement_level: opt_in
+        note: >
+          **Streaming**: This attribute is only opt_in for server and client streaming RPCs.
+      - ref: rpc.streaming.messages.avg_interval
+        requirement_level: opt_in
+        note: >
+          **Streaming**: This attribute is only opt_in for server and client streaming RPCs.
 
   - id: span.rpc.client
     type: span

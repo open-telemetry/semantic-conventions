@@ -73,6 +73,26 @@ groups:
 
       **Streaming**: This metric is required for server and client streaming RPCs
 
+  - id: metric.rpc.server.time_to_first_message
+    type: metric
+    metric_name: rpc.server.time_to_first_message
+    stability: development
+    brief: Time to send first message for messages
+    instrument: histogram
+    unit: "s"
+    note: |
+      **Streaming**: This metric is only required for server streaming RPCs
+
+  - id: metric.rpc.server.time_per_message
+    type: metric
+    metric_name: rpc.server.time_per_message
+    stability: development
+    brief: Time per message after the first sent message
+    instrument: histogram
+    unit: "s"
+    note: |
+      **Streaming**: This metric is only required for server streaming RPCs
+
   # RPC Client metrics
   - id: metric.rpc.client.duration
     type: metric
@@ -130,3 +150,23 @@ groups:
       Should be 1 for all non-streaming RPCs.
 
       **Streaming**: This metric is required for server and client streaming RPCs
+  
+  - id: metric.rpc.client.time_to_first_message
+    type: metric
+    metric_name: rpc.client.time_to_first_message
+    stability: development
+    brief: Time to send first message for messages
+    instrument: histogram
+    unit: "s"
+    note: |
+      **Streaming**: This metric is only required for client streaming RPCs
+
+  - id: metric.rpc.client.time_per_message
+    type: metric
+    metric_name: rpc.client.time_per_message
+    stability: development
+    brief: Time per message after the first sent message
+    instrument: histogram
+    unit: "s"
+    note: |
+      **Streaming**: This metric is only required for client streaming RPCs

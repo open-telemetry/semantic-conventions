@@ -170,3 +170,23 @@ groups:
         brief: State of the HTTP connection in the HTTP connection pool.
         stability: development
         examples: ["active", "idle"]
+      - id: http.sse.events.count
+        type: int
+        brief: The number of responded events.
+        stability: development
+        examples: 42
+      - id: http.sse.events.max_interval
+        type: int
+        brief: The maximum interval time in milliseconds among responded events.
+        stability: development
+        examples: 12138
+      - id: http.sse.events.min_interval
+        type: int
+        brief: The minimum interval time in milliseconds among responded events.
+        stability: development
+        examples: 7
+      - id: http.sse.events.avg_interval
+        type: int
+        brief: The average interval time in milliseconds among responded events.
+        stability: development
+        examples: 420
