@@ -10,7 +10,7 @@ change_type: enhancement
 component: jvm
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Add `jvm.file_descriptor.count` as a development metric to track the number of open file descriptors by the JVM.
+note: Add `jvm.file_descriptor.count` as an in-development metric to track the number of open file descriptors as reported by the JVM.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
