@@ -7,6 +7,14 @@ templates:
     filter: '.groups | map(select(.type == "attribute_group")) | map(select(.id | startswith("registry"))) | group_by(.id | split(".") | .[1]) | map({id: .[0].id | split(".") | .[1], groups: .})'
     application_mode: each
     file_name: 'attributes-registry/{{ctx.id | lower | kebab_case}}.md'
+  - pattern: entity_readme.md.j2
+    filter: '.groups | map(select(.type == "resource")) | group_by(.id | split(".") | .[1]) | map({id: .[0].id | split(".") | .[1], groups: .})'
+    application_mode: single
+    file_name: 'entities-registry/README.md'
+  - pattern: entity_entry.md.j2
+    filter: '.groups | map(select(.type == "resource"))'
+    application_mode: each
+    file_name: 'entities-registry/{{ ctx.name | kebab_case }}.md'
 acronyms:
   - AI
   - AWS
