@@ -205,8 +205,13 @@ table-generation:
 		/home/weaver/target
 
 # Generate attribute registry markdown.
+# DEPRECATED
 .PHONY: attribute-registry-generation
-attribute-registry-generation:
+attribute-registry-generation: registry-generation
+
+# Generate registries of attributes, etc.
+.PHONY: registry-generation
+registry-generation:
 	$(DOCKER_RUN) --rm \
 		$(DOCKER_USER_IS_HOST_USER_ARG) \
 		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
@@ -242,13 +247,13 @@ schema-check:
 # Run all checks in order of speed / likely failure.
 # As a last thing, run attribute registry generation and git-diff for differences.
 .PHONY: check
-check: misspell markdownlint markdown-toc markdown-link-check check-policies attribute-registry-generation
+check: misspell markdownlint markdown-toc markdown-link-check check-policies registry-generation
 	git diff --exit-code ':*.md' || (echo 'Generated markdown Table of Contents is out of date, please run "make markdown-toc" and commit the changes in this PR.' && exit 1)
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation attribute-registry-generation misspell-correction markdown-toc
+fix: table-generation registry-generation misspell-correction markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools
