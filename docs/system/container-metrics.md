@@ -54,7 +54,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpu.mode`](/docs/registry/attribute/cpu.md) | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `kernel`
 
@@ -99,7 +99,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpu.mode`](/docs/registry/attribute/cpu.md) | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `kernel`
 
@@ -166,8 +166,8 @@ This metric is [opt-in][MetricOptIn].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`disk.io.direction`](/docs/attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`disk.io.direction`](/docs/registry/attribute/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.device`](/docs/registry/attribute/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -202,8 +202,8 @@ This metric is [opt-in][MetricOptIn].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.interface.name`](/docs/registry/attribute/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.io.direction`](/docs/registry/attribute/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

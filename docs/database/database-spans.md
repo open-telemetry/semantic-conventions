@@ -102,21 +102,21 @@ classify as errors.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.system.name`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` | `Required` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [7] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` [8] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [12] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a database query text. [13] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [14] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [15] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [16] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [17] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [18] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [19] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.system.name`](/docs/registry/attribute/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` | `Required` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.collection.name`](/docs/registry/attribute/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.namespace`](/docs/registry/attribute/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.operation.name`](/docs/registry/attribute/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.response.status_code`](/docs/registry/attribute/db.md) | string | Database response status code. [7] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` [8] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`error.type`](/docs/registry/attribute/error.md) | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attribute/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.batch.size`](/docs/registry/attribute/db.md) | int | The number of queries included in a batch operation. [12] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.query.summary`](/docs/registry/attribute/db.md) | string | Low cardinality representation of a database query text. [13] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [14] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.query.text`](/docs/registry/attribute/db.md) | string | The database query being executed. [15] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [16] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.response.returned_rows`](/docs/registry/attribute/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.peer.address`](/docs/registry/attribute/network.md) | string | Peer address of the database node where the operation was performed. [17] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.port`](/docs/registry/attribute/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/registry/attribute/server.md) | string | Name of the database host. [18] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.parameter.<key>`](/docs/registry/attribute/db.md) | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [19] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
@@ -190,14 +190,14 @@ If a database operation involved multiple network calls (for example retries), t
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`db.collection.name`](/docs/attributes-registry/db.md)
-* [`db.namespace`](/docs/attributes-registry/db.md)
-* [`db.operation.name`](/docs/attributes-registry/db.md)
-* [`db.query.summary`](/docs/attributes-registry/db.md)
-* [`db.query.text`](/docs/attributes-registry/db.md)
-* [`db.system.name`](/docs/attributes-registry/db.md)
-* [`server.address`](/docs/attributes-registry/server.md)
-* [`server.port`](/docs/attributes-registry/server.md)
+* [`db.collection.name`](/docs/registry/attribute/db.md)
+* [`db.namespace`](/docs/registry/attribute/db.md)
+* [`db.operation.name`](/docs/registry/attribute/db.md)
+* [`db.query.summary`](/docs/registry/attribute/db.md)
+* [`db.query.text`](/docs/registry/attribute/db.md)
+* [`db.system.name`](/docs/registry/attribute/db.md)
+* [`server.address`](/docs/registry/attribute/server.md)
+* [`server.port`](/docs/registry/attribute/server.md)
 
 ---
 

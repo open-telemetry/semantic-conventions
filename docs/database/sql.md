@@ -51,17 +51,17 @@ Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic co
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The database associated with the connection, fully qualified within the server address and port. [1] | `customers`; `test.users` | `Conditionally Required` If available without an additional network call. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response code recorded as a string. [2] | `ORA-17027`; `1052`; `2201B` | `Conditionally Required` If response has ended with warning or an error. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Conditionally Required` [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [6] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a database query text. [7] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [8] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [9] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [10] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`db.stored_procedure.name`](/docs/attributes-registry/db.md) | string | The name of a stored procedure within the database. [11] | `GetCustomer` | `Recommended` [12] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [14] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.namespace`](/docs/registry/attribute/db.md) | string | The database associated with the connection, fully qualified within the server address and port. [1] | `customers`; `test.users` | `Conditionally Required` If available without an additional network call. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.response.status_code`](/docs/registry/attribute/db.md) | string | Database response code recorded as a string. [2] | `ORA-17027`; `1052`; `2201B` | `Conditionally Required` If response has ended with warning or an error. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`error.type`](/docs/registry/attribute/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attribute/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Conditionally Required` [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.batch.size`](/docs/registry/attribute/db.md) | int | The number of queries included in a batch operation. [6] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.query.summary`](/docs/registry/attribute/db.md) | string | Low cardinality representation of a database query text. [7] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [8] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.query.text`](/docs/registry/attribute/db.md) | string | The database query being executed. [9] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [10] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.response.returned_rows`](/docs/registry/attribute/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`db.stored_procedure.name`](/docs/registry/attribute/db.md) | string | The name of a stored procedure within the database. [11] | `GetCustomer` | `Recommended` [12] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`server.address`](/docs/registry/attribute/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.parameter.<key>`](/docs/registry/attribute/db.md) | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [14] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1] `db.namespace`:** If a database system has multiple namespace components (e.g. schema name and database name), they SHOULD be concatenated
 (potentially using database system specific conventions) from most general to most
@@ -156,10 +156,10 @@ stored procedure name then that stored procedure name SHOULD be used.
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`db.query.summary`](/docs/attributes-registry/db.md)
-* [`db.query.text`](/docs/attributes-registry/db.md)
-* [`server.address`](/docs/attributes-registry/server.md)
-* [`server.port`](/docs/attributes-registry/server.md)
+* [`db.query.summary`](/docs/registry/attribute/db.md)
+* [`db.query.text`](/docs/registry/attribute/db.md)
+* [`server.address`](/docs/registry/attribute/server.md)
+* [`server.port`](/docs/registry/attribute/server.md)
 
 ---
 

@@ -178,8 +178,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.interface.name`](/docs/registry/attribute/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.io.direction`](/docs/registry/attribute/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -212,8 +212,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.interface.name`](/docs/registry/attribute/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.io.direction`](/docs/registry/attribute/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -339,8 +339,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.interface.name`](/docs/registry/attribute/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.io.direction`](/docs/registry/attribute/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -373,8 +373,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.interface.name`](/docs/registry/attribute/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.io.direction`](/docs/registry/attribute/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -1070,7 +1070,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.namespace.phase`](/docs/attributes-registry/k8s.md) | string | The phase of the K8s namespace. [1] | `active`; `terminating` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.namespace.phase`](/docs/registry/attribute/k8s.md) | string | The phase of the K8s namespace. [1] | `active`; `terminating` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `k8s.namespace.phase`:** This attribute aligns with the `phase` field of the
 [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)

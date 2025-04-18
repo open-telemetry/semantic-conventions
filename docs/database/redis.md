@@ -32,17 +32,17 @@ looking confusing.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The [database index] associated with the connection, represented as a string. [1] | `0`; `1`; `15` | `Conditionally Required` If and only if it can be captured reliably. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The Redis command name. [2] | `HMSET`; `GET`; `SET` | `Conditionally Required` [3] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix. [4] | `ERR`; `WRONGTYPE`; `CLUSTERDOWN` | `Conditionally Required` [5] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [9] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The full syntax of the Redis CLI command. [10] | `HMSET myhash field1 'Hello' field2 'World'` | `Recommended` [11] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.stored_procedure.name`](/docs/attributes-registry/db.md) | string | The name or sha1 digest of a Lua script in the database. [12] | `GetCustomer` | `Recommended` If operation represents Lua script execution. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [13] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [14] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.namespace`](/docs/registry/attribute/db.md) | string | The [database index] associated with the connection, represented as a string. [1] | `0`; `1`; `15` | `Conditionally Required` If and only if it can be captured reliably. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.operation.name`](/docs/registry/attribute/db.md) | string | The Redis command name. [2] | `HMSET`; `GET`; `SET` | `Conditionally Required` [3] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.response.status_code`](/docs/registry/attribute/db.md) | string | The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix. [4] | `ERR`; `WRONGTYPE`; `CLUSTERDOWN` | `Conditionally Required` [5] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`error.type`](/docs/registry/attribute/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attribute/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.batch.size`](/docs/registry/attribute/db.md) | int | The number of queries included in a batch operation. [9] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.query.text`](/docs/registry/attribute/db.md) | string | The full syntax of the Redis CLI command. [10] | `HMSET myhash field1 'Hello' field2 'World'` | `Recommended` [11] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.stored_procedure.name`](/docs/registry/attribute/db.md) | string | The name or sha1 digest of a Lua script in the database. [12] | `GetCustomer` | `Recommended` If operation represents Lua script execution. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`network.peer.address`](/docs/registry/attribute/network.md) | string | Peer address of the database node where the operation was performed. [13] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.port`](/docs/registry/attribute/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/registry/attribute/server.md) | string | Name of the database host. [14] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `db.namespace`:** A connection's currently associated database index may change during its lifetime, e.g. from executing `SELECT <index>`.
 
@@ -85,11 +85,11 @@ See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitizat
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`db.namespace`](/docs/attributes-registry/db.md)
-* [`db.operation.name`](/docs/attributes-registry/db.md)
-* [`db.query.text`](/docs/attributes-registry/db.md)
-* [`server.address`](/docs/attributes-registry/server.md)
-* [`server.port`](/docs/attributes-registry/server.md)
+* [`db.namespace`](/docs/registry/attribute/db.md)
+* [`db.operation.name`](/docs/registry/attribute/db.md)
+* [`db.query.text`](/docs/registry/attribute/db.md)
+* [`server.address`](/docs/registry/attribute/server.md)
+* [`server.port`](/docs/registry/attribute/server.md)
 
 ---
 

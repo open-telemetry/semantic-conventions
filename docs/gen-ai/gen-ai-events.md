@@ -61,7 +61,7 @@ This event describes the system instructions passed to the GenAI model.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.system`](/docs/registry/attribute/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
@@ -136,7 +136,7 @@ This event describes the user message passed to the GenAI model.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.system`](/docs/registry/attribute/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
@@ -211,7 +211,7 @@ This event describes the assistant message passed to GenAI system.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.system`](/docs/registry/attribute/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
@@ -301,7 +301,7 @@ This event describes the response from a tool or function call passed to the Gen
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.system`](/docs/registry/attribute/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.
@@ -377,7 +377,7 @@ This event describes the Gen AI response message.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.system`](/docs/registry/attribute/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
 by `gen_ai.request.model` and `gen_ai.response.model` attributes.

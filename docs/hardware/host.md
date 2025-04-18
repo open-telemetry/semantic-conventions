@@ -38,9 +38,9 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.id`](/docs/registry/attribute/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.name`](/docs/registry/attribute/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.parent`](/docs/registry/attribute/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -66,9 +66,9 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.id`](/docs/registry/attribute/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.name`](/docs/registry/attribute/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.parent`](/docs/registry/attribute/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -92,9 +92,9 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.id`](/docs/registry/attribute/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.name`](/docs/registry/attribute/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.parent`](/docs/registry/attribute/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -120,9 +120,9 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`hw.id`](/docs/attributes-registry/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.name`](/docs/attributes-registry/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.parent`](/docs/attributes-registry/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.id`](/docs/registry/attribute/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.name`](/docs/registry/attribute/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.parent`](/docs/registry/attribute/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

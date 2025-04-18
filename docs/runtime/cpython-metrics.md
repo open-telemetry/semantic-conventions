@@ -42,7 +42,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpython.gc.generation`](/docs/attributes-registry/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpython.gc.generation`](/docs/registry/attribute/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -78,7 +78,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpython.gc.generation`](/docs/attributes-registry/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpython.gc.generation`](/docs/registry/attribute/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -114,7 +114,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpython.gc.generation`](/docs/attributes-registry/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpython.gc.generation`](/docs/registry/attribute/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
