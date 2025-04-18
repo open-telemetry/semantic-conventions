@@ -61,7 +61,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpu.mode`](/docs/registry/attribute/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `wait`
 
@@ -102,7 +102,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpu.mode`](/docs/registry/attribute/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `wait`
 
@@ -183,7 +183,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`disk.io.direction`](/docs/attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`disk.io.direction`](/docs/registry/attribute/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -216,7 +216,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.io.direction`](/docs/registry/attribute/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -289,7 +289,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`process.context_switch_type`](/docs/attributes-registry/process.md) | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.context_switch_type`](/docs/registry/attribute/process.md) | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -322,7 +322,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`process.paging.fault_type`](/docs/attributes-registry/process.md) | string | The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults. | `major`; `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.paging.fault_type`](/docs/registry/attribute/process.md) | string | The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults. | `major`; `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

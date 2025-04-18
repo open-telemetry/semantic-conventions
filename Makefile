@@ -198,7 +198,7 @@ table-generation:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		--attribute-registry-base-url=/docs/attributes-registry \
+		--attribute-registry-base-url=/docs/registry/attribute \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--future \
@@ -233,7 +233,7 @@ table-check:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target,readonly' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		--attribute-registry-base-url=/docs/attributes-registry \
+		--attribute-registry-base-url=/docs/registry/attribute \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--dry-run \

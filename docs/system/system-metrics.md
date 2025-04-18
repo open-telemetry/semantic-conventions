@@ -168,7 +168,7 @@ available on the system, that is `system.memory.limit`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.memory.state`](/docs/attributes-registry/system.md) | string | The memory state | `free`; `cached` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.memory.state`](/docs/registry/attribute/system.md) | string | The memory state | `free`; `cached` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -248,7 +248,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.memory.state`](/docs/attributes-registry/system.md) | string | The memory state | `free`; `cached` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.memory.state`](/docs/registry/attribute/system.md) | string | The memory state | `free`; `cached` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -287,8 +287,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.device`](/docs/attributes-registry/system.md) | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.paging.state`](/docs/attributes-registry/system.md) | string | The memory paging state | `free` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.device`](/docs/registry/attribute/system.md) | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.paging.state`](/docs/registry/attribute/system.md) | string | The memory paging state | `free` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -321,8 +321,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.device`](/docs/attributes-registry/system.md) | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.paging.state`](/docs/attributes-registry/system.md) | string | The memory paging state | `free` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.device`](/docs/registry/attribute/system.md) | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.paging.state`](/docs/registry/attribute/system.md) | string | The memory paging state | `free` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -355,7 +355,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.paging.type`](/docs/attributes-registry/system.md) | string | The memory paging type | `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.paging.type`](/docs/registry/attribute/system.md) | string | The memory paging type | `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -388,8 +388,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.paging.direction`](/docs/attributes-registry/system.md) | string | The paging access direction | `in` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.paging.type`](/docs/attributes-registry/system.md) | string | The memory paging type | `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.paging.direction`](/docs/registry/attribute/system.md) | string | The paging access direction | `in` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.paging.type`](/docs/registry/attribute/system.md) | string | The memory paging type | `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -435,8 +435,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`disk.io.direction`](/docs/attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`disk.io.direction`](/docs/registry/attribute/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.device`](/docs/registry/attribute/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -469,8 +469,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`disk.io.direction`](/docs/attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`disk.io.direction`](/docs/registry/attribute/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.device`](/docs/registry/attribute/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -510,7 +510,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.device`](/docs/registry/attribute/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -539,8 +539,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`disk.io.direction`](/docs/attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`disk.io.direction`](/docs/registry/attribute/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.device`](/docs/registry/attribute/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -573,8 +573,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`disk.io.direction`](/docs/attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`disk.io.direction`](/docs/registry/attribute/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.device`](/docs/registry/attribute/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -607,7 +607,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.device`](/docs/registry/attribute/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -638,11 +638,11 @@ SHOULD equal the total storage capacity of the filesystem, that is `system.files
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.device`](/docs/attributes-registry/system.md) | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.filesystem.mode`](/docs/attributes-registry/system.md) | string | The filesystem mode | `rw, ro` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.filesystem.mountpoint`](/docs/attributes-registry/system.md) | string | The filesystem mount path | `/mnt/data` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.filesystem.state`](/docs/attributes-registry/system.md) | string | The filesystem state | `used` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.filesystem.type`](/docs/attributes-registry/system.md) | string | The filesystem type | `ext4` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.device`](/docs/registry/attribute/system.md) | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.filesystem.mode`](/docs/registry/attribute/system.md) | string | The filesystem mode | `rw, ro` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.filesystem.mountpoint`](/docs/registry/attribute/system.md) | string | The filesystem mount path | `/mnt/data` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.filesystem.state`](/docs/registry/attribute/system.md) | string | The filesystem state | `used` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.filesystem.type`](/docs/registry/attribute/system.md) | string | The filesystem type | `ext4` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -689,11 +689,11 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.device`](/docs/attributes-registry/system.md) | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.filesystem.mode`](/docs/attributes-registry/system.md) | string | The filesystem mode | `rw, ro` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.filesystem.mountpoint`](/docs/attributes-registry/system.md) | string | The filesystem mount path | `/mnt/data` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.filesystem.state`](/docs/attributes-registry/system.md) | string | The filesystem state | `used` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.filesystem.type`](/docs/attributes-registry/system.md) | string | The filesystem type | `ext4` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.device`](/docs/registry/attribute/system.md) | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.filesystem.mode`](/docs/registry/attribute/system.md) | string | The filesystem mode | `rw, ro` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.filesystem.mountpoint`](/docs/registry/attribute/system.md) | string | The filesystem mount path | `/mnt/data` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.filesystem.state`](/docs/registry/attribute/system.md) | string | The filesystem state | `used` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.filesystem.type`](/docs/registry/attribute/system.md) | string | The filesystem type | `ext4` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -740,10 +740,10 @@ This metric is [opt-in][MetricOptIn].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.device`](/docs/attributes-registry/system.md) | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.filesystem.mode`](/docs/attributes-registry/system.md) | string | The filesystem mode | `rw, ro` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.filesystem.mountpoint`](/docs/attributes-registry/system.md) | string | The filesystem mount path | `/mnt/data` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.filesystem.type`](/docs/attributes-registry/system.md) | string | The filesystem type | `ext4` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.device`](/docs/registry/attribute/system.md) | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.filesystem.mode`](/docs/registry/attribute/system.md) | string | The filesystem mode | `rw, ro` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.filesystem.mountpoint`](/docs/registry/attribute/system.md) | string | The filesystem mount path | `/mnt/data` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.filesystem.type`](/docs/registry/attribute/system.md) | string | The filesystem type | `ext4` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -790,8 +790,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.interface.name`](/docs/registry/attribute/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.io.direction`](/docs/registry/attribute/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -824,8 +824,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.device`](/docs/attributes-registry/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.io.direction`](/docs/registry/attribute/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.device`](/docs/registry/attribute/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -864,8 +864,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.interface.name`](/docs/registry/attribute/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.io.direction`](/docs/registry/attribute/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -898,8 +898,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.interface.name`](/docs/registry/attribute/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.io.direction`](/docs/registry/attribute/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -932,9 +932,9 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`network.connection.state`](/docs/attributes-registry/network.md) | string | The state of network connection [1] | `close_wait` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.interface.name`](/docs/attributes-registry/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.connection.state`](/docs/registry/attribute/network.md) | string | The state of network connection [1] | `close_wait` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.interface.name`](/docs/registry/attribute/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.transport`](/docs/registry/attribute/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `network.connection.state`:** Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
 
@@ -1001,7 +1001,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.process.status`](/docs/attributes-registry/system.md) | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.process.status`](/docs/registry/attribute/system.md) | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -1116,7 +1116,7 @@ See also the [Slab allocator](https://blogs.oracle.com/linux/post/understanding-
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`linux.memory.slab.state`](/docs/attributes-registry/linux.md) | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`linux.memory.slab.state`](/docs/registry/attribute/linux.md) | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

@@ -52,19 +52,19 @@ The following additional attributes are defined:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | Azure Service Bus operation name. [1] | `send`; `receive`; `complete`; `process`; `peek` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [5] | `MyQueue`; `MyTopic` | `Conditionally Required` [6] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.destination.subscription.name`](/docs/attributes-registry/messaging.md) | string | Azure Service Bus [subscription name](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-queues-topics-subscriptions#topics-and-subscriptions). | `subscription-a` | `Conditionally Required` If messages are received from the subscription. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [7] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.servicebus.disposition_status`](/docs/attributes-registry/messaging.md) | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete`; `abandon`; `dead_letter` | `Conditionally Required` if and only if `messaging.operation` is `settle`. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.servicebus.message.delivery_count`](/docs/attributes-registry/messaging.md) | int | Number of deliveries that have been attempted for this message. | `2` | `Conditionally Required` [8] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.message.conversation_id`](/docs/attributes-registry/messaging.md) | string | Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property. | `MyConversationId` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.message.id`](/docs/attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.servicebus.message.enqueued_time`](/docs/attributes-registry/messaging.md) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.operation.name`](/docs/registry/attribute/messaging.md) | string | Azure Service Bus operation name. [1] | `send`; `receive`; `complete`; `process`; `peek` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`error.type`](/docs/registry/attribute/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.batch.message_count`](/docs/registry/attribute/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.destination.name`](/docs/registry/attribute/messaging.md) | string | The message destination name [5] | `MyQueue`; `MyTopic` | `Conditionally Required` [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.destination.subscription.name`](/docs/registry/attribute/messaging.md) | string | Azure Service Bus [subscription name](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-queues-topics-subscriptions#topics-and-subscriptions). | `subscription-a` | `Conditionally Required` If messages are received from the subscription. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.operation.type`](/docs/registry/attribute/messaging.md) | string | A string identifying the type of the messaging operation. [7] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.servicebus.disposition_status`](/docs/registry/attribute/messaging.md) | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete`; `abandon`; `dead_letter` | `Conditionally Required` if and only if `messaging.operation` is `settle`. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.servicebus.message.delivery_count`](/docs/registry/attribute/messaging.md) | int | Number of deliveries that have been attempted for this message. | `2` | `Conditionally Required` [8] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.address`](/docs/registry/attribute/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.message.conversation_id`](/docs/registry/attribute/messaging.md) | string | Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property. | `MyConversationId` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.message.id`](/docs/registry/attribute/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.servicebus.message.enqueued_time`](/docs/registry/attribute/messaging.md) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.port`](/docs/registry/attribute/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `messaging.operation.name`:** The operation name SHOULD match one of the following values:
 
@@ -117,12 +117,12 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`messaging.destination.name`](/docs/attributes-registry/messaging.md)
-* [`messaging.destination.subscription.name`](/docs/attributes-registry/messaging.md)
-* [`messaging.operation.name`](/docs/attributes-registry/messaging.md)
-* [`messaging.operation.type`](/docs/attributes-registry/messaging.md)
-* [`server.address`](/docs/attributes-registry/server.md)
-* [`server.port`](/docs/attributes-registry/server.md)
+* [`messaging.destination.name`](/docs/registry/attribute/messaging.md)
+* [`messaging.destination.subscription.name`](/docs/registry/attribute/messaging.md)
+* [`messaging.operation.name`](/docs/registry/attribute/messaging.md)
+* [`messaging.operation.type`](/docs/registry/attribute/messaging.md)
+* [`server.address`](/docs/registry/attribute/server.md)
+* [`server.port`](/docs/registry/attribute/server.md)
 
 ---
 
@@ -176,17 +176,17 @@ The following additional attributes are defined:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | Azure Event Hubs operation name. [1] | `send`; `receive`; `checkpoint` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md) | string | Azure Event Hubs [consumer group name](https://learn.microsoft.com/azure/event-hubs/event-hubs-features#consumer-groups). | `my-group`; `indexer` | `Conditionally Required` On consumer spans. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [5] | `MyQueue`; `MyTopic` | `Conditionally Required` [6] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md) | string | String representation of the partition id messages are sent to or received from, unique within the Event Hub. | `1` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [7] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.eventhubs.message.enqueued_time`](/docs/attributes-registry/messaging.md) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.message.id`](/docs/attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.operation.name`](/docs/registry/attribute/messaging.md) | string | Azure Event Hubs operation name. [1] | `send`; `receive`; `checkpoint` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`error.type`](/docs/registry/attribute/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.batch.message_count`](/docs/registry/attribute/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.consumer.group.name`](/docs/registry/attribute/messaging.md) | string | Azure Event Hubs [consumer group name](https://learn.microsoft.com/azure/event-hubs/event-hubs-features#consumer-groups). | `my-group`; `indexer` | `Conditionally Required` On consumer spans. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.destination.name`](/docs/registry/attribute/messaging.md) | string | The message destination name [5] | `MyQueue`; `MyTopic` | `Conditionally Required` [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.destination.partition.id`](/docs/registry/attribute/messaging.md) | string | String representation of the partition id messages are sent to or received from, unique within the Event Hub. | `1` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.operation.type`](/docs/registry/attribute/messaging.md) | string | A string identifying the type of the messaging operation. [7] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.address`](/docs/registry/attribute/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.eventhubs.message.enqueued_time`](/docs/registry/attribute/messaging.md) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.message.id`](/docs/registry/attribute/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.port`](/docs/registry/attribute/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `messaging.operation.name`:** The operation name SHOULD match one of the following values:
 
@@ -238,13 +238,13 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`messaging.consumer.group.name`](/docs/attributes-registry/messaging.md)
-* [`messaging.destination.name`](/docs/attributes-registry/messaging.md)
-* [`messaging.destination.partition.id`](/docs/attributes-registry/messaging.md)
-* [`messaging.operation.name`](/docs/attributes-registry/messaging.md)
-* [`messaging.operation.type`](/docs/attributes-registry/messaging.md)
-* [`server.address`](/docs/attributes-registry/server.md)
-* [`server.port`](/docs/attributes-registry/server.md)
+* [`messaging.consumer.group.name`](/docs/registry/attribute/messaging.md)
+* [`messaging.destination.name`](/docs/registry/attribute/messaging.md)
+* [`messaging.destination.partition.id`](/docs/registry/attribute/messaging.md)
+* [`messaging.operation.name`](/docs/registry/attribute/messaging.md)
+* [`messaging.operation.type`](/docs/registry/attribute/messaging.md)
+* [`server.address`](/docs/registry/attribute/server.md)
+* [`server.port`](/docs/registry/attribute/server.md)
 
 ---
 

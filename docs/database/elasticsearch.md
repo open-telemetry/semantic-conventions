@@ -40,19 +40,19 @@ with the endpoint identifier stored in `db.operation.name`, and the index stored
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [1] | `search`; `ml.close_job`; `cat.aliases` | `Required` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`http.request.method`](/docs/attributes-registry/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.full`](/docs/attributes-registry/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://localhost:9200/index/_search?q=user.id:kimchy` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.parameter.<key>`](/docs/attributes-registry/db.md) | string | A dynamic value in the url path. [4] | `db.operation.parameter.index="test-index"`; `db.operation.parameter="123"` | `Conditionally Required` when the url has path parameters | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | The HTTP response code returned by the Elasticsearch cluster. [5] | `200`; `201`; `429` | `Conditionally Required` If response was received. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The index or data stream against which the query is executed. [9] | `my_index`; `index1, index2` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the Elasticsearch cluster which the client connects to. [10] | `customers`; `test.users` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [11] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. [12] | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | `Recommended` [13] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`elasticsearch.node.name`](/docs/attributes-registry/elasticsearch.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. [14] | `instance-0000000001` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.name`](/docs/registry/attribute/db.md) | string | The name of the operation or command being executed. [1] | `search`; `ml.close_job`; `cat.aliases` | `Required` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`http.request.method`](/docs/registry/attribute/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`url.full`](/docs/registry/attribute/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://localhost:9200/index/_search?q=user.id:kimchy` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.parameter.<key>`](/docs/registry/attribute/db.md) | string | A dynamic value in the url path. [4] | `db.operation.parameter.index="test-index"`; `db.operation.parameter="123"` | `Conditionally Required` when the url has path parameters | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`db.response.status_code`](/docs/registry/attribute/db.md) | string | The HTTP response code returned by the Elasticsearch cluster. [5] | `200`; `201`; `429` | `Conditionally Required` If response was received. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`error.type`](/docs/registry/attribute/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attribute/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.collection.name`](/docs/registry/attribute/db.md) | string | The index or data stream against which the query is executed. [9] | `my_index`; `index1, index2` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.namespace`](/docs/registry/attribute/db.md) | string | The name of the Elasticsearch cluster which the client connects to. [10] | `customers`; `test.users` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.operation.batch.size`](/docs/registry/attribute/db.md) | int | The number of queries included in a batch operation. [11] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.query.text`](/docs/registry/attribute/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. [12] | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | `Recommended` [13] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`elasticsearch.node.name`](/docs/registry/attribute/elasticsearch.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. [14] | `instance-0000000001` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.address`](/docs/registry/attribute/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `db.operation.name`:** The `db.operation.name` SHOULD match the endpoint identifier provided in the request (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
 For batch operations, if the individual operations are known to have the same operation name then that operation name SHOULD be used prepended by `bulk `, otherwise `db.operation.name` SHOULD be `bulk`.
@@ -127,14 +127,14 @@ Even though parameterized query text can potentially have sensitive data, by usi
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`db.collection.name`](/docs/attributes-registry/db.md)
-* [`db.namespace`](/docs/attributes-registry/db.md)
-* [`db.operation.name`](/docs/attributes-registry/db.md)
-* [`db.query.text`](/docs/attributes-registry/db.md)
-* [`http.request.method`](/docs/attributes-registry/http.md)
-* [`server.address`](/docs/attributes-registry/server.md)
-* [`server.port`](/docs/attributes-registry/server.md)
-* [`url.full`](/docs/attributes-registry/url.md)
+* [`db.collection.name`](/docs/registry/attribute/db.md)
+* [`db.namespace`](/docs/registry/attribute/db.md)
+* [`db.operation.name`](/docs/registry/attribute/db.md)
+* [`db.query.text`](/docs/registry/attribute/db.md)
+* [`http.request.method`](/docs/registry/attribute/http.md)
+* [`server.address`](/docs/registry/attribute/server.md)
+* [`server.port`](/docs/registry/attribute/server.md)
+* [`url.full`](/docs/registry/attribute/url.md)
 
 ---
 

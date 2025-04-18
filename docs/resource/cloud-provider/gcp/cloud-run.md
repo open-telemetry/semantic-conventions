@@ -20,8 +20,8 @@ These conventions are recommended for resources running on Cloud Run.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gcp.cloud_run.job.execution`](/docs/attributes-registry/gcp.md) | string | The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `job-name-xxxx`; `sample-job-mdw84` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gcp.cloud_run.job.task_index`](/docs/attributes-registry/gcp.md) | int | The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `0`; `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gcp.cloud_run.job.execution`](/docs/registry/attribute/gcp.md) | string | The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `job-name-xxxx`; `sample-job-mdw84` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gcp.cloud_run.job.task_index`](/docs/registry/attribute/gcp.md) | int | The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `0`; `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
