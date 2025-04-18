@@ -125,7 +125,7 @@ Additional output format details may be recorded in the future in the
 
 ### Embedding
 
-See [common embedding span definition](./gen-ai-agent-spans.md#embedding-span).
+See [common embedding span definition](./gen-ai-spans.md#embeddings).
 
 ## Metrics
 
