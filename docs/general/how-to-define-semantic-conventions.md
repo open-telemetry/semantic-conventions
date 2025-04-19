@@ -78,6 +78,10 @@ When defining a new attribute:
   - If the value has a reasonably short (open or closed) set of possible values, define it as an enum.
   - If the value is a timestamp, record it as a string in ISO 8601 format.
   - For arrays of primitives, use the array type. Avoid recording arrays as a single string.
+  - Arrays should be homogeneous, meaning all elements share the same type and represent the same concept.
+    For example:
+    - Latitude and longitude should be defined as separate attributes (`geo.lat` and `geo.lon`)
+      rather than combining them into a single array, as they represent distinct concepts.
   - Use the template type to define attributes with dynamic names (only the last segment of the name should be dynamic).
     This is useful for capturing user-defined key-value pairs, such as HTTP headers.
   - Represent complex values as a set of flat attributes. <!-- This may change, check out https://github.com/open-telemetry/semantic-conventions/issues/1669 to monitor the progress -->
