@@ -23,4 +23,8 @@ Technology specific semantic conventions are defined for the following GenAI sys
 * [Azure AI Inference](./azure-ai-inference.md): Semantic Conventions for Azure AI Inference.
 * [OpenAI](./openai.md): Semantic Conventions for OpenAI.
 
+See also
+
+* [Model Context Protocol](./mcp.md): Semantic Conventions for [MCP](https://modelcontextprotocol.io)
+
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
