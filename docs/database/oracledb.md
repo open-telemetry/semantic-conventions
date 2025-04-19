@@ -50,6 +50,8 @@ Spans representing calls to a Oracle SQL Database adhere to the general [Semanti
 
 **[1] `db.namespace`:** `db.namespace` SHOULD be set to the combination of instance name, database name and
 service name following the `{instance_name}|{database_name}|{service_name}` pattern.
+Any missing components (and their associated separators) SHOULD be omitted.
+
 For CDB architecture, database name would be pdb name. For Non-CDB, it would be
 `DB_NAME` parameter.
 

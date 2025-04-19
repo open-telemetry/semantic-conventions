@@ -144,7 +144,7 @@ groups:
         note: |
           When connected to a default instance, `db.namespace` SHOULD be set to the name of
           the database. When connected to a [named instance](https://learn.microsoft.com/sql/connect/jdbc/building-the-connection-url#named-and-multiple-sql-server-instances),
-          `db.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}.{database_name}` pattern.
+          `db.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}|{database_name}` pattern.
 
           A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
 
@@ -182,7 +182,8 @@ groups:
         brief: >
           The schema associated with the connection, qualified by the database name.
         note: |
-          `db.namespace` SHOULD be set to the combination of database and schema name following the `{database}.{schema}` pattern.
+          `db.namespace` SHOULD be set to the combination of database and schema name following the `{database}|{schema}` pattern.
+          If either `{database}` or `{schema}` is unavailable, `db.namespace` SHOULD be set to the other (without any `|` separator).
 
           A connection's currently associated database may change during its lifetime, e.g. from executing `SET search_path TO <schema>`.
           If the search path has multiple schemas, the first schema in the search path SHOULD be used.
@@ -660,12 +661,12 @@ groups:
           conditionally_required: If available without an additional network call.
         note: |
           If a database system has multiple namespace components (e.g. schema name and database name), they SHOULD be concatenated
-          (potentially using database system specific conventions) from most general to most
-          specific namespace component, and more specific namespaces SHOULD NOT be captured without
-          the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+          from the most general to the most specific namespace component,
+          using `|` as a separator between the components.
+          Any missing components (and their associated separators) SHOULD be omitted.
 
-          Unless specified by the system-specific semantic convention, the `db.namespace` attribute matches
-          the name of the database being accessed.
+          Semantic conventions for individual database systems SHOULD document what `db.namespace`
+          means in the context of that system.
 
           A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
 
@@ -951,6 +952,8 @@ groups:
         note: |
           `db.namespace` SHOULD be set to the combination of instance name, database name and
           service name following the `{instance_name}|{database_name}|{service_name}` pattern.
+          Any missing components (and their associated separators) SHOULD be omitted.
+
           For CDB architecture, database name would be pdb name. For Non-CDB, it would be
           `DB_NAME` parameter.
         examples: ["ORCL1\\|PDB1\\|db_high.adb.oraclecloud.com", "ORCL1\\|DB1\\|db_low.adb.oraclecloud.com", "ORCL1\\|DB1\\|order-processing-service"]
