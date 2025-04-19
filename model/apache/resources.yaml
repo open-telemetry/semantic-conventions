@@ -1,0 +1,10 @@
+groups:
+  - id: entity.apache.server
+    type: entity
+    stability: development
+    name: apache.server
+    attributes:
+      - ref: server.address
+      - ref: server.port
+    relationships:
+      - is_a: server

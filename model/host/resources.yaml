@@ -63,3 +63,35 @@ groups:
         requirement_level: opt_in
       - ref: host.cpu.cache.l2.size
         requirement_level: opt_in
+  - id: entity.host
+    type: entity
+    name: host
+    brief: >
+        A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
+    stability: development
+    attributes:
+      - ref: host.name
+      - ref: host.id
+    descriptive_attributes:
+      - ref: host.arch
+      - ref: host.type
+      - ref: host.ip
+      - ref: host.mac
+      - ref: host.image.name
+      - ref: host.image.id
+      - ref: host.image.version
+    relationships:
+      - has_a_kind_of: host.cpu
+  - id: entity.host.cpu
+    type: entity
+    name: host.cpu
+    brief: >
+      A host's CPU information
+    stability: development
+    attributes:
+      - ref: host.cpu.model.id
+    descriptive_attributes:
+      - ref: host.cpu.family
+      - ref: host.cpu.model.name
+      - ref: host.cpu.stepping
+      - ref: host.cpu.cache.l2.size

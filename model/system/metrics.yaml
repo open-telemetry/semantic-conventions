@@ -45,6 +45,8 @@ groups:
     unit: "By"
     attributes:
       - ref: system.memory.state
+    entities:
+      - ref: host
 
   - id: metric.system.memory.limit
     type: metric
