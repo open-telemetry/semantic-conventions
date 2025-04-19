@@ -49,7 +49,7 @@ Technology specific semantic conventions are defined for the following databases
 * [Elasticsearch](elasticsearch.md): Semantic Conventions for *Elasticsearch*.
 * [HBase](hbase.md): Semantic Conventions for *HBase*.
 * [MongoDB](mongodb.md): Semantic Conventions for *MongoDB*.
-* [Microsoft SQL Server](sql_server.md): Semantic Conventions for *Microsoft SQL Server*.
+* [Microsoft SQL Server](sql-server.md): Semantic Conventions for *Microsoft SQL Server*.
 * [Oracle Database](oracledb.md): Semantic Conventions for *Oracle Database*.
 * [Redis](redis.md): Semantic Conventions for *Redis*.
 * [SQL](sql.md): Semantic Conventions for *SQL* databases.
