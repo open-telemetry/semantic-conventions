@@ -270,12 +270,12 @@ Describes deprecated database attributes.
 | `instantdb` | InstantDB | ![Development](https://img.shields.io/badge/-development-blue) |
 | `interbase` | InterBase | ![Development](https://img.shields.io/badge/-development-blue) |
 | `intersystems_cache` | InterSystems Caché | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mariadb` | MariaDB (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `mariadb` | MariaDB | ![Development](https://img.shields.io/badge/-development-blue) |
 | `maxdb` | SAP MaxDB | ![Development](https://img.shields.io/badge/-development-blue) |
 | `memcached` | Memcached | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mongodb` | MongoDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mssql` | Microsoft SQL Server (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `mysql` | MySQL (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `mssql` | Microsoft SQL Server | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mysql` | MySQL | ![Development](https://img.shields.io/badge/-development-blue) |
 | `neo4j` | Neo4j | ![Development](https://img.shields.io/badge/-development-blue) |
 | `netezza` | Netezza | ![Development](https://img.shields.io/badge/-development-blue) |
 | `opensearch` | OpenSearch | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -283,7 +283,7 @@ Describes deprecated database attributes.
 | `other_sql` | Some other SQL database. Fallback only. See notes. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pervasive` | Pervasive PSQL | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pointbase` | PointBase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `postgresql` | PostgreSQL (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `postgresql` | PostgreSQL | ![Development](https://img.shields.io/badge/-development-blue) |
 | `progress` | Progress Database | ![Development](https://img.shields.io/badge/-development-blue) |
 | `redis` | Redis | ![Development](https://img.shields.io/badge/-development-blue) |
 | `redshift` | Amazon Redshift | ![Development](https://img.shields.io/badge/-development-blue) |
