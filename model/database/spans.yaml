@@ -127,7 +127,7 @@ groups:
     span_kind: client
     extends: trace.db.common.full
 
-  - id: span.db.mssql.client
+  - id: span.db.sql_server.client
     type: span
     stability: release_candidate
     extends: span.db.sql.client
