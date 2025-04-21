@@ -62,3 +62,43 @@ groups:
           A widget is an application component, typically an on-screen visual
           GUI element.
         examples: [ "submit", "attack", "Clear Cart" ]
+      - id: app.jank.count
+        type: int
+        stability: development
+        requirement_level: required
+        brief: A count of the number of frame renders that experienced jank.
+        note: >
+          Depending on platform limitations, the value provided
+          MAY be approximation.
+        examples: [ 9, 42 ]
+      - id: app.jank.type
+        stability: development
+        requirement_level: recommended
+        brief: A categorization of the type of jank.
+        type:
+          members:
+            - id: slow
+              value: 'slow'
+              brief: 'Jank is classified as observably slow.'
+              note: 'Recommended threshold for slow is 16ms.'
+              stability: development
+            - id: frozen
+              value: 'frozen'
+              brief: 'Jank that causes the user to suspect that the application is frozen.'
+              note: 'Recommended threshold for slow is 700ms.'
+              stability: development
+        examples: [slow, frozen]
+      - id: app.jank.threshold_ms
+        stability: development
+        requirement_level: recommended
+        type: int
+        brief: The minimum rendering threshold for this type of jank, in milliseconds.
+        examples: [16, 700, 1024]
+      - id: app.jank.activity.name
+        # TODO: breedx - Note: activity.name probably should move up out of jank at some point
+        stability: development
+        requirement_level: opt_in
+        type: string
+        brief: The name of the Activity that was active during the jank.
+        note: This is an Android specific attribute.
+        examples: ['myActivity', 'checkout']

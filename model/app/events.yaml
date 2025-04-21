@@ -37,3 +37,24 @@ groups:
         requirement_level: opt_in
       - ref: app.screen.coordinate.y
         requirement_level: opt_in
+  - id: event.app.jank
+    stability: development
+    type: event
+    name: app.jank
+    brief: >
+      This event indicates that the application has detected substandard UI
+      rendering performance.
+    note: >
+      Jank happens when the UI is rendered slowly enough for the user to
+      experience some disruption or sluggishness. Jank may be classified with
+      varying degrees, such as `slow` or `frozen`, when rendering times exceed
+      a given threshold.
+    attributes:
+      - ref: app.jank.count
+        requirement_level: required
+      - ref: app.jank.type
+        requirement_level: recommended
+      - ref: app.jank.threshold_ms
+        requirement_level: recommended
+      - ref: app.jank.activity.name
+        requirement_level: opt_in
