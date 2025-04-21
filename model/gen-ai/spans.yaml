@@ -1,9 +1,9 @@
 groups:
-  - id: trace.gen_ai.client.common_request_attributes
+  - id: attributes.gen_ai.common.client
     type: attribute_group
     stability: development
     brief: >
-      Describes GenAI operation span.
+      Common attributes for all GenAI spans.
     attributes:
       - ref: gen_ai.request.model
         requirement_level:
@@ -14,6 +14,28 @@ groups:
             custom model, the value should have a more specific name than the base model that's been fine-tuned.
       - ref: gen_ai.operation.name
         requirement_level: required
+      - ref: server.address
+        brief: GenAI server address.
+        requirement_level: recommended
+      - ref: server.port
+        brief: GenAI server port.
+        requirement_level:
+          conditionally_required: If `server.address` is set.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
+        note: |
+          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
+
+  - id: attributes.gen_ai.inference.client
+    type: attribute_group
+    stability: development
+    brief: >
+      Describes GenAI inference attributes.
+    extends: attributes.gen_ai.common.client
+    attributes:
       - ref: gen_ai.request.max_tokens
         requirement_level: recommended
       - ref: gen_ai.request.choice.count
@@ -32,29 +54,6 @@ groups:
       - ref: gen_ai.request.seed
         requirement_level:
           conditionally_required: if applicable and if the request includes a seed
-      - ref: gen_ai.request.encoding_formats
-        requirement_level: recommended
-      - ref: server.address
-        brief: GenAI server address.
-        requirement_level: recommended
-      - ref: server.port
-        brief: GenAI server port.
-        requirement_level:
-          conditionally_required: If `server.address` is set.
-      - ref: error.type
-        requirement_level:
-          conditionally_required: "if the operation ended in an error"
-        note: |
-          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
-          the canonical name of exception that occurred, or another low-cardinality error identifier.
-          Instrumentations SHOULD document the list of errors they report.
-  - id: trace.gen_ai.client.common_attributes
-    type: attribute_group
-    stability: development
-    brief: >
-      Describes GenAI operation span.
-    extends: trace.gen_ai.client.common_request_attributes
-    attributes:
       - ref: gen_ai.output.type
         requirement_level:
           conditionally_required: when applicable and if the request includes an output format.
@@ -72,12 +71,14 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.usage.output_tokens
         requirement_level: recommended
-  - id: span.gen_ai.client
+
+  - id: span.gen_ai.inference.client
     type: span
     stability: development
     span_kind: client
     brief: >
-      This span represents a client call to Generative AI model or service.
+      This span represents a client call to Generative AI model or service that generates
+      a response or requests a tool call based on the input prompt.
     note: |
       **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
@@ -87,26 +88,23 @@ groups:
       call to models running in the same process. It's RECOMMENDED to use `CLIENT` kind
       when the GenAI system being instrumented usually runs in a different process than its
       client or when the GenAI call happens over instrumented protocol such as HTTP.
-    extends: trace.gen_ai.client.common_attributes
+    extends: attributes.gen_ai.inference.client
     attributes:
       - ref: gen_ai.system
-        # TODO: Not adding to trace.gen_ai.client.common_attributes because of https://github.com/open-telemetry/build-tools/issues/192
+        # TODO: Not adding to common attributes because of https://github.com/open-telemetry/build-tools/issues/192
         requirement_level: required
       - ref: gen_ai.request.top_k
         requirement_level: recommended
-    events:
-      - gen_ai.content.prompt
-      - gen_ai.content.completion
 
-  - id: attributes.gen_ai.openai_based
-    extends: trace.gen_ai.client.common_attributes
+  - id: attributes.gen_ai.inference.openai_based
+    extends: attributes.gen_ai.inference.client
     type: attribute_group
     stability: development
     brief: >
       Describes attributes that are common to OpenAI-based Generative AI services.
     attributes:
       - ref: gen_ai.output.type
-        note: >
+        note: |
           This attribute SHOULD be set to the output type requested by the client:
           - `json` for structured outputs with defined or undefined schema
           - `image` for image output
@@ -119,8 +117,9 @@ groups:
 
           Additional output format details may be recorded in the future in the
           `gen_ai.output.{type}.*` attributes.
-  - id: span.gen_ai.openai.client
-    extends: attributes.gen_ai.openai_based
+
+  - id: span.gen_ai.openai.inference.client
+    extends: attributes.gen_ai.inference.openai_based
     stability: development
     span_kind: client
     type: span
@@ -147,9 +146,8 @@ groups:
       - ref: gen_ai.usage.output_tokens
         brief: The number of tokens used in the completions from OpenAI.
 
-
   - id: span.gen_ai.az.ai.inference.client
-    extends: attributes.gen_ai.openai_based
+    extends: attributes.gen_ai.inference.openai_based
     stability: development
     type: span
     span_kind: client
@@ -193,6 +191,24 @@ groups:
          note: Expected to be "aiplatform" (Vertex AI) or "generativelanguage" (Gemini).
          conditionally_required: If available
 
+  - id: span.gen_ai.embeddings.client
+    type: span
+    span_kind: client
+    stability: development
+    brief: >
+      Describes GenAI embeddings span - a request to a Generative AI model or service
+      that generates an embeddings based on the input.
+
+      The `gen_ai.operation.name` SHOULD be `embeddings`.
+
+      **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
+    extends: attributes.gen_ai.common.client
+    attributes:
+      - ref: gen_ai.request.encoding_formats
+        requirement_level: recommended
+      - ref: gen_ai.usage.input_tokens
+        requirement_level: recommended
+
   - id: span.gen_ai.create_agent.client
     type: span
     stability: development
@@ -205,7 +221,7 @@ groups:
 
       **Span name** SHOULD be `create_agent {gen_ai.agent.name}`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
-    extends: trace.gen_ai.client.common_request_attributes
+    extends: attributes.gen_ai.common.client
     attributes:
       - ref: gen_ai.system
         requirement_level: required
