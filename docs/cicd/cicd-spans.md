@@ -42,6 +42,14 @@ The `{pipeline}` SHOULD be the [`cicd.pipeline.name`](/docs/attributes-registry/
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+Semantic Convention for pipeline runs
+
+**Span kind** SHOULD be `SERVER`.
+
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cicd.pipeline.result`](/docs/attributes-registry/cicd.md) | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -72,6 +80,14 @@ The `{pipeline}` SHOULD be the [`cicd.pipeline.name`](/docs/attributes-registry/
 <!-- prettier-ignore-start -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+Semantic Convention for tasks in a pipeline run
+
+**Span kind** SHOULD be `SERVER`.
+
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
