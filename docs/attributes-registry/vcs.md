@@ -17,7 +17,7 @@ This group defines the attributes for [Version Control Systems (VCS)](https://wi
 | <a id="vcs-change-title" href="#vcs-change-title">`vcs.change.title`</a> | string | The human readable title of the change (pull request/merge request/changelist). This title is often a brief summary of the change and may get merged in to a ref as the commit summary. | `Fixes broken thing`; `feat: add my new feature`; `[chore] update dependency` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="vcs-line-change-type" href="#vcs-line-change-type">`vcs.line_change.type`</a> | string | The type of line change being measured on a branch or change. | `added`; `removed` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="vcs-owner-name" href="#vcs-owner-name">`vcs.owner.name`</a> | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="vcs-provider-name" href="#vcs-provider-name">`vcs.provider.name`</a> | string | The name of the version control system provider. | `github`; `gitlab`; `gittea`; `bitbucket` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="vcs-provider-name" href="#vcs-provider-name">`vcs.provider.name`</a> | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="vcs-ref-base-name" href="#vcs-ref-base-name">`vcs.ref.base.name`</a> | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="vcs-ref-base-revision" href="#vcs-ref-base-revision">`vcs.ref.base.revision`</a> | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [2] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="vcs-ref-base-type" href="#vcs-ref-base-type">`vcs.ref.base.type`</a> | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [3] | `branch`; `tag` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -103,9 +103,9 @@ the `.git` extension.
 | Value  | Description | Stability |
 |---|---|---|
 | `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gittea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

@@ -29,3 +29,12 @@ test_does_not_fail_on_deprecated_namespace_collision if {
     count(deny) == 0 with input as collision
 }
 
+test_does_not_fail_on_excluded_name_collision if {
+    collision := {"groups": [
+        {"id": "test1", "attributes": [{"name": "test1.namespace.id"}, {"name": "test1.namespace_id", "annotations": {"code_generation": {"exclude": true}}}]},
+
+        {"id": "test2", "attributes": [{"name": "test2.namespace_id"}, {"name": "test2.namespace.id", "annotations": {"code_generation": {"exclude": true}}}]},
+    ]}
+    count(deny) == 0 with input as collision
+}
+
