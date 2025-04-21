@@ -22,8 +22,6 @@ See also:
 
 ## Continuous Integration and Continuous Deployment (CICD)
 
-CICD aims to increase early defect discovery, increase productivity, and provide faster release cycles through automating builds, tests and deployment of software.
-
 ### CICD pipeline
 
 <!-- semconv resource.cicd.pipeline -->
@@ -109,8 +107,6 @@ Using the CICD pipeline run resource with metrics inherently causes high cardina
 <!-- endsemconv -->
 
 ## Version Control System (VCS)
-
-A Version Control System tracks changes to source code.
 
 ### VCS repository
 
