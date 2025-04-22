@@ -8,13 +8,13 @@ templates:
     application_mode: each
     file_name: 'registry/attributes/{{ctx.id | lower | kebab_case}}.md'
   - pattern: entity_readme.md.j2
-    filter: '.groups | map(select(.type == "resource")) | group_by(.id | split(".") | .[1]) | map({id: .[0].id | split(".") | .[1], groups: .})'
+    filter: '.groups | map(select(.type == "resource")) | group_by(.name | split(".") | .[0]) | map({id: .[0].id | split(".") | .[1], groups: .})'
     application_mode: single
     file_name: 'registry/entities/README.md'
-  - pattern: entity_entry.md.j2
-    filter: '.groups | map(select(.type == "resource"))'
+  - pattern: entity_namespace.md.j2
+    filter: '.groups | map(select(.type == "resource")) | group_by(.name | split(".") | .[0]) | map({id: .[0].id | split(".") | .[1], groups: .})'
     application_mode: each
-    file_name: 'registry/entities/{{ ctx.name | kebab_case }}.md'
+    file_name: 'registry/entities/{{ ctx.id | kebab_case }}.md'
 acronyms:
   - AI
   - AWS
