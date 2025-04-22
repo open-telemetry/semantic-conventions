@@ -50,7 +50,7 @@ Spans representing calls to Microsoft SQL Server adhere to the general [Semantic
 
 **[1] `db.namespace`:** When connected to a default instance, `db.namespace` SHOULD be set to the name of
 the database. When connected to a [named instance](https://learn.microsoft.com/sql/connect/jdbc/building-the-connection-url#named-and-multiple-sql-server-instances),
-`db.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}.{database_name}` pattern.
+`db.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}|{database_name}` pattern.
 
 A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
 
