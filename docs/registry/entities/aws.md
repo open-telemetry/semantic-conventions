@@ -7,6 +7,8 @@
 # Aws
 
 
+
+
 ## Aws Log
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -19,47 +21,16 @@
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`aws.log.group.arns`](/docs/registry/attributes/aws.md) | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [1] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`aws.log.group.names`](/docs/registry/attributes/aws.md) | string[] | The name(s) of the AWS log group(s) an application is writing to. [2] | `["/aws/lambda/my-function", "opentelemetry-service"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`aws.log.stream.arns`](/docs/registry/attributes/aws.md) | string[] | The ARN(s) of the AWS log stream(s). [3] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`aws.log.stream.names`](/docs/registry/attributes/aws.md) | string[] | The name(s) of the AWS log stream(s) an application is writing to. | `["logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.log.group.arns`](/docs/registry/attribute/aws.md) | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [1] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.log.group.names`](/docs/registry/attribute/aws.md) | string[] | The name(s) of the AWS log group(s) an application is writing to. [2] | `["/aws/lambda/my-function", "opentelemetry-service"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.log.stream.arns`](/docs/registry/attribute/aws.md) | string[] | The ARN(s) of the AWS log stream(s). [3] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.log.stream.names`](/docs/registry/attribute/aws.md) | string[] | The name(s) of the AWS log stream(s) an application is writing to. | `["logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `aws.log.group.arns`:** See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
 
 **[2] `aws.log.group.names`:** Multiple log groups must be supported for cases like multi-container applications, where a single application has sidecar containers, and each write to their own log group.
 
 **[3] `aws.log.stream.arns`:** See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
-
-
-
-## Aws Ecs
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `aws.ecs`
-
-**Description:** Resources used by AWS Elastic Container Service (ECS).
-
-
-
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`aws.ecs.task.id`](/docs/registry/attributes/aws.md) | string | The ID of a running ECS task. The ID MUST be extracted from `task.arn`. | `10838bed-421f-43ef-870a-f43feacbbb5b`; `23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd` | `Conditionally Required` If and only if `task.arn` is populated. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`aws.ecs.cluster.arn`](/docs/registry/attributes/aws.md) | string | The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html). | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`aws.ecs.container.arn`](/docs/registry/attributes/aws.md) | string | The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html). | `arn:aws:ecs:us-west-1:123456789123:container/32624152-9086-4f0e-acae-1a75b14fe4d9` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`aws.ecs.launchtype`](/docs/registry/attributes/aws.md) | string | The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task. | `ec2`; `fargate` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`aws.ecs.task.arn`](/docs/registry/attributes/aws.md) | string | The ARN of a running [ECS task](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids). | `arn:aws:ecs:us-west-1:123456789123:task/10838bed-421f-43ef-870a-f43feacbbb5b`; `arn:aws:ecs:us-west-1:123456789123:task/my-cluster/task-id/23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`aws.ecs.task.family`](/docs/registry/attributes/aws.md) | string | The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task. | `opentelemetry-family` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`aws.ecs.task.revision`](/docs/registry/attributes/aws.md) | string | The revision for the task definition used to create the ECS task. | `8`; `26` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`aws.ecs.launchtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `ec2` | ec2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fargate` | fargate | ![Development](https://img.shields.io/badge/-development-blue) |
 
 
 
@@ -75,7 +46,38 @@
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`aws.eks.cluster.arn`](/docs/registry/attributes/aws.md) | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.eks.cluster.arn`](/docs/registry/attribute/aws.md) | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+
+
+## Aws Ecs
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `aws.ecs`
+
+**Description:** Resources used by AWS Elastic Container Service (ECS).
+
+
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`aws.ecs.task.id`](/docs/registry/attribute/aws.md) | string | The ID of a running ECS task. The ID MUST be extracted from `task.arn`. | `10838bed-421f-43ef-870a-f43feacbbb5b`; `23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd` | `Conditionally Required` If and only if `task.arn` is populated. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.ecs.cluster.arn`](/docs/registry/attribute/aws.md) | string | The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html). | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.ecs.container.arn`](/docs/registry/attribute/aws.md) | string | The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html). | `arn:aws:ecs:us-west-1:123456789123:container/32624152-9086-4f0e-acae-1a75b14fe4d9` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.ecs.launchtype`](/docs/registry/attribute/aws.md) | string | The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task. | `ec2`; `fargate` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.ecs.task.arn`](/docs/registry/attribute/aws.md) | string | The ARN of a running [ECS task](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids). | `arn:aws:ecs:us-west-1:123456789123:task/10838bed-421f-43ef-870a-f43feacbbb5b`; `arn:aws:ecs:us-west-1:123456789123:task/my-cluster/task-id/23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.ecs.task.family`](/docs/registry/attribute/aws.md) | string | The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task. | `opentelemetry-family` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.ecs.task.revision`](/docs/registry/attribute/aws.md) | string | The revision for the task definition used to create the ECS task. | `8`; `26` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`aws.ecs.launchtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `ec2` | ec2 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fargate` | fargate | ![Development](https://img.shields.io/badge/-development-blue) |
 
 
 

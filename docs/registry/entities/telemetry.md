@@ -7,6 +7,8 @@
 # Telemetry
 
 
+
+
 ## Telemetry Sdk
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
@@ -19,9 +21,9 @@
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`telemetry.sdk.language`](/docs/registry/attributes/telemetry.md) | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`telemetry.sdk.name`](/docs/registry/attributes/telemetry.md) | string | The name of the telemetry SDK as defined above. [1] | `opentelemetry` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`telemetry.sdk.version`](/docs/registry/attributes/telemetry.md) | string | The version string of the telemetry SDK. | `1.2.3` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`telemetry.sdk.language`](/docs/registry/attribute/telemetry.md) | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`telemetry.sdk.name`](/docs/registry/attribute/telemetry.md) | string | The name of the telemetry SDK as defined above. [1] | `opentelemetry` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`telemetry.sdk.version`](/docs/registry/attribute/telemetry.md) | string | The version string of the telemetry SDK. | `1.2.3` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `telemetry.sdk.name`:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
 If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the
@@ -63,8 +65,8 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`telemetry.distro.name`](/docs/registry/attributes/telemetry.md) | string | The name of the auto instrumentation agent or distribution, if used. [2] | `parts-unlimited-java` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`telemetry.distro.version`](/docs/registry/attributes/telemetry.md) | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`telemetry.distro.name`](/docs/registry/attribute/telemetry.md) | string | The name of the auto instrumentation agent or distribution, if used. [2] | `parts-unlimited-java` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`telemetry.distro.version`](/docs/registry/attribute/telemetry.md) | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[2] `telemetry.distro.name`:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
