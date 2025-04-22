@@ -10,7 +10,7 @@ change_type: enhancement
 component: jvm
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Add `jvm.gc.cause` to metric `jvm.gc.duration` as an attribute to track gc cause.
+note: Add `jvm.gc.cause` to metric `jvm.gc.duration` as an opt-in attribute to track gc cause.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
