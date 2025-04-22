@@ -211,6 +211,11 @@ groups:
               brief: 'Output tokens (completion, response, etc.)'
         brief: The type of token being counted.
         examples: ['input', 'output']
+      - id: gen_ai.conversation.id
+        stability: development
+        type: string
+        brief: The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation.
+        examples: ["conv_5j66UpCpwteGg4YSxUnt7lPY"]
       - id: gen_ai.agent.id   # alternatives: assistant (openai)
         stability: development
         type: string
