@@ -87,7 +87,7 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 | `openbsd` | OpenBSD | ![Development](https://img.shields.io/badge/-development-blue) |
 | `solaris` | SunOS, Oracle Solaris | ![Development](https://img.shields.io/badge/-development-blue) |
 | `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
-| `z_os` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
+| `zos` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
