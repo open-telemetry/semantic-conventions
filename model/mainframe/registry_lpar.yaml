@@ -6,6 +6,6 @@ groups:
     attributes:
       - id: mainframe.lpar.name
         type: string
-        stability: experimental
+        stability: development
         brief: "Name of the logical partition that hosts a systems with a mainframe operating system."
         examples: ["LPAR01"]
