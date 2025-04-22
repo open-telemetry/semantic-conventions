@@ -49,7 +49,7 @@ Spans representing calls to a Oracle SQL Database adhere to the general [Semanti
 | [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [14] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1] `db.namespace`:** `db.namespace` SHOULD be set to the combination of instance name, database name and
-service name following the `{instance_name}|{database_name}|{service_name}` pattern.
+service name following the `{service_name}|{database_name}|{instance_name}` pattern.
 Any missing components (and their associated separators) SHOULD be omitted.
 
 For CDB architecture, database name would be pdb name. For Non-CDB, it would be
