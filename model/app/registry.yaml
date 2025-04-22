@@ -31,17 +31,11 @@ groups:
           More information about Android identifier best practices can be found [here](https://developer.android.com/training/articles/user-data-ids).
         examples:
           - 2ab2916d-a51f-4ac8-80ee-45ac31a28092
-      - id: app.screen.coordinate.x
-        type: int
-        brief: The x (horizontal) coordinate of a screen coordinate, in screen pixels.
+      - id: app.screen.xy
+        type: int[]
+        brief: A two-element array, containing the x (horizontal) and y (vertical) click coordinate, in screen pixels.
         stability: development
-        examples: [ 0, 131 ]
-      - id: app.screen.coordinate.y
-        type: int
-        brief: >
-          The y (vertical) component of a screen coordinate, in screen pixels.
-        stability: development
-        examples: [ 12, 99 ]
+        examples: [ [0, 131], [101, 65431] ]
       - id: app.widget.id
         type: string
         stability: development

@@ -15,9 +15,7 @@ groups:
       release or mouse up. The location of the click event MUST be provided
       in absolute screen pixels.
     attributes:
-      - ref: app.screen.coordinate.x
-        requirement_level: required
-      - ref: app.screen.coordinate.y
+      - ref: app.screen.xy
         requirement_level: required
   - id: event.app.widget.click
     stability: development
@@ -33,7 +31,5 @@ groups:
         requirement_level: required
       - ref: app.widget.name
         requirement_level: opt_in
-      - ref: app.screen.coordinate.x
-        requirement_level: opt_in
-      - ref: app.screen.coordinate.y
+      - ref: app.screen.xy
         requirement_level: opt_in
