@@ -13,7 +13,7 @@
 **Description:** A software resource running on a z/OS system.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`os.type`](/docs/attributes-registry/os.md) | string | The operating system type. | `z_os` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.type`](/docs/attributes-registry/os.md) | string | The operating system type. | `zos` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`process.command`](/docs/attributes-registry/process.md) | string | The command used to launch the process (i.e. the command name). On z/OS, SHOULD be set to the name of the job used to start the z/OS system software. | `CICSSTRT` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`process.pid`](/docs/attributes-registry/process.md) | int | Process identifier (PID). [1] | `008A` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`service.instance.id`](/docs/attributes-registry/service.md) | string | The string ID of the service instance. [2] | `CICSPROD` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
