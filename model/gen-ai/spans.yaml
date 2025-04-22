@@ -219,6 +219,32 @@ groups:
         requirement_level:
           conditionally_required: If provided by the application.
 
+  - id: span.gen_ai.invoke_agent.client
+    type: span
+    stability: development
+    span_kind: client
+    brief: >
+      Describes GenAI agent invocation and is usually applicable when working
+      with remote agent services.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `invoke_agent`.
+      The **span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
+      When `gen_ai.agent.name` is not available, it SHOULD be `invoke_agent`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+    extends: attributes.gen_ai.inference.client
+    attributes:
+      - ref: gen_ai.system
+        requirement_level: required
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: if applicable.
+      - ref: gen_ai.agent.name
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.agent.description
+        requirement_level:
+          conditionally_required: when available
+
   - id: span.gen_ai.execute_tool.internal
     type: span
     stability: development
