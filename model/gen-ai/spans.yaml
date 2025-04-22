@@ -217,7 +217,7 @@ groups:
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
 
-  - id: span.gen_ai.aws.bedrock.client
+  - id: span.aws.bedrock.client
     extends: span.gen_ai.create_agent.client
     stability: development
     span_kind: client
@@ -225,7 +225,7 @@ groups:
     brief: >
       Describes an AWS Bedrock operation span.
     attributes:
-      - ref: gen_ai.aws.bedrock.guardrail.id
+      - ref: aws.bedrock.guardrail.id
         requirement_level: required
-      - ref: gen_ai.aws.bedrock.knowledge_base.id
+      - ref: aws.bedrock.knowledge_base.id
         requirement_level: recommended

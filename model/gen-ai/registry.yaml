@@ -323,19 +323,19 @@ groups:
         type: string
         brief: A fingerprint to track any eventual change in the Generative AI environment.
         examples: ["fp_44709d6fcb"]
-  - id: registry.gen_ai.aws.bedrock
+  - id: registry.aws.bedrock
     type: attribute_group
     display_name: Amazon Bedrock Attributes
     brief: >
         This document defines attributes for AWS Bedrock.
     attributes:
-      - id: gen_ai.aws.bedrock.guardrail.id
+      - id: aws.bedrock.guardrail.id
         type: string
         stability: experimental
         brief: >
           The unique identifier of the AWS Bedrock Guardrail. A [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) helps safeguard and prevent unwanted behavior from model responses or user messages.
         examples: ["sgi5gkybzqak"]
-      - id: gen_ai.aws.bedrock.knowledge_base.id
+      - id: aws.bedrock.knowledge_base.id
         type: string
         stability: experimental
         brief: >

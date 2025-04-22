@@ -4,7 +4,6 @@
 # Gen AI
 
 - [GenAI Attributes](#genai-attributes)
-- [Amazon Bedrock Attributes](#amazon-bedrock-attributes)
 - [OpenAI Attributes](#openai-attributes)
 - [Deprecated GenAI Attributes](#deprecated-genai-attributes)
 - [Deprecated OpenAI GenAI Attributes](#deprecated-openai-genai-attributes)
@@ -123,15 +122,6 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 |---|---|---|
 | `input` | Input tokens (prompt, input, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `output` | Output tokens (completion, response, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## Amazon Bedrock Attributes
-
-This document defines attributes for AWS Bedrock.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="gen-ai-aws-bedrock-guardrail-id" href="#gen-ai-aws-bedrock-guardrail-id">`gen_ai.aws.bedrock.guardrail.id`</a> | string | The unique identifier of the AWS Bedrock Guardrail. A [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) helps safeguard and prevent unwanted behavior from model responses or user messages. | `sgi5gkybzqak` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="gen-ai-aws-bedrock-knowledge-base-id" href="#gen-ai-aws-bedrock-knowledge-base-id">`gen_ai.aws.bedrock.knowledge_base.id`</a> | string | The unique identifier of the AWS Bedrock Knowledge base. A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information that can be queried by models to generate more relevant responses and augment prompts. | `XFWUPB9PAW` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## OpenAI Attributes
 
