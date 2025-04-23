@@ -85,6 +85,22 @@ groups:
         brief: >
           The name of the namespace that the pod is running in.
         examples: ['default']
+      - id: k8s.namespace.label
+        type: template[string]
+        stability: development
+        brief: >
+          The label key-value pairs placed on the Namespace.
+        note: |
+          The `<key>` being the label name, the value being the label value, even if the value is empty.
+        examples: ['k8s.namespace.label.kubernetes.io/metadata.name=default', 'k8s.namespace.label.data=']
+      - id: k8s.namespace.annotation
+        type: template[string]
+        stability: development
+        brief: >
+          The annotation key-value pairs placed on the Namespace.
+        note: |
+          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        examples: [ 'k8s.namespace.annotation.ttl=0', 'k8s.namespace.annotation.data=' ]
       - id: k8s.pod.uid
         type: string
         stability: development

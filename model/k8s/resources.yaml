@@ -31,6 +31,9 @@ groups:
       A Kubernetes Namespace.
     attributes:
       - ref: k8s.namespace.name
+      - ref: k8s.namespace.label
+      - ref: k8s.namespace.annotation
+        requirement_level: opt_in
 
   - id: resource.k8s.pod
     type: resource
