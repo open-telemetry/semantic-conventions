@@ -84,6 +84,9 @@ groups:
     attributes:
       - ref: k8s.deployment.uid
       - ref: k8s.deployment.name
+      - ref: k8s.deployment.label
+      - ref: k8s.deployment.annotation
+        requirement_level: opt_in
 
   - id: resource.k8s.statefulset
     type: resource
