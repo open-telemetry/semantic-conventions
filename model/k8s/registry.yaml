@@ -285,6 +285,22 @@ groups:
         brief: >
           The name of the DaemonSet.
         examples: ['opentelemetry']
+      - id: k8s.daemonset.label
+        type: template[string]
+        stability: development
+        brief: >
+          The label key-value pairs placed on the DaemonSet.
+        note: |
+          The `<key>` being the label name, the value being the label value, even if the value is empty.
+        examples: ['k8s.daemonset.label.app=guestbook', 'k8s.daemonset.label.injected=']
+      - id: k8s.daemonset.annotation
+        type: template[string]
+        stability: development
+        brief: >
+          The annotation key-value pairs placed on the DaemonSet.
+        note: |
+          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        examples: [ 'k8s.daemonset.annotation.replicas=1', 'k8s.daemonset.annotation.data=' ]
       - id: k8s.hpa.uid
         type: string
         stability: development
