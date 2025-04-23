@@ -1,4 +1,4 @@
-# YAML Model for Semantic Conventions
+# YAML model for semantic conventions
 
 The YAML descriptions of semantic convention contained in this directory are intended to
 be used by the various OpenTelemetry language implementations to aid in automatic

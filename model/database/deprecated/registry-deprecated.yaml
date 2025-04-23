@@ -36,14 +36,6 @@ groups:
         deprecated: "Replaced by `db.query.text`."
         stability: development
         examples: ['SELECT * FROM wuser_table', 'SET mykey "WuValue"']
-      - id: db.query.parameter
-        type: template[string]
-        brief: >
-          A query parameter used in `db.query.text`, with `<key>` being the parameter name,
-          and the attribute value being a string representation of the parameter value.
-        deprecated: "Replaced by `db.operation.parameter`."
-        stability: development
-        examples: ["someval", "55"]
       - id: db.cassandra.table
         type: string
         stability: development
@@ -444,8 +436,8 @@ groups:
               stability: development
             - id: mariadb
               value: "mariadb"
-              brief: "MariaDB (This value has stability level RELEASE CANDIDATE)"
-              stability: release_candidate
+              brief: "MariaDB"
+              stability: development
             - id: maxdb
               value: "maxdb"
               brief: "SAP MaxDB"
@@ -460,8 +452,8 @@ groups:
               stability: development
             - id: mssql
               value: "mssql"
-              brief: "Microsoft SQL Server (This value has stability level RELEASE CANDIDATE)"
-              stability: release_candidate
+              brief: "Microsoft SQL Server"
+              stability: development
             - id: mssqlcompact
               value: "mssqlcompact"
               deprecated: "Removed, use `other_sql` instead."
@@ -469,8 +461,8 @@ groups:
               stability: development
             - id: mysql
               value: "mysql"
-              brief: "MySQL (This value has stability level RELEASE CANDIDATE)"
-              stability: release_candidate
+              brief: "MySQL"
+              stability: development
             - id: neo4j
               value: "neo4j"
               brief: "Neo4j"
@@ -497,8 +489,8 @@ groups:
               stability: development
             - id: postgresql
               value: "postgresql"
-              brief: "PostgreSQL (This value has stability level RELEASE CANDIDATE)"
-              stability: release_candidate
+              brief: "PostgreSQL"
+              stability: development
             - id: progress
               value: "progress"
               brief: "Progress Database"
@@ -535,7 +527,7 @@ groups:
               value: "vertica"
               brief: "Vertica"
               stability: development
-        stability: release_candidate
+        stability: development
 
   - id: registry.db.metrics.deprecated
     type: attribute_group

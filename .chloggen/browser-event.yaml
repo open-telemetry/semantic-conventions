@@ -10,13 +10,14 @@ change_type: new_component
 component: browser
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Add browser and enduser events.
+note: Add `browser.web_vital` event and `browser.user_action` event.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-issues: [1941]
+issues: [1940, 1941]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
 subtext:
+

@@ -29,8 +29,8 @@ linkTitle: Metrics
 >   Conventions include, but are not limited to, attributes,
 >   metric and span names, span kind and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version which is a comma-separated list of values.
->   The list of values includes:
+>   in the existing major version as a comma-separated list of category-specific values
+>   (e.g., http, databases, messaging). The list of values includes:
 >   * `messaging` - emit the new, stable messaging conventions,
 >     and stop emitting the old experimental messaging conventions
 >     that the instrumentation emitted previously.
@@ -55,7 +55,7 @@ When this metric is reported alongside a messaging span, the metric value SHOULD
 This metric is [required][MetricRequired].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.messaging.client.operation.duration -->
@@ -369,7 +369,7 @@ When this metric is reported alongside a messaging process span, the metric valu
 This metric is [required][MetricRequired] for push-based message delivery and is [recommended][MetricRecommended] for processing operations instrumented for pull-based scenarios.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.messaging.process.duration -->

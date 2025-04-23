@@ -11,7 +11,7 @@ Web Services (AWS) resources. If an attribute could apply to resources from more
 provider (like account ID, operating system, etc), it belongs in the parent
 `model` directory.
 
-## Generic AWS Attributes
+## Generic AWS attributes
 
 Attributes that relate to AWS or use AWS-specific terminology, but are used by several
 services within AWS or are abstracted away from any particular service:
