@@ -10,14 +10,14 @@ This document describes semantic conventions for CPython Runtime metrics in Open
 
 <!-- toc -->
 
-- [CPython Garbage Collection](#cpython-garbage-collection)
+- [CPython garbage collection](#cpython-garbage-collection)
   - [Metric: `cpython.gc.collections`](#metric-cpythongccollections)
   - [Metric: `cpython.gc.collected_objects`](#metric-cpythongccollected_objects)
   - [Metric: `cpython.gc.uncollectable_objects`](#metric-cpythongcuncollectable_objects)
 
 <!-- tocstop -->
 
-## CPython Garbage Collection
+## CPython garbage collection
 
 **Status**: [development][DocumentStatus]
 

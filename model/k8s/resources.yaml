@@ -18,6 +18,9 @@ groups:
     attributes:
       - ref: k8s.node.name
       - ref: k8s.node.uid
+      - ref: k8s.node.label
+      - ref: k8s.node.annotation
+        requirement_level: opt_in
 
   - id: resource.k8s.namespace
     type: resource

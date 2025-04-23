@@ -19,8 +19,8 @@ The Semantic Conventions for [Google Cloud Pub/Sub](https://cloud.google.com/pub
 >   Conventions include, but are not limited to, attributes,
 >   metric and span names, span kind and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version which is a comma-separated list of values.
->   The list of values includes:
+>   in the existing major version as a comma-separated list of category-specific values
+>   (e.g., http, databases, messaging). The list of values includes:
 >   * `messaging` - emit the new, stable messaging conventions,
 >     and stop emitting the old experimental messaging conventions
 >     that the instrumentation emitted previously.
@@ -146,7 +146,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ## Examples
 
-### Asynchronous Batch Publish Example
+### Asynchronous batch publish example
 
 Given is a process P that asynchronously publishes 2 messages in a batch to a topic T on Pub/Sub.
 
@@ -183,7 +183,7 @@ flowchart LR;
 | `messaging.message.envelope.size` | `1` | `1` | |
 | `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |
 
-### Unary Pull Example
+### Unary pull example
 
 ```mermaid
 flowchart TD;
