@@ -298,8 +298,8 @@ groups:
         deprecated: "Replaced by `db.operation.parameter`."
         examples:
           [
-            "db.elasticsearch.path_parts.index=test-index",
-            "db.elasticsearch.path_parts.doc_id=123",
+            "test-index",
+            "123",
           ]
       - id: db.system
         brief: "Deprecated, use `db.system.name` instead."

@@ -98,7 +98,7 @@ groups:
         stability: development
         brief: >
           Container labels, `<key>` being the label name, the value being the label value.
-        examples: [ 'container.label.app=nginx' ]
+        examples: [ 'nginx' ]
       - id: container.csi.plugin.name
         type: string
         stability: development
