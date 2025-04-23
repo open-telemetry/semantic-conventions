@@ -241,8 +241,14 @@ to a running container.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`k8s.replicaset.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the ResplicaSet. [1] | `k8s.replicaset.label.app=guestbook`; `k8s.replicaset.label.injected=` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.replicaset.name`](/docs/attributes-registry/k8s.md) | string | The name of the ReplicaSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.replicaset.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.replicaset.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the ReplicaSet. [2] | `k8s.replicaset.annotation.replicas=0`; `k8s.replicaset.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.replicaset.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+
+**[2] `k8s.replicaset.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

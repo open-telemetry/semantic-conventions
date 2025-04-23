@@ -43,6 +43,8 @@ Kubernetes resource attributes.
 | <a id="k8s-pod-label" href="#k8s-pod-label">`k8s.pod.label.<key>`</a> | string | The label placed on the Pod, the `<key>` being the label name, the value being the label value. [12] | `my-app`; `x64`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-pod-name" href="#k8s-pod-name">`k8s.pod.name`</a> | string | The name of the Pod. | `opentelemetry-pod-autoconf` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-pod-uid" href="#k8s-pod-uid">`k8s.pod.uid`</a> | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-replicaset-annotation" href="#k8s-replicaset-annotation">`k8s.replicaset.annotation.<key>`</a> | string | The annotation key-value pairs placed on the ReplicaSet. [5] | `k8s.replicaset.annotation.replicas=0`; `k8s.replicaset.annotation.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-replicaset-label" href="#k8s-replicaset-label">`k8s.replicaset.label.<key>`</a> | string | The label key-value pairs placed on the ResplicaSet. [6] | `k8s.replicaset.label.app=guestbook`; `k8s.replicaset.label.injected=` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-replicaset-name" href="#k8s-replicaset-name">`k8s.replicaset.name`</a> | string | The name of the ReplicaSet. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-replicaset-uid" href="#k8s-replicaset-uid">`k8s.replicaset.uid`</a> | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-replicationcontroller-name" href="#k8s-replicationcontroller-name">`k8s.replicationcontroller.name`</a> | string | The name of the replication controller. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -133,6 +135,10 @@ conflict.
   the `k8s.pod.label.mycompany.io/arch` attribute with value `"x64"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.pod.label.data` attribute with value `""`.
+
+**[5] `k8s.replicaset.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[6] `k8s.replicaset.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 ---
 

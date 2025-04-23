@@ -70,6 +70,9 @@ groups:
     attributes:
       - ref: k8s.replicaset.uid
       - ref: k8s.replicaset.name
+      - ref: k8s.replicaset.label
+      - ref: k8s.replicaset.annotation
+        requirement_level: opt_in
 
   - id: resource.k8s.deployment
     type: resource
