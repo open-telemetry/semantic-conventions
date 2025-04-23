@@ -46,7 +46,7 @@ Spans representing calls to a MySQL Server adhere to the general [Semantic Conve
 | [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`db.stored_procedure.name`](/docs/attributes-registry/db.md) | string | The name of a stored procedure within the database. [11] | `GetCustomer` | `Recommended` [12] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | template[string] | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [14] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [14] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1] `db.namespace`:** A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
 
