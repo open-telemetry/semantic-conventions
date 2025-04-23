@@ -114,6 +114,9 @@ groups:
     attributes:
       - ref: k8s.cronjob.uid
       - ref: k8s.cronjob.name
+      - ref: k8s.cronjob.label
+      - ref: k8s.cronjob.annotation
+        requirement_level: opt_in
 
   - id: resource.k8s.replicationcontroller
     type: resource
