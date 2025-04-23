@@ -351,8 +351,14 @@ successfully terminate.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`k8s.job.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the Job. [1] | `k8s.job.label.jobtype=ci`; `k8s.job.label.automated=` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.job.name`](/docs/attributes-registry/k8s.md) | string | The name of the Job. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.job.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.job.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Job. [2] | `k8s.job.annotation.number=1`; `k8s.job.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.job.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+
+**[2] `k8s.job.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
