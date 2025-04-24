@@ -40,7 +40,8 @@ groups:
     note: >
       This metric provides a standardized and opinionated definition of CPU utilization.
       It is defined as the proportion of total system CPU time spent in non-idle and non-iowait modes — that is, the time spent in user, system, nice, interrupt, and steal modes.
-      It is computed by aggregating `cpu.time` across all logical CPUs for these modes over a measurement interval, and dividing the result by the elapsed time and the `system.cpu.logical.count` to produce a normalized,
+      It is computed by aggregating `cpu.time` across all logical CPUs over a measurement interval,
+      and dividing the result by the elapsed time and the `system.cpu.logical.count` to produce a normalized,
       system-wide utilization value between 0.0 and 1.0: sum(rate(cpu.time{mode != "idle" and mode != "iowait"})) / system.cpu.logical.count
       This represents time spent actively executing work, including time delayed by the hypervisor (steal), which reflects CPU demand in virtualized environments.
       As a result, in cases of high CPU contention — such as 100% steal time — this metric will report 100% utilization, making such issues easy to detect.
