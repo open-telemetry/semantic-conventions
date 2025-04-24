@@ -5,7 +5,7 @@
 
 ## MCP Attributes
 
-[Model Context Protocol (MCP)](https://github.com/modelcontextprotocol/specification) attributes
+[Model Context Protocol (MCP)](https://spec.modelcontextprotocol.io) attributes
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|

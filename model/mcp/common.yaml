@@ -12,9 +12,9 @@ groups:
       - ref: network.transport
         brief: The transport protocol used for the MCP session.
         note: |
-          This attribute SHOULD be set to `tpc` if the transport protocol is HTTP
-          with SSE (Server-Sent Events). It SHOULD be set to `pipe` if the transport
-          is stdio.
+          This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
+          is HTTP with SSE (Server-Sent Events).
+          It SHOULD be set to `pipe` if the transport is stdio.
 
       - ref: error.type
         requirement_level:

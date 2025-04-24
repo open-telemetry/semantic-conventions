@@ -42,15 +42,15 @@ within the response stream.
 
 > [!NOTE]
 >
-> The propagation format defined here is very likely to change. Please check
+> The propagation format defined here is likely to change. Please check
 > [Context propagation discussion in MCP repository](https://github.com/modelcontextprotocol/modelcontextprotocol/issues/246).
 
 Instrumentations SHOULD propagate trace context inside MCP requests and notifications
 as JSON RPC object top-level params.
 
 For example, when using [W3C Trace Context](https://www.w3.org/TR/trace-context/) propagation,
-inject `traceparent` and `tracestate` to the MCP message params when creating request or response
-and extract them on the receiver side to use as the remote parent.
+inject `traceparent` and `tracestate` to the MCP message `params._meta` when creating request
+or notification and extract them on the receiver side to use as the remote parent.
 
 Here's an example of tool call request with injected trace context.
 
@@ -60,8 +60,10 @@ Here's an example of tool call request with injected trace context.
   "method": "tools/call",
   "params": {
     "name": "get-weather",
-    "traceparent": "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01",
-    "tracestate": "rojo=00f067aa0ba902b7,congo=t61rcWkgMzE"
+    "_meta": {
+      "traceparent": "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01",
+      "tracestate": "rojo=00f067aa0ba902b7,congo=t61rcWkgMzE"
+    }
   },
   "id": 1,
 }
@@ -125,9 +127,9 @@ is returned with `isError` set to `true`, this attribute SHOULD be set to
 
 **[3] `mcp.resource.uri`:** When the client executes a request type that includes a resource URI parameter.
 
-**[4] `network.transport`:** This attribute SHOULD be set to `tpc` if the transport protocol is HTTP
-with SSE (Server-Sent Events). It SHOULD be set to `pipe` if the transport
-is stdio.
+**[4] `network.transport`:** This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
+is HTTP with SSE (Server-Sent Events).
+It SHOULD be set to `pipe` if the transport is stdio.
 
 **[5] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -268,9 +270,9 @@ is returned with `isError` set to `true`, this attribute SHOULD be set to
 
 **[5] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
 
-**[6] `network.transport`:** This attribute SHOULD be set to `tpc` if the transport protocol is HTTP
-with SSE (Server-Sent Events). It SHOULD be set to `pipe` if the transport
-is stdio.
+**[6] `network.transport`:** This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
+is HTTP with SSE (Server-Sent Events).
+It SHOULD be set to `pipe` if the transport is stdio.
 
 **[7] `mcp.request.argument`:** Instrumentations SHOULD require an explicit configuration of which arguments are to be captured. Including all request arguments can be a security risk - explicit configuration helps avoid leaking sensitive information.
 Argument values SHOULD be recorded as JSON strings.
@@ -374,9 +376,9 @@ string representation of the error. When
 is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
-**[2] `network.transport`:** This attribute SHOULD be set to `tpc` if the transport protocol is HTTP
-with SSE (Server-Sent Events). It SHOULD be set to `pipe` if the transport
-is stdio.
+**[2] `network.transport`:** This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
+is HTTP with SSE (Server-Sent Events).
+It SHOULD be set to `pipe` if the transport is stdio.
 
 **[3] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -479,9 +481,9 @@ string representation of the error. When
 is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
-**[2] `network.transport`:** This attribute SHOULD be set to `tpc` if the transport protocol is HTTP
-with SSE (Server-Sent Events). It SHOULD be set to `pipe` if the transport
-is stdio.
+**[2] `network.transport`:** This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
+is HTTP with SSE (Server-Sent Events).
+It SHOULD be set to `pipe` if the transport is stdio.
 
 **[3] `mcp.resource.uri`:** This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
 
