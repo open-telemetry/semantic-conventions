@@ -43,6 +43,8 @@ model name is available and `{gen_ai.operation.name}` otherwise.
 | [`gen_ai.request.seed`](/docs/attributes-registry/gen-ai.md) | int | Requests with same seed value more likely to return same result. | `100` | `Conditionally Required` if applicable and if the request includes a seed | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | GenAI server port. [7] | `80`; `8080`; `443` | `Conditionally Required` If not default (443). | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`az.namespace`](/docs/attributes-registry/azure.md) | string | [Azure Resource Provider Namespace](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-services-resource-providers) as recognized by the client. [8] | `Microsoft.CognitiveServices` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.input.messages_ref`](/docs/attributes-registry/gen-ai.md) | string | The link to the chat history recorded in a separate storage. [9] | `s3://acme.prod.support_bot.chats.2025/conv_1234/run_42.json` | `Recommended` if applicable | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.output.messages_ref`](/docs/attributes-registry/gen-ai.md) | string | The link to the model or agent output recorded in a separate storage. [10] | `s3://acme.prod.support_bot.chats.2025/conv_1234/run_42.json` | `Recommended` if applicable | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.frequency_penalty`](/docs/attributes-registry/gen-ai.md) | double | The frequency penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.max_tokens`](/docs/attributes-registry/gen-ai.md) | int | The maximum number of tokens the model generates for a request. | `100` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.presence_penalty`](/docs/attributes-registry/gen-ai.md) | double | The presence penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -51,10 +53,13 @@ model name is available and `{gen_ai.operation.name}` otherwise.
 | [`gen_ai.request.top_p`](/docs/attributes-registry/gen-ai.md) | double | The top_p sampling setting for the GenAI request. | `1.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.response.finish_reasons`](/docs/attributes-registry/gen-ai.md) | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `["stop"]`; `["stop", "length"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.response.id`](/docs/attributes-registry/gen-ai.md) | string | The unique identifier for the completion. | `chatcmpl-123` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.response.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the model that generated the response. [9] | `gpt-4-0613` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.response.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the model that generated the response. [11] | `gpt-4-0613` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.usage.input_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of prompt tokens as reported in the usage prompt_tokens property of the response. | `100` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.usage.output_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of completion tokens as reported in the usage completion_tokens property of the response. | `180` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | GenAI server address. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | GenAI server address. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`gen_ai.input.messages`](/docs/attributes-registry/gen-ai.md) | string | The chat history excluding the system message/instructions. [13] | `{"role": "user", "content": "Weather in Paris?"}`; `{"role": "assistant", "tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":{"location":"Paris"}},"type":"function"}]}`; `{"role": "tool", "content":"rainy, 57°F", "id":"call_VSPygqKTWdrhaFErNvMV18Yl"}` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.output.messages`](/docs/attributes-registry/gen-ai.md) | string | Messages returned by the model or agent. [14] | `[{"index":0,"finish_reason":"stop","message":{"role": "assistant", "content": "The weather in Paris is rainy and overcast, with temperatures around 57°F"}}]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.system.instructions`](/docs/attributes-registry/gen-ai.md) | string | The system message or instructions provided to the GenAI model or agent in the prompt. | `You are a helpful assistant.` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
@@ -97,9 +102,32 @@ Additional output format details may be recorded in the future in the
 
 **[8] `az.namespace`:** When `az.namespace` attribute is populated, it MUST be set to `Microsoft.CognitiveServices` for all operations performed by Azure AI Inference clients.
 
-**[9] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+**[9] `gen_ai.input.messages_ref`:** This attribute is used to reference the chat history recorded in a separate storage.
+It is used instead of `gen_ai.input.messages` to avoid sending sensitive and large data to the observability backend.
+Instrumentation MAY provide a way for users to upload the chat history to a separate storage via custom hooks. Alternatively, application MAY upload the chat history recorded in the `gen_ai.input.messages` attribute in the processing pipeline and replace the `gen_ai.input.messages` with the `gen_ai.input.messages_ref` attribute.
+It's an application responsibility to implement and manage the upload process.
+The uploaded content format SHOULD be the same as the one used in the `gen_ai.input.messages` attribute.
 
-**[10] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[10] `gen_ai.output.messages_ref`:** This attribute is used to reference the model or agent output recorded in a separate storage.
+It is used instead of `gen_ai.output.messages` to avoid sending sensitive and large data to the observability backend.
+Instrumentation MAY provide a way for users to upload the output messages to a separate storage via custom hooks. Alternatively, application MAY upload the output recorded in the `gen_ai.output.messages` attribute in the processing pipeline and replace the `gen_ai.output.messages` with the `gen_ai.output.messages_ref` attribute.
+It's an application responsibility to implement and manage the upload process.
+The uploaded content format SHOULD be the same as the one used in the `gen_ai.output.messages` attribute.
+
+**[11] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+
+**[12] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+
+**[13] `gen_ai.input.messages`:** Messages MUST be provided in the order they were sent to the model or agent. Instrumentations MAY provide a way for users to filter out messages, but MUST ensure that the order of the remaining messages is preserved. The system message/instructions are recorded separately in `gen_ai.system.instructions`.
+The format of the prompt is defined in the [json schema](/docs/gen-ai/gen-ai-input-messages.json)
+> [!Warning] > This attribute is likely to contain sensitive information.
+This attribute is likely to be large and may be longer than configured attribute value length limit on the SDK level. It may also be larger than the observability backend cap for attribute or the span envelope.
+See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487) for more details on how to truncate individual properties.
+
+**[14] `gen_ai.output.messages`:** The format of the output messages is defined in the [json schema](/docs/gen-ai/gen-ai-output-messages.json)
+> [!Warning] > This attribute is likely to contain sensitive information.
+This attribute is likely to be large and may be longer than configured attribute value length limit on the SDK level. It may also be larger than the observability backend cap for attribute or the span envelope.
+See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487) for more details on how to truncate individual properties.
 
 ---
 

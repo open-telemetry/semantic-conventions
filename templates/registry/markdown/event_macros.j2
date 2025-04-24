@@ -17,7 +17,7 @@ The event SHOULD be associated with one of the following entities:
 {% endfor %}
 {% endif %}
 {% endmacro %}
-{% macro body(body) %}{% if body %}**Body fields:**
+{% macro body(body) %}{% if body and body.type != "undefined" %}**Body fields:**
 
 :warning: Body fields will be moved to complex attributes once the
 semantic convention tooling supports complex attributes

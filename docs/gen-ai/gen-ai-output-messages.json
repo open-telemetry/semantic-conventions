@@ -1,0 +1,117 @@
+{
+    "$defs": {
+        "AssistantMessage": {
+            "properties": {
+                "role": {
+                    "const": "assistant",
+                    "type": "string"
+                },
+                "content": {
+                    "anyOf": [
+                        {},
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "tool_calls": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/ToolCall"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "role",
+                "content",
+                "tool_calls"
+            ],
+            "type": "object"
+        },
+        "Choice": {
+            "properties": {
+                "index": {
+                    "type": "integer"
+                },
+                "finish_reason": {
+                    "type": "string"
+                },
+                "message": {
+                    "$ref": "#/$defs/AssistantMessage"
+                }
+            },
+            "required": [
+                "index",
+                "finish_reason",
+                "message"
+            ],
+            "type": "object"
+        },
+        "FunctionCall": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "arguments": {
+                    "anyOf": [
+                        {},
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "arguments"
+            ],
+            "type": "object"
+        },
+        "ToolCall": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "const": "function",
+                    "type": "string"
+                },
+                "function": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/FunctionCall"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "type",
+                "function"
+            ],
+            "type": "object"
+        }
+    },
+    "properties": {
+        "choices": {
+            "items": {
+                "$ref": "#/$defs/Choice"
+            },
+            "type": "array"
+        }
+    },
+    "required": [
+        "choices"
+    ],
+    "type": "object"
+}

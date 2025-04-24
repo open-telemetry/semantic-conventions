@@ -53,6 +53,8 @@ client or when the GenAI call happens over instrumented protocol such as HTTP.
 | [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the GenAI model a request is being made to. [7] | `gpt-4` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.seed`](/docs/attributes-registry/gen-ai.md) | int | Requests with same seed value more likely to return same result. | `100` | `Conditionally Required` if applicable and if the request includes a seed | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | GenAI server port. [8] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`gen_ai.input.messages_ref`](/docs/attributes-registry/gen-ai.md) | string | The link to the chat history recorded in a separate storage. [9] | `s3://acme.prod.support_bot.chats.2025/conv_1234/run_42.json` | `Recommended` if applicable | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.output.messages_ref`](/docs/attributes-registry/gen-ai.md) | string | The link to the model or agent output recorded in a separate storage. [10] | `s3://acme.prod.support_bot.chats.2025/conv_1234/run_42.json` | `Recommended` if applicable | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.frequency_penalty`](/docs/attributes-registry/gen-ai.md) | double | The frequency penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.max_tokens`](/docs/attributes-registry/gen-ai.md) | int | The maximum number of tokens the model generates for a request. | `100` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.presence_penalty`](/docs/attributes-registry/gen-ai.md) | double | The presence penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -62,10 +64,13 @@ client or when the GenAI call happens over instrumented protocol such as HTTP.
 | [`gen_ai.request.top_p`](/docs/attributes-registry/gen-ai.md) | double | The top_p sampling setting for the GenAI request. | `1.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.response.finish_reasons`](/docs/attributes-registry/gen-ai.md) | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `["stop"]`; `["stop", "length"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.response.id`](/docs/attributes-registry/gen-ai.md) | string | The unique identifier for the completion. | `chatcmpl-123` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.response.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the model that generated the response. [9] | `gpt-4-0613` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.response.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the model that generated the response. [11] | `gpt-4-0613` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.usage.input_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of tokens used in the GenAI input (prompt). | `100` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.usage.output_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of tokens used in the GenAI response (completion). | `180` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | GenAI server address. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | GenAI server address. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`gen_ai.input.messages`](/docs/attributes-registry/gen-ai.md) | string | The chat history excluding the system message/instructions. [13] | `{"role": "user", "content": "Weather in Paris?"}`; `{"role": "assistant", "tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":{"location":"Paris"}},"type":"function"}]}`; `{"role": "tool", "content":"rainy, 57°F", "id":"call_VSPygqKTWdrhaFErNvMV18Yl"}` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.output.messages`](/docs/attributes-registry/gen-ai.md) | string | Messages returned by the model or agent. [14] | `[{"index":0,"finish_reason":"stop","message":{"role": "assistant", "content": "The weather in Paris is rainy and overcast, with temperatures around 57°F"}}]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.system.instructions`](/docs/attributes-registry/gen-ai.md) | string | The system message or instructions provided to the GenAI model or agent in the prompt. | `You are a helpful assistant.` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
@@ -109,9 +114,32 @@ Additional output format details may be recorded in the future in the `gen_ai.ou
 
 **[8] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[9] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+**[9] `gen_ai.input.messages_ref`:** This attribute is used to reference the chat history recorded in a separate storage.
+It is used instead of `gen_ai.input.messages` to avoid sending sensitive and large data to the observability backend.
+Instrumentation MAY provide a way for users to upload the chat history to a separate storage via custom hooks. Alternatively, application MAY upload the chat history recorded in the `gen_ai.input.messages` attribute in the processing pipeline and replace the `gen_ai.input.messages` with the `gen_ai.input.messages_ref` attribute.
+It's an application responsibility to implement and manage the upload process.
+The uploaded content format SHOULD be the same as the one used in the `gen_ai.input.messages` attribute.
 
-**[10] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[10] `gen_ai.output.messages_ref`:** This attribute is used to reference the model or agent output recorded in a separate storage.
+It is used instead of `gen_ai.output.messages` to avoid sending sensitive and large data to the observability backend.
+Instrumentation MAY provide a way for users to upload the output messages to a separate storage via custom hooks. Alternatively, application MAY upload the output recorded in the `gen_ai.output.messages` attribute in the processing pipeline and replace the `gen_ai.output.messages` with the `gen_ai.output.messages_ref` attribute.
+It's an application responsibility to implement and manage the upload process.
+The uploaded content format SHOULD be the same as the one used in the `gen_ai.output.messages` attribute.
+
+**[11] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+
+**[12] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+
+**[13] `gen_ai.input.messages`:** Messages MUST be provided in the order they were sent to the model or agent. Instrumentations MAY provide a way for users to filter out messages, but MUST ensure that the order of the remaining messages is preserved. The system message/instructions are recorded separately in `gen_ai.system.instructions`.
+The format of the prompt is defined in the [json schema](/docs/gen-ai/gen-ai-input-messages.json)
+> [!Warning] > This attribute is likely to contain sensitive information.
+This attribute is likely to be large and may be longer than configured attribute value length limit on the SDK level. It may also be larger than the observability backend cap for attribute or the span envelope.
+See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487) for more details on how to truncate individual properties.
+
+**[14] `gen_ai.output.messages`:** The format of the output messages is defined in the [json schema](/docs/gen-ai/gen-ai-output-messages.json)
+> [!Warning] > This attribute is likely to contain sensitive information.
+This attribute is likely to be large and may be longer than configured attribute value length limit on the SDK level. It may also be larger than the observability backend cap for attribute or the span envelope.
+See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487) for more details on how to truncate individual properties.
 
 ---
 
@@ -158,9 +186,9 @@ Additional output format details may be recorded in the future in the `gen_ai.ou
 | `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gemini` | Gemini [11] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gen_ai` | Any Google generative AI endpoint [12] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.vertex_ai` | Vertex AI [13] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gemini` | Gemini [15] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai` | Any Google generative AI endpoint [16] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.vertex_ai` | Vertex AI [17] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -168,11 +196,11 @@ Additional output format details may be recorded in the future in the `gen_ai.ou
 | `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
 | `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[11]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[15]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May use common attributes prefixed with 'gcp.gen_ai.'.
 
-**[12]:** May be used when specific backend is unknown. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[16]:** May be used when specific backend is unknown. May use common attributes prefixed with 'gcp.gen_ai.'.
 
-**[13]:** This refers to the 'aiplatform.googleapis.com' endpoint. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[17]:** This refers to the 'aiplatform.googleapis.com' endpoint. May use common attributes prefixed with 'gcp.gen_ai.'.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

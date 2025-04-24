@@ -89,6 +89,19 @@ groups:
           spans or logs using custom span or log record processors or hooks provided by instrumentation
           libraries.
 
+      - ref: gen_ai.system.instructions
+        requirement_level: opt_in
+      - ref: gen_ai.input.messages
+        requirement_level: opt_in
+      - ref: gen_ai.output.messages
+        requirement_level: opt_in
+      - ref: gen_ai.input.messages_ref
+        requirement_level:
+          recommended: if applicable
+      - ref: gen_ai.output.messages_ref
+        requirement_level:
+          recommended: if applicable
+
   - id: span.gen_ai.inference.client
     type: span
     stability: development
@@ -235,6 +248,8 @@ groups:
       - ref: gen_ai.agent.description
         requirement_level:
           conditionally_required: If provided by the application.
+      - ref: gen_ai.system.instructions
+        requirement_level: opt_in
 
   - id: span.gen_ai.invoke_agent.client
     type: span
@@ -264,6 +279,18 @@ groups:
       - ref: gen_ai.data_source.id
         requirement_level:
           conditionally_required: if applicable.
+      - ref: gen_ai.system.instructions
+        requirement_level: opt_in
+      - ref: gen_ai.input.messages
+        requirement_level: opt_in
+      - ref: gen_ai.output.messages
+        requirement_level: opt_in
+      - ref: gen_ai.input.messages_ref
+        requirement_level:
+          recommended: if applicable
+      - ref: gen_ai.output.messages_ref
+        requirement_level:
+          recommended: if applicable
 
   - id: span.gen_ai.execute_tool.internal
     type: span

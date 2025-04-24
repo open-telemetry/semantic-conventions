@@ -338,6 +338,101 @@ groups:
 
           Additional output format details may be recorded in the future in the
           `gen_ai.output.{type}.*` attributes.
+      - id: gen_ai.system.instructions
+        stability: development
+        type: string
+        brief: The system message or instructions provided to the GenAI model or agent in the prompt.
+        examples: ["You are a helpful assistant."]
+      - id: gen_ai.input.messages
+        stability: development
+        type: string # any
+        brief: The chat history excluding the system message/instructions.
+        note: >
+          Messages MUST be provided in the order they were sent to the model or agent.
+          Instrumentations MAY provide a way for users to filter out messages, but MUST
+          ensure that the order of the remaining messages is preserved.
+          The system message/instructions are recorded separately in `gen_ai.system.instructions`.
+
+          The format of the prompt is defined in the [json schema](/docs/gen-ai/gen-ai-input-messages.json)
+
+          > [!Warning]
+          > This attribute is likely to contain sensitive information.
+
+          This attribute is likely to be large and may be longer than configured attribute value
+          length limit on the SDK level. It may also be larger than the observability backend
+          cap for attribute or the span envelope.
+
+          See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487)
+          for more details on how to truncate individual properties.
+        examples: [
+          '{"role": "user", "content": "Weather in Paris?"}',
+          '{"role": "assistant", "tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":{"location":"Paris"}},"type":"function"}]}',
+          '{"role": "tool", "content":"rainy, 57°F", "id":"call_VSPygqKTWdrhaFErNvMV18Yl"}'
+          ]
+      - id: gen_ai.input.messages_ref
+        stability: development
+        type: string
+        brief: The link to the chat history recorded in a separate storage.
+        examples: ["s3://acme.prod.support_bot.chats.2025/conv_1234/run_42.json"]
+        note: >
+          This attribute is used to reference the chat history recorded in a separate storage.
+
+          It is used instead of `gen_ai.input.messages` to avoid sending sensitive
+          and large data to the observability backend.
+
+          Instrumentation MAY provide a way for users to upload the chat history
+          to a separate storage via custom hooks.
+          Alternatively, application MAY upload the chat history recorded in the
+          `gen_ai.input.messages` attribute in the processing pipeline and replace
+          the `gen_ai.input.messages` with the `gen_ai.input.messages_ref`
+          attribute.
+
+          It's an application responsibility to implement and manage the upload
+          process.
+
+          The uploaded content format SHOULD be the same as the one used in the
+          `gen_ai.input.messages` attribute.
+      - id: gen_ai.output.messages
+        stability: development
+        type: string  # any
+        brief: Messages returned by the model or agent.
+        note: >
+          The format of the output messages is defined in the [json schema](/docs/gen-ai/gen-ai-output-messages.json)
+
+          > [!Warning]
+          > This attribute is likely to contain sensitive information.
+
+          This attribute is likely to be large and may be longer than configured attribute value
+          length limit on the SDK level. It may also be larger than the observability backend
+          cap for attribute or the span envelope.
+
+          See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487)
+          for more details on how to truncate individual properties.
+        examples: ['[{"index":0,"finish_reason":"stop","message":{"role": "assistant", "content": "The weather in Paris is rainy and overcast, with temperatures around 57°F"}}]']
+      - id: gen_ai.output.messages_ref
+        stability: development
+        type: string
+        brief: The link to the model or agent output recorded in a separate storage.
+        examples: ["s3://acme.prod.support_bot.chats.2025/conv_1234/run_42.json"]
+        note: >
+          This attribute is used to reference the model or agent output recorded
+          in a separate storage.
+
+          It is used instead of `gen_ai.output.messages` to avoid sending sensitive
+          and large data to the observability backend.
+
+          Instrumentation MAY provide a way for users to upload the output messages
+          to a separate storage via custom hooks.
+          Alternatively, application MAY upload the output recorded in the
+          `gen_ai.output.messages` attribute in the processing pipeline and replace
+          the `gen_ai.output.messages` with the `gen_ai.output.messages_ref`
+          attribute.
+
+          It's an application responsibility to implement and manage the upload
+          process.
+
+          The uploaded content format SHOULD be the same as the one used in the
+          `gen_ai.output.messages` attribute.
   - id: registry.gen_ai.openai
     type: attribute_group
     display_name: OpenAI Attributes

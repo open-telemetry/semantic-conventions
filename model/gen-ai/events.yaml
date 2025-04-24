@@ -11,6 +11,7 @@ groups:
     name: gen_ai.system.message
     type: event
     stability: development
+    deprecated: "Deprecated in favor of `gen_ai.system.instructions` attribute."
     brief: >
       This event describes the system instructions passed to the GenAI model.
     extends: gen_ai.common.event.attributes
@@ -42,6 +43,7 @@ groups:
     stability: development
     brief: >
       This event describes the user message passed to the GenAI model.
+    deprecated: "Deprecated in favor of `gen_ai.input.messages` attribute."
     extends: gen_ai.common.event.attributes
     body:
       id: gen_ai.user.message
@@ -71,6 +73,7 @@ groups:
     stability: development
     brief: >
       This event describes the assistant message passed to GenAI system.
+    deprecated: "Deprecated in favor of `gen_ai.input.messages` attribute."
     extends: gen_ai.common.event.attributes
     body:
       id: gen_ai.assistant.message
@@ -155,6 +158,7 @@ groups:
     brief: >
       This event describes the response from a tool or function call passed to the GenAI model.
     extends: gen_ai.common.event.attributes
+    deprecated: "Deprecated in favor of `gen_ai.input.messages` attribute."
     body:
       id: gen_ai.tool.message
       requirement_level: opt_in
@@ -190,6 +194,7 @@ groups:
     stability: development
     brief: >
       This event describes the Gen AI response message.
+    deprecated: "Deprecated in favor of `gen_ai.output.messages` attribute."
     extends: gen_ai.common.event.attributes
     body:
       id: gen_ai.choice
@@ -313,3 +318,33 @@ groups:
                     arguments field.
                   examples: ['{\"location\": \"Paris\"}']
                   requirement_level: opt_in
+
+  - id: event.gen_ai.inputs
+    name: gen_ai.inputs
+    type: event
+    # severity: debug
+    stability: development
+    brief: >
+      This event represents the whole input to the GenAI model in the system-specific
+      format.
+    extends: gen_ai.common.event.attributes
+    body:
+      id: gen_ai.inputs
+      requirement_level: opt_in
+      stability: development
+      type: undefined
+
+  - id: event.gen_ai.outputs
+    name: gen_ai.outputs
+    type: event
+    # severity: debug
+    stability: development
+    brief: >
+      This event represents the whole output received fron the GenAI model in the
+      system-specific format.
+    extends: gen_ai.common.event.attributes
+    body:
+      id: gen_ai.outputs
+      requirement_level: opt_in
+      stability: development
+      type: undefined
