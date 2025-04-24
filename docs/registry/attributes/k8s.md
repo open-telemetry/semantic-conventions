@@ -30,6 +30,9 @@ Kubernetes resource attributes.
 | <a id="k8s-deployment-name" href="#k8s-deployment-name">`k8s.deployment.name`</a> | string | The name of the Deployment. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-deployment-uid" href="#k8s-deployment-uid">`k8s.deployment.uid`</a> | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-hpa-name" href="#k8s-hpa-name">`k8s.hpa.name`</a> | string | The name of the horizontal pod autoscaler. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-hpa-scaletarget-apiversion" href="#k8s-hpa-scaletarget-apiversion">`k8s.hpa.scaletarget.apiversion`</a> | string | The API version of the target resource to scale for the HorizontalPodAutoscaler. [2] | `apps/v1`; `autoscaling/v2` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-hpa-scaletarget-kind" href="#k8s-hpa-scaletarget-kind">`k8s.hpa.scaletarget.kind`</a> | string | The kind of the target resource to scale for the HorizontalPodAutoscaler. [3] | `Deployment`; `StatefulSet` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-hpa-scaletarget-name" href="#k8s-hpa-scaletarget-name">`k8s.hpa.scaletarget.name`</a> | string | The name of the target resource to scale for the HorizontalPodAutoscaler. [4] | `my-deployment`; `my-statefulset` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-hpa-uid" href="#k8s-hpa-uid">`k8s.hpa.uid`</a> | string | The UID of the horizontal pod autoscaler. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-job-annotation" href="#k8s-job-annotation">`k8s.job.annotation.<key>`</a> | string | The annotation key-value pairs placed on the Job. [8] | `k8s.job.annotation.number=1`; `k8s.job.annotation.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-job-label" href="#k8s-job-label">`k8s.job.label.<key>`</a> | string | The label key-value pairs placed on the Job. [9] | `k8s.job.label.jobtype=ci`; `k8s.job.label.automated=` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -85,6 +88,7 @@ Which states:
 Therefore, UIDs between clusters should be extremely unlikely to
 conflict.
 
+<<<<<<< HEAD
 **[2] `k8s.cronjob.annotation.<key>`:** Examples:
 
 - An annotation `retries` with value `4` SHOULD be recorded as the
@@ -157,6 +161,20 @@ conflict.
 **[19] `k8s.statefulset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
 **[20] `k8s.statefulset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+=======
+**[2] `k8s.hpa.scaletarget.apiversion`:** This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec.
+
+**[3] `k8s.hpa.scaletarget.kind`:** This maps to the `kind` field in the `scaleTargetRef` of the HPA spec.
+
+**[4] `k8s.hpa.scaletarget.name`:** This maps to the `name` field in the `scaleTargetRef` of the HPA spec.
+
+**[5] `k8s.namespace.phase`:** This attribute aligns with the `phase` field of the
+[K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
+
+**[6] `k8s.node.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[7] `k8s.node.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+>>>>>>> badcfb5c (add k8s.hpa.scaletarget)
 
 ---
 
