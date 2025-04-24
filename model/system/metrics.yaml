@@ -45,6 +45,9 @@ groups:
       system-wide utilization value between 0.0 and 1.0: sum(rate(cpu.time{mode != "idle" and mode != "iowait"})) / system.cpu.logical.count
       This represents time spent actively executing work, including time delayed by the hypervisor (steal), which reflects CPU demand in virtualized environments.
       As a result, in cases of high CPU contention — such as 100% steal time — this metric will report 100% utilization, making such issues easy to detect.
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`host`](../resource/host.md) resource.
     instrument: gauge
     unit: "1"
     attributes: []
