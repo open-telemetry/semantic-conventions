@@ -37,8 +37,8 @@ linkTitle: Metrics
 >   Conventions include, but are not limited to, attributes,
 >   metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version which is a comma-separated list of values.
->   The list of values includes:
+>   in the existing major version as a comma-separated list of category-specific values
+>   (e.g., http, databases, messaging). The list of values includes:
 >   * `database` - emit the new, stable database conventions,
 >     and stop emitting the old experimental database conventions
 >     that the instrumentation emitted previously.
@@ -108,7 +108,7 @@ collection name then that collection name SHOULD be used.
 
 **[3] `db.collection.name`:** If readily available and if a database call is performed on a single collection.
 
-**[4] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+**[4] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
@@ -286,7 +286,7 @@ collection name then that collection name SHOULD be used.
 
 **[3] `db.collection.name`:** If readily available and if a database call is performed on a single collection.
 
-**[4] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+**[4] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 

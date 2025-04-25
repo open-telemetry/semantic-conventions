@@ -64,12 +64,12 @@ Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic co
 | [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [14] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1] `db.namespace`:** If a database system has multiple namespace components (e.g. schema name and database name), they SHOULD be concatenated
-(potentially using database system specific conventions) from most general to most
-specific namespace component, and more specific namespaces SHOULD NOT be captured without
-the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+from the most general to the most specific namespace component,
+using `|` as a separator between the components.
+Any missing components (and their associated separators) SHOULD be omitted.
 
-Unless specified by the system-specific semantic convention, the `db.namespace` attribute matches
-the name of the database being accessed.
+Semantic conventions for individual database systems SHOULD document what `db.namespace`
+means in the context of that system.
 
 A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
 

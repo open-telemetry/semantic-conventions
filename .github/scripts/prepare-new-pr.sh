@@ -34,6 +34,9 @@ if [ $COUNT -eq 1 ]; then
     CHANGE_TYPE=$(awk -F': ' '/^change_type:/ {print $2}' "$PR_CHANGELOG_PATH/$CHLOG" | xargs)
     echo $CHANGE_TYPE
     gh pr edit "${PR}" --add-label "${CHANGE_TYPE}" || true
+    AREA=$(awk -F': ' '/^component:/ {print $2}' "$PR_CHANGELOG_PATH/$CHLOG" | xargs)
+    echo $AREA
+    gh pr edit "${PR}" --add-label "area:${AREA}" || true
 else
     echo "Found multiple changelog files. Ignoring this change."
 fi
