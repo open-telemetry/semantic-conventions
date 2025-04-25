@@ -115,6 +115,7 @@ groups:
       - ref: k8s.cronjob.uid
       - ref: k8s.cronjob.name
       - ref: k8s.cronjob.label
+        requirement_level: opt_in
       - ref: k8s.cronjob.annotation
         requirement_level: opt_in
 
