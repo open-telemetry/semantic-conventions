@@ -82,14 +82,14 @@ conflict.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.node.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the Node. [1] | `k8s.node.label.kubernetes.io/arch=arm64`; `k8s.node.label.data=` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.node.name`](/docs/attributes-registry/k8s.md) | string | The name of the Node. | `node-1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.node.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.node.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Node. [2] | `k8s.node.annotation.node.alpha.kubernetes.io/ttl=0`; `k8s.node.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.node.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Node. [1] | `k8s.node.annotation.node.alpha.kubernetes.io/ttl=0`; `k8s.node.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.node.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the Node. [2] | `k8s.node.label.kubernetes.io/arch=arm64`; `k8s.node.label.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `k8s.node.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[1] `k8s.node.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[2] `k8s.node.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[2] `k8s.node.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
