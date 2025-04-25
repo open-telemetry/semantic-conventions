@@ -48,7 +48,8 @@ Spans representing calls to a PostgreSQL database adhere to the general [Semanti
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [14] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
-**[1] `db.namespace`:** `db.namespace` SHOULD be set to the combination of database and schema name following the `{database}.{schema}` pattern.
+**[1] `db.namespace`:** `db.namespace` SHOULD be set to the combination of database and schema name following the `{database}|{schema}` pattern.
+If either `{database}` or `{schema}` is unavailable, `db.namespace` SHOULD be set to the other (without any `|` separator).
 
 A connection's currently associated database may change during its lifetime, e.g. from executing `SET search_path TO <schema>`.
 If the search path has multiple schemas, the first schema in the search path SHOULD be used.

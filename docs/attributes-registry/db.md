@@ -37,7 +37,7 @@ when the database system supports cross-table queries in non-batch operations.
 For batch operations, if the individual operations are known to have the same
 collection name then that collection name SHOULD be used.
 
-**[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+**[2] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
@@ -270,12 +270,12 @@ Describes deprecated database attributes.
 | `instantdb` | InstantDB | ![Development](https://img.shields.io/badge/-development-blue) |
 | `interbase` | InterBase | ![Development](https://img.shields.io/badge/-development-blue) |
 | `intersystems_cache` | InterSystems Caché | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mariadb` | MariaDB (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `mariadb` | MariaDB | ![Development](https://img.shields.io/badge/-development-blue) |
 | `maxdb` | SAP MaxDB | ![Development](https://img.shields.io/badge/-development-blue) |
 | `memcached` | Memcached | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mongodb` | MongoDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mssql` | Microsoft SQL Server (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `mysql` | MySQL (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `mssql` | Microsoft SQL Server | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mysql` | MySQL | ![Development](https://img.shields.io/badge/-development-blue) |
 | `neo4j` | Neo4j | ![Development](https://img.shields.io/badge/-development-blue) |
 | `netezza` | Netezza | ![Development](https://img.shields.io/badge/-development-blue) |
 | `opensearch` | OpenSearch | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -283,7 +283,7 @@ Describes deprecated database attributes.
 | `other_sql` | Some other SQL database. Fallback only. See notes. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pervasive` | Pervasive PSQL | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pointbase` | PointBase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `postgresql` | PostgreSQL (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `postgresql` | PostgreSQL | ![Development](https://img.shields.io/badge/-development-blue) |
 | `progress` | Progress Database | ![Development](https://img.shields.io/badge/-development-blue) |
 | `redis` | Redis | ![Development](https://img.shields.io/badge/-development-blue) |
 | `redshift` | Amazon Redshift | ![Development](https://img.shields.io/badge/-development-blue) |

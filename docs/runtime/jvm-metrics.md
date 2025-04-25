@@ -223,10 +223,13 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 |---|---|---|---|---|---|
 | [`jvm.gc.action`](/docs/attributes-registry/jvm.md) | string | Name of the garbage collector action. [1] | `end of minor GC`; `end of major GC` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`jvm.gc.name`](/docs/attributes-registry/jvm.md) | string | Name of the garbage collector. [2] | `G1 Young Generation`; `G1 Old Generation` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`jvm.gc.cause`](/docs/attributes-registry/jvm.md) | string | Name of the garbage collector cause. [3] | `System.gc()`; `Allocation Failure` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `jvm.gc.action`:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
 
 **[2] `jvm.gc.name`:** Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
+
+**[3] `jvm.gc.cause`:** Garbage collector cause is generally obtained via [GarbageCollectionNotificationInfo#getGcCause()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcCause()).
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
