@@ -31,7 +31,7 @@ The span name MUST follow the overall [guidelines for span names](https://github
 The span name SHOULD be `{action} {pipeline}` if there is a (low-cardinality) `pipeline` available.
 If there is no (low-cardinality) `{pipeline}` available, the span name SHOULD be `{action}`.
 
-The `{action}` SHOULD be one of the following values: `BUILD`, `RUN`, `SYNC`.
+The `{action}` SHOULD be one of the following values: `BUILD`, `RUN`, `SYNC`. If none of these values applies a custom value MAY be used.
 
 The `{pipeline}` SHOULD be the [`cicd.pipeline.name`](/docs/attributes-registry/cicd.md).
 
