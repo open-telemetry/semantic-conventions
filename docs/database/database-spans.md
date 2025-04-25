@@ -287,7 +287,10 @@ Boolean, Interval, Binary, and Hexadecimal literals.
 The placeholder value SHOULD be `?`, unless it already has a defined meaning in the given database system,
 in which case the instrumentation MAY choose a different placeholder.
 
-Placeholders in a parameterized query SHOULD not be sanitized. E.g. `where id = $1` can be captured as is.
+Parameterized query text SHOULD NOT be sanitized.
+Even though parameterized query text can potentially have sensitive data, by using a parameterized query
+the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit
+to observability of capturing the static part of the query text by default outweighs the risk.
 
 [IN-clauses](https://wikipedia.org/wiki/SQL_syntax#Operators) MAY be collapsed during sanitization,
 e.g. from `IN (?, ?, ?, ?)` to `IN (?)`, as this can help with extremely long IN-clauses,
