@@ -177,7 +177,7 @@ groups:
 
   - id: span.gen_ai.gcp.client
     type: span
-    extends: trace.gen_ai.client.common_attributes
+    extends: attributes.gen_ai.inference.client
     stability: development
     brief: Semantic Conventions for model inference spans when calling Google systems.
     span_kind: client
