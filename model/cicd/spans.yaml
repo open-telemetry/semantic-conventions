@@ -7,9 +7,9 @@ groups:
     attributes:
       - ref: cicd.pipeline.result
         requirement_level: required
-  - id: span.cicd.pipeline.task.server
+  - id: span.cicd.pipeline.task.internal
     type: span
-    span_kind: server
+    span_kind: internal
     brief: 'Semantic Convention for tasks in a pipeline run'
     stability: development
     attributes:
