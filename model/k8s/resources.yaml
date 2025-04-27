@@ -134,7 +134,12 @@ groups:
     attributes:
       - ref: k8s.hpa.uid
       - ref: k8s.hpa.name
-
+      - ref: k8s.hpa.scaletarget.kind
+        requirement_level: recommended
+      - ref: k8s.hpa.scaletarget.name
+        requirement_level: recommended
+      - ref: k8s.hpa.scaletarget.apiversion
+        requirement_level: recommended
   - id: resource.k8s.resourcequota
     type: resource
     stability: development

@@ -24,13 +24,16 @@ Kubernetes resource attributes.
 | <a id="k8s-deployment-name" href="#k8s-deployment-name">`k8s.deployment.name`</a> | string | The name of the Deployment. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-deployment-uid" href="#k8s-deployment-uid">`k8s.deployment.uid`</a> | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-hpa-name" href="#k8s-hpa-name">`k8s.hpa.name`</a> | string | The name of the horizontal pod autoscaler. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-hpa-scaletarget-apiversion" href="#k8s-hpa-scaletarget-apiversion">`k8s.hpa.scaletarget.apiversion`</a> | string | The API version of the target resource to scale for the HorizontalPodAutoscaler. [2] | `apps/v1`; `autoscaling/v2` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-hpa-scaletarget-kind" href="#k8s-hpa-scaletarget-kind">`k8s.hpa.scaletarget.kind`</a> | string | The kind of the target resource to scale for the HorizontalPodAutoscaler. [3] | `Deployment`; `StatefulSet` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-hpa-scaletarget-name" href="#k8s-hpa-scaletarget-name">`k8s.hpa.scaletarget.name`</a> | string | The name of the target resource to scale for the HorizontalPodAutoscaler. [4] | `my-deployment`; `my-statefulset` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-hpa-uid" href="#k8s-hpa-uid">`k8s.hpa.uid`</a> | string | The UID of the horizontal pod autoscaler. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-job-name" href="#k8s-job-name">`k8s.job.name`</a> | string | The name of the Job. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-job-uid" href="#k8s-job-uid">`k8s.job.uid`</a> | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-namespace-name" href="#k8s-namespace-name">`k8s.namespace.name`</a> | string | The name of the namespace that the pod is running in. | `default` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-namespace-phase" href="#k8s-namespace-phase">`k8s.namespace.phase`</a> | string | The phase of the K8s namespace. [2] | `active`; `terminating` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-node-annotation" href="#k8s-node-annotation">`k8s.node.annotation.<key>`</a> | string | The annotation key-value pairs placed on the Node. [3] | `k8s.node.annotation.node.alpha.kubernetes.io/ttl=0`; `k8s.node.annotation.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-node-label" href="#k8s-node-label">`k8s.node.label.<key>`</a> | string | The label key-value pairs placed on the Node. [4] | `k8s.node.label.kubernetes.io/arch=arm64`; `k8s.node.label.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-namespace-phase" href="#k8s-namespace-phase">`k8s.namespace.phase`</a> | string | The phase of the K8s namespace. [5] | `active`; `terminating` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-node-annotation" href="#k8s-node-annotation">`k8s.node.annotation.<key>`</a> | string | The annotation key-value pairs placed on the Node. [6] | `k8s.node.annotation.node.alpha.kubernetes.io/ttl=0`; `k8s.node.annotation.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-node-label" href="#k8s-node-label">`k8s.node.label.<key>`</a> | string | The label key-value pairs placed on the Node. [7] | `k8s.node.label.kubernetes.io/arch=arm64`; `k8s.node.label.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-node-name" href="#k8s-node-name">`k8s.node.name`</a> | string | The name of the Node. | `node-1` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-node-uid" href="#k8s-node-uid">`k8s.node.uid`</a> | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-pod-annotation" href="#k8s-pod-annotation">`k8s.pod.annotation.<key>`</a> | string | The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. | `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true`; `k8s.pod.annotation.mycompany.io/arch=x64`; `k8s.pod.annotation.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -71,12 +74,18 @@ Which states:
 Therefore, UIDs between clusters should be extremely unlikely to
 conflict.
 
-**[2] `k8s.namespace.phase`:** This attribute aligns with the `phase` field of the
+**[2] `k8s.hpa.scaletarget.apiversion`:** This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec.
+
+**[3] `k8s.hpa.scaletarget.kind`:** This maps to the `kind` field in the `scaleTargetRef` of the HPA spec.
+
+**[4] `k8s.hpa.scaletarget.name`:** This maps to the `name` field in the `scaleTargetRef` of the HPA spec.
+
+**[5] `k8s.namespace.phase`:** This attribute aligns with the `phase` field of the
 [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
 
-**[3] `k8s.node.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[6] `k8s.node.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[4] `k8s.node.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[7] `k8s.node.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 ---
 
