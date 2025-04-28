@@ -32,13 +32,13 @@ Below is a table of attributes that SHOULD be included on client and server gRPC
 **[1] `rpc.grpc.request.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
 Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` should be recorded as
+For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
 `rpc.grpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
 
 **[2] `rpc.grpc.response.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
 Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-For example, a property `my-custom-key` with value `["attribute_value"]` should be recorded as
+For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
 the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
 
 ---

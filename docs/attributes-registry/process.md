@@ -51,11 +51,11 @@ An operating system process.
 
 **[2] `process.environment_variable`:** Examples:
 
-- an environment variable `USER` with value `"ubuntu"` should be recorded
+- an environment variable `USER` with value `"ubuntu"` SHOULD be recorded
 as the `process.environment_variable.USER` attribute with value `"ubuntu"`.
 
 - an environment variable `PATH` with value `"/usr/local/bin:/usr/bin"`
-should be recorded as the `process.environment_variable.PATH` attribute
+SHOULD be recorded as the `process.environment_variable.PATH` attribute
 with value `"/usr/local/bin:/usr/bin"`.
 
 **[3] `process.title`:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.

@@ -89,16 +89,16 @@ conflict.
 
 **[1] `k8s.node.annotation`:** Examples:
 
-- An annotation `node.alpha.kubernetes.io/ttl` with value `0` should be recorded as
+- An annotation `node.alpha.kubernetes.io/ttl` with value `0` SHOULD be recorded as
   the `k8s.node.annotation.node.alpha.kubernetes.io/ttl` attribute with value `"0"`.
-- An annotation `data` with empty string value should be recorded as
+- An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.node.annotation.data` attribute with value `""`.
 
 **[2] `k8s.node.label`:** Examples:
 
-- A label `kubernetes.io/arch` with value `arm64` should be recorded
+- A label `kubernetes.io/arch` with value `arm64` SHOULD be recorded
   as the `k8s.node.label.kubernetes.io/arch` attribute with value `"arm64"`.
-- A label `data` with empty string value should be recorded as
+- A label `data` with empty string value SHOULD be recorded as
   the `k8s.node.label.data` attribute with value `""`.
 
 <!-- markdownlint-restore -->
@@ -162,20 +162,20 @@ containers on your cluster.
 
 **[1] `k8s.pod.annotation`:** Examples:
 
-- An annotation `kubernetes.io/enforce-mountable-secrets` with value `true` should be recorded as
-  the `k8s.pod.annotation.enforce-mountable-secrets` attribute with value `"true"`.
-- An annotation `mycompany.io/arch` with value `x64` should be recorded as
+- An annotation `kubernetes.io/enforce-mountable-secrets` with value `true` SHOULD be recorded as
+  the `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets` attribute with value `"true"`.
+- An annotation `mycompany.io/arch` with value `x64` SHOULD be recorded as
   the `k8s.pod.annotation.mycompany.io/arch` attribute with value `"x64"`.
-- An annotation `data` with empty string value should be recorded as
+- An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.pod.annotation.data` attribute with value `""`.
 
 **[2] `k8s.pod.label`:** Examples:
 
-- A label `app` with value `my-app` should be recorded as
+- A label `app` with value `my-app` SHOULD be recorded as
   the `k8s.pod.label.app` attribute with value `"my-app"`.
-- A label `mycompany.io/arch` with value `x64` should be recorded as
+- A label `mycompany.io/arch` with value `x64` SHOULD be recorded as
   the `k8s.pod.label.mycompany.io/arch` attribute with value `"x64"`.
-- A label `data` with empty string value should be recorded as
+- A label `data` with empty string value SHOULD be recorded as
   the `k8s.pod.label.data` attribute with value `""`.
 
 <!-- markdownlint-restore -->
@@ -381,12 +381,22 @@ A CronJob creates Jobs on a repeating schedule.
 |---|---|---|---|---|---|
 | [`k8s.cronjob.name`](/docs/attributes-registry/k8s.md) | string | The name of the CronJob. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.cronjob.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.cronjob.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the CronJob. [1] | `4`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.cronjob.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the CronJob. [2] | `weekly`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.cronjob.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value. [1] | `4`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.cronjob.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label placed on the CronJob, the `<key>` being the label name, the value being the label value. [2] | `weekly`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `k8s.cronjob.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[1] `k8s.cronjob.annotation`:** Examples:
 
-**[2] `k8s.cronjob.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+- An annotation `retries` with value `4` SHOULD be recorded as the
+  `k8s.cronjob.annotation.retries` attribute with value `"4"`.
+- An annotation `data` with empty string value SHOULD be recorded as
+  the `k8s.cronjob.annotation.data` attribute with value `""`.
+
+**[2] `k8s.cronjob.label`:** Examples:
+
+- A label `type` with value `weekly` SHOULD be recorded as the
+  `k8s.cronjob.label.type` attribute with value `"weekly"`.
+- A label `automated` with empty string value SHOULD be recorded as
+  the `k8s.cronjob.label.automated` attribute with value `""`.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

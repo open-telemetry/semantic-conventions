@@ -246,11 +246,11 @@ groups:
         note: |
           Examples:
 
-          - an environment variable `USER` with value `"ubuntu"` should be recorded
+          - an environment variable `USER` with value `"ubuntu"` SHOULD be recorded
           as the `process.environment_variable.USER` attribute with value `"ubuntu"`.
 
           - an environment variable `PATH` with value `"/usr/local/bin:/usr/bin"`
-          should be recorded as the `process.environment_variable.PATH` attribute
+          SHOULD be recorded as the `process.environment_variable.PATH` attribute
           with value `"/usr/local/bin:/usr/bin"`.
 
         type: template[string]

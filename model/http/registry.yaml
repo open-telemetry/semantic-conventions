@@ -30,10 +30,10 @@ groups:
 
           Examples:
 
-          - A header `Content-Type: application/json` should be recorded as the `http.request.header.content-type`
-              attribute with value `["application/json"]`.
-          - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` should be recorded as the `http.request.header.x-forwarded-for`
-              attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
+          - A header `Content-Type: application/json` SHOULD be recorded as the `http.request.header.content-type`
+            attribute with value `["application/json"]`.
+          - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
+            attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
         examples: ['["application/json"]', '["1.2.3.4", "1.2.3.5"]']  # TODO: make it array of arrays
       - id: http.request.method
@@ -144,9 +144,9 @@ groups:
 
           Examples:
 
-          - A header `Content-Type: application/json` header should be recorded as the `http.request.response.content-type`
+          - A header `Content-Type: application/json` header SHOULD be recorded as the `http.request.response.content-type`
             attribute with value `["application/json"]`.
-          - A header `My-custom-header: abc, def` header could be recorded as the `http.response.header.my-custom-header`
+          - A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
             attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
         examples: ['["application/json"]', '["abc", "def"]']  # TODO: make it array of arrays
       - id: http.response.size

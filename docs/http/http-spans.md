@@ -252,10 +252,10 @@ the HTTP library provides access to headers.
 
 Examples:
 
-- A header `Content-Type: application/json` should be recorded as the `http.request.header.content-type`
-    attribute with value `["application/json"]`.
-- A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` should be recorded as the `http.request.header.x-forwarded-for`
-    attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
+- A header `Content-Type: application/json` SHOULD be recorded as the `http.request.header.content-type`
+  attribute with value `["application/json"]`.
+- A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
+  attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
 **[12] `http.response.header`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -268,9 +268,9 @@ the HTTP library provides access to headers.
 
 Examples:
 
-- A header `Content-Type: application/json` header should be recorded as the `http.request.response.content-type`
+- A header `Content-Type: application/json` header SHOULD be recorded as the `http.request.response.content-type`
   attribute with value `["application/json"]`.
-- A header `My-custom-header: abc, def` header could be recorded as the `http.response.header.my-custom-header`
+- A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
   attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
 
 **[13] `network.transport`:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
@@ -543,10 +543,10 @@ the HTTP library provides access to headers.
 
 Examples:
 
-- A header `Content-Type: application/json` should be recorded as the `http.request.header.content-type`
-    attribute with value `["application/json"]`.
-- A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` should be recorded as the `http.request.header.x-forwarded-for`
-    attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
+- A header `Content-Type: application/json` SHOULD be recorded as the `http.request.header.content-type`
+  attribute with value `["application/json"]`.
+- A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
+  attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
 **[16] `http.response.header`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -559,9 +559,9 @@ the HTTP library provides access to headers.
 
 Examples:
 
-- A header `Content-Type: application/json` header should be recorded as the `http.request.response.content-type`
+- A header `Content-Type: application/json` header SHOULD be recorded as the `http.request.response.content-type`
   attribute with value `["application/json"]`.
-- A header `My-custom-header: abc, def` header could be recorded as the `http.response.header.my-custom-header`
+- A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
   attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
 
 **[17] `network.transport`:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.

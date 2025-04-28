@@ -37,10 +37,10 @@ the HTTP library provides access to headers.
 
 Examples:
 
-- A header `Content-Type: application/json` should be recorded as the `http.request.header.content-type`
-    attribute with value `["application/json"]`.
-- A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` should be recorded as the `http.request.header.x-forwarded-for`
-    attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
+- A header `Content-Type: application/json` SHOULD be recorded as the `http.request.header.content-type`
+  attribute with value `["application/json"]`.
+- A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
+  attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
 **[2] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -70,9 +70,9 @@ the HTTP library provides access to headers.
 
 Examples:
 
-- A header `Content-Type: application/json` header should be recorded as the `http.request.response.content-type`
+- A header `Content-Type: application/json` header SHOULD be recorded as the `http.request.response.content-type`
   attribute with value `["application/json"]`.
-- A header `My-custom-header: abc, def` header could be recorded as the `http.response.header.my-custom-header`
+- A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
   attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
 
 **[5] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.

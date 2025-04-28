@@ -66,7 +66,7 @@ groups:
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-          For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` should be recorded as
+          For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
           the `rpc.connect_rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
         examples: ['["1.2.3.4", "1.2.3.5"]']  # TODO: make it array of arrays
       - id: rpc.connect_rpc.response.metadata
@@ -78,7 +78,7 @@ groups:
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-          For example, a property `my-custom-key` with value `"attribute_value"` should be recorded as
+          For example, a property `my-custom-key` with value `"attribute_value"` SHOULD be recorded as
           the `rpc.connect_rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
         examples: ["attribute_value"]  # TODO: make it array of arrays
       - id: rpc.grpc.status_code
@@ -163,7 +163,7 @@ groups:
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-          For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` should be recorded as
+          For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
           `rpc.grpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
         examples: ['["1.2.3.4", "1.2.3.5"]']  # TODO: make it array of arrays
       - id: rpc.grpc.response.metadata
@@ -175,7 +175,7 @@ groups:
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-          For example, a property `my-custom-key` with value `["attribute_value"]` should be recorded as
+          For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
           the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
         examples: ['["attribute_value"]']  # TODO: make it array of arrays
       - id: rpc.jsonrpc.error_code
