@@ -543,9 +543,9 @@ groups:
       [`k8s.container`](../resource/k8s.md#container) resource.
     instrument: gauge
     unit: "By"
-  - id: metric.k8s.container.ephemeralstorage.limit
+  - id: metric.k8s.container.ephemeral_storage.limit
     type: metric
-    metric_name: k8s.container.ephemeralstorage.limit
+    metric_name: k8s.container.ephemeral_storage.limit
     stability: development
     brief: "Maximum ephemeral storage resource limit set for the container"
     note: |
@@ -555,9 +555,9 @@ groups:
       [`k8s.container`](../resource/k8s.md#container) resource.
     instrument: gauge
     unit: "By"
-  - id: metric.k8s.container.ephemeralstorage.request
+  - id: metric.k8s.container.ephemeral_storage.request
     type: metric
-    metric_name: k8s.container.ephemeralstorage.request
+    metric_name: k8s.container.ephemeral_storage.request
     stability: development
     brief: "Ephemeral storage resource requested for the container"
     note: |
