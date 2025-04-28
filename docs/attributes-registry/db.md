@@ -60,7 +60,10 @@ otherwise `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
 **[5] `db.operation.parameter`:** For example, a client-side maximum number of rows to read from the database
-could be recorded as the db.operation.parameter.max_rows attribute.
+could be recorded as the `db.operation.parameter.max_rows` attribute.
+
+`db.query.text` parameters SHOULD be captured using `db.query.parameter.<key>`
+instead of `db.operation.parameter.<key>`.
 
 **[6] `db.query.parameter`:** If a query parameter has no name and instead is referenced only by index,
 then `<key>` SHOULD be the 0-based index.

@@ -165,7 +165,7 @@ groups:
 
           For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` should be recorded as
           `rpc.grpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
-        examples: ["1.2.3.4", "1.2.3.5"]  # TODO: make it array of arrays
+        examples: ['["1.2.3.4", "1.2.3.5"]']  # TODO: make it array of arrays
       - id: rpc.grpc.response.metadata
         type: template[string[]]
         stability: development
@@ -177,7 +177,7 @@ groups:
 
           For example, a property `my-custom-key` with value `["attribute_value"]` should be recorded as
           the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
-        examples: ["attribute_value"]  # TODO: make it array of arrays
+        examples: ['["attribute_value"]']  # TODO: make it array of arrays
       - id: rpc.jsonrpc.error_code
         type: int
         stability: development

@@ -243,6 +243,16 @@ groups:
         brief: >
           Process environment variables, <key> being the environment variable
           name, the value being the environment variable value.
+        note: |
+          Examples:
+
+          - an environment variable `USER` with value `"ubuntu"` should be recorded
+          as the `process.environment_variable.USER` attribute with value `"ubuntu"`.
+
+          - an environment variable `PATH` with value `"/usr/local/bin:/usr/bin"`
+          should be recorded as the `process.environment_variable.PATH` attribute
+          with value `"/usr/local/bin:/usr/bin"`.
+
         type: template[string]
         stability: development
         examples: ['ubuntu', '/usr/local/bin:/usr/bin']

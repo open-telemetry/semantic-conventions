@@ -142,7 +142,10 @@ groups:
           and the attribute value being a string representation of the parameter value.
         note: |
           For example, a client-side maximum number of rows to read from the database
-          could be recorded as the db.operation.parameter.max_rows attribute.
+          could be recorded as the `db.operation.parameter.max_rows` attribute.
+
+          `db.query.text` parameters SHOULD be captured using `db.query.parameter.<key>`
+          instead of `db.operation.parameter.<key>`.
         examples: ["someval", "55"]
       - id: db.operation.batch.size
         type: int
