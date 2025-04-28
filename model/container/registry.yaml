@@ -98,6 +98,9 @@ groups:
         stability: development
         brief: >
           Container labels, `<key>` being the label name, the value being the label value.
+        note: >
+          For example, a docker container label `app` with value `nginx` should be recorded
+          as the `container.label.app` attribute with value `"nginx"`.
         examples: [ 'nginx' ]
       - id: container.csi.plugin.name
         type: string

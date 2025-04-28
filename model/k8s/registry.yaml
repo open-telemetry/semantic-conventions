@@ -57,13 +57,27 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The label key-value pairs placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty.
+          The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty.
+        note: |
+          Examples:
+
+          - A label `kubernetes.io/arch` with value `arm64` should be recorded
+            as the `k8s.node.label.kubernetes.io/arch` attribute with value `"arm64"`.
+          - A label `data` with empty string value should be recorded as
+            the `k8s.node.label.data` attribute with value `""`.
         examples: ['arm64', '']
       - id: k8s.node.annotation
         type: template[string]
         stability: development
         brief: >
-          The annotation key-value pairs placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+          The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        note: |
+          Examples:
+
+          - An annotation `node.alpha.kubernetes.io/ttl` with value `0` should be recorded as
+            the `k8s.node.annotation.node.alpha.kubernetes.io/ttl` attribute with value `"0"`.
+          - An annotation `data` with empty string value should be recorded as
+            the `k8s.node.annotation.data` attribute with value `""`.
         examples: [ '0', '' ]
       - id: k8s.namespace.name
         type: string
@@ -87,13 +101,31 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The label key-value pairs placed on the Pod, the `<key>` being the label name, the value being the label value.
+          The label placed on the Pod, the `<key>` being the label name, the value being the label value.
         examples: ['my-app', 'x64', '']
+        note: |
+          Examples:
+
+          - A label `app` with value `my-app` should be recorded as
+            the `k8s.pod.label.app` attribute with value `"my-app"`.
+          - A label `mycompany.io/arch` with value `x64` should be recorded as
+            the `k8s.pod.label.mycompany.io/arch` attribute with value `"x64"`.
+          - A label `data` with empty string value should be recorded as
+            the `k8s.pod.label.data` attribute with value `""`.
       - id: k8s.pod.annotation
         type: template[string]
         stability: development
         brief: >
-          The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value.
+          The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value.
+        note: |
+          Examples:
+
+          - An annotation `kubernetes.io/enforce-mountable-secrets` with value `true` should be recorded as
+            the `k8s.pod.annotation.enforce-mountable-secrets` attribute with value `"true"`.
+          - An annotation `mycompany.io/arch` with value `x64` should be recorded as
+            the `k8s.pod.annotation.mycompany.io/arch` attribute with value `"x64"`.
+          - An annotation `data` with empty string value should be recorded as
+            the `k8s.pod.annotation.data` attribute with value `""`.
         examples: [ 'true', 'x64', '' ]
       - id: k8s.container.name
         type: string

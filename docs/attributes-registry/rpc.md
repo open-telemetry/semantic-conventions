@@ -30,13 +30,29 @@ This document defines attributes for remote procedure calls.
 | <a id="rpc-service" href="#rpc-service">`rpc.service`</a> | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-system" href="#rpc-system">`rpc.system`</a> | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `rpc.connect_rpc.request.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+**[1] `rpc.connect_rpc.request.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-**[2] `rpc.connect_rpc.response.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` should be recorded as
+the `rpc.connect_rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
 
-**[3] `rpc.grpc.request.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+**[2] `rpc.connect_rpc.response.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-**[4] `rpc.grpc.response.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+For example, a property `my-custom-key` with value `"attribute_value"` should be recorded as
+the `rpc.connect_rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
+
+**[3] `rpc.grpc.request.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` should be recorded as
+`rpc.grpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
+
+**[4] `rpc.grpc.response.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+For example, a property `my-custom-key` with value `["attribute_value"]` should be recorded as
+the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
 
 **[5] `rpc.message.id`:** This way we guarantee that the values will be consistent between different implementations.
 

@@ -240,13 +240,38 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[10] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[11] `http.request.header`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured. Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
-The `User-Agent` header is already captured in the `user_agent.original` attribute. Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
-The attribute value MUST consist of either multiple header values as an array of strings or a single-item array containing a possibly comma-concatenated string, depending on the way the HTTP library provides access to headers.
+**[11] `http.request.header`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-**[12] `http.response.header`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured. Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+The `User-Agent` header is already captured in the `user_agent.original` attribute.
 Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
-The attribute value MUST consist of either multiple header values as an array of strings or a single-item array containing a possibly comma-concatenated string, depending on the way the HTTP library provides access to headers.
+
+The attribute value MUST consist of either multiple header values as an array of strings
+or a single-item array containing a possibly comma-concatenated string, depending on the way
+the HTTP library provides access to headers.
+
+Examples:
+
+- A header `Content-Type: application/json` should be recorded as the `http.request.header.content-type`
+    attribute with value `["application/json"]`.
+- A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` should be recorded as the `http.request.header.x-forwarded-for`
+    attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
+
+**[12] `http.response.header`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
+
+The attribute value MUST consist of either multiple header values as an array of strings
+or a single-item array containing a possibly comma-concatenated string, depending on the way
+the HTTP library provides access to headers.
+
+Examples:
+
+- A header `Content-Type: application/json` header should be recorded as the `http.request.response.content-type`
+  attribute with value `["application/json"]`.
+- A header `My-custom-header: abc, def` header could be recorded as the `http.response.header.my-custom-header`
+  attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
 
 **[13] `network.transport`:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
 
@@ -506,13 +531,38 @@ When a query string value is redacted, the query string key SHOULD still be pres
 
 **[14] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
 
-**[15] `http.request.header`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured. Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
-The `User-Agent` header is already captured in the `user_agent.original` attribute. Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
-The attribute value MUST consist of either multiple header values as an array of strings or a single-item array containing a possibly comma-concatenated string, depending on the way the HTTP library provides access to headers.
+**[15] `http.request.header`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-**[16] `http.response.header`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured. Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+The `User-Agent` header is already captured in the `user_agent.original` attribute.
 Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
-The attribute value MUST consist of either multiple header values as an array of strings or a single-item array containing a possibly comma-concatenated string, depending on the way the HTTP library provides access to headers.
+
+The attribute value MUST consist of either multiple header values as an array of strings
+or a single-item array containing a possibly comma-concatenated string, depending on the way
+the HTTP library provides access to headers.
+
+Examples:
+
+- A header `Content-Type: application/json` should be recorded as the `http.request.header.content-type`
+    attribute with value `["application/json"]`.
+- A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` should be recorded as the `http.request.header.x-forwarded-for`
+    attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
+
+**[16] `http.response.header`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
+
+The attribute value MUST consist of either multiple header values as an array of strings
+or a single-item array containing a possibly comma-concatenated string, depending on the way
+the HTTP library provides access to headers.
+
+Examples:
+
+- A header `Content-Type: application/json` header should be recorded as the `http.request.response.content-type`
+  attribute with value `["application/json"]`.
+- A header `My-custom-header: abc, def` header could be recorded as the `http.response.header.my-custom-header`
+  attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
 
 **[17] `network.transport`:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
 
