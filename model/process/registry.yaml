@@ -92,6 +92,7 @@ groups:
           the full command. On Windows, can be set to the result of `GetCommandLineW`.
           Do not set this if you have to assemble it just for monitoring; use
           `process.command_args` instead.
+          SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data.
         examples: ['C:\cmd\otecol --config="my directory\config.yaml"']
       - id: process.command_args
         type: string[]
@@ -102,6 +103,7 @@ groups:
           systems supporting procfs), can be set according to the list of
           null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based
           executables, this would be the full argv vector passed to `main`.
+          SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data.
         examples:
           - ['cmd/otecol', '--config=config.yaml']
       - id: process.args_count
