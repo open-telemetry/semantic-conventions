@@ -478,6 +478,9 @@ groups:
     brief: "Maximum CPU resource limit set for the container"
     note: |
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.container`](../resource/k8s.md#container) resource.
     instrument: gauge
     unit: "{cpu}"
   - id: metric.k8s.container.cpu.request
@@ -487,6 +490,9 @@ groups:
     brief: "CPU resource requested for the container"
     note: |
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.container`](../resource/k8s.md#container) resource.
     instrument: gauge
     unit: "{cpu}"
   - id: metric.k8s.container.memory.limit
@@ -496,6 +502,9 @@ groups:
     brief: "Maximum memory resource limit set for the container"
     note: |
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.container`](../resource/k8s.md#container) resource.
     instrument: gauge
     unit: "By"
   - id: metric.k8s.container.memory.request
@@ -505,6 +514,9 @@ groups:
     brief: "Memory resource requested for the container"
     note: |
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.container`](../resource/k8s.md#container) resource.
     instrument: gauge
     unit: "By"
   - id: metric.k8s.container.storage.limit
@@ -514,6 +526,9 @@ groups:
     brief: "Maximum storage resource limit set for the container"
     note: |
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.container`](../resource/k8s.md#container) resource.
     instrument: gauge
     unit: "By"
   - id: metric.k8s.container.storage.request
@@ -523,6 +538,9 @@ groups:
     brief: "Storage resource requested for the container"
     note: |
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.container`](../resource/k8s.md#container) resource.
     instrument: gauge
     unit: "By"
   - id: metric.k8s.container.ephemeralstorage.limit
@@ -532,6 +550,9 @@ groups:
     brief: "Maximum ephemeral storage resource limit set for the container"
     note: |
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.container`](../resource/k8s.md#container) resource.
     instrument: gauge
     unit: "By"
   - id: metric.k8s.container.ephemeralstorage.request
@@ -541,5 +562,8 @@ groups:
     brief: "Ephemeral storage resource requested for the container"
     note: |
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.container`](../resource/k8s.md#container) resource.
     instrument: gauge
     unit: "By"
