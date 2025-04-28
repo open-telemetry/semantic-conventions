@@ -73,9 +73,9 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.operation.duration` | Histogram | `s` | Duration of database client operations. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.operation.duration` | Histogram | `s` | Duration of database client operations. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |  |
 
 **[1]:** Batch operations SHOULD be recorded as a single operation.
 
@@ -101,7 +101,8 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 without attempting to do any case normalization.
 
 The collection name SHOULD NOT be extracted from `db.query.text`,
-when the database system supports cross-table queries in non-batch operations.
+when the database system supports query text with multiple collections
+in non-batch operations.
 
 For batch operations, if the individual operations are known to have the same
 collection name then that collection name SHOULD be used.
@@ -116,7 +117,8 @@ It is RECOMMENDED to capture the value as provided by the application without at
 without attempting to do any case normalization.
 
 The operation name SHOULD NOT be extracted from `db.query.text`,
-when the database system supports cross-table queries in non-batch operations.
+when the database system supports query text with multiple operations
+in non-batch operations.
 
 If spaces can occur in the operation name, multiple consecutive spaces
 SHOULD be normalized to a single space.
@@ -161,7 +163,7 @@ If a database operation involved multiple network calls (for example retries), t
 
 **[18] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
-Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
+Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 ---
 
@@ -254,9 +256,9 @@ Explaining bucket configuration:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.response.returned_rows` | Histogram | `{row}` | The actual number of records returned by the database operation. | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.response.returned_rows` | Histogram | `{row}` | The actual number of records returned by the database operation. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -279,7 +281,8 @@ Explaining bucket configuration:
 without attempting to do any case normalization.
 
 The collection name SHOULD NOT be extracted from `db.query.text`,
-when the database system supports cross-table queries in non-batch operations.
+when the database system supports query text with multiple collections
+in non-batch operations.
 
 For batch operations, if the individual operations are known to have the same
 collection name then that collection name SHOULD be used.
@@ -294,7 +297,8 @@ It is RECOMMENDED to capture the value as provided by the application without at
 without attempting to do any case normalization.
 
 The operation name SHOULD NOT be extracted from `db.query.text`,
-when the database system supports cross-table queries in non-batch operations.
+when the database system supports query text with multiple operations
+in non-batch operations.
 
 If spaces can occur in the operation name, multiple consecutive spaces
 SHOULD be normalized to a single space.
@@ -331,7 +335,7 @@ If a database operation involved multiple network calls (for example retries), t
 
 **[16] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
-Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
+Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 ---
 
@@ -409,9 +413,9 @@ This metric is [required][MetricRequired].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.count` | UpDownCounter | `{connection}` | The number of connections that are currently in state described by the `state` attribute | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.count` | UpDownCounter | `{connection}` | The number of connections that are currently in state described by the `state` attribute | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -443,9 +447,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.idle.max` | UpDownCounter | `{connection}` | The maximum number of idle open connections allowed | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.idle.max` | UpDownCounter | `{connection}` | The maximum number of idle open connections allowed | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -467,9 +471,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.idle.min` | UpDownCounter | `{connection}` | The minimum number of idle open connections allowed | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.idle.min` | UpDownCounter | `{connection}` | The minimum number of idle open connections allowed | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -491,9 +495,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.max` | UpDownCounter | `{connection}` | The maximum number of open connections allowed | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.max` | UpDownCounter | `{connection}` | The maximum number of open connections allowed | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -515,9 +519,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.pending_requests` | UpDownCounter | `{request}` | The number of current pending requests for an open connection | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.pending_requests` | UpDownCounter | `{request}` | The number of current pending requests for an open connection | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -539,9 +543,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.timeouts` | Counter | `{timeout}` | The number of connection timeouts that have occurred trying to obtain a connection from the pool | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.timeouts` | Counter | `{timeout}` | The number of connection timeouts that have occurred trying to obtain a connection from the pool | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -563,9 +567,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.create_time` | Histogram | `s` | The time it took to create a new connection | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.create_time` | Histogram | `s` | The time it took to create a new connection | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -587,9 +591,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.wait_time` | Histogram | `s` | The time it took to obtain an open connection from the pool | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.wait_time` | Histogram | `s` | The time it took to obtain an open connection from the pool | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -611,9 +615,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.use_time` | Histogram | `s` | The time between borrowing a connection and returning it to the pool | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.use_time` | Histogram | `s` | The time between borrowing a connection and returning it to the pool | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

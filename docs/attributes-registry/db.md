@@ -32,7 +32,8 @@ This group defines the attributes used to describe telemetry in the context of d
 without attempting to do any case normalization.
 
 The collection name SHOULD NOT be extracted from `db.query.text`,
-when the database system supports cross-table queries in non-batch operations.
+when the database system supports query text with multiple collections
+in non-batch operations.
 
 For batch operations, if the individual operations are known to have the same
 collection name then that collection name SHOULD be used.
@@ -47,7 +48,8 @@ It is RECOMMENDED to capture the value as provided by the application without at
 without attempting to do any case normalization.
 
 The operation name SHOULD NOT be extracted from `db.query.text`,
-when the database system supports cross-table queries in non-batch operations.
+when the database system supports query text with multiple operations
+in non-batch operations.
 
 If spaces can occur in the operation name, multiple consecutive spaces
 SHOULD be normalized to a single space.
@@ -81,7 +83,7 @@ Summary may be available to the instrumentation through instrumentation hooks or
 
 **[8] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
-Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
+Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 **[9] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
