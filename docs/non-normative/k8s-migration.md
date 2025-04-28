@@ -295,15 +295,15 @@ The changes in their metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                    |
-|------------------------------------------------------------------------------------|----------------------------------------|
-| `k8s.container.cpu_limit`                                                          | `k8s.container.cpu.limit`              |
-| `k8s.container.cpu_request`                                                        | `k8s.container.cpu.request`            |
-| `k8s.container.memory_limit`                                                       | `k8s.container.memory.limit`           |
-| `k8s.container.memory_request`                                                     | `k8s.container.memory.request`           |
-| `k8s.container.storage_limit`                                                      | `k8s.container.storage.limit`          |
-| `k8s.container.storage_request`                                                    | `k8s.container.storage.request`          |
-| `k8s.container.ephemeralstorage_limit`                                                       | `k8s.container.ephemeralstorage.limit` |
-| `k8s.container.ephemeralstorage_request`                                                     | `k8s.container.ephemeralstorage.request` |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                       |
+|------------------------------------------------------------------------------------|-------------------------------------------|
+| `k8s.container.cpu_limit`                                                          | `k8s.container.cpu.limit`                 |
+| `k8s.container.cpu_request`                                                        | `k8s.container.cpu.request`               |
+| `k8s.container.memory_limit`                                                       | `k8s.container.memory.limit`              |
+| `k8s.container.memory_request`                                                     | `k8s.container.memory.request`            |
+| `k8s.container.storage_limit`                                                      | `k8s.container.storage.limit`             |
+| `k8s.container.storage_request`                                                    | `k8s.container.storage.request`           |
+| `k8s.container.ephemeralstorage_limit`                                                       | `k8s.container.ephemeral_storage.limit`   |
+| `k8s.container.ephemeralstorage_request`                                                     | `k8s.container.ephemeral_storage.request` |
 
 <!-- prettier-ignore-end -->
