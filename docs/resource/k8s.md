@@ -87,14 +87,14 @@ conflict.
 | [`k8s.node.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [1] | `0`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.node.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty. [2] | `arm64`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `k8s.node.annotation`:** Examples:
+**[1] `k8s.node.annotation.<key>`:** Examples:
 
 - An annotation `node.alpha.kubernetes.io/ttl` with value `0` SHOULD be recorded as
   the `k8s.node.annotation.node.alpha.kubernetes.io/ttl` attribute with value `"0"`.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.node.annotation.data` attribute with value `""`.
 
-**[2] `k8s.node.label`:** Examples:
+**[2] `k8s.node.label.<key>`:** Examples:
 
 - A label `kubernetes.io/arch` with value `arm64` SHOULD be recorded
   as the `k8s.node.label.kubernetes.io/arch` attribute with value `"arm64"`.
@@ -131,9 +131,9 @@ a namespace, but not across namespaces.
 | [`k8s.namespace.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Namespace. [1] | `k8s.namespace.annotation.ttl=0`; `k8s.namespace.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.namespace.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the Namespace. [2] | `k8s.namespace.label.kubernetes.io/metadata.name=default`; `k8s.namespace.label.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `k8s.namespace.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[1] `k8s.namespace.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[2] `k8s.namespace.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[2] `k8s.namespace.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -166,7 +166,7 @@ containers on your cluster.
 | [`k8s.pod.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. [1] | `true`; `x64`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.pod.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label placed on the Pod, the `<key>` being the label name, the value being the label value. [2] | `my-app`; `x64`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `k8s.pod.annotation`:** Examples:
+**[1] `k8s.pod.annotation.<key>`:** Examples:
 
 - An annotation `kubernetes.io/enforce-mountable-secrets` with value `true` SHOULD be recorded as
   the `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets` attribute with value `"true"`.
@@ -175,7 +175,7 @@ containers on your cluster.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.pod.annotation.data` attribute with value `""`.
 
-**[2] `k8s.pod.label`:** Examples:
+**[2] `k8s.pod.label.<key>`:** Examples:
 
 - A label `app` with value `my-app` SHOULD be recorded as
   the `k8s.pod.label.app` attribute with value `"my-app"`.
@@ -246,9 +246,9 @@ to a running container.
 | [`k8s.replicaset.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the ReplicaSet. [1] | `k8s.replicaset.annotation.replicas=0`; `k8s.replicaset.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.replicaset.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the ReplicaSet. [2] | `k8s.replicaset.label.app=guestbook`; `k8s.replicaset.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `k8s.replicaset.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[1] `k8s.replicaset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[2] `k8s.replicaset.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[2] `k8s.replicaset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -282,9 +282,9 @@ distributed among the nodes of a cluster.
 | [`k8s.deployment.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Deployment. [1] | `k8s.deployment.annotation.replicas=1`; `k8s.deployment.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.deployment.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the Deployment. [2] | `k8s.deployment.label.app=guestbook`; `k8s.deployment.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `k8s.deployment.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[1] `k8s.deployment.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[2] `k8s.deployment.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[2] `k8s.deployment.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -317,9 +317,9 @@ about the ordering and uniqueness of these Pods.
 | [`k8s.statefulset.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the StatefulSet. [1] | `k8s.statefulset.annotation.replicas=1`; `k8s.statefulset.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.statefulset.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the StatefulSet. [2] | `k8s.statefulset.label.app=guestbook`; `k8s.statefulset.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `k8s.statefulset.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[1] `k8s.statefulset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[2] `k8s.statefulset.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[2] `k8s.statefulset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -351,9 +351,9 @@ A DaemonSet ensures that all (or some) Nodes run a copy of a Pod.
 | [`k8s.daemonset.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the DaemonSet. [1] | `k8s.daemonset.annotation.replicas=1`; `k8s.daemonset.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.daemonset.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the DaemonSet. [2] | `k8s.daemonset.label.app=guestbook`; `k8s.daemonset.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `k8s.daemonset.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[1] `k8s.daemonset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[2] `k8s.daemonset.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[2] `k8s.daemonset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -386,9 +386,9 @@ successfully terminate.
 | [`k8s.job.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Job. [1] | `k8s.job.annotation.number=1`; `k8s.job.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.job.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the Job. [2] | `k8s.job.label.jobtype=ci`; `k8s.job.label.automated=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `k8s.job.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[1] `k8s.job.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[2] `k8s.job.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[2] `k8s.job.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -420,14 +420,14 @@ A CronJob creates Jobs on a repeating schedule.
 | [`k8s.cronjob.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value. [1] | `4`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.cronjob.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label placed on the CronJob, the `<key>` being the label name, the value being the label value. [2] | `weekly`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `k8s.cronjob.annotation`:** Examples:
+**[1] `k8s.cronjob.annotation.<key>`:** Examples:
 
 - An annotation `retries` with value `4` SHOULD be recorded as the
   `k8s.cronjob.annotation.retries` attribute with value `"4"`.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.cronjob.annotation.data` attribute with value `""`.
 
-**[2] `k8s.cronjob.label`:** Examples:
+**[2] `k8s.cronjob.label.<key>`:** Examples:
 
 - A label `type` with value `weekly` SHOULD be recorded as the
   `k8s.cronjob.label.type` attribute with value `"weekly"`.

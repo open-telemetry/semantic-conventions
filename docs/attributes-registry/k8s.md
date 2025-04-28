@@ -85,54 +85,54 @@ Which states:
 Therefore, UIDs between clusters should be extremely unlikely to
 conflict.
 
-**[2] `k8s.cronjob.annotation`:** Examples:
+**[2] `k8s.cronjob.annotation.<key>`:** Examples:
 
 - An annotation `retries` with value `4` SHOULD be recorded as the
   `k8s.cronjob.annotation.retries` attribute with value `"4"`.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.cronjob.annotation.data` attribute with value `""`.
 
-**[3] `k8s.cronjob.label`:** Examples:
+**[3] `k8s.cronjob.label.<key>`:** Examples:
 
 - A label `type` with value `weekly` SHOULD be recorded as the
   `k8s.cronjob.label.type` attribute with value `"weekly"`.
 - A label `automated` with empty string value SHOULD be recorded as
   the `k8s.cronjob.label.automated` attribute with value `""`.
 
-**[4] `k8s.daemonset.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[4] `k8s.daemonset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[5] `k8s.daemonset.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[5] `k8s.daemonset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
-**[6] `k8s.deployment.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[6] `k8s.deployment.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[7] `k8s.deployment.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[7] `k8s.deployment.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
-**[8] `k8s.job.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[8] `k8s.job.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[9] `k8s.job.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[9] `k8s.job.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
-**[10] `k8s.namespace.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[10] `k8s.namespace.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[11] `k8s.namespace.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[11] `k8s.namespace.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 **[12] `k8s.namespace.phase`:** This attribute aligns with the `phase` field of the
 [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
 
-**[13] `k8s.node.annotation`:** Examples:
+**[13] `k8s.node.annotation.<key>`:** Examples:
 
 - An annotation `node.alpha.kubernetes.io/ttl` with value `0` SHOULD be recorded as
   the `k8s.node.annotation.node.alpha.kubernetes.io/ttl` attribute with value `"0"`.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.node.annotation.data` attribute with value `""`.
 
-**[14] `k8s.node.label`:** Examples:
+**[14] `k8s.node.label.<key>`:** Examples:
 
 - A label `kubernetes.io/arch` with value `arm64` SHOULD be recorded
   as the `k8s.node.label.kubernetes.io/arch` attribute with value `"arm64"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.node.label.data` attribute with value `""`.
 
-**[15] `k8s.pod.annotation`:** Examples:
+**[15] `k8s.pod.annotation.<key>`:** Examples:
 
 - An annotation `kubernetes.io/enforce-mountable-secrets` with value `true` SHOULD be recorded as
   the `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets` attribute with value `"true"`.
@@ -141,7 +141,7 @@ conflict.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.pod.annotation.data` attribute with value `""`.
 
-**[16] `k8s.pod.label`:** Examples:
+**[16] `k8s.pod.label.<key>`:** Examples:
 
 - A label `app` with value `my-app` SHOULD be recorded as
   the `k8s.pod.label.app` attribute with value `"my-app"`.
@@ -150,13 +150,13 @@ conflict.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.pod.label.data` attribute with value `""`.
 
-**[17] `k8s.replicaset.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[17] `k8s.replicaset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[18] `k8s.replicaset.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[18] `k8s.replicaset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
-**[19] `k8s.statefulset.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[19] `k8s.statefulset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[20] `k8s.statefulset.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[20] `k8s.statefulset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 ---
 

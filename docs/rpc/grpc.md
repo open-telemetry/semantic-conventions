@@ -29,13 +29,13 @@ Below is a table of attributes that SHOULD be included on client and server gRPC
 | [`rpc.grpc.request.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [1] | `["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.grpc.response.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [2] | `["attribute_value"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `rpc.grpc.request.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+**[1] `rpc.grpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
 Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
 `rpc.grpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
 
-**[2] `rpc.grpc.response.metadata`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+**[2] `rpc.grpc.response.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
 Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as

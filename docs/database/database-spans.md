@@ -192,7 +192,7 @@ If a database operation involved multiple network calls (for example retries), t
 
 **[18] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[19] `db.query.parameter`:** If a query parameter has no name and instead is referenced only by index,
+**[19] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
 then `<key>` SHOULD be the 0-based index.
 
 `db.query.parameter.<key>` SHOULD match

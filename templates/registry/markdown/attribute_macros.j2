@@ -13,12 +13,12 @@
 {%- elif attribute.type == "template[string[]]" %}string[]
 {%- else %}{{ attribute.type | trim }}{%- endif %}{% endmacro %}
 
-{% macro name(attribute) %}{%- if attribute.type is startingwith("template[") %}`{{ attribute.name }}.<key>`
-{%- else %}`{{ attribute.name }}`{%- endif %}{% endmacro %}
+{% macro name(attribute) %}{%- if attribute.type is startingwith("template[") %}{{ attribute.name }}.<key>
+{%- else %}{{ attribute.name }}{%- endif %}{% endmacro %}
 
 {% macro find_lineage(attr_id, lineage) %}{% if attr_id in lineage %}{{lineage[attr_id].source_group}}{% endif %}{% endmacro %}
 
-{% macro name_with_link(attribute, attribute_registry_base_url, lineage_attributes) %}[{{name(attribute)}}]({{attribute_registry_base_url}}/{{ find_lineage(attribute.name, lineage_attributes) | split_id | list | reject("eq", "registry")| first | kebab_case }}.md){% endmacro %}
+{% macro name_with_link(attribute, attribute_registry_base_url, lineage_attributes) %}[`{{name(attribute)}}`]({{attribute_registry_base_url}}/{{ find_lineage(attribute.name, lineage_attributes) | split_id | list | reject("eq", "registry")| first | kebab_case }}.md){% endmacro %}
 
 {% macro display_name(group) %}
 {%- if 'display_name' in group %}{{ group.display_name }}
