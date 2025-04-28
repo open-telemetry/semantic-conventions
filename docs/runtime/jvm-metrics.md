@@ -616,9 +616,9 @@ This metric is obtained from [`UnixOperatingSystemMXBean#getOpenFileDescriptorCo
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.file_descriptor.count` | UpDownCounter | `{file_descriptor}` | Number of open file descriptors as reported by the JVM. | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.file_descriptor.count` | UpDownCounter | `{file_descriptor}` | Number of open file descriptors as reported by the JVM. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
