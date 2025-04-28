@@ -229,6 +229,22 @@ groups:
         brief: >
           The name of the CronJob.
         examples: ['opentelemetry']
+      - id: k8s.cronjob.label
+        type: template[string]
+        stability: development
+        brief: >
+          The label key-value pairs placed on the CronJob.
+        note: |
+          The `<key>` being the label name, the value being the label value, even if the value is empty.
+        examples: ['weekly', '']
+      - id: k8s.cronjob.annotation
+        type: template[string]
+        stability: development
+        brief: >
+          The annotation key-value pairs placed on the CronJob.
+        note: |
+          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        examples: [ '4', '' ]
       - id: k8s.volume.name
         type: string
         stability: development
