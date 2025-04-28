@@ -40,8 +40,8 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 >   in HTTP instrumentations). Conventions include, but are not limited to, attributes,
 >   metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version which is a comma-separated list of values.
->   The only values defined so far are:
+>   in the existing major version as a comma-separated list of category-specific values
+>   (e.g., http, databases, messaging). The list of values includes:
 >   * `http` - emit the new, stable HTTP and networking conventions,
 >     and stop emitting the old experimental HTTP and networking conventions
 >     that the instrumentation emitted previously.

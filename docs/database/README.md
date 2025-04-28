@@ -20,8 +20,8 @@ database metrics and logs.
 >   Conventions include, but are not limited to, attributes,
 >   metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version which is a comma-separated list of values.
->   The list of values includes:
+>   in the existing major version as a comma-separated list of category-specific values
+>   (e.g., http, databases, messaging). The list of values includes:
 >   * `database` - emit the new, stable database conventions,
 >     and stop emitting the old experimental database conventions
 >     that the instrumentation emitted previously.
@@ -49,7 +49,7 @@ Technology specific semantic conventions are defined for the following databases
 * [Elasticsearch](elasticsearch.md): Semantic Conventions for *Elasticsearch*.
 * [HBase](hbase.md): Semantic Conventions for *HBase*.
 * [MongoDB](mongodb.md): Semantic Conventions for *MongoDB*.
-* [Microsoft SQL Server](mssql.md): Semantic Conventions for *Microsoft SQL Server*.
+* [Microsoft SQL Server](sql-server.md): Semantic Conventions for *Microsoft SQL Server*.
 * [Oracle Database](oracledb.md): Semantic Conventions for *Oracle Database*.
 * [Redis](redis.md): Semantic Conventions for *Redis*.
 * [SQL](sql.md): Semantic Conventions for *SQL* databases.

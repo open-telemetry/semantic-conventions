@@ -64,12 +64,12 @@ Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic co
 | [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [14] | `someval`; `55` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1] `db.namespace`:** If a database system has multiple namespace components (e.g. schema name and database name), they SHOULD be concatenated
-(potentially using database system specific conventions) from most general to most
-specific namespace component, and more specific namespaces SHOULD NOT be captured without
-the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+from the most general to the most specific namespace component,
+using `|` as a separator between the components.
+Any missing components (and their associated separators) SHOULD be omitted.
 
-Unless specified by the system-specific semantic convention, the `db.namespace` attribute matches
-the name of the database being accessed.
+Semantic conventions for individual database systems SHOULD document what `db.namespace`
+means in the context of that system.
 
 A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
 
@@ -134,7 +134,7 @@ Summary may be available to the instrumentation through instrumentation hooks or
 
 **[9] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
-Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
+Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 **[10] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](/docs/attributes-registry/db.md)).

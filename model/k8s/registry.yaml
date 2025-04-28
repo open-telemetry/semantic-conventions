@@ -53,6 +53,22 @@ groups:
         brief: >
           The UID of the Node.
         examples: ['1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2']
+      - id: k8s.node.label
+        type: template[string]
+        stability: development
+        brief: >
+          The label key-value pairs placed on the Node.
+        note: |
+          The `<key>` being the label name, the value being the label value, even if the value is empty.
+        examples: ['k8s.node.label.kubernetes.io/arch=arm64', 'k8s.node.label.data=']
+      - id: k8s.node.annotation
+        type: template[string]
+        stability: development
+        brief: >
+          The annotation key-value pairs placed on the Node.
+        note: |
+          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        examples: [ 'k8s.node.annotation.node.alpha.kubernetes.io/ttl=0', 'k8s.node.annotation.data=' ]
       - id: k8s.namespace.name
         type: string
         stability: development
@@ -213,6 +229,22 @@ groups:
         brief: >
           The name of the CronJob.
         examples: ['opentelemetry']
+      - id: k8s.cronjob.label
+        type: template[string]
+        stability: development
+        brief: >
+          The label key-value pairs placed on the CronJob.
+        note: |
+          The `<key>` being the label name, the value being the label value, even if the value is empty.
+        examples: ['weekly', '']
+      - id: k8s.cronjob.annotation
+        type: template[string]
+        stability: development
+        brief: >
+          The annotation key-value pairs placed on the CronJob.
+        note: |
+          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        examples: [ '4', '' ]
       - id: k8s.volume.name
         type: string
         stability: development

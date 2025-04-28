@@ -9,6 +9,7 @@ on:
     types: [opened, ready_for_review, edited, synchronize, reopened, labeled, unlabeled]
     branches:
       - main
+  merge_group:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref }}
@@ -19,12 +20,11 @@ jobs:
     runs-on: ubuntu-latest
     if: >-
       ${{
+        github.event_name == 'pull_request' &&
         !contains(github.event.pull_request.labels.*.name, 'dependencies') &&
         !contains(github.event.pull_request.labels.*.name, 'Skip Changelog') &&
         !contains(github.event.pull_request.title, '[chore]')
       }}
-    env:
-      PR_HEAD: ${{ github.event.pull_request.head.sha }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -36,7 +36,7 @@ jobs:
           go-version: ~1.24.0
       - name: Cache Go
         id: go-cache
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
         with:
           path: |
             ~/go/bin
@@ -45,7 +45,7 @@ jobs:
 
       - name: Ensure no changes to the CHANGELOG.md
         run: |
-          if [[ $(git diff --name-only $(git merge-base origin/main $PR_HEAD) $PR_HEAD ./CHANGELOG*.md) ]]
+          if [[ $(git diff --name-only origin/main HEAD ./CHANGELOG*.md) ]]
           then
           echo "CHANGELOG.md should not be directly modified."
             echo "Please add a .yaml file to the ./.chloggen/ directory."
@@ -58,7 +58,7 @@ jobs:
 
       - name: Ensure ./.chloggen/*.yaml addition(s)
         run: |
-          if [[ 1 -gt $(git diff --diff-filter=A --name-only $(git merge-base origin/main $PR_HEAD) $PR_HEAD ./.chloggen | grep -c \\.yaml) ]]
+          if [[ 1 -gt $(git diff --diff-filter=A --name-only origin/main HEAD ./.chloggen | grep -c \\.yaml) ]]
           then
             echo "No changelog entry was added to the ./.chloggen/ directory."
             echo "Please add a .yaml file to the ./.chloggen/ directory."
