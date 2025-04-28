@@ -374,7 +374,8 @@ Explaining bucket configuration:
 without attempting to do any case normalization.
 
 The operation name SHOULD NOT be extracted from `db.query.text`,
-when the database system supports cross-table queries in non-batch operations.
+when the database system supports query text with multiple operations
+in non-batch operations.
 
 If spaces can occur in the operation name, multiple consecutive spaces
 SHOULD be normalized to a single space.

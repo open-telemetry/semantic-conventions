@@ -32,7 +32,8 @@ This group defines the attributes used to describe telemetry in the context of d
 without attempting to do any case normalization.
 
 The collection name SHOULD NOT be extracted from `db.query.text`,
-when the database system supports cross-table queries in non-batch operations.
+when the database system supports query text with multiple collections
+in non-batch operations.
 
 For batch operations, if the individual operations are known to have the same
 collection name then that collection name SHOULD be used.
@@ -47,7 +48,8 @@ It is RECOMMENDED to capture the value as provided by the application without at
 without attempting to do any case normalization.
 
 The operation name SHOULD NOT be extracted from `db.query.text`,
-when the database system supports cross-table queries in non-batch operations.
+when the database system supports query text with multiple operations
+in non-batch operations.
 
 If spaces can occur in the operation name, multiple consecutive spaces
 SHOULD be normalized to a single space.
