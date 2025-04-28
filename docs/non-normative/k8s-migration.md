@@ -58,6 +58,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s ResourceQuota resource](#k8s-resourcequota-resource)
   - [K8s ReplicationController resource](#k8s-replicationcontroller-resource)
   - [K8s Container metrics](#k8s-container-metrics)
+  - [K8s Container metrics](#k8s-container-metrics-1)
 
 <!-- tocstop -->
 
@@ -305,5 +306,23 @@ The changes in their metrics are the following:
 | `k8s.container.storage_request`                                                    | `k8s.container.storage.request`           |
 | `k8s.container.ephemeralstorage_limit`                                                       | `k8s.container.ephemeral_storage.limit`   |
 | `k8s.container.ephemeralstorage_request`                                                     | `k8s.container.ephemeral_storage.request` |
+
+<!-- prettier-ignore-end -->
+
+### K8s Container metrics
+
+The K8s Container metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#2074](https://github.com/open-telemetry/semantic-conventions/issues/2074) (TODO: replace with SemConv version once
+available).
+
+The changes in their metric types are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                    |
+|------------------------------------------------------------------------------------|----------------------------------------|
+| `k8s.container.restarts`                  (type: `gauge`)                          | `k8s.container.restarts` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->

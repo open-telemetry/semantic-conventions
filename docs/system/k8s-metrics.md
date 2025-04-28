@@ -1102,6 +1102,7 @@ This metric is [recommended][MetricRecommended].
 
 **Description:** K8s Container level metrics captured under the namespace `k8s.container`.
 
+<<<<<<< HEAD
 ### Metric: `k8s.container.cpu.limit`
 
 This metric is [recommended][MetricRecommended].
