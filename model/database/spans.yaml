@@ -454,16 +454,16 @@ groups:
         sampling_relevant: true
         brief: >
           The full syntax of the Redis CLI command.
-        examples: ["HMSET myhash field1 'Hello' field2 'World'"]
-        requirement_level:
-          recommended: >
-            Query text SHOULD NOT be collected by default unless there is sanitization that excludes
-            sensitive data, e.g. by redacting all literal values present in the query text.
-
-            See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+        examples: ["HMSET myhash field1 ? field2 ?"]
+        requirement_level: recommended
         note: >
-          For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI.
-          If, for example, the [`HMSET` command](https://redis.io/docs/latest/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
+          Query text SHOULD NOT be collected by default unless there is sanitization that excludes
+          sensitive data, e.g. by redacting all literal values present in the query text.
+
+          See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+
+          The value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI.
+          If, for example, the [`HMSET` command](https://redis.io/docs/latest/commands/hmset) is invoked, `"HMSET myhash field1 ? field2 ?"` would be a suitable value for `db.query.text`.
       - ref: db.stored_procedure.name
         brief: >
           The name or sha1 digest of a Lua script in the database.
