@@ -277,14 +277,14 @@ distributed among the nodes of a cluster.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.deployment.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the Deployment. [1] | `k8s.deployment.label.app=guestbook`; `k8s.deployment.label.injected=` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.deployment.name`](/docs/attributes-registry/k8s.md) | string | The name of the Deployment. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.deployment.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.deployment.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Deployment. [2] | `k8s.deployment.annotation.replicas=1`; `k8s.deployment.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.deployment.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Deployment. [1] | `k8s.deployment.annotation.replicas=1`; `k8s.deployment.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.deployment.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the Deployment. [2] | `k8s.deployment.label.app=guestbook`; `k8s.deployment.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `k8s.deployment.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[1] `k8s.deployment.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[2] `k8s.deployment.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[2] `k8s.deployment.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -85,6 +85,7 @@ groups:
       - ref: k8s.deployment.uid
       - ref: k8s.deployment.name
       - ref: k8s.deployment.label
+        requirement_level: opt_in
       - ref: k8s.deployment.annotation
         requirement_level: opt_in
 
