@@ -80,7 +80,7 @@ groups:
           ]
       - id: db.query.parameter
         type: template[string]
-        stability: release_candidate
+        stability: development
         brief: >
           A database query parameter, with `<key>` being the parameter name,
           and the attribute value being a string representation of the parameter value.
