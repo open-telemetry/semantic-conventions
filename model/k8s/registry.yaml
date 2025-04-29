@@ -181,7 +181,7 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The label key-value pairs placed on the ResplicaSet.
+          The label key-value pairs placed on the ReplicaSet.
         note: |
           The `<key>` being the label name, the value being the label value, even if the value is empty.
         examples: ['k8s.replicaset.label.app=guestbook', 'k8s.replicaset.label.injected=']

@@ -71,6 +71,7 @@ groups:
       - ref: k8s.replicaset.uid
       - ref: k8s.replicaset.name
       - ref: k8s.replicaset.label
+        requirement_level: opt_in
       - ref: k8s.replicaset.annotation
         requirement_level: opt_in
 
