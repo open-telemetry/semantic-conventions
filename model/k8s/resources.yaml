@@ -32,6 +32,7 @@ groups:
     attributes:
       - ref: k8s.namespace.name
       - ref: k8s.namespace.label
+        requirement_level: opt_in
       - ref: k8s.namespace.annotation
         requirement_level: opt_in
 
