@@ -38,11 +38,11 @@ looking confusing.
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [9] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The full syntax of the Redis CLI command. [10] | `HMSET myhash field1 'Hello' field2 'World'` | `Recommended` [11] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.stored_procedure.name`](/docs/attributes-registry/db.md) | string | The name or sha1 digest of a Lua script in the database. [12] | `GetCustomer` | `Recommended` If operation represents Lua script execution. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [13] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.text`](/docs/attributes-registry/db.md) | string | The full syntax of the Redis CLI command. [10] | `HMSET myhash field1 ? field2 ?` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.stored_procedure.name`](/docs/attributes-registry/db.md) | string | The name or sha1 digest of a Lua script in the database. [11] | `GetCustomer` | `Recommended` If operation represents Lua script execution. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [12] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [14] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `db.namespace`:** A connection's currently associated database index may change during its lifetime, e.g. from executing `SELECT <index>`.
 
@@ -71,16 +71,15 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[9] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 
-**[10] `db.query.text`:** For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI. If, for example, the [`HMSET` command](https://redis.io/docs/latest/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
-
-**[11] `db.query.text`:** Query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text.
+**[10] `db.query.text`:** Query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text.
 See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+The value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI. If, for example, the [`HMSET` command](https://redis.io/docs/latest/commands/hmset) is invoked, `"HMSET myhash field1 ? field2 ?"` would be a suitable value for `db.query.text`.
 
-**[12] `db.stored_procedure.name`:** See [FCALL](https://redis.io/docs/latest/commands/fcall/) and [EVALSHA](https://redis.io/docs/latest/commands/evalsha/).
+**[11] `db.stored_procedure.name`:** See [FCALL](https://redis.io/docs/latest/commands/fcall/) and [EVALSHA](https://redis.io/docs/latest/commands/evalsha/).
 
-**[13] `network.peer.address`:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+**[12] `network.peer.address`:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[14] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[13] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
