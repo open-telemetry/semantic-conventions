@@ -4,6 +4,10 @@ linkTitle: K8s migration
 
 # K8s semantic convention stability migration
 
+![note](https://img.shields.io/badge/warning-yellow?style=flat) K8s Semantic Conventions stability is still Wip.
+This guide collects the breaking changes along the way so as users can know beforehand for these upcoming
+changes.
+
 Due to the significant number of modifications and the extensive user base
 affected by them, existing K8s instrumentations published by
 OpenTelemetry are required to implement a migration plan that will assist users in
@@ -61,7 +65,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
 
 This section summarizes the changes made to the K8s semantic conventions
 from a range of versions. Each starting version shows all the changes required
-to bring the conventions to stable (TODO: link to specific version once it exists).
+to bring the conventions to stable.
 
 ### K8s network metrics
 
