@@ -95,6 +95,7 @@ groups:
       - ref: k8s.statefulset.uid
       - ref: k8s.statefulset.name
       - ref: k8s.statefulset.label
+        requirement_level: opt_in
       - ref: k8s.statefulset.annotation
         requirement_level: opt_in
 
