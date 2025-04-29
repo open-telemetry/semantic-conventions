@@ -185,9 +185,21 @@ If a database operation involved multiple network calls (for example retries), t
 
 **[18] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[19] `db.query.parameter`:** If a query parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
-`db.query.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
+**[19] `db.query.parameter`:** If a query parameter has no name and instead is referenced only by index,
+then `<key>` SHOULD be the 0-based index.
+
+`db.query.parameter.<key>` SHOULD match
+up with the parameterized placeholders present in `db.query.text`.
+
 `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
+
+Examples:
+
+- For a query `SELECT * FROM users where username =  %s` with the parameter `"jdoe"`,
+  the attribute `db.query.parameter.0` SHOULD be set to `"jdoe"`.
+
+- For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
+  `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):

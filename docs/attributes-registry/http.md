@@ -14,20 +14,33 @@ This document defines semantic convention attributes in the HTTP namespace.
 |---|---|---|---|---|
 | <a id="http-connection-state" href="#http-connection-state">`http.connection.state`</a> | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="http-request-body-size" href="#http-request-body-size">`http.request.body.size`</a> | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="http-request-header" href="#http-request-header">`http.request.header.<key>`</a> | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [1] | `http.request.header.content-type=["application/json"]`; `http.request.header.x-forwarded-for=["1.2.3.4", "1.2.3.5"]` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="http-request-header" href="#http-request-header">`http.request.header.<key>`</a> | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [1] | `["application/json"]`; `["1.2.3.4", "1.2.3.5"]` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="http-request-method" href="#http-request-method">`http.request.method`</a> | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="http-request-method-original" href="#http-request-method-original">`http.request.method_original`</a> | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="http-request-resend-count" href="#http-request-resend-count">`http.request.resend_count`</a> | int | The ordinal number of request resending attempt (for any reason, including redirects). [3] | `3` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="http-request-size" href="#http-request-size">`http.request.size`</a> | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="http-response-body-size" href="#http-response-body-size">`http.response.body.size`</a> | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="http-response-header" href="#http-response-header">`http.response.header.<key>`</a> | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [4] | `http.response.header.content-type=["application/json"]`; `http.response.header.my-custom-header=["abc", "def"]` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="http-response-header" href="#http-response-header">`http.response.header.<key>`</a> | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [4] | `["application/json"]`; `["abc", "def"]` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="http-response-size" href="#http-response-size">`http.response.size`</a> | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="http-response-status-code" href="#http-response-status-code">`http.response.status_code`</a> | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="http-route" href="#http-route">`http.route`</a> | string | The matched route, that is, the path template in the format used by the respective server framework. [5] | `/users/:userID?`; `{controller}/{action}/{id?}` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `http.request.header`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured. Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
-The `User-Agent` header is already captured in the `user_agent.original` attribute. Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
-The attribute value MUST consist of either multiple header values as an array of strings or a single-item array containing a possibly comma-concatenated string, depending on the way the HTTP library provides access to headers.
+**[1] `http.request.header`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+The `User-Agent` header is already captured in the `user_agent.original` attribute.
+Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
+
+The attribute value MUST consist of either multiple header values as an array of strings
+or a single-item array containing a possibly comma-concatenated string, depending on the way
+the HTTP library provides access to headers.
+
+Examples:
+
+- A header `Content-Type: application/json` SHOULD be recorded as the `http.request.header.content-type`
+  attribute with value `["application/json"]`.
+- A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
+  attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
 **[2] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -46,9 +59,21 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[3] `http.request.resend_count`:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
 
-**[4] `http.response.header`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured. Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+**[4] `http.response.header`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
 Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
-The attribute value MUST consist of either multiple header values as an array of strings or a single-item array containing a possibly comma-concatenated string, depending on the way the HTTP library provides access to headers.
+
+The attribute value MUST consist of either multiple header values as an array of strings
+or a single-item array containing a possibly comma-concatenated string, depending on the way
+the HTTP library provides access to headers.
+
+Examples:
+
+- A header `Content-Type: application/json` header SHOULD be recorded as the `http.request.response.content-type`
+  attribute with value `["application/json"]`.
+- A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
+  attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
 
 **[5] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.

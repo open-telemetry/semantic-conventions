@@ -21,11 +21,11 @@
 | [`container.image.name`](/docs/attributes-registry/container.md) | string | Name of the image the container was built on. | `gcr.io/opentelemetry/operator` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.image.repo_digests`](/docs/attributes-registry/container.md) | string[] | Repo digests of the container image as provided by the container runtime. [2] | `["example@sha256:afcc7f1ac1b49db317a7196c902e61c6c3c4607d63599ee1a82d702d249a0ccb", "internal.registry.example.com:5000/example@sha256:b69959407d21e8a062e0416bf13405bb2b71ed7a84dde4158ebafacfa06f5578"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.image.tags`](/docs/attributes-registry/container.md) | string[] | Container image tags. An example can be found in [Docker Image Inspect](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect). Should be only the `<tag>` section of the full name for example from `registry.example.com/my-org/my-image:<tag>`. | `["v1.27.1", "3.5.7-0"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`container.label.<key>`](/docs/attributes-registry/container.md) | string | Container labels, `<key>` being the label name, the value being the label value. | `container.label.app=nginx` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`container.label.<key>`](/docs/attributes-registry/container.md) | string | Container labels, `<key>` being the label name, the value being the label value. [3] | `nginx` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.name`](/docs/attributes-registry/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.runtime`](/docs/attributes-registry/container.md) | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`oci.manifest.digest`](/docs/attributes-registry/oci.md) | string | The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known. [3] | `sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`container.command`](/docs/attributes-registry/container.md) | string | The command used to run the container (i.e. the command name). [4] | `otelcontribcol` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`oci.manifest.digest`](/docs/attributes-registry/oci.md) | string | The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known. [4] | `sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`container.command`](/docs/attributes-registry/container.md) | string | The command used to run the container (i.e. the command name). [5] | `otelcontribcol` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.command_args`](/docs/attributes-registry/container.md) | string[] | All the command arguments (including the command/executable itself) run by the container. | `["otelcontribcol", "--config", "config.yaml"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.command_line`](/docs/attributes-registry/container.md) | string | The full command run by the container as a single string representing the full command. | `otelcontribcol --config config.yaml` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -35,10 +35,12 @@ The ID is assigned by the container runtime and can vary in different environmen
 
 **[2] `container.image.repo_digests`:** [Docker](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
 
-**[3] `oci.manifest.digest`:** Follows [OCI Image Manifest Specification](https://github.com/opencontainers/image-spec/blob/main/manifest.md), and specifically the [Digest property](https://github.com/opencontainers/image-spec/blob/main/descriptor.md#digests).
+**[3] `container.label`:** For example, a docker container label `app` with value `nginx` SHOULD be recorded as the `container.label.app` attribute with value `"nginx"`.
+
+**[4] `oci.manifest.digest`:** Follows [OCI Image Manifest Specification](https://github.com/opencontainers/image-spec/blob/main/manifest.md), and specifically the [Digest property](https://github.com/opencontainers/image-spec/blob/main/descriptor.md#digests).
 An example can be found in [Example Image Manifest](https://github.com/opencontainers/image-spec/blob/main/manifest.md#example-image-manifest).
 
-**[4] `container.command`:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
+**[5] `container.command`:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
