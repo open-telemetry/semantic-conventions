@@ -52,6 +52,8 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Job metrics](#k8s-job-metrics)
   - [K8s Cronjob metrics](#k8s-cronjob-metrics)
   - [K8s Namespace metrics](#k8s-namespace-metrics)
+  - [K8s ResourceQuota resource](#k8s-resourcequota-resource)
+  - [K8s Replication Controller resource](#k8s-replication-controller-resource)
 
 <!-- tocstop -->
 
@@ -242,5 +244,39 @@ The changes in their metrics are the following:
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                            |
 |------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | `k8s.namespace.phase`                  (type: `gauge`), 1 for active and 0 for terminating                      | `k8s.namespace.phase` (type: `updowncounter`), with the attribute `k8s.namespace.phase` indicating the phase |
+
+<!-- prettier-ignore-end -->
+
+### K8s ResourceQuota resource
+
+The K8s ResourceQuota attributes implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[v1.31.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.31.0/docs/system/k8s-metrics.md).
+
+The changes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                       |
+|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `k8s.resource_quota.{name,uid}`                                     | `k8s.resourcequota.{name,uid}`  |
+
+<!-- prettier-ignore-end -->
+
+### K8s Replication Controller resource
+
+The K8s Replication Controller attributes implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[v1.31.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.31.0/docs/system/k8s-metrics.md).
+
+The changes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                       |
+|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `k8s.replication_controller.{name,uid}`                                     | `k8s.replication_controller.{name,uid}`  |
 
 <!-- prettier-ignore-end -->
