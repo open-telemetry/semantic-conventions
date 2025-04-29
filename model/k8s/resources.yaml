@@ -113,6 +113,7 @@ groups:
       - ref: k8s.daemonset.uid
       - ref: k8s.daemonset.name
       - ref: k8s.daemonset.label
+        requirement_level: opt_in
       - ref: k8s.daemonset.annotation
         requirement_level: opt_in
 

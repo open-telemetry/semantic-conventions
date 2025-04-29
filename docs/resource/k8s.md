@@ -346,14 +346,14 @@ A DaemonSet ensures that all (or some) Nodes run a copy of a Pod.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.daemonset.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the DaemonSet. [1] | `k8s.daemonset.label.app=guestbook`; `k8s.daemonset.label.injected=` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.daemonset.name`](/docs/attributes-registry/k8s.md) | string | The name of the DaemonSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.daemonset.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.daemonset.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the DaemonSet. [2] | `k8s.daemonset.annotation.replicas=1`; `k8s.daemonset.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.daemonset.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the DaemonSet. [1] | `k8s.daemonset.annotation.replicas=1`; `k8s.daemonset.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.daemonset.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the DaemonSet. [2] | `k8s.daemonset.label.app=guestbook`; `k8s.daemonset.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `k8s.daemonset.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[1] `k8s.daemonset.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[2] `k8s.daemonset.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[2] `k8s.daemonset.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
