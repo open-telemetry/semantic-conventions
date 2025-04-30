@@ -83,9 +83,16 @@ For example, for an operation describing SQL query on an anonymous table like `S
 
 This span describes database client call.
 
-It SHOULD cover the duration of the corresponding call as if it was observed by the caller (such as client application).
-For example, if a transient issue happened and was retried within this database call, the corresponding span should cover the duration of the logical operation
-with all retries.
+Instrumentations SHOULD, when possible, record database spans that cover the duration of
+the corresponding API call as if it was observed by the caller (such as client application).
+For example, if a transient issue happened and was retried within this database call, the corresponding
+span should cover the duration of the logical operation with all retries.
+
+When a database client provides both a low-level API to execute arbitrary queries
+and higher-level convenience APIs for specific operations (e.g., calling stored
+procedures), instrumentation SHOULD prefer instrumenting the convenience APIs.
+These often allow setting db.operation.* attributes, which are usually not
+accessible at the generic query level.
 
 **Span name** is covered in the [Name](/docs/database/database-spans.md#name) section.
 
