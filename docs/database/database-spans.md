@@ -88,10 +88,10 @@ the corresponding API call as if it was observed by the caller (such as client a
 For example, if a transient issue happened and was retried within this database call, the corresponding
 span should cover the duration of the logical operation with all retries.
 
-When a database client provides both a low-level API to execute arbitrary queries
-and higher-level convenience APIs for specific operations (e.g., calling stored
-procedures), instrumentation SHOULD prefer instrumenting the convenience APIs.
-These often allow setting `db.operation.*`` attributes, which usually are not
+When a database client provides higher-level convenience APIs for specific operations
+(e.g., calling a stored procedure), which internally generate and execute a generic query,
+it is RECOMMENDED to instrument the higher-level convenience APIs.
+These often allow setting `db.operation.*` attributes, which usually are not
 readily available at the generic query level.
 
 **Span name** is covered in the [Name](/docs/database/database-spans.md#name) section.
