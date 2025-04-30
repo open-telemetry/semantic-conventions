@@ -64,7 +64,7 @@ The <span id="target-placeholder">`{target}`</span> SHOULD describe the entity t
 and SHOULD adhere to one of the following values, provided they are accessible:
 
 - `db.collection.name` SHOULD be used for operations on a specific database collection.
-- `db.stored_procedure.name` SHOULD be used for operations that call a specific stored procedure.
+- `db.stored_procedure.name` SHOULD be used for operations on a specific stored procedure.
 - `db.namespace` SHOULD be used for operations on a specific database namespace.
 - `server.address:server.port` SHOULD be used for other operations not targeting any specific collection(s),
   stored procedure(s), or namespace(s).
