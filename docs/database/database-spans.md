@@ -64,8 +64,10 @@ The <span id="target-placeholder">`{target}`</span> SHOULD describe the entity t
 and SHOULD adhere to one of the following values, provided they are accessible:
 
 - `db.collection.name` SHOULD be used for data manipulation operations or operations on a database collection.
+- `db.stored_procedure.name` SHOULD be used for operations that call a specific 
 - `db.namespace` SHOULD be used for operations on a specific database namespace.
-- `server.address:server.port` SHOULD be used for other operations not targeting any specific database(s) or collection(s)
+- `server.address:server.port` SHOULD be used for other operations not targeting any specific collection(s),
+  stored procedure(s), or namespace(s).
 
 If a corresponding `{target}` value is not available for a specific operation, the instrumentation SHOULD omit the `{target}`.
 For example, for an operation describing SQL query on an anonymous table like `SELECT * FROM (SELECT * FROM table) t`, span name should be `SELECT`.
