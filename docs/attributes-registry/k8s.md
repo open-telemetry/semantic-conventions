@@ -21,22 +21,22 @@ Kubernetes resource attributes.
 | <a id="k8s-cronjob-label" href="#k8s-cronjob-label">`k8s.cronjob.label.<key>`</a> | string | The label placed on the CronJob, the `<key>` being the label name, the value being the label value. [3] | `weekly`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-cronjob-name" href="#k8s-cronjob-name">`k8s.cronjob.name`</a> | string | The name of the CronJob. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-cronjob-uid" href="#k8s-cronjob-uid">`k8s.cronjob.uid`</a> | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-daemonset-annotation" href="#k8s-daemonset-annotation">`k8s.daemonset.annotation.<key>`</a> | string | The annotation key-value pairs placed on the DaemonSet. [4] | `1`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-daemonset-label" href="#k8s-daemonset-label">`k8s.daemonset.label.<key>`</a> | string | The label key-value pairs placed on the DaemonSet. [5] | `guestbook`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-daemonset-annotation" href="#k8s-daemonset-annotation">`k8s.daemonset.annotation.<key>`</a> | string | The annotation placed on the DaemonSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [4] | `1`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-daemonset-label" href="#k8s-daemonset-label">`k8s.daemonset.label.<key>`</a> | string | The label placed on the DaemonSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [5] | `guestbook`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-daemonset-name" href="#k8s-daemonset-name">`k8s.daemonset.name`</a> | string | The name of the DaemonSet. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-daemonset-uid" href="#k8s-daemonset-uid">`k8s.daemonset.uid`</a> | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-deployment-annotation" href="#k8s-deployment-annotation">`k8s.deployment.annotation.<key>`</a> | string | The annotation key-value pairs placed on the Deployment. [6] | `1`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-deployment-label" href="#k8s-deployment-label">`k8s.deployment.label.<key>`</a> | string | The label key-value pairs placed on the Deployment. [7] | `guestbook`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-deployment-annotation" href="#k8s-deployment-annotation">`k8s.deployment.annotation.<key>`</a> | string | The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [6] | `1`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-deployment-label" href="#k8s-deployment-label">`k8s.deployment.label.<key>`</a> | string | The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty. [7] | `guestbook`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-deployment-name" href="#k8s-deployment-name">`k8s.deployment.name`</a> | string | The name of the Deployment. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-deployment-uid" href="#k8s-deployment-uid">`k8s.deployment.uid`</a> | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-hpa-name" href="#k8s-hpa-name">`k8s.hpa.name`</a> | string | The name of the horizontal pod autoscaler. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-hpa-uid" href="#k8s-hpa-uid">`k8s.hpa.uid`</a> | string | The UID of the horizontal pod autoscaler. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-job-annotation" href="#k8s-job-annotation">`k8s.job.annotation.<key>`</a> | string | The annotation key-value pairs placed on the Job. [8] | `1`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-job-label" href="#k8s-job-label">`k8s.job.label.<key>`</a> | string | The label key-value pairs placed on the Job. [9] | `ci`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-job-annotation" href="#k8s-job-annotation">`k8s.job.annotation.<key>`</a> | string | The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [8] | `1`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-job-label" href="#k8s-job-label">`k8s.job.label.<key>`</a> | string | The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty. [9] | `ci`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-job-name" href="#k8s-job-name">`k8s.job.name`</a> | string | The name of the Job. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-job-uid" href="#k8s-job-uid">`k8s.job.uid`</a> | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-namespace-annotation" href="#k8s-namespace-annotation">`k8s.namespace.annotation.<key>`</a> | string | The annotation key-value pairs placed on the Namespace. [10] | `0`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-namespace-label" href="#k8s-namespace-label">`k8s.namespace.label.<key>`</a> | string | The label key-value pairs placed on the Namespace. [11] | `default`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-namespace-annotation" href="#k8s-namespace-annotation">`k8s.namespace.annotation.<key>`</a> | string | The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [10] | `0`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-namespace-label" href="#k8s-namespace-label">`k8s.namespace.label.<key>`</a> | string | The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty. [11] | `default`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-namespace-name" href="#k8s-namespace-name">`k8s.namespace.name`</a> | string | The name of the namespace that the pod is running in. | `default` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-namespace-phase" href="#k8s-namespace-phase">`k8s.namespace.phase`</a> | string | The phase of the K8s namespace. [12] | `active`; `terminating` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-node-annotation" href="#k8s-node-annotation">`k8s.node.annotation.<key>`</a> | string | The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [13] | `0`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -47,16 +47,16 @@ Kubernetes resource attributes.
 | <a id="k8s-pod-label" href="#k8s-pod-label">`k8s.pod.label.<key>`</a> | string | The label placed on the Pod, the `<key>` being the label name, the value being the label value. [16] | `my-app`; `x64`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-pod-name" href="#k8s-pod-name">`k8s.pod.name`</a> | string | The name of the Pod. | `opentelemetry-pod-autoconf` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-pod-uid" href="#k8s-pod-uid">`k8s.pod.uid`</a> | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-replicaset-annotation" href="#k8s-replicaset-annotation">`k8s.replicaset.annotation.<key>`</a> | string | The annotation key-value pairs placed on the ReplicaSet. [17] | `0`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-replicaset-label" href="#k8s-replicaset-label">`k8s.replicaset.label.<key>`</a> | string | The label key-value pairs placed on the ReplicaSet. [18] | `guestbook`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-replicaset-annotation" href="#k8s-replicaset-annotation">`k8s.replicaset.annotation.<key>`</a> | string | The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [17] | `0`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-replicaset-label" href="#k8s-replicaset-label">`k8s.replicaset.label.<key>`</a> | string | The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [18] | `guestbook`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-replicaset-name" href="#k8s-replicaset-name">`k8s.replicaset.name`</a> | string | The name of the ReplicaSet. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-replicaset-uid" href="#k8s-replicaset-uid">`k8s.replicaset.uid`</a> | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-replicationcontroller-name" href="#k8s-replicationcontroller-name">`k8s.replicationcontroller.name`</a> | string | The name of the replication controller. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-replicationcontroller-uid" href="#k8s-replicationcontroller-uid">`k8s.replicationcontroller.uid`</a> | string | The UID of the replication controller. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-resourcequota-name" href="#k8s-resourcequota-name">`k8s.resourcequota.name`</a> | string | The name of the resource quota. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-resourcequota-uid" href="#k8s-resourcequota-uid">`k8s.resourcequota.uid`</a> | string | The UID of the resource quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-statefulset-annotation" href="#k8s-statefulset-annotation">`k8s.statefulset.annotation.<key>`</a> | string | The annotation key-value pairs placed on the StatefulSet. [19] | `1`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-statefulset-label" href="#k8s-statefulset-label">`k8s.statefulset.label.<key>`</a> | string | The label key-value pairs placed on the StatefulSet. [20] | `guestbook`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-statefulset-annotation" href="#k8s-statefulset-annotation">`k8s.statefulset.annotation.<key>`</a> | string | The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [19] | `1`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-statefulset-label" href="#k8s-statefulset-label">`k8s.statefulset.label.<key>`</a> | string | The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [20] | `guestbook`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-statefulset-name" href="#k8s-statefulset-name">`k8s.statefulset.name`</a> | string | The name of the StatefulSet. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-statefulset-uid" href="#k8s-statefulset-uid">`k8s.statefulset.uid`</a> | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-volume-name" href="#k8s-volume-name">`k8s.volume.name`</a> | string | The name of the K8s volume. | `volume0` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -99,72 +99,56 @@ conflict.
 - A label `automated` with empty string value SHOULD be recorded as
   the `k8s.cronjob.label.automated` attribute with value `""`.
 
-**[4] `k8s.daemonset.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-
-Examples:
+**[4] `k8s.daemonset.annotation`:** Examples:
 
 - A label `replicas` with value `1` SHOULD be recorded
   as the `k8s.daemonset.annotation.replicas` attribute with value `"1"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.daemonset.annotation.data` attribute with value `""`.
 
-**[5] `k8s.daemonset.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
-
-Examples:
+**[5] `k8s.daemonset.label`:** Examples:
 
 - A label `app` with value `guestbook` SHOULD be recorded
   as the `k8s.daemonset.label.app` attribute with value `"guestbook"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.daemonset.label.injected` attribute with value `""`.
 
-**[6] `k8s.deployment.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-
-Examples:
+**[6] `k8s.deployment.annotation`:** Examples:
 
 - A label `replicas` with value `1` SHOULD be recorded
   as the `k8s.deployment.annotation.replicas` attribute with value `"1"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.deployment.annotation.data` attribute with value `""`.
 
-**[7] `k8s.deployment.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
-
-Examples:
+**[7] `k8s.deployment.label`:** Examples:
 
 - A label `replicas` with value `0` SHOULD be recorded
   as the `k8s.deployment.label.app` attribute with value `"guestbook"`.
 - A label `injected` with empty string value SHOULD be recorded as
   the `k8s.deployment.label.injected` attribute with value `""`.
 
-**[8] `k8s.job.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-
-Examples:
+**[8] `k8s.job.annotation`:** Examples:
 
 - A label `number` with value `1` SHOULD be recorded
   as the `k8s.job.annotation.number` attribute with value `"1"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.job.annotation.data` attribute with value `""`.
 
-**[9] `k8s.job.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
-
-Examples:
+**[9] `k8s.job.label`:** Examples:
 
 - A label `jobtype` with value `ci` SHOULD be recorded
   as the `k8s.job.label.jobtype` attribute with value `"ci"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.job.label.automated` attribute with value `""`.
 
-**[10] `k8s.namespace.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-
-Examples:
+**[10] `k8s.namespace.annotation`:** Examples:
 
 - A label `ttl` with value `0` SHOULD be recorded
   as the `k8s.namespace.annotation.ttl` attribute with value `"0"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.namespace.annotation.data` attribute with value `""`.
 
-**[11] `k8s.namespace.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
-
-Examples:
+**[11] `k8s.namespace.label`:** Examples:
 
 - A label `kubernetes.io/metadata.name` with value `default` SHOULD be recorded
   as the `k8s.namespace.label.kubernetes.io/metadata.name` attribute with value `"default"`.
@@ -206,36 +190,28 @@ Examples:
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.pod.label.data` attribute with value `""`.
 
-**[17] `k8s.replicaset.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-
-Examples:
+**[17] `k8s.replicaset.annotation`:** Examples:
 
 - A label `replicas` with value `0` SHOULD be recorded
   as the `k8s.replicaset.annotation.replicas` attribute with value `"0"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.replicaset.annotation.data` attribute with value `""`.
 
-**[18] `k8s.replicaset.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
-
-Examples:
+**[18] `k8s.replicaset.label`:** Examples:
 
 - A label `app` with value `guestbook` SHOULD be recorded
   as the `k8s.replicaset.label.app` attribute with value `"guestbook"`.
 - A label `injected` with empty string value SHOULD be recorded as
   the `k8s.replicaset.label.injected` attribute with value `""`.
 
-**[19] `k8s.statefulset.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-
-Examples:
+**[19] `k8s.statefulset.annotation`:** Examples:
 
 - A label `replicas` with value `1` SHOULD be recorded
   as the `k8s.statefulset.annotation.replicas` attribute with value `"1"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.statefulset.annotation.data` attribute with value `""`.
 
-**[20] `k8s.statefulset.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
-
-Examples:
+**[20] `k8s.statefulset.label`:** Examples:
 
 - A label `replicas` with value `0` SHOULD be recorded
   as the `k8s.statefulset.label.app` attribute with value `"guestbook"`.
