@@ -102,6 +102,9 @@ groups:
         sampling_relevant: true
         requirement_level:
           conditionally_required: If available.
+      - ref: db.stored_procedure.name
+        requirement_level:
+          recommended: If operation represents a stored procedure execution.
 
   - id: span.db.client
     type: span
