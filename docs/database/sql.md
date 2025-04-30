@@ -55,13 +55,15 @@ Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic co
 | [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response code recorded as a string. [2] | `ORA-17027`; `1052`; `2201B` | `Conditionally Required` If response has ended with warning or an error. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Conditionally Required` [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [6] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a database query text. [7] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [8] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [9] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [10] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [6] | `public.users`; `customers` | `Recommended` [7] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [8] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [9] | `EXECUTE`; `INSERT` | `Recommended` [10] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a database query text. [11] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [12] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [13] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [14] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`db.stored_procedure.name`](/docs/attributes-registry/db.md) | string | The name of a stored procedure within the database. [11] | `GetCustomer` | `Recommended` [12] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [14] | `someval`; `55` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`db.stored_procedure.name`](/docs/attributes-registry/db.md) | string | The name of a stored procedure within the database. [15] | `GetCustomer` | `Recommended` [16] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [17] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [18] | `someval`; `55` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `db.namespace`:** If a database system has multiple namespace components (e.g. schema name and database name), they SHOULD be concatenated
 from the most general to the most specific namespace component,
@@ -125,31 +127,39 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[5] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[6] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+**[6] `db.collection.name`:** The collection name SHOULD NOT be extracted from `db.query.text`.
 
-**[7] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
+**[7] `db.collection.name`:** If the operation is executed via a higher-level API that does not support multiple collection names.
+
+**[8] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+
+**[9] `db.operation.name`:** The operation name SHOULD NOT be extracted from `db.query.text`.
+
+**[10] `db.operation.name`:** If the operation is executed via a higher-level API that does not support multiple operation names.
+
+**[11] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
 Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
 
-**[8] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
+**[12] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
 
-**[9] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[13] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
-**[10] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[14] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](/docs/attributes-registry/db.md)).
 
-**[11] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
+**[15] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
 For batch operations, if the individual operations are known to have the same
 stored procedure name then that stored procedure name SHOULD be used.
 
-**[12] `db.stored_procedure.name`:** If operation represents a stored procedure execution.
+**[16] `db.stored_procedure.name`:** If operation represents a stored procedure execution.
 
-**[13] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[17] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[14] `db.query.parameter`:** If a query parameter has no name and instead is referenced only by index,
+**[18] `db.query.parameter`:** If a query parameter has no name and instead is referenced only by index,
 then `<key>` SHOULD be the 0-based index.
 
 `db.query.parameter.<key>` SHOULD match
