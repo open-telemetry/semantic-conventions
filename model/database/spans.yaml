@@ -116,8 +116,8 @@ groups:
       When a database client provides both a low-level API to execute arbitrary queries
       and higher-level convenience APIs for specific operations (e.g., calling stored
       procedures), instrumentation SHOULD prefer instrumenting the convenience APIs.
-      These often allow setting db.operation.* attributes, which are usually not
-      accessible at the generic query level.
+      These often allow setting `db.operation.*`` attributes, which usually are not
+      readily available at the generic query level.
 
       **Span name** is covered in the [Name](/docs/database/database-spans.md#name) section.
 
