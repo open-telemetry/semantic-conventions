@@ -108,9 +108,16 @@ groups:
     stability: release_candidate
     brief: This span describes database client call.
     note: |
-      It SHOULD cover the duration of the corresponding call as if it was observed by the caller (such as client application).
-      For example, if a transient issue happened and was retried within this database call, the corresponding span should cover the duration of the logical operation
-      with all retries.
+      Instrumentations SHOULD, when possible, record database spans that cover the duration of
+      the corresponding API call as if it was observed by the caller (such as client application).
+      For example, if a transient issue happened and was retried within this database call, the corresponding
+      span should cover the duration of the logical operation with all retries.
+
+      When a database client provides higher-level convenience APIs for specific operations
+      (e.g., calling a stored procedure), which internally generate and execute a generic query,
+      it is RECOMMENDED to instrument the higher-level convenience APIs.
+      These often allow setting `db.operation.*` attributes, which usually are not
+      readily available at the generic query level.
 
       **Span name** is covered in the [Name](/docs/database/database-spans.md#name) section.
 
@@ -361,8 +368,7 @@ groups:
           For batch operations, if the individual operations are known to have the same operation name
           then that operation name SHOULD be used prepended by `BATCH `,
           otherwise `db.operation.name` SHOULD be `BATCH`.
-        requirement_level:
-          conditionally_required: If readily available.
+        requirement_level: required
       - ref: db.response.status_code
         brief: >
           Protocol-specific response code recorded as a string.
@@ -449,6 +455,7 @@ groups:
           if the individual operations are known to have the same command then that
           command SHOULD be used prepended by `MULTI ` or `PIPELINE `.
           Otherwise `db.operation.name` SHOULD be `MULTI` or `PIPELINE`.
+        requirement_level: required
         sampling_relevant: true
       - ref: db.query.text
         sampling_relevant: true
@@ -511,8 +518,7 @@ groups:
           The name of the [MongoDB command](https://www.mongodb.com/docs/manual/reference/command/) being executed.
         note: ""
         examples: ['findAndModify', 'getMore', 'insertMany', 'bulkWrite']
-        requirement_level:
-          conditionally_required: If readily available.
+        requirement_level: required
       - ref: db.collection.name
         sampling_relevant: true
         brief:
@@ -796,6 +802,7 @@ groups:
           operations performed by Cosmos DB client.
         examples: ["Microsoft.DocumentDB"]
       - ref: db.operation.name
+        requirement_level: required
         note: |
           The `db.operation.name` has the following list of well-known values.
           If one of them applies, then the respective value MUST be used.
@@ -920,7 +927,6 @@ groups:
           If none of them applies, it's RECOMMENDED to use language-agnostic representation of
           client method name in snake_case. Instrumentations SHOULD document
           additional values when introducing new operations.
-
         examples: ['create_item', 'query_items', 'read_item']
       - ref: db.stored_procedure.name
         requirement_level:

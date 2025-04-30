@@ -36,8 +36,7 @@ groups:
       #   requirement_level:
       #     conditionally_required: if available
       - ref: db.operation.name
-        requirement_level:
-          conditionally_required: If readily available.
+        requirement_level: required
       - ref: db.collection.name
         brief: Cosmos DB container name.
         requirement_level:
