@@ -196,7 +196,7 @@ without attempting to do any case normalization.
 For batch operations, if the individual operations are known to have the same
 stored procedure name then that stored procedure name SHOULD be used.
 
-**[18] `db.stored_procedure.name`:** If operation represents a stored procedure execution.
+**[18] `db.stored_procedure.name`:** If operation applies to a specific stored procedure.
 
 **[19] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
