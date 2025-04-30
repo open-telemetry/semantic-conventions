@@ -89,9 +89,8 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The label key-value pairs placed on the Namespace.
+          The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
-          The `<key>` being the label name, the value being the label value, even if the value is empty.
 
           Examples:
 
@@ -104,9 +103,8 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The annotation key-value pairs placed on the Namespace.
+          The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
-          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
           Examples:
 
@@ -195,9 +193,8 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The label key-value pairs placed on the ReplicaSet.
+          The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
-          The `<key>` being the label name, the value being the label value, even if the value is empty.
 
           Examples:
 
@@ -210,9 +207,8 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The annotation key-value pairs placed on the ReplicaSet.
+          The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
-          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
           Examples:
 
@@ -261,9 +257,8 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The label key-value pairs placed on the Deployment.
+          The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
-          The `<key>` being the label name, the value being the label value, even if the value is empty.
 
           Examples:
 
@@ -276,9 +271,8 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The annotation key-value pairs placed on the Deployment.
+          The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
-          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
           Examples:
 
@@ -303,9 +297,8 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The label key-value pairs placed on the StatefulSet.
+          The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
-          The `<key>` being the label name, the value being the label value, even if the value is empty.
 
           Examples:
 
@@ -318,9 +311,8 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The annotation key-value pairs placed on the StatefulSet.
+          The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
-          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
           Examples:
 
@@ -345,9 +337,8 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The label key-value pairs placed on the DaemonSet.
+          The label placed on the DaemonSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
-          The `<key>` being the label name, the value being the label value, even if the value is empty.
 
           Examples:
 
@@ -360,9 +351,8 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The annotation key-value pairs placed on the DaemonSet.
+          The annotation placed on the DaemonSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
-          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
           Examples:
 
@@ -399,9 +389,8 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The label key-value pairs placed on the Job.
+          The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
-          The `<key>` being the label name, the value being the label value, even if the value is empty.
 
           Examples:
 
@@ -414,9 +403,8 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The annotation key-value pairs placed on the Job.
+          The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
-          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
           Examples:
 
