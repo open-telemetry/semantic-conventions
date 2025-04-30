@@ -106,6 +106,10 @@ groups:
     attributes:
       - ref: k8s.job.uid
       - ref: k8s.job.name
+      - ref: k8s.job.label
+        requirement_level: opt_in
+      - ref: k8s.job.annotation
+        requirement_level: opt_in
 
   - id: resource.k8s.cronjob
     type: resource

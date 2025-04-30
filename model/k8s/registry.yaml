@@ -245,6 +245,22 @@ groups:
         brief: >
           The name of the Job.
         examples: ['opentelemetry']
+      - id: k8s.job.label
+        type: template[string]
+        stability: development
+        brief: >
+          The label key-value pairs placed on the Job.
+        note: |
+          The `<key>` being the label name, the value being the label value, even if the value is empty.
+        examples: ['k8s.job.label.jobtype=ci', 'k8s.job.label.automated=']
+      - id: k8s.job.annotation
+        type: template[string]
+        stability: development
+        brief: >
+          The annotation key-value pairs placed on the Job.
+        note: |
+          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        examples: [ 'k8s.job.annotation.number=1', 'k8s.job.annotation.data=' ]
       - id: k8s.cronjob.uid
         type: string
         stability: development
