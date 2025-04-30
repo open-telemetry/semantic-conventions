@@ -177,6 +177,22 @@ groups:
         brief: >
           The name of the ReplicaSet.
         examples: ['opentelemetry']
+      - id: k8s.replicaset.label
+        type: template[string]
+        stability: development
+        brief: >
+          The label key-value pairs placed on the ReplicaSet.
+        note: |
+          The `<key>` being the label name, the value being the label value, even if the value is empty.
+        examples: ['k8s.replicaset.label.app=guestbook', 'k8s.replicaset.label.injected=']
+      - id: k8s.replicaset.annotation
+        type: template[string]
+        stability: development
+        brief: >
+          The annotation key-value pairs placed on the ReplicaSet.
+        note: |
+          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        examples: [ 'k8s.replicaset.annotation.replicas=0', 'k8s.replicaset.annotation.data=' ]
       - id: k8s.replicationcontroller.uid
         type: string
         stability: development
