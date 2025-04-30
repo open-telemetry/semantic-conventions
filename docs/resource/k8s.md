@@ -128,6 +128,12 @@ a namespace, but not across namespaces.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.namespace.name`](/docs/attributes-registry/k8s.md) | string | The name of the namespace that the pod is running in. | `default` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.namespace.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Namespace. [1] | `k8s.namespace.annotation.ttl=0`; `k8s.namespace.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.namespace.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the Namespace. [2] | `k8s.namespace.label.kubernetes.io/metadata.name=default`; `k8s.namespace.label.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.namespace.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[2] `k8s.namespace.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
