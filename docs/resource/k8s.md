@@ -308,6 +308,12 @@ about the ordering and uniqueness of these Pods.
 |---|---|---|---|---|---|
 | [`k8s.statefulset.name`](/docs/attributes-registry/k8s.md) | string | The name of the StatefulSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.statefulset.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.statefulset.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the StatefulSet. [1] | `k8s.statefulset.annotation.replicas=1`; `k8s.statefulset.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.statefulset.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the StatefulSet. [2] | `k8s.statefulset.label.app=guestbook`; `k8s.statefulset.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.statefulset.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[2] `k8s.statefulset.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -51,6 +51,8 @@ Kubernetes resource attributes.
 | <a id="k8s-replicationcontroller-uid" href="#k8s-replicationcontroller-uid">`k8s.replicationcontroller.uid`</a> | string | The UID of the replication controller. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-resourcequota-name" href="#k8s-resourcequota-name">`k8s.resourcequota.name`</a> | string | The name of the resource quota. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-resourcequota-uid" href="#k8s-resourcequota-uid">`k8s.resourcequota.uid`</a> | string | The UID of the resource quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-statefulset-annotation" href="#k8s-statefulset-annotation">`k8s.statefulset.annotation.<key>`</a> | string | The annotation key-value pairs placed on the StatefulSet. [15] | `k8s.statefulset.annotation.replicas=1`; `k8s.statefulset.annotation.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-statefulset-label" href="#k8s-statefulset-label">`k8s.statefulset.label.<key>`</a> | string | The label key-value pairs placed on the StatefulSet. [16] | `k8s.statefulset.label.app=guestbook`; `k8s.statefulset.label.injected=` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-statefulset-name" href="#k8s-statefulset-name">`k8s.statefulset.name`</a> | string | The name of the StatefulSet. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-statefulset-uid" href="#k8s-statefulset-uid">`k8s.statefulset.uid`</a> | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-volume-name" href="#k8s-volume-name">`k8s.volume.name`</a> | string | The name of the K8s volume. | `volume0` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -139,6 +141,10 @@ conflict.
 **[13] `k8s.replicaset.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
 **[14] `k8s.replicaset.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+
+**[15] `k8s.statefulset.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[16] `k8s.statefulset.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 ---
 
