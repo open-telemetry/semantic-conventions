@@ -2,4 +2,3 @@ change_type: enhancement
 component: db
 note: Make `db.operation.name` required where it's available, add recommendation for instrumentation point.
 issues: [2200, 2098]
-
