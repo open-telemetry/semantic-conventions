@@ -7,6 +7,9 @@ groups:
     attributes:
       - ref: cicd.pipeline.result
         requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if the pipeline result is `failure` or `error`
   - id: span.cicd.pipeline.task.internal
     type: span
     span_kind: internal
