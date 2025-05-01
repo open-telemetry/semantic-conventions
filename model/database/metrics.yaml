@@ -15,7 +15,7 @@ groups:
         requirement_level: required
       - ref: db.stored_procedure.name
         requirement_level:
-          recommended: If operation represents a stored procedure execution.
+          recommended: If operation applies to a specific stored procedure.
       - ref: network.peer.address
         brief: Peer address of the database node where the operation was performed.
         requirement_level:

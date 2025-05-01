@@ -103,7 +103,7 @@ without attempting to do any case normalization.
 For batch operations, if the individual operations are known to have the same
 stored procedure name then that stored procedure name SHOULD be used.
 
-**[16] `db.stored_procedure.name`:** If operation represents a stored procedure execution.
+**[16] `db.stored_procedure.name`:** If operation applies to a specific stored procedure.
 
 **[17] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 

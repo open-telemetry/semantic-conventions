@@ -102,6 +102,9 @@ groups:
         sampling_relevant: true
         requirement_level:
           conditionally_required: If available.
+      - ref: db.stored_procedure.name
+        requirement_level:
+          recommended: If operation applies to a specific stored procedure.
 
   - id: span.db.client
     type: span
@@ -478,7 +481,7 @@ groups:
           See [FCALL](https://redis.io/docs/latest/commands/fcall/)
           and [EVALSHA](https://redis.io/docs/latest/commands/evalsha/).
         requirement_level:
-          recommended: If operation represents Lua script execution.
+          recommended: If operation applies to a specific Lua script.
       - ref: network.peer.address
         brief: Peer address of the database node where the operation was performed.
         requirement_level:
@@ -728,7 +731,7 @@ groups:
           conditionally_required: If response has ended with warning or an error.
       - ref: db.stored_procedure.name
         requirement_level:
-          recommended: If operation represents a stored procedure execution.
+          recommended: If operation applies to a specific stored procedure.
       - ref: db.operation.name
         requirement_level:
           recommended: If the operation is executed via a higher-level API
@@ -943,7 +946,7 @@ groups:
         examples: ['create_item', 'query_items', 'read_item']
       - ref: db.stored_procedure.name
         requirement_level:
-          recommended: If operation represents a stored procedure execution.
+          recommended: If operation applies to a specific stored procedure.
       - ref: server.port
         requirement_level:
           conditionally_required: If not default (443).
