@@ -36,7 +36,14 @@ if [ $COUNT -eq 1 ]; then
     gh pr edit "${PR}" --add-label "${CHANGE_TYPE}" || true
     AREA=$(awk -F': ' '/^component:/ {print $2}' "$PR_CHANGELOG_PATH/$CHLOG" | xargs)
     echo $AREA
-    gh pr edit "${PR}" --add-label "area:${AREA}" || true
+    if [[ "$AREA" == \[*\] ]]; then
+      cleaned=$(echo "$AREA" | tr -d '[]' | tr ',' '\n')
+    else
+      cleaned="$AREA"
+    fi
+    for item in $(echo "$cleaned" | tr ',' ' '); do
+      gh pr edit "${PR}" --add-label "area:${item}" || true
+    done
 else
     echo "Found multiple changelog files. Ignoring this change."
 fi
