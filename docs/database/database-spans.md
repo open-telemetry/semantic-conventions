@@ -203,7 +203,7 @@ If a database operation involved multiple network calls (for example retries), t
 
 **[20] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[21] `db.query.parameter`:** If a query parameter has no name and instead is referenced only by index,
+**[21] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
 then `<key>` SHOULD be the 0-based index.
 
 `db.query.parameter.<key>` SHOULD match
@@ -353,7 +353,7 @@ one is not readily available from other sources.
 The summary SHOULD preserve the following parts of query in the order they were provided:
 
 - operations such as SQL SELECT, INSERT, UPDATE, DELETE, and other commands
-- operation targets such as collections and database names
+- operation targets such as collections, stored procedures, database names, etc
 
 Instrumentations that support query parsing SHOULD parse the query and extract a
 list of operations and targets from the query. It SHOULD set `db.query.summary`
