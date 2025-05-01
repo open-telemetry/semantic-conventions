@@ -84,17 +84,13 @@ Instrumentations SHOULD document how `error.type` is populated.
 It describes a class of database queries and is useful as a grouping key,
 especially when analyzing telemetry for database calls involving complex queries.
 
-The summary SHOULD NOT be reported for operations that do not involve
-a text-based query - for example, when the database does not expose a
-query language interface.
-
 Summary may be available to the instrumentation through
 instrumentation hooks or other means. If it is not available, instrumentations
 that support query parsing SHOULD generate a summary following
 [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query-text)
 section.
 
-**[12] `db.query.summary`:** if available or if the instrumentation supports generating a query summary.
+**[12] `db.query.summary`:** if available through instrumentation hooks or if the instrumentation supports generating a query summary.
 
 **[13] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.

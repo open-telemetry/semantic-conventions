@@ -112,10 +112,6 @@ groups:
           It describes a class of database queries and is useful as a grouping key,
           especially when analyzing telemetry for database calls involving complex queries.
 
-          The summary SHOULD NOT be reported for operations that do not involve
-          a text-based query - for example, when the database does not expose a
-          query language interface.
-
           Summary may be available to the instrumentation through
           instrumentation hooks or other means. If it is not available, instrumentations
           that support query parsing SHOULD generate a summary following

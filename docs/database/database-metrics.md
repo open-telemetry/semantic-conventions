@@ -147,17 +147,13 @@ Instrumentations SHOULD document how `error.type` is populated.
 It describes a class of database queries and is useful as a grouping key,
 especially when analyzing telemetry for database calls involving complex queries.
 
-The summary SHOULD NOT be reported for operations that do not involve
-a text-based query - for example, when the database does not expose a
-query language interface.
-
 Summary may be available to the instrumentation through
 instrumentation hooks or other means. If it is not available, instrumentations
 that support query parsing SHOULD generate a summary following
 [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query-text)
 section.
 
-**[13] `db.query.summary`:** if available or if the instrumentation supports generating a query summary.
+**[13] `db.query.summary`:** if available through instrumentation hooks or if the instrumentation supports generating a query summary.
 
 **[14] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
@@ -338,17 +334,13 @@ Instrumentations SHOULD document how `error.type` is populated.
 It describes a class of database queries and is useful as a grouping key,
 especially when analyzing telemetry for database calls involving complex queries.
 
-The summary SHOULD NOT be reported for operations that do not involve
-a text-based query - for example, when the database does not expose a
-query language interface.
-
 Summary may be available to the instrumentation through
 instrumentation hooks or other means. If it is not available, instrumentations
 that support query parsing SHOULD generate a summary following
 [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query-text)
 section.
 
-**[13] `db.query.summary`:** if available or if the instrumentation supports generating a query summary.
+**[13] `db.query.summary`:** if available through instrumentation hooks or if the instrumentation supports generating a query summary.
 
 **[14] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
