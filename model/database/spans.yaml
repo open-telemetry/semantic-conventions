@@ -102,15 +102,25 @@ groups:
         sampling_relevant: true
         requirement_level:
           conditionally_required: If available.
+      - ref: db.stored_procedure.name
+        requirement_level:
+          recommended: If operation applies to a specific stored procedure.
 
   - id: span.db.client
     type: span
     stability: release_candidate
     brief: This span describes database client call.
     note: |
-      It SHOULD cover the duration of the corresponding call as if it was observed by the caller (such as client application).
-      For example, if a transient issue happened and was retried within this database call, the corresponding span should cover the duration of the logical operation
-      with all retries.
+      Instrumentations SHOULD, when possible, record database spans that cover the duration of
+      the corresponding API call as if it was observed by the caller (such as client application).
+      For example, if a transient issue happened and was retried within this database call, the corresponding
+      span should cover the duration of the logical operation with all retries.
+
+      When a database client provides higher-level convenience APIs for specific operations
+      (e.g., calling a stored procedure), which internally generate and execute a generic query,
+      it is RECOMMENDED to instrument the higher-level convenience APIs.
+      These often allow setting `db.operation.*` attributes, which usually are not
+      readily available at the generic query level.
 
       **Span name** is covered in the [Name](/docs/database/database-spans.md#name) section.
 
@@ -361,8 +371,7 @@ groups:
           For batch operations, if the individual operations are known to have the same operation name
           then that operation name SHOULD be used prepended by `BATCH `,
           otherwise `db.operation.name` SHOULD be `BATCH`.
-        requirement_level:
-          conditionally_required: If readily available.
+        requirement_level: required
       - ref: db.response.status_code
         brief: >
           Protocol-specific response code recorded as a string.
@@ -449,21 +458,22 @@ groups:
           if the individual operations are known to have the same command then that
           command SHOULD be used prepended by `MULTI ` or `PIPELINE `.
           Otherwise `db.operation.name` SHOULD be `MULTI` or `PIPELINE`.
+        requirement_level: required
         sampling_relevant: true
       - ref: db.query.text
         sampling_relevant: true
         brief: >
           The full syntax of the Redis CLI command.
-        examples: ["HMSET myhash field1 'Hello' field2 'World'"]
-        requirement_level:
-          recommended: >
-            Query text SHOULD NOT be collected by default unless there is sanitization that excludes
-            sensitive data, e.g. by redacting all literal values present in the query text.
-
-            See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+        examples: ["HMSET myhash field1 ? field2 ?"]
+        requirement_level: recommended
         note: >
-          For **Redis**, the value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI.
-          If, for example, the [`HMSET` command](https://redis.io/docs/latest/commands/hmset) is invoked, `"HMSET myhash field1 'Hello' field2 'World'"` would be a suitable value for `db.query.text`.
+          Query text SHOULD NOT be collected by default unless there is sanitization that excludes
+          sensitive data, e.g. by redacting all literal values present in the query text.
+
+          See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+
+          The value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI.
+          If, for example, the [`HMSET` command](https://redis.io/docs/latest/commands/hmset) is invoked, `"HMSET myhash field1 ? field2 ?"` would be a suitable value for `db.query.text`.
       - ref: db.stored_procedure.name
         brief: >
           The name or sha1 digest of a Lua script in the database.
@@ -471,7 +481,7 @@ groups:
           See [FCALL](https://redis.io/docs/latest/commands/fcall/)
           and [EVALSHA](https://redis.io/docs/latest/commands/evalsha/).
         requirement_level:
-          recommended: If operation represents Lua script execution.
+          recommended: If operation applies to a specific Lua script.
       - ref: network.peer.address
         brief: Peer address of the database node where the operation was performed.
         requirement_level:
@@ -511,8 +521,7 @@ groups:
           The name of the [MongoDB command](https://www.mongodb.com/docs/manual/reference/command/) being executed.
         note: ""
         examples: ['findAndModify', 'getMore', 'insertMany', 'bulkWrite']
-        requirement_level:
-          conditionally_required: If readily available.
+        requirement_level: required
       - ref: db.collection.name
         sampling_relevant: true
         brief:
@@ -722,7 +731,20 @@ groups:
           conditionally_required: If response has ended with warning or an error.
       - ref: db.stored_procedure.name
         requirement_level:
-          recommended: If operation represents a stored procedure execution.
+          recommended: If operation applies to a specific stored procedure.
+      - ref: db.operation.name
+        requirement_level:
+          recommended: If the operation is executed via a higher-level API
+            that does not support multiple operation names.
+        note: |
+          The operation name SHOULD NOT be extracted from `db.query.text`.
+        examples: ["EXECUTE", "INSERT"]
+      - ref: db.collection.name
+        requirement_level:
+          recommended: If the operation is executed via a higher-level API
+            that does not support multiple collection names.
+        note: |
+          The collection name SHOULD NOT be extracted from `db.query.text`.
   - id: span.azure.cosmosdb.client
     type: span
     stability: development
@@ -796,6 +818,7 @@ groups:
           operations performed by Cosmos DB client.
         examples: ["Microsoft.DocumentDB"]
       - ref: db.operation.name
+        requirement_level: required
         note: |
           The `db.operation.name` has the following list of well-known values.
           If one of them applies, then the respective value MUST be used.
@@ -920,11 +943,10 @@ groups:
           If none of them applies, it's RECOMMENDED to use language-agnostic representation of
           client method name in snake_case. Instrumentations SHOULD document
           additional values when introducing new operations.
-
         examples: ['create_item', 'query_items', 'read_item']
       - ref: db.stored_procedure.name
         requirement_level:
-          recommended: If operation represents a stored procedure execution.
+          recommended: If operation applies to a specific stored procedure.
       - ref: server.port
         requirement_level:
           conditionally_required: If not default (443).

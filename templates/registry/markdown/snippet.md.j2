@@ -23,7 +23,7 @@
 
 {% if group.type == "event" -%}
 {{ generate_event(group) -}}
-{%- elif group.type == "resource" -%}
+{%- elif group.type == "resource" or group.type == "entity" -%}
 {{ generate_resource(group) }}
 {%- elif group.type == "metric" -%}
 {{ generate_metric(group) }}

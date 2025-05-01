@@ -20,7 +20,7 @@ This group defines the attributes used to describe telemetry in the context of d
 | <a id="db-operation-batch-size" href="#db-operation-batch-size">`db.operation.batch.size`</a> | int | The number of queries included in a batch operation. [3] | `2`; `3`; `4` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-operation-name" href="#db-operation-name">`db.operation.name`</a> | string | The name of the operation or command being executed. [4] | `findAndModify`; `HMSET`; `SELECT` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-operation-parameter" href="#db-operation-parameter">`db.operation.parameter.<key>`</a> | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [5] | `someval`; `55` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="db-query-parameter" href="#db-query-parameter">`db.query.parameter.<key>`</a> | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [6] | `someval`; `55` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="db-query-parameter" href="#db-query-parameter">`db.query.parameter.<key>`</a> | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [6] | `someval`; `55` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="db-query-summary" href="#db-query-summary">`db.query.summary`</a> | string | Low cardinality representation of a database query text. [7] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-query-text" href="#db-query-text">`db.query.text`</a> | string | The database query being executed. [8] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-response-returned-rows" href="#db-response-returned-rows">`db.response.returned_rows`</a> | int | Number of rows returned by the operation. | `10`; `30`; `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -32,7 +32,8 @@ This group defines the attributes used to describe telemetry in the context of d
 without attempting to do any case normalization.
 
 The collection name SHOULD NOT be extracted from `db.query.text`,
-when the database system supports cross-table queries in non-batch operations.
+when the database system supports query text with multiple collections
+in non-batch operations.
 
 For batch operations, if the individual operations are known to have the same
 collection name then that collection name SHOULD be used.
@@ -47,7 +48,8 @@ It is RECOMMENDED to capture the value as provided by the application without at
 without attempting to do any case normalization.
 
 The operation name SHOULD NOT be extracted from `db.query.text`,
-when the database system supports cross-table queries in non-batch operations.
+when the database system supports query text with multiple operations
+in non-batch operations.
 
 If spaces can occur in the operation name, multiple consecutive spaces
 SHOULD be normalized to a single space.
@@ -57,18 +59,34 @@ then that operation name SHOULD be used prepended by `BATCH `,
 otherwise `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
-**[5] `db.operation.parameter`:** `db.query.text` parameters SHOULD be captured using `db.query.parameter.<key>` instead of `db.operation.parameter.<key>`.
+**[5] `db.operation.parameter.<key>`:** For example, a client-side maximum number of rows to read from the database
+MAY be recorded as the `db.operation.parameter.max_rows` attribute.
 
-**[6] `db.query.parameter`:** If a query parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
-`db.query.parameter.<key>` SHOULD match up with the parameterized placeholders present in `db.query.text`.
+`db.query.text` parameters SHOULD be captured using `db.query.parameter.<key>`
+instead of `db.operation.parameter.<key>`.
+
+**[6] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
+then `<key>` SHOULD be the 0-based index.
+
+`db.query.parameter.<key>` SHOULD match
+up with the parameterized placeholders present in `db.query.text`.
+
 `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
+
+Examples:
+
+- For a query `SELECT * FROM users where username =  %s` with the parameter `"jdoe"`,
+  the attribute `db.query.parameter.0` SHOULD be set to `"jdoe"`.
+
+- For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
+  `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
 
 **[7] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
 Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
 
 **[8] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
-Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
+Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 **[9] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
@@ -164,7 +182,7 @@ Describes deprecated database attributes.
 | <a id="db-cosmosdb-sub-status-code" href="#db-cosmosdb-sub-status-code">`db.cosmosdb.sub_status_code`</a> | int | Deprecated, use `azure.cosmosdb.response.sub_status_code` instead. | `1000`; `1002` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.cosmosdb.response.sub_status_code`. |
 | <a id="db-elasticsearch-cluster-name" href="#db-elasticsearch-cluster-name">`db.elasticsearch.cluster.name`</a> | string | Deprecated, use `db.namespace` instead. | `e9106fc68e3044f0b1475b04bf4ffd5f` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
 | <a id="db-elasticsearch-node-name" href="#db-elasticsearch-node-name">`db.elasticsearch.node.name`</a> | string | Deprecated, use `elasticsearch.node.name` instead. | `instance-0000000001` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `elasticsearch.node.name`. |
-| <a id="db-elasticsearch-path-parts" href="#db-elasticsearch-path-parts">`db.elasticsearch.path_parts.<key>`</a> | string | Deprecated, use `db.operation.parameter` instead. | `db.elasticsearch.path_parts.index=test-index`; `db.elasticsearch.path_parts.doc_id=123` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.operation.parameter`. |
+| <a id="db-elasticsearch-path-parts" href="#db-elasticsearch-path-parts">`db.elasticsearch.path_parts.<key>`</a> | string | Deprecated, use `db.operation.parameter` instead. | `test-index`; `123` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.operation.parameter`. |
 | <a id="db-instance-id" href="#db-instance-id">`db.instance.id`</a> | string | Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. | `mysql-e26b99z.example.com` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. |
 | <a id="db-jdbc-driver-classname" href="#db-jdbc-driver-classname">`db.jdbc.driver_classname`</a> | string | Removed, no replacement at this time. | `org.postgresql.Driver`; `com.microsoft.sqlserver.jdbc.SQLServerDriver` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed as not used. |
 | <a id="db-mongodb-collection" href="#db-mongodb-collection">`db.mongodb.collection`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. |
