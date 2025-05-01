@@ -2,7 +2,7 @@ groups:
   - id: span.cicd.pipeline.run.server
     type: span
     span_kind: server
-    brief: 'Semantic Convention for pipeline runs'
+    brief: This span describes a CICD pipeline run.
     stability: development
     attributes:
       - ref: cicd.pipeline.result

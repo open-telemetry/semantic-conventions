@@ -44,7 +44,7 @@ The `{pipeline}` SHOULD be the [`cicd.pipeline.name`](/docs/attributes-registry/
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-Semantic Convention for pipeline runs
+This span describes a CICD pipeline run.
 
 **Span kind** SHOULD be `SERVER`.
 
