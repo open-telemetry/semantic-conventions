@@ -96,7 +96,7 @@ This list is subject to change over time.
 When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
 `https://www.example.com/path?color=blue&sig=REDACTED`.
 
-**[4] `db.operation.parameter`:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.operation.parameter.<key>`, where `<key>` is the path parameter name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path parameter values to their names.
+**[4] `db.operation.parameter.<key>`:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.operation.parameter.<key>`, where `<key>` is the path parameter name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path parameter values to their names.
 
 **[5] `db.response.status_code`:** HTTP response codes in the 4xx and 5xx range SHOULD be considered errors.
 

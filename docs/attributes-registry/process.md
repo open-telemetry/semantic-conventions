@@ -49,7 +49,7 @@ An operating system process.
 
 **[1] `process.args_count`:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
 
-**[2] `process.environment_variable`:** Examples:
+**[2] `process.environment_variable.<key>`:** Examples:
 
 - an environment variable `USER` with value `"ubuntu"` SHOULD be recorded
 as the `process.environment_variable.USER` attribute with value `"ubuntu"`.

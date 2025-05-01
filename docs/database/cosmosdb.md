@@ -238,7 +238,7 @@ stored procedure name then that stored procedure name SHOULD be used.
    Format Reg-{D (Disabled discovery)}-S(application region)|L(List of preferred regions)|N(None, user did not configure it).
    Default value is "NS".
 
-**[18] `db.query.parameter`:** If a query parameter has no name and instead is referenced only by index,
+**[18] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
 then `<key>` SHOULD be the 0-based index.
 
 `db.query.parameter.<key>` SHOULD match
