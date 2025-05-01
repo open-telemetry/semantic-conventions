@@ -9,6 +9,7 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
+| <a id="cicd-pipeline-action" href="#cicd-pipeline-action">`cicd.pipeline.action`</a> | string | The kind of action a pipeline run is performing. | `BUILD`; `RUN`; `SYNC` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cicd-pipeline-name" href="#cicd-pipeline-name">`cicd.pipeline.name`</a> | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cicd-pipeline-result" href="#cicd-pipeline-result">`cicd.pipeline.result`</a> | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cicd-pipeline-run-id" href="#cicd-pipeline-run-id">`cicd.pipeline.run.id`</a> | string | The unique identifier of a pipeline run within a CI/CD system. | `120912` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -24,6 +25,16 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | <a id="cicd-worker-name" href="#cicd-worker-name">`cicd.worker.name`</a> | string | The name of a worker within a CICD system. | `agent-abc`; `controller`; `Ubuntu LTS` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cicd-worker-state" href="#cicd-worker-state">`cicd.worker.state`</a> | string | The state of a CICD worker / agent. | `idle`; `busy`; `down` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cicd-worker-url-full" href="#cicd-worker-url-full">`cicd.worker.url.full`</a> | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`cicd.pipeline.action` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `BUILD` | The pipeline run is executing a build. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `RUN` | The pipeline run is executing. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `SYNC` | The pipeline run is executing a sync. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

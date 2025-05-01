@@ -173,6 +173,25 @@ groups:
         brief: >
           The result of a pipeline run.
         examples: ["success", "failure", "timeout", "skipped"]
+      - id: cicd.pipeline.action
+        type:
+          members:
+            - id: build
+              value: BUILD
+              brief: The pipeline run is executing a build.
+              stability: development
+            - id: run
+              value: RUN
+              brief: The pipeline run is executing.
+              stability: development
+            - id: sync
+              value: SYNC
+              brief: The pipeline run is executing a sync.
+              stability: development
+        stability: development
+        brief: >
+          The kind of action a pipeline run is performing.
+        examples: ["BUILD", "RUN", "SYNC"]
       - id: cicd.worker.id
         type: string
         stability: development

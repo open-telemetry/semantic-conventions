@@ -42,7 +42,7 @@ For all pipeline runs, a span with kind `SERVER` SHOULD be created corresponding
 The span name SHOULD be `{action} {pipeline}` if there is a (low-cardinality) pipeline name available.
 If the pipeline name is not available or is likely to have high cardinality, then the span name SHOULD be `{action}`.
 
-The `{action}` SHOULD be one of the following values: `BUILD`, `RUN`, `SYNC`. If none of these values applies a custom value MAY be used.
+The `{action}` SHOULD be the [`cicd.pipeline.action`](/docs/attributes-registry/cicd.md#cicd-pipeline-action).
 
 The `{pipeline}` SHOULD be the [`cicd.pipeline.name`](/docs/attributes-registry/cicd.md#cicd-pipeline-name).
 
@@ -54,6 +54,7 @@ The `{pipeline}` SHOULD be the [`cicd.pipeline.name`](/docs/attributes-registry/
 |---|---|---|---|---|---|
 | [`cicd.pipeline.result`](/docs/attributes-registry/cicd.md) | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the pipeline result is `failure` or `error` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`cicd.pipeline.action`](/docs/attributes-registry/cicd.md) | string | The kind of action a pipeline run is performing. | `BUILD`; `RUN`; `SYNC` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -74,6 +75,16 @@ it's RECOMMENDED to:
 
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+
+---
+
+`cicd.pipeline.action` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `BUILD` | The pipeline run is executing a build. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `RUN` | The pipeline run is executing. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `SYNC` | The pipeline run is executing a sync. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
