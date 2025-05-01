@@ -26,6 +26,7 @@ groups:
       A CICD worker is a component of the CICD system that performs work (eg. running pipeline tasks or performing sync).
     attributes:
       - ref: cicd.worker.id
+        requirement_level: required
       - ref: cicd.worker.name
       - ref: cicd.worker.url.full
         requirement_level: opt_in

@@ -180,7 +180,7 @@ groups:
         examples:
           [
             "abc123",
-            "10.0.0.1",
+            "10.0.1.2",
             "controller",
           ]
       - id: cicd.worker.name
@@ -189,8 +189,9 @@ groups:
         brief: The name of a worker within a CICD system.
         examples:
           [
-            "agent-abc123",
+            "agent-abc",
             "controller",
+            "Ubuntu LTS"
           ]
       - id: cicd.worker.url.full
         type: string
