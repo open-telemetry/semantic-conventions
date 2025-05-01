@@ -84,7 +84,7 @@ calls involving complex queries.
 Summary may be available to the instrumentation through
 instrumentation hooks or other means. If it is not available, instrumentations
 that support query parsing SHOULD generate a summary following
-[Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query-text)
+[Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
 section.
 
 **[12] `db.query.summary`:** if available through instrumentation hooks or if the instrumentation supports generating a query summary.
