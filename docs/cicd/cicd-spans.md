@@ -83,7 +83,7 @@ Semantic Convention for pipeline runs
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-Semantic Convention for tasks in a pipeline run
+This span describes task execution in a pipeline run.
 
 **Span kind** SHOULD be `INTERNAL`.
 

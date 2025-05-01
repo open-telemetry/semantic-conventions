@@ -10,7 +10,7 @@ groups:
   - id: span.cicd.pipeline.task.internal
     type: span
     span_kind: internal
-    brief: 'Semantic Convention for tasks in a pipeline run'
+    brief: This span describes task execution in a pipeline run.
     stability: development
     attributes:
       - ref: cicd.pipeline.task.name
