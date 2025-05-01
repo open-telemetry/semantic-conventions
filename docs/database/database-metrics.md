@@ -32,25 +32,25 @@ linkTitle: Metrics
 > [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/database-spans.md)
 > (or prior):
 >
-> * SHOULD NOT change the version of the database conventions that they emit by default
->   until the database semantic conventions are marked stable.
->   Conventions include, but are not limited to, attributes,
->   metric and span names, and unit of measure.
+> * SHOULD NOT change the version of the database conventions that they emit by
+>   default in their existing major version. Conventions include (but are not
+>   limited to) attributes, metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version as a comma-separated list of category-specific values
+>   in their existing major version as a comma-separated list of category-specific values
 >   (e.g., http, databases, messaging). The list of values includes:
->   * `database` - emit the new, stable database conventions,
->     and stop emitting the old experimental database conventions
->     that the instrumentation emitted previously.
->   * `database/dup` - emit both the old and the stable database conventions,
->     allowing for a seamless transition.
+>   * `database` - emit the stable database conventions, and stop emitting
+>     the experimental database conventions that the instrumentation emitted
+>     previously.
+>   * `database/dup` - emit both the experimental and stable database conventions,
+>     allowing for a phased rollout of the stable semantic conventions.
 >   * The default behavior (in the absence of one of these values) is to continue
 >     emitting whatever version of the old experimental database conventions
 >     the instrumentation was emitting previously.
 >   * Note: `database/dup` has higher precedence than `database` in case both values are present
-> * SHOULD maintain (security patching at a minimum) the existing major version
+> * SHOULD maintain (security patching at a minimum) their existing major version
 >   for at least six months after it starts emitting both sets of conventions.
-> * SHOULD drop the environment variable in the next major version.
+> * MAY drop the environment variable in their next major version and emit only
+>   the stable database conventions.
 
 ## Database operation
 
