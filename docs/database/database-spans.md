@@ -342,7 +342,7 @@ one is not readily available from other sources.
 The summary SHOULD preserve the following parts of query in the order they were provided:
 
 - operations such as SQL SELECT, INSERT, UPDATE, DELETE, and other commands
-- operation targets such as collections and database names
+- operation targets such as collections, stored procedures, database names, etc
 
 Instrumentations that support query parsing SHOULD parse the query and extract a
 list of operations and targets from the query. It SHOULD set `db.query.summary`
