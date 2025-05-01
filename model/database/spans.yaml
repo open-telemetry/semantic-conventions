@@ -957,7 +957,7 @@ groups:
       - ref: azure.cosmosdb.operation.contacted_regions
         requirement_level:
           conditionally_required: If available.
-      - ref: db.query.text
+      - ref: db.query.text  # TODO: this might not be the right attribute to use here - https://github.com/open-telemetry/semantic-conventions/issues/2213
       - ref: db.query.parameter
         requirement_level: opt_in
   - id: span.db.oracledb.client

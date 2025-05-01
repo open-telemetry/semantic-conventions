@@ -458,7 +458,7 @@ name or target).
     command.CommandText = "some_stored_procedure";
     ```
 
-    the corresponding `db.query.summary` is `EXEC some_stored_procedure`, `db.query.text` is not populated.
+    the corresponding `db.query.summary` is `EXECUTE some_stored_procedure`, `db.query.text` is not populated.
 
 Semantic conventions for individual database systems or specialized instrumentations
 MAY specify a different `db.query.summary` format as long as produced summary remains
