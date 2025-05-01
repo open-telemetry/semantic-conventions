@@ -361,7 +361,7 @@ attribute to the value formatted in the following way:
 
 ```
 {operation1} {target1} {operation2} {target2} {target3} ...
-````
+```
 
 Instrumentations SHOULD capture the values of operations and targets as provided
 by the application without attempting to do any case normalization. If the operation
