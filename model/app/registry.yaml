@@ -31,3 +31,34 @@ groups:
           More information about Android identifier best practices can be found [here](https://developer.android.com/training/articles/user-data-ids).
         examples:
           - 2ab2916d-a51f-4ac8-80ee-45ac31a28092
+      - id: app.screen.coordinate.x
+        type: int
+        brief: The x (horizontal) coordinate of a screen coordinate, in screen pixels.
+        stability: development
+        examples: [ 0, 131 ]
+      - id: app.screen.coordinate.y
+        type: int
+        brief: >
+          The y (vertical) component of a screen coordinate, in screen pixels.
+        stability: development
+        examples: [ 12, 99 ]
+      - id: app.widget.id
+        type: string
+        stability: development
+        brief: >
+          An identifier that uniquely differentiates this widget from other
+          widgets in the same application.
+        note: >
+          A widget is an application component, typically an on-screen visual
+          GUI element.
+        examples:
+          - f9bc787d-ff05-48ad-90e1-fca1d46130b3
+          - submit_order_1829
+      - id: app.widget.name
+        type: string
+        stability: development
+        brief: The name of an application widget.
+        note: >
+          A widget is an application component, typically an on-screen visual
+          GUI element.
+        examples: [ "submit", "attack", "Clear Cart" ]
