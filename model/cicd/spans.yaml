@@ -27,3 +27,6 @@ groups:
         sampling_relevant: true
       - ref: cicd.pipeline.task.run.result
         requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if the task result is `failure` or `error`

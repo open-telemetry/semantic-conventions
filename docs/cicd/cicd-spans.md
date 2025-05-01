@@ -124,6 +124,27 @@ This span describes task execution in a pipeline run.
 | [`cicd.pipeline.task.run.id`](/docs/attributes-registry/cicd.md) | string | The unique identifier of a task run within a pipeline. | `12097` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`cicd.pipeline.task.run.result`](/docs/attributes-registry/cicd.md) | string | The result of a task run. | `success`; `failure`; `timeout`; `skipped` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`cicd.pipeline.task.run.url.full`](/docs/attributes-registry/cicd.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the task result is `failure` or `error` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+
+When `error.type` is set to a type (e.g., an exception type), its
+canonical class name identifying the type within the artifact SHOULD be used.
+
+Instrumentations SHOULD document the list of errors they report.
+
+The cardinality of `error.type` within one instrumentation library SHOULD be low.
+Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.type` to have high cardinality at query time when no
+additional filters are applied.
+
+If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
+
+If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+it's RECOMMENDED to:
+
+- Use a domain-specific attribute
+- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -144,6 +165,14 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `skip` | The task run was skipped, eg. due to a precondition not being met. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `success` | The task run finished successfully. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `timeout` | A timeout caused the task run to be interrupted. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
