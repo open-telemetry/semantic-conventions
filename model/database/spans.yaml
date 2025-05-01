@@ -732,6 +732,19 @@ groups:
       - ref: db.stored_procedure.name
         requirement_level:
           recommended: If operation applies to a specific stored procedure.
+      - ref: db.operation.name
+        requirement_level:
+          recommended: If the operation is executed via a higher-level API
+            that does not support multiple operation names.
+        note: |
+          The operation name SHOULD NOT be extracted from `db.query.text`.
+        examples: ["EXECUTE", "INSERT"]
+      - ref: db.collection.name
+        requirement_level:
+          recommended: If the operation is executed via a higher-level API
+            that does not support multiple collection names.
+        note: |
+          The collection name SHOULD NOT be extracted from `db.query.text`.
   - id: span.azure.cosmosdb.client
     type: span
     stability: development
