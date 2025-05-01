@@ -61,7 +61,7 @@ groups:
       - ref: db.query.text
       - ref: db.query.summary
         requirement_level:
-          recommended: if available or if the instrumentation supports generating a query summary.
+          recommended: if available through instrumentation hooks or if the instrumentation supports generating a query summary.
 
   - id: attributes.db.client.with_query_and_collection
     extends: attributes.db.client.with_query
