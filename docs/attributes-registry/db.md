@@ -81,9 +81,9 @@ Examples:
 - For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
   `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
 
-**[7] `db.query.summary`:** `db.query.summary` provides static summary of the query.
-It describes a class of database queries and is useful as a grouping key,
-especially when analyzing telemetry for database calls involving complex queries.
+**[7] `db.query.summary`:** The query summary describes a class of database queries and is useful
+as a grouping key, especially when analyzing telemetry for database
+calls involving complex queries.
 
 Summary may be available to the instrumentation through
 instrumentation hooks or other means. If it is not available, instrumentations

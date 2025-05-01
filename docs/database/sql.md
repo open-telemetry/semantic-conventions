@@ -137,9 +137,9 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[10] `db.operation.name`:** If the operation is executed via a higher-level API that does not support multiple operation names.
 
-**[11] `db.query.summary`:** `db.query.summary` provides static summary of the query.
-It describes a class of database queries and is useful as a grouping key,
-especially when analyzing telemetry for database calls involving complex queries.
+**[11] `db.query.summary`:** The query summary describes a class of database queries and is useful
+as a grouping key, especially when analyzing telemetry for database
+calls involving complex queries.
 
 Summary may be available to the instrumentation through
 instrumentation hooks or other means. If it is not available, instrumentations

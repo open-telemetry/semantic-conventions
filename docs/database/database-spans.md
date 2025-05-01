@@ -12,7 +12,7 @@ linkTitle: Spans
 - [Span definition](#span-definition)
   - [Notes and well-known identifiers for `db.system.name`](#notes-and-well-known-identifiers-for-dbsystemname)
 - [Sanitization of `db.query.text`](#sanitization-of-dbquerytext)
-- [Generating a summary of the query text](#generating-a-summary-of-the-query-text)
+- [Generating a summary of the query](#generating-a-summary-of-the-query)
 - [Semantic conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 
 <!-- tocstop -->
@@ -178,9 +178,9 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[12] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 
-**[13] `db.query.summary`:** `db.query.summary` provides static summary of the query.
-It describes a class of database queries and is useful as a grouping key,
-especially when analyzing telemetry for database calls involving complex queries.
+**[13] `db.query.summary`:** The query summary describes a class of database queries and is useful
+as a grouping key, especially when analyzing telemetry for database
+calls involving complex queries.
 
 Summary may be available to the instrumentation through
 instrumentation hooks or other means. If it is not available, instrumentations
@@ -338,10 +338,11 @@ and can help control cardinality for users who choose to (optionally) add `db.qu
 When performing sanitization, instrumentation MAY truncate the sanitized value
 for performance considerations (since sanitizing has a performance cost).
 
-## Generating a summary of the query text
+## Generating a summary of the query
 
-The `db.query.summary` attribute captures a shortened representation of a query text
-which SHOULD have low-cardinality and SHOULD NOT contain any dynamic or sensitive data.
+The `db.query.summary` attribute can be used to capture a shortened representation
+of the query. It SHOULD have low-cardinality and SHOULD NOT contain any dynamic
+or sensitive data.
 
 > [!NOTE]
 >
@@ -354,13 +355,15 @@ which SHOULD have low-cardinality and SHOULD NOT contain any dynamic or sensitiv
 > only contain information that has a significant impact on the query, database,
 > or application performance.
 
-Instrumentation SHOULD set the query summary if it is readily available through instrumentation hooks or other sources.
+Instrumentation SHOULD set the query summary if it is readily available through
+instrumentation hooks or other sources.
 
 Otherwise:
 
 - When instrumenting higher-level APIs that build queries internally - for example,
 those that create a table or execute a stored procedure - instrumentations SHOULD
-generate a `db.query.summary` from available operation(s) and target(s) using the format described in this section.
+generate a `db.query.summary` from available operation(s) and target(s) using the
+format described in this section.
 
 - When instrumenting APIs that operate at the query level, instrumentations that
 support query parsing SHOULD generate a query summary based on the `db.query.text`.

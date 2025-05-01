@@ -102,9 +102,9 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[11] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 
-**[12] `db.query.summary`:** `db.query.summary` provides static summary of the query.
-It describes a class of database queries and is useful as a grouping key,
-especially when analyzing telemetry for database calls involving complex queries.
+**[12] `db.query.summary`:** The query summary describes a class of database queries and is useful
+as a grouping key, especially when analyzing telemetry for database
+calls involving complex queries.
 
 Summary may be available to the instrumentation through
 instrumentation hooks or other means. If it is not available, instrumentations
