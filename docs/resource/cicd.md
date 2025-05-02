@@ -99,7 +99,7 @@ Using the CICD pipeline run resource with metrics inherently causes high cardina
 |---|---|---|---|---|---|
 | [`cicd.worker.id`](/docs/attributes-registry/cicd.md) | string | The unique identifier of a worker within a CICD system. | `abc123`; `10.0.1.2`; `controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`cicd.worker.name`](/docs/attributes-registry/cicd.md) | string | The name of a worker within a CICD system. | `agent-abc`; `controller`; `Ubuntu LTS` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`cicd.worker.url.full`](/docs/attributes-registry/cicd.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cicd.worker.url.full`](/docs/attributes-registry/cicd.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` | `Recommended` If available | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
