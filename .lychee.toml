@@ -7,12 +7,16 @@ exclude = [
     # excluding links to pull requests and issues is done for performance
     "^https://github.com/open-telemetry/semantic-conventions/(pull|issues)/\\d+$",
     "^https://github.com/open-telemetry/opentelemetry-specification/(pull|issues)/\\d+$",
-    # TODO (trask) remove this exclusion after (hopefully) this page comes back up
-    "^https://docs.oracle.com/en/java/javase/17/docs/api/"
+    # TODO (lmolkova) treat timeout as not a failure?
+    "^https://www.intersystems.com",
+    "^https://gcc.gnu.org"
 ]
 
 # better to be safe and avoid failures
 max_retries = 6
+
+# better to be safe and avoid failures
+timeout = 60
 
 # insecure is currently needed for https://osi-model.com
 insecure = true

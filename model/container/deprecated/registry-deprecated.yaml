@@ -6,7 +6,7 @@ groups:
     attributes:
       - id: container.labels
         type: template[string]
-        examples: [ 'container.label.app=nginx' ]
+        examples: [ 'nginx' ]
         brief: "Deprecated, use `container.label` instead."
         stability: development
         deprecated: "Replaced by `container.label`."

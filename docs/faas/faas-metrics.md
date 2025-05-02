@@ -15,8 +15,8 @@ operations. By adding FaaS attributes to metric events it allows for finely tune
 
 <!-- toc -->
 
-- [Metric Instruments](#metric-instruments)
-  - [FaaS Instance](#faas-instance)
+- [Metric instruments](#metric-instruments)
+  - [FaaS instance](#faas-instance)
     - [Metric: `faas.invoke_duration`](#metric-faasinvoke_duration)
     - [Metric: `faas.init_duration`](#metric-faasinit_duration)
     - [Metric: `faas.coldstarts`](#metric-faascoldstarts)
@@ -27,15 +27,15 @@ operations. By adding FaaS attributes to metric events it allows for finely tune
     - [Metric: `faas.cpu_usage`](#metric-faascpu_usage)
     - [Metric: `faas.net_io`](#metric-faasnet_io)
 - [References](#references)
-  - [Metric References](#metric-references)
+  - [Metric references](#metric-references)
 
 <!-- tocstop -->
 
-## Metric Instruments
+## Metric instruments
 
 The following metric instruments describe FaaS operations.
 
-### FaaS Instance
+### FaaS instance
 
 The following metrics are recorded by the FaaS instance.
 
@@ -44,7 +44,7 @@ The following metrics are recorded by the FaaS instance.
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.faas.invoke_duration -->
@@ -54,9 +54,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.invoke_duration` | Histogram | `s` | Measures the duration of the function's logic execution | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `faas.invoke_duration` | Histogram | `s` | Measures the duration of the function's logic execution | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -84,7 +84,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.faas.init_duration -->
@@ -94,9 +94,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.init_duration` | Histogram | `s` | Measures the duration of the function's initialization, such as a cold start | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `faas.init_duration` | Histogram | `s` | Measures the duration of the function's initialization, such as a cold start | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -130,9 +130,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.coldstarts` | Counter | `{coldstart}` | Number of invocation cold starts | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `faas.coldstarts` | Counter | `{coldstart}` | Number of invocation cold starts | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -166,9 +166,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.errors` | Counter | `{error}` | Number of invocation errors | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `faas.errors` | Counter | `{error}` | Number of invocation errors | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -202,9 +202,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.invocations` | Counter | `{invocation}` | Number of successful invocations | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `faas.invocations` | Counter | `{invocation}` | Number of successful invocations | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -238,9 +238,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.timeouts` | Counter | `{timeout}` | Number of invocation timeouts | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `faas.timeouts` | Counter | `{timeout}` | Number of invocation timeouts | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -274,9 +274,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.mem_usage` | Histogram | `By` | Distribution of max memory usage per invocation | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `faas.mem_usage` | Histogram | `By` | Distribution of max memory usage per invocation | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -304,7 +304,7 @@ This metric is [recommended][MetricRecommended].
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.faas.cpu_usage -->
@@ -314,9 +314,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.cpu_usage` | Histogram | `s` | Distribution of CPU usage per invocation | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `faas.cpu_usage` | Histogram | `s` | Distribution of CPU usage per invocation | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -350,9 +350,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `faas.net_io` | Histogram | `By` | Distribution of net I/O usage per invocation | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `faas.net_io` | Histogram | `By` | Distribution of net I/O usage per invocation | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -377,7 +377,7 @@ This metric is [recommended][MetricRecommended].
 
 ## References
 
-### Metric References
+### Metric references
 
 Below are links to documentation regarding metrics that are available with different
 FaaS providers. This list is not exhaustive.

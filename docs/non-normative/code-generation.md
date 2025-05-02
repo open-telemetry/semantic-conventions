@@ -2,9 +2,9 @@
 
 <!-- toc -->
 
-- [Stability and Versioning](#stability-and-versioning)
-  - [Deprecated Conventions](#deprecated-conventions)
-- [Semantic Conventions Artifact Structure](#semantic-conventions-artifact-structure)
+- [Stability and versioning](#stability-and-versioning)
+  - [Deprecated conventions](#deprecated-conventions)
+- [Semantic conventions artifact structure](#semantic-conventions-artifact-structure)
 - [Generating semantic conventions](#generating-semantic-conventions)
   - [Migrating from build-tools](#migrating-from-build-tools)
     - [Weaver config](#weaver-config)
@@ -20,7 +20,7 @@ their language and may (or may not) ship it as a stand-alone library.
 This document outlines common patterns and provides non-normative guidance on how to structure semantic conventions artifacts
 and generate the code.
 
-## Stability and Versioning
+## Stability and versioning
 
 Semantic Conventions contain a mix of stability levels.
 Language SIGs that ship semantic conventions library may decide to ship a stable artifact with stable part of the Semantic Conventions, a preview artifact with all Semantic Conventions, or other combination that's idiomatic for this language and provides [SemVer 2.0](https://semver.org/) stability guarantees.
@@ -39,7 +39,7 @@ Possible solutions include:
 Instrumentation libraries should depend on the stable (part of) semantic convention artifact or copy relevant definitions into their own code base.
 Unstable semantic conventions artifact is intended for end-user applications.
 
-### Deprecated Conventions
+### Deprecated conventions
 
 It's recommended to generate code for deprecated attributes, metrics, and other conventions. Use appropriate annotations to mark them as deprecated.
 Conventions have a `stability` property which provide the stability level at the deprecation time (`development`, `alpha`, `beta`, `release_candidate` or `stable`) and
@@ -52,7 +52,7 @@ the `deprecated` property that describes deprecation reason which can be used to
 Keep stable convention definitions inside the preview (part of) semantic conversions artifact. It prevents user code from breaking when semantic convention stabilizes. Deprecate stable definitions inside the preview artifact and point users to the stable location in generated documentation.
 For example, in Java, the attribute `http.request.method` is defined as deprecated in both stable and preview artifacts (e.g., `io.opentelemetry.semconv.incubating.HttpIncubatingAttributes.HTTP_REQUEST_METHOD`, `io.opentelemetry.semconv.HttpAttributes.HTTP_REQUEST_METHOD`).
 
-## Semantic Conventions Artifact Structure
+## Semantic conventions artifact structure
 
 This section contains suggestions on how to structure semantic convention artifact(s).
 
@@ -88,7 +88,6 @@ This section describes how to do code-generation with weaver.
 
 Code-generation is based on YAML definitions in the specific version of semantic conventions.
 Usually, it involves several steps where some can be semi-automated:
-involves several steps which could be semi-automated:
 
 1. Manually update the Semantic Conventions version in config
 2. Add the new Schema URL to the list of supported versions

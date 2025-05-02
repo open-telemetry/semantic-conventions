@@ -6,7 +6,7 @@ linkTitle: Kubernetes
 
 **Status**: [Development][DocumentStatus]
 
-## K8s Metrics
+## K8s metrics
 
 This document describes instruments and attributes for common K8s level
 metrics in OpenTelemetry. These metrics are collected from technology-specific,
@@ -17,58 +17,58 @@ and therefore inherit its attributes, like `k8s.pod.name` and `k8s.pod.uid`.
 
 <!-- toc -->
 
-- [Pod Metrics](#pod-metrics)
+- [Pod metrics](#pod-metrics)
   - [Metric: `k8s.pod.uptime`](#metric-k8spoduptime)
   - [Metric: `k8s.pod.cpu.time`](#metric-k8spodcputime)
   - [Metric: `k8s.pod.cpu.usage`](#metric-k8spodcpuusage)
   - [Metric: `k8s.pod.memory.usage`](#metric-k8spodmemoryusage)
   - [Metric: `k8s.pod.network.io`](#metric-k8spodnetworkio)
   - [Metric: `k8s.pod.network.errors`](#metric-k8spodnetworkerrors)
-- [Node Metrics](#node-metrics)
+- [Node metrics](#node-metrics)
   - [Metric: `k8s.node.uptime`](#metric-k8snodeuptime)
   - [Metric: `k8s.node.cpu.time`](#metric-k8snodecputime)
   - [Metric: `k8s.node.cpu.usage`](#metric-k8snodecpuusage)
   - [Metric: `k8s.node.memory.usage`](#metric-k8snodememoryusage)
   - [Metric: `k8s.node.network.io`](#metric-k8snodenetworkio)
   - [Metric: `k8s.node.network.errors`](#metric-k8snodenetworkerrors)
-- [Deployment Metrics](#deployment-metrics)
+- [Deployment metrics](#deployment-metrics)
   - [Metric: `k8s.deployment.desired_pods`](#metric-k8sdeploymentdesired_pods)
   - [Metric: `k8s.deployment.available_pods`](#metric-k8sdeploymentavailable_pods)
-- [ReplicaSet Metrics](#replicaset-metrics)
+- [ReplicaSet metrics](#replicaset-metrics)
   - [Metric: `k8s.replicaset.desired_pods`](#metric-k8sreplicasetdesired_pods)
   - [Metric: `k8s.replicaset.available_pods`](#metric-k8sreplicasetavailable_pods)
-- [ReplicationController Metrics](#replicationcontroller-metrics)
+- [ReplicationController metrics](#replicationcontroller-metrics)
   - [Metric: `k8s.replicationcontroller.desired_pods`](#metric-k8sreplicationcontrollerdesired_pods)
   - [Metric: `k8s.replicationcontroller.available_pods`](#metric-k8sreplicationcontrolleravailable_pods)
-- [StatefulSet Metrics](#statefulset-metrics)
+- [StatefulSet metrics](#statefulset-metrics)
   - [Metric: `k8s.statefulset.desired_pods`](#metric-k8sstatefulsetdesired_pods)
   - [Metric: `k8s.statefulset.ready_pods`](#metric-k8sstatefulsetready_pods)
   - [Metric: `k8s.statefulset.current_pods`](#metric-k8sstatefulsetcurrent_pods)
   - [Metric: `k8s.statefulset.updated_pods`](#metric-k8sstatefulsetupdated_pods)
-- [HorizontalPodAutoscaler Metrics](#horizontalpodautoscaler-metrics)
+- [HorizontalPodAutoscaler metrics](#horizontalpodautoscaler-metrics)
   - [Metric: `k8s.hpa.desired_pods`](#metric-k8shpadesired_pods)
   - [Metric: `k8s.hpa.current_pods`](#metric-k8shpacurrent_pods)
   - [Metric: `k8s.hpa.max_pods`](#metric-k8shpamax_pods)
   - [Metric: `k8s.hpa.min_pods`](#metric-k8shpamin_pods)
-- [DaemonSet Metrics](#daemonset-metrics)
+- [DaemonSet metrics](#daemonset-metrics)
   - [Metric: `k8s.daemonset.current_scheduled_nodes`](#metric-k8sdaemonsetcurrent_scheduled_nodes)
   - [Metric: `k8s.daemonset.desired_scheduled_nodes`](#metric-k8sdaemonsetdesired_scheduled_nodes)
   - [Metric: `k8s.daemonset.misscheduled_nodes`](#metric-k8sdaemonsetmisscheduled_nodes)
   - [Metric: `k8s.daemonset.ready_nodes`](#metric-k8sdaemonsetready_nodes)
-- [Job Metrics](#job-metrics)
+- [Job metrics](#job-metrics)
   - [Metric: `k8s.job.active_pods`](#metric-k8sjobactive_pods)
   - [Metric: `k8s.job.failed_pods`](#metric-k8sjobfailed_pods)
   - [Metric: `k8s.job.successful_pods`](#metric-k8sjobsuccessful_pods)
   - [Metric: `k8s.job.desired_successful_pods`](#metric-k8sjobdesired_successful_pods)
   - [Metric: `k8s.job.max_parallel_pods`](#metric-k8sjobmax_parallel_pods)
-- [CronJob Metrics](#cronjob-metrics)
+- [CronJob metrics](#cronjob-metrics)
   - [Metric: `k8s.cronjob.active_jobs`](#metric-k8scronjobactive_jobs)
-- [Namespace Metrics](#namespace-metrics)
+- [Namespace metrics](#namespace-metrics)
   - [Metric: `k8s.namespace.phase`](#metric-k8snamespacephase)
 
 <!-- tocstop -->
 
-## Pod Metrics
+## Pod metrics
 
 **Description:** Pod level metrics captured under the namespace `k8s.pod`.
 
@@ -83,9 +83,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.pod.uptime` | Gauge | `s` | The time the Pod has been running [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.pod.uptime` | Gauge | `s` | The time the Pod has been running [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
 The actual accuracy would depend on the instrumentation and operating system.
@@ -106,9 +106,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.pod.cpu.time` | Counter | `s` | Total CPU time consumed [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.pod.cpu.time` | Counter | `s` | Total CPU time consumed [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Total CPU time consumed by the specific Pod on all available CPU cores
 
@@ -128,9 +128,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.pod.cpu.usage` | Gauge | `{cpu}` | Pod's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.pod.cpu.usage` | Gauge | `{cpu}` | Pod's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** CPU usage of the specific Pod on all available CPU cores, averaged over the sample window
 
@@ -150,9 +150,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.pod.memory.usage` | Gauge | `By` | Memory usage of the Pod [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.pod.memory.usage` | Gauge | `By` | Memory usage of the Pod [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Total memory usage of the Pod
 
@@ -172,9 +172,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.pod.network.io` | Counter | `By` | Network bytes for the Pod | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.pod.network.io` | Counter | `By` | Network bytes for the Pod | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -206,9 +206,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.pod.network.errors` | Counter | `{error}` | Pod network errors | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.pod.network.errors` | Counter | `{error}` | Pod network errors | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -229,7 +229,7 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## Node Metrics
+## Node metrics
 
 **Description:** Node level metrics captured under the namespace `k8s.node`.
 
@@ -244,9 +244,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.node.uptime` | Gauge | `s` | The time the Node has been running [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.node.uptime` | Gauge | `s` | The time the Node has been running [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
 The actual accuracy would depend on the instrumentation and operating system.
@@ -267,9 +267,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.node.cpu.time` | Counter | `s` | Total CPU time consumed [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.node.cpu.time` | Counter | `s` | Total CPU time consumed [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Total CPU time consumed by the specific Node on all available CPU cores
 
@@ -289,9 +289,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.node.cpu.usage` | Gauge | `{cpu}` | Node's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.node.cpu.usage` | Gauge | `{cpu}` | Node's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** CPU usage of the specific Node on all available CPU cores, averaged over the sample window
 
@@ -311,9 +311,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.node.memory.usage` | Gauge | `By` | Memory usage of the Node [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.node.memory.usage` | Gauge | `By` | Memory usage of the Node [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Total memory usage of the Node
 
@@ -333,9 +333,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.node.network.io` | Counter | `By` | Network bytes for the Node | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.node.network.io` | Counter | `By` | Network bytes for the Node | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -367,9 +367,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.node.network.errors` | Counter | `{error}` | Node network errors | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.node.network.errors` | Counter | `{error}` | Node network errors | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -390,7 +390,7 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## Deployment Metrics
+## Deployment metrics
 
 **Description:** Deployment level metrics captured under the namespace `k8s.deployment`.
 
@@ -405,9 +405,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.deployment.desired_pods` | UpDownCounter | `{pod}` | Number of desired replica pods in this deployment [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.deployment.desired_pods` | UpDownCounter | `{pod}` | Number of desired replica pods in this deployment [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `replicas` field of the
 [K8s DeploymentSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentspec-v1-apps).
@@ -431,9 +431,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.deployment.available_pods` | UpDownCounter | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this deployment [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.deployment.available_pods` | UpDownCounter | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this deployment [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `availableReplicas` field of the
 [K8s DeploymentStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentstatus-v1-apps).
@@ -446,7 +446,7 @@ This metric SHOULD, at a minimum, be reported against a
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## ReplicaSet Metrics
+## ReplicaSet metrics
 
 **Description:** ReplicaSet level metrics captured under the namespace `k8s.replicaset`.
 
@@ -461,9 +461,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.replicaset.desired_pods` | UpDownCounter | `{pod}` | Number of desired replica pods in this replicaset [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.replicaset.desired_pods` | UpDownCounter | `{pod}` | Number of desired replica pods in this replicaset [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `replicas` field of the
 [K8s ReplicaSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetspec-v1-apps).
@@ -487,9 +487,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.replicaset.available_pods` | UpDownCounter | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this replicaset [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.replicaset.available_pods` | UpDownCounter | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this replicaset [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `availableReplicas` field of the
 [K8s ReplicaSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetstatus-v1-apps).
@@ -502,7 +502,7 @@ This metric SHOULD, at a minimum, be reported against a
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## ReplicationController Metrics
+## ReplicationController metrics
 
 **Description:** ReplicationController level metrics captured under the namespace `k8s.replicationcontroller`.
 
@@ -517,9 +517,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.replicationcontroller.desired_pods` | UpDownCounter | `{pod}` | Number of desired replica pods in this replication controller [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.replicationcontroller.desired_pods` | UpDownCounter | `{pod}` | Number of desired replica pods in this replication controller [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `replicas` field of the
 [K8s ReplicationControllerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerspec-v1-core)
@@ -543,9 +543,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.replicationcontroller.available_pods` | UpDownCounter | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this replication controller [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.replicationcontroller.available_pods` | UpDownCounter | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this replication controller [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `availableReplicas` field of the
 [K8s ReplicationControllerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerstatus-v1-core)
@@ -558,7 +558,7 @@ This metric SHOULD, at a minimum, be reported against a
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## StatefulSet Metrics
+## StatefulSet metrics
 
 **Description:** StatefulSet level metrics captured under the namespace `k8s.statefulset`.
 
@@ -573,9 +573,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.statefulset.desired_pods` | UpDownCounter | `{pod}` | Number of desired replica pods in this statefulset [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.statefulset.desired_pods` | UpDownCounter | `{pod}` | Number of desired replica pods in this statefulset [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `replicas` field of the
 [K8s StatefulSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetspec-v1-apps).
@@ -599,9 +599,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.statefulset.ready_pods` | UpDownCounter | `{pod}` | The number of replica pods created for this statefulset with a Ready Condition [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.statefulset.ready_pods` | UpDownCounter | `{pod}` | The number of replica pods created for this statefulset with a Ready Condition [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `readyReplicas` field of the
 [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
@@ -625,9 +625,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.statefulset.current_pods` | UpDownCounter | `{pod}` | The number of replica pods created by the statefulset controller from the statefulset version indicated by currentRevision [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.statefulset.current_pods` | UpDownCounter | `{pod}` | The number of replica pods created by the statefulset controller from the statefulset version indicated by currentRevision [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `currentReplicas` field of the
 [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
@@ -651,9 +651,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.statefulset.updated_pods` | UpDownCounter | `{pod}` | Number of replica pods created by the statefulset controller from the statefulset version indicated by updateRevision [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.statefulset.updated_pods` | UpDownCounter | `{pod}` | Number of replica pods created by the statefulset controller from the statefulset version indicated by updateRevision [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `updatedReplicas` field of the
 [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
@@ -666,7 +666,7 @@ This metric SHOULD, at a minimum, be reported against a
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## HorizontalPodAutoscaler Metrics
+## HorizontalPodAutoscaler metrics
 
 **Description:** HorizontalPodAutoscaler level metrics captured under the namespace `k8s.hpa`.
 
@@ -681,9 +681,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.hpa.desired_pods` | UpDownCounter | `{pod}` | Desired number of replica pods managed by this horizontal pod autoscaler, as last calculated by the autoscaler [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.hpa.desired_pods` | UpDownCounter | `{pod}` | Desired number of replica pods managed by this horizontal pod autoscaler, as last calculated by the autoscaler [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `desiredReplicas` field of the
 [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
@@ -707,9 +707,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.hpa.current_pods` | UpDownCounter | `{pod}` | Current number of replica pods managed by this horizontal pod autoscaler, as last seen by the autoscaler [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.hpa.current_pods` | UpDownCounter | `{pod}` | Current number of replica pods managed by this horizontal pod autoscaler, as last seen by the autoscaler [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `currentReplicas` field of the
 [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
@@ -733,9 +733,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.hpa.max_pods` | UpDownCounter | `{pod}` | The upper limit for the number of replica pods to which the autoscaler can scale up [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.hpa.max_pods` | UpDownCounter | `{pod}` | The upper limit for the number of replica pods to which the autoscaler can scale up [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `maxReplicas` field of the
 [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
@@ -759,9 +759,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.hpa.min_pods` | UpDownCounter | `{pod}` | The lower limit for the number of replica pods to which the autoscaler can scale down [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.hpa.min_pods` | UpDownCounter | `{pod}` | The lower limit for the number of replica pods to which the autoscaler can scale down [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `minReplicas` field of the
 [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
@@ -774,7 +774,7 @@ This metric SHOULD, at a minimum, be reported against a
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## DaemonSet Metrics
+## DaemonSet metrics
 
 **Description:** DaemonSet level metrics captured under the namespace `k8s.daemonset`.
 
@@ -789,9 +789,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.daemonset.current_scheduled_nodes` | UpDownCounter | `{node}` | Number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.daemonset.current_scheduled_nodes` | UpDownCounter | `{node}` | Number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `currentNumberScheduled` field of the
 [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
@@ -815,9 +815,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.daemonset.desired_scheduled_nodes` | UpDownCounter | `{node}` | Number of nodes that should be running the daemon pod (including nodes currently running the daemon pod) [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.daemonset.desired_scheduled_nodes` | UpDownCounter | `{node}` | Number of nodes that should be running the daemon pod (including nodes currently running the daemon pod) [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `desiredNumberScheduled` field of the
 [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
@@ -841,9 +841,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.daemonset.misscheduled_nodes` | UpDownCounter | `{node}` | Number of nodes that are running the daemon pod, but are not supposed to run the daemon pod [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.daemonset.misscheduled_nodes` | UpDownCounter | `{node}` | Number of nodes that are running the daemon pod, but are not supposed to run the daemon pod [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `numberMisscheduled` field of the
 [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
@@ -867,9 +867,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.daemonset.ready_nodes` | UpDownCounter | `{node}` | Number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.daemonset.ready_nodes` | UpDownCounter | `{node}` | Number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `numberReady` field of the
 [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
@@ -882,7 +882,7 @@ This metric SHOULD, at a minimum, be reported against a
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## Job Metrics
+## Job metrics
 
 **Description:** Job level metrics captured under the namespace `k8s.job`.
 
@@ -897,9 +897,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.job.active_pods` | UpDownCounter | `{pod}` | The number of pending and actively running pods for a job [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.job.active_pods` | UpDownCounter | `{pod}` | The number of pending and actively running pods for a job [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `active` field of the
 [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
@@ -923,9 +923,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.job.failed_pods` | UpDownCounter | `{pod}` | The number of pods which reached phase Failed for a job [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.job.failed_pods` | UpDownCounter | `{pod}` | The number of pods which reached phase Failed for a job [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `failed` field of the
 [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
@@ -949,9 +949,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.job.successful_pods` | UpDownCounter | `{pod}` | The number of pods which reached phase Succeeded for a job [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.job.successful_pods` | UpDownCounter | `{pod}` | The number of pods which reached phase Succeeded for a job [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `succeeded` field of the
 [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
@@ -975,9 +975,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.job.desired_successful_pods` | UpDownCounter | `{pod}` | The desired number of successfully finished pods the job should be run with [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.job.desired_successful_pods` | UpDownCounter | `{pod}` | The desired number of successfully finished pods the job should be run with [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `completions` field of the
 [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch).
@@ -1001,9 +1001,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.job.max_parallel_pods` | UpDownCounter | `{pod}` | The max desired number of pods the job should run at any given time [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.job.max_parallel_pods` | UpDownCounter | `{pod}` | The max desired number of pods the job should run at any given time [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `parallelism` field of the
 [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch).
@@ -1016,7 +1016,7 @@ This metric SHOULD, at a minimum, be reported against a
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## CronJob Metrics
+## CronJob metrics
 
 **Description:** CronJob level metrics captured under the namespace `k8s.cronjob`.
 
@@ -1031,9 +1031,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.cronjob.active_jobs` | UpDownCounter | `{job}` | The number of actively running jobs for a cronjob [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.cronjob.active_jobs` | UpDownCounter | `{job}` | The number of actively running jobs for a cronjob [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric aligns with the `active` field of the
 [K8s CronJobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#cronjobstatus-v1-batch).
@@ -1046,7 +1046,7 @@ This metric SHOULD, at a minimum, be reported against a
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## Namespace Metrics
+## Namespace metrics
 
 **Description:** Namespace level metrics captured under the namespace `k8s.namespace`.
 
@@ -1061,9 +1061,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `k8s.namespace.phase` | UpDownCounter | `{namespace}` | Describes number of K8s namespaces that are currently in a given phase. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `k8s.namespace.phase` | UpDownCounter | `{namespace}` | Describes number of K8s namespaces that are currently in a given phase. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric SHOULD, at a minimum, be reported against a
 [`k8s.namespace`](../resource/k8s.md#namespace) resource.

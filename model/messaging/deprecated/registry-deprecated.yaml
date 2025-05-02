@@ -26,6 +26,9 @@ groups:
           Deprecated, use `messaging.client.id` instead.
         examples: ['client-5', 'myhost@8742@s8083jm']
         deprecated: "Replaced by `messaging.client.id`."
+        annotations:
+          code_generation:
+            exclude: true
       - id: messaging.kafka.consumer.group
         type: string
         brief: >

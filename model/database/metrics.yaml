@@ -7,12 +7,15 @@ groups:
       Batch operations SHOULD be recorded as a single operation.
     instrument: histogram
     unit: "s"
-    stability: release_candidate
+    stability: stable
     extends: attributes.db.client.with_query_and_collection
     attributes:
       - ref: db.system.name
         # TODO: Not adding to the minimal because of https://github.com/open-telemetry/build-tools/issues/192
         requirement_level: required
+      - ref: db.stored_procedure.name
+        requirement_level:
+          recommended: If operation applies to a specific stored procedure.
       - ref: network.peer.address
         brief: Peer address of the database node where the operation was performed.
         requirement_level:

@@ -13,14 +13,38 @@ groups:
               stability: development
               value: "openai"
               brief: 'OpenAI'
+            - id: gcp.gen_ai
+              stability: development
+              value: "gcp.gen_ai"
+              brief: "Any Google generative AI endpoint"
+              note: >
+                May be used when specific backend is unknown.
+                May use common attributes prefixed with 'gcp.gen_ai.'.
+            - id: gcp.vertex_ai
+              stability: development
+              value: "gcp.vertex_ai"
+              brief: 'Vertex AI'
+              note: >
+                This refers to the 'aiplatform.googleapis.com' endpoint.
+                May use common attributes prefixed with 'gcp.gen_ai.'.
+            - id: gcp.gemini
+              stability: development
+              value: "gcp.gemini"
+              brief: 'Gemini'
+              note: >
+                This refers to the 'generativelanguage.googleapis.com' endpoint.
+                Also known as the AI Studio API.
+                May use common attributes prefixed with 'gcp.gen_ai.'.
             - id: vertex_ai
               stability: development
               value: "vertex_ai"
               brief: 'Vertex AI'
+              deprecated: "Use 'gcp.vertex_ai' instead."
             - id: gemini
               stability: development
               value: "gemini"
               brief: 'Gemini'
+              deprecated: "Use 'gcp.gemini' instead."
             - id: anthropic
               stability: development
               value: "anthropic"
@@ -212,6 +236,11 @@ groups:
         type: string
         brief: The tool call identifier.
         examples: ['call_mszuSIzqtI65i1wAUOE8w5H4']
+      - id: gen_ai.tool.description
+        stability: development
+        type: string
+        brief: The tool description.
+        examples: ["Multiply two numbers"]
       - id: gen_ai.tool.type
         stability: development
         type: string
@@ -238,6 +267,10 @@ groups:
               value: "chat"
               brief: 'Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)'
               stability: development
+            - id: generate_content
+              value: "generate_content"
+              brief: 'Multimodal content generation operation such as [Gemini Generate Content](https://ai.google.dev/api/generate-content)'
+              stability: development
             - id: text_completion
               value: "text_completion"
               brief: 'Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions)'
@@ -249,6 +282,10 @@ groups:
             - id: create_agent
               value: "create_agent"
               brief: 'Create GenAI agent'
+              stability: development
+            - id: invoke_agent
+              value: "invoke_agent"
+              brief: 'Invoke GenAI agent'
               stability: development
             - id: execute_tool
               value: "execute_tool"

@@ -11,13 +11,13 @@ linkTitle: Process
 - [Process](#process)
   - [Selecting process attributes](#selecting-process-attributes)
 - [Process runtimes](#process-runtimes)
-  - [Erlang Runtimes](#erlang-runtimes)
-  - [Go Runtimes](#go-runtimes)
+  - [Erlang runtimes](#erlang-runtimes)
+  - [Go runtimes](#go-runtimes)
   - [Java runtimes](#java-runtimes)
   - [JavaScript runtimes](#javascript-runtimes)
-  - [.NET Runtimes](#net-runtimes)
-  - [Python Runtimes](#python-runtimes)
-  - [Ruby Runtimes](#ruby-runtimes)
+  - [.NET runtimes](#net-runtimes)
+  - [Python runtimes](#python-runtimes)
+  - [Ruby runtimes](#ruby-runtimes)
 
 <!-- tocstop -->
 
@@ -111,7 +111,7 @@ How to set these attributes for particular runtime kinds is described in the fol
 
 In addition to these attributes, [`telemetry.sdk.language`](README.md#telemetry-sdk) can be used to determine the general kind of runtime used.
 
-### Erlang Runtimes
+### Erlang runtimes
 
 - `process.runtime.name` - The name of the Erlang VM being used, i.e., `erlang:system_info(machine)`.
 - `process.runtime.version` -  The version of the runtime (ERTS - Erlang Runtime System), i.e., `erlang:system_info(version)`.
@@ -123,7 +123,7 @@ Example:
 | --- | --- | --- |
 | BEAM | 11.1 |  Erlang/OTP 23 erts-11.1 |
 
-### Go Runtimes
+### Go runtimes
 
 Go Runtimes SHOULD fill in the as follows:
 
@@ -194,7 +194,7 @@ Examples for some JavaScript runtimes
 | Node.js | nodejs | 14.15.4 |
 | Web Browser | browser | Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36 |
 
-### .NET Runtimes
+### .NET runtimes
 
 .NET instrumentation SHOULD fill in the values by following values:
 
@@ -218,7 +218,7 @@ Examples for some .NET runtimes
 | .NET Framework | .NET Framework | 4.8 | .NET Framework 4.8.9195.0 |
 | .NET | .NET | 7.0.14 | .NET 7.0.14 |
 
-### Python Runtimes
+### Python runtimes
 
 Python instrumentation SHOULD fill in the values as follows:
 
@@ -256,7 +256,7 @@ Examples for some Python runtimes:
 
 Note that on CPython GCC/Clang Linux builds (up to and including 3.9) and PyPy, there is an actual newline in the `sys.version` string.
 
-### Ruby Runtimes
+### Ruby runtimes
 
 Ruby instrumentation SHOULD fill in the values by copying from built-in runtime constants.
 

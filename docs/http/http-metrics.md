@@ -14,12 +14,12 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 
 <!-- toc -->
 
-- [HTTP Server](#http-server)
+- [HTTP server](#http-server)
   - [Metric: `http.server.request.duration`](#metric-httpserverrequestduration)
   - [Metric: `http.server.active_requests`](#metric-httpserveractive_requests)
   - [Metric: `http.server.request.body.size`](#metric-httpserverrequestbodysize)
   - [Metric: `http.server.response.body.size`](#metric-httpserverresponsebodysize)
-- [HTTP Client](#http-client)
+- [HTTP client](#http-client)
   - [Metric: `http.client.request.duration`](#metric-httpclientrequestduration)
   - [Metric: `http.client.request.body.size`](#metric-httpclientrequestbodysize)
   - [Metric: `http.client.response.body.size`](#metric-httpclientresponsebodysize)
@@ -40,8 +40,8 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 >   in HTTP instrumentations). Conventions include, but are not limited to, attributes,
 >   metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version which is a comma-separated list of values.
->   The only values defined so far are:
+>   in the existing major version as a comma-separated list of category-specific values
+>   (e.g., http, databases, messaging). The list of values includes:
 >   * `http` - emit the new, stable HTTP and networking conventions,
 >     and stop emitting the old experimental HTTP and networking conventions
 >     that the instrumentation emitted previously.
@@ -55,7 +55,7 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 >   for at least six months after it starts emitting both sets of conventions.
 > * SHOULD drop the environment variable in the next major version.
 
-## HTTP Server
+## HTTP server
 
 ### Metric: `http.server.request.duration`
 
@@ -64,7 +64,7 @@ This metric is required.
 When this metric is reported alongside an HTTP server span, the metric value SHOULD be the same as the HTTP server span duration.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.http.server.request.duration -->
@@ -74,9 +74,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `http.server.request.duration` | Histogram | `s` | Duration of HTTP server requests. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `http.server.request.duration` | Histogram | `s` | Duration of HTTP server requests. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -196,9 +196,9 @@ This metric is optional.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `http.server.active_requests` | UpDownCounter | `{request}` | Number of active HTTP server requests. | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `http.server.active_requests` | UpDownCounter | `{request}` | Number of active HTTP server requests. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -265,9 +265,9 @@ This metric is optional.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `http.server.request.body.size` | Histogram | `By` | Size of HTTP server request bodies. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `http.server.request.body.size` | Histogram | `By` | Size of HTTP server request bodies. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 
@@ -389,9 +389,9 @@ This metric is optional.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `http.server.response.body.size` | Histogram | `By` | Size of HTTP server response bodies. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `http.server.response.body.size` | Histogram | `By` | Size of HTTP server response bodies. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 
@@ -502,7 +502,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## HTTP Client
+## HTTP client
 
 ### Metric: `http.client.request.duration`
 
@@ -511,7 +511,7 @@ This metric is required.
 When this metric is reported alongside an HTTP client span, the metric value SHOULD be the same as the HTTP client span duration.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.http.client.request.duration -->
@@ -521,9 +521,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `http.client.request.duration` | Histogram | `s` | Duration of HTTP client requests. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `http.client.request.duration` | Histogram | `s` | Duration of HTTP client requests. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -622,9 +622,9 @@ This metric is optional.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `http.client.request.body.size` | Histogram | `By` | Size of HTTP client request bodies. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `http.client.request.body.size` | Histogram | `By` | Size of HTTP client request bodies. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 
@@ -725,9 +725,9 @@ This metric is optional.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `http.client.response.body.size` | Histogram | `By` | Size of HTTP client response bodies. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `http.client.response.body.size` | Histogram | `By` | Size of HTTP client response bodies. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 
@@ -828,9 +828,9 @@ This metric is optional.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `http.client.open_connections` | UpDownCounter | `{connection}` | Number of outbound HTTP connections that are currently active or idle on the client. | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `http.client.open_connections` | UpDownCounter | `{connection}` | Number of outbound HTTP connections that are currently active or idle on the client. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -864,7 +864,7 @@ This metric is optional.
 ### Metric: `http.client.connection.duration`
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 This metric is optional.
@@ -876,9 +876,9 @@ This metric is optional.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `http.client.connection.duration` | Histogram | `s` | The duration of the successfully established outbound HTTP connections. | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `http.client.connection.duration` | Histogram | `s` | The duration of the successfully established outbound HTTP connections. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -912,9 +912,9 @@ This metric is optional.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `http.client.active_requests` | UpDownCounter | `{request}` | Number of active HTTP requests. | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `http.client.active_requests` | UpDownCounter | `{request}` | Number of active HTTP requests. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

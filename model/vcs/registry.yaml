@@ -253,10 +253,6 @@ groups:
       - id: vcs.provider.name
         type:
           members:
-            - id: other_provider
-              value: other_provider
-              brief: "Some other version control system provider. Fallback only."
-              stability: development
             - id: github
               value: github
               brief: "[GitHub](https://github.com)"
@@ -267,6 +263,11 @@ groups:
               stability: development
             - id: gittea
               value: gittea
+              brief: "Deprecated, use `gitea` instead."
+              deprecated: "Replaced by `gitea`."
+              stability: development
+            - id: gitea
+              value: gitea
               brief: "[Gitea](https://gitea.io)"
               stability: development
             - id: bitbucket
@@ -280,6 +281,6 @@ groups:
           [
             "github",
             "gitlab",
-            "gittea",
+            "gitea",
             "bitbucket",
           ]

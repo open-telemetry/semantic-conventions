@@ -50,8 +50,8 @@ linkTitle: Spans
 >   Conventions include, but are not limited to, attributes,
 >   metric and span names, span kind and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version which is a comma-separated list of values.
->   The list of values includes:
+>   in the existing major version as a comma-separated list of category-specific values
+>   (e.g., http, databases, messaging). The list of values includes:
 >   * `messaging` - emit the new, stable messaging conventions,
 >     and stop emitting the old experimental messaging conventions
 >     that the instrumentation emitted previously.
@@ -190,7 +190,7 @@ in such a way that it cannot be changed by intermediaries.
 
 ### Span name
 
-Messaging spans SHOULD follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/trace/api.md#span).
+Messaging spans SHOULD follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/trace/api.md#span).
 
 The **span name** SHOULD be `{messaging.operation.name} {destination}`
 (see below for the exact definition of the [`{destination}`](#destination-placeholder) placeholder).

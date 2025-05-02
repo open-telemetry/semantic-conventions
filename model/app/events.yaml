@@ -1,0 +1,39 @@
+groups:
+  - id: event.app.screen.click
+    stability: development
+    type: event
+    name: app.screen.click
+    brief: >
+      This event represents an instantaneous click on the screen of an application.
+    note: >
+      The `app.screen.click` event can be used to indicate that a user has
+      clicked or tapped on the screen portion of an application. Clicks
+      outside of an application's active area SHOULD NOT generate this event.
+      This event does not differentiate between touch/mouse down and
+      touch/mouse up. Implementations SHOULD give preference to generating
+      this event at the time the click is complete, typically on touch
+      release or mouse up. The location of the click event MUST be provided
+      in absolute screen pixels.
+    attributes:
+      - ref: app.screen.coordinate.x
+        requirement_level: required
+      - ref: app.screen.coordinate.y
+        requirement_level: required
+  - id: event.app.widget.click
+    stability: development
+    type: event
+    name: app.widget.click
+    brief: >
+      This event indicates that an application widget has been clicked.
+    note: >
+      Use this event to indicate that visual application component has been
+      clicked, typically through a user's manual interaction.
+    attributes:
+      - ref: app.widget.id
+        requirement_level: required
+      - ref: app.widget.name
+        requirement_level: opt_in
+      - ref: app.screen.coordinate.x
+        requirement_level: opt_in
+      - ref: app.screen.coordinate.y
+        requirement_level: opt_in
