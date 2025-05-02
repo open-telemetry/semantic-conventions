@@ -65,11 +65,11 @@ to
 | New: `db.query.summary`                             |                                                                                                             |
 | New: `db.operation.batch.size`                      |                                                                                                             |
 | New: `db.response.status_code`                      |                                                                                                             |
-| New: `db.operation.parameter.<key>`                 | Opt-In                                                                                                      |
-| New: `db.query.parameter.<key>`                     | Opt-In                                                                                                      |
-| New: `db.response.returned_rows`                    | Opt-In                                                                                                      |
 | New: `db.stored_procedure.name`                     |                                                                                                             |
 | New: `error.type`                                   |                                                                                                             |
+| New: `db.operation.parameter.<key>`                 | _Not marked stable yet_                                                                                     |
+| New: `db.query.parameter.<key>`                     | _Not marked stable yet_                                                                                     |
+| New: `db.response.returned_rows`                    | _Not marked stable yet_                                                                                     |
 <!-- prettier-ignore-end -->
 
 References:
