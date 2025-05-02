@@ -108,7 +108,7 @@ groups:
 
   - id: span.db.client
     type: span
-    stability: release_candidate
+    stability: stable
     brief: This span describes database client call.
     note: |
       Instrumentations SHOULD, when possible, record database spans that cover the duration of
@@ -143,7 +143,7 @@ groups:
 
   - id: span.db.sql_server.client
     type: span
-    stability: release_candidate
+    stability: stable
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -183,7 +183,7 @@ groups:
 
   - id: span.db.postgresql.client
     type: span
-    stability: release_candidate
+    stability: stable
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -223,7 +223,7 @@ groups:
         examples: ["08000", "08P01"]
   - id: span.db.mysql.client
     type: span
-    stability: release_candidate
+    stability: stable
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -255,7 +255,7 @@ groups:
 
   - id: span.db.mariadb.client
     type: span
-    stability: release_candidate
+    stability: stable
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -635,7 +635,7 @@ groups:
   - id: span.db.sql.client
     type: span
     span_kind: client
-    stability: release_candidate
+    stability: stable
     extends: trace.db.common.query
     brief: >
       The SQL databases Semantic Conventions describes how common [Database Semantic Conventions](/docs/database/database-spans.md) apply to SQL databases.
