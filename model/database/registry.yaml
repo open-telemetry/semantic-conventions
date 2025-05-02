@@ -106,16 +106,16 @@ groups:
         type: string
         stability: release_candidate
         brief: >
-          Low cardinality representation of a database query text.
-        note: >
-          `db.query.summary` provides static summary of the query text. It describes
-          a class of database queries and is useful as a grouping key,
-          especially when analyzing telemetry for database calls involving complex queries.
+          Low cardinality summary of a database query.
+        note: |
+          The query summary describes a class of database queries and is useful
+          as a grouping key, especially when analyzing telemetry for database
+          calls involving complex queries.
 
           Summary may be available to the instrumentation through
           instrumentation hooks or other means. If it is not available, instrumentations
           that support query parsing SHOULD generate a summary following
-          [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query-text)
+          [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
           section.
         examples:
           [

@@ -21,7 +21,7 @@ This group defines the attributes used to describe telemetry in the context of d
 | <a id="db-operation-name" href="#db-operation-name">`db.operation.name`</a> | string | The name of the operation or command being executed. [4] | `findAndModify`; `HMSET`; `SELECT` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-operation-parameter" href="#db-operation-parameter">`db.operation.parameter.<key>`</a> | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [5] | `someval`; `55` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="db-query-parameter" href="#db-query-parameter">`db.query.parameter.<key>`</a> | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [6] | `someval`; `55` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="db-query-summary" href="#db-query-summary">`db.query.summary`</a> | string | Low cardinality representation of a database query text. [7] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="db-query-summary" href="#db-query-summary">`db.query.summary`</a> | string | Low cardinality summary of a database query. [7] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-query-text" href="#db-query-text">`db.query.text`</a> | string | The database query being executed. [8] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="db-response-returned-rows" href="#db-response-returned-rows">`db.response.returned_rows`</a> | int | Number of rows returned by the operation. | `10`; `30`; `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="db-response-status-code" href="#db-response-status-code">`db.response.status_code`</a> | string | Database response status code. [9] | `102`; `ORA-17002`; `08P01`; `404` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
@@ -81,8 +81,15 @@ Examples:
 - For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
   `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
 
-**[7] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
+**[7] `db.query.summary`:** The query summary describes a class of database queries and is useful
+as a grouping key, especially when analyzing telemetry for database
+calls involving complex queries.
+
+Summary may be available to the instrumentation through
+instrumentation hooks or other means. If it is not available, instrumentations
+that support query parsing SHOULD generate a summary following
+[Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
+section.
 
 **[8] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
