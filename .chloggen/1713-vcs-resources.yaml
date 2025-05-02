@@ -21,3 +21,4 @@ issues: [1713]
 # Use pipe (|) for multiline entries.
 subtext: |
   Define resources `vcs.repo` and `vcs.ref`.
+  Add entity associations in vcs metrics for these new vcs resources.
