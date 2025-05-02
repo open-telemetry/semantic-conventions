@@ -1,4 +1,0 @@
-change_type: enhancement
-component: db
-note: Add an option to generate `db.query.summary` from operation name and target, remove it from CosmosDB.
-issues: [2206]
