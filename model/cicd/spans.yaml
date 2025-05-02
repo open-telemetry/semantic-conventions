@@ -11,7 +11,7 @@ groups:
       The span name SHOULD be `{action} {pipeline}` if there is a (low-cardinality) pipeline name available.
       If the pipeline name is not available or is likely to have high cardinality, then the span name SHOULD be `{action}`.
 
-      The `{action}` SHOULD be the [`cicd.pipeline.action`](/docs/attributes-registry/cicd.md#cicd-pipeline-action).
+      The `{action}` SHOULD be the [`cicd.pipeline.action.name`](/docs/attributes-registry/cicd.md#cicd-pipeline-action-name).
 
       The `{pipeline}` SHOULD be the [`cicd.pipeline.name`](/docs/attributes-registry/cicd.md#cicd-pipeline-name).
     stability: development
@@ -21,7 +21,7 @@ groups:
       - ref: error.type
         requirement_level:
           conditionally_required: if the pipeline result is `failure` or `error`
-      - ref: cicd.pipeline.action
+      - ref: cicd.pipeline.action.name
         requirement_level: opt_in
   - id: span.cicd.pipeline.task.internal
     type: span

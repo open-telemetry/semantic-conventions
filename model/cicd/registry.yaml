@@ -173,7 +173,7 @@ groups:
         brief: >
           The result of a pipeline run.
         examples: ["success", "failure", "timeout", "skipped"]
-      - id: cicd.pipeline.action
+      - id: cicd.pipeline.action.name
         type:
           members:
             - id: build

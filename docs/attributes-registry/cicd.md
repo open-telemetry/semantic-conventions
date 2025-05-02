@@ -9,7 +9,7 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="cicd-pipeline-action" href="#cicd-pipeline-action">`cicd.pipeline.action`</a> | string | The kind of action a pipeline run is performing. | `BUILD`; `RUN`; `SYNC` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="cicd-pipeline-action-name" href="#cicd-pipeline-action-name">`cicd.pipeline.action.name`</a> | string | The kind of action a pipeline run is performing. | `BUILD`; `RUN`; `SYNC` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cicd-pipeline-name" href="#cicd-pipeline-name">`cicd.pipeline.name`</a> | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cicd-pipeline-result" href="#cicd-pipeline-result">`cicd.pipeline.result`</a> | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cicd-pipeline-run-id" href="#cicd-pipeline-run-id">`cicd.pipeline.run.id`</a> | string | The unique identifier of a pipeline run within a CI/CD system. | `120912` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -28,7 +28,7 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 ---
 
-`cicd.pipeline.action` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`cicd.pipeline.action.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
