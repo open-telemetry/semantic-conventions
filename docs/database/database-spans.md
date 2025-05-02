@@ -12,7 +12,7 @@ linkTitle: Spans
 - [Span definition](#span-definition)
   - [Notes and well-known identifiers for `db.system.name`](#notes-and-well-known-identifiers-for-dbsystemname)
 - [Sanitization of `db.query.text`](#sanitization-of-dbquerytext)
-- [Generating a summary of the query text](#generating-a-summary-of-the-query-text)
+- [Generating a summary of the query](#generating-a-summary-of-the-query)
 - [Semantic conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 
 <!-- tocstop -->
@@ -23,25 +23,25 @@ linkTitle: Spans
 > [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/database-spans.md)
 > (or prior):
 >
-> * SHOULD NOT change the version of the database conventions that they emit by default
->   until the database semantic conventions are marked stable.
->   Conventions include, but are not limited to, attributes,
->   metric and span names, and unit of measure.
+> * SHOULD NOT change the version of the database conventions that they emit by
+>   default in their existing major version. Conventions include (but are not
+>   limited to) attributes, metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version as a comma-separated list of category-specific values
+>   in their existing major version as a comma-separated list of category-specific values
 >   (e.g., http, databases, messaging). The list of values includes:
->   * `database` - emit the new, stable database conventions,
->     and stop emitting the old experimental database conventions
->     that the instrumentation emitted previously.
->   * `database/dup` - emit both the old and the stable database conventions,
->     allowing for a seamless transition.
+>   * `database` - emit the stable database conventions, and stop emitting
+>     the experimental database conventions that the instrumentation emitted
+>     previously.
+>   * `database/dup` - emit both the experimental and stable database conventions,
+>     allowing for a phased rollout of the stable semantic conventions.
 >   * The default behavior (in the absence of one of these values) is to continue
 >     emitting whatever version of the old experimental database conventions
 >     the instrumentation was emitting previously.
 >   * Note: `database/dup` has higher precedence than `database` in case both values are present
-> * SHOULD maintain (security patching at a minimum) the existing major version
+> * SHOULD maintain (security patching at a minimum) their existing major version
 >   for at least six months after it starts emitting both sets of conventions.
-> * SHOULD drop the environment variable in the next major version.
+> * MAY drop the environment variable in their next major version and emit only
+>   the stable database conventions.
 
 ## Name
 
@@ -119,14 +119,14 @@ classify as errors.
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [12] | `2`; `3`; `4` | `Recommended` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a database query text. [13] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [14] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality summary of a database query. [13] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [14] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [15] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [16] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`db.stored_procedure.name`](/docs/attributes-registry/db.md) | string | The name of a stored procedure within the database. [17] | `GetCustomer` | `Recommended` [18] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [19] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [20] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.query.parameter.<key>`](/docs/attributes-registry/db.md) | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [21] | `someval`; `55` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`db.response.returned_rows`](/docs/attributes-registry/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
@@ -178,10 +178,17 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[12] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 
-**[13] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
+**[13] `db.query.summary`:** The query summary describes a class of database queries and is useful
+as a grouping key, especially when analyzing telemetry for database
+calls involving complex queries.
 
-**[14] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
+Summary may be available to the instrumentation through
+instrumentation hooks or other means. If it is not available, instrumentations
+that support query parsing SHOULD generate a summary following
+[Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
+section.
+
+**[14] `db.query.summary`:** if available through instrumentation hooks or if the instrumentation supports generating a query summary.
 
 **[15] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
@@ -331,10 +338,11 @@ and can help control cardinality for users who choose to (optionally) add `db.qu
 When performing sanitization, instrumentation MAY truncate the sanitized value
 for performance considerations (since sanitizing has a performance cost).
 
-## Generating a summary of the query text
+## Generating a summary of the query
 
-The `db.query.summary` attribute captures a shortened representation of a query text
-which SHOULD have low-cardinality and SHOULD NOT contain any dynamic or sensitive data.
+The `db.query.summary` attribute can be used to capture a shortened representation
+of the query. It SHOULD have low-cardinality and SHOULD NOT contain any dynamic
+or sensitive data.
 
 > [!NOTE]
 >
@@ -347,8 +355,18 @@ which SHOULD have low-cardinality and SHOULD NOT contain any dynamic or sensitiv
 > only contain information that has a significant impact on the query, database,
 > or application performance.
 
-Instrumentations that support query parsing SHOULD generate a query summary when
-one is not readily available from other sources.
+Instrumentation SHOULD set the query summary if it is readily available through
+instrumentation hooks or other sources.
+
+Otherwise:
+
+- When instrumenting higher-level APIs that build queries internally - for example,
+those that create a table or execute a stored procedure - instrumentations SHOULD
+generate a `db.query.summary` from available operation(s) and target(s) using the
+format described in this section.
+
+- When instrumenting APIs that operate at the query level, instrumentations that
+support query parsing SHOULD generate a query summary based on the `db.query.text`.
 
 The summary SHOULD preserve the following parts of query in the order they were provided:
 
@@ -361,7 +379,7 @@ attribute to the value formatted in the following way:
 
 ```
 {operation1} {target1} {operation2} {target2} {target3} ...
-````
+```
 
 Instrumentations SHOULD capture the values of operations and targets as provided
 by the application without attempting to do any case normalization. If the operation
@@ -430,6 +448,17 @@ name or target).
     ```
 
     the corresponding `db.query.summary` is `SELECT "song list" 'artists'`.
+
+- Stored procedure is executed using convenience API such as one available in
+   [Microsoft.Data.SqlClient](https://learn.microsoft.com/dotnet/api/microsoft.data.sqlclient.sqlcommand.commandtype):
+
+    ```csharp
+    var command = new SqlCommand();
+    command.CommandType = CommandType.StoredProcedure;
+    command.CommandText = "some_stored_procedure";
+    ```
+
+    the corresponding `db.query.summary` is `EXECUTE some_stored_procedure`, `db.query.text` is not populated.
 
 Semantic conventions for individual database systems or specialized instrumentations
 MAY specify a different `db.query.summary` format as long as produced summary remains
