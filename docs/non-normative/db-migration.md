@@ -55,10 +55,10 @@ to
 | `db.redis.database_index`                           | Removed, integrated into the new `db.namespace`                                                             |
 | `db.mssql.instance_name`                            | Removed, integrated into the new `db.namespace`                                                             |
 | `db.instance.id`                                    | Removed, replaced by `server.address` or integrated into `db.namespace` as appropriate                      |
+| `db.system` &rarr; `db.system.name`                 |                                                                                                             |
 | `db.statement` &rarr; `db.query.text`               | Clarified, SHOULD be collected by default only if there is sanitization that excludes sensitive information |
 | `db.operation` &rarr; `db.operation.name`           |                                                                                                             |
 | `db.sql.table` &rarr; `db.collection.name`          | Should not be captured if extracting the value from `db.query.text` since there could be multiple           |
-| `db.system` &rarr; `db.system.name`                 |                                                                                                             |
 | `db.cassandra.table` &rarr; `db.collection.name`    |                                                                                                             |
 | `db.mongodb.collection` &rarr; `db.collection.name` |                                                                                                             |
 | `db.cosmosdb.container` &rarr; `db.collection.name` |                                                                                                             |
