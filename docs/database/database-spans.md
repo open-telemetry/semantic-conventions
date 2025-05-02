@@ -458,7 +458,11 @@ name or target).
     command.CommandText = "some_stored_procedure";
     ```
 
-    the corresponding `db.query.summary` is `EXECUTE some_stored_procedure`, `db.query.text` is not populated. The `EXECUTE` statement is SQL Server's means to invoke a stored procedure. If the database system uses a different keyword for executing a stored procedure then that keyword SHOULD be used (e.g., `CALL some_stored_procedure`). 
+    the corresponding `db.query.summary` is `EXECUTE some_stored_procedure`,
+    `db.query.text` is not populated. The `EXECUTE` statement in this case is
+    SQL Server's means to invoke a stored procedure.
+    If the database system uses a different keyword for executing a stored procedure
+    then that keyword SHOULD be used (e.g., `CALL some_stored_procedure`).
 
 Semantic conventions for individual database systems or specialized instrumentations
 MAY specify a different `db.query.summary` format as long as produced summary remains
