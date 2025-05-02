@@ -56,7 +56,7 @@ the exact definition of the [`{target}`](#target-placeholder) placeholder).
 If a (low-cardinality) `db.operation.name` is not available, database span names
 SHOULD default to the [`{target}`](#target-placeholder).
 
-If neither `{db.operation.name}` nor `{target}` are available, span name SHOULD be `{db.system}`.
+If neither `{db.operation.name}` nor `{target}` are available, span name SHOULD be `{db.system.name}`.
 
 Semantic conventions for individual database systems MAY specify different span name format.
 
