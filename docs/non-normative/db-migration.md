@@ -16,6 +16,9 @@ transitioning to the stable database semantic conventions.
 Specifically, when existing database instrumentations published by OpenTelemetry are
 updated to the stable database semantic conventions, they:
 
+- SHOULD NOT change the version of the database conventions that they emit by
+  default in their existing major version. Conventions include (but are not
+  limited to) attributes, metric and span names, and unit of measure.
 - SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN` in
   their existing major version, which accepts:
   - `database` - emit the stable database conventions, and stop emitting

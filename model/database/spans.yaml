@@ -4,7 +4,7 @@ groups:
     type: attribute_group
     brief: This group defines the attributes used to perform database client calls.
     attributes:
-      # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
+      # TODO: add db.system.name once https://github.com/open-telemetry/build-tools/issues/192 is possible
       # - ref: db.system.name
       #   sampling_relevant: true
       - ref: db.operation.name
@@ -136,6 +136,10 @@ groups:
       classify as errors.
     span_kind: client
     extends: trace.db.common.full
+    attributes:
+      - ref: db.response.returned_rows
+        requirement_level: opt_in  # experimental attributes must be opt-in stable spans
+                                   # TODO (trask) make this recommended once it is stable
 
   - id: span.db.sql_server.client
     type: span
@@ -745,11 +749,15 @@ groups:
             that does not support multiple collection names.
         note: |
           The collection name SHOULD NOT be extracted from `db.query.text`.
+      - ref: db.response.returned_rows
+        requirement_level: opt_in  # experimental attributes must be opt-in stable spans
+                                   # TODO (trask) make this recommended once it is stable
+
   - id: span.azure.cosmosdb.client
     type: span
     stability: development
     span_kind: client
-    extends: trace.db.common.query_and_collection
+    extends: trace.db.common.minimal
     brief: >
       Cosmos DB instrumentations include call-level spans that represent logical database
       calls and adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
@@ -786,6 +794,7 @@ groups:
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         requirement_level:
           conditionally_required: if available
+        sampling_relevant: true
       - ref: azure.cosmosdb.request.body.size
       - ref: db.response.status_code
         brief: >
@@ -956,6 +965,9 @@ groups:
       - ref: azure.cosmosdb.operation.contacted_regions
         requirement_level:
           conditionally_required: If available.
+      - ref: db.query.text  # TODO: this might not be the right attribute to use here - https://github.com/open-telemetry/semantic-conventions/issues/2213
+      - ref: db.query.parameter
+        requirement_level: opt_in
   - id: span.db.oracledb.client
     type: span
     stability: development
