@@ -449,8 +449,19 @@ name or target).
 
     the corresponding `db.query.summary` is `SELECT "song list" 'artists'`.
 
-- Stored procedure is executed using convenience API such as one available in
-   [Microsoft.Data.SqlClient](https://learn.microsoft.com/dotnet/api/microsoft.data.sqlclient.sqlcommand.commandtype):
+- Stored procedure is executed using a convenience API such as one available in
+  [JDBC](https://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html#prepareCall-java.lang.String-):
+
+  ```java
+  connection.prepareCall("{call some_stored_procedure}");
+  ```
+
+  the corresponding `db.query.summary` is `call some_stored_procedure`,
+  `db.query.text` is not populated. Note that `CALL` is the SQL standard
+  keyword to invoke a stored procedure.
+
+- Stored procedure is executed using Microsoft SQL Server driver's convenience API
+  [Microsoft.Data.SqlClient](https://learn.microsoft.com/dotnet/api/microsoft.data.sqlclient.sqlcommand.commandtype):
 
     ```csharp
     var command = new SqlCommand();
@@ -458,7 +469,10 @@ name or target).
     command.CommandText = "some_stored_procedure";
     ```
 
-    the corresponding `db.query.summary` is `EXECUTE some_stored_procedure`, `db.query.text` is not populated.
+    the corresponding `db.query.summary` is `EXECUTE some_stored_procedure`,
+    `db.query.text` is not populated. Note that Microsoft SQL Server does not
+    support the SQL Standard `CALL` keyword, but uses instead `EXECUTE`
+    to invoke a stored procedure.
 
 Semantic conventions for individual database systems or specialized instrumentations
 MAY specify a different `db.query.summary` format as long as produced summary remains
