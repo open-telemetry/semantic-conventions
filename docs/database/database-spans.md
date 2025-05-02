@@ -469,10 +469,10 @@ name or target).
     command.CommandText = "some_stored_procedure";
     ```
 
-  the corresponding `db.query.summary` is `EXECUTE some_stored_procedure`,
-  `db.query.text` is not populated. Note that Microsoft SQL Server does not
-  support the SQL Standard `CALL` keyword, but uses instead `EXECUTE`
-  to invoke a stored procedure.
+    the corresponding `db.query.summary` is `EXECUTE some_stored_procedure`,
+    `db.query.text` is not populated. Note that Microsoft SQL Server does not
+    support the SQL Standard `CALL` keyword, but uses instead `EXECUTE`
+    to invoke a stored procedure.
 
 Semantic conventions for individual database systems or specialized instrumentations
 MAY specify a different `db.query.summary` format as long as produced summary remains
