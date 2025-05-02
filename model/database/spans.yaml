@@ -136,6 +136,10 @@ groups:
       classify as errors.
     span_kind: client
     extends: trace.db.common.full
+    attributes:
+      - ref: db.response.returned_rows
+        requirement_level: opt_in  # experimental attributes must be opt-in stable spans
+                                   # TODO (trask) make this recommended once it is stable
 
   - id: span.db.sql_server.client
     type: span
@@ -745,6 +749,10 @@ groups:
             that does not support multiple collection names.
         note: |
           The collection name SHOULD NOT be extracted from `db.query.text`.
+      - ref: db.response.returned_rows
+        requirement_level: opt_in  # experimental attributes must be opt-in stable spans
+                                   # TODO (trask) make this recommended once it is stable
+
   - id: span.azure.cosmosdb.client
     type: span
     stability: development
