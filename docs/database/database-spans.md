@@ -456,8 +456,8 @@ name or target).
   connection.prepareCall("{call some_stored_procedure}");
   ```
 
-  the corresponding `db.query.summary` is `CALL some_stored_procedure`,
-  `db.query.text` is not populated. `CALL` in this case is the ANSI SQL standard
+  the corresponding `db.query.summary` is `call some_stored_procedure`,
+  `db.query.text` is not populated. Note that `CALL` is the SQL standard
   keyword to invoke a stored procedure.
 
 - Stored procedure is executed using Microsoft SQL Server driver's convenience API
