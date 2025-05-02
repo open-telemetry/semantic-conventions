@@ -67,6 +67,7 @@ to
 | New: `db.response.status_code`                      |                                                                                                             |
 | New: `db.operation.parameter.<key>`                 | Opt-In                                                                                                      |
 | New: `db.query.parameter.<key>`                     | Opt-In                                                                                                      |
+| New: `db.response.returned_rows`                    | Opt-In                                                                                                      |
 | New: `db.stored_procedure.name`                     |                                                                                                             |
 | New: `error.type`                                   |                                                                                                             |
 <!-- prettier-ignore-end -->
