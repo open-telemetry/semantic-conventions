@@ -20,6 +20,6 @@ issues: [1713]
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
 subtext: |
-  Define spans `cicd.pipeline.run.server` and `cicd.pipeline.task.server`.
+  Define spans `cicd.pipeline.run.server` and `cicd.pipeline.task.internal`.
   Add `cicd.pipeline.action.name`, `cicd.worker.id`, `cicd.worker.name`, `cicd.worker.url.full` and`cicd.pipeline.task.run.result` to attribute registry.
   Define resources `cicd.pipeline`, `cicd.pipeline.run` and `cicd.worker`.
