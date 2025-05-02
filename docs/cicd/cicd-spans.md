@@ -39,10 +39,12 @@ For all pipeline runs, a span with kind `SERVER` SHOULD be created corresponding
 
 **Span name** MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/trace/api.md#span).
 
-The span name SHOULD be `{action} [{cicd.pipeline.name}](/docs/attributes-registry/cicd.md#cicd-pipeline-name)` if there is a (low-cardinality) pipeline name available.
+The span name SHOULD be `{action} {pipeline}` if there is a (low-cardinality) pipeline name available.
 If the pipeline name is not available or is likely to have high cardinality, then the span name SHOULD be `{action}`.
 
 The `{action}` SHOULD be the [`cicd.pipeline.action.name`](/docs/attributes-registry/cicd.md#cicd-pipeline-action-name).
+
+The `{pipeline}` SHOULD be the [`cicd.pipeline.name`](/docs/attributes-registry/cicd.md#cicd-pipeline-name).
 
 **Span kind** SHOULD be `SERVER`.
 
