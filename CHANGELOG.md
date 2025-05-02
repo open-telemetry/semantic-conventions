@@ -9,6 +9,8 @@
 
 ## v1.33.0
 
+This release marks the first where the core of database semantic conventions have stabilized.
+
 ### 🛑 Breaking changes 🛑
 
 - `db`: Add `db.query.parameter`, replace relevant usages of `db.operation.parameter` ([#2093](https://github.com/open-telemetry/semantic-conventions/issues/2093))
