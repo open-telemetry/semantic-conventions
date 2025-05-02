@@ -452,8 +452,12 @@ name or target).
 - Stored procedure is executed using a convenience API such as one available in
   [JDBC](https://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html#prepareCall-java.lang.String-):
 
+  ```java
+  connection.prepareCall("{call some_stored_procedure}");
+  ```
+
   the corresponding `db.query.summary` is `CALL some_stored_procedure`,
-  `db.query.text` is not populated. `CALL` in this case is the SQL standard
+  `db.query.text` is not populated. `CALL` in this case is the ANSI SQL standard
   keyword to invoke a stored procedure.
 
 - Stored procedure is executed using Microsoft SQL Server driver's convenience API
@@ -466,8 +470,9 @@ name or target).
     ```
 
   the corresponding `db.query.summary` is `EXECUTE some_stored_procedure`,
-  `db.query.text` is not populated. `EXECUTE` in this case is Microsoft
-  SQL Server's keyword to invoke a stored procedure.
+  `db.query.text` is not populated. Note that Microsoft SQL Server does not
+  support the SQL Standard `CALL` keyword, but uses instead `EXECUTE`
+  to invoke a stored procedure.
 
 Semantic conventions for individual database systems or specialized instrumentations
 MAY specify a different `db.query.summary` format as long as produced summary remains
