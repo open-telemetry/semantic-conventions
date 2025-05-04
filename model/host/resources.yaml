@@ -33,8 +33,8 @@ groups:
           detector implementations MUST not collect `host.id` from privileged sources. If
           privileged lookup of `host.id` is required, the value should be injected via the
           `OTEL_RESOURCE_ATTRIBUTES` environment variable.
-      - ref: host.name
     descriptive_attributes:
+      - ref: host.name
       - ref: host.type
       - ref: host.arch
       - ref: host.image.name

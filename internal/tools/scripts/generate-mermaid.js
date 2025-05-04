@@ -39,18 +39,20 @@ function generateMermaidDiagram(entities) {
   for (const entity of entities) {
     for (const attr of entity.attributes) {
       // The word "namespace" is reserved and I don't know how to quote it
-      const name = entity.name.replace("namespace", "namespac3");
+      const name = entity.name.replace("namespace", "namespacě");
       console.log(`  ${name} : attribute ${attr.ref}`);
     }
     for (const attr of entity.descriptive_attributes ?? []) {
-      console.log(`  ${entity.name} : descriptive_attribute ${attr.ref}`);
+      console.log(
+        `  ${entity.name.replace("namespace", "namespacě")} : descriptive_attribute ${attr.ref}`,
+      );
     }
     for (const relationship of entity.relationships ?? []) {
       for ([relationshipType, relatedEntityType] of Object.entries(
         relationship,
       )) {
         console.log(
-          `  ${entity.name} --> ${relatedEntityType}: ${relationshipType}`,
+          `  ${entity.name.replace("namespace", "namespacě")} --> ${relatedEntityType.replace("namespace", "namespacě")}: ${relationshipType}`,
         );
       }
     }

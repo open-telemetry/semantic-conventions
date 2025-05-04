@@ -10,6 +10,8 @@ groups:
       The actual accuracy would depend on the instrumentation and operating system.
     instrument: gauge
     unit: "s"
+    entity_associations:
+      k8s.pod
   # k8s.pod.cpu.* metrics
   - id: metric.k8s.pod.cpu.time
     type: metric
@@ -20,6 +22,8 @@ groups:
       Total CPU time consumed by the specific Pod on all available CPU cores
     instrument: counter
     unit: "s"
+    entity_associations:
+      k8s.pod
   - id: metric.k8s.pod.cpu.usage
     type: metric
     metric_name: k8s.pod.cpu.usage
@@ -29,6 +33,8 @@ groups:
       CPU usage of the specific Pod on all available CPU cores, averaged over the sample window
     instrument: gauge
     unit: "{cpu}"
+    entity_associations:
+      k8s.pod
 
   # k8s.pod.memory.* metrics
   - id: metric.k8s.pod.memory.usage
@@ -40,6 +46,8 @@ groups:
       Total memory usage of the Pod
     instrument: gauge
     unit: "By"
+    entity_associations:
+      k8s.pod
 
   # k8s.pod.network.* metrics
   - id: metric.k8s.pod.network.io
@@ -52,6 +60,8 @@ groups:
     attributes:
       - ref: network.interface.name
       - ref: network.io.direction
+    entity_associations:
+      k8s.pod
   - id: metric.k8s.pod.network.errors
     type: metric
     metric_name: k8s.pod.network.errors
@@ -62,6 +72,8 @@ groups:
     attributes:
       - ref: network.interface.name
       - ref: network.io.direction
+    entity_associations:
+      k8s.pod
 
   # k8s.node.* metrics
   - id: metric.k8s.node.uptime
@@ -74,6 +86,8 @@ groups:
       The actual accuracy would depend on the instrumentation and operating system.
     instrument: gauge
     unit: "s"
+    entity_associations:
+      k8s.node
   # k8s.node.cpu.* metrics
   - id: metric.k8s.node.cpu.time
     type: metric
@@ -93,6 +107,8 @@ groups:
       CPU usage of the specific Node on all available CPU cores, averaged over the sample window
     instrument: gauge
     unit: "{cpu}"
+    entity_associations:
+      k8s.node
 
   # k8s.node.memory.* metrics
   - id: metric.k8s.node.memory.usage
@@ -104,6 +120,8 @@ groups:
       Total memory usage of the Node
     instrument: gauge
     unit: "By"
+    entity_associations:
+      k8s.node
 
   # k8s.node.network.* metrics
   - id: metric.k8s.node.network.io
@@ -126,6 +144,8 @@ groups:
     attributes:
       - ref: network.interface.name
       - ref: network.io.direction
+    entity_associations:
+      k8s.node
 
   # k8s.deployment.* metrics
   - id: metric.k8s.deployment.desired_pods
@@ -154,6 +174,8 @@ groups:
       [`k8s.deployment`](../resource/k8s.md#deployment) resource.
     instrument: updowncounter
     unit: "{pod}"
+    entity_associations:
+      k8s.deployment
 
   # k8s.replicaset.* metrics
   - id: metric.k8s.replicaset.desired_pods
@@ -182,6 +204,8 @@ groups:
       [`k8s.replicaset`](../resource/k8s.md#replicaset) resource.
     instrument: updowncounter
     unit: "{pod}"
+    entity_associations:
+      k8s.replicaset
 
   # k8s.replicationcontroller.* metrics
   - id: metric.k8s.replicationcontroller.desired_pods
@@ -197,6 +221,8 @@ groups:
       [`k8s.replicationcontroller`](../resource/k8s.md#replicationcontroller) resource.
     instrument: updowncounter
     unit: "{pod}"
+    entity_associations:
+      k8s.replicationcontroller
   - id: metric.k8s.replicationcontroller.available_pods
     type: metric
     metric_name: k8s.replicationcontroller.available_pods
@@ -210,6 +236,8 @@ groups:
       [`k8s.replicationcontroller`](../resource/k8s.md#replicationcontroller) resource.
     instrument: updowncounter
     unit: "{pod}"
+    entity_associations:
+      k8s.replicationcontroller
 
   # k8s.statefulset.* metrics
   - id: metric.k8s.statefulset.desired_pods
@@ -238,6 +266,8 @@ groups:
       [`k8s.statefulset`](../resource/k8s.md#statefulset) resource.
     instrument: updowncounter
     unit: "{pod}"
+    entity_associations:
+      k8s.statefulset
   - id: metric.k8s.statefulset.current_pods
     type: metric
     metric_name: k8s.statefulset.current_pods
@@ -251,6 +281,8 @@ groups:
       [`k8s.statefulset`](../resource/k8s.md#statefulset) resource.
     instrument: updowncounter
     unit: "{pod}"
+    entity_associations:
+      k8s.statefulset
   - id: metric.k8s.statefulset.updated_pods
     type: metric
     metric_name: k8s.statefulset.updated_pods
@@ -264,6 +296,8 @@ groups:
       [`k8s.statefulset`](../resource/k8s.md#statefulset) resource.
     instrument: updowncounter
     unit: "{pod}"
+    entity_associations:
+      k8s.statefulset
 
   # k8s.hpa.* metrics
   - id: metric.k8s.hpa.desired_pods
@@ -279,6 +313,8 @@ groups:
       [`k8s.hpa`](../resource/k8s.md#horizontalpodautoscaler) resource.
     instrument: updowncounter
     unit: "{pod}"
+    entity_associations:
+      k8s.hpa
   - id: metric.k8s.hpa.current_pods
     type: metric
     metric_name: k8s.hpa.current_pods
@@ -292,6 +328,8 @@ groups:
       [`k8s.hpa`](../resource/k8s.md#horizontalpodautoscaler) resource.
     instrument: updowncounter
     unit: "{pod}"
+    entity_associations:
+      k8s.hpa
   - id: metric.k8s.hpa.max_pods
     type: metric
     metric_name: k8s.hpa.max_pods
@@ -305,6 +343,8 @@ groups:
       [`k8s.hpa`](../resource/k8s.md#horizontalpodautoscaler) resource.
     instrument: updowncounter
     unit: "{pod}"
+    entity_associations:
+      k8s.hpa
   - id: metric.k8s.hpa.min_pods
     type: metric
     metric_name: k8s.hpa.min_pods
@@ -318,6 +358,8 @@ groups:
       [`k8s.hpa`](../resource/k8s.md#horizontalpodautoscaler) resource.
     instrument: updowncounter
     unit: "{pod}"
+    entity_associations:
+      k8s.hpa
 
   # k8s.daemonset.* metrics
   - id: metric.k8s.daemonset.current_scheduled_nodes
@@ -333,6 +375,8 @@ groups:
       [`k8s.daemonset`](../resource/k8s.md#daemonset) resource.
     instrument: updowncounter
     unit: "{node}"
+    entity_associations:
+      k8s.daemonset
   - id: metric.k8s.daemonset.desired_scheduled_nodes
     type: metric
     metric_name: k8s.daemonset.desired_scheduled_nodes
@@ -346,6 +390,8 @@ groups:
       [`k8s.daemonset`](../resource/k8s.md#daemonset) resource.
     instrument: updowncounter
     unit: "{node}"
+    entity_associations:
+      k8s.daemonset
   - id: metric.k8s.daemonset.misscheduled_nodes
     type: metric
     metric_name: k8s.daemonset.misscheduled_nodes
@@ -359,6 +405,8 @@ groups:
       [`k8s.daemonset`](../resource/k8s.md#daemonset) resource.
     instrument: updowncounter
     unit: "{node}"
+    entity_associations:
+      k8s.daemonset
   - id: metric.k8s.daemonset.ready_nodes
     type: metric
     metric_name: k8s.daemonset.ready_nodes
@@ -372,6 +420,8 @@ groups:
       [`k8s.daemonset`](../resource/k8s.md#daemonset) resource.
     instrument: updowncounter
     unit: "{node}"
+    entity_associations:
+      k8s.daemonset
 
   # k8s.job.* metrics
   - id: metric.k8s.job.active_pods
@@ -387,6 +437,8 @@ groups:
 
       This metric SHOULD, at a minimum, be reported against a
       [`k8s.job`](../resource/k8s.md#job) resource.
+    entity_associations:
+      k8s.job
   - id: metric.k8s.job.failed_pods
     type: metric
     metric_name: k8s.job.failed_pods
@@ -400,6 +452,8 @@ groups:
 
       This metric SHOULD, at a minimum, be reported against a
       [`k8s.job`](../resource/k8s.md#job) resource.
+    entity_associations:
+      k8s.job
   - id: metric.k8s.job.successful_pods
     type: metric
     metric_name: k8s.job.successful_pods
@@ -413,6 +467,8 @@ groups:
 
       This metric SHOULD, at a minimum, be reported against a
       [`k8s.job`](../resource/k8s.md#job) resource.
+    entity_associations:
+      k8s.job
   - id: metric.k8s.job.desired_successful_pods
     type: metric
     metric_name: k8s.job.desired_successful_pods
@@ -426,6 +482,8 @@ groups:
 
       This metric SHOULD, at a minimum, be reported against a
       [`k8s.job`](../resource/k8s.md#job) resource.
+    entity_associations:
+      k8s.job
   - id: metric.k8s.job.max_parallel_pods
     type: metric
     metric_name: k8s.job.max_parallel_pods
@@ -439,6 +497,8 @@ groups:
 
       This metric SHOULD, at a minimum, be reported against a
       [`k8s.job`](../resource/k8s.md#job) resource.
+    entity_associations:
+      k8s.job
 
   # k8s.job.* metrics
   - id: metric.k8s.cronjob.active_jobs
@@ -454,6 +514,8 @@ groups:
 
       This metric SHOULD, at a minimum, be reported against a
       [`k8s.cronjob`](../resource/k8s.md#cronjob) resource.
+    entity_associations:
+      k8s.cronjob
 
   # k8s.namespace.* metrics
   - id: metric.k8s.namespace.phase
@@ -469,3 +531,5 @@ groups:
     attributes:
       - ref: k8s.namespace.phase
         requirement_level: required
+    entity_associations:
+      k8s.namespace

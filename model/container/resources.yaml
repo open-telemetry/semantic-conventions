@@ -6,9 +6,9 @@ groups:
     brief: >
       A container instance.
     attributes:
-      - ref: container.name
       - ref: container.id
     descriptive_attributes:
+      - ref: container.name
       - ref: container.runtime
       - ref: container.image.name
       - ref: container.image.tags
