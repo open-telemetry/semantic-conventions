@@ -1,6 +1,7 @@
 groups:
-  - id: resource.apache.server
-    type: resource
+  - id: entity.apache.server
+    brief: An Apache HTTPD server
+    type: entity
     stability: development
     name: apache.server
     attributes:

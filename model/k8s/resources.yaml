@@ -1,6 +1,6 @@
 groups:
-  - id: resource.k8s.cluster
-    type: resource
+  - id: entity.k8s.cluster
+    type: entity
     stability: development
     name: k8s.cluster
     brief: >
@@ -13,8 +13,8 @@ groups:
       - has_many: k8s.node
       - has_many: k8s.namespace
 
-  - id: resource.k8s.node
-    type: resource
+  - id: entity.k8s.node
+    type: entity
     stability: development
     name: k8s.node
     brief: >
@@ -31,8 +31,8 @@ groups:
       - is_a: host
       - has_many: k8s.pod
 
-  - id: resource.k8s.namespace
-    type: resource
+  - id: entity.k8s.namespace
+    type: entity
     stability: development
     name: k8s.namespace
     brief: >
@@ -54,11 +54,11 @@ groups:
       - has_many: k8s.pod
       - has_many: k8s.replicaset
       - has_many: k8s.replicationcontroller
-      - has_many: k8s.resourcequota
+      - has_many: k8s.entityquota
       - has_many: k8s.statefulset
 
-  - id: resource.k8s.pod
-    type: resource
+  - id: entity.k8s.pod
+    type: entity
     stability: development
     name: k8s.pod
     brief: >
@@ -74,8 +74,8 @@ groups:
     relationships:
       - has_many: k8s.container
 
-  - id: resource.k8s.container
-    type: resource
+  - id: entity.k8s.container
+    type: entity
     stability: development
     name: k8s.container
     brief: >
@@ -86,8 +86,8 @@ groups:
       - ref: k8s.container.restart_count
       - ref: k8s.container.status.last_terminated_reason
 
-  - id: resource.k8s.replicaset
-    type: resource
+  - id: entity.k8s.replicaset
+    type: entity
     stability: development
     name: k8s.replicaset
     brief: >
@@ -101,8 +101,8 @@ groups:
       - ref: k8s.replicaset.annotation
         requirement_level: opt_in
 
-  - id: resource.k8s.deployment
-    type: resource
+  - id: entity.k8s.deployment
+    type: entity
     stability: development
     name: k8s.deployment
     brief: >
@@ -116,8 +116,8 @@ groups:
       - ref: k8s.deployment.annotation
         requirement_level: opt_in
 
-  - id: resource.k8s.statefulset
-    type: resource
+  - id: entity.k8s.statefulset
+    type: entity
     stability: development
     name: k8s.statefulset
     brief: >
@@ -131,8 +131,8 @@ groups:
       - ref: k8s.statefulset.annotation
         requirement_level: opt_in
 
-  - id: resource.k8s.daemonset
-    type: resource
+  - id: entity.k8s.daemonset
+    type: entity
     stability: development
     name: k8s.daemonset
     brief: >
@@ -146,8 +146,8 @@ groups:
       - ref: k8s.daemonset.annotation
         requirement_level: opt_in
 
-  - id: resource.k8s.job
-    type: resource
+  - id: entity.k8s.job
+    type: entity
     stability: development
     name: k8s.job
     brief: >
@@ -161,8 +161,8 @@ groups:
       - ref: k8s.job.annotation
         requirement_level: opt_in
 
-  - id: resource.k8s.cronjob
-    type: resource
+  - id: entity.k8s.cronjob
+    type: entity
     stability: development
     name: k8s.cronjob
     brief: >
@@ -176,8 +176,8 @@ groups:
       - ref: k8s.cronjob.annotation
         requirement_level: opt_in
 
-  - id: resource.k8s.replicationcontroller
-    type: resource
+  - id: entity.k8s.replicationcontroller
+    type: entity
     stability: development
     name: k8s.replicationcontroller
     brief: >
@@ -187,8 +187,8 @@ groups:
     descriptive_attributes:
       - ref: k8s.replicationcontroller.name
 
-  - id: resource.k8s.hpa
-    type: resource
+  - id: entity.k8s.hpa
+    type: entity
     stability: development
     name: k8s.hpa
     brief: >
@@ -198,8 +198,8 @@ groups:
     descriptive_attributes:
       - ref: k8s.hpa.name
 
-  - id: resource.k8s.resourcequota
-    type: resource
+  - id: entity.k8s.resourcequota
+    type: entity
     stability: development
     name: k8s.resourcequota
     brief: >

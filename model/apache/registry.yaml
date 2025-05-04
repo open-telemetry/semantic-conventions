@@ -4,4 +4,6 @@ groups:
     display_name: Apache Attributes
     brief: >
       This section defines attributes for Apache HTTPD.
-     
+    attributes:
+      - ref: server.host
+      - ref: server.port

@@ -1,7 +1,7 @@
 groups:
-  - id: resource.telemetry.sdk
+  - id: entity.telemetry.sdk
     name: telemetry.sdk
-    type: resource
+    type: entity
     stability: stable
     brief: >
       The telemetry SDK used to capture data recorded by the instrumentation libraries.
@@ -13,9 +13,9 @@ groups:
     descriptive_attributes:
       - ref: telemetry.sdk.version
         requirement_level: required
-  - id: resource.telemetry.distro
+  - id: entity.telemetry.distro
     name: 'telemetry.distro'
-    type: resource
+    type: entity
     stability: development
     brief: >
       The distribution of telemetry SDK used to capture data recorded by the instrumentation libraries.

@@ -1,6 +1,6 @@
 groups:
-  - id: resource.service
-    type: resource
+  - id: entity.service
+    type: entity
     name: service
     brief: >
       A service.
@@ -16,8 +16,8 @@ groups:
       - has_many: deployment.environment
       - instrumented_by: telemetry.sdk
       - instrumented_by: telemetry.distro
-  - id: resource.service.instance
-    type: resource
+  - id: entity.service.instance
+    type: entity
     name: service.instance
     brief: >
       A service instance.

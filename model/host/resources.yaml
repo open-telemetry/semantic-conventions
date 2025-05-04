@@ -1,6 +1,6 @@
 groups:
-  - id: resource.host
-    type: resource
+  - id: entity.host
+    type: entity
     stability: development
     name: host
     brief: >
@@ -47,8 +47,8 @@ groups:
     relationships:
       - has_a_kind_of: host.cpu
 
-  - id: resource.host.cpu
-    type: resource
+  - id: entity.host.cpu
+    type: entity
     stability: development
     name: host.cpu
     brief: >

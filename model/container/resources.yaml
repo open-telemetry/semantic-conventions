@@ -1,6 +1,6 @@
 groups:
   - id: resource.container
-    type: resource
+    type: entity
     stability: development
     name: container
     brief: >

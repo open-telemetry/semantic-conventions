@@ -1,6 +1,6 @@
 groups:
-  - id: resource.process
-    type: resource
+  - id: entity.process
+    type: entity
     stability: development
     name: process
     brief: >
@@ -30,8 +30,8 @@ groups:
     relationships:
       - runs_on: host
 
-  - id: resource.process.runtime
-    type: resource
+  - id: entity.process.runtime
+    type: entity
     stability: development
     name: process.runtime
     brief: >

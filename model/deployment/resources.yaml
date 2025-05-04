@@ -1,6 +1,6 @@
 groups:
   - id: resource.deployment
-    type: resource
+    type: entity
     stability: development
     name: deployment
     brief: >
@@ -9,7 +9,7 @@ groups:
       - ref: deployment.environment.name
         requirement_level: recommended
   - id: resource.deployment.environment
-    type: resource
+    type: entity
     stability: development
     name: deployment.environment
     brief: >
