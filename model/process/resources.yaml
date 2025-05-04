@@ -29,3 +29,15 @@ groups:
       - ref: process.linux.cgroup
     relationships:
       - runs_on: host
+
+  - id: resource.process.runtime
+    type: resource
+    stability: development
+    name: process.runtime
+    brief: >
+      The single (language) runtime instance which is monitored.
+    attributes:
+      - ref: process.runtime.name
+    descriptive_attributes:
+      - ref: process.runtime.version
+      - ref: process.runtime.description

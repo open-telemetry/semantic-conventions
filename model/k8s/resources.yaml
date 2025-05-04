@@ -12,6 +12,7 @@ groups:
     relationships:
       - has_many: k8s.node
       - has_many: k8s.namespace
+
   - id: resource.k8s.node
     type: resource
     stability: development
