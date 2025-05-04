@@ -1,6 +1,6 @@
 groups:
-  - id: entity.apache.server
-    type: entity
+  - id: resource.apache.server
+    type: resource
     stability: development
     name: apache.server
     attributes:

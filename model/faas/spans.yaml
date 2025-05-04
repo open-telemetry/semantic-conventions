@@ -6,7 +6,7 @@ groups:
       This span represents a serverless function (FaaS) execution.
     note: |
       Span `name` should be set to the function name being executed.
-      Depending on the value of the `faas.trigger` attribute, additional attributes MUST be set.
+      Depending on the value of the `faas.trigger` attribute, additional attributes MUST be set
 
       For example, an `http` trigger SHOULD follow the [HTTP Server semantic conventions](/docs/http/http-spans.md#http-server-span).
       For more information, refer to the [Function Trigger Type](#function-trigger-type) section.

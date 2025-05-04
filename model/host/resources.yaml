@@ -34,6 +34,7 @@ groups:
           privileged lookup of `host.id` is required, the value should be injected via the
           `OTEL_RESOURCE_ATTRIBUTES` environment variable.
       - ref: host.name
+    descriptive_attributes:
       - ref: host.type
       - ref: host.arch
       - ref: host.image.name
@@ -43,6 +44,8 @@ groups:
         requirement_level: opt_in
       - ref: host.mac
         requirement_level: opt_in
+    relationships:
+      - has_a_kind_of: host.cpu
 
   - id: resource.host.cpu
     type: resource
@@ -51,47 +54,16 @@ groups:
     brief: >
       A host's CPU information
     attributes:
+      - ref: host.cpu.model.id
+        requirement_level: opt_in
+      - ref: host.cpu.model.name
+        requirement_level: opt_in
+    descriptive_attributes:
       - ref: host.cpu.vendor.id
         requirement_level: opt_in
       - ref: host.cpu.family
         requirement_level: opt_in
-      - ref: host.cpu.model.id
-        requirement_level: opt_in
-      - ref: host.cpu.model.name
-        requirement_level: opt_in
       - ref: host.cpu.stepping
         requirement_level: opt_in
       - ref: host.cpu.cache.l2.size
         requirement_level: opt_in
-  - id: entity.host
-    type: entity
-    name: host
-    brief: >
-        A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
-    stability: development
-    attributes:
-      - ref: host.name
-      - ref: host.id
-    descriptive_attributes:
-      - ref: host.arch
-      - ref: host.type
-      - ref: host.ip
-      - ref: host.mac
-      - ref: host.image.name
-      - ref: host.image.id
-      - ref: host.image.version
-    relationships:
-      - has_a_kind_of: host.cpu
-  - id: entity.host.cpu
-    type: entity
-    name: host.cpu
-    brief: >
-      A host's CPU information
-    stability: development
-    attributes:
-      - ref: host.cpu.model.id
-    descriptive_attributes:
-      - ref: host.cpu.family
-      - ref: host.cpu.model.name
-      - ref: host.cpu.stepping
-      - ref: host.cpu.cache.l2.size

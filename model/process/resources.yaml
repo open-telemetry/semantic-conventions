@@ -7,6 +7,8 @@ groups:
         An operating system process.
     attributes:
       - ref: process.pid
+      - ref: process.creation.time
+    descriptive_attributes:
       - ref: process.parent_pid
       - ref: process.executable.name
         requirement_level:
@@ -25,27 +27,5 @@ groups:
           conditionally_required: See [Selecting process attributes](#selecting-process-attributes) for details.
       - ref: process.owner
       - ref: process.linux.cgroup
-
-  - id: resource.process.runtime
-    type: resource
-    stability: development
-    name: process.runtime
-    brief: >
-      The single (language) runtime instance which is monitored.
-    attributes:
-      - ref: process.runtime.name
-      - ref: process.runtime.version
-      - ref: process.runtime.description
-  - id: entity.process
-    type: entity
-    name: process
-    brief: >
-        An operating system process.
-    stability: development
-    attributes:
-      - ref: process.pid
-      - ref: process.executable.name
-    descriptive_attributes:
-      - ref: process.parent_pid
     relationships:
       - runs_on: host

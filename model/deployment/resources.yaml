@@ -8,8 +8,8 @@ groups:
     attributes:
       - ref: deployment.environment.name
         requirement_level: recommended
-  - id: entity.deployment.environment
-    type: entity
+  - id: resource.deployment.environment
+    type: resource
     stability: development
     name: deployment.environment
     brief: >

@@ -10,6 +10,7 @@ groups:
         requirement_level: required
       - ref: telemetry.sdk.language
         requirement_level: required
+    descriptive_attributes:
       - ref: telemetry.sdk.version
         requirement_level: required
   - id: resource.telemetry.distro
@@ -21,24 +22,6 @@ groups:
     attributes:
       - ref: telemetry.distro.name
         requirement_level: recommended
+    descriptive_attributes:
       - ref: telemetry.distro.version
         requirement_level: recommended
-  - id: entity.telemetry.distro
-    type: entity
-    name: telemetry.distro
-    brief: >
-      The distribution of telemetry SDK used to capture data recorded by the instrumentation libraries.
-    stability: development
-    attributes:
-      - ref: telemetry.distro.name
-      - ref: telemetry.distro.version
-  - id: entity.telemetry.sdk
-    type: entity
-    name: telemetry.sdk
-    brief: >
-      The telemetry SDK used to capture data recorded by the instrumentation libraries.
-    stability: development
-    attributes:
-      - ref: telemetry.sdk.name
-      - ref: telemetry.sdk.language
-      - ref: telemetry.sdk.version

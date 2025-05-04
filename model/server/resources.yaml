@@ -1,6 +1,6 @@
 groups:
-  - id: entity.server
-    type: entity
+  - id: resource.server
+    type: resource
     name: server
     brief: >
       A server.
