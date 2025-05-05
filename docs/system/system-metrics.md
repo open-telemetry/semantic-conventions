@@ -157,7 +157,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.cpu.utilization` | Gauge | `1` | Fraction of total CPU time spent in active modes, aggregated across all system CPU cores. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `system.cpu.utilization` | Gauge | `1` | Fraction of total CPU time spent in active modes, aggregated across all system CPU cores. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 **[1]:** This metric provides a standardized and opinionated definition of CPU utilization.
 It is defined as the proportion of total system CPU time spent in non-idle and non-iowait modes — that is, the time spent in user, system, nice, interrupt, and steal modes.
@@ -166,9 +166,6 @@ and dividing the result by the elapsed time and the `system.cpu.logical.count` t
 system-wide utilization value between 0.0 and 1.0: `sum(rate(cpu.time{mode != "idle" and mode != "iowait"})) / system.cpu.logical.count`.
 This represents time spent actively executing work, including time delayed by the hypervisor (steal), which reflects CPU demand in virtualized environments.
 As a result, in cases of high CPU contention — such as 100% steal time — this metric will report 100% utilization, making such issues easy to detect.
-
-This metric SHOULD, at a minimum, be reported against a
-[`host`](../resource/host.md) resource.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
