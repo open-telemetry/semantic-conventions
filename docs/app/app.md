@@ -14,6 +14,9 @@ This document defines events related to client-side applications
 - [Click Events](#click-events)
   - [Event: `app.screen.click`](#event-appscreenclick)
   - [Event: `app.widget.click`](#event-appwidgetclick)
+- [Jank Events](#jank-events)
+  - [Event: `app.jank`](#event-appjank)
+- [Attributes](#attributes)
 
 <!-- tocstop -->
 
