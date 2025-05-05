@@ -11,7 +11,7 @@ function extractEntitiesAndRelationships(baseDir) {
 
     if (data.groups) {
       data.groups.forEach((group) => {
-        if (group.type === "resource") {
+        if (group.type === "resource" || group.type === "entity") {
           entities.push(group);
         }
       });
@@ -34,25 +34,27 @@ function extractEntitiesAndRelationships(baseDir) {
   return entities;
 }
 
+// The word "namespace" is reserved and I don't know how to quote it
+function sanitize(name) {
+  return name.replace("namespace", "namespacⱸ");
+}
+
 function generateMermaidDiagram(entities) {
   console.log("classDiagram");
   for (const entity of entities) {
+    const name = sanitize(entity.name);
     for (const attr of entity.attributes) {
-      // The word "namespace" is reserved and I don't know how to quote it
-      const name = entity.name.replace("namespace", "namespacě");
       console.log(`  ${name} : attribute ${attr.ref}`);
     }
     for (const attr of entity.descriptive_attributes ?? []) {
-      console.log(
-        `  ${entity.name.replace("namespace", "namespacě")} : descriptive_attribute ${attr.ref}`,
-      );
+      console.log(`  ${name} : descriptive_attribute ${attr.ref}`);
     }
     for (const relationship of entity.relationships ?? []) {
       for ([relationshipType, relatedEntityType] of Object.entries(
         relationship,
       )) {
         console.log(
-          `  ${entity.name.replace("namespace", "namespacě")} --> ${relatedEntityType.replace("namespace", "namespacě")}: ${relationshipType}`,
+          `  ${name} --> ${sanitize(relatedEntityType)}: ${relationshipType}`,
         );
       }
     }

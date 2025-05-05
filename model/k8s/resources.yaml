@@ -10,9 +10,8 @@ groups:
     descriptive_attributes:
       - ref: k8s.cluster.name
     relationships:
-      - has_many: k8s.node
+      - contains: k8s.node
       - has_many: k8s.namespace
-
   - id: entity.k8s.node
     type: entity
     stability: development
@@ -29,7 +28,7 @@ groups:
         requirement_level: opt_in
     relationships:
       - is_a: host
-      - has_many: k8s.pod
+      - hosts: k8s.pod
 
   - id: entity.k8s.namespace
     type: entity
@@ -45,17 +44,18 @@ groups:
       - ref: k8s.namespace.annotation
         requirement_level: opt_in
     relationships:
-      - has_many: k8s.container
-      - has_many: k8s.cronjob
-      - has_many: k8s.daemonset
-      - has_many: k8s.deployment
-      - has_many: k8s.hpa
-      - has_many: k8s.job
-      - has_many: k8s.pod
-      - has_many: k8s.replicaset
-      - has_many: k8s.replicationcontroller
-      - has_many: k8s.entityquota
-      - has_many: k8s.statefulset
+      - contains: k8s.container
+      - contains: k8s.cronjob
+      - contains: k8s.daemonset
+      - contains: k8s.deployment
+      - contains: k8s.entityquota
+      - contains: k8s.hpa
+      - contains: k8s.job
+      - contains: k8s.pod
+      - contains: k8s.replicaset
+      - contains: k8s.replicationcontroller
+      - contains: k8s.resourcequota
+      - contains: k8s.statefulset
 
   - id: entity.k8s.pod
     type: entity
@@ -72,7 +72,7 @@ groups:
       - ref: k8s.pod.annotation
         requirement_level: opt_in
     relationships:
-      - has_many: k8s.container
+      - contains: k8s.container
 
   - id: entity.k8s.container
     type: entity
@@ -85,6 +85,8 @@ groups:
     descriptive_attributes:
       - ref: k8s.container.restart_count
       - ref: k8s.container.status.last_terminated_reason
+    relationships:
+      - specifies: container
 
   - id: entity.k8s.replicaset
     type: entity
@@ -100,6 +102,8 @@ groups:
         requirement_level: opt_in
       - ref: k8s.replicaset.annotation
         requirement_level: opt_in
+    relationships:
+      - owns: k8s.pod
 
   - id: entity.k8s.deployment
     type: entity
@@ -115,6 +119,10 @@ groups:
         requirement_level: opt_in
       - ref: k8s.deployment.annotation
         requirement_level: opt_in
+    relationships:
+      - owns: k8s.daemonset
+      - owns: k8s.replicaset
+      - owns: k8s.statefulset
 
   - id: entity.k8s.statefulset
     type: entity
@@ -130,6 +138,8 @@ groups:
         requirement_level: opt_in
       - ref: k8s.statefulset.annotation
         requirement_level: opt_in
+    relationships:
+      - owns: k8s.pod
 
   - id: entity.k8s.daemonset
     type: entity
@@ -145,6 +155,8 @@ groups:
         requirement_level: opt_in
       - ref: k8s.daemonset.annotation
         requirement_level: opt_in
+    relationships:
+      - owns: k8s.pod
 
   - id: entity.k8s.job
     type: entity

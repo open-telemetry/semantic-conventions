@@ -29,6 +29,7 @@ groups:
       - ref: process.linux.cgroup
     relationships:
       - runs_on: host
+      - runs: process.runtime
 
   - id: entity.process.runtime
     type: entity
