@@ -124,7 +124,7 @@ application-related attributes that may appear on telemetry items.
 | `frozen` | Jank that causes the user to suspect that the application is frozen. [3] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `slow` | Jank is classified as observably slow. [4] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[3]:** Recommended threshold for slow is 700ms.
+**[3]:** Recommended threshold for frozen is 700ms.
 
 **[4]:** Recommended threshold for slow is 16ms.
 

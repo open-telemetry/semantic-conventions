@@ -54,6 +54,6 @@ More information about Android identifier best practices can be found [here](htt
 | `frozen` | Jank that causes the user to suspect that the application is frozen. [6] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `slow` | Jank is classified as observably slow. [7] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[6]:** Recommended threshold for slow is 700ms.
+**[6]:** Recommended threshold for frozen is 700ms.
 
 **[7]:** Recommended threshold for slow is 16ms.
