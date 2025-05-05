@@ -22,7 +22,7 @@ A container instance.
 | <a id="container-image-name" href="#container-image-name">`container.image.name`</a> | string | Name of the image the container was built on. | `gcr.io/opentelemetry/operator` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="container-image-repo-digests" href="#container-image-repo-digests">`container.image.repo_digests`</a> | string[] | Repo digests of the container image as provided by the container runtime. [5] | `["example@sha256:afcc7f1ac1b49db317a7196c902e61c6c3c4607d63599ee1a82d702d249a0ccb", "internal.registry.example.com:5000/example@sha256:b69959407d21e8a062e0416bf13405bb2b71ed7a84dde4158ebafacfa06f5578"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="container-image-tags" href="#container-image-tags">`container.image.tags`</a> | string[] | Container image tags. An example can be found in [Docker Image Inspect](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect). Should be only the `<tag>` section of the full name for example from `registry.example.com/my-org/my-image:<tag>`. | `["v1.27.1", "3.5.7-0"]` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-label" href="#container-label">`container.label.<key>`</a> | string | Container labels, `<key>` being the label name, the value being the label value. | `container.label.app=nginx` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="container-label" href="#container-label">`container.label.<key>`</a> | string | Container labels, `<key>` being the label name, the value being the label value. [6] | `nginx` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="container-name" href="#container-name">`container.name`</a> | string | Container name used by container runtime. | `opentelemetry-autoconf` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="container-runtime" href="#container-runtime">`container.runtime`</a> | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -38,6 +38,8 @@ The ID is assigned by the container runtime and can vary in different environmen
 
 **[5] `container.image.repo_digests`:** [Docker](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
 
+**[6] `container.label.<key>`:** For example, a docker container label `app` with value `nginx` SHOULD be recorded as the `container.label.app` attribute with value `"nginx"`.
+
 ## Deprecated Container Attributes
 
 Describes deprecated container attributes.
@@ -45,7 +47,7 @@ Describes deprecated container attributes.
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode` |
-| <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | string | Deprecated, use `container.label` instead. | `container.label.app=nginx` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.label`. |
+| <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | string | Deprecated, use `container.label` instead. | `nginx` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.label`. |
 
 ---
 

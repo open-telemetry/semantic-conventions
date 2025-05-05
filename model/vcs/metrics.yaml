@@ -17,6 +17,8 @@ groups:
         requirement_level: recommended
       - ref: vcs.provider.name
         requirement_level: opt_in
+    entity_associations:
+      - vcs.repo
   - id: metric.vcs.change.duration
     type: metric
     metric_name: vcs.change.duration
@@ -37,6 +39,8 @@ groups:
         requirement_level: recommended
       - ref: vcs.provider.name
         requirement_level: opt_in
+    entity_associations:
+      - vcs.repo
   - id: metric.vcs.change.time_to_approval
     type: metric
     metric_name: vcs.change.time_to_approval
@@ -61,6 +65,9 @@ groups:
         requirement_level: recommended
       - ref: vcs.provider.name
         requirement_level: opt_in
+    entity_associations:
+      - vcs.repo
+      - vcs.ref
   - id: metric.vcs.change.time_to_merge
     type: metric
     metric_name: vcs.change.time_to_merge
@@ -85,6 +92,9 @@ groups:
         requirement_level: recommended
       - ref: vcs.provider.name
         requirement_level: opt_in
+    entity_associations:
+      - vcs.repo
+      - vcs.ref
   - id: metric.vcs.repository.count
     type: metric
     metric_name: vcs.repository.count
@@ -115,6 +125,8 @@ groups:
         requirement_level: recommended
       - ref: vcs.provider.name
         requirement_level: opt_in
+    entity_associations:
+      - vcs.repo
   - id: metric.vcs.ref.lines_delta
     type: metric
     metric_name: vcs.ref.lines_delta
@@ -148,6 +160,8 @@ groups:
         requirement_level: recommended
       - ref: vcs.provider.name
         requirement_level: opt_in
+    entity_associations:
+      - vcs.repo
   - id: metric.vcs.ref.revisions_delta
     type: metric
     metric_name: vcs.ref.revisions_delta
@@ -180,6 +194,8 @@ groups:
         requirement_level: recommended
       - ref: vcs.provider.name
         requirement_level: opt_in
+    entity_associations:
+      - vcs.repo
   - id: metric.vcs.ref.time
     type: metric
     metric_name: vcs.ref.time
@@ -200,6 +216,8 @@ groups:
         requirement_level: recommended
       - ref: vcs.provider.name
         requirement_level: opt_in
+    entity_associations:
+      - vcs.repo
   - id: metric.vcs.contributor.count
     type: metric
     metric_name: vcs.contributor.count
@@ -216,3 +234,5 @@ groups:
         requirement_level: recommended
       - ref: vcs.provider.name
         requirement_level: opt_in
+    entity_associations:
+      - vcs.repo

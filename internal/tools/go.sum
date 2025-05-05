@@ -16,6 +16,7 @@ github.com/stretchr/testify v1.10.0 h1:Xv5erBjTwe/5IxqUQTdXv5kgmIvbHo3QQyRwhJsOf
 github.com/stretchr/testify v1.10.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 go.opentelemetry.io/build-tools/chloggen v0.22.0 h1:QLy1ox4iyF/lVTlRnN7B+1AFJzczvlwPNVKjYvwmc2c=
 go.opentelemetry.io/build-tools/chloggen v0.22.0/go.mod h1:wJ8tJY5bURruxByT9gaaaGxjr1FoK8bUl/FiE+yQTfE=
+go.opentelemetry.io/build-tools/chloggen v0.23.1/go.mod h1:wJ8tJY5bURruxByT9gaaaGxjr1FoK8bUl/FiE+yQTfE=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=

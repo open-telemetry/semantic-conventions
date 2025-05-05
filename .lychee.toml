@@ -9,7 +9,9 @@ exclude = [
     "^https://github.com/open-telemetry/opentelemetry-specification/(pull|issues)/\\d+$",
     # TODO (lmolkova) treat timeout as not a failure?
     "^https://www.intersystems.com",
-    "^https://gcc.gnu.org"
+    "^https://gcc.gnu.org",
+    "^https://github.com" # to avoid rate limit errors
+                          # TODO (trask) look at options
 ]
 
 # better to be safe and avoid failures

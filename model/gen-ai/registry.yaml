@@ -276,6 +276,10 @@ groups:
               value: "create_agent"
               brief: 'Create GenAI agent'
               stability: development
+            - id: invoke_agent
+              value: "invoke_agent"
+              brief: 'Invoke GenAI agent'
+              stability: development
             - id: execute_tool
               value: "execute_tool"
               brief: 'Execute a tool'

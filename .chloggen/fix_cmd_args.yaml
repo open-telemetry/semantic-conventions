@@ -4,17 +4,17 @@
 # your pull request title with [chore] or use the "Skip Changelog" label.
 
 # One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
-change_type: 'breaking'
+change_type: breaking
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: 'otel'
+component: process
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Rename span health metrics to remove the .count suffixes
+note: "Require sensitive data sanitization for `process.command_args` and `process.command_line`"
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-issues: [1979]
+issues: [626]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.

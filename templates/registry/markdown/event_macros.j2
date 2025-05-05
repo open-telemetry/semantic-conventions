@@ -9,6 +9,13 @@ The event name MUST be `{{ event.name }}`.
 {%if event.note %}
 {{ event.note | trim }}
 {% endif %}
+{%- if event.entity_associations is sequence %}
+
+The event SHOULD be associated with one of the following entities:
+{% for e in event.entity_associations %}
+- `{{ e }}`
+{% endfor %}
+{% endif %}
 {% endmacro %}
 {% macro body(body) %}{% if body %}**Body fields:**
 
