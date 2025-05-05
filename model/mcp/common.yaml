@@ -13,7 +13,7 @@ groups:
         brief: The transport protocol used for the MCP session.
         note: |
           This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
-          is HTTP with SSE (Server-Sent Events).
+          is HTTP.
           It SHOULD be set to `pipe` if the transport is stdio.
 
       - ref: error.type

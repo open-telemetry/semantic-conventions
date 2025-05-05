@@ -17,7 +17,7 @@
 | <a id="mcp-session-id" href="#mcp-session-id">`mcp.session.id`</a> | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="mcp-tool-name" href="#mcp-tool-name">`mcp.tool.name`</a> | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `mcp.request.argument`:** Instrumentations SHOULD require an explicit configuration of which arguments are to be captured. Including all request arguments can be a security risk - explicit configuration helps avoid leaking sensitive information.
+**[1] `mcp.request.argument.<key>`:** Instrumentations SHOULD require an explicit configuration of which arguments are to be captured. Including all request arguments can be a security risk - explicit configuration helps avoid leaking sensitive information.
 Argument values SHOULD be recorded as JSON strings.
 
 **[2] `mcp.resource.uri`:** This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.

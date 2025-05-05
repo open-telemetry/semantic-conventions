@@ -27,8 +27,8 @@ since MCP spans and metrics provide domain-specific context and record details
 that are not covered by the RPC conventions such as message exchange within streaming calls,
 
 HTTP conventions (when HTTP used as transport) do not adequately cover MCP requests
-and notifications either, given that they could be sent over SSE stream and MCP method and
-other important properties are passed within message payloads.
+and notifications either, given that multiple MCP requests could be sent over single
+HTTP request in the corresponding request and response streams.
 
 ## Spans
 
@@ -128,14 +128,14 @@ is returned with `isError` set to `true`, this attribute SHOULD be set to
 **[3] `mcp.resource.uri`:** When the client executes a request type that includes a resource URI parameter.
 
 **[4] `network.transport`:** This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
-is HTTP with SSE (Server-Sent Events).
+is HTTP.
 It SHOULD be set to `pipe` if the transport is stdio.
 
 **[5] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 **[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[7] `mcp.request.argument`:** Instrumentations SHOULD require an explicit configuration of which arguments are to be captured. Including all request arguments can be a security risk - explicit configuration helps avoid leaking sensitive information.
+**[7] `mcp.request.argument.<key>`:** Instrumentations SHOULD require an explicit configuration of which arguments are to be captured. Including all request arguments can be a security risk - explicit configuration helps avoid leaking sensitive information.
 Argument values SHOULD be recorded as JSON strings.
 
 ---
@@ -271,10 +271,10 @@ is returned with `isError` set to `true`, this attribute SHOULD be set to
 **[5] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
 
 **[6] `network.transport`:** This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
-is HTTP with SSE (Server-Sent Events).
+is HTTP.
 It SHOULD be set to `pipe` if the transport is stdio.
 
-**[7] `mcp.request.argument`:** Instrumentations SHOULD require an explicit configuration of which arguments are to be captured. Including all request arguments can be a security risk - explicit configuration helps avoid leaking sensitive information.
+**[7] `mcp.request.argument.<key>`:** Instrumentations SHOULD require an explicit configuration of which arguments are to be captured. Including all request arguments can be a security risk - explicit configuration helps avoid leaking sensitive information.
 Argument values SHOULD be recorded as JSON strings.
 
 ---
@@ -349,9 +349,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `mcp.client.operation.duration` | Histogram | `s` | The duration of the MCP request or notification as observed on the sender from the time it was sent until the response or ack is received. | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `mcp.client.operation.duration` | Histogram | `s` | The duration of the MCP request or notification as observed on the sender from the time it was sent until the response or ack is received. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -377,7 +377,7 @@ is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
 **[2] `network.transport`:** This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
-is HTTP with SSE (Server-Sent Events).
+is HTTP.
 It SHOULD be set to `pipe` if the transport is stdio.
 
 **[3] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
@@ -456,9 +456,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `mcp.server.operation.duration` | Histogram | `s` | MCP request or notification duration as observed on the receiver from the time it was received until the result or ack is sent. | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `mcp.server.operation.duration` | Histogram | `s` | MCP request or notification duration as observed on the receiver from the time it was received until the result or ack is sent. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -482,7 +482,7 @@ is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
 **[2] `network.transport`:** This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
-is HTTP with SSE (Server-Sent Events).
+is HTTP.
 It SHOULD be set to `pipe` if the transport is stdio.
 
 **[3] `mcp.resource.uri`:** This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
@@ -557,9 +557,9 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `mcp.client.session.duration` | Histogram | `s` | The duration of the MCP session as observed on the MCP client. | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `mcp.client.session.duration` | Histogram | `s` | The duration of the MCP session as observed on the MCP client. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -638,9 +638,9 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `mcp.server.session.duration` | Histogram | `s` | The duration of the MCP session as observed on the MCP server. | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `mcp.server.session.duration` | Histogram | `s` | The duration of the MCP session as observed on the MCP server. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
