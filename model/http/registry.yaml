@@ -35,7 +35,7 @@ groups:
           - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
             attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
-        examples: ['["application/json"]', '["1.2.3.4", "1.2.3.5"]']  # TODO: make it array of arrays
+        examples: [["application/json"], ["1.2.3.4", "1.2.3.5"]]
       - id: http.request.method
         stability: stable
         type:
@@ -148,7 +148,7 @@ groups:
             attribute with value `["application/json"]`.
           - A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
             attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
-        examples: ['["application/json"]', '["abc", "def"]']  # TODO: make it array of arrays
+        examples: [["application/json"], ["abc", "def"]]
       - id: http.response.size
         type: int
         brief: >

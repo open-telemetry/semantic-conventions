@@ -4,7 +4,7 @@ import rego.v1
 # Collection of all entity names from the registry.
 known_entities := { g.name |
     some g in input.groups
-    g.type == "resource"
+    g.type == "entity"
 }
 
 # checks that all entity associations have valid groups.
