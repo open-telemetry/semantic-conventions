@@ -82,14 +82,24 @@ conflict.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.node.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the Node. [1] | `k8s.node.label.kubernetes.io/arch=arm64`; `k8s.node.label.data=` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.node.name`](/docs/attributes-registry/k8s.md) | string | The name of the Node. | `node-1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.node.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.node.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Node. [2] | `k8s.node.annotation.node.alpha.kubernetes.io/ttl=0`; `k8s.node.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.node.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [1] | `0`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.node.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty. [2] | `arm64`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `k8s.node.label`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[1] `k8s.node.annotation.<key>`:** Examples:
 
-**[2] `k8s.node.annotation`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+- An annotation `node.alpha.kubernetes.io/ttl` with value `0` SHOULD be recorded as
+  the `k8s.node.annotation.node.alpha.kubernetes.io/ttl` attribute with value `"0"`.
+- An annotation `data` with empty string value SHOULD be recorded as
+  the `k8s.node.annotation.data` attribute with value `""`.
+
+**[2] `k8s.node.label.<key>`:** Examples:
+
+- A label `kubernetes.io/arch` with value `arm64` SHOULD be recorded
+  as the `k8s.node.label.kubernetes.io/arch` attribute with value `"arm64"`.
+- A label `data` with empty string value SHOULD be recorded as
+  the `k8s.node.label.data` attribute with value `""`.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -118,6 +128,12 @@ a namespace, but not across namespaces.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.namespace.name`](/docs/attributes-registry/k8s.md) | string | The name of the namespace that the pod is running in. | `default` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.namespace.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Namespace. [1] | `k8s.namespace.annotation.ttl=0`; `k8s.namespace.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.namespace.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the Namespace. [2] | `k8s.namespace.label.kubernetes.io/metadata.name=default`; `k8s.namespace.label.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.namespace.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[2] `k8s.namespace.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -145,10 +161,28 @@ containers on your cluster.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.pod.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the Pod, the `<key>` being the label name, the value being the label value. | `k8s.pod.label.app=my-app`; `k8s.pod.label.mycompany.io/arch=x64`; `k8s.pod.label.data=` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.pod.name`](/docs/attributes-registry/k8s.md) | string | The name of the Pod. | `opentelemetry-pod-autoconf` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.pod.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.pod.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. | `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets=true`; `k8s.pod.annotation.mycompany.io/arch=x64`; `k8s.pod.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.pod.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. [1] | `true`; `x64`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.pod.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label placed on the Pod, the `<key>` being the label name, the value being the label value. [2] | `my-app`; `x64`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.pod.annotation.<key>`:** Examples:
+
+- An annotation `kubernetes.io/enforce-mountable-secrets` with value `true` SHOULD be recorded as
+  the `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets` attribute with value `"true"`.
+- An annotation `mycompany.io/arch` with value `x64` SHOULD be recorded as
+  the `k8s.pod.annotation.mycompany.io/arch` attribute with value `"x64"`.
+- An annotation `data` with empty string value SHOULD be recorded as
+  the `k8s.pod.annotation.data` attribute with value `""`.
+
+**[2] `k8s.pod.label.<key>`:** Examples:
+
+- A label `app` with value `my-app` SHOULD be recorded as
+  the `k8s.pod.label.app` attribute with value `"my-app"`.
+- A label `mycompany.io/arch` with value `x64` SHOULD be recorded as
+  the `k8s.pod.label.mycompany.io/arch` attribute with value `"x64"`.
+- A label `data` with empty string value SHOULD be recorded as
+  the `k8s.pod.label.data` attribute with value `""`.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -209,6 +243,12 @@ to a running container.
 |---|---|---|---|---|---|
 | [`k8s.replicaset.name`](/docs/attributes-registry/k8s.md) | string | The name of the ReplicaSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.replicaset.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.replicaset.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the ReplicaSet. [1] | `k8s.replicaset.annotation.replicas=0`; `k8s.replicaset.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.replicaset.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the ReplicaSet. [2] | `k8s.replicaset.label.app=guestbook`; `k8s.replicaset.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.replicaset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[2] `k8s.replicaset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -239,6 +279,12 @@ distributed among the nodes of a cluster.
 |---|---|---|---|---|---|
 | [`k8s.deployment.name`](/docs/attributes-registry/k8s.md) | string | The name of the Deployment. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.deployment.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.deployment.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Deployment. [1] | `k8s.deployment.annotation.replicas=1`; `k8s.deployment.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.deployment.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the Deployment. [2] | `k8s.deployment.label.app=guestbook`; `k8s.deployment.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.deployment.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[2] `k8s.deployment.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -268,6 +314,12 @@ about the ordering and uniqueness of these Pods.
 |---|---|---|---|---|---|
 | [`k8s.statefulset.name`](/docs/attributes-registry/k8s.md) | string | The name of the StatefulSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.statefulset.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.statefulset.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the StatefulSet. [1] | `k8s.statefulset.annotation.replicas=1`; `k8s.statefulset.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.statefulset.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the StatefulSet. [2] | `k8s.statefulset.label.app=guestbook`; `k8s.statefulset.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.statefulset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[2] `k8s.statefulset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -296,6 +348,12 @@ A DaemonSet ensures that all (or some) Nodes run a copy of a Pod.
 |---|---|---|---|---|---|
 | [`k8s.daemonset.name`](/docs/attributes-registry/k8s.md) | string | The name of the DaemonSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.daemonset.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.daemonset.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the DaemonSet. [1] | `k8s.daemonset.annotation.replicas=1`; `k8s.daemonset.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.daemonset.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the DaemonSet. [2] | `k8s.daemonset.label.app=guestbook`; `k8s.daemonset.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.daemonset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[2] `k8s.daemonset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -325,6 +383,12 @@ successfully terminate.
 |---|---|---|---|---|---|
 | [`k8s.job.name`](/docs/attributes-registry/k8s.md) | string | The name of the Job. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.job.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.job.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The annotation key-value pairs placed on the Job. [1] | `k8s.job.annotation.number=1`; `k8s.job.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.job.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label key-value pairs placed on the Job. [2] | `k8s.job.label.jobtype=ci`; `k8s.job.label.automated=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.job.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[2] `k8s.job.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -353,6 +417,22 @@ A CronJob creates Jobs on a repeating schedule.
 |---|---|---|---|---|---|
 | [`k8s.cronjob.name`](/docs/attributes-registry/k8s.md) | string | The name of the CronJob. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.cronjob.uid`](/docs/attributes-registry/k8s.md) | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.cronjob.annotation.<key>`](/docs/attributes-registry/k8s.md) | string | The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value. [1] | `4`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.cronjob.label.<key>`](/docs/attributes-registry/k8s.md) | string | The label placed on the CronJob, the `<key>` being the label name, the value being the label value. [2] | `weekly`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.cronjob.annotation.<key>`:** Examples:
+
+- An annotation `retries` with value `4` SHOULD be recorded as the
+  `k8s.cronjob.annotation.retries` attribute with value `"4"`.
+- An annotation `data` with empty string value SHOULD be recorded as
+  the `k8s.cronjob.annotation.data` attribute with value `""`.
+
+**[2] `k8s.cronjob.label.<key>`:** Examples:
+
+- A label `type` with value `weekly` SHOULD be recorded as the
+  `k8s.cronjob.label.type` attribute with value `"weekly"`.
+- A label `automated` with empty string value SHOULD be recorded as
+  the `k8s.cronjob.label.automated` attribute with value `""`.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
