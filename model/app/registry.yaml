@@ -97,7 +97,7 @@ groups:
       - id: app.jank.activity.name
         # TODO: breedx - Note: activity.name probably should move up out of jank at some point
         stability: development
-        requirement_level: opt_in
+        requirement_level: recommended
         type: string
         brief: The name of the Activity that was active during the jank.
         note: This is an Android specific attribute.
