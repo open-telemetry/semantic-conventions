@@ -85,7 +85,7 @@ groups:
             - id: frozen
               value: 'frozen'
               brief: 'Jank that causes the user to suspect that the application is frozen.'
-              note: 'Recommended threshold for slow is 700ms.'
+              note: 'Recommended threshold for frozen is 700ms.'
               stability: development
         examples: [slow, frozen]
       - id: app.jank.threshold_ms
