@@ -34,19 +34,25 @@ HTTP request in the corresponding request and response streams.
 
 ### Context propagation
 
-Model Context Protocol works on top of JSON RPC and does not define a standard Trace Context propagation mechanism.
-It also works on top of different transports including stdio and HTTP Server Sent Events (individual messages within a stream).
+Model Context Protocol works on top of JSON RPC and does not define a standard
+Trace Context propagation mechanism. It also works on top of different transports
+including stdio and HTTP streams.
 
-HTTP trace context propagation only covers the HTTP request, but not individual messages client and server exchange
-within the response stream.
+HTTP trace context propagation only covers the HTTP request, but not the individual
+messages client and server exchange within the request/response streams.
+
+Instrumentations SHOULD propagate trace context inside MCP request `params._meta`
+property bag.
 
 > [!NOTE]
+> The propagation format defined here is likely to change. Please check out
+> context propagation discussions in MCP repository:
+> [modelcontextprotocol#246](https://github.com/modelcontextprotocol/modelcontextprotocol/issues/246)
+> and
+> [modelcontextprotocol#414](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/414).
 >
-> The propagation format defined here is likely to change. Please check
-> [Context propagation discussion in MCP repository](https://github.com/modelcontextprotocol/modelcontextprotocol/issues/246).
-
-Instrumentations SHOULD propagate trace context inside MCP requests and notifications
-as JSON RPC object top-level params.
+> If the MCP or JSON-RPC specifications provide official guidance, instrumentations
+> SHOULD prioritize that over the recommendations provided here.
 
 For example, when using [W3C Trace Context](https://www.w3.org/TR/trace-context/) propagation,
 inject `traceparent` and `tracestate` to the MCP message `params._meta` when creating request
@@ -63,6 +69,25 @@ Here's an example of tool call request with injected trace context.
     "_meta": {
       "traceparent": "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01",
       "tracestate": "rojo=00f067aa0ba902b7,congo=t61rcWkgMzE"
+    }
+  },
+  "id": 1,
+}
+```
+
+Or, if user application uses [W3C Baggage](https://www.w3.org/TR/baggage/) in addition
+to the Trace-Context, `baggage` should be propagated in the same `params._meta`
+property bag similarly to the following example:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "tools/call",
+  "params": {
+    "name": "get-weather",
+    "_meta": {
+      "traceparent": "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01",
+      "baggage": "userId=alice,serverNode=DF%2028,isProduction=false"
     }
   },
   "id": 1,
