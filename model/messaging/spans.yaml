@@ -320,7 +320,7 @@ groups:
     attributes:
       - ref: aws.sqs.queue.url
         requirement_level: recommended
-      - ref: messaging.destination.name
+      - ref: aws.request_id
         requirement_level: recommended
 
   - id: messaging.aws.sns
@@ -330,4 +330,6 @@ groups:
     brief: "Attributes that exist for SNS request types."
     attributes:
       - ref: aws.sns.topic.arn
+        requirement_level: recommended
+      - ref: aws.request_id
         requirement_level: recommended

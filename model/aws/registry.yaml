@@ -398,8 +398,8 @@ groups:
         stability: experimental
         brief: >
           The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html).
-          An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution context or the lambda runtime environtment. 
-          This is going to be populated by the AWS SDK for each language when that UUID is present. 
+          An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution
+          context or the lambda runtime environtment. This is going to be populated by the AWS SDK for each language when that UUID is present.
           Some of these operations are Create/Delete/Get/List/Update EventSourceMapping.
         examples: ["587ad24b-03b9-4413-8202-bbd56b36e5b7"]
   - id: registry.aws.s3
@@ -501,7 +501,7 @@ groups:
         stability: experimental
         brief: >
           The URL of the AWS SQS Queue. It's a unique identifier for a queue in Amazon Simple Queue Service (SQS)
-          and is used to access the queue and perform actions on it. 
+          and is used to access the queue and perform actions on it.
         examples: ["https://sqs.us-east-1.amazonaws.com/123456789012/MyQueue"]
   - id: registry.aws.sns
     type: attribute_group
@@ -513,7 +513,7 @@ groups:
         type: string
         stability: experimental
         brief: >
-          The ARN of the AWS SNS Topic. An Amazon SNS [topic](https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html) is a logical access point that acts as a communication channel. 
+          The ARN of the AWS SNS Topic. An Amazon SNS [topic](https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html) is a logical access point that acts as a communication channel.
         examples: ["arn:aws:sns:us-east-1:123456789012:mystack-mytopic-NZJ5JSMVGFIE"]
   - id: registry.aws.kinesis
     type: attribute_group
