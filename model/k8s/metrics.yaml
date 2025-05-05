@@ -68,7 +68,7 @@ groups:
     type: metric
     metric_name: k8s.container.status.state
     stability: experimental
-    brief: "The state of the container"
+    brief: "Describes the number of K8s containers that are currently in a given state"
     instrument: updowncounter
     unit: "{container}"
     attributes:
@@ -78,7 +78,7 @@ groups:
     type: metric
     metric_name: k8s.container.status.reason
     stability: experimental
-    brief: "The reason of the container state"
+    brief: "Describes the number of K8s containers that are currently in a state for a given reason"
     instrument: updowncounter
     unit: "{container}"
     attributes:
