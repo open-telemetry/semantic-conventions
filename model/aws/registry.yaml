@@ -528,19 +528,19 @@ groups:
           The name of the AWS Kinesis [stream](https://docs.aws.amazon.com/streams/latest/dev/introduction.html) the request refers to. Corresponds to the `--stream-name` parameter of the
           Kinesis [describe-stream](https://docs.aws.amazon.com/cli/latest/reference/kinesis/describe-stream.html) operation.
         examples: ["some-stream-name"]
-  - id: registry.aws.stepfunctions
+  - id: registry.aws.step_functions
     type: attribute_group
     display_name: Amazon Step Functions Attributes
     brief: >
         This document defines attributes for AWS Step Functions.
     attributes:
-      - id: aws.stepfunctions.activity.arn
+      - id: aws.step_functions.activity.arn
         type: string
         stability: experimental
         brief: >
           The ARN of the AWS Step Functions Activity.
         examples: ["arn:aws:states:us-east-1:123456789012:activity:get-greeting"]
-      - id: aws.stepfunctions.state_machine.arn
+      - id: aws.step_functions.state_machine.arn
         type: string
         stability: experimental
         brief: >

@@ -220,5 +220,5 @@ This document defines attributes for AWS Step Functions.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="aws-stepfunctions-activity-arn" href="#aws-stepfunctions-activity-arn">`aws.stepfunctions.activity.arn`</a> | string | The ARN of the AWS Step Functions Activity. | `arn:aws:states:us-east-1:123456789012:activity:get-greeting` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="aws-stepfunctions-state-machine-arn" href="#aws-stepfunctions-state-machine-arn">`aws.stepfunctions.state_machine.arn`</a> | string | The ARN of the AWS Step Functions State Machine. | `arn:aws:states:us-east-1:123456789012:stateMachine:myStateMachine:1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aws-step-functions-activity-arn" href="#aws-step-functions-activity-arn">`aws.step_functions.activity.arn`</a> | string | The ARN of the AWS Step Functions Activity. | `arn:aws:states:us-east-1:123456789012:activity:get-greeting` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aws-step-functions-state-machine-arn" href="#aws-step-functions-state-machine-arn">`aws.step_functions.state_machine.arn`</a> | string | The ARN of the AWS Step Functions State Machine. | `arn:aws:states:us-east-1:123456789012:stateMachine:myStateMachine:1` | ![Development](https://img.shields.io/badge/-development-blue) |
