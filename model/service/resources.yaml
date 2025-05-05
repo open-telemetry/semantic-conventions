@@ -1,6 +1,6 @@
 groups:
   - id: resource.service
-    type: resource
+    type: entity
     name: service
     brief: >
       A service instance.

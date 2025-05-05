@@ -1,6 +1,6 @@
 groups:
   - id: resource.vcs.repo
-    type: resource
+    type: entity
     stability: development
     name: vcs.repo
     brief: >
@@ -10,7 +10,7 @@ groups:
       - ref: vcs.repository.name
 
   - id: resource.vcs.ref
-    type: resource
+    type: entity
     stability: development
     name: vcs.ref
     brief: >

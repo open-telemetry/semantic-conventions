@@ -1,6 +1,6 @@
 groups:
   - id: resource.webengine
-    type: resource
+    type: entity
     stability: development
     name: webengine
     brief: >

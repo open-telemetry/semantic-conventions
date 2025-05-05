@@ -1,6 +1,6 @@
 groups:
   - id: resource.os
-    type: resource
+    type: entity
     stability: development
     name: os
     brief: >

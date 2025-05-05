@@ -1,6 +1,6 @@
 groups:
   - id: resource.deployment
-    type: resource
+    type: entity
     stability: development
     name: deployment
     brief: >

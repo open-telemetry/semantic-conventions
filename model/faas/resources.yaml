@@ -1,6 +1,6 @@
 groups:
   - id: resource.faas
-    type: resource
+    type: entity
     stability: development
     name: faas
     brief: >

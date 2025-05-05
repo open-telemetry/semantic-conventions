@@ -16,7 +16,7 @@ linkTitle: Logs
 
 **type:** `aws.log`
 
-**Description:** Resources specific to Amazon Web Services.
+**Description:** Entities specific to Amazon Web Services.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

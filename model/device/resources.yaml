@@ -1,6 +1,6 @@
 groups:
   - id: resource.device
-    type: resource
+    type: entity
     stability: development
     name: device
     brief: >
