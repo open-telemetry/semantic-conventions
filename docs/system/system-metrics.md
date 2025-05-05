@@ -155,9 +155,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `system.cpu.utilization` | Gauge | `1` | Fraction of total CPU time spent in active modes, aggregated across all system CPU cores. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `system.cpu.utilization` | Gauge | `1` | Fraction of total CPU time spent in active modes, aggregated across all system CPU cores. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric provides a standardized and opinionated definition of CPU utilization.
 It is defined as the proportion of total system CPU time spent in non-idle and non-iowait modes — that is, the time spent in user, system, nice, interrupt, and steal modes.
