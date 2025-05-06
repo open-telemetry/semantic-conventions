@@ -9,6 +9,7 @@ linkTitle: Metrics
 <!-- toc -->
 
 - [CICD Metrics](#cicd-metrics)
+  - [Guidance on per pipeline run metrics](#guidance-on-per-pipeline-run-metrics)
   - [Metric: `cicd.pipeline.run.duration`](#metric-cicdpipelinerunduration)
   - [Metric: `cicd.pipeline.run.active`](#metric-cicdpipelinerunactive)
   - [Metric: `cicd.worker.count`](#metric-cicdworkercount)
@@ -34,6 +35,16 @@ The conventions described in this section are specific to Continuous Integration
 
 **Disclaimer:** These are initial CICD metrics and attributes
 but more may be added in the future.
+
+### Guidance on per pipeline run metrics
+
+You MAY use metrics that include an attribute identifying the pipeline run by using the [`cicd.pipeline.run`](/docs/resource/cicd.md#cicd-pipeline-run) entity association.
+Using such metrics inherently causes high cardinality and may increase costs with some metric storage backends.
+Thus, using per pipeline run metrics MUST be opt-in.
+
+Additional entities as appropriate MAY be associated to metrics: CICD worker, host, pod, container entities
+
+Examples of per pipeline run metrics are cpu, memory, disk, network associated to the host, pod or container that the CICD worker runs in.
 
 ### Metric: `cicd.pipeline.run.duration`
 
