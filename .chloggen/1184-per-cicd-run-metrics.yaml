@@ -21,3 +21,4 @@ issues: [1184]
 # Use pipe (|) for multiline entries.
 subtext: |
   Add guidance on per pipeline run metrics.
+  Add metric `cicd.pipeline.run.info` for linking a pipeline run entity to other entities.
