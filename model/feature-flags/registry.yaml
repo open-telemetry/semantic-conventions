@@ -91,7 +91,7 @@ groups:
       - id: feature_flag.result.value
         type: any
         stability: development
-        examples: ["#ff0000", "1", "true"]
+        examples: ["#ff0000", true, 3]
         brief: The evaluated value of the feature flag.
         note: |
           With some feature flag providers, feature flag results can be quite large or contain private or sensitive details.
