@@ -89,43 +89,13 @@ groups:
         brief: >
           The reason code which shows how a feature flag value was determined.
       - id: feature_flag.result.value
-        type: string
+        type: any
         stability: development
         examples: ["#ff0000", "1", "true"]
-        brief: The evaluated value of the feature flag represented as a JSON string.
+        brief: The evaluated value of the feature flag.
         note: |
           With some feature flag providers, feature flag results can be quite large or contain private or sensitive details.
           Because of this, `feature_flag.result.variant` is often the preferred attribute if it is available.
 
           It may be desirable to redact or otherwise limit the size and scope of `feature_flag.result.value` if possible.
           Because the evaluated flag value is unstructured and may be any type, it left to the instrumentation author to determine how best to achieve this.
-      - id: feature_flag.result.type
-        type:
-          members:
-            - id: string
-              value: "string"
-              brief: The `feature_flag.result.value` is a string.
-              stability: development
-            - id: number
-              value: "number"
-              brief: The `feature_flag.result.value` is a stringified number.
-              stability: development
-            - id: boolean
-              value: "boolean"
-              brief: The `feature_flag.result.value` is a stringified boolean.
-              stability: development
-            - id: object
-              value: "object"
-              brief: The `feature_flag.result.value` is a stringified object.
-              stability: development
-            - id: array
-              value: "array"
-              brief: The `feature_flag.result.value` is a stringified array.
-              stability: development
-            - id: "null"
-              value: "null"
-              brief: The `feature_flag.result.value` is a stringified null.
-              stability: development
-        stability: development
-        examples: ["string", "boolean", "number"]
-        brief: The JSON type of the `feature_flag.result.value`.

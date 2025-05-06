@@ -60,10 +60,9 @@ A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag valu
 |---|---|---|---|---|---|
 | [`feature_flag.key`](/docs/attributes-registry/feature-flag.md) | string | The lookup key of the feature flag. | `logo-color` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `provider_not_ready`; `targeting_key_missing`; `provider_fatal`; `general` | `Conditionally Required` [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`feature_flag.result.type`](/docs/attributes-registry/feature-flag.md) | string | The JSON type of the `feature_flag.result.value`. | `string`; `boolean`; `number` | `Conditionally Required` [3] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`feature_flag.result.value`](/docs/attributes-registry/feature-flag.md) | string | The evaluated value of the feature flag represented as a JSON string. [4] | `#ff0000`; `1`; `true` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`feature_flag.result.variant`](/docs/attributes-registry/feature-flag.md) | string | A semantic identifier for an evaluated flag value. [6] | `red`; `true`; `on` | `Conditionally Required` [7] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.message`](/docs/attributes-registry/error.md) | string | A message providing more detail about an error in human-readable form. [8] | `Unexpected input type: string`; `The user has exceeded their storage quota` | `Recommended` [9] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`feature_flag.result.value`](/docs/attributes-registry/feature-flag.md) | any | The evaluated value of the feature flag. [3] | `#ff0000`; `1`; `true` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`feature_flag.result.variant`](/docs/attributes-registry/feature-flag.md) | string | A semantic identifier for an evaluated flag value. [5] | `red`; `true`; `on` | `Conditionally Required` [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`error.message`](/docs/attributes-registry/error.md) | string | A message providing more detail about an error in human-readable form. [7] | `Unexpected input type: string`; `The user has exceeded their storage quota` | `Recommended` [8] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`feature_flag.context.id`](/docs/attributes-registry/feature-flag.md) | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`feature_flag.provider_name`](/docs/attributes-registry/feature-flag.md) | string | Deprecated, use `feature_flag.provider.name` instead. | `Flag Manager` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.provider.name`. |
 | [`feature_flag.result.reason`](/docs/attributes-registry/feature-flag.md) | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -85,26 +84,24 @@ A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag valu
 
 **[2] `error.type`:** If and only if an error occurred during flag evaluation.
 
-**[3] `feature_flag.result.type`:** If and only if `feature_flag.result.value` is set.
-
-**[4] `feature_flag.result.value`:** With some feature flag providers, feature flag results can be quite large or contain private or sensitive details.
+**[3] `feature_flag.result.value`:** With some feature flag providers, feature flag results can be quite large or contain private or sensitive details.
 Because of this, `feature_flag.result.variant` is often the preferred attribute if it is available.
 
 It may be desirable to redact or otherwise limit the size and scope of `feature_flag.result.value` if possible.
 Because the evaluated flag value is unstructured and may be any type, it left to the instrumentation author to determine how best to achieve this.
 
-**[5] `feature_flag.result.value`:** If and only if feature flag provider does not supply variant or equivalent concept. Otherwise, `feature_flag.result.value` should be treated as opt-in.
+**[4] `feature_flag.result.value`:** If and only if feature flag provider does not supply variant or equivalent concept. Otherwise, `feature_flag.result.value` should be treated as opt-in.
 
-**[6] `feature_flag.result.variant`:** A semantic identifier, commonly referred to as a variant, provides a means
+**[5] `feature_flag.result.variant`:** A semantic identifier, commonly referred to as a variant, provides a means
 for referring to a value without including the value itself. This can
 provide additional context for understanding the meaning behind a value.
 For example, the variant `red` maybe be used for the value `#c05543`.
 
-**[7] `feature_flag.result.variant`:** If feature flag provider supplies a variant or equivalent concept.
+**[6] `feature_flag.result.variant`:** If feature flag provider supplies a variant or equivalent concept.
 
-**[8] `error.message`:** Should not simply duplicate the value of `error.type`, but should provide more context. For example, if `error.type` is `invalid_context` the `error.message` may enumerate which context keys are missing or invalid.
+**[7] `error.message`:** Should not simply duplicate the value of `error.type`, but should provide more context. For example, if `error.type` is `invalid_context` the `error.message` may enumerate which context keys are missing or invalid.
 
-**[9] `error.message`:** If and only if an error occurred during flag evaluation and `error.type` does not sufficiently describe the error.
+**[8] `error.message`:** If and only if an error occurred during flag evaluation and `error.type` does not sufficiently describe the error.
 
 ---
 
@@ -129,19 +126,6 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 | `static` | The resolved value is static (no dynamic evaluation). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | The reason for the resolved value could not be determined. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`feature_flag.result.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `array` | The `feature_flag.result.value` is a stringified array. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `boolean` | The `feature_flag.result.value` is a stringified boolean. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `null` | The `feature_flag.result.value` is a stringified null. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `number` | The `feature_flag.result.value` is a stringified number. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `object` | The `feature_flag.result.value` is a stringified object. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `string` | The `feature_flag.result.value` is a string. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

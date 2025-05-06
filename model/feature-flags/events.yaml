@@ -23,10 +23,6 @@ groups:
           conditionally_required: >
               If and only if feature flag provider does not supply variant or equivalent concept.
               Otherwise, `feature_flag.result.value` should be treated as opt-in.
-      - ref: feature_flag.result.type
-        requirement_level:
-          conditionally_required: >
-              If and only if `feature_flag.result.value` is set.
       - ref: feature_flag.provider_name
         requirement_level: recommended
       - ref: feature_flag.context.id

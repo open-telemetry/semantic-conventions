@@ -16,8 +16,7 @@ This document defines attributes for Feature Flags.
 | <a id="feature-flag-key" href="#feature-flag-key">`feature_flag.key`</a> | string | The lookup key of the feature flag. | `logo-color` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider.name`</a> | string | Identifies the feature flag provider. | `Flag Manager` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="feature-flag-result-reason" href="#feature-flag-result-reason">`feature_flag.result.reason`</a> | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="feature-flag-result-type" href="#feature-flag-result-type">`feature_flag.result.type`</a> | string | The JSON type of the `feature_flag.result.value`. | `string`; `boolean`; `number` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="feature-flag-result-value" href="#feature-flag-result-value">`feature_flag.result.value`</a> | string | The evaluated value of the feature flag represented as a JSON string. [1] | `#ff0000`; `1`; `true` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="feature-flag-result-value" href="#feature-flag-result-value">`feature_flag.result.value`</a> | any | The evaluated value of the feature flag. [1] | `#ff0000`; `1`; `true` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="feature-flag-result-variant" href="#feature-flag-result-variant">`feature_flag.result.variant`</a> | string | A semantic identifier for an evaluated flag value. [2] | `red`; `true`; `on` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="feature-flag-set-id" href="#feature-flag-set-id">`feature_flag.set.id`</a> | string | The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs. | `proj-1`; `ab98sgs`; `service1/dev` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="feature-flag-version" href="#feature-flag-version">`feature_flag.version`</a> | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -48,19 +47,6 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 | `static` | The resolved value is static (no dynamic evaluation). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | The reason for the resolved value could not be determined. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`feature_flag.result.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `array` | The `feature_flag.result.value` is a stringified array. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `boolean` | The `feature_flag.result.value` is a stringified boolean. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `null` | The `feature_flag.result.value` is a stringified null. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `number` | The `feature_flag.result.value` is a stringified number. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `object` | The `feature_flag.result.value` is a stringified object. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `string` | The `feature_flag.result.value` is a string. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated Feature Flag Attributes
 
