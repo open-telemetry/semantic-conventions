@@ -83,3 +83,28 @@ groups:
         stability: stable
         brief: ASP.NET Core exception middleware handling result
         examples: ["handled", "unhandled"]
+      - id: aspnetcore.components.type
+        type: string
+        stability: development
+        brief: Full type name of the Blazor component.
+        examples: ["Contoso.Weather"]
+      - id: aspnetcore.components.method
+        type: string
+        stability: development
+        brief: Method name of the event handler in Blazor component.
+        examples: ["IncrementCount"]
+      - id: aspnetcore.components.attribute.name
+        type: string
+        stability: development
+        brief: Attribute name of the event handler in Blazor component.
+        examples: ["onclick"]
+      - id: aspnetcore.components.route
+        type: string
+        stability: development
+        brief: Segment of the URL that is matched to a Blazor @page component.
+        examples: ["/weather", "/counter"]
+      - id: aspnetcore.components.diff.approximate.length
+        type: int
+        stability: development
+        brief: Bucketed length of the diff in Blazor rendering pipeline.
+        examples: [10, 100, 1000]

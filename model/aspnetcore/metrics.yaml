@@ -6,6 +6,17 @@ groups:
       - ref: aspnetcore.rate_limiting.policy
         requirement_level:
           conditionally_required: if the matched endpoint for the request had a rate-limiting policy.
+  - id: aspnetcore.components.metrics.attributes
+    type: attribute_group
+    brief: Blazor metrics attributes
+
+  - id: aspnetcore.components.lifecycle.metrics.attributes
+    type: attribute_group
+    brief: Blazor metrics attributes
+
+  - id: aspnetcore.components.circuits.metrics.attributes
+    type: attribute_group
+    brief: Blazor circuits metrics attributes
 
   # routing
   - id: metric.aspnetcore.routing.match_attempts
@@ -114,3 +125,166 @@ groups:
     attributes:
       - ref: aspnetcore.rate_limiting.result
         requirement_level: required
+
+  # blazor components
+  - id: metric.aspnetcore.components.navigation
+    type: metric
+    metric_name: aspnetcore.components.navigation
+    stability: development
+    brief: Total number of route changes.
+    instrument: counter
+    unit: "{route}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Components`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.components.metrics.attributes
+    attributes:
+      - ref: aspnetcore.components.type
+        requirement_level: required
+      - ref: aspnetcore.components.route
+        requirement_level: required
+
+  - id: metric.aspnetcore.components.event.duration
+    type: metric
+    metric_name: aspnetcore.components.event.duration
+    stability: development
+    brief: Duration of processing browser event.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Components`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.components.metrics.attributes
+    attributes:
+      - ref: aspnetcore.components.type
+        requirement_level: required
+      - ref: aspnetcore.components.method
+        requirement_level: required
+      - ref: aspnetcore.components.attribute.name
+        requirement_level: required
+
+  - id: metric.aspnetcore.components.event.exceptions
+    type: metric
+    metric_name: aspnetcore.components.event.exceptions
+    stability: development
+    brief: Total number of exceptions during browser event processing.
+    instrument: counter
+    unit: "{exception}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Components`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.components.metrics.attributes
+    attributes:
+      - ref: aspnetcore.components.type
+        requirement_level: required
+      - ref: aspnetcore.components.attribute.name
+        requirement_level: required
+      - ref: error.type
+        brief: The full name of exception type.
+        examples: ['System.OperationCanceledException', 'Contoso.MyException']
+        requirement_level: required
+
+  - id: metric.aspnetcore.components.update_parameters.duration
+    type: metric
+    metric_name: aspnetcore.components.update_parameters.duration
+    stability: development
+    brief: Duration of processing component parameters.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Components.Lifecycle`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.components.lifecycle.metrics.attributes
+    attributes:
+      - ref: aspnetcore.components.type
+        requirement_level: required
+
+  - id: metric.aspnetcore.components.update_parameters.exceptions
+    type: metric
+    metric_name: aspnetcore.components.update_parameters.exceptions
+    stability: development
+    brief: Total number of exceptions during processing component parameters.
+    instrument: counter
+    unit: "{exception}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Components.Lifecycle`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.components.lifecycle.metrics.attributes
+    attributes:
+      - ref: aspnetcore.components.type
+        requirement_level: required
+      - ref: error.type
+        brief: The full name of exception type.
+        examples: ['System.OperationCanceledException', 'Contoso.MyException']
+        requirement_level: required
+
+  - id: metric.aspnetcore.components.rendering.batch.duration
+    type: metric
+    metric_name: aspnetcore.components.rendering.batch.duration
+    stability: development
+    brief: Duration of rendering batch.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Components.Lifecycle`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.components.lifecycle.metrics.attributes
+    attributes:
+      - ref: aspnetcore.components.diff.approximate.length
+        requirement_level: required
+
+  - id: metric.aspnetcore.components.rendering.batch.exceptions
+    type: metric
+    metric_name: aspnetcore.components.rendering.batch.exceptions
+    stability: development
+    brief: Total number of exceptions during batch rendering.
+    instrument: counter
+    unit: "{exception}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Components.Lifecycle`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.components.lifecycle.metrics.attributes
+    attributes:
+      - ref: error.type
+        brief: The full name of exception type.
+        examples: ['System.OperationCanceledException', 'Contoso.MyException']
+        requirement_level: required
+
+  # Blazor circuits
+  - id: metric.aspnetcore.components.circuits.count
+    type: metric
+    metric_name: aspnetcore.components.circuits.count
+    stability: development
+    brief: Total number of circuits.
+    instrument: counter
+    unit: "{circuit}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Components.Server.Circuits`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.components.circuits.metrics.attributes
+
+  - id: metric.aspnetcore.components.circuits.active_circuits
+    type: metric
+    metric_name: aspnetcore.components.circuits.active_circuits
+    stability: development
+    brief: Number of active circuits.
+    instrument: updowncounter
+    unit: "{circuit}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Components.Server.Circuits`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.components.circuits.metrics.attributes
+
+  - id: metric.aspnetcore.components.circuits.connected_circuits
+    type: metric
+    metric_name: aspnetcore.components.circuits.connected_circuits
+    stability: development
+    brief: Number of connected circuits.
+    instrument: updowncounter
+    unit: "{circuit}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Components.Server.Circuits`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.components.circuits.metrics.attributes
+    
+  - id: metric.aspnetcore.components.circuits.duration
+    type: metric
+    metric_name: aspnetcore.components.circuits.duration
+    stability: development
+    brief: Duration of circuit.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Components.Server.Circuits`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.components.circuits.metrics.attributes
+
