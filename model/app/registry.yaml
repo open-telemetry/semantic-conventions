@@ -65,7 +65,6 @@ groups:
       - id: app.jank.count
         type: int
         stability: development
-        requirement_level: required
         brief: A count of the number of frame renders that experienced jank.
         note: >
           Depending on platform limitations, the value provided
@@ -73,7 +72,6 @@ groups:
         examples: [ 9, 42 ]
       - id: app.jank.type
         stability: development
-        requirement_level: recommended
         brief: A categorization of the type of jank.
         type:
           members:
@@ -90,14 +88,12 @@ groups:
         examples: [slow, frozen]
       - id: app.jank.threshold_ms
         stability: development
-        requirement_level: recommended
         type: int
         brief: The minimum rendering threshold for this type of jank, in milliseconds.
         examples: [16, 700, 1024]
       - id: app.jank.activity.name
         # TODO: breedx - Note: activity.name probably should move up out of jank at some point
         stability: development
-        requirement_level: recommended
         type: string
         brief: The name of the Activity that was active during the jank.
         note: This is an Android specific attribute.
