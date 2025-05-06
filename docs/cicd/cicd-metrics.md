@@ -43,7 +43,7 @@ You MAY use metrics that include an attribute identifying the pipeline run by us
 Using such metrics inherently causes high cardinality and may increase costs with some metric storage backends.
 Thus, using per pipeline run metrics MUST be opt-in.
 
-Additional entities as appropriate MAY be associated to metrics: CICD worker, host, pod, container entities
+Additional entities as appropriate MAY be associated to metrics: CICD worker, host, pod, container entities.
 
 Examples of per pipeline run metrics are cpu, memory, disk, network associated to the host, pod or container that the CICD worker runs in.
 
