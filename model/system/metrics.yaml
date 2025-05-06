@@ -10,6 +10,8 @@ groups:
       The actual accuracy would depend on the instrumentation and operating system.
     instrument: gauge
     unit: "s"
+    entity_associations:
+      - host
 
   # system.cpu.* metrics
   - id: metric.system.cpu.physical.count
@@ -21,6 +23,8 @@ groups:
     instrument: updowncounter
     unit: "{cpu}"
     attributes: []
+    entity_associations:
+      - host
 
   - id: metric.system.cpu.logical.count
     type: metric
@@ -31,6 +35,8 @@ groups:
     instrument: updowncounter
     unit: "{cpu}"
     attributes: []
+    entity_associations:
+      - host
 
   # system.memory.* metrics
   - id: metric.system.memory.usage
@@ -45,6 +51,8 @@ groups:
     unit: "By"
     attributes:
       - ref: system.memory.state
+    entity_associations:
+      - host
 
   - id: metric.system.memory.limit
     type: metric
@@ -56,6 +64,8 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes: []
+    entity_associations:
+      - host
 
   - id: metric.system.memory.shared
     type: metric
@@ -67,6 +77,8 @@ groups:
       `Shmem` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html)"
     instrument: updowncounter
     unit: "By"
+    entity_associations:
+      - host
 
   - id: metric.system.memory.utilization
     type: metric
@@ -77,6 +89,8 @@ groups:
     unit: "1"
     attributes:
       - ref: system.memory.state
+    entity_associations:
+      - host
 
   # system.paging.* metrics
   - id: metric.system.paging.usage
@@ -91,6 +105,8 @@ groups:
       - ref: system.device
         brief: Unique identifier for the device responsible for managing paging operations.
         examples: ["/dev/dm-0"]
+    entity_associations:
+      - host
 
   - id: metric.system.paging.utilization
     type: metric
@@ -104,6 +120,8 @@ groups:
       - ref: system.device
         brief: Unique identifier for the device responsible for managing paging operations.
         examples: ["/dev/dm-0"]
+    entity_associations:
+      - host
 
   - id: metric.system.paging.faults
     type: metric
@@ -114,6 +132,8 @@ groups:
     unit: "{fault}"
     attributes:
       - ref: system.paging.type
+    entity_associations:
+      - host
 
   - id: metric.system.paging.operations
     type: metric
@@ -125,6 +145,8 @@ groups:
     attributes:
       - ref: system.paging.type
       - ref: system.paging.direction
+    entity_associations:
+      - host
 
   # system.disk.* metrics
   - id: metric.system.disk.io
@@ -137,6 +159,8 @@ groups:
     attributes:
       - ref: system.device
       - ref: disk.io.direction
+    entity_associations:
+      - host
 
   - id: metric.system.disk.operations
     type: metric
@@ -148,6 +172,8 @@ groups:
     attributes:
       - ref: system.device
       - ref: disk.io.direction
+    entity_associations:
+      - host
 
   - id: metric.system.disk.io_time
     type: metric
@@ -165,6 +191,8 @@ groups:
         performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`
     attributes:
       - ref: system.device
+    entity_associations:
+      - host
 
   - id: metric.system.disk.operation_time
     type: metric
@@ -181,6 +209,8 @@ groups:
     attributes:
       - ref: system.device
       - ref: disk.io.direction
+    entity_associations:
+      - host
 
   - id: metric.system.disk.merged
     type: metric
@@ -192,6 +222,8 @@ groups:
     attributes:
       - ref: system.device
       - ref: disk.io.direction
+    entity_associations:
+      - host
 
   - id: metric.system.disk.limit
     type: metric
@@ -202,6 +234,8 @@ groups:
     unit: "By"
     attributes:
       - ref: system.device
+    entity_associations:
+      - host
 
   # system.filesystem.* metrics
   - id: metric.system.filesystem.usage
@@ -222,6 +256,8 @@ groups:
       - ref: system.filesystem.type
       - ref: system.filesystem.mode
       - ref: system.filesystem.mountpoint
+    entity_associations:
+      - host
 
   - id: metric.system.filesystem.utilization
     type: metric
@@ -238,6 +274,8 @@ groups:
       - ref: system.filesystem.type
       - ref: system.filesystem.mode
       - ref: system.filesystem.mountpoint
+    entity_associations:
+      - host
 
   - id: metric.system.filesystem.limit
     type: metric
@@ -253,6 +291,8 @@ groups:
       - ref: system.filesystem.type
       - ref: system.filesystem.mode
       - ref: system.filesystem.mountpoint
+    entity_associations:
+      - host
 
   # system.network.* metrics
   - id: metric.system.network.dropped
@@ -271,6 +311,8 @@ groups:
     attributes:
       - ref: network.interface.name
       - ref: network.io.direction
+    entity_associations:
+      - host
 
   - id: metric.system.network.packets
     type: metric
@@ -282,6 +324,8 @@ groups:
     attributes:
       - ref: system.device
       - ref: network.io.direction
+    entity_associations:
+      - host
 
   - id: metric.system.network.errors
     type: metric
@@ -299,6 +343,8 @@ groups:
     attributes:
       - ref: network.interface.name
       - ref: network.io.direction
+    entity_associations:
+      - host
 
   - id: metric.system.network.io
     type: metric
@@ -310,6 +356,8 @@ groups:
     attributes:
       - ref: network.interface.name
       - ref: network.io.direction
+    entity_associations:
+      - host
 
   - id: metric.system.network.connections
     type: metric
@@ -322,6 +370,8 @@ groups:
       - ref: network.interface.name
       - ref: network.connection.state
       - ref: network.transport
+    entity_associations:
+      - host
 
   # system.process.* metrics
   - id: metric.system.process.count
@@ -333,6 +383,8 @@ groups:
     unit: "{process}"
     attributes:
       - ref: system.process.status
+    entity_associations:
+      - host
 
   - id: metric.system.process.created
     type: metric
@@ -342,6 +394,8 @@ groups:
     instrument: counter
     unit: "{process}"
     attributes: []
+    entity_associations:
+      - host
 
   # system.linux.* metrics
   - id: metric.system.linux.memory.available
@@ -358,6 +412,8 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes: []
+    entity_associations:
+      - host
 
   - id: metric.system.linux.memory.slab.usage
     type: metric
@@ -372,3 +428,5 @@ groups:
     unit: "By"
     attributes:
       - ref: linux.memory.slab.state
+    entity_associations:
+      - host

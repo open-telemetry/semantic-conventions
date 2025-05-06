@@ -1,0 +1,29 @@
+header:
+  schema-version: 2.0.0
+  last-updated: '2025-04-01'
+  last-reviewed: '2025-04-01'
+  project-si-source: https://github.com/open-telemetry/.github/security-insights.yml
+
+repository:
+  url: https://github.com/open-telemetry/semantic-conventions
+  status: active
+  accepts-change-request: true
+  accepts-automated-change-request: true
+  core-team:
+    - name: Alexander Wert
+      affiliation: Elastic
+    - name: Armin Ruech
+      affiliation: Dynatrace
+    - name: Joao Grassi
+      affiliation: Dynatrace
+    - name: Johannes Tax
+      affiliation: Grafana Labs
+    - name: Josh Suereth
+      affiliation: Google
+    - name: Liudmila Molkova
+      affiliation: Microsoft
+    - name: Trask Stalnaker
+      affiliation: Microsoft
+  license:
+    url: https://github.com/open-telemetry/semantic-conventions/blob/main/LICENSE
+    expression: Apache-2.0

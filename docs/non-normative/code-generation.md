@@ -88,7 +88,6 @@ This section describes how to do code-generation with weaver.
 
 Code-generation is based on YAML definitions in the specific version of semantic conventions.
 Usually, it involves several steps where some can be semi-automated:
-involves several steps which could be semi-automated:
 
 1. Manually update the Semantic Conventions version in config
 2. Add the new Schema URL to the list of supported versions

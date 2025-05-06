@@ -12,6 +12,8 @@ groups:
           A process SHOULD be characterized _either_ by data points with no `mode`
           labels, _or only_ data points with `mode` labels.
         note: "Following states SHOULD be used: `user`, `system`, `wait`"
+    entity_associations:
+      - process
 
   - id: metric.process.cpu.utilization
     type: metric
@@ -28,6 +30,8 @@ groups:
           A process SHOULD be characterized _either_ by data points with no `mode`
           labels, _or only_ data points with `mode` labels.
         note: "Following states SHOULD be used: `user`, `system`, `wait`"
+    entity_associations:
+      - process
 
   - id: metric.process.memory.usage
     type: metric
@@ -37,6 +41,8 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes: []
+    entity_associations:
+      - process
 
   - id: metric.process.memory.virtual
     type: metric
@@ -46,6 +52,8 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes: []
+    entity_associations:
+      - process
 
   - id: metric.process.disk.io
     type: metric
@@ -56,6 +64,8 @@ groups:
     unit: "By"
     attributes:
       - ref: disk.io.direction
+    entity_associations:
+      - process
 
   - id: metric.process.network.io
     type: metric
@@ -66,6 +76,8 @@ groups:
     unit: "By"
     attributes:
       - ref: network.io.direction
+    entity_associations:
+      - process
 
   - id: metric.process.thread.count
     type: metric
@@ -74,6 +86,8 @@ groups:
     brief: "Process threads count."
     instrument: updowncounter
     unit: "{thread}"
+    entity_associations:
+      - process
 
   - id: metric.process.open_file_descriptor.count
     type: metric
@@ -82,6 +96,8 @@ groups:
     brief: "Number of file descriptors in use by the process."
     instrument: updowncounter
     unit: "{file_descriptor}"
+    entity_associations:
+      - process
 
   - id: metric.process.context_switches
     type: metric
@@ -92,6 +108,8 @@ groups:
     unit: "{context_switch}"
     attributes:
       - ref: process.context_switch_type
+    entity_associations:
+      - process
 
   - id: metric.process.paging.faults
     type: metric
@@ -102,6 +120,8 @@ groups:
     unit: "{fault}"
     attributes:
       - ref: process.paging.fault_type
+    entity_associations:
+      - process
 
   - id: metric.process.uptime
     type: metric
@@ -113,3 +133,5 @@ groups:
       The actual accuracy would depend on the instrumentation and operating system.
     instrument: gauge
     unit: "s"
+    entity_associations:
+      - process
