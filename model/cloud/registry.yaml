@@ -53,7 +53,9 @@ groups:
         type: string
         stability: development
         brief: >
-          The geographical region the resource is running.
+          The geographical region within a cloud provider. When associated with
+          a resource, this attribute specifies the region where the resource operates.
+          For outgoing operations, this attribute identifies the region where the called destination is deployed.
         note: >
           Refer to your provider's docs to see the available regions, for example
           [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm),
