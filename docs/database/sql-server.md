@@ -155,6 +155,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ### Propagating context to SQL Server
 
+**Status**: [Development][DocumentStatus]
+
 Instrumentations SHOULD propagate the context information to databases.
 
 | Attribute      | Type   | Description                           | Require level | Stability                                                      |
