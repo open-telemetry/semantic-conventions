@@ -10,7 +10,7 @@ linkTitle: SQL Server
 
 - [Spans](#spans)
   - [Propagating context to SQL Server](#propagating-context-to-sql-server)
-    - [Recommended attributes](#recommended-attributes)
+    - [Recommended sqlcommenter attributes](#recommended-sqlcommenter-attributes)
 - [Metrics](#metrics)
 
 <!-- tocstop -->
@@ -160,16 +160,20 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 Instrumentations SHOULD propagate the context information to the SQL queries following [sqlcommenter](https://google.github.io/sqlcommenter/spec/).
 
-#### Recommended attributes
+#### Recommended sqlcommenter attributes
 
-| Attribute              | Type   | Description                           | Require level | Stability                                                      |
-|------------------------|--------|---------------------------------------|---------------|----------------------------------------------------------------|
-| `baggage.service.name` | string | Logical name of the service [1]       | `Required`    | ![Development](https://img.shields.io/badge/-development-blue) |
-| `traceparent`          | string | The trace context of current span [2] | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Attribute              | Type   | Description                           | Require level               | Stability                                                      |
+|------------------------|--------|---------------------------------------|-----------------------------|----------------------------------------------------------------|
+| `baggage.service.name` | string | Logical name of the service [1]       | `Conditionally Required`[2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `traceparent`          | string | The trace context of current span [3] | `Recommended`               | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `baggage.service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fall back to `unknown_service:` concatenated with [process.executable.name](https://opentelemetry.io/docs/specs/semconv/attributes-registry/process/), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 
-**[2] `traceparent`:** MUST be in the [text format](https://www.w3.org/TR/trace-context/#traceparent-header).
+[Baggage](https://www.w3.org/TR/baggage/) means you can pass data across services and processes, making it available to add to traces, metrics, or logs in those services.
+
+**[2] `baggage.service.name`:** SHOULD be set if `traceparent` cannot be injected due to performance issues.
+
+**[3] `traceparent`:** MUST be in the [text format](https://www.w3.org/TR/trace-context/#traceparent-header).
 
 Instrumentations SHOULD make use of [SET CONTEXT_INFO](https://learn.microsoft.com/en-us/sql/t-sql/statements/set-context-info-transact-sql?view=sql-server-ver16) to add high-cardinality information(e.g. `traceparent`) as adding sql comments to queries changes their unique identifier in SQL Server.
 
