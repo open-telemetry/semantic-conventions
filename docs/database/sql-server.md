@@ -10,6 +10,7 @@ linkTitle: SQL Server
 
 - [Spans](#spans)
   - [Propagating context to SQL Server](#propagating-context-to-sql-server)
+    - [Recommended attributes](#recommended-attributes)
 - [Metrics](#metrics)
 
 <!-- tocstop -->

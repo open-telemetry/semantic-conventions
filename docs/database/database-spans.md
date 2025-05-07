@@ -14,6 +14,7 @@ linkTitle: Spans
 - [Sanitization of `db.query.text`](#sanitization-of-dbquerytext)
 - [Generating a summary of the query](#generating-a-summary-of-the-query)
 - [Propagating context to databases](#propagating-context-to-databases)
+  - [Recommended attributes](#recommended-attributes)
 - [Semantic conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 
 <!-- tocstop -->
@@ -485,7 +486,7 @@ relatively short and its cardinality remains low comparing to the `db.query.text
 
 Instrumentations SHOULD propagate the context information to the SQL queries following [sqlcommenter](https://google.github.io/sqlcommenter/spec/).
 
-#### Recommended attributes
+### Recommended attributes
 
 | Attribute              | Type   | Description                           | Require level     | Stability                                                      |
 |------------------------|--------|---------------------------------------|-------------------|----------------------------------------------------------------|
