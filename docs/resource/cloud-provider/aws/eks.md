@@ -16,7 +16,7 @@ linkTitle: EKS
 
 **type:** `aws.eks`
 
-**Description:** Resources used by AWS Elastic Kubernetes Service (EKS).
+**Description:** Entities used by AWS Elastic Kubernetes Service (EKS).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

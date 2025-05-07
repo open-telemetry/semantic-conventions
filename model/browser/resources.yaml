@@ -1,6 +1,6 @@
 groups:
   - id: resource.browser
-    type: resource
+    type: entity
     stability: development
     name: browser
     brief: >

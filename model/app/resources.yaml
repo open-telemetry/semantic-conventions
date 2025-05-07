@@ -1,6 +1,6 @@
 groups:
   - id: resource.app
-    type: resource
+    type: entity
     stability: development
     name: app
     brief: >

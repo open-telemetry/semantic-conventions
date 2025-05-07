@@ -16,7 +16,7 @@ linkTitle: ECS
 
 **type:** `aws.ecs`
 
-**Description:** Resources used by AWS Elastic Container Service (ECS).
+**Description:** Entities used by AWS Elastic Container Service (ECS).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

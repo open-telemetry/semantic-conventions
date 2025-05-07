@@ -1,10 +1,10 @@
 groups:
   - id: resource.aws.ecs
-    type: resource
+    type: entity
     stability: development
     name: aws.ecs
     brief: >
-      Resources used by AWS Elastic Container Service (ECS).
+      Entities used by AWS Elastic Container Service (ECS).
     attributes:
       - ref: aws.ecs.container.arn
         requirement_level: recommended

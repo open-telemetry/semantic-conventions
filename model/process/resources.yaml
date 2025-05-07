@@ -1,6 +1,6 @@
 groups:
   - id: resource.process
-    type: resource
+    type: entity
     stability: development
     name: process
     brief: >
@@ -27,7 +27,7 @@ groups:
       - ref: process.linux.cgroup
 
   - id: resource.process.runtime
-    type: resource
+    type: entity
     stability: development
     name: process.runtime
     brief: >

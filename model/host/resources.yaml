@@ -1,6 +1,6 @@
 groups:
   - id: resource.host
-    type: resource
+    type: entity
     stability: development
     name: host
     brief: >
@@ -45,7 +45,7 @@ groups:
         requirement_level: opt_in
 
   - id: resource.host.cpu
-    type: resource
+    type: entity
     stability: development
     name: host.cpu
     brief: >
