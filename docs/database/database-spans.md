@@ -486,7 +486,7 @@ relatively short and its cardinality remains low comparing to the `db.query.text
 
 Instrumentations SHOULD propagate the context information to the SQL queries following [sqlcommenter](https://google.github.io/sqlcommenter/spec/).
 
-### Recommended attributes
+### Recommended sqlcommenter attributes
 
 | Attribute              | Type   | Description                           | Require level     | Stability                                                      |
 |------------------------|--------|---------------------------------------|-------------------|----------------------------------------------------------------|
