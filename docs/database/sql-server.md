@@ -157,7 +157,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 **Status**: [Development][DocumentStatus]
 
-Instrumentations SHOULD propagate the context information to databases.
+Instrumentations SHOULD propagate the context information to the SQL queries following [sqlcommenter](https://google.github.io/sqlcommenter/spec/).
 
 | Attribute      | Type   | Description                           | Require level | Stability                                                      |
 |----------------|--------|---------------------------------------|---------------|----------------------------------------------------------------|
@@ -168,7 +168,7 @@ Instrumentations SHOULD propagate the context information to databases.
 
 **[2] `traceparent`:** MUST be in the [text format](https://www.w3.org/TR/trace-context/#traceparent-header).
 
-Instrumentations SHOULD make use of [SET CONTEXT_INFO](https://learn.microsoft.com/en-us/sql/t-sql/statements/set-context-info-transact-sql?view=sql-server-ver16) to set `traceparent` information as adding sql comments to queries changes their unique identifier in SQL Server.
+Instrumentations SHOULD make use of [SET CONTEXT_INFO](https://learn.microsoft.com/en-us/sql/t-sql/statements/set-context-info-transact-sql?view=sql-server-ver16) to add high-cardinality information(e.g. `traceparent`) as adding sql comments to queries changes their unique identifier in SQL Server.
 
 ## Metrics
 

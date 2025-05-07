@@ -483,7 +483,7 @@ relatively short and its cardinality remains low comparing to the `db.query.text
 
 **Status**: [Development][DocumentStatus]
 
-Instrumentations SHOULD propagate the context information to databases.
+Instrumentations SHOULD propagate the context information to the SQL queries following [sqlcommenter](https://google.github.io/sqlcommenter/spec/).
 
 | Attribute      | Type   | Description                           | Require level     | Stability                                                      |
 |----------------|--------|---------------------------------------|-------------------|----------------------------------------------------------------|
@@ -495,8 +495,6 @@ Instrumentations SHOULD propagate the context information to databases.
 **[2] `traceparent`:** MUST be in the [text format](https://www.w3.org/TR/trace-context/#traceparent-header).
 
 **[3] `traceparent`:** `tracparent` have extremely high-cardinality. It's RECOMMENDED to propagate this info if the high-cardinality is safe for the behind databases
-
-Instrumentations SHOULD propagate the context information to the SQL queries following [sqlcommenter](https://google.github.io/sqlcommenter/spec/).
 
 **Examples:**
 
@@ -511,8 +509,6 @@ Instrumentations SHOULD propagate the context information to the SQL queries fol
   ```sql
   SELECT * FROM songs /* service.name=music-player:play, traceparent=00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01 */
   ```
-
-Instrumentation SHOULD propagate `traceparent` as part of the [sqlcommenter](https://google.github.io/sqlcommenter/spec/) if high-cardinality of `traceparent` is safe to the specific databases.
 
 ## Semantic conventions for specific database technologies
 
