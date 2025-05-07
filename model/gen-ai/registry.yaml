@@ -211,6 +211,11 @@ groups:
               brief: 'Output tokens (completion, response, etc.)'
         brief: The type of token being counted.
         examples: ['input', 'output']
+      - id: gen_ai.conversation.id
+        stability: development
+        type: string
+        brief: The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation.
+        examples: ["conv_5j66UpCpwteGg4YSxUnt7lPY"]
       - id: gen_ai.agent.id   # alternatives: assistant (openai)
         stability: development
         type: string
@@ -252,6 +257,16 @@ groups:
             Client-side operations are actions taken on the user's end or within the client application.
           Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
         examples: ['function', 'extension', 'datastore']
+      - id: gen_ai.data_source.id
+        stability: development
+        type: string
+        brief: The data source identifier.
+        note: >
+          Data sources are used by AI agents and RAG applications to store grounding data.
+          A data source may be an external database, object store, document collection, website, or any other storage system used by the GenAI agent or application.
+          The `gen_ai.data_source.id` SHOULD match the identifier used by the GenAI system rather than a name specific to the external storage, such as a database or
+          object store. Semantic conventions referencing `gen_ai.data_source.id` MAY also leverage additional attributes, such as `db.*`, to further identify and describe the data source.
+        examples: ['H7STPQYOND']
       - id: gen_ai.operation.name
         stability: development
         type:
@@ -353,3 +368,24 @@ groups:
         type: string
         brief: A fingerprint to track any eventual change in the Generative AI environment.
         examples: ["fp_44709d6fcb"]
+  - id: registry.aws.bedrock
+    type: attribute_group
+    display_name: Amazon Bedrock Attributes
+    brief: >
+        This document defines attributes for AWS Bedrock.
+    attributes:
+      - id: aws.bedrock.guardrail.id
+        type: string
+        stability: experimental
+        brief: >
+          The unique identifier of the AWS Bedrock Guardrail.
+          A [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) helps safeguard and prevent unwanted behavior from model responses or user messages.
+        examples: ["sgi5gkybzqak"]
+      - id: aws.bedrock.knowledge_base.id
+        type: string
+        stability: experimental
+        brief: >
+          The unique identifier of the AWS Bedrock Knowledge base.
+          A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information
+          that can be queried by models to generate more relevant responses and augment prompts.
+        examples: ["XFWUPB9PAW"]

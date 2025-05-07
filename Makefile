@@ -32,7 +32,6 @@ CONTAINER_REPOSITORY=docker.io
 
 # Per container overrides for the repository resolution.
 WEAVER_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
-SEMCONVGEN_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 OPA_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 LYCHEE_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 
@@ -40,7 +39,6 @@ LYCHEE_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 # These are parsed from dependencies.Dockerfile so dependabot will autoupdate
 # the versions of docker files we use.
 VERSIONED_WEAVER_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="weaver" {print $$2}')
-VERSIONED_SEMCONVGEN_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="semconvgen" {print $$2}')
 VERSIONED_OPA_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}')
 VERSIONED_LYCHEE_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="lychee" {print $$2}')
 
@@ -53,11 +51,10 @@ VERSIONED_LYCHEE_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$
 #    Error: short-name "otel/weaver:v1.2.3" did not resolve to an alias
 #    and no unqualified-search registries are defined in "/etc/containers/registries.conf"
 WEAVER_CONTAINER=$(WEAVER_CONTAINER_REPOSITORY)/$(VERSIONED_WEAVER_CONTAINER_NO_REPO)
-SEMCONVGEN_CONTAINER=$(SEMCONVGEN_CONTAINER_REPOSITORY)/$(VERSIONED_SEMCONVGEN_CONTAINER_NO_REPO)
 OPA_CONTAINER=$(OPA_CONTAINER_REPOSITORY)/$(VERSIONED_OPA_CONTAINER_NO_REPO)
 LYCHEE_CONTAINER=$(LYCHEE_CONTAINER_REPOSITORY)/$(VERSIONED_LYCHEE_CONTAINER_NO_REPO)
 
-CHECK_TARGETS=install-tools markdownlint misspell table-check compatibility-check \
+CHECK_TARGETS=install-tools markdownlint misspell table-check \
 			schema-check check-file-and-folder-names-in-docs
 
 # Determine if "docker" is actually podman
@@ -332,9 +329,3 @@ test-policies:
 	/policies \
 	/policies_test
 
-# TODO: This is now duplicative with weaver policy checks.  We can remove
-# once github action requirements are updated.
-.PHONY: compatibility-check
-compatibility-check:
-	$(DOCKER_RUN) --rm $(DOCKER_USER_IS_HOST_USER_ARG) -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
-		$(SEMCONVGEN_CONTAINER) --continue-on-validation-errors -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
