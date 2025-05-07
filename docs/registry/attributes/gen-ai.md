@@ -141,7 +141,7 @@ Describes deprecated `gen_ai` attributes.
 |---|---|---|---|---|
 | <a id="gen-ai-completion" href="#gen-ai-completion">`gen_ai.completion`</a> | string | Deprecated, use Event API to report completions contents. | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. |
 | <a id="gen-ai-prompt" href="#gen-ai-prompt">`gen_ai.prompt`</a> | string | Deprecated, use Event API to report prompt contents. | `[{'role': 'user', 'content': 'What is the capital of France?'}]` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. |
-| <a id="gen-ai-system" href="#gen-ai-system">`gen_ai.system`</a> | string | Deprecated, use `gen_ai.provider.name` instead. | `openai`; `vertex_ai`; `gemini` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.provider.name`. |
+| <a id="gen-ai-system" href="#gen-ai-system">`gen_ai.system`</a> | string | Deprecated, use `gen_ai.provider.name` instead. | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.provider.name`. |
 | <a id="gen-ai-usage-completion-tokens" href="#gen-ai-usage-completion-tokens">`gen_ai.usage.completion_tokens`</a> | int | Deprecated, use `gen_ai.usage.output_tokens` instead. | `42` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.output_tokens`. |
 | <a id="gen-ai-usage-prompt-tokens" href="#gen-ai-usage-prompt-tokens">`gen_ai.usage.prompt_tokens`</a> | int | Deprecated, use `gen_ai.usage.input_tokens` instead. | `42` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.input_tokens`. |
 
@@ -157,14 +157,21 @@ Describes deprecated `gen_ai` attributes.
 | `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gemini` | Gemini | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gemini` | Gemini [10] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai` | Any Google generative AI endpoint [11] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.vertex_ai` | Vertex AI [12] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
-| `vertex_ai` | Vertex AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[10]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May use common attributes prefixed with 'gcp.gen_ai.'.
+
+**[11]:** May be used when specific backend is unknown. May use common attributes prefixed with 'gcp.gen_ai.'.
+
+**[12]:** This refers to the 'aiplatform.googleapis.com' endpoint. May use common attributes prefixed with 'gcp.gen_ai.'.
 
 ## Deprecated OpenAI GenAI Attributes
 
