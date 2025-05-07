@@ -485,7 +485,7 @@ relatively short and its cardinality remains low comparing to the `db.query.text
 
 Instrumentations SHOULD propagate the context information to the SQL queries following [sqlcommenter](https://google.github.io/sqlcommenter/spec/).
 
-**Recommended attributes**
+#### Recommended attributes
 
 | Attribute              | Type   | Description                           | Require level     | Stability                                                      |
 |------------------------|--------|---------------------------------------|-------------------|----------------------------------------------------------------|
@@ -503,13 +503,13 @@ Instrumentations SHOULD propagate the context information to the SQL queries fol
 - Query with `baggage.service.name`:
 
   ```sql
-  SELECT * FROM songs /* baggage.service.name=music-player:play */
+  SELECT * FROM songs /* baggage.service.name=music-player%3Aplay */
   ```
 
 - Query with `baggage.service.name` and `traceparent`
 
   ```sql
-  SELECT * FROM songs /* baggage.service.name=music-player:play, traceparent=00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01 */
+  SELECT * FROM songs /* baggage.service.name=music-player%3Aplay, traceparent=00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01 */
   ```
 
 ## Semantic conventions for specific database technologies

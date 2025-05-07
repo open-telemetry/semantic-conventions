@@ -159,7 +159,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 Instrumentations SHOULD propagate the context information to the SQL queries following [sqlcommenter](https://google.github.io/sqlcommenter/spec/).
 
-**Recommended attributes**
+#### Recommended attributes
 
 | Attribute              | Type   | Description                           | Require level | Stability                                                      |
 |------------------------|--------|---------------------------------------|---------------|----------------------------------------------------------------|
