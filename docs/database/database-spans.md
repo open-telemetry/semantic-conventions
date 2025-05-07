@@ -497,7 +497,7 @@ Instrumentations SHOULD propagate the context information to the SQL queries fol
 
 **[2] `traceparent`:** MUST be in the [text format](https://www.w3.org/TR/trace-context/#traceparent-header).
 
-**[3] `traceparent`:** `tracparent` have extremely high-cardinality. It's RECOMMENDED to propagate this info if the high-cardinality is safe for the behind databases
+**[3] `traceparent`:** `traceparent` has extremely high-cardinality. It's RECOMMENDED to propagate this info if the high-cardinality is safe for the database observabilty engine.
 
 **Examples:**
 
