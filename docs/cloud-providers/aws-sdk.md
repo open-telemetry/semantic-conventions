@@ -74,5 +74,8 @@ The following Semantic Conventions extend the general AWS SDK attributes for spe
 
 - [AWS DynamoDB](/docs/database/dynamodb.md): Semantic Conventions for _AWS DynamoDB_.
 - [AWS S3](/docs/object-stores/s3.md): Semantic Conventions for _AWS S3_.
+- [AWS Bedrock](/docs/gen-ai/aws-bedrock.md): Semantic Conventions for _AWS Bedrock_.
+- [AWS SNS](/docs/messaging/sns.md): Semantic Conventions for _AWS SNS_.
+- [AWS SQS](/docs/messaging/sqs.md): Semantic Conventions for _AWS SQS_.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

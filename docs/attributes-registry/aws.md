@@ -4,12 +4,18 @@
 # AWS
 
 - [General AWS Attributes](#general-aws-attributes)
+- [Amazon Bedrock Attributes](#amazon-bedrock-attributes)
 - [Amazon DynamoDB Attributes](#amazon-dynamodb-attributes)
 - [Amazon ECS Attributes](#amazon-ecs-attributes)
 - [Amazon EKS Attributes](#amazon-eks-attributes)
+- [Amazon Kinesis Attributes](#amazon-kinesis-attributes)
 - [Amazon Lambda Attributes](#amazon-lambda-attributes)
 - [Amazon Logs Attributes](#amazon-logs-attributes)
 - [Amazon S3 Attributes](#amazon-s3-attributes)
+- [Amazon Secrets Manager Attributes](#amazon-secrets-manager-attributes)
+- [Amazon SNS Attributes](#amazon-sns-attributes)
+- [Amazon SQS Attributes](#amazon-sqs-attributes)
+- [Amazon Step Functions Attributes](#amazon-step-functions-attributes)
 
 ## General AWS Attributes
 
@@ -19,6 +25,15 @@ This section defines generic attributes for AWS services.
 |---|---|---|---|---|
 | <a id="aws-extended-request-id" href="#aws-extended-request-id">`aws.extended_request_id`</a> | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aws-request-id" href="#aws-request-id">`aws.request_id`</a> | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Amazon Bedrock Attributes
+
+This document defines attributes for AWS Bedrock.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="aws-bedrock-guardrail-id" href="#aws-bedrock-guardrail-id">`aws.bedrock.guardrail.id`</a> | string | The unique identifier of the AWS Bedrock Guardrail. A [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) helps safeguard and prevent unwanted behavior from model responses or user messages. | `sgi5gkybzqak` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aws-bedrock-knowledge-base-id" href="#aws-bedrock-knowledge-base-id">`aws.bedrock.knowledge_base.id`</a> | string | The unique identifier of the AWS Bedrock Knowledge base. A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information that can be queried by models to generate more relevant responses and augment prompts. | `XFWUPB9PAW` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Amazon DynamoDB Attributes
 
@@ -80,6 +95,14 @@ This document defines attributes for AWS Elastic Kubernetes Service (EKS).
 |---|---|---|---|---|
 | <a id="aws-eks-cluster-arn" href="#aws-eks-cluster-arn">`aws.eks.cluster.arn`</a> | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | ![Development](https://img.shields.io/badge/-development-blue) |
 
+## Amazon Kinesis Attributes
+
+This document defines attributes for AWS Kinesis.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="aws-kinesis-stream-name" href="#aws-kinesis-stream-name">`aws.kinesis.stream_name`</a> | string | The name of the AWS Kinesis [stream](https://docs.aws.amazon.com/streams/latest/dev/introduction.html) the request refers to. Corresponds to the `--stream-name` parameter of the Kinesis [describe-stream](https://docs.aws.amazon.com/cli/latest/reference/kinesis/describe-stream.html) operation. | `some-stream-name` | ![Development](https://img.shields.io/badge/-development-blue) |
+
 ## Amazon Lambda Attributes
 
 This document defines attributes for AWS Lambda.
@@ -87,6 +110,7 @@ This document defines attributes for AWS Lambda.
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="aws-lambda-invoked-arn" href="#aws-lambda-invoked-arn">`aws.lambda.invoked_arn`</a> | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aws-lambda-resource-mapping-id" href="#aws-lambda-resource-mapping-id">`aws.lambda.resource_mapping.id`</a> | string | The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution context or the lambda runtime environtment. This is going to be populated by the AWS SDK for each language when that UUID is present. Some of these operations are Create/Delete/Get/List/Update EventSourceMapping. | `587ad24b-03b9-4413-8202-bbd56b36e5b7` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `aws.lambda.invoked_arn`:** This may be different from `cloud.resource_id` if an alias is involved.
 
@@ -165,3 +189,36 @@ This applies in particular to the following operations:
 - [list-parts](https://docs.aws.amazon.com/cli/latest/reference/s3api/list-parts.html)
 - [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
 - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
+
+## Amazon Secrets Manager Attributes
+
+This document defines attributes for AWS Secrets Manager.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="aws-secretsmanager-secret-arn" href="#aws-secretsmanager-secret-arn">`aws.secretsmanager.secret.arn`</a> | string | The ARN of the Secret stored in the Secrets Mangger | `arn:aws:secretsmanager:us-east-1:123456789012:secret:SecretName-6RandomCharacters` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Amazon SNS Attributes
+
+This document defines attributes for AWS SNS.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="aws-sns-topic-arn" href="#aws-sns-topic-arn">`aws.sns.topic.arn`</a> | string | The ARN of the AWS SNS Topic. An Amazon SNS [topic](https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html) is a logical access point that acts as a communication channel. | `arn:aws:sns:us-east-1:123456789012:mystack-mytopic-NZJ5JSMVGFIE` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Amazon SQS Attributes
+
+This document defines attributes for AWS SQS.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="aws-sqs-queue-url" href="#aws-sqs-queue-url">`aws.sqs.queue.url`</a> | string | The URL of the AWS SQS Queue. It's a unique identifier for a queue in Amazon Simple Queue Service (SQS) and is used to access the queue and perform actions on it. | `https://sqs.us-east-1.amazonaws.com/123456789012/MyQueue` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Amazon Step Functions Attributes
+
+This document defines attributes for AWS Step Functions.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="aws-step-functions-activity-arn" href="#aws-step-functions-activity-arn">`aws.step_functions.activity.arn`</a> | string | The ARN of the AWS Step Functions Activity. | `arn:aws:states:us-east-1:123456789012:activity:get-greeting` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aws-step-functions-state-machine-arn" href="#aws-step-functions-state-machine-arn">`aws.step_functions.state_machine.arn`</a> | string | The ARN of the AWS Step Functions State Machine. | `arn:aws:states:us-east-1:123456789012:stateMachine:myStateMachine:1` | ![Development](https://img.shields.io/badge/-development-blue) |
