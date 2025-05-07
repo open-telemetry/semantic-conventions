@@ -70,7 +70,7 @@ client or when the GenAI call happens over instrumented protocol such as HTTP.
 | [`server.address`](/docs/attributes-registry/server.md) | string | GenAI server address. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.input.messages`](/docs/attributes-registry/gen-ai.md) | string | The chat history excluding the system message/instructions. [13] | `{"role": "user", "content": "Weather in Paris?"}`; `{"role": "assistant", "tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":{"location":"Paris"}},"type":"function"}]}`; `{"role": "tool", "content":"rainy, 57°F", "id":"call_VSPygqKTWdrhaFErNvMV18Yl"}` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.output.messages`](/docs/attributes-registry/gen-ai.md) | string | Messages returned by the model or agent. [14] | `[{"index":0,"finish_reason":"stop","message":{"role": "assistant", "content": "The weather in Paris is rainy and overcast, with temperatures around 57°F"}}]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.system.instructions`](/docs/attributes-registry/gen-ai.md) | string | The system message or instructions provided to the GenAI model or agent in the prompt. | `You are a helpful assistant.` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.system.instructions`](/docs/attributes-registry/gen-ai.md) | string | The system message or instructions provided to the GenAI model or agent. [15] | `You are a helpful assistant.` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
@@ -114,32 +114,45 @@ Additional output format details may be recorded in the future in the `gen_ai.ou
 
 **[8] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[9] `gen_ai.input.messages_ref`:** This attribute is used to reference the chat history recorded in a separate storage.
-It is used instead of `gen_ai.input.messages` to avoid sending sensitive and large data to the observability backend.
-Instrumentation MAY provide a way for users to upload the chat history to a separate storage via custom hooks. Alternatively, application MAY upload the chat history recorded in the `gen_ai.input.messages` attribute in the processing pipeline and replace the `gen_ai.input.messages` with the `gen_ai.input.messages_ref` attribute.
-It's an application responsibility to implement and manage the upload process.
-The uploaded content format SHOULD be the same as the one used in the `gen_ai.input.messages` attribute.
+**[9] `gen_ai.input.messages_ref`:** Refer to the [Capturing instructions, inputs, and outputs](/docs/gen-ai/gen-ai-spans.md#capturing-instructions-inputs-and-outputs) section for more details on the uploading process.
 
-**[10] `gen_ai.output.messages_ref`:** This attribute is used to reference the model or agent output recorded in a separate storage.
-It is used instead of `gen_ai.output.messages` to avoid sending sensitive and large data to the observability backend.
-Instrumentation MAY provide a way for users to upload the output messages to a separate storage via custom hooks. Alternatively, application MAY upload the output recorded in the `gen_ai.output.messages` attribute in the processing pipeline and replace the `gen_ai.output.messages` with the `gen_ai.output.messages_ref` attribute.
-It's an application responsibility to implement and manage the upload process.
-The uploaded content format SHOULD be the same as the one used in the `gen_ai.output.messages` attribute.
+**[10] `gen_ai.output.messages_ref`:** Refer to the [Capturing instructions, inputs, and outputs](/docs/gen-ai/gen-ai-spans.md#capturing-instructions-inputs-and-outputs) section for more details on the uploading process.
 
 **[11] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
 **[12] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[13] `gen_ai.input.messages`:** Messages MUST be provided in the order they were sent to the model or agent. Instrumentations MAY provide a way for users to filter out messages, but MUST ensure that the order of the remaining messages is preserved. The system message/instructions are recorded separately in `gen_ai.system.instructions`.
+**[13] `gen_ai.input.messages`:** Messages MUST be provided in the order they were sent to the model or agent.
+Instrumentations MAY provide a way for users to filter out messages, but MUST
+ensure that the order of the remaining messages is preserved.
+The system message/instructions are recorded separately in `gen_ai.system.instructions`.
+
 The format of the prompt is defined in the [json schema](/docs/gen-ai/gen-ai-input-messages.json)
-> [!Warning] > This attribute is likely to contain sensitive information.
-This attribute is likely to be large and may be longer than configured attribute value length limit on the SDK level. It may also be larger than the observability backend cap for attribute or the span envelope.
-See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487) for more details on how to truncate individual properties.
+
+> [!Warning]
+> This attribute is likely to contain sensitive information.
+
+This attribute is likely to be large and may be longer than configured attribute value
+length limit on the SDK level. It may also be larger than the observability backend
+cap for attribute or the span envelope.
+
+See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487)
+for more details on how to truncate individual properties.
 
 **[14] `gen_ai.output.messages`:** The format of the output messages is defined in the [json schema](/docs/gen-ai/gen-ai-output-messages.json)
-> [!Warning] > This attribute is likely to contain sensitive information.
-This attribute is likely to be large and may be longer than configured attribute value length limit on the SDK level. It may also be larger than the observability backend cap for attribute or the span envelope.
-See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487) for more details on how to truncate individual properties.
+
+> [!Warning]
+> This attribute is likely to contain sensitive information.
+
+This attribute is likely to be large and may be longer than configured attribute value
+length limit on the SDK level. It may also be larger than the observability backend
+cap for attribute or the span envelope.
+
+See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487)
+for more details on how to truncate individual properties.
+
+**[15] `gen_ai.system.instructions`:** > [!Warning]
+> This attribute may contain sensitive information.
 
 ---
 
@@ -186,9 +199,9 @@ See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentele
 | `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gemini` | Gemini [15] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gen_ai` | Any Google generative AI endpoint [16] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.vertex_ai` | Vertex AI [17] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gemini` | Gemini [16] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai` | Any Google generative AI endpoint [17] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.vertex_ai` | Vertex AI [18] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -196,11 +209,11 @@ See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentele
 | `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
 | `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[15]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[16]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May use common attributes prefixed with 'gcp.gen_ai.'.
 
-**[16]:** May be used when specific backend is unknown. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[17]:** May be used when specific backend is unknown. May use common attributes prefixed with 'gcp.gen_ai.'.
 
-**[17]:** This refers to the 'aiplatform.googleapis.com' endpoint. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[18]:** This refers to the 'aiplatform.googleapis.com' endpoint. May use common attributes prefixed with 'gcp.gen_ai.'.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -327,8 +340,66 @@ Instrumentations SHOULD document the list of errors they report.
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## Capturing inputs and outputs
+## Capturing instructions, inputs, and outputs
 
-User inputs and model responses may be recorded as events parented to GenAI operation span. See [Semantic Conventions for GenAI events](./gen-ai-events.md) for the details.
+### Full (buffered) content
+
+Model instructions, user messages, and model outputs are considered sensitive and
+are often large in size.
+
+Recording large or sensitive content in telemetry may be problematic due to high
+storage costs, regulatory requirements, or the need to enforce different access
+models for operational and user data.
+
+OpenTelemetry instrumentations SHOULD NOT capture them by default, but SHOULD
+provide an option for users to opt in.
+
+Application developers should choose an appropriate usage pattern based on
+application needs and maturity:
+
+1. [Default] Don't record instructions, inputs, or outputs.
+2. Record instructions, inputs, and outputs on the GenAI spans using corresponding
+   attributes (`gen_ai.system.instructions`, `gen_ai.input.messages`,
+   `gen_ai.output.messages`).
+
+   This approach is best suited for pre-production environments where telemetry
+   volume is manageable and privacy regulations do not apply.
+
+3. Store content externally and record references on the spans using:
+   `gen_ai.system.instructions_ref`, `gen_ai.input.messages_ref`, and
+   `gen_ai.output.messages_ref` attributes.
+
+   This pattern is recommended for production environments where telemetry size
+   is a concern or when handling sensitive data.
+
+#### Uploading content to external storage
+
+Instrumentations MAY support user-defined in-process hooks to handle content upload.
+
+If such a hook is supported and configured, instrumentations SHOULD invoke it regardless
+or sampling decision with:
+- the instructions, [inputs](./gen-ai-input-messages.json), and
+  [outputs](./gen-ai-output-messages.json) using formats defined in this convention;
+- the span instance
+
+The hook SHOULD operate independently of the opt-in flags that control capturing of
+`gen_ai.system.instructions`, `gen_ai.input.messages`, and `gen_ai.output.messages`.
+
+Hook API SHOULD be generic. The application or distro is responsible for the hook
+implementation including
+- the upload process, which may be synchronous or asynchronous,
+- recording references to the uploaded content on the span,
+- handling content in a different way, for example, logging or exporting it over
+  a specialized pipeline.
+
+Application or OpenTelemetry distributions MAY also implement content uploading
+in the telemetry processing pipeline (in-process or via a collector), based on the
+`gen_ai.system.instructions`, `gen_ai.input.messages`, and `gen_ai.output.messages`
+attributes. Given the potential data volume, it is RECOMMENDED to tune batching
+and export settings accordingly in the OpenTelemetry SDK pipeline.
+
+### Streaming chunks
+
+TBD
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

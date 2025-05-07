@@ -56,7 +56,7 @@ Instrumentations MAY offer configuration options allowing to disable events or a
 
 The event name MUST be `gen_ai.inputs`.
 
-This event represents the whole input to the GenAI model in the system-specific format.
+This event represents the whole input to the GenAI model in the model-specific format.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -120,7 +120,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 The event name MUST be `gen_ai.outputs`.
 
-This event represents the whole output received fron the GenAI model in the system-specific format.
+This event represents the whole output received from the GenAI model in the model-specific format.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
