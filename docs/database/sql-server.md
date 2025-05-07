@@ -159,12 +159,14 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 Instrumentations SHOULD propagate the context information to the SQL queries following [sqlcommenter](https://google.github.io/sqlcommenter/spec/).
 
-| Attribute      | Type   | Description                           | Require level | Stability                                                      |
-|----------------|--------|---------------------------------------|---------------|----------------------------------------------------------------|
-| `service.name` | string | Logical name of the service [1]       | `Required`    | ![Development](https://img.shields.io/badge/-development-blue) |
-| `traceparent`  | string | The trace context of current span [2] | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+**Recommended attributes**
 
-**[1] `service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fall back to `unknown_service:` concatenated with [process.executable.name](https://opentelemetry.io/docs/specs/semconv/attributes-registry/process/), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
+| Attribute              | Type   | Description                           | Require level | Stability                                                      |
+|------------------------|--------|---------------------------------------|---------------|----------------------------------------------------------------|
+| `baggage.service.name` | string | Logical name of the service [1]       | `Required`    | ![Development](https://img.shields.io/badge/-development-blue) |
+| `traceparent`          | string | The trace context of current span [2] | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `baggage.service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fall back to `unknown_service:` concatenated with [process.executable.name](https://opentelemetry.io/docs/specs/semconv/attributes-registry/process/), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 
 **[2] `traceparent`:** MUST be in the [text format](https://www.w3.org/TR/trace-context/#traceparent-header).
 
