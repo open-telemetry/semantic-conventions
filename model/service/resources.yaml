@@ -1,13 +1,28 @@
 groups:
-  - id: resource.service
-    type: resource
+  - id: entity.service
+    type: entity
     name: service
     brief: >
-      A service instance.
+      A service.
     stability: stable
     attributes:
       - ref: service.name
         requirement_level: required
+    descriptive_attributes:
       - ref: service.version
       - ref: service.namespace
+    relationships:
+      - has_many: service.instance
+      - has_many: deployment.environment
+      - instrumented_by: telemetry.sdk
+      - instrumented_by: telemetry.distro
+  - id: entity.service.instance
+    type: entity
+    name: service.instance
+    brief: >
+      A service instance.
+    stability: development
+    attributes:
       - ref: service.instance.id
+    relationships:
+      - runs_on: host

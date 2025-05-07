@@ -1,13 +1,14 @@
 groups:
   - id: resource.container
-    type: resource
+    type: entity
     stability: development
     name: container
     brief: >
       A container instance.
     attributes:
-      - ref: container.name
       - ref: container.id
+    descriptive_attributes:
+      - ref: container.name
       - ref: container.runtime
       - ref: container.image.name
       - ref: container.image.tags
@@ -21,3 +22,5 @@ groups:
         requirement_level: opt_in
       - ref: container.label
       - ref: oci.manifest.digest
+    relationships:
+      - runs_on: host
