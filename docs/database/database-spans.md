@@ -481,6 +481,8 @@ relatively short and its cardinality remains low comparing to the `db.query.text
 
 ## Propagating context to databases
 
+**Status**: [Development][DocumentStatus]
+
 Instrumentations SHOULD propagate the context information to databases.
 
 | Attribute      | Type   | Description                           | Require level     | Stability                                                      |
