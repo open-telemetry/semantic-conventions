@@ -508,7 +508,7 @@ Instrumentations SHOULD propagate the context information to the SQL queries fol
 - Query with `baggage.service.name`:
 
   ```sql
-  SELECT * FROM songs /* baggage.service.name=music-player%3Aplay */
+  SELECT * FROM songs /* baggage.service.name='music-player%3Aplay' */
   ```
 
 - Query with `baggage.service.name` and `traceparent`
