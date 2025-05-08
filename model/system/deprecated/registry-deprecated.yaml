@@ -96,6 +96,6 @@ groups:
         examples: [ "close_wait" ]
       - id: system.cpu.logical_number
         type: int
-        stability: experimental
+        stability: development
         brief: "Deprecated, use `cpu.logical_number` instead."
         examples: [1]

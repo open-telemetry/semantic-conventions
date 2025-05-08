@@ -25,7 +25,7 @@ groups:
   - id: metric.hw.host.heating_margin
     type: metric
     metric_name: hw.host.heating_margin
-    stability: experimental
+    stability: development
     brief: >
       By how many degrees Celsius the temperature of the physical host can be increased, before reaching a warning
       threshold on one of the internal sensors
@@ -36,7 +36,7 @@ groups:
   - id: metric.hw.host.power
     type: metric
     metric_name: hw.host.power
-    stability: experimental
+    stability: development
     brief: >
       Instantaneous power consumed by the entire physical host in Watts (`hw.host.energy` is preferred)
     instrument: gauge
