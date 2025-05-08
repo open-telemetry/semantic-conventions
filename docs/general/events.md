@@ -21,18 +21,17 @@ Events SHOULD be generated / produced / recorded using the
 [Logs API](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/logs/api.md#emit-a-logrecord)
 to ensure that the event is created using the configured SDK instance.
 
-OpenTelemetry Semantic Convention that define events SHOULD document the event name along
-with attributes and the type of the body.
+OpenTelemetry Semantic Conventions that define events SHOULD document the event name along
+with attributes and the type of the body if any.
 
 ## General event semantics
 
 * An event MUST have an [Event name property](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/logs/data-model.md#field-eventname)
   that uniquely identifies the event. Event names are subject to the [Naming guidelines](/docs/general/naming.md). Event name SHOULD be of a low-cardinality.
-* Events MAY have [extended](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.44.0/specification/logs/data-model.md#field-attributes) attributes
+* Events MAY have [extended](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/logs/data-model.md#field-attributes) attributes
   attributes that provide additional context about the event.
 * Events MAY contain a body.
-* The event name uniquely identifies event structure: the type of the body and the
-  set of attributes.
+* The event name uniquely identifies the event structure: the set of attributes and the type of the body.
 * The body MAY contain any type supported by the OpenTelemetry data
   model for the log [body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.44.0/specification/logs/data-model.md#field-body).
 
@@ -67,6 +66,6 @@ events into OpenTelemetry Events.
 
 When recording events from an existing system as OpenTelemetry Events, the system
 may lack a single name field or require multiple fields to identify the event.
-In such cases, use a combination of fields to create a low-cardinality name.
+In such cases, use a combination of fields to create a low-cardinality event name.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
