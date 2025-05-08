@@ -9,4 +9,6 @@ groups:
         examples: ['my-app']
         brief: "Deprecated, use `k8s.pod.label` instead."
         stability: development
-        deprecated: "Replaced by `k8s.pod.label`."
+        deprecated:
+          reason: renamed
+          renamed_to: k8s.pod.label
