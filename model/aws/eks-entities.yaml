@@ -1,5 +1,5 @@
 groups:
-  - id: resource.aws.eks
+  - id: entity.aws.eks
     type: entity
     stability: development
     name: aws.eks

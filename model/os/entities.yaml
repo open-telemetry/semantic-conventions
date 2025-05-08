@@ -1,5 +1,5 @@
 groups:
-  - id: resource.os
+  - id: entity.os
     type: entity
     stability: development
     name: os

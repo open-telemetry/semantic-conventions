@@ -1,5 +1,5 @@
 groups:
-  - id: resource.process
+  - id: entity.process
     type: entity
     stability: development
     name: process
@@ -26,7 +26,7 @@ groups:
       - ref: process.owner
       - ref: process.linux.cgroup
 
-  - id: resource.process.runtime
+  - id: entity.process.runtime
     type: entity
     stability: development
     name: process.runtime

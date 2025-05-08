@@ -1,5 +1,5 @@
 groups:
-  - id: resource.cloud
+  - id: entity.cloud
     type: entity
     stability: development
     name: cloud

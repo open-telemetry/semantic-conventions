@@ -1,5 +1,5 @@
 groups:
-  - id: resource.vcs.repo
+  - id: entity.vcs.repo
     type: entity
     stability: development
     name: vcs.repo
@@ -9,7 +9,7 @@ groups:
       - ref: vcs.repository.url.full
       - ref: vcs.repository.name
 
-  - id: resource.vcs.ref
+  - id: entity.vcs.ref
     type: entity
     stability: development
     name: vcs.ref

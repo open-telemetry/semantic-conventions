@@ -1,5 +1,5 @@
 groups:
-  - id: resource.cloudfoundry.system
+  - id: entity.cloudfoundry.system
     type: entity
     stability: development
     name: cloudfoundry.system
@@ -8,7 +8,7 @@ groups:
     attributes:
       - ref: cloudfoundry.system.id
       - ref: cloudfoundry.system.instance.id
-  - id: resource.cloudfoundry.app
+  - id: entity.cloudfoundry.app
     type: entity
     stability: development
     name: cloudfoundry.app
@@ -17,7 +17,7 @@ groups:
     attributes:
       - ref: cloudfoundry.app.id
       - ref: cloudfoundry.app.name
-  - id: resource.cloudfoundry.space
+  - id: entity.cloudfoundry.space
     type: entity
     stability: development
     name: cloudfoundry.space
@@ -26,7 +26,7 @@ groups:
     attributes:
       - ref: cloudfoundry.space.id
       - ref: cloudfoundry.space.name
-  - id: resource.cloudfoundry.org
+  - id: entity.cloudfoundry.org
     type: entity
     stability: development
     name: cloudfoundry.org
@@ -35,7 +35,7 @@ groups:
     attributes:
       - ref: cloudfoundry.org.id
       - ref: cloudfoundry.org.name
-  - id: resource.cloudfoundry.process
+  - id: entity.cloudfoundry.process
     type: entity
     stability: development
     name: cloudfoundry.process

@@ -1,5 +1,5 @@
 groups:
-  - id: resource.webengine
+  - id: entity.webengine
     type: entity
     stability: development
     name: webengine
