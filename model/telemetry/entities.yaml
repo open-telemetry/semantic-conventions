@@ -1,5 +1,5 @@
 groups:
-  - id: resource.telemetry.sdk
+  - id: entity.telemetry.sdk
     name: telemetry.sdk
     type: entity
     stability: stable
@@ -12,7 +12,7 @@ groups:
         requirement_level: required
       - ref: telemetry.sdk.version
         requirement_level: required
-  - id: resource.telemetry.distro
+  - id: entity.telemetry.distro
     name: 'telemetry.distro'
     type: entity
     stability: development

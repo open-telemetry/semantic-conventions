@@ -1,5 +1,5 @@
 groups:
-  - id: resource.otel.scope
+  - id: entity.otel.scope
     # This should not be a resource, but an attribute group.
     type: entity
     stability: development

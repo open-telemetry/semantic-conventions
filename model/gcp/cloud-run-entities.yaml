@@ -1,5 +1,5 @@
 groups:
-  - id: resource.gcp.cloud_run
+  - id: entity.gcp.cloud_run
     type: entity
     stability: development
     name: gcp.cloud_run

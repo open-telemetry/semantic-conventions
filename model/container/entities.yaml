@@ -1,5 +1,5 @@
 groups:
-  - id: resource.container
+  - id: entity.container
     type: entity
     stability: development
     name: container

@@ -1,5 +1,5 @@
 groups:
-  - id: resource.gcp.gce
+  - id: entity.gcp.gce
     type: entity
     stability: development
     name: gcp.gce

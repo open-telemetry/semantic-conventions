@@ -1,5 +1,5 @@
 groups:
-  - id: resource.android
+  - id: entity.android
     type: entity
     stability: development
     name: android
