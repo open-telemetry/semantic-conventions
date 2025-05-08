@@ -343,10 +343,13 @@ groups:
         type: string
         brief: The system message or instructions provided to the GenAI model or agent.
         note: |
+          The format of the instructions is defined in the [JSON schema](/docs/gen-ai/gen-ai-system-instructions.json)
+
           > [!Warning]
           > This attribute may contain sensitive information.
 
-
+          See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+          section for more details.
         examples: ["You are a helpful assistant."]
       - id: gen_ai.system.instructions_ref
         stability: development
@@ -355,58 +358,50 @@ groups:
           storage.
         examples: ["s3://acme.prod.support_bot.chats.2025/conv_1234/invocation_42.json"]
         note: >
-          Refer to the [Capturing instructions, inputs, and outputs](/docs/gen-ai/gen-ai-spans.md#capturing-instructions-inputs-and-outputs)
-          section for more details on the uploading process.
+          Refer to the [Uploading content to external storage](/docs/gen-ai/gen-ai-spans.md#uploading-content-to-external-storage)
+          section for more details.
       - id: gen_ai.input.messages
         stability: development
-        type: string # any
+        type: string  # any
         brief: The chat history excluding the system message/instructions.
         note: |
           Messages MUST be provided in the order they were sent to the model or agent.
-          Instrumentations MAY provide a way for users to filter out messages, but MUST
-          ensure that the order of the remaining messages is preserved.
+          Instrumentations MAY provide a way for users to filter chat messages.
+
           The system message/instructions are recorded separately in `gen_ai.system.instructions`.
 
-          The format of the prompt is defined in the [json schema](/docs/gen-ai/gen-ai-input-messages.json)
+          The format of the prompt is defined in the [JSON schema](/docs/gen-ai/gen-ai-input-messages.json)
 
           > [!Warning]
           > This attribute is likely to contain sensitive information.
 
-          This attribute is likely to be large and may be longer than configured attribute value
-          length limit on the SDK level. It may also be larger than the observability backend
-          cap for attribute or the span envelope.
-
-          See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487)
-          for more details on how to truncate individual properties.
+          See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+          section for more details.
         examples: [
           '{"role": "user", "content": "Weather in Paris?"}',
           '{"role": "assistant", "tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":{"location":"Paris"}},"type":"function"}]}',
           '{"role": "tool", "content":"rainy, 57°F", "id":"call_VSPygqKTWdrhaFErNvMV18Yl"}'
-          ]
+        ]
       - id: gen_ai.input.messages_ref
         stability: development
         type: string
         brief: The link to the chat history recorded in a separate storage.
         examples: ["s3://acme.prod.support_bot.chats.2025/conv_1234/run_42.json"]
         note: >
-          Refer to the [Capturing instructions, inputs, and outputs](/docs/gen-ai/gen-ai-spans.md#capturing-instructions-inputs-and-outputs)
-          section for more details on the uploading process.
+          Refer to the [Uploading content to external storage](/docs/gen-ai/gen-ai-spans.md#uploading-content-to-external-storage)
+          section for more details.
       - id: gen_ai.output.messages
         stability: development
         type: string  # any
         brief: Messages returned by the model or agent.
         note: |
-          The format of the output messages is defined in the [json schema](/docs/gen-ai/gen-ai-output-messages.json)
+          The format of the output messages is defined in the [JSON schema](/docs/gen-ai/gen-ai-output-messages.json)
 
           > [!Warning]
           > This attribute is likely to contain sensitive information.
 
-          This attribute is likely to be large and may be longer than configured attribute value
-          length limit on the SDK level. It may also be larger than the observability backend
-          cap for attribute or the span envelope.
-
-          See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487)
-          for more details on how to truncate individual properties.
+          See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+          section for more details.
         examples: ['[{"index":0,"finish_reason":"stop","message":{"role": "assistant", "content": "The weather in Paris is rainy and overcast, with temperatures around 57°F"}}]']
       - id: gen_ai.output.messages_ref
         stability: development
@@ -414,8 +409,8 @@ groups:
         brief: The link to the model or agent output recorded in a separate storage.
         examples: ["s3://acme.prod.support_bot.chats.2025/conv_1234/run_42.json"]
         note: >
-          Refer to the [Capturing instructions, inputs, and outputs](/docs/gen-ai/gen-ai-spans.md#capturing-instructions-inputs-and-outputs)
-          section for more details on the uploading process.
+          Refer to the [Uploading content to external storage](/docs/gen-ai/gen-ai-spans.md#uploading-content-to-external-storage)
+          section for more details.
   - id: registry.gen_ai.openai
     type: attribute_group
     display_name: OpenAI Attributes

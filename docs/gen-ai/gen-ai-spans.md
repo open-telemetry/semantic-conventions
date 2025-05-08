@@ -12,7 +12,11 @@ linkTitle: Spans
   - [Inference](#inference)
   - [Embeddings](#embeddings)
   - [Execute tool span](#execute-tool-span)
-- [Capturing inputs and outputs](#capturing-inputs-and-outputs)
+- [Capturing instructions, inputs, and outputs](#capturing-instructions-inputs-and-outputs)
+  - [Full (buffered) content](#full-buffered-content)
+    - [Recording content on attributes](#recording-content-on-attributes)
+    - [Uploading content to external storage](#uploading-content-to-external-storage)
+  - [Streaming chunks](#streaming-chunks)
 
 <!-- tocstop -->
 
@@ -114,45 +118,42 @@ Additional output format details may be recorded in the future in the `gen_ai.ou
 
 **[8] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[9] `gen_ai.input.messages_ref`:** Refer to the [Capturing instructions, inputs, and outputs](/docs/gen-ai/gen-ai-spans.md#capturing-instructions-inputs-and-outputs) section for more details on the uploading process.
+**[9] `gen_ai.input.messages_ref`:** Refer to the [Uploading content to external storage](/docs/gen-ai/gen-ai-spans.md#uploading-content-to-external-storage) section for more details.
 
-**[10] `gen_ai.output.messages_ref`:** Refer to the [Capturing instructions, inputs, and outputs](/docs/gen-ai/gen-ai-spans.md#capturing-instructions-inputs-and-outputs) section for more details on the uploading process.
+**[10] `gen_ai.output.messages_ref`:** Refer to the [Uploading content to external storage](/docs/gen-ai/gen-ai-spans.md#uploading-content-to-external-storage) section for more details.
 
 **[11] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
 **[12] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 **[13] `gen_ai.input.messages`:** Messages MUST be provided in the order they were sent to the model or agent.
-Instrumentations MAY provide a way for users to filter out messages, but MUST
-ensure that the order of the remaining messages is preserved.
+Instrumentations MAY provide a way for users to filter chat messages.
+
 The system message/instructions are recorded separately in `gen_ai.system.instructions`.
 
-The format of the prompt is defined in the [json schema](/docs/gen-ai/gen-ai-input-messages.json)
+The format of the prompt is defined in the [JSON schema](/docs/gen-ai/gen-ai-input-messages.json)
 
 > [!Warning]
 > This attribute is likely to contain sensitive information.
 
-This attribute is likely to be large and may be longer than configured attribute value
-length limit on the SDK level. It may also be larger than the observability backend
-cap for attribute or the span envelope.
+See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+section for more details.
 
-See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487)
-for more details on how to truncate individual properties.
-
-**[14] `gen_ai.output.messages`:** The format of the output messages is defined in the [json schema](/docs/gen-ai/gen-ai-output-messages.json)
+**[14] `gen_ai.output.messages`:** The format of the output messages is defined in the [JSON schema](/docs/gen-ai/gen-ai-output-messages.json)
 
 > [!Warning]
 > This attribute is likely to contain sensitive information.
 
-This attribute is likely to be large and may be longer than configured attribute value
-length limit on the SDK level. It may also be larger than the observability backend
-cap for attribute or the span envelope.
+See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+section for more details.
 
-See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487)
-for more details on how to truncate individual properties.
+**[15] `gen_ai.system.instructions`:** The format of the instructions is defined in the [JSON schema](/docs/gen-ai/gen-ai-system-instructions.json)
 
-**[15] `gen_ai.system.instructions`:** > [!Warning]
+> [!Warning]
 > This attribute may contain sensitive information.
+
+See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+section for more details.
 
 ---
 
@@ -358,12 +359,16 @@ Application developers should choose an appropriate usage pattern based on
 application needs and maturity:
 
 1. [Default] Don't record instructions, inputs, or outputs.
+
 2. Record instructions, inputs, and outputs on the GenAI spans using corresponding
    attributes (`gen_ai.system.instructions`, `gen_ai.input.messages`,
    `gen_ai.output.messages`).
 
    This approach is best suited for pre-production environments where telemetry
    volume is manageable and privacy regulations do not apply.
+
+   See [Recording content on attributes](#recording-content-on-attributes)
+   section for more details.
 
 3. Store content externally and record references on the spans using:
    `gen_ai.system.instructions_ref`, `gen_ai.input.messages_ref`, and
@@ -372,25 +377,62 @@ application needs and maturity:
    This pattern is recommended for production environments where telemetry size
    is a concern or when handling sensitive data.
 
+   See [Uploading content to external storage](#uploading-content-to-external-storage)
+   section for more details.
+
+#### Recording content on attributes
+
+The content captured in `gen_ai.system.instructions`, `gen_ai.input.messages`,
+and `gen_ai.output.messages` attributes is likely to be large.
+
+It may contain media, and even in the text form, it may be longer than
+observability backend limits for telemetry envelopes or attribute values.
+
+The instructions, input and output messages attributes follow common structure
+defined in [instructions JSON schema](./gen-ai-system-instructions.json),
+[inputs JSON schema](./gen-ai-input-messages.json), and
+[outputs JSON schema](./gen-ai-output-messages.json) and are encoded as a JSON string.
+
+> [!NOTE]
+>
+> Recording structured attributes is currently only supported on events. This may
+> change, check out [OTEP: Extending attributes to support complex values](https://github.com/open-telemetry/opentelemetry-specification/pull/4485)
+> for the details.
+
+Until structured attributes are supported on spans, the corresponding attribute
+value SHOULD be serialized to JSON string.
+
+Instrumentation MAY provide a configuration option allowing to truncate properties
+such as individual message contents, preserving JSON structure.
+
 #### Uploading content to external storage
 
 Instrumentations MAY support user-defined in-process hooks to handle content upload.
 
-If such a hook is supported and configured, instrumentations SHOULD invoke it regardless
-or sampling decision with:
-- the instructions, [inputs](./gen-ai-input-messages.json), and
-  [outputs](./gen-ai-output-messages.json) using formats defined in this convention;
-- the span instance
-
 The hook SHOULD operate independently of the opt-in flags that control capturing of
 `gen_ai.system.instructions`, `gen_ai.input.messages`, and `gen_ai.output.messages`.
 
-Hook API SHOULD be generic. The application or distro is responsible for the hook
+If such a hook is supported and configured, instrumentations SHOULD invoke it regardless
+of the span sampling decision with:
+- the instructions, [inputs](./gen-ai-input-messages.json), and
+  [outputs](./gen-ai-output-messages.json) object using formats defined in this convention
+  and before they are serialized to JSON string;
+- the span instance
+
+The hook implementation SHOULD be able to enrich and modify provided span, instructions,
+and message objects.
+
+If instrumentation is configured to also record `gen_ai.system.instructions`,
+`gen_ai.input.messages`, and `gen_ai.output.messages` attributes, it SHOULD do it
+after calling the hook and SHOULD record values that were potentially modified within
+the hook implementation.
+
+The hook API SHOULD be generic. The application or distro is responsible for the hook
 implementation including
-- the upload process, which may be synchronous or asynchronous,
+
+- the uploading process either in synchronous or asynchronous way,
 - recording references to the uploaded content on the span,
-- handling content in a different way, for example, logging or exporting it over
-  a specialized pipeline.
+- handling content in a different way.
 
 Application or OpenTelemetry distributions MAY also implement content uploading
 in the telemetry processing pipeline (in-process or via a collector), based on the

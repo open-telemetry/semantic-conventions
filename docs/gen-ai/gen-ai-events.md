@@ -8,15 +8,8 @@ linkTitle: Events
 
 <!-- toc -->
 
-- [Event: `gen_ai.user.message`](#event-gen_aiusermessage)
-- [Event: `gen_ai.assistant.message`](#event-gen_aiassistantmessage)
-- [Event: `gen_ai.tool.message`](#event-gen_aitoolmessage)
-- [Event: `gen_ai.choice`](#event-gen_aichoice)
-- [Custom events](#custom-events)
-- [Examples](#examples)
-  - [Chat completion](#chat-completion)
-  - [Tools](#tools)
-  - [Chat completion with multiple choices](#chat-completion-with-multiple-choices)
+- [Event: `gen_ai.inputs`](#event-gen_aiinputs)
+- [Event: `gen_ai.outputs`](#event-gen_aioutputs)
 
 <!-- tocstop -->
 

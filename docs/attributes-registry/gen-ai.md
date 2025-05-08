@@ -53,39 +53,31 @@ This document defines the attributes used to describe telemetry in the context o
 **[1] `gen_ai.data_source.id`:** Data sources are used by AI agents and RAG applications to store grounding data. A data source may be an external database, object store, document collection, website, or any other storage system used by the GenAI agent or application. The `gen_ai.data_source.id` SHOULD match the identifier used by the GenAI system rather than a name specific to the external storage, such as a database or object store. Semantic conventions referencing `gen_ai.data_source.id` MAY also leverage additional attributes, such as `db.*`, to further identify and describe the data source.
 
 **[2] `gen_ai.input.messages`:** Messages MUST be provided in the order they were sent to the model or agent.
-Instrumentations MAY provide a way for users to filter out messages, but MUST
-ensure that the order of the remaining messages is preserved.
+Instrumentations MAY provide a way for users to filter chat messages.
+
 The system message/instructions are recorded separately in `gen_ai.system.instructions`.
 
-The format of the prompt is defined in the [json schema](/docs/gen-ai/gen-ai-input-messages.json)
+The format of the prompt is defined in the [JSON schema](/docs/gen-ai/gen-ai-input-messages.json)
 
 > [!Warning]
 > This attribute is likely to contain sensitive information.
 
-This attribute is likely to be large and may be longer than configured attribute value
-length limit on the SDK level. It may also be larger than the observability backend
-cap for attribute or the span envelope.
+See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+section for more details.
 
-See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487)
-for more details on how to truncate individual properties.
-
-**[3] `gen_ai.input.messages_ref`:** Refer to the [Capturing instructions, inputs, and outputs](/docs/gen-ai/gen-ai-spans.md#capturing-instructions-inputs-and-outputs) section for more details on the uploading process.
+**[3] `gen_ai.input.messages_ref`:** Refer to the [Uploading content to external storage](/docs/gen-ai/gen-ai-spans.md#uploading-content-to-external-storage) section for more details.
 
 **[4] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[5] `gen_ai.output.messages`:** The format of the output messages is defined in the [json schema](/docs/gen-ai/gen-ai-output-messages.json)
+**[5] `gen_ai.output.messages`:** The format of the output messages is defined in the [JSON schema](/docs/gen-ai/gen-ai-output-messages.json)
 
 > [!Warning]
 > This attribute is likely to contain sensitive information.
 
-This attribute is likely to be large and may be longer than configured attribute value
-length limit on the SDK level. It may also be larger than the observability backend
-cap for attribute or the span envelope.
+See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+section for more details.
 
-See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487)
-for more details on how to truncate individual properties.
-
-**[6] `gen_ai.output.messages_ref`:** Refer to the [Capturing instructions, inputs, and outputs](/docs/gen-ai/gen-ai-spans.md#capturing-instructions-inputs-and-outputs) section for more details on the uploading process.
+**[6] `gen_ai.output.messages_ref`:** Refer to the [Uploading content to external storage](/docs/gen-ai/gen-ai-spans.md#uploading-content-to-external-storage) section for more details.
 
 **[7] `gen_ai.output.type`:** This attribute SHOULD be used when the client requests output of a specific type. The model may return zero or more outputs of this type.
 This attribute specifies the output modality and not the actual output format. For example, if an image is requested, the actual output could be a URL pointing to an image file.
@@ -105,10 +97,15 @@ attribute may help identify the actual system in use for `openai`.
 For custom model, a custom friendly name SHOULD be used.
 If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
-**[10] `gen_ai.system.instructions`:** > [!Warning]
+**[10] `gen_ai.system.instructions`:** The format of the instructions is defined in the [JSON schema](/docs/gen-ai/gen-ai-system-instructions.json)
+
+> [!Warning]
 > This attribute may contain sensitive information.
 
-**[11] `gen_ai.system.instructions_ref`:** Refer to the [Capturing instructions, inputs, and outputs](/docs/gen-ai/gen-ai-spans.md#capturing-instructions-inputs-and-outputs) section for more details on the uploading process.
+See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+section for more details.
+
+**[11] `gen_ai.system.instructions_ref`:** Refer to the [Uploading content to external storage](/docs/gen-ai/gen-ai-spans.md#uploading-content-to-external-storage) section for more details.
 
 **[12] `gen_ai.tool.type`:** Extension: A tool executed on the agent-side to directly call external APIs, bridging the gap between the agent and real-world systems.
   Agent-side operations involve actions that are performed by the agent on the server or within the agent's controlled environment.

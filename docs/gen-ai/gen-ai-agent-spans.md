@@ -86,8 +86,13 @@ Instrumentations SHOULD document the list of errors they report.
 
 **[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[7] `gen_ai.system.instructions`:** > [!Warning]
+**[7] `gen_ai.system.instructions`:** The format of the instructions is defined in the [JSON schema](/docs/gen-ai/gen-ai-system-instructions.json)
+
+> [!Warning]
 > This attribute may contain sensitive information.
+
+See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+section for more details.
 
 ---
 
@@ -243,45 +248,42 @@ Additional output format details may be recorded in the future in the `gen_ai.ou
 
 **[9] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[10] `gen_ai.input.messages_ref`:** Refer to the [Capturing instructions, inputs, and outputs](/docs/gen-ai/gen-ai-spans.md#capturing-instructions-inputs-and-outputs) section for more details on the uploading process.
+**[10] `gen_ai.input.messages_ref`:** Refer to the [Uploading content to external storage](/docs/gen-ai/gen-ai-spans.md#uploading-content-to-external-storage) section for more details.
 
-**[11] `gen_ai.output.messages_ref`:** Refer to the [Capturing instructions, inputs, and outputs](/docs/gen-ai/gen-ai-spans.md#capturing-instructions-inputs-and-outputs) section for more details on the uploading process.
+**[11] `gen_ai.output.messages_ref`:** Refer to the [Uploading content to external storage](/docs/gen-ai/gen-ai-spans.md#uploading-content-to-external-storage) section for more details.
 
 **[12] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
 **[13] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 **[14] `gen_ai.input.messages`:** Messages MUST be provided in the order they were sent to the model or agent.
-Instrumentations MAY provide a way for users to filter out messages, but MUST
-ensure that the order of the remaining messages is preserved.
+Instrumentations MAY provide a way for users to filter chat messages.
+
 The system message/instructions are recorded separately in `gen_ai.system.instructions`.
 
-The format of the prompt is defined in the [json schema](/docs/gen-ai/gen-ai-input-messages.json)
+The format of the prompt is defined in the [JSON schema](/docs/gen-ai/gen-ai-input-messages.json)
 
 > [!Warning]
 > This attribute is likely to contain sensitive information.
 
-This attribute is likely to be large and may be longer than configured attribute value
-length limit on the SDK level. It may also be larger than the observability backend
-cap for attribute or the span envelope.
+See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+section for more details.
 
-See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487)
-for more details on how to truncate individual properties.
-
-**[15] `gen_ai.output.messages`:** The format of the output messages is defined in the [json schema](/docs/gen-ai/gen-ai-output-messages.json)
+**[15] `gen_ai.output.messages`:** The format of the output messages is defined in the [JSON schema](/docs/gen-ai/gen-ai-output-messages.json)
 
 > [!Warning]
 > This attribute is likely to contain sensitive information.
 
-This attribute is likely to be large and may be longer than configured attribute value
-length limit on the SDK level. It may also be larger than the observability backend
-cap for attribute or the span envelope.
+See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+section for more details.
 
-See [AnyValue attribute limits issue](https://github.com/open-telemetry/opentelemetry-specification/issues/4487)
-for more details on how to truncate individual properties.
+**[16] `gen_ai.system.instructions`:** The format of the instructions is defined in the [JSON schema](/docs/gen-ai/gen-ai-system-instructions.json)
 
-**[16] `gen_ai.system.instructions`:** > [!Warning]
+> [!Warning]
 > This attribute may contain sensitive information.
+
+See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+section for more details.
 
 ---
 
