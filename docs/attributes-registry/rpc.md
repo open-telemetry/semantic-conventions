@@ -27,6 +27,11 @@ This document defines attributes for remote procedure calls.
 | <a id="rpc-message-type" href="#rpc-message-type">`rpc.message.type`</a> | string | Whether this is a received or sent message. | `SENT`; `RECEIVED` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-message-uncompressed-size" href="#rpc-message-uncompressed-size">`rpc.message.uncompressed_size`</a> | int | Uncompressed size of the message in bytes. |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-method" href="#rpc-method">`rpc.method`</a> | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [6] | `exampleMethod` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-onc-procedure-name" href="#rpc-onc-procedure-name">`rpc.onc.procedure.name`</a> | string | ONC/Sun RPC procedure name | `OPEN`; `READ`; `GETATTR` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-onc-procedure-number" href="#rpc-onc-procedure-number">`rpc.onc.procedure.number`</a> | int | ONC/Sun RPC procedure number |  | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-onc-program-name" href="#rpc-onc-program-name">`rpc.onc.program.name`</a> | string | ONC/Sun RPC program name | `portmapper`; `nfs` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-onc-program-number" href="#rpc-onc-program-number">`rpc.onc.program.number`</a> | int | ONC/Sun RPC program number |  | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-onc-version" href="#rpc-onc-version">`rpc.onc.version`</a> | int | ONC/Sun RPC program version |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-service" href="#rpc-service">`rpc.service`</a> | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-system" href="#rpc-system">`rpc.system`</a> | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -111,6 +116,7 @@ This document defines attributes for remote procedure calls.
 | `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
 | `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `onc_rpc` | ONC RPC (Sun RPC) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated RPC Attributes
 

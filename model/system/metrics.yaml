@@ -430,3 +430,251 @@ groups:
       - ref: linux.memory.slab.state
     entity_associations:
       - host
+
+  # metric.system.nfs.* metrics
+  - id: metric.system.nfs.net.count
+    type: metric
+    metric_name: system.nfs.net.count
+    stability: development
+    brief: "Reports the count of kernel NFS client network requests handled"
+    note: |
+      Linux: this metric is taken from the Linux kernel's svc_stat.netcnt, which includes both UDP datagrams and TCP segments
+    instrument: gauge
+    unit: "{rpc}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfs.net.udp.count
+    type: metric
+    metric_name: system.nfs.net.udp.count
+    stability: development
+    brief: "Reports the count of kernel NFS client UDP datagrams handled"
+    note: |
+      Linux: this metric is taken from the Linux kernel's svc_stat.netudpcnt
+    instrument: gauge
+    unit: "{datagram}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfs.net.tcp.count
+    type: metric
+    metric_name: system.nfs.net.tcp.count
+    stability: development
+    brief: "Reports the count of kernel NFS client TCP segments handled"
+    note: |
+      Linux: this metric is taken from the Linux kernel's svc_stat.nettcpcnt
+    instrument: gauge
+    unit: "{segment}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfs.net.tcp.connection.count
+    type: metric
+    metric_name: system.nfs.net.tcp.connection.count
+    stability: development
+    brief: "Reports the count of kernel NFS client TCP connections accepted"
+    note: |
+      Linux: this metric is taken from the Linux kernel's svc_stat.nettcpconn
+    instrument: gauge
+    unit: "{connection}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfs.procedure.count
+    type: metric
+    metric_name: system.nfs.procedure.count
+    stability: development
+    brief: "Reports the count of kernel NFS server procedures"
+    note: |
+      Linux: these metrics are taken from the Linux kernel's rpc_version.counts
+    instrument: gauge
+    unit: "{procedure}"
+    attributes: 
+      - ref: rpc.onc.version
+      - ref: rpc.onc.procedure.number
+    entity_associations:
+      - host
+
+  # metric.system.nfsd.* metrics
+  - id: metric.system.nfsd.repcache.hits
+    type: metric
+    metric_name: system.linux.repcache.hits
+    stability: development
+    brief: "Reports the kernel NFS server request reply cache hit count"
+    note: |
+      Linux: this metric is taken from the Linux kernel NFSD_STATS_RC_HITS counter in the nfsd_net struct
+    instrument: gauge
+    unit: "{hit}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfsd.repcache.misses
+    type: metric
+    metric_name: system.nfsd.repcache.misses
+    stability: development
+    brief: "Reports the kernel NFS server request reply cache miss count"
+    note: |
+      Linux: this metric is taken from the Linux kernel NFSD_STATS_RC_MISSES counter in the nfsd_net struct
+    instrument: gauge
+    unit: "{miss}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfsd.repcache.nocache
+    type: metric
+    metric_name: system.nfsd.repcache.nocache
+    stability: development
+    brief: "Reports the count of kernel NFS server request replies that are uncacheable"
+    note: |
+      Linux: this metric is taken from the Linux kernel NFSD_STATS_RC_NOCACHE counter in the nfsd_net struct
+    instrument: gauge
+    unit: "{miss}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfsd.fh.stale.count
+    type: metric
+    metric_name: system.nfsd.fh.stale.count
+    stability: development
+    brief: "Reports the count of kernel NFS server stale file handles"
+    note: |
+      Linux: this metric is taken from the Linux kernel NFSD_STATS_FH_STALE counter in the nfsd_net struct
+    instrument: gauge
+    unit: "{fh}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfsd.io.read.count
+    type: metric
+    metric_name: system.nfsd.io.read.count
+    stability: development
+    brief: "Reports the count of kernel NFS server bytes returned to read requests"
+    note: |
+      Linux: this metric is taken from the Linux kernel NFSD_STATS_IO_READ counter in the nfsd_net struct
+    instrument: gauge
+    unit: "By"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfsd.io.write.count
+    type: metric
+    metric_name: system.nfsd.io.write.count
+    stability: development
+    brief: "Reports the count of kernel NFS server bytes passed to write requests"
+    note: |
+      Linux: this metric is taken from the Linux kernel NFSD_STATS_IO_WRITE counter in the nfsd_net struct
+    instrument: gauge
+    unit: "By"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfsd.thread.count
+    type: metric
+    metric_name: system.nfsd.thread.count
+    stability: development
+    brief: "Reports the count of kernel NFS server available threads"
+    note: |
+      Linux: this metric is taken from the Linux kernel nfsd_th_cnt variable
+    instrument: gauge
+    unit: "{thread}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfsd.net.count
+    type: metric
+    metric_name: system.nfsd.net.count
+    stability: development
+    brief: "Reports the count of kernel NFS server network requests handled"
+    note: |
+      Linux: this metric is taken from the Linux kernel's svc_stat.netcnt, which includes both UDP datagrams and TCP segments
+    instrument: gauge
+    unit: "{rpc}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfsd.net.udp.count
+    type: metric
+    metric_name: system.nfsd.net.udp.count
+    stability: development
+    brief: "Reports the count of kernel NFS server UDP datagrams handled"
+    note: |
+      Linux: this metric is taken from the Linux kernel's svc_stat.netudpcnt
+    instrument: gauge
+    unit: "{datagram}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfsd.net.tcp.count
+    type: metric
+    metric_name: system.nfsd.net.tcp.count
+    stability: development
+    brief: "Reports the count of kernel NFS server TCP segments handled"
+    note: |
+      Linux: this metric is taken from the Linux kernel's svc_stat.nettcpcnt
+    instrument: gauge
+    unit: "{segment}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfsd.net.tcp.connection.count
+    type: metric
+    metric_name: system.nfsd.net.tcp.connection.count
+    stability: development
+    brief: "Reports the count of kernel NFS server TCP connections accepted"
+    note: |
+      Linux: this metric is taken from the Linux kernel's svc_stat.nettcpconn
+    instrument: gauge
+    unit: "{connection}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfsd.rpc.count
+    type: metric
+    metric_name: system.nfsd.rpc.count
+    stability: development
+    brief: "Reports the count of kernel NFS server RPCs handled"
+    note: |
+      Linux: this metric is taken from the Linux kernel's svc_stat.rpccnt
+    instrument: gauge
+    unit: "{rpc}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfsd.rpc.retransmit.count
+    type: metric
+    metric_name: system.nfsd.rpc.retransmit.count
+    stability: development
+    brief: "Reports the count of kernel NFS server RPC retransmits"
+    note: |
+      Linux: this metric is taken from the Linux kernel's svc_stat.rpcretrans
+    instrument: gauge
+    unit: "{retransmit}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfsd.rpc.authrefresh.count
+    type: metric
+    metric_name: system.nfsd.rpc.authrefresh.count
+    stability: development
+    brief: "Reports the count of kernel NFS server RPC authentication refreshes"
+    note: |
+      Linux: this metric is taken from the Linux kernel's svc_stat.rpcauthrefresh
+    instrument: gauge
+    unit: "{authrefresh}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfsd.procedure.count
+    type: metric
+    metric_name: system.nfsd.procedure.count
+    stability: development
+    brief: "Reports the count of kernel NFS client procedures"
+    note: |
+      Linux: these metrics are taken from the Linux kernel's rpc_version.counts
+    instrument: gauge
+    unit: "{procedure}"
+    attributes:
+      - ref: rpc.onc.version
+      - ref: rpc.onc.procedure.number
+    entity_associations:
+      - host

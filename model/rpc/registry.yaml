@@ -237,10 +237,10 @@ groups:
               value: 'connect_rpc'
               brief: 'Connect RPC'
               stability: development
-	    - id: onc_rpc
-	      value: 'onc_rpc'
-	      brief: 'ONC RPC (Sun RPC)'
-	      stability: development
+            - id: onc_rpc
+              value: 'onc_rpc'
+              brief: 'ONC RPC (Sun RPC)'
+              stability: development
         stability: development
       - id: rpc.message.type
         type:
@@ -261,35 +261,30 @@ groups:
       - id: rpc.message.compressed_size
         type: int
         stability: development
-           brief: "Compressed size of the message in bytes."
+        brief: "Compressed size of the message in bytes."
       - id: rpc.message.uncompressed_size
         type: int
         stability: development
         brief: "Uncompressed size of the message in bytes."
-      - id: rpc.onc.program
-        type: attribute_group
-        brief: "ONC/Sun RPC program that implements one or more remote procedures"
-        note: "ONC/Sun RPC is defined in RFC 5531"
-        stability: development
-        attributes:
-          - id: rpc.onc.program.shortname
-            type:
-              members:
-                - id: nfs
-                  value: nfs
-                  stability: development
-      - id: rpc.onc.version.id
+      - id: rpc.onc.version
         type: int
         brief: "ONC/Sun RPC program version"
         stability: development
-      - id: rpc.onc.procedure
-        type: attribute_group
-        brief: "ONC/Sun RPC procedure"
+      - id: rpc.onc.procedure.number
+        type: int
         stability: development
-        attributes:
-          - id: rpc.onc.procedure.id
-            type: int
-	    brief: "ONC/Sun RPC procedure id"
-	  - id: rpc.onc.procedure.name
-	    type: string
-	    brief "ONC/Sun RPC procedure name"
+        brief: "ONC/Sun RPC procedure number"
+      - id: rpc.onc.procedure.name
+        type: string
+        stability: development
+        brief: "ONC/Sun RPC procedure name"
+        examples: ['OPEN', 'READ', 'GETATTR']
+      - id: rpc.onc.program.number
+        type: int
+        stability: development
+        brief: "ONC/Sun RPC program number"
+      - id: rpc.onc.program.name
+        type: string
+        stability: development
+        brief: "ONC/Sun RPC program name"
+        examples: ['portmapper', 'nfs']
