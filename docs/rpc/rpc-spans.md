@@ -118,6 +118,10 @@ when the names of the called service and method are known and available.
 | [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [5] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [6] | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.streaming.messages.avg_interval`](/docs/attributes-registry/rpc.md) | int | The average interval time in milliseconds among messages. [8] | `420` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.streaming.messages.count`](/docs/attributes-registry/rpc.md) | int | The total number of streaming messages. [9] | `42` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.streaming.messages.max_interval`](/docs/attributes-registry/rpc.md) | int | The maximum interval time in milliseconds among messages. [10] | `12138` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.streaming.messages.min_interval`](/docs/attributes-registry/rpc.md) | int | The minimum interval time in milliseconds among messages. [11] | `7` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
@@ -136,6 +140,14 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 **[6] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
 **[7] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
+
+**[8] `rpc.streaming.messages.avg_interval`:** **Streaming**: This attribute is only opt_in for server and client streaming RPCs.
+
+**[9] `rpc.streaming.messages.count`:** **Streaming**: This attribute is only opt_in for server and client streaming RPCs.
+
+**[10] `rpc.streaming.messages.max_interval`:** **Streaming**: This attribute is only opt_in for server and client streaming RPCs.
+
+**[11] `rpc.streaming.messages.min_interval`:** **Streaming**: This attribute is only opt_in for server and client streaming RPCs.
 
 ---
 
@@ -210,6 +222,10 @@ when the names of the called service and method are known and available.
 | [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [7] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [8] | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [9] | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.streaming.messages.avg_interval`](/docs/attributes-registry/rpc.md) | int | The average interval time in milliseconds among messages. [10] | `420` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.streaming.messages.count`](/docs/attributes-registry/rpc.md) | int | The total number of streaming messages. [11] | `42` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.streaming.messages.max_interval`](/docs/attributes-registry/rpc.md) | int | The maximum interval time in milliseconds among messages. [12] | `12138` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.streaming.messages.min_interval`](/docs/attributes-registry/rpc.md) | int | The minimum interval time in milliseconds among messages. [13] | `7` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
@@ -232,6 +248,14 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 **[8] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
 **[9] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
+
+**[10] `rpc.streaming.messages.avg_interval`:** **Streaming**: This attribute is only opt_in for server and client streaming RPCs.
+
+**[11] `rpc.streaming.messages.count`:** **Streaming**: This attribute is only opt_in for server and client streaming RPCs.
+
+**[12] `rpc.streaming.messages.max_interval`:** **Streaming**: This attribute is only opt_in for server and client streaming RPCs.
+
+**[13] `rpc.streaming.messages.min_interval`:** **Streaming**: This attribute is only opt_in for server and client streaming RPCs.
 
 ---
 
