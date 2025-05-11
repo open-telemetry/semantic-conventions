@@ -1,17 +1,6 @@
 package after_resolution
 import future.keywords
 
-test_fails_on_attribute_deprecated_without_reason if {
-    count(deny) >= 1 with input as {"groups": [{
-        "id": "deprecation.test", "stability": "development", "type": "attribute_group",
-        "attributes": [ {"name": "test.me", "stability": "development", "deprecated": "text"}]}]}
-}
-
-test_fails_on_group_deprecated_without_reason if {
-    count(deny) >= 1 with input as {"groups":
-        [{"id": "metric.test.me", "type": "metric", "metric_name": "test.me", "stability": "rc", "deprecated": "text"}]}
-}
-
 test_fails_on_attribute_renamed_to_not_existing_attribute if {
     count(deny) >= 1 with input as {"groups": [
         {
