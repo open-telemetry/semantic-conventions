@@ -1,0 +1,16 @@
+# One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
+change_type: enhancement
+
+# The name of the area of concern in the attributes-registry (e.g. http, cloud, db)
+component: gen-ai
+
+# A brief description of the change.
+note: "Introduce `gen_ai.agent.node.type`, `gen_ai.agent.node.id`, and `gen_ai.agent.parent_id` attributes for fine‑grained agent‑graph spans."
+
+# Mandatory: tracking issues related to the change. Use the PR number if no separate issue exists.
+issues: []   # replace with [12345] or similar when you know the issue/PR number
+
+# (Optional) Additional information rendered under the primary note.
+subtext: >
+  Enables node‑level latency, cost, and guard‑rail analysis for frameworks such
+  as CrewAI, LangGraph, and OpenAI Agents by standardising graph‑step metadata.
