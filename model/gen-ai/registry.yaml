@@ -231,6 +231,38 @@ groups:
         type: string
         brief: Free-form description of the GenAI agent provided by the application.
         examples: ["Helps with math problems", "Generates fiction stories"]
+      - id: gen_ai.agent.node.type
+        stability: development
+        type:
+          members:
+            - id: llm_call
+              value: "llm_call"
+              brief: A direct LLM invocation
+              stability: development
+            - id: tool_call
+              value: "tool_call"
+              brief: An external tool/function call
+              stability: development
+            - id: decision
+              value: "decision"
+              brief: A control‑flow / reasoning step
+              stability: development
+            - id: vector_search
+              value: "vector_search"
+              brief: Retrieval / vector‑store query step
+              stability: development
+        brief: Kind of node within the agent execution graph.
+        examples: ["tool_call", "decision", "llm_call"]
+      - id: gen_ai.agent.node.id
+        stability: development
+        type: string
+        brief: Unique identifier of the node in the agent graph.
+        examples: ["step_3a87c9"]
+      - id: gen_ai.agent.parent_id
+        stability: development
+        type: string
+        brief: Identifier of the node's direct parent in the graph (omit for root).
+        examples: ["step_1f62b0"]
       - id: gen_ai.tool.name
         stability: development
         type: string
