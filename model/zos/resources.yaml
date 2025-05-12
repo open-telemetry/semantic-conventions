@@ -1,9 +1,20 @@
 groups:
   - id: resource.zos.software
     type: resource
-    stability: experimental
+    stability: development
     name: zos.software
     brief: A software resource running on a z/OS system.
+    attributes:
+      - ref: zos.sysplex.name
+        requirement_level: required
+      - ref: zos.smf.id
+        requirement_level: required
+      - ref: mainframe.lpar.name
+  - id: service.zos.software
+    type: attribute_group
+    stability: development
+    name: service.zos.software
+    brief: A software service running on a z/OS system.
     attributes:
       - ref: service.name
         note: For z/OS system software, SHOULD be set to an abbreviated name of the z/OS system software.
@@ -21,6 +32,12 @@ groups:
         note: For z/OS system software, SHOULD be set to the identifier representing of a grouping of the z/OS system software instances, e.g., the name of the CICSPLEX.
         examples: 'CICSPLX2'
         requirement_level: required
+  - id: process.zos
+    type: attribute_group
+    stability: development
+    name: process.zos
+    brief: A process running on a z/OS system.
+    attributes:
       - ref: process.command
         brief: 'The command used to launch the process (i.e. the command name). On z/OS, SHOULD be set to the name of the job used to start the z/OS system software.'
         examples: 'CICSSTRT'
@@ -42,8 +59,14 @@ groups:
       - ref: process.runtime.version
         examples: '5.6'
         requirement_level: opt_in
+  - id: os.zos
+    type: attribute_group
+    stability: development
+    name: os.zos
+    brief: The operating system on a z/OS system.
+    attributes:
       - ref: os.type
-        examples: 'z_os'
+        examples: 'zos'
         requirement_level: required
       - ref: os.description
         brief: 'Human readable OS version information, e.g., as reported by command `d iplinfo`.'
@@ -55,11 +78,12 @@ groups:
       - ref: os.version
         brief: 'The version string of the operating system. On z/OS, SHOULD be the release returned by the command `d iplinfo`.'
         examples: '3.1.0'
-      - ref: zos.sysplex
-        requirement_level: required
-      - ref: zos.smf.id
-        requirement_level: required
-      - ref: mainframe.lpar.name
+  - id: host.zos
+    type: attribute_group
+    stability: development
+    name: host.zos
+    brief: The host of a z/OS system.
+    attributes:
       - ref: host.name
         brief: 'Name of the host. On z/OS, SHOULD be the full qualified hostname used to register the z/OS system in DNS.'
         examples: 'SYS1.DOMAIN.COM'
@@ -69,6 +93,3 @@ groups:
         brief: 'Unique host ID. On z/OS, SHOULD be the concatenation of sysplex name and SMFID, separated by a dash'
         examples: 'SYSPLEX1-SYS1'
         requirement_level: opt_in
-      - ref: telemetry.sdk.language
-      - ref: telemetry.sdk.name
-      - ref: telemetry.sdk.version

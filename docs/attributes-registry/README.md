@@ -108,6 +108,6 @@ Currently, the following namespaces exist:
 - [V8js](v8js.md)
 - [VCS](vcs.md)
 - [Webengine](webengine.md)
-- [Zos](zos.md)
+- [zOS](zos.md)
 
 [developers recommendations]: ../general/naming.md#recommendations-for-application-developers
