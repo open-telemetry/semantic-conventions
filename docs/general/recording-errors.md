@@ -47,7 +47,7 @@ ended without any errors.
 When the operation ends with an error, instrumentation:
 
 - SHOULD set the span status code to `Error`
-- SHOULD set the [`error.type`](/docs/attributes-registry/error.md#error-type) attribute
+- SHOULD set the [`error.type`](/docs/registry/attributes/error.md#error-type) attribute
 - SHOULD set the span status description when it has additional information
   about the error which is not expected to contain sensitive details and aligns
   with [Span Status Description][SpanStatus] definition.

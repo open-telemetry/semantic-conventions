@@ -73,8 +73,8 @@ In other cases (when `{http.request.method}` is set to `_OTHER`), `{method}` MUS
 
 The <span id="target-placeholder">`{target}`</span> SHOULD be one of the following:
 
-- [`http.route`](/docs/attributes-registry/http.md) for HTTP Server spans
-- [`url.template`](/docs/attributes-registry/url.md) for HTTP Client spans if enabled and available (![Development](https://img.shields.io/badge/-development-blue))
+- [`http.route`](/docs/registry/attributes/http.md) for HTTP Server spans
+- [`url.template`](/docs/registry/attributes/url.md) for HTTP Client spans if enabled and available (![Development](https://img.shields.io/badge/-development-blue))
 - Other value MAY be provided through custom hooks at span start time or later.
 
 Instrumentation MUST NOT default to using URI path as a `{target}`.

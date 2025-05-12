@@ -82,7 +82,7 @@ Use this event to indicate that visual application component has been clicked, t
 
 ## Attributes
 
-See the [app attributes](/docs/attributes-registry/app.md) registry for all
+See the [app attributes](/docs/registry/attributes/app.md) registry for all
 application-related attributes that may appear on telemetry items.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

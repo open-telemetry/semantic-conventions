@@ -70,11 +70,11 @@ linkTitle: Process
 
 At least one of the following attributes is required:
 
-* [`process.executable.name`](../attributes-registry/process.md)
-* [`process.executable.path`](../attributes-registry/process.md)
-* [`process.command`](../attributes-registry/process.md)
-* [`process.command_line`](../attributes-registry/process.md)
-* [`process.command_args`](../attributes-registry/process.md)
+* [`process.executable.name`](../registry/attributes/process.md)
+* [`process.executable.path`](../registry/attributes/process.md)
+* [`process.command`](../registry/attributes/process.md)
+* [`process.command_line`](../registry/attributes/process.md)
+* [`process.command_args`](../registry/attributes/process.md)
 
 Between `process.command_args` and `process.command_line`, usually `process.command_args` should be preferred.
 On Windows and other systems where the native format of process commands is a single string,
