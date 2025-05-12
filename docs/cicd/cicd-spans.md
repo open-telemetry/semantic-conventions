@@ -42,9 +42,9 @@ For all pipeline runs, a span with kind `SERVER` SHOULD be created corresponding
 The span name SHOULD be `{action} {pipeline}` if there is a (low-cardinality) pipeline name available.
 If the pipeline name is not available or is likely to have high cardinality, then the span name SHOULD be `{action}`.
 
-The `{action}` SHOULD be the [`cicd.pipeline.action.name`](/docs/attributes-registry/cicd.md#cicd-pipeline-action-name).
+The `{action}` SHOULD be the [`cicd.pipeline.action.name`](/docs/registry/attributes/cicd.md#cicd-pipeline-action-name).
 
-The `{pipeline}` SHOULD be the [`cicd.pipeline.name`](/docs/attributes-registry/cicd.md#cicd-pipeline-name).
+The `{pipeline}` SHOULD be the [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md#cicd-pipeline-name).
 
 **Span kind** SHOULD be `SERVER`.
 
