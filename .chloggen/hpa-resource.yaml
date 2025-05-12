@@ -22,6 +22,6 @@ issues: [2008]
 # Use pipe (|) for multiline entries.
 subtext: |
   Adds below attributes to the `k8s.hpa` resource:
-  - `k8s.hpa.scaletarget.kind`
-  - `k8s.hpa.scaletarget.name`
-  - `k8s.hpa.scaletarget.apiversion`
+  - `k8s.hpa.scaletargetref.kind`
+  - `k8s.hpa.scaletargetref.name`
+  - `k8s.hpa.scaletargetref.apiversion`
