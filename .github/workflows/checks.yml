@@ -90,8 +90,8 @@ jobs:
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
     - name: verify registry tables
       run: |
-        make attribute-registry-generation
-        git diff --exit-code './docs/attributes-registry/*.md' || (echo 'Attribute registry markdown is out of date, please run "make attribute-registry-generation" and commit the changes in this PR.' && exit 1)
+        make registry-generation
+        git diff --exit-code './docs/registry/*.md' || (echo 'Attribute registry markdown is out of date, please run "make registry-generation" and commit the changes in this PR.' && exit 1)
 
   schemas-check:
     runs-on: ubuntu-latest
