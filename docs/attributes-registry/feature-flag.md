@@ -25,7 +25,7 @@ This document defines attributes for Feature Flags.
 Because of this, `feature_flag.result.variant` is often the preferred attribute if it is available.
 
 It may be desirable to redact or otherwise limit the size and scope of `feature_flag.result.value` if possible.
-Because the evaluated flag value is unstructured and may be any type, it left to the instrumentation author to determine how best to achieve this.
+Because the evaluated flag value is unstructured and may be any type, it is left to the instrumentation author to determine how best to achieve this.
 
 **[2] `feature_flag.result.variant`:** A semantic identifier, commonly referred to as a variant, provides a means
 for referring to a value without including the value itself. This can

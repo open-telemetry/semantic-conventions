@@ -88,7 +88,7 @@ A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag valu
 Because of this, `feature_flag.result.variant` is often the preferred attribute if it is available.
 
 It may be desirable to redact or otherwise limit the size and scope of `feature_flag.result.value` if possible.
-Because the evaluated flag value is unstructured and may be any type, it left to the instrumentation author to determine how best to achieve this.
+Because the evaluated flag value is unstructured and may be any type, it is left to the instrumentation author to determine how best to achieve this.
 
 **[4] `feature_flag.result.value`:** If and only if feature flag provider does not supply variant or equivalent concept. Otherwise, `feature_flag.result.value` should be treated as opt-in.
 
