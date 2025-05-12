@@ -121,13 +121,20 @@ groups:
             See enum [here](https://github.com/microsoft/ApplicationInsights-JS/blob/main/extensions/applicationinsights-clickanalytics-js/src/Enums.ts) for potential values we could add support for.
           requirement_level: required
           examples: ["click.right"]
-        - id: click.xy
-          type: int[]
+        - id: click.x
+          type: int
           stability: development
-          brief: Click coordinates(in pixels) relative to the entire document with format [x(horizontal),y(vertical)].
+          brief: Click x(horizontal) coordinates(in pixels) relative to the entire document.
           requirement_level: recommended
           examples:
-            - [10, 10]
+            - 10
+        - id: click.y
+          type: int
+          stability: development
+          brief: Click y(vertical) coordinates(in pixels) relative to the entire document.
+          requirement_level: recommended
+          examples:
+            - 10
         - id: tags
           type: string
           stability: development

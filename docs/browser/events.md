@@ -74,7 +74,8 @@ semantic convention tooling supports complex attributes
 
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `click.xy` | int[] | Click coordinates(in pixels) relative to the entire document with format [x(horizontal),y(vertical)]. | `[10, 10]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `click.x` | int | Click x(horizontal) coordinates(in pixels) relative to the entire document. | `10` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `click.y` | int | Click y(vertical) coordinates(in pixels) relative to the entire document. | `10` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `element` | string | Target element tag name and it is obtained via `event.target.tagName`. | `button` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tags` | string | Grab data from data-otel-* attributes in tree. | `id` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `user_action_type` | enum | Type of interaction. See enum [here](https://github.com/microsoft/ApplicationInsights-JS/blob/main/extensions/applicationinsights-clickanalytics-js/src/Enums.ts) for potential values we could add support for. | `click.right` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
