@@ -531,3 +531,4 @@ A ResourceQuota provides constraints that limit aggregate resource consumption p
 The following guidelines are specific to Kubernetes:
 
 - [Service in Kubernetes](../non-normative/k8s-attributes.md#service-attributes)
+- [Additional naming guidance for Kubernetes](../non-normative/k8s-naming.md#kubernetes-naming-guidance)
