@@ -140,7 +140,7 @@ There are two ways HTTP client spans can be implemented in an instrumentation:
 
 **Span name:** refer to the [Span Name](/docs/http/http-spans.md#name) section.
 
-**Span kind** MUST be `SERVER`.
+**Span kind** MUST be `CLIENT`.
 
 **Span status:** refer to the [Span Status](/docs/http/http-spans.md#status) section.
 
