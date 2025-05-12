@@ -6,6 +6,8 @@ groups:
       - id: tls.client.server_name
         type: string
         stability: development
-        deprecated: "Replaced by `server.address`."
+        deprecated:
+          reason: renamed
+          renamed_to: server.address
         brief: "Deprecated, use `server.address` instead."
         examples: ["opentelemetry.io"]

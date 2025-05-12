@@ -1,6 +1,6 @@
 groups:
-  - id: resource.cicd.pipeline
-    type: resource
+  - id: entity.cicd.pipeline
+    type: entity
     stability: development
     name: cicd.pipeline
     brief: >
@@ -8,8 +8,8 @@ groups:
     attributes:
       - ref: cicd.pipeline.name
 
-  - id: resource.cicd.pipeline.run
-    type: resource
+  - id: entity.cicd.pipeline.run
+    type: entity
     stability: development
     name: cicd.pipeline.run
     brief: >
@@ -18,8 +18,8 @@ groups:
       - ref: cicd.pipeline.run.id
       - ref: cicd.pipeline.run.url.full
 
-  - id: resource.cicd.worker
-    type: resource
+  - id: entity.cicd.worker
+    type: entity
     stability: development
     name: cicd.worker
     brief: >

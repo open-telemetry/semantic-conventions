@@ -71,6 +71,23 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.usage.output_tokens
         requirement_level: recommended
+      - ref: gen_ai.conversation.id
+        requirement_level:
+          conditionally_required: when available
+        note: |
+          Instrumentations SHOULD populate conversation id when they have it readily available
+          for a given operation, for example:
+
+          -  when client framework being instrumented manages conversation history
+          (see [LlamaIndex chat store](https://docs.llamaindex.ai/en/stable/module_guides/storing/chat_stores/))
+
+          - when instrumenting GenAI client libraries that maintain conversation on the backend side
+          (see [AWS Bedrock agent sessions](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html),
+          [OpenAI Assistant threads](https://platform.openai.com/docs/api-reference/threads))
+
+          Application developers that manage conversation history MAY add conversation id to GenAI and other
+          spans or logs using custom span or log record processors or hooks provided by instrumentation
+          libraries.
 
   - id: span.gen_ai.inference.client
     type: span
@@ -244,6 +261,9 @@ groups:
       - ref: gen_ai.agent.description
         requirement_level:
           conditionally_required: when available
+      - ref: gen_ai.data_source.id
+        requirement_level:
+          conditionally_required: if applicable.
 
   - id: span.gen_ai.execute_tool.internal
     type: span
@@ -275,3 +295,16 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
+
+  - id: span.aws.bedrock.client
+    extends: span.gen_ai.inference.client
+    stability: development
+    span_kind: client
+    type: span
+    brief: >
+      Describes an AWS Bedrock operation span.
+    attributes:
+      - ref: aws.bedrock.guardrail.id
+        requirement_level: required
+      - ref: aws.bedrock.knowledge_base.id
+        requirement_level: recommended

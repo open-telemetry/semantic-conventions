@@ -1,6 +1,6 @@
 groups:
-  - id: resource.heroku
-    type: resource
+  - id: entity.heroku
+    type: entity
     stability: development
     name: heroku
     brief: >

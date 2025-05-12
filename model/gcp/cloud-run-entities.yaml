@@ -1,6 +1,6 @@
 groups:
-  - id: resource.gcp.cloud_run
-    type: resource
+  - id: entity.gcp.cloud_run
+    type: entity
     stability: development
     name: gcp.cloud_run
     brief: >

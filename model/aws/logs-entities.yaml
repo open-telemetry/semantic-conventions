@@ -1,10 +1,10 @@
 groups:
-  - id: resource.aws.log
-    type: resource
+  - id: entity.aws.log
+    type: entity
     stability: development
     name: aws.log
     brief: >
-      Resources specific to Amazon Web Services.
+      Entities specific to Amazon Web Services.
     attributes:
       - ref: aws.log.group.names
         requirement_level: recommended

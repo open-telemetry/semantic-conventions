@@ -1,6 +1,6 @@
 groups:
-  - id: resource.host
-    type: resource
+  - id: entity.host
+    type: entity
     stability: development
     name: host
     brief: >
@@ -44,8 +44,8 @@ groups:
       - ref: host.mac
         requirement_level: opt_in
 
-  - id: resource.host.cpu
-    type: resource
+  - id: entity.host.cpu
+    type: entity
     stability: development
     name: host.cpu
     brief: >

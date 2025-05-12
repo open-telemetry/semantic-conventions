@@ -1,6 +1,6 @@
 groups:
-  - id: resource.cloud
-    type: resource
+  - id: entity.cloud
+    type: entity
     stability: development
     name: cloud
     brief: >

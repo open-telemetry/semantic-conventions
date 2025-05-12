@@ -88,3 +88,14 @@ groups:
         examples: ["static", "targeting_match", "error", "default"]
         brief: >
           The reason code which shows how a feature flag value was determined.
+      - id: feature_flag.result.value
+        type: any
+        stability: development
+        examples: ["#ff0000", true, 3]
+        brief: The evaluated value of the feature flag.
+        note: |
+          With some feature flag providers, feature flag results can be quite large or contain private or sensitive details.
+          Because of this, `feature_flag.result.variant` is often the preferred attribute if it is available.
+
+          It may be desirable to redact or otherwise limit the size and scope of `feature_flag.result.value` if possible.
+          Because the evaluated flag value is unstructured and may be any type, it is left to the instrumentation author to determine how best to achieve this.

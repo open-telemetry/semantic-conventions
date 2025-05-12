@@ -1,6 +1,6 @@
 groups:
-  - id: resource.gcp.gce
-    type: resource
+  - id: entity.gcp.gce
+    type: entity
     stability: development
     name: gcp.gce
     brief: >
