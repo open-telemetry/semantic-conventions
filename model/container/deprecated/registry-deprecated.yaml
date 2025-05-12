@@ -6,10 +6,12 @@ groups:
     attributes:
       - id: container.labels
         type: template[string]
-        examples: [ 'container.label.app=nginx' ]
+        examples: [ 'nginx' ]
         brief: "Deprecated, use `container.label` instead."
         stability: development
-        deprecated: "Replaced by `container.label`."
+        deprecated:
+          reason: renamed
+          renamed_to: container.label
       - id: container.cpu.state
         brief: "Deprecated, use `cpu.mode` instead."
         type:
@@ -27,5 +29,7 @@ groups:
               brief: "When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows)."
               stability: development
         stability: development
-        deprecated: 'Replaced by `cpu.mode`'
+        deprecated:
+          reason: renamed
+          renamed_to: cpu.mode
         examples: [ "user", "kernel" ]

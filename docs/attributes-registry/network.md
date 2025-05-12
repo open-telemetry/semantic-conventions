@@ -150,7 +150,7 @@ These attributes may be used for any network related operation.
 | <a id="net-sock-host-addr" href="#net-sock-host-addr">`net.sock.host.addr`</a> | string | Deprecated, use `network.local.address`. | `/var/my.sock` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.local.address`. |
 | <a id="net-sock-host-port" href="#net-sock-host-port">`net.sock.host.port`</a> | int | Deprecated, use `network.local.port`. | `8080` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.local.port`. |
 | <a id="net-sock-peer-addr" href="#net-sock-peer-addr">`net.sock.peer.addr`</a> | string | Deprecated, use `network.peer.address`. | `192.168.0.1` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.peer.address`. |
-| <a id="net-sock-peer-name" href="#net-sock-peer-name">`net.sock.peer.name`</a> | string | Deprecated, no replacement at this time. | `/var/my.sock` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. |
+| <a id="net-sock-peer-name" href="#net-sock-peer-name">`net.sock.peer.name`</a> | string | Deprecated, no replacement at this time. | `/var/my.sock` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. No replacement at this time. |
 | <a id="net-sock-peer-port" href="#net-sock-peer-port">`net.sock.peer.port`</a> | int | Deprecated, use `network.peer.port`. | `65531` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.peer.port`. |
 | <a id="net-transport" href="#net-transport">`net.transport`</a> | string | Deprecated, use `network.transport`. | `ip_tcp`; `ip_udp`; `pipe` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.transport`. |
 

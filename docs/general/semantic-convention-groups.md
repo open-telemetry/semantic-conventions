@@ -13,7 +13,7 @@ Each group has a `type` property that could be one of the following:
 - `span` - defines semantic convention for a specific type of span, such as HTTP `CLIENT`
 - `metric` - defines semantic convention for a specific metric, such as HTTP client request duration
 - `event` - defines semantic conventions for a specific event, such as exception.
-- `resource` - defines semantic conventions for a specific entity the telemetry is collected within,
+- `entity` - defines semantic conventions for a specific entity the telemetry is collected within,
   such as `service`.
 
 Groups that have `attribute_group` type do not describe semantic convention and

@@ -17,6 +17,8 @@ groups:
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if the pipeline run failed.
+    entity_associations:
+      - cicd.pipeline
   - id: metric.cicd.pipeline.run.active
     type: metric
     metric_name: cicd.pipeline.run.active
@@ -29,6 +31,8 @@ groups:
         requirement_level: required
       - ref: cicd.pipeline.run.state
         requirement_level: required
+    entity_associations:
+      - cicd.pipeline
   - id: metric.cicd.worker.count
     type: metric
     metric_name: cicd.worker.count
@@ -54,6 +58,8 @@ groups:
         requirement_level: required
       - ref: error.type
         requirement_level: required
+    entity_associations:
+      - cicd.pipeline
   - id: metric.cicd.system.errors
     type: metric
     metric_name: cicd.system.errors
