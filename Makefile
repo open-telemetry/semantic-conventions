@@ -195,7 +195,7 @@ table-generation:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		--attribute-registry-base-url=/docs/attributes-registry \
+		--attribute-registry-base-url=/docs/registry/attributes \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--future \
@@ -213,7 +213,7 @@ attribute-registry-generation:
 		  --registry=/home/weaver/source \
 		  --templates=/home/weaver/templates \
 		  markdown \
-		  /home/weaver/target/attributes-registry/
+		  /home/weaver/target/registry/
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
 .PHONY: table-check
@@ -225,7 +225,7 @@ table-check:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target,readonly' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		--attribute-registry-base-url=/docs/attributes-registry \
+		--attribute-registry-base-url=/docs/registry/attributes \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--dry-run \
