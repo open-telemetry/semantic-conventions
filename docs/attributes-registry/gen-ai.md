@@ -17,6 +17,9 @@ This document defines the attributes used to describe telemetry in the context o
 | <a id="gen-ai-agent-description" href="#gen-ai-agent-description">`gen_ai.agent.description`</a> | string | Free-form description of the GenAI agent provided by the application. | `Helps with math problems`; `Generates fiction stories` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-agent-id" href="#gen-ai-agent-id">`gen_ai.agent.id`</a> | string | The unique identifier of the GenAI agent. | `asst_5j66UpCpwteGg4YSxUnt7lPY` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-agent-name" href="#gen-ai-agent-name">`gen_ai.agent.name`</a> | string | Human-readable name of the GenAI agent provided by the application. | `Math Tutor`; `Fiction Writer` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gen-ai-agent-node-id" href="#gen-ai-agent-node-id">`gen_ai.agent.node.id`</a> | string | Unique identifier of the node in the agent graph. | `step_3a87c9` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gen-ai-agent-node-type" href="#gen-ai-agent-node-type">`gen_ai.agent.node.type`</a> | string | Kind of node within the agent execution graph. | `tool_call`; `decision`; `llm_call` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gen-ai-agent-parent-id" href="#gen-ai-agent-parent-id">`gen_ai.agent.parent_id`</a> | string | Identifier of the node's direct parent in the graph (omit for root). | `step_1f62b0` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-conversation-id" href="#gen-ai-conversation-id">`gen_ai.conversation.id`</a> | string | The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation. | `conv_5j66UpCpwteGg4YSxUnt7lPY` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-data-source-id" href="#gen-ai-data-source-id">`gen_ai.data_source.id`</a> | string | The data source identifier. [1] | `H7STPQYOND` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-operation-name" href="#gen-ai-operation-name">`gen_ai.operation.name`</a> | string | The name of the operation being performed. [2] | `chat`; `generate_content`; `text_completion` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -71,6 +74,17 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 Function: A tool executed on the client-side, where the agent generates parameters for a predefined function, and the client executes the logic.
   Client-side operations are actions taken on the user's end or within the client application.
 Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
+
+---
+
+`gen_ai.agent.node.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `decision` | A control‑flow / reasoning step | ![Development](https://img.shields.io/badge/-development-blue) |
+| `llm_call` | A direct LLM invocation | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tool_call` | An external tool/function call | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vector_search` | Retrieval / vector‑store query step | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
