@@ -7,6 +7,7 @@
 - [GCP Client Attributes](#gcp-client-attributes)
 - [GCP - Google Cloud Run Attributes](#gcp---google-cloud-run-attributes)
 - [GCP - Google Compute Engine (GCE) Attributes](#gcp---google-compute-engine-gce-attributes)
+- [Generative AI Attributes](#generative-ai-attributes)
 
 ## GCP - AppHub Attributes
 
@@ -103,3 +104,16 @@ This document defines attributes for Google Compute Engine (GCE).
 |---|---|---|---|---|
 | <a id="gcp-gce-instance-hostname" href="#gcp-gce-instance-hostname">`gcp.gce.instance.hostname`</a> | string | The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm). | `my-host1234.example.com`; `sample-vm.us-west1-b.c.my-project.internal` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gcp-gce-instance-name" href="#gcp-gce-instance-name">`gcp.gce.instance.name`</a> | string | The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names). | `instance-1`; `my-vm-name` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Generative AI Attributes
+
+This documents defines attributes for Google generative AI systems.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="gcp-gen-ai-operation-config" href="#gcp-gen-ai-operation-config">`gcp.gen_ai.operation.config`</a> | string | Operation-specific request configuration options for Google generative AI operations recorded as a JSON string. [6] | `{"audioTimestamp":true}`; `{"safetySettings":[{"threshold":"OFF"}]}`; `{"thinkingConfig":{"includeThoughts":true},"routingConfig":{"autoMode":{"modelRoutingPreference":"BALANCED"}}}` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[6] `gcp.gen_ai.operation.config`:** The data structure is dependent on the value of "gen_ai.operation.name" and should correspond with the "*Config" data structure in the Google Gen AI SDK. The Google Gen AI SDK provides these "*Config" data structures in multiple languages, generated from a common source of truth. See "google.genai.types.*" in <https://github.com/googleapis/python-genai> and  `com.google.genai.types.*` in <https://github.com/googleapis/java-genai> for examples.
+The JSON dictionary SHOULD include only an allowlisted subset of the request configuration. The contents also SHOULD NOT overlap with configuration that has already been captured elsewhere through standard Semantic Conventions.
+Because the data structure is encoded in JSON format, the key names should be specified using "camelCase". More generally, the names should align with the expectations of proto3 JSON encoding <https://protobuf.dev/programming-guides/proto3/#json>; for example, fields that represent a timestamp in the local language should get mapped to the proto3 JSON encoding of "google.protobuf.Timestamp" (i.e. RFC 3339 date format) per the specification given in <https://protobuf.dev/reference/protobuf/google.protobuf/#timestamp>. 
+Instrumentations SHOULD NOT populate this attribute by default. Rather, instrumentations SHOULD provide an opt-in mechanism through which the config information can be dumped into this field as a tool for debugging and as an escape hatch for the subset of configuration that is not yet representable using standardized conventions.
