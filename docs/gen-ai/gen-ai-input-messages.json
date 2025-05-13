@@ -1,0 +1,148 @@
+{
+    "$defs": {
+        "AssistantMessage": {
+            "properties": {
+                "role": {
+                    "const": "assistant",
+                    "type": "string"
+                },
+                "content": {
+                    "anyOf": [
+                        {},
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "tool_calls": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/ToolCall"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "role",
+                "content",
+                "tool_calls"
+            ],
+            "type": "object"
+        },
+        "FunctionCall": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "arguments": {
+                    "anyOf": [
+                        {},
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "arguments"
+            ],
+            "type": "object"
+        },
+        "ToolCall": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "const": "function",
+                    "type": "string"
+                },
+                "function": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/FunctionCall"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "type",
+                "function"
+            ],
+            "type": "object"
+        },
+        "ToolMessage": {
+            "properties": {
+                "role": {
+                    "const": "tool",
+                    "type": "string"
+                },
+                "content": {},
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "role",
+                "content",
+                "id"
+            ],
+            "type": "object"
+        },
+        "UserMessage": {
+            "properties": {
+                "role": {
+                    "const": "user",
+                    "type": "string"
+                },
+                "content": {}
+            },
+            "required": [
+                "role",
+                "content"
+            ],
+            "type": "object"
+        }
+    },
+    "properties": {
+        "messages": {
+            "items": {
+                "discriminator": {
+                    "mapping": {
+                        "assistant": "#/$defs/AssistantMessage",
+                        "tool": "#/$defs/ToolMessage",
+                        "user": "#/$defs/UserMessage"
+                    },
+                    "propertyName": "role"
+                },
+                "oneOf": [
+                    {
+                        "$ref": "#/$defs/UserMessage"
+                    },
+                    {
+                        "$ref": "#/$defs/AssistantMessage"
+                    },
+                    {
+                        "$ref": "#/$defs/ToolMessage"
+                    }
+                ]
+            },
+            "type": "array"
+        }
+    },
+    "required": [
+        "messages"
+    ],
+    "type": "object"
+}
