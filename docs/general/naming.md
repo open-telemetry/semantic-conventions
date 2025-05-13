@@ -306,8 +306,6 @@ be confusing in delta backends.
 
 **Status**: [Development][DocumentStatus]
 
-**Status**: [Experimental][DocumentStatus]
-
 - **limit** - an instrument that measures the constant, known total amount of
 something should be called `entity.limit`. For example, `system.memory.limit`
 for the total amount of memory on a system.
