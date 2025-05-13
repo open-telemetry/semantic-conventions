@@ -7,7 +7,9 @@ groups:
       - id: vcs.repository.ref.name
         type: string
         stability: development
-        deprecated: 'Deprecated, use `vcs.ref.head.name` instead.'
+        deprecated:
+          reason: renamed
+          renamed_to: vcs.ref.head.name
         brief: >
           Deprecated, use `vcs.ref.head.name` instead.
         examples: ["my-feature-branch", "tag-1-test"]
@@ -23,14 +25,18 @@ groups:
               brief: "[tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)"
               stability: development
         stability: development
-        deprecated: 'Deprecated, use `vcs.ref.head.type` instead.'
+        deprecated:
+          reason: renamed
+          renamed_to: vcs.ref.head.type
         brief: >
           Deprecated, use `vcs.ref.head.type` instead.
         examples: ["branch", "tag"]
       - id: vcs.repository.ref.revision
         type: string
         stability: development
-        deprecated: 'Deprecated, use `vcs.ref.head.revision` instead.'
+        deprecated:
+          reason: renamed
+          renamed_to: vcs.ref.head.revision
         brief: >
           Deprecated, use `vcs.ref.head.revision` instead.
         examples:
@@ -43,7 +49,9 @@ groups:
       - id: vcs.repository.change.title
         type: string
         stability: development
-        deprecated: 'Deprecated, use `vcs.change.title` instead.'
+        deprecated:
+          reason: renamed
+          renamed_to: vcs.change.title
         brief: >
           Deprecated, use `vcs.change.title` instead.
         examples:
@@ -55,7 +63,9 @@ groups:
       - id: vcs.repository.change.id
         type: string
         stability: development
-        deprecated: 'Deprecated, use `vcs.change.id` instead.'
+        deprecated:
+          reason: renamed
+          renamed_to: vcs.change.id
         brief: >
           Deprecated, use `vcs.change.id` instead.
         examples: ["123"]

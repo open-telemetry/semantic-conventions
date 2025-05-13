@@ -7,21 +7,22 @@ groups:
     attributes:
       - id: db.collection.name
         type: string
-        stability: release_candidate
+        stability: stable
         brief: The name of a collection (table, container) within the database.
         note: |
           It is RECOMMENDED to capture the value as provided by the application
           without attempting to do any case normalization.
 
           The collection name SHOULD NOT be extracted from `db.query.text`,
-          when the database system supports cross-table queries in non-batch operations.
+          when the database system supports query text with multiple collections
+          in non-batch operations.
 
           For batch operations, if the individual operations are known to have the same
           collection name then that collection name SHOULD be used.
         examples: ["public.users", "customers"]
       - id: db.namespace
         type: string
-        stability: release_candidate
+        stability: stable
         brief: >
           The name of the database, fully qualified within the server address and port.
         note: >
@@ -37,7 +38,7 @@ groups:
         examples: ["customers", "test.users"]
       - id: db.operation.name
         type: string
-        stability: release_candidate
+        stability: stable
         brief: >
           The name of the operation or command being executed.
         note: |
@@ -45,7 +46,8 @@ groups:
           without attempting to do any case normalization.
 
           The operation name SHOULD NOT be extracted from `db.query.text`,
-          when the database system supports cross-table queries in non-batch operations.
+          when the database system supports query text with multiple operations
+          in non-batch operations.
 
           If spaces can occur in the operation name, multiple consecutive spaces
           SHOULD be normalized to a single space.
@@ -57,7 +59,7 @@ groups:
         examples: ["findAndModify", "HMSET", "SELECT"]
       - id: db.query.text
         type: string
-        stability: release_candidate
+        stability: stable
         brief: >
           The database query being executed.
         note: >
@@ -67,6 +69,7 @@ groups:
           then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated
           with separator `; ` or some other database system specific separator if more applicable.
 
+          Parameterized query text SHOULD NOT be sanitized.
           Even though parameterized query text can potentially have sensitive data, by using a parameterized query
           the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit
           to observability of capturing the static part of the query text by default outweighs the risk.
@@ -77,11 +80,11 @@ groups:
           ]
       - id: db.query.parameter
         type: template[string]
-        stability: release_candidate
+        stability: development
         brief: >
           A database query parameter, with `<key>` being the parameter name,
           and the attribute value being a string representation of the parameter value.
-        note: >
+        note: |
           If a query parameter has no name and instead is referenced only by index,
           then `<key>` SHOULD be the 0-based index.
 
@@ -89,21 +92,30 @@ groups:
           up with the parameterized placeholders present in `db.query.text`.
 
           `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
+
+          Examples:
+
+          - For a query `SELECT * FROM users where username =  %s` with the parameter `"jdoe"`,
+            the attribute `db.query.parameter.0` SHOULD be set to `"jdoe"`.
+
+          - For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
+            `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
+
         examples: ["someval", "55"]
       - id: db.query.summary
         type: string
-        stability: release_candidate
+        stability: stable
         brief: >
-          Low cardinality representation of a database query text.
-        note: >
-          `db.query.summary` provides static summary of the query text. It describes
-          a class of database queries and is useful as a grouping key,
-          especially when analyzing telemetry for database calls involving complex queries.
+          Low cardinality summary of a database query.
+        note: |
+          The query summary describes a class of database queries and is useful
+          as a grouping key, especially when analyzing telemetry for database
+          calls involving complex queries.
 
           Summary may be available to the instrumentation through
           instrumentation hooks or other means. If it is not available, instrumentations
           that support query parsing SHOULD generate a summary following
-          [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query-text)
+          [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
           section.
         examples:
           [
@@ -113,7 +125,7 @@ groups:
           ]
       - id: db.stored_procedure.name
         type: string
-        stability: release_candidate
+        stability: stable
         brief: The name of a stored procedure within the database.
         note: |
           It is RECOMMENDED to capture the value as provided by the application
@@ -128,13 +140,16 @@ groups:
         brief: >
           A database operation parameter, with `<key>` being the parameter name,
           and the attribute value being a string representation of the parameter value.
-        note: >
+        note: |
+          For example, a client-side maximum number of rows to read from the database
+          MAY be recorded as the `db.operation.parameter.max_rows` attribute.
+
           `db.query.text` parameters SHOULD be captured using `db.query.parameter.<key>`
           instead of `db.operation.parameter.<key>`.
         examples: ["someval", "55"]
       - id: db.operation.batch.size
         type: int
-        stability: release_candidate
+        stability: stable
         brief: The number of queries included in a batch operation.
         note: >
           Operations are only considered batches when they contain two or more operations,
@@ -142,7 +157,7 @@ groups:
         examples: [2, 3, 4]
       - id: db.response.status_code
         type: string
-        stability: release_candidate
+        stability: stable
         brief: Database response status code.
         note: >
           The status code returned by the database. Usually it represents an error code,
@@ -272,7 +287,7 @@ groups:
             - id: mariadb
               value: "mariadb"
               brief: "[MariaDB](https://mariadb.org/)"
-              stability: release_candidate
+              stability: stable
             - id: memcached
               value: "memcached"
               brief: "[Memcached](https://memcached.org/)"
@@ -284,11 +299,11 @@ groups:
             - id: microsoft.sql_server
               value: "microsoft.sql_server"
               brief: "[Microsoft SQL Server](https://www.microsoft.com/sql-server)"
-              stability: release_candidate
+              stability: stable
             - id: mysql
               value: "mysql"
               brief: "[MySQL](https://www.mysql.com/)"
-              stability: release_candidate
+              stability: stable
             - id: neo4j
               value: "neo4j"
               brief: "[Neo4j](https://neo4j.com/)"
@@ -304,7 +319,7 @@ groups:
             - id: postgresql
               value: "postgresql"
               brief: "[PostgreSQL](https://www.postgresql.org/)"
-              stability: release_candidate
+              stability: stable
             - id: redis
               value: "redis"
               brief: "[Redis](https://redis.io/)"
@@ -329,7 +344,7 @@ groups:
               value: "trino"
               brief: "[Trino](https://trino.io/)"
               stability: development
-        stability: release_candidate
+        stability: stable
       - id: db.client.connection.state
         stability: development
         type:
