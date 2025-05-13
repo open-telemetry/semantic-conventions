@@ -1,0 +1,17 @@
+groups:
+  - id: registry.zos
+    type: attribute_group
+    display_name: z/OS attributes
+    brief: >
+      This document defines attributes of a z/OS resource.
+    attributes:
+      - id: zos.smf.id
+        type: string
+        stability: development
+        brief: "The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis."
+        examples: ["SYS1"]
+      - id: zos.sysplex.name
+        type: string
+        stability: development
+        brief: "The name of the SYSPLEX to which the z/OS system belongs too."
+        examples: ["SYSPLEX1"]
