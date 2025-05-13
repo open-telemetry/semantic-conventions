@@ -84,7 +84,7 @@ When defining a new attribute:
       rather than combining them into a single array, as they represent distinct concepts.
   - Use the template type to define attributes with dynamic names (only the last segment of the name should be dynamic).
     This is useful for capturing user-defined key-value pairs, such as HTTP headers.
-  - Represent complex values as a set of flat attributes whenever possible. <!-- This may change, check out https://github.com/open-telemetry/semantic-conventions/issues/1669 to monitor the progress -->
+  - Represent complex values as a set of flat attributes whenever possible.
     - Complex or structured attributes (not listed in the
       [set of standard attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.44.0/specification/common/README.md#attribute))
       are supported on events and logs only. <!-- This may change, check out https://github.com/open-telemetry/opentelemetry-specification/pull/4485 to monitor the progress -->
