@@ -4,7 +4,7 @@ linkTitle: K8s naming
 
 # Kubernetes Naming Guidance
 
-Kubernetes users are accustomed to the single-word resource names used in the Kubernetes API (e.g., `replicaset`, `statefulset`, `daemonset`, `replicationcontroller`, `resourcequota`). Using these same names in telemetry data makes it easier for users to map the data to familiar Kubernetes concepts and commands (e.g., `kubectl get replicaset`). 
+Kubernetes users are accustomed to the single-word resource names used in the Kubernetes API (e.g., `replicaset`, `statefulset`, `daemonset`, `replicationcontroller`, `resourcequota`). Using these same names in telemetry data makes it easier for users to map the data to familiar Kubernetes concepts and commands (e.g., `kubectl get replicaset`).
 
 This naming style avoids ambiguity, and reduces the need to decide when to split or join words with underscores, which can lead to inconsistencies.
 
