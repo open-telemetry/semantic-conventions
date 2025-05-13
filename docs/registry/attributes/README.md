@@ -1,6 +1,4 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Registry
-weight: -2
 auto_gen: below
 --->
 
@@ -108,4 +106,4 @@ Currently, the following namespaces exist:
 - [VCS](vcs.md)
 - [Webengine](webengine.md)
 
-[developers recommendations]: ../general/naming.md#recommendations-for-application-developers
+[developers recommendations]: ../../general/naming.md#recommendations-for-application-developers
