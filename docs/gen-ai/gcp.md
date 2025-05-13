@@ -32,11 +32,12 @@ Semantic Conventions for model inference spans when calling Google systems.
 | [`gen_ai.operation.name`](/docs/attributes-registry/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gcp.client.service`](/docs/attributes-registry/gcp.md) | string | Identifies the Google Cloud service for which the official client library is intended. [3] | `appengine`; `run`; `firestore`; `alloydb`; `spanner` | `Conditionally Required` If available | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.output.type`](/docs/attributes-registry/gen-ai.md) | string | Represents the content type requested by the client. [4] | `text`; `json`; `image` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.conversation.id`](/docs/attributes-registry/gen-ai.md) | string | The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation. [4] | `conv_5j66UpCpwteGg4YSxUnt7lPY` | `Conditionally Required` when available | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.output.type`](/docs/attributes-registry/gen-ai.md) | string | Represents the content type requested by the client. [5] | `text`; `json`; `image` | `Conditionally Required` [6] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.choice.count`](/docs/attributes-registry/gen-ai.md) | int | The target number of candidate completions to return. | `3` | `Conditionally Required` if available, in the request, and !=1 | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the GenAI model a request is being made to. [6] | `gpt-4` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.request.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the GenAI model a request is being made to. [7] | `gpt-4` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.seed`](/docs/attributes-registry/gen-ai.md) | int | Requests with same seed value more likely to return same result. | `100` | `Conditionally Required` if applicable and if the request includes a seed | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | GenAI server port. [7] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/attributes-registry/server.md) | int | GenAI server port. [8] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.request.frequency_penalty`](/docs/attributes-registry/gen-ai.md) | double | The frequency penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.max_tokens`](/docs/attributes-registry/gen-ai.md) | int | The maximum number of tokens the model generates for a request. | `100` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.presence_penalty`](/docs/attributes-registry/gen-ai.md) | double | The presence penalty setting for the GenAI request. | `0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -45,12 +46,11 @@ Semantic Conventions for model inference spans when calling Google systems.
 | [`gen_ai.request.top_p`](/docs/attributes-registry/gen-ai.md) | double | The top_p sampling setting for the GenAI request. | `1.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.response.finish_reasons`](/docs/attributes-registry/gen-ai.md) | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `["stop"]`; `["stop", "length"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.response.id`](/docs/attributes-registry/gen-ai.md) | string | The unique identifier for the completion. | `chatcmpl-123` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.response.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the model that generated the response. [8] | `gpt-4-0613` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.response.model`](/docs/attributes-registry/gen-ai.md) | string | The name of the model that generated the response. [9] | `gpt-4-0613` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.usage.input_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of tokens used in the GenAI input (prompt). | `100` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.usage.output_tokens`](/docs/attributes-registry/gen-ai.md) | int | The number of tokens used in the GenAI response (completion). | `180` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | GenAI server address. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`gcp.gen_ai.operation.config`](/docs/attributes-registry/gcp.md) | string | Operation-specific request configuration options for Google generative AI operations.
-The string value should be a valid JSON dictionary. The JSON dictionary should include only an allowlisted subset of the request configuration that does not overlap with configuration that has already been captured elsewhere through standard Semantic Conventions. [10] | `{"audioTimestamp":true}`; `{"safetySettings":[{"threshold":"OFF"}]}`; `{"thinkingConfig":{"includeThoughts":true},"routingConfig":{"autoMode":{"modelRoutingPreference":"BALANCED"}}}` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.address`](/docs/attributes-registry/server.md) | string | GenAI server address. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`gcp.gen_ai.operation.config`](/docs/attributes-registry/gcp.md) | string | Operation-specific request configuration options for Google generative AI operations recorded as a JSON string. [11] | `{"audioTimestamp":true}`; `{"safetySettings":[{"threshold":"OFF"}]}`; `{"thinkingConfig":{"includeThoughts":true},"routingConfig":{"autoMode":{"modelRoutingPreference":"BALANCED"}}}` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
@@ -60,23 +60,38 @@ Instrumentations SHOULD document the list of errors they report.
 
 **[3] `gcp.client.service`:** Intended to be a stable identifier for Google Cloud client libraries that is uniform across implementation languages. The value should be derived from the canonical service domain for the service; for example, 'foo.googleapis.com' should result in a value of 'foo'.
 
-**[4] `gen_ai.output.type`:** This attribute SHOULD be used when the client requests output of a specific type. The model may return zero or more outputs of this type.
+**[4] `gen_ai.conversation.id`:** Instrumentations SHOULD populate conversation id when they have it readily available
+for a given operation, for example:
+
+-  when client framework being instrumented manages conversation history
+(see [LlamaIndex chat store](https://docs.llamaindex.ai/en/stable/module_guides/storing/chat_stores/))
+
+- when instrumenting GenAI client libraries that maintain conversation on the backend side
+(see [AWS Bedrock agent sessions](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html),
+[OpenAI Assistant threads](https://platform.openai.com/docs/api-reference/threads))
+
+Application developers that manage conversation history MAY add conversation id to GenAI and other
+spans or logs using custom span or log record processors or hooks provided by instrumentation
+libraries.
+
+**[5] `gen_ai.output.type`:** This attribute SHOULD be used when the client requests output of a specific type. The model may return zero or more outputs of this type.
 This attribute specifies the output modality and not the actual output format. For example, if an image is requested, the actual output could be a URL pointing to an image file.
 Additional output format details may be recorded in the future in the `gen_ai.output.{type}.*` attributes.
 
-**[5] `gen_ai.output.type`:** when applicable and if the request includes an output format.
+**[6] `gen_ai.output.type`:** when applicable and if the request includes an output format.
 
-**[6] `gen_ai.request.model`:** The name of the GenAI model a request is being made to. If the model is supplied by a vendor, then the value must be the exact name of the model requested. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+**[7] `gen_ai.request.model`:** The name of the GenAI model a request is being made to. If the model is supplied by a vendor, then the value must be the exact name of the model requested. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
-**[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[8] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[8] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+**[9] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
-**[9] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[10] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[10] `gcp.gen_ai.operation.config`:** The data structure is dependent on the value of "gen_ai.operation.name" and should correspond with the "*Config" data structure in the Google Gen AI SDK. The Google Gen AI SDK provides these "*Config" data structures in multiple languages, generated from a common source of truth. See "google.genai.types.*" in <https://github.com/googleapis/python-genai> and  `com.google.genai.types.*` in <https://github.com/googleapis/java-genai> for examples.
+**[11] `gcp.gen_ai.operation.config`:** The data structure is dependent on the value of "gen_ai.operation.name" and should correspond with the "*Config" data structure in the Google Gen AI SDK. The Google Gen AI SDK provides these "*Config" data structures in multiple languages, generated from a common source of truth. See "google.genai.types.*" in <https://github.com/googleapis/python-genai> and  `com.google.genai.types.*` in <https://github.com/googleapis/java-genai> for examples.
+The JSON dictionary SHOULD include only an allowlisted subset of the request configuration. The contents also SHOULD NOT overlap with configuration that has already been captured elsewhere through standard Semantic Conventions.
 Because the data structure is encoded in JSON format, the key names should be specified using "camelCase". More generally, the names should align with the expectations of proto3 JSON encoding <https://protobuf.dev/programming-guides/proto3/#json>; for example, fields that represent a timestamp in the local language should get mapped to the proto3 JSON encoding of "google.protobuf.Timestamp" (i.e. RFC 3339 date format) per the specification given in <https://protobuf.dev/reference/protobuf/google.protobuf/#timestamp>. 
-Instrumentations should not populate this attribute by default. Rather, instrumentations should provide an opt-in mechanism through which the config information can be dumped into this field as a tool for debugging and as an escape hatch for the subset of configuration that is not yet representable using standardized conventions.
+Instrumentations SHOULD NOT populate this attribute by default. Rather, instrumentations SHOULD provide an opt-in mechanism through which the config information can be dumped into this field as a tool for debugging and as an escape hatch for the subset of configuration that is not yet representable using standardized conventions.
 
 ---
 
@@ -97,6 +112,7 @@ Instrumentations should not populate this attribute by default. Rather, instrume
 | `embeddings` | Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `execute_tool` | Execute a tool | ![Development](https://img.shields.io/badge/-development-blue) |
 | `generate_content` | Multimodal content generation operation such as [Gemini Generate Content](https://ai.google.dev/api/generate-content) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `invoke_agent` | Invoke GenAI agent | ![Development](https://img.shields.io/badge/-development-blue) |
 | `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---

@@ -206,12 +206,7 @@ groups:
       - id: gcp.gen_ai.operation.config
         stability: development
         type: string
-        brief: >
-          Operation-specific request configuration options for Google generative AI operations.
-
-          The string value should be a valid JSON dictionary. The JSON dictionary should include
-          only an allowlisted subset of the request configuration that does not overlap with
-          configuration that has already been captured elsewhere through standard Semantic Conventions.
+        brief: Operation-specific request configuration options for Google generative AI operations recorded as a JSON string.
         examples:
          - '{"audioTimestamp":true}'
          - '{"safetySettings":[{"threshold":"OFF"}]}'
@@ -223,6 +218,10 @@ groups:
           See "google.genai.types.*" in <https://github.com/googleapis/python-genai> and 
           `com.google.genai.types.*` in <https://github.com/googleapis/java-genai> for examples.
 
+          The JSON dictionary SHOULD include only an allowlisted subset of the request configuration. The
+          contents also SHOULD NOT overlap with configuration that has already been captured elsewhere through
+          standard Semantic Conventions.
+
           Because the data structure is encoded in JSON format, the key names should be specified
           using "camelCase". More generally, the names should align with the expectations of proto3
           JSON encoding <https://protobuf.dev/programming-guides/proto3/#json>; for example, fields
@@ -230,7 +229,7 @@ groups:
           encoding of "google.protobuf.Timestamp" (i.e. RFC 3339 date format) per the specification
           given in <https://protobuf.dev/reference/protobuf/google.protobuf/#timestamp>. 
 
-          Instrumentations should not populate this attribute by default. Rather, instrumentations
-          should provide an opt-in mechanism through which the config information can be dumped
+          Instrumentations SHOULD NOT populate this attribute by default. Rather, instrumentations
+          SHOULD provide an opt-in mechanism through which the config information can be dumped
           into this field as a tool for debugging and as an escape hatch for the subset of
           configuration that is not yet representable using standardized conventions.
