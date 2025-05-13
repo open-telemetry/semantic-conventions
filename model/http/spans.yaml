@@ -141,3 +141,19 @@ groups:
         requirement_level: opt_in
       - ref: user_agent.synthetic.type
         requirement_level: opt_in
+      - ref: http.sse.events.count
+        requirement_level: opt_in
+        note: >
+          **Streaming**: This attribute is only opt_in for SSE.
+      - ref: http.sse.events.max_interval
+        requirement_level: opt_in
+        note: >
+          **Streaming**: This attribute is only opt_in for SSE.
+      - ref: http.sse.events.min_interval
+        requirement_level: opt_in
+        note: >
+          **Streaming**: This attribute is only opt_in for SSE.
+      - ref: http.sse.events.avg_interval
+        requirement_level: opt_in
+        note: >
+          **Streaming**: This attribute is only opt_in for SSE.
