@@ -6,17 +6,6 @@ groups:
       - ref: aspnetcore.rate_limiting.policy
         requirement_level:
           conditionally_required: if the matched endpoint for the request had a rate-limiting policy.
-  - id: aspnetcore.components.metrics.attributes
-    type: attribute_group
-    brief: Blazor metrics attributes
-
-  - id: aspnetcore.components.lifecycle.metrics.attributes
-    type: attribute_group
-    brief: Blazor metrics attributes
-
-  - id: aspnetcore.components.circuits.metrics.attributes
-    type: attribute_group
-    brief: Blazor circuits metrics attributes
 
   # routing
   - id: metric.aspnetcore.routing.match_attempts
@@ -134,25 +123,25 @@ groups:
     brief: Total number of route changes.
     instrument: counter
     unit: "{route}"
-    note: |
+    note: >
       Meter name: `Microsoft.AspNetCore.Components`; Added in: ASP.NET Core 10.0
-    extends: aspnetcore.components.metrics.attributes
+      More about [Blazor routing](https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/routing)
     attributes:
       - ref: aspnetcore.components.type
         requirement_level: required
       - ref: aspnetcore.components.route
         requirement_level: required
 
-  - id: metric.aspnetcore.components.event.duration
+  - id: metric.aspnetcore.components.event_handler
     type: metric
-    metric_name: aspnetcore.components.event.duration
+    metric_name: aspnetcore.components.event_handler
     stability: development
-    brief: Duration of processing browser event.
+    brief: Duration of processing browser event handler.
     instrument: histogram
     unit: "s"
-    note: |
+    note: >
       Meter name: `Microsoft.AspNetCore.Components`; Added in: ASP.NET Core 10.0
-    extends: aspnetcore.components.metrics.attributes
+      More about [Blazor event handling](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/event-handling)
     attributes:
       - ref: aspnetcore.components.type
         requirement_level: required
@@ -160,131 +149,80 @@ groups:
         requirement_level: required
       - ref: aspnetcore.components.attribute.name
         requirement_level: required
-
-  - id: metric.aspnetcore.components.event.exceptions
-    type: metric
-    metric_name: aspnetcore.components.event.exceptions
-    stability: development
-    brief: Total number of exceptions during browser event processing.
-    instrument: counter
-    unit: "{exception}"
-    note: |
-      Meter name: `Microsoft.AspNetCore.Components`; Added in: ASP.NET Core 10.0
-    extends: aspnetcore.components.metrics.attributes
-    attributes:
-      - ref: aspnetcore.components.type
-        requirement_level: required
-      - ref: aspnetcore.components.attribute.name
-        requirement_level: required
       - ref: error.type
         brief: The full name of exception type.
         examples: ['System.OperationCanceledException', 'Contoso.MyException']
-        requirement_level: required
+        requirement_level:
+          conditionally_required: If handler has ended with an error.
 
-  - id: metric.aspnetcore.components.update_parameters.duration
+  - id: metric.aspnetcore.components.update_parameters
     type: metric
-    metric_name: aspnetcore.components.update_parameters.duration
+    metric_name: aspnetcore.components.update_parameters
     stability: development
     brief: Duration of processing component parameters.
     instrument: histogram
     unit: "s"
-    note: |
+    note: >
       Meter name: `Microsoft.AspNetCore.Components.Lifecycle`; Added in: ASP.NET Core 10.0
-    extends: aspnetcore.components.lifecycle.metrics.attributes
-    attributes:
-      - ref: aspnetcore.components.type
-        requirement_level: required
-
-  - id: metric.aspnetcore.components.update_parameters.exceptions
-    type: metric
-    metric_name: aspnetcore.components.update_parameters.exceptions
-    stability: development
-    brief: Total number of exceptions during processing component parameters.
-    instrument: counter
-    unit: "{exception}"
-    note: |
-      Meter name: `Microsoft.AspNetCore.Components.Lifecycle`; Added in: ASP.NET Core 10.0
-    extends: aspnetcore.components.lifecycle.metrics.attributes
+      More about [Blazor parameters](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/cascading-values-and-parameters)
     attributes:
       - ref: aspnetcore.components.type
         requirement_level: required
       - ref: error.type
         brief: The full name of exception type.
         examples: ['System.OperationCanceledException', 'Contoso.MyException']
-        requirement_level: required
+        requirement_level:
+          conditionally_required: If handler has ended with an error.
 
-  - id: metric.aspnetcore.components.rendering.batch.duration
+  - id: metric.aspnetcore.components.render_diff
     type: metric
-    metric_name: aspnetcore.components.rendering.batch.duration
+    metric_name: aspnetcore.components.render_diff
     stability: development
-    brief: Duration of rendering batch.
+    brief: Duration of rendering difference batch between previous and current HTML.
     instrument: histogram
     unit: "s"
-    note: |
+    note: >
       Meter name: `Microsoft.AspNetCore.Components.Lifecycle`; Added in: ASP.NET Core 10.0
-    extends: aspnetcore.components.lifecycle.metrics.attributes
+      More about [Blazor rendering](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/rendering)
     attributes:
-      - ref: aspnetcore.components.diff.approximate.length
+      - ref: aspnetcore.components.diff.length
         requirement_level: required
-
-  - id: metric.aspnetcore.components.rendering.batch.exceptions
-    type: metric
-    metric_name: aspnetcore.components.rendering.batch.exceptions
-    stability: development
-    brief: Total number of exceptions during batch rendering.
-    instrument: counter
-    unit: "{exception}"
-    note: |
-      Meter name: `Microsoft.AspNetCore.Components.Lifecycle`; Added in: ASP.NET Core 10.0
-    extends: aspnetcore.components.lifecycle.metrics.attributes
-    attributes:
       - ref: error.type
         brief: The full name of exception type.
         examples: ['System.OperationCanceledException', 'Contoso.MyException']
-        requirement_level: required
+        requirement_level:
+          conditionally_required: If handler has ended with an error.
 
   # Blazor circuits
-  - id: metric.aspnetcore.components.circuits.count
+  - id: metric.aspnetcore.components.circuit.duration
     type: metric
-    metric_name: aspnetcore.components.circuits.count
+    metric_name: aspnetcore.components.circuit.duration
     stability: development
-    brief: Total number of circuits.
-    instrument: counter
-    unit: "{circuit}"
-    note: |
+    brief: Duration of circuit including time after re-connect.
+    instrument: histogram
+    unit: "s"
+    note: >
       Meter name: `Microsoft.AspNetCore.Components.Server.Circuits`; Added in: ASP.NET Core 10.0
-    extends: aspnetcore.components.circuits.metrics.attributes
+      More about [Blazor circuits](https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/signalr)
 
-  - id: metric.aspnetcore.components.circuits.active_circuits
+  - id: metric.aspnetcore.components.circuit.active
     type: metric
-    metric_name: aspnetcore.components.circuits.active_circuits
+    metric_name: aspnetcore.components.circuit.active
     stability: development
-    brief: Number of active circuits.
+    brief: Number of circuits in memory, both connected and waiting for re-connect.
     instrument: updowncounter
     unit: "{circuit}"
-    note: |
+    note: >
       Meter name: `Microsoft.AspNetCore.Components.Server.Circuits`; Added in: ASP.NET Core 10.0
-    extends: aspnetcore.components.circuits.metrics.attributes
+      More about [Blazor circuits](https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/signalr)
 
-  - id: metric.aspnetcore.components.circuits.connected_circuits
+  - id: metric.aspnetcore.components.circuit.connected
     type: metric
-    metric_name: aspnetcore.components.circuits.connected_circuits
+    metric_name: aspnetcore.components.circuit.connected
     stability: development
     brief: Number of connected circuits.
     instrument: updowncounter
     unit: "{circuit}"
-    note: |
+    note: >
       Meter name: `Microsoft.AspNetCore.Components.Server.Circuits`; Added in: ASP.NET Core 10.0
-    extends: aspnetcore.components.circuits.metrics.attributes
-    
-  - id: metric.aspnetcore.components.circuits.duration
-    type: metric
-    metric_name: aspnetcore.components.circuits.duration
-    stability: development
-    brief: Duration of circuit.
-    instrument: histogram
-    unit: "s"
-    note: |
-      Meter name: `Microsoft.AspNetCore.Components.Server.Circuits`; Added in: ASP.NET Core 10.0
-    extends: aspnetcore.components.circuits.metrics.attributes
-
+      More about [Blazor circuits](https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/signalr)

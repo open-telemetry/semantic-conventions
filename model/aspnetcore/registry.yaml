@@ -103,8 +103,13 @@ groups:
         stability: development
         brief: Segment of the URL that is matched to a Blazor @page component.
         examples: ["/weather", "/counter"]
-      - id: aspnetcore.components.diff.approximate.length
+      - id: aspnetcore.components.diff.length
         type: int
         stability: development
         brief: Bucketed length of the diff in Blazor rendering pipeline.
         examples: [10, 100, 1000]
+      - id: aspnetcore.components.circuit.id
+        type: string
+        stability: development
+        brief: Id of the Blazor circuit.
+        examples: ["ztOXUZxeJvS2b3ioeZ68bal8RQmQehui02CtZER"]

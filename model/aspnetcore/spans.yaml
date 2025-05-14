@@ -1,0 +1,53 @@
+groups:
+  - id: span.Microsoft.AspNetCore.Components.CircuitStart
+    type: span
+    span_kind: internal
+    brief: 
+    note: >
+      ActivitySource name: `Microsoft.AspNetCore.Components`; Added in: ASP.NET Core 10.0
+      More about [Blazor circuits](https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/signalr)
+    stability: development
+    attributes:
+      - ref: aspnetcore.components.circuit.id
+        requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if the circuit initialization failed
+  - id: span.Microsoft.AspNetCore.Components.RouteChange
+    type: span
+    span_kind: internal
+    brief: 
+    note: >
+      ActivitySource name: `Microsoft.AspNetCore.Components`; Added in: ASP.NET Core 10.0
+      More about [Blazor routing](https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/routing)
+    stability: development
+    attributes:
+      - ref: aspnetcore.components.circuit.id
+        requirement_level: required
+      - ref: aspnetcore.components.type
+        requirement_level: required
+      - ref: aspnetcore.components.route
+        requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if the circuit initialization failed
+  - id: span.Microsoft.AspNetCore.Components.HandleEvent
+    type: span
+    span_kind: internal
+    brief: 
+    note: >
+      ActivitySource name: `Microsoft.AspNetCore.Components`; Added in: ASP.NET Core 10.0
+      More about [Blazor event handling](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/event-handling)
+    stability: development
+    attributes:
+      - ref: aspnetcore.components.circuit.id
+        requirement_level: required
+      - ref: aspnetcore.components.type
+        requirement_level: required
+      - ref: aspnetcore.components.route
+        requirement_level: required
+      - ref: aspnetcore.components.attribute.name
+        requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if the circuit initialization failed
