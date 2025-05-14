@@ -102,6 +102,34 @@ groups:
       The actual accuracy would depend on the instrumentation and operating system.
     instrument: gauge
     unit: "s"
+  - id: metric.k8s.node.allocatable_cpu
+    type: metric
+    metric_name: k8s.node.allocatable_cpu
+    stability: development
+    brief: "Amount of cpu allocatable on the node"
+    instrument: gauge
+    unit: "{cpu}"
+  - id: metric.k8s.node.allocatable_ephemeral_storage
+    type: metric
+    metric_name: k8s.node.allocatable_ephemeral_storage
+    stability: development
+    brief: "Amount of ephemeral-storage allocatable on the node"
+    instrument: gauge
+    unit: "By"
+  - id: metric.k8s.node.allocatable_memory
+    type: metric
+    metric_name: k8s.node.allocatable_memory
+    stability: development
+    brief: "Amount of memory allocatable on the node"
+    instrument: gauge
+    unit: "By"
+  - id: metric.k8s.node.allocatable_pods
+    type: metric
+    metric_name: k8s.node.allocatable_pods
+    stability: development
+    brief: "Amount of pods allocatable on the node"
+    instrument: gauge
+    unit: ""
   # k8s.node.cpu.* metrics
   - id: metric.k8s.node.cpu.time
     type: metric
