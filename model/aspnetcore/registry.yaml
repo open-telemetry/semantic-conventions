@@ -87,29 +87,45 @@ groups:
         type: string
         stability: development
         brief: Full type name of the Blazor component.
+        note: >
+          This is full name of the C# component class, including the namespace.
+          More about [Blazor event handling](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/event-handling)
         examples: ["Contoso.Weather"]
       - id: aspnetcore.components.method
         type: string
         stability: development
         brief: Method name of the event handler in Blazor component.
+        note: >
+          This is method name of the C# event handler.
+          More about [Blazor event handling](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/event-handling)
         examples: ["IncrementCount"]
       - id: aspnetcore.components.attribute.name
         type: string
         stability: development
         brief: Attribute name of the event handler in Blazor component.
+        note: >
+          This is name of the binding attribute in the component markup.
+          More about [Blazor event handling](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/event-handling)
         examples: ["onclick"]
       - id: aspnetcore.components.route
         type: string
         stability: development
         brief: Segment of the URL that is matched to a Blazor @page component.
+        note: >
+          This route pattern is used to match the URL to the component.
+          More about [Blazor routing](https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/routing)
         examples: ["/weather", "/counter"]
       - id: aspnetcore.components.diff.length
         type: int
         stability: development
         brief: Bucketed length of the diff in Blazor rendering pipeline.
+        note: >
+          This is the number of changes in the diff batch which would be applied to browser DOM.
+          More about [Blazor rendering](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/rendering)
         examples: [10, 100, 1000]
       - id: aspnetcore.components.circuit.id
         type: string
         stability: development
         brief: Id of the Blazor circuit.
+        note: More about [Blazor circuits](https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/signalr)
         examples: ["ztOXUZxeJvS2b3ioeZ68bal8RQmQehui02CtZER"]
