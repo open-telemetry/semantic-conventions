@@ -480,6 +480,42 @@ groups:
     entity_associations:
       - host
 
+  - id: metric.system.nfs.rpc.count
+    type: metric
+    metric_name: system.nfs.rpc.count
+    stability: development
+    brief: "Reports the count of kernel NFS client RPCs handled"
+    note: |
+      Linux: this metric is taken from the Linux kernel's svc_stat.rpccnt
+    instrument: gauge
+    unit: "{rpc}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfs.rpc.retransmit.count
+    type: metric
+    metric_name: system.nfs.rpc.retransmit.count
+    stability: development
+    brief: "Reports the count of kernel NFS client RPC retransmits"
+    note: |
+      Linux: this metric is taken from the Linux kernel's svc_stat.rpcretrans
+    instrument: gauge
+    unit: "{retransmit}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfs.rpc.authrefresh.count
+    type: metric
+    metric_name: system.nfs.rpc.authrefresh.count
+    stability: development
+    brief: "Reports the count of kernel NFS client RPC authentication refreshes"
+    note: |
+      Linux: this metric is taken from the Linux kernel's svc_stat.rpcauthrefresh
+    instrument: gauge
+    unit: "{authrefresh}"
+    entity_associations:
+      - host
+
   - id: metric.system.nfs.procedure.count
     type: metric
     metric_name: system.nfs.procedure.count
@@ -491,7 +527,7 @@ groups:
     unit: "{procedure}"
     attributes:
       - ref: rpc.onc.version
-      - ref: rpc.onc.procedure.number
+      - ref: rpc.onc.procedure.name
     entity_associations:
       - host
 
@@ -640,27 +676,51 @@ groups:
     entity_associations:
       - host
 
-  - id: metric.system.nfsd.rpc.retransmit.count
+  - id: metric.system.nfsd.rpc.bad.count
     type: metric
-    metric_name: system.nfsd.rpc.retransmit.count
+    metric_name: system.nfsd.rpc.bad.count
     stability: development
-    brief: "Reports the count of kernel NFS server RPC retransmits"
+    brief: "Reports the total count of kernel NFS server bad RPCs"
     note: |
-      Linux: this metric is taken from the Linux kernel's svc_stat.rpcretrans
+      Linux: this metric is taken from the Linux kernel's svc_stat.badfmt+svc_stat.badauth+svc_stat.badclnt
     instrument: gauge
-    unit: "{retransmit}"
+    unit: "{rpc}"
     entity_associations:
       - host
 
-  - id: metric.system.nfsd.rpc.authrefresh.count
+  - id: metric.system.nfsd.rpc.badfmt.count
     type: metric
-    metric_name: system.nfsd.rpc.authrefresh.count
+    metric_name: system.nfsd.rpc.badfmt.count
     stability: development
-    brief: "Reports the count of kernel NFS server RPC authentication refreshes"
+    brief: "Reports the total count of kernel NFS server badly formatted RPCs"
     note: |
-      Linux: this metric is taken from the Linux kernel's svc_stat.rpcauthrefresh
+      Linux: this metric is taken from the Linux kernel's svc_stat.badfmt
     instrument: gauge
-    unit: "{authrefresh}"
+    unit: "{rpc}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfsd.rpc.badauth.count
+    type: metric
+    metric_name: system.nfsd.rpc.badauth.count
+    stability: development
+    brief: "Reports the total count of kernel NFS server badly authenticated RPCs"
+    note: |
+      Linux: this metric is taken from the Linux kernel's svc_stat.badauth
+    instrument: gauge
+    unit: "{rpc}"
+    entity_associations:
+      - host
+
+  - id: metric.system.nfsd.rpc.badclient.count
+    type: metric
+    metric_name: system.nfsd.rpc.badclient.count
+    stability: development
+    brief: "Reports the total count of kernel NFS server unauthorized client RPCs"
+    note: |
+      Linux: this metric is taken from the Linux kernel's svc_stat.badclnt
+    instrument: gauge
+    unit: "{rpc}"
     entity_associations:
       - host
 
@@ -675,6 +735,6 @@ groups:
     unit: "{procedure}"
     attributes:
       - ref: rpc.onc.version
-      - ref: rpc.onc.procedure.number
+      - ref: rpc.onc.procedure.name
     entity_associations:
       - host
