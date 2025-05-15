@@ -166,7 +166,6 @@ conflict.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `` | Reason unknown. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Completed` | The container has completed execution. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ContainerCannotRun` | The container cannot run. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ContainerCreating` | The container is being created. | ![Development](https://img.shields.io/badge/-development-blue) |
