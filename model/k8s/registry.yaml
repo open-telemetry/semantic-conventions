@@ -493,10 +493,6 @@ groups:
               value: 'ContainerCannotRun'
               brief: 'The container cannot run.'
               stability: experimental
-            - id: empty
-              value: ''
-              brief: 'Reason unknown.'
-              stability: experimental
         stability: experimental
         brief: >
           The reason for the container state. Corresponds to the `reason` field of the:
