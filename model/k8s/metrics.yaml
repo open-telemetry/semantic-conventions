@@ -85,8 +85,8 @@ groups:
     instrument: updowncounter
     unit: "{container}"
     note: |
-      All possible container states will be reported at each time interval to avoid missing metrics.
-      Only the value corresponding to the current state will be non-zero.
+      All possible container state reasons will be reported at each time interval to avoid missing metrics.
+      Only the value corresponding to the current state reason will be non-zero.
     attributes:
       - ref: k8s.container.status.reason
         requirement_level: required
