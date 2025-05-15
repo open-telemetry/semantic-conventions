@@ -52,14 +52,14 @@ groups:
           brief: A unique ID representing this particular metric instance.
           requirement_level: required
           examples: ["v3-1677874579383-6381583661209"]
-  - id: event.enduser.user_action
+  - id: event.browser.user_action
     stability: development
     type: event
-    name: enduser.user_action
+    name: browser.user_action
     brief: >
       This event describes actions performed by the user such as click, scroll, zoom, resize, etc.
     body:
-      id: enduser.user_action
+      id: browser.user_action
       requirement_level: required
       stability: development
       type: map
