@@ -29,7 +29,7 @@ More information about Android identifier best practices can be found [here](htt
 > However, it may be appropriate for specific enterprise scenarios, such as kiosk devices or enterprise-managed devices, with appropriate compliance clearance.
 > Any instrumentation providing this identifier MUST implement it as an opt-in feature.
 >
-> See [`app.installation.id`](/docs/attributes-registry/app.md#app-installation-id) for a more privacy-preserving alternative.
+> See [`app.installation.id`](/docs/registry/attributes/app.md#app-installation-id) for a more privacy-preserving alternative.
 
 **[2] `device.manufacturer`:** The Android OS provides this field via [Build](https://developer.android.com/reference/android/os/Build#MANUFACTURER). iOS apps SHOULD hardcode the value `Apple`.
 

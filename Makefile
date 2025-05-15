@@ -195,15 +195,20 @@ table-generation:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		--attribute-registry-base-url=/docs/attributes-registry \
+		--attribute-registry-base-url=/docs/registry/attributes \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--future \
 		/home/weaver/target
 
-# Generate attribute registry markdown.
+# DEPRECATED: Generate attribute registry markdown.
 .PHONY: attribute-registry-generation
-attribute-registry-generation:
+attribute-registry-generation: registry-generation
+
+
+# Generate registry markdown (attributes, etc.).
+.PHONY: registry-generation
+registry-generation:
 	$(DOCKER_RUN) --rm \
 		$(DOCKER_USER_IS_HOST_USER_ARG) \
 		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
@@ -213,7 +218,7 @@ attribute-registry-generation:
 		  --registry=/home/weaver/source \
 		  --templates=/home/weaver/templates \
 		  markdown \
-		  /home/weaver/target/attributes-registry/
+		  /home/weaver/target/registry/
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
 .PHONY: table-check
@@ -225,7 +230,7 @@ table-check:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target,readonly' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		--attribute-registry-base-url=/docs/attributes-registry \
+		--attribute-registry-base-url=/docs/registry/attributes \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--dry-run \
@@ -239,13 +244,13 @@ schema-check:
 # Run all checks in order of speed / likely failure.
 # As a last thing, run attribute registry generation and git-diff for differences.
 .PHONY: check
-check: misspell markdownlint markdown-toc markdown-link-check check-policies attribute-registry-generation
+check: misspell markdownlint markdown-toc markdown-link-check check-policies registry-generation
 	git diff --exit-code ':*.md' || (echo 'Generated markdown Table of Contents is out of date, please run "make markdown-toc" and commit the changes in this PR.' && exit 1)
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation attribute-registry-generation misspell-correction markdown-toc
+fix: table-generation registry-generation misspell-correction markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools

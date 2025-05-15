@@ -27,7 +27,7 @@ All semantic convention groups have the following common properties:
 - `stability` describes the maturity level of the convention
 - `deprecated` property marks convention as deprecated and provides information about
   replacement or other details.
-- `attributes` lists references to applicable attributes in the [registry](../attributes-registry/README.md)
+- `attributes` lists references to applicable attributes in the [registry](../registry/attributes/README.md)
 
 In addition to common properties, semantic convention groups have type-specific properties, see
 [Schema documentation](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md)

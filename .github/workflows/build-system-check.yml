@@ -58,7 +58,7 @@ jobs:
       run: npm install
 
     - name: invoke make
-      run: make table-generation attribute-registry-generation
+      run: make table-generation registry-generation
 
   # The "CONTRIBUTING.md" guide provides these make targets for verifying the policies;
   # ensure that the steps in the "CONTRIBUTING.md" guide continue to work.

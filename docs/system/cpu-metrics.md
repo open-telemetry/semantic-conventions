@@ -37,8 +37,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpu.logical_number`](/docs/attributes-registry/cpu.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The mode of the CPU [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpu.mode`](/docs/registry/attributes/cpu.md) | string | The mode of the CPU [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
 
@@ -79,8 +79,8 @@ This metric is [opt-in][MetricOptIn].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpu.logical_number`](/docs/attributes-registry/cpu.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | The mode of the CPU [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpu.mode`](/docs/registry/attributes/cpu.md) | string | The mode of the CPU [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `cpu.mode`:** Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
 
@@ -121,7 +121,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpu.logical_number`](/docs/attributes-registry/cpu.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
