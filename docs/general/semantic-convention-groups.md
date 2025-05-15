@@ -13,7 +13,7 @@ Each group has a `type` property that could be one of the following:
 - `span` - defines semantic convention for a specific type of span, such as HTTP `CLIENT`
 - `metric` - defines semantic convention for a specific metric, such as HTTP client request duration
 - `event` - defines semantic conventions for a specific event, such as exception.
-- `resource` - defines semantic conventions for a specific entity the telemetry is collected within,
+- `entity` - defines semantic conventions for a specific entity the telemetry is collected within,
   such as `service`.
 
 Groups that have `attribute_group` type do not describe semantic convention and
@@ -27,7 +27,7 @@ All semantic convention groups have the following common properties:
 - `stability` describes the maturity level of the convention
 - `deprecated` property marks convention as deprecated and provides information about
   replacement or other details.
-- `attributes` lists references to applicable attributes in the [registry](../attributes-registry/README.md)
+- `attributes` lists references to applicable attributes in the [registry](../registry/attributes/README.md)
 
 In addition to common properties, semantic convention groups have type-specific properties, see
 [Schema documentation](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md)

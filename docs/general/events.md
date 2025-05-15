@@ -69,7 +69,7 @@ Recommendations on using attributes vs. body fields:
 
 ### Event payload (body)
 
-* Common attribute naming conventions and [registry](../attributes-registry/README.md)
+* Common attribute naming conventions and [registry](../registry/attributes/README.md)
   requirements don't apply to event payload fields.
 * The definition for OpenTelemetry defined events supports describing
   individual _fields_ (Body Fields)

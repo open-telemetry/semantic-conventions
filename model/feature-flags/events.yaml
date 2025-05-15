@@ -18,6 +18,11 @@ groups:
       - ref: feature_flag.result.variant
         requirement_level:
           conditionally_required: If feature flag provider supplies a variant or equivalent concept.
+      - ref: feature_flag.result.value
+        requirement_level:
+          conditionally_required: >
+              If and only if feature flag provider does not supply variant or equivalent concept.
+              Otherwise, `feature_flag.result.value` should be treated as opt-in.
       - ref: feature_flag.provider.name
         requirement_level: recommended
       - ref: feature_flag.context.id
@@ -52,18 +57,3 @@ groups:
         note: >
           Should not simply duplicate the value of `error.type`, but should provide more context.
           For example, if `error.type` is `invalid_context` the `error.message` may enumerate which context keys are missing or invalid.
-    body:
-      id: feature_flag.evaluation
-      type: map
-      requirement_level: recommended
-      stability: development
-      fields:
-        - id: value
-          type: undefined
-          stability: development
-          brief: The evaluated value of the feature flag.
-          requirement_level:
-            conditionally_required: >
-              If and only if feature flag provider does not supply variant or equivalent concept.
-              Otherwise, `value` should be treated as opt-in.
-          examples: ["#ff0000", "1", "true"]

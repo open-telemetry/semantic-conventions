@@ -33,7 +33,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
 | `dns.question.name` | string | The name being queried. [1] | `www.example.com`; `dot.net` | Required |
-| [`error.type`](../attributes-registry/error.md) | string | One of the resolution errors or the full name of exception type. [2] | `host_not_found`; `no_recovery`; `System.Net.Sockets.SocketException` | Conditionally Required: if and only if an error has occurred. |
+| [`error.type`](../registry/attributes/error.md) | string | One of the resolution errors or the full name of exception type. [2] | `host_not_found`; `no_recovery`; `System.Net.Sockets.SocketException` | Conditionally Required: if and only if an error has occurred. |
 
 **[1]:** The name being queried.
 If the name field contains non-printable characters (below 32 or above 126), those characters should be represented as escaped base 10 integers (\DDD). Back slashes and quotes should be escaped. Tabs, carriage returns, and line feeds should be converted to \t, \r, and \n respectively.

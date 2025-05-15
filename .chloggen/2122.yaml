@@ -1,4 +1,0 @@
-change_type: enhancement
-component: gen-ai
-note: Separate inference and embeddings span definitions, remove irrelevant attributes from the create agent span.
-issues: [1924, 2122]

@@ -1,0 +1,21 @@
+groups:
+  - id: entity.browser
+    type: entity
+    stability: development
+    name: browser
+    brief: >
+        The web browser in which the application represented by the resource is running.
+        The `browser.*` attributes MUST be used only for resources that represent applications
+        running in a web browser (regardless of whether running on a mobile or desktop device).
+    attributes:
+      - ref: browser.brands
+      - ref: browser.platform
+      - ref: browser.mobile
+      - ref: browser.language
+      - ref: user_agent.original
+        brief: 'Full user-agent string provided by the browser'
+        note: >
+          The user-agent value SHOULD be provided only from browsers that do not have a mechanism
+          to retrieve brands and platform individually from the User-Agent Client Hints API.
+          To retrieve the value, the legacy `navigator.userAgent` API can be used.
+        examples: ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36']

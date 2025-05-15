@@ -489,7 +489,7 @@ groups:
       Linux: these metrics are taken from the Linux kernel's rpc_version.counts
     instrument: gauge
     unit: "{procedure}"
-    attributes: 
+    attributes:
       - ref: rpc.onc.version
       - ref: rpc.onc.procedure.number
     entity_associations:

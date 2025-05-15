@@ -4,5 +4,5 @@
 {% macro print_entities(associations) %}{%- for e in associations %}{%if loop.first == false %}; {% endif %}`{{ e | trim }}`{%- endfor %}{% endmacro %}
 {% macro generate(group) %}| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `{{ group.metric_name }}` | {{ metrics.instrument(group.instrument) | trim }} | `{{ group.unit }}` | {{ group.brief | trim }}{{ notes.add({"note": group.note}) }} | {{ stability.badge(group.stability, group.deprecated) | trim }} | {{ print_entities(group.entity_associations) }} |
+| `{{ group.metric_name }}` | {{ metrics.instrument(group.instrument) | trim }} | `{{ group.unit }}` | {{ group.brief | trim }}{{ notes.add({"note": group.note}) }} | {{ stability.badge(group.stability, group.deprecated, group.brief) | trim }} | {{ print_entities(group.entity_associations) }} |
 {{ notes.render() }}{% endmacro %}
