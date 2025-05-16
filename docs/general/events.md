@@ -31,8 +31,6 @@ with attributes and the type of the body if any.
   the type of the body.
 * Events MAY have [severity number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.45.0/specification/logs/data-model.md#field-severitynumber).
 
-Recommendations on using attributes vs. body fields:
-
 It's RECOMMENDED to use the collection of attributes to represent the details of
 the event.
 
