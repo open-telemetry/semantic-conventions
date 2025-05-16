@@ -24,11 +24,11 @@ with attributes and the type of the body if any.
 
 * An event MUST have an [Event name property](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/logs/data-model.md#field-eventname)
   that uniquely identifies the event. Event names are subject to the [Naming guidelines](/docs/general/naming.md). Event name SHOULD be of a low-cardinality.
-* Events MAY have [extended](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.44.0/specification/logs/data-model.md#field-attributes)
-  attributes that provide additional context about the event.
-* Events MAY contain a body of type [any](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.44.0/specification/logs/data-model.md#field-body).
+* Events MAY have [attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.44.0/specification/logs/data-model.md#field-attributes)
+  that provide additional context about the event.
+* Events MAY contain a [body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.44.0/specification/logs/data-model.md#field-body) of type [`any`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.44.0/specification/logs/data-model.md#type-any).
 * The event name uniquely identifies event structure: the set of attributes and
-* the type of the body.
+  the type of the body.
 * Events MAY have [severity number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.44.0/specification/logs/data-model.md#field-severitynumber).
 
 Recommendations on using attributes vs. body fields:
