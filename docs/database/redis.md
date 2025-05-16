@@ -32,17 +32,17 @@ looking confusing.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The Redis command name. [1] | `HMSET`; `GET`; `SET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The [database index] associated with the connection, represented as a string. [2] | `0`; `1`; `15` | `Conditionally Required` If and only if it can be captured reliably. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix. [3] | `ERR`; `WRONGTYPE`; `CLUSTERDOWN` | `Conditionally Required` [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [5] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Conditionally Required` [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.batch.size`](/docs/attributes-registry/db.md) | int | The number of queries included in a batch operation. [8] | `2`; `3`; `4` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The full syntax of the Redis CLI command. [9] | `HMSET myhash field1 ? field2 ?` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.stored_procedure.name`](/docs/attributes-registry/db.md) | string | The name or sha1 digest of a Lua script in the database. [10] | `GetCustomer` | `Recommended` If operation applies to a specific Lua script. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.name`](/docs/registry/attributes/db.md) | string | The Redis command name. [1] | `HMSET`; `GET`; `SET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.namespace`](/docs/registry/attributes/db.md) | string | The [database index] associated with the connection, represented as a string. [2] | `0`; `1`; `15` | `Conditionally Required` If and only if it can be captured reliably. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.response.status_code`](/docs/registry/attributes/db.md) | string | The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix. [3] | `ERR`; `WRONGTYPE`; `CLUSTERDOWN` | `Conditionally Required` [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [5] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Conditionally Required` [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | int | The number of queries included in a batch operation. [8] | `2`; `3`; `4` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.text`](/docs/registry/attributes/db.md) | string | The full syntax of the Redis CLI command. [9] | `HMSET myhash field1 ? field2 ?` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | string | The name or sha1 digest of a Lua script in the database. [10] | `GetCustomer` | `Recommended` If operation applies to a specific Lua script. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the database node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Name of the database host. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 For [transactions and pipelined calls](https://redis.io/docs/latest/develop/clients/redis-py/transpipe/), if the individual operations are known to have the same command then that command SHOULD be used prepended by `MULTI ` or `PIPELINE `. Otherwise `db.operation.name` SHOULD be `MULTI` or `PIPELINE`.
@@ -82,11 +82,11 @@ The value provided for `db.query.text` SHOULD correspond to the syntax of the Re
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`db.namespace`](/docs/attributes-registry/db.md)
-* [`db.operation.name`](/docs/attributes-registry/db.md)
-* [`db.query.text`](/docs/attributes-registry/db.md)
-* [`server.address`](/docs/attributes-registry/server.md)
-* [`server.port`](/docs/attributes-registry/server.md)
+* [`db.namespace`](/docs/registry/attributes/db.md)
+* [`db.operation.name`](/docs/registry/attributes/db.md)
+* [`db.query.text`](/docs/registry/attributes/db.md)
+* [`server.address`](/docs/registry/attributes/server.md)
+* [`server.port`](/docs/registry/attributes/server.md)
 
 ---
 

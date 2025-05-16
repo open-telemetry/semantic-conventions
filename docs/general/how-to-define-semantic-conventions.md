@@ -39,7 +39,7 @@ for new areas or make substantial changes to the existing ones.
 
 #### Defining attributes
 
-Reuse existing attributes when possible. Look through [existing conventions](/docs/attributes-registry/) for similar areas,
+Reuse existing attributes when possible. Look through [existing conventions](/docs/registry/attributes/) for similar areas,
 check out [common attributes](/docs/general/attributes.md).
 Semantic conventions authors are encouraged to use attributes from different namespaces.
 
