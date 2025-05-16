@@ -44,7 +44,7 @@ groups:
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         examples: ['connection_reset', 'invalid_handshake']
-        # TODO: move note to yaml once https://github.com/open-telemetry/build-tools/issues/192 is supported
+        # TODO: move note to yaml once https://github.com/open-telemetry/weaver/issues/479 is supported
         note: |
           Starting from .NET 9, Kestrel `kestrel.connection.duration` metric reports
           the following errors types when a corresponding error occurs:

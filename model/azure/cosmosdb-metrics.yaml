@@ -25,7 +25,7 @@ groups:
     unit: "{instance}"
     stability: development
     attributes:
-      # TODO: add db.system.name once https://github.com/open-telemetry/build-tools/issues/192 is possible
+      # TODO: add db.system.name once https://github.com/open-telemetry/weaver/issues/479 is possible
       # - ref: db.system.name
       #   requirement_level:
       #     conditionally_required: if available
