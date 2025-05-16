@@ -246,7 +246,6 @@ Examples:
 
 - `db.cassandra.consistency_level` - Describes the consistency level property
   specific to the Cassandra database.
-Cassandra DB.
 - `aws.s3.key` - Refers to the `key` property of the AWS S3 product.
 - `signalr.connection.status` – Indicates the connection status of the SignalR
   network protocol. In this case, no domain is included.
@@ -259,7 +258,7 @@ For example, database conventions include the `db.system` attribute.
 The name of the system used in the corresponding `*.system` (or similar) attribute should match
 the name used inside system-specific attributes.
 
-For example, if the database name specified in `db.system` is `foo.bar`, system-specific
+For example, if the database name specified in `db.system.name` is `foo.bar`, system-specific
 attributes for this database should follow the `db.foo.bar.*` pattern.
 
 ## Metrics
