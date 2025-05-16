@@ -252,11 +252,10 @@ Examples:
 
 Semantic conventions for a specific domain are generally applicable to multiple systems.
 These conventions should define an attribute to represent the name of the system.
-For example, database conventions include the `db.system` attribute.
-<!-- update when https://github.com/open-telemetry/semantic-conventions/pull/1613 is merged -->
+For example, database conventions include the `db.system.name` attribute.
 
-The name of the system used in the corresponding `*.system` (or similar) attribute should match
-the name used inside system-specific attributes.
+The name of the system used in the corresponding attribute should match the name
+used inside system-specific attributes.
 
 For example, if the database name specified in `db.system.name` is `foo.bar`, system-specific
 attributes for this database should follow the `db.foo.bar.*` pattern.
