@@ -10,7 +10,7 @@ groups:
           conditionally_required: When the client executes a request type that includes a resource URI parameter.
       - ref: mcp.request.id
         requirement_level:
-          conditionally_required: When client executes a request.
+          conditionally_required: When the client executes a request.
       - ref: mcp.request.argument
         requirement_level: opt_in
 
