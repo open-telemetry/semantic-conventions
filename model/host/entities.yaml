@@ -1,0 +1,65 @@
+groups:
+  - id: entity.host
+    type: entity
+    stability: development
+    name: host
+    brief: >
+        A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
+    attributes:
+      - ref: host.id
+        note: |
+          Collecting `host.id` from non-containerized systems
+
+          **Non-privileged Machine ID Lookup**
+
+          When collecting `host.id` for non-containerized systems non-privileged lookups
+          of the machine id are preferred. SDK detector implementations MUST use the
+          sources listed below to obtain the machine id.
+
+          | OS | Primary | Fallback |
+          |---------|---------|---------|
+          | Linux   | contents of `/etc/machine-id` | contents of `/var/lib/dbus/machine-id` |
+          | BSD     | contents of `/etc/hostid` | output of `kenv -q smbios.system.uuid` |
+          | MacOS   | `IOPlatformUUID` line from the output of `ioreg -rd1 -c "IOPlatformExpertDevice"` | - |
+          | Windows | `MachineGuid` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography`  | - |
+
+          **Privileged Machine ID Lookup**
+
+          The `host.id` can be looked up using privileged sources. For example, Linux
+          systems can use the output of `dmidecode -t system`, `dmidecode -t baseboard`,
+          `dmidecode -t chassis`, or read the corresponding data from the filesystem
+          (e.g. `cat /sys/devices/virtual/dmi/id/product_id`,
+          `cat /sys/devices/virtual/dmi/id/product_uuid`, etc), however, SDK resource
+          detector implementations MUST not collect `host.id` from privileged sources. If
+          privileged lookup of `host.id` is required, the value should be injected via the
+          `OTEL_RESOURCE_ATTRIBUTES` environment variable.
+      - ref: host.name
+      - ref: host.type
+      - ref: host.arch
+      - ref: host.image.name
+      - ref: host.image.id
+      - ref: host.image.version
+      - ref: host.ip
+        requirement_level: opt_in
+      - ref: host.mac
+        requirement_level: opt_in
+
+  - id: entity.host.cpu
+    type: entity
+    stability: development
+    name: host.cpu
+    brief: >
+      A host's CPU information
+    attributes:
+      - ref: host.cpu.vendor.id
+        requirement_level: opt_in
+      - ref: host.cpu.family
+        requirement_level: opt_in
+      - ref: host.cpu.model.id
+        requirement_level: opt_in
+      - ref: host.cpu.model.name
+        requirement_level: opt_in
+      - ref: host.cpu.stepping
+        requirement_level: opt_in
+      - ref: host.cpu.cache.l2.size
+        requirement_level: opt_in

@@ -194,7 +194,7 @@ groups:
             - id: quic
               value: 'quic'
               brief: "QUIC"
-              stability: development
+              stability: stable
         brief: >
           [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or
           [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).

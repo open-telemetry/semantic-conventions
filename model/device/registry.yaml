@@ -26,7 +26,7 @@ groups:
           > However, it may be appropriate for specific enterprise scenarios, such as kiosk devices or enterprise-managed devices, with appropriate compliance clearance.
           > Any instrumentation providing this identifier MUST implement it as an opt-in feature.
           >
-          > See [`app.installation.id`](/docs/attributes-registry/app.md#app-installation-id) for a more privacy-preserving alternative.
+          > See [`app.installation.id`](/docs/registry/attributes/app.md#app-installation-id) for a more privacy-preserving alternative.
         examples:
           - '123456789012345'
           - 01:23:45:67:89:AB

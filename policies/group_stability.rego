@@ -11,7 +11,7 @@ deny contains group_stability_violation(description, group.id, name) if {
         # TODO: https://github.com/open-telemetry/semantic-conventions/issues/1514
         "metric.kestrel.connection.duration", "metric.kestrel.tls_handshake.duration",
         # TODO: https://github.com/open-telemetry/semantic-conventions/issues/1519
-        "resource.service",
+        "entity.service",
         # TODO: https://github.com/open-telemetry/semantic-conventions/issues/1616
         "metric.dotnet.process.cpu.time",
     }

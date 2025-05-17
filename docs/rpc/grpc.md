@@ -25,9 +25,9 @@ Below is a table of attributes that SHOULD be included on client and server gRPC
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.grpc.status_code`](/docs/attributes-registry/rpc.md) | int | The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.grpc.request.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [1] | `["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.grpc.response.metadata.<key>`](/docs/attributes-registry/rpc.md) | string[] | gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [2] | `["attribute_value"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.grpc.status_code`](/docs/registry/attributes/rpc.md) | int | The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.grpc.request.metadata.<key>`](/docs/registry/attributes/rpc.md) | string[] | gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [1] | `["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.grpc.response.metadata.<key>`](/docs/registry/attributes/rpc.md) | string[] | gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [2] | `["attribute_value"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.grpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
 Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -73,10 +73,10 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 ## gRPC Status
 
 The table below describes when
-the [Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/trace/api.md#set-status) MUST be set
+the [Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.45.0/specification/trace/api.md#set-status) MUST be set
 to `Error` or remain unset
 depending on the [gRPC status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md)
-and [Span Kind](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/trace/api.md#spankind).
+and [Span Kind](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.45.0/specification/trace/api.md#spankind).
 
 | gRPC Status Code | `SpanKind.SERVER` Span Status | `SpanKind.CLIENT` Span Status |
 |---|---|---|

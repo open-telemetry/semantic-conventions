@@ -47,9 +47,9 @@ If Spans following this convention are produced, a Resource of type `faas` MUST 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cloud.resource_id`](/docs/attributes-registry/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`faas.invocation_id`](/docs/attributes-registry/faas.md) | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. [2] | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cloud.resource_id`](/docs/registry/attributes/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.invocation_id`](/docs/registry/attributes/faas.md) | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. [2] | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
@@ -146,8 +146,8 @@ This span represents server (incoming) side of the FaaS invocation.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.trigger`](/docs/attributes-registry/faas.md) | string | Type of the trigger which caused this function invocation. [1] | `datasource`; `http`; `pubsub` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`faas.coldstart`](/docs/attributes-registry/faas.md) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. [1] | `datasource`; `http`; `pubsub` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.coldstart`](/docs/registry/attributes/faas.md) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `faas.trigger`:** For the server/consumer span on the incoming side,
 `faas.trigger` MUST be set.
@@ -213,9 +213,9 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.invoked_name`](/docs/attributes-registry/faas.md) | string | The name of the invoked function. [1] | `my-function` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`faas.invoked_provider`](/docs/attributes-registry/faas.md) | string | The cloud provider of the invoked function. [2] | `alibaba_cloud`; `aws`; `azure` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`faas.invoked_region`](/docs/attributes-registry/faas.md) | string | The cloud region of the invoked function. [3] | `eu-central-1` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.invoked_name`](/docs/registry/attributes/faas.md) | string | The name of the invoked function. [1] | `my-function` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.invoked_provider`](/docs/registry/attributes/faas.md) | string | The cloud provider of the invoked function. [2] | `alibaba_cloud`; `aws`; `azure` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.invoked_region`](/docs/registry/attributes/faas.md) | string | The cloud region of the invoked function. [3] | `eu-central-1` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `faas.invoked_name`:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
 
@@ -268,10 +268,10 @@ This span represents server side if the FaaS invocations triggered in response r
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.document.collection`](/docs/attributes-registry/faas.md) | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`faas.document.operation`](/docs/attributes-registry/faas.md) | string | Describes the type of the operation that was performed on the data. | `insert`; `edit`; `delete` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`faas.document.name`](/docs/attributes-registry/faas.md) | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`faas.document.time`](/docs/attributes-registry/faas.md) | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.document.collection`](/docs/registry/attributes/faas.md) | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.document.operation`](/docs/registry/attributes/faas.md) | string | Describes the type of the operation that was performed on the data. | `insert`; `edit`; `delete` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.document.name`](/docs/registry/attributes/faas.md) | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.document.time`](/docs/registry/attributes/faas.md) | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -321,8 +321,8 @@ This span represents server side if the FaaS invocations triggered by a timer.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`faas.cron`](/docs/attributes-registry/faas.md) | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`faas.time`](/docs/attributes-registry/faas.md) | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.cron`](/docs/registry/attributes/faas.md) | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.time`](/docs/registry/attributes/faas.md) | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

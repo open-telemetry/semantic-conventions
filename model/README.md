@@ -25,7 +25,7 @@ repository, enabling auto-completion and additional checks. Refer to
 
 When defining semantic conventions, follow [contributing guide](/CONTRIBUTING.md#1-modify-the-yaml-model):
 
-- If new attributes are necessary, define them in the [attribute registry](/docs/attributes-registry/README.md).
+- If new attributes are necessary, define them in the [attribute registry](/docs/registry/attributes/README.md).
   Attributes can only be defined inside groups with `attribute_group` type and with `id` starting with `registry.` prefix.
 - Define new spans, metrics, events, resources, and other conventions using appropriate group type. See
   [semantic convention groups](/docs/general/semantic-convention-groups.md) for more details.

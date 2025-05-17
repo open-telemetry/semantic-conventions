@@ -5,6 +5,9 @@
     "docker:pinDigests",
     "helpers:pinGitHubActionDigestsToSemver"
   ],
+  "postUpdateOptions" : [
+    "gomodTidy"
+  ],
   "packageRules": [
     {
       // reduces the number of Renovate PRs

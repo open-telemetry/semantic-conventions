@@ -1,0 +1,21 @@
+groups:
+  - id: entity.vcs.repo
+    type: entity
+    stability: development
+    name: vcs.repo
+    brief: >
+        A repository in the Version Control System.
+    attributes:
+      - ref: vcs.repository.url.full
+      - ref: vcs.repository.name
+
+  - id: entity.vcs.ref
+    type: entity
+    stability: development
+    name: vcs.ref
+    brief: >
+        A reference to a specific version in the Version Control System.
+    attributes:
+      - ref: vcs.ref.head.name
+      - ref: vcs.ref.head.revision
+      - ref: vcs.ref.type

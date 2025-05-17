@@ -32,7 +32,6 @@ CONTAINER_REPOSITORY=docker.io
 
 # Per container overrides for the repository resolution.
 WEAVER_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
-SEMCONVGEN_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 OPA_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 LYCHEE_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 
@@ -40,7 +39,6 @@ LYCHEE_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 # These are parsed from dependencies.Dockerfile so dependabot will autoupdate
 # the versions of docker files we use.
 VERSIONED_WEAVER_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="weaver" {print $$2}')
-VERSIONED_SEMCONVGEN_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="semconvgen" {print $$2}')
 VERSIONED_OPA_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}')
 VERSIONED_LYCHEE_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="lychee" {print $$2}')
 
@@ -53,11 +51,10 @@ VERSIONED_LYCHEE_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$
 #    Error: short-name "otel/weaver:v1.2.3" did not resolve to an alias
 #    and no unqualified-search registries are defined in "/etc/containers/registries.conf"
 WEAVER_CONTAINER=$(WEAVER_CONTAINER_REPOSITORY)/$(VERSIONED_WEAVER_CONTAINER_NO_REPO)
-SEMCONVGEN_CONTAINER=$(SEMCONVGEN_CONTAINER_REPOSITORY)/$(VERSIONED_SEMCONVGEN_CONTAINER_NO_REPO)
 OPA_CONTAINER=$(OPA_CONTAINER_REPOSITORY)/$(VERSIONED_OPA_CONTAINER_NO_REPO)
 LYCHEE_CONTAINER=$(LYCHEE_CONTAINER_REPOSITORY)/$(VERSIONED_LYCHEE_CONTAINER_NO_REPO)
 
-CHECK_TARGETS=install-tools markdownlint misspell table-check compatibility-check \
+CHECK_TARGETS=install-tools markdownlint misspell table-check \
 			schema-check check-file-and-folder-names-in-docs
 
 # Determine if "docker" is actually podman
@@ -198,15 +195,20 @@ table-generation:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		--attribute-registry-base-url=/docs/attributes-registry \
+		--attribute-registry-base-url=/docs/registry/attributes \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--future \
 		/home/weaver/target
 
-# Generate attribute registry markdown.
+# DEPRECATED: Generate attribute registry markdown.
 .PHONY: attribute-registry-generation
-attribute-registry-generation:
+attribute-registry-generation: registry-generation
+
+
+# Generate registry markdown (attributes, etc.).
+.PHONY: registry-generation
+registry-generation:
 	$(DOCKER_RUN) --rm \
 		$(DOCKER_USER_IS_HOST_USER_ARG) \
 		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
@@ -216,7 +218,7 @@ attribute-registry-generation:
 		  --registry=/home/weaver/source \
 		  --templates=/home/weaver/templates \
 		  markdown \
-		  /home/weaver/target/attributes-registry/
+		  /home/weaver/target/registry/
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
 .PHONY: table-check
@@ -228,7 +230,7 @@ table-check:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target,readonly' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		--attribute-registry-base-url=/docs/attributes-registry \
+		--attribute-registry-base-url=/docs/registry/attributes \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--dry-run \
@@ -242,13 +244,13 @@ schema-check:
 # Run all checks in order of speed / likely failure.
 # As a last thing, run attribute registry generation and git-diff for differences.
 .PHONY: check
-check: misspell markdownlint markdown-toc markdown-link-check check-policies attribute-registry-generation
+check: misspell markdownlint markdown-toc markdown-link-check check-policies registry-generation
 	git diff --exit-code ':*.md' || (echo 'Generated markdown Table of Contents is out of date, please run "make markdown-toc" and commit the changes in this PR.' && exit 1)
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation attribute-registry-generation misspell-correction markdown-toc
+fix: table-generation registry-generation misspell-correction markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools
@@ -332,9 +334,3 @@ test-policies:
 	/policies \
 	/policies_test
 
-# TODO: This is now duplicative with weaver policy checks.  We can remove
-# once github action requirements are updated.
-.PHONY: compatibility-check
-compatibility-check:
-	$(DOCKER_RUN) --rm $(DOCKER_USER_IS_HOST_USER_ARG) -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
-		$(SEMCONVGEN_CONTAINER) --continue-on-validation-errors -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)

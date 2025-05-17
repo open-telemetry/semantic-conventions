@@ -46,6 +46,8 @@ Technology specific semantic conventions are defined for the following messaging
 * [Kafka](kafka.md): Semantic Conventions for *Apache Kafka*.
 * [RabbitMQ](rabbitmq.md): Semantic Conventions for *RabbitMQ*.
 * [RocketMQ](rocketmq.md): Semantic Conventions for *Apache RocketMQ*.
+* [SNS](sns.md): Semantic Conventions for *Amazon SNS*.
+* [SQS](sqs.md): Semantic Conventions for *Amazon SQS*.
 * [Google Cloud Pub/Sub](gcp-pubsub.md): Semantic Conventions for *Google Cloud Pub/Sub*.
 * [Azure Service Bus](azure-messaging.md#azure-service-bus): Semantic Conventions for *Azure Service Bus*.
 * [Azure Event Hubs](azure-messaging.md#azure-event-hubs): Semantic Conventions for *Azure Event Hubs*.

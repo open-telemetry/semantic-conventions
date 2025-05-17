@@ -1,6 +1,6 @@
 groups:
-  - id: resource.gcp.apphub.application
-    type: resource
+  - id: entity.gcp.apphub.application
+    type: entity
     stability: development
     name: gcp.apphub.application
     brief: >
@@ -13,8 +13,8 @@ groups:
         requirement_level: required
       - ref: gcp.apphub.application.id
         requirement_level: required
-  - id: resource.gcp.apphub.service
-    type: resource
+  - id: entity.gcp.apphub.service
+    type: entity
     stability: development
     name: gcp.apphub.service
     brief: >
@@ -27,8 +27,8 @@ groups:
         requirement_level: required
       - ref: gcp.apphub.service.criticality_type
         requirement_level: required
-  - id: resource.gcp.apphub.workload
-    type: resource
+  - id: entity.gcp.apphub.workload
+    type: entity
     stability: development
     name: gcp.apphub.workload
     brief: >

@@ -124,19 +124,19 @@ if the message is available.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`mcp.method.name`](/docs/attributes-registry/mcp.md) | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.request.id`](/docs/attributes-registry/mcp.md) | string | This is a unique identifier for the request. | `42` | `Conditionally Required` When the client executes a request. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [2] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Conditionally Required` [3] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.session.id`](/docs/attributes-registry/mcp.md) | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | The transport protocol used for the MCP session. [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Recommended` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.request.argument.<key>`](/docs/attributes-registry/mcp.md) | string | Additional arguments passed to the request within `params` object. `<key>` being the normalized argument name name (lowercase), the value being the argument value. [7] | `mcp.request.argument.location="Seattle, WA"`; `mcp.request.argument.a="42"` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.method.name`](/docs/registry/attributes/mcp.md) | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.prompt.name`](/docs/registry/attributes/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.request.id`](/docs/registry/attributes/mcp.md) | string | This is a unique identifier for the request. | `42` | `Conditionally Required` When the client executes a request. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.resource.uri`](/docs/registry/attributes/mcp.md) | string | The value of the resource uri. [2] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Conditionally Required` [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.tool.name`](/docs/registry/attributes/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.session.id`](/docs/registry/attributes/mcp.md) | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.protocol.version`](/docs/registry/attributes/network.md) | string | The version of JSON RPC protocol used. | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | The transport protocol used for the MCP session. [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Recommended` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.request.argument.<key>`](/docs/registry/attributes/mcp.md) | string | Additional arguments passed to the request within `params` object. `<key>` being the normalized argument name name (lowercase), the value being the argument value. [7] | `mcp.request.argument.location="Seattle, WA"`; `mcp.request.argument.a="42"` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
 error code, if one is returned.
@@ -208,7 +208,7 @@ Argument values SHOULD be recorded as JSON strings.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -263,19 +263,19 @@ if the message is available.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`mcp.method.name`](/docs/attributes-registry/mcp.md) | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.request.id`](/docs/attributes-registry/mcp.md) | string | This is a unique identifier for the request. | `42` | `Conditionally Required` When the client executes a request. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [2] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Conditionally Required` [3] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`client.address`](/docs/attributes-registry/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`client.port`](/docs/attributes-registry/client.md) | int | Client port number. [5] | `65123` | `Recommended` When `client.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.session.id`](/docs/attributes-registry/mcp.md) | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | The transport protocol used for the MCP session. [6] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.request.argument.<key>`](/docs/attributes-registry/mcp.md) | string | Additional arguments passed to the request within `params` object. `<key>` being the normalized argument name name (lowercase), the value being the argument value. [7] | `mcp.request.argument.location="Seattle, WA"`; `mcp.request.argument.a="42"` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.method.name`](/docs/registry/attributes/mcp.md) | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.prompt.name`](/docs/registry/attributes/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.request.id`](/docs/registry/attributes/mcp.md) | string | This is a unique identifier for the request. | `42` | `Conditionally Required` When the client executes a request. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.resource.uri`](/docs/registry/attributes/mcp.md) | string | The value of the resource uri. [2] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Conditionally Required` [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.tool.name`](/docs/registry/attributes/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`client.address`](/docs/registry/attributes/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`client.port`](/docs/registry/attributes/client.md) | int | Client port number. [5] | `65123` | `Recommended` When `client.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.session.id`](/docs/registry/attributes/mcp.md) | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.protocol.version`](/docs/registry/attributes/network.md) | string | The version of JSON RPC protocol used. | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | The transport protocol used for the MCP session. [6] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.request.argument.<key>`](/docs/registry/attributes/mcp.md) | string | Additional arguments passed to the request within `params` object. `<key>` being the normalized argument name name (lowercase), the value being the argument value. [7] | `mcp.request.argument.location="Seattle, WA"`; `mcp.request.argument.a="42"` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
 error code, if one is returned.
@@ -347,7 +347,7 @@ Argument values SHOULD be recorded as JSON strings.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -380,16 +380,16 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`mcp.method.name`](/docs/attributes-registry/mcp.md) | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | The transport protocol used for the MCP session. [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Recommended` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [5] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.method.name`](/docs/registry/attributes/mcp.md) | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.prompt.name`](/docs/registry/attributes/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.tool.name`](/docs/registry/attributes/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.protocol.version`](/docs/registry/attributes/network.md) | string | The version of JSON RPC protocol used. | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | The transport protocol used for the MCP session. [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Recommended` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.resource.uri`](/docs/registry/attributes/mcp.md) | string | The value of the resource uri. [5] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
 error code, if one is returned.
@@ -456,7 +456,7 @@ It SHOULD be set to `pipe` if the transport is stdio.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -487,14 +487,14 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`mcp.method.name`](/docs/attributes-registry/mcp.md) | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.prompt.name`](/docs/attributes-registry/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`mcp.tool.name`](/docs/attributes-registry/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.jsonrpc.error_code`](/docs/attributes-registry/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The version of JSON RPC protocol used. | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | The transport protocol used for the MCP session. [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.resource.uri`](/docs/attributes-registry/mcp.md) | string | The value of the resource uri. [3] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.method.name`](/docs/registry/attributes/mcp.md) | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation fails. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.prompt.name`](/docs/registry/attributes/mcp.md) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | `Conditionally Required` When operation is related to a specific prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.tool.name`](/docs/registry/attributes/mcp.md) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | `Conditionally Required` When operation is related to a specific tool. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response contains an error code. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.protocol.version`](/docs/registry/attributes/network.md) | string | The version of JSON RPC protocol used. | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | The transport protocol used for the MCP session. [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`mcp.resource.uri`](/docs/registry/attributes/mcp.md) | string | The value of the resource uri. [3] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
 error code, if one is returned.
@@ -557,7 +557,7 @@ It SHOULD be set to `pipe` if the transport is stdio.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -588,10 +588,10 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if session ends with an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Recommended` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if session ends with an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Recommended` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -638,7 +638,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -669,8 +669,8 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if session ends with an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if session ends with an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -713,7 +713,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
