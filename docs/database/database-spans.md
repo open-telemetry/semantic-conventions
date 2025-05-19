@@ -484,24 +484,22 @@ relatively short and its cardinality remains low comparing to the `db.query.text
 
 **Status**: [Development][DocumentStatus]
 
-Instrumentations SHOULD propagate the context information to the SQL queries following [sqlcommenter](https://google.github.io/sqlcommenter/spec/).
+Instrumentations SHOULD propagate the context information to the SQL queries following [sqlcommenter](https://google.github.io/sqlcommenter/spec/). However, a specific database can flexibly choose to either `append` or `prepend` the sqlcommenter when adding it to a query.
 
 ### Recommended sqlcommenter attributes
 
-| Attribute              | Type   | Description                           | Require level                | Stability                                                      |
-|------------------------|--------|---------------------------------------|------------------------------|----------------------------------------------------------------|
-| `baggage.service.name` | string | Logical name of the service [1]       | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `traceparent`          | string | The trace context of current span [3] | `Recommended` [4]            | ![Development](https://img.shields.io/badge/-development-blue) |
+| Attribute              | Type   | Description                           | Require level     | Stability                                                      |
+|------------------------|--------|---------------------------------------|-------------------|----------------------------------------------------------------|
+| `baggage.service.name` | string | Logical name of the service [1]       | `Recommended`     | ![Development](https://img.shields.io/badge/-development-blue) |
+| `traceparent`          | string | The trace context of current span [2] | `Recommended` [3] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `baggage.service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fall back to `unknown_service:` concatenated with [process.executable.name](https://opentelemetry.io/docs/specs/semconv/attributes-registry/process/), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 
 [Baggage](https://www.w3.org/TR/baggage/) means you can pass data across services and processes, making it available to add to traces, metrics, or logs in those services.
 
-**[2] `baggage.service.name`:** SHOULD be set if `traceparent` cannot be injected due to performance issues.
+**[2] `traceparent`:** MUST be in the [text format](https://www.w3.org/TR/trace-context/#traceparent-header).
 
-**[3] `traceparent`:** MUST be in the [text format](https://www.w3.org/TR/trace-context/#traceparent-header).
-
-**[4] `traceparent`:** `traceparent` has extremely high-cardinality. It's RECOMMENDED to propagate this info if the high-cardinality is safe for the database observabilty engine.
+**[3] `traceparent`:** `traceparent` has extremely high-cardinality. It's RECOMMENDED to propagate this info if the high-cardinality is safe for the database observabilty engine.
 
 **Examples:**
 
