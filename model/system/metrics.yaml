@@ -534,7 +534,7 @@ groups:
   # metric.system.nfsd.* metrics
   - id: metric.system.nfsd.repcache.hits
     type: metric
-    metric_name: system.linux.repcache.hits
+    metric_name: system.nfsd.repcache.hits
     stability: development
     brief: "Reports the kernel NFS server request reply cache hit count"
     note: |
