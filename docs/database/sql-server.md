@@ -177,7 +177,6 @@ Instrumentations SHOULD make use of [SET CONTEXT_INFO](https://learn.microsoft.c
 
 `SET CONTEXT_INFO` must be executed on the same physical connection as the SQL statement (or reuse its transaction).
 
-
 ## Metrics
 
 Microsoft SQL Server client instrumentations SHOULD collect metrics according to the general
