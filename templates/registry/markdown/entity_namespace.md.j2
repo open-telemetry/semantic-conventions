@@ -8,7 +8,7 @@
 
 {# TODO ToC #}
 
-{% for e in ctx.groups %}
+{% for e in ctx.groups | sort(attribute='name') %}
 {%- set id_attrs = e.attributes | selectattr("role", "equalto", "identifying") -%}
 {%- set desc_attrs = e.attributes | selectattr("role", "equalto", "descriptive") -%}
 ## {{ e.name | title_case }}

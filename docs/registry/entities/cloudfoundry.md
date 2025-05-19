@@ -8,18 +8,6 @@
 
 
 
-## Cloudfoundry System
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `cloudfoundry.system`
-
-**Description:** The system component which is monitored.
-
-
-**Identifying Attributes:**
-
-
 ## Cloudfoundry App
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -27,18 +15,6 @@
 **type:** `cloudfoundry.app`
 
 **Description:** The application which is monitored.
-
-
-**Identifying Attributes:**
-
-
-## Cloudfoundry Space
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `cloudfoundry.space`
-
-**Description:** The space of the application which is monitored.
 
 
 **Identifying Attributes:**
@@ -63,6 +39,30 @@
 **type:** `cloudfoundry.process`
 
 **Description:** The process of the application which is monitored.
+
+
+**Identifying Attributes:**
+
+
+## Cloudfoundry Space
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `cloudfoundry.space`
+
+**Description:** The space of the application which is monitored.
+
+
+**Identifying Attributes:**
+
+
+## Cloudfoundry System
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `cloudfoundry.system`
+
+**Description:** The system component which is monitored.
 
 
 **Identifying Attributes:**

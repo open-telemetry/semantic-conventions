@@ -7,7 +7,9 @@
 {%- import 'metric_table.j2' as mt -%}
 {%- import 'event_macros.j2' as event -%}
 {%- import 'resource_macros.j2' as resource -%}
-{%- import 'span_macros.j2' as span %}
+{%- import 'span_macros.j2' as span -%}
+{%- set attribute_registry_base_url=params.registry_base_url~"attributes" %}
+{%- set entity_registry_base_url=params.registry_base_url~"entities" %}
 
 {% macro generate_event(group) -%}
 {{ event.header(group) }}{{ generate_attributes(group) }}{{ event.body(group.body) }}{% endmacro -%}
