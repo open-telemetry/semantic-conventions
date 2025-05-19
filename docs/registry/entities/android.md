@@ -8,7 +8,6 @@
 
 
 
-
 ## Android
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -18,9 +17,6 @@
 **Description:** The Android platform on which the Android application is running.
 
 
-
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`android.os.api_level`](/docs/registry/attribute/android.md) | string | Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found [here](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels). | `33`; `32` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+**Identifying Attributes:**
 
 
