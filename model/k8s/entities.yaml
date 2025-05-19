@@ -7,7 +7,9 @@ groups:
       A Kubernetes Cluster.
     attributes:
       - ref: k8s.cluster.name
+        role: descriptive
       - ref: k8s.cluster.uid
+        role: identifying
 
   - id: entity.k8s.node
     type: entity
@@ -17,11 +19,15 @@ groups:
       A Kubernetes Node object.
     attributes:
       - ref: k8s.node.name
+        role: descriptive
       - ref: k8s.node.uid
+        role: identifying
       - ref: k8s.node.label
         requirement_level: opt_in
+        role: descriptive
       - ref: k8s.node.annotation
         requirement_level: opt_in
+        role: descriptive
 
   - id: entity.k8s.namespace
     type: entity
@@ -31,10 +37,13 @@ groups:
       A Kubernetes Namespace.
     attributes:
       - ref: k8s.namespace.name
+        role: identifying
       - ref: k8s.namespace.label
         requirement_level: opt_in
+        role: descriptive
       - ref: k8s.namespace.annotation
         requirement_level: opt_in
+        role: descriptive
 
   - id: entity.k8s.pod
     type: entity
@@ -44,11 +53,15 @@ groups:
       A Kubernetes Pod object.
     attributes:
       - ref: k8s.pod.uid
+        role: identifying
       - ref: k8s.pod.name
+        role: descriptive
       - ref: k8s.pod.label
         requirement_level: opt_in
+        role: descriptive
       - ref: k8s.pod.annotation
         requirement_level: opt_in
+        role: descriptive
 
   - id: entity.k8s.container
     type: entity
@@ -58,8 +71,11 @@ groups:
       A container in a [PodTemplate](https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates).
     attributes:
       - ref: k8s.container.name
+        role: identifying
       - ref: k8s.container.restart_count
+        role: descriptive
       - ref: k8s.container.status.last_terminated_reason
+        role: descriptive
 
   - id: entity.k8s.replicaset
     type: entity
@@ -69,11 +85,15 @@ groups:
       A Kubernetes ReplicaSet object.
     attributes:
       - ref: k8s.replicaset.uid
+        role: identifying
       - ref: k8s.replicaset.name
+        role: descriptive
       - ref: k8s.replicaset.label
         requirement_level: opt_in
+        role: descriptive
       - ref: k8s.replicaset.annotation
         requirement_level: opt_in
+        role: descriptive
 
   - id: entity.k8s.deployment
     type: entity
@@ -83,11 +103,15 @@ groups:
       A Kubernetes Deployment object.
     attributes:
       - ref: k8s.deployment.uid
+        role: identifying
       - ref: k8s.deployment.name
+        role: descriptive
       - ref: k8s.deployment.label
         requirement_level: opt_in
+        role: descriptive
       - ref: k8s.deployment.annotation
         requirement_level: opt_in
+        role: descriptive
 
   - id: entity.k8s.statefulset
     type: entity
@@ -97,11 +121,15 @@ groups:
       A Kubernetes StatefulSet object.
     attributes:
       - ref: k8s.statefulset.uid
+        role: identifying
       - ref: k8s.statefulset.name
+        role: descriptive
       - ref: k8s.statefulset.label
         requirement_level: opt_in
+        role: descriptive
       - ref: k8s.statefulset.annotation
         requirement_level: opt_in
+        role: descriptive
 
   - id: entity.k8s.daemonset
     type: entity
@@ -111,11 +139,15 @@ groups:
       A Kubernetes DaemonSet object.
     attributes:
       - ref: k8s.daemonset.uid
+        role: identifying
       - ref: k8s.daemonset.name
+        role: descriptive
       - ref: k8s.daemonset.label
         requirement_level: opt_in
+        role: descriptive
       - ref: k8s.daemonset.annotation
         requirement_level: opt_in
+        role: descriptive
 
   - id: entity.k8s.job
     type: entity
@@ -125,11 +157,15 @@ groups:
       A Kubernetes Job object.
     attributes:
       - ref: k8s.job.uid
+        role: identifying
       - ref: k8s.job.name
+        role: descriptive
       - ref: k8s.job.label
         requirement_level: opt_in
+        role: descriptive
       - ref: k8s.job.annotation
         requirement_level: opt_in
+        role: descriptive
 
   - id: entity.k8s.cronjob
     type: entity
@@ -139,11 +175,15 @@ groups:
       A Kubernetes CronJob object.
     attributes:
       - ref: k8s.cronjob.uid
+        role: identifying
       - ref: k8s.cronjob.name
+        role: descriptive
       - ref: k8s.cronjob.label
         requirement_level: opt_in
+        role: descriptive
       - ref: k8s.cronjob.annotation
         requirement_level: opt_in
+        role: descriptive
 
   - id: entity.k8s.replicationcontroller
     type: entity
@@ -153,7 +193,9 @@ groups:
       A Kubernetes ReplicationController object.
     attributes:
       - ref: k8s.replicationcontroller.uid
+        role: identifying
       - ref: k8s.replicationcontroller.name
+        role: descriptive
 
   - id: entity.k8s.hpa
     type: entity
@@ -163,7 +205,9 @@ groups:
       A Kubernetes HorizontalPodAutoscaler object.
     attributes:
       - ref: k8s.hpa.uid
+        role: identifying
       - ref: k8s.hpa.name
+        role: descriptive
 
   - id: entity.k8s.resourcequota
     type: entity
@@ -173,4 +217,6 @@ groups:
       A Kubernetes ResourceQuota object.
     attributes:
       - ref: k8s.resourcequota.uid
+        role: identifying
       - ref: k8s.resourcequota.name
+        role: descriptive

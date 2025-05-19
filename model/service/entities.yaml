@@ -8,6 +8,10 @@ groups:
     attributes:
       - ref: service.name
         requirement_level: required
+        role: identifying
       - ref: service.version
+        role: descriptive
       - ref: service.namespace
+        role: identifying
       - ref: service.instance.id
+        role: identifying

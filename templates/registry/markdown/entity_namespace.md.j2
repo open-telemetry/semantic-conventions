@@ -9,6 +9,8 @@
 {# TODO ToC #}
 
 {% for e in ctx.groups %}
+{%- set id_attrs = e.attributes | selectattr("role", "equalto", "identifying") -%}
+{%- set desc_attrs = e.attributes | selectattr("role", "equalto", "descriptive") -%}
 ## {{ e.name | title_case }}
 
 **Status:** {{ stability.badge(e.stability, e.deprecated) }}
@@ -17,6 +19,13 @@
 
 **Description:** {{ e.brief }}
 
-{# TODO: Add identifying vs. descriptive attributes #}
-{{ at.generate(e.attributes, "", "/docs/registry/attribute", e.lineage.attributes) }}
+**Identifying Attributes:**
+{{ at.generate(id_attrs, "", "/docs/registry/attribute", e.lineage.attributes) }}
+
+
+{%- if desc_attrs | length > 0 %}
+**Descriptive Attributes:**
+{{ at.generate(desc_attrs, "", "/docs/registry/attribute", e.lineage.attributes) }}
+{% endif %}
+
 {% endfor %}
