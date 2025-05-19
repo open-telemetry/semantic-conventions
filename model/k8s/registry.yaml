@@ -451,4 +451,3 @@ groups:
               value: 'terminating'
               brief: "Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)"
               stability: development
-
