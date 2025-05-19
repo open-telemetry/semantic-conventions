@@ -28,7 +28,7 @@ The Semantic Conventions for *MySQL* extend and override the [Database Semantic 
 
 Spans representing calls to a MySQL Server adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
 
-`db.system.name` MUST be set to `"microsoft.sql_server"` and SHOULD be provided **at span creation time**.
+`db.system.name` MUST be set to `"mysql"` and SHOULD be provided **at span creation time**.
 
 **Span kind** SHOULD be `CLIENT`.
 

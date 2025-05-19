@@ -71,7 +71,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -93,7 +93,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 ## Metric: `kestrel.connection.duration`
 
 this metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.45.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 <!-- semconv metric.kestrel.connection.duration -->
@@ -203,7 +203,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -264,7 +264,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -324,7 +324,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -390,7 +390,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -452,7 +452,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -474,7 +474,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 ## Metric: `kestrel.tls_handshake.duration`
 
 this metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.45.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.kestrel.tls_handshake.duration -->
@@ -528,7 +528,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -588,7 +588,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

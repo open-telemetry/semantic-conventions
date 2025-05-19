@@ -4,7 +4,7 @@ groups:
     type: attribute_group
     brief: This group defines the attributes used to perform database client calls.
     attributes:
-      # TODO: add db.system.name once https://github.com/open-telemetry/build-tools/issues/192 is possible
+      # TODO: add db.system.name once https://github.com/open-telemetry/weaver/issues/479 is possible
       # - ref: db.system.name
       #   sampling_relevant: true
       - ref: db.operation.name
@@ -96,7 +96,7 @@ groups:
           recommended: if and only if `network.peer.address` is set.
       - ref: db.system.name
         sampling_relevant: true
-        # TODO: Not adding to the minimal because of https://github.com/open-telemetry/build-tools/issues/192
+        # TODO: Not adding to the minimal because of https://github.com/open-telemetry/weaver/issues/479
         requirement_level: required
       - ref: db.namespace
         sampling_relevant: true
@@ -229,7 +229,7 @@ groups:
     brief: >
       Spans representing calls to a MySQL Server adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
     note: |
-      `db.system.name` MUST be set to `"microsoft.sql_server"` and SHOULD be provided **at span creation time**.
+      `db.system.name` MUST be set to `"mysql"` and SHOULD be provided **at span creation time**.
     attributes:
       - ref: db.namespace
         sampling_relevant: true
