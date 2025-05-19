@@ -29,7 +29,7 @@ Currently, the following namespaces exist:
 {% for bundle in ctx %}<tr>
 <td>{{ bundle.id | title_case | acronym }}</td><td></td><td></td>
 </tr>
-{%- for group in bundle.groups -%}
+{%- for group in bundle.groups | sort(attribute='name') -%}
     {%- set my_file_name = bundle.id | kebab_case ~ ".md#" ~ (group.name | kebab_case) -%}
 <tr>
   <td></td>

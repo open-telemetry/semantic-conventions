@@ -41,11 +41,11 @@ Currently, the following namespaces exist:
 <td>AWS</td><td></td><td></td>
 </tr><tr>
   <td></td>
-  <td><a href="aws.md#aws-eks">aws.eks</a></td>
+  <td><a href="aws.md#aws-ecs">aws.ecs</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
-  <td><a href="aws.md#aws-ecs">aws.ecs</a></td>
+  <td><a href="aws.md#aws-eks">aws.eks</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
@@ -81,15 +81,7 @@ Currently, the following namespaces exist:
 <td>CloudFoundry</td><td></td><td></td>
 </tr><tr>
   <td></td>
-  <td><a href="cloudfoundry.md#cloudfoundry-system">cloudfoundry.system</a></td>
-  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
-</tr><tr>
-  <td></td>
   <td><a href="cloudfoundry.md#cloudfoundry-app">cloudfoundry.app</a></td>
-  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
-</tr><tr>
-  <td></td>
-  <td><a href="cloudfoundry.md#cloudfoundry-space">cloudfoundry.space</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
@@ -98,6 +90,14 @@ Currently, the following namespaces exist:
 </tr><tr>
   <td></td>
   <td><a href="cloudfoundry.md#cloudfoundry-process">cloudfoundry.process</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="cloudfoundry.md#cloudfoundry-space">cloudfoundry.space</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="cloudfoundry.md#cloudfoundry-system">cloudfoundry.system</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
 <td>Container</td><td></td><td></td>
@@ -169,39 +169,7 @@ Currently, the following namespaces exist:
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
-  <td><a href="k8s.md#k8s-node">k8s.node</a></td>
-  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
-</tr><tr>
-  <td></td>
-  <td><a href="k8s.md#k8s-namespace">k8s.namespace</a></td>
-  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
-</tr><tr>
-  <td></td>
-  <td><a href="k8s.md#k8s-pod">k8s.pod</a></td>
-  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
-</tr><tr>
-  <td></td>
   <td><a href="k8s.md#k8s-container">k8s.container</a></td>
-  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
-</tr><tr>
-  <td></td>
-  <td><a href="k8s.md#k8s-replicaset">k8s.replicaset</a></td>
-  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
-</tr><tr>
-  <td></td>
-  <td><a href="k8s.md#k8s-deployment">k8s.deployment</a></td>
-  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
-</tr><tr>
-  <td></td>
-  <td><a href="k8s.md#k8s-statefulset">k8s.statefulset</a></td>
-  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
-</tr><tr>
-  <td></td>
-  <td><a href="k8s.md#k8s-daemonset">k8s.daemonset</a></td>
-  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
-</tr><tr>
-  <td></td>
-  <td><a href="k8s.md#k8s-job">k8s.job</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
@@ -209,7 +177,11 @@ Currently, the following namespaces exist:
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
-  <td><a href="k8s.md#k8s-replicationcontroller">k8s.replicationcontroller</a></td>
+  <td><a href="k8s.md#k8s-daemonset">k8s.daemonset</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="k8s.md#k8s-deployment">k8s.deployment</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
@@ -217,7 +189,35 @@ Currently, the following namespaces exist:
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
+  <td><a href="k8s.md#k8s-job">k8s.job</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="k8s.md#k8s-namespace">k8s.namespace</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="k8s.md#k8s-node">k8s.node</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="k8s.md#k8s-pod">k8s.pod</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="k8s.md#k8s-replicaset">k8s.replicaset</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="k8s.md#k8s-replicationcontroller">k8s.replicationcontroller</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
   <td><a href="k8s.md#k8s-resourcequota">k8s.resourcequota</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="k8s.md#k8s-statefulset">k8s.statefulset</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
 <td>OS</td><td></td><td></td>
@@ -251,21 +251,21 @@ Currently, the following namespaces exist:
 <td>Telemetry</td><td></td><td></td>
 </tr><tr>
   <td></td>
-  <td><a href="telemetry.md#telemetry-sdk">telemetry.sdk</a></td>
-  <td><img src="https://img.shields.io/badge/-stable-lightgreen" alt="Stable"/></td>
-</tr><tr>
-  <td></td>
   <td><a href="telemetry.md#telemetry-distro">telemetry.distro</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="telemetry.md#telemetry-sdk">telemetry.sdk</a></td>
+  <td><img src="https://img.shields.io/badge/-stable-lightgreen" alt="Stable"/></td>
 </tr><tr>
 <td>VCS</td><td></td><td></td>
 </tr><tr>
   <td></td>
-  <td><a href="vcs.md#vcs-repo">vcs.repo</a></td>
+  <td><a href="vcs.md#vcs-ref">vcs.ref</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
-  <td><a href="vcs.md#vcs-ref">vcs.ref</a></td>
+  <td><a href="vcs.md#vcs-repo">vcs.repo</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
 <td>Webengine</td><td></td><td></td>

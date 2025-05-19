@@ -8,18 +8,6 @@
 
 
 
-## Aws Eks
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `aws.eks`
-
-**Description:** Entities used by AWS Elastic Kubernetes Service (EKS).
-
-
-**Identifying Attributes:**
-
-
 ## Aws Ecs
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -27,6 +15,18 @@
 **type:** `aws.ecs`
 
 **Description:** Entities used by AWS Elastic Container Service (ECS).
+
+
+**Identifying Attributes:**
+
+
+## Aws Eks
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `aws.eks`
+
+**Description:** Entities used by AWS Elastic Kubernetes Service (EKS).
 
 
 **Identifying Attributes:**

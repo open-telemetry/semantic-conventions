@@ -8,18 +8,6 @@
 
 
 
-## Vcs Repo
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `vcs.repo`
-
-**Description:** A repository in the Version Control System.
-
-
-**Identifying Attributes:**
-
-
 ## Vcs Ref
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -27,6 +15,18 @@
 **type:** `vcs.ref`
 
 **Description:** A reference to a specific version in the Version Control System.
+
+
+**Identifying Attributes:**
+
+
+## Vcs Repo
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `vcs.repo`
+
+**Description:** A repository in the Version Control System.
 
 
 **Identifying Attributes:**

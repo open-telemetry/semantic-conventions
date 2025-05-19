@@ -54,116 +54,6 @@ conflict.
 
 
 
-## K8s Node
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `k8s.node`
-
-**Description:** A Kubernetes Node object.
-
-
-**Identifying Attributes:**
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`k8s.node.uid`](/docs/registry/attribute/k8s.md) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-
-**Descriptive Attributes:**
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`k8s.node.name`](/docs/registry/attribute/k8s.md) | string | The name of the Node. | `node-1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.node.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [2] | `0`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.node.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty. [3] | `arm64`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[2] `k8s.node.annotation.<key>`:** Examples:
-
-- An annotation `node.alpha.kubernetes.io/ttl` with value `0` SHOULD be recorded as
-  the `k8s.node.annotation.node.alpha.kubernetes.io/ttl` attribute with value `"0"`.
-- An annotation `data` with empty string value SHOULD be recorded as
-  the `k8s.node.annotation.data` attribute with value `""`.
-
-**[3] `k8s.node.label.<key>`:** Examples:
-
-- A label `kubernetes.io/arch` with value `arm64` SHOULD be recorded
-  as the `k8s.node.label.kubernetes.io/arch` attribute with value `"arm64"`.
-- A label `data` with empty string value SHOULD be recorded as
-  the `k8s.node.label.data` attribute with value `""`.
-
-
-
-
-## K8s Namespace
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `k8s.namespace`
-
-**Description:** A Kubernetes Namespace.
-
-
-**Identifying Attributes:**
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`k8s.namespace.name`](/docs/registry/attribute/k8s.md) | string | The name of the namespace that the pod is running in. | `default` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-
-**Descriptive Attributes:**
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`k8s.namespace.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The annotation key-value pairs placed on the Namespace. [4] | `k8s.namespace.annotation.ttl=0`; `k8s.namespace.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.namespace.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label key-value pairs placed on the Namespace. [5] | `k8s.namespace.label.kubernetes.io/metadata.name=default`; `k8s.namespace.label.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[4] `k8s.namespace.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-
-**[5] `k8s.namespace.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
-
-
-
-
-## K8s Pod
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `k8s.pod`
-
-**Description:** A Kubernetes Pod object.
-
-
-**Identifying Attributes:**
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`k8s.pod.uid`](/docs/registry/attribute/k8s.md) | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-
-**Descriptive Attributes:**
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`k8s.pod.name`](/docs/registry/attribute/k8s.md) | string | The name of the Pod. | `opentelemetry-pod-autoconf` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.pod.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. [6] | `true`; `x64`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.pod.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label placed on the Pod, the `<key>` being the label name, the value being the label value. [7] | `my-app`; `x64`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[6] `k8s.pod.annotation.<key>`:** Examples:
-
-- An annotation `kubernetes.io/enforce-mountable-secrets` with value `true` SHOULD be recorded as
-  the `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets` attribute with value `"true"`.
-- An annotation `mycompany.io/arch` with value `x64` SHOULD be recorded as
-  the `k8s.pod.annotation.mycompany.io/arch` attribute with value `"x64"`.
-- An annotation `data` with empty string value SHOULD be recorded as
-  the `k8s.pod.annotation.data` attribute with value `""`.
-
-**[7] `k8s.pod.label.<key>`:** Examples:
-
-- A label `app` with value `my-app` SHOULD be recorded as
-  the `k8s.pod.label.app` attribute with value `"my-app"`.
-- A label `mycompany.io/arch` with value `x64` SHOULD be recorded as
-  the `k8s.pod.label.mycompany.io/arch` attribute with value `"x64"`.
-- A label `data` with empty string value SHOULD be recorded as
-  the `k8s.pod.label.data` attribute with value `""`.
-
-
-
-
 ## K8s Container
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -188,89 +78,41 @@ conflict.
 
 
 
-## K8s Replicaset
+## K8s Cronjob
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `k8s.replicaset`
+**type:** `k8s.cronjob`
 
-**Description:** A Kubernetes ReplicaSet object.
+**Description:** A Kubernetes CronJob object.
 
 
 **Identifying Attributes:**
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.replicaset.uid`](/docs/registry/attribute/k8s.md) | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.cronjob.uid`](/docs/registry/attribute/k8s.md) | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 
 **Descriptive Attributes:**
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.replicaset.name`](/docs/registry/attribute/k8s.md) | string | The name of the ReplicaSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.replicaset.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The annotation key-value pairs placed on the ReplicaSet. [8] | `k8s.replicaset.annotation.replicas=0`; `k8s.replicaset.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.replicaset.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label key-value pairs placed on the ReplicaSet. [9] | `k8s.replicaset.label.app=guestbook`; `k8s.replicaset.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.cronjob.name`](/docs/registry/attribute/k8s.md) | string | The name of the CronJob. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.cronjob.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value. [2] | `4`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.cronjob.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label placed on the CronJob, the `<key>` being the label name, the value being the label value. [3] | `weekly`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[8] `k8s.replicaset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[2] `k8s.cronjob.annotation.<key>`:** Examples:
 
-**[9] `k8s.replicaset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+- An annotation `retries` with value `4` SHOULD be recorded as the
+  `k8s.cronjob.annotation.retries` attribute with value `"4"`.
+- An annotation `data` with empty string value SHOULD be recorded as
+  the `k8s.cronjob.annotation.data` attribute with value `""`.
 
+**[3] `k8s.cronjob.label.<key>`:** Examples:
 
-
-
-## K8s Deployment
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `k8s.deployment`
-
-**Description:** A Kubernetes Deployment object.
-
-
-**Identifying Attributes:**
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`k8s.deployment.uid`](/docs/registry/attribute/k8s.md) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-
-**Descriptive Attributes:**
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`k8s.deployment.name`](/docs/registry/attribute/k8s.md) | string | The name of the Deployment. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.deployment.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The annotation key-value pairs placed on the Deployment. [10] | `k8s.deployment.annotation.replicas=1`; `k8s.deployment.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.deployment.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label key-value pairs placed on the Deployment. [11] | `k8s.deployment.label.app=guestbook`; `k8s.deployment.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[10] `k8s.deployment.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-
-**[11] `k8s.deployment.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
-
-
-
-
-## K8s Statefulset
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `k8s.statefulset`
-
-**Description:** A Kubernetes StatefulSet object.
-
-
-**Identifying Attributes:**
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`k8s.statefulset.uid`](/docs/registry/attribute/k8s.md) | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-
-**Descriptive Attributes:**
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`k8s.statefulset.name`](/docs/registry/attribute/k8s.md) | string | The name of the StatefulSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.statefulset.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The annotation key-value pairs placed on the StatefulSet. [12] | `k8s.statefulset.annotation.replicas=1`; `k8s.statefulset.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.statefulset.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label key-value pairs placed on the StatefulSet. [13] | `k8s.statefulset.label.app=guestbook`; `k8s.statefulset.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[12] `k8s.statefulset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-
-**[13] `k8s.statefulset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+- A label `type` with value `weekly` SHOULD be recorded as the
+  `k8s.cronjob.label.type` attribute with value `"weekly"`.
+- A label `automated` with empty string value SHOULD be recorded as
+  the `k8s.cronjob.label.automated` attribute with value `""`.
 
 
 
@@ -294,103 +136,41 @@ conflict.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.daemonset.name`](/docs/registry/attribute/k8s.md) | string | The name of the DaemonSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.daemonset.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The annotation key-value pairs placed on the DaemonSet. [14] | `k8s.daemonset.annotation.replicas=1`; `k8s.daemonset.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.daemonset.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label key-value pairs placed on the DaemonSet. [15] | `k8s.daemonset.label.app=guestbook`; `k8s.daemonset.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.daemonset.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The annotation key-value pairs placed on the DaemonSet. [4] | `k8s.daemonset.annotation.replicas=1`; `k8s.daemonset.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.daemonset.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label key-value pairs placed on the DaemonSet. [5] | `k8s.daemonset.label.app=guestbook`; `k8s.daemonset.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[14] `k8s.daemonset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[4] `k8s.daemonset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[15] `k8s.daemonset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
-
-
+**[5] `k8s.daemonset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 
-## K8s Job
+
+
+## K8s Deployment
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `k8s.job`
+**type:** `k8s.deployment`
 
-**Description:** A Kubernetes Job object.
+**Description:** A Kubernetes Deployment object.
 
 
 **Identifying Attributes:**
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.job.uid`](/docs/registry/attribute/k8s.md) | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.deployment.uid`](/docs/registry/attribute/k8s.md) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 
 **Descriptive Attributes:**
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.job.name`](/docs/registry/attribute/k8s.md) | string | The name of the Job. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.job.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The annotation key-value pairs placed on the Job. [16] | `k8s.job.annotation.number=1`; `k8s.job.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.job.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label key-value pairs placed on the Job. [17] | `k8s.job.label.jobtype=ci`; `k8s.job.label.automated=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.deployment.name`](/docs/registry/attribute/k8s.md) | string | The name of the Deployment. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.deployment.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The annotation key-value pairs placed on the Deployment. [6] | `k8s.deployment.annotation.replicas=1`; `k8s.deployment.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.deployment.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label key-value pairs placed on the Deployment. [7] | `k8s.deployment.label.app=guestbook`; `k8s.deployment.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[16] `k8s.job.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[6] `k8s.deployment.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
-**[17] `k8s.job.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
-
-
-
-
-## K8s Cronjob
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `k8s.cronjob`
-
-**Description:** A Kubernetes CronJob object.
-
-
-**Identifying Attributes:**
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`k8s.cronjob.uid`](/docs/registry/attribute/k8s.md) | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-
-**Descriptive Attributes:**
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`k8s.cronjob.name`](/docs/registry/attribute/k8s.md) | string | The name of the CronJob. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.cronjob.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value. [18] | `4`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.cronjob.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label placed on the CronJob, the `<key>` being the label name, the value being the label value. [19] | `weekly`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[18] `k8s.cronjob.annotation.<key>`:** Examples:
-
-- An annotation `retries` with value `4` SHOULD be recorded as the
-  `k8s.cronjob.annotation.retries` attribute with value `"4"`.
-- An annotation `data` with empty string value SHOULD be recorded as
-  the `k8s.cronjob.annotation.data` attribute with value `""`.
-
-**[19] `k8s.cronjob.label.<key>`:** Examples:
-
-- A label `type` with value `weekly` SHOULD be recorded as the
-  `k8s.cronjob.label.type` attribute with value `"weekly"`.
-- A label `automated` with empty string value SHOULD be recorded as
-  the `k8s.cronjob.label.automated` attribute with value `""`.
-
-
-
-
-## K8s Replicationcontroller
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `k8s.replicationcontroller`
-
-**Description:** A Kubernetes ReplicationController object.
-
-
-**Identifying Attributes:**
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`k8s.replicationcontroller.uid`](/docs/registry/attribute/k8s.md) | string | The UID of the replication controller. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-
-**Descriptive Attributes:**
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`k8s.replicationcontroller.name`](/docs/registry/attribute/k8s.md) | string | The name of the replication controller. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+**[7] `k8s.deployment.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 
 
@@ -418,6 +198,197 @@ conflict.
 
 
 
+## K8s Job
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `k8s.job`
+
+**Description:** A Kubernetes Job object.
+
+
+**Identifying Attributes:**
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.job.uid`](/docs/registry/attribute/k8s.md) | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+
+**Descriptive Attributes:**
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.job.name`](/docs/registry/attribute/k8s.md) | string | The name of the Job. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.job.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The annotation key-value pairs placed on the Job. [8] | `k8s.job.annotation.number=1`; `k8s.job.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.job.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label key-value pairs placed on the Job. [9] | `k8s.job.label.jobtype=ci`; `k8s.job.label.automated=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[8] `k8s.job.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[9] `k8s.job.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+
+
+
+
+## K8s Namespace
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `k8s.namespace`
+
+**Description:** A Kubernetes Namespace.
+
+
+**Identifying Attributes:**
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.namespace.name`](/docs/registry/attribute/k8s.md) | string | The name of the namespace that the pod is running in. | `default` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+
+**Descriptive Attributes:**
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.namespace.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The annotation key-value pairs placed on the Namespace. [10] | `k8s.namespace.annotation.ttl=0`; `k8s.namespace.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.namespace.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label key-value pairs placed on the Namespace. [11] | `k8s.namespace.label.kubernetes.io/metadata.name=default`; `k8s.namespace.label.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[10] `k8s.namespace.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[11] `k8s.namespace.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+
+
+
+
+## K8s Node
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `k8s.node`
+
+**Description:** A Kubernetes Node object.
+
+
+**Identifying Attributes:**
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.node.uid`](/docs/registry/attribute/k8s.md) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+
+**Descriptive Attributes:**
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.node.name`](/docs/registry/attribute/k8s.md) | string | The name of the Node. | `node-1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.node.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [12] | `0`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.node.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty. [13] | `arm64`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[12] `k8s.node.annotation.<key>`:** Examples:
+
+- An annotation `node.alpha.kubernetes.io/ttl` with value `0` SHOULD be recorded as
+  the `k8s.node.annotation.node.alpha.kubernetes.io/ttl` attribute with value `"0"`.
+- An annotation `data` with empty string value SHOULD be recorded as
+  the `k8s.node.annotation.data` attribute with value `""`.
+
+**[13] `k8s.node.label.<key>`:** Examples:
+
+- A label `kubernetes.io/arch` with value `arm64` SHOULD be recorded
+  as the `k8s.node.label.kubernetes.io/arch` attribute with value `"arm64"`.
+- A label `data` with empty string value SHOULD be recorded as
+  the `k8s.node.label.data` attribute with value `""`.
+
+
+
+
+## K8s Pod
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `k8s.pod`
+
+**Description:** A Kubernetes Pod object.
+
+
+**Identifying Attributes:**
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.pod.uid`](/docs/registry/attribute/k8s.md) | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+
+**Descriptive Attributes:**
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.pod.name`](/docs/registry/attribute/k8s.md) | string | The name of the Pod. | `opentelemetry-pod-autoconf` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.pod.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. [14] | `true`; `x64`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.pod.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label placed on the Pod, the `<key>` being the label name, the value being the label value. [15] | `my-app`; `x64`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[14] `k8s.pod.annotation.<key>`:** Examples:
+
+- An annotation `kubernetes.io/enforce-mountable-secrets` with value `true` SHOULD be recorded as
+  the `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets` attribute with value `"true"`.
+- An annotation `mycompany.io/arch` with value `x64` SHOULD be recorded as
+  the `k8s.pod.annotation.mycompany.io/arch` attribute with value `"x64"`.
+- An annotation `data` with empty string value SHOULD be recorded as
+  the `k8s.pod.annotation.data` attribute with value `""`.
+
+**[15] `k8s.pod.label.<key>`:** Examples:
+
+- A label `app` with value `my-app` SHOULD be recorded as
+  the `k8s.pod.label.app` attribute with value `"my-app"`.
+- A label `mycompany.io/arch` with value `x64` SHOULD be recorded as
+  the `k8s.pod.label.mycompany.io/arch` attribute with value `"x64"`.
+- A label `data` with empty string value SHOULD be recorded as
+  the `k8s.pod.label.data` attribute with value `""`.
+
+
+
+
+## K8s Replicaset
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `k8s.replicaset`
+
+**Description:** A Kubernetes ReplicaSet object.
+
+
+**Identifying Attributes:**
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.replicaset.uid`](/docs/registry/attribute/k8s.md) | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+
+**Descriptive Attributes:**
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.replicaset.name`](/docs/registry/attribute/k8s.md) | string | The name of the ReplicaSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.replicaset.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The annotation key-value pairs placed on the ReplicaSet. [16] | `k8s.replicaset.annotation.replicas=0`; `k8s.replicaset.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.replicaset.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label key-value pairs placed on the ReplicaSet. [17] | `k8s.replicaset.label.app=guestbook`; `k8s.replicaset.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[16] `k8s.replicaset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[17] `k8s.replicaset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+
+
+
+
+## K8s Replicationcontroller
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `k8s.replicationcontroller`
+
+**Description:** A Kubernetes ReplicationController object.
+
+
+**Identifying Attributes:**
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.replicationcontroller.uid`](/docs/registry/attribute/k8s.md) | string | The UID of the replication controller. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+
+**Descriptive Attributes:**
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.replicationcontroller.name`](/docs/registry/attribute/k8s.md) | string | The name of the replication controller. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+
+
+
 ## K8s Resourcequota
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -437,6 +408,35 @@ conflict.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.resourcequota.name`](/docs/registry/attribute/k8s.md) | string | The name of the resource quota. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+
+
+
+## K8s Statefulset
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `k8s.statefulset`
+
+**Description:** A Kubernetes StatefulSet object.
+
+
+**Identifying Attributes:**
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.statefulset.uid`](/docs/registry/attribute/k8s.md) | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+
+**Descriptive Attributes:**
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`k8s.statefulset.name`](/docs/registry/attribute/k8s.md) | string | The name of the StatefulSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.statefulset.annotation.<key>`](/docs/registry/attribute/k8s.md) | string | The annotation key-value pairs placed on the StatefulSet. [18] | `k8s.statefulset.annotation.replicas=1`; `k8s.statefulset.annotation.data=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.statefulset.label.<key>`](/docs/registry/attribute/k8s.md) | string | The label key-value pairs placed on the StatefulSet. [19] | `k8s.statefulset.label.app=guestbook`; `k8s.statefulset.label.injected=` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[18] `k8s.statefulset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[19] `k8s.statefulset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 
 

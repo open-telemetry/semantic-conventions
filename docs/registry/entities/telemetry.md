@@ -8,18 +8,6 @@
 
 
 
-## Telemetry Sdk
-
-**Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
-
-**type:** `telemetry.sdk`
-
-**Description:** The telemetry SDK used to capture data recorded by the instrumentation libraries.
-
-
-**Identifying Attributes:**
-
-
 ## Telemetry Distro
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -27,6 +15,18 @@
 **type:** `telemetry.distro`
 
 **Description:** The distribution of telemetry SDK used to capture data recorded by the instrumentation libraries.
+
+
+**Identifying Attributes:**
+
+
+## Telemetry Sdk
+
+**Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
+
+**type:** `telemetry.sdk`
+
+**Description:** The telemetry SDK used to capture data recorded by the instrumentation libraries.
 
 
 **Identifying Attributes:**
