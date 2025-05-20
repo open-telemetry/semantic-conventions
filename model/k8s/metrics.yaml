@@ -614,6 +614,40 @@ groups:
       - ref: k8s.storage.class_name
         requirement_level: opt_in
 
+  # k8s.resourcequota.ephemeral_storage.* metrics
+  - id: metric.k8s.resourcequota.ephemeral_storage.request
+    type: metric
+    metric_name: k8s.resourcequota.ephemeral_storage.request
+    stability: development
+    brief: |
+      Across all pods in the namespace, the sum of local ephemeral storage requests cannot exceed this value.
+    instrument: gauge
+    unit: "By"
+    note: |
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+  - id: metric.k8s.resourcequota.ephemeral_storage.limit
+    type: metric
+    metric_name: k8s.resourcequota.ephemeral_storage.limit
+    stability: development
+    brief: |
+      Across all pods in the namespace, the sum of local ephemeral storage limits cannot exceed this value.
+    instrument: gauge
+    unit: "By"
+    note: |
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+
   # k8s.resourcequota.object_count metric
   - id: metric.k8s.resourcequota.object_count
     type: metric
