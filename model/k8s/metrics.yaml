@@ -479,7 +479,6 @@ groups:
       The CPU limits in a specific namespace.
       Across all pods in a non-terminal state,
       the sum of CPU limits cannot exceed this value.
-      Will only be sent if a quota is specified.
     instrument: gauge
     unit: "{cpu}"
     note: |
@@ -498,7 +497,6 @@ groups:
       The CPU requests in a specific namespace.
       Across all pods in a non-terminal state,
       the sum of CPU requests cannot exceed this value.
-      Will only be sent if a quota is specified.
     instrument: gauge
     unit: "{cpu}"
     note: |
@@ -519,7 +517,6 @@ groups:
       The memory limits in a specific namespace.
       Across all pods in a non-terminal state,
       the sum of memory limits cannot exceed this value.
-      Will only be sent if a quota is specified.
     instrument: gauge
     unit: "By"
     note: |
@@ -538,7 +535,6 @@ groups:
       The memory requests in a specific namespace.
       Across all pods in a non-terminal state,
       the sum of memory requests cannot exceed this value.
-      Will only be sent if a quota is specified.
     instrument: gauge
     unit: "By"
     note: |
@@ -550,6 +546,74 @@ groups:
       - ref: k8s.resourcequota.state
         requirement_level: required
 
+  # k8s.resourcequota.hugepages.* metrics
+  - id: metric.k8s.resourcequota.hugepages.request
+    type: metric
+    metric_name: k8s.resourcequota.hugepages.request
+    stability: development
+    brief: |
+      The huge page requests in a specific namespace.
+      Across all pods in a non-terminal state,
+      the sum of huge page requests cannot exceed this value.
+    instrument: gauge
+    unit: "By"
+    note: |
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+      - ref: k8s.hugepage.size
+        requirement_level: required
+
+  # k8s.resourcequota.storage.* metrics
+  - id: metric.k8s.resourcequota.storage.request
+    type: metric
+    metric_name: k8s.resourcequota.storage.request
+    stability: development
+    brief: |
+      The storage requests in a specific namespace.
+
+      Across all persistent volume claims associated with the <storage-class-name> (if exists),
+      the sum of storage requests cannot exceed this value.
+    instrument: gauge
+    unit: "By"
+    note: |
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+      - ref: k8s.storage.class_name
+        requirement_level: opt_in
+
+  # k8s.resourcequota.persistentvolumeclaims.* metrics
+  - id: metric.k8s.resourcequota.persistentvolumeclaims.request
+    type: metric
+    metric_name: k8s.resourcequota.persistentvolumeclaims.request
+    stability: development
+    brief: |
+      The persistentvolumeclaims requests in a specific namespace.
+
+      Across all persistent volume claims associated with the <storage-class-name>, the total number of
+      persistent volume claims that can exist in the namespace.
+    instrument: gauge
+    unit: "By"
+    note: |
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+      - ref: k8s.storage.class_name
+        requirement_level: opt_in
+
   # k8s.resourcequota.object_count metric
   - id: metric.k8s.resourcequota.object_count
     type: metric
@@ -558,7 +622,6 @@ groups:
     brief: |
       The object count limits in a specific namespace.
       The sum of objects cannot exceed this value.
-      Will only be sent if a quota is specified.
     instrument: updowncounter
     unit: "1"
     note: |

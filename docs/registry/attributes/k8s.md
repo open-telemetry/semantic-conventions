@@ -31,6 +31,7 @@ Kubernetes resource attributes.
 | <a id="k8s-deployment-uid" href="#k8s-deployment-uid">`k8s.deployment.uid`</a> | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-hpa-name" href="#k8s-hpa-name">`k8s.hpa.name`</a> | string | The name of the horizontal pod autoscaler. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-hpa-uid" href="#k8s-hpa-uid">`k8s.hpa.uid`</a> | string | The UID of the horizontal pod autoscaler. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-hugepage-size" href="#k8s-hugepage-size">`k8s.hugepage.size`</a> | string | The size (identifier) of the K8s huge page. | `2Mi` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-job-annotation" href="#k8s-job-annotation">`k8s.job.annotation.<key>`</a> | string | The annotation key-value pairs placed on the Job. [8] | `k8s.job.annotation.number=1`; `k8s.job.annotation.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-job-label" href="#k8s-job-label">`k8s.job.label.<key>`</a> | string | The label key-value pairs placed on the Job. [9] | `k8s.job.label.jobtype=ci`; `k8s.job.label.automated=` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-job-name" href="#k8s-job-name">`k8s.job.name`</a> | string | The name of the Job. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -60,6 +61,7 @@ Kubernetes resource attributes.
 | <a id="k8s-statefulset-label" href="#k8s-statefulset-label">`k8s.statefulset.label.<key>`</a> | string | The label key-value pairs placed on the StatefulSet. [20] | `k8s.statefulset.label.app=guestbook`; `k8s.statefulset.label.injected=` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-statefulset-name" href="#k8s-statefulset-name">`k8s.statefulset.name`</a> | string | The name of the StatefulSet. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-statefulset-uid" href="#k8s-statefulset-uid">`k8s.statefulset.uid`</a> | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-storage-class-name" href="#k8s-storage-class-name">`k8s.storage.class_name`</a> | string | The storage class of the K8s storage. | `gold.storageclass.storage.k8s.io` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-volume-name" href="#k8s-volume-name">`k8s.volume.name`</a> | string | The name of the K8s volume. | `volume0` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-volume-type" href="#k8s-volume-type">`k8s.volume.type`</a> | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` | ![Development](https://img.shields.io/badge/-development-blue) |
 
