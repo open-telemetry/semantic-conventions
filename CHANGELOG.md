@@ -7,6 +7,30 @@
 
 <!-- next version -->
 
+## v1.34.0
+
+### 🛑 Breaking changes 🛑
+
+- `all`: Convert deprecated text to structured format. ([#2047](https://github.com/open-telemetry/semantic-conventions/issues/2047))
+  This is a breaking change from the schema perspective, but does not change anything for instrumentations or the end users. It breaks compatibility with the (old) [code generation tooling](https://github.com/open-telemetry/build-tools/issues/322). Please use [weaver](https://github.com/open-telemetry/weaver) to generate Semantic Conventions markdown or code.
+  
+- `feature_flag`: Move the evaluated value from the event body to attributes ([#1990](https://github.com/open-telemetry/semantic-conventions/issues/1990))
+- `process`: Require sensitive data sanitization for `process.command_args` and `process.command_line` ([#626](https://github.com/open-telemetry/semantic-conventions/issues/626))
+
+### 💡 Enhancements 💡
+
+- `docs`: Document system-specific naming conventions ([#608](https://github.com/open-telemetry/semantic-conventions/issues/608), [#1494](https://github.com/open-telemetry/semantic-conventions/issues/1494), [#1708](https://github.com/open-telemetry/semantic-conventions/issues/1708))
+- `gen-ai`: Add `gen_ai.conversation.id` attribute ([#2024](https://github.com/open-telemetry/semantic-conventions/issues/2024))
+- `all`: Renames all `resource.*` groups to be `entity.*` ([#2244](https://github.com/open-telemetry/semantic-conventions/issues/2244))
+  Part of open-telemetry/opentelemetry-specification#4436
+- `aws`: Added new AWS attributes for various services including SQS, SNS, Bedrock, Step Functions, Secrets Manager and Kineses ([#1794](https://github.com/open-telemetry/semantic-conventions/issues/1794))
+- `cloud`: Broaden `cloud.region` definition to explicitly cover both resource location and targeted destination. ([#2142](https://github.com/open-telemetry/semantic-conventions/issues/2142))
+- `network`: Stabilize `network.transport` enum value `quic`. ([#2275](https://github.com/open-telemetry/semantic-conventions/issues/2275))
+
+### 🧰 Bug fixes 🧰
+
+- `db`: Fix the `db.system.name` attribute value for MySQL which was incorrectly pointing to `microsoft.sql_server`. ([#2276](https://github.com/open-telemetry/semantic-conventions/issues/2276))
+
 ## v1.33.0
 
 This release marks the first where the core of database semantic conventions have stabilized.

@@ -24,7 +24,7 @@ groups:
         sampling_relevant: true
       - ref: server.port
         sampling_relevant: true
-        # TODO: add messaging.system once https://github.com/open-telemetry/build-tools/issues/192 is implemented
+        # TODO: add messaging.system once https://github.com/open-telemetry/weaver/issues/479 is implemented
         # - ref: messaging.system
         #   sampling_relevant: true
 
@@ -311,3 +311,25 @@ groups:
 
           If none of the above operation names apply, the attribute SHOULD be set
           to the name of the client method in snake_case.
+
+  - id: messaging.aws.sqs
+    type: attribute_group
+    stability: development
+    extends: attributes.messaging.trace.minimal
+    brief: "Attributes that exist for SQS request types."
+    attributes:
+      - ref: aws.sqs.queue.url
+        requirement_level: recommended
+      - ref: aws.request_id
+        requirement_level: recommended
+
+  - id: messaging.aws.sns
+    type: attribute_group
+    stability: development
+    extends: attributes.messaging.trace.minimal
+    brief: "Attributes that exist for SNS request types."
+    attributes:
+      - ref: aws.sns.topic.arn
+        requirement_level: recommended
+      - ref: aws.request_id
+        requirement_level: recommended
