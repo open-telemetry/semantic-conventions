@@ -483,7 +483,7 @@ groups:
     instrument: gauge
     unit: "{cpu}"
     note: |
-      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
 
       This metric SHOULD, at a minimum, be reported against a
       [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
@@ -502,7 +502,7 @@ groups:
     instrument: gauge
     unit: "{cpu}"
     note: |
-      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
 
       This metric SHOULD, at a minimum, be reported against a
       [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
@@ -523,7 +523,7 @@ groups:
     instrument: gauge
     unit: "By"
     note: |
-      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
 
       This metric SHOULD, at a minimum, be reported against a
       [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
@@ -542,7 +542,27 @@ groups:
     instrument: gauge
     unit: "By"
     note: |
-      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+
+  # k8s.resourcequota.object_count metric
+  - id: metric.k8s.resourcequota.object_count
+    type: metric
+    metric_name: k8s.resourcequota.object_count
+    stability: development
+    brief: |
+      The object count limits in a specific namespace.
+      The sum of objects cannot exceed this value.
+      Will only be sent if a quota is specified.
+    instrument: updowncounter
+    unit: "1"
+    note: |
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota
 
       This metric SHOULD, at a minimum, be reported against a
       [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
