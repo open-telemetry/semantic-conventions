@@ -54,6 +54,7 @@ Kubernetes resource attributes.
 | <a id="k8s-replicationcontroller-name" href="#k8s-replicationcontroller-name">`k8s.replicationcontroller.name`</a> | string | The name of the replication controller. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-replicationcontroller-uid" href="#k8s-replicationcontroller-uid">`k8s.replicationcontroller.uid`</a> | string | The UID of the replication controller. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-resourcequota-name" href="#k8s-resourcequota-name">`k8s.resourcequota.name`</a> | string | The name of the resource quota. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-resourcequota-state" href="#k8s-resourcequota-state">`k8s.resourcequota.state`</a> | string | The state of the K8s Resource Quota. | `hard`; `used` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-resourcequota-uid" href="#k8s-resourcequota-uid">`k8s.resourcequota.uid`</a> | string | The UID of the resource quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-statefulset-annotation" href="#k8s-statefulset-annotation">`k8s.statefulset.annotation.<key>`</a> | string | The annotation key-value pairs placed on the StatefulSet. [19] | `k8s.statefulset.annotation.replicas=1`; `k8s.statefulset.annotation.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-statefulset-label" href="#k8s-statefulset-label">`k8s.statefulset.label.<key>`</a> | string | The label key-value pairs placed on the StatefulSet. [20] | `k8s.statefulset.label.app=guestbook`; `k8s.statefulset.label.injected=` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -166,6 +167,21 @@ conflict.
 |---|---|---|
 | `active` | Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `terminating` | Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`k8s.resourcequota.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `hard` | The hard state defined for a resource quota [21] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | The used state of a resource quota [22] | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[21]:** This state is retrieved from the `hard` field of the
+[K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+
+**[22]:** This state is retrieved from the `used` field of the
+[K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
 ---
 

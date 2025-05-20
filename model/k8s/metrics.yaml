@@ -471,12 +471,12 @@ groups:
         requirement_level: required
 
   # k8s.resourcequota.cpu.* metrics
-  - id: metric.k8s.resourcequota.cpu.hard_limit
+  - id: metric.k8s.resourcequota.cpu.limit
     type: metric
-    metric_name: k8s.resourcequota.cpu.hard_limit
+    metric_name: k8s.resourcequota.cpu.limit
     stability: development
     brief: |
-      The upper limit for CPU limits in a specific namespace.
+      The CPU limits in a specific namespace.
       Across all pods in a non-terminal state,
       the sum of CPU limits cannot exceed this value.
       Will only be sent if a quota is specified.
@@ -485,17 +485,17 @@ groups:
     note: |
       More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/
 
-      This metric is retrieved from the `hard` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
-
       This metric SHOULD, at a minimum, be reported against a
       [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
-  - id: metric.k8s.resourcequota.cpu.hard_request
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+  - id: metric.k8s.resourcequota.cpu.request
     type: metric
-    metric_name: k8s.resourcequota.cpu.hard_request
+    metric_name: k8s.resourcequota.cpu.request
     stability: development
     brief: |
-      The upper limit for CPU requests in a specific namespace.
+      The CPU requests in a specific namespace.
       Across all pods in a non-terminal state,
       the sum of CPU requests cannot exceed this value.
       Will only be sent if a quota is specified.
@@ -504,53 +504,19 @@ groups:
     note: |
       More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/
 
-      This metric is retrieved from the `hard` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
-
       This metric SHOULD, at a minimum, be reported against a
       [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
-  - id: metric.k8s.resourcequota.cpu.used_limit
-    type: metric
-    metric_name: k8s.resourcequota.cpu.used_limit
-    stability: development
-    brief: |
-      The sum of used CPU limits in a specific namespace.
-      Will only be sent if a quota is specified.
-    instrument: gauge
-    unit: "{cpu}"
-    note: |
-      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/
-
-      This metric is retrieved from the `used` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
-  - id: metric.k8s.resourcequota.cpu.used_request
-    type: metric
-    metric_name: k8s.resourcequota.cpu.used_request
-    stability: development
-    brief: |
-      The sum of used CPU requests in a specific namespace.
-      Will only be sent if a quota is specified.
-    instrument: gauge
-    unit: "{cpu}"
-    note: |
-      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/
-
-      This metric is retrieved from the `used` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
 
   # k8s.resourcequota.memory.* metrics
-  - id: metric.k8s.resourcequota.memory.hard_limit
+  - id: metric.k8s.resourcequota.memory.limit
     type: metric
-    metric_name: k8s.resourcequota.memory.hard_limit
+    metric_name: k8s.resourcequota.memory.limit
     stability: development
     brief: |
-      The upper limit for memory limits in a specific namespace.
+      The memory limits in a specific namespace.
       Across all pods in a non-terminal state,
       the sum of memory limits cannot exceed this value.
       Will only be sent if a quota is specified.
@@ -559,17 +525,17 @@ groups:
     note: |
       More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/
 
-      This metric is retrieved from the `hard` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
-
       This metric SHOULD, at a minimum, be reported against a
       [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
-  - id: metric.k8s.resourcequota.memory.hard_request
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+  - id: metric.k8s.resourcequota.memory.request
     type: metric
-    metric_name: k8s.resourcequota.memory.hard_request
+    metric_name: k8s.resourcequota.memory.request
     stability: development
     brief: |
-      The upper limit for memory requests in a specific namespace.
+      The memory requests in a specific namespace.
       Across all pods in a non-terminal state,
       the sum of memory requests cannot exceed this value.
       Will only be sent if a quota is specified.
@@ -578,42 +544,8 @@ groups:
     note: |
       More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/
 
-      This metric is retrieved from the `hard` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
-
       This metric SHOULD, at a minimum, be reported against a
       [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
-  - id: metric.k8s.resourcequota.memory.used_limit
-    type: metric
-    metric_name: k8s.resourcequota.memory.used_limit
-    stability: development
-    brief: |
-      The sum of used memory limits in a specific namespace.
-      Will only be sent if a quota is specified.
-    instrument: gauge
-    unit: "By"
-    note: |
-      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/
-
-      This metric is retrieved from the `used` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
-  - id: metric.k8s.resourcequota.memory.used_request
-    type: metric
-    metric_name: k8s.resourcequota.memory.used_request
-    stability: development
-    brief: |
-      The sum of used memory requests in a specific namespace.
-      Will only be sent if a quota is specified.
-    instrument: gauge
-    unit: "By"
-    note: |
-      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/
-
-      This metric is retrieved from the `used` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
