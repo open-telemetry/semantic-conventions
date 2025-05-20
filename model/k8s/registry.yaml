@@ -455,3 +455,15 @@ groups:
                 This state is retrieved from the `used` field of the
                 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
               stability: development
+      - id: k8s.hugepage.size
+        type: string
+        stability: development
+        brief: >
+          The size (identifier) of the K8s huge page.
+        examples: [ '2Mi' ]
+      - id: k8s.storage.class_name
+        type: string
+        stability: development
+        brief: >
+          The storage class of the K8s storage.
+        examples: [ 'gold.storageclass.storage.k8s.io' ]
