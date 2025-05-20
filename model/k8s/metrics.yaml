@@ -432,6 +432,8 @@ groups:
       - ref: k8s.namespace.name
       - ref: k8s.hpa.metric.type
       - ref: k8s.hpa.metric.container
+        requirement_level:
+          conditionally_required: if and only if k8s.hpa.metric.type is ContainerResource
   - id: metric.k8s.hpa.metric.target.cpu.average_value
     type: metric
     metric_name: k8s.hpa.metric.target.cpu.average_value
@@ -451,6 +453,8 @@ groups:
       - ref: k8s.namespace.name
       - ref: k8s.hpa.metric.type
       - ref: k8s.hpa.metric.container
+        requirement_level:
+          conditionally_required: if and only if k8s.hpa.metric.type is ContainerResource
   - id: metric.k8s.hpa.metric.target.cpu.average_utilization
     type: metric
     metric_name: k8s.hpa.metric.target.cpu.average_utilization
@@ -470,6 +474,8 @@ groups:
       - ref: k8s.namespace.name
       - ref: k8s.hpa.metric.type
       - ref: k8s.hpa.metric.container
+        requirement_level:
+          conditionally_required: if and only if k8s.hpa.metric.type is ContainerResource
 
   # k8s.daemonset.* metrics
   - id: metric.k8s.daemonset.current_scheduled_nodes
