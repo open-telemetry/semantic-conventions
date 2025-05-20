@@ -630,5 +630,5 @@ groups:
       This metric SHOULD, at a minimum, be reported against a
       [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
     attributes:
-      - ref: k8s.resourcequota.state
+      - ref: k8s.resourcequota.resource_name
         requirement_level: required
