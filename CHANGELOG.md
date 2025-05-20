@@ -49,7 +49,7 @@ This release marks the first where the core of database semantic conventions hav
 
 ### 🚀 New components 🚀
 
-- `db`: Adding semantic conventions for `oracledb` instrumentations. ([#2612](https://github.com/open-telemetry/semantic-conventions/issues/2612))
+- `db`: Adding semantic conventions for `oracledb` instrumentations. ([#1911](https://github.com/open-telemetry/semantic-conventions/pull/1911))
   Oracle Database semantic conventions.
 - `browser`: Add browser web vitals event. ([#1940](https://github.com/open-telemetry/semantic-conventions/issues/1940))
 
