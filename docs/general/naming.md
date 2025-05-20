@@ -75,7 +75,7 @@ Names SHOULD follow these rules:
   words by underscores (i.e. use snake_case). For example
   `http.response.status_code` denotes the status code in the http namespace.
 
-  Known exceptions include [K8s API names](../non-normative/naming-known-exceptions.md#kubernetes-naming-exceptions) where a single word is used for consistency with the instrumented K8s API.
+  Known exceptions include [K8s API names](../non-normative/naming-known-exceptions.md#kubernetes-naming-exceptions) where a single word is used for consistency with the instrumented API.
 
   Use underscore only when using dot (namespacing) does not make sense or changes
   the semantic meaning of the name. For example, use `rate_limiting`
