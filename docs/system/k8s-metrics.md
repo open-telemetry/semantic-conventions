@@ -1452,22 +1452,7 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`k8s.resourcequota.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `hard` | The hard state defined for a resource quota [1] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | The used state of a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[1]:** This state is retrieved from the `hard` field of the
-[K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
-
-**[2]:** This state is retrieved from the `used` field of the
-[K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+| [`k8s.resourcequota.resource_name`](/docs/registry/attributes/k8s.md) | string | The name of the K8s resource a resource quota defines. | `count/replicationcontrollers` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

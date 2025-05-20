@@ -467,3 +467,9 @@ groups:
         brief: >
           The storage class of the K8s storage.
         examples: [ 'gold.storageclass.storage.k8s.io' ]
+      - id: k8s.resourcequota.resource_name
+        type: string
+        stability: development
+        brief: >
+          The name of the K8s resource a resource quota defines.
+        examples: [ 'count/replicationcontrollers' ]
