@@ -486,7 +486,7 @@ relatively short and its cardinality remains low comparing to the `db.query.text
 
 ### SQL commenter
 
-Instrumentations SHOULD propagate the context information to the SQL queries following [SQL commenter](https://google.github.io/sqlcommenter/spec/). The instrumentation implementation MAY choose to either `append` the comment to the end of the query or `prepend` the comment at the beginning of the query, depending on the specific database system's requirements or preferences.
+Instrumentations SHOULD propagate the context information to the SQL queries following [SQL commenter](https://google.github.io/sqlcommenter/spec/). The instrumentation implementation MAY choose to either **append** the comment to the end of the query or **prepend** the comment at the beginning of the query, depending on the specific database system's requirements or preferences.
 
 | Attribute              | Type   | Description                           | Examples | Require level     | Stability                                                      |
 |------------------------|--------|---------------------------------------|----------|-------------------|----------------------------------------------------------------|

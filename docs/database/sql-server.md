@@ -161,7 +161,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ### SQL commenter
 
-Instrumentations SHOULD `append` the comment to the end of the query.
+Instrumentations SHOULD **append** the comment to the end of the query.
 
 ### SET CONTEXT_INFO
 
