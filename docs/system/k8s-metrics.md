@@ -72,7 +72,7 @@ and therefore inherit its attributes, like `k8s.pod.name` and `k8s.pod.uid`.
   - [Metric: `k8s.resourcequota.memory.request`](#metric-k8sresourcequotamemoryrequest)
   - [Metric: `k8s.resourcequota.hugepages.request`](#metric-k8sresourcequotahugepagesrequest)
   - [Metric: `k8s.resourcequota.storage.request`](#metric-k8sresourcequotastoragerequest)
-  - [Metric: `k8s.resourcequota.persistentvolumeclaims.request`](#metric-k8sresourcequotapersistentvolumeclaimsrequest)
+  - [Metric: `k8s.resourcequota.persistentvolumeclaims`](#metric-k8sresourcequotapersistentvolumeclaims)
   - [Metric: `k8s.resourcequota.ephemeral_storage.request`](#metric-k8sresourcequotaephemeral_storagerequest)
   - [Metric: `k8s.resourcequota.ephemeral_storage.limit`](#metric-k8sresourcequotaephemeral_storagelimit)
   - [Metric: `k8s.resourcequota.object_count`](#metric-k8sresourcequotaobject_count)
@@ -1118,8 +1118,7 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.cpu.limit` | Gauge | `{cpu}` | The CPU limits in a specific namespace.
-Across all pods in a non-terminal state,
-the sum of CPU limits cannot exceed this value. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
 
@@ -1128,7 +1127,11 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
+- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1136,13 +1139,13 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Value  | Description | Stability |
 |---|---|---|
-| `hard` | The hard state defined for a resource quota [1] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | The used state of a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hard` | The hard state defined for a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | The used state of a resource quota [3] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** This state is retrieved from the `hard` field of the
+**[2]:** This state is retrieved from the `hard` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
-**[2]:** This state is retrieved from the `used` field of the
+**[3]:** This state is retrieved from the `used` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
 <!-- markdownlint-restore -->
@@ -1164,8 +1167,7 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.cpu.request` | Gauge | `{cpu}` | The CPU requests in a specific namespace.
-Across all pods in a non-terminal state,
-the sum of CPU requests cannot exceed this value. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
 
@@ -1174,7 +1176,11 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
+- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1182,13 +1188,13 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Value  | Description | Stability |
 |---|---|---|
-| `hard` | The hard state defined for a resource quota [1] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | The used state of a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hard` | The hard state defined for a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | The used state of a resource quota [3] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** This state is retrieved from the `hard` field of the
+**[2]:** This state is retrieved from the `hard` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
-**[2]:** This state is retrieved from the `used` field of the
+**[3]:** This state is retrieved from the `used` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
 <!-- markdownlint-restore -->
@@ -1210,8 +1216,7 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.memory.limit` | Gauge | `By` | The memory limits in a specific namespace.
-Across all pods in a non-terminal state,
-the sum of memory limits cannot exceed this value. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
 
@@ -1220,7 +1225,11 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
+- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1228,13 +1237,13 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Value  | Description | Stability |
 |---|---|---|
-| `hard` | The hard state defined for a resource quota [1] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | The used state of a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hard` | The hard state defined for a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | The used state of a resource quota [3] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** This state is retrieved from the `hard` field of the
+**[2]:** This state is retrieved from the `hard` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
-**[2]:** This state is retrieved from the `used` field of the
+**[3]:** This state is retrieved from the `used` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
 <!-- markdownlint-restore -->
@@ -1256,8 +1265,7 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.memory.request` | Gauge | `By` | The memory requests in a specific namespace.
-Across all pods in a non-terminal state,
-the sum of memory requests cannot exceed this value. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
 
@@ -1266,7 +1274,11 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
+- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1274,13 +1286,13 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Value  | Description | Stability |
 |---|---|---|
-| `hard` | The hard state defined for a resource quota [1] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | The used state of a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hard` | The hard state defined for a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | The used state of a resource quota [3] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** This state is retrieved from the `hard` field of the
+**[2]:** This state is retrieved from the `hard` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
-**[2]:** This state is retrieved from the `used` field of the
+**[3]:** This state is retrieved from the `used` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
 <!-- markdownlint-restore -->
@@ -1302,8 +1314,7 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.hugepages.request` | Gauge | `By` | The huge page requests in a specific namespace.
-Across all pods in a non-terminal state,
-the sum of huge page requests cannot exceed this value. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
 
@@ -1313,7 +1324,11 @@ This metric SHOULD, at a minimum, be reported against a
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.hugepage.size`](/docs/registry/attributes/k8s.md) | string | The size (identifier) of the K8s huge page. | `2Mi` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
+- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1321,13 +1336,13 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Value  | Description | Stability |
 |---|---|---|
-| `hard` | The hard state defined for a resource quota [1] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | The used state of a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hard` | The hard state defined for a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | The used state of a resource quota [3] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** This state is retrieved from the `hard` field of the
+**[2]:** This state is retrieved from the `hard` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
-**[2]:** This state is retrieved from the `used` field of the
+**[3]:** This state is retrieved from the `used` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
 <!-- markdownlint-restore -->
@@ -1349,9 +1364,7 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.storage.request` | Gauge | `By` | The storage requests in a specific namespace.
-
-Across all persistent volume claims associated with the <storage-class-name> (if exists),
-the sum of storage requests cannot exceed this value. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
 
@@ -1360,8 +1373,12 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.storage.class_name`](/docs/registry/attributes/k8s.md) | string | The storage class of the K8s storage. | `gold.storageclass.storage.k8s.io` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
+- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1369,13 +1386,13 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Value  | Description | Stability |
 |---|---|---|
-| `hard` | The hard state defined for a resource quota [1] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | The used state of a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hard` | The hard state defined for a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | The used state of a resource quota [3] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** This state is retrieved from the `hard` field of the
+**[2]:** This state is retrieved from the `hard` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
-**[2]:** This state is retrieved from the `used` field of the
+**[3]:** This state is retrieved from the `used` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
 <!-- markdownlint-restore -->
@@ -1383,11 +1400,11 @@ This metric SHOULD, at a minimum, be reported against a
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.resourcequota.persistentvolumeclaims.request`
+### Metric: `k8s.resourcequota.persistentvolumeclaims`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.resourcequota.persistentvolumeclaims.request -->
+<!-- semconv metric.k8s.resourcequota.persistentvolumeclaims -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1396,10 +1413,8 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.persistentvolumeclaims.request` | Gauge | `By` | The persistentvolumeclaims requests in a specific namespace.
-
-Across all persistent volume claims associated with the <storage-class-name>, the total number of
-persistent volume claims that can exist in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `k8s.resourcequota.persistentvolumeclaims` | UpDownCounter | `1` | The total number of PersistentVolumeClaims that can exist in the namespace.
+See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
 
@@ -1408,8 +1423,12 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.storage.class_name`](/docs/registry/attributes/k8s.md) | string | The storage class of the K8s storage. | `gold.storageclass.storage.k8s.io` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
+- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1417,13 +1436,13 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Value  | Description | Stability |
 |---|---|---|
-| `hard` | The hard state defined for a resource quota [1] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | The used state of a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hard` | The hard state defined for a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | The used state of a resource quota [3] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** This state is retrieved from the `hard` field of the
+**[2]:** This state is retrieved from the `hard` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
-**[2]:** This state is retrieved from the `used` field of the
+**[3]:** This state is retrieved from the `used` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
 <!-- markdownlint-restore -->
@@ -1444,7 +1463,8 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.ephemeral_storage.request` | Gauge | `By` | Across all pods in the namespace, the sum of local ephemeral storage requests cannot exceed this value. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `k8s.resourcequota.ephemeral_storage.request` | Gauge | `By` | The sum of local ephemeral storage requests in the namespace.
+See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
 
@@ -1453,7 +1473,11 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
+- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1461,13 +1485,13 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Value  | Description | Stability |
 |---|---|---|
-| `hard` | The hard state defined for a resource quota [1] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | The used state of a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hard` | The hard state defined for a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | The used state of a resource quota [3] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** This state is retrieved from the `hard` field of the
+**[2]:** This state is retrieved from the `hard` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
-**[2]:** This state is retrieved from the `used` field of the
+**[3]:** This state is retrieved from the `used` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
 <!-- markdownlint-restore -->
@@ -1488,7 +1512,8 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.ephemeral_storage.limit` | Gauge | `By` | Across all pods in the namespace, the sum of local ephemeral storage limits cannot exceed this value. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `k8s.resourcequota.ephemeral_storage.limit` | Gauge | `By` | The sum of local ephemeral storage limits in the namespace.
+See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
 
@@ -1497,7 +1522,11 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
+- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1505,13 +1534,13 @@ This metric SHOULD, at a minimum, be reported against a
 
 | Value  | Description | Stability |
 |---|---|---|
-| `hard` | The hard state defined for a resource quota [1] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | The used state of a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hard` | The hard state defined for a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | The used state of a resource quota [3] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** This state is retrieved from the `hard` field of the
+**[2]:** This state is retrieved from the `hard` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
-**[2]:** This state is retrieved from the `used` field of the
+**[3]:** This state is retrieved from the `used` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
 <!-- markdownlint-restore -->
@@ -1533,7 +1562,7 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.object_count` | UpDownCounter | `1` | The object count limits in a specific namespace.
-The sum of objects cannot exceed this value. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota
 

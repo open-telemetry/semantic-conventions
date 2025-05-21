@@ -56,10 +56,10 @@ Kubernetes resource attributes.
 | <a id="k8s-replicationcontroller-uid" href="#k8s-replicationcontroller-uid">`k8s.replicationcontroller.uid`</a> | string | The UID of the replication controller. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-resourcequota-name" href="#k8s-resourcequota-name">`k8s.resourcequota.name`</a> | string | The name of the resource quota. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-resourcequota-resource-name" href="#k8s-resourcequota-resource-name">`k8s.resourcequota.resource_name`</a> | string | The name of the K8s resource a resource quota defines. | `count/replicationcontrollers` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-resourcequota-state" href="#k8s-resourcequota-state">`k8s.resourcequota.state`</a> | string | The state of the K8s Resource Quota. | `hard`; `used` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-resourcequota-state" href="#k8s-resourcequota-state">`k8s.resourcequota.state`</a> | string | The state of the K8s Resource Quota. [19] | `hard`; `used` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-resourcequota-uid" href="#k8s-resourcequota-uid">`k8s.resourcequota.uid`</a> | string | The UID of the resource quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-statefulset-annotation" href="#k8s-statefulset-annotation">`k8s.statefulset.annotation.<key>`</a> | string | The annotation key-value pairs placed on the StatefulSet. [19] | `k8s.statefulset.annotation.replicas=1`; `k8s.statefulset.annotation.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-statefulset-label" href="#k8s-statefulset-label">`k8s.statefulset.label.<key>`</a> | string | The label key-value pairs placed on the StatefulSet. [20] | `k8s.statefulset.label.app=guestbook`; `k8s.statefulset.label.injected=` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-statefulset-annotation" href="#k8s-statefulset-annotation">`k8s.statefulset.annotation.<key>`</a> | string | The annotation key-value pairs placed on the StatefulSet. [20] | `k8s.statefulset.annotation.replicas=1`; `k8s.statefulset.annotation.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-statefulset-label" href="#k8s-statefulset-label">`k8s.statefulset.label.<key>`</a> | string | The label key-value pairs placed on the StatefulSet. [21] | `k8s.statefulset.label.app=guestbook`; `k8s.statefulset.label.injected=` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-statefulset-name" href="#k8s-statefulset-name">`k8s.statefulset.name`</a> | string | The name of the StatefulSet. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-statefulset-uid" href="#k8s-statefulset-uid">`k8s.statefulset.uid`</a> | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-storage-class-name" href="#k8s-storage-class-name">`k8s.storage.class_name`</a> | string | The storage class of the K8s storage. | `gold.storageclass.storage.k8s.io` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -158,9 +158,13 @@ conflict.
 
 **[18] `k8s.replicaset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
-**[19] `k8s.statefulset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+**[19] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
+- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
-**[20] `k8s.statefulset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+**[20] `k8s.statefulset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+
+**[21] `k8s.statefulset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 ---
 
@@ -177,13 +181,13 @@ conflict.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `hard` | The hard state defined for a resource quota [21] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | The used state of a resource quota [22] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hard` | The hard state defined for a resource quota [22] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | The used state of a resource quota [23] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[21]:** This state is retrieved from the `hard` field of the
+**[22]:** This state is retrieved from the `hard` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
-**[22]:** This state is retrieved from the `used` field of the
+**[23]:** This state is retrieved from the `used` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
 ---
