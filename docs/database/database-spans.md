@@ -490,7 +490,7 @@ Instrumentations SHOULD propagate the context information to the SQL queries fol
 
 | Attribute              | Type   | Description                           | Examples | Require level     | Stability                                                      |
 |------------------------|--------|---------------------------------------|----------|-------------------|----------------------------------------------------------------|
-| [`service.name`](/docs/attributes-registry/service.md) | string | Logical name of the service [22]   | `shoppingcart` | `Recommended`     | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`service.name`](/docs/registry/attributes/service.md) | string | Logical name of the service [22]   | `shoppingcart` | `Recommended`     | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[22] `service.name`:** Instrumentations MAY use [SDK-provided resource detectors](https://opentelemetry.io/docs/specs/semconv/resource/#semantic-attributes-with-sdk-provided-default-value) to set the default value for this attribute.
 
