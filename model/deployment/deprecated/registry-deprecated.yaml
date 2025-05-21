@@ -7,7 +7,9 @@ groups:
       - id: deployment.environment
         type: string
         stability: development
-        deprecated: 'Deprecated, use `deployment.environment.name` instead.'
+        deprecated:
+          reason: renamed
+          renamed_to: deployment.environment.name
         brief: >
           'Deprecated, use `deployment.environment.name` instead.'
         examples: ['staging', 'production']

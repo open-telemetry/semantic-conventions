@@ -7,7 +7,7 @@ groups:
       - id: cpu.mode
         brief: "The mode of the CPU"
         type:
-          # TODO: Fix how enum members are used in semantic conventions after https://github.com/open-telemetry/build-tools/issues/192 is merged
+          # TODO: Fix how enum members are used in semantic conventions after https://github.com/open-telemetry/weaver/issues/479
           members:
             - id: user
               value: 'user'

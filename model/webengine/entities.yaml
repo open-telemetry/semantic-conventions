@@ -1,0 +1,14 @@
+groups:
+  - id: entity.webengine
+    type: entity
+    stability: development
+    name: webengine
+    brief: >
+       Resource describing the packaged software running the application code. Web engines are typically executed using process.runtime.
+    attributes:
+      - ref: webengine.name
+        requirement_level: required
+      - ref: webengine.version
+        requirement_level: recommended
+      - ref: webengine.description
+        requirement_level: recommended

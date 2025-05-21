@@ -1,10 +1,16 @@
 templates:
-  - pattern: readme.md.j2
+  - pattern: attributes_readme.md.j2
     filter: '.groups | map(select(.type == "attribute_group")) | map(select(.id | startswith("registry"))) | group_by(.id | split(".") | .[1]) | map({id: .[0].id | split(".") | .[1], groups: .})'
     application_mode: single
+    file_name: attributes/README.md
   - pattern: attribute_namespace.md.j2
     filter: '.groups | map(select(.type == "attribute_group")) | map(select(.id | startswith("registry"))) | group_by(.id | split(".") | .[1]) | map({id: .[0].id | split(".") | .[1], groups: .})'
     application_mode: each
+    file_name: attributes/{{ ctx.id | lower | kebab_case }}.md
+  - pattern: registry_readme.md.j2
+    filter: '.'
+    application_mode: single
+    file_name: README.md
 acronyms:
   - AI
   - AWS

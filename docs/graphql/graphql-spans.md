@@ -36,9 +36,9 @@ the span SHOULD be named `GraphQL Operation`.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`graphql.document`](/docs/attributes-registry/graphql.md) | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`graphql.operation.name`](/docs/attributes-registry/graphql.md) | string | The name of the operation being executed. | `findBookById` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`graphql.operation.type`](/docs/attributes-registry/graphql.md) | string | The type of the operation being executed. | `query`; `mutation`; `subscription` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`graphql.document`](/docs/registry/attributes/graphql.md) | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | string | The name of the operation being executed. | `findBookById` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | string | The type of the operation being executed. | `query`; `mutation`; `subscription` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `graphql.document`:** The value may be sanitized to exclude sensitive information.
 
