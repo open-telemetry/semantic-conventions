@@ -14,6 +14,7 @@ linkTitle: Spans
 - [Sanitization of `db.query.text`](#sanitization-of-dbquerytext)
 - [Generating a summary of the query](#generating-a-summary-of-the-query)
 - [Context Propagation](#context-propagation)
+  - [SQL commenter](#sql-commenter)
 - [Semantic conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 
 <!-- tocstop -->
@@ -483,7 +484,9 @@ relatively short and its cardinality remains low comparing to the `db.query.text
 
 **Status**: [Development][DocumentStatus]
 
-Instrumentations SHOULD propagate the context information to the SQL queries following [sqlcommenter](https://google.github.io/sqlcommenter/spec/). The instrumentation implementation MAY choose to either `append` the comment to the end of the query or `prepend` the comment at the beginning of the query, depending on the specific database system's requirements or preferences.
+### SQL commenter
+
+Instrumentations SHOULD propagate the context information to the SQL queries following [SQL commenter](https://google.github.io/sqlcommenter/spec/). The instrumentation implementation MAY choose to either `append` the comment to the end of the query or `prepend` the comment at the beginning of the query, depending on the specific database system's requirements or preferences.
 
 | Attribute              | Type   | Description                           | Examples | Require level     | Stability                                                      |
 |------------------------|--------|---------------------------------------|----------|-------------------|----------------------------------------------------------------|
