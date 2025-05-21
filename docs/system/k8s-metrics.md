@@ -1130,8 +1130,8 @@ This metric SHOULD, at a minimum, be reported against a
 | [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
-- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
-- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
+If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1179,8 +1179,8 @@ This metric SHOULD, at a minimum, be reported against a
 | [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
-- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
-- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
+If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1228,8 +1228,8 @@ This metric SHOULD, at a minimum, be reported against a
 | [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
-- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
-- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
+If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1277,8 +1277,8 @@ This metric SHOULD, at a minimum, be reported against a
 | [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
-- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
-- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
+If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1327,8 +1327,8 @@ This metric SHOULD, at a minimum, be reported against a
 | [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
-- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
-- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
+If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1377,8 +1377,8 @@ This metric SHOULD, at a minimum, be reported against a
 | [`k8s.storage.class_name`](/docs/registry/attributes/k8s.md) | string | The storage class of the K8s storage. | `gold.storageclass.storage.k8s.io` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
-- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
-- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
+If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1427,8 +1427,8 @@ This metric SHOULD, at a minimum, be reported against a
 | [`k8s.storage.class_name`](/docs/registry/attributes/k8s.md) | string | The storage class of the K8s storage. | `gold.storageclass.storage.k8s.io` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
-- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
-- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
+If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1476,8 +1476,8 @@ This metric SHOULD, at a minimum, be reported against a
 | [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
-- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
-- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
+If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 
@@ -1525,8 +1525,8 @@ This metric SHOULD, at a minimum, be reported against a
 | [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
-- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
-- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
+If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 ---
 

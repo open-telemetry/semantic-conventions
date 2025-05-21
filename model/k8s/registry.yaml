@@ -440,8 +440,8 @@ groups:
           The state of the K8s Resource Quota.
         note: |
           When metrics use this attribute, the meaning of the metric value depends on the state:
-          - If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
-          - If state is `used`, the value represents the current observed total usage of the resource in the namespace.
+          If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+          If state is `used`, the value represents the current observed total usage of the resource in the namespace.
         examples: [ "hard", "used" ]
         type:
           members:
