@@ -159,8 +159,8 @@ conflict.
 **[18] `k8s.replicaset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
 **[19] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
-- If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
-- If state is `used`, the value represents the current observed total usage of the resource in the namespace.
+If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+If state is `used`, the value represents the current observed total usage of the resource in the namespace.
 
 **[20] `k8s.statefulset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
