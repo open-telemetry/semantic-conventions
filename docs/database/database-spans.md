@@ -13,8 +13,7 @@ linkTitle: Spans
   - [Notes and well-known identifiers for `db.system.name`](#notes-and-well-known-identifiers-for-dbsystemname)
 - [Sanitization of `db.query.text`](#sanitization-of-dbquerytext)
 - [Generating a summary of the query](#generating-a-summary-of-the-query)
-- [Propagating context to databases](#propagating-context-to-databases)
-  - [Recommended sqlcommenter attributes](#recommended-sqlcommenter-attributes)
+- [Context Propagation](#context-propagation)
 - [Semantic conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 
 <!-- tocstop -->
@@ -480,39 +479,24 @@ Semantic conventions for individual database systems or specialized instrumentat
 MAY specify a different `db.query.summary` format as long as produced summary remains
 relatively short and its cardinality remains low comparing to the `db.query.text`.
 
-## Propagating context to databases
+## Context Propagation
 
 **Status**: [Development][DocumentStatus]
 
-Instrumentations SHOULD propagate the context information to the SQL queries following [sqlcommenter](https://google.github.io/sqlcommenter/spec/). However, a specific database can flexibly choose to either `append` or `prepend` the sqlcommenter when adding it to a query.
+Instrumentations SHOULD propagate the context information to the SQL queries following [sqlcommenter](https://google.github.io/sqlcommenter/spec/). The instrumentation implementation MAY choose to either `append` the comment to the end of the query or `prepend` the comment at the beginning of the query, depending on the specific database system's requirements or preferences.
 
-### Recommended sqlcommenter attributes
+| Attribute              | Type   | Description                           | Examples | Require level     | Stability                                                      |
+|------------------------|--------|---------------------------------------|----------|-------------------|----------------------------------------------------------------|
+| [`service.name`](/docs/attributes-registry/service.md) | string | Logical name of the service [22]   | `shoppingcart` | `Recommended`     | ![Development](https://img.shields.io/badge/-development-blue) |
 
-| Attribute              | Type   | Description                           | Require level     | Stability                                                      |
-|------------------------|--------|---------------------------------------|-------------------|----------------------------------------------------------------|
-| `baggage.service.name` | string | Logical name of the service [1]       | `Recommended`     | ![Development](https://img.shields.io/badge/-development-blue) |
-| `traceparent`          | string | The trace context of current span [2] | `Recommended` [3] | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[1] `baggage.service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fall back to `unknown_service:` concatenated with [process.executable.name](https://opentelemetry.io/docs/specs/semconv/attributes-registry/process/), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
-
-[Baggage](https://www.w3.org/TR/baggage/) means you can pass data across services and processes, making it available to add to traces, metrics, or logs in those services.
-
-**[2] `traceparent`:** MUST be in the [text format](https://www.w3.org/TR/trace-context/#traceparent-header).
-
-**[3] `traceparent`:** `traceparent` has extremely high-cardinality. It's RECOMMENDED to propagate this info if the high-cardinality is safe for the database observabilty engine.
+**[22] `service.name`:** Instrumentations MAY use [SDK-provided resource detectors](https://opentelemetry.io/docs/specs/semconv/resource/#semantic-attributes-with-sdk-provided-default-value) to set the default value for this attribute.
 
 **Examples:**
 
-- Query with `baggage.service.name`:
+- For a query `SELECT * FROM songs` where `service.name` is `shoppingcart`:
 
   ```sql
-  SELECT * FROM songs /* baggage='service.name%3Dmusic-player%3Aplay' */
-  ```
-
-- Query with `baggage.service.name` and `traceparent`
-
-  ```sql
-  SELECT * FROM songs /* baggage='service.name%3Dmusic-player%3Aplay', traceparent='00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01' */
+  SELECT * FROM songs /*service.name='shoppingcart'*/
   ```
 
 ## Semantic conventions for specific database technologies
