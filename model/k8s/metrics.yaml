@@ -477,8 +477,7 @@ groups:
     stability: development
     brief: |
       The CPU limits in a specific namespace.
-      Across all pods in a non-terminal state,
-      the sum of CPU limits cannot exceed this value.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: gauge
     unit: "{cpu}"
     note: |
@@ -495,8 +494,7 @@ groups:
     stability: development
     brief: |
       The CPU requests in a specific namespace.
-      Across all pods in a non-terminal state,
-      the sum of CPU requests cannot exceed this value.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: gauge
     unit: "{cpu}"
     note: |
@@ -515,8 +513,7 @@ groups:
     stability: development
     brief: |
       The memory limits in a specific namespace.
-      Across all pods in a non-terminal state,
-      the sum of memory limits cannot exceed this value.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: gauge
     unit: "By"
     note: |
@@ -533,8 +530,7 @@ groups:
     stability: development
     brief: |
       The memory requests in a specific namespace.
-      Across all pods in a non-terminal state,
-      the sum of memory requests cannot exceed this value.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: gauge
     unit: "By"
     note: |
@@ -553,8 +549,7 @@ groups:
     stability: development
     brief: |
       The huge page requests in a specific namespace.
-      Across all pods in a non-terminal state,
-      the sum of huge page requests cannot exceed this value.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: gauge
     unit: "By"
     note: |
@@ -575,9 +570,7 @@ groups:
     stability: development
     brief: |
       The storage requests in a specific namespace.
-
-      Across all persistent volume claims associated with the <storage-class-name> (if exists),
-      the sum of storage requests cannot exceed this value.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: gauge
     unit: "By"
     note: |
@@ -592,17 +585,15 @@ groups:
         requirement_level: opt_in
 
   # k8s.resourcequota.persistentvolumeclaims.* metrics
-  - id: metric.k8s.resourcequota.persistentvolumeclaims.request
+  - id: metric.k8s.resourcequota.persistentvolumeclaims
     type: metric
-    metric_name: k8s.resourcequota.persistentvolumeclaims.request
+    metric_name: k8s.resourcequota.persistentvolumeclaims
     stability: development
     brief: |
-      The persistentvolumeclaims requests in a specific namespace.
-
-      Across all persistent volume claims associated with the <storage-class-name>, the total number of
-      persistent volume claims that can exist in the namespace.
-    instrument: gauge
-    unit: "By"
+      The total number of PersistentVolumeClaims that can exist in the namespace.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+    instrument: updowncounter
+    unit: "1"
     note: |
       More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
 
@@ -620,7 +611,8 @@ groups:
     metric_name: k8s.resourcequota.ephemeral_storage.request
     stability: development
     brief: |
-      Across all pods in the namespace, the sum of local ephemeral storage requests cannot exceed this value.
+      The sum of local ephemeral storage requests in the namespace.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: gauge
     unit: "By"
     note: |
@@ -636,7 +628,8 @@ groups:
     metric_name: k8s.resourcequota.ephemeral_storage.limit
     stability: development
     brief: |
-      Across all pods in the namespace, the sum of local ephemeral storage limits cannot exceed this value.
+      The sum of local ephemeral storage limits in the namespace.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: gauge
     unit: "By"
     note: |
@@ -655,7 +648,7 @@ groups:
     stability: development
     brief: |
       The object count limits in a specific namespace.
-      The sum of objects cannot exceed this value.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: updowncounter
     unit: "1"
     note: |
