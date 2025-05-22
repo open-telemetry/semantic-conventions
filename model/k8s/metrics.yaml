@@ -469,3 +469,193 @@ groups:
     attributes:
       - ref: k8s.namespace.phase
         requirement_level: required
+
+  # k8s.resourcequota.cpu.* metrics
+  - id: metric.k8s.resourcequota.cpu.limit
+    type: metric
+    metric_name: k8s.resourcequota.cpu.limit
+    stability: development
+    brief: |
+      The CPU limits in a specific namespace.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+    instrument: gauge
+    unit: "{cpu}"
+    note: |
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+  - id: metric.k8s.resourcequota.cpu.request
+    type: metric
+    metric_name: k8s.resourcequota.cpu.request
+    stability: development
+    brief: |
+      The CPU requests in a specific namespace.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+    instrument: gauge
+    unit: "{cpu}"
+    note: |
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+
+  # k8s.resourcequota.memory.* metrics
+  - id: metric.k8s.resourcequota.memory.limit
+    type: metric
+    metric_name: k8s.resourcequota.memory.limit
+    stability: development
+    brief: |
+      The memory limits in a specific namespace.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+    instrument: gauge
+    unit: "By"
+    note: |
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+  - id: metric.k8s.resourcequota.memory.request
+    type: metric
+    metric_name: k8s.resourcequota.memory.request
+    stability: development
+    brief: |
+      The memory requests in a specific namespace.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+    instrument: gauge
+    unit: "By"
+    note: |
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+
+  # k8s.resourcequota.hugepages.* metrics
+  - id: metric.k8s.resourcequota.hugepages.request
+    type: metric
+    metric_name: k8s.resourcequota.hugepages.request
+    stability: development
+    brief: |
+      The huge page requests in a specific namespace.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+    instrument: gauge
+    unit: "By"
+    note: |
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+      - ref: k8s.hugepage.size
+        requirement_level: required
+
+  # k8s.resourcequota.storage.* metrics
+  - id: metric.k8s.resourcequota.storage.request
+    type: metric
+    metric_name: k8s.resourcequota.storage.request
+    stability: development
+    brief: |
+      The storage requests in a specific namespace.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+    instrument: gauge
+    unit: "By"
+    note: |
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+      - ref: k8s.storage.class_name
+        requirement_level: opt_in
+
+  # k8s.resourcequota.persistentvolumeclaims.* metrics
+  - id: metric.k8s.resourcequota.persistentvolumeclaims
+    type: metric
+    metric_name: k8s.resourcequota.persistentvolumeclaims
+    stability: development
+    brief: |
+      The total number of PersistentVolumeClaims that can exist in the namespace.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+    instrument: updowncounter
+    unit: "1"
+    note: |
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+      - ref: k8s.storage.class_name
+        requirement_level: opt_in
+
+  # k8s.resourcequota.ephemeral_storage.* metrics
+  - id: metric.k8s.resourcequota.ephemeral_storage.request
+    type: metric
+    metric_name: k8s.resourcequota.ephemeral_storage.request
+    stability: development
+    brief: |
+      The sum of local ephemeral storage requests in the namespace.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+    instrument: gauge
+    unit: "By"
+    note: |
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+  - id: metric.k8s.resourcequota.ephemeral_storage.limit
+    type: metric
+    metric_name: k8s.resourcequota.ephemeral_storage.limit
+    stability: development
+    brief: |
+      The sum of local ephemeral storage limits in the namespace.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+    instrument: gauge
+    unit: "By"
+    note: |
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
+
+  # k8s.resourcequota.object_count metric
+  - id: metric.k8s.resourcequota.object_count
+    type: metric
+    metric_name: k8s.resourcequota.object_count
+    stability: development
+    brief: |
+      The object count limits in a specific namespace.
+      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+    instrument: updowncounter
+    unit: "1"
+    note: |
+      More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota
+
+      This metric SHOULD, at a minimum, be reported against a
+      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+    attributes:
+      - ref: k8s.resourcequota.resource_name
+        requirement_level: required
