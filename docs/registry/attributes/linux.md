@@ -3,6 +3,41 @@
 
 # Linux
 
+- [General Linux RAID Device Attributes](#general-linux-raid-device-attributes)
+- [Linux Memory Attributes](#linux-memory-attributes)
+
+## General Linux RAID Device Attributes
+
+Describes Linux RAID Device attributes
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="linux-mdraid-device-activity-state" href="#linux-mdraid-device-activity-state">`linux.mdraid.device.activity_state`</a> | string | The device activity state | `active` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="linux-mdraid-device-name" href="#linux-mdraid-device-name">`linux.mdraid.device.name`</a> | string | The device identifier | `(identifier)` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="linux-mdraid-device-state" href="#linux-mdraid-device-state">`linux.mdraid.device.state`</a> | string | The device disk state | `active` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`linux.mdraid.device.activity_state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `active` | active | ![Development](https://img.shields.io/badge/-development-blue) |
+| `check` | check | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inactive` | inactive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `recovering` | recovering | ![Development](https://img.shields.io/badge/-development-blue) |
+| `resync` | resync | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`linux.mdraid.device.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `active` | active | ![Development](https://img.shields.io/badge/-development-blue) |
+| `failed` | failed | ![Development](https://img.shields.io/badge/-development-blue) |
+| `spare` | spare | ![Development](https://img.shields.io/badge/-development-blue) |
+
 ## Linux Memory Attributes
 
 Describes Linux Memory attributes
