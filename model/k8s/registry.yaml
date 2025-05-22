@@ -434,3 +434,69 @@ groups:
               value: 'terminating'
               brief: "Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)"
               stability: development
+      - id: k8s.container.status.state
+        stability: experimental
+        brief: >
+          The state of the container.
+          [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core)
+        type:
+          members:
+            - id: terminated
+              value: 'terminated'
+              brief: 'The container has terminated.'
+              stability: experimental
+            - id: running
+              value: 'running'
+              brief: 'The container is running.'
+              stability: experimental
+            - id: waiting
+              value: 'waiting'
+              brief: 'The container is waiting.'
+              stability: experimental
+        examples: ['terminated', 'running', 'waiting']
+      - id: k8s.container.status.reason
+        type:
+          members:
+            - id: container_creating
+              value: 'ContainerCreating'
+              brief: 'The container is being created.'
+              stability: experimental
+            - id: crash_loop_back_off
+              value: 'CrashLoopBackOff'
+              brief: 'The container is in a crash loop back off state.'
+              stability: experimental
+            - id: create_container_config_error
+              value: 'CreateContainerConfigError'
+              brief: 'There was an error creating the container configuration.'
+              stability: experimental
+            - id: err_image_pull
+              value: 'ErrImagePull'
+              brief: 'There was an error pulling the container image.'
+              stability: experimental
+            - id: image_pull_back_off
+              value: 'ImagePullBackOff'
+              brief: 'The container image pull is in back off state.'
+              stability: experimental
+            - id: oom_killed
+              value: 'OOMKilled'
+              brief: 'The container was killed due to out of memory.'
+              stability: experimental
+            - id: completed
+              value: 'Completed'
+              brief: 'The container has completed execution.'
+              stability: experimental
+            - id: error
+              value: 'Error'
+              brief: 'There was an error with the container.'
+              stability: experimental
+            - id: container_cannot_run
+              value: 'ContainerCannotRun'
+              brief: 'The container cannot run.'
+              stability: experimental
+        stability: experimental
+        brief: >
+          The reason for the container state. Corresponds to the `reason` field of the:
+          [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core)
+          or
+          [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core)
+        examples: ['ContainerCreating', 'CrashLoopBackOff', 'CreateContainerConfigError', 'ErrImagePull', 'ImagePullBackOff', 'OOMKilled', 'Completed', 'Error', 'ContainerCannotRun']
