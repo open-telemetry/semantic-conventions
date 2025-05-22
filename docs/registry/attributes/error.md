@@ -18,6 +18,8 @@ It is also NOT RECOMMENDED to duplicate the value of `exception.message` in `err
 
 `error.message` is NOT RECOMMENDED for metrics or spans due to its unbounded cardinality and overlap with span status.
 
+See [Recording errors](/docs/general/recording-errors.md) for more information.
+
 **[2] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
