@@ -33,29 +33,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `cpu.time` | Counter | `s` | Seconds each logical CPU spent on each mode | ![Development](https://img.shields.io/badge/-development-blue) |  |
-
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`cpu.mode`](/docs/registry/attributes/cpu.md) | string | The mode of the CPU [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
-
----
-
-`cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `interrupt` | interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iowait` | iowait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kernel` | kernel | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nice` | nice | ![Development](https://img.shields.io/badge/-development-blue) |
-| `steal` | steal | ![Development](https://img.shields.io/badge/-development-blue) |
-| `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cpu.time` | Counter | `s` | Deprecated. Use `system.cpu.time` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.cpu.time`. |  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -75,29 +53,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `cpu.utilization` | Gauge | `1` | For each logical CPU, the utilization is calculated as the change in cumulative CPU time (cpu.time) over a measurement interval, divided by the elapsed time. | ![Development](https://img.shields.io/badge/-development-blue) |  |
-
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`cpu.mode`](/docs/registry/attributes/cpu.md) | string | The mode of the CPU [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[1] `cpu.mode`:** Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
-
----
-
-`cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `interrupt` | interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iowait` | iowait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kernel` | kernel | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nice` | nice | ![Development](https://img.shields.io/badge/-development-blue) |
-| `steal` | steal | ![Development](https://img.shields.io/badge/-development-blue) |
-| `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cpu.utilization` | Gauge | `1` | Deprecated. Use `system.cpu.utilization` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.cpu.utilization`. |  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -117,11 +73,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `cpu.frequency` | Gauge | `Hz` | Operating frequency of the logical CPU in Hertz. | ![Development](https://img.shields.io/badge/-development-blue) |  |
-
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | int | The logical CPU number [0..n-1] | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cpu.frequency` | Gauge | `{Hz}` | Deprecated. Use `system.cpu.frequency` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.cpu.frequency`. |  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

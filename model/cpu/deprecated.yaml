@@ -1,0 +1,33 @@
+groups:
+  - id: metric.cpu.time
+    type: metric
+    metric_name: cpu.time
+    brief: "Deprecated. Use `system.cpu.time` instead."
+    deprecated:
+      reason: renamed
+      renamed_to: system.cpu.time
+    stability: development
+    instrument: counter
+    unit: "s"
+
+  - id: metric.cpu.utilization
+    type: metric
+    metric_name: cpu.utilization
+    brief: "Deprecated. Use `system.cpu.utilization` instead."
+    deprecated:
+      reason: renamed
+      renamed_to: system.cpu.utilization
+    stability: development
+    instrument: gauge
+    unit: "1"
+
+  - id: metric.cpu.frequency
+    type: metric
+    metric_name: cpu.frequency
+    brief: "Deprecated. Use `system.cpu.frequency` instead."
+    deprecated:
+      reason: renamed
+      renamed_to: system.cpu.frequency
+    stability: development
+    instrument: gauge
+    unit: "{Hz}"
