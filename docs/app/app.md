@@ -110,11 +110,8 @@ Jank happens when the UI is rendered slowly enough for the user to experience so
 | [`app.jank.count`](/docs/registry/attributes/app.md) | int | A count of the number of frame renders that experienced jank. [1] | `9`; `42` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`app.jank.threshold_ms`](/docs/registry/attributes/app.md) | int | The minimum rendering threshold for this type of jank, in milliseconds. | `16`; `700`; `1024` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`app.jank.type`](/docs/registry/attributes/app.md) | string | A categorization of the type of jank. | `slow`; `frozen` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.jank.activity.name`](/docs/registry/attributes/app.md) | string | The name of the Activity that was active during the jank. [2] | `myActivity`; `checkout` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `app.jank.count`:** Depending on platform limitations, the value provided MAY be approximation.
-
-**[2] `app.jank.activity.name`:** This is an Android specific attribute.
 
 ---
 
@@ -122,12 +119,12 @@ Jank happens when the UI is rendered slowly enough for the user to experience so
 
 | Value  | Description | Stability |
 |---|---|---|
-| `frozen` | Jank that causes the user to suspect that the application is frozen. [3] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `slow` | Jank is classified as observably slow. [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `frozen` | Jank that causes the user to suspect that the application is frozen. [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `slow` | Jank is classified as observably slow. [3] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[3]:** Recommended threshold for frozen is 700ms.
+**[2]:** Recommended threshold for frozen is 700ms.
 
-**[4]:** Recommended threshold for slow is 16ms.
+**[3]:** Recommended threshold for slow is 16ms.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
