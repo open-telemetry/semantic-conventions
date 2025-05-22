@@ -107,17 +107,16 @@ Jank happens when the UI is rendered slowly enough for the user to experience so
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`app.jank.count`](/docs/attributes-registry/app.md) | int | A count of the number of frame renders that experienced jank. [1] | `9`; `42` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.jank.threshold_ms`](/docs/attributes-registry/app.md) | int | The minimum rendering threshold for this type of jank, in milliseconds. | `16`; `700`; `1024` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.jank.type`](/docs/attributes-registry/app.md) | string | A categorization of the type of jank. | `slow`; `frozen` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.jank.activity.name`](/docs/attributes-registry/app.md) | string | The name of the Activity that was active during the jank. [2] | `myActivity`; `checkout` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.jank.count`](/docs/registry/attributes/app.md) | int | A count of the number of frame renders that experienced jank. [1] | `9`; `42` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.jank.threshold_ms`](/docs/registry/attributes/app.md) | int | The minimum rendering threshold for this type of jank, in milliseconds. | `16`; `700`; `1024` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.jank.type`](/docs/registry/attributes/app.md) | string | A categorization of the type of jank. | `slow`; `frozen` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.jank.activity.name`](/docs/registry/attributes/app.md) | string | The name of the Activity that was active during the jank. [2] | `myActivity`; `checkout` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `app.jank.count`:** Depending on platform limitations, the value provided MAY be approximation.
 
 **[2] `app.jank.activity.name`:** This is an Android specific attribute.
 
-See the [app attributes](/docs/registry/attributes/app.md) registry for all
-application-related attributes that may appear on telemetry items.
+---
 
 `app.jank.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
