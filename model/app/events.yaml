@@ -56,5 +56,4 @@ groups:
         requirement_level: recommended
       - ref: app.jank.threshold_ms
         requirement_level: recommended
-      - ref: app.jank.activity.name
-        requirement_level: opt_in
+
