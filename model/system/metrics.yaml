@@ -430,3 +430,95 @@ groups:
       - ref: linux.memory.slab.state
     entity_associations:
       - host
+
+  - id: metric.system.linux.mdraid.disks
+    type: metric
+    metric_name: system.linux.mdraid.disks
+    stability: development
+    brief: "Number of active/failed/spare disks of device."
+    note: |
+      Reports the total number of disks in a linux RAID device.
+      See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat).
+    instrument: gauge
+    unit: "By"
+    attributes:
+      - ref: system.device
+      - ref: system.device.state
+    entity_associations:
+      - host
+
+  - id: metric.system.linux.mdraid.activity_state
+    type: metric
+    metric_name: system.linux.mdraid.activity_state
+    stability: development
+    brief: "Reports the activity state of a Linux RAID device"
+    note: |
+      Reports the activity state of a Linux RAID device.
+      See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat).
+    instrument: gauge
+    unit: "By"
+    attributes:
+      - ref: system.device
+      - ref: system.device.activity_state
+    entity_associations:
+      - host
+
+  - id: metric.system.linux.mdraid.blocks.total
+    type: metric
+    metric_name: system.linux.mdraid.blocks.total
+    stability: development
+    brief: "Number of blocks on device."
+    note: |
+      Reports the total number of blocks on a device.
+      See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat).
+    instrument: gauge
+    unit: "By"
+    attributes:
+      - ref: system.device
+    entity_associations:
+      - host
+
+  - id: metric.system.linux.mdraid.blocks.synced
+    type: metric
+    metric_name: system.linux.mdraid.blocks.synced
+    stability: development
+    brief: "Number of blocks on device."
+    note: |
+      Reports the total number of blocks on a device. which are synced.
+      See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat).
+    instrument: gauge
+    unit: "By"
+    attributes:
+      - ref: system.device
+    entity_associations:
+      - host
+
+  - id: metric.system.linux.mdraid.raid_disks
+    type: metric
+    metric_name: system.linux.mdraid.raid_disks
+    stability: development
+    brief: "Number of raid disks in a fully functional array for a Linux RAID device."
+    note: |
+      Reports the number of raid disks in a fully functional array for a Linux RAID device.
+      See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat) and [md](https://docs.kernel.org/admin-guide/md.html).
+    instrument: gauge
+    unit: "By"
+    attributes:
+      - ref: system.device
+    entity_associations:
+      - host
+
+  - id: metric.system.linux.mdraid.degraded_raid_disks
+    type: metric
+    metric_name: system.linux.mdraid.degraded_raid_disks
+    stability: development
+    brief: "Number of degraded raid disks in an array for a Linux RAID device."
+    note: |
+      Reports the number of degraded raid disks in an array for a Linux RAID device..
+      See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat) and [md](https://docs.kernel.org/admin-guide/md.html).
+    instrument: gauge
+    unit: "By"
+    attributes:
+      - ref: system.device
+    entity_associations:
+      - host

@@ -10,6 +10,42 @@ groups:
         stability: development
         brief: "The device identifier"
         examples: ["(identifier)"]
+      - id: system.device.activity_state
+        type:
+          members:
+            - id: active
+              value: 'active'
+              stability: development
+            - id: inactive
+              value: 'inactive'
+              stability: development
+            - id: recovering
+              value: 'recovering'
+              stability: development
+            - id: resync
+              value: 'resync'
+              stability: development
+            - id: check
+              value: 'check'
+              stability: development
+        stability: development
+        brief: "The device activity state"
+        examples: ["active"]
+      - id: system.device.state
+        type:
+          members:
+            - id: active
+              value: 'active'
+              stability: development
+            - id: spare
+              value: 'spare'
+              stability: development
+            - id: failed
+              value: 'failed'
+              stability: development
+        stability: development
+        brief: "The device disk state"
+        examples: ["active"]
   # system.memory.* attribute group
   - id: registry.system.memory
     type: attribute_group
