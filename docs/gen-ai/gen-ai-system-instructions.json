@@ -1,0 +1,39 @@
+{
+    "$defs": {
+        "TextPart": {
+            "additionalProperties": true,
+            "description": "Describes text content sent to or received from the model.",
+            "properties": {
+                "type": {
+                    "const": "text",
+                    "type": "string"
+                },
+                "content": {
+                    "description": "Text content provided to or received from the model.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "content"
+            ],
+            "type": "object"
+        }
+    },
+    "additionalProperties": true,
+    "description": "Describes system instructions.",
+    "properties": {
+        "role": {
+            "type": "string"
+        },
+        "message": {
+            "$ref": "#/$defs/TextPart",
+            "description": "System instruction message."
+        }
+    },
+    "required": [
+        "role",
+        "message"
+    ],
+    "type": "object"
+}
