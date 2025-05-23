@@ -4,8 +4,8 @@
 
 <!-- toc -->
 
-- [What constitutes an error](#what-constitutes-an-error)
 - [Error vs exception](#error-vs-exception)
+- [What constitutes an error](#what-constitutes-an-error)
 - [Recording errors on spans](#recording-errors-on-spans)
 - [Recording errors on metrics](#recording-errors-on-metrics)
 - [Recording errors on logs and events](#recording-errors-on-logs-and-events)
@@ -18,36 +18,26 @@ on how to record errors on spans, metrics, and logs.
 
 Individual semantic conventions are encouraged to provide additional guidance.
 
+## Error vs exception
+
 In the scope of this document, the terms error and exception are defined as follows:
 
-- *Error* refers to a general concept describing any non-success condition. This may include an, non-success status code, or an invalid response.
+- *Error* refers to a general concept describing any non-success condition.
+  This may include a non-success status code, or an invalid response.
 
-- *Exception* specifically refers to runtime exceptions and their associated stack traces.
+- *Exception* specifically refers to runtime exceptions and their
+  associated stack traces.
 
-## What constitutes an error
 
-An operation SHOULD be considered as failed if any of the following is true:
+Errors and exceptions are related but not the same: an error can occur without
+an exception being thrown, and an exception does not necessarily constitute an
+error.
 
-- an exception is thrown by the instrumented method (API, block of code, or another instrumented unit)
-- the instrumented method returns an error in another way, for example, via an error code
+Exceptions and how they are recorded in telemetry are inherently
+language-specific. Some languages, such as Rust or Go, do not use exceptions
+at all.
 
-  Semantic conventions that define domain-specific status codes SHOULD specify
-  which status codes should be reported as errors by a general-purpose instrumentation.
-
-> [!NOTE]
->
-> The classification of a status code as an error depends on the context.
-> For example, an HTTP 404 "Not Found" status code indicates an error if the application
-> expected the resource to be available. However, it is not an error when the
-> application is simply checking whether the resource exists.
->
-> Instrumentations that have additional context about a specific request MAY use
-> this context to set the span status more precisely.
-
-Errors that were retried or handled (allowing an operation to complete gracefully) SHOULD NOT
-be recorded on spans or metrics that describe this operation.
-
-## Error vs exception
+This document focuses on recording errors.
 
 When recording errors that also associated with an exception, instrumentation
 MAY record applicable [error](/docs/registry/attributes/error.md) *and*
@@ -90,6 +80,29 @@ General recommendations:
   exception. If the corresponding convention documents `exception` attributes,
   the instrumentation also sets `exception.type` to the fully qualified
   exception type.
+
+## What constitutes an error
+
+An operation SHOULD be considered as failed if any of the following is true:
+
+- an exception is thrown by the instrumented method (API, block of code, or another instrumented unit)
+- the instrumented method returns an error in another way, for example, via an error code
+
+  Semantic conventions that define domain-specific status codes SHOULD specify
+  which status codes should be reported as errors by a general-purpose instrumentation.
+
+> [!NOTE]
+>
+> The classification of a status code as an error depends on the context.
+> For example, an HTTP 404 "Not Found" status code indicates an error if the application
+> expected the resource to be available. However, it is not an error when the
+> application is simply checking whether the resource exists.
+>
+> Instrumentations that have additional context about a specific request MAY use
+> this context to set the span status more precisely.
+
+Errors that were retried or handled (allowing an operation to complete gracefully) SHOULD NOT
+be recorded on spans or metrics that describe this operation.
 
 ## Recording errors on spans
 
