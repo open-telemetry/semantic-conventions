@@ -129,7 +129,7 @@ groups:
     stability: development
     brief: "Amount of pods allocatable on the node"
     instrument: gauge
-    unit: ""
+    unit: "{pod}"
   # k8s.node.cpu.* metrics
   - id: metric.k8s.node.cpu.time
     type: metric
