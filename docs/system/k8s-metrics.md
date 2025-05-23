@@ -431,7 +431,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.node.allocatable_pods` | Gauge | `` | Amount of pods allocatable on the node | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `k8s.node.allocatable_pods` | Gauge | `{pod}` | Amount of pods allocatable on the node | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
