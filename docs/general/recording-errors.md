@@ -28,7 +28,6 @@ In the scope of this document, the terms error and exception are defined as foll
 - *Exception* specifically refers to runtime exceptions and their
   associated stack traces.
 
-
 Errors and exceptions are related but not the same: an error can occur without
 an exception being thrown, and an exception does not necessarily constitute an
 error.

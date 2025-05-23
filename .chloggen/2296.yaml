@@ -1,0 +1,4 @@
+change_type: enhancement
+component: ["error", "exception"]
+note: Clarify error and exception attribute usage.
+issues: [2001, 2296]
