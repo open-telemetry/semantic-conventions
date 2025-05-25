@@ -2,7 +2,7 @@ groups:
   - id: event.feature_flag.evaluation
     type: event
     name: feature_flag.evaluation
-    stability: development
+    stability: release_candidate
     brief: >
       Defines feature flag evaluation as an event.
     note: >
@@ -18,6 +18,11 @@ groups:
       - ref: feature_flag.result.variant
         requirement_level:
           conditionally_required: If feature flag provider supplies a variant or equivalent concept.
+      - ref: feature_flag.result.value
+        requirement_level:
+          conditionally_required: >
+              If and only if feature flag provider does not supply variant or equivalent concept.
+              Otherwise, `feature_flag.result.value` should be treated as opt-in.
       - ref: feature_flag.provider.name
         requirement_level: recommended
       - ref: feature_flag.context.id
@@ -32,38 +37,23 @@ groups:
         examples: ["provider_not_ready", "targeting_key_missing", "provider_fatal", "general"]
         requirement_level:
           conditionally_required: If and only if an error occurred during flag evaluation.
-        # TODO: move note to yaml once https://github.com/open-telemetry/build-tools/issues/192 is supported
+        # TODO: move note to yaml once https://github.com/open-telemetry/weaver/issues/479 is supported
         note: |
           If one of these values applies, then it MUST be used; otherwise, a custom value MAY be used.
 
           | Value  | Description | Stability |
           |---|---|---|
-          | `flag_not_found` | The flag could not be found. | ![Development](https://img.shields.io/badge/-development-blue) |
-          | `invalid_context` | The evaluation context does not meet provider requirements. | ![Development](https://img.shields.io/badge/-development-blue) |
-          | `parse_error` | An error was encountered parsing data, such as a flag configuration. | ![Development](https://img.shields.io/badge/-development-blue) |
-          | `provider_fatal` | The provider has entered an irrecoverable error state. | ![Development](https://img.shields.io/badge/-development-blue) |
-          | `provider_not_ready` | The value was resolved before the provider was initialized. | ![Development](https://img.shields.io/badge/-development-blue) |
-          | `targeting_key_missing` | The provider requires a targeting key and one was not provided in the evaluation context. | ![Development](https://img.shields.io/badge/-development-blue) |
-          | `type_mismatch` | The type of the flag value does not match the expected type. | ![Development](https://img.shields.io/badge/-development-blue) |
-          | `general` | The error was for a reason not enumerated above. | ![Development](https://img.shields.io/badge/-development-blue) |
+          | `flag_not_found` | The flag could not be found. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+          | `invalid_context` | The evaluation context does not meet provider requirements. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+          | `parse_error` | An error was encountered parsing data, such as a flag configuration. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+          | `provider_fatal` | The provider has entered an irrecoverable error state. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+          | `provider_not_ready` | The value was resolved before the provider was initialized. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+          | `targeting_key_missing` | The provider requires a targeting key and one was not provided in the evaluation context. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+          | `type_mismatch` | The type of the flag value does not match the expected type. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+          | `general` | The error was for a reason not enumerated above. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
       - ref: error.message
         requirement_level:
           recommended: If and only if an error occurred during flag evaluation and `error.type` does not sufficiently describe the error.
         note: >
           Should not simply duplicate the value of `error.type`, but should provide more context.
           For example, if `error.type` is `invalid_context` the `error.message` may enumerate which context keys are missing or invalid.
-    body:
-      id: feature_flag.evaluation
-      type: map
-      requirement_level: recommended
-      stability: development
-      fields:
-        - id: value
-          type: undefined
-          stability: development
-          brief: The evaluated value of the feature flag.
-          requirement_level:
-            conditionally_required: >
-              If and only if feature flag provider does not supply variant or equivalent concept.
-              Otherwise, `value` should be treated as opt-in.
-          examples: ["#ff0000", "1", "true"]
