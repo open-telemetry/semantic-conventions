@@ -58,7 +58,7 @@ groups:
         stability: development
         deprecated:
           reason: uncategorized
-          note: hp.response.header.content-length
+          note: Replaced by `http.response.header.content-length`.
         examples: 3495
       - id: http.client_ip
         type: string
