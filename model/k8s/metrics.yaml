@@ -471,6 +471,7 @@ groups:
         requirement_level: required
 
   # k8s.container.* metrics
+<<<<<<< HEAD
   - id: metric.k8s.container.cpu.limit
     type: metric
     metric_name: k8s.container.cpu.limit
@@ -559,9 +560,9 @@ groups:
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
     instrument: gauge
     unit: "By"
-  - id: metric.k8s.container.restarts
+  - id: metric.k8s.container.restart.count
     type: metric
-    metric_name: k8s.container.restarts
+    metric_name: k8s.container.restart.count
     stability: development
     brief: "Describes how many times the container has restarted in the recent past. "
     instrument: updowncounter

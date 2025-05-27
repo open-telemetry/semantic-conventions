@@ -317,12 +317,12 @@ receiver were introduced as semantic conventions in
 [#2074](https://github.com/open-telemetry/semantic-conventions/issues/2074) (TODO: replace with SemConv version once
 available).
 
-The changes in their metric types are the following:
+The changes in their names and metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                    |
-|------------------------------------------------------------------------------------|----------------------------------------|
-| `k8s.container.restarts`                  (type: `gauge`)                          | `k8s.container.restarts` (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                   |
+|------------------------------------------------------------------------------------|-------------------------------------------------------|
+| `k8s.container.restarts`                  (type: `gauge`)                          | `k8s.container.restart.count` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
