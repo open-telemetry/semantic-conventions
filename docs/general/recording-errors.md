@@ -38,7 +38,7 @@ at all.
 
 This document focuses on recording errors.
 
-When recording errors that also associated with an exception, instrumentation
+When recording errors that are also associated with an exception, instrumentation
 MAY record applicable [error](/docs/registry/attributes/error.md) *and*
 [exception](/docs/registry/attributes/exception.md) attributes.
 
@@ -61,7 +61,7 @@ General recommendations:
 
   **Example:**
 
-  The instrumentation catches network-related exception that does
+  The instrumentation catches a network-related exception that does
   not include any structured information about the failure. The instrumentation
   should set `error.type` to the fully qualified exception type and omit
   `exception.type`.
