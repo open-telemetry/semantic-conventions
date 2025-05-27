@@ -440,7 +440,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.netcnt, which includes both UDP datagrams and TCP segments
     instrument: gauge
-    unit: "{rpc}"
+    unit: "{request}"
     entity_associations:
       - host
 
@@ -488,7 +488,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.rpccnt
     instrument: gauge
-    unit: "{rpc}"
+    unit: "{request}"
     entity_associations:
       - host
 
@@ -624,7 +624,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.netcnt, which includes both UDP datagrams and TCP segments
     instrument: gauge
-    unit: "{rpc}"
+    unit: "{request}"
     entity_associations:
       - host
 
@@ -672,7 +672,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.rpccnt
     instrument: gauge
-    unit: "{rpc}"
+    unit: "{request}"
     entity_associations:
       - host
 
@@ -684,7 +684,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.badfmt+svc_stat.badauth+svc_stat.badclnt
     instrument: gauge
-    unit: "{rpc}"
+    unit: "{request}"
     entity_associations:
       - host
 
@@ -696,7 +696,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.badfmt
     instrument: gauge
-    unit: "{rpc}"
+    unit: "{request}"
     entity_associations:
       - host
 
@@ -708,7 +708,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.badauth
     instrument: gauge
-    unit: "{rpc}"
+    unit: "{request}"
     entity_associations:
       - host
 
@@ -720,7 +720,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.badclnt
     instrument: gauge
-    unit: "{rpc}"
+    unit: "{request}"
     entity_associations:
       - host
 
