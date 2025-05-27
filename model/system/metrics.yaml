@@ -516,13 +516,24 @@ groups:
     entity_associations:
       - host
 
+ - id: metric.system.nfs.operation.count
+    type: metric
+    metric_name: system.nfs.operation.count
+    stability: development
+    brief: "Reports the count of kernel NFSv4+ client operations"
+    instrument: gauge
+    unit: "{procedure}"
+    attributes:
+      - ref: rpc.onc.version
+      - ref: rpc.onc.operation.name
+    entity_associations:
+      - host
+
   - id: metric.system.nfs.procedure.count
     type: metric
     metric_name: system.nfs.procedure.count
     stability: development
-    brief: "Reports the count of kernel NFS server procedures"
-    note: |
-      Linux: these metrics are taken from the Linux kernel's rpc_version.counts
+    brief: "Reports the count of kernel NFS client procedures"
     instrument: gauge
     unit: "{procedure}"
     attributes:
@@ -724,13 +735,24 @@ groups:
     entity_associations:
       - host
 
+  - id: metric.system.nfsd.operation.count
+    type: metric
+    metric_name: system.nfsd.operation.count
+    stability: development
+    brief: "Reports the count of kernel NFSv4+ server operations"
+    instrument: gauge
+    unit: "{operation}"
+    attributes:
+      - ref: rpc.onc.version
+      - ref: rpc.onc.operation.name
+    entity_associations:
+      - host
+
   - id: metric.system.nfsd.procedure.count
     type: metric
     metric_name: system.nfsd.procedure.count
     stability: development
-    brief: "Reports the count of kernel NFS client procedures"
-    note: |
-      Linux: these metrics are taken from the Linux kernel's rpc_version.counts
+    brief: "Reports the count of kernel NFS server procedures"
     instrument: gauge
     unit: "{procedure}"
     attributes:
