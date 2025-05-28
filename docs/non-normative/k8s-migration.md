@@ -280,6 +280,6 @@ The changes are the following:
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                       |
 |---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| `k8s.replication_controller.{name,uid}`                                     | `k8s.replication_controller.{name,uid}`  |
+| `k8s.replication_controller.{name,uid}`                                     | `k8s.replicationcontroller.{name,uid}`  |
 
 <!-- prettier-ignore-end -->
