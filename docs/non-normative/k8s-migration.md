@@ -56,7 +56,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Cronjob metrics](#k8s-cronjob-metrics)
   - [K8s Namespace metrics](#k8s-namespace-metrics)
   - [K8s ResourceQuota resource](#k8s-resourcequota-resource)
-  - [K8s Replication Controller resource](#k8s-replication-controller-resource)
+  - [K8s ReplicationController resource](#k8s-replication-controller-resource)
 
 <!-- tocstop -->
 
