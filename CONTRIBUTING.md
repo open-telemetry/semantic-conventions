@@ -57,8 +57,7 @@ key, but non-obvious, aspects:
 - All descriptions, normative language are defined in the `docs/` directory.
 - All changes to existing attributes, metrics, etc. MUST be allowed as
   per our [stability guarantees][stability guarantees] and
-  defined in a schema file. As part of any contribution, you should
-  include attribute changes defined in the `schema-next.yaml` file.
+  defined in a schema file.
 - Links to the specification repository MUST point to a tag and **not** to the `main` branch.
   The tag version MUST match with the one defined in [README](README.md).
 
@@ -163,21 +162,6 @@ are defined in `/model/aws/lambda-spans.yaml` and `/model/aws/sdk-spans.yaml` fi
 
 Deprecated conventions should be placed under `/model/{root-namespace}/deprecated`
 folder.
-
-#### Schema files
-
-When making changes to existing semantic conventions (attributes, metrics, etc)
-you MUST also update the `schema-next.yaml` file with the changes.
-
-For details, please read
-[the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
-
-You can also take examples from past changes inside the `schemas` folder.
-
-> [!WARNING]
->
-> DO NOT add your changes to files inside the `schemas` folder. Always add your
-> changes to the `schema-next.yaml` file.
 
 ### 2. Update the markdown files
 
@@ -433,6 +417,24 @@ If it is the first time to run this command, install `yamllint` first:
 ```bash
 make install-yamllint
 ```
+
+#### Schema files
+
+> [!WARNING]
+>
+> DO NOT add your changes to files inside the `schemas` folder. These files are
+> generated automatically by the release scripts and can't be updated after
+> the corresponding version is released.
+
+Release script uses the following command to generate new schema file:
+
+```bash
+make generate-schema-next NEXT_SEMCONV_VERSION=1.35.0
+```
+
+For details, please read
+[the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
+
 
 ## Merging existing ECS conventions
 
