@@ -5,8 +5,7 @@ linkTitle: K8s migration
 # K8s semantic convention stability migration
 
 ![note](https://img.shields.io/badge/warning-yellow?style=flat) K8s Semantic Conventions stability is still Wip.
-This guide collects the breaking changes along the way so as users can know beforehand for these upcoming
-changes.
+This guide collects the breaking changes along the way so users can be informed in advance about upcoming changes.
 
 Due to the significant number of modifications and the extensive user base
 affected by them, existing K8s instrumentations published by
