@@ -4,6 +4,7 @@
 # Gen AI
 
 - [GenAI Attributes](#genai-attributes)
+- [Model Frameworks Attributes](#model-frameworks-attributes)
 - [OpenAI Attributes](#openai-attributes)
 - [Deprecated GenAI Attributes](#deprecated-genai-attributes)
 - [Deprecated OpenAI GenAI Attributes](#deprecated-openai-genai-attributes)
@@ -133,6 +134,23 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 |---|---|---|
 | `input` | Input tokens (prompt, input, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `output` | Output tokens (completion, response, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Model Frameworks Attributes
+
+This group defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models Frameworks.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="gen-ai-input-token-type" href="#gen-ai-input-token-type">`gen_ai.input.token.type`</a> | string | Indicates whether an input token was cached or missed during prompt processing. | `cached`; `miss` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`gen_ai.input.token.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `cached` | Token was reused from the input cache. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `miss` | Token was not in the cache and required recomputation. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## OpenAI Attributes
 
