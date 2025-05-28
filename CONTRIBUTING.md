@@ -18,7 +18,6 @@ requirements and recommendations.
   - [Prerequisites](#prerequisites)
   - [1. Modify the YAML model](#1-modify-the-yaml-model)
     - [Code structure](#code-structure)
-    - [Schema files](#schema-files)
   - [2. Update the markdown files](#2-update-the-markdown-files)
     - [Hugo frontmatter](#hugo-frontmatter)
   - [3. Check new convention](#3-check-new-convention)
@@ -36,6 +35,7 @@ requirements and recommendations.
   - [Update the tables of content](#update-the-tables-of-content)
   - [Markdown link check](#markdown-link-check)
   - [Yamllint check](#yamllint-check)
+- [Schema files](#schema-files)
 - [Merging existing ECS conventions](#merging-existing-ecs-conventions)
 
 <!-- tocstop -->
@@ -418,7 +418,7 @@ If it is the first time to run this command, install `yamllint` first:
 make install-yamllint
 ```
 
-#### Schema files
+## Schema files
 
 > [!WARNING]
 >
@@ -434,7 +434,6 @@ make generate-schema-next NEXT_SEMCONV_VERSION=1.35.0
 
 For details, please read
 [the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
-
 
 ## Merging existing ECS conventions
 
