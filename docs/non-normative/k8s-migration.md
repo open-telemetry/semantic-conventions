@@ -267,7 +267,7 @@ The changes are the following:
 
 <!-- prettier-ignore-end -->
 
-### K8s Replication Controller resource
+### K8s ReplicationController resource
 
 The K8s Replication Controller attributes implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
