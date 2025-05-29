@@ -168,7 +168,7 @@ groups:
         requirement_level: recommended
       - ref: k8s.hpa.scaletargetref.name
         requirement_level: recommended
-      - ref: k8s.hpa.scaletargetref.apiversion
+      - ref: k8s.hpa.scaletargetref.api_version
         requirement_level: recommended
 
   - id: entity.k8s.resourcequota

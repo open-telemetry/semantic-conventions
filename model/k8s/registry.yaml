@@ -329,7 +329,7 @@ groups:
         note: |
           This maps to the `name` field in the `scaleTargetRef` of the HPA spec.
         examples: ["my-deployment", "my-statefulset"]
-      - id: k8s.hpa.scaletargetref.apiversion
+      - id: k8s.hpa.scaletargetref.api_version
         type: string
         stability: development
         brief: >

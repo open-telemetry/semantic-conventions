@@ -30,7 +30,7 @@ Kubernetes resource attributes.
 | <a id="k8s-deployment-name" href="#k8s-deployment-name">`k8s.deployment.name`</a> | string | The name of the Deployment. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-deployment-uid" href="#k8s-deployment-uid">`k8s.deployment.uid`</a> | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-hpa-name" href="#k8s-hpa-name">`k8s.hpa.name`</a> | string | The name of the horizontal pod autoscaler. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-hpa-scaletargetref-apiversion" href="#k8s-hpa-scaletargetref-apiversion">`k8s.hpa.scaletargetref.apiversion`</a> | string | The API version of the target resource to scale for the HorizontalPodAutoscaler. [8] | `apps/v1`; `autoscaling/v2` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-hpa-scaletargetref-api-version" href="#k8s-hpa-scaletargetref-api-version">`k8s.hpa.scaletargetref.api_version`</a> | string | The API version of the target resource to scale for the HorizontalPodAutoscaler. [8] | `apps/v1`; `autoscaling/v2` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-hpa-scaletargetref-kind" href="#k8s-hpa-scaletargetref-kind">`k8s.hpa.scaletargetref.kind`</a> | string | The kind of the target resource to scale for the HorizontalPodAutoscaler. [9] | `Deployment`; `StatefulSet` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-hpa-scaletargetref-name" href="#k8s-hpa-scaletargetref-name">`k8s.hpa.scaletargetref.name`</a> | string | The name of the target resource to scale for the HorizontalPodAutoscaler. [10] | `my-deployment`; `my-statefulset` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-hpa-uid" href="#k8s-hpa-uid">`k8s.hpa.uid`</a> | string | The UID of the horizontal pod autoscaler. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -110,7 +110,7 @@ conflict.
 
 **[7] `k8s.deployment.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
 
-**[8] `k8s.hpa.scaletargetref.apiversion`:** This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec.
+**[8] `k8s.hpa.scaletargetref.api_version`:** This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec.
 
 **[9] `k8s.hpa.scaletargetref.kind`:** This maps to the `kind` field in the `scaleTargetRef` of the HPA spec.
 

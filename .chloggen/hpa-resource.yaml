@@ -24,4 +24,4 @@ subtext: |
   Adds below attributes to the `k8s.hpa` resource:
   - `k8s.hpa.scaletargetref.kind`
   - `k8s.hpa.scaletargetref.name`
-  - `k8s.hpa.scaletargetref.apiversion`
+  - `k8s.hpa.scaletargetref.api_version`
