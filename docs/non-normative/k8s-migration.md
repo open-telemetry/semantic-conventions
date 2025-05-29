@@ -292,6 +292,7 @@ receiver were introduced as semantic conventions in:
 - [#2178](https://github.com/open-telemetry/semantic-conventions/pull/2178) (TODO: replace with SemConv version once
 available)
 - [#2074](https://github.com/open-telemetry/semantic-conventions/issues/2074)
+- [#2197](https://github.com/open-telemetry/semantic-conventions/issues/2197)
 
 The changes in their metrics are the following:
 
@@ -308,5 +309,6 @@ The changes in their metrics are the following:
 | `k8s.container.ephemeralstorage_limit`                                                       | `k8s.container.ephemeral_storage.limit`   |
 | `k8s.container.ephemeralstorage_request`                                                     | `k8s.container.ephemeral_storage.request` |
 | `k8s.container.restarts`                  (type: `gauge`)                          | `k8s.container.restart.count` (type: `updowncounter`) |
+| `k8s.container.ready`                  (type: `gauge`)                             | `k8s.container.ready` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->

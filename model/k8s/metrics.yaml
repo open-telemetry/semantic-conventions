@@ -602,3 +602,17 @@ groups:
       It is best to not depend too much on the exact value but rather look at it as
       either == 0, in which case you can conclude there were no restarts in the recent past, or > 0, in which case
       you can conclude there were restarts in the recent past, and not try and analyze the value beyond that.
+  - id: metric.k8s.container.ready
+    type: metric
+    metric_name: k8s.container.ready
+    stability: development
+    brief: >
+      Indicates whether the container is currently marked as ready to accept traffic,
+      based on its readiness probe (1 = ready, 0 = not ready)
+    instrument: updowncounter
+    unit: "{container}"
+    entity_associations:
+      - k8s.container
+    note: |
+      This metric SHOULD reflect the value of the `ready` field in the
+      [K8s ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatus-v1-core).
