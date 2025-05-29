@@ -1118,12 +1118,9 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.cpu.limit` | Gauge | `{cpu}` | The CPU limits in a specific namespace.
-See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
-
-This metric SHOULD, at a minimum, be reported against a
-[`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -1167,12 +1164,9 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.cpu.request` | Gauge | `{cpu}` | The CPU requests in a specific namespace.
-See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
-
-This metric SHOULD, at a minimum, be reported against a
-[`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -1216,12 +1210,9 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.memory.limit` | Gauge | `By` | The memory limits in a specific namespace.
-See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
-
-This metric SHOULD, at a minimum, be reported against a
-[`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -1265,12 +1256,9 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.memory.request` | Gauge | `By` | The memory requests in a specific namespace.
-See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
-
-This metric SHOULD, at a minimum, be reported against a
-[`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -1314,12 +1302,9 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.hugepages.request` | Gauge | `By` | The huge page requests in a specific namespace.
-See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
-
-This metric SHOULD, at a minimum, be reported against a
-[`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -1364,21 +1349,24 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.storage.request` | Gauge | `By` | The storage requests in a specific namespace.
-See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
 
-This metric SHOULD, at a minimum, be reported against a
-[`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+The `k8s.storage.class_name` should be required when a resource quota is defined for a specific
+storage class.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.storage.class_name`](/docs/registry/attributes/k8s.md) | string | The storage class of the K8s storage. | `gold.storageclass.storage.k8s.io` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.storage.class_name`](/docs/registry/attributes/k8s.md) | string | The storage class of the K8s storage. | `gold.storageclass.storage.k8s.io` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
 If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
 If state is `used`, the value represents the current observed total usage of the resource in the namespace.
+
+**[2] `k8s.storage.class_name`:** The `k8s.storage.class_name` should be required when a resource quota is defined for a specific
+storage class.
 
 ---
 
@@ -1386,13 +1374,13 @@ If state is `used`, the value represents the current observed total usage of the
 
 | Value  | Description | Stability |
 |---|---|---|
-| `hard` | The hard state defined for a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | The used state of a resource quota [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hard` | The hard state defined for a resource quota [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | The used state of a resource quota [4] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[2]:** This state is retrieved from the `hard` field of the
+**[3]:** This state is retrieved from the `hard` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
-**[3]:** This state is retrieved from the `used` field of the
+**[4]:** This state is retrieved from the `used` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
 <!-- markdownlint-restore -->
@@ -1414,21 +1402,21 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.persistentvolumeclaims` | UpDownCounter | `1` | The total number of PersistentVolumeClaims that can exist in the namespace.
-See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
-
-This metric SHOULD, at a minimum, be reported against a
-[`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.storage.class_name`](/docs/registry/attributes/k8s.md) | string | The storage class of the K8s storage. | `gold.storageclass.storage.k8s.io` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.storage.class_name`](/docs/registry/attributes/k8s.md) | string | The storage class of the K8s storage. | `gold.storageclass.storage.k8s.io` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
 If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
 If state is `used`, the value represents the current observed total usage of the resource in the namespace.
+
+**[2] `k8s.storage.class_name`:** The `k8s.storage.class_name` should be required when a resource quota is defined for a specific
+storage class.
 
 ---
 
@@ -1436,13 +1424,13 @@ If state is `used`, the value represents the current observed total usage of the
 
 | Value  | Description | Stability |
 |---|---|---|
-| `hard` | The hard state defined for a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | The used state of a resource quota [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hard` | The hard state defined for a resource quota [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | The used state of a resource quota [4] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[2]:** This state is retrieved from the `hard` field of the
+**[3]:** This state is retrieved from the `hard` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
-**[3]:** This state is retrieved from the `used` field of the
+**[4]:** This state is retrieved from the `used` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
 <!-- markdownlint-restore -->
@@ -1464,12 +1452,9 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.ephemeral_storage.request` | Gauge | `By` | The sum of local ephemeral storage requests in the namespace.
-See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
-
-This metric SHOULD, at a minimum, be reported against a
-[`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -1513,12 +1498,9 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.ephemeral_storage.limit` | Gauge | `By` | The sum of local ephemeral storage limits in the namespace.
-See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
-
-This metric SHOULD, at a minimum, be reported against a
-[`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -1562,16 +1544,33 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.object_count` | UpDownCounter | `1` | The object count limits in a specific namespace.
-See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota
-
-This metric SHOULD, at a minimum, be reported against a
-[`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.resourcequota.resource_name`](/docs/registry/attributes/k8s.md) | string | The name of the K8s resource a resource quota defines. | `count/replicationcontrollers` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.resourcequota.state`](/docs/registry/attributes/k8s.md) | string | The state of the K8s Resource Quota. [1] | `hard`; `used` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.resourcequota.state`:** When metrics use this attribute, the meaning of the metric value depends on the state:
+If state is `hard`, the value represents the configured quota limit of the resource in the namespace.
+If state is `used`, the value represents the current observed total usage of the resource in the namespace.
+
+---
+
+`k8s.resourcequota.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `hard` | The hard state defined for a resource quota [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | The used state of a resource quota [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[2]:** This state is retrieved from the `hard` field of the
+[K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+
+**[3]:** This state is retrieved from the `used` field of the
+[K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -477,14 +477,13 @@ groups:
     stability: development
     brief: |
       The CPU limits in a specific namespace.
-      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+      See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: gauge
     unit: "{cpu}"
+    entity_associations:
+      - k8s.resourcequota
     note: |
       More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
     attributes:
       - ref: k8s.resourcequota.state
         requirement_level: required
@@ -494,14 +493,13 @@ groups:
     stability: development
     brief: |
       The CPU requests in a specific namespace.
-      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+      See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: gauge
     unit: "{cpu}"
+    entity_associations:
+      - k8s.resourcequota
     note: |
       More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
     attributes:
       - ref: k8s.resourcequota.state
         requirement_level: required
@@ -513,14 +511,13 @@ groups:
     stability: development
     brief: |
       The memory limits in a specific namespace.
-      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+      See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: gauge
     unit: "By"
+    entity_associations:
+      - k8s.resourcequota
     note: |
       More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
     attributes:
       - ref: k8s.resourcequota.state
         requirement_level: required
@@ -530,14 +527,13 @@ groups:
     stability: development
     brief: |
       The memory requests in a specific namespace.
-      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+      See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: gauge
     unit: "By"
+    entity_associations:
+      - k8s.resourcequota
     note: |
       More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
     attributes:
       - ref: k8s.resourcequota.state
         requirement_level: required
@@ -549,14 +545,13 @@ groups:
     stability: development
     brief: |
       The huge page requests in a specific namespace.
-      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+      See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: gauge
     unit: "By"
+    entity_associations:
+      - k8s.resourcequota
     note: |
       More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
     attributes:
       - ref: k8s.resourcequota.state
         requirement_level: required
@@ -570,19 +565,24 @@ groups:
     stability: development
     brief: |
       The storage requests in a specific namespace.
-      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+      See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: gauge
     unit: "By"
+    entity_associations:
+      - k8s.resourcequota
     note: |
       More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
 
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
+      The `k8s.storage.class_name` should be required when a resource quota is defined for a specific
+      storage class.
     attributes:
       - ref: k8s.resourcequota.state
         requirement_level: required
       - ref: k8s.storage.class_name
-        requirement_level: opt_in
+        requirement_level:
+          conditionally_required: |
+            The `k8s.storage.class_name` should be required when a resource quota is defined for a specific
+            storage class.
 
   # k8s.resourcequota.persistentvolumeclaims.* metrics
   - id: metric.k8s.resourcequota.persistentvolumeclaims
@@ -591,19 +591,19 @@ groups:
     stability: development
     brief: |
       The total number of PersistentVolumeClaims that can exist in the namespace.
-      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+      See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: updowncounter
     unit: "1"
     note: |
       More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
     attributes:
       - ref: k8s.resourcequota.state
         requirement_level: required
       - ref: k8s.storage.class_name
-        requirement_level: opt_in
+        requirement_level:
+          conditionally_required: |
+            The `k8s.storage.class_name` should be required when a resource quota is defined for a specific
+            storage class.
 
   # k8s.resourcequota.ephemeral_storage.* metrics
   - id: metric.k8s.resourcequota.ephemeral_storage.request
@@ -612,14 +612,13 @@ groups:
     stability: development
     brief: |
       The sum of local ephemeral storage requests in the namespace.
-      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+      See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: gauge
     unit: "By"
+    entity_associations:
+      - k8s.resourcequota
     note: |
       More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
     attributes:
       - ref: k8s.resourcequota.state
         requirement_level: required
@@ -629,14 +628,13 @@ groups:
     stability: development
     brief: |
       The sum of local ephemeral storage limits in the namespace.
-      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+      See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: gauge
     unit: "By"
+    entity_associations:
+      - k8s.resourcequota
     note: |
       More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
     attributes:
       - ref: k8s.resourcequota.state
         requirement_level: required
@@ -648,14 +646,15 @@ groups:
     stability: development
     brief: |
       The object count limits in a specific namespace.
-      See [`k8s.resourcequoate.state`](../registry/attributes/k8s.md) attribute for further details.
+      See [`k8s.resourcequota.state`](../registry/attributes/k8s.md) attribute for further details.
     instrument: updowncounter
     unit: "1"
+    entity_associations:
+      - k8s.resourcequota
     note: |
       More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.resourcequota`](../resource/k8s.md#resourcequota) resource.
     attributes:
+      - ref: k8s.resourcequota.state
+        requirement_level: required
       - ref: k8s.resourcequota.resource_name
         requirement_level: required
