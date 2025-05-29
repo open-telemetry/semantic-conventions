@@ -346,7 +346,7 @@ generate-schema-next:
 	$(WEAVER_CONTAINER) registry diff \
 		--registry=/home/weaver/source \
 		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
-		--diff-format ansi \
+		--diff-format yaml \
 		--diff-template /home/weaver/templates/schema-diff \
 		--output /home/weaver/target
 	$(TOOLS_DIR)/scripts/generate-schema-next.sh $(NEXT_SEMCONV_VERSION) $(LATEST_RELEASED_SEMCONV_VERSION) $(PWD)/internal/tools/bin/schema-diff.yaml
