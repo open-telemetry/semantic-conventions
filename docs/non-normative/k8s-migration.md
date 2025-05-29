@@ -287,9 +287,11 @@ The changes are the following:
 
 The K8s Container metrics implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
-receiver were introduced as semantic conventions in
-[#2178](https://github.com/open-telemetry/semantic-conventions/pull/2178) (TODO: replace with SemConv version once
-available).
+receiver were introduced as semantic conventions in:
+
+- [#2178](https://github.com/open-telemetry/semantic-conventions/pull/2178) (TODO: replace with SemConv version once
+available)
+- [#2074](https://github.com/open-telemetry/semantic-conventions/issues/2074)
 
 The changes in their metrics are the following:
 
@@ -305,5 +307,6 @@ The changes in their metrics are the following:
 | `k8s.container.storage_request`                                                    | `k8s.container.storage.request`           |
 | `k8s.container.ephemeralstorage_limit`                                                       | `k8s.container.ephemeral_storage.limit`   |
 | `k8s.container.ephemeralstorage_request`                                                     | `k8s.container.ephemeral_storage.request` |
+| `k8s.container.restarts`                  (type: `gauge`)                          | `k8s.container.restart.count` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
