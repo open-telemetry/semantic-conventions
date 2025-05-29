@@ -57,6 +57,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Namespace metrics](#k8s-namespace-metrics)
   - [K8s ResourceQuota resource](#k8s-resourcequota-resource)
   - [K8s ReplicationController resource](#k8s-replicationcontroller-resource)
+  - [K8s ResourceQuota metrics](#k8s-resourcequota-metrics)
 
 <!-- tocstop -->
 
@@ -281,5 +282,24 @@ The changes are the following:
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                       |
 |---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
 | `k8s.replication_controller.{name,uid}`                                     | `k8s.replicationcontroller.{name,uid}`  |
+
+<!-- prettier-ignore-end -->
+
+### K8s ResourceQuota metrics
+
+The K8s ResourceQuota metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[github.com/open-telemetry/semantic-conventions/pull/2113](https://github.com/open-telemetry/semantic-conventions/pull/2113).
+
+These metrics were completely re-designed. The changes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                      |
+|------------------------------------------------------------------------------------|----------------------------------------------------------|
+| `k8s.resource_quota.hard_limit`                                                    | `hard`/`used` is now recorded in `k8s.resourcequota.state` |
+| `k8s.resource_quota.used`                                                          | `hard`/`used` is now recorded in `k8s.resourcequota.state`                   |
+| `{resource}` attribute                                                             | Split in different metrics per type                      |
 
 <!-- prettier-ignore-end -->
