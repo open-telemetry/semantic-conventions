@@ -4,6 +4,9 @@ linkTitle: K8s migration
 
 # K8s semantic convention stability migration
 
+![note](https://img.shields.io/badge/warning-yellow?style=flat) K8s Semantic Conventions stability is still Wip.
+This guide collects the breaking changes along the way so users can be informed in advance about upcoming changes.
+
 Due to the significant number of modifications and the extensive user base
 affected by them, existing K8s instrumentations published by
 OpenTelemetry are required to implement a migration plan that will assist users in
@@ -52,6 +55,8 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Job metrics](#k8s-job-metrics)
   - [K8s Cronjob metrics](#k8s-cronjob-metrics)
   - [K8s Namespace metrics](#k8s-namespace-metrics)
+  - [K8s ResourceQuota resource](#k8s-resourcequota-resource)
+  - [K8s ReplicationController resource](#k8s-replicationcontroller-resource)
 
 <!-- tocstop -->
 
@@ -59,7 +64,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
 
 This section summarizes the changes made to the K8s semantic conventions
 from a range of versions. Each starting version shows all the changes required
-to bring the conventions to stable (TODO: link to specific version once it exists).
+to bring the conventions to stable.
 
 ### K8s network metrics
 
@@ -84,8 +89,7 @@ The changes in their attributes are the following:
 The K8s Deployment metrics implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
 receiver were introduced as semantic conventions in
-[#1636](https://github.com/open-telemetry/semantic-conventions/pull/1636) (TODO: replace with SemConv version once
-available).
+[v1.30.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.30.0/docs/system/k8s-metrics.md)
 
 The changes in their metric names and types are the following:
 
@@ -103,8 +107,7 @@ The changes in their metric names and types are the following:
 The K8s ReplicaSet metrics implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
 receiver were introduced as semantic conventions in
-[#1636](https://github.com/open-telemetry/semantic-conventions/pull/1636) (TODO: replace with SemConv version once
-available).
+[v1.30.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.30.0/docs/system/k8s-metrics.md).
 
 The changes in their metric names and types are the following:
 
@@ -122,8 +125,7 @@ The changes in their metric names and types are the following:
 The K8s ReplicationController metrics implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
 receiver were introduced as semantic conventions in
-[#1636](https://github.com/open-telemetry/semantic-conventions/pull/1636) (TODO: replace with SemConv version once
-available).
+[v1.30.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.30.0/docs/system/k8s-metrics.md).
 
 The changes in their metric names and types are the following:
 
@@ -138,11 +140,10 @@ The changes in their metric names and types are the following:
 
 ### K8s StatefulsSet metrics
 
-The K8s StatefulsSet metrics implemented by the Collector and specifically the
+The K8s StatefulSet metrics implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
 receiver were introduced as semantic conventions in
-[#1636](https://github.com/open-telemetry/semantic-conventions/pull/1636) (TODO: replace with SemConv version once
-available).
+[v1.30.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.30.0/docs/system/k8s-metrics.md).
 
 The changes in their metric types are the following:
 
@@ -162,8 +163,7 @@ The changes in their metric types are the following:
 The K8s HorizontalPodAutoscaler metrics implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
 receiver were introduced as semantic conventions in
-[#1636](https://github.com/open-telemetry/semantic-conventions/pull/1636) (TODO: replace with SemConv version once
-available).
+[v1.30.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.30.0/docs/system/k8s-metrics.md).
 
 The changes in their metric names and types are the following:
 
@@ -183,8 +183,7 @@ The changes in their metric names and types are the following:
 The K8s DaemonSet metrics implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
 receiver were introduced as semantic conventions in
-[#1649](https://github.com/open-telemetry/semantic-conventions/pull/1649) (TODO: replace with SemConv version once
-available).
+[v1.30.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.30.0/docs/system/k8s-metrics.md).
 
 The changes in their metric types are the following:
 
@@ -204,8 +203,7 @@ The changes in their metric types are the following:
 The K8s Job metrics implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
 receiver were introduced as semantic conventions in
-[#1649](https://github.com/open-telemetry/semantic-conventions/pull/1660) (TODO: replace with SemConv version once
-available).
+[v1.30.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.30.0/docs/system/k8s-metrics.md).
 
 The changes in their metric types are the following:
 
@@ -223,8 +221,7 @@ The changes in their metric types are the following:
 The K8s Cronjob metrics implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
 receiver were introduced as semantic conventions in
-[#1649](https://github.com/open-telemetry/semantic-conventions/pull/1660) (TODO: replace with SemConv version once
-available).
+[v1.30.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.30.0/docs/system/k8s-metrics.md).
 
 The changes in their metric types are the following:
 
@@ -241,8 +238,7 @@ The changes in their metric types are the following:
 The K8s Namespace metrics implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
 receiver were introduced as semantic conventions in
-[#1649](https://github.com/open-telemetry/semantic-conventions/pull/1668) (TODO: replace with SemConv version once
-available).
+[v1.30.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.30.0/docs/system/k8s-metrics.md).
 
 The changes in their metrics are the following:
 
@@ -251,5 +247,39 @@ The changes in their metrics are the following:
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                            |
 |------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | `k8s.namespace.phase`                  (type: `gauge`), 1 for active and 0 for terminating                      | `k8s.namespace.phase` (type: `updowncounter`), with the attribute `k8s.namespace.phase` indicating the phase |
+
+<!-- prettier-ignore-end -->
+
+### K8s ResourceQuota resource
+
+The K8s ResourceQuota attributes implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[v1.31.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.31.0/docs/system/k8s-metrics.md).
+
+The changes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                       |
+|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `k8s.resource_quota.{name,uid}`                                     | `k8s.resourcequota.{name,uid}`  |
+
+<!-- prettier-ignore-end -->
+
+### K8s ReplicationController resource
+
+The K8s Replication Controller attributes implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[v1.31.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.31.0/docs/system/k8s-metrics.md).
+
+The changes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                       |
+|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `k8s.replication_controller.{name,uid}`                                     | `k8s.replicationcontroller.{name,uid}`  |
 
 <!-- prettier-ignore-end -->
