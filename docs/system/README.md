@@ -12,7 +12,6 @@ System semantic conventions are defined for the following metrics:
 
 * [System](system-metrics.md): For standard system metrics.
 * [Container](container-metrics.md): For container-related metrics.
-* [CPU](cpu-metrics.md): For CPU-related metrics.
 * [K8s](k8s-metrics.md): For K8s-related metrics.
 * [Hardware](hardware-metrics.md): For hardware-related metrics.
 * [Process](process-metrics.md): For standard process metrics.
