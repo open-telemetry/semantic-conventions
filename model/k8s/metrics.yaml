@@ -63,6 +63,34 @@ groups:
       - ref: network.interface.name
       - ref: network.io.direction
 
+  # k8s.container.* metrics
+  - id: metric.k8s.container.status.state
+    type: metric
+    metric_name: k8s.container.status.state
+    stability: experimental
+    brief: "Describes the number of K8s containers that are currently in a given state"
+    note: |
+      All possible container states will be reported at each time interval to avoid missing metrics.
+      Only the value corresponding to the current state will be non-zero.
+    instrument: updowncounter
+    unit: "{container}"
+    attributes:
+      - ref: k8s.container.status.state
+        requirement_level: required
+  - id: metric.k8s.container.status.reason
+    type: metric
+    metric_name: k8s.container.status.reason
+    stability: experimental
+    brief: "Describes the number of K8s containers that are currently in a state for a given reason"
+    instrument: updowncounter
+    unit: "{container}"
+    note: |
+      All possible container state reasons will be reported at each time interval to avoid missing metrics.
+      Only the value corresponding to the current state reason will be non-zero.
+    attributes:
+      - ref: k8s.container.status.reason
+        requirement_level: required
+
   # k8s.node.* metrics
   - id: metric.k8s.node.uptime
     type: metric
