@@ -1,4 +1,23 @@
 groups:
+  - id: registry.gcp.resource
+    type: attribute_group
+    display_name: GCP Resource Attributes
+    brief: Attributes for identifying GCP resources
+    attributes:
+     - id: gcp.resource.name
+       type: string
+       stability: development
+       brief: Fully-qualified resource name of the GCP resource being read, created, or modified
+       examples: ['//somedomain.googleapis.com/projects/some-project/locations/us-central1/instances/12345']
+       note: >
+         The attribute "gcp.resource.name" and the resource attribute "cloud.resource_id"
+         are related but have different purposes. Use "cloud.resource_id" to identify the
+         compute resource where the code is running. Use "gcp.resource.name" to identify
+         the GCP resource that said code is manipulating. For example, if you have code
+         that is running in Cloud Run and the code publishes to a topic in Cloud Pub/Sub,
+         you should use "cloud.resource_id" to refer to the Cloud Run instance where the
+         code is running, and you should use "gcp.resource.name" to identify The
+         Cloud Pub/Sub topic to which your code is actively publishing.
   - id: registry.gcp.client
     type: attribute_group
     display_name: GCP Client Attributes
