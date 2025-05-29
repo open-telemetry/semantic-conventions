@@ -469,3 +469,93 @@ groups:
     attributes:
       - ref: k8s.namespace.phase
         requirement_level: required
+
+  # k8s.container.* metrics
+  - id: metric.k8s.container.cpu.limit
+    type: metric
+    metric_name: k8s.container.cpu.limit
+    stability: development
+    brief: "Maximum CPU resource limit set for the container"
+    entity_associations:
+      - k8s.container
+    note: |
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+    instrument: gauge
+    unit: "{cpu}"
+  - id: metric.k8s.container.cpu.request
+    type: metric
+    metric_name: k8s.container.cpu.request
+    stability: development
+    brief: "CPU resource requested for the container"
+    entity_associations:
+      - k8s.container
+    note: |
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+    instrument: gauge
+    unit: "{cpu}"
+  - id: metric.k8s.container.memory.limit
+    type: metric
+    metric_name: k8s.container.memory.limit
+    stability: development
+    brief: "Maximum memory resource limit set for the container"
+    entity_associations:
+      - k8s.container
+    note: |
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+    instrument: gauge
+    unit: "By"
+  - id: metric.k8s.container.memory.request
+    type: metric
+    metric_name: k8s.container.memory.request
+    stability: development
+    brief: "Memory resource requested for the container"
+    entity_associations:
+      - k8s.container
+    note: |
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+    instrument: gauge
+    unit: "By"
+  - id: metric.k8s.container.storage.limit
+    type: metric
+    metric_name: k8s.container.storage.limit
+    stability: development
+    brief: "Maximum storage resource limit set for the container"
+    entity_associations:
+      - k8s.container
+    note: |
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+    instrument: gauge
+    unit: "By"
+  - id: metric.k8s.container.storage.request
+    type: metric
+    metric_name: k8s.container.storage.request
+    stability: development
+    brief: "Storage resource requested for the container"
+    entity_associations:
+      - k8s.container
+    note: |
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+    instrument: gauge
+    unit: "By"
+  - id: metric.k8s.container.ephemeral_storage.limit
+    type: metric
+    metric_name: k8s.container.ephemeral_storage.limit
+    stability: development
+    brief: "Maximum ephemeral storage resource limit set for the container"
+    entity_associations:
+      - k8s.container
+    note: |
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+    instrument: gauge
+    unit: "By"
+  - id: metric.k8s.container.ephemeral_storage.request
+    type: metric
+    metric_name: k8s.container.ephemeral_storage.request
+    stability: development
+    brief: "Ephemeral storage resource requested for the container"
+    entity_associations:
+      - k8s.container
+    note: |
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+    instrument: gauge
+    unit: "By"

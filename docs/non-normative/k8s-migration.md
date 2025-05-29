@@ -57,6 +57,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Namespace metrics](#k8s-namespace-metrics)
   - [K8s ResourceQuota resource](#k8s-resourcequota-resource)
   - [K8s ReplicationController resource](#k8s-replicationcontroller-resource)
+  - [K8s Container metrics](#k8s-container-metrics)
 
 <!-- tocstop -->
 
@@ -281,5 +282,28 @@ The changes are the following:
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                       |
 |---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
 | `k8s.replication_controller.{name,uid}`                                     | `k8s.replicationcontroller.{name,uid}`  |
+
+### K8s Container metrics
+
+The K8s Container metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#2178](https://github.com/open-telemetry/semantic-conventions/pull/2178) (TODO: replace with SemConv version once
+available).
+
+The changes in their metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                       |
+|------------------------------------------------------------------------------------|-------------------------------------------|
+| `k8s.container.cpu_limit`                                                          | `k8s.container.cpu.limit`                 |
+| `k8s.container.cpu_request`                                                        | `k8s.container.cpu.request`               |
+| `k8s.container.memory_limit`                                                       | `k8s.container.memory.limit`              |
+| `k8s.container.memory_request`                                                     | `k8s.container.memory.request`            |
+| `k8s.container.storage_limit`                                                      | `k8s.container.storage.limit`             |
+| `k8s.container.storage_request`                                                    | `k8s.container.storage.request`           |
+| `k8s.container.ephemeralstorage_limit`                                                       | `k8s.container.ephemeral_storage.limit`   |
+| `k8s.container.ephemeralstorage_request`                                                     | `k8s.container.ephemeral_storage.request` |
 
 <!-- prettier-ignore-end -->
