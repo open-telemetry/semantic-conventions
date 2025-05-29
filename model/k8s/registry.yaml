@@ -313,6 +313,30 @@ groups:
         brief: >
           The name of the horizontal pod autoscaler.
         examples: ['opentelemetry']
+      - id: k8s.hpa.scaletargetref.kind
+        type: string
+        stability: development
+        brief: >
+          The kind of the target resource to scale for the HorizontalPodAutoscaler.
+        note: |
+          This maps to the `kind` field in the `scaleTargetRef` of the HPA spec.
+        examples: ["Deployment", "StatefulSet"]
+      - id: k8s.hpa.scaletargetref.name
+        type: string
+        stability: development
+        brief: >
+          The name of the target resource to scale for the HorizontalPodAutoscaler.
+        note: |
+          This maps to the `name` field in the `scaleTargetRef` of the HPA spec.
+        examples: ["my-deployment", "my-statefulset"]
+      - id: k8s.hpa.scaletargetref.api_version
+        type: string
+        stability: development
+        brief: >
+          The API version of the target resource to scale for the HorizontalPodAutoscaler.
+        note: |
+          This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec.
+        examples: ["apps/v1", "autoscaling/v2"]
       - id: k8s.job.uid
         type: string
         stability: development
