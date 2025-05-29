@@ -8,11 +8,11 @@ Kubernetes users are accustomed to the single-word resource names used in the Ku
 
 This naming style avoids ambiguity and reduces the need to decide when to split or join words with underscores, which can lead to inconsistencies.
 
-When naming entities, attributes, or metrics related to Kubernetes objects, prioritize consistency with Kubernetes API naming over the [general naming considerations](../general/naming.md), as long as the resulting name adheres to the general naming rules.
+When naming entities, attributes, or metrics related to Kubernetes objects, prioritize using the exact single-word form from the official Kubernetes API object names (i.e., borrow the existing single-word term from the API when there is a 1:1 mapping). The official list of API object names can be found in the [Kubernetes API reference documentation](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/). For new terms or fields, follow the [general naming considerations](../general/naming.md).
 
 ## Naming Recommendations
 
-- Follow the naming style used in the Kubernetes API and CLI. This includes using single-word forms when such a form is commonly used.
+- For resources that map 1:1 to Kubernetes API object names, use the exact single-word form from the Kubernetes API (no underscores, words concatenated as in the API).
 
 ### Examples
 
