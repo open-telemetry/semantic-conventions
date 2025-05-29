@@ -579,13 +579,12 @@ groups:
     metric_name: k8s.container.ready
     stability: development
     brief: >
-      Specifies whether the container is currently passing its readiness check,
-      and is ready to accept traffic (0 for no, 1 for yes).
+      Indicates whether the container is currently marked as ready to accept traffic,
+      based on its readiness probe (1 = ready, 0 = not ready)
     instrument: updowncounter
     unit: "{container}"
+    entity_associations:
+      - k8s.container
     note: |
-      This metric aligns with the `ready` field of the
+      This metric SHOULD reflect the value of the `ready` field in the
       [K8s ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatus-v1-core).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.container`](../resource/k8s.md#container) resource.
