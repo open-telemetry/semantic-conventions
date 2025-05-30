@@ -1,0 +1,8 @@
+templates:
+  - pattern: schema-diff.j2
+    filter: .changes | with_entries(.value |= (map(select(.type == "renamed")) | sort_by(.old_name)))
+    application_mode: single
+whitespace_control:
+  trim_blocks: true
+  lstrip_blocks: true
+  keep_trailing_newline: true
