@@ -334,3 +334,18 @@ test-policies:
 	/policies \
 	/policies_test
 
+.PHONY: check-dead-yaml
+check-dead-yaml:
+	mkdir -p $(TOOLS_DIR)/bin
+	$(DOCKER_RUN) --rm \
+	$(DOCKER_USER_IS_HOST_USER_ARG) \
+	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
+	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+	--mount 'type=bind,source=$(TOOLS_DIR)/bin,target=/home/weaver/target' \
+	$(WEAVER_CONTAINER) registry generate \
+		--registry=/home/weaver/source \
+		--templates=/home/weaver/templates \
+		--config=/home/weaver/templates/registry/signal-groups-weaver.yaml \
+		. \
+		/home/weaver/target
+	$(TOOLS_DIR)/scripts/find-dead-yaml.sh $(PWD)/internal/tools/bin/signal-groups.txt $(PWD)/docs
