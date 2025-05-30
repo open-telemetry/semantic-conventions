@@ -23,25 +23,23 @@ linkTitle: Spans
 > (or prior):
 >
 > * SHOULD NOT change the version of the GenAI conventions that they emit by default.
->   Conventions include, but are not limited to, attributes, metric and span names,
+>   Conventions include, but are not limited to, attributes, metric, span and event names,
 >   span kind and unit of measure.
-> * SHOULD introduce an environment variable `OTEL_SEMCONV_UPDATE_OPT_IN`
->   in the existing major version as a comma-separated list of category-specific values
->   (e.g., http, databases, messaging, gen-ai). The list of values includes:
->   * `gen-ai` - emit the newer GenAI conventions and stop emitting the old
->     GenAI conventions (v1.34.0 or prior).
+> * SHOULD introduce an environment variable `OTEL_SEMCONV_EXPERIMENTAL_OPT_IN`
+>   as a comma-separated list of category-specific values. The list of values
+>   includes:
+>   * `gen-ai` - emit the latest (supported by the instrumentation) GenAI
+>     conventions and dot not emit the old one (v1.34.0 or prior).
 >   * `gen-ai/dup` - emit both the old and the new GenAI conventions, allowing
 >     for a seamless transition.
 >   * The default behavior (in the absence of one of these values) is to continue
 >     emitting whatever version of the GenAI conventions the instrumentation
->     was emitting prior to 1.34.0.
+>     was emitting (1.34.0 or prior).
 >   * Note: `gen-ai/dup` has higher precedence than `gen-ai` in case both values are present
-> * SHOULD maintain (security patching at a minimum) the existing major version
->   for at least six months after it starts emitting both sets of conventions.
-> * SHOULD drop the environment variable in the next major version after GenAI
->   conventions are declared stable.
 > * SHOULD emit the new values for span name, span kind and similar "single"
 >   valued concepts when `gen-ai/dup` is present in the list.
+> * SHOULD update the baseline version to a stable one in the next major version
+>   after GenAI conventions are declared stable.
 
 ## Spans
 
