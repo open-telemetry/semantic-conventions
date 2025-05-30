@@ -81,6 +81,7 @@ Currently, the following namespaces exist:
 - [Network](network.md)
 - [NodeJS](nodejs.md)
 - [OCI](oci.md)
+- [OpenAI](openai.md)
 - [OpenTracing](opentracing.md)
 - [OS](os.md)
 - [OTel](otel.md)
