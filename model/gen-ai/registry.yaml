@@ -23,28 +23,16 @@ groups:
             - id: gcp.vertex_ai
               stability: development
               value: "gcp.vertex_ai"
-              brief: 'Vertex AI'
+              brief: Vertex AI
               note: >
-                This refers to the 'aiplatform.googleapis.com' endpoint.
-                May use common attributes prefixed with 'gcp.gen_ai.'.
+                Used when accessing the 'aiplatform.googleapis.com' endpoint.
             - id: gcp.gemini
               stability: development
               value: "gcp.gemini"
               brief: 'Gemini'
               note: >
-                This refers to the 'generativelanguage.googleapis.com' endpoint.
+                Used when accessing the 'generativelanguage.googleapis.com' endpoint.
                 Also known as the AI Studio API.
-                May use common attributes prefixed with 'gcp.gen_ai.'.
-            - id: vertex_ai
-              stability: development
-              value: "vertex_ai"
-              brief: 'Vertex AI'
-              deprecated: "Use 'gcp.vertex_ai' instead."
-            - id: gemini
-              stability: development
-              value: "gemini"
-              brief: 'Gemini'
-              deprecated: "Use 'gcp.gemini' instead."
             - id: anthropic
               stability: development
               value: "anthropic"
@@ -90,19 +78,30 @@ groups:
               value: "mistral_ai"
               brief: 'Mistral AI'
 
-        brief: The Generative AI product as identified by the client or server instrumentation.
+        brief: The Generative AI model provider as identified by the client
+          or server instrumentation.
         note: |
-          This attribute describes a family of GenAI models with specific model identified
-          by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+          The attribute SHOULD be set based on the instrumentation's best
+          knowledge and may differ from the actual model provider.
 
-          The actual GenAI product may differ from the one identified by the client.
-          Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-          libraries. In such cases, the `gen_ai.provider.name` is set to `openai` based on the
-          instrumentation's best knowledge, instead of the actual system. The `server.address`
-          attribute may help identify the actual system in use for `openai`.
+          Multiple systems, including Azure OpenAI, Gemini, and AI hosting platforms
+          are accessible using the OpenAI REST API and corresponding client libraries,
+          but may proxy or host models from different providers.
 
-          For custom model, a custom friendly name SHOULD be used.
-          If none of these options apply, the `gen_ai.provider.name` SHOULD be set to `_OTHER`.
+          The `gen_ai.request.model`, `gen_ai.response.model, and `server.address`
+          attributes may help identify the actual system in use.
+
+          For custom models, a friendly custom provider name SHOULD be used.
+          If none of these options apply, the `gen_ai.provider.name` SHOULD be
+          set to `_OTHER`.
+
+          The `gen_ai.provider.name` attribute acts as a discriminator that
+          identifies the GenAI telemetry format flavor. It SHOULD be set
+          consistently with provider-specific attributes and signals.
+          For example, GenAI spans, metrics, and events related to AWS Bedrock
+          should have the `gen_ai.provider.name` set to `aws.bedrock` and include
+          applicable `aws.bedrock.*` attributes and are not expected to include
+          `openai.*` attributes.
       - id: gen_ai.request.model
         stability: development
         type: string
