@@ -38,6 +38,46 @@ groups:
     entity_associations:
       - host
 
+  - id: metric.system.cpu.time
+    type: metric
+    metric_name: system.cpu.time
+    stability: development
+    brief: "Seconds each logical CPU spent on each mode"
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: cpu.mode
+        note: "Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
+      - ref: cpu.logical_number
+    entity_associations:
+      - host
+
+  - id: metric.system.cpu.utilization
+    type: metric
+    metric_name: system.cpu.utilization
+    stability: development
+    brief: "For each logical CPU, the utilization is calculated as the change in cumulative CPU time (cpu.time) over a measurement interval, divided by the elapsed time."
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: cpu.mode
+        note: "Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
+      - ref: cpu.logical_number
+    entity_associations:
+      - host
+
+  - id: metric.system.cpu.frequency
+    type: metric
+    metric_name: system.cpu.frequency
+    stability: development
+    brief: "Operating frequency of the logical CPU in Hertz."
+    instrument: gauge
+    unit: "Hz"
+    attributes:
+      - ref: cpu.logical_number
+    entity_associations:
+      - host
+
   # system.memory.* metrics
   - id: metric.system.memory.usage
     type: metric
