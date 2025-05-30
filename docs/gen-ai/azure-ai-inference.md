@@ -25,7 +25,7 @@ The Semantic Conventions for [Azure AI Inference](https://learn.microsoft.com/az
 
 Semantic Conventions for [Azure AI Inference](https://learn.microsoft.com/azure/ai-studio/reference/reference-model-inference-api) client spans extend and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md).
 
-`gen_ai.system` MUST be set to `"az.ai.inference"` and SHOULD be provided **at span creation time**.
+`gen_ai.provide.name` MUST be set to `"azure.ai.inference"` and SHOULD be provided **at span creation time**.
 
 **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}` when the
 model name is available and `{gen_ai.operation.name}` otherwise.

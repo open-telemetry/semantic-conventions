@@ -466,7 +466,7 @@ Semantic conventions for individual systems MAY specify a different type for arg
 ## Custom events
 
 System-specific events that are not covered in this document SHOULD be documented in corresponding Semantic Conventions extensions and
-SHOULD follow `gen_ai.{gen_ai.system}.*` naming pattern for system-specific events.
+SHOULD follow `{gen_ai.provider.name}.*` naming pattern.
 
 ## Examples
 

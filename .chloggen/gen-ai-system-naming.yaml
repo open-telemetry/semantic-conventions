@@ -2,9 +2,9 @@ change_type: breaking
 component: gen-ai
 note: |
   Follow system-specific naming policy in GenAI semantic conventions.
-  - Rename `gen_ai.system` to `gen_ai_system.name`
+  - Rename `gen_ai.system` to `gen_ai.provider.name`
   - Remove `gen_ai` prefix from `gen_ai.openai.*` attributes.
-  - Rename `az.ai.*` system names to `azure.ai.*`.
+  - Rename `az.ai.*` attribute names to `azure.ai.*`.
 
 issues: [ 2046 ]
 subtext:

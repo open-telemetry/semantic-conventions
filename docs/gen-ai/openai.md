@@ -36,7 +36,7 @@ The Semantic Conventions for [OpenAI](https://openai.com/) extend and override t
 
 Semantic Conventions for [OpenAI](https://openai.com/) client spans extend and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md).
 
-`gen_ai.system` MUST be set to `"openai"` and SHOULD be provided **at span creation time**.
+`gen_ai.provider.name` MUST be set to `"openai"` and SHOULD be provided **at span creation time**.
 
 **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
 
