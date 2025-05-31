@@ -420,10 +420,11 @@ groups:
     brief: "Target value for CPU resource in HPA config."
     note: |
       This metric aligns with the `value` field of the
-      [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#metrictarget-v2-autoscaling)
+      [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#metrictarget-v2-autoscaling).
 
       This metric SHOULD be reported against a [`k8s.hpa`](../resource/k8s.md#horizontalpodautoscaler)
-      resource and if the type of the resource is `ContainerResource`, the `k8s.hpa.metric.container` attribute MUST be set.
+      resource. If the type of the metric is [`ContainerResource`](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis),
+      the `k8s.container.name` attribute MUST be set to identify the specific container within the pod to which the metric applies.
     instrument: gauge
     unit: "{cpu}"
     attributes:
@@ -431,7 +432,7 @@ groups:
       - ref: k8s.hpa.uid
       - ref: k8s.namespace.name
       - ref: k8s.hpa.metric.type
-      - ref: k8s.hpa.metric.container
+      - ref: k8s.container.name
         requirement_level:
           conditionally_required: if and only if k8s.hpa.metric.type is ContainerResource
   - id: metric.k8s.hpa.metric.target.cpu.average_value
@@ -441,10 +442,11 @@ groups:
     brief: "Target average value for CPU resource in HPA config."
     note: |
       This metric aligns with the `averageValue` field of the
-      [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#metrictarget-v2-autoscaling)
+      [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#metrictarget-v2-autoscaling).
 
       This metric SHOULD be reported against a [`k8s.hpa`](../resource/k8s.md#horizontalpodautoscaler)
-      resource and if the type of the resource is `ContainerResource`, the `k8s.hpa.metric.container` attribute MUST be set.
+      resource. If the type of the metric is [`ContainerResource`](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis),
+      the `k8s.container.name` attribute MUST be set to identify the specific container within the pod to which the metric applies.
     instrument: gauge
     unit: "{cpu}"
     attributes:
@@ -452,7 +454,7 @@ groups:
       - ref: k8s.hpa.uid
       - ref: k8s.namespace.name
       - ref: k8s.hpa.metric.type
-      - ref: k8s.hpa.metric.container
+      - ref: k8s.container.name
         requirement_level:
           conditionally_required: if and only if k8s.hpa.metric.type is ContainerResource
   - id: metric.k8s.hpa.metric.target.cpu.average_utilization
@@ -462,10 +464,11 @@ groups:
     brief: "Target average utilization, in percentage, for CPU resource in HPA config."
     note: |
       This metric aligns with the `averageUtilization` field of the
-      [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#metrictarget-v2-autoscaling)
+      [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#metrictarget-v2-autoscaling).
 
       This metric SHOULD be reported against a [`k8s.hpa`](../resource/k8s.md#horizontalpodautoscaler)
-      resource and if the type of the resource is `ContainerResource`, the `k8s.hpa.metric.container` attribute MUST be set.
+      resource. If the type of the metric is [`ContainerResource`](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis),
+      the `k8s.container.name` attribute MUST be set to identify the specific container within the pod to which the metric applies.
     instrument: gauge
     unit: "1"
     attributes:
@@ -473,9 +476,9 @@ groups:
       - ref: k8s.hpa.uid
       - ref: k8s.namespace.name
       - ref: k8s.hpa.metric.type
-      - ref: k8s.hpa.metric.container
+      - ref: k8s.container.name
         requirement_level:
-          conditionally_required: if and only if k8s.hpa.metric.type is ContainerResource
+          conditionally_required: if and only if k8s.hpa.metric.type is ContainerResource.
 
   # k8s.daemonset.* metrics
   - id: metric.k8s.daemonset.current_scheduled_nodes
