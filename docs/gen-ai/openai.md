@@ -31,14 +31,9 @@ linkTitle: OpenAI
 >   includes:
 >   * `gen-ai` - emit the latest (supported by the instrumentation) GenAI
 >     conventions and dot not emit the old one (v1.34.0 or prior).
->   * `gen-ai/dup` - emit both the old and the new GenAI conventions, allowing
->     for a seamless transition.
 >   * The default behavior (in the absence of one of these values) is to continue
 >     emitting whatever version of the GenAI conventions the instrumentation
 >     was emitting (1.34.0 or prior).
->   * Note: `gen-ai/dup` has higher precedence than `gen-ai` in case both values are present
-> * SHOULD emit the new values for span name, span kind and similar "single"
->   valued concepts when `gen-ai/dup` is present in the list.
 > * SHOULD update the baseline version to a stable one in the next major version
 >   after GenAI conventions are declared stable.
 
