@@ -58,6 +58,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s ResourceQuota resource](#k8s-resourcequota-resource)
   - [K8s ReplicationController resource](#k8s-replicationcontroller-resource)
   - [K8s Container metrics](#k8s-container-metrics)
+  - [K8s Pod Volume metrics](#k8s-pod-volume-metrics)
 
 <!-- tocstop -->
 
@@ -312,3 +313,7 @@ The changes in their metrics are the following:
 | `k8s.container.ready`                  (type: `gauge`)                             | `k8s.container.ready` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
+
+### K8s Pod Volume metrics
+
+TBA
