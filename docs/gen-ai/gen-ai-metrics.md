@@ -30,7 +30,7 @@ linkTitle: Metrics
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_EXPERIMENTAL_OPT_IN`
 >   as a comma-separated list of category-specific values. The list of values
 >   includes:
->   * `gen-ai` - emit the latest (supported by the instrumentation) GenAI
+>   * `gen-ai-latest` - emit the latest (supported by the instrumentation) GenAI
 >     conventions and dot not emit the old one (v1.34.0 or prior).
 >   * The default behavior (in the absence of one of these values) is to continue
 >     emitting whatever version of the GenAI conventions the instrumentation
