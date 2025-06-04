@@ -98,6 +98,23 @@ groups:
         requirement_level: required
       - ref: k8s.volume.type
         requirement_level: opt_in
+  - id: metric.k8s.pod.volume.usage
+    type: metric
+    metric_name: k8s.pod.volume.usage
+    stability: development
+    brief: "Pod volume usage"
+    instrument: gauge
+    unit: "By"
+    note: |
+      This metric is derived from the
+      [VolumeStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      Kubelet's stats API.
+    attributes:
+      - ref: k8s.volume.name
+        requirement_level: required
+      - ref: k8s.volume.type
+        requirement_level: opt_in
   - id: metric.k8s.pod.volume.inode.count
     type: metric
     metric_name: k8s.pod.volume.inode.count
