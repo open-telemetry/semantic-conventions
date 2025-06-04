@@ -316,4 +316,21 @@ The changes in their metrics are the following:
 
 ### K8s Pod Volume metrics
 
-TBA
+The K8s Pod volume metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.119.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#2319](https://github.com/open-telemetry/semantic-conventions/pull/2319).
+
+The changes in these metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                          |
+|------------------------------------------------------------------------------------|------------------------------|
+| `k8s.volume.available` | `k8s.pod.volume.available`   |
+| `k8s.volume.capacity` | `k8s.pod.volume.capacity`    |
+| `k8s.volume.inodes` | `k8s.pod.volume.inode.count` |
+| `k8s.volume.inodes.free` | `k8s.pod.volume.inode.free`  |
+| `k8s.volume.inodes.used` | `k8s.pod.volume.inode.used`  |
+
+<!-- prettier-ignore-start -->
