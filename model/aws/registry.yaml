@@ -393,6 +393,15 @@ groups:
           (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable).
         note: This may be different from `cloud.resource_id` if an alias is involved.
         examples: ["arn:aws:lambda:us-east-1:123456:function:myfunction:myalias"]
+      - id: aws.lambda.resource_mapping.id
+        type: string
+        stability: development
+        brief: >
+          The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html).
+          An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution
+          context or the lambda runtime environtment. This is going to be populated by the AWS SDK for each language when that UUID is present.
+          Some of these operations are Create/Delete/Get/List/Update EventSourceMapping.
+        examples: ["587ad24b-03b9-4413-8202-bbd56b36e5b7"]
   - id: registry.aws.s3
     type: attribute_group
     display_name: Amazon S3 Attributes
@@ -481,3 +490,92 @@ groups:
           and [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html) operations.
           The `part_number` attribute corresponds to the `--part-number` parameter of the
           [upload-part operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html).
+  - id: registry.aws.sqs
+    type: attribute_group
+    display_name: Amazon SQS Attributes
+    brief: >
+        This document defines attributes for AWS SQS.
+    attributes:
+      - id: aws.sqs.queue.url
+        type: string
+        stability: development
+        brief: >
+          The URL of the AWS SQS Queue. It's a unique identifier for a queue in Amazon Simple Queue Service (SQS)
+          and is used to access the queue and perform actions on it.
+        examples: ["https://sqs.us-east-1.amazonaws.com/123456789012/MyQueue"]
+  - id: registry.aws.sns
+    type: attribute_group
+    display_name: Amazon SNS Attributes
+    brief: >
+        This document defines attributes for AWS SNS.
+    attributes:
+      - id: aws.sns.topic.arn
+        type: string
+        stability: development
+        brief: >
+          The ARN of the AWS SNS Topic. An Amazon SNS [topic](https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html) is a logical access point that acts as a communication channel.
+        examples: ["arn:aws:sns:us-east-1:123456789012:mystack-mytopic-NZJ5JSMVGFIE"]
+  - id: registry.aws.kinesis
+    type: attribute_group
+    display_name: Amazon Kinesis Attributes
+    brief: >
+        This document defines attributes for AWS Kinesis.
+    attributes:
+      - id: aws.kinesis.stream_name
+        type: string
+        stability: development
+        brief: >
+          The name of the AWS Kinesis [stream](https://docs.aws.amazon.com/streams/latest/dev/introduction.html) the request refers to. Corresponds to the `--stream-name` parameter of the
+          Kinesis [describe-stream](https://docs.aws.amazon.com/cli/latest/reference/kinesis/describe-stream.html) operation.
+        examples: ["some-stream-name"]
+  - id: registry.aws.step_functions
+    type: attribute_group
+    display_name: Amazon Step Functions Attributes
+    brief: >
+        This document defines attributes for AWS Step Functions.
+    attributes:
+      - id: aws.step_functions.activity.arn
+        type: string
+        stability: development
+        brief: >
+          The ARN of the AWS Step Functions Activity.
+        examples: ["arn:aws:states:us-east-1:123456789012:activity:get-greeting"]
+      - id: aws.step_functions.state_machine.arn
+        type: string
+        stability: development
+        brief: >
+          The ARN of the AWS Step Functions State Machine.
+        examples: ["arn:aws:states:us-east-1:123456789012:stateMachine:myStateMachine:1"]
+  - id: registry.aws.secretsmanager
+    type: attribute_group
+    display_name: Amazon Secrets Manager Attributes
+    brief: >
+        This document defines attributes for AWS Secrets Manager.
+    attributes:
+      - id: aws.secretsmanager.secret.arn
+        type: string
+        stability: development
+        brief: >
+          The ARN of the Secret stored in the Secrets Mangger
+        examples: ["arn:aws:secretsmanager:us-east-1:123456789012:secret:SecretName-6RandomCharacters"]
+  - id: registry.aws.bedrock
+    type: attribute_group
+    display_name: Amazon Bedrock Attributes
+    brief: >
+        This document defines attributes for AWS Bedrock.
+    attributes:
+      - id: aws.bedrock.guardrail.id
+        type: string
+        stability: development
+        brief: >
+          The unique identifier of the AWS Bedrock Guardrail.
+          A [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) helps safeguard and prevent unwanted behavior from model responses or user messages.
+        examples: ["sgi5gkybzqak"]
+      - id: aws.bedrock.knowledge_base.id
+        type: string
+        stability: development
+        brief: >
+          The unique identifier of the AWS Bedrock Knowledge base.
+          A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information
+          that can be queried by models to generate more relevant responses and augment prompts.
+        examples: ["XFWUPB9PAW"]

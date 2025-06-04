@@ -10,91 +10,124 @@ groups:
         type: string
         brief: 'Deprecated, use `server.address`, `server.port` attributes instead.'
         stability: development
-        deprecated: "Replaced by `server.address` and `server.port`."
+        deprecated:
+          reason: uncategorized
+          note: >
+            Replaced by `server.address` and `server.port`.
         examples: Server=(localdb)\v11.0;Integrated Security=true;
       - id: db.jdbc.driver_classname
         type: string
         brief: 'Removed, no replacement at this time.'
         stability: development
-        deprecated: 'Removed as not used.'
+        deprecated:
+          reason: obsoleted
+          note: >
+            Removed, no replacement at this time.
         examples: ['org.postgresql.Driver', 'com.microsoft.sqlserver.jdbc.SQLServerDriver']
       - id: db.operation
         type: string
         brief: 'Deprecated, use `db.operation.name` instead.'
         stability: development
-        deprecated: "Replaced by `db.operation.name`."
+        deprecated:
+          reason: renamed
+          renamed_to: db.operation.name
         examples: ['findAndModify', 'HMSET', 'SELECT']
       - id: db.user
         type: string
         brief: 'Deprecated, no replacement at this time.'
-        deprecated: "No replacement at this time."
+        deprecated:
+          reason: obsoleted
+          note: Removed, no replacement at this time.
         stability: development
         examples: ['readonly_user', 'reporting_user']
       - id: db.statement
         type: string
         brief: The database statement being executed.
-        deprecated: "Replaced by `db.query.text`."
+        deprecated:
+          reason: renamed
+          renamed_to: db.query.text
         stability: development
         examples: ['SELECT * FROM wuser_table', 'SET mykey "WuValue"']
       - id: db.cassandra.table
         type: string
         stability: development
         brief: 'Deprecated, use `db.collection.name` instead.'
-        deprecated: "Replaced by `db.collection.name`."
+        deprecated:
+          reason: renamed
+          renamed_to: db.collection.name
         examples: 'mytable'
       - id: db.cosmosdb.container
         type: string
         stability: development
         brief: 'Deprecated, use `db.collection.name` instead.'
-        deprecated: "Replaced by `db.collection.name`."
+        deprecated:
+          reason: renamed
+          renamed_to: db.collection.name
         examples: 'mytable'
       - id: db.mongodb.collection
         type: string
         stability: development
         brief: 'Deprecated, use `db.collection.name` instead.'
-        deprecated: "Replaced by `db.collection.name`."
+        deprecated:
+          reason: renamed
+          renamed_to: db.collection.name
         examples: 'mytable'
       - id: db.sql.table
         type: string
         stability: development
-        brief: 'Deprecated, use `db.collection.name` instead, but only if not extracting the value from `db.query.text`.'
-        deprecated: "Replaced by `db.collection.name`, but only if not extracting the value from `db.query.text`."
+        brief: 'Deprecated, use `db.collection.name` instead.'
+        deprecated:
+          reason: uncategorized
+          note: "Replaced by `db.collection.name`, but only if not extracting the value from `db.query.text`."
         examples: 'mytable'
       - id: db.redis.database_index
         type: int
         stability: development
         brief: 'Deprecated, use `db.namespace` instead.'
-        deprecated: "Replaced by `db.namespace`."
+        deprecated:
+          reason: renamed
+          renamed_to: db.namespace
         examples: [0, 1, 15]
       - id: db.name
         type: string
         stability: development
         brief: 'Deprecated, use `db.namespace` instead.'
-        deprecated: "Replaced by `db.namespace`."
+        deprecated:
+          reason: renamed
+          renamed_to: db.namespace
         examples: [ 'customers', 'main' ]
       - id: db.mssql.instance_name
         type: string
         stability: development
         brief: 'Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute.'
-        deprecated: 'Deprecated, no replacement at this time.'
+        deprecated:
+          reason: obsoleted
+          note: Removed, no replacement at this time.
         examples: 'MSSQLSERVER'
       - id: db.instance.id
         type: string
         stability: development
         brief: 'Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.'
-        deprecated: 'Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.'
+        deprecated:
+          reason: obsoleted
+          note: >
+            Removed, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.
         examples: 'mysql-e26b99z.example.com'
       - id: db.elasticsearch.cluster.name
         type: string
         stability: development
-        deprecated: Replaced by `db.namespace`.
+        deprecated:
+          reason: renamed
+          renamed_to: db.namespace
         brief: >
           Deprecated, use `db.namespace` instead.
         examples: ["e9106fc68e3044f0b1475b04bf4ffd5f"]
       - id: db.cosmosdb.status_code
         type: int
         stability: development
-        deprecated: 'Replaced by `db.response.status_code`.'
+        deprecated:
+          reason: renamed
+          renamed_to: db.response.status_code
         brief: 'Deprecated, use `db.response.status_code` instead.'
         examples: [200, 201]
       - id: db.cosmosdb.operation_type
@@ -146,24 +179,33 @@ groups:
               value: "upsert"
               stability: development
         stability: development
-        deprecated: "No replacement at this time."
+        deprecated:
+          reason: obsoleted
+          note: >
+            Removed, no replacement at this time.
         brief: Deprecated, no replacement at this time.
 
       - id: db.cassandra.coordinator.dc
         type: string
         stability: development
         brief: "Deprecated, use `cassandra.coordinator.dc` instead."
-        deprecated: "Replaced by `cassandra.coordinator.dc`."
+        deprecated:
+          reason: renamed
+          renamed_to: cassandra.coordinator.dc
         examples: "us-west-2"
       - id: db.cassandra.coordinator.id
         type: string
         stability: development
         brief: "Deprecated, use `cassandra.coordinator.id` instead."
-        deprecated: "Replaced by `cassandra.coordinator.id`."
+        deprecated:
+          reason: renamed
+          renamed_to: cassandra.coordinator.id
         examples: "be13faa2-8574-4d71-926d-27f16cf8a7af"
       - id: db.cassandra.consistency_level
         brief: "Deprecated, use `cassandra.consistency.level` instead."
-        deprecated: "Replaced by `cassandra.consistency.level`."
+        deprecated:
+          reason: renamed
+          renamed_to: cassandra.consistency.level
         type:
           members:
             - id: all
@@ -204,24 +246,32 @@ groups:
         type: boolean
         stability: development
         brief: "Deprecated, use `cassandra.query.idempotent` instead."
-        deprecated: "Replaced by `cassandra.query.idempotent`."
+        deprecated:
+          reason: renamed
+          renamed_to: cassandra.query.idempotent
       - id: db.cassandra.page_size
         type: int
         stability: development
         brief: "Deprecated, use `cassandra.page.size` instead."
-        deprecated: "Replaced by `cassandra.page.size`."
+        deprecated:
+          reason: renamed
+          renamed_to: cassandra.page.size
         examples: [5000]
       - id: db.cassandra.speculative_execution_count
         type: int
         stability: development
         brief: "Deprecated, use `cassandra.speculative_execution.count` instead."
-        deprecated: "Replaced by `cassandra.speculative_execution.count`."
+        deprecated:
+          reason: renamed
+          renamed_to: cassandra.speculative_execution.count
         examples: [0, 2]
       - id: db.cosmosdb.client_id
         type: string
         stability: development
         brief: "Deprecated, use `azure.client.id` instead."
-        deprecated: "Replaced by `azure.client.id`."
+        deprecated:
+          reason: renamed
+          renamed_to: azure.client.id
         examples: "3ba4827d-4422-483f-b59f-85b74211c11d"
       - id: db.cosmosdb.connection_mode
         type:
@@ -236,23 +286,31 @@ groups:
               stability: development
         stability: development
         brief: "Deprecated, use `azure.cosmosdb.connection.mode` instead."
-        deprecated: "Replaced by `azure.cosmosdb.connection.mode`."
+        deprecated:
+          reason: renamed
+          renamed_to: azure.cosmosdb.connection.mode
       - id: db.cosmosdb.request_charge
         type: double
         stability: development
         brief: "Deprecated, use `azure.cosmosdb.operation.request_charge` instead."
-        deprecated: "Replaced by `azure.cosmosdb.operation.request_charge`."
+        deprecated:
+          reason: renamed
+          renamed_to: azure.cosmosdb.operation.request_charge
         examples: [46.18, 1.0]
       - id: db.cosmosdb.request_content_length
         type: int
         stability: development
         brief: "Deprecated, use `azure.cosmosdb.request.body.size` instead."
-        deprecated: "Replaced by `azure.cosmosdb.request.body.size`."
+        deprecated:
+          reason: renamed
+          renamed_to: azure.cosmosdb.request.body.size
       - id: db.cosmosdb.sub_status_code
         type: int
         stability: development
         brief: "Deprecated, use `azure.cosmosdb.response.sub_status_code` instead."
-        deprecated: "Replaced by `azure.cosmosdb.response.sub_status_code`."
+        deprecated:
+          reason: renamed
+          renamed_to: azure.cosmosdb.response.sub_status_code
         examples: [1000, 1002]
       - id: db.cosmosdb.consistency_level
         type:
@@ -274,13 +332,17 @@ groups:
               stability: development
         stability: development
         brief: "Deprecated, use `cosmosdb.consistency.level` instead."
-        deprecated: "Replaced by `azure.cosmosdb.consistency.level`."
+        deprecated:
+          reason: renamed
+          renamed_to: azure.cosmosdb.consistency.level
         examples: ["Eventual", "ConsistentPrefix", "BoundedStaleness", "Strong", "Session"]
       - id: db.cosmosdb.regions_contacted
         type: string[]
         stability: development
         brief: "Deprecated, use `azure.cosmosdb.operation.contacted_regions` instead."
-        deprecated: "Replaced by `azure.cosmosdb.operation.contacted_regions`."
+        deprecated:
+          reason: renamed
+          renamed_to: azure.cosmosdb.operation.contacted_regions
         examples:
           - ["North Central US", "Australia East", "Australia Southeast"]
       - id: db.elasticsearch.node.name
@@ -288,22 +350,28 @@ groups:
         stability: development
         brief: >
           Deprecated, use `elasticsearch.node.name` instead.
-        deprecated: "Replaced by `elasticsearch.node.name`."
+        deprecated:
+          reason: renamed
+          renamed_to: elasticsearch.node.name
         examples: ["instance-0000000001"]
       - id: db.elasticsearch.path_parts
         type: template[string]
         stability: development
         brief: >
           Deprecated, use `db.operation.parameter` instead.
-        deprecated: "Replaced by `db.operation.parameter`."
+        deprecated:
+          reason: renamed
+          renamed_to: db.operation.parameter
         examples:
           [
-            "db.elasticsearch.path_parts.index=test-index",
-            "db.elasticsearch.path_parts.doc_id=123",
+            "test-index",
+            "123",
           ]
       - id: db.system
         brief: "Deprecated, use `db.system.name` instead."
-        deprecated: "Replaced by `db.system.name`."
+        deprecated:
+          reason: renamed
+          renamed_to: db.system.name
         type:
           members:
             - id: other_sql
@@ -436,8 +504,8 @@ groups:
               stability: development
             - id: mariadb
               value: "mariadb"
-              brief: "MariaDB (This value has stability level RELEASE CANDIDATE)"
-              stability: release_candidate
+              brief: "MariaDB"
+              stability: development
             - id: maxdb
               value: "maxdb"
               brief: "SAP MaxDB"
@@ -452,8 +520,8 @@ groups:
               stability: development
             - id: mssql
               value: "mssql"
-              brief: "Microsoft SQL Server (This value has stability level RELEASE CANDIDATE)"
-              stability: release_candidate
+              brief: "Microsoft SQL Server"
+              stability: development
             - id: mssqlcompact
               value: "mssqlcompact"
               deprecated: "Removed, use `other_sql` instead."
@@ -461,8 +529,8 @@ groups:
               stability: development
             - id: mysql
               value: "mysql"
-              brief: "MySQL (This value has stability level RELEASE CANDIDATE)"
-              stability: release_candidate
+              brief: "MySQL"
+              stability: development
             - id: neo4j
               value: "neo4j"
               brief: "Neo4j"
@@ -489,8 +557,8 @@ groups:
               stability: development
             - id: postgresql
               value: "postgresql"
-              brief: "PostgreSQL (This value has stability level RELEASE CANDIDATE)"
-              stability: release_candidate
+              brief: "PostgreSQL"
+              stability: development
             - id: progress
               value: "progress"
               brief: "Progress Database"
@@ -527,7 +595,7 @@ groups:
               value: "vertica"
               brief: "Vertica"
               stability: development
-        stability: release_candidate
+        stability: development
 
   - id: registry.db.metrics.deprecated
     type: attribute_group
@@ -547,13 +615,17 @@ groups:
               value: 'used'
               stability: development
         brief: "Deprecated, use `db.client.connection.state` instead."
-        deprecated: "Replaced by `db.client.connection.state`."
+        deprecated:
+          reason: renamed
+          renamed_to: db.client.connection.state
         examples: ["idle"]
       - id: pool.name
         type: string
         stability: development
         brief: "Deprecated, use `db.client.connection.pool.name` instead."
-        deprecated: "Replaced by `db.client.connection.pool.name`."
+        deprecated:
+          reason: renamed
+          renamed_to: db.client.connection.pool.name
         examples: ["myDataSource"]
       - id: db.client.connections.state
         stability: development
@@ -566,11 +638,15 @@ groups:
               value: 'used'
               stability: development
         brief: "Deprecated, use `db.client.connection.state` instead."
-        deprecated: "Replaced by `db.client.connection.state`."
+        deprecated:
+          reason: renamed
+          renamed_to: db.client.connection.state
         examples: ["idle"]
       - id: db.client.connections.pool.name
         type: string
         stability: development
         brief: "Deprecated, use `db.client.connection.pool.name` instead."
-        deprecated: "Replaced by `db.client.connection.pool.name`."
+        deprecated:
+          reason: renamed
+          renamed_to: db.client.connection.pool.name
         examples: ["myDataSource"]
