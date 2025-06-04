@@ -556,7 +556,7 @@ groups:
     entity_associations:
       - host
 
- - id: metric.system.nfs.operation.count
+  - id: metric.system.nfs.operation.count
     type: metric
     metric_name: system.nfs.operation.count
     stability: development
