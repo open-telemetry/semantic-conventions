@@ -434,6 +434,43 @@ groups:
               value: 'terminating'
               brief: "Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)"
               stability: development
+      - id: k8s.node.condition
+        stability: development
+        brief: >
+          The condition of a K8s Node.
+        note: |
+          K8s Node conditions as described
+          by [K8s documentation](https://v1-32.docs.kubernetes.io/docs/reference/node/node-status/#condition).
+        examples: [ "Ready", "DiskPressure" ]
+        type:
+          members:
+            - id: ready
+              value: 'Ready'
+              brief: |
+                The node is healthy and ready to accept pods. and Unknown if the node controller has not heard from the node in the last node-monitor-grace-period"
+              stability: development
+            - id: ready_unknown
+              value: 'ReadyUnknown'
+              brief: |
+                The node controller has not heard from the node in the
+                last `node-monitor-grace-period` (default is 50 seconds)
+              stability: development
+            - id: disk_pressure
+              value: 'DiskPressure'
+              brief: "Pressure exists on the disk size—that is, if the disk capacity is low"
+              stability: development
+            - id: memory_pressure
+              value: 'MemoryPressure'
+              brief: "Pressure exists on the node memory—that is, if the node memory is low"
+              stability: development
+            - id: pid_pressure
+              value: 'PIDPressure'
+              brief: "Pressure exists on the processes—that is, if there are too many processes on the node"
+              stability: development
+            - id: network_unavailable
+              value: 'NetworkUnavailable'
+              brief: "The network for the node is not correctly configured"
+              stability: development
       - id: k8s.container.status.state
         stability: experimental
         brief: >
