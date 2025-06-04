@@ -565,7 +565,7 @@ groups:
     unit: "{procedure}"
     attributes:
       - ref: rpc.onc.version
-      - ref: rpc.onc.operation.name
+      - ref: rpc.nfs.operation.name
     entity_associations:
       - host
 
@@ -784,7 +784,7 @@ groups:
     unit: "{operation}"
     attributes:
       - ref: rpc.onc.version
-      - ref: rpc.onc.operation.name
+      - ref: rpc.nfs.operation.name
     entity_associations:
       - host
 
