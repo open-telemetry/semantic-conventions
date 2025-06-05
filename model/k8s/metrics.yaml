@@ -421,20 +421,18 @@ groups:
     note: |
       This metric aligns with the `value` field of the
       [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#metrictarget-v2-autoscaling).
-
-      This metric SHOULD be reported against a [`k8s.hpa`](../resource/k8s.md#horizontalpodautoscaler)
-      resource. If the type of the metric is [`ContainerResource`](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis),
+      If the type of the metric is [`ContainerResource`](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis),
       the `k8s.container.name` attribute MUST be set to identify the specific container within the pod to which the metric applies.
     instrument: gauge
     unit: "{cpu}"
     attributes:
-      - ref: k8s.hpa.name
-      - ref: k8s.hpa.uid
-      - ref: k8s.namespace.name
       - ref: k8s.hpa.metric.type
       - ref: k8s.container.name
         requirement_level:
           conditionally_required: if and only if k8s.hpa.metric.type is ContainerResource
+    entity_associations:
+      - k8s.hpa
+      - k8s.namespace
   - id: metric.k8s.hpa.metric.target.cpu.average_value
     type: metric
     metric_name: k8s.hpa.metric.target.cpu.average_value
@@ -443,20 +441,18 @@ groups:
     note: |
       This metric aligns with the `averageValue` field of the
       [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#metrictarget-v2-autoscaling).
-
-      This metric SHOULD be reported against a [`k8s.hpa`](../resource/k8s.md#horizontalpodautoscaler)
-      resource. If the type of the metric is [`ContainerResource`](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis),
+      If the type of the metric is [`ContainerResource`](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis),
       the `k8s.container.name` attribute MUST be set to identify the specific container within the pod to which the metric applies.
     instrument: gauge
     unit: "{cpu}"
     attributes:
-      - ref: k8s.hpa.name
-      - ref: k8s.hpa.uid
-      - ref: k8s.namespace.name
       - ref: k8s.hpa.metric.type
       - ref: k8s.container.name
         requirement_level:
           conditionally_required: if and only if k8s.hpa.metric.type is ContainerResource
+    entity_associations:
+      - k8s.hpa
+      - k8s.namespace
   - id: metric.k8s.hpa.metric.target.cpu.average_utilization
     type: metric
     metric_name: k8s.hpa.metric.target.cpu.average_utilization
@@ -465,20 +461,18 @@ groups:
     note: |
       This metric aligns with the `averageUtilization` field of the
       [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#metrictarget-v2-autoscaling).
-
-      This metric SHOULD be reported against a [`k8s.hpa`](../resource/k8s.md#horizontalpodautoscaler)
-      resource. If the type of the metric is [`ContainerResource`](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis),
+      If the type of the metric is [`ContainerResource`](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis),
       the `k8s.container.name` attribute MUST be set to identify the specific container within the pod to which the metric applies.
     instrument: gauge
     unit: "1"
     attributes:
-      - ref: k8s.hpa.name
-      - ref: k8s.hpa.uid
-      - ref: k8s.namespace.name
       - ref: k8s.hpa.metric.type
       - ref: k8s.container.name
         requirement_level:
           conditionally_required: if and only if k8s.hpa.metric.type is ContainerResource.
+    entity_associations:
+      - k8s.hpa
+      - k8s.namespace
 
   # k8s.daemonset.* metrics
   - id: metric.k8s.daemonset.current_scheduled_nodes
