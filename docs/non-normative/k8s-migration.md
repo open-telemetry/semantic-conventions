@@ -325,8 +325,8 @@ The changes in their metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                |
-|------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
-| `k8s.node.condition_*`                                                             | `k8s.node.condition` metric [0,1] with attribute `k8s.node.condition` for the different conditions |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                                                                  |
+|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `k8s.node.condition_*`                                                             | `k8s.node.condition` metric [0,1] with attribute `k8s.node.condition` for the different conditions and `k8s.condition.status` for true/false/unknown |
 
 <!-- prettier-ignore-end -->

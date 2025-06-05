@@ -449,12 +449,6 @@ groups:
               brief: |
                 The node is healthy and ready to accept pods. and Unknown if the node controller has not heard from the node in the last node-monitor-grace-period"
               stability: development
-            - id: ready_unknown
-              value: 'ReadyUnknown'
-              brief: |
-                The node controller has not heard from the node in the
-                last `node-monitor-grace-period` (default is 50 seconds)
-              stability: development
             - id: disk_pressure
               value: 'DiskPressure'
               brief: "Pressure exists on the disk size—that is, if the disk capacity is low"
@@ -470,6 +464,22 @@ groups:
             - id: network_unavailable
               value: 'NetworkUnavailable'
               brief: "The network for the node is not correctly configured"
+              stability: development
+      - id: k8s.condition.state
+        stability: development
+        brief: >
+          The state of a condition
+        examples: [ "true", "false", "unknown" ]
+        type:
+          members:
+            - id: condition_true
+              value: 'true'
+              stability: development
+            - id: condition_false
+              value: 'false'
+              stability: development
+            - id: condition_unknown
+              value: 'unknown'
               stability: development
       - id: k8s.container.status.state
         stability: experimental

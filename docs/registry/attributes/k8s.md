@@ -14,6 +14,7 @@ Kubernetes resource attributes.
 |---|---|---|---|---|
 | <a id="k8s-cluster-name" href="#k8s-cluster-name">`k8s.cluster.name`</a> | string | The name of the cluster. | `opentelemetry-cluster` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-cluster-uid" href="#k8s-cluster-uid">`k8s.cluster.uid`</a> | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-condition-state" href="#k8s-condition-state">`k8s.condition.state`</a> | string | The state of a condition | `true`; `false`; `unknown` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-container-name" href="#k8s-container-name">`k8s.container.name`</a> | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-container-restart-count" href="#k8s-container-restart-count">`k8s.container.restart_count`</a> | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-container-status-last-terminated-reason" href="#k8s-container-status-last-terminated-reason">`k8s.container.status.last_terminated_reason`</a> | string | Last terminated reason of the Container. | `Evicted`; `Error` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -166,6 +167,16 @@ by [K8s documentation](https://v1-32.docs.kubernetes.io/docs/reference/node/node
 
 ---
 
+`k8s.condition.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `false` | condition_false | ![Development](https://img.shields.io/badge/-development-blue) |
+| `true` | condition_true | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unknown` | condition_unknown | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
 `k8s.container.status.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -210,8 +221,6 @@ by [K8s documentation](https://v1-32.docs.kubernetes.io/docs/reference/node/node
 | `NetworkUnavailable` | The network for the node is not correctly configured | ![Development](https://img.shields.io/badge/-development-blue) |
 | `PIDPressure` | Pressure exists on the processes—that is, if there are too many processes on the node | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Ready` | The node is healthy and ready to accept pods. and Unknown if the node controller has not heard from the node in the last node-monitor-grace-period" | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ReadyUnknown` | The node controller has not heard from the node in the
-last `node-monitor-grace-period` (default is 50 seconds) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

@@ -114,6 +114,8 @@ groups:
     attributes:
       - ref: k8s.node.condition
         requirement_level: required
+      - ref: k8s.condition.state
+        requirement_level: required
   # k8s.node.cpu.* metrics
   - id: metric.k8s.node.cpu.time
     type: metric

@@ -1434,10 +1434,21 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`k8s.condition.state`](/docs/registry/attributes/k8s.md) | string | The state of a condition | `true`; `false`; `unknown` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.node.condition`](/docs/registry/attributes/k8s.md) | string | The condition of a K8s Node. [1] | `Ready`; `DiskPressure` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `k8s.node.condition`:** K8s Node conditions as described
 by [K8s documentation](https://v1-32.docs.kubernetes.io/docs/reference/node/node-status/#condition).
+
+---
+
+`k8s.condition.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `false` | condition_false | ![Development](https://img.shields.io/badge/-development-blue) |
+| `true` | condition_true | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unknown` | condition_unknown | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -1450,8 +1461,6 @@ by [K8s documentation](https://v1-32.docs.kubernetes.io/docs/reference/node/node
 | `NetworkUnavailable` | The network for the node is not correctly configured | ![Development](https://img.shields.io/badge/-development-blue) |
 | `PIDPressure` | Pressure exists on the processes—that is, if there are too many processes on the node | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Ready` | The node is healthy and ready to accept pods. and Unknown if the node controller has not heard from the node in the last node-monitor-grace-period" | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ReadyUnknown` | The node controller has not heard from the node in the
-last `node-monitor-grace-period` (default is 50 seconds) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
