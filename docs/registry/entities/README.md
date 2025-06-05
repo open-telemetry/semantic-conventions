@@ -7,7 +7,7 @@ auto_gen: below
 
 # Entity registry
 
-The entities registry is the catalog of available Entities. 
+The entities registry is the catalog of available Entities.
 
 > [!WARNING]
 >
