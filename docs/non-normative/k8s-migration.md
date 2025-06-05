@@ -85,6 +85,25 @@ The changes in their attributes are the following:
 
 <!-- prettier-ignore-end -->
 
+### K8s Node allocatable metrics
+
+The K8s node allocatable metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.127.0/receiver/k8sclusterreceiver/documentation.md)
+receiver.
+
+The changes between collector implementation and semantic conventions:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                              |
+|------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| `k8s.node.allocatable_cpu`                 (type: `gauge`)                         | `k8s.node.allocatable.cpu`               (type: `updowncounter`) |
+| `k8s.node.allocatable_memory`              (type: `gauge`)                         | `k8s.node.allocatable.memory`            (type: `updowncounter`) |
+| `k8s.node.allocatable_ephemeral_storage`   (type: `gauge`)                         | `k8s.node.allocatable.ephemeral_storage` (type: `updowncounter`) |
+| `k8s.node.allocatable_pods`                (type: `gauge`)                         | `k8s.node.allocatable.pods`              (type: `updowncounter`) |
+
+<!-- prettier-ignore-end -->
+
 ### K8s Deployment metrics
 
 The K8s Deployment metrics implemented by the Collector and specifically the

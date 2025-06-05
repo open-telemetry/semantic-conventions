@@ -371,7 +371,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.node.allocatable.cpu` | UpDownCounter | `{cpu}` | Amount of cpu allocatable on the node | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `k8s.node.allocatable.cpu` | UpDownCounter | `{cpu}` | Amount of cpu allocatable on the node | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.node` |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -391,7 +391,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.node.allocatable.memory` | UpDownCounter | `By` | Amount of memory allocatable on the node | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `k8s.node.allocatable.memory` | UpDownCounter | `By` | Amount of memory allocatable on the node | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.node` |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -411,7 +411,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.node.allocatable.ephemeral_storage` | UpDownCounter | `By` | Amount of ephemeral-storage allocatable on the node | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `k8s.node.allocatable.ephemeral_storage` | UpDownCounter | `By` | Amount of ephemeral-storage allocatable on the node | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.node` |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -431,7 +431,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.node.allocatable.pods` | UpDownCounter | `{pod}` | Amount of pods allocatable on the node | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `k8s.node.allocatable.pods` | UpDownCounter | `{pod}` | Amount of pods allocatable on the node | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.node` |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
