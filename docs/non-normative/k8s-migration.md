@@ -46,6 +46,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
 
 - [Summary of changes](#summary-of-changes)
   - [K8s network metrics](#k8s-network-metrics)
+  - [K8s Node allocatable metrics](#k8s-node-allocatable-metrics)
   - [K8s Deployment metrics](#k8s-deployment-metrics)
   - [K8s ReplicaSet metrics](#k8s-replicaset-metrics)
   - [K8s ReplicationController metrics](#k8s-replicationcontroller-metrics)
