@@ -11,7 +11,7 @@ groups:
         role: identifying
       - ref: telemetry.sdk.language
         requirement_level: required
-        role: descriptive
+        role: identifying
       - ref: telemetry.sdk.version
         requirement_level: required
         role: descriptive
