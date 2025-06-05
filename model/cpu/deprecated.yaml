@@ -1,10 +1,12 @@
 groups:
-  # cpu.* metrics
   - id: metric.cpu.time
     type: metric
     metric_name: cpu.time
+    brief: "Deprecated. Use `system.cpu.time` instead."
+    deprecated:
+      reason: renamed
+      renamed_to: system.cpu.time
     stability: development
-    brief: "Seconds each logical CPU spent on each mode"
     instrument: counter
     unit: "s"
     attributes:
@@ -15,21 +17,25 @@ groups:
   - id: metric.cpu.utilization
     type: metric
     metric_name: cpu.utilization
+    brief: "Deprecated. Use `system.cpu.utilization` instead."
+    deprecated:
+      reason: renamed
+      renamed_to: system.cpu.utilization
     stability: development
-    brief: "For each logical CPU, the utilization is calculated as the change in cumulative CPU time (cpu.time) over a measurement interval, divided by the elapsed time."
     instrument: gauge
     unit: "1"
     attributes:
       - ref: cpu.mode
-        note: "Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
+        note: "Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
       - ref: cpu.logical_number
 
   - id: metric.cpu.frequency
     type: metric
     metric_name: cpu.frequency
+    brief: "Deprecated. Use `system.cpu.frequency` instead."
+    deprecated:
+      reason: renamed
+      renamed_to: system.cpu.frequency
     stability: development
-    brief: "Operating frequency of the logical CPU in Hertz."
     instrument: gauge
-    unit: "Hz"
-    attributes:
-      - ref: cpu.logical_number
+    unit: "{Hz}"

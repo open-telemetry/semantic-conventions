@@ -243,7 +243,7 @@ groups:
         stability: development
       - id: process.environment_variable
         brief: >
-          Process environment variables, <key> being the environment variable
+          Process environment variables, `<key>` being the environment variable
           name, the value being the environment variable value.
         note: |
           Examples:

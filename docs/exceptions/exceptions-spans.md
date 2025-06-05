@@ -74,7 +74,7 @@ grained information from a stacktrace, if necessary.
 [java-stacktrace]: https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29
 [python-stacktrace]: https://docs.python.org/3/library/traceback.html#traceback.format_exc
 [js-stacktrace]: https://v8.dev/docs/stack-trace-api
-[ruby-full-message]: https://ruby-doc.org/core-2.7.1/Exception.html#method-i-full_message
+[ruby-full-message]: https://docs.ruby-lang.org/en/3.4/Exception.html#method-i-full_message
 [csharp-stacktrace]: https://docs.microsoft.com/dotnet/api/system.exception.tostring
 [go-stacktrace]: https://pkg.go.dev/runtime/debug#Stack
 [telemetry-sdk-resource]: ../resource/README.md#telemetry-sdk
