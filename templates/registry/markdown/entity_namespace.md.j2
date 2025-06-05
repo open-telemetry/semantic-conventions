@@ -11,6 +11,7 @@
 {% for e in ctx.groups | sort(attribute='name') %}
 {%- set id_attrs = e.attributes | selectattr("role", "equalto", "identifying") -%}
 {%- set desc_attrs = e.attributes | selectattr("role", "equalto", "descriptive") -%}
+{%- set misc_attrs = e.attributes | rejectattr("role", "defined") -%}
 ## {{ e.name | title_case }}
 
 **Status:** {{ stability.badge(e.stability, e.deprecated) }}
@@ -27,5 +28,15 @@
 **Descriptive Attributes:**
 {{ at.generate(desc_attrs, "", "/docs/registry/attribute", e.lineage.attributes) }}
 {% endif %}
+
+{%- if misc_attrs | length > 0 %}
+
+**Other Attributes:**
+
+_Note: Stable Entities MUST have attributes with a defined role._
+
+{{ at.generate(misc_attrs, "", "/docs/registry/attribute", e.lineage.attributes) }}
+{% endif %}
+
 
 {% endfor %}

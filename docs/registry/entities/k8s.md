@@ -54,6 +54,7 @@ conflict.
 
 
 
+
 ## K8s Container
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -74,6 +75,7 @@ conflict.
 |---|---|---|---|---|---|
 | [`k8s.container.restart_count`](/docs/registry/attribute/k8s.md) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.container.status.last_terminated_reason`](/docs/registry/attribute/k8s.md) | string | Last terminated reason of the Container. | `Evicted`; `Error` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
 
 
 
@@ -117,6 +119,7 @@ conflict.
 
 
 
+
 ## K8s Daemonset
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -142,6 +145,7 @@ conflict.
 **[4] `k8s.daemonset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
 **[5] `k8s.daemonset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+
 
 
 
@@ -175,6 +179,7 @@ conflict.
 
 
 
+
 ## K8s Hpa
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -194,6 +199,7 @@ conflict.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.hpa.name`](/docs/registry/attribute/k8s.md) | string | The name of the horizontal pod autoscaler. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
 
 
 
@@ -227,6 +233,7 @@ conflict.
 
 
 
+
 ## K8s Namespace
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -251,6 +258,7 @@ conflict.
 **[10] `k8s.namespace.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
 **[11] `k8s.namespace.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+
 
 
 
@@ -290,6 +298,7 @@ conflict.
   as the `k8s.node.label.kubernetes.io/arch` attribute with value `"arm64"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.node.label.data` attribute with value `""`.
+
 
 
 
@@ -337,6 +346,7 @@ conflict.
 
 
 
+
 ## K8s Replicaset
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -366,6 +376,7 @@ conflict.
 
 
 
+
 ## K8s Replicationcontroller
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -389,6 +400,7 @@ conflict.
 
 
 
+
 ## K8s Resourcequota
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -408,6 +420,7 @@ conflict.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.resourcequota.name`](/docs/registry/attribute/k8s.md) | string | The name of the resource quota. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
 
 
 
@@ -437,6 +450,7 @@ conflict.
 **[18] `k8s.statefulset.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
 **[19] `k8s.statefulset.label.<key>`:** The `<key>` being the label name, the value being the label value, even if the value is empty.
+
 
 
 

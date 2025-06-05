@@ -20,3 +20,23 @@
 **Identifying Attributes:**
 
 
+**Other Attributes:**
+
+_Note: Stable Entities MUST have attributes with a defined role._
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`deployment.environment.name`](/docs/registry/attribute/deployment.md) | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `deployment.environment.name`:** `deployment.environment.name` does not affect the uniqueness constraints defined through
+the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
+This implies that resources carrying the following attribute combinations MUST be
+considered to be identifying the same service:
+
+- `service.name=frontend`, `deployment.environment.name=production`
+- `service.name=frontend`, `deployment.environment.name=staging`.
+
+
+
+
+
