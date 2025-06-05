@@ -273,6 +273,12 @@ Currently, the following namespaces exist:
   <td></td>
   <td><a href="webengine.md#webengine">webengine</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+<td>zOS</td><td></td><td></td>
+</tr><tr>
+  <td></td>
+  <td><a href="zos.md#zos-software">zos.software</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr>
 </tbody>
 </table>
