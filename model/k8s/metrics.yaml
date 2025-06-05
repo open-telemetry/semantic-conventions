@@ -102,33 +102,33 @@ groups:
       The actual accuracy would depend on the instrumentation and operating system.
     instrument: gauge
     unit: "s"
-  - id: metric.k8s.node.allocatable_cpu
+  - id: metric.k8s.node.allocatable.cpu
     type: metric
-    metric_name: k8s.node.allocatable_cpu
+    metric_name: k8s.node.allocatable.cpu
     stability: development
     brief: "Amount of cpu allocatable on the node"
-    instrument: gauge
+    instrument: updowncounter
     unit: "{cpu}"
-  - id: metric.k8s.node.allocatable_ephemeral_storage
+  - id: metric.k8s.node.allocatable.ephemeral_storage
     type: metric
-    metric_name: k8s.node.allocatable_ephemeral_storage
+    metric_name: k8s.node.allocatable.ephemeral_storage
     stability: development
     brief: "Amount of ephemeral-storage allocatable on the node"
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
-  - id: metric.k8s.node.allocatable_memory
+  - id: metric.k8s.node.allocatable.memory
     type: metric
-    metric_name: k8s.node.allocatable_memory
+    metric_name: k8s.node.allocatable.memory
     stability: development
     brief: "Amount of memory allocatable on the node"
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
-  - id: metric.k8s.node.allocatable_pods
+  - id: metric.k8s.node.allocatable.pods
     type: metric
-    metric_name: k8s.node.allocatable_pods
+    metric_name: k8s.node.allocatable.pods
     stability: development
     brief: "Amount of pods allocatable on the node"
-    instrument: gauge
+    instrument: updowncounter
     unit: "{pod}"
   # k8s.node.cpu.* metrics
   - id: metric.k8s.node.cpu.time
