@@ -107,6 +107,8 @@ groups:
     metric_name: k8s.node.allocatable.cpu
     stability: development
     brief: "Amount of cpu allocatable on the node"
+    entity_associations:
+      - k8s.node
     instrument: updowncounter
     unit: "{cpu}"
   - id: metric.k8s.node.allocatable.ephemeral_storage
@@ -114,6 +116,8 @@ groups:
     metric_name: k8s.node.allocatable.ephemeral_storage
     stability: development
     brief: "Amount of ephemeral-storage allocatable on the node"
+    entity_associations:
+      - k8s.node
     instrument: updowncounter
     unit: "By"
   - id: metric.k8s.node.allocatable.memory
@@ -121,6 +125,8 @@ groups:
     metric_name: k8s.node.allocatable.memory
     stability: development
     brief: "Amount of memory allocatable on the node"
+    entity_associations:
+      - k8s.node
     instrument: updowncounter
     unit: "By"
   - id: metric.k8s.node.allocatable.pods
@@ -128,6 +134,8 @@ groups:
     metric_name: k8s.node.allocatable.pods
     stability: development
     brief: "Amount of pods allocatable on the node"
+    entity_associations:
+      - k8s.node
     instrument: updowncounter
     unit: "{pod}"
   # k8s.node.cpu.* metrics
