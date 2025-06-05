@@ -30,7 +30,7 @@
 
 **Descriptive Attributes:**
 
-{{ at.generate(desc_attrs, "", "/docs/registry/attribute", e.lineage.attributes) | trim }}
+{{ at.generate(desc_attrs, "", "/docs/registry/attributes", e.lineage.attributes) | trim }}
 {%- endif %}
 {%- if misc_attrs | length > 0 %}
 
@@ -38,7 +38,7 @@
 
 _Note: Stable Entities MUST have attributes with a defined role._
 
-{{ at.generate(misc_attrs, "", "/docs/registry/attribute", e.lineage.attributes) | trim}}
+{{ at.generate(misc_attrs, "", "/docs/registry/attributes", e.lineage.attributes) | trim}}
 {%- endif %}
 
 {% endfor %}

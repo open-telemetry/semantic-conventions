@@ -19,7 +19,7 @@ _Note: Stable Entities MUST have attributes with a defined role._
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`app.installation.id`](/docs/registry/attribute/app.md) | string | A unique identifier representing the installation of an application on a specific device [1] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.installation.id`](/docs/registry/attributes/app.md) | string | A unique identifier representing the installation of an application on a specific device [1] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
 It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
