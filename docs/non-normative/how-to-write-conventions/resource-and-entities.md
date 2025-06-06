@@ -117,7 +117,11 @@ There are two key rules:
 - Default to introducing separate entities with a clear "is a" (or similar) relationship
 - Extend an entity with new descriptive attributes if and only if the following is true:
   - The extending entity cannot be associated with any telemetry by itself.
-  - The extending entity doesn’t have any other entities that logically can only be associated with it.
+    *For example, when adding a `windows.process` entity, but no new
+    signals (metrics, logs, spans, etc.) would be added to the entity.*
+  - The extending entity doesn’t have any other entities that logically can
+    only be associated with it.
+    *Note: this only applies to entities as signals with relationships.*
 
 This avoids the complexities of subtyping and ambiguous attribute usage.
 
@@ -151,7 +155,7 @@ When choosing Identifying attributes, care should be taken to ensure that
 For example, `service.instance.id` can be problematic to detect from outside
 an SDK and inside an SDK consistently. Generally, this can only be
 achieved if some outside source injects a `service.instance.id` value into
-the SDK that is externally visible.  An alternative is to have the SDK
+the SDK that is externally visible. An alternative is to have the SDK
 provide a relationship between the `service.instance.id` and another entity
 that is visible externally. Care should be taken when modelling Entities
 to avoid this problem where possible.
@@ -276,6 +280,6 @@ minimal identity may limit their resource detection just to a
 `service.instance.id`. Some users highly customize resource detection with
 many concepts being appended.
 
-*OpenTelemetry should provide a good "out of the box" set of resource*
-*detection that makes appropriate denormalization trade-offs for most*
-*users, but allows users to fine-tune the system to their needs.*
+*OpenTelemetry should provide a good "out of the box" set of resource
+detection that makes appropriate denormalization trade-offs for most
+users, but allows users to fine-tune the system to their needs.*
