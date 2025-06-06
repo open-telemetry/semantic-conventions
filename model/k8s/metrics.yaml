@@ -102,9 +102,9 @@ groups:
       The actual accuracy would depend on the instrumentation and operating system.
     instrument: gauge
     unit: "s"
-  - id: metric.k8s.node.condition
+  - id: metric.k8s.node.condition.status
     type: metric
-    metric_name: k8s.node.condition
+    metric_name: k8s.node.condition.status
     stability: development
     brief: "Describes the condition of a particular Node."
     instrument: updowncounter
@@ -112,10 +112,12 @@ groups:
     entity_associations:
       - k8s.node
     attributes:
-      - ref: k8s.node.condition
+      - ref: k8s.node.condition.type
         requirement_level: required
-      - ref: k8s.condition.state
+      - ref: k8s.node.condition.status
         requirement_level: required
+      - ref: k8s.node.condition.reason
+        requirement_level: opt_in
   # k8s.node.cpu.* metrics
   - id: metric.k8s.node.cpu.time
     type: metric

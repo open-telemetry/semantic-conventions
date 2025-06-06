@@ -434,13 +434,16 @@ groups:
               value: 'terminating'
               brief: "Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)"
               stability: development
-      - id: k8s.node.condition
+      - id: k8s.node.condition.type
         stability: development
         brief: >
-          The condition of a K8s Node.
+          The condition type of a K8s Node.
         note: |
           K8s Node conditions as described
           by [K8s documentation](https://v1-32.docs.kubernetes.io/docs/reference/node/node-status/#condition).
+
+          This attribute aligns with the `type` field of the
+          [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
         examples: [ "Ready", "DiskPressure" ]
         type:
           members:
@@ -465,10 +468,13 @@ groups:
               value: 'NetworkUnavailable'
               brief: "The network for the node is not correctly configured"
               stability: development
-      - id: k8s.condition.state
+      - id: k8s.node.condition.status
         stability: development
         brief: >
-          The state of a condition
+          The status of the condition, one of True, False, Unknown.
+        note: |
+          This attribute aligns with the `status` field of the
+          [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
         examples: [ "true", "false", "unknown" ]
         type:
           members:
@@ -481,6 +487,15 @@ groups:
             - id: condition_unknown
               value: 'unknown'
               stability: development
+      - id: k8s.node.condition.reason
+        stability: development
+        brief: >
+          The reason for the condition's last transition
+        note: |
+          This attribute aligns with the `reason` field of the
+          [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
+        examples: [ "KubeletHasSufficientMemory", "KubeletHasNoDiskPressure", "KubeletHasSufficientPID" ]
+        type: string
       - id: k8s.container.status.state
         stability: experimental
         brief: >
