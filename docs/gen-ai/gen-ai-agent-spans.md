@@ -29,7 +29,7 @@ linkTitle: Agent spans
 >   includes:
 >   * `gen-ai-latest` - emit the latest (supported by the instrumentation) GenAI
 >     conventions and dot not emit the old one (v1.34.0 or prior).
->   * The default behavior (in the absence of one of these values) is to continue
+>   * The default behavior (in the absence of one of `gen-ai-latest`) is to continue
 >     emitting whatever version of the GenAI conventions the instrumentation
 >     was emitting (1.34.0 or prior).
 > * SHOULD update the baseline version to a stable one in the next major version
