@@ -625,7 +625,7 @@ groups:
     brief: |
       The CPU limits in a specific namespace.
       The value represents the configured quota limit of the resource in the namespace.
-    instrument: gauge
+    instrument: updowncounter
     unit: "{cpu}"
     entity_associations:
       - k8s.resourcequota
@@ -639,7 +639,7 @@ groups:
     brief: |
       The CPU limits in a specific namespace.
       The value represents the current observed total usage of the resource in the namespace.
-    instrument: gauge
+    instrument: updowncounter
     unit: "{cpu}"
     entity_associations:
       - k8s.resourcequota
@@ -653,7 +653,7 @@ groups:
     brief: |
       The CPU requests in a specific namespace.
       The value represents the configured quota limit of the resource in the namespace.
-    instrument: gauge
+    instrument: updowncounter
     unit: "{cpu}"
     entity_associations:
       - k8s.resourcequota
@@ -667,7 +667,7 @@ groups:
     brief: |
       The CPU requests in a specific namespace.
       The value represents the current observed total usage of the resource in the namespace.
-    instrument: gauge
+    instrument: updowncounter
     unit: "{cpu}"
     entity_associations:
       - k8s.resourcequota
@@ -683,7 +683,7 @@ groups:
     brief: |
       The memory limits in a specific namespace.
       The value represents the configured quota limit of the resource in the namespace.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     entity_associations:
       - k8s.resourcequota
@@ -697,7 +697,7 @@ groups:
     brief: |
       The memory limits in a specific namespace.
       The value represents the current observed total usage of the resource in the namespace.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     entity_associations:
       - k8s.resourcequota
@@ -711,7 +711,7 @@ groups:
     brief: |
       The memory requests in a specific namespace.
       The value represents the configured quota limit of the resource in the namespace.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     entity_associations:
       - k8s.resourcequota
@@ -725,7 +725,7 @@ groups:
     brief: |
       The memory requests in a specific namespace.
       The value represents the current observed total usage of the resource in the namespace.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     entity_associations:
       - k8s.resourcequota
@@ -741,7 +741,7 @@ groups:
     brief: |
       The huge page requests in a specific namespace.
       The value represents the configured quota limit of the resource in the namespace.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     entity_associations:
       - k8s.resourcequota
@@ -758,7 +758,7 @@ groups:
     brief: |
       The huge page requests in a specific namespace.
       The value represents the current observed total usage of the resource in the namespace.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     entity_associations:
       - k8s.resourcequota
@@ -777,7 +777,7 @@ groups:
     brief: |
       The storage requests in a specific namespace.
       The value represents the configured quota limit of the resource in the namespace.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     entity_associations:
       - k8s.resourcequota
@@ -800,7 +800,7 @@ groups:
     brief: |
       The storage requests in a specific namespace.
       The value represents the current observed total usage of the resource in the namespace.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     entity_associations:
       - k8s.resourcequota
@@ -869,7 +869,7 @@ groups:
     brief: |
       The sum of local ephemeral storage requests in the namespace.
       The value represents the configured quota limit of the resource in the namespace.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     entity_associations:
       - k8s.resourcequota
@@ -883,7 +883,7 @@ groups:
     brief: |
       The sum of local ephemeral storage requests in the namespace.
       The value represents the current observed total usage of the resource in the namespace.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     entity_associations:
       - k8s.resourcequota
@@ -897,7 +897,7 @@ groups:
     brief: |
       The sum of local ephemeral storage limits in the namespace.
       The value represents the configured quota limit of the resource in the namespace.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     entity_associations:
       - k8s.resourcequota
@@ -911,7 +911,7 @@ groups:
     brief: |
       The sum of local ephemeral storage limits in the namespace.
       The value represents the current observed total usage of the resource in the namespace.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     entity_associations:
       - k8s.resourcequota

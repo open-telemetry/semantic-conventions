@@ -1454,7 +1454,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.cpu.limit.hard` | Gauge | `{cpu}` | The CPU limits in a specific namespace.
+| `k8s.resourcequota.cpu.limit.hard` | UpDownCounter | `{cpu}` | The CPU limits in a specific namespace.
 The value represents the configured quota limit of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** This metric is retrieved from the `hard` field of the
@@ -1478,7 +1478,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.cpu.limit.used` | Gauge | `{cpu}` | The CPU limits in a specific namespace.
+| `k8s.resourcequota.cpu.limit.used` | UpDownCounter | `{cpu}` | The CPU limits in a specific namespace.
 The value represents the current observed total usage of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** This metric is retrieved from the `used` field of the
@@ -1502,7 +1502,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.cpu.request.hard` | Gauge | `{cpu}` | The CPU requests in a specific namespace.
+| `k8s.resourcequota.cpu.request.hard` | UpDownCounter | `{cpu}` | The CPU requests in a specific namespace.
 The value represents the configured quota limit of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** This metric is retrieved from the `hard` field of the
@@ -1526,7 +1526,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.cpu.request.used` | Gauge | `{cpu}` | The CPU requests in a specific namespace.
+| `k8s.resourcequota.cpu.request.used` | UpDownCounter | `{cpu}` | The CPU requests in a specific namespace.
 The value represents the current observed total usage of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** This metric is retrieved from the `used` field of the
@@ -1550,7 +1550,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.memory.limit.hard` | Gauge | `By` | The memory limits in a specific namespace.
+| `k8s.resourcequota.memory.limit.hard` | UpDownCounter | `By` | The memory limits in a specific namespace.
 The value represents the configured quota limit of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** This metric is retrieved from the `hard` field of the
@@ -1574,7 +1574,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.memory.limit.used` | Gauge | `By` | The memory limits in a specific namespace.
+| `k8s.resourcequota.memory.limit.used` | UpDownCounter | `By` | The memory limits in a specific namespace.
 The value represents the current observed total usage of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** This metric is retrieved from the `used` field of the
@@ -1598,7 +1598,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.memory.request.hard` | Gauge | `By` | The memory requests in a specific namespace.
+| `k8s.resourcequota.memory.request.hard` | UpDownCounter | `By` | The memory requests in a specific namespace.
 The value represents the configured quota limit of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** This metric is retrieved from the `hard` field of the
@@ -1622,7 +1622,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.memory.request.used` | Gauge | `By` | The memory requests in a specific namespace.
+| `k8s.resourcequota.memory.request.used` | UpDownCounter | `By` | The memory requests in a specific namespace.
 The value represents the current observed total usage of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** This metric is retrieved from the `used` field of the
@@ -1646,7 +1646,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.hugepages.request.hard` | Gauge | `By` | The huge page requests in a specific namespace.
+| `k8s.resourcequota.hugepages.request.hard` | UpDownCounter | `By` | The huge page requests in a specific namespace.
 The value represents the configured quota limit of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** This metric is retrieved from the `hard` field of the
@@ -1674,7 +1674,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.hugepages.request.used` | Gauge | `By` | The huge page requests in a specific namespace.
+| `k8s.resourcequota.hugepages.request.used` | UpDownCounter | `By` | The huge page requests in a specific namespace.
 The value represents the current observed total usage of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** This metric is retrieved from the `used` field of the
@@ -1702,7 +1702,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.storage.request.hard` | Gauge | `By` | The storage requests in a specific namespace.
+| `k8s.resourcequota.storage.request.hard` | UpDownCounter | `By` | The storage requests in a specific namespace.
 The value represents the configured quota limit of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** This metric is retrieved from the `hard` field of the
@@ -1736,7 +1736,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.storage.request.used` | Gauge | `By` | The storage requests in a specific namespace.
+| `k8s.resourcequota.storage.request.used` | UpDownCounter | `By` | The storage requests in a specific namespace.
 The value represents the current observed total usage of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** This metric is retrieved from the `used` field of the
@@ -1838,7 +1838,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.ephemeral_storage.request.hard` | Gauge | `By` | The sum of local ephemeral storage requests in the namespace.
+| `k8s.resourcequota.ephemeral_storage.request.hard` | UpDownCounter | `By` | The sum of local ephemeral storage requests in the namespace.
 The value represents the configured quota limit of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** This metric is retrieved from the `hard` field of the
@@ -1862,7 +1862,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.ephemeral_storage.request.used` | Gauge | `By` | The sum of local ephemeral storage requests in the namespace.
+| `k8s.resourcequota.ephemeral_storage.request.used` | UpDownCounter | `By` | The sum of local ephemeral storage requests in the namespace.
 The value represents the current observed total usage of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** This metric is retrieved from the `used` field of the
@@ -1886,7 +1886,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.ephemeral_storage.limit.hard` | Gauge | `By` | The sum of local ephemeral storage limits in the namespace.
+| `k8s.resourcequota.ephemeral_storage.limit.hard` | UpDownCounter | `By` | The sum of local ephemeral storage limits in the namespace.
 The value represents the configured quota limit of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** This metric is retrieved from the `hard` field of the
@@ -1910,7 +1910,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.resourcequota.ephemeral_storage.limit.used` | Gauge | `By` | The sum of local ephemeral storage limits in the namespace.
+| `k8s.resourcequota.ephemeral_storage.limit.used` | UpDownCounter | `By` | The sum of local ephemeral storage limits in the namespace.
 The value represents the current observed total usage of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.resourcequota` |
 
 **[1]:** This metric is retrieved from the `used` field of the
