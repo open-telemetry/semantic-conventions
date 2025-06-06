@@ -163,6 +163,9 @@ identify the Entity. For Example, kubernetes entities use the `k8s`
 namespace, and are primarily discovered using the kubernetes API or
 working within kubernetes.
 
+See [General Naming Guidance](/docs/general/naming.md) for overall
+semantic convention namespacing rules.
+
 ## Background: Resource and Entities
 
 In OpenTelemetry, every signal is associated with a Resource.
