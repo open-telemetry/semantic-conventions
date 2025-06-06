@@ -12,7 +12,76 @@ Table of Contents
 
 ## Modelling Guide
 
+To define an entity, create a new semantic convention model file, with a group type as `entity`, for example:
 
+`model/{my_domain}/entities.yaml`:
+```yaml
+groups:
+  - id: entity.my_entity
+    type: entity
+    stability: development
+    name: my_entity
+    brief: >
+      A description of my_entity here.
+    attributes:
+      - ref: some.attribute
+        role: identifying
+      - ref: some.other_attribute
+        role: descriptive
+        ...
+```
+
+Here, the attributes field contains all attributes of the Entity.
+The `role` of each attribute determines if it is identifying or
+descriptive. See
+[How to define identifying attributes?](#how-to-define-identifying-attributes)
+for details on what these mean.
+
+> Note: Declaring Entity relationships is not yet supported.
+
+### Declaring associations between signals
+
+You can declare which entities should be used with specific observability signals.  For example, process metrics should be used with the process entity, so that the metric is associated with a known process. To declare this, use the resource_associations field on the signal and reference another resource group *by name*.
+
+`model/{my_domain}/metrics.yaml`
+```yaml
+groups:
+  - id: metric.some_metric
+    type: metric
+    ...
+    entity_associations: 
+      - my_entity
+```
+
+Notes:
+- You cannot declare an association on an *unstable* resource from a
+  *stable* signal.
+- You can declare multiple associations. These form a "one or many" set,
+  where one or many of the named entities may be associated with the
+  metric. There is *no* requirement on disjointness due to how is-a
+  relationships are modelled.
+
+### Extending an entity
+
+While not recommended for Semantic Conventions, you can define a new
+"view" of an entity that includes additional descriptive attributes. To
+do so, use the extends field on groups:
+
+`model/{my_other_domain}/entities.yaml`:
+```yaml
+groups:
+  - id: entity.my_entity_2
+    type: entity
+    extends: entity.my_entity
+    attributes:
+      - ref: new.attribute.name
+        requirement_level: opt_in
+        role: descriptive
+```
+
+Notes:
+- You cannot change the `name` field of the new entity.
+- You cannot change the set of identifying attributes.
 
 ## FAQ
 
