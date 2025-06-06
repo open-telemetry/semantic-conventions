@@ -129,7 +129,7 @@ discovered. For example, when discovering kubernetes entities
 like `k8s.pod`, `k8s.deployment`, the identifying attributes
 should be sufficient to identify these entities within the
 scope of a kubernetes cluster (or more specifically, the
-kubernetes api server where the entities are discovered).
+kubernetes API server where the entities are discovered).
 
 Commonly, a number of attributes of an entity are readily
 available for the telemetry producer to compose an identity. Of
