@@ -15,6 +15,7 @@ Table of Contents
 To define an entity, create a new semantic convention model file, with a group type as `entity`, for example:
 
 `model/{my_domain}/entities.yaml`:
+
 ```yaml
 groups:
   - id: entity.my_entity
@@ -43,7 +44,8 @@ for details on what these mean.
 
 You can declare which entities should be used with specific observability signals.  For example, process metrics should be used with the process entity, so that the metric is associated with a known process. To declare this, use the resource_associations field on the signal and reference another resource group *by name*.
 
-`model/{my_domain}/metrics.yaml`
+`model/{my_domain}/metrics.yaml`:
+
 ```yaml
 groups:
   - id: metric.some_metric
@@ -54,6 +56,7 @@ groups:
 ```
 
 Notes:
+
 - You cannot declare an association on an *unstable* resource from a
   *stable* signal.
 - You can declare multiple associations. These form a "one or many" set,
@@ -68,6 +71,7 @@ While not recommended for Semantic Conventions, you can define a new
 do so, use the extends field on groups:
 
 `model/{my_other_domain}/entities.yaml`:
+
 ```yaml
 groups:
   - id: entity.my_entity_2
@@ -80,6 +84,7 @@ groups:
 ```
 
 Notes:
+
 - You cannot change the `name` field of the new entity.
 - You cannot change the set of identifying attributes.
 
@@ -95,7 +100,11 @@ There are two scenarios where entities should be defined:
   some system of record (e.g. resources in kubernetes, assets
   in a cloud).
 
-For example, the Mainframe SIG in OpenTelemetry will need to outline a set of entities and relationships to define observed telemetry. If a new clustering solution (e.g. Hashicorp's Nomad) is defined, and existing container-based entities are not enough, then new entities should be defined.
+For example, the Mainframe SIG in OpenTelemetry will need to outline a
+set of entities and relationships to define observed telemetry. If a new
+clustering solution (e.g. Hashicorp's Nomad) is defined, and existing
+container-based entities are not enough, then new entities should be
+defined.
 
 ### When to define an "is-a" relationship vs. extending descriptive attributes?
 
@@ -163,7 +172,7 @@ this is:
 > Span during the time when the latency was observed.
 >
 > Resource provides two important aspects for observability:
-> 
+>
 > * It MUST identify an entity that is producing telemetry.
 > * It SHOULD allow users to determine where that entity resides within their
 >   infrastructure.
@@ -174,19 +183,22 @@ An entity is specified as:
 > Entity represents an object of interest associated with
 > produced telemetry: traces, metrics, logs, profiles etc.
 
-While there is overlap in the definition of Entity and Resource, there are several key differences between the two:
+While there is overlap in the definition of Entity and Resource, there are
+several key differences between the two:
 
 - An Entity has a known "type", e.g. `service`, `k8s.pod`,
   `host`, etc.
 - An Entity can distinguish *identifying* attributes from
   *descriptive* attributes.
   - Identifying attributes can be used to identify the entity
-    within some system (See [minimally sufficient id](#minimally sufficient id)).
+    within some system (See
+    [minimally sufficient id](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.45.0/specification/entities/data-model.md#minimally-sufficient-identity)).
     For Example, the `k8s.pod.uid` would be considered an
     identifying attribute for a pod within kubernetes.
-  - *Descriptive* attributes can be used to provide additional labels for entities, but do not uniquely identify that Entity.  
+  - *Descriptive* attributes can be used to provide additional labels for
+    entities, but do not uniquely identify that Entity.  
 - A Resource is composed of *multiple* Entities.
-  - Each of the entities within Resource is considered 
+  - Each of the entities within Resource is considered
     'contributing' to that telemetry.
   - For Example, today, most SDKs include the service entity,
     but also another entity, like `k8s.container`, `host`, etc.
@@ -202,12 +214,19 @@ While there is overlap in the definition of Entity and Resource, there are sever
 There are two key principles that are important for Entities
 and Resource in OpenTelemetry:
 
-1. *Open expansion*: Allowing users outside of OpenTelemetry to provide Entity definitions and relationships within the system.
-2. *Telescoping Identity*: Allowing flexible denormalization of observability data to optimise critical queries (e.g. alerts, dashboard, etc.)
+1. *Open expansion*: Allowing users outside of OpenTelemetry to provide
+   Entity definitions and relationships within the system.
+2. *Telescoping Identity*: Allowing flexible denormalization of
+   observability data to optimise critical queries (e.g. alerts, dashboard,
+   etc.)
 
 ### Open Expansion
 
-OpenTelemetry is designed to be an open system. When it comes to defining the core set of entities and relationships within systems, it needs to remain open about what these entities and possible relationships are.  Any system a user has should be able to model and participate with existing OpenTelemetry semantic conventions.  This is done through two key aspects:
+OpenTelemetry is designed to be an open system. When it comes to defining
+the core set of entities and relationships within systems, it needs to
+remain open about what these entities and possible relationships are.  Any
+system a user has should be able to model and participate with existing
+OpenTelemetry semantic conventions.  This is done through two key aspects:
 
 - Namespacing
 - "Is-a" Relationships
@@ -250,9 +269,6 @@ minimal identity may limit their resource detection just to a
 `service.instance.id`. Some users highly customize resource detection with
 many concepts being appended.
 
-_OpenTelemetry should provide a good "out of the box" set of resource_
-_detection that makes appropriate denormalization trade-offs for most_
-_users, but allows users to fine-tune the system to their needs._
-
-
-
+*OpenTelemetry should provide a good "out of the box" set of resource*
+*detection that makes appropriate denormalization trade-offs for most*
+*users, but allows users to fine-tune the system to their needs.*
