@@ -161,6 +161,9 @@ When instrumentation also records spans or metrics for the same operation,
 `error.message` on the event SHOULD generally match the status description on the
 corresponding span.
 
+When reporting error and/or exception details on logs, follow general
+recommendations outlined in [Error vs exception](#error-vs-exception) section.
+
 ## Recording exceptions
 
 > [!WARNING]
