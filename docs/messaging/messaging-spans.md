@@ -610,7 +610,7 @@ flowchart LR;
 
 | Field or Attribute | Producer Span A | Producer Span B | Consumer |
 |-|-|-|-|
-| Span name | `publish Q` | `publish Q` | `poll Q` |
+| Span name | `send Q` | `send Q` | `poll Q` |
 | Parent |  |  |  |
 | Links |  |  | Span Send A, Span Send B |
 | Link attributes |  |  | Span Send A: `messaging.message.id`: `"a1"`  |
@@ -620,7 +620,7 @@ flowchart LR;
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
-| `messaging.operation.name` | `"publish"` | `"publish"` | `"poll"` |
+| `messaging.operation.name` | `"send"` | `"send"` | `"poll"` |
 | `messaging.operation.type` | `"send"` | `"send"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
 | `messaging.batch.message_count` |  |  | 2 |
@@ -661,7 +661,7 @@ flowchart LR;
 
 | Field or Attribute | Producer Span Create A | Producer Span Create B | Producer Span Send | Consumer 1 | Consumer 2 |
 |-|-|-|-|-|-|
-| Span name | `create Q` | `create Q` | `publish Q` | `poll Q` | `poll Q` |
+| Span name | `create Q` | `create Q` | `send Q` | `poll Q` | `poll Q` |
 | Parent |  | | | | |
 | Links |  |  |  | Span Create A | Span Create B |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` | `CLIENT` | `CLIENT` |
@@ -669,7 +669,7 @@ flowchart LR;
 | `server.port` | `1234` | `1234` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` | `"Q"` | `"Q"` |
-| `messaging.operation.name` | `"create"` | `"create"` | `"publish"` | `"poll"` | `"poll"` |
+| `messaging.operation.name` | `"create"` | `"create"` | `"send"` | `"poll"` | `"poll"` |
 | `messaging.operation.type` | `"create"` | `"create"` | `"send"` | `"receive"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | | `"a1"` | `"a2"` |
 | `messaging.batch.message_count` | | | 2 | | |
@@ -706,7 +706,7 @@ flowchart LR;
 
 | Field or Attribute | Producer | Consumer 1 | Consumer 2 |
 |-|-|-|-|
-| Span name | `publish Q` | `poll Q` | `poll Q` |
+| Span name | `send Q` | `poll Q` | `poll Q` |
 | Parent | | | |
 | Links |  | Span Send | Span Send |
 | SpanKind | `PRODUCER` | `CLIENT` | `CLIENT` |
@@ -714,7 +714,7 @@ flowchart LR;
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
-| `messaging.operation.name` | `"publish"` | `"poll"` | `"poll"` |
+| `messaging.operation.name` | `"send"` | `"poll"` | `"poll"` |
 | `messaging.operation.type` | `"send"` | `"receive"` | `"receive"` |
 | `messaging.message.id` | | `"a1"` | `"a2"` |
 | `messaging.batch.message_count`| 2 | | |
