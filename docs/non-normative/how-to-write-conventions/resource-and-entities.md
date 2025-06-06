@@ -89,7 +89,7 @@ groups:
 
 Notes:
 
-- You cannot change the `name` field of the new entity.
+- You cannot change the `name` or `type` fields of the new entity.
 - You cannot change the set of identifying attributes.
 
 ## FAQ
