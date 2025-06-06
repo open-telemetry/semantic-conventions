@@ -148,7 +148,7 @@ When choosing Identifying attributes, care should be taken to ensure that
  SDKs and the Collector and should leverage identifying attributes that
  will be the same between these signal providers.
 
-For example, service.instance.id can be problematic to detect from outside
+For example, `service.instance.id` can be problematic to detect from outside
 an SDK and inside an SDK consistently. Generally, this can only be
 achieved if some outside source injects a service.instance.id value into
 the SDK that is externally visible.  An alternative is to have the SDK
