@@ -152,7 +152,7 @@ For example, `service.instance.id` can be problematic to detect from outside
 an SDK and inside an SDK consistently. Generally, this can only be
 achieved if some outside source injects a `service.instance.id` value into
 the SDK that is externally visible.  An alternative is to have the SDK
-provide a relationship between the service.instance.id and another entity
+provide a relationship between the `service.instance.id` and another entity
 that is visible externally. Care should be taken when modelling Entities
 to avoid this problem where possible.
 
