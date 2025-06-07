@@ -58,6 +58,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s ResourceQuota resource](#k8s-resourcequota-resource)
   - [K8s ReplicationController resource](#k8s-replicationcontroller-resource)
   - [K8s Container metrics](#k8s-container-metrics)
+  - [K8s ResourceQuota metrics](#k8s-resourcequota-metrics)
 
 <!-- tocstop -->
 
@@ -310,5 +311,24 @@ The changes in their metrics are the following:
 | `k8s.container.ephemeralstorage_request`                                                     | `k8s.container.ephemeral_storage.request` |
 | `k8s.container.restarts`                  (type: `gauge`)                          | `k8s.container.restart.count` (type: `updowncounter`) |
 | `k8s.container.ready`                  (type: `gauge`)                             | `k8s.container.ready` (type: `updowncounter`) |
+
+<!-- prettier-ignore-end -->
+
+### K8s ResourceQuota metrics
+
+The K8s ResourceQuota metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[github.com/open-telemetry/semantic-conventions/pull/2113](https://github.com/open-telemetry/semantic-conventions/pull/2113).
+
+These metrics were completely re-designed. The changes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                 |
+|------------------------------------------------------------------------------------|-------------------------------------|
+| `k8s.resource_quota.hard_limit`                                                    | `k8s.resourcequota.{resource}.hard` |
+| `k8s.resource_quota.used`                                                          | `k8s.resourcequota.{resource}.used` |
+| `{resource}` attribute                                                             | Split in different metrics per type |
 
 <!-- prettier-ignore-end -->
