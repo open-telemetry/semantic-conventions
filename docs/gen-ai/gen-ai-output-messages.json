@@ -1,0 +1,154 @@
+{
+    "$defs": {
+        "FinishReason": {
+            "description": "Describes the reason for finishing the generation.",
+            "enum": [
+                "stop",
+                "length",
+                "content_filter",
+                "tool_call",
+                "error"
+            ],
+            "type": "string"
+        },
+        "OutputMessage": {
+            "additionalProperties": true,
+            "description": "Describes generated output.",
+            "properties": {
+                "role": {
+                    "type": "string"
+                },
+                "parts": {
+                    "items": {
+                        "discriminator": {
+                            "mapping": {
+                                "text": "#/$defs/TextPart",
+                                "tool_call": "#/$defs/ToolCallPart",
+                                "tool_call_response": "#/$defs/ToolCallResponsePart"
+                            },
+                            "propertyName": "type"
+                        },
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/TextPart"
+                            },
+                            {
+                                "$ref": "#/$defs/ToolCallPart"
+                            },
+                            {
+                                "$ref": "#/$defs/ToolCallResponsePart"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "finish_reason": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/FinishReason"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "Reason for finishing."
+                }
+            },
+            "required": [
+                "role",
+                "parts",
+                "finish_reason"
+            ],
+            "type": "object"
+        },
+        "TextPart": {
+            "additionalProperties": true,
+            "description": "Describes text content sent to or received from the model.",
+            "properties": {
+                "type": {
+                    "const": "text",
+                    "type": "string"
+                },
+                "content": {
+                    "description": "Text content provided to or received from the model.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "content"
+            ],
+            "type": "object"
+        },
+        "ToolCallPart": {
+            "additionalProperties": true,
+            "description": "Describes a tool call requested by the model.",
+            "properties": {
+                "type": {
+                    "const": "tool_call",
+                    "description": "Content type.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique identifier for the tool call.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the tool.",
+                    "type": "string"
+                },
+                "arguments": {
+                    "anyOf": [
+                        {},
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Arguments for the tool call."
+                }
+            },
+            "required": [
+                "type",
+                "id",
+                "name",
+                "arguments"
+            ],
+            "type": "object"
+        },
+        "ToolCallResponsePart": {
+            "additionalProperties": true,
+            "description": "Describes a result of the tool call.",
+            "properties": {
+                "type": {
+                    "const": "tool_call_response",
+                    "description": "Message type.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique tool call identifier.",
+                    "type": "string"
+                },
+                "result": {
+                    "anyOf": [
+                        {},
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Result of the tool call."
+                }
+            },
+            "required": [
+                "type",
+                "id",
+                "result"
+            ],
+            "type": "object"
+        }
+    },
+    "description": "List of output messages generated by the model.",
+    "items": {
+        "$ref": "#/$defs/OutputMessage"
+    },
+    "type": "array"
+}
