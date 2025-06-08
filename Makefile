@@ -349,4 +349,5 @@ generate-schema-next:
 		--diff-format yaml \
 		--diff-template /home/weaver/templates/schema-diff \
 		--output /home/weaver/target
+		# --param next_version=$(NEXT_SEMCONV_VERSION)
 	$(TOOLS_DIR)/scripts/generate-schema-next.sh $(NEXT_SEMCONV_VERSION) $(LATEST_RELEASED_SEMCONV_VERSION) $(PWD)/internal/tools/bin/schema-diff.yaml
