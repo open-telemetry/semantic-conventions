@@ -8,6 +8,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.netcnt, which includes both UDP datagrams and TCP segments
     instrument: counter
+    monotonic: true
     unit: "{request}"
     entity_associations:
       - host
@@ -20,6 +21,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.netudpcnt
     instrument: counter
+    monotonic: true
     unit: "{datagram}"
     entity_associations:
       - host
@@ -32,6 +34,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.nettcpcnt
     instrument: counter
+    monotonic: true
     unit: "{segment}"
     entity_associations:
       - host
@@ -44,6 +47,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.nettcpconn
     instrument: counter
+    monotonic: true
     unit: "{connection}"
     entity_associations:
       - host
@@ -56,6 +60,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.rpccnt
     instrument: counter
+    monotonic: true
     unit: "{request}"
     entity_associations:
       - host
@@ -68,6 +73,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.rpcretrans
     instrument: counter
+    monotonic: true
     unit: "{retransmit}"
     entity_associations:
       - host
@@ -80,6 +86,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.rpcauthrefresh
     instrument: counter
+    monotonic: true
     unit: "{authrefresh}"
     entity_associations:
       - host
@@ -90,6 +97,7 @@ groups:
     stability: development
     brief: "Reports the count of kernel NFSv4+ client operations"
     instrument: counter
+    monotonic: true
     unit: "{procedure}"
     attributes:
       - ref: rpc.onc.version
@@ -103,6 +111,7 @@ groups:
     stability: development
     brief: "Reports the count of kernel NFS client procedures"
     instrument: counter
+    monotonic: true
     unit: "{procedure}"
     attributes:
       - ref: rpc.onc.version
@@ -119,6 +128,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel NFSD_STATS_RC_HITS counter in the nfsd_net struct
     instrument: counter
+    monotonic: true
     unit: "{hit}"
     entity_associations:
       - host
@@ -131,6 +141,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel NFSD_STATS_RC_MISSES counter in the nfsd_net struct
     instrument: counter
+    monotonic: true
     unit: "{miss}"
     entity_associations:
       - host
@@ -143,6 +154,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel NFSD_STATS_RC_NOCACHE counter in the nfsd_net struct
     instrument: counter
+    monotonic: true
     unit: "{miss}"
     entity_associations:
       - host
@@ -155,6 +167,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel NFSD_STATS_FH_STALE counter in the nfsd_net struct
     instrument: counter
+    monotonic: true
     unit: "{fh}"
     entity_associations:
       - host
@@ -167,6 +180,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel NFSD_STATS_IO_READ counter in the nfsd_net struct
     instrument: counter
+    monotonic: true
     unit: "By"
     entity_associations:
       - host
@@ -179,6 +193,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel NFSD_STATS_IO_WRITE counter in the nfsd_net struct
     instrument: counter
+    monotonic: true
     unit: "By"
     entity_associations:
       - host
@@ -191,6 +206,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel nfsd_th_cnt variable
     instrument: updowncounter
+    monotonic: false
     unit: "{thread}"
     entity_associations:
       - host
@@ -203,6 +219,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.netcnt, which includes both UDP datagrams and TCP segments
     instrument: counter
+    monotonic: true
     unit: "{request}"
     entity_associations:
       - host
@@ -215,6 +232,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.netudpcnt
     instrument: counter
+    monotonic: true
     unit: "{datagram}"
     entity_associations:
       - host
@@ -227,6 +245,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.nettcpcnt
     instrument: counter
+    monotonic: true
     unit: "{segment}"
     entity_associations:
       - host
@@ -251,6 +270,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.rpccnt
     instrument: counter
+    monotonic: true
     unit: "{request}"
     entity_associations:
       - host
@@ -263,6 +283,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.badfmt+svc_stat.badauth+svc_stat.badclnt
     instrument: counter
+    monotonic: true
     unit: "{request}"
     entity_associations:
       - host
@@ -275,6 +296,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.badfmt
     instrument: counter
+    monotonic: true
     unit: "{request}"
     entity_associations:
       - host
@@ -287,6 +309,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.badauth
     instrument: counter
+    monotonic: true
     unit: "{request}"
     entity_associations:
       - host
@@ -299,6 +322,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.badclnt
     instrument: counter
+    monotonic: true
     unit: "{request}"
     entity_associations:
       - host
@@ -309,6 +333,7 @@ groups:
     stability: development
     brief: "Reports the count of kernel NFSv4+ server operations"
     instrument: counter
+    monotonic: true
     unit: "{operation}"
     attributes:
       - ref: rpc.onc.version
@@ -322,6 +347,7 @@ groups:
     stability: development
     brief: "Reports the count of kernel NFS server procedures"
     instrument: counter
+    monotonic: true
     unit: "{procedure}"
     attributes:
       - ref: rpc.onc.version
