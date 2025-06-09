@@ -147,10 +147,10 @@ rule of having a [minimally sufficient ID](https://github.com/open-telemetry/ope
 #### Multi-Observer Guidance
 
 When choosing Identifying attributes, care should be taken to ensure that
- multiple observers will find the same identifying attribute for the same
- entity. Generally, entities may be discovered both within OpenTelemetry
- SDKs and the Collector and should leverage identifying attributes that
- will be the same between these signal providers.
+multiple observers will find the same identifying attribute for the same
+entity. Generally, entities may be discovered both within OpenTelemetry
+SDKs and the Collector and should leverage identifying attributes that
+will be the same between these signal providers.
 
 For example, `service.instance.id` can be problematic to detect from outside
 an SDK and inside an SDK consistently. Generally, this can only be
