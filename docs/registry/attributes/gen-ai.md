@@ -161,7 +161,6 @@ Thie group defines attributes for WatsonX AI.
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="gen-ai-watsonxai-request-decoding-method" href="#gen-ai-watsonxai-request-decoding-method">`gen_ai.watsonxai.request.decoding_method`</a> | string | The decoding format that is requested. | `sample`; `greedy` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="gen-ai-watsonxai-request-max-token" href="#gen-ai-watsonxai-request-max-token">`gen_ai.watsonxai.request.max_token`</a> | int | Controls the maximum number of tokens in the generated output. | `200` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-watsonxai-request-min-token" href="#gen-ai-watsonxai-request-min-token">`gen_ai.watsonxai.request.min_token`</a> | int | Controls the minimum number of tokens in the generated output. | `50` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-watsonxai-request-repetition-penalty" href="#gen-ai-watsonxai-request-repetition-penalty">`gen_ai.watsonxai.request.repetition_penalty`</a> | double | The higher the penalty, the less likely it is that the result will include repeated text. | `2.0` | ![Development](https://img.shields.io/badge/-development-blue) |
 

@@ -398,8 +398,3 @@ groups:
         type: int
         brief: Controls the minimum number of tokens in the generated output.
         examples: [50]
-      - id: gen_ai.watsonxai.request.max_token
-        stability: development
-        type: int
-        brief: Controls the maximum number of tokens in the generated output.
-        examples: [200]
