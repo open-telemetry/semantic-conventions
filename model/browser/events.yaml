@@ -64,19 +64,19 @@ groups:
       stability: development
       type: map
       fields:
-        - id: element
+        - id: tagName
           type: string
           stability: development
           brief: Target element tag name and it is obtained via `event.target.tagName`.
           requirement_level: recommended
-          examples: ["button"]
+          examples: ["BUTTON"]
         - id: xpath
           type: string
           stability: development
-          brief: Target element xpath
+          brief: Target element xpath, see [xpath](https://www.w3.org/TR/xpath/).
           requirement_level: recommended
           examples: ["//*[@id='testBtn']"]
-        - id: user_action_type
+        - id: type
           type: enum
           members:
             - id: click.left
@@ -136,8 +136,10 @@ groups:
           examples:
             - 10
         - id: tags
-          type: string
+          type: string[]
           stability: development
           brief: Grab data from data-otel-* attributes in tree.
           requirement_level: recommended
-          examples: ["id"]
+          examples: 
+            - ["id", "name"]
+
