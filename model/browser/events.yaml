@@ -140,6 +140,5 @@ groups:
           stability: development
           brief: Grab data from data-otel-* attributes in tree.
           requirement_level: recommended
-          examples: 
+          examples:
             - ["id", "name"]
-
