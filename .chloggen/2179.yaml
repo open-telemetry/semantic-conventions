@@ -1,0 +1,20 @@
+change_type: breaking
+component: gen-ai
+note: |
+  Revamp how GenAI chat history is recorded. Instead of per-message events,
+  we now have `gen_ai.system.instructions`, `gen_ai.input.messages`, and
+  `gen_ai.output.messages` attributes that capture the entire chat history in a
+  single object. This object can appear on GenAI spans or the new
+  `gen_ai.client.inference.operation.details` event.
+
+  The PR also adds an option to record messages in the external storage and provide
+  a reference to it on the telemetry via `gen_ai.system.instructions_ref`,
+  `gen_ai.input.messages_ref`, and `gen_ai.output.messages_ref` attributes.
+
+  Deprecations:
+  - `gen_ai.system.message` event (use `gen_ai.system.instructions` instead)
+  - `gen_ai.user.message`, `gen_ai.assistant.message`, `gen_ai.tool.message` events
+    (use `gen_ai.input.messages` instead)
+  - `gen_ai.choice.message` event (use `gen_ai.output.messages` instead)
+
+issues: [2010, 2179, 1913, 1621, 1912]

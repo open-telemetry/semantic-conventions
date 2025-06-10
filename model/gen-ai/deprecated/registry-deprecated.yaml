@@ -1,4 +1,12 @@
 groups:
+  - id: gen_ai.common.event.attributes
+    type: attribute_group
+    stability: development
+    brief: >
+      Describes common Gen AI event attributes.
+    attributes:
+      - ref: gen_ai.system
+
   - id: registry.gen_ai.deprecated
     type: attribute_group
     brief: Describes deprecated `gen_ai` attributes.
