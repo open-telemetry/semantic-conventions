@@ -10,7 +10,7 @@ change_type: enhancement
 component: gen-ai
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Add IBM Wastonx AI Semantic Convention
+note: "Added IBM Wastonx AI Semantic Convention"
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
