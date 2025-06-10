@@ -13,7 +13,7 @@ endif
 
 ifeq ($(LYCHEE_GITHUB_TOKEN),)
   LYCHEE_GITHUB_TOKEN_ARG :=
-else:
+else
   LYCHEE_GITHUB_TOKEN_ARG := --env GITHUB_TOKEN=$(LYCHEE_GITHUB_TOKEN)
 endif
 
@@ -195,7 +195,7 @@ table-generation:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		--attribute-registry-base-url=/docs/registry/attributes \
+		-Dregistry_base_url=/docs/registry/ \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--future \
@@ -230,7 +230,7 @@ table-check:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target,readonly' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		--attribute-registry-base-url=/docs/registry/attributes \
+		-Dregistry_base_url=/docs/registry/ \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--dry-run \

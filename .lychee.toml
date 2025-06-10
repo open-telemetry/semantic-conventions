@@ -10,8 +10,6 @@ exclude = [
     # TODO (lmolkova) treat timeout as not a failure?
     "^https://www.intersystems.com",
     "^https://gcc.gnu.org",
-    "^https://github.com" # to avoid rate limit errors
-                          # TODO (trask) look at options
 ]
 
 # better to be safe and avoid failures
@@ -22,3 +20,6 @@ timeout = 60
 
 # insecure is currently needed for https://osi-model.com
 insecure = true
+
+# this helps slow down the rate of requests to avoid rate limiting
+max_concurrency = 4
