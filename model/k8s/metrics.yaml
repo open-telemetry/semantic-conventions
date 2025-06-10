@@ -508,7 +508,7 @@ groups:
       - k8s.container
     note: |
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
-    instrument: gauge
+    instrument: updowncounter
     unit: "{cpu}"
   - id: metric.k8s.container.cpu.request
     type: metric
@@ -519,7 +519,7 @@ groups:
       - k8s.container
     note: |
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
-    instrument: gauge
+    instrument: updowncounter
     unit: "{cpu}"
   - id: metric.k8s.container.memory.limit
     type: metric
@@ -530,7 +530,7 @@ groups:
       - k8s.container
     note: |
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.memory.request
     type: metric
@@ -541,7 +541,7 @@ groups:
       - k8s.container
     note: |
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.storage.limit
     type: metric
@@ -552,7 +552,7 @@ groups:
       - k8s.container
     note: |
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.storage.request
     type: metric
@@ -563,7 +563,7 @@ groups:
       - k8s.container
     note: |
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.ephemeral_storage.limit
     type: metric
@@ -574,7 +574,7 @@ groups:
       - k8s.container
     note: |
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.ephemeral_storage.request
     type: metric
@@ -585,7 +585,7 @@ groups:
       - k8s.container
     note: |
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.restart.count
     type: metric
