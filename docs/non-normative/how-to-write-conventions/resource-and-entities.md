@@ -105,8 +105,8 @@ There are two scenarios where entities should be defined:
   in a cloud).
 
 For example, the Mainframe SIG in OpenTelemetry will need to outline a
-set of entities and relationships to define observed telemetry. If a new
-clustering solution (e.g. Hashicorp's Nomad) is defined, and existing
+set of entities and relationships to define observed telemetry. Another example:
+If a new clustering solution (e.g. Hashicorp's Nomad) is defined, and existing
 container-based entities are not enough, then new entities should be
 defined.
 
@@ -139,7 +139,7 @@ Commonly, a number of attributes of an entity are readily
 available for the telemetry producer to compose an identity. Of
 the available attributes the entity ID should include the
 minimal set of attributes that is sufficient for uniquely identifying that entity. For example a process on a host can be
-uniquely identified by (`process.pid`,`process.start_time`)
+uniquely identified by (`process.pid`,`process.creation.time`)
 attributes. Adding for example `process.executable.name`
 attribute to the identity is unnecessary and violates the
 rule of having a [minimally sufficient ID](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.45.0/specification/entities/data-model.md#minimally-sufficient-identity).
@@ -159,6 +159,22 @@ the SDK that is externally visible. An alternative is to have the SDK
 provide a relationship between the `service.instance.id` and another entity
 that is visible externally. Care should be taken when modelling Entities
 to avoid this problem where possible.
+
+The choice of `service.instance.id` should be an exception, not the rule, for
+most Entities being modelled. Service instancing is a fundamental feature of
+OpenTelemetry, and we think it is a critical "fall back" identity. It works
+best when there is *one* generator of the id shared across all observers.
+However, in practice, this is difficult or "non standard" in the following
+scenarios:
+
+- Prometheus pull metrics that want the `instance` label to match
+  `service.instance.id` on push based OTLP data.
+- Reading container logs from a `k8s.node`, where we know the container name
+  and deployment, but can't see into the SDK to understand a chosen instance id.
+
+The OpenTelemetry Operator, and onboarding guides for kubernetes, e.g. leverage
+mechanisms to ensure a `service.instance.id` can be pushed down to SDKs and
+external observers, alleviating this friction for kubernetes.
 
 ### How to namespace entities?
 
