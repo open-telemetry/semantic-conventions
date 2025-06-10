@@ -5,6 +5,7 @@
 
 - [GenAI Attributes](#genai-attributes)
 - [OpenAI Attributes](#openai-attributes)
+- [WatsonX AI Attributes](#watsonx-ai-attributes)
 - [Deprecated GenAI Attributes](#deprecated-genai-attributes)
 - [Deprecated OpenAI GenAI Attributes](#deprecated-openai-genai-attributes)
 
@@ -152,6 +153,26 @@ This group defines attributes for OpenAI.
 |---|---|---|
 | `auto` | The system will utilize scale tier credits until they are exhausted. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `default` | The system will utilize the default scale tier. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## WatsonX AI Attributes
+
+Thie group defines attributes for WatsonX AI.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="gen-ai-watsonxai-request-decoding-method" href="#gen-ai-watsonxai-request-decoding-method">`gen_ai.watsonxai.request.decoding_method`</a> | string | The decoding format that is requested. | `sample`; `greedy` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gen-ai-watsonxai-request-max-token" href="#gen-ai-watsonxai-request-max-token">`gen_ai.watsonxai.request.max_token`</a> | int | Controls the maximum number of tokens in the generated output. | `200` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gen-ai-watsonxai-request-min-token" href="#gen-ai-watsonxai-request-min-token">`gen_ai.watsonxai.request.min_token`</a> | int | Controls the minimum number of tokens in the generated output. | `50` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gen-ai-watsonxai-request-repetition-penalty" href="#gen-ai-watsonxai-request-repetition-penalty">`gen_ai.watsonxai.request.repetition_penalty`</a> | double | The higher the penalty, the less likely it is that the result will include repeated text. | `2.0` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`gen_ai.watsonxai.request.decoding_method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `greedy` | selects the token with the highest probability at each step of the decoding process | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sample` | Offers more variability in how tokens are selected | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated GenAI Attributes
 

@@ -308,3 +308,30 @@ groups:
         requirement_level: required
       - ref: aws.bedrock.knowledge_base.id
         requirement_level: recommended
+
+  - id: span.gen_ai.watsonx.client
+    extends: attributes.gen_ai.inference.client
+    stability: development
+    span_kind: client
+    type: span
+    brief: >
+      Describes an WatsonX AI operation span.
+    attributes:
+      - ref: gen_ai.request.model
+        requirement_level: required
+      - ref: gen_ai.watsonxai.request.decoding_method
+        requirement_level:
+          conditionally_required:  if the request includes a decoding_format
+      - ref: gen_ai.watsonxai.request.repetition_penalty
+        requirement_level:
+          conditionally_required:  if the request includes repetition_penalty
+      - ref: gen_ai.watsonxai.request.min_token
+        requirement_level:
+          conditionally_required:  if the request includes min_token
+      - ref: gen_ai.watsonxai.request.max_token
+        requirement_level:
+          conditionally_required:  if the request includes max_token
+      - ref: gen_ai.usage.input_tokens
+        brief: The number of tokens used in the prompt sent to WatsonX AI.
+      - ref: gen_ai.usage.output_tokens
+        brief: The number of tokens used in the completions from WatsonX AI.

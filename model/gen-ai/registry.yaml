@@ -368,3 +368,38 @@ groups:
         type: string
         brief: A fingerprint to track any eventual change in the Generative AI environment.
         examples: ["fp_44709d6fcb"]
+  - id: registry.gen_ai.watsonxai
+    type: attribute_group
+    display_name: WatsonX AI Attributes
+    brief: >
+      Thie group defines attributes for WatsonX AI.
+    attributes:
+      - id: gen_ai.watsonxai.request.decoding_method
+        stability: development
+        type:
+          members:
+            - id: sample
+              value: "sample"
+              brief: 'Offers more variability in how tokens are selected'
+              stability: development
+            - id: greedy
+              value: "greedy"
+              brief: 'selects the token with the highest probability at each step of the decoding process'
+              stability: development
+        brief: The decoding format that is requested.
+        examples: ['sample', 'greedy']
+      - id: gen_ai.watsonxai.request.repetition_penalty
+        stability: development
+        type: double
+        brief: The higher the penalty, the less likely it is that the result will include repeated text.
+        examples: [2.0]
+      - id: gen_ai.watsonxai.request.min_token
+        stability: development
+        type: int
+        brief: Controls the minimum number of tokens in the generated output.
+        examples: [50]
+      - id: gen_ai.watsonxai.request.max_token
+        stability: development
+        type: int
+        brief: Controls the maximum number of tokens in the generated output.
+        examples: [200]
