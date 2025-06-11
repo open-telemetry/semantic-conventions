@@ -74,12 +74,12 @@ semantic convention tooling supports complex attributes
 
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `click.x` | int | Click x(horizontal) coordinates(in pixels) relative to the entire document. | `10` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `click.y` | int | Click y(vertical) coordinates(in pixels) relative to the entire document. | `10` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tagName` | string | Target element tag name and it is obtained via `event.target.tagName`. | `BUTTON` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `page.x` | int | Click x(horizontal) coordinates(in pixels) relative to the entire document. | `10` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `page.y` | int | Click y(vertical) coordinates(in pixels) relative to the entire document. | `10` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tag_name` | string | Target element tag name and it is obtained via `event.target.tagName`. | `BUTTON` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tags` | string[] | Grab data from data-otel-* attributes in tree. | `["id", "name"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `type` | enum | Type of interaction. See enum [here](https://github.com/microsoft/ApplicationInsights-JS/blob/main/extensions/applicationinsights-clickanalytics-js/src/Enums.ts) for potential values we could add support for. | `click.right` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `xpath` | string | Target element xpath, see [xpath](https://www.w3.org/TR/xpath/). | `//*[@id='testBtn']` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `xpath` | string | Target element xpath by using [XPathExpression](https://developer.mozilla.org/en-US/docs/Web/API/XPathExpression).  see [xpath](https://www.w3.org/TR/xpath/). | `//*[@id='testBtn']` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 `type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

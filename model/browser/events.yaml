@@ -64,7 +64,7 @@ groups:
       stability: development
       type: map
       fields:
-        - id: tagName
+        - id: tag_name
           type: string
           stability: development
           brief: Target element tag name and it is obtained via `event.target.tagName`.
@@ -73,7 +73,9 @@ groups:
         - id: xpath
           type: string
           stability: development
-          brief: Target element xpath, see [xpath](https://www.w3.org/TR/xpath/).
+          brief: >
+            Target element xpath by using [XPathExpression](https://developer.mozilla.org/en-US/docs/Web/API/XPathExpression). 
+            see [xpath](https://www.w3.org/TR/xpath/).
           requirement_level: recommended
           examples: ["//*[@id='testBtn']"]
         - id: type
@@ -121,14 +123,14 @@ groups:
             See enum [here](https://github.com/microsoft/ApplicationInsights-JS/blob/main/extensions/applicationinsights-clickanalytics-js/src/Enums.ts) for potential values we could add support for.
           requirement_level: required
           examples: ["click.right"]
-        - id: click.x
+        - id: page.x
           type: int
           stability: development
           brief: Click x(horizontal) coordinates(in pixels) relative to the entire document.
           requirement_level: recommended
           examples:
             - 10
-        - id: click.y
+        - id: page.y
           type: int
           stability: development
           brief: Click y(vertical) coordinates(in pixels) relative to the entire document.
