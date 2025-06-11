@@ -60,6 +60,7 @@ groups:
       - ref: k8s.container.name
       - ref: k8s.container.restart_count
       - ref: k8s.container.status.last_terminated_reason
+      - ref: k8s.container.ports
 
   - id: entity.k8s.replicaset
     type: entity
