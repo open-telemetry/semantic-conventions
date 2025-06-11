@@ -1523,4 +1523,4 @@ This metric is [recommended][MetricRecommended].
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
 [MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
-[MetricOptIn]: /docs/general/metric-requirement-level.md#optin
+[MetricOptIn]: /docs/general/metric-requirement-level.md#opt-in
