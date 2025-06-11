@@ -321,13 +321,13 @@ groups:
         requirement_level: required
       - ref: gen_ai.watsonxai.request.decoding_method
         requirement_level:
-          conditionally_required:  if the request includes a decoding_format
+          conditionally_required: if the request includes a decoding_format
       - ref: gen_ai.watsonxai.request.repetition_penalty
         requirement_level:
-          conditionally_required:  if the request includes repetition_penalty
+          conditionally_required: if the request includes repetition_penalty
       - ref: gen_ai.watsonxai.request.min_token
         requirement_level:
-          conditionally_required:  if the request includes min_token
+          conditionally_required: if the request includes min_token
       - ref: gen_ai.usage.input_tokens
         brief: The number of tokens used in the prompt sent to WatsonX AI.
       - ref: gen_ai.usage.output_tokens

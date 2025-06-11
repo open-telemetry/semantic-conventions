@@ -10,10 +10,8 @@ linkTitle: WatsonXAI traces and metrics
 
 <!-- toc -->
 
-- [WatsonX AI Spans](#watsonxai-spans)
-- [WatsonX AI Metrics](#watsonxai-metrics)
-  - [Metric: `gen_ai.client.token.usage`](#metric-gen_aiclienttokenusage)
-  - [Metric: `gen_ai.client.operation.duration`](#metric-gen_aiclientoperationduration)
+- [WatsonX AI Spans](#watsonx-ai-spans)
+- [WatsonX AI Metrics](#watsonx-ai-metrics)
 
 <!-- tocstop -->
 
@@ -151,6 +149,5 @@ Additional output format details may be recorded in the future in the `gen_ai.ou
 ## WatsonX AI Metrics
 
 WatsonX AI metrics follow [Generative AI metrics](gen-ai-metrics.md).
-
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
