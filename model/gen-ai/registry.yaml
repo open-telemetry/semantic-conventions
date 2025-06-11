@@ -370,9 +370,9 @@ groups:
         examples: ["fp_44709d6fcb"]
   - id: registry.gen_ai.watsonxai
     type: attribute_group
-    display_name: WatsonX AI Attributes
+    display_name: Watsonx AI Attributes
     brief: >
-      Thie group defines attributes for WatsonX AI.
+      Thie group defines attributes for Watsonx AI.
     attributes:
       - id: gen_ai.watsonxai.request.decoding_method
         stability: development
