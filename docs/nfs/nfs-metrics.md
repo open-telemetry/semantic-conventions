@@ -10,6 +10,36 @@ This document describes instruments and attributes for NFS and NFSD metrics.
 
 <!-- toc -->
 
+- [NFS metrics](#nfs-metrics)
+  - [Metric: `nfs.client.net.count`](#metric-nfsclientnetcount)
+  - [Metric: `nfs.client.net.udp.count`](#metric-nfsclientnetudpcount)
+  - [Metric: `nfs.client.net.tcp.count`](#metric-nfsclientnettcpcount)
+  - [Metric: `nfs.client.net.tcp.connection.count`](#metric-nfsclientnettcpconnectioncount)
+  - [Metric: `nfs.client.rpc.count`](#metric-nfsclientrpccount)
+  - [Metric: `nfs.client.rpc.retransmit.count`](#metric-nfsclientrpcretransmitcount)
+  - [Metric: `nfs.client.rpc.authrefresh.count`](#metric-nfsclientrpcauthrefreshcount)
+  - [Metric: `nfs.client.operation.count`](#metric-nfsclientoperationcount)
+  - [Metric: `nfs.client.procedure.count`](#metric-nfsclientprocedurecount)
+- [NFSD metrics](#nfsd-metrics)
+  - [Metric: `nfs.server.repcache.hits`](#metric-nfsserverrepcachehits)
+  - [Metric: `nfs.server.repcache.misses`](#metric-nfsserverrepcachemisses)
+  - [Metric: `nfs.server.repcache.nocache`](#metric-nfsserverrepcachenocache)
+  - [Metric: `nfs.server.fh.stale.count`](#metric-nfsserverfhstalecount)
+  - [Metric: `nfs.server.io.read.count`](#metric-nfsserverioreadcount)
+  - [Metric: `nfs.server.io.write.count`](#metric-nfsserveriowritecount)
+  - [Metric: `nfs.server.thread.count`](#metric-nfsserverthreadcount)
+  - [Metric: `nfs.server.net.count`](#metric-nfsservernetcount)
+  - [Metric: `nfs.server.net.udp.count`](#metric-nfsservernetudpcount)
+  - [Metric: `nfs.server.net.tcp.count`](#metric-nfsservernettcpcount)
+  - [Metric: `nfs.server.net.tcp.connection.count`](#metric-nfsservernettcpconnectioncount)
+  - [Metric: `nfs.server.rpc.count`](#metric-nfsserverrpccount)
+  - [Metric: `nfs.server.rpc.bad.count`](#metric-nfsserverrpcbadcount)
+  - [Metric: `nfs.server.rpc.badfmt.count`](#metric-nfsserverrpcbadfmtcount)
+  - [Metric: `nfs.server.rpc.badauth.count`](#metric-nfsserverrpcbadauthcount)
+  - [Metric: `nfs.server.rpc.badclient.count`](#metric-nfsserverrpcbadclientcount)
+  - [Metric: `nfs.server.operation.count`](#metric-nfsserveroperationcount)
+  - [Metric: `nfs.server.procedure.count`](#metric-nfsserverprocedurecount)
+
 <!-- tocstop -->
 
 ## NFS metrics
