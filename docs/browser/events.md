@@ -79,7 +79,7 @@ semantic convention tooling supports complex attributes
 | `tag_name` | string | Target element tag name and it is obtained via `event.target.tagName`. | `BUTTON` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tags` | string[] | Grab data from data-otel-* attributes in tree. | `["id", "name"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `type` | enum | Type of interaction. See enum [here](https://github.com/microsoft/ApplicationInsights-JS/blob/main/extensions/applicationinsights-clickanalytics-js/src/Enums.ts) for potential values we could add support for. | `click.right` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `xpath` | string | Target element xpath by using [XPathExpression](https://developer.mozilla.org/en-US/docs/Web/API/XPathExpression).  see [xpath](https://www.w3.org/TR/xpath/). | `//*[@id='testBtn']` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `xpath` | string | Target element xpath by using [XPathExpression](https://developer.mozilla.org/en-US/docs/Web/API/XPathExpression). see [xpath](https://www.w3.org/TR/xpath/). | `//*[@id='testBtn']` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 `type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

@@ -74,7 +74,7 @@ groups:
           type: string
           stability: development
           brief: >
-            Target element xpath by using [XPathExpression](https://developer.mozilla.org/en-US/docs/Web/API/XPathExpression). 
+            Target element xpath by using [XPathExpression](https://developer.mozilla.org/en-US/docs/Web/API/XPathExpression).
             see [xpath](https://www.w3.org/TR/xpath/).
           requirement_level: recommended
           examples: ["//*[@id='testBtn']"]
