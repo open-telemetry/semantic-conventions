@@ -543,4 +543,11 @@ groups:
         stability: development
         brief: >
           The name of the K8s resource a resource quota defines.
+        note: >
+          The value for this attribute can be either the full `count/<resource>[.<group>]` string
+          (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources,
+          just the resource name (e.g., pods, services, configmaps).
+          Both forms are supported by Kubernetes for object count quotas. See
+          [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota)
+          for more details.
         examples: [ 'count/replicationcontrollers' ]
