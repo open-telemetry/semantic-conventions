@@ -5,7 +5,7 @@
 
 - [GenAI Attributes](#genai-attributes)
 - [OpenAI Attributes](#openai-attributes)
-- [WatsonX AI Attributes](#watsonx-ai-attributes)
+- [Watsonx AI Attributes](#watsonx-ai-attributes)
 - [Deprecated GenAI Attributes](#deprecated-genai-attributes)
 - [Deprecated OpenAI GenAI Attributes](#deprecated-openai-genai-attributes)
 
@@ -154,9 +154,9 @@ This group defines attributes for OpenAI.
 | `auto` | The system will utilize scale tier credits until they are exhausted. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `default` | The system will utilize the default scale tier. | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## WatsonX AI Attributes
+## Watsonx AI Attributes
 
-Thie group defines attributes for WatsonX AI.
+Thie group defines attributes for Watsonx AI.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|

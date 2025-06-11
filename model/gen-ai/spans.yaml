@@ -315,7 +315,7 @@ groups:
     span_kind: client
     type: span
     brief: >
-      Describes an WatsonX AI operation span.
+      Describes an Watsonx AI operation span.
     attributes:
       - ref: gen_ai.request.model
         requirement_level: required

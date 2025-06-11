@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: WatsonXAI traces and metrics
+linkTitle: WatsonxAI traces and metrics
 --->
 
 # Semantic Conventions for Watsonx AI operations
@@ -15,7 +15,7 @@ linkTitle: WatsonXAI traces and metrics
 
 <!-- tocstop -->
 
-The Semantic Conventions for [WatsonX AI](https://ibm.com/products/watsonx-ai) extend and override the semantic conventions
+The Semantic Conventions for [Watsonx AI](https://ibm.com/products/watsonx-ai) extend and override the semantic conventions
 for [Gen AI Spans](gen-ai-spans.md) and [Gen AI Metrics](gen-ai-metrics.md).
 
 `gen_ai.system` MUST be set to `"ibm.watsonx.ai"`.

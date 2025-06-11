@@ -23,6 +23,6 @@ Technology specific semantic conventions are defined for the following GenAI sys
 * [Azure AI Inference](./azure-ai-inference.md): Semantic Conventions for Azure AI Inference.
 * [OpenAI](./openai.md): Semantic Conventions for OpenAI.
 * [AWS Bedrock](./aws-bedrock.md): Semantic Conventions for AWS Bedrock.
-* [WatsonxAI](./watsonxai.md): Semantic Conventions for WatsonXAI.
+* [WatsonxAI](./watsonxai.md): Semantic Conventions for WatsonxAI.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
