@@ -50,6 +50,8 @@ groups:
     attributes:
       - ref: gen_ai.token.type
         requirement_level: required
+      - ref: gen_ai.embeddings.dimension.count
+        requirement_level: recommended
   - id: metric.gen_ai.client.operation.duration
     type: metric
     metric_name: gen_ai.client.operation.duration
@@ -66,6 +68,8 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
+      - ref: gen_ai.embeddings.dimension.count
+        requirement_level: recommended
   - id: metric.gen_ai.server.request.duration
     type: metric
     metric_name: gen_ai.server.request.duration
