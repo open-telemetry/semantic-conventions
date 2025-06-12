@@ -115,7 +115,7 @@ defined.
 There are two key rules:
 
 - Default to introducing separate entities with a clear "is a" (or similar) relationship
-- Extend an entity with new descriptive attributes if and only if the following is true:
+- Extend an entity with new descriptive attributes if, and only if, the following is true:
   - The extending entity cannot be associated with any telemetry by itself.
     *For example, when adding a `windows.process` entity, but no new
     signals (metrics, logs, spans, etc.) would be added to the entity.*
