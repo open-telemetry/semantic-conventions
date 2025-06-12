@@ -5,6 +5,7 @@ Table of Contents
 - [Modelling Guide](#modelling-guide)
 - FAQ
   - [When to define a new entity](#when-to-define-a-new-entity)
+  - [What is an "is-a" relationship](#what-is-an-is-a-relationship)
   - [When to define a new "is-a" relationship](#when-to-define-an-is-a-relationship-vs-extending-descriptive-attributes)
   - [How to define identifying attributes](#how-to-define-identifying-attributes)
   - [How to namespace entities](#how-to-namespace-entities)
@@ -65,8 +66,8 @@ Notes:
   *stable* signal.
 - You can declare multiple associations. These form a "one or many" set,
   where one or many of the named entities may be associated with the
-  metric. There is *no* requirement on disjointness due to how is-a
-  relationships are modelled.
+  metric. There is *no* requirement to have one and only one entity
+  attached to a signal.
 
 ### Extending an entity
 
@@ -104,11 +105,28 @@ There are two scenarios where entities should be defined:
   some system of record (e.g. resources in kubernetes, assets
   in a cloud).
 
-For example, the Mainframe SIG in OpenTelemetry will need to outline a
-set of entities and relationships to define observed telemetry. Another example:
-If a new clustering solution (e.g. Hashicorp's Nomad) is defined, and existing
-container-based entities are not enough, then new entities should be
-defined.
+For example, ff a new clustering solution (e.g. Hashicorp's Nomad) is
+defined, and existing container-based entities are not enough, then
+new entities should be defined.
+
+### What is an "is-a" relationship?
+
+OpenTelemetry, as an open ecosystem, cannot understand and model all
+possible entities that exist in the world. Instead, we are allowing
+overlapping definitions across domains. For example, the `container` and
+`k8s.container` entities exist, and generally every `k8s.container` is
+a `container`, but not every `container` runs in kubernetes.
+
+An "is-a" relationship denotes that one entity is describing the exact
+same system component as another entity, but from a different domain. In
+the above example, `k8s.container` models containers from the kubernetes
+domain, while `container` is a general model for containers, regardless
+of how they are run (e.g. podmon, docker, kubernetes, FAAS, etc.)
+
+"is-a" relationships denote this relationship in entities allowing
+OpenTelemetry to fully model a subset of entities (e.g. all known
+`k8s` resources as entities), but still allow the extended ecosystem
+to grow and evolve with new entities in the future.
 
 ### When to define an "is-a" relationship vs. extending descriptive attributes?
 
@@ -117,8 +135,13 @@ There are two key rules:
 - Default to introducing separate entities with a clear "is a" (or similar) relationship
 - Extend an entity with new descriptive attributes if, and only if, the following is true:
   - The extending entity cannot be associated with any telemetry by itself.
-    *For example, when adding a `windows.process` entity, but no new
-    signals (metrics, logs, spans, etc.) would be added to the entity.*
+    - Example 1: When adding a `windows.process` entity, you do not expect
+      to create any specific process metrics or logs that would be
+      specific to `windows.process`, instead all data is still reported
+      against `process` entity.
+    - Example 2: When adding a `docker.container` entity, you do not
+      expect to create any specific container signals, instead logs,
+      metrics and spans would be reported against the `container` entity.
   - The extending entity doesn’t have any other entities that logically can
     only be associated with it.
     *Note: this only applies to entities as signals with relationships.*
@@ -178,10 +201,10 @@ external observers, alleviating this friction for kubernetes.
 
 ### How to namespace entities?
 
-Entities should be namespaced around the primary mechanism used to
-identify the Entity. For Example, kubernetes entities use the `k8s`
-namespace, and are primarily discovered using the kubernetes API or
-working within kubernetes.
+Entities (both types and and attributes) should be namespaced around
+the primary mechanism used to identify the Entity. For Example,
+kubernetes entities use the `k8s` namespace, and are primarily
+discovered using the kubernetes API or working within kubernetes.
 
 See [General Naming Guidance](/docs/general/naming.md) for overall
 semantic convention namespacing rules.
@@ -223,7 +246,7 @@ several key differences between the two:
     For Example, the `k8s.pod.uid` would be considered an
     identifying attribute for a pod within kubernetes.
   - *Descriptive* attributes can be used to provide additional labels for
-    entities, but do not uniquely identify that Entity.  
+    entities, but are not necessary to uniquely identify the Entity.
 - A Resource is composed of *multiple* Entities.
   - Each of the entities within Resource is considered
     'contributing' to that telemetry.
