@@ -1,15 +1,22 @@
 # Resource and Entities
 
-Table of Contents
+<!-- toc -->
 
 - [Modelling Guide](#modelling-guide)
-- FAQ
-  - [When to define a new entity](#when-to-define-a-new-entity)
-  - [What is an "is-a" relationship](#what-is-an-is-a-relationship)
-  - [When to define a new "is-a" relationship](#when-to-define-an-is-a-relationship-vs-extending-descriptive-attributes)
-  - [How to define identifying attributes](#how-to-define-identifying-attributes)
-  - [How to namespace entities](#how-to-namespace-entities)
-- [Background](#background-resource-and-entities)
+  - [Declaring associations between signals](#declaring-associations-between-signals)
+  - [Extending an entity](#extending-an-entity)
+- [FAQ](#faq)
+  - [When to define a new entity?](#when-to-define-a-new-entity)
+  - [What is an "is-a" relationship?](#what-is-an-is-a-relationship)
+  - [When to define an "is-a" relationship vs. extending descriptive attributes?](#when-to-define-an-is-a-relationship-vs-extending-descriptive-attributes)
+  - [How to define identifying attributes?](#how-to-define-identifying-attributes)
+    - [Multi-Observer Guidance](#multi-observer-guidance)
+  - [How to namespace entities?](#how-to-namespace-entities)
+- [Background: Resource and Entities](#background-resource-and-entities)
+  - [Open Expansion](#open-expansion)
+  - [Telescoping Identity](#telescoping-identity)
+
+<!-- tocstop -->
 
 ## Modelling Guide
 
