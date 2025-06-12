@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: WatsonxAI traces and metrics
+linkTitle: IBM WatsonxAI
 --->
 
 # Semantic Conventions for Watsonx AI operations
