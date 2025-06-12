@@ -13,7 +13,7 @@ endif
 
 ifeq ($(LYCHEE_GITHUB_TOKEN),)
   LYCHEE_GITHUB_TOKEN_ARG :=
-else:
+else
   LYCHEE_GITHUB_TOKEN_ARG := --env GITHUB_TOKEN=$(LYCHEE_GITHUB_TOKEN)
 endif
 
