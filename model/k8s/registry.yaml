@@ -473,8 +473,7 @@ groups:
           members:
             - id: ready
               value: 'Ready'
-              brief: |
-                The node is healthy and ready to accept pods. and Unknown if the node controller has not heard from the node in the last node-monitor-grace-period"
+              brief: "The node is healthy and ready to accept pods"
               stability: development
             - id: disk_pressure
               value: 'DiskPressure'
@@ -511,15 +510,6 @@ groups:
             - id: condition_unknown
               value: 'unknown'
               stability: development
-      - id: k8s.node.condition.reason
-        stability: development
-        brief: >
-          The reason for the condition's last transition
-        note: |
-          This attribute aligns with the `reason` field of the
-          [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
-        examples: [ "KubeletHasSufficientMemory", "KubeletHasNoDiskPressure", "KubeletHasSufficientPID" ]
-        type: string
       - id: k8s.container.status.state
         stability: experimental
         brief: >

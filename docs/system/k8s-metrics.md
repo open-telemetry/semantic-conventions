@@ -1430,13 +1430,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.node.condition.status` | UpDownCounter | `{node}` | Describes the condition of a particular Node. | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.node` |
+| `k8s.node.condition.status` | UpDownCounter | `{node}` | Describes the condition of a particular Node. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.node` |
+
+**[1]:** All possible node condition pairs (type and status) will be reported at each time interval to avoid missing metrics. Condition pairs corresponding to the current conditions' statuses will be non-zero.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.node.condition.status`](/docs/registry/attributes/k8s.md) | string | The status of the condition, one of True, False, Unknown. [1] | `true`; `false`; `unknown` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.node.condition.type`](/docs/registry/attributes/k8s.md) | string | The condition type of a K8s Node. [2] | `Ready`; `DiskPressure` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.node.condition.reason`](/docs/registry/attributes/k8s.md) | string | The reason for the condition's last transition [3] | `KubeletHasSufficientMemory`; `KubeletHasNoDiskPressure`; `KubeletHasSufficientPID` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `k8s.node.condition.status`:** This attribute aligns with the `status` field of the
 [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
@@ -1445,9 +1446,6 @@ This metric is [recommended][MetricRecommended].
 by [K8s documentation](https://v1-32.docs.kubernetes.io/docs/reference/node/node-status/#condition).
 
 This attribute aligns with the `type` field of the
-[NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
-
-**[3] `k8s.node.condition.reason`:** This attribute aligns with the `reason` field of the
 [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
 
 ---
@@ -1470,7 +1468,7 @@ This attribute aligns with the `type` field of the
 | `MemoryPressure` | Pressure exists on the node memory—that is, if the node memory is low | ![Development](https://img.shields.io/badge/-development-blue) |
 | `NetworkUnavailable` | The network for the node is not correctly configured | ![Development](https://img.shields.io/badge/-development-blue) |
 | `PIDPressure` | Pressure exists on the processes—that is, if there are too many processes on the node | ![Development](https://img.shields.io/badge/-development-blue) |
-| `Ready` | The node is healthy and ready to accept pods. and Unknown if the node controller has not heard from the node in the last node-monitor-grace-period" | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Ready` | The node is healthy and ready to accept pods | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

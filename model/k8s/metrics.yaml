@@ -107,6 +107,9 @@ groups:
     metric_name: k8s.node.condition.status
     stability: development
     brief: "Describes the condition of a particular Node."
+    note: >
+      All possible node condition pairs (type and status) will be reported at each time interval to avoid missing metrics.
+      Condition pairs corresponding to the current conditions' statuses will be non-zero.
     instrument: updowncounter
     unit: "{node}"
     entity_associations:
@@ -116,8 +119,6 @@ groups:
         requirement_level: required
       - ref: k8s.node.condition.status
         requirement_level: required
-      - ref: k8s.node.condition.reason
-        requirement_level: opt_in
   # k8s.node.cpu.* metrics
   - id: metric.k8s.node.cpu.time
     type: metric
