@@ -742,7 +742,7 @@ groups:
       The huge page requests in a specific namespace.
       The value represents the configured quota limit of the resource in the namespace.
     instrument: updowncounter
-    unit: "By"
+    unit: "{hugepage}"
     entity_associations:
       - k8s.resourcequota
     note: |
@@ -759,7 +759,7 @@ groups:
       The huge page requests in a specific namespace.
       The value represents the current observed total usage of the resource in the namespace.
     instrument: updowncounter
-    unit: "By"
+    unit: "{hugepage}"
     entity_associations:
       - k8s.resourcequota
     note: |
