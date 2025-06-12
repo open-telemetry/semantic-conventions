@@ -10,7 +10,7 @@ change_type: enhancement
 component: nfs
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Add rpc.onc.* / rpc.nfs.* model to support new metric.nfs.*/metric.nfsd.*
+note: Add `nfs.*`/`nfsd.*` metrics, along with supporting `rpc.onc.*`/`rpc.nfs.*` attributes.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
