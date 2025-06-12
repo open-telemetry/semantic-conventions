@@ -50,8 +50,6 @@ groups:
     attributes:
       - ref: gen_ai.token.type
         requirement_level: required
-      - ref: gen_ai.embeddings.dimension.count
-        requirement_level: recommended
   - id: metric.gen_ai.client.operation.duration
     type: metric
     metric_name: gen_ai.client.operation.duration
