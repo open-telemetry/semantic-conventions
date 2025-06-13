@@ -46,6 +46,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
 
 - [Summary of changes](#summary-of-changes)
   - [K8s network metrics](#k8s-network-metrics)
+  - [K8s Node allocatable metrics](#k8s-node-allocatable-metrics)
   - [K8s Deployment metrics](#k8s-deployment-metrics)
   - [K8s ReplicaSet metrics](#k8s-replicaset-metrics)
   - [K8s ReplicationController metrics](#k8s-replicationcontroller-metrics)
@@ -82,6 +83,25 @@ The changes in their attributes are the following:
 |------------------------------------------------------------------------------------|--------------------------|
 | `interface`                                                                        | `network.interface.name` |
 | `direction`                                                                        | `network.io.direction`   |
+
+<!-- prettier-ignore-end -->
+
+### K8s Node allocatable metrics
+
+The K8s node allocatable metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.127.0/receiver/k8sclusterreceiver/documentation.md)
+receiver.
+
+The changes between collector implementation and semantic conventions:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                              |
+|------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| `k8s.node.allocatable_cpu`                 (type: `gauge`)                         | `k8s.node.allocatable.cpu`               (type: `updowncounter`) |
+| `k8s.node.allocatable_memory`              (type: `gauge`)                         | `k8s.node.allocatable.memory`            (type: `updowncounter`) |
+| `k8s.node.allocatable_ephemeral_storage`   (type: `gauge`)                         | `k8s.node.allocatable.ephemeral_storage` (type: `updowncounter`) |
+| `k8s.node.allocatable_pods`                (type: `gauge`)                         | `k8s.node.allocatable.pods`              (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
