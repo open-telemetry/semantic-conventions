@@ -524,3 +524,30 @@ groups:
           or
           [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core)
         examples: ['ContainerCreating', 'CrashLoopBackOff', 'CreateContainerConfigError', 'ErrImagePull', 'ImagePullBackOff', 'OOMKilled', 'Completed', 'Error', 'ContainerCannotRun']
+      - id: k8s.hugepage.size
+        type: string
+        stability: development
+        brief: >
+          The size (identifier) of the K8s huge page.
+        examples: [ '2Mi' ]
+      - id: k8s.storageclass.name
+        type: string
+        stability: development
+        brief: >
+          The name of K8s
+          [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io)
+          object.
+        examples: [ 'gold.storageclass.storage.k8s.io' ]
+      - id: k8s.resourcequota.resource_name
+        type: string
+        stability: development
+        brief: >
+          The name of the K8s resource a resource quota defines.
+        note: >
+          The value for this attribute can be either the full `count/<resource>[.<group>]` string
+          (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources,
+          just the resource name (e.g., pods, services, configmaps).
+          Both forms are supported by Kubernetes for object count quotas. See
+          [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota)
+          for more details.
+        examples: [ 'count/replicationcontrollers' ]
