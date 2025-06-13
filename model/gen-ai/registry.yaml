@@ -231,6 +231,11 @@ groups:
         type: string
         brief: Free-form description of the GenAI agent provided by the application.
         examples: ["Helps with math problems", "Generates fiction stories"]
+      - id: gen_ai.agent.type
+        stability: development
+        type: string
+        brief: Agent type here specify standard type or styles or patterns of Agentic applications - ReACT, CoT, RAG, and other evolving agentic patterns.
+        examples: ["RAG or ReACT or CoT or any other user defined style"]
       - id: gen_ai.tool.name
         stability: development
         type: string
