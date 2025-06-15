@@ -3,6 +3,9 @@
 
 # Cloud
 
+- [Cloud Attributes](#cloud-attributes)
+- [Deprecated Cloud Attributes](#deprecated-cloud-attributes)
+
 ## Cloud Attributes
 
 A cloud environment (e.g. GCP, Azure, AWS).
@@ -11,18 +14,14 @@ A cloud environment (e.g. GCP, Azure, AWS).
 |---|---|---|---|---|
 | <a id="cloud-account-id" href="#cloud-account-id">`cloud.account.id`</a> | string | The cloud account ID the resource is assigned to. | `111111111111`; `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cloud-availability-zone" href="#cloud-availability-zone">`cloud.availability_zone`</a> | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [1] | `us-east-1c` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="cloud-platform" href="#cloud-platform">`cloud.platform`</a> | string | The cloud platform in use. [2] | `alibaba_cloud_ecs`; `alibaba_cloud_fc`; `alibaba_cloud_openshift` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="cloud-provider" href="#cloud-provider">`cloud.provider`</a> | string | Name of the cloud provider. | `alibaba_cloud`; `aws`; `azure` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="cloud-region" href="#cloud-region">`cloud.region`</a> | string | The geographical region within a cloud provider. When associated with a resource, this attribute specifies the region where the resource operates. When calling services or APIs deployed on a cloud, this attribute identifies the region where the called destination is deployed. [3] | `us-central1`; `us-east-1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="cloud-resource-id" href="#cloud-resource-id">`cloud.resource_id`</a> | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [4] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="cloud-region" href="#cloud-region">`cloud.region`</a> | string | The geographical region within a cloud provider. When associated with a resource, this attribute specifies the region where the resource operates. When calling services or APIs deployed on a cloud, this attribute identifies the region where the called destination is deployed. [2] | `us-central1`; `us-east-1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="cloud-resource-id" href="#cloud-resource-id">`cloud.resource_id`</a> | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [3] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `cloud.availability_zone`:** Availability zones are called "zones" on Alibaba Cloud and Google Cloud.
 
-**[2] `cloud.platform`:** The prefix of the service SHOULD match the one specified in `cloud.provider`.
+**[2] `cloud.region`:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
 
-**[3] `cloud.region`:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
-
-**[4] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
+**[3] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
 
 The exact value to use for `cloud.resource_id` depends on the cloud provider.
@@ -39,6 +38,17 @@ The following well-known definitions MUST be used if you set this attribute and 
   `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
   a TracerProvider.
+
+## Deprecated Cloud Attributes
+
+A cloud environment (e.g. GCP, Azure, AWS).
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="cloud-platform" href="#cloud-platform">`cloud.platform`</a> | string | The cloud platform in use. [4] | `alibaba_cloud_ecs`; `alibaba_cloud_fc`; `alibaba_cloud_openshift` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `host.platform.name`. |
+| <a id="cloud-provider" href="#cloud-provider">`cloud.provider`</a> | string | Name of the cloud provider. | `alibaba_cloud`; `aws`; `azure` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `host.platform.provider`. |
+
+**[4] `cloud.platform`:** The prefix of the service SHOULD match the one specified in `cloud.provider`.
 
 ---
 
