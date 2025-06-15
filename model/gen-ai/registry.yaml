@@ -368,3 +368,23 @@ groups:
         type: string
         brief: A fingerprint to track any eventual change in the Generative AI environment.
         examples: ["fp_44709d6fcb"]
+  - id: registry.gen_ai.model
+    type: attribute_group
+    display_name: Model Frameworks Attributes
+    brief: >
+      This group defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models Frameworks.
+    attributes:
+      - id: gen_ai.input.token.type
+        stability: development
+        type:
+          members:
+            - id: cached
+              value: "cached"
+              brief: Token was reused from the input cache.
+              stability: development
+            - id: miss
+              value: "miss"
+              brief: Token was not in the cache and required recomputation.
+              stability: development
+        brief: Indicates whether an input token was cached or missed during prompt processing.
+        examples: ['cached', 'miss']
