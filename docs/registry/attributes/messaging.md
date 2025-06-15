@@ -33,7 +33,7 @@ Attributes describing telemetry around messaging systems and messaging activitie
 | <a id="messaging-message-id" href="#messaging-message-id">`messaging.message.id`</a> | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="messaging-operation-name" href="#messaging-operation-name">`messaging.operation.name`</a> | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="messaging-operation-type" href="#messaging-operation-type">`messaging.operation.type`</a> | string | A string identifying the type of the messaging operation. [8] | `create`; `send`; `receive` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | string | The messaging system as identified by the client instrumentation. [9] | `activemq`; `aws_sqs`; `eventgrid` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | string | The messaging system as identified by the client instrumentation. [9] | `activemq`; `aws_sns`; `aws_sqs` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `messaging.batch.message_count`:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
@@ -75,16 +75,20 @@ size should be used.
 | Value  | Description | Stability |
 |---|---|---|
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws_sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_pubsub` | Google Cloud Pub/Sub | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mqtt` | MQTT | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nats` | Nats | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `signalr` | SignalR | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Azure Event Hubs Attributes
 
