@@ -344,6 +344,22 @@ groups:
               value: "trino"
               brief: "[Trino](https://trino.io/)"
               stability: development
+            - id: arangodb
+              value: "arangodb"
+              brief: "[ArangoDB](https://arangodb.com/)"
+              stability: development
+            - id: documentdb
+              value: "documentdb"
+              brief: "[DocumentDB](https://opensource.microsoft.com/blog/2025/01/23/documentdb-open-source-announcement/)"
+              stability: development
+            - id: ravendb
+              value: "ravendb"
+              brief: "[RavenDB](https://ravendb.net/)"
+              stability: development
+            - id: surrealdb
+              value: "surrealdb"
+              brief: "[SurrealDB](https://surrealdb.com/)"
+              stability: development
         stability: stable
       - id: db.client.connection.state
         stability: development
