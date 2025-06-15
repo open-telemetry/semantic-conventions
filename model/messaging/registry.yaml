@@ -164,6 +164,10 @@ groups:
               value: 'activemq'
               brief: 'Apache ActiveMQ'
               stability: development
+            - id: aws_sns
+              value: 'aws_sns'
+              brief: 'Amazon Simple Notification Service (SNS)'
+              stability: development
             - id: aws_sqs
               value: 'aws_sqs'
               brief: 'Amazon Simple Queue Service (SQS)'
@@ -192,6 +196,14 @@ groups:
               value: 'kafka'
               brief: 'Apache Kafka'
               stability: development
+            - id: mqtt
+              value: 'mqtt'
+              brief: 'MQTT'
+              stability: development
+            - id: nats
+              value: 'nats'
+              brief: 'Nats'
+              stability: development
             - id: rabbitmq
               value: 'rabbitmq'
               brief: 'RabbitMQ'
@@ -199,6 +211,10 @@ groups:
             - id: rocketmq
               value: 'rocketmq'
               brief: 'Apache RocketMQ'
+              stability: development
+            - id: signalr
+              value: 'signalr'
+              brief: 'SignalR'
               stability: development
             - id: pulsar
               value: 'pulsar'
