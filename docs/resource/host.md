@@ -14,7 +14,7 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 
 **type:** `host`
 
-**Description:** A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
+**Description:** A host is defined as a computing instance/environment. For example, physical servers, virtual machines, switches or disk array.
 
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
@@ -27,9 +27,12 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 | Other | [`host.image.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the VM image or OS install the host was instantiated from. | `infra-ami-eks-worker-node-7d4ec78312`; `CentOS-8-x86_64-1905` |
 | Other | [`host.image.version`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `0.1` |
 | Other | [`host.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` |
+| Other | [`host.platform.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The commercial hosting platform in use. [2] | `alibaba_cloud_ecs`; `alibaba_cloud_fc`; `alibaba_cloud_openshift` |
+| Other | [`host.platform.product`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | What product forms the basis of the hosting platform | `redhat_openshift`; `vmware_esxi`; `microsoft_hyperv` |
+| Other | [`host.platform.provider`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the organisation providing the platform. | `alibaba_cloud`; `aws`; `azure` |
 | Other | [`host.type`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` |
-| Other | [`host.ip`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Available IP addresses of the host, excluding loopback interfaces. [2] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` |
-| Other | [`host.mac`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Available MAC addresses of the host, excluding loopback interfaces. [3] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` |
+| Other | [`host.ip`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Available IP addresses of the host, excluding loopback interfaces. [3] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` |
+| Other | [`host.mac`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Available MAC addresses of the host, excluding loopback interfaces. [4] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` |
 
 
 **[1] `host.id`:** Collecting `host.id` from non-containerized systems
@@ -58,9 +61,11 @@ detector implementations MUST not collect `host.id` from privileged sources. If
 privileged lookup of `host.id` is required, the value should be injected via the
 `OTEL_RESOURCE_ATTRIBUTES` environment variable.
 
-**[2] `host.ip`:** IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
+**[2] `host.platform.name`:** The prefix SHOULD match the one specified in `host.platform.provider`.
 
-**[3] `host.mac`:** MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+**[3] `host.ip`:** IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
+
+**[4] `host.mac`:** MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->

@@ -4,7 +4,9 @@ groups:
     stability: development
     name: host
     brief: >
-        A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
+        A host is defined as a computing instance/environment. For example, physical servers, virtual machines, switches or disk array.
+    note: >
+        The host can also be a device in non virtualised scenarios or it could be different.
     attributes:
       - ref: host.id
         note: |
@@ -43,6 +45,9 @@ groups:
         requirement_level: opt_in
       - ref: host.mac
         requirement_level: opt_in
+      - ref: host.platform.name
+      - ref: host.platform.product
+      - ref: host.platform.provider
 
   - id: entity.host.cpu
     type: entity

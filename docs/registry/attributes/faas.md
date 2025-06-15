@@ -20,7 +20,7 @@ FaaS attributes
 | <a id="faas-instance" href="#faas-instance">`faas.instance`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [1] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` |
 | <a id="faas-invocation-id" href="#faas-invocation-id">`faas.invocation_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
 | <a id="faas-invoked-name" href="#faas-invoked-name">`faas.invoked_name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the invoked function. [2] | `my-function` |
-| <a id="faas-invoked-provider" href="#faas-invoked-provider">`faas.invoked_provider`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud provider of the invoked function. [3] | `alibaba_cloud`; `aws`; `azure` |
+| <a id="faas-invoked-provider" href="#faas-invoked-provider">`faas.invoked_provider`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The provider of the platform hosting the invoked function. [3] | `alibaba_cloud`; `aws`; `azure` |
 | <a id="faas-invoked-region" href="#faas-invoked-region">`faas.invoked_region`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud region of the invoked function. [4] | `eu-central-1` |
 | <a id="faas-max-memory" href="#faas-max-memory">`faas.max_memory`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The amount of memory available to the serverless function converted to Bytes. [5] | `134217728` |
 | <a id="faas-name" href="#faas-name">`faas.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the single function that this runtime instance executes. [6] | `my-function`; `myazurefunctionapp/some-function-name` |
@@ -32,7 +32,7 @@ FaaS attributes
 
 **[2] `faas.invoked_name`:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
 
-**[3] `faas.invoked_provider`:** SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
+**[3] `faas.invoked_provider`:** SHOULD be equal to the `host.platform.provider` resource attribute of the invoked function.
 
 **[4] `faas.invoked_region`:** SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
 
