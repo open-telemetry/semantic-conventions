@@ -26,8 +26,8 @@ A host is defined as a computing instance. For example, physical servers, virtua
 | <a id="host-mac" href="#host-mac">`host.mac`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Available MAC addresses of the host, excluding loopback interfaces. [3] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` |
 | <a id="host-name" href="#host-name">`host.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` |
 | <a id="host-platform-name" href="#host-platform-name">`host.platform.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The commercial hosting platform in use. [4] | `alibaba_cloud_ecs`; `alibaba_cloud_fc`; `alibaba_cloud_openshift` |
-| <a id="host-platform-product" href="#host-platform-product">`host.platform.product`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | What product forms the basis of the hosting platform | `redhat_openshift`; `vmware_esxi`; `microsoft_hyperv` |
-| <a id="host-platform-provider" href="#host-platform-provider">`host.platform.provider`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the organisation providing the platform. | `alibaba_cloud`; `aws`; `azure` |
+| <a id="host-platform-product" href="#host-platform-product">`host.platform.product`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | What product forms the basis of the hosting platform | `openshift`; `esxi`; `hyperv` |
+| <a id="host-platform-provider" href="#host-platform-provider">`host.platform.provider`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the organisation providing the platform. | `alibaba`; `amazon`; `google` |
 | <a id="host-type" href="#host-type">`host.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` |
 
 **[1] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
@@ -96,9 +96,13 @@ A host is defined as a computing instance. For example, physical servers, virtua
 
 | Value  | Description | Stability |
 |---|---|---|
-| `microsoft_hyperv` | Microsoft Hyper-V | ![Development](https://img.shields.io/badge/-development-blue) |
-| `redhat_openshift` | Red Hat OpenShift | ![Development](https://img.shields.io/badge/-development-blue) |
-| `vmware_esxi` | VMWare ESXi | ![Development](https://img.shields.io/badge/-development-blue) |
+| `citrix` | [Citrix](https://www.citrix.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `esxi` | [VMWare](https://www.vmware.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hyperv` | [Microsoft Hyper-V](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mesos` | [Apache Mesos](https://mesos.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openshift` | [Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `proxmox` | [Proxmox](https://www.proxmox.com/en/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `xenserver` | [Xen Sever](https://www.xenserver.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -106,13 +110,12 @@ A host is defined as a computing instance. For example, physical servers, virtua
 
 | Value  | Description | Stability |
 |---|---|---|
-| `alibaba_cloud` | Alibaba Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws` | Amazon Web Services | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure` | Microsoft Azure | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp` | Google Cloud Platform | ![Development](https://img.shields.io/badge/-development-blue) |
+| `alibaba` | Alibaba | ![Development](https://img.shields.io/badge/-development-blue) |
+| `amazon` | Amazon | ![Development](https://img.shields.io/badge/-development-blue) |
+| `broadcom` | Broadcom | ![Development](https://img.shields.io/badge/-development-blue) |
+| `google` | Google | ![Development](https://img.shields.io/badge/-development-blue) |
 | `heroku` | Heroku Platform as a Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ibm_cloud` | IBM Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm` | IBM | ![Development](https://img.shields.io/badge/-development-blue) |
 | `microsoft` | Microsoft | ![Development](https://img.shields.io/badge/-development-blue) |
-| `oracle_cloud` | Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tencent_cloud` | Tencent Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
-| `vmware` | Broadcom VMWare | ![Development](https://img.shields.io/badge/-development-blue) |
+| `oracle` | Oracle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tencent` | Tencent | ![Development](https://img.shields.io/badge/-development-blue) |

@@ -19,9 +19,10 @@ issues: [2365]
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
-subtext: Introduced the following new attributes:
-  | - host.platform.product
-  |
-  | And also renamed the below to enable broader usage
-  | - cloud.provider becomes hosting.platform.provider
-  | - cloud.platform becomes hosting.platform.name
+subtext: |
+  Introduced the following new attributes:
+    - host.platform.product
+
+  And also renamed the below to enable broader usage
+    - cloud.provider becomes hosting.platform.provider
+    - cloud.platform becomes hosting.platform.name

@@ -38,16 +38,10 @@ groups:
       - ref: host.name
       - ref: host.type
       - ref: host.arch
-      - ref: host.image.name
-      - ref: host.image.id
-      - ref: host.image.version
       - ref: host.ip
         requirement_level: opt_in
       - ref: host.mac
         requirement_level: opt_in
-      - ref: host.platform.name
-      - ref: host.platform.product
-      - ref: host.platform.provider
 
   - id: entity.host.cpu
     type: entity
@@ -68,3 +62,25 @@ groups:
         requirement_level: opt_in
       - ref: host.cpu.cache.l2.size
         requirement_level: opt_in
+
+  - id: entity.host.image
+    type: entity
+    stability: development
+    name: host.image
+    brief: >
+        The software image that was used to provision the computing instance/environment.
+    attributes:
+      - ref: host.image.name
+      - ref: host.image.id
+      - ref: host.image.version
+
+  - id: entity.host.platform
+    type: entity
+    stability: development
+    name: host.platform
+    brief: >
+        The host platform  represents the tool being used to provide the computing instance/environment.
+    attributes:
+      - ref: host.platform.name
+      - ref: host.platform.product
+      - ref: host.platform.provider
