@@ -275,41 +275,37 @@ groups:
       - id: host.platform.provider
         type:
           members:
-            - id: 'alibaba_cloud'
-              value: 'alibaba_cloud'
-              brief: 'Alibaba Cloud'
+            - id: 'alibaba'
+              value: 'alibaba'
+              brief: 'Alibaba'
               stability: development
-            - id: 'aws'
-              value: 'aws'
-              brief: 'Amazon Web Services'
+            - id: 'amazon'
+              value: 'amazon'
+              brief: 'Amazon'
               stability: development
-            - id: 'azure'
-              value: 'azure'
-              brief: 'Microsoft Azure'
-              stability: development
-            - id: 'gcp'
-              value: 'gcp'
-              brief: 'Google Cloud Platform'
+            - id: 'google'
+              value: 'google'
+              brief: 'Google'
               stability: development
             - id: 'heroku'
               value: 'heroku'
               brief: 'Heroku Platform as a Service'
               stability: development
-            - id: 'ibm_cloud'
-              value: 'ibm_cloud'
-              brief: 'IBM Cloud'
+            - id: 'ibm'
+              value: 'ibm'
+              brief: 'IBM'
               stability: development
-            - id: 'oracle_cloud'
-              value: 'oracle_cloud'
-              brief: 'Oracle Cloud Infrastructure (OCI)'
+            - id: 'oracle'
+              value: 'oracle'
+              brief: 'Oracle'
               stability: development
-            - id: 'tencent_cloud'
-              value: 'tencent_cloud'
-              brief: 'Tencent Cloud'
+            - id: 'tencent'
+              value: 'tencent'
+              brief: 'Tencent'
               stability: development
-            - id: 'vmware'
-              value: 'vmware'
-              brief: 'Broadcom VMWare'
+            - id: 'broadcom'
+              value: 'broadcom'
+              brief: 'Broadcom'
               stability: development
             - id: 'microsoft'
               value: 'microsoft'
@@ -322,16 +318,32 @@ groups:
         type:
           members:
             - id: redhat_openshift
-              value: 'redhat_openshift'
-              brief: Red Hat OpenShift
+              value: 'openshift'
+              brief: '[Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift)'
               stability: development
             - id: vmware_esxi
-              value: 'vmware_esxi'
-              brief: VMWare ESXi
+              value: 'esxi'
+              brief: '[VMWare](https://www.vmware.com/)'
               stability: development
             - id: microsoft_hyperv
-              value: 'microsoft_hyperv'
-              brief: Microsoft Hyper-V
+              value: 'hyperv'
+              brief: '[Microsoft Hyper-V](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows)'
+              stability: development
+            - id: citrix
+              value: 'citrix'
+              brief: '[Citrix](https://www.citrix.com/)'
+              stability: development
+            - id: xenserver
+              value: 'xenserver'
+              brief: '[Xen Sever](https://www.xenserver.com/)'
+              stability: development
+            - id: proxmox
+              value: 'proxmox'
+              brief: '[Proxmox](https://www.proxmox.com/en/)'
+              stability: development
+            - id: mesos
+              value: 'mesos'
+              brief: '[Apache Mesos](https://mesos.apache.org/)'
               stability: development
         stability: development
         brief: >
