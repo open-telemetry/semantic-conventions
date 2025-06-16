@@ -1,0 +1,6 @@
+{% macro registry_url(id, registry) -%}
+{{registry}}/{{ id | split_id | list | first | kebab_case }}.md#{{ id | kebab_case }}
+{%- endmacro %}
+{% macro print_associations(associations, registry) -%}
+{%- for e in associations %}{%if loop.first == false %}; {% endif %}[`{{ e | trim }}`]({{registry_url(e, registry)}}){%- endfor %}
+{%- endmacro %}
