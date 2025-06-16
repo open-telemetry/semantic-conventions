@@ -46,6 +46,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
 
 - [Summary of changes](#summary-of-changes)
   - [K8s network metrics](#k8s-network-metrics)
+  - [K8s Node allocatable metrics](#k8s-node-allocatable-metrics)
   - [K8s Deployment metrics](#k8s-deployment-metrics)
   - [K8s ReplicaSet metrics](#k8s-replicaset-metrics)
   - [K8s ReplicationController metrics](#k8s-replicationcontroller-metrics)
@@ -82,6 +83,25 @@ The changes in their attributes are the following:
 |------------------------------------------------------------------------------------|--------------------------|
 | `interface`                                                                        | `network.interface.name` |
 | `direction`                                                                        | `network.io.direction`   |
+
+<!-- prettier-ignore-end -->
+
+### K8s Node allocatable metrics
+
+The K8s node allocatable metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.127.0/receiver/k8sclusterreceiver/documentation.md)
+receiver.
+
+The changes between collector implementation and semantic conventions:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                              |
+|------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| `k8s.node.allocatable_cpu`                 (type: `gauge`)                         | `k8s.node.allocatable.cpu`               (type: `updowncounter`) |
+| `k8s.node.allocatable_memory`              (type: `gauge`)                         | `k8s.node.allocatable.memory`            (type: `updowncounter`) |
+| `k8s.node.allocatable_ephemeral_storage`   (type: `gauge`)                         | `k8s.node.allocatable.ephemeral_storage` (type: `updowncounter`) |
+| `k8s.node.allocatable_pods`                (type: `gauge`)                         | `k8s.node.allocatable.pods`              (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
@@ -298,17 +318,17 @@ The changes in their metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                       |
-|------------------------------------------------------------------------------------|-------------------------------------------|
-| `k8s.container.cpu_limit`                                                          | `k8s.container.cpu.limit`                 |
-| `k8s.container.cpu_request`                                                        | `k8s.container.cpu.request`               |
-| `k8s.container.memory_limit`                                                       | `k8s.container.memory.limit`              |
-| `k8s.container.memory_request`                                                     | `k8s.container.memory.request`            |
-| `k8s.container.storage_limit`                                                      | `k8s.container.storage.limit`             |
-| `k8s.container.storage_request`                                                    | `k8s.container.storage.request`           |
-| `k8s.container.ephemeralstorage_limit`                                                       | `k8s.container.ephemeral_storage.limit`   |
-| `k8s.container.ephemeralstorage_request`                                                     | `k8s.container.ephemeral_storage.request` |
-| `k8s.container.restarts`                  (type: `gauge`)                          | `k8s.container.restart.count` (type: `updowncounter`) |
-| `k8s.container.ready`                  (type: `gauge`)                             | `k8s.container.ready` (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                              |
+|------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| `k8s.container.cpu_limit`              (type: `gauge`)                                             | `k8s.container.cpu.limit`       (type: `updowncounter`)          |
+| `k8s.container.cpu_request`             (type: `gauge`)                                            | `k8s.container.cpu.request`     (type: `updowncounter`)          |
+| `k8s.container.memory_limit`            (type: `gauge`)                                            | `k8s.container.memory.limit`     (type: `updowncounter`)         |
+| `k8s.container.memory_request`           (type: `gauge`)                                           | `k8s.container.memory.request`    (type: `updowncounter`)        |
+| `k8s.container.storage_limit`             (type: `gauge`)                                          | `k8s.container.storage.limit`     (type: `updowncounter`)        |
+| `k8s.container.storage_request`           (type: `gauge`)                                          | `k8s.container.storage.request`    (type: `updowncounter`)       |
+| `k8s.container.ephemeralstorage_limit`      (type: `gauge`)                                        | `k8s.container.ephemeral_storage.limit`  (type: `updowncounter`) |
+| `k8s.container.ephemeralstorage_request`     (type: `gauge`)                                       | `k8s.container.ephemeral_storage.request` (type: `updowncounter`) |
+| `k8s.container.restarts`                  (type: `gauge`)                          | `k8s.container.restart.count` (type: `updowncounter`)            |
+| `k8s.container.ready`                  (type: `gauge`)                             | `k8s.container.ready` (type: `updowncounter`)                    |
 
 <!-- prettier-ignore-end -->

@@ -81,8 +81,10 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `otlp_http_metric_exporter` | OTLP metric exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_http_span_exporter` | OTLP span exporter over HTTP with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `periodic_metric_reader` | The builtin SDK periodically exporting metric reader | ![Development](https://img.shields.io/badge/-development-blue) |
+| `prometheus_http_text_metric_exporter` | Prometheus metric exporter over HTTP with the default text-based format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## OTel Scope Attributes
 
