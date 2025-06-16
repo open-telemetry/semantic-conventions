@@ -1288,7 +1288,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.container.cpu.limit` | Gauge | `{cpu}` | Maximum CPU resource limit set for the container [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.container` |
+| `k8s.container.cpu.limit` | UpDownCounter | `{cpu}` | Maximum CPU resource limit set for the container [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.container` |
 
 **[1]:** See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
 
@@ -1310,7 +1310,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.container.cpu.request` | Gauge | `{cpu}` | CPU resource requested for the container [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.container` |
+| `k8s.container.cpu.request` | UpDownCounter | `{cpu}` | CPU resource requested for the container [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.container` |
 
 **[1]:** See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
 
@@ -1332,7 +1332,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.container.memory.limit` | Gauge | `By` | Maximum memory resource limit set for the container [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.container` |
+| `k8s.container.memory.limit` | UpDownCounter | `By` | Maximum memory resource limit set for the container [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.container` |
 
 **[1]:** See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
 
@@ -1354,7 +1354,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.container.memory.request` | Gauge | `By` | Memory resource requested for the container [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.container` |
+| `k8s.container.memory.request` | UpDownCounter | `By` | Memory resource requested for the container [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.container` |
 
 **[1]:** See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
 
@@ -1376,7 +1376,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.container.storage.limit` | Gauge | `By` | Maximum storage resource limit set for the container [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.container` |
+| `k8s.container.storage.limit` | UpDownCounter | `By` | Maximum storage resource limit set for the container [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.container` |
 
 **[1]:** See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
 
@@ -1398,7 +1398,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.container.storage.request` | Gauge | `By` | Storage resource requested for the container [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.container` |
+| `k8s.container.storage.request` | UpDownCounter | `By` | Storage resource requested for the container [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.container` |
 
 **[1]:** See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
 
@@ -1420,7 +1420,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.container.ephemeral_storage.limit` | Gauge | `By` | Maximum ephemeral storage resource limit set for the container [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.container` |
+| `k8s.container.ephemeral_storage.limit` | UpDownCounter | `By` | Maximum ephemeral storage resource limit set for the container [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.container` |
 
 **[1]:** See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
 
@@ -1442,7 +1442,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.container.ephemeral_storage.request` | Gauge | `By` | Ephemeral storage resource requested for the container [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.container` |
+| `k8s.container.ephemeral_storage.request` | UpDownCounter | `By` | Ephemeral storage resource requested for the container [1] | ![Development](https://img.shields.io/badge/-development-blue) | `k8s.container` |
 
 **[1]:** See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
 
