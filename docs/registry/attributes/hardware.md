@@ -9,6 +9,11 @@ Attributes for hardware.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
+| <a id="hw-battery-capacity" href="#hw-battery-capacity">`hw.battery.capacity`</a> | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-battery-chemistry" href="#hw-battery-chemistry">`hw.battery.chemistry`</a> | string | Battery chemistry, e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-battery-limit-type" href="#hw-battery-limit-type">`hw.battery.limit_type`</a> | string | Type of the battery charge limit | `critical`; `throttled`; `degraded` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-battery-model" href="#hw-battery-model">`hw.battery.model`</a> | string | Descriptive model name of the battery | `Dell XPS 15 Battery` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-battery-vendor" href="#hw-battery-vendor">`hw.battery.vendor`</a> | string | Vendor name of the battery | `Dell`; `HP`; `Lenovo` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-id" href="#hw-id">`hw.id`</a> | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-name" href="#hw-name">`hw.name`</a> | string | An easily-recognizable name for the hardware component | `eth0` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-parent" href="#hw-parent">`hw.parent`</a> | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -19,11 +24,23 @@ Attributes for hardware.
 
 ---
 
+`hw.battery.limit_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `critical` | Critical | ![Development](https://img.shields.io/badge/-development-blue) |
+| `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
+| `throttled` | Throttled | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
 `hw.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
+| `charging` | Charging | ![Development](https://img.shields.io/badge/-development-blue) |
 | `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
+| `discharging` | Discharging | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failed` | Failed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ok` | Ok | ![Development](https://img.shields.io/badge/-development-blue) |
 

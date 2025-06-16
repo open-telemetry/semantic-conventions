@@ -104,6 +104,57 @@ groups:
               value: 'failed'
               brief: 'Failed'
               stability: development
+            - id: charging`
+              value: 'charging'
+              brief: 'Charging'
+              stability: development
+            - id: discharging
+              value: 'discharging'
+              brief: 'Discharging'
+              stability: development
         stability: development
         brief: >
           The current state of the component
+      #  BATTERY ATTRIBUTES
+      - id: hw.battery.limit_type
+        type:
+          members:
+            - id: critical
+              value: 'critical'
+              brief: "Critical"
+              stability: development
+            - id: throttled
+              value: 'throttled'
+              brief: 'Throttled'
+              stability: development
+            - id: degraded
+              value: 'degraded'
+              brief: 'Degraded'
+              stability: development
+        stability: development
+        brief: >
+          Type of the battery charge limit
+      - id: hw.battery.chemistry
+        type: string
+        stability: development
+        brief: >
+          Battery chemistry, e.g. Lithium-Ion, Nickel-Cadmium, etc.
+        examples: ['Li-ion', 'NiMH']
+      - id: hw.battery.capacity
+        type: string
+        stability: development
+        brief: >
+          Design capacity in Watts-hours or Amper-hours
+        examples: ['9.3Ah', '50Wh']
+      - id: hw.battery.model
+        type: string
+        stability: development
+        brief: >
+          Descriptive model name of the battery
+        examples: ['Dell XPS 15 Battery']
+      - id: hw.battery.vendor
+        type: string
+        stability: development
+        brief: >
+          Vendor name of the battery
+        examples: ['Dell', 'HP', 'Lenovo']

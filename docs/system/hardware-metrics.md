@@ -21,7 +21,7 @@ Please note that this is an [ongoing process](https://github.com/open-telemetry/
 - [Metric Instruments](#metric-instruments)
   - [`hw.` - Common hardware metrics](/docs/hardware/common.md)
   - [`hw.host.` - Physical host metrics](/docs/hardware/host.md)
-  - [`hw.battery.` - Battery metrics](#hwbattery---battery-metrics)
+  - [`hw.battery.` - Battery metrics](/docs/hardware/battery.md)
   - [`hw.cpu.` - Physical processor metrics](#hwcpu---physical-processor-metrics)
   - [`hw.disk_controller.` - Disk controller metrics](#hwdisk_controller---disk-controller-metrics)
   - [`hw.enclosure.` - Enclosure metrics](#hwenclosure---enclosure-metrics)
@@ -48,28 +48,6 @@ Please note that this is an [ongoing process](https://github.com/open-telemetry/
 >   conventions once the migration plan is finalized.
 
 ## Metric instruments
-
-### `hw.battery.` - Battery metrics
-
-**Description:** A battery in a computer system or an UPS.
-
-| Name                      | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key(s)                                                            | Attribute Values                                      |
-| ------------------------- | ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | --------------------------------------------------------------------------- | ----------------------------------------------------- |
-| `hw.battery.charge`       | Remaining fraction of battery charge                                          | 1     | Gauge                                             | Double     |                                                                             |                                                       |
-| `hw.battery.charge.limit` | Lower limit of battery charge fraction to ensure proper operation             | 1     | Gauge                                             | Double     | `limit_type` (Recommended)                                                  | `critical`, `throttled`, `degraded`                   |
-| `hw.battery.time_left`    | Time left before battery is completely charged or discharged                  | s     | Gauge                                             | Int        | `state` (Conditionally Required, if the battery is charging or discharging) | `charging`, `discharging`                             |
-| `hw.status`               | Operational status: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)                                                      | `ok`, `degraded`, `failed`, `charging`, `discharging` |
-|                           |                                                                               |       |                                                   |            | `hw.type`                                                                   | `battery`                                             |
-
-All `hw.battery.` metrics may include the below **Recommended** attributes to
-describe the characteristics of the monitored battery:
-
-| Attribute Key | Description                                   | Example                     |
-| ------------- | --------------------------------------------- | --------------------------- |
-| `chemistry`   | Chemistry of the battery                      | Nickel-Cadmium, Lithium-ion |
-| `capacity`    | Design capacity in Watts-hours or Amper-hours | 9.3Ah                       |
-| `model`       | Descriptive model name                        |                             |
-| `vendor`      | Vendor name                                   |                             |
 
 ### `hw.cpu.` - Physical processor metrics
 
