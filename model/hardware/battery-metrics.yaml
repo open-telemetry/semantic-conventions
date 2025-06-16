@@ -50,8 +50,6 @@ groups:
           conditionally_required: If the battery is charging or discharging
         note: >
           The `hw.state` attribute should indicate the current state of the battery.
-          This is conditionally required based on the operational state of the battery.
-          If the battery is not in a charging or discharging state, this attribute may not be applicable.
           It should be one of the predefined states such as "charging" or "discharging".
 
   - id: metric.hw.battery.status

@@ -143,7 +143,7 @@ This metric is [recommended][MetricRecommended].
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `hw.state`:** The `hw.state` attribute should indicate the current state of the battery. This is conditionally required based on the operational state of the battery. If the battery is not in a charging or discharging state, this attribute may not be applicable. It should be one of the predefined states such as "charging" or "discharging".
+**[1] `hw.state`:** The `hw.state` attribute should indicate the current state of the battery. It should be one of the predefined states such as "charging" or "discharging".
 
 ---
 
