@@ -75,12 +75,17 @@ Names SHOULD follow these rules:
   words by underscores (i.e. use snake_case). For example
   `http.response.status_code` denotes the status code in the http namespace.
 
+  Known exceptions include
+  [K8s API names](../non-normative/naming-known-exceptions.md) where a single
+  word is used for consistency with the instrumented API.
+
   Use underscore only when using dot (namespacing) does not make sense or changes
   the semantic meaning of the name. For example, use `rate_limiting`
   instead of `rate.limiting`.
 
 - Be precise. Attribute, event, metric, and other names should be descriptive and
   unambiguous.
+
   - When introducing a name describing a certain property of the object,
     include the property name. For example, use `file.owner.name` instead of `file.owner`
     and `system.network.packet.dropped` instead of `system.network.dropped`
@@ -278,10 +283,10 @@ question is a non-unit (like `{fault}` or `{operation}`).
 
 Examples:
 
-* `system.filesystem.utilization`, `http.server.request.duration`, and `system.cpu.time`
-should not be pluralized, even if many data points are recorded.
-* `system.paging.faults`, `system.disk.operations`, and `system.network.packets`
-should be pluralized, even if only a single data point is recorded.
+- `system.filesystem.utilization`, `http.server.request.duration`, and `system.cpu.time`
+  should not be pluralized, even if many data points are recorded.
+- `system.paging.faults`, `system.disk.operations`, and `system.network.packets`
+  should be pluralized, even if only a single data point is recorded.
 
 #### Use `count` instead of pluralization for UpDownCounters
 
@@ -305,14 +310,14 @@ be confusing in delta backends.
 **Status**: [Development][DocumentStatus]
 
 - **limit** - an instrument that measures the constant, known total amount of
-something should be called `entity.limit`. For example, `system.memory.limit`
-for the total amount of memory on a system.
+  something should be called `entity.limit`. For example, `system.memory.limit`
+  for the total amount of memory on a system.
 
 - **usage** - an instrument that measures an amount used out of a known total
-(**limit**) amount should be called `entity.usage`. For example,
-`system.memory.usage` with attribute `state = used | cached | free | ...` for the
-amount of memory in a each state. Where appropriate, the sum of **usage**
-over all attribute values SHOULD be equal to the **limit**.
+  (**limit**) amount should be called `entity.usage`. For example,
+  `system.memory.usage` with attribute `state = used | cached | free | ...` for the
+  amount of memory in a each state. Where appropriate, the sum of **usage**
+  over all attribute values SHOULD be equal to the **limit**.
 
   A measure of the amount consumed of an unlimited resource, or of a resource
   whose limit is unknowable, is differentiated from **usage**. For example, the
@@ -320,16 +325,16 @@ over all attribute values SHOULD be equal to the **limit**.
   fluctuate over time and is not typically known.
 
 - **utilization** - an instrument that measures the _fraction_ of **usage**
-out of its **limit** should be called `entity.utilization`. For example,
-`system.memory.utilization` for the fraction of memory in use. Utilization can
-be with respect to a fixed limit or a soft limit. Utilization values are
-represented as a ratio and are typically in the range `[0, 1]`, but may go above 1
-in case of exceeding a soft limit.
+  out of its **limit** should be called `entity.utilization`. For example,
+  `system.memory.utilization` for the fraction of memory in use. Utilization can
+  be with respect to a fixed limit or a soft limit. Utilization values are
+  represented as a ratio and are typically in the range `[0, 1]`, but may go above 1
+  in case of exceeding a soft limit.
 
 - **time** - an instrument that measures passage of time should be called
-`entity.time`. For example, `system.cpu.time` with attribute `state = idle | user
+  `entity.time`. For example, `system.cpu.time` with attribute `state = idle | user
 | system | ...`. **time** measurements are not necessarily wall time and can
-be less than or greater than the real wall time between measurements.
+  be less than or greater than the real wall time between measurements.
 
   **time** instruments are a special case of **usage** metrics, where the
   **limit** can usually be calculated as the sum of **time** over all attribute
@@ -339,13 +344,13 @@ be less than or greater than the real wall time between measurements.
   elapsed time and number of CPUs.
 
 - **io** - an instrument that measures bidirectional data flow should be
-called `entity.io` and have attributes for direction. For example,
-`system.network.io`.
+  called `entity.io` and have attributes for direction. For example,
+  `system.network.io`.
 
 - Other instruments that do not fit the above descriptions may be named more
-freely. For example, `system.paging.faults` and `system.network.packets`.
-Units do not need to be specified in the names since they are included during
-instrument creation, but can be added if there is ambiguity.
+  freely. For example, `system.paging.faults` and `system.network.packets`.
+  Units do not need to be specified in the names since they are included during
+  instrument creation, but can be added if there is ambiguity.
 
 ### Client and server metrics
 

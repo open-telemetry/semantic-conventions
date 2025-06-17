@@ -18,6 +18,8 @@ concurrency:
 jobs:
   changelog:
     runs-on: ubuntu-latest
+    env:
+      PR_HEAD: ${{ github.event.pull_request.head.sha }}
     if: >-
       ${{
         github.event_name == 'pull_request' &&
@@ -45,7 +47,7 @@ jobs:
 
       - name: Ensure no changes to the CHANGELOG.md
         run: |
-          if [[ $(git diff --name-only origin/main HEAD ./CHANGELOG*.md) ]]
+          if [[ $(git diff --name-only $(git merge-base origin/main $PR_HEAD) $PR_HEAD ./CHANGELOG*.md) ]]
           then
           echo "CHANGELOG.md should not be directly modified."
             echo "Please add a .yaml file to the ./.chloggen/ directory."
@@ -58,7 +60,7 @@ jobs:
 
       - name: Ensure ./.chloggen/*.yaml addition(s)
         run: |
-          if [[ 1 -gt $(git diff --diff-filter=A --name-only origin/main HEAD ./.chloggen | grep -c \\.yaml) ]]
+          if [[ 1 -gt $(git diff --diff-filter=A --name-only $(git merge-base origin/main $PR_HEAD) $PR_HEAD ./.chloggen | grep -c \\.yaml) ]]
           then
             echo "No changelog entry was added to the ./.chloggen/ directory."
             echo "Please add a .yaml file to the ./.chloggen/ directory."

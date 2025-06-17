@@ -4,17 +4,17 @@
 # your pull request title with [chore] or use the "Skip Changelog" label.
 
 # One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
-change_type: 'enhancement'
+change_type: breaking
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: cloud
+component: system
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Broaden `cloud.region` definition to explicitly cover both resource location and targeted destination.
+note: Revert the change that moved `system.cpu.*` to `cpu.*`. The 3 affected metrics are back in `system.cpu.*`.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-issues: [2142]
+issues: [1873]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
