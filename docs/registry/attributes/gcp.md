@@ -8,6 +8,8 @@
 - [GCP - Google Cloud Run Attributes](#gcp---google-cloud-run-attributes)
 - [GCP - Google Compute Engine (GCE) Attributes](#gcp---google-compute-engine-gce-attributes)
 - [GCP Resource Attributes](#gcp-resource-attributes)
+- [GCP Server Attributes](#gcp-server-attributes)
+- [Telemetry Control](#telemetry-control)
 
 ## GCP - AppHub Attributes
 
@@ -114,3 +116,23 @@ Attributes for identifying GCP resources
 | <a id="gcp-resource-name" href="#gcp-resource-name">`gcp.resource.name`</a> | string | Fully-qualified resource name of the GCP resource being read, created, or modified [6] | `//somedomain.googleapis.com/projects/some-project/locations/us-central1/instances/12345` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[6] `gcp.resource.name`:** The attribute "gcp.resource.name" and the resource attribute "cloud.resource_id" are related but have different purposes. Use "cloud.resource_id" to identify the compute resource where the code is running. Use "gcp.resource.name" to identify the GCP resource that said code is manipulating. For example, if you have code that is running in Cloud Run and the code publishes to a topic in Cloud Pub/Sub, you should use "cloud.resource_id" to refer to the Cloud Run instance where the code is running, and you should use "gcp.resource.name" to identify The Cloud Pub/Sub topic to which your code is actively publishing.
+
+## GCP Server Attributes
+
+Attributes for Google Cloud servers.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="gcp-server-service" href="#gcp-server-service">`gcp.server.service`</a> | string | Identifies the Google Cloud service that is emitting the telemetry. [7] | `appengine`; `run`; `firestore`; `alloydb`; `spanner` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[7] `gcp.server.service`:** Server analogue of 'gcp.client.service'.
+
+## Telemetry Control
+
+Attributes for controlling telemetry behavior
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="gcp-project-id" href="#gcp-project-id">`gcp.project_id`</a> | string | Telemetry storage project. [8] | `my-project`; `other-project` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[8] `gcp.project_id`:** This attribute governs the destination project to which telemetry data should be routed. It may differ from the "consumer" project (used for quota, billing) or the "resource" project (the project containing the resource(s) on which the operation being reported was performed).

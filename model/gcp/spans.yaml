@@ -1,10 +1,14 @@
 groups:
-- id: gcp.span.server
+- id: span.gcp.server
   type: span
   span_kind: server
   stability: development
   brief: A server-side span emitted by GCP services.
   attributes:
+  - ref: rpc.service
+    requirement_level: required
+  - ref: rpc.method
+    requirement_level: required
   - ref: gcp.project_id
     requirement_level:
      conditionally_required:
@@ -21,18 +25,53 @@ groups:
   - ref: cloud.account.id
     requirement_level: required
     note: Should specify the "consumer" cloud project.
-- id: gcp.span.client
+  - ref: rpc.grpc.status_code
+    requirement_level:
+      conditionally_required: >
+        Required if the call failed.
+  - ref: cloud.region
+    requirement_level:
+      conditionally_required: >
+        Required if the service is not a global service.
+  - ref: cloud.availability_zone
+    requirement_level:
+      conditionally_required: >
+        Required if the service is not a zonal service.
+  - ref: cloud.resource_id
+    requirement_level: required
+    note: This resource should correspond with an AppHub service or workload.
+- id: span.gcp.client
   type: span
   span_kind: client
   stability: development
   brief: A client-side invocation of a GCP service.
   attributes:
+  - ref: url.domain
+    requirement_level: recommended
+  - ref: url.path
+    requirement_level: recommended
+  - ref: url.template
+    requirement_level: recommended
+  - ref: http.request.method
+    requirement_level:
+      conditionally_required:
+        Required if invoking the service via HTTP/REST.
+  - ref: rpc.system
+    requirement_level:
+      conditionally_required:
+        Required if invoking the service via gRPC.
+  - ref: rpc.service
+    requirement_level:
+      conditionally_required:
+        Required if invoking the service via gRPC.
+  - ref: rpc.method
+    requirement_level:
+      conditionally_required:
+        Required if invoking the service via gRPC.
   - ref: gcp.project_id
     requirement_level:
      conditionally_required:
        Required if the data is being written to the GCP Telemetry API.
-  - ref: gcp.project_id
-    requirement_level: required
   - ref: cloud.account.id
     requirement_level: required
     note: Should specify the "consumer" cloud project.
@@ -44,11 +83,28 @@ groups:
     requirement_level:
       conditionally_required:
         Required if the call is being made from a cloud-based environment.
-  - ref: cloud.resource.id
+  - ref: cloud.resource_id
     requirement_level:
       conditionally_required:
-       Required if the call is being made from a GCP compute environment.
+        Required if the call is being made from a GCP compute environment.
+  - ref: cloud.region
+    requirement_level:
+      conditionally_required: >
+        Required if the Cloud region of the client execution is available and
+        if a more precise location hasn't been specified in `cloud.availability_zone`.
+  - ref: cloud.availability_zone
+    requirement_level:
+      conditionally_required:
+        Required if the compute environment is zonal rather than strictly regional.
   - ref: gcp.client.service
     requirement_level:
-     conditionally_required: >
-       Required if the call is being made by an official, Google owned library.
+      conditionally_required: >
+        Required if the call is being made by an official, Google owned library.
+  - ref: http.response.status_code
+    requirement_level:
+      conditionally_required: >
+        Required if the call failed and was made over HTTP/REST.
+  - ref: rpc.grpc.status_code
+    requirement_level:
+      conditionally_required: >
+        Required if the call failed.
