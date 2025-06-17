@@ -81,3 +81,31 @@ groups:
         brief: >
           Region ISO code ([ISO 3166-2](https://wikipedia.org/wiki/ISO_3166-2)).
         examples: [ 'CA-QC' ]
+      - id: geo.location.name
+        stability: development
+        type: string
+        brief: >
+          User-defined description of a location, at the level of granularity they care about.
+        note: |
+          Could be the name of their data centers, the floor number, if this describes a local physical entity, city names.
+
+          Not typically used in automated geolocation.
+        examples: [ 'boston-dc' ]
+      - id: geo.timezone
+        stability: development
+        type: string
+        brief: >
+          The time zone of the location, such as IANA time zone name.
+        examples: [ 'America/Argentina/Buenos_Aires' ]
+      - id: geo.location.annotation
+        type: template[string]
+        stability: development
+        brief: >
+          The annotation placed on the location, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        note: |
+          Any unique identifying information can be associated with the location.
+
+          Examples:
+
+          - `geo.location.annotation.floor` attribute with value `"1"`.
+        examples: [ '1', '2' ]

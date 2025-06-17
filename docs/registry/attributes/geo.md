@@ -13,10 +13,23 @@ Note: Geo attributes are typically used under another namespace, such as client.
 | <a id="geo-continent-code" href="#geo-continent-code">`geo.continent.code`</a> | string | Two-letter code representing continent’s name. | `AF`; `AN`; `AS` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="geo-country-iso-code" href="#geo-country-iso-code">`geo.country.iso_code`</a> | string | Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://wikipedia.org/wiki/ISO_3166-1#Codes)). | `CA` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="geo-locality-name" href="#geo-locality-name">`geo.locality.name`</a> | string | Locality name. Represents the name of a city, town, village, or similar populated place. | `Montreal`; `Berlin` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="geo-location-annotation" href="#geo-location-annotation">`geo.location.annotation.<key>`</a> | string | The annotation placed on the location, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [1] | `1`; `2` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="geo-location-lat" href="#geo-location-lat">`geo.location.lat`</a> | double | Latitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84). | `45.505918` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="geo-location-lon" href="#geo-location-lon">`geo.location.lon`</a> | double | Longitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84). | `-73.61483` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="geo-location-name" href="#geo-location-name">`geo.location.name`</a> | string | User-defined description of a location, at the level of granularity they care about. [2] | `boston-dc` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="geo-postal-code" href="#geo-postal-code">`geo.postal_code`</a> | string | Postal code associated with the location. Values appropriate for this field may also be known as a postcode or ZIP code and will vary widely from country to country. | `94040` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="geo-region-iso-code" href="#geo-region-iso-code">`geo.region.iso_code`</a> | string | Region ISO code ([ISO 3166-2](https://wikipedia.org/wiki/ISO_3166-2)). | `CA-QC` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="geo-timezone" href="#geo-timezone">`geo.timezone`</a> | string | The time zone of the location, such as IANA time zone name. | `America/Argentina/Buenos_Aires` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `geo.location.annotation.<key>`:** Any unique identifying information can be associated with the location.
+
+Examples:
+
+- `geo.location.annotation.floor` attribute with value `"1"`.
+
+**[2] `geo.location.name`:** Could be the name of their data centers, the floor number, if this describes a local physical entity, city names.
+
+Not typically used in automated geolocation.
 
 ---
 
