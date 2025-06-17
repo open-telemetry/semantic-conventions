@@ -1,4 +1,18 @@
 groups:
+  - id: registry.gcp.telemetry_control
+    type: attribute_group
+    display_name: Telemetry Control
+    brief: Attributes for controlling telemetry behavior
+    attributes:
+     - id: gcp.project_id
+       type: string
+       stability: development
+       brief: Telemetry storage project.
+       examples: ['my-project', 'other-project']
+       note: >
+        This attribute governs the destination project to which telemetry data should be routed.
+        It may differ from the "consumer" project (used for quota, billing) or the "resource" project (the
+        project containing the resource(s) on which the operation being reported was performed).
   - id: registry.gcp.resource
     type: attribute_group
     display_name: GCP Resource Attributes
@@ -33,6 +47,18 @@ groups:
           that is uniform across implementation languages. The value should be
           derived from the canonical service domain for the service; for
           example, 'foo.googleapis.com' should result in a value of 'foo'.
+        examples: ['appengine', 'run', 'firestore', 'alloydb', 'spanner']
+  - id: registry.gcp.server
+    type: attribute_group
+    display_name: GCP Server Attributes
+    brief: >
+      Attributes for Google Cloud servers.
+    attributes:
+      - id: gcp.server.service
+        type: string
+        stability: development
+        brief: Identifies the Google Cloud service that is emitting the telemetry.
+        note: Server analogue of 'gcp.client.service'.
         examples: ['appengine', 'run', 'firestore', 'alloydb', 'spanner']
   - id: registry.gcp.cloud_run
     type: attribute_group

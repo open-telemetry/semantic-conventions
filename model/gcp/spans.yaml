@@ -1,0 +1,54 @@
+groups:
+- id: gcp.span.server
+  type: span
+  span_kind: server
+  stability: development
+  brief: A server-side span emitted by GCP services.
+  attributes:
+  - ref: gcp.project_id
+    requirement_level:
+     conditionally_required:
+       Required if the data is being routed to GCP rather than exported.
+  - ref: gcp.server.service
+    requirement_level: required
+  - ref: gcp.resource.name
+    requirement_level:
+      conditionally_required:
+        Required if the operation is operating on a single GCP resource.
+  - ref: cloud.provider
+    requirement_level: required
+    note: Should always have the value 'gcp'.
+  - ref: cloud.account.id
+    requirement_level: required
+    note: Should specify the "consumer" cloud project.
+- id: gcp.span.client
+  type: span
+  span_kind: client
+  stability: development
+  brief: A client-side invocation of a GCP service.
+  attributes:
+  - ref: gcp.project_id
+    requirement_level:
+     conditionally_required:
+       Required if the data is being written to the GCP Telemetry API.
+  - ref: gcp.project_id
+    requirement_level: required
+  - ref: cloud.account.id
+    requirement_level: required
+    note: Should specify the "consumer" cloud project.
+  - ref: gcp.resource.name
+    requirement_level:
+      conditionally_required:
+        Required if the operation is operating on a single GCP resource.
+  - ref: cloud.provider
+    requirement_level:
+      conditionally_required:
+        Required if the call is being made from a cloud-based environment.
+  - ref: cloud.resource.id
+    requirement_level:
+      conditionally_required:
+       Required if the call is being made from a GCP compute environment.
+  - ref: gcp.client.service
+    requirement_level:
+     conditionally_required: >
+       Required if the call is being made by an official, Google owned library.

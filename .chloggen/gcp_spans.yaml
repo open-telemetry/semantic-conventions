@@ -1,0 +1,4 @@
+change_type: enhancement
+component: gcp
+note: Defines GCP spans, including new attributes `gcp.project_id`, `gcp.resource.name`, and `gcp.server.service`.
+issues: []

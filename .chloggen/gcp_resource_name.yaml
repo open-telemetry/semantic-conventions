@@ -1,4 +1,0 @@
-change_type: enhancement
-component: gcp
-note: Defines `gcp.resource.name` to identify the object manipulated in the operation.
-issues: [2284]
