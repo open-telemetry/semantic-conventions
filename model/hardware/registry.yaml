@@ -104,7 +104,7 @@ groups:
               value: 'failed'
               brief: 'Failed'
               stability: development
-            - id: charging`
+            - id: charging
               value: 'charging'
               brief: 'Charging'
               stability: development
