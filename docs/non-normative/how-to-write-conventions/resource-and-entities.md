@@ -112,7 +112,7 @@ There are two scenarios where entities should be defined:
   some system of record (e.g. resources in kubernetes, assets
   in a cloud).
 
-For example, ff a new clustering solution (e.g. Hashicorp's Nomad) is
+For example, if a new clustering solution (e.g. Hashicorp's Nomad) is
 defined, and existing container-based entities are not enough, then
 new entities should be defined.
 
