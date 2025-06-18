@@ -653,3 +653,341 @@ groups:
     note: |
       This metric SHOULD reflect the value of the `ready` field in the
       [K8s ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatus-v1-core).
+
+  # k8s.resourcequota.cpu.* metrics
+  - id: metric.k8s.resourcequota.cpu.limit.hard
+    type: metric
+    metric_name: k8s.resourcequota.cpu.limit.hard
+    stability: development
+    brief: |
+      The CPU limits in a specific namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{cpu}"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.cpu.limit.used
+    type: metric
+    metric_name: k8s.resourcequota.cpu.limit.used
+    stability: development
+    brief: |
+      The CPU limits in a specific namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{cpu}"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.cpu.request.hard
+    type: metric
+    metric_name: k8s.resourcequota.cpu.request.hard
+    stability: development
+    brief: |
+      The CPU requests in a specific namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{cpu}"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.cpu.request.used
+    type: metric
+    metric_name: k8s.resourcequota.cpu.request.used
+    stability: development
+    brief: |
+      The CPU requests in a specific namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{cpu}"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+
+  # k8s.resourcequota.memory.* metrics
+  - id: metric.k8s.resourcequota.memory.limit.hard
+    type: metric
+    metric_name: k8s.resourcequota.memory.limit.hard
+    stability: development
+    brief: |
+      The memory limits in a specific namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.memory.limit.used
+    type: metric
+    metric_name: k8s.resourcequota.memory.limit.used
+    stability: development
+    brief: |
+      The memory limits in a specific namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.memory.request.hard
+    type: metric
+    metric_name: k8s.resourcequota.memory.request.hard
+    stability: development
+    brief: |
+      The memory requests in a specific namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.memory.request.used
+    type: metric
+    metric_name: k8s.resourcequota.memory.request.used
+    stability: development
+    brief: |
+      The memory requests in a specific namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+
+  # k8s.resourcequota.hugepage_count.* metrics
+  - id: metric.k8s.resourcequota.hugepage_count.request.hard
+    type: metric
+    metric_name: k8s.resourcequota.hugepage_count.request.hard
+    stability: development
+    brief: |
+      The huge page requests in a specific namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{hugepage}"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+    attributes:
+      - ref: k8s.hugepage.size
+        requirement_level: required
+  - id: metric.k8s.resourcequota.hugepage_count.request.used
+    type: metric
+    metric_name: k8s.resourcequota.hugepage_count.request.used
+    stability: development
+    brief: |
+      The huge page requests in a specific namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{hugepage}"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+    attributes:
+      - ref: k8s.hugepage.size
+        requirement_level: required
+
+  # k8s.resourcequota.storage.* metrics
+  - id: metric.k8s.resourcequota.storage.request.hard
+    type: metric
+    metric_name: k8s.resourcequota.storage.request.hard
+    stability: development
+    brief: |
+      The storage requests in a specific namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+
+      The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+      storage class.
+    attributes:
+      - ref: k8s.storageclass.name
+        requirement_level:
+          conditionally_required: |
+            The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+            storage class.
+  - id: metric.k8s.resourcequota.storage.request.used
+    type: metric
+    metric_name: k8s.resourcequota.storage.request.used
+    stability: development
+    brief: |
+      The storage requests in a specific namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+
+      The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+      storage class.
+    attributes:
+      - ref: k8s.storageclass.name
+        requirement_level:
+          conditionally_required: |
+            The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+            storage class.
+
+  # k8s.resourcequota.persistentvolumeclaim_count.* metrics
+  - id: metric.k8s.resourcequota.persistentvolumeclaim_count.hard
+    type: metric
+    metric_name: k8s.resourcequota.persistentvolumeclaim_count.hard
+    stability: development
+    brief: |
+      The total number of PersistentVolumeClaims that can exist in the namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{persistentvolumeclaim}"
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+
+      The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+      storage class.
+    attributes:
+      - ref: k8s.storageclass.name
+        requirement_level:
+          conditionally_required: |
+            The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+            storage class.
+  - id: metric.k8s.resourcequota.persistentvolumeclaim_count.used
+    type: metric
+    metric_name: k8s.resourcequota.persistentvolumeclaim_count.used
+    stability: development
+    brief: |
+      The total number of PersistentVolumeClaims that can exist in the namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{persistentvolumeclaim}"
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+
+      The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+      storage class.
+    attributes:
+      - ref: k8s.storageclass.name
+        requirement_level:
+          conditionally_required: |
+            The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+            storage class.
+
+  # k8s.resourcequota.ephemeral_storage.* metrics
+  - id: metric.k8s.resourcequota.ephemeral_storage.request.hard
+    type: metric
+    metric_name: k8s.resourcequota.ephemeral_storage.request.hard
+    stability: development
+    brief: |
+      The sum of local ephemeral storage requests in the namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.ephemeral_storage.request.used
+    type: metric
+    metric_name: k8s.resourcequota.ephemeral_storage.request.used
+    stability: development
+    brief: |
+      The sum of local ephemeral storage requests in the namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.ephemeral_storage.limit.hard
+    type: metric
+    metric_name: k8s.resourcequota.ephemeral_storage.limit.hard
+    stability: development
+    brief: |
+      The sum of local ephemeral storage limits in the namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.ephemeral_storage.limit.used
+    type: metric
+    metric_name: k8s.resourcequota.ephemeral_storage.limit.used
+    stability: development
+    brief: |
+      The sum of local ephemeral storage limits in the namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+
+  # k8s.resourcequota.object_count metric
+  - id: metric.k8s.resourcequota.object_count.hard
+    type: metric
+    metric_name: k8s.resourcequota.object_count.hard
+    stability: development
+    brief: |
+      The object count limits in a specific namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{object}"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+    attributes:
+      - ref: k8s.resourcequota.resource_name
+        requirement_level: required
+  - id: metric.k8s.resourcequota.object_count.used
+    type: metric
+    metric_name: k8s.resourcequota.object_count.used
+    stability: development
+    brief: |
+      The object count limits in a specific namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{object}"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+    attributes:
+      - ref: k8s.resourcequota.resource_name
+        requirement_level: required
