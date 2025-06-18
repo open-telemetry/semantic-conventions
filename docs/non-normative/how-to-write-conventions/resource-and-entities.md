@@ -128,7 +128,7 @@ An "is-a" relationship denotes that one entity is describing the exact
 same system component as another entity, but from a different domain. In
 the above example, `k8s.container` models containers from the kubernetes
 domain, while `container` is a general model for containers, regardless
-of how they are run (e.g. podmon, docker, kubernetes, FAAS, etc.)
+of how they are run (e.g. podman, docker, kubernetes, FAAS, etc.)
 
 "is-a" relationships denote this relationship in entities allowing
 OpenTelemetry to fully model a subset of entities (e.g. all known
