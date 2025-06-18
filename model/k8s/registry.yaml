@@ -524,3 +524,9 @@ groups:
           or
           [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core)
         examples: ['ContainerCreating', 'CrashLoopBackOff', 'CreateContainerConfigError', 'ErrImagePull', 'ImagePullBackOff', 'OOMKilled', 'Completed', 'Error', 'ContainerCannotRun']
+      - id: k8s.container.ports
+        type: int[]
+        stability: development
+        brief: >
+          List of ports to expose from the container.
+        examples: [[10053], [8080, 8081]]
