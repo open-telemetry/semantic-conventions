@@ -100,6 +100,7 @@ body:
         - area:v8js
         - area:vcs
         - area:webengine
+        - area:workflow
         - area:zos
         # End semconv area list
   - type: textarea

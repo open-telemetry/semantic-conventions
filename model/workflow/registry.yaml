@@ -1,0 +1,276 @@
+groups:
+  - id: registry.workflow
+    type: attribute_group
+    brief: >
+      Workflows seek to describe the execution of one ore more tasks to achieve an end result.
+
+      Workflows can be used to describe cicd, deployments, generic jobs or even cron jobs.
+    attributes:
+      - id: workflow.id
+        stability: development
+        type: string
+        brief: >
+          Unique ID for this workflow which can be used to correlate multiple executions of this workflow.
+        examples: [ '5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66' ]
+      - id: workflow.name
+        stability: development
+        type: string
+        brief: >
+          Name of the workflow
+        examples: [ 'Build and deploy application' ]
+      - id: workflow.execution.id
+        stability: development
+        type: string
+        brief: >
+          Unique ID for this execution of the workflow and will be shared across all the task runs.
+        examples: [ '5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66' ]
+      - id: workflow.execution.result
+        type:
+          members:
+            - id: success
+              value: success
+              brief: "The task run finished successfully."
+              stability: development
+            - id: failure
+              value: failure
+              brief: >-
+                The task run did not finish successfully, eg. due to a compile error or a failing test.
+                Such failures are usually detected by non-zero exit codes of the tools executed in the task run.
+              stability: development
+            - id: error
+              value: error
+              brief: >-
+                The task run failed due to an error in the CICD system, eg. due to the worker being killed.
+              stability: development
+            - id: timeout
+              value: timeout
+              brief: "A timeout caused the task run to be interrupted."
+              stability: development
+            - id: cancellation
+              value: cancellation
+              brief: "The task run was cancelled, eg. by a user manually cancelling the task run."
+              stability: development
+            - id: skip
+              value: skip
+              brief: "The task run was skipped, eg. due to a precondition not being met."
+              stability: development
+        stability: development
+        brief: >
+          The result of a task run.
+        examples: ["success", "failure", "timeout", "skipped"]
+      - id: workflow.execution.state
+        type:
+          members:
+            - id: pending
+              value: pending
+              brief: >
+                The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
+              stability: development
+            - id: executing
+              value: executing
+              brief: The executing state spans the execution of any run tasks (eg. build, test).
+              stability: development
+            - id: finalizing
+              value: finalizing
+              brief: The finalizing state spans from when the run has finished executing (eg. cleanup of run resources).
+              stability: development
+        stability: development
+        brief: >
+          The pipeline run goes through these states during its lifecycle.
+        examples: ["pending", "executing", "finalizing"]
+      - id: workflow.execution.url.full
+        type: string
+        stability: development
+        brief: >
+          The [URL](https://wikipedia.org/wiki/URL) of the pipeline run,
+          providing the complete address in order to locate and identify the pipeline run.
+        examples:
+          [
+            "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075",
+          ]
+      - id: workflow.platform.product
+        stability: development
+        type:
+          members:
+            - id: 'hangfire'
+              stability: development
+              value: 'hangfire'
+              brief: 'Hangfire'
+            - id: 'k8s'
+              stability: development
+              value: 'k8s'
+              brief: 'Kubernetes'
+            - id: 'quartz'
+              stability: development
+              value: 'quartz'
+              brief: 'Quartz'
+        brief: >
+          The product being used to co-ordinate the execution of the tasks.
+        examples: [ 'k8s' ]
+      - id: workflow.task.id
+        stability: development
+        type: string
+        brief: >
+          Unique ID for this task which can be used to correlate multiple executions of this task.
+        examples: [ '5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66' ]
+      - id: workflow.task.category
+        type:
+          members:
+            - id: deployment
+              value: deployment
+              brief: >
+                Software is being deployed by this task.
+              stability: development
+            - id: build
+              value: build
+              brief: >
+                Software is being built by this task.
+              stability: development
+            - id: test
+              value: test
+              brief: >
+                Software is being tested by this task.
+              stability: development
+        stability: development
+        brief: >
+          The pipeline run goes through these states during its lifecycle.
+        examples: ["pending", "executing", "finalizing"]
+      - id: workflow.task.name
+        stability: development
+        type: string
+        brief: >
+          Name of the task
+        examples: [ 'Build application' ]
+      - id: workflow.task.run.id
+        stability: development
+        type: string
+        brief: >
+          Unique ID for this execution of the workflow and will be shared across all the task runs.
+        examples: [ '5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66' ]
+      - id: workflow.task.run.result
+        type:
+          members:
+            - id: success
+              value: success
+              brief: "The task run finished successfully."
+              stability: development
+            - id: failure
+              value: failure
+              brief: >-
+                The task run did not finish successfully, eg. due to a compile error or a failing test.
+                Such failures are usually detected by non-zero exit codes of the tools executed in the task run.
+              stability: development
+            - id: error
+              value: error
+              brief: >-
+                The task run failed due to an error in the CICD system, eg. due to the worker being killed.
+              stability: development
+            - id: timeout
+              value: timeout
+              brief: "A timeout caused the task run to be interrupted."
+              stability: development
+            - id: cancellation
+              value: cancellation
+              brief: "The task run was cancelled, eg. by a user manually cancelling the task run."
+              stability: development
+            - id: skip
+              value: skip
+              brief: "The task run was skipped, eg. due to a precondition not being met."
+              stability: development
+        stability: development
+        brief: >
+          The result of a task run.
+        examples: ["success", "failure", "timeout", "skipped"]
+      - id: workflow.task.run.state
+        type:
+          members:
+            - id: pending
+              value: pending
+              brief: >
+                The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
+              stability: development
+            - id: executing
+              value: executing
+              brief: The executing state spans the execution of any run tasks (eg. build, test).
+              stability: development
+            - id: finalizing
+              value: finalizing
+              brief: The finalizing state spans from when the run has finished executing (eg. cleanup of run resources).
+              stability: development
+        stability: development
+        brief: >
+          The pipeline run goes through these states during its lifecycle.
+        examples: ["pending", "executing", "finalizing"]
+      - id: workflow.task.run.url.full
+        type: string
+        stability: development
+        brief: >
+          The [URL](https://wikipedia.org/wiki/URL) of the pipeline run,
+          providing the complete address in order to locate and identify the pipeline run.
+        examples:
+          [
+            "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075",
+          ]
+      - id: workflow.task.url.full
+        type: string
+        stability: development
+        brief: >
+          The [URL](https://wikipedia.org/wiki/URL) of the task,
+          providing the complete address in order to locate and identify the task.
+        examples:
+          [
+            "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075",
+          ]
+      - id: workflow.task.version
+        stability: development
+        type: string
+        brief: >
+          Version of the task
+        examples: [ '2.1' ]
+      - id: workflow.trigger.id
+        stability: development
+        type: string
+        brief: >
+          Unique ID for this trigger which can be used to correlate trigger usage
+        examples: [ '5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66' ]
+      - id: workflow.trigger.name
+        stability: development
+        type: string
+        brief: >
+          Name of the trigger
+        examples: [ 'Nightly build' ]
+      - id: workflow.trigger.schedule
+        type: string
+        stability: development
+        brief: >
+          A string containing the schedule period as
+          [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm).
+        examples: "0/5 * * * ? *"
+      - id: workflow.trigger.type
+        stability: development
+        type: string
+        brief: >
+          Type of trigger that was called
+        examples: [ 'cron' ]
+      - id: workflow.type
+        stability: development
+        type: string
+        brief: >
+          Type of the workflow
+        examples: [ 'DSL' ]
+      - id: workflow.url.full
+        type: string
+        stability: development
+        brief: >
+          The [URL](https://wikipedia.org/wiki/URL) of the workflow,
+          providing the complete address in order to locate and identify the workflow.
+        examples:
+          [
+            "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075",
+          ]
+      - id: workflow.version
+        stability: development
+        type: string
+        brief: >
+          Version of the workflow
+        examples: [ '2.1' ]
