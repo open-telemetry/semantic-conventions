@@ -1,0 +1,114 @@
+groups:
+  - id: attribute.event.workflow.execution
+    type: attribute_group
+    brief: >
+    note: >
+    attributes:
+      - ref: workflow.id
+        requirement_level: required
+      - ref: workflow.name
+        requirement_level: recommended
+      - ref: workflow.execution.id
+        requirement_level: required
+      - ref: workflow.platform.product
+        requirement_level: required
+      - ref: workflow.trigger.type
+        requirement_level: required
+      - ref: container.id
+        requirement_level: opt_in
+      - ref: container.name
+        requirement_level: opt_in
+      - ref: host.id
+        requirement_level: recommended
+      - ref: host.name
+        requirement_level: recommended
+  - id: attribute.event.workflow.taskrun
+    type: attribute_group
+    extends: attribute.event.workflow.execution
+    brief: >
+    note: >
+    attributes:
+      - ref: workflow.task.run.id
+        requirement_level: required
+      - ref: workflow.task.id
+        requirement_level: required
+      - ref: workflow.task.name
+        requirement_level: recommended
+  - id: attribute.metric.workflow.execution
+    type: attribute_group
+    brief: >
+    note: >
+    attributes:
+      - ref: container.name
+        requirement_level: opt_in
+      - ref: host.name
+        requirement_level: recommended
+      - ref: workflow.name
+        requirement_level: required
+      - ref: workflow.platform.product
+      - ref: workflow.trigger.type
+        requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the workflow execution failed.
+  - id: attribute.metric.workflow.taskrun
+    type: attribute_group
+    brief: >
+    note: >
+    attributes:
+      - ref: container.name
+        requirement_level: opt_in
+      - ref: host.name
+        requirement_level: recommended
+      - ref: workflow.task.name
+        requirement_level: required
+      - ref: workflow.platform.product
+      - ref: workflow.task.category
+      - ref: workflow.trigger.type
+        requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the task run failed.
+  - id: attribute.span.workflow.execution
+    type: attribute_group
+    brief: >
+        Defines minimal set of attributes used by k8s jobs
+    attributes:
+      - ref: workflow.id
+        requirement_level: required
+      - ref: workflow.name
+        requirement_level: recommended
+      - ref: workflow.execution.id
+        requirement_level: required
+      - ref: workflow.execution.url.full
+        requirement_level: opt_in
+      - ref: workflow.platform.product
+        requirement_level: required
+      - ref: workflow.trigger.type
+        requirement_level: required
+      - ref: workflow.url.full
+        requirement_level: opt_in
+      - ref: container.id
+        requirement_level: opt_in
+      - ref: container.name
+        requirement_level: opt_in
+      - ref: host.id
+        requirement_level: recommended
+      - ref: host.name
+        requirement_level: recommended
+  - id: attribute.span.workflow.taskrun
+    type: attribute_group
+    extends: attribute.span.workflow.execution
+    brief: >
+        Defines minimal set of attributes used by k8s jobs
+    attributes:
+      - ref: workflow.task.id
+        requirement_level: required
+      - ref: workflow.task.name
+        requirement_level: recommended
+      - ref: workflow.task.run.id
+        requirement_level: required
+      - ref: workflow.task.run.url.full
+        requirement_level: opt_in
+      - ref: workflow.task.url.full
+        requirement_level: opt_in

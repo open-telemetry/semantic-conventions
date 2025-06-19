@@ -40,38 +40,14 @@ The event name MUST be `workflow.execution.k8s.result`.
 |---|---|---|---|---|---|
 | [`workflow.execution.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this execution of the workflow and will be shared across all the task runs. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.execution.result`](/docs/registry/attributes/workflow.md) | string | The result of a task run. | `success`; `failure`; `timeout`; `skipped` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this workflow which can be used to correlate multiple executions of this workflow. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.id`](/docs/registry/attributes/workflow.md) | string | The UID of the k8s CronJob/Job. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.trigger.type`](/docs/registry/attributes/workflow.md) | string | Type of trigger that was called | `cron` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.cluster.name`](/docs/registry/attributes/k8s.md) | string | The name of the cluster. | `opentelemetry-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.cluster.uid`](/docs/registry/attributes/k8s.md) | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | string | The name of the namespace that the pod is running in. | `default` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.node.name`](/docs/registry/attributes/k8s.md) | string | The name of the Node. | `node-1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.node.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.name`](/docs/registry/attributes/workflow.md) | string | Name of the workflow | `Build and deploy application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[1] `k8s.cluster.uid`:** K8s doesn't have support for obtaining a cluster ID. If this is ever
-added, we will recommend collecting the `k8s.cluster.uid` through the
-official APIs. In the meantime, we are able to use the `uid` of the
-`kube-system` namespace as a proxy for cluster ID. Read on for the
-rationale.
-
-Every object created in a K8s cluster is assigned a distinct UID. The
-`kube-system` namespace is used by Kubernetes itself and will exist
-for the lifetime of the cluster. Using the `uid` of the `kube-system`
-namespace is a reasonable proxy for the K8s ClusterID as it will only
-change if the cluster is rebuilt. Furthermore, Kubernetes UIDs are
-UUIDs as standardized by
-[ISO/IEC 9834-8 and ITU-T X.667](https://www.itu.int/ITU-T/studygroups/com17/oid.html).
-Which states:
-
-> If generated according to one of the mechanisms defined in Rec.
-> ITU-T X.667 | ISO/IEC 9834-8, a UUID is either guaranteed to be
-> different from all other UUIDs generated before 3603 A.D., or is
-> extremely likely to be different (depending on the mechanism chosen).
-
-Therefore, UIDs between clusters should be extremely unlikely to
-conflict.
+| [`host.id`](/docs/registry/attributes/host.md) | string | Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system. | `fdbf79e8af94cb7f9e8df36789187052` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.name`](/docs/registry/attributes/workflow.md) | string | The name of the k8s CronJob/Job. | `Build and deploy application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`container.id`](/docs/registry/attributes/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -120,38 +96,14 @@ The event name MUST be `workflow.execution.k8s.state`.
 |---|---|---|---|---|---|
 | [`workflow.execution.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this execution of the workflow and will be shared across all the task runs. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.execution.state`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this workflow which can be used to correlate multiple executions of this workflow. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.id`](/docs/registry/attributes/workflow.md) | string | The UID of the k8s CronJob/Job. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.trigger.type`](/docs/registry/attributes/workflow.md) | string | Type of trigger that was called | `cron` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.cluster.name`](/docs/registry/attributes/k8s.md) | string | The name of the cluster. | `opentelemetry-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.cluster.uid`](/docs/registry/attributes/k8s.md) | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | string | The name of the namespace that the pod is running in. | `default` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.node.name`](/docs/registry/attributes/k8s.md) | string | The name of the Node. | `node-1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.node.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.name`](/docs/registry/attributes/workflow.md) | string | Name of the workflow | `Build and deploy application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[1] `k8s.cluster.uid`:** K8s doesn't have support for obtaining a cluster ID. If this is ever
-added, we will recommend collecting the `k8s.cluster.uid` through the
-official APIs. In the meantime, we are able to use the `uid` of the
-`kube-system` namespace as a proxy for cluster ID. Read on for the
-rationale.
-
-Every object created in a K8s cluster is assigned a distinct UID. The
-`kube-system` namespace is used by Kubernetes itself and will exist
-for the lifetime of the cluster. Using the `uid` of the `kube-system`
-namespace is a reasonable proxy for the K8s ClusterID as it will only
-change if the cluster is rebuilt. Furthermore, Kubernetes UIDs are
-UUIDs as standardized by
-[ISO/IEC 9834-8 and ITU-T X.667](https://www.itu.int/ITU-T/studygroups/com17/oid.html).
-Which states:
-
-> If generated according to one of the mechanisms defined in Rec.
-> ITU-T X.667 | ISO/IEC 9834-8, a UUID is either guaranteed to be
-> different from all other UUIDs generated before 3603 A.D., or is
-> extremely likely to be different (depending on the mechanism chosen).
-
-Therefore, UIDs between clusters should be extremely unlikely to
-conflict.
+| [`host.id`](/docs/registry/attributes/host.md) | string | Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system. | `fdbf79e8af94cb7f9e8df36789187052` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.name`](/docs/registry/attributes/workflow.md) | string | The name of the k8s CronJob/Job. | `Build and deploy application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`container.id`](/docs/registry/attributes/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -199,40 +151,16 @@ The event name MUST be `workflow.taskrun.k8s.result`.
 | [`workflow.execution.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this execution of the workflow and will be shared across all the task runs. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this workflow which can be used to correlate multiple executions of this workflow. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.task.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this task which can be used to correlate multiple executions of this task. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.task.id`](/docs/registry/attributes/workflow.md) | string | The UID of the k8s CronJob/Job. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.task.run.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this execution of the workflow and will be shared across all the task runs. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.task.run.result`](/docs/registry/attributes/workflow.md) | string | The result of a task run. | `success`; `failure`; `timeout`; `skipped` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.trigger.type`](/docs/registry/attributes/workflow.md) | string | Type of trigger that was called | `cron` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.cluster.name`](/docs/registry/attributes/k8s.md) | string | The name of the cluster. | `opentelemetry-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.cluster.uid`](/docs/registry/attributes/k8s.md) | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | string | The name of the namespace that the pod is running in. | `default` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.node.name`](/docs/registry/attributes/k8s.md) | string | The name of the Node. | `node-1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.node.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`host.id`](/docs/registry/attributes/host.md) | string | Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system. | `fdbf79e8af94cb7f9e8df36789187052` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.name`](/docs/registry/attributes/workflow.md) | string | Name of the workflow | `Build and deploy application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.task.name`](/docs/registry/attributes/workflow.md) | string | Name of the task | `Build application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[1] `k8s.cluster.uid`:** K8s doesn't have support for obtaining a cluster ID. If this is ever
-added, we will recommend collecting the `k8s.cluster.uid` through the
-official APIs. In the meantime, we are able to use the `uid` of the
-`kube-system` namespace as a proxy for cluster ID. Read on for the
-rationale.
-
-Every object created in a K8s cluster is assigned a distinct UID. The
-`kube-system` namespace is used by Kubernetes itself and will exist
-for the lifetime of the cluster. Using the `uid` of the `kube-system`
-namespace is a reasonable proxy for the K8s ClusterID as it will only
-change if the cluster is rebuilt. Furthermore, Kubernetes UIDs are
-UUIDs as standardized by
-[ISO/IEC 9834-8 and ITU-T X.667](https://www.itu.int/ITU-T/studygroups/com17/oid.html).
-Which states:
-
-> If generated according to one of the mechanisms defined in Rec.
-> ITU-T X.667 | ISO/IEC 9834-8, a UUID is either guaranteed to be
-> different from all other UUIDs generated before 3603 A.D., or is
-> extremely likely to be different (depending on the mechanism chosen).
-
-Therefore, UIDs between clusters should be extremely unlikely to
-conflict.
+| [`workflow.task.name`](/docs/registry/attributes/workflow.md) | string | The name of the k8s CronJob/Job. | `Build application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`container.id`](/docs/registry/attributes/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -282,40 +210,16 @@ The event name MUST be `workflow.taskrun.k8s.state`.
 | [`workflow.execution.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this execution of the workflow and will be shared across all the task runs. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this workflow which can be used to correlate multiple executions of this workflow. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.task.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this task which can be used to correlate multiple executions of this task. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.task.id`](/docs/registry/attributes/workflow.md) | string | The UID of the k8s CronJob/Job. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.task.run.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this execution of the workflow and will be shared across all the task runs. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.task.run.state`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.trigger.type`](/docs/registry/attributes/workflow.md) | string | Type of trigger that was called | `cron` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.cluster.name`](/docs/registry/attributes/k8s.md) | string | The name of the cluster. | `opentelemetry-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.cluster.uid`](/docs/registry/attributes/k8s.md) | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | string | The name of the namespace that the pod is running in. | `default` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.node.name`](/docs/registry/attributes/k8s.md) | string | The name of the Node. | `node-1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.node.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`host.id`](/docs/registry/attributes/host.md) | string | Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system. | `fdbf79e8af94cb7f9e8df36789187052` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.name`](/docs/registry/attributes/workflow.md) | string | Name of the workflow | `Build and deploy application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.task.name`](/docs/registry/attributes/workflow.md) | string | Name of the task | `Build application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[1] `k8s.cluster.uid`:** K8s doesn't have support for obtaining a cluster ID. If this is ever
-added, we will recommend collecting the `k8s.cluster.uid` through the
-official APIs. In the meantime, we are able to use the `uid` of the
-`kube-system` namespace as a proxy for cluster ID. Read on for the
-rationale.
-
-Every object created in a K8s cluster is assigned a distinct UID. The
-`kube-system` namespace is used by Kubernetes itself and will exist
-for the lifetime of the cluster. Using the `uid` of the `kube-system`
-namespace is a reasonable proxy for the K8s ClusterID as it will only
-change if the cluster is rebuilt. Furthermore, Kubernetes UIDs are
-UUIDs as standardized by
-[ISO/IEC 9834-8 and ITU-T X.667](https://www.itu.int/ITU-T/studygroups/com17/oid.html).
-Which states:
-
-> If generated according to one of the mechanisms defined in Rec.
-> ITU-T X.667 | ISO/IEC 9834-8, a UUID is either guaranteed to be
-> different from all other UUIDs generated before 3603 A.D., or is
-> extremely likely to be different (depending on the mechanism chosen).
-
-Therefore, UIDs between clusters should be extremely unlikely to
-conflict.
+| [`workflow.task.name`](/docs/registry/attributes/workflow.md) | string | The name of the k8s CronJob/Job. | `Build application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`container.id`](/docs/registry/attributes/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

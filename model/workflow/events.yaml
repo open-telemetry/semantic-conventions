@@ -3,111 +3,63 @@ groups:
     type: event
     name: workflow.execution.k8s.result
     stability: development
+    extends: attribute.event.workflow.execution
     brief: >
     note: >
     attributes:
       - ref: workflow.id
-        requirement_level: required
+        brief: "The UID of the k8s CronJob/Job."
       - ref: workflow.name
-        requirement_level: recommended
-      - ref: workflow.execution.id
-        requirement_level: required
+        brief: "The name of the k8s CronJob/Job."
       - ref: workflow.platform.product
-        requirement_level: required
         examples: "k8s"
       - ref: workflow.execution.result
         requirement_level: required
-      - ref: workflow.trigger.type
-        requirement_level: required
-      - ref: k8s.cluster.name
-      - ref: k8s.cluster.uid
-      - ref: k8s.namespace.name
-      - ref: k8s.node.uid
-      - ref: k8s.node.name
   - id: event.workflow.execution.k8s.state
     type: event
     name: workflow.execution.k8s.state
     stability: development
+    extends: attribute.event.workflow.execution
     brief: >
     note: >
     attributes:
       - ref: workflow.id
-        requirement_level: required
+        brief: "The UID of the k8s CronJob/Job."
       - ref: workflow.name
-        requirement_level: recommended
-      - ref: workflow.execution.id
-        requirement_level: required
+        brief: "The name of the k8s CronJob/Job."
       - ref: workflow.platform.product
-        requirement_level: required
         examples: "k8s"
       - ref: workflow.execution.state
         requirement_level: required
-      - ref: workflow.trigger.type
-        requirement_level: required
-      - ref: k8s.cluster.name
-      - ref: k8s.cluster.uid
-      - ref: k8s.namespace.name
-      - ref: k8s.node.uid
-      - ref: k8s.node.name
   - id: event.workflow.taskrun.k8s.result
     type: event
     name: workflow.taskrun.k8s.result
     stability: development
+    extends: attribute.event.workflow.taskrun
     brief: >
     note: >
     attributes:
-      - ref: workflow.id
-        requirement_level: required
-      - ref: workflow.name
-        requirement_level: recommended
-      - ref: workflow.task.run.id
-        requirement_level: required
       - ref: workflow.task.id
-        requirement_level: required
+        brief: "The UID of the k8s CronJob/Job."
       - ref: workflow.task.name
-        requirement_level: recommended
-      - ref: workflow.execution.id
-        requirement_level: required
+        brief: "The name of the k8s CronJob/Job."
       - ref: workflow.platform.product
-        requirement_level: required
         examples: "k8s"
       - ref: workflow.task.run.result
         requirement_level: required
-      - ref: workflow.trigger.type
-        requirement_level: required
-      - ref: k8s.cluster.name
-      - ref: k8s.cluster.uid
-      - ref: k8s.namespace.name
-      - ref: k8s.node.uid
-      - ref: k8s.node.name
   - id: event.workflow.taskrun.k8s.state
     type: event
     name: workflow.taskrun.k8s.state
+    extends: attribute.event.workflow.taskrun
     stability: development
     brief: >
     note: >
     attributes:
-      - ref: workflow.id
-        requirement_level: required
-      - ref: workflow.name
-        requirement_level: recommended
-      - ref: workflow.task.run.id
-        requirement_level: required
       - ref: workflow.task.id
-        requirement_level: required
+        brief: "The UID of the k8s CronJob/Job."
       - ref: workflow.task.name
-        requirement_level: recommended
-      - ref: workflow.execution.id
-        requirement_level: required
+        brief: "The name of the k8s CronJob/Job."
       - ref: workflow.platform.product
-        requirement_level: required
         examples: "k8s"
       - ref: workflow.task.run.state
         requirement_level: required
-      - ref: workflow.trigger.type
-        requirement_level: required
-      - ref: k8s.cluster.name
-      - ref: k8s.cluster.uid
-      - ref: k8s.namespace.name
-      - ref: k8s.node.uid
-      - ref: k8s.node.name

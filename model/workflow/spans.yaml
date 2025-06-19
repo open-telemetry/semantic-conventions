@@ -1,70 +1,61 @@
 groups:
-  - id: attribute.workflow.k8s.task.minimal
-    type: attribute_group
-    stability: development
-    brief: >
-        Defines minimal set of attributes used by k8s jobs
-    attributes:
-      - ref: workflow.task.id
-        requirement_level: required
-        brief: "This will be the same as workflow.id."
-      - ref: workflow.task.name
-        requirement_level: recommended
-        brief: "This will be the same as workflow.name."
-      - ref: workflow.execution.id
-        requirement_level: required
-      - ref: workflow.platform.product
-        requirement_level: required
-        examples: "k8s"
-      - ref: workflow.task.run.id
-        requirement_level: required
-      - ref: workflow.task.run.url.full
-        requirement_level: opt_in
-      - ref: workflow.task.url.full
-        requirement_level: opt_in
-      - ref: k8s.cluster.name
-      - ref: k8s.cluster.uid
-      - ref: k8s.namespace.name
-      - ref: k8s.node.uid
-      - ref: k8s.node.name
-
   - id: span.workflow.k8s.task.cronjob.client
     type: span
     span_kind: client
     stability: development
-    extends: attribute.workflow.k8s.task.minimal
+    extends: attribute.span.workflow.taskrun
     brief: >
       Used to describe Kubernetes cronjobs
     attributes:
       - ref: workflow.id
-        requirement_level: required
         brief: "The UID of the k8s CronJob."
       - ref: workflow.name
-        requirement_level: recommended
         brief: "The name of the k8s CronJob."
-      - ref: workflow.url.full
-        requirement_level: opt_in
+      - ref: workflow.task.id
+        brief: "The UID of the k8s CronJob."
+      - ref: workflow.task.name
+        brief: "The name of the k8s CronJob."
       - ref: workflow.trigger.type
-        requirement_level: required
         examples: "cron"
       - ref: workflow.trigger.schedule
+      - ref: host.id
+        brief: >
+          The UID of the k8s Node.
+      - ref: host.name
+        brief: >
+          The name of the k8s Node.
+      - ref: container.name
+        brief: >
+          The name of the Container from Pod specification, must be unique
+          within a Pod. Container runtime usually uses different globally unique
+          name (`container.name`).
+        examples: ['redis']
 
   - id: span.workflow.k8s.task.job.client
     type: span
     span_kind: client
     stability: development
-    extends: attribute.workflow.k8s.task.minimal
+    extends: attribute.span.workflow.taskrun
     brief: >
       Used to describe Kubernetes cronjobs
     attributes:
       - ref: workflow.id
-        requirement_level: required
         brief: "The UID of the k8s Job."
-      - ref: workflow.url.full
-        requirement_level: opt_in
       - ref: workflow.name
-        requirement_level: recommended
         brief: "The name of the k8s Job."
-      - ref: workflow.trigger.type
-        requirement_level: required
-        examples: "manual"
+      - ref: workflow.task.id
+        brief: "The UID of the k8s Job."
+      - ref: workflow.task.name
+        brief: "The name of the k8s Job."
+      - ref: host.id
+        brief: >
+          The UID of the k8s Node.
+      - ref: host.name
+        brief: >
+          The name of the k8s Node.
+      - ref: container.name
+        brief: >
+          The name of the Container from Pod specification, must be unique
+          within a Pod. Container runtime usually uses different globally unique
+          name (`container.name`).
+        examples: ['redis']
