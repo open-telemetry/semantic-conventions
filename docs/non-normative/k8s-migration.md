@@ -61,6 +61,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Container metrics](#k8s-container-metrics)
   - [K8s ResourceQuota metrics](#k8s-resourcequota-metrics)
   - [K8s Node condition metrics](#k8s-node-condition-metrics)
+  - [K8s Filestystem metrics](#k8s-filestystem-metrics)
 
 <!-- tocstop -->
 
@@ -368,5 +369,30 @@ The changes in their metrics are the following:
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                                                                  |
 |------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `k8s.node.condition_*`                                                             | `k8s.node.condition.status` metric [0,1] with attribute `k8s.node.condition.type` for the different conditions and `k8s.node.condition.status` for true/false/unknown |
+
+<!-- prettier-ignore-end -->
+
+### K8s Filestystem metrics
+
+The K8s Filesystem metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#2392](https://github.com/open-telemetry/semantic-conventions/pull/2392)
+
+The changes in their metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                                                                  |
+|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `k8s.node.filesystem.available` gauge                                              | `k8s.node.filesystem.available` updowncounter |
+| `k8s.node.filesystem.capacity`   gauge                                             | `k8s.node.filesystem.capacity`  updowncounter |
+| `k8s.node.filesystem.usage`      gauge                                             | `k8s.node.filesystem.usage`     updowncounter |
+| `k8s.pod.filesystem.available`   gauge                                             | `k8s.pod.filesystem.available`     updowncounter |
+| `k8s.pod.filesystem.capacity`    gauge                                                  | `k8s.pod.filesystem.capacity`   updowncounter |
+| `k8s.pod.filesystem.usage`      gauge                                                   | `k8s.pod.filesystem.usage`      updowncounter |
+| `container.filesystem.available`    gauge                                               | `container.filesystem.available`   updowncounter |
+| `container.filesystem.capacity`      gauge                                              | `container.filesystem.capacity`    updowncounter |
+| `container.filesystem.usage`        gauge                                               | `container.filesystem.usage`       updowncounter |
 
 <!-- prettier-ignore-end -->

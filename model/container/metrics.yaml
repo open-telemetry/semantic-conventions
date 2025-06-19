@@ -102,3 +102,56 @@ groups:
     attributes:
       - ref: network.io.direction
       - ref: network.interface.name
+
+  # container.filesystem.* metrics
+  - id: metric.container.filesystem.available
+    type: metric
+    metric_name: container.filesystem.available
+    stability: development
+    brief: "Container filesystem available"
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - container
+    note: |
+      In K8s, this metric is derived from the
+      [FsStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [ContainerStats.Rootfs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#ContainerStats)
+      of the Kubelet's stats API.
+  - id: metric.container.filesystem.capacity
+    type: metric
+    metric_name: container.filesystem.capacity
+    stability: development
+    brief: "Container filesystem capacity"
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - container
+    note: |
+      In K8s, this metric is derived from the
+      [FsStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [ContainerStats.Rootfs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#ContainerStats)
+      of the Kubelet's stats API.
+  - id: metric.container.filesystem.usage
+    type: metric
+    metric_name: container.filesystem.usage
+    stability: development
+    brief: "Container filesystem usage"
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - container
+    note: |
+      In K8s, this metric is derived from the
+      [FsStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [ContainerStats.Rootfs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#ContainerStats)
+      of the Kubelet's stats API.
