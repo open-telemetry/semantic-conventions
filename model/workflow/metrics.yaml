@@ -6,18 +6,10 @@ groups:
     instrument: histogram
     unit: "s"
     stability: development
+    extends: attribute.metric.workflow.taskrun
     attributes:
-      - ref: workflow.task.name
-        requirement_level: required
       - ref: workflow.task.run.result
         requirement_level: required
-      - ref: workflow.platform.product
-      - ref: workflow.task.category
-      - ref: workflow.trigger.type
-        requirement_level: required
-      - ref: error.type
-        requirement_level:
-          conditionally_required: If and only if the pipeline run failed.
   - id: metric.workflow.taskrun.qty
     type: metric
     metric_name: workflow.taskrun.qty
@@ -26,14 +18,9 @@ groups:
     instrument: updowncounter
     unit: "{job}"
     stability: development
+    extends: attribute.metric.workflow.taskrun
     attributes:
-      - ref: workflow.task.name
-        requirement_level: required
       - ref: workflow.task.run.state
-        requirement_level: required
-      - ref: workflow.platform.product
-      - ref: workflow.task.category
-      - ref: workflow.trigger.type
         requirement_level: required
   - id: metric.workflow.execution.duration
     type: metric
@@ -42,17 +29,10 @@ groups:
     instrument: histogram
     unit: "s"
     stability: development
+    extends: attribute.metric.workflow.execution
     attributes:
-      - ref: workflow.name
-        requirement_level: required
       - ref: workflow.execution.result
         requirement_level: required
-      - ref: workflow.platform.product
-      - ref: workflow.trigger.type
-        requirement_level: required
-      - ref: error.type
-        requirement_level:
-          conditionally_required: If and only if the pipeline run failed.
   - id: metric.workflow.execution.qty
     type: metric
     metric_name: workflow.execution.qty
@@ -61,11 +41,7 @@ groups:
     instrument: updowncounter
     unit: "{job}"
     stability: development
+    extends: attribute.metric.workflow.execution
     attributes:
-      - ref: workflow.name
-        requirement_level: required
       - ref: workflow.execution.state
-        requirement_level: required
-      - ref: workflow.platform.product
-      - ref: workflow.trigger.type
         requirement_level: required
