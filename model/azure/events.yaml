@@ -1,19 +1,19 @@
 groups:
-  - id: event.az.resource.log
+  - id: event.azure.resource.log
     stability: development
     type: event
-    name: az.resource.log
+    name: azure.resource.log
     brief: >
       Describes Azure Resource Log event, see
       [Azure Resource Log Top-level Schema](https://learn.microsoft.com/azure/azure-monitor/essentials/resource-logs-schema#top-level-common-schema)
       for more details.
     attributes:
-      - ref: az.service_request_id
+      - ref: azure.service.request.id
       - ref: cloud.resource_id
-        brief: The [Fully Qualified Azure Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) the log is emitted for.
+        brief: The [Fully Qualified Azure Resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) the log is emitted for.
         note: ""
     body:
-      id: az.resource.log
+      id: azure.resource.log
       requirement_level: recommended
       stability: development
       type: map
