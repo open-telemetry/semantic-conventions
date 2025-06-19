@@ -489,7 +489,16 @@ A HorizontalPodAutoscaler (HPA for short) automatically updates a workload resou
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.hpa.name`](/docs/registry/attributes/k8s.md) | string | The name of the horizontal pod autoscaler. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.hpa.scaletargetref.api_version`](/docs/registry/attributes/k8s.md) | string | The API version of the target resource to scale for the HorizontalPodAutoscaler. [1] | `apps/v1`; `autoscaling/v2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.hpa.scaletargetref.kind`](/docs/registry/attributes/k8s.md) | string | The kind of the target resource to scale for the HorizontalPodAutoscaler. [2] | `Deployment`; `StatefulSet` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.hpa.scaletargetref.name`](/docs/registry/attributes/k8s.md) | string | The name of the target resource to scale for the HorizontalPodAutoscaler. [3] | `my-deployment`; `my-statefulset` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.hpa.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the horizontal pod autoscaler. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `k8s.hpa.scaletargetref.api_version`:** This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec.
+
+**[2] `k8s.hpa.scaletargetref.kind`:** This maps to the `kind` field in the `scaleTargetRef` of the HPA spec.
+
+**[3] `k8s.hpa.scaletargetref.name`:** This maps to the `name` field in the `scaleTargetRef` of the HPA spec.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -530,4 +539,5 @@ A ResourceQuota provides constraints that limit aggregate resource consumption p
 
 The following guidelines are specific to Kubernetes:
 
-- [Service in Kubernetes](../non-normative/k8s-attributes.md#service-attributes)
+- [Service attributes](../non-normative/k8s-attributes.md#service-attributes)
+- [Naming known exceptions](../non-normative/naming-known-exceptions.md)

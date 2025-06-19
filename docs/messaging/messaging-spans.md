@@ -190,7 +190,7 @@ in such a way that it cannot be changed by intermediaries.
 
 ### Span name
 
-Messaging spans SHOULD follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.45.0/specification/trace/api.md#span).
+Messaging spans SHOULD follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.46.0/specification/trace/api.md#span).
 
 The **span name** SHOULD be `{messaging.operation.name} {destination}`
 (see below for the exact definition of the [`{destination}`](#destination-placeholder) placeholder).
@@ -274,10 +274,10 @@ The "Send" span SHOULD always link to the creation context that was injected
 into a message either from a "Create" span or as a custom creation context.
 
 When instrumenting a library API that always sends a single message, it is
-RECOMMENDED to create "Publish" span without "Create" span.
+RECOMMENDED to create "Send" span without "Create" span.
 
 When instrumenting a library API that usually operate with batches, it is
-RECOMMENDED to create a "Create" span for each message along with the "Publish" span.
+RECOMMENDED to create a "Create" span for each message along with the "Send" span.
 It is also RECOMMENDED to provide a configuration option allowing to disable "Create"
 span creation.
 
@@ -543,7 +543,8 @@ relationships.
 
 ### Topic with multiple consumers
 
-Given is a publisher that publishes a message to a topic exchange "T" on RabbitMQ, and two consumers which both get the message delivered.
+Given is a publisher that publishes a message to a topic exchange "T" on RabbitMQ,
+and two consumers which both get the message delivered.
 
 ```mermaid
 flowchart LR;
@@ -585,7 +586,8 @@ flowchart LR;
 
 ### Batch receiving
 
-Given is a producer that publishes two messages to a topic "Q" on Kafka, and a consumer which receives both messages in one batch.
+Given is a producer that publishes two messages to a topic "Q" on Kafka,
+and a consumer which receives both messages in one batch.
 
 ```mermaid
 flowchart LR;
@@ -628,7 +630,7 @@ flowchart LR;
 Given is a producer that publishes a batch with two messages to a topic "Q" on
 Kafka, and two different consumers receiving one of the messages.
 
-Instrumentation in this case reports "Create" span for each message and a "Publish"
+Instrumentation in this case reports "Create" span for each message and a "Send"
 span that's linked to a "Create" span.
 
 ```mermaid
@@ -678,13 +680,13 @@ Given is a producer that publishes a batch with two messages to a topic "Q" on
 Kafka, and two different consumers receiving one of the messages.
 
 Based on the configuration provided by user, instrumentation in this case reports
-"Publish" span only. It injects "Publish" span context into both messages.
+"Send" span only. It injects "Send" span context into both messages.
 
 ```mermaid
 flowchart LR;
   subgraph PRODUCER
   direction TB
-  P[Span Publish]
+  P[Span Send]
   end
   subgraph CONSUMER1
   direction TB
@@ -706,14 +708,14 @@ flowchart LR;
 |-|-|-|-|
 | Span name | `send Q` | `poll Q` | `poll Q` |
 | Parent | | | |
-| Links |  | Span Publish | Span Publish |
+| Links |  | Span Send | Span Send |
 | SpanKind | `PRODUCER` | `CLIENT` | `CLIENT` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"Q"` | `"Q"` | `"Q"` |
 | `messaging.operation.name` | `"send"` | `"poll"` | `"poll"` |
-| `messaging.operation.type` | `"publish"` | `"receive"` | `"receive"` |
+| `messaging.operation.type` | `"send"` | `"receive"` | `"receive"` |
 | `messaging.message.id` | | `"a1"` | `"a2"` |
 | `messaging.batch.message_count`| 2 | | |
 
