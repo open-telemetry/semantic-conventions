@@ -36,9 +36,11 @@ linkTitle: Metrics
 | [`workflow.task.name`](/docs/registry/attributes/workflow.md) | string | Name of the task | `Build application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.task.run.result`](/docs/registry/attributes/workflow.md) | string | The result of a task run. | `success`; `failure`; `timeout`; `skipped` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.trigger.type`](/docs/registry/attributes/workflow.md) | string | Type of trigger that was called | `cron` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the pipeline run failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the task run failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.task.category`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -126,8 +128,39 @@ it's RECOMMENDED to:
 | [`workflow.task.name`](/docs/registry/attributes/workflow.md) | string | Name of the task | `Build application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.task.run.state`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.trigger.type`](/docs/registry/attributes/workflow.md) | string | Type of trigger that was called | `cron` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the task run failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.task.category`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+
+When `error.type` is set to a type (e.g., an exception type), its
+canonical class name identifying the type within the artifact SHOULD be used.
+
+Instrumentations SHOULD document the list of errors they report.
+
+The cardinality of `error.type` within one instrumentation library SHOULD be low.
+Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.type` to have high cardinality at query time when no
+additional filters are applied.
+
+If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
+
+If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+it's RECOMMENDED to:
+
+- Use a domain-specific attribute
+- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+
+---
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -184,8 +217,10 @@ This metric is [recommended][MetricRecommended].
 | [`workflow.execution.result`](/docs/registry/attributes/workflow.md) | string | The result of a task run. | `success`; `failure`; `timeout`; `skipped` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.name`](/docs/registry/attributes/workflow.md) | string | Name of the workflow | `Build and deploy application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.trigger.type`](/docs/registry/attributes/workflow.md) | string | Type of trigger that was called | `cron` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the pipeline run failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the workflow execution failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -265,7 +300,38 @@ This metric is [recommended][MetricRecommended].
 | [`workflow.execution.state`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.name`](/docs/registry/attributes/workflow.md) | string | Name of the workflow | `Build and deploy application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.trigger.type`](/docs/registry/attributes/workflow.md) | string | Type of trigger that was called | `cron` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the workflow execution failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+
+When `error.type` is set to a type (e.g., an exception type), its
+canonical class name identifying the type within the artifact SHOULD be used.
+
+Instrumentations SHOULD document the list of errors they report.
+
+The cardinality of `error.type` within one instrumentation library SHOULD be low.
+Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.type` to have high cardinality at query time when no
+additional filters are applied.
+
+If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
+
+If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+it's RECOMMENDED to:
+
+- Use a domain-specific attribute
+- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+
+---
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
