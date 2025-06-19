@@ -62,20 +62,26 @@
 /docs/android/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-android-approvers
 /model/android/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-android-approvers
 
-# Mobile semantic conventions
-/docs/mobile/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-mobile-approvers
+# iOS semantic conventions
+/docs/ios/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-ios-approvers
+/model/ios/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-ios-approvers
 
 # Client-side semantic conventions
-/docs/enduser/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers @open-telemetry/semconv-android-approvers
-/model/enduser/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers @open-telemetry/semconv-android-approvers
-/model/app/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers @open-telemetry/semconv-android-approvers @open-telemetry/semconv-mobile-approvers
-/model/device/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-browser-approvers @open-telemetry/semconv-android-approvers @open-telemetry/semconv-mobile-approvers
+/docs/enduser/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
+/docs/app/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
+/docs/device/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
+/docs/mobile/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
+/model/enduser/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
+/model/app/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
+/model/device/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
+/model/mobile/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
 
 # K8s semantic conventions
-/docs/resource/k8s.md                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
-/model/k8s/                           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
-/docs/non-normative/k8s-attributes.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
-/docs/non-normative/k8s-migration.md  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/docs/resource/k8s.md                           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/model/k8s/                                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/docs/non-normative/k8s-attributes.md           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/docs/non-normative/k8s-migration.md            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/docs/non-normative/naming-known-exceptions.md  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
 
 # Container semantic conventions
 /docs/resource/container.md       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
@@ -140,3 +146,9 @@
 /templates/                             @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-approvers
 /internal/                              @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-approvers
 /docs/non-normative/code-generation.md  @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-approvers
+
+# Mainframe
+/docs/mainframe                   @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
+/model/mainframe                  @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
+/docs/zos                         @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
+/model/zos                        @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers

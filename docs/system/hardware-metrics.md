@@ -17,7 +17,7 @@ Please note that this is an [ongoing process](https://github.com/open-telemetry/
 
 <!-- Toc is maintained manually due to ongoing conversion -->
 
-- [Common hardware attributes](/docs/attributes-registry/hardware.md)
+- [Common hardware attributes](/docs/registry/attributes/hardware.md)
 - [Metric Instruments](#metric-instruments)
   - [`hw.` - Common hardware metrics](/docs/hardware/common.md)
   - [`hw.host.` - Physical host metrics](/docs/hardware/host.md)

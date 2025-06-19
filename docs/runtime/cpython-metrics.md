@@ -34,15 +34,15 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `cpython.gc.collections` | Counter | `{collection}` | The number of times a generation was collected since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `cpython.gc.collections` | Counter | `{collection}` | The number of times a generation was collected since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpython.gc.generation`](/docs/attributes-registry/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -70,15 +70,15 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `cpython.gc.collected_objects` | Counter | `{object}` | The total number of objects collected inside a generation since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `cpython.gc.collected_objects` | Counter | `{object}` | The total number of objects collected inside a generation since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpython.gc.generation`](/docs/attributes-registry/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -106,15 +106,15 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `cpython.gc.uncollectable_objects` | Counter | `{object}` | The total number of objects which were found to be uncollectable inside a generation since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `cpython.gc.uncollectable_objects` | Counter | `{object}` | The total number of objects which were found to be uncollectable inside a generation since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpython.gc.generation`](/docs/attributes-registry/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

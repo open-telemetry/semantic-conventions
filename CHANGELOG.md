@@ -7,6 +7,99 @@
 
 <!-- next version -->
 
+## v1.34.0
+
+### 🛑 Breaking changes 🛑
+
+- `all`: Convert deprecated text to structured format. ([#2047](https://github.com/open-telemetry/semantic-conventions/issues/2047))
+  This is a breaking change from the schema perspective, but does not change anything for instrumentations or the end users. It breaks compatibility with the (old) [code generation tooling](https://github.com/open-telemetry/build-tools/issues/322). Please use [weaver](https://github.com/open-telemetry/weaver) to generate Semantic Conventions markdown or code.
+  
+- `feature_flag`: Move the evaluated value from the event body to attributes ([#1990](https://github.com/open-telemetry/semantic-conventions/issues/1990))
+- `process`: Require sensitive data sanitization for `process.command_args` and `process.command_line` ([#626](https://github.com/open-telemetry/semantic-conventions/issues/626))
+
+### 💡 Enhancements 💡
+
+- `docs`: Document system-specific naming conventions ([#608](https://github.com/open-telemetry/semantic-conventions/issues/608), [#1494](https://github.com/open-telemetry/semantic-conventions/issues/1494), [#1708](https://github.com/open-telemetry/semantic-conventions/issues/1708))
+- `gen-ai`: Add `gen_ai.conversation.id` attribute ([#2024](https://github.com/open-telemetry/semantic-conventions/issues/2024))
+- `all`: Renames all `resource.*` groups to be `entity.*` ([#2244](https://github.com/open-telemetry/semantic-conventions/issues/2244))
+  Part of open-telemetry/opentelemetry-specification#4436
+- `aws`: Added new AWS attributes for various services including SQS, SNS, Bedrock, Step Functions, Secrets Manager and Kineses ([#1794](https://github.com/open-telemetry/semantic-conventions/issues/1794))
+- `cloud`: Broaden `cloud.region` definition to explicitly cover both resource location and targeted destination. ([#2142](https://github.com/open-telemetry/semantic-conventions/issues/2142))
+- `network`: Stabilize `network.transport` enum value `quic`. ([#2275](https://github.com/open-telemetry/semantic-conventions/issues/2275))
+
+### 🧰 Bug fixes 🧰
+
+- `db`: Fix the `db.system.name` attribute value for MySQL which was incorrectly pointing to `microsoft.sql_server`. ([#2276](https://github.com/open-telemetry/semantic-conventions/issues/2276))
+
+## v1.33.0
+
+This release marks the first where the core of database semantic conventions have stabilized.
+
+### 🛑 Breaking changes 🛑
+
+- `db`: Add `db.query.parameter`, replace relevant usages of `db.operation.parameter` ([#2093](https://github.com/open-telemetry/semantic-conventions/issues/2093))
+- `db`: Make `db.response.returned_rows` opt-in on `release_candidate` spans ([#2211](https://github.com/open-telemetry/semantic-conventions/issues/2211))
+- `db`: Use `|` as the separator when `db.namespace` is a concatenation of multiple components. ([#2067](https://github.com/open-telemetry/semantic-conventions/issues/2067))
+- `feature_flag`: Rename `feature_flag.provider_name` to `feature_flag.provider.name` ([#1982](https://github.com/open-telemetry/semantic-conventions/issues/1982))
+- `feature_flag`: Use generic `error.message` in feature flag evaluation event ([#1994](https://github.com/open-telemetry/semantic-conventions/issues/1994))
+- `gen-ai`: Refine the values for `gen_ai.system` related to Google's AI endpoints. ([#1950](https://github.com/open-telemetry/semantic-conventions/issues/1950))
+  Enable sharing of attributes between Vertex AI and Gemini through a common prefix.
+- `k8s`: Make k8s Node and Pod labels optional ([#2079](https://github.com/open-telemetry/semantic-conventions/issues/2079))
+- `otel`: Rename span health metrics to remove the .count suffixes ([#1979](https://github.com/open-telemetry/semantic-conventions/issues/1979))
+
+### 🚀 New components 🚀
+
+- `db`: Adding semantic conventions for `oracledb` instrumentations. ([#1911](https://github.com/open-telemetry/semantic-conventions/pull/1911))
+  Oracle Database semantic conventions.
+- `browser`: Add browser web vitals event. ([#1940](https://github.com/open-telemetry/semantic-conventions/issues/1940))
+
+### 💡 Enhancements 💡
+
+- `cicd`: Add resource conventions for CICD systems and define spans for CICD pipeline runs. ([#1713](https://github.com/open-telemetry/semantic-conventions/issues/1713))
+  Define spans `cicd.pipeline.run.server` and `cicd.pipeline.task.internal`.
+  Add `cicd.pipeline.action.name`, `cicd.worker.id`, `cicd.worker.name`, `cicd.worker.url.full` and`cicd.pipeline.task.run.result` to attribute registry.
+  Define resources `cicd.pipeline`, `cicd.pipeline.run` and `cicd.worker`.
+  Add entity associations in cicd metrics for these new cicd resources.
+  
+- `vcs`: Add resource conventions for VCS systems and VCS references. ([#1713](https://github.com/open-telemetry/semantic-conventions/issues/1713))
+  Define resources `vcs.repo` and `vcs.ref`.
+  Add entity associations in vcs metrics for these new vcs resources.
+  
+- `gen-ai`: Adding span for invoke agent ([#1842](https://github.com/open-telemetry/semantic-conventions/issues/1842))
+- `gen-ai`: Adding gen_ai.tool.description to the span attributes ([#2087](https://github.com/open-telemetry/semantic-conventions/issues/2087))
+- `gen-ai`: Separate inference and embeddings span definitions, remove irrelevant attributes from the create agent span. ([#1924](https://github.com/open-telemetry/semantic-conventions/issues/1924), [#2122](https://github.com/open-telemetry/semantic-conventions/issues/2122))
+- `general`: Provide guidance on modeling lat/lon, x/y, etc ([#2145](https://github.com/open-telemetry/semantic-conventions/issues/2145))
+- `db`: Move `db.query.parameter.<key>` from release_candidate back to development. ([#2194](https://github.com/open-telemetry/semantic-conventions/issues/2194))
+- `db`: Mark database semantic conventions as stable for MariaDB, Microsoft SQL Server, MySQL, and PostgreSQL. ([#2199](https://github.com/open-telemetry/semantic-conventions/issues/2199))
+- `db`: Make `db.operation.name` required where it's available, add recommendation for instrumentation point. ([#2200](https://github.com/open-telemetry/semantic-conventions/issues/2200), [#2098](https://github.com/open-telemetry/semantic-conventions/issues/2098))
+- `db`: Add `db.stored_procedure.name` to the general span conventions ([#2205](https://github.com/open-telemetry/semantic-conventions/issues/2205))
+- `db`: Add an option to generate `db.query.summary` from operation name and target, remove it from CosmosDB. ([#2206](https://github.com/open-telemetry/semantic-conventions/issues/2206))
+- `db`: Add `db.operation.name` and `db.collection.name` to SQL for higher-level APIs ([#2207](https://github.com/open-telemetry/semantic-conventions/issues/2207))
+- `jvm`: Add `jvm.file_descriptor.count` as an in-development metric to track the number of open file descriptors as reported by the JVM. ([#1838](https://github.com/open-telemetry/semantic-conventions/issues/1838))
+- `jvm`: Add `jvm.gc.cause` to metric `jvm.gc.duration` as an opt-in attribute to track gc cause. ([#2065](https://github.com/open-telemetry/semantic-conventions/issues/2065))
+- `process`: Add process.environment_variable.<key> ([#672](https://github.com/open-telemetry/semantic-conventions/issues/672))
+- `app`: Defines two new click events for the app domain ([#2070](https://github.com/open-telemetry/semantic-conventions/issues/2070))
+- `code`: Mark `code.*` semantic conventions as stable ([#1377](https://github.com/open-telemetry/semantic-conventions/issues/1377))
+- `k8s`: Introduce semantic conventions for k8s CronJob labels and annotations ([#2138](https://github.com/open-telemetry/semantic-conventions/issues/2138))
+- `k8s`: Introduce semantic conventions for k8s DaemonSet labels and annotations ([#2136](https://github.com/open-telemetry/semantic-conventions/issues/2136))
+- `k8s`: Introduce semantic conventions for k8s Deployment labels and annotations ([#2134](https://github.com/open-telemetry/semantic-conventions/issues/2134))
+- `system`: Added entity association template rendering and policies. ([#1276](https://github.com/open-telemetry/semantic-conventions/issues/1276))
+- `gen_ai`: Document `generate_content` as a permissible value of `gen_ai.operation.name`. ([#2048](https://github.com/open-telemetry/semantic-conventions/issues/2048))
+- `k8s`: Introduce semantic conventions for k8s Job labels and annotations ([#2137](https://github.com/open-telemetry/semantic-conventions/issues/2137))
+- `otel`: Adds SDK self-monitoring metrics for metric processing ([#2016](https://github.com/open-telemetry/semantic-conventions/issues/2016))
+- `k8s`: Introduce semantic conventions for k8s Namespace labels and annotations ([#2131](https://github.com/open-telemetry/semantic-conventions/issues/2131))
+- `k8s`: Introduce semantic conventions for k8s Node labels and annotations ([#2079](https://github.com/open-telemetry/semantic-conventions/issues/2079))
+- `k8s`: Introduce semantic conventions for k8s ReplicaSet labels and annotations ([#2132](https://github.com/open-telemetry/semantic-conventions/issues/2132))
+- `otel`: Adds SDK self-monitoring metric for exporter call duration ([#1906](https://github.com/open-telemetry/semantic-conventions/issues/1906))
+- `k8s`: Introduce semantic conventions for k8s StatefulSet labels and annotations ([#2135](https://github.com/open-telemetry/semantic-conventions/issues/2135))
+
+### 🧰 Bug fixes 🧰
+
+- `gen-ai`: Removed irrelevant response attributes on GenAI create agent span. ([#1924](https://github.com/open-telemetry/semantic-conventions/issues/1924), [#2116](https://github.com/open-telemetry/semantic-conventions/issues/2116))
+- `vcs`: Fix typo in gitea name ([#2057](https://github.com/open-telemetry/semantic-conventions/issues/2057))
+- `gen-ai`: Add invoke_agent as a member of gen_ai.operation.name ([#2160](https://github.com/open-telemetry/semantic-conventions/issues/2160))
+- `db`: Clarify `db.query.summary` for stored procedures ([#2218](https://github.com/open-telemetry/semantic-conventions/issues/2218))
+
 ## v1.32.0
 
 ### 🛑 Breaking changes 🛑

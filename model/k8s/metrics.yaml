@@ -5,6 +5,8 @@ groups:
     metric_name: k8s.pod.uptime
     stability: development
     brief: "The time the Pod has been running"
+    entity_associations:
+      - k8s.pod
     note: |
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
       The actual accuracy would depend on the instrumentation and operating system.
@@ -16,6 +18,8 @@ groups:
     metric_name: k8s.pod.cpu.time
     stability: development
     brief: "Total CPU time consumed"
+    entity_associations:
+      - k8s.pod
     note: >
       Total CPU time consumed by the specific Pod on all available CPU cores
     instrument: counter
@@ -36,6 +40,8 @@ groups:
     metric_name: k8s.pod.memory.usage
     stability: development
     brief: "Memory usage of the Pod"
+    entity_associations:
+      - k8s.pod
     note: >
       Total memory usage of the Pod
     instrument: gauge
@@ -49,6 +55,8 @@ groups:
     brief: "Network bytes for the Pod"
     instrument: counter
     unit: "By"
+    entity_associations:
+      - k8s.pod
     attributes:
       - ref: network.interface.name
       - ref: network.io.direction
@@ -58,10 +66,44 @@ groups:
     stability: development
     brief: "Pod network errors"
     instrument: counter
+    entity_associations:
+      - k8s.pod
     unit: "{error}"
     attributes:
       - ref: network.interface.name
       - ref: network.io.direction
+
+  # k8s.container.* metrics
+  - id: metric.k8s.container.status.state
+    type: metric
+    metric_name: k8s.container.status.state
+    stability: experimental
+    brief: "Describes the number of K8s containers that are currently in a given state"
+    note: |
+      All possible container states will be reported at each time interval to avoid missing metrics.
+      Only the value corresponding to the current state will be non-zero.
+    instrument: updowncounter
+    unit: "{container}"
+    entity_associations:
+      - k8s.container
+    attributes:
+      - ref: k8s.container.status.state
+        requirement_level: required
+  - id: metric.k8s.container.status.reason
+    type: metric
+    metric_name: k8s.container.status.reason
+    stability: experimental
+    brief: "Describes the number of K8s containers that are currently in a state for a given reason"
+    instrument: updowncounter
+    unit: "{container}"
+    entity_associations:
+      - k8s.container
+    note: |
+      All possible container state reasons will be reported at each time interval to avoid missing metrics.
+      Only the value corresponding to the current state reason will be non-zero.
+    attributes:
+      - ref: k8s.container.status.reason
+        requirement_level: required
 
   # k8s.node.* metrics
   - id: metric.k8s.node.uptime
@@ -74,6 +116,44 @@ groups:
       The actual accuracy would depend on the instrumentation and operating system.
     instrument: gauge
     unit: "s"
+    entity_associations:
+      - k8s.node
+  - id: metric.k8s.node.allocatable.cpu
+    type: metric
+    metric_name: k8s.node.allocatable.cpu
+    stability: development
+    brief: "Amount of cpu allocatable on the node"
+    entity_associations:
+      - k8s.node
+    instrument: updowncounter
+    unit: "{cpu}"
+  - id: metric.k8s.node.allocatable.ephemeral_storage
+    type: metric
+    metric_name: k8s.node.allocatable.ephemeral_storage
+    stability: development
+    brief: "Amount of ephemeral-storage allocatable on the node"
+    entity_associations:
+      - k8s.node
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.node.allocatable.memory
+    type: metric
+    metric_name: k8s.node.allocatable.memory
+    stability: development
+    brief: "Amount of memory allocatable on the node"
+    entity_associations:
+      - k8s.node
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.node.allocatable.pods
+    type: metric
+    metric_name: k8s.node.allocatable.pods
+    stability: development
+    brief: "Amount of pods allocatable on the node"
+    entity_associations:
+      - k8s.node
+    instrument: updowncounter
+    unit: "{pod}"
   # k8s.node.cpu.* metrics
   - id: metric.k8s.node.cpu.time
     type: metric
@@ -83,6 +163,8 @@ groups:
     note: >
       Total CPU time consumed by the specific Node on all available CPU cores
     instrument: counter
+    entity_associations:
+      - k8s.node
     unit: "s"
   - id: metric.k8s.node.cpu.usage
     type: metric
@@ -92,6 +174,8 @@ groups:
     note: >
       CPU usage of the specific Node on all available CPU cores, averaged over the sample window
     instrument: gauge
+    entity_associations:
+      - k8s.node
     unit: "{cpu}"
 
   # k8s.node.memory.* metrics
@@ -103,6 +187,8 @@ groups:
     note: >
       Total memory usage of the Node
     instrument: gauge
+    entity_associations:
+      - k8s.node
     unit: "By"
 
   # k8s.node.network.* metrics
@@ -113,6 +199,8 @@ groups:
     brief: "Network bytes for the Node"
     instrument: counter
     unit: "By"
+    entity_associations:
+      - k8s.node
     attributes:
       - ref: network.interface.name
       - ref: network.io.direction
@@ -123,6 +211,8 @@ groups:
     brief: "Node network errors"
     instrument: counter
     unit: "{error}"
+    entity_associations:
+      - k8s.node
     attributes:
       - ref: network.interface.name
       - ref: network.io.direction
@@ -133,25 +223,23 @@ groups:
     metric_name: k8s.deployment.desired_pods
     stability: development
     brief: "Number of desired replica pods in this deployment"
+    entity_associations:
+      - k8s.deployment
     note: |
       This metric aligns with the `replicas` field of the
       [K8s DeploymentSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentspec-v1-apps).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.deployment`](../resource/k8s.md#deployment) resource.
     instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.deployment.available_pods
     type: metric
     metric_name: k8s.deployment.available_pods
     stability: development
+    entity_associations:
+      - k8s.deployment
     brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this deployment"
     note: |
       This metric aligns with the `availableReplicas` field of the
       [K8s DeploymentStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentstatus-v1-apps).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.deployment`](../resource/k8s.md#deployment) resource.
     instrument: updowncounter
     unit: "{pod}"
 
@@ -161,25 +249,23 @@ groups:
     metric_name: k8s.replicaset.desired_pods
     stability: development
     brief: "Number of desired replica pods in this replicaset"
+    entity_associations:
+      - k8s.replicaset
     note: |
       This metric aligns with the `replicas` field of the
       [K8s ReplicaSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetspec-v1-apps).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.replicaset`](../resource/k8s.md#replicaset) resource.
     instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.replicaset.available_pods
     type: metric
     metric_name: k8s.replicaset.available_pods
     stability: development
+    entity_associations:
+      - k8s.replicaset
     brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this replicaset"
     note: |
       This metric aligns with the `availableReplicas` field of the
       [K8s ReplicaSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetstatus-v1-apps).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.replicaset`](../resource/k8s.md#replicaset) resource.
     instrument: updowncounter
     unit: "{pod}"
 
@@ -189,25 +275,23 @@ groups:
     metric_name: k8s.replicationcontroller.desired_pods
     stability: development
     brief: "Number of desired replica pods in this replication controller"
+    entity_associations:
+      - k8s.replicationcontroller
     note: |
       This metric aligns with the `replicas` field of the
       [K8s ReplicationControllerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerspec-v1-core)
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.replicationcontroller`](../resource/k8s.md#replicationcontroller) resource.
     instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.replicationcontroller.available_pods
     type: metric
     metric_name: k8s.replicationcontroller.available_pods
     stability: development
+    entity_associations:
+      - k8s.replicationcontroller
     brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this replication controller"
     note: |
       This metric aligns with the `availableReplicas` field of the
       [K8s ReplicationControllerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerstatus-v1-core)
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.replicationcontroller`](../resource/k8s.md#replicationcontroller) resource.
     instrument: updowncounter
     unit: "{pod}"
 
@@ -217,51 +301,47 @@ groups:
     metric_name: k8s.statefulset.desired_pods
     stability: development
     brief: "Number of desired replica pods in this statefulset"
+    entity_associations:
+      - k8s.statefulset
     note: |
       This metric aligns with the `replicas` field of the
       [K8s StatefulSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetspec-v1-apps).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.statefulset`](../resource/k8s.md#statefulset) resource.
     instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.statefulset.ready_pods
     type: metric
     metric_name: k8s.statefulset.ready_pods
     stability: development
+    entity_associations:
+      - k8s.statefulset
     brief: "The number of replica pods created for this statefulset with a Ready Condition"
     note: |
       This metric aligns with the `readyReplicas` field of the
       [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.statefulset`](../resource/k8s.md#statefulset) resource.
     instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.statefulset.current_pods
     type: metric
     metric_name: k8s.statefulset.current_pods
     stability: development
+    entity_associations:
+      - k8s.statefulset
     brief: "The number of replica pods created by the statefulset controller from the statefulset version indicated by currentRevision"
     note: |
       This metric aligns with the `currentReplicas` field of the
       [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.statefulset`](../resource/k8s.md#statefulset) resource.
     instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.statefulset.updated_pods
     type: metric
     metric_name: k8s.statefulset.updated_pods
     stability: development
+    entity_associations:
+      - k8s.statefulset
     brief: "Number of replica pods created by the statefulset controller from the statefulset version indicated by updateRevision"
     note: |
       This metric aligns with the `updatedReplicas` field of the
       [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.statefulset`](../resource/k8s.md#statefulset) resource.
     instrument: updowncounter
     unit: "{pod}"
 
@@ -274,10 +354,9 @@ groups:
     note: |
       This metric aligns with the `desiredReplicas` field of the
       [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.hpa`](../resource/k8s.md#horizontalpodautoscaler) resource.
     instrument: updowncounter
+    entity_associations:
+      - k8s.hpa
     unit: "{pod}"
   - id: metric.k8s.hpa.current_pods
     type: metric
@@ -287,10 +366,9 @@ groups:
     note: |
       This metric aligns with the `currentReplicas` field of the
       [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.hpa`](../resource/k8s.md#horizontalpodautoscaler) resource.
     instrument: updowncounter
+    entity_associations:
+      - k8s.hpa
     unit: "{pod}"
   - id: metric.k8s.hpa.max_pods
     type: metric
@@ -300,10 +378,9 @@ groups:
     note: |
       This metric aligns with the `maxReplicas` field of the
       [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.hpa`](../resource/k8s.md#horizontalpodautoscaler) resource.
     instrument: updowncounter
+    entity_associations:
+      - k8s.hpa
     unit: "{pod}"
   - id: metric.k8s.hpa.min_pods
     type: metric
@@ -313,10 +390,9 @@ groups:
     note: |
       This metric aligns with the `minReplicas` field of the
       [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.hpa`](../resource/k8s.md#horizontalpodautoscaler) resource.
     instrument: updowncounter
+    entity_associations:
+      - k8s.hpa
     unit: "{pod}"
 
   # k8s.daemonset.* metrics
@@ -328,10 +404,9 @@ groups:
     note: |
       This metric aligns with the `currentNumberScheduled` field of the
       [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.daemonset`](../resource/k8s.md#daemonset) resource.
     instrument: updowncounter
+    entity_associations:
+      - k8s.daemonset
     unit: "{node}"
   - id: metric.k8s.daemonset.desired_scheduled_nodes
     type: metric
@@ -341,10 +416,9 @@ groups:
     note: |
       This metric aligns with the `desiredNumberScheduled` field of the
       [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.daemonset`](../resource/k8s.md#daemonset) resource.
     instrument: updowncounter
+    entity_associations:
+      - k8s.daemonset
     unit: "{node}"
   - id: metric.k8s.daemonset.misscheduled_nodes
     type: metric
@@ -354,10 +428,9 @@ groups:
     note: |
       This metric aligns with the `numberMisscheduled` field of the
       [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.daemonset`](../resource/k8s.md#daemonset) resource.
     instrument: updowncounter
+    entity_associations:
+      - k8s.daemonset
     unit: "{node}"
   - id: metric.k8s.daemonset.ready_nodes
     type: metric
@@ -367,10 +440,9 @@ groups:
     note: |
       This metric aligns with the `numberReady` field of the
       [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.daemonset`](../resource/k8s.md#daemonset) resource.
     instrument: updowncounter
+    entity_associations:
+      - k8s.daemonset
     unit: "{node}"
 
   # k8s.job.* metrics
@@ -381,12 +453,11 @@ groups:
     brief: "The number of pending and actively running pods for a job"
     instrument: updowncounter
     unit: "{pod}"
+    entity_associations:
+      - k8s.job
     note: |
       This metric aligns with the `active` field of the
       [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.job`](../resource/k8s.md#job) resource.
   - id: metric.k8s.job.failed_pods
     type: metric
     metric_name: k8s.job.failed_pods
@@ -394,12 +465,11 @@ groups:
     brief: "The number of pods which reached phase Failed for a job"
     instrument: updowncounter
     unit: "{pod}"
+    entity_associations:
+      - k8s.job
     note: |
       This metric aligns with the `failed` field of the
       [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.job`](../resource/k8s.md#job) resource.
   - id: metric.k8s.job.successful_pods
     type: metric
     metric_name: k8s.job.successful_pods
@@ -407,12 +477,11 @@ groups:
     brief: "The number of pods which reached phase Succeeded for a job"
     instrument: updowncounter
     unit: "{pod}"
+    entity_associations:
+      - k8s.job
     note: |
       This metric aligns with the `succeeded` field of the
       [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.job`](../resource/k8s.md#job) resource.
   - id: metric.k8s.job.desired_successful_pods
     type: metric
     metric_name: k8s.job.desired_successful_pods
@@ -420,12 +489,11 @@ groups:
     brief: "The desired number of successfully finished pods the job should be run with"
     instrument: updowncounter
     unit: "{pod}"
+    entity_associations:
+      - k8s.job
     note: |
       This metric aligns with the `completions` field of the
-      [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.job`](../resource/k8s.md#job) resource.
+      [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch)..
   - id: metric.k8s.job.max_parallel_pods
     type: metric
     metric_name: k8s.job.max_parallel_pods
@@ -433,14 +501,13 @@ groups:
     brief: "The max desired number of pods the job should run at any given time"
     instrument: updowncounter
     unit: "{pod}"
+    entity_associations:
+      - k8s.job
     note: |
       This metric aligns with the `parallelism` field of the
       [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch).
 
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.job`](../resource/k8s.md#job) resource.
-
-  # k8s.job.* metrics
+  # k8s.cronjob.* metrics
   - id: metric.k8s.cronjob.active_jobs
     type: metric
     metric_name: k8s.cronjob.active_jobs
@@ -448,12 +515,11 @@ groups:
     brief: "The number of actively running jobs for a cronjob"
     instrument: updowncounter
     unit: "{job}"
+    entity_associations:
+      - k8s.cronjob
     note: |
       This metric aligns with the `active` field of the
       [K8s CronJobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#cronjobstatus-v1-batch).
-
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.cronjob`](../resource/k8s.md#cronjob) resource.
 
   # k8s.namespace.* metrics
   - id: metric.k8s.namespace.phase
@@ -463,9 +529,465 @@ groups:
     brief: "Describes number of K8s namespaces that are currently in a given phase."
     instrument: updowncounter
     unit: "{namespace}"
-    note: |
-      This metric SHOULD, at a minimum, be reported against a
-      [`k8s.namespace`](../resource/k8s.md#namespace) resource.
+    entity_associations:
+      - k8s.namespace
     attributes:
       - ref: k8s.namespace.phase
+        requirement_level: required
+
+  # k8s.container.* metrics
+  - id: metric.k8s.container.cpu.limit
+    type: metric
+    metric_name: k8s.container.cpu.limit
+    stability: development
+    brief: "Maximum CPU resource limit set for the container"
+    entity_associations:
+      - k8s.container
+    note: |
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+    instrument: updowncounter
+    unit: "{cpu}"
+  - id: metric.k8s.container.cpu.request
+    type: metric
+    metric_name: k8s.container.cpu.request
+    stability: development
+    brief: "CPU resource requested for the container"
+    entity_associations:
+      - k8s.container
+    note: |
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+    instrument: updowncounter
+    unit: "{cpu}"
+  - id: metric.k8s.container.memory.limit
+    type: metric
+    metric_name: k8s.container.memory.limit
+    stability: development
+    brief: "Maximum memory resource limit set for the container"
+    entity_associations:
+      - k8s.container
+    note: |
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.container.memory.request
+    type: metric
+    metric_name: k8s.container.memory.request
+    stability: development
+    brief: "Memory resource requested for the container"
+    entity_associations:
+      - k8s.container
+    note: |
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.container.storage.limit
+    type: metric
+    metric_name: k8s.container.storage.limit
+    stability: development
+    brief: "Maximum storage resource limit set for the container"
+    entity_associations:
+      - k8s.container
+    note: |
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.container.storage.request
+    type: metric
+    metric_name: k8s.container.storage.request
+    stability: development
+    brief: "Storage resource requested for the container"
+    entity_associations:
+      - k8s.container
+    note: |
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.container.ephemeral_storage.limit
+    type: metric
+    metric_name: k8s.container.ephemeral_storage.limit
+    stability: development
+    brief: "Maximum ephemeral storage resource limit set for the container"
+    entity_associations:
+      - k8s.container
+    note: |
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.container.ephemeral_storage.request
+    type: metric
+    metric_name: k8s.container.ephemeral_storage.request
+    stability: development
+    brief: "Ephemeral storage resource requested for the container"
+    entity_associations:
+      - k8s.container
+    note: |
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.container.restart.count
+    type: metric
+    metric_name: k8s.container.restart.count
+    stability: development
+    brief: "Describes how many times the container has restarted (since the last counter reset)"
+    instrument: updowncounter
+    unit: "{restart}"
+    entity_associations:
+      - k8s.container
+    note: |
+      This value is pulled directly from the K8s API and the value can go indefinitely high and be reset to 0
+      at any time depending on how your kubelet is configured to prune dead containers.
+      It is best to not depend too much on the exact value but rather look at it as
+      either == 0, in which case you can conclude there were no restarts in the recent past, or > 0, in which case
+      you can conclude there were restarts in the recent past, and not try and analyze the value beyond that.
+  - id: metric.k8s.container.ready
+    type: metric
+    metric_name: k8s.container.ready
+    stability: development
+    brief: >
+      Indicates whether the container is currently marked as ready to accept traffic,
+      based on its readiness probe (1 = ready, 0 = not ready)
+    instrument: updowncounter
+    unit: "{container}"
+    entity_associations:
+      - k8s.container
+    note: |
+      This metric SHOULD reflect the value of the `ready` field in the
+      [K8s ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatus-v1-core).
+
+  # k8s.resourcequota.cpu.* metrics
+  - id: metric.k8s.resourcequota.cpu.limit.hard
+    type: metric
+    metric_name: k8s.resourcequota.cpu.limit.hard
+    stability: development
+    brief: |
+      The CPU limits in a specific namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{cpu}"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.cpu.limit.used
+    type: metric
+    metric_name: k8s.resourcequota.cpu.limit.used
+    stability: development
+    brief: |
+      The CPU limits in a specific namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{cpu}"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.cpu.request.hard
+    type: metric
+    metric_name: k8s.resourcequota.cpu.request.hard
+    stability: development
+    brief: |
+      The CPU requests in a specific namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{cpu}"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.cpu.request.used
+    type: metric
+    metric_name: k8s.resourcequota.cpu.request.used
+    stability: development
+    brief: |
+      The CPU requests in a specific namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{cpu}"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+
+  # k8s.resourcequota.memory.* metrics
+  - id: metric.k8s.resourcequota.memory.limit.hard
+    type: metric
+    metric_name: k8s.resourcequota.memory.limit.hard
+    stability: development
+    brief: |
+      The memory limits in a specific namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.memory.limit.used
+    type: metric
+    metric_name: k8s.resourcequota.memory.limit.used
+    stability: development
+    brief: |
+      The memory limits in a specific namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.memory.request.hard
+    type: metric
+    metric_name: k8s.resourcequota.memory.request.hard
+    stability: development
+    brief: |
+      The memory requests in a specific namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.memory.request.used
+    type: metric
+    metric_name: k8s.resourcequota.memory.request.used
+    stability: development
+    brief: |
+      The memory requests in a specific namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+
+  # k8s.resourcequota.hugepage_count.* metrics
+  - id: metric.k8s.resourcequota.hugepage_count.request.hard
+    type: metric
+    metric_name: k8s.resourcequota.hugepage_count.request.hard
+    stability: development
+    brief: |
+      The huge page requests in a specific namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{hugepage}"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+    attributes:
+      - ref: k8s.hugepage.size
+        requirement_level: required
+  - id: metric.k8s.resourcequota.hugepage_count.request.used
+    type: metric
+    metric_name: k8s.resourcequota.hugepage_count.request.used
+    stability: development
+    brief: |
+      The huge page requests in a specific namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{hugepage}"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+    attributes:
+      - ref: k8s.hugepage.size
+        requirement_level: required
+
+  # k8s.resourcequota.storage.* metrics
+  - id: metric.k8s.resourcequota.storage.request.hard
+    type: metric
+    metric_name: k8s.resourcequota.storage.request.hard
+    stability: development
+    brief: |
+      The storage requests in a specific namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+
+      The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+      storage class.
+    attributes:
+      - ref: k8s.storageclass.name
+        requirement_level:
+          conditionally_required: |
+            The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+            storage class.
+  - id: metric.k8s.resourcequota.storage.request.used
+    type: metric
+    metric_name: k8s.resourcequota.storage.request.used
+    stability: development
+    brief: |
+      The storage requests in a specific namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+
+      The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+      storage class.
+    attributes:
+      - ref: k8s.storageclass.name
+        requirement_level:
+          conditionally_required: |
+            The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+            storage class.
+
+  # k8s.resourcequota.persistentvolumeclaim_count.* metrics
+  - id: metric.k8s.resourcequota.persistentvolumeclaim_count.hard
+    type: metric
+    metric_name: k8s.resourcequota.persistentvolumeclaim_count.hard
+    stability: development
+    brief: |
+      The total number of PersistentVolumeClaims that can exist in the namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{persistentvolumeclaim}"
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+
+      The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+      storage class.
+    attributes:
+      - ref: k8s.storageclass.name
+        requirement_level:
+          conditionally_required: |
+            The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+            storage class.
+  - id: metric.k8s.resourcequota.persistentvolumeclaim_count.used
+    type: metric
+    metric_name: k8s.resourcequota.persistentvolumeclaim_count.used
+    stability: development
+    brief: |
+      The total number of PersistentVolumeClaims that can exist in the namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{persistentvolumeclaim}"
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+
+      The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+      storage class.
+    attributes:
+      - ref: k8s.storageclass.name
+        requirement_level:
+          conditionally_required: |
+            The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+            storage class.
+
+  # k8s.resourcequota.ephemeral_storage.* metrics
+  - id: metric.k8s.resourcequota.ephemeral_storage.request.hard
+    type: metric
+    metric_name: k8s.resourcequota.ephemeral_storage.request.hard
+    stability: development
+    brief: |
+      The sum of local ephemeral storage requests in the namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.ephemeral_storage.request.used
+    type: metric
+    metric_name: k8s.resourcequota.ephemeral_storage.request.used
+    stability: development
+    brief: |
+      The sum of local ephemeral storage requests in the namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.ephemeral_storage.limit.hard
+    type: metric
+    metric_name: k8s.resourcequota.ephemeral_storage.limit.hard
+    stability: development
+    brief: |
+      The sum of local ephemeral storage limits in the namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+  - id: metric.k8s.resourcequota.ephemeral_storage.limit.used
+    type: metric
+    metric_name: k8s.resourcequota.ephemeral_storage.limit.used
+    stability: development
+    brief: |
+      The sum of local ephemeral storage limits in the namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+
+  # k8s.resourcequota.object_count metric
+  - id: metric.k8s.resourcequota.object_count.hard
+    type: metric
+    metric_name: k8s.resourcequota.object_count.hard
+    stability: development
+    brief: |
+      The object count limits in a specific namespace.
+      The value represents the configured quota limit of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{object}"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+    attributes:
+      - ref: k8s.resourcequota.resource_name
+        requirement_level: required
+  - id: metric.k8s.resourcequota.object_count.used
+    type: metric
+    metric_name: k8s.resourcequota.object_count.used
+    stability: development
+    brief: |
+      The object count limits in a specific namespace.
+      The value represents the current observed total usage of the resource in the namespace.
+    instrument: updowncounter
+    unit: "{object}"
+    entity_associations:
+      - k8s.resourcequota
+    note: |
+      This metric is retrieved from the `used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+    attributes:
+      - ref: k8s.resourcequota.resource_name
         requirement_level: required
