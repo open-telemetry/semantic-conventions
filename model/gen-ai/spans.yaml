@@ -235,6 +235,8 @@ groups:
       - ref: gen_ai.agent.description
         requirement_level:
           conditionally_required: If provided by the application.
+      - ref: gen_ai.agent.pattern
+        requirement_level: recommended
 
   - id: span.gen_ai.invoke_agent.client
     type: span
@@ -261,6 +263,8 @@ groups:
       - ref: gen_ai.agent.description
         requirement_level:
           conditionally_required: when available
+      - ref: gen_ai.agent.pattern
+        requirement_level: recommended
       - ref: gen_ai.data_source.id
         requirement_level:
           conditionally_required: if applicable.
