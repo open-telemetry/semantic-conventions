@@ -201,7 +201,7 @@ groups:
               stability: development
               deprecated: "Replaced by `azure.functions`"
             - id: azure_app_service
-              value: 'azure_app_service.app_service'
+              value: 'azure_app_service'
               brief: Azure App Service
               stability: development
               deprecated: "Replaced by `azure.app_service`"
