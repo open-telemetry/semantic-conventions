@@ -5,7 +5,7 @@ issues: [608, 1708, 1698]
 subtext: |
   - Renamed attributes:
     - `az.service_request_id` to `azure.service.request.id`
-    - `az.namespace` to `azure.resource.namespace`
+    - `az.namespace` to `azure.resource_provider.namespace`
   - Renamed events:
     - `az.resource.log` to `azure.resource.log`
   - Renamed enum members:

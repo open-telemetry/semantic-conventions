@@ -18,8 +18,8 @@ groups:
         type: string
         stability: development
         brief: >
-          Deprecated, use `azure.resource.namespace` instead.
+          Deprecated, use `azure.resource_provider.namespace` instead.
         deprecated:
           reason: renamed
-          renamed_to: azure.resource.namespace
+          renamed_to: azure.resource_provider.namespace
         examples: ["Microsoft.Storage", "Microsoft.KeyVault", "Microsoft.ServiceBus"]
