@@ -53,14 +53,24 @@ groups:
               stability: development
               value: "cohere"
               brief: 'Cohere'
+            - id: azure.ai.inference
+              stability: development
+              value: "azure.ai.inference"
+              brief: 'Azure AI Inference'
+            - id: azure.ai.openai
+              stability: development
+              value: "azure.ai.openai"
+              brief: 'Azure OpenAI'
             - id: az.ai.inference
               stability: development
               value: "az.ai.inference"
+              deprecated: "Replaced by azure.ai.inference"
               brief: 'Azure AI Inference'
             - id: az.ai.openai
               stability: development
-              value: "az.ai.openai"
+              value: "azure.ai.openai"
               brief: 'Azure OpenAI'
+              deprecated: "Replaced by azure.ai.openai"
             - id: ibm.watsonx.ai
               stability: development
               value: "ibm.watsonx.ai"

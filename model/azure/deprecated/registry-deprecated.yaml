@@ -1,0 +1,25 @@
+groups:
+  - id: registry.azure.deprecated
+    type: attribute_group
+    display_name: Deprecated Azure Attributes
+    brief: >
+      This section describes deprecated Azure attributes.
+    attributes:
+      - id: az.service_request_id
+        type: string
+        stability: development
+        brief: "Deprecated, use `azure.service.request.id` instead."
+        deprecated:
+          reason: renamed
+          renamed_to: azure.service.request.id
+        examples:
+          - "00000000-0000-0000-0000-000000000000"
+      - id: az.namespace
+        type: string
+        stability: development
+        brief: >
+          Deprecated, use `azure.resource_provider.namespace` instead.
+        deprecated:
+          reason: renamed
+          renamed_to: azure.resource_provider.namespace
+        examples: ["Microsoft.Storage", "Microsoft.KeyVault", "Microsoft.ServiceBus"]

@@ -59,9 +59,9 @@ Semantic conventions described in this document apply to the call-level spans on
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | string | Cosmos DB status code. [5] | `200`; `201` | `Conditionally Required` if response was received | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` If not default (443). | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`az.namespace`](/docs/registry/attributes/azure.md) | string | [Azure Resource Provider Namespace](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-services-resource-providers) as recognized by the client. [8] | `Microsoft.DocumentDB` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`azure.client.id`](/docs/registry/attributes/azure.md) | string | The unique identifier of the client instance. | `3ba4827d-4422-483f-b59f-85b74211c11d`; `storage-client-1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`azure.cosmosdb.request.body.size`](/docs/registry/attributes/azure.md) | int | Request payload size in bytes. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`azure.resource_provider.namespace`](/docs/registry/attributes/azure.md) | string | [Azure Resource Provider Namespace](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-services-resource-providers) as recognized by the client. [8] | `Microsoft.DocumentDB` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`db.operation.batch.size`](/docs/registry/attributes/db.md) | int | The number of queries included in a batch operation. [9] | `2`; `3`; `4` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.query.text`](/docs/registry/attributes/db.md) | string | The database query being executed. [10] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | string | The name of a stored procedure within the database. [11] | `GetCustomer` | `Recommended` [12] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -207,7 +207,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[8] `az.namespace`:** When `az.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all operations performed by Cosmos DB client.
+**[8] `azure.resource_provider.namespace`:** When `azure.resource_provider.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all operations performed by Cosmos DB client.
 
 **[9] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 
@@ -293,11 +293,11 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | Key                                  | Value |
 |:-------------------------------------| :------------------- |
 | Span name                            | `"read_item orders"` |
-| `az.namespace`                       | `"Microsoft.DocumentDB"` |
 | `azure.client.id`                    | `"3ba4827d-4422-483f-b59f-85b74211c11d"` |
 | `azure.cosmosdb.operation.request_charge`  | `7.43` |
 | `azure.cosmosdb.request.body.size`   | `20` |
 | `azure.cosmosdb.response.sub_status_code` | `0` |
+| `azure.resource_provider.namespace`  | `"Microsoft.DocumentDB"` |
 | `db.system.name`                     | `"azure.cosmosdb"` |
 | `db.collection.name`                 | `"orders"` |
 | `db.namespace`                       | `"ShopDb"` |
