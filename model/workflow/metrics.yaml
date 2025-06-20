@@ -1,0 +1,47 @@
+groups:
+  - id: metric.workflow.taskrun.duration
+    type: metric
+    metric_name: workflow.taskrun.duration
+    brief: 'Duration of a task run grouped by task, type and result.'
+    instrument: histogram
+    unit: "s"
+    stability: development
+    extends: attribute.metric.workflow.taskrun
+    attributes:
+      - ref: workflow.task.run.result
+        requirement_level: required
+  - id: metric.workflow.taskrun.qty
+    type: metric
+    metric_name: workflow.taskrun.qty
+    brief: "The number of actively running tasks grouped by task, type and result."
+    note: "When a task changes state it is expected that the previous state is decremented and new state incremented."
+    instrument: updowncounter
+    unit: "{job}"
+    stability: development
+    extends: attribute.metric.workflow.taskrun
+    attributes:
+      - ref: workflow.task.run.state
+        requirement_level: required
+  - id: metric.workflow.execution.duration
+    type: metric
+    metric_name: workflow.execution.duration
+    brief: 'Duration of a execution grouped by workflow and result.'
+    instrument: histogram
+    unit: "s"
+    stability: development
+    extends: attribute.metric.workflow.execution
+    attributes:
+      - ref: workflow.execution.result
+        requirement_level: required
+  - id: metric.workflow.execution.qty
+    type: metric
+    metric_name: workflow.execution.qty
+    brief: "The number of actively running tasks grouped by task, type and result."
+    note: "When a workflow changes state it is expected that the previous state is decremented and new state incremented."
+    instrument: updowncounter
+    unit: "{job}"
+    stability: development
+    extends: attribute.metric.workflow.execution
+    attributes:
+      - ref: workflow.execution.state
+        requirement_level: required

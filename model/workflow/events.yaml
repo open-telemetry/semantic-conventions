@@ -1,0 +1,65 @@
+groups:
+  - id: event.workflow.execution.k8s.result
+    type: event
+    name: workflow.execution.k8s.result
+    stability: development
+    extends: attribute.event.workflow.execution
+    brief: >
+    note: >
+    attributes:
+      - ref: workflow.id
+        brief: "The UID of the k8s CronJob/Job."
+      - ref: workflow.name
+        brief: "The name of the k8s CronJob/Job."
+      - ref: workflow.platform.product
+        examples: "k8s"
+      - ref: workflow.execution.result
+        requirement_level: required
+  - id: event.workflow.execution.k8s.state
+    type: event
+    name: workflow.execution.k8s.state
+    stability: development
+    extends: attribute.event.workflow.execution
+    brief: >
+    note: >
+    attributes:
+      - ref: workflow.id
+        brief: "The UID of the k8s CronJob/Job."
+      - ref: workflow.name
+        brief: "The name of the k8s CronJob/Job."
+      - ref: workflow.platform.product
+        examples: "k8s"
+      - ref: workflow.execution.state
+        requirement_level: required
+  - id: event.workflow.taskrun.k8s.result
+    type: event
+    name: workflow.taskrun.k8s.result
+    stability: development
+    extends: attribute.event.workflow.taskrun
+    brief: >
+    note: >
+    attributes:
+      - ref: workflow.task.id
+        brief: "The UID of the k8s CronJob/Job."
+      - ref: workflow.task.name
+        brief: "The name of the k8s CronJob/Job."
+      - ref: workflow.platform.product
+        examples: "k8s"
+      - ref: workflow.task.run.result
+        requirement_level: required
+  - id: event.workflow.taskrun.k8s.state
+    type: event
+    name: workflow.taskrun.k8s.state
+    extends: attribute.event.workflow.taskrun
+    stability: development
+    brief: >
+    note: >
+    attributes:
+      - ref: workflow.task.id
+        brief: "The UID of the k8s CronJob/Job."
+      - ref: workflow.task.name
+        brief: "The name of the k8s CronJob/Job."
+      - ref: workflow.platform.product
+        examples: "k8s"
+      - ref: workflow.task.run.state
+        requirement_level: required
