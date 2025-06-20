@@ -174,6 +174,14 @@ attributes. Adding for example `process.executable.name`
 attribute to the identity is unnecessary and violates the
 rule of having a [minimally sufficient ID](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.45.0/specification/entities/data-model.md#minimally-sufficient-identity).
 
+Identifying attributes generally form the lifespan of an entity. This is
+important, particularly, for metrics written against an entity.  The lifespan
+determines whether a timeseries remains "connected" between reported points, or
+if it suddenly looks like a drop. It is recommended to select an identity that
+keeps the lifespan "stable" for important alerting and monitoring use cases.
+
+Identifying attributes MUST NOT change during the lifespan of the entity.
+
 #### Multi-Observer Guidance
 
 When choosing Identifying attributes, care should be taken to ensure that
