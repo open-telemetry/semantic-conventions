@@ -14,5 +14,6 @@ Semantic conventions for hardware are defined as following:
 
 * [Common Hardware Metrics](common.md): Semantic Conventions for *common* hardware metrics.
 * [Physical Host Metrics](host.md): Semantic Conventions for *physical host* metrics.
+* [Battery Metrics](battery.md): Semantic Conventions for *battery* metrics.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
