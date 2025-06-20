@@ -231,6 +231,19 @@ groups:
         type: string
         brief: Free-form description of the GenAI agent provided by the application.
         examples: ["Helps with math problems", "Generates fiction stories"]
+      - id: gen_ai.agent.pattern
+        stability: development
+        type: string
+        brief: The agentic pattern or application style used by the GenAI agent.
+        note: >
+          This attribute captures the underlying agentic pattern or architectural style
+          employed by the GenAI agent. Common patterns include but are not limited to:
+          Retrieval-Augmented Generation (RAG), ReAct (Reasoning and Acting),
+          Chain-of-Thought (CoT), Tree-of-Thoughts (ToT), and other established
+          agentic application patterns. This information is valuable for debugging
+          and performance analysis as different patterns may require different
+          observability approaches and optimizations.
+        examples: ["RAG", "ReAct", "CoT", "ToT", "MultiAgent", "PlanAndExecute"]
       - id: gen_ai.tool.name
         stability: development
         type: string
