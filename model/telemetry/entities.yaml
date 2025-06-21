@@ -26,3 +26,16 @@ groups:
         requirement_level: recommended
       - ref: telemetry.distro.version
         requirement_level: recommended
+  - id: entity.telemetry.organisation
+    name: 'telemetry.organisation'
+    type: entity
+    stability: development
+    brief: >
+      The organisation which this telemetry is intended to be used by.
+    attributes:
+      - ref: telemetry.organisation.id
+        requirement_level: recommended
+      - ref: telemetry.organisation.name
+        requirement_level: recommended
+      - ref: telemetry.organisation.role
+        requirement_level: opt_in

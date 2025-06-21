@@ -25,6 +25,23 @@
 **[1] `telemetry.distro.name`:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
 
+## Telemetry Organisation
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `telemetry.organisation`
+
+**Description:** The organisation which this telemetry is intended to be used by.
+
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
+
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+|---|---|---|---|---|---|---|
+| Other | [`telemetry.organisation.id`](/docs/registry/attributes/telemetry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for the organization. | `19e97b12-0fa0-45de-9c59-23ff59d572b9` |
+| Other | [`telemetry.organisation.name`](/docs/registry/attributes/telemetry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name for the Organization or team. | `productX_support` |
+| Other | [`telemetry.organisation.role`](/docs/registry/attributes/telemetry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Role of the organisation. | `support`; `hosting` |
+
 ## Telemetry Sdk
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
