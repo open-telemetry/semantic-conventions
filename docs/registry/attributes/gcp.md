@@ -5,9 +5,9 @@
 
 - [GCP - AppHub Attributes](#gcp---apphub-attributes)
 - [GCP - AppHub Destination Attributes](#gcp---apphub-destination-attributes)
-- [GCP Client Attributes](#gcp-client-attributes)
 - [GCP - Google Cloud Run Attributes](#gcp---google-cloud-run-attributes)
 - [GCP - Google Compute Engine (GCE) Attributes](#gcp---google-compute-engine-gce-attributes)
+- [Deprecated GCP Client Attributes](#deprecated-gcp-client-attributes)
 
 ## GCP - AppHub Attributes
 
@@ -137,16 +137,6 @@ This document defines attributes AppHub will apply to destination resources in G
 | `STAGING` | Staging environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TEST` | Test environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## GCP Client Attributes
-
-Attributes for Google Cloud client libraries.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="gcp-client-service" href="#gcp-client-service">`gcp.client.service`</a> | string | Identifies the Google Cloud service for which the official client library is intended. [5] | `appengine`; `run`; `firestore`; `alloydb`; `spanner` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[5] `gcp.client.service`:** Intended to be a stable identifier for Google Cloud client libraries that is uniform across implementation languages. The value should be derived from the canonical service domain for the service; for example, 'foo.googleapis.com' should result in a value of 'foo'.
-
 ## GCP - Google Cloud Run Attributes
 
 This document defines attributes for Google Cloud Run.
@@ -164,3 +154,13 @@ This document defines attributes for Google Compute Engine (GCE).
 |---|---|---|---|---|
 | <a id="gcp-gce-instance-hostname" href="#gcp-gce-instance-hostname">`gcp.gce.instance.hostname`</a> | string | The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm). | `my-host1234.example.com`; `sample-vm.us-west1-b.c.my-project.internal` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gcp-gce-instance-name" href="#gcp-gce-instance-name">`gcp.gce.instance.name`</a> | string | The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names). | `instance-1`; `my-vm-name` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Deprecated GCP Client Attributes
+
+Attributes for Google Cloud client libraries.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="gcp-client-service" href="#gcp-client-service">`gcp.client.service`</a> | string | Identifies the Google Cloud service for which the official client library is intended. [5] | `appengine`; `run`; `firestore`; `alloydb`; `spanner` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `peer.service.namespace`. |
+
+**[5] `gcp.client.service`:** Intended to be a stable identifier for Google Cloud client libraries that is uniform across implementation languages. The value should be derived from the canonical service domain for the service; for example, 'foo.googleapis.com' should result in a value of 'foo'.

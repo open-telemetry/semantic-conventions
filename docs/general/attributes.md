@@ -368,7 +368,8 @@ Instrumentations SHOULD provide a way for users to configure this name.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`peer.service`](/docs/registry/attributes/peer.md) | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`peer.service.name`](/docs/registry/attributes/peer.md) | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`peer.service.namespace`](/docs/registry/attributes/peer.md) | string | The [`service.namespace`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.namespace` resource attribute of the remote service if any. | `Auth` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
