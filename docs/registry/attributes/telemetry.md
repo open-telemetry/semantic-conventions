@@ -9,16 +9,23 @@ This document defines attributes for telemetry SDK.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="telemetry-distro-name" href="#telemetry-distro-name">`telemetry.distro.name`</a> | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="telemetry-destination-namespace" href="#telemetry-destination-namespace">`telemetry.destination.namespace`</a> | string | The namespace which the telemetry should be put into. [1] | `public-website` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="telemetry-distro-name" href="#telemetry-distro-name">`telemetry.distro.name`</a> | string | The name of the auto instrumentation agent or distribution, if used. [2] | `parts-unlimited-java` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="telemetry-distro-version" href="#telemetry-distro-version">`telemetry.distro.version`</a> | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="telemetry-organisation-id" href="#telemetry-organisation-id">`telemetry.organisation.id`</a> | string | Unique identifier for the organization. | `19e97b12-0fa0-45de-9c59-23ff59d572b9` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="telemetry-organisation-name" href="#telemetry-organisation-name">`telemetry.organisation.name`</a> | string | Name for the Organization or team. | `productX_support` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="telemetry-organisation-role" href="#telemetry-organisation-role">`telemetry.organisation.role`</a> | string | Role of the organisation. | `support`; `hosting` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="telemetry-sdk-language" href="#telemetry-sdk-language">`telemetry.sdk.language`</a> | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="telemetry-sdk-name" href="#telemetry-sdk-name">`telemetry.sdk.name`</a> | string | The name of the telemetry SDK as defined above. [2] | `opentelemetry` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="telemetry-sdk-name" href="#telemetry-sdk-name">`telemetry.sdk.name`</a> | string | The name of the telemetry SDK as defined above. [3] | `opentelemetry` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="telemetry-sdk-version" href="#telemetry-sdk-version">`telemetry.sdk.version`</a> | string | The version string of the telemetry SDK. | `1.2.3` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `telemetry.distro.name`:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
+**[1] `telemetry.destination.namespace`:** For Elastic this would be the space.
+For GCP this would be the telemetry project.
+
+**[2] `telemetry.distro.name`:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
 
-**[2] `telemetry.sdk.name`:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
+**[3] `telemetry.sdk.name`:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
 If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the
 `telemetry.sdk.name` attribute to the fully-qualified class or module name of this SDK's main entry point
 or another suitable identifier depending on the language.
