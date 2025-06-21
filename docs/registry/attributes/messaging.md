@@ -33,7 +33,13 @@ Attributes describing telemetry around messaging systems and messaging activitie
 | <a id="messaging-message-id" href="#messaging-message-id">`messaging.message.id`</a> | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="messaging-operation-name" href="#messaging-operation-name">`messaging.operation.name`</a> | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="messaging-operation-type" href="#messaging-operation-type">`messaging.operation.type`</a> | string | A string identifying the type of the messaging operation. [8] | `create`; `send`; `receive` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | string | The messaging system as identified by the client instrumentation. [9] | `activemq`; `aws_sqs`; `eventgrid` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="messaging-replyto-anonymous" href="#messaging-replyto-anonymous">`messaging.replyto.anonymous`</a> | boolean | A boolean that is true if the message replyto is anonymous (could be unnamed or have auto-generated name). |  | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="messaging-replyto-name" href="#messaging-replyto-name">`messaging.replyto.name`</a> | string | The message replyto name [9] | `MyQueue`; `MyTopic` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="messaging-replyto-partition-id" href="#messaging-replyto-partition-id">`messaging.replyto.partition.id`</a> | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.replyto.name`. | `1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="messaging-replyto-subscription-name" href="#messaging-replyto-subscription-name">`messaging.replyto.subscription.name`</a> | string | The name of the replyto subscription from which a message is consumed. [10] | `subscription-a` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="messaging-replyto-template" href="#messaging-replyto-template">`messaging.replyto.template`</a> | string | Low cardinality representation of the messaging replyto name [11] | `/customers/{customerId}` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="messaging-replyto-temporary" href="#messaging-replyto-temporary">`messaging.replyto.temporary`</a> | boolean | A boolean that is true if the message replyto is temporary and might not exist anymore after messages are processed. |  | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | string | The messaging system as identified by the client instrumentation. [12] | `activemq`; `aws_sqs`; `eventgrid` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `messaging.batch.message_count`:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
@@ -54,7 +60,14 @@ size should be used.
 
 **[8] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[9] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
+**[9] `messaging.replyto.name`:** Replyto name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+the broker doesn't have such notion, the replyto name SHOULD uniquely identify the broker.
+
+**[10] `messaging.replyto.subscription.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.replyto.subscription.name` is applicable and what it means in the context of that system.
+
+**[11] `messaging.replyto.template`:** Replyto names could be constructed from templates. An example would be a replyto name involving a user name or product id. Although the replyto name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+
+**[12] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
 ---
 
@@ -111,11 +124,11 @@ This group describes attributes specific to Apache Kafka.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="messaging-kafka-message-key" href="#messaging-kafka-message-key">`messaging.kafka.message.key`</a> | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [10] | `myKey` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="messaging-kafka-message-key" href="#messaging-kafka-message-key">`messaging.kafka.message.key`</a> | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [13] | `myKey` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="messaging-kafka-message-tombstone" href="#messaging-kafka-message-tombstone">`messaging.kafka.message.tombstone`</a> | boolean | A boolean that is true if the message is a tombstone. |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="messaging-kafka-offset" href="#messaging-kafka-offset">`messaging.kafka.offset`</a> | int | The offset of a record in the corresponding Kafka partition. | `42` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[10] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
+**[13] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
 ## RabbitMQ Attributes
 
