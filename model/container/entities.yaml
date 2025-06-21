@@ -9,6 +9,9 @@ groups:
       - ref: container.name
       - ref: container.id
       - ref: container.runtime
+      - ref: container.runtime.description
+      - ref: container.runtime.name
+      - ref: container.runtime.version
       - ref: container.image.name
       - ref: container.image.tags
       - ref: container.image.id
