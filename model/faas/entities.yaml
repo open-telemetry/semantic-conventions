@@ -4,11 +4,26 @@ groups:
     stability: development
     name: faas
     brief: >
-      A serverless instance.
+      A serverless function.
     attributes:
+      - ref: faas.id
+        role: identifying
+        requirement_level: required
       - ref: faas.name
+        role: descriptive
         requirement_level: required
       - ref: faas.version
+        role: descriptive
       - ref: faas.instance
+        role: descriptive
+  - id: entity.faas.instance
+    type: entity
+    stability: development
+    name: faas.instance
+    brief: >
+      A serverless instance.
+    attributes:
+      - ref: faas.instance
+        role: identifying
       - ref: faas.max_memory
-      - ref: cloud.resource_id
+        role: descriptive
