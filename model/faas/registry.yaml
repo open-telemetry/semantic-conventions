@@ -4,6 +4,17 @@ groups:
     type: attribute_group
     display_name: Function as a Service Attributes
     attributes:
+      - id: faas.id
+        type: string
+        stability: development
+        brief: >
+          The id of the single function that this runtime instance executes.
+        note: |
+          This id in the case of cloud based faas systems will be the same value as `cloud.resource_id` however in the case of local systems this should be another local identifier.
+        examples:
+          - 'arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function'
+          - '//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID'
+          - '/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>'
       - id: faas.name
         type: string
         stability: development
