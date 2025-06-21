@@ -24,7 +24,9 @@ A container instance.
 | <a id="container-image-tags" href="#container-image-tags">`container.image.tags`</a> | string[] | Container image tags. An example can be found in [Docker Image Inspect](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect). Should be only the `<tag>` section of the full name for example from `registry.example.com/my-org/my-image:<tag>`. | `["v1.27.1", "3.5.7-0"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="container-label" href="#container-label">`container.label.<key>`</a> | string | Container labels, `<key>` being the label name, the value being the label value. [6] | `nginx` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="container-name" href="#container-name">`container.name`</a> | string | Container name used by container runtime. | `opentelemetry-autoconf` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-runtime" href="#container-runtime">`container.runtime`</a> | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="container-runtime-description" href="#container-runtime-description">`container.runtime.description`</a> | string | An additional description about the runtime, for example a specific vendor customization of the runtime environment. |  | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="container-runtime-name" href="#container-runtime-name">`container.runtime.name`</a> | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="container-runtime-version" href="#container-runtime-version">`container.runtime.version`</a> | string | The version of the runtime of this process, as returned by the runtime without modification. | `1.0.0` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `container.command`:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
 
@@ -48,6 +50,7 @@ Describes deprecated container attributes.
 |---|---|---|---|---|
 | <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. |
 | <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | string | Deprecated, use `container.label` instead. | `nginx` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.label`. |
+| <a id="container-runtime" href="#container-runtime">`container.runtime`</a> | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.runtime.name`. |
 
 ---
 
