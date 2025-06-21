@@ -106,6 +106,14 @@ Currently, the following namespaces exist:
   <td><a href="container.md#container">container</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
+  <td></td>
+  <td><a href="container.md#container-image">container.image</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="container.md#container-runtime">container.runtime</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
 <td>Deployment</td><td></td><td></td>
 </tr><tr>
   <td></td>
