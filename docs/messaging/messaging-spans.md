@@ -386,16 +386,22 @@ Messaging system-specific attributes MUST be defined in the corresponding `messa
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | string | Low cardinality representation of the messaging destination name [10] | `/customers/{customerId}` | `Conditionally Required` [11] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.destination.temporary`](/docs/registry/attributes/messaging.md) | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  | `Conditionally Required` [12] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | string | A string identifying the type of the messaging operation. [13] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [14] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.replyto.anonymous`](/docs/registry/attributes/messaging.md) | boolean | A boolean that is true if the message replyto is anonymous (could be unnamed or have auto-generated name). |  | `Conditionally Required` [14] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.replyto.name`](/docs/registry/attributes/messaging.md) | string | The message replyto name [15] | `MyQueue`; `MyTopic` | `Conditionally Required` [16] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.replyto.subscription.name`](/docs/registry/attributes/messaging.md) | string | The name of the replyto subscription from which a message is consumed. [17] | `subscription-a` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.replyto.template`](/docs/registry/attributes/messaging.md) | string | Low cardinality representation of the messaging replyto name [18] | `/customers/{customerId}` | `Conditionally Required` [19] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.replyto.temporary`](/docs/registry/attributes/messaging.md) | boolean | A boolean that is true if the message replyto is temporary and might not exist anymore after messages are processed. |  | `Conditionally Required` [20] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [21] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` When applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the messaging intermediary node where the operation was performed. [15] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this messaging system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.replyto.partition.id`](/docs/registry/attributes/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.replyto.name`. | `1` | `Recommended` When applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the messaging intermediary node where the operation was performed. [22] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this messaging system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [16] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body in bytes. [17] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body and metadata in bytes. [18] | `2738` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [23] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body in bytes. [24] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body and metadata in bytes. [25] | `2738` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
@@ -442,18 +448,33 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[13] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[14] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[14] `messaging.replyto.anonymous`:** If value is `true`. When missing, the value is assumed to be `false`.
 
-**[15] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
+**[15] `messaging.replyto.name`:** Replyto name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+the broker doesn't have such notion, the replyto name SHOULD uniquely identify the broker.
+
+**[16] `messaging.replyto.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
+
+**[17] `messaging.replyto.subscription.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.replyto.subscription.name` is applicable and what it means in the context of that system.
+
+**[18] `messaging.replyto.template`:** Replyto names could be constructed from templates. An example would be a replyto name involving a user name or product id. Although the replyto name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+
+**[19] `messaging.replyto.template`:** If available. Instrumentations MUST NOT use `messaging.replyto.name` as template unless low-cardinality of replyto name is guaranteed.
+
+**[20] `messaging.replyto.temporary`:** If value is `true`. When missing, the value is assumed to be `false`.
+
+**[21] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+
+**[22] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[16] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[23] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[17] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[24] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
-**[18] `messaging.message.envelope.size`:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
+**[25] `messaging.message.envelope.size`:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
 size should be used.
 
 The following attributes can be important for making sampling decisions
@@ -462,10 +483,13 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md)
 * [`messaging.destination.name`](/docs/registry/attributes/messaging.md)
 * [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md)
-* [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md)
 * [`messaging.destination.template`](/docs/registry/attributes/messaging.md)
 * [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
 * [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
+* [`messaging.replyto.name`](/docs/registry/attributes/messaging.md)
+* [`messaging.replyto.partition.id`](/docs/registry/attributes/messaging.md)
+* [`messaging.replyto.subscription.name`](/docs/registry/attributes/messaging.md)
+* [`messaging.replyto.template`](/docs/registry/attributes/messaging.md)
 * [`messaging.system`](/docs/registry/attributes/messaging.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)

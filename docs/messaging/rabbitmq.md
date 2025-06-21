@@ -55,13 +55,14 @@ The Semantic Conventions for [RabbitMQ](https://www.rabbitmq.com/) extend and ov
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | string | A string identifying the type of the messaging operation. [3] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.rabbitmq.destination.routing_key`](/docs/registry/attributes/messaging.md) | string | RabbitMQ message routing key. | `myKey` | `Conditionally Required` If not empty. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.rabbitmq.message.delivery_tag`](/docs/registry/attributes/messaging.md) | int | RabbitMQ message delivery tag | `123` | `Conditionally Required` When available. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.replyto.name`](/docs/registry/attributes/messaging.md) | string | The message replyto name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | string | Message [correlation Id](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property. | `MyConversationId` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. [5] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. [7] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body in bytes. [7] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body in bytes. [9] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `messaging.destination.name`:** In RabbitMQ, the destination is defined by an *exchange*, a *routing key* and for consumers, a *queue*.
 
@@ -98,13 +99,18 @@ it's RECOMMENDED to:
 
 **[3] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[4] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[4] `messaging.replyto.name`:** Replyto name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+the broker doesn't have such notion, the replyto name SHOULD uniquely identify the broker.
 
-**[5] `network.peer.address`:** If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+**[5] `messaging.replyto.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[6] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
-**[7] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[7] `network.peer.address`:** If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+
+**[8] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[9] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
 The following attributes can be important for making sampling decisions
@@ -113,6 +119,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`messaging.destination.name`](/docs/registry/attributes/messaging.md)
 * [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
 * [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
+* [`messaging.replyto.name`](/docs/registry/attributes/messaging.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
 

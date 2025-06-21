@@ -70,6 +70,47 @@ groups:
         brief: >
           The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`.
         examples: '1'
+      - id: messaging.replyto.name
+        type: string
+        stability: development
+        brief: 'The message replyto name'
+        note: |
+          Replyto name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+          the broker doesn't have such notion, the replyto name SHOULD uniquely identify the broker.
+        examples: ['MyQueue', 'MyTopic']
+      - id: messaging.replyto.subscription.name
+        type: string
+        stability: development
+        brief: 'The name of the replyto subscription from which a message is consumed.'
+        note: >
+          Semantic conventions for individual messaging systems SHOULD document whether `messaging.replyto.subscription.name`
+          is applicable and what it means in the context of that system.
+        examples: ['subscription-a']
+      - id: messaging.replyto.template
+        type: string
+        stability: development
+        brief: Low cardinality representation of the messaging replyto name
+        note: >
+          Replyto names could be constructed from templates.
+          An example would be a replyto name involving a user name or product id.
+          Although the replyto name in this case is of high cardinality,
+          the underlying template is of low cardinality and can be effectively
+          used for grouping and aggregation.
+        examples: ['/customers/{customerId}']
+      - id: messaging.replyto.anonymous
+        type: boolean
+        stability: development
+        brief: 'A boolean that is true if the message replyto is anonymous (could be unnamed or have auto-generated name).'
+      - id: messaging.replyto.temporary
+        type: boolean
+        stability: development
+        brief: 'A boolean that is true if the message replyto is temporary and might not exist anymore after messages are processed.'
+      - id: messaging.replyto.partition.id
+        type: string
+        stability: development
+        brief: >
+          The identifier of the partition messages are sent to or received from, unique within the `messaging.replyto.name`.
+        examples: '1'
       - id: messaging.message.conversation_id
         type: string
         stability: development

@@ -24,11 +24,12 @@ described on this page.
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [2] | `MyQueue`; `MyTopic` | `Conditionally Required` [3] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | string | A string identifying the type of the messaging operation. [4] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.replyto.name`](/docs/registry/attributes/messaging.md) | string | The message replyto name [5] | `MyQueue`; `MyTopic` | `Conditionally Required` [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`aws.request_id`](/docs/registry/attributes/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aws.sns.topic.arn`](/docs/registry/attributes/aws.md) | string | The ARN of the AWS SNS Topic. An Amazon SNS [topic](https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html) is a logical access point that acts as a communication channel. | `arn:aws:sns:us-east-1:123456789012:mystack-mytopic-NZJ5JSMVGFIE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -57,9 +58,14 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[4] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[5] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[5] `messaging.replyto.name`:** Replyto name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+the broker doesn't have such notion, the replyto name SHOULD uniquely identify the broker.
 
-**[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[6] `messaging.replyto.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
+
+**[7] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+
+**[8] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -67,6 +73,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`messaging.destination.name`](/docs/registry/attributes/messaging.md)
 * [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
 * [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
+* [`messaging.replyto.name`](/docs/registry/attributes/messaging.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
 
