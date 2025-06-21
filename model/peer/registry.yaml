@@ -1,11 +1,29 @@
 groups:
-  - id: registry.peer
+  - id: registry.peer.request
     type: attribute_group
-    display_name: Peer Attributes
+    display_name: Request Attributes
+    brief: >
+      information about the request being processed by the peer.
+    attributes:
+      - id: peer.request.id
+        type: string
+        stability: development
+        brief: "The request ID as returned for the peer."
+        examples:
+          - 79b9da39-b7ae-508a-a6bc-864b2829c622
+      - id: peer.request.extendedid
+        type: string
+        stability: development
+        brief: "An extended request ID as returned by the peer."
+        examples:
+          - 79b9da39-b7ae-508a-a6bc-864b2829c622
+  - id: registry.peer.service
+    type: attribute_group
+    display_name: Service Attributes
     brief: >
       Operations that access some remote service.
     attributes:
-      - id: peer.service
+      - id: peer.service.name
         type: string
         stability: development
         brief: >
@@ -13,3 +31,11 @@ groups:
           of the remote service. SHOULD be equal to the actual `service.name`
           resource attribute of the remote service if any.
         examples: "AuthTokenCache"
+      - id: peer.service.namespace
+        type: string
+        stability: development
+        brief: >
+          The [`service.namespace`](/docs/resource/README.md#service)
+          of the remote service. SHOULD be equal to the actual `service.namespace`
+          resource attribute of the remote service if any.
+        examples: "Auth"
