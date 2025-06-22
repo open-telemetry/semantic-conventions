@@ -44,6 +44,7 @@ Used to describe Kubernetes cronjobs
 | [`host.id`](/docs/registry/attributes/host.md) | string | The UID of the k8s Node. | `fdbf79e8af94cb7f9e8df36789187052` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`host.name`](/docs/registry/attributes/host.md) | string | The name of the k8s Node. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.name`](/docs/registry/attributes/workflow.md) | string | The name of the k8s CronJob. | `Build and deploy application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.task.category`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `deployment`; `build`; `test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.task.name`](/docs/registry/attributes/workflow.md) | string | The name of the k8s CronJob. | `Build application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.trigger.schedule`](/docs/registry/attributes/workflow.md) | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.id`](/docs/registry/attributes/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -62,6 +63,16 @@ Used to describe Kubernetes cronjobs
 | `hangfire` | Hangfire | ![Development](https://img.shields.io/badge/-development-blue) |
 | `k8s` | Kubernetes | ![Development](https://img.shields.io/badge/-development-blue) |
 | `quartz` | Quartz | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`workflow.task.category` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `build` | Software is being built by this task. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deployment` | Software is being deployed by this task. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `test` | Software is being tested by this task. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -96,6 +107,7 @@ Used to describe Kubernetes cronjobs
 | [`host.id`](/docs/registry/attributes/host.md) | string | The UID of the k8s Node. | `fdbf79e8af94cb7f9e8df36789187052` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`host.name`](/docs/registry/attributes/host.md) | string | The name of the k8s Node. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.name`](/docs/registry/attributes/workflow.md) | string | The name of the k8s Job. | `Build and deploy application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.task.category`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `deployment`; `build`; `test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.task.name`](/docs/registry/attributes/workflow.md) | string | The name of the k8s Job. | `Build application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.id`](/docs/registry/attributes/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.name`](/docs/registry/attributes/container.md) | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -113,6 +125,16 @@ Used to describe Kubernetes cronjobs
 | `hangfire` | Hangfire | ![Development](https://img.shields.io/badge/-development-blue) |
 | `k8s` | Kubernetes | ![Development](https://img.shields.io/badge/-development-blue) |
 | `quartz` | Quartz | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`workflow.task.category` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `build` | Software is being built by this task. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deployment` | Software is being deployed by this task. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `test` | Software is being tested by this task. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -32,7 +32,7 @@ linkTitle: Events
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-The event name MUST be `workflow.execution.k8s.result`.
+The event name MUST be `workflow.execution.result`.
 
 
 
@@ -88,7 +88,7 @@ The event name MUST be `workflow.execution.k8s.result`.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-The event name MUST be `workflow.execution.k8s.state`.
+The event name MUST be `workflow.execution.state`.
 
 
 
@@ -142,7 +142,7 @@ The event name MUST be `workflow.execution.k8s.state`.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-The event name MUST be `workflow.taskrun.k8s.result`.
+The event name MUST be `workflow.taskrun.result`.
 
 
 
@@ -158,6 +158,7 @@ The event name MUST be `workflow.taskrun.k8s.result`.
 | [`host.id`](/docs/registry/attributes/host.md) | string | Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system. | `fdbf79e8af94cb7f9e8df36789187052` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.name`](/docs/registry/attributes/workflow.md) | string | Name of the workflow | `Build and deploy application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.task.category`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `deployment`; `build`; `test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.task.name`](/docs/registry/attributes/workflow.md) | string | The name of the k8s CronJob/Job. | `Build application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.id`](/docs/registry/attributes/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -171,6 +172,16 @@ The event name MUST be `workflow.taskrun.k8s.result`.
 | `hangfire` | Hangfire | ![Development](https://img.shields.io/badge/-development-blue) |
 | `k8s` | Kubernetes | ![Development](https://img.shields.io/badge/-development-blue) |
 | `quartz` | Quartz | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`workflow.task.category` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `build` | Software is being built by this task. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deployment` | Software is being deployed by this task. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `test` | Software is being tested by this task. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -201,7 +212,7 @@ The event name MUST be `workflow.taskrun.k8s.result`.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-The event name MUST be `workflow.taskrun.k8s.state`.
+The event name MUST be `workflow.taskrun.state`.
 
 
 
@@ -217,6 +228,7 @@ The event name MUST be `workflow.taskrun.k8s.state`.
 | [`host.id`](/docs/registry/attributes/host.md) | string | Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system. | `fdbf79e8af94cb7f9e8df36789187052` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.name`](/docs/registry/attributes/workflow.md) | string | Name of the workflow | `Build and deploy application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.task.category`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `deployment`; `build`; `test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.task.name`](/docs/registry/attributes/workflow.md) | string | The name of the k8s CronJob/Job. | `Build application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.id`](/docs/registry/attributes/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -230,6 +242,16 @@ The event name MUST be `workflow.taskrun.k8s.state`.
 | `hangfire` | Hangfire | ![Development](https://img.shields.io/badge/-development-blue) |
 | `k8s` | Kubernetes | ![Development](https://img.shields.io/badge/-development-blue) |
 | `quartz` | Quartz | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`workflow.task.category` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `build` | Software is being built by this task. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deployment` | Software is being deployed by this task. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `test` | Software is being tested by this task. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
