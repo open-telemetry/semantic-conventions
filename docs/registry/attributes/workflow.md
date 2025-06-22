@@ -17,7 +17,8 @@ Workflows can be used to describe cicd, deployments, generic jobs or even cron j
 | <a id="workflow-id" href="#workflow-id">`workflow.id`</a> | string | Unique ID for this workflow which can be used to correlate multiple executions of this workflow. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="workflow-name" href="#workflow-name">`workflow.name`</a> | string | Name of the workflow | `Build and deploy application` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="workflow-platform-product" href="#workflow-platform-product">`workflow.platform.product`</a> | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="workflow-task-category" href="#workflow-task-category">`workflow.task.category`</a> | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="workflow-task-annotation" href="#workflow-task-annotation">`workflow.task.annotation.<key>`</a> | string | The annotation key-value pairs placed on the task. [1] | `workflow.task.annotation.replicas=1`; `k8s.task.annotation.data=` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="workflow-task-category" href="#workflow-task-category">`workflow.task.category`</a> | string | The pipeline run goes through these states during its lifecycle. | `deployment`; `build`; `test` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="workflow-task-id" href="#workflow-task-id">`workflow.task.id`</a> | string | Unique ID for this task which can be used to correlate multiple executions of this task. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="workflow-task-name" href="#workflow-task-name">`workflow.task.name`</a> | string | Name of the task | `Build application` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="workflow-task-run-id" href="#workflow-task-run-id">`workflow.task.run.id`</a> | string | Unique ID for this execution of the workflow and will be shared across all the task runs. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -33,6 +34,8 @@ Workflows can be used to describe cicd, deployments, generic jobs or even cron j
 | <a id="workflow-type" href="#workflow-type">`workflow.type`</a> | string | Type of the workflow | `DSL` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="workflow-url-full" href="#workflow-url-full">`workflow.url.full`</a> | string | The [URL](https://wikipedia.org/wiki/URL) of the workflow, providing the complete address in order to locate and identify the workflow. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="workflow-version" href="#workflow-version">`workflow.version`</a> | string | Version of the workflow | `2.1` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `workflow.task.annotation.<key>`:** The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
 ---
 

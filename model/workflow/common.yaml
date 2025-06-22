@@ -34,6 +34,7 @@ groups:
         requirement_level: required
       - ref: workflow.task.name
         requirement_level: recommended
+      - ref: workflow.task.category
   - id: attribute.metric.workflow.execution
     type: attribute_group
     brief: >
@@ -104,6 +105,8 @@ groups:
     attributes:
       - ref: workflow.task.id
         requirement_level: required
+      - ref: workflow.task.category
+        requirement_level: recommended
       - ref: workflow.task.name
         requirement_level: recommended
       - ref: workflow.task.run.id

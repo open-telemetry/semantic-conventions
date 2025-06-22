@@ -12,3 +12,95 @@ groups:
         deprecated:
           reason: renamed
           renamed_to: k8s.pod.label
+      - id: k8s.deployment.uid
+        type: string
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: workflow.task.id
+        brief: >
+          The UID of the Deployment.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.deployment.name
+        type: string
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: workflow.task.name
+        brief: >
+          The name of the Deployment.
+        examples: ['opentelemetry']
+      - id: k8s.deployment.annotation
+        type: template[string]
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: workflow.task.annotation
+        brief: >
+          The annotation key-value pairs placed on the Deployment.
+        note: |
+          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        examples: [ 'k8s.deployment.annotation.replicas=1', 'k8s.deployment.annotation.data=' ]
+      - id: k8s.job.uid
+        type: string
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: workflow.task.id
+        brief: >
+          The UID of the Job.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.job.name
+        type: string
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: workflow.task.name
+        brief: >
+          The name of the Job.
+        examples: ['opentelemetry']
+      - id: k8s.job.annotation
+        type: template[string]
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: workflow.task.annotation
+        brief: >
+          The annotation key-value pairs placed on the Job.
+        note: |
+          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        examples: [ 'k8s.job.annotation.number=1', 'k8s.job.annotation.data=' ]
+      - id: k8s.cronjob.uid
+        type: string
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: workflow.task.id
+        brief: >
+          The UID of the CronJob.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.cronjob.name
+        type: string
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: workflow.task.name
+        brief: >
+          The name of the CronJob.
+        examples: ['opentelemetry']
+      - id: k8s.cronjob.annotation
+        type: template[string]
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: workflow.task.annotation
+        brief: >
+          The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value.
+        note: |
+          Examples:
+
+          - An annotation `retries` with value `4` SHOULD be recorded as the
+            `k8s.cronjob.annotation.retries` attribute with value `"4"`.
+          - An annotation `data` with empty string value SHOULD be recorded as
+            the `k8s.cronjob.annotation.data` attribute with value `""`.
+        examples: [ '4', '' ]

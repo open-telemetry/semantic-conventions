@@ -15,30 +15,6 @@ groups:
           derived from the canonical service domain for the service; for
           example, 'foo.googleapis.com' should result in a value of 'foo'.
         examples: ['appengine', 'run', 'firestore', 'alloydb', 'spanner']
-  - id: registry.gcp.cloud_run
-    type: attribute_group
-    display_name: GCP - Google Cloud Run Attributes
-    brief: >
-      This document defines attributes for Google Cloud Run.
-    attributes:
-      - id: gcp.cloud_run.job.execution
-        type: string
-        stability: development
-        brief: >
-          The name of the Cloud Run
-          [execution](https://cloud.google.com/run/docs/managing/job-executions)
-          being run for the Job, as set by the
-          [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars)
-          environment variable.
-        examples: ['job-name-xxxx', 'sample-job-mdw84']
-      - id: gcp.cloud_run.job.task_index
-        type: int
-        stability: development
-        brief: >
-          The index for a task within an execution as provided by the
-          [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars)
-          environment variable.
-        examples: [0, 1]
   - id: registry.gcp.apphub
     type: attribute_group
     display_name: GCP - AppHub Attributes

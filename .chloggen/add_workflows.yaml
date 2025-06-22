@@ -7,7 +7,7 @@
 change_type: breaking
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: workflow, k8s, deployment, cicd, faas
+component: workflow, k8s, deployment, cicd, faas, aws, gcp
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
 note: This introduces the workflow namespace which is seeking to provided a standardised way to describe tasks
