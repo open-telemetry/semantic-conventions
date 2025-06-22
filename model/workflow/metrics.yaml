@@ -22,6 +22,20 @@ groups:
     attributes:
       - ref: workflow.task.run.state
         requirement_level: required
+  - id: metric.workflow.taskrun.errors
+    type: metric
+    metric_name: workflow.taskrun.errors
+    brief: 'The number of errors encountered in task runs runs (eg. compile, test failures).'
+    note: |
+      There might be errors in a workflow task run that are non fatal (eg. they are suppressed) or in a parallel stage multiple stages could have a fatal error.
+      This means that this error count might not be the same as the count of metric `workflow.taskrun.duration` with run result `failure`.
+    instrument: counter
+    unit: "{error}"
+    stability: development
+    extends: attribute.metric.workflow.taskrun
+    attributes:
+      - ref: error.type
+        requirement_level: required 
   - id: metric.workflow.execution.duration
     type: metric
     metric_name: workflow.execution.duration
@@ -44,4 +58,18 @@ groups:
     extends: attribute.metric.workflow.execution
     attributes:
       - ref: workflow.execution.state
+        requirement_level: required
+  - id: metric.workflow.execution.errors
+    type: metric
+    metric_name: workflow.execution.errors
+    brief: 'The number of errors encountered in workflow execution (eg. compile, test failures).'
+    note: |
+      There might be errors in a workflow execution that are non fatal (eg. they are suppressed) or in a parallel stage multiple stages could have a fatal error.
+      This means that this error count might not be the same as the count of metric `workflow.taskrun.duration` with run result `failure`.
+    instrument: counter
+    unit: "{error}"
+    stability: development
+    extends: attribute.metric.workflow.execution
+    attributes:
+      - ref: error.type
         requirement_level: required

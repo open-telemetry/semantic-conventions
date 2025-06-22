@@ -80,9 +80,9 @@ conflict.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.cronjob.name`](/docs/registry/attributes/k8s.md) | string | The name of the CronJob. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.cronjob.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.cronjob.annotation.<key>`](/docs/registry/attributes/k8s.md) | string | The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value. [2] | `4`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.cronjob.name`](/docs/registry/attributes/k8s.md) | string | The name of the CronJob. | `opentelemetry` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `workflow.task.name`. |
+| [`k8s.cronjob.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `workflow.task.id`. |
+| [`k8s.cronjob.annotation.<key>`](/docs/registry/attributes/k8s.md) | string | The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value. [2] | `4`; `` | `Opt-In` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `workflow.task.annotation`. |
 | [`k8s.cronjob.label.<key>`](/docs/registry/attributes/k8s.md) | string | The label placed on the CronJob, the `<key>` being the label name, the value being the label value. [3] | `weekly`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[2] `k8s.cronjob.annotation.<key>`:** Examples:
@@ -148,9 +148,9 @@ conflict.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.deployment.name`](/docs/registry/attributes/k8s.md) | string | The name of the Deployment. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.deployment.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.deployment.annotation.<key>`](/docs/registry/attributes/k8s.md) | string | The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [6] | `1`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.deployment.name`](/docs/registry/attributes/k8s.md) | string | The name of the Deployment. | `opentelemetry` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `workflow.task.name`. |
+| [`k8s.deployment.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `workflow.task.id`. |
+| [`k8s.deployment.annotation.<key>`](/docs/registry/attributes/k8s.md) | string | The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [6] | `1`; `` | `Opt-In` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `workflow.task.annotation`. |
 | [`k8s.deployment.label.<key>`](/docs/registry/attributes/k8s.md) | string | The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty. [7] | `guestbook`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[6] `k8s.deployment.annotation.<key>`:** Examples:
@@ -209,9 +209,9 @@ conflict.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.job.name`](/docs/registry/attributes/k8s.md) | string | The name of the Job. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.job.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`k8s.job.annotation.<key>`](/docs/registry/attributes/k8s.md) | string | The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [11] | `1`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.job.name`](/docs/registry/attributes/k8s.md) | string | The name of the Job. | `opentelemetry` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `workflow.task.name`. |
+| [`k8s.job.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `workflow.task.id`. |
+| [`k8s.job.annotation.<key>`](/docs/registry/attributes/k8s.md) | string | The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [11] | `1`; `` | `Opt-In` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `workflow.task.annotation`. |
 | [`k8s.job.label.<key>`](/docs/registry/attributes/k8s.md) | string | The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty. [12] | `ci`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[11] `k8s.job.annotation.<key>`:** Examples:

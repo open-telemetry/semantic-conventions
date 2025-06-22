@@ -1,7 +1,7 @@
 groups:
   - id: event.workflow.execution.k8s.result
     type: event
-    name: workflow.execution.k8s.result
+    name: workflow.execution.result
     stability: development
     extends: attribute.event.workflow.execution
     brief: >
@@ -17,7 +17,7 @@ groups:
         requirement_level: required
   - id: event.workflow.execution.k8s.state
     type: event
-    name: workflow.execution.k8s.state
+    name: workflow.execution.state
     stability: development
     extends: attribute.event.workflow.execution
     brief: >
@@ -33,7 +33,7 @@ groups:
         requirement_level: required
   - id: event.workflow.taskrun.k8s.result
     type: event
-    name: workflow.taskrun.k8s.result
+    name: workflow.taskrun.result
     stability: development
     extends: attribute.event.workflow.taskrun
     brief: >
@@ -49,7 +49,7 @@ groups:
         requirement_level: required
   - id: event.workflow.taskrun.k8s.state
     type: event
-    name: workflow.taskrun.k8s.state
+    name: workflow.taskrun.state
     extends: attribute.event.workflow.taskrun
     stability: development
     brief: >
