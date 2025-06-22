@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Common
+linkTitle: Physical Host
 --->
 
 # Semantic conventions for physical host metrics
