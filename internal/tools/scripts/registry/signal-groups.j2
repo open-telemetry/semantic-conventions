@@ -1,0 +1,5 @@
+{{- template.set_file_name("signal-groups.txt") -}}
+
+{% for item in ctx | sort %}
+{{ item }}
+{% endfor %}

@@ -5,7 +5,7 @@
 
 ## Heroku Attributes
 
-This document defines attributes for the Android platform on which the Android application is running.
+This document defines attributes for the Heroku platform on which application/s are running.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
