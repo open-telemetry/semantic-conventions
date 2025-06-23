@@ -230,7 +230,7 @@ Currently, the following namespaces exist:
 </tr><tr>
   <td></td>
   <td><a href="otel.md#otel-scope">otel.scope</a></td>
-  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+  <td><img src="https://img.shields.io/badge/-deprecated-red" alt="Deprecated"/></td>
 </tr><tr>
 <td>Process</td><td></td><td></td>
 </tr><tr>

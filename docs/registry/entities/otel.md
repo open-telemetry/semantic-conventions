@@ -7,7 +7,7 @@
 
 ## Otel Scope
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Status:** ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Obsoleted.
 
 **type:** `otel.scope`
 
