@@ -74,7 +74,7 @@ privileged lookup of `host.id` is required, the value should be injected via the
 | `s390x` | IBM z/Architecture | ![Development](https://img.shields.io/badge/-development-blue) |
 | `x86` | 32-bit x86 | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## Host Cpu
+## Host CPU
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 

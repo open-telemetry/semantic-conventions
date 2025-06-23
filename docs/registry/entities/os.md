@@ -3,9 +3,9 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# Os
+# OS
 
-## Os
+## OS
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 

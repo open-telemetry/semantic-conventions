@@ -3,9 +3,9 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# Cloudfoundry
+# CloudFoundry
 
-## Cloudfoundry App
+## CloudFoundry App
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
@@ -30,7 +30,7 @@ reported by `cf app <app-name> --guid`.
 variable `VCAP_APPLICATION.application_name`. This is the same value
 as reported by `cf apps`.
 
-## Cloudfoundry Org
+## CloudFoundry Org
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
@@ -55,7 +55,7 @@ reported by `cf org <org-name> --guid`.
 variable `VCAP_APPLICATION.org_name`. This is the same value as
 reported by `cf orgs`.
 
-## Cloudfoundry Process
+## CloudFoundry Process
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
@@ -81,7 +81,7 @@ For system components, this could be the actual PID.
 main process will be of type `web`. There can be additional background
 tasks or side-cars with different process types.
 
-## Cloudfoundry Space
+## CloudFoundry Space
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
@@ -106,7 +106,7 @@ reported by `cf space <space-name> --guid`.
 variable `VCAP_APPLICATION.space_name`. This is the same value as
 reported by `cf spaces`.
 
-## Cloudfoundry System
+## CloudFoundry System
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 

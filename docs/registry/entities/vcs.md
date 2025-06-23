@@ -3,9 +3,9 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# Vcs
+# VCS
 
-## Vcs Ref
+## VCS Ref
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
@@ -47,7 +47,7 @@ revision based on the VCS system and situational context.
 | `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## Vcs Repo
+## VCS Repo
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 

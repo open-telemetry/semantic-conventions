@@ -3,9 +3,9 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# Otel
+# OTel
 
-## Otel Scope
+## OTel Scope
 
 **Status:** ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Obsoleted.
 

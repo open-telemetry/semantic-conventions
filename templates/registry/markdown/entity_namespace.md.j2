@@ -5,14 +5,14 @@
 {%- import 'stability.j2' as stability %}
 {%- import 'attribute_table.j2' as at %}
 
-# {{ ctx.id | title_case }}
+# {{ ctx.id | title_case | acronym }}
 
 {% for e in ctx.groups | sort(attribute='name') %}
 {%- set id_attrs = e.attributes | selectattr("role", "equalto", "identifying") -%}
 {%- set desc_attrs = e.attributes | selectattr("role", "equalto", "descriptive") -%}
 {%- set misc_attrs = e.attributes | rejectattr("role", "defined") -%}
 
-## {{ e.name | title_case }}
+## {{ e.name | title_case | acronym }}
 
 **Status:** {{ stability.badge(e.stability, e.deprecated) }}
 

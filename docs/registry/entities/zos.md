@@ -3,9 +3,9 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# Zos
+# zOS
 
-## Zos Software
+## zOS Software
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 

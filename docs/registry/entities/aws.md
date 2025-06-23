@@ -3,9 +3,9 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# Aws
+# AWS
 
-## Aws Ecs
+## AWS ECS
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
@@ -36,7 +36,7 @@ _Note: Stable Entities MUST have attributes with a defined role._
 | `ec2` | ec2 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `fargate` | fargate | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## Aws Eks
+## AWS EKS
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
@@ -52,7 +52,7 @@ _Note: Stable Entities MUST have attributes with a defined role._
 |---|---|---|---|---|---|
 | [`aws.eks.cluster.arn`](/docs/registry/attributes/aws.md) | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## Aws Log
+## AWS Log
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
