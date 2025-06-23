@@ -15,7 +15,8 @@
 
 **Other Attributes:**
 
-_Note: Stable Entities MUST have attributes with a defined role._
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -55,7 +56,8 @@ conflict.
 
 **Other Attributes:**
 
-_Note: Stable Entities MUST have attributes with a defined role._
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -73,7 +75,8 @@ _Note: Stable Entities MUST have attributes with a defined role._
 
 **Other Attributes:**
 
-_Note: Stable Entities MUST have attributes with a defined role._
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -106,7 +109,8 @@ _Note: Stable Entities MUST have attributes with a defined role._
 
 **Other Attributes:**
 
-_Note: Stable Entities MUST have attributes with a defined role._
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -129,7 +133,8 @@ _Note: Stable Entities MUST have attributes with a defined role._
 
 **Other Attributes:**
 
-_Note: Stable Entities MUST have attributes with a defined role._
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -152,7 +157,8 @@ _Note: Stable Entities MUST have attributes with a defined role._
 
 **Other Attributes:**
 
-_Note: Stable Entities MUST have attributes with a defined role._
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -178,7 +184,8 @@ _Note: Stable Entities MUST have attributes with a defined role._
 
 **Other Attributes:**
 
-_Note: Stable Entities MUST have attributes with a defined role._
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -201,7 +208,8 @@ _Note: Stable Entities MUST have attributes with a defined role._
 
 **Other Attributes:**
 
-_Note: Stable Entities MUST have attributes with a defined role._
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -223,7 +231,8 @@ _Note: Stable Entities MUST have attributes with a defined role._
 
 **Other Attributes:**
 
-_Note: Stable Entities MUST have attributes with a defined role._
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -256,7 +265,8 @@ _Note: Stable Entities MUST have attributes with a defined role._
 
 **Other Attributes:**
 
-_Note: Stable Entities MUST have attributes with a defined role._
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -293,7 +303,8 @@ _Note: Stable Entities MUST have attributes with a defined role._
 
 **Other Attributes:**
 
-_Note: Stable Entities MUST have attributes with a defined role._
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -316,7 +327,8 @@ _Note: Stable Entities MUST have attributes with a defined role._
 
 **Other Attributes:**
 
-_Note: Stable Entities MUST have attributes with a defined role._
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -333,7 +345,8 @@ _Note: Stable Entities MUST have attributes with a defined role._
 
 **Other Attributes:**
 
-_Note: Stable Entities MUST have attributes with a defined role._
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -350,7 +363,8 @@ _Note: Stable Entities MUST have attributes with a defined role._
 
 **Other Attributes:**
 
-_Note: Stable Entities MUST have attributes with a defined role._
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
