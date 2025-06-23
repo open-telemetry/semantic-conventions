@@ -97,6 +97,11 @@ groups:
               brief: >
                 OTLP span exporter over HTTP with JSON serialization
               stability: development
+            - id: zipkin_http_span_exporter
+              value: "zipkin_http_span_exporter"
+              brief: >
+                Zipkin span exporter over HTTP
+              stability: development
             - id: otlp_grpc_log_exporter
               value: "otlp_grpc_log_exporter"
               brief: >
@@ -131,6 +136,11 @@ groups:
               value: "otlp_http_json_metric_exporter"
               brief: >
                 OTLP metric exporter over HTTP with JSON serialization
+              stability: development
+            - id: prometheus_http_text_metric_exporter
+              value: "prometheus_http_text_metric_exporter"
+              brief: >
+                Prometheus metric exporter over HTTP with the default text-based format
               stability: development
         stability: development
         brief: >
