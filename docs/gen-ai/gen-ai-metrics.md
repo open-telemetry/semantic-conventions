@@ -92,20 +92,17 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [1, 4, 16, 64
 **[2] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
 knowledge and may differ from the actual model provider.
 
-Multiple systems, including Azure OpenAI, Gemini, and AI hosting platforms
+Multiple providers, including Azure OpenAI, Gemini, and AI hosting platforms
 are accessible using the OpenAI REST API and corresponding client libraries,
 but may proxy or host models from different providers.
 
-The `gen_ai.request.model`, `gen_ai.response.model, and `server.address`
+The `gen_ai.request.model`, `gen_ai.response.model`, and `server.address`
 attributes may help identify the actual system in use.
 
-For custom models, a friendly custom provider name SHOULD be used.
-If none of these options apply, the `gen_ai.provider.name` SHOULD be
-set to `_OTHER`.
-
 The `gen_ai.provider.name` attribute acts as a discriminator that
-identifies the GenAI telemetry format flavor. It SHOULD be set
-consistently with provider-specific attributes and signals.
+identifies the GenAI telemetry format flavor specific to that provider
+within GenAI semantic conventions.
+It SHOULD be set consistently with provider-specific attributes and signals.
 For example, GenAI spans, metrics, and events related to AWS Bedrock
 should have the `gen_ai.provider.name` set to `aws.bedrock` and include
 applicable `aws.bedrock.*` attributes and are not expected to include
@@ -203,20 +200,17 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [0.01, 0.02, 
 **[2] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
 knowledge and may differ from the actual model provider.
 
-Multiple systems, including Azure OpenAI, Gemini, and AI hosting platforms
+Multiple providers, including Azure OpenAI, Gemini, and AI hosting platforms
 are accessible using the OpenAI REST API and corresponding client libraries,
 but may proxy or host models from different providers.
 
-The `gen_ai.request.model`, `gen_ai.response.model, and `server.address`
+The `gen_ai.request.model`, `gen_ai.response.model`, and `server.address`
 attributes may help identify the actual system in use.
 
-For custom models, a friendly custom provider name SHOULD be used.
-If none of these options apply, the `gen_ai.provider.name` SHOULD be
-set to `_OTHER`.
-
 The `gen_ai.provider.name` attribute acts as a discriminator that
-identifies the GenAI telemetry format flavor. It SHOULD be set
-consistently with provider-specific attributes and signals.
+identifies the GenAI telemetry format flavor specific to that provider
+within GenAI semantic conventions.
+It SHOULD be set consistently with provider-specific attributes and signals.
 For example, GenAI spans, metrics, and events related to AWS Bedrock
 should have the `gen_ai.provider.name` set to `aws.bedrock` and include
 applicable `aws.bedrock.*` attributes and are not expected to include
@@ -324,20 +318,17 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 **[2] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
 knowledge and may differ from the actual model provider.
 
-Multiple systems, including Azure OpenAI, Gemini, and AI hosting platforms
+Multiple providers, including Azure OpenAI, Gemini, and AI hosting platforms
 are accessible using the OpenAI REST API and corresponding client libraries,
 but may proxy or host models from different providers.
 
-The `gen_ai.request.model`, `gen_ai.response.model, and `server.address`
+The `gen_ai.request.model`, `gen_ai.response.model`, and `server.address`
 attributes may help identify the actual system in use.
 
-For custom models, a friendly custom provider name SHOULD be used.
-If none of these options apply, the `gen_ai.provider.name` SHOULD be
-set to `_OTHER`.
-
 The `gen_ai.provider.name` attribute acts as a discriminator that
-identifies the GenAI telemetry format flavor. It SHOULD be set
-consistently with provider-specific attributes and signals.
+identifies the GenAI telemetry format flavor specific to that provider
+within GenAI semantic conventions.
+It SHOULD be set consistently with provider-specific attributes and signals.
 For example, GenAI spans, metrics, and events related to AWS Bedrock
 should have the `gen_ai.provider.name` set to `aws.bedrock` and include
 applicable `aws.bedrock.*` attributes and are not expected to include
@@ -444,20 +435,17 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 **[2] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
 knowledge and may differ from the actual model provider.
 
-Multiple systems, including Azure OpenAI, Gemini, and AI hosting platforms
+Multiple providers, including Azure OpenAI, Gemini, and AI hosting platforms
 are accessible using the OpenAI REST API and corresponding client libraries,
 but may proxy or host models from different providers.
 
-The `gen_ai.request.model`, `gen_ai.response.model, and `server.address`
+The `gen_ai.request.model`, `gen_ai.response.model`, and `server.address`
 attributes may help identify the actual system in use.
 
-For custom models, a friendly custom provider name SHOULD be used.
-If none of these options apply, the `gen_ai.provider.name` SHOULD be
-set to `_OTHER`.
-
 The `gen_ai.provider.name` attribute acts as a discriminator that
-identifies the GenAI telemetry format flavor. It SHOULD be set
-consistently with provider-specific attributes and signals.
+identifies the GenAI telemetry format flavor specific to that provider
+within GenAI semantic conventions.
+It SHOULD be set consistently with provider-specific attributes and signals.
 For example, GenAI spans, metrics, and events related to AWS Bedrock
 should have the `gen_ai.provider.name` set to `aws.bedrock` and include
 applicable `aws.bedrock.*` attributes and are not expected to include
@@ -551,20 +539,17 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 **[2] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
 knowledge and may differ from the actual model provider.
 
-Multiple systems, including Azure OpenAI, Gemini, and AI hosting platforms
+Multiple providers, including Azure OpenAI, Gemini, and AI hosting platforms
 are accessible using the OpenAI REST API and corresponding client libraries,
 but may proxy or host models from different providers.
 
-The `gen_ai.request.model`, `gen_ai.response.model, and `server.address`
+The `gen_ai.request.model`, `gen_ai.response.model`, and `server.address`
 attributes may help identify the actual system in use.
 
-For custom models, a friendly custom provider name SHOULD be used.
-If none of these options apply, the `gen_ai.provider.name` SHOULD be
-set to `_OTHER`.
-
 The `gen_ai.provider.name` attribute acts as a discriminator that
-identifies the GenAI telemetry format flavor. It SHOULD be set
-consistently with provider-specific attributes and signals.
+identifies the GenAI telemetry format flavor specific to that provider
+within GenAI semantic conventions.
+It SHOULD be set consistently with provider-specific attributes and signals.
 For example, GenAI spans, metrics, and events related to AWS Bedrock
 should have the `gen_ai.provider.name` set to `aws.bedrock` and include
 applicable `aws.bedrock.*` attributes and are not expected to include
