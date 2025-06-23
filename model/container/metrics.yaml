@@ -3,7 +3,7 @@ groups:
   - id: metric.container.uptime
     type: metric
     metric_name: container.uptime
-    stability: experimental
+    stability: development
     brief: "The time the container has been running"
     note: |
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
@@ -14,7 +14,7 @@ groups:
   - id: metric.container.cpu.time
     type: metric
     metric_name: container.cpu.time
-    stability: experimental
+    stability: development
     brief: "Total CPU time consumed"
     note: >
       Total CPU time consumed by the specific container on all available CPU cores
@@ -30,7 +30,7 @@ groups:
   - id: metric.container.cpu.usage
     type: metric
     metric_name: container.cpu.usage
-    stability: experimental
+    stability: development
     brief: "Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs"
     note: >
       CPU usage of the specific container on all available CPU cores, averaged over the sample window
@@ -47,7 +47,7 @@ groups:
   - id: metric.container.memory.usage
     type: metric
     metric_name: container.memory.usage
-    stability: experimental
+    stability: development
     brief: "Memory usage of the container."
     note: >
       Memory usage of the container.
@@ -58,7 +58,7 @@ groups:
   - id: metric.container.disk.io
     type: metric
     metric_name: container.disk.io
-    stability: experimental
+    stability: development
     brief: "Disk bytes for the container."
     note: >
       The total number of bytes read/written
@@ -73,7 +73,7 @@ groups:
   - id: metric.container.network.io
     type: metric
     metric_name: container.network.io
-    stability: experimental
+    stability: development
     brief: "Network bytes for the container."
     note: >
       The number of bytes sent/received

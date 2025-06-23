@@ -1,0 +1,16 @@
+groups:
+  - id: entity.aws.log
+    type: entity
+    stability: development
+    name: aws.log
+    brief: >
+      Entities specific to Amazon Web Services.
+    attributes:
+      - ref: aws.log.group.names
+        requirement_level: recommended
+      - ref: aws.log.group.arns
+        requirement_level: recommended
+      - ref: aws.log.stream.names
+        requirement_level: recommended
+      - ref: aws.log.stream.arns
+        requirement_level: recommended

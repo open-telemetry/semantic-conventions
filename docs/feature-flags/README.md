@@ -4,10 +4,10 @@ linkTitle: Feature flags
 
 # Semantic conventions for feature flags
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for recording dynamic feature flag
-evaluations in spans and logs.
+evaluations in logs.
 
 Semantic conventions for feature flags are defined for the following signals:
 

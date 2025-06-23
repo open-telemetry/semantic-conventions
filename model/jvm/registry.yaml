@@ -13,6 +13,14 @@ groups:
         note: >
           Garbage collector action is generally obtained via
           [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
+      - id: jvm.gc.cause
+        stability: development
+        type: string
+        brief: Name of the garbage collector cause.
+        examples: [ "System.gc()", "Allocation Failure" ]
+        note: >
+          Garbage collector cause is generally obtained via
+          [GarbageCollectionNotificationInfo#getGcCause()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcCause()).
       - id: jvm.gc.name
         stability: stable
         type: string
@@ -79,7 +87,7 @@ groups:
               stability: stable
       - id: jvm.buffer.pool.name
         type: string
-        stability: experimental
+        stability: development
         brief: Name of the buffer pool.
         examples: [ "mapped", "direct" ]
         note: >

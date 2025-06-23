@@ -1,0 +1,46 @@
+groups:
+  - id: entity.cloudfoundry.system
+    type: entity
+    stability: development
+    name: cloudfoundry.system
+    brief: >
+      The system component which is monitored.
+    attributes:
+      - ref: cloudfoundry.system.id
+      - ref: cloudfoundry.system.instance.id
+  - id: entity.cloudfoundry.app
+    type: entity
+    stability: development
+    name: cloudfoundry.app
+    brief: >
+      The application which is monitored.
+    attributes:
+      - ref: cloudfoundry.app.id
+      - ref: cloudfoundry.app.name
+  - id: entity.cloudfoundry.space
+    type: entity
+    stability: development
+    name: cloudfoundry.space
+    brief: >
+      The space of the application which is monitored.
+    attributes:
+      - ref: cloudfoundry.space.id
+      - ref: cloudfoundry.space.name
+  - id: entity.cloudfoundry.org
+    type: entity
+    stability: development
+    name: cloudfoundry.org
+    brief: >
+      The organization of the application which is monitored.
+    attributes:
+      - ref: cloudfoundry.org.id
+      - ref: cloudfoundry.org.name
+  - id: entity.cloudfoundry.process
+    type: entity
+    stability: development
+    name: cloudfoundry.process
+    brief: >
+      The process of the application which is monitored.
+    attributes:
+      - ref: cloudfoundry.process.id
+      - ref: cloudfoundry.process.type

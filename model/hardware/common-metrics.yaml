@@ -11,7 +11,7 @@ groups:
   - id: metric.hw.energy
     type: metric
     metric_name: hw.energy
-    stability: experimental
+    stability: development
     brief: "Energy consumed by the component"
     instrument: counter
     unit: "J"
@@ -20,7 +20,7 @@ groups:
   - id: metric.hw.errors
     type: metric
     metric_name: hw.errors
-    stability: experimental
+    stability: development
     brief: "Number of errors encountered by the component"
     instrument: counter
     unit: "{error}"
@@ -38,7 +38,7 @@ groups:
   - id: metric.hw.power
     type: metric
     metric_name: hw.power
-    stability: experimental
+    stability: development
     brief: "Instantaneous power consumed by the component"
     note: >
       It is recommended to report `hw.energy` instead of `hw.power` when possible.
@@ -49,7 +49,7 @@ groups:
   - id: metric.hw.status
     type: metric
     metric_name: hw.status
-    stability: experimental
+    stability: development
     brief: "Operational status: `1` (true) or `0` (false) for each of the possible states"
     instrument: updowncounter
     unit: "1"

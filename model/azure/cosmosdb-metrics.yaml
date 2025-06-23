@@ -11,6 +11,11 @@ groups:
       - ref: azure.cosmosdb.operation.contacted_regions
         requirement_level:
           recommended: If available
+      - ref: db.collection.name
+        brief: >
+          Cosmos DB container name.
+        note: >
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
   - id: metric.azure.cosmosdb.client.active_instance.count
     type: metric
@@ -20,7 +25,7 @@ groups:
     unit: "{instance}"
     stability: development
     attributes:
-      # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
+      # TODO: add db.system.name once https://github.com/open-telemetry/weaver/issues/479 is possible
       # - ref: db.system.name
       #   requirement_level:
       #     conditionally_required: if available

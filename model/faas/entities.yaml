@@ -1,0 +1,14 @@
+groups:
+  - id: entity.faas
+    type: entity
+    stability: development
+    name: faas
+    brief: >
+      A serverless instance.
+    attributes:
+      - ref: faas.name
+        requirement_level: required
+      - ref: faas.version
+      - ref: faas.instance
+      - ref: faas.max_memory
+      - ref: cloud.resource_id

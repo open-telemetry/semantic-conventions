@@ -5,7 +5,7 @@ groups:
     brief: 'Duration of a pipeline run grouped by pipeline, state and result.'
     instrument: histogram
     unit: "s"
-    stability: experimental
+    stability: development
     attributes:
       - ref: cicd.pipeline.name
         requirement_level: required
@@ -17,25 +17,29 @@ groups:
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if the pipeline run failed.
+    entity_associations:
+      - cicd.pipeline
   - id: metric.cicd.pipeline.run.active
     type: metric
     metric_name: cicd.pipeline.run.active
     brief: 'The number of pipeline runs currently active in the system by state.'
     instrument: updowncounter
     unit: "{run}"
-    stability: experimental
+    stability: development
     attributes:
       - ref: cicd.pipeline.name
         requirement_level: required
       - ref: cicd.pipeline.run.state
         requirement_level: required
+    entity_associations:
+      - cicd.pipeline
   - id: metric.cicd.worker.count
     type: metric
     metric_name: cicd.worker.count
     brief: 'The number of workers on the CICD system by state.'
     instrument: updowncounter
     unit: "{count}"
-    stability: experimental
+    stability: development
     attributes:
       - ref: cicd.worker.state
         requirement_level: required
@@ -48,12 +52,14 @@ groups:
       This means that this error count might not be the same as the count of metric `cicd.pipeline.run.duration` with run result `failure`.
     instrument: counter
     unit: "{error}"
-    stability: experimental
+    stability: development
     attributes:
       - ref: cicd.pipeline.name
         requirement_level: required
       - ref: error.type
         requirement_level: required
+    entity_associations:
+      - cicd.pipeline
   - id: metric.cicd.system.errors
     type: metric
     metric_name: cicd.system.errors
@@ -61,7 +67,7 @@ groups:
     note: 'Errors in pipeline run execution are explicitly excluded. Ie a test failure is not counted in this metric.'
     instrument: counter
     unit: "{error}"
-    stability: experimental
+    stability: development
     attributes:
       - ref: cicd.system.component
         requirement_level: required

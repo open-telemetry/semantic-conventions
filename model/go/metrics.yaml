@@ -10,7 +10,7 @@ groups:
     attributes:
       - ref: go.memory.type
         requirement_level: recommended
-    stability: experimental
+    stability: development
 
   - id: metric.go.memory.limit
     type: metric
@@ -21,7 +21,7 @@ groups:
       This metric is excluded if the limit obtained from the Go runtime is math.MaxInt64.
     instrument: updowncounter
     unit: "By"
-    stability: experimental
+    stability: development
 
   - id: metric.go.memory.allocated
     type: metric
@@ -31,7 +31,7 @@ groups:
       Computed from `/gc/heap/allocs:bytes`.
     instrument: counter
     unit: "By"
-    stability: experimental
+    stability: development
 
   - id: metric.go.memory.allocations
     type: metric
@@ -41,7 +41,7 @@ groups:
       Computed from `/gc/heap/allocs:objects`.
     instrument: counter
     unit: "{allocation}"
-    stability: experimental
+    stability: development
 
   - id: metric.go.memory.gc.goal
     type: metric
@@ -51,7 +51,7 @@ groups:
       Computed from `/gc/heap/goal:bytes`.
     instrument: updowncounter
     unit: "By"
-    stability: experimental
+    stability: development
 
   - id: metric.go.goroutine.count
     type: metric
@@ -61,7 +61,7 @@ groups:
       Computed from `/sched/goroutines:goroutines`.
     instrument: updowncounter
     unit: "{goroutine}"
-    stability: experimental
+    stability: development
 
   - id: metric.go.processor.limit
     type: metric
@@ -71,7 +71,7 @@ groups:
       Computed from `/sched/gomaxprocs:threads`.
     instrument: updowncounter
     unit: "{thread}"
-    stability: experimental
+    stability: development
 
   - id: metric.go.schedule.duration
     type: metric
@@ -82,7 +82,7 @@ groups:
       Bucket boundaries are provided by the runtime, and are subject to change.
     instrument: histogram
     unit: "s"
-    stability: experimental
+    stability: development
 
   - id: metric.go.config.gogc
     type: metric
@@ -93,4 +93,4 @@ groups:
       Computed from `/gc/gogc:percent`.
     instrument: updowncounter
     unit: "%"
-    stability: experimental
+    stability: development

@@ -23,6 +23,7 @@ body:
         # DO NOT manually edit it.
         # Start semconv area list
         - area:android
+        - area:app
         - area:artifact
         - area:aspnetcore
         - area:aws
@@ -37,6 +38,7 @@ body:
         - area:code
         - area:container
         - area:cpu
+        - area:cpython
         - area:db
         - area:deployment
         - area:destination
@@ -61,10 +63,12 @@ body:
         - area:host
         - area:http
         - area:ibm
+        - area:ios
         - area:jvm
         - area:k8s
         - area:linux
         - area:log
+        - area:mainframe
         - area:messaging
         - area:network
         - area:nodejs
@@ -94,6 +98,7 @@ body:
         - area:v8js
         - area:vcs
         - area:webengine
+        - area:zos
         # End semconv area list
   - type: textarea
     attributes:

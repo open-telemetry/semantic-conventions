@@ -5,15 +5,15 @@ groups:
     display_name: Node.js Attributes
     attributes:
       - id: nodejs.eventloop.state
-        stability: experimental
+        stability: development
         brief: The state of event loop time.
         type:
           members:
             - id: active
               value: 'active'
               brief: 'Active time.'
-              stability: experimental
+              stability: development
             - id: idle
               value: 'idle'
               brief: 'Idle time.'
-              stability: experimental
+              stability: development

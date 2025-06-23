@@ -1,0 +1,78 @@
+groups:
+  - id: registry.feature_flag.deprecated
+    type: attribute_group
+    display_name: Deprecated Feature Flag Attributes
+    brief: "Describes deprecated feature flag attributes."
+    attributes:
+      - id: feature_flag.provider_name
+        type: string
+        brief: 'Deprecated, use `feature_flag.provider.name` instead.'
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: feature_flag.provider.name
+        annotations:
+          code_generation:
+            exclude: true
+        examples: ["Flag Manager"]
+      - id: feature_flag.evaluation.reason
+        type:
+          members:
+            - id: static
+              value: "static"
+              brief: The resolved value is static (no dynamic evaluation).
+              stability: development
+            - id: default
+              value: "default"
+              brief: The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result).
+              stability: development
+            - id: targeting_match
+              value: "targeting_match"
+              brief: The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting.
+              stability: development
+            - id: split
+              value: "split"
+              brief: The resolved value was the result of pseudorandom assignment.
+              stability: development
+            - id: cached
+              value: "cached"
+              brief: The resolved value was retrieved from cache.
+              stability: development
+            - id: disabled
+              value: "disabled"
+              brief: The resolved value was the result of the flag being disabled in the management system.
+              stability: development
+            - id: unknown
+              value: "unknown"
+              brief: The reason for the resolved value could not be determined.
+              stability: development
+            - id: stale
+              value: "stale"
+              brief: The resolved value is non-authoritative or possibly out of date
+              stability: development
+            - id: error
+              value: "error"
+              brief: The resolved value was the result of an error.
+              stability: development
+        brief: 'Deprecated, use `feature_flag.result.reason` instead.'
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: feature_flag.result.reason
+        examples: ["static", "targeting_match", "error", "default"]
+      - id: feature_flag.variant
+        type: string
+        brief: 'Deprecated, use `feature_flag.result.variant` instead.'
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: feature_flag.result.variant
+        examples: ["red", "true", "on"]
+      - id: feature_flag.evaluation.error.message
+        type: string
+        brief: 'Deprecated, use `error.message` instead.'
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: error.message
+        examples: ["Flag `header-color` expected type `string` but found type `number`"]

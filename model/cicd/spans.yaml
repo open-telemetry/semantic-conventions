@@ -1,0 +1,45 @@
+groups:
+  - id: span.cicd.pipeline.run.server
+    type: span
+    span_kind: server
+    brief: This span describes a CICD pipeline run.
+    note: |
+      For all pipeline runs, a span with kind `SERVER` SHOULD be created corresponding to the execution of the pipeline run.
+
+      **Span name** MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/trace/api.md#span).
+
+      The span name SHOULD be `{action} {pipeline}` if there is a (low-cardinality) pipeline name available.
+      If the pipeline name is not available or is likely to have high cardinality, then the span name SHOULD be `{action}`.
+
+      The `{action}` SHOULD be the [`cicd.pipeline.action.name`](/docs/registry/attributes/cicd.md#cicd-pipeline-action-name).
+
+      The `{pipeline}` SHOULD be the [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md#cicd-pipeline-name).
+    stability: development
+    attributes:
+      - ref: cicd.pipeline.result
+        requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if the pipeline result is `failure` or `error`
+      - ref: cicd.pipeline.action.name
+        requirement_level: opt_in
+  - id: span.cicd.pipeline.task.internal
+    type: span
+    span_kind: internal
+    brief: This span describes task execution in a pipeline run.
+    stability: development
+    attributes:
+      - ref: cicd.pipeline.task.name
+        requirement_level: required
+        sampling_relevant: true
+      - ref: cicd.pipeline.task.run.id
+        requirement_level: required
+        sampling_relevant: true
+      - ref: cicd.pipeline.task.run.url.full
+        requirement_level: required
+        sampling_relevant: true
+      - ref: cicd.pipeline.task.run.result
+        requirement_level: required
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if the task result is `failure` or `error`

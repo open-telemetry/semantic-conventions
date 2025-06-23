@@ -4,7 +4,7 @@ linkTitle: Object stores
 
 # Semantic conventions for object stores
 
-**Status**: [Experimental, Feature-freeze][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for object store operations.
 

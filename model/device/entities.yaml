@@ -1,0 +1,13 @@
+groups:
+  - id: entity.device
+    type: entity
+    stability: development
+    name: device
+    brief: >
+      The device on which the process represented by this resource is running.
+    attributes:
+      - ref: device.id
+        requirement_level: opt_in
+      - ref: device.manufacturer
+      - ref: device.model.identifier
+      - ref: device.model.name

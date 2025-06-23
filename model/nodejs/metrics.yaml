@@ -5,7 +5,7 @@ groups:
     brief: "Event loop minimum delay."
     instrument: gauge
     unit: "s"
-    stability: experimental
+    stability: development
     note: >
       Value can be retrieved from value `histogram.min` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
@@ -15,7 +15,7 @@ groups:
     brief: "Event loop maximum delay."
     instrument: gauge
     unit: "s"
-    stability: experimental
+    stability: development
     note: >
       Value can be retrieved from value `histogram.max` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
@@ -25,7 +25,7 @@ groups:
     brief: "Event loop mean delay."
     instrument: gauge
     unit: "s"
-    stability: experimental
+    stability: development
     note: >
       Value can be retrieved from value `histogram.mean` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
@@ -35,7 +35,7 @@ groups:
     brief: "Event loop standard deviation delay."
     instrument: gauge
     unit: "s"
-    stability: experimental
+    stability: development
     note: >
       Value can be retrieved from value `histogram.stddev` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
@@ -45,7 +45,7 @@ groups:
     brief: "Event loop 50 percentile delay."
     instrument: gauge
     unit: "s"
-    stability: experimental
+    stability: development
     note: >
       Value can be retrieved from value `histogram.percentile(50)` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
@@ -55,7 +55,7 @@ groups:
     brief: "Event loop 90 percentile delay."
     instrument: gauge
     unit: "s"
-    stability: experimental
+    stability: development
     note: >
       Value can be retrieved from value `histogram.percentile(90)` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
@@ -65,7 +65,7 @@ groups:
     brief: "Event loop 99 percentile delay."
     instrument: gauge
     unit: "s"
-    stability: experimental
+    stability: development
     note: >
       Value can be retrieved from value `histogram.percentile(99)` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
@@ -75,7 +75,7 @@ groups:
     brief: "Event loop utilization."
     instrument: gauge
     unit: "1"
-    stability: experimental
+    stability: development
     note: >
       The value range is [0.0, 1.0] and can be retrieved from
       [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
@@ -86,7 +86,7 @@ groups:
     brief: "Cumulative duration of time the event loop has been in each state."
     instrument: counter
     unit: "s"
-    stability: experimental
+    stability: development
     attributes:
       - ref: nodejs.eventloop.state
         requirement_level: required

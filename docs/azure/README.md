@@ -4,7 +4,7 @@ linkTitle: Azure
 
 # Semantic conventions for Azure resource logs
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document describes Azure Resource Logs, see [Azure Resource Log Top-level Schema][AzureResourceSchema].
 

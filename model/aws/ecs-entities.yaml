@@ -1,0 +1,24 @@
+groups:
+  - id: entity.aws.ecs
+    type: entity
+    stability: development
+    name: aws.ecs
+    brief: >
+      Entities used by AWS Elastic Container Service (ECS).
+    attributes:
+      - ref: aws.ecs.container.arn
+        requirement_level: recommended
+      - ref: aws.ecs.cluster.arn
+        requirement_level: recommended
+      - ref: aws.ecs.launchtype
+        requirement_level: recommended
+      - ref: aws.ecs.task.arn
+        requirement_level: recommended
+      - ref: aws.ecs.task.family
+        requirement_level: recommended
+      - ref: aws.ecs.task.id
+        requirement_level:
+          conditionally_required: If and only if `task.arn` is populated.
+        examples: [ '10838bed-421f-43ef-870a-f43feacbbb5b', '23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd' ]
+      - ref: aws.ecs.task.revision
+        requirement_level: recommended

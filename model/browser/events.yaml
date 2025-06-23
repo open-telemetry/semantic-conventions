@@ -1,0 +1,54 @@
+groups:
+  - id: event.browser.web_vital
+    stability: development
+    type: event
+    name: browser.web_vital
+    brief: >
+      This event describes the website performance metrics introduced by Google, See [web vitals](https://web.dev/vitals).
+    body:
+      id: browser.web_vital
+      requirement_level: required
+      stability: development
+      type: map
+      fields:
+        - id: name
+          type: enum
+          members:
+            - id: cls
+              value: 'cls'
+              brief: Cumulative Layout Shift. See [cls](https://web.dev/articles/cls).
+              stability: development
+            - id: lcp
+              value: 'lcp'
+              brief: Largest Contentful Paint. See [lcp](https://web.dev/articles/lcp).
+              stability: development
+            - id: fid
+              value: 'fid'
+              brief: First Input Delay. See [fid](https://web.dev/articles/fid).
+              stability: development
+            - id: inp
+              value: 'inp'
+              brief: Interation to Next Paint. See [inp](https://web.dev/articles/inp).
+              stability: development
+          stability: development
+          brief: Name of the web vital.
+          requirement_level: required
+          examples: ["cls"]
+        - id: value
+          type: double
+          stability: development
+          brief: Value of the web vital.
+          requirement_level: required
+          examples: [1.0]
+        - id: delta
+          type: double
+          stability: development
+          brief: The delta between the current value and the last-reported value. See [delta](https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#report-only-the-delta-of-changes).
+          requirement_level: required
+          examples: [0.2]
+        - id: id
+          type: string
+          stability: development
+          brief: A unique ID representing this particular metric instance.
+          requirement_level: required
+          examples: ["v3-1677874579383-6381583661209"]

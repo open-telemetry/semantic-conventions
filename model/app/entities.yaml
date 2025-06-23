@@ -1,0 +1,9 @@
+groups:
+  - id: entity.app
+    type: entity
+    stability: development
+    name: app
+    brief: >
+      An app used directly by end users — like mobile, web, or desktop.
+    attributes:
+      - ref: app.installation.id

@@ -1,0 +1,33 @@
+groups:
+  - id: entity.cicd.pipeline
+    type: entity
+    stability: development
+    name: cicd.pipeline
+    brief: >
+        A pipeline is a series of automated steps that helps software teams deliver code.
+    attributes:
+      - ref: cicd.pipeline.name
+
+  - id: entity.cicd.pipeline.run
+    type: entity
+    stability: development
+    name: cicd.pipeline.run
+    brief: >
+      A pipeline run is a singular execution of a given pipeline's tasks.
+    attributes:
+      - ref: cicd.pipeline.run.id
+      - ref: cicd.pipeline.run.url.full
+
+  - id: entity.cicd.worker
+    type: entity
+    stability: development
+    name: cicd.worker
+    brief: >
+      A CICD worker is a component of the CICD system that performs work (eg. running pipeline tasks or performing sync).
+    attributes:
+      - ref: cicd.worker.id
+        requirement_level: required
+      - ref: cicd.worker.name
+      - ref: cicd.worker.url.full
+        requirement_level:
+          recommended: If available

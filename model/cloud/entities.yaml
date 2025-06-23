@@ -1,0 +1,14 @@
+groups:
+  - id: entity.cloud
+    type: entity
+    stability: development
+    name: cloud
+    brief: >
+      A cloud environment (e.g. GCP, Azure, AWS)
+    attributes:
+      - ref: cloud.provider
+      - ref: cloud.account.id
+      - ref: cloud.region
+      - ref: cloud.resource_id
+      - ref: cloud.availability_zone
+      - ref: cloud.platform

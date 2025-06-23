@@ -7,13 +7,13 @@ groups:
     attributes:
       - id: deployment.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the deployment.
         examples: ["deploy my app", "deploy-frontend"]
       - id: deployment.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The id of the deployment.
         examples: ["1208"]
@@ -23,17 +23,17 @@ groups:
             - id: failed
               value: failed
               brief: failed
-              stability: experimental
+              stability: development
             - id: succeeded
               value: succeeded
               brief: succeeded
-              stability: experimental
+              stability: development
         brief: >
           The status of the deployment.
-        stability: experimental
+        stability: development
       - id: deployment.environment.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment)
           (aka deployment tier).

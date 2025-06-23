@@ -5,28 +5,28 @@ groups:
     display_name: V8 JS Attributes
     attributes:
       - id: v8js.gc.type
-        stability: experimental
+        stability: development
         brief: The type of garbage collection.
         type:
           members:
             - id: major
               value: 'major'
               brief: 'Major (Mark Sweep Compact).'
-              stability: experimental
+              stability: development
             - id: minor
               value: 'minor'
               brief: 'Minor (Scavenge).'
-              stability: experimental
+              stability: development
             - id: incremental
               value: 'incremental'
               brief: 'Incremental (Incremental Marking).'
-              stability: experimental
+              stability: development
             - id: weakcb
               value: 'weakcb'
               brief: 'Weak Callbacks (Process Weak Callbacks).'
-              stability: experimental
+              stability: development
       - id: v8js.heap.space.name
-        stability: experimental
+        stability: development
         brief: The name of the space type of heap memory.
         note: >
           Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
@@ -35,20 +35,20 @@ groups:
             - id: new_space
               value: 'new_space'
               brief: 'New memory space.'
-              stability: experimental
+              stability: development
             - id: old_space
               value: 'old_space'
               brief: 'Old memory space.'
-              stability: experimental
+              stability: development
             - id: code_space
               value: 'code_space'
               brief: 'Code memory space.'
-              stability: experimental
+              stability: development
             - id: map_space
               value: 'map_space'
               brief: 'Map memory space.'
-              stability: experimental
+              stability: development
             - id: large_object_space
               value: 'large_object_space'
               brief: 'Large object memory space.'
-              stability: experimental
+              stability: development

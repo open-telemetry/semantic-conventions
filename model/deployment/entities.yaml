@@ -1,0 +1,10 @@
+groups:
+  - id: entity.deployment
+    type: entity
+    stability: development
+    name: deployment
+    brief: >
+      The software deployment.
+    attributes:
+      - ref: deployment.environment.name
+        requirement_level: recommended

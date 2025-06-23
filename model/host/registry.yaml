@@ -7,7 +7,7 @@ groups:
     attributes:
       - id: host.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider.
           For non-containerized systems, this should be the `machine-id`. See the table below for
@@ -15,7 +15,7 @@ groups:
         examples: ['fdbf79e8af94cb7f9e8df36789187052']
       - id: host.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Name of the host. On Unix systems, it may contain what the hostname
           command returns, or the fully qualified hostname, or another name
@@ -23,7 +23,7 @@ groups:
         examples: ['opentelemetry-test']
       - id: host.type
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Type of host. For Cloud, this must be the machine type.
         examples: ['n1-standard-1']
@@ -33,59 +33,59 @@ groups:
             - id: amd64
               value: 'amd64'
               brief: "AMD64"
-              stability: experimental
+              stability: development
             - id: arm32
               value: 'arm32'
               brief: "ARM32"
-              stability: experimental
+              stability: development
             - id: arm64
               value: 'arm64'
               brief: "ARM64"
-              stability: experimental
+              stability: development
             - id: ia64
               value: 'ia64'
               brief: "Itanium"
-              stability: experimental
+              stability: development
             - id: ppc32
               value: 'ppc32'
               brief: "32-bit PowerPC"
-              stability: experimental
+              stability: development
             - id: ppc64
               value: 'ppc64'
               brief: "64-bit PowerPC"
-              stability: experimental
+              stability: development
             - id: s390x
               value: 's390x'
               brief: "IBM z/Architecture"
-              stability: experimental
+              stability: development
             - id: x86
               value: 'x86'
               brief: "32-bit x86"
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
             The CPU architecture the host system is running on.
       - id: host.image.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Name of the VM image or OS install the host was instantiated from.
         examples: ['infra-ami-eks-worker-node-7d4ec78312', 'CentOS-8-x86_64-1905']
       - id: host.image.id
-        stability: experimental
+        stability: development
         type: string
         brief: >
           VM image ID or host OS image ID. For Cloud, this value is from the provider.
         examples: ['ami-07b06b442921831e5']
       - id: host.image.version
-        stability: experimental
+        stability: development
         type: string
         brief: >
           The version string of the VM image or host OS as defined in
           [Version Attributes](/docs/resource/README.md#version-attributes).
         examples: ['0.1']
       - id: host.ip
-        stability: experimental
+        stability: development
         type: string[]
         brief: >
           Available IP addresses of the host, excluding loopback interfaces.
@@ -95,7 +95,7 @@ groups:
         examples:
           - ["192.168.1.140", "fe80::abc2:4a28:737a:609e"]
       - id: host.mac
-        stability: experimental
+        stability: development
         type: string[]
         brief: >
           Available MAC addresses of the host, excluding loopback interfaces.
@@ -105,7 +105,7 @@ groups:
         examples:
           - ['AC-DE-48-23-45-67', 'AC-DE-48-23-45-67-01-9F']
       - id: host.cpu.vendor.id
-        stability: experimental
+        stability: development
         type: string
         brief: >
           Processor manufacturer identifier. A maximum 12-character string.
@@ -114,32 +114,32 @@ groups:
           Writing these to memory in this order results in a 12-character string.
         examples: [ 'GenuineIntel' ]
       - id: host.cpu.family
-        stability: experimental
+        stability: development
         type: string
         brief: >
           Family or generation of the CPU.
         examples: [ '6', 'PA-RISC 1.1e' ]
       - id: host.cpu.model.id
-        stability: experimental
+        stability: development
         type: string
         brief: >
           Model identifier. It provides more granular information about the CPU, distinguishing it from
           other CPUs within the same family.
         examples: [ '6', '9000/778/B180L' ]
       - id: host.cpu.model.name
-        stability: experimental
+        stability: development
         type: string
         brief: >
           Model designation of the processor.
         examples: [ '11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz' ]
       - id: host.cpu.stepping
-        stability: experimental
+        stability: development
         type: string
         brief: >
           Stepping or core revisions.
         examples: ["1", "r1p1"]
       - id: host.cpu.cache.l2.size
-        stability: experimental
+        stability: development
         type: int
         brief: >
           The amount of level 2 memory cache available to the processor (in Bytes).

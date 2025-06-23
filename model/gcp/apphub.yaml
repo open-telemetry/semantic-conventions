@@ -1,0 +1,43 @@
+groups:
+  - id: entity.gcp.apphub.application
+    type: entity
+    stability: development
+    name: gcp.apphub.application
+    brief: >
+      Attributes denoting data from an Application in AppHub.
+      See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
+    attributes:
+      - ref: gcp.apphub.application.container
+        requirement_level: required
+      - ref: gcp.apphub.application.location
+        requirement_level: required
+      - ref: gcp.apphub.application.id
+        requirement_level: required
+  - id: entity.gcp.apphub.service
+    type: entity
+    stability: development
+    name: gcp.apphub.service
+    brief: >
+      Attributes denoting data from a Service in AppHub.
+      See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
+    attributes:
+      - ref: gcp.apphub.service.id
+        requirement_level: required
+      - ref: gcp.apphub.service.environment_type
+        requirement_level: required
+      - ref: gcp.apphub.service.criticality_type
+        requirement_level: required
+  - id: entity.gcp.apphub.workload
+    type: entity
+    stability: development
+    name: gcp.apphub.workload
+    brief: >
+      Attributes denoting data from a Workload in AppHub.
+      See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
+    attributes:
+      - ref: gcp.apphub.workload.id
+        requirement_level: required
+      - ref: gcp.apphub.workload.environment_type
+        requirement_level: required
+      - ref: gcp.apphub.workload.criticality_type
+        requirement_level: required

@@ -8,7 +8,7 @@ groups:
     attributes:
       - id: test.suite.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The human readable name of a [test suite](https://wikipedia.org/wiki/Test_suite).
         examples: ["TestSuite1"]
@@ -18,28 +18,28 @@ groups:
             - id: success
               value: success
               brief: success
-              stability: experimental
+              stability: development
             - id: failure
               value: failure
               brief: failure
-              stability: experimental
+              stability: development
             - id: skipped
               value: skipped
               brief: skipped
-              stability: experimental
+              stability: development
             - id: aborted
               value: aborted
               brief: aborted
-              stability: experimental
+              stability: development
             - id: timed_out
               value: timed_out
               brief: timed_out
-              stability: experimental
+              stability: development
             - id: in_progress
               value: in_progress
               brief: in_progress
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The status of the test suite run.
         examples:
@@ -53,7 +53,7 @@ groups:
           ]
       - id: test.case.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The fully qualified human readable name of the [test case](https://wikipedia.org/wiki/Test_case).
         examples:
@@ -68,12 +68,12 @@ groups:
             - id: pass
               value: pass
               brief: pass
-              stability: experimental
+              stability: development
             - id: fail
               value: fail
               brief: fail
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The status of the actual test case result from test execution.
         examples: ["pass", "fail"]
