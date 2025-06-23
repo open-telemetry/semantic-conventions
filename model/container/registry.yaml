@@ -19,12 +19,26 @@ groups:
           [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification).
           The UUID might be abbreviated.
         examples: ['a3bf90e006b2']
-      - id: container.runtime
+      - id: container.runtime.name
         type: string
         stability: development
         brief: >
           The container runtime managing this container.
         examples: ['docker', 'containerd', 'rkt']
+      - id: container.runtime.version
+        type: string
+        stability: development
+        brief: >
+          The version of the runtime of this process, as returned by the runtime
+          without modification.
+        examples: '1.0.0'
+      - id: container.runtime.description
+        type: string
+        stability: development
+        brief: >
+          An additional description about the runtime, for example
+          a specific vendor customization of the runtime environment.
+        examples: ''
       - id: container.image.name
         type: string
         stability: development
