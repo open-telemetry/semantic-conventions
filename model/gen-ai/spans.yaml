@@ -159,7 +159,7 @@ groups:
       - ref: gen_ai.openai.response.system_fingerprint
         requirement_level: recommended
 
-  - id: span.gen_ai.az.ai.inference.client
+  - id: span.gen_ai.azure.ai.inference.client
     extends: attributes.gen_ai.inference.openai_based
     stability: development
     type: span
@@ -173,10 +173,10 @@ groups:
       **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}` when the
       model name is available and `{gen_ai.operation.name}` otherwise.
     attributes:
-      - ref: az.namespace
+      - ref: azure.resource_provider.namespace
         note: >
-          When `az.namespace` attribute is populated, it MUST be set to `Microsoft.CognitiveServices` for all
-          operations performed by Azure AI Inference clients.
+          When `azure.resource_provider.namespace` attribute is populated, it MUST
+          be set to `Microsoft.CognitiveServices` for all operations performed by Azure AI Inference clients.
         examples: ["Microsoft.CognitiveServices"]
       - ref: gen_ai.usage.input_tokens
         brief: >
