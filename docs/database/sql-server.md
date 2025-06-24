@@ -160,9 +160,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ### SET CONTEXT_INFO
 
-Instrumentations MAY make use of [SET CONTEXT_INFO](https://learn.microsoft.com/en-us/sql/t-sql/statements/set-context-info-transact-sql?view=sql-server-ver16) to add text format of [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) before executing a query. This is an opt-in behavior that should be explicitly enabled by the user.
+Instrumentations MAY make use of [SET CONTEXT_INFO](https://learn.microsoft.com/en-us/sql/t-sql/statements/set-context-info-transact-sql?view=sql-server-ver16) to add text format of [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) before executing a query. This is an opt-in behavior that SHOULD be explicitly enabled by the user.
 
-`SET CONTEXT_INFO` must be executed on the same physical connection as the SQL statement (or reuse its transaction).
+`SET CONTEXT_INFO` MUST be executed on the same physical connection as the SQL statement (or reuse its transaction).
 
 Note that `SET CONTEXT_INFO` requires binary input according to its syntax: `SET CONTEXT_INFO { binary_str | @binary_var }` and has a maximum size of 128 bytes.
 
