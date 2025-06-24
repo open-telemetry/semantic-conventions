@@ -8,10 +8,13 @@ groups:
     attributes:
       - ref: telemetry.sdk.name
         requirement_level: required
+        role: identifying
       - ref: telemetry.sdk.language
         requirement_level: required
+        role: identifying
       - ref: telemetry.sdk.version
         requirement_level: required
+        role: descriptive
   - id: entity.telemetry.distro
     name: 'telemetry.distro'
     type: entity
