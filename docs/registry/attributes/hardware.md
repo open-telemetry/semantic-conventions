@@ -5,7 +5,7 @@
 
 ## Hardware Attributes
 
-Attributes for hardware.
+Hardware attributes are used to represent details about the hw components which are providing the base platform for the software running to be emitting telemetry. It is important to correctly describe the component by indicating the `hw.type`.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
@@ -22,7 +22,9 @@ Attributes for hardware.
 | <a id="hw-logical-disk-raid-level" href="#hw-logical-disk-raid-level">`hw.logical_disk.raid_level`</a> | string | RAID Level of the logical disk | `RAID0+1`; `RAID5`; `RAID10` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-logical-disk-state" href="#hw-logical-disk-state">`hw.logical_disk.state`</a> | string | State of the logical disk space usage | `used`; `free` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-memory-type" href="#hw-memory-type">`hw.memory.type`</a> | string | Type of the memory module | `DDR4`; `DDR5`; `LPDDR5` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-model" href="#hw-model">`hw.model`</a> | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-model" href="#hw-model">`hw.model`</a> | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.model.name`. |
+| <a id="hw-model-id" href="#hw-model-id">`hw.model.id`</a> | string | A fixed id which identifies the model. [1] | `Barracuda 7200`; `9000/778/B180L` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-model-name" href="#hw-model-name">`hw.model.name`</a> | string | Descriptive model name | `Barracuda 7200`; `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-name" href="#hw-name">`hw.name`</a> | string | An easily-recognizable name for the hardware component | `eth0` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-network-logical-addresses" href="#hw-network-logical-addresses">`hw.network.logical_addresses`</a> | string[] | Logical addresses of the adapter (e.g. IP address, or WWPN) | `["172.16.8.21", "57.11.193.42"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-network-physical-address" href="#hw-network-physical-address">`hw.network.physical_address`</a> | string | Physical address of the adapter (e.g. MAC address, or WWNN) | `00-90-F5-E9-7B-36` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -34,10 +36,16 @@ Attributes for hardware.
 | <a id="hw-serial-number" href="#hw-serial-number">`hw.serial_number`</a> | string | Serial number of the hardware component | `CNFCP0123456789` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-state" href="#hw-state">`hw.state`</a> | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-tape-drive-operation-type" href="#hw-tape-drive-operation-type">`hw.tape_drive.operation_type`</a> | string | Type of tape drive operation | `mount`; `unmount`; `clean` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-type" href="#hw-type">`hw.type`</a> | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-vendor" href="#hw-vendor">`hw.vendor`</a> | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-type" href="#hw-type">`hw.type`</a> | string | Type of the component [2] | `battery`; `cpu`; `disk_controller` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-vendor" href="#hw-vendor">`hw.vendor`</a> | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.vendor.name`. |
+| <a id="hw-vendor-id" href="#hw-vendor-id">`hw.vendor.id`</a> | string | A fixed id which identifies the vendor. [3] | `GenuineIntel`; `Seagate`; `Western Digital` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-vendor-name" href="#hw-vendor-name">`hw.vendor.name`</a> | string | Vendor name | `Intel`; `Seagate`; `Western Digital` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
+**[1] `hw.model.id`:** If not known should default to the name
+
+**[2] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
+
+**[3] `hw.vendor.id`:** if the hardware component doesn't provide it, it should default to the name.
 
 ---
 

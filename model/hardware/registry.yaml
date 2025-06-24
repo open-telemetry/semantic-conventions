@@ -3,7 +3,8 @@ groups:
     type: attribute_group
     display_name: Hardware Attributes
     brief: >
-      Attributes for hardware.
+      Hardware attributes are used to represent details about the hw components which are providing the base platform for the software running to be emitting telemetry.
+      It is important to correctly describe the component by indicating the `hw.type`.
     attributes:
       # COMMON ATTRIBUTES FOR ALL
       - id: hw.id
@@ -195,6 +196,9 @@ groups:
       - id: hw.model
         type: string
         stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: hw.model.name
         brief: >
           Descriptive model name of the hardware component
         examples: ['PERC H740P', 'Intel(R) Core(TM) i7-10700K', 'Dell XPS 15 Battery']
@@ -207,6 +211,9 @@ groups:
       - id: hw.vendor
         type: string
         stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: hw.vendor.name
         brief: >
           Vendor name of the hardware component
         examples: ['Dell', 'HP', 'Intel', 'AMD', 'LSI', 'Lenovo']
@@ -216,6 +223,34 @@ groups:
         brief: >
           Location of the sensor
         examples: ['cpu0', 'ps1', 'INLET', 'CPU0_DIE', 'AMBIENT', 'MOTHERBOARD', 'PS0 V3_3', 'MAIN_12V', 'CPU_VCORE']
+      - id: hw.vendor.id
+        type: string
+        stability: development
+        brief: >
+          A fixed id which identifies the vendor.
+        note: >
+          if the hardware component doesn't provide it, it should default to the name.
+        examples: ['GenuineIntel', 'Seagate', 'Western Digital']
+      - id: hw.vendor.name
+        type: string
+        stability: development
+        brief: >
+          Vendor name
+        examples: ['Intel', 'Seagate', 'Western Digital']
+      - id: hw.model.id
+        type: string
+        stability: development
+        brief: >
+          A fixed id which identifies the model.
+        note: >
+          If not known should default to the name
+        examples: ['Barracuda 7200', '9000/778/B180L']
+      - id: hw.model.name
+        type: string
+        stability: development
+        brief: >
+          Descriptive model name
+        examples: ['Barracuda 7200', '11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz']
 
       # BATTERY ATTRIBUTES
       - id: hw.battery.chemistry

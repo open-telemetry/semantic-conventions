@@ -36,12 +36,14 @@ All physical disk metrics may include the below attributes:
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the hardware component | `2.0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.model.name`. |
+| [`hw.model.name`](/docs/registry/attributes/hardware.md) | string | Descriptive model name | `Barracuda 7200`; `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.physical_disk.type`](/docs/registry/attributes/hardware.md) | string | Type of the physical disk | `HDD`; `SSD`; `10K` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.vendor.name`. |
+| [`hw.vendor.name`](/docs/registry/attributes/hardware.md) | string | Vendor name | `Intel`; `Seagate`; `Western Digital` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -157,12 +159,14 @@ When using this metric, the following attributes MUST be set:
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.physical_disk.state`](/docs/registry/attributes/hardware.md) | string | State of the physical disk endurance utilization | `remaining` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the hardware component | `2.0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.model.name`. |
+| [`hw.model.name`](/docs/registry/attributes/hardware.md) | string | Descriptive model name | `Barracuda 7200`; `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.physical_disk.type`](/docs/registry/attributes/hardware.md) | string | Type of the physical disk | `HDD`; `SSD`; `10K` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.vendor.name`. |
+| [`hw.vendor.name`](/docs/registry/attributes/hardware.md) | string | Vendor name | `Intel`; `Seagate`; `Western Digital` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -198,12 +202,14 @@ Size of the disk.
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the hardware component | `2.0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.model.name`. |
+| [`hw.model.name`](/docs/registry/attributes/hardware.md) | string | Descriptive model name | `Barracuda 7200`; `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.physical_disk.type`](/docs/registry/attributes/hardware.md) | string | Type of the physical disk | `HDD`; `SSD`; `10K` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.vendor.name`. |
+| [`hw.vendor.name`](/docs/registry/attributes/hardware.md) | string | Vendor name | `Intel`; `Seagate`; `Western Digital` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -235,13 +241,15 @@ The following attributes SHOULD be set:
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the hardware component | `2.0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.model.name`. |
+| [`hw.model.name`](/docs/registry/attributes/hardware.md) | string | Descriptive model name | `Barracuda 7200`; `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.physical_disk.smart_attribute`](/docs/registry/attributes/hardware.md) | string | [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk | `Spin Retry Count`; `Seek Error Rate` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.physical_disk.type`](/docs/registry/attributes/hardware.md) | string | Type of the physical disk | `HDD`; `SSD`; `10K` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.vendor.name`. |
+| [`hw.vendor.name`](/docs/registry/attributes/hardware.md) | string | Vendor name | `Intel`; `Seagate`; `Western Digital` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
