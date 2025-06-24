@@ -12,35 +12,34 @@ groups:
             - id: openai
               stability: development
               value: "openai"
-              brief: 'OpenAI'
+              brief: '[OpenAI](https://openai.com/)'
             - id: gcp.gen_ai
               stability: development
               value: "gcp.gen_ai"
               brief: "Any Google generative AI endpoint"
               note: >
                 May be used when specific backend is unknown.
-                May use common attributes prefixed with 'gcp.gen_ai.'.
             - id: gcp.vertex_ai
               stability: development
               value: "gcp.vertex_ai"
-              brief: Vertex AI
+              brief: "[Vertex AI](https://cloud.google.com/vertex-ai)"
               note: >
                 Used when accessing the 'aiplatform.googleapis.com' endpoint.
             - id: gcp.gemini
               stability: development
               value: "gcp.gemini"
-              brief: 'Gemini'
+              brief: '[Gemini](https://cloud.google.com/products/gemini)'
               note: >
                 Used when accessing the 'generativelanguage.googleapis.com' endpoint.
                 Also known as the AI Studio API.
             - id: anthropic
               stability: development
               value: "anthropic"
-              brief: 'Anthropic'
+              brief: '[Anthropic](https://www.anthropic.com/)'
             - id: cohere
               stability: development
               value: "cohere"
-              brief: 'Cohere'
+              brief: '[Cohere](https://cohere.com/)'
             - id: azure.ai.inference
               stability: development
               value: "azure.ai.inference"
@@ -48,35 +47,35 @@ groups:
             - id: azure.ai.openai
               stability: development
               value: "azure.ai.openai"
-              brief: 'Azure OpenAI'
+              brief: '[Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/)'
             - id: ibm.watsonx.ai
               stability: development
               value: "ibm.watsonx.ai"
-              brief: 'IBM Watsonx AI'
+              brief: '[IBM Watsonx AI](https://www.ibm.com/products/watsonx-ai)'
             - id: aws.bedrock
               stability: development
               value: "aws.bedrock"
-              brief: 'AWS Bedrock'
+              brief: '[AWS Bedrock](https://aws.amazon.com/bedrock)'
             - id: perplexity
               stability: development
               value: "perplexity"
-              brief: 'Perplexity'
-            - id: xai
+              brief: '[Perplexity](https://www.perplexity.ai/)'
+            - id: x_ai
               stability: development
-              value: "xai"
-              brief: 'xAI'
+              value: "x_ai"
+              brief: '[xAI](https://x.ai/)'
             - id: deepseek
               stability: development
               value: "deepseek"
-              brief: 'DeepSeek'
+              brief: '[DeepSeek](https://www.deepseek.com/)'
             - id: groq
               stability: development
               value: "groq"
-              brief: 'Groq'
+              brief: '[Groq](https://groq.com/)'
             - id: mistral_ai
               stability: development
               value: "mistral_ai"
-              brief: 'Mistral AI'
+              brief: '[Mistral AI](https://mistral.ai/)'
 
         brief: The Generative AI model provider as identified by the client
           or server instrumentation.
