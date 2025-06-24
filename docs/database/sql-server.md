@@ -174,9 +174,9 @@ Run the following command on the same physical connection as the SQL statement:
 
 ```sql
 -- The binary conversion may be done by the application or the driver.
-DECLARE @BinVar varbinary(55);
-SET @BinVar = CAST('00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01' AS varbinary(55));
-SET CONTEXT_INFO @BinVar; 
+DECLARE @traceparent varbinary(55);
+SET @traceparent = CAST('00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01' AS varbinary(55));
+SET CONTEXT_INFO @traceparent; 
 ```
 
 Then run the query:
