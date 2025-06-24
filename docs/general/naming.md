@@ -24,7 +24,7 @@ aliases: [attribute-naming]
 - [Metrics](#metrics)
   - [Naming rules for counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
     - [Pluralization](#pluralization)
-    - [Use `count` instead of pluralization for UpDownCounters (when a namespace exists)](#use-count-instead-of-pluralization-for-updowncounters-when-a-namespace-exists)
+    - [Do not pluralize UpDownCounter names](#do-not-pluralize-updowncounter-names)
     - [Do not use `total`](#do-not-use-total)
   - [Instrument naming](#instrument-naming)
   - [Client and server metrics](#client-and-server-metrics)
@@ -288,18 +288,20 @@ Examples:
 - `system.paging.faults`, `system.disk.operations`, and `system.network.packets`
   should be pluralized, even if only a single data point is recorded.
 
-#### Use `count` instead of pluralization for UpDownCounters (when a namespace exists)
+#### Do not pluralize UpDownCounter names
 
 If the value being recorded represents the count of concepts signified
 by the namespace then the metric SHOULD be named `count` within that namespace.
 
 For example if we have a namespace `system.process` which contains all metrics related
 to the processes then to represent the count of the processes we can have a metric named
-`system.process.count`.
+`system.process.count` instead of `system.processes`.
 
-Using `count` is not required for UpDownCounters when there is no meaningful namespace to preserve.
-For instance, `k8s.deployment.desired_pods` is acceptable, as there is no need to use singular
-`k8s.deployment.desired_pod.*` as a namespace.
+It's not always necessary to use `count`.
+For example, a suffix like `active` should be enough when the metric represents the number of concepts
+in `active` state, i.e. `cicd.pipeline.run.active`.
+
+What is required, is to not pluralize UpDownCounter metric names.
 
 #### Do not use `total`
 
