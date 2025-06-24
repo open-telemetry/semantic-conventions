@@ -7,7 +7,7 @@ versions:
         # https://github.com/open-telemetry/semantic-conventions/pull/1698
         - rename_attributes:
             attribute_map:
-              az.namespace: azure.resource.namespace
+              az.namespace: azure.resource_provider.namespace
               az.service_request_id: azure.service.request.id
   1.34.0:
     metrics:
