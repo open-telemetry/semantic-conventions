@@ -77,6 +77,94 @@ groups:
         stability: development
         brief: 'Human readable operating system name.'
         examples: ['iOS', 'Android', 'Ubuntu']
+      - id: os.platform
+        type:
+          members:
+            - id: win32s
+              value: 'win32s'
+              brief: "The operating system is Win32s."
+              stability: development
+            - id: win32windows
+              value: 'win32windows'
+              brief: "The operating system is Windows 95 or Windows 98."
+              stability: development
+            - id: win32nt
+              value: 'win32nt'
+              brief: "The operating system is Windows NT or later."
+              stability: development
+            - id: wince
+              value: 'wince'
+              brief: "The operating system is Windows CE."
+              stability: development
+            - id: unix
+              value: 'unix'
+              brief: "The operating system is Unix."
+              stability: development
+        stability: development
+        brief: 'Identifies the operating system platform.'
+      - id: os.family
+        type:
+          members:
+            - id: windows
+              value: 'windows'
+              brief: "The operating system is a Windows OS."
+              stability: development
+            - id: macosx
+              value: 'macosx'
+              brief: "The operating system is a macosx OS."
+              stability: development
+            - id: linux
+              value: 'linux'
+              brief: "The operating system is a linux OS."
+              stability: development
+            - id: freebsd
+              value: 'freebsd'
+              brief: "The operating system is a FreeBSD OS."
+              stability: development
+        stability: development
+        brief: 'Identifies the OS family which the OS is associated with.'
+      - id: os.classification
+        type:
+          members:
+            - id: rhel
+              value: 'rhel'
+              brief: "RedHat Enterprise Linux"
+              stability: development
+            - id: fedora
+              value: 'fedora'
+              brief: "Fedora"
+              stability: development
+            - id: arch
+              value: 'arch'
+              brief: "Arch Linux."
+              stability: development
+            - id: darwin
+              value: 'darwin'
+              brief: "Darwin"
+              note: "This would usually be OS by apple"
+              stability: development
+            - id: ubuntu
+              value: 'ubuntu'
+              brief: "Ubuntu"
+              stability: development
+            - id: opensuse
+              value: 'opensuse'
+              brief: "Open SUSE"
+              stability: development
+            - id: gentoo
+              value: 'gentoo'
+              brief: "Gentoo"
+              stability: development
+            - id: slackware
+              value: 'slackware'
+              brief: "Slackware"
+              stability: development
+            - id: android
+              value: 'android'
+              brief: "Android"
+              stability: development
+        stability: development
+        brief: 'A classification of the OS which corresponds to the upstram distro.'
       - id: os.version
         type: string
         stability: development
