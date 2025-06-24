@@ -23,3 +23,11 @@ groups:
         stability: development
         brief: 'Source port number'
         examples: [3389, 2888]
+      - id: source.mac
+        stability: development
+        type: string
+        brief: 'Source mac address'
+        note: >
+          MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+          as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+        examples: ['AC-DE-48-23-45-67', 'AC-DE-48-23-45-67-01-9F']
