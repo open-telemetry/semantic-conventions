@@ -17,11 +17,11 @@ groups:
               stability: development
             - id: linux
               value: 'linux'
-              brief: "Linux"
+              brief: "Deprecated. Should be set as the `os.family`"
               stability: development
             - id: darwin
               value: 'darwin'
-              brief: "Apple Darwin"
+              brief: "Deprecated. Should be set as the `os.classifcation`"
               stability: development
             - id: freebsd
               value: 'freebsd'
@@ -61,6 +61,62 @@ groups:
             - id: zos
               value: 'zos'
               brief: "IBM z/OS"
+              stability: development
+            - id: android
+              value: 'android'
+              brief: "Android"
+              stability: development
+            - id: ios
+              value: 'ios'
+              brief: "Apple ios"
+              stability: development
+            - id: tvos
+              value: 'tvos'
+              brief: "Apple tvos"
+              stability: development
+            - id: watchos
+              value: 'watchos'
+              brief: "Apple WatchOS"
+              stability: development
+            - id: ubuntu
+              value: 'ubuntu'
+              brief: "Ubuntu"
+              stability: development
+            - id: manjaro
+              value: 'manjaro'
+              brief: "Manjaro"
+              stability: development
+            - id: steamos
+              value: 'steamos'
+              brief: "SteamOS"
+              stability: development
+            - id: centos
+              value: 'centos'
+              brief: "CentOS"
+              stability: development
+            - id: archlinux
+              value: 'archlinux'
+              brief: "Arch Linux"
+              stability: development
+            - id: rhel
+              value: 'rhel'
+              brief: "Red Hat Enterprise Linux "
+              stability: development
+            - id: suse
+              value: 'suse'
+              brief: "SUSE Linux Enterprise"
+              stability: development
+            - id: chromeos
+              value: 'chromeos'
+              brief: "ChromeOS"
+              stability: development
+            - id: chromiumos
+              value: 'chromiumos'
+              brief: "ChromiumOS"
+              stability: development
+            - id: fireos
+              value: 'fireos'
+              brief: "Fire OS"
               stability: development
         brief: >
           The operating system type.
