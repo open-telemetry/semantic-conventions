@@ -54,7 +54,8 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.span.live` | UpDownCounter | `{span}` | The number of created spans for which the end operation has not been called yet [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live` and `otel.sdk.span.ended`.
-For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.ended`.
+For spans with `recording=false`: Implementations MAY omit recording `otel.sdk.span.live` (e.g. for performance or simplicity reasons).
+In that case they MUST record `otel.sdk.span.ended` on span start for those spans instead.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -91,7 +92,9 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.span.ended` | Counter | `{span}` | The number of created spans for which the end operation was called [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live` and `otel.sdk.span.ended`.
-For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.live`.
+For spans with `recording=false`: If implementations decide to not record `otel.sdk.span.live`, they MUST record `otel.sdk.span.ended` on span start for those spans instead.
+In other words, for spans with `recording=false` implementations may treat them as ended directly after they are started from a metrics perspective.
+This ensures that `otel.sdk.span.ended` is guaranteed to provide insights about the total span counts and sampling rates, even if spans are not recorded.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

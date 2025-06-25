@@ -8,7 +8,8 @@ groups:
     unit: "{span}"
     note: |
       For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live` and `otel.sdk.span.ended`.
-      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.ended`.
+      For spans with `recording=false`: Implementations MAY omit recording `otel.sdk.span.live` (e.g. for performance or simplicity reasons).
+      In that case they MUST record `otel.sdk.span.ended` on span start for those spans instead.
     attributes:
       - ref: otel.span.sampling_result
 
@@ -21,7 +22,9 @@ groups:
     unit: "{span}"
     note: |
       For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live` and `otel.sdk.span.ended`.
-      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.live`.
+      For spans with `recording=false`: If implementations decide to not record `otel.sdk.span.live`, they MUST record `otel.sdk.span.ended` on span start for those spans instead.
+      In other words, for spans with `recording=false` implementations may treat them as ended directly after they are started from a metrics perspective.
+      This ensures that `otel.sdk.span.ended` is guaranteed to provide insights about the total span counts and sampling rates, even if spans are not recorded.
     attributes:
       - ref: otel.span.sampling_result
       - ref: otel.span.parent.origin
