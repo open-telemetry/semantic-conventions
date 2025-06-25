@@ -44,7 +44,7 @@ The operating system (OS) on which the process represented by this resource is r
 
 | Value  | Description | Stability |
 |---|---|---|
-| `freebsd` | The operating system is a FreeBSD OS. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `bsd` | The operating system is a BSD OS. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `linux` | The operating system is a linux OS. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `macosx` | The operating system is a macosx OS. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `windows` | The operating system is a Windows OS. | ![Development](https://img.shields.io/badge/-development-blue) |
