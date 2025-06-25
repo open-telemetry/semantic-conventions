@@ -6,6 +6,63 @@ groups:
       Describes attributes related to client-side applications (e.g. web apps or mobile apps).
     stability: development
     attributes:
+      - id: app.id
+        type: string
+        brief: >
+          A unique identifier for the app.
+        note: >
+          MUST remain the same across all versions. For mobile applications this should correspond to the package id.
+        examples: ["com.domainname.applicationname"]
+        stability: stable
+      - id: app.name
+        type: string
+        brief: >
+          Logical name of the app.
+        note: >
+          MUST be the same for all installations of the app.
+        examples: ["shoppingcart"]
+        stability: stable
+      - id: app.version
+        type: string
+        brief: >
+          The version string of the app. The format is not defined by these conventions.
+        examples: ["2.0.0", "a01dbef8a"]
+        stability: stable
+      - id: app.namespace
+        type: string
+        stability: development
+        brief: >
+          A namespace for `app.name`.
+        note: >
+          A string value having a meaning that helps to distinguish a group of apps,
+          for example the team name that owns a group of apps.
+          `app.name` is expected to be unique within the same namespace.
+          If `app.namespace` is not specified in the Resource then `app.name`
+          is expected to be unique for all apps that have no explicit namespace defined
+          (so the empty/unspecified namespace is simply one more valid namespace).
+          Zero-length namespace string is assumed equal to unspecified namespace.
+        examples: ["Shop"]
+      - id: app.type
+        type:
+          members:
+            - id: console
+              value: "console"
+              brief: The application is interacted with via the console.
+              stability: development
+            - id: device
+              value: "device"
+              brief: The application is interacted with via UI shown on the device the app is installed on.
+              stability: development
+            - id: service
+              value: "service"
+              brief: The application runs in the backgroung without any ui.
+              stability: development
+            - id: web
+              value: "web"
+              brief: The application is interacted with via a web browser.
+              stability: development
+        brief: Describes the type of application which generated the telemetry
+        stability: development
       - id: app.installation.id
         type: string
         stability: development
