@@ -10,7 +10,7 @@ The operating system (OS) on which the process represented by this resource is r
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="os-build-id" href="#os-build-id">`os.build_id`</a> | string | Unique identifier for a particular build or compilation of the operating system. | `TQ3C.230805.001.B2`; `20E247`; `22621` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="os-classification" href="#os-classification">`os.classification`</a> | string | A classification of the OS which corresponds to the upstream distro. | `rhel`; `fedora`; `arch` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="os-classification" href="#os-classification">`os.classification`</a> | string | A classification of the OS which corresponds to the upstram distro. | `rhel`; `fedora`; `arch` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="os-description" href="#os-description">`os.description`</a> | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="os-family" href="#os-family">`os.family`</a> | string | Identifies the OS family which the OS is associated with. | `windows`; `macosx`; `linux` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="os-name" href="#os-name">`os.name`</a> | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -42,7 +42,7 @@ The operating system (OS) on which the process represented by this resource is r
 
 | Value  | Description | Stability |
 |---|---|---|
-| `freebsd` | The operating system is a FreeBSD OS. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `bsd` | The operating system is a BSD OS. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `linux` | The operating system is a linux OS. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `macosx` | The operating system is a macosx OS. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `windows` | The operating system is a Windows OS. | ![Development](https://img.shields.io/badge/-development-blue) |
