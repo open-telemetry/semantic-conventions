@@ -24,6 +24,7 @@ groups:
       For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.live`.
     attributes:
       - ref: otel.span.sampling_result
+      - ref: otel.span.parent.origin
 
   - id: metric.otel.sdk.processor.span.queue.size
     type: metric

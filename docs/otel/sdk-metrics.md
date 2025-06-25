@@ -95,7 +95,18 @@ For spans with `recording=false`: If implementations decide to record this metri
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`otel.span.parent.origin`](/docs/registry/attributes/otel.md) | string | Determines whether the span has a parent span, and if so, whether it is a remote parent | `NONE`; `LOCAL`; `REMOTE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`otel.span.sampling_result`](/docs/registry/attributes/otel.md) | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`otel.span.parent.origin` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `LOCAL` | The span has a parent and the parent's span context isRemote() is false | ![Development](https://img.shields.io/badge/-development-blue) |
+| `NONE` | The span does not have a parent, it is a root span | ![Development](https://img.shields.io/badge/-development-blue) |
+| `REMOTE` | The span has a parent and the parent's span context isRemote() is true | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
