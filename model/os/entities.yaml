@@ -13,6 +13,9 @@ groups:
         requirement_level: required
       - ref: os.description
       - ref: os.name
+      - ref: os.classification
+      - ref: os.family
+      - ref: os.platform
       - ref: os.version
       - ref: os.build_id
         note: >
