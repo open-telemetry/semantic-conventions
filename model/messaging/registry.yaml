@@ -220,6 +220,18 @@ groups:
               value: 'pulsar'
               brief: 'Apache Pulsar'
               stability: development
+            - id: beanstalkd
+              value: 'beanstalkd'
+              brief: 'Beanstalkd'
+              stability: development
+            - id: nsq
+              value: 'nsq'
+              brief: 'NSQ'
+              stability: development
+            - id: solace
+              value: 'solace'
+              brief: 'Solace'
+              stability: development
         stability: development
   - id: registry.messaging.kafka
     type: attribute_group
