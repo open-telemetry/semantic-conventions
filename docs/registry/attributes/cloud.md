@@ -66,13 +66,13 @@ A cloud environment (e.g. GCP, Azure, AWS).
 | `aws_elastic_beanstalk` | AWS Elastic Beanstalk | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_lambda` | AWS Lambda | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_openshift` | Red Hat OpenShift on AWS (ROSA) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.aks` | Azure Kubernetes Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.app_service` | Azure App Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.container_apps` | Azure Container Apps | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.container_instances` | Azure Container Instances | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.functions` | Azure Functions | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.openshift` | Azure Red Hat OpenShift | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.vm` | Azure Virtual Machines | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure_aks` | Azure Kubernetes Service | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure_app_service` | Azure App Service | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure_container_apps` | Azure Container Apps | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure_container_instances` | Azure Container Instances | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure_functions` | Azure Functions | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure_openshift` | Azure Red Hat OpenShift | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure_vm` | Azure Virtual Machines | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_app_engine` | Google Cloud App Engine (GAE) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_bare_metal_solution` | Google Bare Metal Solution (BMS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_cloud_functions` | Google Cloud Functions (GCF) | ![Development](https://img.shields.io/badge/-development-blue) |
