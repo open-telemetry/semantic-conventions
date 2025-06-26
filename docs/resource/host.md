@@ -155,11 +155,25 @@ privileged lookup of `host.id` is required, the value should be injected via the
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`host.platform.app.name`](/docs/registry/attributes/host.md) | string | What product forms the basis of the hosting platform | `openshift`; `esxi`; `hyperv` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`host.platform.name`](/docs/registry/attributes/host.md) | string | The commercial hosting platform in use. [1] | `alibaba_cloud_ecs`; `alibaba_cloud_fc`; `alibaba_cloud_openshift` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`host.platform.product`](/docs/registry/attributes/host.md) | string | What product forms the basis of the hosting platform | `openshift`; `esxi`; `hyperv` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`host.platform.provider`](/docs/registry/attributes/host.md) | string | Name of the organisation providing the platform. | `alibaba`; `amazon`; `google` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `host.platform.name`:** The prefix SHOULD match the one specified in `host.platform.provider`.
+
+---
+
+`host.platform.app.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `citrix` | [Citrix](https://www.citrix.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `esxi` | [VMWare](https://www.vmware.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hyperv` | [Microsoft Hyper-V](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mesos` | [Apache Mesos](https://mesos.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openshift` | [Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `proxmox` | [Proxmox](https://www.proxmox.com/en/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `xenserver` | [Xen Sever](https://www.xenserver.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -177,13 +191,13 @@ privileged lookup of `host.id` is required, the value should be injected via the
 | `aws_elastic_beanstalk` | AWS Elastic Beanstalk | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_lambda` | AWS Lambda | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_openshift` | Red Hat OpenShift on AWS (ROSA) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_aks` | Azure Kubernetes Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_app_service` | Azure App Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_container_apps` | Azure Container Apps | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_container_instances` | Azure Container Instances | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_functions` | Azure Functions | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_openshift` | Azure Red Hat OpenShift | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_vm` | Azure Virtual Machines | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.aks` | Azure Kubernetes Service | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.app_service` | Azure App Service | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.container_apps` | Azure Container Apps | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.container_instances` | Azure Container Instances | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.functions` | Azure Functions | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.openshift` | Azure Red Hat OpenShift | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.vm` | Azure Virtual Machines | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_app_engine` | Google Cloud App Engine (GAE) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_bare_metal_solution` | Google Bare Metal Solution (BMS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_cloud_functions` | Google Cloud Functions (GCF) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -197,20 +211,6 @@ privileged lookup of `host.id` is required, the value should be injected via the
 | `tencent_cloud_cvm` | Tencent Cloud Cloud Virtual Machine (CVM) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud_eks` | Tencent Cloud Elastic Kubernetes Service (EKS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`host.platform.product` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `citrix` | [Citrix](https://www.citrix.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `esxi` | [VMWare](https://www.vmware.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hyperv` | [Microsoft Hyper-V](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mesos` | [Apache Mesos](https://mesos.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `openshift` | [Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `proxmox` | [Proxmox](https://www.proxmox.com/en/) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `xenserver` | [Xen Sever](https://www.xenserver.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
