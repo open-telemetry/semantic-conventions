@@ -360,6 +360,42 @@ groups:
               value: "surrealdb"
               brief: "[SurrealDB](https://surrealdb.com/)"
               stability: development
+            - id: aerospike
+              value: "aerospike"
+              brief: "[Aerospike](https://aerospike.com/)"
+              stability: development
+            - id: clickhouse
+              value: "clickhouse"
+              brief: "[Clickhouse](https://clickhouse.com/)"
+              stability: development
+            - id: druid
+              value: "druid"
+              brief: "[Apache Druid](https://druid.apache.org/)"
+              stability: development
+            - id: kurrentdb
+              value: "kurrentdb"
+              brief: "[KurrentDB](https://www.kurrent.io/)"
+              stability: development
+            - id: iotdb
+              value: "iotdb"
+              brief: "[Apache IoTDB](https://iotdb.apache.org/)"
+              stability: development
+            - id: kdb
+              value: "kdb+"
+              brief: "[KDB+](https://kx.com/products/kdb/)"
+              stability: development
+            - id: opentsdb
+              value: "opentsdb"
+              brief: "[OpenTSDB](https://opentsdb.net/)"
+              stability: development
+            - id: rethinkdb
+              value: "rethinkdb+"
+              brief: "[RethinkDB+](https://rethinkdb.com/)"
+              stability: development
+            - id: tarantool
+              value: "tarantool+"
+              brief: "[Tarantool](https://www.tarantool.io/en/)"
+              stability: development
         stability: stable
       - id: db.client.connection.state
         stability: development
