@@ -82,5 +82,5 @@ groups:
         The host platform  represents the tool being used to provide the computing instance/environment.
     attributes:
       - ref: host.platform.name
-      - ref: host.platform.product
+      - ref: host.platform.app.name
       - ref: host.platform.provider
