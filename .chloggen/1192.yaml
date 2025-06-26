@@ -1,0 +1,7 @@
+change_type: enhancement
+component: dotnet
+note: >
+  Define .NET-specific network spans for DNS resolution, TLS handshake,
+  and socket connections, along with HTTP-level spans to (optionally) record
+  relationships between HTTP requests and connections.
+issues: [ 1192 ]
