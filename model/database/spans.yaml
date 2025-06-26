@@ -821,10 +821,11 @@ groups:
         requirement_level:
           conditionally_required: If available.
         note: ""  # overriding the base note
-      - ref: az.namespace
+      - ref: azure.resource_provider.namespace
         note: >
-          When `az.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all
-          operations performed by Cosmos DB client.
+          When `azure.resource_provider.namespace` attribute is populated, it
+          MUST be set to `Microsoft.DocumentDB` for all operations performed by
+          Cosmos DB client.
         examples: ["Microsoft.DocumentDB"]
       - ref: db.operation.name
         requirement_level: required
