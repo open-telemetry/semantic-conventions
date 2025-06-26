@@ -187,32 +187,32 @@ groups:
               value: 'aws_openshift'
               brief: Red Hat OpenShift on AWS (ROSA)
               stability: development
-            - id: azure_vm
-              value: 'azure_vm'
+            - id: azure.vm
+              value: 'azure.vm'
               brief: Azure Virtual Machines
               stability: development
-            - id: azure_container_apps
-              value: 'azure_container_apps'
+            - id: azure.container_apps
+              value: 'azure.container_apps'
               brief: Azure Container Apps
               stability: development
-            - id: azure_container_instances
-              value: 'azure_container_instances'
+            - id: azure.container_instances
+              value: 'azure.container_instances'
               brief: Azure Container Instances
               stability: development
-            - id: azure_aks
-              value: 'azure_aks'
+            - id: azure.aks
+              value: 'azure.aks'
               brief: Azure Kubernetes Service
               stability: development
-            - id: azure_functions
-              value: 'azure_functions'
+            - id: azure.functions
+              value: 'azure.functions'
               brief: Azure Functions
               stability: development
-            - id: azure_app_service
-              value: 'azure_app_service'
+            - id: azure.app_service
+              value: 'azure.app_service'
               brief: Azure App Service
               stability: development
-            - id: azure_openshift
-              value: 'azure_openshift'
+            - id: azure.openshift
+              value: 'azure.openshift'
               brief: Azure Red Hat OpenShift
               stability: development
             - id: gcp_bare_metal_solution
@@ -314,18 +314,18 @@ groups:
         stability: development
         brief: >
           Name of the organisation providing the platform.
-      - id: host.platform.product
+      - id: host.platform.app.name
         type:
           members:
-            - id: redhat_openshift
+            - id: openshift
               value: 'openshift'
               brief: '[Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift)'
               stability: development
-            - id: vmware_esxi
+            - id: esxi
               value: 'esxi'
               brief: '[VMWare](https://www.vmware.com/)'
               stability: development
-            - id: microsoft_hyperv
+            - id: hyperv
               value: 'hyperv'
               brief: '[Microsoft Hyper-V](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows)'
               stability: development

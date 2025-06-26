@@ -109,8 +109,8 @@ privileged lookup of `host.id` is required, the value should be injected via the
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
+| Other | [`host.platform.app.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | What product forms the basis of the hosting platform | `openshift`; `esxi`; `hyperv` |
 | Other | [`host.platform.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The commercial hosting platform in use. [5] | `alibaba_cloud_ecs`; `alibaba_cloud_fc`; `alibaba_cloud_openshift` |
-| Other | [`host.platform.product`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | What product forms the basis of the hosting platform | `openshift`; `esxi`; `hyperv` |
 | Other | [`host.platform.provider`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the organisation providing the platform. | `alibaba`; `amazon`; `google` |
 
 

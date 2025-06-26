@@ -25,8 +25,8 @@ A host is defined as a computing instance. For example, physical servers, virtua
 | <a id="host-ip" href="#host-ip">`host.ip`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Available IP addresses of the host, excluding loopback interfaces. [2] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` |
 | <a id="host-mac" href="#host-mac">`host.mac`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Available MAC addresses of the host, excluding loopback interfaces. [3] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` |
 | <a id="host-name" href="#host-name">`host.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` |
+| <a id="host-platform-app-name" href="#host-platform-app-name">`host.platform.app.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | What product forms the basis of the hosting platform | `openshift`; `esxi`; `hyperv` |
 | <a id="host-platform-name" href="#host-platform-name">`host.platform.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The commercial hosting platform in use. [4] | `alibaba_cloud_ecs`; `alibaba_cloud_fc`; `alibaba_cloud_openshift` |
-| <a id="host-platform-product" href="#host-platform-product">`host.platform.product`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | What product forms the basis of the hosting platform | `openshift`; `esxi`; `hyperv` |
 | <a id="host-platform-provider" href="#host-platform-provider">`host.platform.provider`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the organisation providing the platform. | `alibaba`; `amazon`; `google` |
 | <a id="host-type" href="#host-type">`host.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` |
 
@@ -55,6 +55,20 @@ A host is defined as a computing instance. For example, physical servers, virtua
 
 ---
 
+`host.platform.app.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `citrix` | [Citrix](https://www.citrix.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `esxi` | [VMWare](https://www.vmware.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hyperv` | [Microsoft Hyper-V](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mesos` | [Apache Mesos](https://mesos.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openshift` | [Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `proxmox` | [Proxmox](https://www.proxmox.com/en/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `xenserver` | [Xen Sever](https://www.xenserver.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
 `host.platform.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -69,13 +83,13 @@ A host is defined as a computing instance. For example, physical servers, virtua
 | `aws_elastic_beanstalk` | AWS Elastic Beanstalk | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_lambda` | AWS Lambda | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_openshift` | Red Hat OpenShift on AWS (ROSA) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_aks` | Azure Kubernetes Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_app_service` | Azure App Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_container_apps` | Azure Container Apps | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_container_instances` | Azure Container Instances | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_functions` | Azure Functions | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_openshift` | Azure Red Hat OpenShift | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_vm` | Azure Virtual Machines | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.aks` | Azure Kubernetes Service | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.app_service` | Azure App Service | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.container_apps` | Azure Container Apps | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.container_instances` | Azure Container Instances | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.functions` | Azure Functions | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.openshift` | Azure Red Hat OpenShift | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.vm` | Azure Virtual Machines | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_app_engine` | Google Cloud App Engine (GAE) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_bare_metal_solution` | Google Bare Metal Solution (BMS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_cloud_functions` | Google Cloud Functions (GCF) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -89,20 +103,6 @@ A host is defined as a computing instance. For example, physical servers, virtua
 | `tencent_cloud_cvm` | Tencent Cloud Cloud Virtual Machine (CVM) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud_eks` | Tencent Cloud Elastic Kubernetes Service (EKS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`host.platform.product` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `citrix` | [Citrix](https://www.citrix.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `esxi` | [VMWare](https://www.vmware.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hyperv` | [Microsoft Hyper-V](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mesos` | [Apache Mesos](https://mesos.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `openshift` | [Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `proxmox` | [Proxmox](https://www.proxmox.com/en/) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `xenserver` | [Xen Sever](https://www.xenserver.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
