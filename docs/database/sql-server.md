@@ -9,7 +9,7 @@ linkTitle: SQL Server
 <!-- toc -->
 
 - [Spans](#spans)
-- [Database Context Propagation](#database-context-propagation)
+- [Context propagation](#context-propagation)
   - [SET CONTEXT_INFO](#set-context_info)
 - [Metrics](#metrics)
 
