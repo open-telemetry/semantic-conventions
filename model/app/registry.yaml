@@ -13,7 +13,7 @@ groups:
         note: >
           MUST remain the same across all versions. For mobile applications this should correspond to the package id.
         examples: ["com.domainname.applicationname"]
-        stability: stable
+        stability: development
       - id: app.name
         type: string
         brief: >
@@ -21,13 +21,13 @@ groups:
         note: >
           MUST be the same for all installations of the app.
         examples: ["shoppingcart"]
-        stability: stable
+        stability: development
       - id: app.version
         type: string
         brief: >
           The version string of the app. The format is not defined by these conventions.
         examples: ["2.0.0", "a01dbef8a"]
-        stability: stable
+        stability: development
       - id: app.namespace
         type: string
         stability: development
@@ -62,6 +62,18 @@ groups:
               brief: The application is interacted with via a web browser.
               stability: development
         brief: Describes the type of application which generated the telemetry
+        stability: development
+      - id: app.roles
+        type: string[]
+        brief: >
+          What role this app can perform.
+        note: >
+          This doesn't correspond to the roles being performed as a role can be disabled.
+
+          To discover the active roles you can look at `service.roles`
+        examples:
+          - ["ui", "background_tasks"]
+          - ["background_tasks"]
         stability: development
       - id: app.installation.id
         type: string
