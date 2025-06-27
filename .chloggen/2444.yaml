@@ -2,4 +2,3 @@ change_type: enhancement
 component: all
 note: Add `value_type` to all metrics and render it in the markdown files.
 issues: [2444, 591]
-
