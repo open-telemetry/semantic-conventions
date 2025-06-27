@@ -118,6 +118,7 @@ groups:
     unit: "s"
     entity_associations:
       - k8s.node
+  # k8s.node.allocatable.* metrics
   - id: metric.k8s.node.allocatable.cpu
     type: metric
     metric_name: k8s.node.allocatable.cpu
@@ -154,6 +155,24 @@ groups:
       - k8s.node
     instrument: updowncounter
     unit: "{pod}"
+  # k8s.node.condition.* metrics
+  - id: metric.k8s.node.condition.status
+    type: metric
+    metric_name: k8s.node.condition.status
+    stability: development
+    brief: "Describes the condition of a particular Node."
+    note: >
+      All possible node condition pairs (type and status) will be reported at each time interval to avoid missing metrics.
+      Condition pairs corresponding to the current conditions' statuses will be non-zero.
+    instrument: updowncounter
+    unit: "{node}"
+    entity_associations:
+      - k8s.node
+    attributes:
+      - ref: k8s.node.condition.type
+        requirement_level: required
+      - ref: k8s.node.condition.status
+        requirement_level: required
   # k8s.node.cpu.* metrics
   - id: metric.k8s.node.cpu.time
     type: metric
