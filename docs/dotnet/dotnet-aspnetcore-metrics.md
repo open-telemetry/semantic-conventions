@@ -184,7 +184,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
-| `aspnetcore.rate_limiting.request_lease.duration` | Histogram | `int` | `s` | The duration of rate limiting lease held by requests on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
+| `aspnetcore.rate_limiting.request_lease.duration` | Histogram | `double` | `s` | The duration of rate limiting lease held by requests on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
 

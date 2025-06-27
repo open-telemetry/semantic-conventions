@@ -66,7 +66,7 @@ groups:
   - id: metric.aspnetcore.rate_limiting.request_lease.duration
     type: metric
     metric_name: aspnetcore.rate_limiting.request_lease.duration
-    value_type: int
+    value_type: double
     stability: stable
     brief: The duration of rate limiting lease held by requests on the server.
     instrument: histogram
