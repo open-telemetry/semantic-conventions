@@ -29,7 +29,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `signalr.server.connection.duration` | Histogram | `double` | `s` | The duration of connections on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Http.Connections`; Added in: ASP.NET Core 8.0
@@ -74,7 +74,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `signalr.server.active_connections` | UpDownCounter | `int` | `{connection}` | Number of connections that are currently active on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Http.Connections`; Added in: ASP.NET Core 8.0

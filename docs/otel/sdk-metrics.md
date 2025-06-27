@@ -50,7 +50,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.span.live` | UpDownCounter | `int` | `{span}` | The number of created spans for which the end operation has not been called yet [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live` and `otel.sdk.span.ended`.
@@ -87,7 +87,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.span.ended` | Counter | `int` | `{span}` | The number of created spans for which the end operation was called [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live` and `otel.sdk.span.ended`.
@@ -124,7 +124,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.processor.span.queue.size` | UpDownCounter | `int` | `{span}` | The number of spans in the queue of a given instance of an SDK span processor [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
@@ -191,7 +191,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.processor.span.queue.capacity` | UpDownCounter | `int` | `{span}` | The maximum number of spans the queue of a given instance of an SDK span processor can hold [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
@@ -258,7 +258,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.processor.span.processed` | Counter | `int` | `{span}` | The number of spans for which the processing has finished, either successful or failed [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
@@ -355,7 +355,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.exporter.span.inflight` | UpDownCounter | `int` | `{span}` | The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed) [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
@@ -428,7 +428,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.exporter.span.exported` | Counter | `int` | `{span}` | The number of spans for which the export has finished, either successful or failed [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
@@ -534,7 +534,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.log.created` | Counter | `int` | `{log_record}` | The number of logs submitted to enabled SDK Loggers | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 <!-- markdownlint-restore -->
@@ -554,7 +554,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.processor.log.queue.size` | UpDownCounter | `int` | `{log_record}` | The number of log records in the queue of a given instance of an SDK log processor [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
@@ -621,7 +621,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.processor.log.queue.capacity` | UpDownCounter | `int` | `{log_record}` | The maximum number of log records the queue of a given instance of an SDK Log Record processor can hold [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Only applies to Log Record processors which use a queue, e.g. the SDK Batching Log Record Processor.
@@ -688,7 +688,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.processor.log.processed` | Counter | `int` | `{log_record}` | The number of log records for which the processing has finished, either successful or failed [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
@@ -786,7 +786,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.exporter.log.inflight` | UpDownCounter | `int` | `{log_record}` | The number of log records which were passed to the exporter, but that have not been exported yet (neither successful, nor failed) [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
@@ -859,7 +859,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.exporter.log.exported` | Counter | `int` | `{log_record}` | The number of log records for which the export has finished, either successful or failed [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
@@ -965,7 +965,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.exporter.metric_data_point.inflight` | UpDownCounter | `int` | `{data_point}` | The number of metric data points which were passed to the exporter, but that have not been exported yet (neither successful, nor failed) [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
@@ -1038,7 +1038,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.exporter.metric_data_point.exported` | Counter | `int` | `{data_point}` | The number of metric data points for which the export has finished, either successful or failed [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
@@ -1148,7 +1148,7 @@ with a single bucket with no boundaries.
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.metric_reader.collection.duration` | Histogram | `double` | `s` | The duration of the collect operation of the metric reader. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For successful collections, `error.type` MUST NOT be set. For failed collections, `error.type` SHOULD contain the failure cause.
@@ -1249,7 +1249,7 @@ with a single bucket with no boundaries.
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.exporter.operation.duration` | Histogram | `double` | `s` | The duration of exporting a batch of telemetry records. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric defines successful operations using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1)

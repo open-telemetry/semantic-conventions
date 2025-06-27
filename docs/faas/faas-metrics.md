@@ -55,7 +55,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `faas.invoke_duration` | Histogram | `double` | `s` | Measures the duration of the function's logic execution | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -95,7 +95,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `faas.init_duration` | Histogram | `double` | `s` | Measures the duration of the function's initialization, such as a cold start | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -131,7 +131,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `faas.coldstarts` | Counter | `int` | `{coldstart}` | Number of invocation cold starts | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -167,7 +167,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `faas.errors` | Counter | `int` | `{error}` | Number of invocation errors | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -203,7 +203,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `faas.invocations` | Counter | `int` | `{invocation}` | Number of successful invocations | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -239,7 +239,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `faas.timeouts` | Counter | `int` | `{timeout}` | Number of invocation timeouts | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -275,7 +275,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `faas.mem_usage` | Histogram | `int` | `By` | Distribution of max memory usage per invocation | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -315,7 +315,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `faas.cpu_usage` | Histogram | `double` | `s` | Distribution of CPU usage per invocation | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -351,7 +351,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `faas.net_io` | Histogram | `int` | `By` | Distribution of net I/O usage per invocation | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

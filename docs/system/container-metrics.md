@@ -24,7 +24,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `container.uptime` | Gauge | `double` | `s` | The time the container has been running [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
@@ -47,7 +47,7 @@ This metric is [opt-in][MetricOptIn].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `container.cpu.time` | Counter | `double` | `s` | Total CPU time consumed [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Total CPU time consumed by the specific container on all available CPU cores
@@ -92,7 +92,7 @@ This metric is [opt-in][MetricOptIn].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `container.cpu.usage` | Gauge | `double` | `{cpu}` | Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** CPU usage of the specific container on all available CPU cores, averaged over the sample window
@@ -137,7 +137,7 @@ This metric is [opt-in][MetricOptIn].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `container.memory.usage` | Counter | `int` | `By` | Memory usage of the container. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Memory usage of the container.
@@ -159,7 +159,7 @@ This metric is [opt-in][MetricOptIn].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `container.disk.io` | Counter | `int` | `By` | Disk bytes for the container. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** The total number of bytes read/written successfully (aggregated from all disks).
@@ -195,7 +195,7 @@ This metric is [opt-in][MetricOptIn].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `container.network.io` | Counter | `int` | `By` | Network bytes for the container. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** The number of bytes sent/received on all network interfaces by the container.

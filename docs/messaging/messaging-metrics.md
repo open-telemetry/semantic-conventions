@@ -66,7 +66,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `messaging.client.operation.duration` | Histogram | `double` | `s` | Duration of messaging operation initiated by a producer or consumer client. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric SHOULD NOT be used to report processing duration - processing duration is reported in `messaging.process.duration` metric.
@@ -181,7 +181,7 @@ This metric is [required][MetricRequired].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `messaging.client.sent.messages` | Counter | `int` | `{message}` | Number of messages producer attempted to send to the broker. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric MUST NOT count messages that were created but haven't yet been sent.
@@ -275,7 +275,7 @@ This metric is [required][MetricRequired].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `messaging.client.consumed.messages` | Counter | `int` | `{message}` | Number of messages that were delivered to the application. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Records the number of messages pulled from the broker or number of messages dispatched to the application in push-based scenarios.
@@ -380,7 +380,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `messaging.process.duration` | Histogram | `double` | `s` | Duration of processing operation. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric MUST be reported for operations with `messaging.operation.type` that matches `process`.

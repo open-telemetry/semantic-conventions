@@ -40,7 +40,7 @@ All routing metrics are reported by the `Microsoft.AspNetCore.Routing` meter.
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `aspnetcore.routing.match_attempts` | Counter | `int` | `{match_attempt}` | Number of requests that were attempted to be matched to an endpoint. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Routing`; Added in: ASP.NET Core 8.0
@@ -82,7 +82,7 @@ Exceptions Metric is reported by the `Microsoft.AspNetCore.Diagnostics` meter.
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `aspnetcore.diagnostics.exceptions` | Counter | `int` | `{exception}` | Number of exceptions caught by exception handling middleware. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Diagnostics`; Added in: ASP.NET Core 8.0
@@ -153,7 +153,7 @@ All rate-limiting metrics are reported by the `Microsoft.AspNetCore.RateLimiting
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `aspnetcore.rate_limiting.active_request_leases` | UpDownCounter | `int` | `{request}` | Number of requests that are currently active on the server that hold a rate limiting lease. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
@@ -183,7 +183,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `aspnetcore.rate_limiting.request_lease.duration` | Histogram | `int` | `s` | The duration of rate limiting lease held by requests on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
@@ -209,7 +209,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `aspnetcore.rate_limiting.queued_requests` | UpDownCounter | `int` | `{request}` | Number of requests that are currently queued, waiting to acquire a rate limiting lease. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
@@ -239,7 +239,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `aspnetcore.rate_limiting.request.time_in_queue` | Histogram | `double` | `s` | The time the request spent in a queue waiting to acquire a rate limiting lease. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
@@ -277,7 +277,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `aspnetcore.rate_limiting.requests` | Counter | `int` | `{request}` | Number of requests that tried to acquire a rate limiting lease. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Requests could be:

@@ -57,7 +57,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.process.cpu.count` | UpDownCounter | `int` | `{cpu}` | The number of processors available to the process. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -80,7 +80,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.process.cpu.time` | Counter | `double` | `s` | CPU time used by the process. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -122,7 +122,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.process.memory.working_set` | UpDownCounter | `int` | `By` | The number of bytes of physical memory mapped to the process context. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -151,7 +151,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.gc.collections` | Counter | `int` | `{collection}` | The number of garbage collections that have occurred since the process has started. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -190,7 +190,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.gc.heap.total_allocated` | Counter | `int` | `By` | The *approximate* number of bytes allocated on the managed GC heap since the process has started. The returned value does not include any native allocations. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -213,7 +213,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.gc.last_collection.memory.committed_size` | UpDownCounter | `int` | `By` | The amount of committed virtual memory in use by the .NET GC, as observed during the latest garbage collection. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -236,7 +236,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.gc.last_collection.heap.size` | UpDownCounter | `int` | `By` | The managed GC heap size (including fragmentation), as observed during the latest garbage collection. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -275,7 +275,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.gc.last_collection.heap.fragmentation.size` | UpDownCounter | `int` | `By` | The heap fragmentation, as observed during the latest garbage collection. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -314,7 +314,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.gc.pause.time` | Counter | `double` | `s` | The total amount of time paused in GC since the process has started. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -343,7 +343,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.jit.compiled_il.size` | Counter | `int` | `By` | Count of bytes of intermediate language that have been compiled since the process has started. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -366,7 +366,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.jit.compiled_methods` | Counter | `int` | `{method}` | The number of times the JIT compiler (re)compiled methods since the process has started. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -389,7 +389,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.jit.compilation.time` | Counter | `double` | `s` | The amount of time the JIT compiler has spent compiling methods since the process has started. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -418,7 +418,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.thread_pool.thread.count` | UpDownCounter | `int` | `{thread}` | The number of thread pool threads that currently exist. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -441,7 +441,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.thread_pool.work_item.count` | Counter | `int` | `{work_item}` | The number of work items that the thread pool has completed since the process has started. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -464,7 +464,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.thread_pool.queue.length` | UpDownCounter | `int` | `{work_item}` | The number of work items that are currently queued to be processed by the thread pool. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -493,7 +493,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.monitor.lock_contentions` | Counter | `int` | `{contention}` | The number of times there was contention when trying to acquire a monitor lock since the process has started. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -516,7 +516,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.timer.count` | UpDownCounter | `int` | `{timer}` | The number of timer instances that are currently active. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -539,7 +539,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.assembly.count` | UpDownCounter | `int` | `{assembly}` | The number of .NET assemblies that are currently loaded. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
@@ -562,7 +562,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.exceptions` | Counter | `int` | `{exception}` | The number of exceptions that have been thrown in managed code. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.

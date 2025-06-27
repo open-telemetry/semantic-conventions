@@ -82,7 +82,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `rpc.server.duration` | Histogram | `double` | `ms` | Measures the duration of inbound RPC. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** While streaming RPCs may record this metric as start-of-batch
@@ -107,7 +107,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `rpc.server.request.size` | Histogram | `int` | `By` | Measures the size of RPC request messages (uncompressed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** **Streaming**: Recorded per message in a streaming batch
@@ -129,7 +129,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `rpc.server.response.size` | Histogram | `int` | `By` | Measures the size of RPC response messages (uncompressed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** **Streaming**: Recorded per response in a streaming batch
@@ -151,7 +151,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `rpc.server.requests_per_rpc` | Histogram | `int` | `{count}` | Measures the number of messages received per RPC. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Should be 1 for all non-streaming RPCs.
@@ -175,7 +175,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `rpc.server.responses_per_rpc` | Histogram | `int` | `{count}` | Measures the number of messages sent per RPC. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Should be 1 for all non-streaming RPCs.
@@ -204,7 +204,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `rpc.client.duration` | Histogram | `double` | `ms` | Measures the duration of outbound RPC. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** While streaming RPCs may record this metric as start-of-batch
@@ -229,7 +229,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `rpc.client.request.size` | Histogram | `int` | `By` | Measures the size of RPC request messages (uncompressed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** **Streaming**: Recorded per message in a streaming batch
@@ -251,7 +251,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `rpc.client.response.size` | Histogram | `int` | `By` | Measures the size of RPC response messages (uncompressed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** **Streaming**: Recorded per response in a streaming batch
@@ -273,7 +273,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `rpc.client.requests_per_rpc` | Histogram | `int` | `{count}` | Measures the number of messages received per RPC. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Should be 1 for all non-streaming RPCs.
@@ -297,7 +297,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `rpc.client.responses_per_rpc` | Histogram | `int` | `{count}` | Measures the number of messages sent per RPC. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Should be 1 for all non-streaming RPCs.

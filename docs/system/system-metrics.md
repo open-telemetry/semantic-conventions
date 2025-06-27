@@ -87,7 +87,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.uptime` | Gauge | `double` | `s` | The time the system has been running [1] | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 **[1]:** Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
@@ -114,7 +114,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.cpu.physical.count` | UpDownCounter | `int` | `{cpu}` | Reports the number of actual physical processor cores on the hardware [1] | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 **[1]:** Calculated by multiplying the number of sockets by the number of cores per socket
@@ -136,7 +136,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.cpu.logical.count` | UpDownCounter | `int` | `{cpu}` | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking [1] | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 **[1]:** Calculated by multiplying the number of sockets by the number of cores per socket, and then by the number of threads per core
@@ -158,7 +158,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.cpu.time` | Counter | `double` | `s` | Seconds each logical CPU spent on each mode | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -200,7 +200,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.cpu.frequency` | Gauge | `int` | `Hz` | Operating frequency of the logical CPU in Hertz. | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -224,7 +224,7 @@ This metric is [opt-in][MetricOptIn].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.cpu.utilization` | Gauge | `double` | `1` | For each logical CPU, the utilization is calculated as the change in cumulative CPU time (cpu.time) over a measurement interval, divided by the elapsed time. | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -271,7 +271,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.memory.usage` | UpDownCounter | `int` | `By` | Reports memory in use by state. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 **[1]:** The sum over all `system.memory.state` values SHOULD equal the total memory
@@ -309,7 +309,7 @@ This metric is [opt-in][MetricOptIn].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.memory.limit` | UpDownCounter | `int` | `By` | Total memory available in the system. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 **[1]:** Its value SHOULD equal the sum of `system.memory.state` over all states.
@@ -331,7 +331,7 @@ This metric is [opt-in][MetricOptIn].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.memory.shared` | UpDownCounter | `int` | `By` | Shared memory used (mostly by tmpfs). [1] | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 **[1]:** Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
@@ -354,7 +354,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.memory.utilization` | Gauge | `double` | `1` |  | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -393,7 +393,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.paging.usage` | UpDownCounter | `int` | `By` | Unix swap or windows pagefile usage | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -427,7 +427,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.paging.utilization` | Gauge | `double` | `1` |  | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -461,7 +461,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.paging.faults` | Counter | `int` | `{fault}` |  | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -494,7 +494,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.paging.operations` | Counter | `int` | `{operation}` |  | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -541,7 +541,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.disk.io` | Counter | `int` | `By` |  | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -575,7 +575,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.disk.operations` | Counter | `int` | `{operation}` |  | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -609,7 +609,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.disk.io_time` | Counter | `double` | `s` | Time disk spent activated [1] | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 **[1]:** The real elapsed time ("wall clock") used in the I/O path (time from operations running in parallel are not counted). Measured as:
@@ -640,7 +640,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.disk.operation_time` | Counter | `double` | `s` | Sum of the time each operation took to complete [1] | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 **[1]:** Because it is the sum of time each request took, parallel-issued requests each contribute to make the count grow. Measured as:
@@ -679,7 +679,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.disk.merged` | Counter | `int` | `{operation}` |  | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -713,7 +713,7 @@ This metric is [opt-in][MetricOptIn].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.disk.limit` | UpDownCounter | `int` | `By` | The total storage capacity of the disk | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -741,7 +741,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.filesystem.usage` | UpDownCounter | `int` | `By` | Reports a filesystem's space usage across different states. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 **[1]:** The sum of all `system.filesystem.usage` values over the different `system.filesystem.state` attributes
@@ -795,7 +795,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.filesystem.utilization` | Gauge | `double` | `1` |  | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -846,7 +846,7 @@ This metric is [opt-in][MetricOptIn].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.filesystem.limit` | UpDownCounter | `int` | `By` | The total storage capacity of the filesystem | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -890,7 +890,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.network.dropped` | Counter | `int` | `{packet}` | Count of packets that are dropped or discarded even though there was no error [1] | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 **[1]:** Measured as:
@@ -930,7 +930,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.network.packets` | Counter | `int` | `{packet}` |  | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -964,7 +964,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.network.errors` | Counter | `int` | `{error}` | Count of network errors detected [1] | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 **[1]:** Measured as:
@@ -1004,7 +1004,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.network.io` | Counter | `int` | `By` |  | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -1038,7 +1038,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.network.connections` | UpDownCounter | `int` | `{connection}` |  | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -1107,7 +1107,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.process.count` | UpDownCounter | `int` | `{process}` | Total number of processes in each state | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -1142,7 +1142,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.process.created` | Counter | `int` | `{process}` | Total number of processes created over uptime of the host | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 <!-- markdownlint-restore -->
@@ -1192,7 +1192,7 @@ an `{os}` prefix to split this metric across OSes.
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.linux.memory.available` | UpDownCounter | `int` | `By` | An estimate of how much memory is available for starting new applications, without causing swapping [1] | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 **[1]:** This is an alternative to `system.memory.usage` metric with `state=free`.
@@ -1218,7 +1218,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-disable -->
 
 | Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
 | `system.linux.memory.slab.usage` | UpDownCounter | `int` | `By` | Reports the memory used by the Linux kernel for managing caches of frequently used objects. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `host` |
 
 **[1]:** The sum over the `reclaimable` and `unreclaimable` state values in `linux.memory.slab.usage` SHOULD be equal to the total slab memory available on the system.
