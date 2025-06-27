@@ -1,0 +1,17 @@
+groups:
+  - id: metric.system.network.connections
+    type: metric
+    metric_name: system.network.connections
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: system.network.connection.count
+    brief: "Deprecated, use `system.network.connection.count` instead"
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: network.interface.name
+      - ref: network.connection.state
+      - ref: network.transport
+    entity_associations:
+      - host
