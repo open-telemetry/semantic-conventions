@@ -73,9 +73,9 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `db.client.operation.duration` | Histogram | `s` | Duration of database client operations. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
+| `db.client.operation.duration` | Histogram | `double` | `s` | Duration of database client operations. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Batch operations SHOULD be recorded as a single operation.
 
@@ -263,9 +263,9 @@ Explaining bucket configuration:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `db.client.response.returned_rows` | Histogram | `{row}` | The actual number of records returned by the database operation. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `db.client.response.returned_rows` | Histogram | `int` | `{row}` | The actual number of records returned by the database operation. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -427,9 +427,9 @@ This metric is [required][MetricRequired].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `db.client.connection.count` | UpDownCounter | `{connection}` | The number of connections that are currently in state described by the `state` attribute | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `db.client.connection.count` | UpDownCounter | `int` | `{connection}` | The number of connections that are currently in state described by the `state` attribute | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -461,9 +461,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `db.client.connection.idle.max` | UpDownCounter | `{connection}` | The maximum number of idle open connections allowed | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `db.client.connection.idle.max` | UpDownCounter | `int` | `{connection}` | The maximum number of idle open connections allowed | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -485,9 +485,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `db.client.connection.idle.min` | UpDownCounter | `{connection}` | The minimum number of idle open connections allowed | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `db.client.connection.idle.min` | UpDownCounter | `int` | `{connection}` | The minimum number of idle open connections allowed | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -509,9 +509,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `db.client.connection.max` | UpDownCounter | `{connection}` | The maximum number of open connections allowed | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `db.client.connection.max` | UpDownCounter | `int` | `{connection}` | The maximum number of open connections allowed | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -533,9 +533,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `db.client.connection.pending_requests` | UpDownCounter | `{request}` | The number of current pending requests for an open connection | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `db.client.connection.pending_requests` | UpDownCounter | `int` | `{request}` | The number of current pending requests for an open connection | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -557,9 +557,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `db.client.connection.timeouts` | Counter | `{timeout}` | The number of connection timeouts that have occurred trying to obtain a connection from the pool | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `db.client.connection.timeouts` | Counter | `int` | `{timeout}` | The number of connection timeouts that have occurred trying to obtain a connection from the pool | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -581,9 +581,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `db.client.connection.create_time` | Histogram | `s` | The time it took to create a new connection | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `db.client.connection.create_time` | Histogram | `double` | `s` | The time it took to create a new connection | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -605,9 +605,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `db.client.connection.wait_time` | Histogram | `s` | The time it took to obtain an open connection from the pool | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `db.client.connection.wait_time` | Histogram | `double` | `s` | The time it took to obtain an open connection from the pool | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -629,9 +629,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `db.client.connection.use_time` | Histogram | `s` | The time between borrowing a connection and returning it to the pool | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `db.client.connection.use_time` | Histogram | `double` | `s` | The time between borrowing a connection and returning it to the pool | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
