@@ -83,8 +83,8 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 |---|---|---|
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gemini` | Gemini [2] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -158,8 +158,8 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 |---|---|---|
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gemini` | Gemini [2] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -233,8 +233,8 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 |---|---|---|
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gemini` | Gemini [2] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -323,8 +323,8 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 |---|---|---|
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gemini` | Gemini [2] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -399,8 +399,8 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 |---|---|---|
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gemini` | Gemini [2] | ![Development](https://img.shields.io/badge/-development-blue) |

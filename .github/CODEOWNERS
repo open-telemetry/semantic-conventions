@@ -88,7 +88,7 @@
 /model/container/                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
 /model/oci/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
 
-# .NET semantic conventions
+# .NET semantic conventions approvers
 /docs/dotnet/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers
 /docs/runtime/dotnet-metrics.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
 /model/aspnetcore/                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers

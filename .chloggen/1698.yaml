@@ -1,0 +1,20 @@
+change_type: breaking
+component: azure
+note: Align azure events, attributes, and enum members with general naming guidelines.
+issues: [608, 1708, 1698]
+subtext: |
+  - Renamed attributes:
+    - `az.service_request_id` to `azure.service.request.id`
+    - `az.namespace` to `azure.resource_provider.namespace`
+  - Renamed events:
+    - `az.resource.log` to `azure.resource.log`
+  - Renamed enum members:
+    - `az.ai.inference` to `azure.ai.inference` (on `gen_ai.system`)
+    - `az.ai.openai` to `azure.ai.openai` (on `gen_ai.system`)
+    - `azure_aks` to `azure.aks` (on `cloud.platform`)
+    - `azure_app_service` to `azure.app_service` (on `cloud.platform`)
+    - `azure_container_apps` to `azure.container_apps` (on `cloud.platform`)
+    - `azure_container_instances` to `azure.container_instances` (on `cloud.platform`)
+    - `azure_functions` to `azure.functions` (on `cloud.platform`)
+    - `azure_openshift` to `azure.open_shift` (on `cloud.platform`)
+    - `azure_vm` to `azure.vm` (on `cloud.platform`)
