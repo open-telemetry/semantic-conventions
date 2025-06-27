@@ -2,7 +2,7 @@ module github.com/open-telemetry/opentelemetry-specification/internal/tools
 
 go 1.23.0
 
-toolchain go1.24.3
+toolchain go1.24.4
 
 require (
 	github.com/client9/misspell v0.3.4
