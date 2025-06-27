@@ -2,11 +2,11 @@ module github.com/open-telemetry/opentelemetry-specification/internal/tools
 
 go 1.23.0
 
-toolchain go1.24.2
+toolchain go1.24.3
 
 require (
 	github.com/client9/misspell v0.3.4
-	go.opentelemetry.io/build-tools/chloggen v0.22.0
+	go.opentelemetry.io/build-tools/chloggen v0.23.1
 )
 
 require (

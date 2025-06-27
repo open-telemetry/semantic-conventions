@@ -5,6 +5,7 @@ cascade:
   github_subdir: docs
   path_base_for_github_subdir: tmp/semconv/docs/
   github_project_repo: *repo
+redirects: [{ from: 'attributes-registry/*', to: 'registry/attributes/:splat' }]
 cSpell:ignore: semconv CICD
 auto_gen: below
 linkTitle: Semantic conventions
@@ -19,7 +20,7 @@ The benefit to using Semantic Conventions is in following a common naming scheme
 Semantic Conventions are defined for the following areas:
 
 * **[General](general/README.md): General Semantic Conventions**.
-* [CICD](cicd/cicd-metrics.md): Semantic Conventions for CICD systems.
+* [CICD](cicd/README.md): Semantic Conventions for CICD systems.
 * [Code](code/README.md): Semantic Conventions for code.
 * [Cloud Providers](cloud-providers/README.md): Semantic Conventions for cloud providers libraries.
 * [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.

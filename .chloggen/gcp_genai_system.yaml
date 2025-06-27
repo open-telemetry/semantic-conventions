@@ -1,5 +1,0 @@
-change_type: breaking
-component: gen-ai
-note: Refine the values for `gen_ai.system` related to Google's AI endpoints.
-issues: [1950]
-subtext: Enable sharing of attributes between Vertex AI and Gemini through a common prefix.

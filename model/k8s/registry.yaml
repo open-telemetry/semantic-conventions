@@ -373,6 +373,30 @@ groups:
         brief: >
           The name of the horizontal pod autoscaler.
         examples: ['opentelemetry']
+      - id: k8s.hpa.scaletargetref.kind
+        type: string
+        stability: development
+        brief: >
+          The kind of the target resource to scale for the HorizontalPodAutoscaler.
+        note: |
+          This maps to the `kind` field in the `scaleTargetRef` of the HPA spec.
+        examples: ["Deployment", "StatefulSet"]
+      - id: k8s.hpa.scaletargetref.name
+        type: string
+        stability: development
+        brief: >
+          The name of the target resource to scale for the HorizontalPodAutoscaler.
+        note: |
+          This maps to the `name` field in the `scaleTargetRef` of the HPA spec.
+        examples: ["my-deployment", "my-statefulset"]
+      - id: k8s.hpa.scaletargetref.api_version
+        type: string
+        stability: development
+        brief: >
+          The API version of the target resource to scale for the HorizontalPodAutoscaler.
+        note: |
+          This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec.
+        examples: ["apps/v1", "autoscaling/v2"]
       - id: k8s.job.uid
         type: string
         stability: development
@@ -506,3 +530,152 @@ groups:
               value: 'terminating'
               brief: "Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)"
               stability: development
+      - id: k8s.node.condition.type
+        stability: development
+        brief: >
+          The condition type of a K8s Node.
+        note: |
+          K8s Node conditions as described
+          by [K8s documentation](https://v1-32.docs.kubernetes.io/docs/reference/node/node-status/#condition).
+
+          This attribute aligns with the `type` field of the
+          [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
+
+          The set of possible values is not limited to those listed here. Managed Kubernetes environments,
+          or custom controllers MAY introduce additional node condition types.
+          When this occurs, the exact value as reported by the Kubernetes API SHOULD be used.
+        examples: [ "Ready", "DiskPressure" ]
+        type:
+          members:
+            - id: ready
+              value: 'Ready'
+              brief: "The node is healthy and ready to accept pods"
+              stability: development
+            - id: disk_pressure
+              value: 'DiskPressure'
+              brief: "Pressure exists on the disk size—that is, if the disk capacity is low"
+              stability: development
+            - id: memory_pressure
+              value: 'MemoryPressure'
+              brief: "Pressure exists on the node memory—that is, if the node memory is low"
+              stability: development
+            - id: pid_pressure
+              value: 'PIDPressure'
+              brief: "Pressure exists on the processes—that is, if there are too many processes on the node"
+              stability: development
+            - id: network_unavailable
+              value: 'NetworkUnavailable'
+              brief: "The network for the node is not correctly configured"
+              stability: development
+      - id: k8s.node.condition.status
+        stability: development
+        brief: >
+          The status of the condition, one of True, False, Unknown.
+        note: |
+          This attribute aligns with the `status` field of the
+          [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
+        examples: [ "true", "false", "unknown" ]
+        type:
+          members:
+            - id: condition_true
+              value: 'true'
+              stability: development
+            - id: condition_false
+              value: 'false'
+              stability: development
+            - id: condition_unknown
+              value: 'unknown'
+              stability: development
+      - id: k8s.container.status.state
+        stability: experimental
+        brief: >
+          The state of the container.
+          [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core)
+        type:
+          members:
+            - id: terminated
+              value: 'terminated'
+              brief: 'The container has terminated.'
+              stability: experimental
+            - id: running
+              value: 'running'
+              brief: 'The container is running.'
+              stability: experimental
+            - id: waiting
+              value: 'waiting'
+              brief: 'The container is waiting.'
+              stability: experimental
+        examples: ['terminated', 'running', 'waiting']
+      - id: k8s.container.status.reason
+        type:
+          members:
+            - id: container_creating
+              value: 'ContainerCreating'
+              brief: 'The container is being created.'
+              stability: experimental
+            - id: crash_loop_back_off
+              value: 'CrashLoopBackOff'
+              brief: 'The container is in a crash loop back off state.'
+              stability: experimental
+            - id: create_container_config_error
+              value: 'CreateContainerConfigError'
+              brief: 'There was an error creating the container configuration.'
+              stability: experimental
+            - id: err_image_pull
+              value: 'ErrImagePull'
+              brief: 'There was an error pulling the container image.'
+              stability: experimental
+            - id: image_pull_back_off
+              value: 'ImagePullBackOff'
+              brief: 'The container image pull is in back off state.'
+              stability: experimental
+            - id: oom_killed
+              value: 'OOMKilled'
+              brief: 'The container was killed due to out of memory.'
+              stability: experimental
+            - id: completed
+              value: 'Completed'
+              brief: 'The container has completed execution.'
+              stability: experimental
+            - id: error
+              value: 'Error'
+              brief: 'There was an error with the container.'
+              stability: experimental
+            - id: container_cannot_run
+              value: 'ContainerCannotRun'
+              brief: 'The container cannot run.'
+              stability: experimental
+        stability: experimental
+        brief: >
+          The reason for the container state. Corresponds to the `reason` field of the:
+          [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core)
+          or
+          [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core)
+        examples: ['ContainerCreating', 'CrashLoopBackOff', 'CreateContainerConfigError', 'ErrImagePull', 'ImagePullBackOff', 'OOMKilled', 'Completed', 'Error', 'ContainerCannotRun']
+      - id: k8s.hugepage.size
+        type: string
+        stability: development
+        brief: >
+          The size (identifier) of the K8s huge page.
+        examples: [ '2Mi' ]
+      - id: k8s.storageclass.name
+        type: string
+        stability: development
+        brief: >
+          The name of K8s
+          [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io)
+          object.
+        examples: [ 'gold.storageclass.storage.k8s.io' ]
+      - id: k8s.resourcequota.resource_name
+        type: string
+        stability: development
+        brief: >
+          The name of the K8s resource a resource quota defines.
+        note: >
+          The value for this attribute can be either the full `count/<resource>[.<group>]` string
+          (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources,
+          just the resource name (e.g., pods, services, configmaps).
+          Both forms are supported by Kubernetes for object count quotas. See
+          [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota)
+          for more details.
+        examples: [ 'count/replicationcontrollers' ]

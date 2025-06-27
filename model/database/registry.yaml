@@ -7,7 +7,7 @@ groups:
     attributes:
       - id: db.collection.name
         type: string
-        stability: release_candidate
+        stability: stable
         brief: The name of a collection (table, container) within the database.
         note: |
           It is RECOMMENDED to capture the value as provided by the application
@@ -22,7 +22,7 @@ groups:
         examples: ["public.users", "customers"]
       - id: db.namespace
         type: string
-        stability: release_candidate
+        stability: stable
         brief: >
           The name of the database, fully qualified within the server address and port.
         note: >
@@ -38,7 +38,7 @@ groups:
         examples: ["customers", "test.users"]
       - id: db.operation.name
         type: string
-        stability: release_candidate
+        stability: stable
         brief: >
           The name of the operation or command being executed.
         note: |
@@ -59,7 +59,7 @@ groups:
         examples: ["findAndModify", "HMSET", "SELECT"]
       - id: db.query.text
         type: string
-        stability: release_candidate
+        stability: stable
         brief: >
           The database query being executed.
         note: >
@@ -104,18 +104,18 @@ groups:
         examples: ["someval", "55"]
       - id: db.query.summary
         type: string
-        stability: release_candidate
+        stability: stable
         brief: >
-          Low cardinality representation of a database query text.
-        note: >
-          `db.query.summary` provides static summary of the query text. It describes
-          a class of database queries and is useful as a grouping key,
-          especially when analyzing telemetry for database calls involving complex queries.
+          Low cardinality summary of a database query.
+        note: |
+          The query summary describes a class of database queries and is useful
+          as a grouping key, especially when analyzing telemetry for database
+          calls involving complex queries.
 
           Summary may be available to the instrumentation through
           instrumentation hooks or other means. If it is not available, instrumentations
           that support query parsing SHOULD generate a summary following
-          [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query-text)
+          [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
           section.
         examples:
           [
@@ -125,7 +125,7 @@ groups:
           ]
       - id: db.stored_procedure.name
         type: string
-        stability: release_candidate
+        stability: stable
         brief: The name of a stored procedure within the database.
         note: |
           It is RECOMMENDED to capture the value as provided by the application
@@ -149,7 +149,7 @@ groups:
         examples: ["someval", "55"]
       - id: db.operation.batch.size
         type: int
-        stability: release_candidate
+        stability: stable
         brief: The number of queries included in a batch operation.
         note: >
           Operations are only considered batches when they contain two or more operations,
@@ -157,7 +157,7 @@ groups:
         examples: [2, 3, 4]
       - id: db.response.status_code
         type: string
-        stability: release_candidate
+        stability: stable
         brief: Database response status code.
         note: >
           The status code returned by the database. Usually it represents an error code,
@@ -287,7 +287,7 @@ groups:
             - id: mariadb
               value: "mariadb"
               brief: "[MariaDB](https://mariadb.org/)"
-              stability: release_candidate
+              stability: stable
             - id: memcached
               value: "memcached"
               brief: "[Memcached](https://memcached.org/)"
@@ -299,11 +299,11 @@ groups:
             - id: microsoft.sql_server
               value: "microsoft.sql_server"
               brief: "[Microsoft SQL Server](https://www.microsoft.com/sql-server)"
-              stability: release_candidate
+              stability: stable
             - id: mysql
               value: "mysql"
               brief: "[MySQL](https://www.mysql.com/)"
-              stability: release_candidate
+              stability: stable
             - id: neo4j
               value: "neo4j"
               brief: "[Neo4j](https://neo4j.com/)"
@@ -319,7 +319,7 @@ groups:
             - id: postgresql
               value: "postgresql"
               brief: "[PostgreSQL](https://www.postgresql.org/)"
-              stability: release_candidate
+              stability: stable
             - id: redis
               value: "redis"
               brief: "[Redis](https://redis.io/)"
@@ -344,7 +344,7 @@ groups:
               value: "trino"
               brief: "[Trino](https://trino.io/)"
               stability: development
-        stability: release_candidate
+        stability: stable
       - id: db.client.connection.state
         stability: development
         type:

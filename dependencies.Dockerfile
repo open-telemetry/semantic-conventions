@@ -3,14 +3,10 @@
 # Dependabot can keep this file up to date with latest containers.
 
 # Weaver is used to generate markdown docs, and enforce policies on the model.
-FROM otel/weaver:v0.14.0@sha256:bea89bc5544ad760db2fd906c5285c2a3769c61fb04f660f9c31e7e44f11804b AS weaver
+FROM otel/weaver:v0.15.2@sha256:b13acea09f721774daba36344861f689ac4bb8d6ecd94c4600b4d590c8fb34b9 AS weaver
 
 # OPA is used to test policies enforced by weaver.
-FROM openpolicyagent/opa:1.3.0@sha256:e02dc1957f7a4195f0724762269dfe3309f13344629e0c926316a7cf72233af5 AS opa
-
-# Semconv gen is used for backwards compatibility checks.
-# TODO(jsuereth): Remove this when no longer used.
-FROM otel/semconvgen:0.25.0@sha256:9df7b8cbaa732277d64d0c0a8604d96bb6f5a36d0e96338cba5dced720c16485 AS semconvgen
+FROM openpolicyagent/opa:1.5.1@sha256:7d30d984125161b7f30599c6bdf80a6f2301dbbd526725714c231aad8179e4b9 AS opa
 
 # Lychee is used for checking links in documentation.
-FROM lycheeverse/lychee:sha-2aa22f8@sha256:07abefbbc446f9987f9a1f05016e620983c7c70889ee5a1fd00a749d8f53352e AS lychee
+FROM lycheeverse/lychee:sha-2aa22f8@sha256:2e3786630482c41f9f2dd081e06d7da1c36d66996e8cf6573409b8bc418d48c4 AS lychee

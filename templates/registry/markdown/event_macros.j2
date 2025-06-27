@@ -1,7 +1,7 @@
 {#- Macros for simplifying creating "Event" documentation. -#}
 {% import 'stability.j2' as stability %}
 {% import 'body_field_table.j2' as body_table %}
-{% macro header(event) %}**Status:** {{ stability.badge(event.stability, event.deprecated) }}
+{% macro header(event) %}**Status:** {{ stability.badge(event.stability, event.deprecated, event.brief) }}
 
 The event name MUST be `{{ event.name }}`.
 

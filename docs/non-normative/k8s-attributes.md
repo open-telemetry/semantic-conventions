@@ -12,7 +12,7 @@ attribute.
 
 ## Service attributes
 
-The following [service resource attributes](../attributes-registry/service.md) are recommended for Kubernetes services.
+The following [service resource attributes](../registry/attributes/service.md) are recommended for Kubernetes services.
 
 There are different ways to calculate the service attributes.
 
