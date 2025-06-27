@@ -290,18 +290,17 @@ Examples:
 
 #### Do not pluralize UpDownCounter names
 
-If the value being recorded represents the count of concepts signified
-by the namespace then the metric SHOULD be named `count` within that namespace.
+UpDownCounter names MUST NOT be pluralized.
+
+If the value being recorded represents a count of the concepts defined by the namespace,
+a suffix such as `count`, `active`, etc. SHOULD be used within that namespace.
 
 For example if we have a namespace `system.process` which contains all metrics related
 to the processes then to represent the count of the processes we can have a metric named
 `system.process.count` instead of `system.processes`.
 
-It's not always necessary to use `count`.
-For example, a suffix like `active` should be enough when the metric represents the number of concepts
-in `active` state, i.e. `cicd.pipeline.run.active`.
-
-What is required, is to not pluralize UpDownCounter metric names.
+Similarly, a suffix like `active` SHOULD be used when the metric represents the number of
+concepts in an active state — for example, `cicd.pipeline.run.active`.
 
 #### Do not use `total`
 
