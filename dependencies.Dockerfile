@@ -9,4 +9,4 @@ FROM otel/weaver:v0.15.2@sha256:b13acea09f721774daba36344861f689ac4bb8d6ecd94c46
 FROM openpolicyagent/opa:1.5.1@sha256:7d30d984125161b7f30599c6bdf80a6f2301dbbd526725714c231aad8179e4b9 AS opa
 
 # Lychee is used for checking links in documentation.
-FROM lycheeverse/lychee:sha-2aa22f8@sha256:2e3786630482c41f9f2dd081e06d7da1c36d66996e8cf6573409b8bc418d48c4 AS lychee
+FROM lycheeverse/lychee:sha-3592972@sha256:22140bdf45d43ec1d0923db89b674192564adfbf013429faed278136bc8ce76d AS lychee
