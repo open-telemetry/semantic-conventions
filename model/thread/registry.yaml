@@ -17,3 +17,21 @@ groups:
         brief: >
           Current thread name.
         examples: main
+      - id: thread.background
+        type: boolean
+        stability: development
+        brief: >
+          The thread is a background thread.
+        examples: [true, false]
+      - id: thread.pooled
+        type: boolean
+        stability: development
+        brief: >
+          The thread belongs to the managed thread pool.
+        examples: [true, false]
+      - id: thread.priority
+        type: string
+        stability: development
+        brief: >
+          The scheduling priority of a thread.
+        examples: [ "Lowest", "BelowNormal", "Normal", "AboveNormal", "Highest" ]
