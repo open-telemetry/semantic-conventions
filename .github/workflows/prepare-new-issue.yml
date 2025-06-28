@@ -1,10 +1,16 @@
 name: 'Prepare new issue'
+
+permissions:
+  contents: read
+
 on:
   issues:
     types: [opened]
 
 jobs:
   prepare-new-issue:
+    permissions:
+      issues: write
     runs-on: ubuntu-latest
     if: ${{ github.repository_owner == 'open-telemetry' }}
     steps:

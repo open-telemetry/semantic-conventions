@@ -1,4 +1,8 @@
 name: Prepare release
+
+permissions:
+  contents: read
+
 on:
   workflow_dispatch:
     inputs:

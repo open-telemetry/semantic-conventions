@@ -1,4 +1,8 @@
 name: Auto-update spec repo links
+
+permissions:
+  contents: read
+
 on:
   schedule:
     # hourly at minute 46
