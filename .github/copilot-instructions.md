@@ -1,7 +1,8 @@
 # Copilot Instructions for OpenTelemetry Semantic Conventions
 
 ## Overview
-These instructions guide AI assistants in reviewing OpenTelemetry Semantic Conventions pull requests to ensure consistency, quality, and adherence to established standards.
+These instructions guide AI assistants in reviewing OpenTelemetry Semantic Conventions
+pull requests to ensure consistency, quality, and adherence to established standards.
 
 **CRITICAL REVIEW CRITERIA**: New areas require special scrutiny and must meet these requirements:
 
@@ -34,8 +35,7 @@ These instructions guide AI assistants in reviewing OpenTelemetry Semantic Conve
 - Use lowercase with dot-separated namespaces (e.g., `service.name`)
 - Multi-word components use snake_case (e.g., `http.response.status_code`)
 - Only widely recognized abbreviations (HTTP, CPU, AWS, etc.)
-- Proper namespace hierarchy, avoid name collisions
-- No name reuse within categories
+- Proper namespace hierarchy
 
 ## Attribute Review Guidelines
 
@@ -60,7 +60,6 @@ These instructions guide AI assistants in reviewing OpenTelemetry Semantic Conve
 ## Error Handling Conventions
 - **Spans**: Set status to Error, populate `error.type`, set description when helpful
 - **Metrics**: Include `error.type` attribute for filtering and analysis
-- **Exceptions**: Record as span events or log records using SDK APIs
 - **Consistency**: Same `error.type` across spans and metrics for same operation
 
 ## Common Issues to Flag
@@ -70,9 +69,7 @@ These instructions guide AI assistants in reviewing OpenTelemetry Semantic Conve
 - Creating overly generic attributes without established standards
 - Duplicating existing functionality
 - Missing or inadequate documentation
-- Missing, incorrect YAML syntax or schema violations
 - Inconsistent naming patterns
-- Missing required fields or metadata
 - Performance or security concerns not addressed
 
 ## Review Response Guidelines
