@@ -83,6 +83,7 @@ pull requests to ensure consistency, quality, and adherence to established stand
 
 ## Resources and References
 
+- [Contributing to OpenTelemetry Semantic Conventions](../CONTRIBUTING.md)
 - [How to Define Conventions](../docs/general/how-to-define-semantic-conventions.md)
 - [YAML Model Documentation](../model/README.md)
 - [Naming Guidelines](../docs/general/naming.md)
