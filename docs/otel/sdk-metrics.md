@@ -54,7 +54,8 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.span.live` | UpDownCounter | `{span}` | The number of created spans for which the end operation has not been called yet [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live` and `otel.sdk.span.ended`.
-For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.ended`.
+For spans with `recording=false`: Implementations MAY omit recording `otel.sdk.span.live` (e.g. for performance or simplicity reasons).
+In that case they MUST record `otel.sdk.span.ended` on span start for those spans instead.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -91,11 +92,24 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.span.ended` | Counter | `{span}` | The number of created spans for which the end operation was called [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live` and `otel.sdk.span.ended`.
-For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.live`.
+For spans with `recording=false`: If implementations decide to not record `otel.sdk.span.live`, they MUST record `otel.sdk.span.ended` on span start for those spans instead.
+In other words, for spans with `recording=false` implementations may treat them as ended directly after they are started from a metrics perspective.
+This ensures that `otel.sdk.span.ended` is guaranteed to provide insights about the total span counts and sampling rates, even if spans are not recorded.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`otel.span.parent.origin`](/docs/registry/attributes/otel.md) | string | Determines whether the span has a parent span, and if so, whether it is a remote parent | `NONE`; `LOCAL`; `REMOTE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`otel.span.sampling_result`](/docs/registry/attributes/otel.md) | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`otel.span.parent.origin` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `LOCAL` | The span has a parent and the parent's span context isRemote() is false | ![Development](https://img.shields.io/badge/-development-blue) |
+| `NONE` | The span does not have a parent, it is a root span | ![Development](https://img.shields.io/badge/-development-blue) |
+| `REMOTE` | The span has a parent and the parent's span context isRemote() is true | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
