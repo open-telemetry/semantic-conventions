@@ -7,6 +7,8 @@ groups:
         requirement_level: required
       - ref: rpc.service
         requirement_level: recommended
+      - ref: peer.service.name
+        requirement_level: recommended
       - ref: rpc.method
         requirement_level: recommended
       - ref: network.transport

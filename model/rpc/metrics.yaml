@@ -9,6 +9,7 @@ groups:
       - ref: rpc.system
         requirement_level: required
       - ref: rpc.service
+      - ref: peer.service.name
       - ref: rpc.method
       - ref: network.transport
       - ref: network.type

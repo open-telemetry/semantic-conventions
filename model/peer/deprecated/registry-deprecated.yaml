@@ -1,0 +1,18 @@
+groups:
+  - id: registry.peer.service.deprecated
+    type: attribute_group
+    display_name: Deprecated Service Attributes
+    brief: >
+      Operations that access some remote service.
+    attributes:
+      - id: peer.service
+        type: string
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: peer.service.name
+        brief: >
+          The [`service.name`](/docs/resource/README.md#service)
+          of the remote service. SHOULD be equal to the actual `service.name`
+          resource attribute of the remote service if any.
+        examples: "AuthTokenCache"
