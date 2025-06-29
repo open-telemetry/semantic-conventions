@@ -12,6 +12,8 @@ A service instance.
 | <a id="service-instance-id" href="#service-instance-id">`service.instance.id`</a> | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="service-name" href="#service-name">`service.name`</a> | string | Logical name of the service. [2] | `shoppingcart` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="service-namespace" href="#service-namespace">`service.namespace`</a> | string | A namespace for `service.name`. [3] | `Shop` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="service-roles" href="#service-roles">`service.roles`</a> | string[] | Roles of a service node. [4] | `["ui", "background_tasks"]`; `["background_tasks"]` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="service-state" href="#service-state">`service.state`</a> | string | Current state of the service. [5] | `starting`; `running`; `stopping`; `stopped` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="service-version" href="#service-version">`service.version`</a> | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
@@ -44,3 +46,13 @@ port.
 **[2] `service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 
 **[3] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
+
+**[4] `service.roles`:** This allows for distinction between different running roles of the same service.
+
+In the case of Kibana, the service.node.role could be ui or background_tasks or both.
+
+In the case of Elasticsearch, the service.node.role could be master or data or both.
+
+Other services could use this to distinguish between a web and worker role running as part of the service.
+
+**[5] `service.state`:** This state could be reported a collector which monitors the services
