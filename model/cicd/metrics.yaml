@@ -33,6 +33,21 @@ groups:
         requirement_level: required
     entity_associations:
       - cicd.pipeline
+  - id: metric.cicd.pipeline.run.info
+    type: metric
+    metric_name: cicd.pipeline.run.info
+    brief: 'This is an info metric linking pipeline runs to any other associated entities or information.'
+    instrument: gauge
+    unit: "1"
+    stability: development
+    entity_associations:
+      - cicd.pipeline
+      - cicd.pipeline.run
+      - cicd.worker
+      - host
+      - container
+      - k8s.namespace
+      - k8s.pod
   - id: metric.cicd.worker.count
     type: metric
     metric_name: cicd.worker.count
