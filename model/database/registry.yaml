@@ -364,10 +364,6 @@ groups:
               value: "aerospike"
               brief: "[Aerospike](https://aerospike.com/)"
               stability: development
-            - id: clickhouse
-              value: "clickhouse"
-              brief: "[Clickhouse](https://clickhouse.com/)"
-              stability: development
             - id: druid
               value: "druid"
               brief: "[Apache Druid](https://druid.apache.org/)"
