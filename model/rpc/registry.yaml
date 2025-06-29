@@ -213,18 +213,6 @@ groups:
           (e.g., method actually executing the call on the server side,
           RPC client stub method on the client side).
         examples: "exampleMethod"
-      - id: rpc.service
-        type: string
-        stability: development
-        brief: 'The full (logical) name of the service being called, including its package name, if applicable.'
-        note: >
-          This is the logical name of the service from the RPC interface perspective,
-          which can be different from the name of any implementing class.
-          The `code.namespace` attribute may be used to store the latter
-          (despite the attribute name, it may include a class name;
-          e.g., class with method actually executing the call on the server side,
-          RPC client stub class on the client side).
-        examples: "myservice.EchoService"
       - id: rpc.system
         brief: 'A string identifying the remoting system. See below for a list of well-known identifiers.'
         type:
