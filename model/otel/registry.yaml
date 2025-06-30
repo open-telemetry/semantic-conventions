@@ -48,11 +48,11 @@ groups:
               stability: development
             - id: local
               value: LOCAL
-              brief: The span has a parent and the parent's span context isRemote() is false
+              brief: The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is false
               stability: development
             - id: remote
               value: REMOTE
-              brief: The span has a parent and the parent's span context isRemote() is true
+              brief: The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is true
               stability: development
         brief: "Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote)"
         stability: development

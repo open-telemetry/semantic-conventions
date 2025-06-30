@@ -25,9 +25,9 @@ Attributes reserved for OpenTelemetry
 
 | Value  | Description | Stability |
 |---|---|---|
-| `LOCAL` | The span has a parent and the parent's span context isRemote() is false | ![Development](https://img.shields.io/badge/-development-blue) |
+| `LOCAL` | The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is false | ![Development](https://img.shields.io/badge/-development-blue) |
 | `NONE` | The span does not have a parent, it is a root span | ![Development](https://img.shields.io/badge/-development-blue) |
-| `REMOTE` | The span has a parent and the parent's span context isRemote() is true | ![Development](https://img.shields.io/badge/-development-blue) |
+| `REMOTE` | The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is true | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
