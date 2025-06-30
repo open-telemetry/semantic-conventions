@@ -49,15 +49,15 @@ linkTitle: Process
 | [`process.parent_pid`](/docs/registry/attributes/process.md) | int | Parent Process identifier (PPID). | `111` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`process.pid`](/docs/registry/attributes/process.md) | int | Process identifier (PID). | `1234` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `process.command`:** See [Selecting process attributes](#selecting-process-attributes) for details.
+**[1] `process.command`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
 
-**[2] `process.command_args`:** See [Selecting process attributes](#selecting-process-attributes) for details.
+**[2] `process.command_args`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
 
-**[3] `process.command_line`:** See [Selecting process attributes](#selecting-process-attributes) for details.
+**[3] `process.command_line`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
 
-**[4] `process.executable.name`:** See [Selecting process attributes](#selecting-process-attributes) for details.
+**[4] `process.executable.name`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
 
-**[5] `process.executable.path`:** See [Selecting process attributes](#selecting-process-attributes) for details.
+**[5] `process.executable.path`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
 
 **[6] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/\[PID\]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
 
