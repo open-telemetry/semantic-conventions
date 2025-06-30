@@ -397,6 +397,14 @@ groups:
         note: |
           This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec.
         examples: ["apps/v1", "autoscaling/v2"]
+      - id: k8s.hpa.metric.type
+        type: string
+        stability: development
+        brief: >
+          The type of metric source for the horizontal pod autoscaler.
+        examples: ['Resource', 'ContainerResource']
+        note: >
+          This attribute reflects the `type` field of spec.metrics[] in the HPA.
       - id: k8s.job.uid
         type: string
         stability: development
