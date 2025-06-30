@@ -1,8 +1,8 @@
 {% import 'stability.j2' as stability %}
 {% import 'notes.j2' as notes %}
 {% import 'metric_macros.j2' as metrics %}
-{% macro print_entities(associations) %}{%- for e in associations %}{%if loop.first == false %}; {% endif %}`{{ e | trim }}`{%- endfor %}{% endmacro %}
-{% macro generate(group) %}| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+{% import 'entity_macros.j2' as entities %}
+{% macro generate(group, entity_registry) %}| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `{{ group.metric_name }}` | {{ metrics.instrument(group.instrument) | trim }} | `{{ group.unit }}` | {{ group.brief | trim }}{{ notes.add({"note": group.note}) }} | {{ stability.badge(group.stability, group.deprecated, group.brief) | trim }} | {{ print_entities(group.entity_associations) }} |
+| `{{ group.metric_name }}` | {{ metrics.instrument(group.instrument) | trim }} | `{{ group.unit }}` | {{ group.brief | trim }}{{ notes.add({"note": group.note}) }} | {{ stability.badge(group.stability, group.deprecated, group.brief) | trim }} | {{ entities.print_associations(group.entity_associations, entity_registry) }} |
 {{ notes.render() }}{% endmacro %}

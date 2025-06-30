@@ -10,19 +10,19 @@ groups:
       - ref: process.parent_pid
       - ref: process.executable.name
         requirement_level:
-          conditionally_required: See [Selecting process attributes](#selecting-process-attributes) for details.
+          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
       - ref: process.executable.path
         requirement_level:
-          conditionally_required: See [Selecting process attributes](#selecting-process-attributes) for details.
+          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
       - ref: process.command
         requirement_level:
-          conditionally_required: See [Selecting process attributes](#selecting-process-attributes) for details.
+          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
       - ref: process.command_line
         requirement_level:
-          conditionally_required: See [Selecting process attributes](#selecting-process-attributes) for details.
+          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
       - ref: process.command_args
         requirement_level:
-          conditionally_required: See [Selecting process attributes](#selecting-process-attributes) for details.
+          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
       - ref: process.owner
       - ref: process.linux.cgroup
 
