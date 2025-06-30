@@ -54,7 +54,7 @@ groups:
               value: REMOTE
               brief: The span has a parent and the parent's span context isRemote() is true
               stability: development
-        brief: "Determines whether the span has a parent span, and if so, whether it is a remote parent"
+        brief: "Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote)"
         stability: development
   - id: registry.otel.scope
     type: attribute_group

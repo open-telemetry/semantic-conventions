@@ -98,7 +98,7 @@ This ensures that `otel.sdk.span.ended` is guaranteed to provide insights about 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`otel.span.parent.origin`](/docs/registry/attributes/otel.md) | string | Determines whether the span has a parent span, and if so, whether it is a remote parent | `NONE`; `LOCAL`; `REMOTE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`otel.span.parent.origin`](/docs/registry/attributes/otel.md) | string | Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) | `NONE`; `LOCAL`; `REMOTE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`otel.span.sampling_result`](/docs/registry/attributes/otel.md) | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
