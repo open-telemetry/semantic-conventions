@@ -13,6 +13,8 @@ linkTitle: Spans
   - [Notes and well-known identifiers for `db.system.name`](#notes-and-well-known-identifiers-for-dbsystemname)
 - [Sanitization of `db.query.text`](#sanitization-of-dbquerytext)
 - [Generating a summary of the query](#generating-a-summary-of-the-query)
+- [Context Propagation](#context-propagation)
+  - [SQL commenter](#sql-commenter)
 - [Semantic conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 
 <!-- tocstop -->
@@ -477,6 +479,28 @@ name or target).
 Semantic conventions for individual database systems or specialized instrumentations
 MAY specify a different `db.query.summary` format as long as produced summary remains
 relatively short and its cardinality remains low comparing to the `db.query.text`.
+
+## Context Propagation
+
+**Status**: [Development][DocumentStatus]
+
+### SQL commenter
+
+Instrumentations SHOULD propagate the context information to the SQL queries following [SQL commenter](https://google.github.io/sqlcommenter/spec/). The instrumentation implementation MAY choose to either **append** the comment to the end of the query or **prepend** the comment at the beginning of the query, depending on the specific database system's requirements or preferences.
+
+| Attribute              | Type   | Description                           | Examples | Require level     | Stability                                                      |
+|------------------------|--------|---------------------------------------|----------|-------------------|----------------------------------------------------------------|
+| [`service.name`](/docs/registry/attributes/service.md) | string | Logical name of the service [22]   | `shoppingcart` | `Recommended`     | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[22] `service.name`:** Instrumentations MAY use [SDK-provided resource detectors](https://opentelemetry.io/docs/specs/semconv/resource/#semantic-attributes-with-sdk-provided-default-value) to set the default value for this attribute.
+
+**Examples:**
+
+- For a query `SELECT * FROM songs` where `service.name` is `shoppingcart`:
+
+  ```sql
+  SELECT * FROM songs /*service.name='shoppingcart'*/
+  ```
 
 ## Semantic conventions for specific database technologies
 
