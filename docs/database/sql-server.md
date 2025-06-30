@@ -160,7 +160,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ### SET CONTEXT_INFO
 
-Instrumentations MAY propagate context using [SET CONTEXT_INFO](https://learn.microsoft.com/en-us/sql/t-sql/statements/set-context-info-transact-sql?view=sql-server-ver16) by setting a string representation of [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) before executing a query. This is an opt-in behavior that SHOULD be explicitly enabled by the user.
+Instrumentations MAY propagate context using [SET CONTEXT_INFO](https://learn.microsoft.com/sql/t-sql/statements/set-context-info-transact-sql) by injecting fixed-length part of span context (trace-id, span-id, trace-flags, protocol version) before executing a query. For example, when using W3C Trace Context, only a string representation of [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) SHOULD be injected. Context injection SHOULD NOT be enabled by default, but instrumentation MAY allow users to opt into it.
+
+Variable context parts (`tracestate`, `baggage`) SHOULD NOT be injected since `CONTEXT_INFO` value length is limited to 128 bytes.
 
 Instrumentations that propagate context MUST execute `SET CONTEXT_INFO` on the same physical connection as the SQL statement (or reuse its transaction).
 
