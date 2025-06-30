@@ -34,4 +34,7 @@ groups:
         stability: development
         brief: >
           The scheduling priority of a thread.
-        examples: [ "Lowest", "BelowNormal", "Normal", "AboveNormal", "Highest" ]
+        note: >
+          This value should be as per it is obtained from the SDK/library being used.
+          In the event both a numerical and a named value exists, the named value should be used as it provides meaningful context.
+        examples: [ "Lowest", "Highest", "0", "10" ]
