@@ -1,7 +1,0 @@
-change_type: enhancement
-component: events
-note: >
-  Update general event guidance to allow complex attributes on events and use them
-  instead of the body fields.
-
-issues: [1651, 1669]
