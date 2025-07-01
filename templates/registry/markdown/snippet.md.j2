@@ -9,13 +9,14 @@
 {%- import 'resource_macros.j2' as resource -%}
 {%- import 'span_macros.j2' as span %}
 {%- set attribute_registry_base_url=params.registry_base_url~"attributes" %}
+{%- set entity_registry_base_url=params.registry_base_url~"entities" %}
 
 {% macro generate_event(group) -%}
 {{ event.header(group) }}{{ generate_attributes(group) }}{{ event.body(group.body) }}{% endmacro -%}
 {%- macro generate_resource(group) -%}
 {{ resource.header(group) }}{{ generate_attributes(group) }}{% endmacro -%}
-{%- macro generate_metric(group) -%}
-{{ mt.generate(group) }}
+{%- macro generate_metric(group, entity_registry_base_url) -%}
+{{ mt.generate(group, entity_registry_base_url) }}
 {{ generate_attributes(group) }}{% endmacro -%}
 {%- macro generate_span(group) -%}
 {{ span.header(group) }}{{ generate_attributes(group) }}{% endmacro -%}
@@ -27,7 +28,7 @@
 {%- elif group.type == "resource" or group.type == "entity" -%}
 {{ generate_resource(group) }}
 {%- elif group.type == "metric" -%}
-{{ generate_metric(group) }}
+{{ generate_metric(group, entity_registry_base_url) }}
 {%- elif group.type == "span" -%}
 {{ generate_span(group) }}
 {%- else -%}
