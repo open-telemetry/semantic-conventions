@@ -57,11 +57,11 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `process.cpu.time` | Counter | `s` | Total CPU seconds broken down by different states. | ![Development](https://img.shields.io/badge/-development-blue) | `process` |
+| `process.cpu.time` | Counter | `s` | Total CPU seconds broken down by different states. | ![Development](https://img.shields.io/badge/-development-blue) | [`process`](/docs/registry/entities/process.md#process) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpu.mode`](/docs/registry/attributes/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `wait`
 
@@ -98,11 +98,11 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `process.cpu.utilization` | Gauge | `1` | Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs available to the process. | ![Development](https://img.shields.io/badge/-development-blue) | `process` |
+| `process.cpu.utilization` | Gauge | `1` | Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs available to the process. | ![Development](https://img.shields.io/badge/-development-blue) | [`process`](/docs/registry/entities/process.md#process) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`cpu.mode`](/docs/attributes-registry/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpu.mode`](/docs/registry/attributes/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `wait`
 
@@ -139,7 +139,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `process.memory.usage` | UpDownCounter | `By` | The amount of physical memory in use. | ![Development](https://img.shields.io/badge/-development-blue) | `process` |
+| `process.memory.usage` | UpDownCounter | `By` | The amount of physical memory in use. | ![Development](https://img.shields.io/badge/-development-blue) | [`process`](/docs/registry/entities/process.md#process) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -159,7 +159,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `process.memory.virtual` | UpDownCounter | `By` | The amount of committed virtual memory. | ![Development](https://img.shields.io/badge/-development-blue) | `process` |
+| `process.memory.virtual` | UpDownCounter | `By` | The amount of committed virtual memory. | ![Development](https://img.shields.io/badge/-development-blue) | [`process`](/docs/registry/entities/process.md#process) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -179,11 +179,11 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `process.disk.io` | Counter | `By` | Disk bytes transferred. | ![Development](https://img.shields.io/badge/-development-blue) | `process` |
+| `process.disk.io` | Counter | `By` | Disk bytes transferred. | ![Development](https://img.shields.io/badge/-development-blue) | [`process`](/docs/registry/entities/process.md#process) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`disk.io.direction`](/docs/attributes-registry/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`disk.io.direction`](/docs/registry/attributes/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -212,11 +212,11 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `process.network.io` | Counter | `By` | Network bytes transferred. | ![Development](https://img.shields.io/badge/-development-blue) | `process` |
+| `process.network.io` | Counter | `By` | Network bytes transferred. | ![Development](https://img.shields.io/badge/-development-blue) | [`process`](/docs/registry/entities/process.md#process) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`network.io.direction`](/docs/attributes-registry/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.io.direction`](/docs/registry/attributes/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -245,7 +245,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `process.thread.count` | UpDownCounter | `{thread}` | Process threads count. | ![Development](https://img.shields.io/badge/-development-blue) | `process` |
+| `process.thread.count` | UpDownCounter | `{thread}` | Process threads count. | ![Development](https://img.shields.io/badge/-development-blue) | [`process`](/docs/registry/entities/process.md#process) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -265,7 +265,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `process.open_file_descriptor.count` | UpDownCounter | `{file_descriptor}` | Number of file descriptors in use by the process. | ![Development](https://img.shields.io/badge/-development-blue) | `process` |
+| `process.open_file_descriptor.count` | UpDownCounter | `{file_descriptor}` | Number of file descriptors in use by the process. | ![Development](https://img.shields.io/badge/-development-blue) | [`process`](/docs/registry/entities/process.md#process) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -285,11 +285,11 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `process.context_switches` | Counter | `{context_switch}` | Number of times the process has been context switched. | ![Development](https://img.shields.io/badge/-development-blue) | `process` |
+| `process.context_switches` | Counter | `{context_switch}` | Number of times the process has been context switched. | ![Development](https://img.shields.io/badge/-development-blue) | [`process`](/docs/registry/entities/process.md#process) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`process.context_switch_type`](/docs/attributes-registry/process.md) | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.context_switch_type`](/docs/registry/attributes/process.md) | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -318,11 +318,11 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `process.paging.faults` | Counter | `{fault}` | Number of page faults the process has made. | ![Development](https://img.shields.io/badge/-development-blue) | `process` |
+| `process.paging.faults` | Counter | `{fault}` | Number of page faults the process has made. | ![Development](https://img.shields.io/badge/-development-blue) | [`process`](/docs/registry/entities/process.md#process) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`process.paging.fault_type`](/docs/attributes-registry/process.md) | string | The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults. | `major`; `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.paging.fault_type`](/docs/registry/attributes/process.md) | string | The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults. | `major`; `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -351,7 +351,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `process.uptime` | Gauge | `s` | The time the process has been running. [1] | ![Development](https://img.shields.io/badge/-development-blue) | `process` |
+| `process.uptime` | Gauge | `s` | The time the process has been running. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`process`](/docs/registry/entities/process.md#process) |
 
 **[1]:** Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
 The actual accuracy would depend on the instrumentation and operating system.

@@ -47,7 +47,7 @@ ended without any errors.
 When the operation ends with an error, instrumentation:
 
 - SHOULD set the span status code to `Error`
-- SHOULD set the [`error.type`](/docs/attributes-registry/error.md#error-type) attribute
+- SHOULD set the [`error.type`](/docs/registry/attributes/error.md#error-type) attribute
 - SHOULD set the span status description when it has additional information
   about the error which is not expected to contain sensitive details and aligns
   with [Span Status Description][SpanStatus] definition.
@@ -122,4 +122,4 @@ public boolean createIfNotExists(String resourceId) throws IOException {
 ```
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/specification/trace/api.md#set-status
+[SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.46.0/specification/trace/api.md#set-status

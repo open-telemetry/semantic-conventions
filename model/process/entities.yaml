@@ -1,0 +1,38 @@
+groups:
+  - id: entity.process
+    type: entity
+    stability: development
+    name: process
+    brief: >
+        An operating system process.
+    attributes:
+      - ref: process.pid
+      - ref: process.parent_pid
+      - ref: process.executable.name
+        requirement_level:
+          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+      - ref: process.executable.path
+        requirement_level:
+          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+      - ref: process.command
+        requirement_level:
+          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+      - ref: process.command_line
+        requirement_level:
+          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+      - ref: process.command_args
+        requirement_level:
+          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+      - ref: process.owner
+      - ref: process.linux.cgroup
+
+  - id: entity.process.runtime
+    type: entity
+    stability: development
+    name: process.runtime
+    brief: >
+      The single (language) runtime instance which is monitored.
+    attributes:
+      - ref: process.runtime.name
+      - ref: process.runtime.version
+      - ref: process.runtime.description
