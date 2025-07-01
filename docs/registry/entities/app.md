@@ -13,16 +13,41 @@
 
 **Description:** An app used directly by end users — like mobile, web, or desktop.
 
-> :warning: This entity definition contains attributes without a role.
-> Stable Entities MUST NOT have attributes without a defined role.
-
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
 | Identity | [`app.build_id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for a particular build or compilation of the application. | `6cff0a7e-cefc-4668-96f5-1273d8b334d0`; `9f2b833506aa6973a92fde9733e6271f`; `my-app-1.0.0-code-123` |
-| Other | [`app.installation.id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier representing the installation of an application on a specific device [1] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` |
+| Identity | [`app.id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the app. [1] | `com.domainname.applicationname` |
+| Identity | [`app.namespace`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A namespace for `app.name`. [2] | `Shop` |
+| Identity | [`app.version`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the app. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
+| Description | [`app.name`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Logical name of the app. [3] | `shoppingcart` |
+| Description | [`app.roles`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | What role this app can perform. [4] | `["ui", "background_tasks"]`; `["background_tasks"]` |
+| Description | [`app.type`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Describes the type of application which generated the telemetry | `console`; `device`; `service` |
 
+**[1] `app.id`:** MUST remain the same across all versions. For mobile applications this should correspond to the package id.
 
-**[1] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
+**[2] `app.namespace`:** A string value having a meaning that helps to distinguish a group of apps, for example the team name that owns a group of apps. `app.name` is expected to be unique within the same namespace. If `app.namespace` is not specified in the Resource then `app.name` is expected to be unique for all apps that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
+
+**[3] `app.name`:** MUST be the same for all installations of the app.
+
+**[4] `app.roles`:** This doesn't correspond to the roles being performed as a role can be disabled.
+To discover the active roles you can look at `service.roles`
+
+## App Installation
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `app.installation`
+
+**Description:** An instance of the app which has been installed on a device.
+
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+|---|---|---|---|---|---|---|
+| Identity | [`app.installation.id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier representing the installation of an application on a specific device [5] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` |
+| Description | [`app.id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the app. [6] | `com.domainname.applicationname` |
+| Description | [`app.namespace`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A namespace for `app.name`. [7] | `Shop` |
+| Description | [`app.version`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the app. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
+
+**[5] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
 It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
 Additionally, users might be able to reset this value (e.g. by clearing application data).
 If an app is installed multiple times on the same device (e.g. in different accounts on Android), each `app.installation.id` SHOULD have a different value.
@@ -39,5 +64,9 @@ For Android, examples of `app.installation.id` implementations include:
 - [`Settings.getString(Settings.Secure.ANDROID_ID)`](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
 
 More information about Android identifier best practices can be found in the [Android user data IDs guide](https://developer.android.com/training/articles/user-data-ids).
+
+**[6] `app.id`:** MUST remain the same across all versions. For mobile applications this should correspond to the package id.
+
+**[7] `app.namespace`:** A string value having a meaning that helps to distinguish a group of apps, for example the team name that owns a group of apps. `app.name` is expected to be unique within the same namespace. If `app.namespace` is not specified in the Resource then `app.name` is expected to be unique for all apps that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
 
 <!-- markdownlint-restore -->
