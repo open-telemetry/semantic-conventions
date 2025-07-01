@@ -12,7 +12,6 @@ groups:
         requirement_level: recommended
 
 
-
   - id: metric.hw.cpu.speed
     type: metric
     metric_name: hw.cpu.speed
@@ -22,6 +21,7 @@ groups:
     unit: "Hz"
     extends: metric.hw.cpu
 
+  #TODO: decide on metric name speed.limit is original
   - id: metric.hw.cpu.speed.limit
     type: metric
     metric_name: hw.cpu.speed.limit

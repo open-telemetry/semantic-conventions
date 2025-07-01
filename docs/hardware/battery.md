@@ -89,7 +89,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.battery.charge_limit` | Gauge | `1` | Lower limit of battery charge fraction to ensure proper operation | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.battery.charge.limit` | Gauge | `1` | Lower limit of battery charge fraction to ensure proper operation | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

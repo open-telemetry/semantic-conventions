@@ -24,9 +24,10 @@ groups:
     unit: "1"
     extends: metric.hw.battery
 
+    #TODO: decide on metric name charge.limit is original
   - id: metric.hw.battery.charge_limit
     type: metric
-    metric_name: hw.battery.charge_limit
+    metric_name: hw.battery.charge.limit
     stability: development
     brief: "Lower limit of battery charge fraction to ensure proper operation"
     instrument: gauge
