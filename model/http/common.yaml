@@ -43,15 +43,25 @@ groups:
     attributes:
       - ref: server.address
         requirement_level: required
-        brief: >
-          Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
-        note: >
+        note: |
+          In HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
+          is passed in its [absolte-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
+          the `server.address` SHOULD match the host component of the request target.
+
+          In all other cases, `server.address` SHOULD match the host component of the
+          `Host` header in HTTP/1.1 or the `:authority` pseudo-header in HTTP/2 and HTTP/3.
+
           If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
           `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
       - ref: server.port
         requirement_level: required
-        brief: >
-          Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+        note: |
+          In the case of HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
+          is passed in its [absolte-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
+          the `server.port` SHOULD match the port component of the request target.
+
+          In all other cases, `server.port` SHOULD match the port component of the
+          `Host` header in HTTP/1.1 or the `:authority` pseudo-header in HTTP/2 and HTTP/3.
       - ref: url.scheme
         requirement_level: opt_in
         examples: ["http", "https"]
