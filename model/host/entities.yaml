@@ -35,14 +35,26 @@ groups:
           `OTEL_RESOURCE_ATTRIBUTES` environment variable.
       - ref: host.name
       - ref: host.type
-      - ref: host.image.name
-      - ref: host.image.id
-      - ref: host.image.version
+        role: descriptive
       - ref: host.ip
+        role: descriptive
         requirement_level: opt_in
       - ref: host.mac
+        role: descriptive
         requirement_level: opt_in
-
+  - id: entity.host.image
+    type: entity
+    stability: development
+    name: host.image
+    brief: >
+        The image that was used to be originally setup up a host.
+    attributes:
+      - ref: host.image.name
+        role: descriptive
+      - ref: host.image.id
+        role: identifying
+      - ref: host.image.version
+        role: identifying
   - id: entity.host.cpu
     type: entity
     stability: development

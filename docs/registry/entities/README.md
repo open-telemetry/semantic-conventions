@@ -62,6 +62,7 @@ Currently, the following namespaces exist:
 | Host | | |
 | | [host](host.md#host) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [host.cpu](host.md#host-cpu) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [host.image](host.md#host-image) | ![Development](https://img.shields.io/badge/-development-blue) |
 | K8s | | |
 | | [k8s.cluster](k8s.md#k8s-cluster) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.container](k8s.md#k8s-container) | ![Development](https://img.shields.io/badge/-development-blue) |
