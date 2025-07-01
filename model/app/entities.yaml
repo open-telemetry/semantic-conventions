@@ -6,6 +6,32 @@ groups:
     brief: >
       An app used directly by end users — like mobile, web, or desktop.
     attributes:
-      - ref: app.installation.id
+      - ref: app.id
+        role: identifying
       - ref: app.build_id
         role: identifying
+      - ref: app.namespace
+        role: identifying
+      - ref: app.version
+        role: identifying
+      - ref: app.name
+        role: descriptive
+      - ref: app.type
+        role: descriptive
+      - ref: app.roles
+        role: descriptive
+  - id: entity.app.installation
+    type: entity
+    stability: development
+    name: app.installation
+    brief: >
+      An instance of the app which has been installed on a device.
+    attributes:
+      - ref: app.installation.id
+        role: identifying
+      - ref: app.id
+        role: descriptive
+      - ref: app.namespace
+        role: descriptive
+      - ref: app.version
+        role: descriptive
