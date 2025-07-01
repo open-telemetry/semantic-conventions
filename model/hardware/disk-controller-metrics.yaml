@@ -1,0 +1,20 @@
+groups:
+  # DISK CONTROLLER METRICS
+  - id: metric.hw.disk_controller
+    type: attribute_group
+    brief: >
+      Common attributes for disk controller metrics
+    extends: hardware.attributes.common
+    attributes:
+      - ref: hw.disk_controller.bios_version
+        requirement_level: recommended
+      - ref: hw.disk_controller.driver_version
+        requirement_level: recommended
+      - ref: hw.disk_controller.firmware_version
+        requirement_level: recommended
+      - ref: hw.disk_controller.model
+        requirement_level: recommended
+      - ref: hw.disk_controller.serial_number
+        requirement_level: recommended
+      - ref: hw.disk_controller.vendor
+        requirement_level: recommended

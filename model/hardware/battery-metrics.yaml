@@ -51,25 +51,3 @@ groups:
         note: >
           The `hw.state` attribute should indicate the current state of the battery.
           It should be one of the predefined states such as "charging" or "discharging".
-
-  - id: metric.hw.battery.status
-    type: metric
-    metric_name: hw.battery.status
-    stability: experimental
-    brief: "Operational status: `1` (true) or `0` (false) for each of the possible states"
-    instrument: updowncounter
-    unit: "1"
-    extends: metric.hw.status
-    attributes:
-      - ref: hw.state
-        examples: ["ok", "degraded", "failed", "charging", "discharging"]
-        requirement_level: required
-        note: >
-            The `hw.state` attribute should reflect the current operational state of the battery.
-            It should be one of the predefined states such as "ok", "degraded", "failed", "charging", or "discharging".
-      - ref: hw.type
-        examples: ["battery"]
-        requirement_level: required
-        note: >
-            The `hw.type` attribute should indicate the type of hardware component, which in this case is a battery.
-            It should be set to "battery" to clearly identify the component being monitored.

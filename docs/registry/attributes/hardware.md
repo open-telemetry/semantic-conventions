@@ -14,6 +14,15 @@ Attributes for hardware.
 | <a id="hw-battery-limit-type" href="#hw-battery-limit-type">`hw.battery.limit_type`</a> | string | Type of the battery charge limit | `critical`; `throttled`; `degraded` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-battery-model" href="#hw-battery-model">`hw.battery.model`</a> | string | Descriptive model name of the battery | `Dell XPS 15 Battery` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-battery-vendor" href="#hw-battery-vendor">`hw.battery.vendor`</a> | string | Vendor name of the battery | `Dell`; `HP`; `Lenovo` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-cpu-limit-type" href="#hw-cpu-limit-type">`hw.cpu.limit_type`</a> | string | Type of the CPU speed limit | `throttled`; `max`; `turbo` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-cpu-model" href="#hw-cpu-model">`hw.cpu.model`</a> | string | Descriptive model name of the CPU | `Intel(R) Core(TM) i7-10700K` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-cpu-vendor" href="#hw-cpu-vendor">`hw.cpu.vendor`</a> | string | Vendor name of the CPU | `Intel`; `AMD` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-disk-controller-bios-version" href="#hw-disk-controller-bios-version">`hw.disk_controller.bios_version`</a> | string | BIOS version of the disk controller | `1.2.3` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-disk-controller-driver-version" href="#hw-disk-controller-driver-version">`hw.disk_controller.driver_version`</a> | string | Driver version for the disk controller | `10.2.1-3` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-disk-controller-firmware-version" href="#hw-disk-controller-firmware-version">`hw.disk_controller.firmware_version`</a> | string | Firmware version of the disk controller | `2.0.1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-disk-controller-model" href="#hw-disk-controller-model">`hw.disk_controller.model`</a> | string | Descriptive model name of the disk controller | `PERC H740P` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-disk-controller-serial-number" href="#hw-disk-controller-serial-number">`hw.disk_controller.serial_number`</a> | string | Serial number of the disk controller | `CNFCP0123456789` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-disk-controller-vendor" href="#hw-disk-controller-vendor">`hw.disk_controller.vendor`</a> | string | Vendor name of the disk controller | `Dell`; `HP`; `LSI` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-id" href="#hw-id">`hw.id`</a> | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-name" href="#hw-name">`hw.name`</a> | string | An easily-recognizable name for the hardware component | `eth0` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-parent" href="#hw-parent">`hw.parent`</a> | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -34,6 +43,16 @@ Attributes for hardware.
 
 ---
 
+`hw.cpu.limit_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `max` | Max | ![Development](https://img.shields.io/badge/-development-blue) |
+| `throttled` | Throttled | ![Development](https://img.shields.io/badge/-development-blue) |
+| `turbo` | Turbo | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
 `hw.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -43,6 +62,7 @@ Attributes for hardware.
 | `discharging` | Discharging | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failed` | Failed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ok` | Ok | ![Development](https://img.shields.io/badge/-development-blue) |
+| `predicted_failure` | Predicted Failure | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

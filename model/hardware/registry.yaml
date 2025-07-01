@@ -112,6 +112,10 @@ groups:
               value: 'discharging'
               brief: 'Discharging'
               stability: development
+            - id: predicted_failure
+              value: 'predicted_failure'
+              brief: 'Predicted Failure'
+              stability: development
         stability: development
         brief: >
           The current state of the component
@@ -158,3 +162,74 @@ groups:
         brief: >
           Vendor name of the battery
         examples: ['Dell', 'HP', 'Lenovo']
+
+      # CPU ATTRIBUTES
+      - id: hw.cpu.model
+        type: string
+        stability: development
+        brief: >
+          Descriptive model name of the CPU
+        examples: ['Intel(R) Core(TM) i7-10700K']
+      - id: hw.cpu.vendor
+        type: string
+        stability: development
+        brief: >
+          Vendor name of the CPU
+        examples: ['Intel', 'AMD']
+
+      - id: hw.cpu.limit_type
+        type:
+          members:
+            - id: throttled
+              value: 'throttled'
+              brief: "Throttled"
+              stability: development
+            - id: max
+              value: 'max'
+              brief: 'Max'
+              stability: development
+            - id: turbo
+              value: 'turbo'
+              brief: 'Turbo'
+              stability: development
+        stability: development
+        brief: >
+          Type of the CPU speed limit
+          
+      # DISK CONTROLLER ATTRIBUTES
+      - id: hw.disk_controller.bios_version
+        type: string
+        stability: development
+        brief: >
+          BIOS version of the disk controller
+        examples: ['1.2.3']
+      - id: hw.disk_controller.driver_version
+        type: string
+        stability: development
+        brief: >
+          Driver version for the disk controller
+        examples: ['10.2.1-3']
+      - id: hw.disk_controller.firmware_version
+        type: string
+        stability: development
+        brief: >
+          Firmware version of the disk controller
+        examples: ['2.0.1']
+      - id: hw.disk_controller.model
+        type: string
+        stability: development
+        brief: >
+          Descriptive model name of the disk controller
+        examples: ['PERC H740P']
+      - id: hw.disk_controller.serial_number
+        type: string
+        stability: development
+        brief: >
+          Serial number of the disk controller
+        examples: ['CNFCP0123456789']
+      - id: hw.disk_controller.vendor
+        type: string
+        stability: development
+        brief: >
+          Vendor name of the disk controller
+        examples: ['Dell', 'HP', 'LSI']

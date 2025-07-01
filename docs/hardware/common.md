@@ -269,6 +269,7 @@ This metric is [recommended][MetricRecommended].
 | `discharging` | Discharging | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failed` | Failed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ok` | Ok | ![Development](https://img.shields.io/badge/-development-blue) |
+| `predicted_failure` | Predicted Failure | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
