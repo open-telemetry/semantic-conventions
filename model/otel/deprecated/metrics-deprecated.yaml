@@ -14,9 +14,8 @@ groups:
     metric_name: otel.sdk.span.ended.count
     stability: development
     deprecated:
-      reason: renamed
-      renamed_to: otel.sdk.span.ended
-    brief: "Deprecated, use `otel.sdk.span.ended` instead."
+      reason: obsoleted
+    brief: "Use `otel.sdk.span.started` minus `otel.sdk.span.live` to derive this value."
     instrument: counter
     unit: "{span}"
   - id: metric.otel.sdk.processor.span.processed.count
@@ -24,8 +23,9 @@ groups:
     metric_name: otel.sdk.processor.span.processed.count
     stability: development
     deprecated:
-      reason: obsoleted
-    brief: "Use `otel.sdk.span.started` minus `otel.sdk.span.live` to derive this value."
+      reason: renamed
+      renamed_to: otel.sdk.processor.span.processed
+    brief: "Deprecated, use `otel.sdk.processor.span.processed` instead."
     instrument: updowncounter
     unit: "{span}"
   - id: metric.otel.sdk.exporter.span.inflight.count
