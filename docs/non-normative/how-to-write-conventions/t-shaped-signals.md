@@ -43,3 +43,10 @@ Examples include:
 - Linux slab memory usage
 - Specific database signals, e.g MySQL index usage
 - Language-specific Garbage Collection metrics (JVM, Go, .NET, etc.)
+
+## Recommendations
+
+While defining semantic conventions can be a balance between geneating
+broadly applicable signals and defining deep at the same time, it is recommended
+to start with the *broad* use cases and signals for a particular domain, and
+strive to provide the right level of abstraction first, before going deep.
