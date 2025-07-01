@@ -10,7 +10,7 @@ change_type: 'enhancement'
 component: 'otel'
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Ensure that the `otel.sdk.span.ended` is collected even for non-recording spans and allow differentiation based on the parent span origin
+note: Replaces `otel.sdk.span.ended` with `otel.sdk.span.started` and allow differentiation based on the parent span origin
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
