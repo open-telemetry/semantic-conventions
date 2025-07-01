@@ -186,7 +186,7 @@ Instrumentations for specific web frameworks that consider HTTP methods to be ca
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
 **[2] `server.address`:** In HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
-is passed in its [absolte-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
+is passed in its [absolute-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
 the `server.address` SHOULD match the host component of the request target.
 
 In all other cases, `server.address` SHOULD match the host component of the
@@ -196,7 +196,7 @@ If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.
 `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
 **[3] `server.port`:** In the case of HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
-is passed in its [absolte-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
+is passed in its [absolute-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
 the `server.port` SHOULD match the port component of the request target.
 
 In all other cases, `server.port` SHOULD match the port component of the
