@@ -49,3 +49,12 @@ groups:
     brief: "Deprecated, use `otel.sdk.exporter.span.exported` instead."
     instrument: updowncounter
     unit: "{span}"
+  - id: metric.otel.sdk.span.ended
+    type: metric
+    metric_name: otel.sdk.span.ended
+    stability: development
+    deprecated:
+      reason: obsoleted
+    brief: "Use `otel.sdk.span.started` minus `otel.sdk.span.live` to derive this value."
+    instrument: counter
+    unit: "{span}"
