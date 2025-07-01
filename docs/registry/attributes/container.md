@@ -23,6 +23,9 @@ A container instance.
 | <a id="container-image-repo-digests" href="#container-image-repo-digests">`container.image.repo_digests`</a> | string[] | Repo digests of the container image as provided by the container runtime. [5] | `["example@sha256:afcc7f1ac1b49db317a7196c902e61c6c3c4607d63599ee1a82d702d249a0ccb", "internal.registry.example.com:5000/example@sha256:b69959407d21e8a062e0416bf13405bb2b71ed7a84dde4158ebafacfa06f5578"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="container-image-tags" href="#container-image-tags">`container.image.tags`</a> | string[] | Container image tags. An example can be found in [Docker Image Inspect](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect). Should be only the `<tag>` section of the full name for example from `registry.example.com/my-org/my-image:<tag>`. | `["v1.27.1", "3.5.7-0"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="container-label" href="#container-label">`container.label.<key>`</a> | string | Container labels, `<key>` being the label name, the value being the label value. [6] | `nginx` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="container-manifest-digest" href="#container-manifest-digest">`container.manifest.digest`</a> | string | The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known. [7] | `sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="container-manifest-mediatype" href="#container-manifest-mediatype">`container.manifest.mediatype`</a> | string | The media type of the manifest. | `application/vnd.oci.image.manifest.v1+json` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="container-manifest-type" href="#container-manifest-type">`container.manifest.type`</a> | string | The type of manifest being described. | `image` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="container-name" href="#container-name">`container.name`</a> | string | Container name used by container runtime. | `opentelemetry-autoconf` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="container-runtime" href="#container-runtime">`container.runtime`</a> | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -39,6 +42,9 @@ The ID is assigned by the container runtime and can vary in different environmen
 **[5] `container.image.repo_digests`:** [Docker](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
 
 **[6] `container.label.<key>`:** For example, a docker container label `app` with value `nginx` SHOULD be recorded as the `container.label.app` attribute with value `"nginx"`.
+
+**[7] `container.manifest.digest`:** Follows [OCI Image Manifest Specification](https://github.com/opencontainers/image-spec/blob/main/manifest.md), and specifically the [Digest property](https://github.com/opencontainers/image-spec/blob/main/descriptor.md#digests).
+An example can be found in [Example Image Manifest](https://github.com/opencontainers/image-spec/blob/main/manifest.md#example-image-manifest).
 
 ## Deprecated Container Attributes
 
