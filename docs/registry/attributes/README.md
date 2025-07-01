@@ -88,6 +88,7 @@ Currently, the following namespaces exist:
 - [Peer](peer.md)
 - [Process](process.md)
 - [Profile](profile.md)
+- [Raid](raid.md)
 - [RPC](rpc.md)
 - [Security Rule](security-rule.md)
 - [Server](server.md)
