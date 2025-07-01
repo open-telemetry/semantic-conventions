@@ -3,13 +3,13 @@
 
 # OCI
 
-## Open Container Initiative (OCI) Attributes
+## Deprecated Open Container Initiative (OCI) Attributes
 
 An OCI image manifest.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="oci-manifest-digest" href="#oci-manifest-digest">`oci.manifest.digest`</a> | string | The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known. [1] | `sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="oci-manifest-digest" href="#oci-manifest-digest">`oci.manifest.digest`</a> | string | The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known. [1] | `sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.manifest.digest`. |
 
 **[1] `oci.manifest.digest`:** Follows [OCI Image Manifest Specification](https://github.com/opencontainers/image-spec/blob/main/manifest.md), and specifically the [Digest property](https://github.com/opencontainers/image-spec/blob/main/descriptor.md#digests).
 An example can be found in [Example Image Manifest](https://github.com/opencontainers/image-spec/blob/main/manifest.md#example-image-manifest).

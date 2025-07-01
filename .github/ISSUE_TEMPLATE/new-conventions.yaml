@@ -74,7 +74,6 @@ body:
         - area:messaging
         - area:network
         - area:nodejs
-        - area:oci
         - area:openai
         - area:opentracing
         - area:os
