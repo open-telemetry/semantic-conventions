@@ -10,7 +10,7 @@ Attributes for hardware.
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="hw-battery-capacity" href="#hw-battery-capacity">`hw.battery.capacity`</a> | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-battery-chemistry" href="#hw-battery-chemistry">`hw.battery.chemistry`</a> | string | Battery chemistry, e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-battery-chemistry" href="#hw-battery-chemistry">`hw.battery.chemistry`</a> | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-battery-model" href="#hw-battery-model">`hw.battery.model`</a> | string | Descriptive model name of the battery | `Dell XPS 15 Battery` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-battery-vendor" href="#hw-battery-vendor">`hw.battery.vendor`</a> | string | Vendor name of the battery | `Dell`; `HP`; `Lenovo` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-cpu-model" href="#hw-cpu-model">`hw.cpu.model`</a> | string | Descriptive model name of the CPU | `Intel(R) Core(TM) i7-10700K` | ![Development](https://img.shields.io/badge/-development-blue) |

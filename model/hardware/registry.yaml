@@ -169,7 +169,7 @@ groups:
         type: string
         stability: development
         brief: >
-          Battery chemistry, e.g. Lithium-Ion, Nickel-Cadmium, etc.
+          Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc.
         examples: ['Li-ion', 'NiMH']
       - id: hw.battery.capacity
         type: string
@@ -242,7 +242,7 @@ groups:
         brief: >
           Vendor name of the disk controller
         examples: ['Dell', 'HP', 'LSI']
-        
+
       # ENCLOSURE ATTRIBUTES
       - id: hw.enclosure.bios_version
         type: string
@@ -274,7 +274,7 @@ groups:
         brief: >
           Vendor name of the enclosure
         examples: ['Dell', 'HP', 'Lenovo']
-        
+
       # FAN ATTRIBUTES
       - id: hw.fan.sensor_location
         type: string
@@ -283,7 +283,7 @@ groups:
           Location of the fan in the computer enclosure
         examples: ['cpu0', 'ps1', 'INLET']
 
-          
+
       # GPU ATTRIBUTES
       - id: hw.gpu.driver_version
         type: string
@@ -347,7 +347,7 @@ groups:
         stability: development
         brief: >
           Direction of data transfer
-          
+
       # LOGICAL DISK ATTRIBUTES
       - id: hw.logical_disk.raid_level
         type: string
@@ -369,7 +369,7 @@ groups:
         stability: development
         brief: >
           State of the logical disk space usage
-          
+
       # MEMORY ATTRIBUTES
       - id: hw.memory.model
         type: string
@@ -395,7 +395,7 @@ groups:
         brief: >
           Vendor name of the memory module
         examples: ['Crucial', 'Kingston', 'Samsung', 'Corsair']
-        
+
       # NETWORK ATTRIBUTES
       - id: hw.network.model
         type: string
@@ -441,7 +441,7 @@ groups:
         stability: development
         brief: >
           Direction of network traffic
-          
+
       # PHYSICAL DISK ATTRIBUTES
       - id: hw.physical_disk.firmware_version
         type: string
@@ -533,7 +533,7 @@ groups:
         stability: development
         brief: >
           [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk
-        
+
       # POWER SUPPLY ATTRIBUTES
       - id: hw.power_supply.model
         type: string
@@ -554,7 +554,7 @@ groups:
           Vendor name of the power supply
         examples: ['Corsair', 'EVGA', 'Seasonic']
 
-          
+
       # TAPE DRIVE ATTRIBUTES
       - id: hw.tape_drive.model
         type: string
@@ -592,7 +592,7 @@ groups:
         stability: development
         brief: >
           Type of tape drive operation
-          
+
       # TEMPERATURE ATTRIBUTES
       - id: hw.temperature.sensor_location
         type: string
@@ -601,7 +601,7 @@ groups:
           Location of the temperature sensor
         examples: ['CPU0_DIE', 'AMBIENT', 'MOTHERBOARD']
 
-          
+
       # VOLTAGE ATTRIBUTES
       - id: hw.voltage.sensor_location
         type: string
