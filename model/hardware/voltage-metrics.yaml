@@ -1,6 +1,6 @@
 groups:
   # VOLTAGE METRICS
-  - id: metric.hw.voltage
+  - id: metric.hw.voltage.common
     type: attribute_group
     brief: >
       Common attributes for voltage metrics
@@ -9,7 +9,7 @@ groups:
       - ref: hw.voltage.sensor_location
         requirement_level: recommended
 
-  - id: metric.hw.voltage.value
+  - id: metric.hw.voltage
     type: metric
     metric_name: hw.voltage
     # value_type: double
@@ -17,7 +17,7 @@ groups:
     brief: "Voltage measured by the sensor"
     instrument: gauge
     unit: "V"
-    extends: metric.hw.voltage
+    extends: metric.hw.voltage.common
 
   - id: metric.hw.voltage.limit
     type: metric
@@ -27,7 +27,7 @@ groups:
     brief: "Voltage limit in Volts"
     instrument: gauge
     unit: "V"
-    extends: metric.hw.voltage
+    extends: metric.hw.voltage.common
     attributes:
       - ref: hw.limit_type
         examples: ["low.critical", "low.degraded", "high.degraded", "high.critical"]
@@ -41,4 +41,4 @@ groups:
     brief: "Nominal (expected) voltage"
     instrument: gauge
     unit: "V"
-    extends: metric.hw.voltage
+    extends: metric.hw.voltage.common

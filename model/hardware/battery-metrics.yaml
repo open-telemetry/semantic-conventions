@@ -25,8 +25,8 @@ groups:
     unit: "1"
     extends: metric.hw.battery
 
-    #TODO: decide on metric name charge.limit is original
-  - id: metric.hw.battery.charge_limit
+    #TODO: decide on metric name - charge.limit is original
+  - id: metric.hw.battery.charge.limit
     type: metric
     metric_name: hw.battery.charge.limit
 #    value_type: double
