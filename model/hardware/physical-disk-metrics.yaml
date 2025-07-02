@@ -1,0 +1,56 @@
+groups:
+  # PHYSICAL DISK METRICS
+  - id: metric.hw.physical_disk
+    type: attribute_group
+    brief: >
+      Common attributes for physical disk metrics
+    extends: hardware.attributes.common
+    attributes:
+      - ref: hw.physical_disk.firmware_version
+        requirement_level: recommended
+      - ref: hw.physical_disk.model
+        requirement_level: recommended
+      - ref: hw.physical_disk.serial_number
+        requirement_level: recommended
+      - ref: hw.physical_disk.type
+        requirement_level: recommended
+      - ref: hw.physical_disk.vendor
+        requirement_level: recommended
+
+  - id: metric.hw.physical_disk.endurance_utilization
+    type: metric
+    metric_name: hw.physical_disk.endurance_utilization
+    # value_type: double
+    stability: development
+    brief: "Endurance remaining for this SSD disk"
+    instrument: gauge
+    unit: "1"
+    extends: metric.hw.physical_disk
+    attributes:
+      - ref: hw.physical_disk.state
+        examples: ["remaining"]
+        requirement_level: required
+
+  - id: metric.hw.physical_disk.size
+    type: metric
+    metric_name: hw.physical_disk.size
+    # value_type: int
+    stability: development
+    brief: "Size of the disk"
+    instrument: updowncounter
+    unit: "By"
+    extends: metric.hw.physical_disk
+
+  - id: metric.hw.physical_disk.smart
+    type: metric
+    metric_name: hw.physical_disk.smart
+    # value_type: int
+    stability: development
+    brief: "Value of the corresponding [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute"
+    instrument: gauge
+    unit: "1"
+    extends: metric.hw.physical_disk
+    attributes:
+      - ref: hw.physical_disk.smart_attribute
+        examples: ["seek_error_rate", "spin_retry_count"]
+        requirement_level: recommended

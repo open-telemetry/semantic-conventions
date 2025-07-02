@@ -23,5 +23,7 @@ Semantic conventions for hardware are defined as following:
 * [Logical Disk Metrics](logical-disk.md): Semantic Conventions for *logical disk* metrics.
 * [Memory Metrics](memory.md): Semantic Conventions for *memory* metrics.
 * [Network Metrics](network.md): Semantic Conventions for *network* metrics.
+* [Physical Disk Metrics](physical-disk.md): Semantic Conventions for *physical disk* metrics.
+* [Power Supply Metrics](power-supply.md): Semantic Conventions for *power supply* metrics.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

@@ -20,6 +20,7 @@ groups:
   - id: metric.hw.gpu.io
     type: metric
     metric_name: hw.gpu.io
+    # value_type: int
     stability: development
     brief: "Received and transmitted bytes by the GPU"
     instrument: counter
@@ -33,6 +34,7 @@ groups:
   - id: metric.hw.gpu.memory.limit
     type: metric
     metric_name: hw.gpu.memory.limit
+    # value_type: int
     stability: development
     brief: "Size of the GPU memory"
     instrument: updowncounter
@@ -42,6 +44,7 @@ groups:
   - id: metric.hw.gpu.memory.utilization
     type: metric
     metric_name: hw.gpu.memory.utilization
+    # value_type: double
     stability: development
     brief: "Fraction of GPU memory used"
     instrument: gauge
@@ -51,6 +54,7 @@ groups:
   - id: metric.hw.gpu.memory.usage
     type: metric
     metric_name: hw.gpu.memory.usage
+    # value_type: int
     stability: development
     brief: "GPU memory used"
     instrument: updowncounter
@@ -60,6 +64,7 @@ groups:
   - id: metric.hw.gpu.power
     type: metric
     metric_name: hw.gpu.power
+    # value_type: double
     stability: development
     brief: "GPU instantaneous power consumption in Watts"
     instrument: gauge
@@ -69,6 +74,7 @@ groups:
   - id: metric.hw.gpu.utilization
     type: metric
     metric_name: hw.gpu.utilization
+    # value_type: double
     stability: development
     brief: "Fraction of time spent in a specific task"
     instrument: gauge

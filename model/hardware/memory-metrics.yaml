@@ -18,6 +18,7 @@ groups:
   - id: metric.hw.memory.size
     type: metric
     metric_name: hw.memory.size
+    # value_type: int
     stability: development
     brief: "Size of the memory module"
     instrument: updowncounter

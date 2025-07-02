@@ -15,6 +15,7 @@ groups:
   - id: metric.hw.cpu.speed
     type: metric
     metric_name: hw.cpu.speed
+    # value_type: int
     stability: development
     brief: "CPU current frequency"
     instrument: gauge
@@ -25,6 +26,7 @@ groups:
   - id: metric.hw.cpu.speed.limit
     type: metric
     metric_name: hw.cpu.speed.limit
+    # value_type: int
     stability: development
     brief: "CPU maximum frequency"
     instrument: gauge

@@ -12,6 +12,7 @@ groups:
   - id: metric.hw.fan.speed
     type: metric
     metric_name: hw.fan.speed
+    # value_type: int
     stability: development
     brief: "Fan speed in revolutions per minute"
     instrument: gauge
@@ -21,6 +22,7 @@ groups:
   - id: metric.hw.fan.speed.limit
     type: metric
     metric_name: hw.fan.speed.limit
+    # value_type: int
     stability: development
     brief: "Speed limit in rpm"
     instrument: gauge
@@ -34,6 +36,7 @@ groups:
   - id: metric.hw.fan.speed_ratio
     type: metric
     metric_name: hw.fan.speed_ratio
+    # value_type: double
     stability: development
     brief: "Fan speed expressed as a fraction of its maximum speed"
     instrument: gauge

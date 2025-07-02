@@ -12,6 +12,7 @@ groups:
   - id: metric.hw.logical_disk.limit
     type: metric
     metric_name: hw.logical_disk.limit
+    # value_type: int
     stability: development
     brief: "Size of the logical disk"
     instrument: updowncounter
@@ -21,6 +22,7 @@ groups:
   - id: metric.hw.logical_disk.usage
     type: metric
     metric_name: hw.logical_disk.usage
+    # value_type: int
     stability: development
     brief: "Logical disk space usage"
     instrument: updowncounter
@@ -34,6 +36,7 @@ groups:
   - id: metric.hw.logical_disk.utilization
     type: metric
     metric_name: hw.logical_disk.utilization
+    # value_type: double
     stability: development
     brief: "Logical disk space utilization as a fraction"
     instrument: gauge

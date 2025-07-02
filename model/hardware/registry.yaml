@@ -449,3 +449,133 @@ groups:
         stability: development
         brief: >
           Direction of network traffic
+          
+      # PHYSICAL DISK ATTRIBUTES
+      - id: hw.physical_disk.firmware_version
+        type: string
+        stability: development
+        brief: >
+          Firmware version of the physical disk
+        examples: ['2.3.1']
+      - id: hw.physical_disk.model
+        type: string
+        stability: development
+        brief: >
+          Descriptive model name of the physical disk
+        examples: ['Samsung 970 EVO Plus', 'WD Black SN750']
+      - id: hw.physical_disk.serial_number
+        type: string
+        stability: development
+        brief: >
+          Serial number of the physical disk
+        examples: ['S3Z9NX0M123456']
+      - id: hw.physical_disk.type
+        type: string
+        stability: development
+        brief: >
+          Type of the physical disk
+        examples: ['HDD', 'SSD', '10K']
+      - id: hw.physical_disk.vendor
+        type: string
+        stability: development
+        brief: >
+          Vendor name of the physical disk
+        examples: ['Samsung', 'Western Digital', 'Seagate']
+      - id: hw.physical_disk.state
+        type:
+          members:
+            - id: remaining
+              value: 'remaining'
+              brief: "Remaining"
+              stability: development
+        stability: development
+        brief: >
+          State of the physical disk endurance utilization
+      - id: hw.physical_disk.smart_attribute
+        type:
+          members:
+            - id: raw_read_error_rate
+              value: 'raw_read_error_rate'
+              brief: "Raw Read Error Rate"
+              stability: development
+            - id: throughput_performance
+              value: 'throughput_performance'
+              brief: 'Throughput Performance'
+              stability: development
+            - id: spin_up_time
+              value: 'spin_up_time'
+              brief: 'Spin Up Time'
+              stability: development
+            - id: start_stop_count
+              value: 'start_stop_count'
+              brief: 'Start/Stop Count'
+              stability: development
+            - id: reallocated_sectors_count
+              value: 'reallocated_sectors_count'
+              brief: 'Reallocated Sectors Count'
+              stability: development
+            - id: seek_error_rate
+              value: 'seek_error_rate'
+              brief: 'Seek Error Rate'
+              stability: development
+            - id: seek_time_performance
+              value: 'seek_time_performance'
+              brief: 'Seek Time Performance'
+              stability: development
+            - id: power_on_hours
+              value: 'power_on_hours'
+              brief: 'Power-On Hours'
+              stability: development
+            - id: spin_retry_count
+              value: 'spin_retry_count'
+              brief: 'Spin Retry Count'
+              stability: development
+            - id: power_cycle_count
+              value: 'power_cycle_count'
+              brief: 'Power Cycle Count'
+              stability: development
+            - id: temperature_celsius
+              value: 'temperature_celsius'
+              brief: 'Temperature Celsius'
+              stability: development
+        stability: development
+        brief: >
+          [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk
+        
+      # POWER SUPPLY ATTRIBUTES
+      - id: hw.power_supply.model
+        type: string
+        stability: development
+        brief: >
+          Descriptive model name of the power supply
+        examples: ['Corsair RM850x', 'EVGA SuperNOVA 750 G5']
+      - id: hw.power_supply.serial_number
+        type: string
+        stability: development
+        brief: >
+          Serial number of the power supply
+        examples: ['PS123456789']
+      - id: hw.power_supply.vendor
+        type: string
+        stability: development
+        brief: >
+          Vendor name of the power supply
+        examples: ['Corsair', 'EVGA', 'Seasonic']
+      - id: hw.power_supply.limit_type
+        type:
+          members:
+            - id: max
+              value: 'max'
+              brief: "Maximum"
+              stability: development
+            - id: critical
+              value: 'critical'
+              brief: 'Critical'
+              stability: development
+            - id: throttled
+              value: 'throttled'
+              brief: 'Throttled'
+              stability: development
+        stability: development
+        brief: >
+          Type of power supply limit

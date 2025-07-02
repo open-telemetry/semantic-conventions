@@ -52,6 +52,17 @@ Attributes for hardware.
 | <a id="hw-network-serial-number" href="#hw-network-serial-number">`hw.network.serial_number`</a> | string | Serial number of the network adapter | `ABCDEF123456` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-network-vendor" href="#hw-network-vendor">`hw.network.vendor`</a> | string | Vendor name of the network adapter | `Intel`; `Broadcom`; `Mellanox` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-parent" href="#hw-parent">`hw.parent`</a> | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-physical-disk-firmware-version" href="#hw-physical-disk-firmware-version">`hw.physical_disk.firmware_version`</a> | string | Firmware version of the physical disk | `2.3.1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-physical-disk-model" href="#hw-physical-disk-model">`hw.physical_disk.model`</a> | string | Descriptive model name of the physical disk | `Samsung 970 EVO Plus`; `WD Black SN750` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-physical-disk-serial-number" href="#hw-physical-disk-serial-number">`hw.physical_disk.serial_number`</a> | string | Serial number of the physical disk | `S3Z9NX0M123456` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-physical-disk-smart-attribute" href="#hw-physical-disk-smart-attribute">`hw.physical_disk.smart_attribute`</a> | string | [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk | `raw_read_error_rate`; `throughput_performance`; `spin_up_time` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-physical-disk-state" href="#hw-physical-disk-state">`hw.physical_disk.state`</a> | string | State of the physical disk endurance utilization | `remaining` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-physical-disk-type" href="#hw-physical-disk-type">`hw.physical_disk.type`</a> | string | Type of the physical disk | `HDD`; `SSD`; `10K` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-physical-disk-vendor" href="#hw-physical-disk-vendor">`hw.physical_disk.vendor`</a> | string | Vendor name of the physical disk | `Samsung`; `Western Digital`; `Seagate` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-power-supply-limit-type" href="#hw-power-supply-limit-type">`hw.power_supply.limit_type`</a> | string | Type of power supply limit | `max`; `critical`; `throttled` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-power-supply-model" href="#hw-power-supply-model">`hw.power_supply.model`</a> | string | Descriptive model name of the power supply | `Corsair RM850x`; `EVGA SuperNOVA 750 G5` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-power-supply-serial-number" href="#hw-power-supply-serial-number">`hw.power_supply.serial_number`</a> | string | Serial number of the power supply | `PS123456789` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-power-supply-vendor" href="#hw-power-supply-vendor">`hw.power_supply.vendor`</a> | string | Vendor name of the power supply | `Corsair`; `EVGA`; `Seasonic` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-state" href="#hw-state">`hw.state`</a> | string | The current state of the component | `ok`; `degraded`; `failed` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-type" href="#hw-type">`hw.type`</a> | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -123,6 +134,42 @@ Attributes for hardware.
 |---|---|---|
 | `receive` | Receive | ![Development](https://img.shields.io/badge/-development-blue) |
 | `transmit` | Transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`hw.physical_disk.smart_attribute` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `power_cycle_count` | Power Cycle Count | ![Development](https://img.shields.io/badge/-development-blue) |
+| `power_on_hours` | Power-On Hours | ![Development](https://img.shields.io/badge/-development-blue) |
+| `raw_read_error_rate` | Raw Read Error Rate | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reallocated_sectors_count` | Reallocated Sectors Count | ![Development](https://img.shields.io/badge/-development-blue) |
+| `seek_error_rate` | Seek Error Rate | ![Development](https://img.shields.io/badge/-development-blue) |
+| `seek_time_performance` | Seek Time Performance | ![Development](https://img.shields.io/badge/-development-blue) |
+| `spin_retry_count` | Spin Retry Count | ![Development](https://img.shields.io/badge/-development-blue) |
+| `spin_up_time` | Spin Up Time | ![Development](https://img.shields.io/badge/-development-blue) |
+| `start_stop_count` | Start/Stop Count | ![Development](https://img.shields.io/badge/-development-blue) |
+| `temperature_celsius` | Temperature Celsius | ![Development](https://img.shields.io/badge/-development-blue) |
+| `throughput_performance` | Throughput Performance | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`hw.physical_disk.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `remaining` | Remaining | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`hw.power_supply.limit_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `critical` | Critical | ![Development](https://img.shields.io/badge/-development-blue) |
+| `max` | Maximum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `throttled` | Throttled | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
