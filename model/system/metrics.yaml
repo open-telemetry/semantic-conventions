@@ -480,9 +480,9 @@ groups:
     entity_associations:
       - host
 
-  - id: metric.system.network.connections
+  - id: metric.system.network.connection.count
     type: metric
-    metric_name: system.network.connections
+    metric_name: system.network.connection.count
     annotations:
       code_generation:
         metric_value_type: int

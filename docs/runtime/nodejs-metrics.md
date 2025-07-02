@@ -39,9 +39,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
-| `nodejs.eventloop.delay.min` | Gauge | `double` | `s` | Event loop minimum delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `nodejs.eventloop.delay.min` | Gauge | `s` | Event loop minimum delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Value can be retrieved from value `histogram.min` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
@@ -61,9 +61,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
-| `nodejs.eventloop.delay.max` | Gauge | `double` | `s` | Event loop maximum delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `nodejs.eventloop.delay.max` | Gauge | `s` | Event loop maximum delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Value can be retrieved from value `histogram.max` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
@@ -83,9 +83,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
-| `nodejs.eventloop.delay.mean` | Gauge | `double` | `s` | Event loop mean delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `nodejs.eventloop.delay.mean` | Gauge | `s` | Event loop mean delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Value can be retrieved from value `histogram.mean` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
@@ -105,9 +105,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
-| `nodejs.eventloop.delay.stddev` | Gauge | `double` | `s` | Event loop standard deviation delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `nodejs.eventloop.delay.stddev` | Gauge | `s` | Event loop standard deviation delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Value can be retrieved from value `histogram.stddev` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
@@ -127,9 +127,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
-| `nodejs.eventloop.delay.p50` | Gauge | `double` | `s` | Event loop 50 percentile delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `nodejs.eventloop.delay.p50` | Gauge | `s` | Event loop 50 percentile delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Value can be retrieved from value `histogram.percentile(50)` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
@@ -149,9 +149,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
-| `nodejs.eventloop.delay.p90` | Gauge | `double` | `s` | Event loop 90 percentile delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `nodejs.eventloop.delay.p90` | Gauge | `s` | Event loop 90 percentile delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Value can be retrieved from value `histogram.percentile(90)` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
@@ -171,9 +171,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
-| `nodejs.eventloop.delay.p99` | Gauge | `double` | `s` | Event loop 99 percentile delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `nodejs.eventloop.delay.p99` | Gauge | `s` | Event loop 99 percentile delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Value can be retrieved from value `histogram.percentile(99)` of [`perf_hooks.monitorEventLoopDelay([options])`](https://nodejs.org/api/perf_hooks.html#perf_hooksmonitoreventloopdelayoptions)
 
@@ -193,9 +193,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
-| `nodejs.eventloop.utilization` | Gauge | `double` | `1` | Event loop utilization. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `nodejs.eventloop.utilization` | Gauge | `1` | Event loop utilization. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** The value range is [0.0, 1.0] and can be retrieved from [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
 
@@ -215,9 +215,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
-| `nodejs.eventloop.time` | Counter | `double` | `s` | Cumulative duration of time the event loop has been in each state. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `nodejs.eventloop.time` | Counter | `s` | Cumulative duration of time the event loop has been in each state. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Value can be retrieved from [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
 

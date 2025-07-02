@@ -34,9 +34,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
-| `cpython.gc.collections` | Counter | `int` | `{collection}` | The number of times a generation was collected since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `cpython.gc.collections` | Counter | `{collection}` | The number of times a generation was collected since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
 
@@ -70,9 +70,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
-| `cpython.gc.collected_objects` | Counter | `int` | `{object}` | The total number of objects collected inside a generation since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `cpython.gc.collected_objects` | Counter | `{object}` | The total number of objects collected inside a generation since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
 
@@ -106,9 +106,9 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Value Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | ----------- | -------------- | --------- | ------ |
-| `cpython.gc.uncollectable_objects` | Counter | `int` | `{object}` | The total number of objects which were found to be uncollectable inside a generation since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `cpython.gc.uncollectable_objects` | Counter | `{object}` | The total number of objects which were found to be uncollectable inside a generation since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
 

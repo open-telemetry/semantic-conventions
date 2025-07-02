@@ -13,7 +13,7 @@ linkTitle: How to define new semantic conventions
     - [Defining attributes](#defining-attributes)
     - [Defining spans](#defining-spans)
     - [Defining metrics](#defining-metrics)
-    - [Defining resources](#defining-resources)
+    - [Defining entities](#defining-entities)
     - [Defining events](#defining-events)
 - [Stabilizing existing conventions](#stabilizing-existing-conventions)
   - [Migration plan](#migration-plan)
@@ -141,9 +141,9 @@ TBD
 
 TBD
 
-#### Defining resources
+#### Defining entities
 
-TBD
+Follow the [Entity Modeling Guide](/docs/non-normative/how-to-write-conventions/resource-and-entities.md).
 
 #### Defining events
 
