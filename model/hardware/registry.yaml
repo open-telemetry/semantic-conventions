@@ -609,4 +609,3 @@ groups:
         brief: >
           Location of the voltage sensor
         examples: ['PS0 V3_3', 'MAIN_12V', 'CPU_VCORE']
-

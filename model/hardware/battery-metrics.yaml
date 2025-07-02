@@ -18,18 +18,18 @@ groups:
   - id: metric.hw.battery.charge
     type: metric
     metric_name: hw.battery.charge
-#    value_type: double
+    # value_type: double
     stability: development
     brief: "Remaining fraction of battery charge"
     instrument: gauge
     unit: "1"
     extends: metric.hw.battery
 
-    #TODO: decide on metric name - charge.limit is original
+    # TODO: decide on metric name - charge.limit is original
   - id: metric.hw.battery.charge.limit
     type: metric
     metric_name: hw.battery.charge.limit
-#    value_type: double
+    # value_type: double
     stability: development
     brief: "Lower limit of battery charge fraction to ensure proper operation"
     instrument: gauge
@@ -43,7 +43,7 @@ groups:
   - id: metric.hw.battery.time_left
     type: metric
     metric_name: hw.battery.time_left
-#    value_type: int
+    # value_type: int
     stability: development
     brief: "Time left before battery is completely charged or discharged"
     instrument: gauge
