@@ -43,15 +43,15 @@ groups:
         type:
           members:
             - id: none
-              value: NONE
+              value: none
               brief: 'The span does not have a parent, it is a root span'
               stability: development
             - id: local
-              value: LOCAL
+              value: local
               brief: The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is false
               stability: development
             - id: remote
-              value: REMOTE
+              value: remote
               brief: The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is true
               stability: development
         brief: "Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote)"

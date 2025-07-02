@@ -91,7 +91,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`otel.span.parent.origin`](/docs/registry/attributes/otel.md) | string | Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) | `NONE`; `LOCAL`; `REMOTE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`otel.span.parent.origin`](/docs/registry/attributes/otel.md) | string | Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) | `none`; `local`; `remote` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`otel.span.sampling_result`](/docs/registry/attributes/otel.md) | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
@@ -100,9 +100,9 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `LOCAL` | The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is false | ![Development](https://img.shields.io/badge/-development-blue) |
-| `NONE` | The span does not have a parent, it is a root span | ![Development](https://img.shields.io/badge/-development-blue) |
-| `REMOTE` | The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is true | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local` | The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is false | ![Development](https://img.shields.io/badge/-development-blue) |
+| `none` | The span does not have a parent, it is a root span | ![Development](https://img.shields.io/badge/-development-blue) |
+| `remote` | The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is true | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
