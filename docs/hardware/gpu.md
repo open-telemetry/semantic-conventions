@@ -58,6 +58,7 @@ This metric is [recommended][MetricRecommended].
 Number of errors encountered by the GPU.
 
 When using this metric, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"gpu"` to indicate that the errors are from a GPU.
 - `error.type` SHOULD be set to one of the following values to indicate the type of error:
   - `"corrected"`: Errors that were detected and corrected by the GPU.
@@ -346,6 +347,7 @@ This metric is [recommended][MetricRecommended].
 Operational status: `1` (true) or `0` (false) for each of the possible states.
 
 When using this metric for GPU status, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"gpu"` to indicate that the status is for a GPU.
 - `hw.state` MUST be set to one of the following values to indicate the GPU state:
   - `"ok"`: The GPU is operating normally.

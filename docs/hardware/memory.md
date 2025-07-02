@@ -52,6 +52,7 @@ This metric is [recommended][MetricRecommended].
 Number of errors encountered on this memory module.
 
 When using this metric, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"memory"` to indicate that the errors are from a memory module.
 
 <!-- semconv metric.hw.errors -->
@@ -162,6 +163,7 @@ This metric is [recommended][MetricRecommended].
 Operational status: `1` (true) or `0` (false) for each of the possible states.
 
 When using this metric for memory status, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"memory"` to indicate that the status is for a memory module.
 - `hw.state` MUST be set to one of the following values to indicate the memory state:
   - `"ok"`: The memory module is operating normally.

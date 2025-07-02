@@ -55,9 +55,11 @@ This metric is [recommended][MetricRecommended].
 Number of errors encountered on this disk.
 
 When using this metric, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"physical_disk"` to indicate that the errors are from a physical disk.
 
 The following attributes SHOULD be set:
+
 - `error.type` SHOULD be set to indicate the type of error, such as `"bad_sector"`, `"write"`, etc.
 
 <!-- semconv metric.hw.errors -->
@@ -136,6 +138,7 @@ This metric is [recommended][MetricRecommended].
 Endurance remaining for this SSD disk.
 
 When using this metric, the following attributes MUST be set:
+
 - `hw.physical_disk.state` MUST be set to `"remaining"` to indicate the remaining endurance.
 
 <!-- semconv metric.hw.physical_disk.endurance_utilization -->
@@ -214,6 +217,7 @@ This metric is [recommended][MetricRecommended].
 Value of the corresponding [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) attribute.
 
 The following attributes SHOULD be set:
+
 - `hw.physical_disk.smart_attribute` SHOULD be set to indicate the specific S.M.A.R.T. attribute being reported, such as `"Seek Error Rate"`, `"Spin Retry Count"`, etc.
 
 <!-- semconv metric.hw.physical_disk.smart -->
@@ -269,6 +273,7 @@ This metric is [recommended][MetricRecommended].
 Operational status: `1` (true) or `0` (false) for each of the possible states.
 
 When using this metric for physical disk status, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"physical_disk"` to indicate that the status is for a physical disk.
 - `hw.state` MUST be set to one of the following values to indicate the physical disk state:
   - `"ok"`: The physical disk is operating normally.

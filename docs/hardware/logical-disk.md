@@ -51,6 +51,7 @@ This metric is [recommended][MetricRecommended].
 Number of errors encountered on this logical disk.
 
 When using this metric, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"logical_disk"` to indicate that the errors are from a logical disk.
 
 <!-- semconv metric.hw.errors -->
@@ -158,6 +159,7 @@ This metric is [recommended][MetricRecommended].
 Logical disk space usage.
 
 When using this metric, the following attributes MUST be set:
+
 - `hw.logical_disk.state` MUST be set to one of the following values:
   - `"used"`: The amount of disk space that is in use.
   - `"free"`: The amount of disk space that is free.
@@ -202,6 +204,7 @@ This metric is [recommended][MetricRecommended].
 Logical disk space utilization as a fraction.
 
 When using this metric, the following attributes MUST be set:
+
 - `hw.logical_disk.state` MUST be set to one of the following values:
   - `"used"`: The fraction of disk space that is in use.
   - `"free"`: The fraction of disk space that is free.
@@ -246,6 +249,7 @@ This metric is [recommended][MetricRecommended].
 Operational status: `1` (true) or `0` (false) for each of the possible states.
 
 When using this metric for logical disk status, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"logical_disk"` to indicate that the status is for a logical disk.
 - `hw.state` MUST be set to one of the following values to indicate the logical disk state:
   - `"ok"`: The logical disk is operating normally.

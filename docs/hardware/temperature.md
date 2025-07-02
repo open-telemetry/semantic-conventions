@@ -78,6 +78,7 @@ This metric is [recommended][MetricRecommended].
 Temperature limit in degrees Celsius.
 
 The following attributes SHOULD be set:
+
 - `hw.temperature.limit_type` SHOULD be set to indicate the type of limit, such as `"low.critical"`, `"low.degraded"`, `"high.degraded"`, or `"high.critical"`.
 
 <!-- semconv metric.hw.temperature.limit -->
@@ -127,6 +128,7 @@ This metric is [recommended][MetricRecommended].
 Whether the temperature is within normal range: `1` (true) or `0` (false) for each of the possible states.
 
 When using this metric for temperature status, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"temperature"` to indicate that the status is for a temperature sensor.
 - `hw.state` MUST be set to one of the following values to indicate the temperature state:
   - `"ok"`: The temperature is within normal range.

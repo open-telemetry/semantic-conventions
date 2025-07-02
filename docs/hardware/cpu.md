@@ -51,6 +51,7 @@ This metric is [recommended][MetricRecommended].
 Total number of errors encountered and corrected by the CPU.
 
 When using this metric, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"cpu"` to indicate that the errors are from a CPU.
 
 <!-- semconv metric.hw.errors -->
@@ -202,6 +203,7 @@ This metric is [recommended][MetricRecommended].
 Operational status: `1` (true) or `0` (false) for each of the possible states.
 
 When using this metric for CPU status, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"cpu"` to indicate that the status is for a CPU.
 - `hw.state` MUST be set to one of the following values to indicate the CPU state:
   - `"ok"`: The CPU is operating normally.

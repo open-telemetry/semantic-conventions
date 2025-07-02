@@ -79,6 +79,7 @@ This metric is [recommended][MetricRecommended].
 Voltage limit in Volts.
 
 The following attributes SHOULD be set:
+
 - `hw.voltage.limit_type` SHOULD be set to indicate the type of limit, such as `"low.critical"`, `"low.degraded"`, `"high.degraded"`, or `"high.critical"`.
 
 <!-- semconv metric.hw.voltage.limit -->
@@ -157,6 +158,7 @@ This metric is [recommended][MetricRecommended].
 Whether the voltage is within normal range: `1` (true) or `0` (false) for each of the possible states.
 
 When using this metric for voltage status, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"voltage"` to indicate that the status is for a voltage sensor.
 - `hw.state` MUST be set to one of the following values to indicate the voltage state:
   - `"ok"`: The voltage is within normal range.

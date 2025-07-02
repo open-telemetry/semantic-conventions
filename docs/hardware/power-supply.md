@@ -51,6 +51,7 @@ This metric is [recommended][MetricRecommended].
 Maximum power output of the power supply.
 
 The following attributes SHOULD be set:
+
 - `hw.power_supply.limit_type` SHOULD be set to indicate the type of limit, such as `"max"`, `"critical"`, or `"throttled"`.
 
 <!-- semconv metric.hw.power_supply.limit -->
@@ -133,6 +134,7 @@ This metric is [recommended][MetricRecommended].
 Operational status: `1` (true) or `0` (false) for each of the possible states.
 
 When using this metric for power supply status, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"power_supply"` to indicate that the status is for a power supply.
 - `hw.state` MUST be set to one of the following values to indicate the power supply state:
   - `"ok"`: The power supply is operating normally.

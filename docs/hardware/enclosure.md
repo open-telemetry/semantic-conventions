@@ -51,6 +51,7 @@ This metric is [recommended][MetricRecommended].
 Operational status: `1` (true) or `0` (false) for each of the possible states.
 
 When using this metric for enclosure status, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"enclosure"` to indicate that the status is for an enclosure.
 - `hw.state` MUST be set to one of the following values to indicate the enclosure state:
   - `"ok"`: The enclosure is operating normally.

@@ -57,9 +57,11 @@ This metric is [recommended][MetricRecommended].
 Number of errors encountered by the network adapter.
 
 When using this metric, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"network"` to indicate that the errors are from a network adapter.
 
 The following attributes SHOULD be set:
+
 - `error.type` SHOULD be set to indicate the type of error, such as `"zero_buffer_credit"`, `"crc"`, etc.
 - `hw.network.direction` SHOULD be set to indicate the direction of the error, either `"receive"` or `"transmit"`.
 
@@ -205,6 +207,7 @@ This metric is [recommended][MetricRecommended].
 Received and transmitted network traffic in bytes.
 
 When using this metric, the following attributes MUST be set:
+
 - `hw.network.direction` MUST be set to one of the following values:
   - `"receive"`: The amount of network traffic received.
   - `"transmit"`: The amount of network traffic transmitted.
@@ -253,6 +256,7 @@ This metric is [recommended][MetricRecommended].
 Received and transmitted network traffic in packets (or frames).
 
 When using this metric, the following attributes MUST be set:
+
 - `hw.network.direction` MUST be set to one of the following values:
   - `"receive"`: The number of packets received.
   - `"transmit"`: The number of packets transmitted.
@@ -334,6 +338,7 @@ This metric is [recommended][MetricRecommended].
 Operational status, regardless of the link status: `1` (true) or `0` (false) for each of the possible states.
 
 When using this metric for network status, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"network"` to indicate that the status is for a network adapter.
 - `hw.state` MUST be set to one of the following values to indicate the network adapter state:
   - `"ok"`: The network adapter is operating normally.

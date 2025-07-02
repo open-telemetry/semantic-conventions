@@ -51,9 +51,11 @@ This metric is [recommended][MetricRecommended].
 Number of errors encountered by the tape drive.
 
 When using this metric, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"tape_drive"` to indicate that the errors are from a tape drive.
 
 The following attributes SHOULD be set:
+
 - `error.type` SHOULD be set to indicate the type of error, such as `"read"`, `"write"`, `"mount"`, etc.
 
 <!-- semconv metric.hw.errors -->
@@ -132,6 +134,7 @@ This metric is [recommended][MetricRecommended].
 Operations performed by the tape drive.
 
 The following attributes SHOULD be set:
+
 - `hw.tape_drive.operation_type` SHOULD be set to indicate the type of operation, such as `"mount"`, `"unmount"`, or `"clean"`.
 
 <!-- semconv metric.hw.tape_drive.operations -->
@@ -177,6 +180,7 @@ This metric is [recommended][MetricRecommended].
 Operational status: `1` (true) or `0` (false) for each of the possible states.
 
 When using this metric for tape drive status, the following attributes MUST be set:
+
 - `hw.type` MUST be set to `"tape_drive"` to indicate that the status is for a tape drive.
 - `hw.state` MUST be set to one of the following values to indicate the tape drive state:
   - `"ok"`: The tape drive is operating normally.
