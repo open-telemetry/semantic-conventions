@@ -32,7 +32,7 @@ The Semantic Conventions for [OpenAI](https://openai.com/) extend and override t
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-Semantic Conventions for [OpenAI](https://openai.com/) client spans extend and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md).
+Semantic Conventions for [OpenAI](https://openai.com/) client spans extend and override the semantic conventions for [Gen AI Spans](/docs/gen-ai/gen-ai-spans.md).
 
 `gen_ai.system` MUST be set to `"openai"` and SHOULD be provided **at span creation time**.
 
