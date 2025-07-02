@@ -30,6 +30,13 @@ Attributes for hardware.
 | <a id="hw-enclosure-vendor" href="#hw-enclosure-vendor">`hw.enclosure.vendor`</a> | string | Vendor name of the enclosure | `Dell`; `HP`; `Lenovo` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-fan-limit-type" href="#hw-fan-limit-type">`hw.fan.limit_type`</a> | string | Type of the fan speed limit | `low.critical`; `low.degraded`; `max` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-fan-sensor-location" href="#hw-fan-sensor-location">`hw.fan.sensor_location`</a> | string | Location of the fan in the computer enclosure | `cpu0`; `ps1`; `INLET` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-gpu-direction" href="#hw-gpu-direction">`hw.gpu.direction`</a> | string | Direction of data transfer | `receive`; `transmit` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-gpu-driver-version" href="#hw-gpu-driver-version">`hw.gpu.driver_version`</a> | string | Driver version for the GPU | `512.78`; `22.5.1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-gpu-firmware-version" href="#hw-gpu-firmware-version">`hw.gpu.firmware_version`</a> | string | Firmware version of the GPU | `94.02.71.00.0D` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-gpu-model" href="#hw-gpu-model">`hw.gpu.model`</a> | string | Descriptive model name of the GPU | `NVIDIA GeForce RTX 3080`; `AMD Radeon RX 6800 XT` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-gpu-serial-number" href="#hw-gpu-serial-number">`hw.gpu.serial_number`</a> | string | Serial number of the GPU | `GVKH2P000001` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-gpu-task" href="#hw-gpu-task">`hw.gpu.task`</a> | string | Type of task the GPU is performing | `decoder`; `encoder`; `general` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-gpu-vendor" href="#hw-gpu-vendor">`hw.gpu.vendor`</a> | string | Vendor name of the GPU | `NVIDIA`; `AMD`; `Intel` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-id" href="#hw-id">`hw.id`</a> | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-name" href="#hw-name">`hw.name`</a> | string | An easily-recognizable name for the hardware component | `eth0` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-parent" href="#hw-parent">`hw.parent`</a> | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -67,6 +74,25 @@ Attributes for hardware.
 | `low.critical` | Low Critical | ![Development](https://img.shields.io/badge/-development-blue) |
 | `low.degraded` | Low Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
 | `max` | Max | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`hw.gpu.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `receive` | Receive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | Transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`hw.gpu.task` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `decoder` | Decoder | ![Development](https://img.shields.io/badge/-development-blue) |
+| `encoder` | Encoder | ![Development](https://img.shields.io/badge/-development-blue) |
+| `general` | General | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

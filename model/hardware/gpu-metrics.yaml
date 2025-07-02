@@ -1,0 +1,80 @@
+groups:
+  # GPU METRICS
+  - id: metric.hw.gpu
+    type: attribute_group
+    brief: >
+      Common attributes for GPU metrics
+    extends: hardware.attributes.common
+    attributes:
+      - ref: hw.gpu.driver_version
+        requirement_level: recommended
+      - ref: hw.gpu.firmware_version
+        requirement_level: recommended
+      - ref: hw.gpu.model
+        requirement_level: recommended
+      - ref: hw.gpu.serial_number
+        requirement_level: recommended
+      - ref: hw.gpu.vendor
+        requirement_level: recommended
+
+  - id: metric.hw.gpu.io
+    type: metric
+    metric_name: hw.gpu.io
+    stability: development
+    brief: "Received and transmitted bytes by the GPU"
+    instrument: counter
+    unit: "By"
+    extends: metric.hw.gpu
+    attributes:
+      - ref: hw.gpu.direction
+        examples: ["receive", "transmit"]
+        requirement_level: required
+
+  - id: metric.hw.gpu.memory.limit
+    type: metric
+    metric_name: hw.gpu.memory.limit
+    stability: development
+    brief: "Size of the GPU memory"
+    instrument: updowncounter
+    unit: "By"
+    extends: metric.hw.gpu
+
+  - id: metric.hw.gpu.memory.utilization
+    type: metric
+    metric_name: hw.gpu.memory.utilization
+    stability: development
+    brief: "Fraction of GPU memory used"
+    instrument: gauge
+    unit: "1"
+    extends: metric.hw.gpu
+
+  - id: metric.hw.gpu.memory.usage
+    type: metric
+    metric_name: hw.gpu.memory.usage
+    stability: development
+    brief: "GPU memory used"
+    instrument: updowncounter
+    unit: "By"
+    extends: metric.hw.gpu
+
+  - id: metric.hw.gpu.power
+    type: metric
+    metric_name: hw.gpu.power
+    stability: development
+    brief: "GPU instantaneous power consumption in Watts"
+    instrument: gauge
+    unit: "W"
+    extends: metric.hw.gpu
+
+  - id: metric.hw.gpu.utilization
+    type: metric
+    metric_name: hw.gpu.utilization
+    stability: development
+    brief: "Fraction of time spent in a specific task"
+    instrument: gauge
+    unit: "1"
+    extends: metric.hw.gpu
+    attributes:
+      - ref: hw.gpu.task
+        examples: ["decoder", "encoder", "general"]
+        requirement_level: recommended

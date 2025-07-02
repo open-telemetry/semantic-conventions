@@ -291,3 +291,67 @@ groups:
         stability: development
         brief: >
           Type of the fan speed limit
+          
+      # GPU ATTRIBUTES
+      - id: hw.gpu.driver_version
+        type: string
+        stability: development
+        brief: >
+          Driver version for the GPU
+        examples: ['512.78', '22.5.1']
+      - id: hw.gpu.firmware_version
+        type: string
+        stability: development
+        brief: >
+          Firmware version of the GPU
+        examples: ['94.02.71.00.0D']
+      - id: hw.gpu.model
+        type: string
+        stability: development
+        brief: >
+          Descriptive model name of the GPU
+        examples: ['NVIDIA GeForce RTX 3080', 'AMD Radeon RX 6800 XT']
+      - id: hw.gpu.serial_number
+        type: string
+        stability: development
+        brief: >
+          Serial number of the GPU
+        examples: ['GVKH2P000001']
+      - id: hw.gpu.vendor
+        type: string
+        stability: development
+        brief: >
+          Vendor name of the GPU
+        examples: ['NVIDIA', 'AMD', 'Intel']
+      - id: hw.gpu.task
+        type:
+          members:
+            - id: decoder
+              value: 'decoder'
+              brief: "Decoder"
+              stability: development
+            - id: encoder
+              value: 'encoder'
+              brief: 'Encoder'
+              stability: development
+            - id: general
+              value: 'general'
+              brief: 'General'
+              stability: development
+        stability: development
+        brief: >
+          Type of task the GPU is performing
+      - id: hw.gpu.direction
+        type:
+          members:
+            - id: receive
+              value: 'receive'
+              brief: "Receive"
+              stability: development
+            - id: transmit
+              value: 'transmit'
+              brief: 'Transmit'
+              stability: development
+        stability: development
+        brief: >
+          Direction of data transfer
