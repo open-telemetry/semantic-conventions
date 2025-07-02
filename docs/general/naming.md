@@ -24,7 +24,7 @@ aliases: [attribute-naming]
 - [Metrics](#metrics)
   - [Naming rules for counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
     - [Pluralization](#pluralization)
-    - [Use `count` instead of pluralization for UpDownCounters](#use-count-instead-of-pluralization-for-updowncounters)
+    - [Do not pluralize UpDownCounter names](#do-not-pluralize-updowncounter-names)
     - [Do not use `total`](#do-not-use-total)
   - [Instrument naming](#instrument-naming)
   - [Client and server metrics](#client-and-server-metrics)
@@ -288,14 +288,14 @@ Examples:
 - `system.paging.faults`, `system.disk.operations`, and `system.network.packets`
   should be pluralized, even if only a single data point is recorded.
 
-#### Use `count` instead of pluralization for UpDownCounters
+#### Do not pluralize UpDownCounter names
 
-If the value being recorded represents the count of concepts signified
-by the namespace then the metric should be named `count` (within its namespace).
+UpDownCounter names SHOULD NOT be pluralized.
 
 For example if we have a namespace `system.process` which contains all metrics related
 to the processes then to represent the count of the processes we can have a metric named
-`system.process.count`.
+`system.process.count` instead of `system.processes`. Similarly, `cicd.pipeline.run.active` is preferred
+over the `cicd.pipeline.active_runs`.
 
 #### Do not use `total`
 
