@@ -2,7 +2,9 @@ groups:
   - id: metric.v8js.gc.duration
     type: metric
     metric_name: v8js.gc.duration
-    value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Garbage collection duration."
     instrument: histogram
     unit: "s"
@@ -16,7 +18,9 @@ groups:
   - id: metric.v8js.memory.heap.limit
     type: metric
     metric_name: v8js.memory.heap.limit
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Total heap memory size pre-allocated."
     instrument: updowncounter
     unit: "By"
@@ -31,7 +35,9 @@ groups:
   - id: metric.v8js.memory.heap.used
     type: metric
     metric_name: v8js.memory.heap.used
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Heap Memory size allocated."
     instrument: updowncounter
     unit: "By"
@@ -46,7 +52,9 @@ groups:
   - id: metric.v8js.heap.space.available_size
     type: metric
     metric_name: v8js.heap.space.available_size
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Heap space available size."
     instrument: updowncounter
     unit: "By"
@@ -60,7 +68,9 @@ groups:
   - id: metric.v8js.heap.space.physical_size
     type: metric
     metric_name: v8js.heap.space.physical_size
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Committed size of a heap space."
     instrument: updowncounter
     unit: "By"

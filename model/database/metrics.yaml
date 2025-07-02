@@ -2,7 +2,9 @@ groups:
   - id: metric.db.client.operation.duration
     type: metric
     metric_name: db.client.operation.duration
-    value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Duration of database client operations."
     note: >
       Batch operations SHOULD be recorded as a single operation.
@@ -38,7 +40,9 @@ groups:
   - id: metric.db.client.connection.count
     type: metric
     metric_name: db.client.connection.count
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The number of connections that are currently in state described by the `state` attribute"
     instrument: updowncounter
@@ -52,7 +56,9 @@ groups:
   - id: metric.db.client.connection.idle.max
     type: metric
     metric_name: db.client.connection.idle.max
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The maximum number of idle open connections allowed"
     instrument: updowncounter
@@ -64,7 +70,9 @@ groups:
   - id: metric.db.client.connection.idle.min
     type: metric
     metric_name: db.client.connection.idle.min
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The minimum number of idle open connections allowed"
     instrument: updowncounter
@@ -76,7 +84,9 @@ groups:
   - id: metric.db.client.connection.max
     type: metric
     metric_name: db.client.connection.max
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The maximum number of open connections allowed"
     instrument: updowncounter
@@ -88,7 +98,9 @@ groups:
   - id: metric.db.client.connection.pending_requests
     type: metric
     metric_name: db.client.connection.pending_requests
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The number of current pending requests for an open connection"
     instrument: updowncounter
@@ -100,7 +112,9 @@ groups:
   - id: metric.db.client.connection.timeouts
     type: metric
     metric_name: db.client.connection.timeouts
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The number of connection timeouts that have occurred trying to obtain a connection from the pool"
     instrument: counter
@@ -112,7 +126,9 @@ groups:
   - id: metric.db.client.connection.create_time
     type: metric
     metric_name: db.client.connection.create_time
-    value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "The time it took to create a new connection"
     instrument: histogram
@@ -124,7 +140,9 @@ groups:
   - id: metric.db.client.connection.wait_time
     type: metric
     metric_name: db.client.connection.wait_time
-    value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "The time it took to obtain an open connection from the pool"
     instrument: histogram
@@ -136,7 +154,9 @@ groups:
   - id: metric.db.client.connection.use_time
     type: metric
     metric_name: db.client.connection.use_time
-    value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "The time between borrowing a connection and returning it to the pool"
     instrument: histogram
@@ -148,7 +168,9 @@ groups:
   - id: metric.db.client.response.returned_rows
     type: metric
     metric_name: db.client.response.returned_rows
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "The actual number of records returned by the database operation."
     instrument: histogram
     unit: "{row}"

@@ -2,7 +2,9 @@ groups:
   - id: metric.faas.invoke_duration
     type: metric
     metric_name: faas.invoke_duration
-    value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "Measures the duration of the function's logic execution"
     instrument: histogram
@@ -13,7 +15,9 @@ groups:
   - id: metric.faas.init_duration
     type: metric
     metric_name: faas.init_duration
-    value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "Measures the duration of the function's initialization, such as a cold start"
     instrument: histogram
@@ -24,7 +28,9 @@ groups:
   - id: metric.faas.coldstarts
     type: metric
     metric_name: faas.coldstarts
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Number of invocation cold starts"
     instrument: counter
@@ -35,7 +41,9 @@ groups:
   - id: metric.faas.errors
     type: metric
     metric_name: faas.errors
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Number of invocation errors"
     instrument: counter
@@ -46,7 +54,9 @@ groups:
   - id: metric.faas.invocations
     type: metric
     metric_name: faas.invocations
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Number of successful invocations"
     instrument: counter
@@ -57,7 +67,9 @@ groups:
   - id: metric.faas.timeouts
     type: metric
     metric_name: faas.timeouts
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Number of invocation timeouts"
     instrument: counter
@@ -68,7 +80,9 @@ groups:
   - id: metric.faas.mem_usage
     type: metric
     metric_name: faas.mem_usage
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Distribution of max memory usage per invocation"
     instrument: histogram
@@ -79,7 +93,9 @@ groups:
   - id: metric.faas.cpu_usage
     type: metric
     metric_name: faas.cpu_usage
-    value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "Distribution of CPU usage per invocation"
     instrument: histogram
@@ -90,7 +106,9 @@ groups:
   - id: metric.faas.net_io
     type: metric
     metric_name: faas.net_io
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Distribution of net I/O usage per invocation"
     instrument: histogram

@@ -39,7 +39,9 @@ groups:
   - id: metric.http.server.request.duration
     type: metric
     metric_name: http.server.request.duration
-    value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Duration of HTTP server requests."
     instrument: histogram
     unit: "s"
@@ -49,7 +51,9 @@ groups:
   - id: metric.http.server.active_requests
     type: metric
     metric_name: http.server.active_requests
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Number of active HTTP server requests."
     instrument: updowncounter
@@ -82,7 +86,9 @@ groups:
   - id: metric.http.server.request.body.size
     type: metric
     metric_name: http.server.request.body.size
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Size of HTTP server request bodies."
     instrument: histogram
@@ -96,7 +102,9 @@ groups:
   - id: metric.http.server.response.body.size
     type: metric
     metric_name: http.server.response.body.size
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Size of HTTP server response bodies."
     instrument: histogram
@@ -110,7 +118,9 @@ groups:
   - id: metric.http.client.request.duration
     type: metric
     metric_name: http.client.request.duration
-    value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Duration of HTTP client requests."
     instrument: histogram
     unit: "s"
@@ -120,7 +130,9 @@ groups:
   - id: metric.http.client.request.body.size
     type: metric
     metric_name: http.client.request.body.size
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Size of HTTP client request bodies."
     instrument: histogram
@@ -134,7 +146,9 @@ groups:
   - id: metric.http.client.response.body.size
     type: metric
     metric_name: http.client.response.body.size
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Size of HTTP client response bodies."
     instrument: histogram
@@ -148,7 +162,9 @@ groups:
   - id: metric.http.client.open_connections
     type: metric
     metric_name: http.client.open_connections
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Number of outbound HTTP connections that are currently active or idle on the client."
     instrument: updowncounter
@@ -173,7 +189,9 @@ groups:
   - id: metric.http.client.connection.duration
     type: metric
     metric_name: http.client.connection.duration
-    value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "The duration of the successfully established outbound HTTP connections."
     instrument: histogram
@@ -196,7 +214,9 @@ groups:
   - id: metric.http.client.active_requests
     type: metric
     metric_name: http.client.active_requests
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Number of active HTTP requests."
     instrument: updowncounter

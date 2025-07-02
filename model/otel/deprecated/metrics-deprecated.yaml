@@ -2,7 +2,9 @@ groups:
   - id: metric.otel.sdk.span.live.count
     type: metric
     metric_name: otel.sdk.span.live.count
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed
@@ -13,7 +15,9 @@ groups:
   - id: metric.otel.sdk.span.ended.count
     type: metric
     metric_name: otel.sdk.span.ended.count
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed
@@ -24,7 +28,9 @@ groups:
   - id: metric.otel.sdk.processor.span.processed.count
     type: metric
     metric_name: otel.sdk.processor.span.processed.count
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed
@@ -35,7 +41,9 @@ groups:
   - id: metric.otel.sdk.exporter.span.inflight.count
     type: metric
     metric_name: otel.sdk.exporter.span.inflight.count
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed
@@ -46,7 +54,9 @@ groups:
   - id: metric.otel.sdk.exporter.span.exported.count
     type: metric
     metric_name: otel.sdk.exporter.span.exported.count
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed

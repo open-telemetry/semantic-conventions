@@ -2,7 +2,9 @@ groups:
   - id: metric.cpython.gc.collections
     type: metric
     metric_name: cpython.gc.collections
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "The number of times a generation was collected since interpreter start."
     note: >
       This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
@@ -16,7 +18,9 @@ groups:
   - id: metric.cpython.gc.collected_objects
     type: metric
     metric_name: cpython.gc.collected_objects
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "The total number of objects collected inside a generation since interpreter start."
     note: >
       This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
@@ -30,7 +34,9 @@ groups:
   - id: metric.cpython.gc.uncollectable_objects
     type: metric
     metric_name: cpython.gc.uncollectable_objects
-    value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "The total number of objects which were found to be uncollectable inside a generation since interpreter start."
     note: >
       This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
