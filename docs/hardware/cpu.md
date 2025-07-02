@@ -11,7 +11,7 @@ linkTitle: CPU
 - [CPU metrics `hw.cpu.*`](#cpu-metrics-hwcpu)
   - [Metric: `hw.errors` (CPU)](#metric-hwerrors-cpu)
   - [Metric: `hw.cpu.speed`](#metric-hwcpuspeed)
-  - [Metric: `hw.cpu.speed.limit`](#metric-hwcpuspeed_limit)
+  - [Metric: `hw.cpu.speed.limit`](#metric-hwcpuspeedlimit)
   - [Metric: `hw.status` (CPU)](#metric-hwstatus-cpu)
 
 <!-- tocstop -->

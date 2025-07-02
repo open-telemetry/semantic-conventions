@@ -233,3 +233,35 @@ groups:
         brief: >
           Vendor name of the disk controller
         examples: ['Dell', 'HP', 'LSI']
+        
+      # ENCLOSURE ATTRIBUTES
+      - id: hw.enclosure.bios_version
+        type: string
+        stability: development
+        brief: >
+          BIOS version of the enclosure
+        examples: ['1.2.3']
+      - id: hw.enclosure.model
+        type: string
+        stability: development
+        brief: >
+          Descriptive model name of the enclosure
+        examples: ['PowerEdge R740']
+      - id: hw.enclosure.serial_number
+        type: string
+        stability: development
+        brief: >
+          Serial number of the enclosure
+        examples: ['CNFCP0123456789']
+      - id: hw.enclosure.type
+        type: string
+        stability: development
+        brief: >
+          Type of the enclosure (useful for modular systems)
+        examples: ['Computer', 'Storage', 'Switch']
+      - id: hw.enclosure.vendor
+        type: string
+        stability: development
+        brief: >
+          Vendor name of the enclosure
+        examples: ['Dell', 'HP', 'Lenovo']

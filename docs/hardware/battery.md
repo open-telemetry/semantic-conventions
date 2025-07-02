@@ -12,7 +12,7 @@ linkTitle: Battery
   - [Metric: `hw.battery.charge`](#metric-hwbatterycharge)
   - [Metric: `hw.battery.charge_limit`](#metric-hwbatterycharge_limit)
   - [Metric: `hw.battery.time_left`](#metric-hwbatterytime_left)
-  - [Metric: `hw.battery.status`](#metric-hwbatterystatus)
+  - [Metric: `hw.status`](#metric-hwstatus)
 
 <!-- tocstop -->
 
