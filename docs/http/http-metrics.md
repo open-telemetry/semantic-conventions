@@ -559,8 +559,10 @@ the `server.address` SHOULD match the host component of the request target.
 In all other cases, `server.address` SHOULD match the host component of the
 `Host` header in HTTP/1.1 or the `:authority` pseudo-header in HTTP/2 and HTTP/3.
 
-If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-`server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
+If an HTTP client request is explicitly made to an IP address, e.g. `Host` header
+is set to `x.x.x.x:8080` and request target is not in the absolute-form,
+then `server.address` SHOULD be the IP address `x.x.x.x`.
+A DNS lookup SHOULD NOT be used.
 
 **[3] `server.port`:** In the case of HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
 is passed in its [absolute-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
@@ -675,8 +677,10 @@ the `server.address` SHOULD match the host component of the request target.
 In all other cases, `server.address` SHOULD match the host component of the
 `Host` header in HTTP/1.1 or the `:authority` pseudo-header in HTTP/2 and HTTP/3.
 
-If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-`server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
+If an HTTP client request is explicitly made to an IP address, e.g. `Host` header
+is set to `x.x.x.x:8080` and request target is not in the absolute-form,
+then `server.address` SHOULD be the IP address `x.x.x.x`.
+A DNS lookup SHOULD NOT be used.
 
 **[3] `server.port`:** In the case of HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
 is passed in its [absolute-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
@@ -791,8 +795,10 @@ the `server.address` SHOULD match the host component of the request target.
 In all other cases, `server.address` SHOULD match the host component of the
 `Host` header in HTTP/1.1 or the `:authority` pseudo-header in HTTP/2 and HTTP/3.
 
-If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-`server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
+If an HTTP client request is explicitly made to an IP address, e.g. `Host` header
+is set to `x.x.x.x:8080` and request target is not in the absolute-form,
+then `server.address` SHOULD be the IP address `x.x.x.x`.
+A DNS lookup SHOULD NOT be used.
 
 **[3] `server.port`:** In the case of HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
 is passed in its [absolute-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
@@ -970,8 +976,10 @@ the `server.address` SHOULD match the host component of the request target.
 In all other cases, `server.address` SHOULD match the host component of the
 `Host` header in HTTP/1.1 or the `:authority` pseudo-header in HTTP/2 and HTTP/3.
 
-If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then
-`server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
+If an HTTP client request is explicitly made to an IP address, e.g. `Host` header
+is set to `x.x.x.x:8080` and request target is not in the absolute-form,
+then `server.address` SHOULD be the IP address `x.x.x.x`.
+A DNS lookup SHOULD NOT be used.
 
 **[2] `server.port`:** In the case of HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
 is passed in its [absolute-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
