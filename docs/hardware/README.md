@@ -20,5 +20,6 @@ Semantic conventions for hardware are defined as following:
 * [Enclosure Metrics](enclosure.md): Semantic Conventions for *enclosure* metrics.
 * [Fan Metrics](fan.md): Semantic Conventions for *fan* metrics.
 * [GPU Metrics](gpu.md): Semantic Conventions for *GPU* metrics.
+* [Logical Disk Metrics](logical-disk.md): Semantic Conventions for *logical disk* metrics.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

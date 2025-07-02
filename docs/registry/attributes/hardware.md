@@ -38,6 +38,8 @@ Attributes for hardware.
 | <a id="hw-gpu-task" href="#hw-gpu-task">`hw.gpu.task`</a> | string | Type of task the GPU is performing | `decoder`; `encoder`; `general` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-gpu-vendor" href="#hw-gpu-vendor">`hw.gpu.vendor`</a> | string | Vendor name of the GPU | `NVIDIA`; `AMD`; `Intel` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-id" href="#hw-id">`hw.id`</a> | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-logical-disk-raid-level" href="#hw-logical-disk-raid-level">`hw.logical_disk.raid_level`</a> | string | RAID Level of the logical disk | `RAID0+1`; `RAID5`; `RAID10` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-logical-disk-state" href="#hw-logical-disk-state">`hw.logical_disk.state`</a> | string | State of the logical disk space usage | `used`; `free` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-name" href="#hw-name">`hw.name`</a> | string | An easily-recognizable name for the hardware component | `eth0` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-parent" href="#hw-parent">`hw.parent`</a> | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-state" href="#hw-state">`hw.state`</a> | string | The current state of the component | `ok`; `degraded`; `failed` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -93,6 +95,15 @@ Attributes for hardware.
 | `decoder` | Decoder | ![Development](https://img.shields.io/badge/-development-blue) |
 | `encoder` | Encoder | ![Development](https://img.shields.io/badge/-development-blue) |
 | `general` | General | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`hw.logical_disk.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `free` | Free | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

@@ -355,3 +355,25 @@ groups:
         stability: development
         brief: >
           Direction of data transfer
+          
+      # LOGICAL DISK ATTRIBUTES
+      - id: hw.logical_disk.raid_level
+        type: string
+        stability: development
+        brief: >
+          RAID Level of the logical disk
+        examples: ['RAID0+1', 'RAID5', 'RAID10']
+      - id: hw.logical_disk.state
+        type:
+          members:
+            - id: used
+              value: 'used'
+              brief: "Used"
+              stability: development
+            - id: free
+              value: 'free'
+              brief: 'Free'
+              stability: development
+        stability: development
+        brief: >
+          State of the logical disk space usage
