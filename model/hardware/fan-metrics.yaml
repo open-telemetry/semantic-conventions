@@ -1,0 +1,41 @@
+groups:
+  # FAN METRICS
+  - id: metric.hw.fan
+    type: attribute_group
+    brief: >
+      Common attributes for fan metrics
+    extends: hardware.attributes.common
+    attributes:
+      - ref: hw.fan.sensor_location
+        requirement_level: recommended
+
+  - id: metric.hw.fan.speed
+    type: metric
+    metric_name: hw.fan.speed
+    stability: development
+    brief: "Fan speed in revolutions per minute"
+    instrument: gauge
+    unit: "rpm"
+    extends: metric.hw.fan
+
+  - id: metric.hw.fan.speed.limit
+    type: metric
+    metric_name: hw.fan.speed.limit
+    stability: development
+    brief: "Speed limit in rpm"
+    instrument: gauge
+    unit: "rpm"
+    extends: metric.hw.fan
+    attributes:
+      - ref: hw.fan.limit_type
+        examples: ["low.critical", "low.degraded", "max"]
+        requirement_level: recommended
+
+  - id: metric.hw.fan.speed_ratio
+    type: metric
+    metric_name: hw.fan.speed_ratio
+    stability: development
+    brief: "Fan speed expressed as a fraction of its maximum speed"
+    instrument: gauge
+    unit: "1"
+    extends: metric.hw.fan

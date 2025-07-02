@@ -28,6 +28,8 @@ Attributes for hardware.
 | <a id="hw-enclosure-serial-number" href="#hw-enclosure-serial-number">`hw.enclosure.serial_number`</a> | string | Serial number of the enclosure | `CNFCP0123456789` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-enclosure-type" href="#hw-enclosure-type">`hw.enclosure.type`</a> | string | Type of the enclosure (useful for modular systems) | `Computer`; `Storage`; `Switch` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-enclosure-vendor" href="#hw-enclosure-vendor">`hw.enclosure.vendor`</a> | string | Vendor name of the enclosure | `Dell`; `HP`; `Lenovo` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-fan-limit-type" href="#hw-fan-limit-type">`hw.fan.limit_type`</a> | string | Type of the fan speed limit | `low.critical`; `low.degraded`; `max` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-fan-sensor-location" href="#hw-fan-sensor-location">`hw.fan.sensor_location`</a> | string | Location of the fan in the computer enclosure | `cpu0`; `ps1`; `INLET` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-id" href="#hw-id">`hw.id`</a> | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-name" href="#hw-name">`hw.name`</a> | string | An easily-recognizable name for the hardware component | `eth0` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-parent" href="#hw-parent">`hw.parent`</a> | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -55,6 +57,16 @@ Attributes for hardware.
 | `max` | Max | ![Development](https://img.shields.io/badge/-development-blue) |
 | `throttled` | Throttled | ![Development](https://img.shields.io/badge/-development-blue) |
 | `turbo` | Turbo | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`hw.fan.limit_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `low.critical` | Low Critical | ![Development](https://img.shields.io/badge/-development-blue) |
+| `low.degraded` | Low Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
+| `max` | Max | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

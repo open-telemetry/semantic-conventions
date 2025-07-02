@@ -265,3 +265,29 @@ groups:
         brief: >
           Vendor name of the enclosure
         examples: ['Dell', 'HP', 'Lenovo']
+        
+      # FAN ATTRIBUTES
+      - id: hw.fan.sensor_location
+        type: string
+        stability: development
+        brief: >
+          Location of the fan in the computer enclosure
+        examples: ['cpu0', 'ps1', 'INLET']
+      - id: hw.fan.limit_type
+        type:
+          members:
+            - id: low.critical
+              value: 'low.critical'
+              brief: "Low Critical"
+              stability: development
+            - id: low.degraded
+              value: 'low.degraded'
+              brief: 'Low Degraded'
+              stability: development
+            - id: max
+              value: 'max'
+              brief: 'Max'
+              stability: development
+        stability: development
+        brief: >
+          Type of the fan speed limit
