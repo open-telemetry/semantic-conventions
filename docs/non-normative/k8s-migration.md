@@ -399,7 +399,7 @@ The changes in their metrics are the following:
 
 ### Container Runtime
 
-The container runtime has become more desriptive with changes introduced to semantic conventions
+The container runtime has become more descriptive with changes introduced to semantic conventions
 within v1.Y.Z <!--[v1.29.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.29.0/docs/system/k8s-metrics.md)-->.
 
 The changes in their attributes are the following:
