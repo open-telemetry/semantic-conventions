@@ -28,7 +28,7 @@ The Semantic Conventions for *Microsoft SQL Server* extend and override the [Dat
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
 
-Spans representing calls to Microsoft SQL Server adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
+Spans representing calls to Microsoft SQL Server adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
 
 `db.system.name` MUST be set to `"microsoft.sql_server"` and SHOULD be provided **at span creation time**.
 

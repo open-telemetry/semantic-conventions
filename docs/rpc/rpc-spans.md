@@ -101,7 +101,7 @@ This span represents an outgoing Remote Procedure Call (RPC).
 Remote procedure calls can only be represented with these semantic conventions
 when the names of the called service and method are known and available.
 
-**Span name:** refer to the [Span Name](#span-name) section.
+**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
 **Span kind** MUST be `CLIENT`.
 
@@ -191,7 +191,7 @@ This span represents an incoming Remote Procedure Call (RPC).
 Remote procedure calls can only be represented with these semantic conventions
 when the names of the called service and method are known and available.
 
-**Span name:** refer to the [Span Name](#span-name) section.
+**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
 **Span kind** MUST be `SERVER`.
 

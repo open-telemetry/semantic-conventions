@@ -19,6 +19,10 @@ templates:
     filter: '.groups | map(select(.type == "entity")) | group_by(.name | split(".") | .[0]) | map({id: .[0].id | split(".") | .[1], groups: .})'
     application_mode: each
     file_name: 'entities/{{ ctx.id | kebab_case }}.md'
+  - pattern: span_namespace.md.j2
+    filter: '.groups | map(select(.type == "span")) | group_by(.id | split(".") | .[1]) | map({id: .[0].id | split(".") | .[1], groups: .})'
+    application_mode: each
+    file_name: 'spans/{{ ctx.id | kebab_case }}.md'
 acronyms:
   - AI
   - AWS
