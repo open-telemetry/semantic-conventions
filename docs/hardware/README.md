@@ -21,5 +21,7 @@ Semantic conventions for hardware are defined as following:
 * [Fan Metrics](fan.md): Semantic Conventions for *fan* metrics.
 * [GPU Metrics](gpu.md): Semantic Conventions for *GPU* metrics.
 * [Logical Disk Metrics](logical-disk.md): Semantic Conventions for *logical disk* metrics.
+* [Memory Metrics](memory.md): Semantic Conventions for *memory* metrics.
+* [Network Metrics](network.md): Semantic Conventions for *network* metrics.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

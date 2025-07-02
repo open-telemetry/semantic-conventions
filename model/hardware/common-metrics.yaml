@@ -34,6 +34,12 @@ groups:
         note: >
           The `error.type` SHOULD match the error code reported by the component, the canonical name of the error,
           or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
+      - ref: hw.network.direction
+        brief: "Direction of network traffic for network errors"
+        examples: ['receive', 'transmit']
+        requirement_level: recommended
+        note: >
+          This attribute SHOULD only be used when `hw.type` is set to `"network"` to indicate the direction of the error.
 
   - id: metric.hw.power
     type: metric

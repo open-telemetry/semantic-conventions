@@ -40,7 +40,17 @@ Attributes for hardware.
 | <a id="hw-id" href="#hw-id">`hw.id`</a> | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-logical-disk-raid-level" href="#hw-logical-disk-raid-level">`hw.logical_disk.raid_level`</a> | string | RAID Level of the logical disk | `RAID0+1`; `RAID5`; `RAID10` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-logical-disk-state" href="#hw-logical-disk-state">`hw.logical_disk.state`</a> | string | State of the logical disk space usage | `used`; `free` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-memory-model" href="#hw-memory-model">`hw.memory.model`</a> | string | Descriptive model name of the memory module | `DDR4-3200`; `LPDDR5-6400` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-memory-serial-number" href="#hw-memory-serial-number">`hw.memory.serial_number`</a> | string | Serial number of the memory module | `123456789ABC` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-memory-type" href="#hw-memory-type">`hw.memory.type`</a> | string | Type of the memory module | `DDR4`; `DDR5`; `LPDDR5` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-memory-vendor" href="#hw-memory-vendor">`hw.memory.vendor`</a> | string | Vendor name of the memory module | `Crucial`; `Kingston`; `Samsung`; `Corsair` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-name" href="#hw-name">`hw.name`</a> | string | An easily-recognizable name for the hardware component | `eth0` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-network-direction" href="#hw-network-direction">`hw.network.direction`</a> | string | Direction of network traffic | `receive`; `transmit` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-network-logical-addresses" href="#hw-network-logical-addresses">`hw.network.logical_addresses`</a> | string[] | Logical addresses of the adapter (e.g. IP address, or WWPN) | `["172.16.8.21", "57.11.193.42"]` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-network-model" href="#hw-network-model">`hw.network.model`</a> | string | Descriptive model name of the network adapter | `Intel X520`; `Mellanox ConnectX-5` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-network-physical-address" href="#hw-network-physical-address">`hw.network.physical_address`</a> | string | Physical address of the adapter (e.g. MAC address, or WWNN) | `00-90-F5-E9-7B-36` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-network-serial-number" href="#hw-network-serial-number">`hw.network.serial_number`</a> | string | Serial number of the network adapter | `ABCDEF123456` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-network-vendor" href="#hw-network-vendor">`hw.network.vendor`</a> | string | Vendor name of the network adapter | `Intel`; `Broadcom`; `Mellanox` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-parent" href="#hw-parent">`hw.parent`</a> | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-state" href="#hw-state">`hw.state`</a> | string | The current state of the component | `ok`; `degraded`; `failed` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-type" href="#hw-type">`hw.type`</a> | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -104,6 +114,15 @@ Attributes for hardware.
 |---|---|---|
 | `free` | Free | ![Development](https://img.shields.io/badge/-development-blue) |
 | `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`hw.network.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `receive` | Receive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | Transmit | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

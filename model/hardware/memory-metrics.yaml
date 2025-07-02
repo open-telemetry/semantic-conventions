@@ -1,0 +1,25 @@
+groups:
+  # MEMORY METRICS
+  - id: metric.hw.memory
+    type: attribute_group
+    brief: >
+      Common attributes for memory module metrics
+    extends: hardware.attributes.common
+    attributes:
+      - ref: hw.memory.model
+        requirement_level: recommended
+      - ref: hw.memory.serial_number
+        requirement_level: recommended
+      - ref: hw.memory.type
+        requirement_level: recommended
+      - ref: hw.memory.vendor
+        requirement_level: recommended
+
+  - id: metric.hw.memory.size
+    type: metric
+    metric_name: hw.memory.size
+    stability: development
+    brief: "Size of the memory module"
+    instrument: updowncounter
+    unit: "By"
+    extends: metric.hw.memory

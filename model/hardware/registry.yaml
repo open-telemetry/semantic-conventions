@@ -377,3 +377,75 @@ groups:
         stability: development
         brief: >
           State of the logical disk space usage
+          
+      # MEMORY ATTRIBUTES
+      - id: hw.memory.model
+        type: string
+        stability: development
+        brief: >
+          Descriptive model name of the memory module
+        examples: ['DDR4-3200', 'LPDDR5-6400']
+      - id: hw.memory.serial_number
+        type: string
+        stability: development
+        brief: >
+          Serial number of the memory module
+        examples: ['123456789ABC']
+      - id: hw.memory.type
+        type: string
+        stability: development
+        brief: >
+          Type of the memory module
+        examples: ['DDR4', 'DDR5', 'LPDDR5']
+      - id: hw.memory.vendor
+        type: string
+        stability: development
+        brief: >
+          Vendor name of the memory module
+        examples: ['Crucial', 'Kingston', 'Samsung', 'Corsair']
+        
+      # NETWORK ATTRIBUTES
+      - id: hw.network.model
+        type: string
+        stability: development
+        brief: >
+          Descriptive model name of the network adapter
+        examples: ['Intel X520', 'Mellanox ConnectX-5']
+      - id: hw.network.logical_addresses
+        type: string[]
+        stability: development
+        brief: >
+          Logical addresses of the adapter (e.g. IP address, or WWPN)
+        examples: [['172.16.8.21', '57.11.193.42']]
+      - id: hw.network.physical_address
+        type: string
+        stability: development
+        brief: >
+          Physical address of the adapter (e.g. MAC address, or WWNN)
+        examples: ['00-90-F5-E9-7B-36']
+      - id: hw.network.serial_number
+        type: string
+        stability: development
+        brief: >
+          Serial number of the network adapter
+        examples: ['ABCDEF123456']
+      - id: hw.network.vendor
+        type: string
+        stability: development
+        brief: >
+          Vendor name of the network adapter
+        examples: ['Intel', 'Broadcom', 'Mellanox']
+      - id: hw.network.direction
+        type:
+          members:
+            - id: receive
+              value: 'receive'
+              brief: "Receive"
+              stability: development
+            - id: transmit
+              value: 'transmit'
+              brief: 'Transmit'
+              stability: development
+        stability: development
+        brief: >
+          Direction of network traffic
