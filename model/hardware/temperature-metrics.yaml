@@ -1,0 +1,34 @@
+groups:
+  # TEMPERATURE METRICS
+  - id: metric.hw.temperature
+    type: attribute_group
+    brief: >
+      Common attributes for temperature metrics
+    extends: hardware.attributes.common
+    attributes:
+      - ref: hw.temperature.sensor_location
+        requirement_level: recommended
+
+  - id: metric.hw.temperature.value
+    type: metric
+    metric_name: hw.temperature
+    # value_type: double
+    stability: development
+    brief: "Temperature in degrees Celsius"
+    instrument: gauge
+    unit: "Cel"
+    extends: metric.hw.temperature
+
+  - id: metric.hw.temperature.limit
+    type: metric
+    metric_name: hw.temperature.limit
+    # value_type: double
+    stability: development
+    brief: "Temperature limit in degrees Celsius"
+    instrument: gauge
+    unit: "Cel"
+    extends: metric.hw.temperature
+    attributes:
+      - ref: hw.limit_type
+        examples: ["low.critical", "low.degraded", "high.degraded", "high.critical"]
+        requirement_level: recommended

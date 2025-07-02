@@ -1,0 +1,44 @@
+groups:
+  # VOLTAGE METRICS
+  - id: metric.hw.voltage
+    type: attribute_group
+    brief: >
+      Common attributes for voltage metrics
+    extends: hardware.attributes.common
+    attributes:
+      - ref: hw.voltage.sensor_location
+        requirement_level: recommended
+
+  - id: metric.hw.voltage.value
+    type: metric
+    metric_name: hw.voltage
+    # value_type: double
+    stability: development
+    brief: "Voltage measured by the sensor"
+    instrument: gauge
+    unit: "V"
+    extends: metric.hw.voltage
+
+  - id: metric.hw.voltage.limit
+    type: metric
+    metric_name: hw.voltage.limit
+    # value_type: double
+    stability: development
+    brief: "Voltage limit in Volts"
+    instrument: gauge
+    unit: "V"
+    extends: metric.hw.voltage
+    attributes:
+      - ref: hw.limit_type
+        examples: ["low.critical", "low.degraded", "high.degraded", "high.critical"]
+        requirement_level: recommended
+
+  - id: metric.hw.voltage.nominal
+    type: metric
+    metric_name: hw.voltage.nominal
+    # value_type: double
+    stability: development
+    brief: "Nominal (expected) voltage"
+    instrument: gauge
+    unit: "V"
+    extends: metric.hw.voltage

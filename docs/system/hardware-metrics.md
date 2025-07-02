@@ -47,7 +47,47 @@ Please note that this is an [ongoing process](https://github.com/open-telemetry/
 > * SHOULD introduce a control mechanism to allow users to opt-in to the new
 >   conventions once the migration plan is finalized.
 
-## Metric instruments
+## Metric Instruments
+
+### `hw.host.` - Physical host metrics
+
+**Description:** Physical system as opposed to a virtual system or a container.
+Examples: physical server, switch or disk array.
+
+| Name                          | Description                                                                                                                                           | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key(s) | Attribute Values |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ---------------- | ---------------- |
+| `hw.host.ambient_temperature` | Ambient (external) temperature of the physical host                                                                                                   | Cel   | Gauge                                             | Double     |                  |                  |
+| `hw.host.energy`              | Total energy consumed by the entire physical host, in joules                                                                                          | J     | Counter                                           | Int64      |                  |                  |
+| `hw.host.heating_margin`      | By how many degrees Celsius the temperature of the physical host can be increased, before reaching a warning threshold on one of the internal sensors | Cel   | Gauge                                             | Double     |                  |                  |
+| `hw.host.power`               | Instantaneous power consumed by the entire physical host in Watts (`hw.host.energy` is preferred)                                                     | W     | Gauge                                             | Double     |                  |                  |
+
+> **Note**
+> The overall energy usage of a host MUST be reported using the specific
+> `hw.host.energy` and `hw.host.power` metrics **only**, instead of the generic
+> `hw.energy` and `hw.power` described in the previous section, to prevent
+> summing up overlapping values.
+
+### `hw.battery.` - Battery metrics
+
+**Description:** A battery in a computer system or an UPS.
+
+| Name                      | Description                                                                   | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key(s)                                                            | Attribute Values                                      |
+| ------------------------- | ----------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | --------------------------------------------------------------------------- | ----------------------------------------------------- |
+| `hw.battery.charge`       | Remaining fraction of battery charge                                          | 1     | Gauge                                             | Double     |                                                                             |                                                       |
+| `hw.battery.charge.limit` | Lower limit of battery charge fraction to ensure proper operation             | 1     | Gauge                                             | Double     | `limit_type` (Recommended)                                                  | `critical`, `throttled`, `degraded`                   |
+| `hw.battery.time_left`    | Time left before battery is completely charged or discharged                  | s     | Gauge                                             | Int        | `state` (Conditionally Required, if the battery is charging or discharging) | `charging`, `discharging`                             |
+| `hw.status`               | Operational status: `1` (true) or `0` (false) for each of the possible states |       | UpDownCounter                                     | Int        | `state` (**Required**)                                                      | `ok`, `degraded`, `failed`, `charging`, `discharging` |
+|                           |                                                                               |       |                                                   |            | `hw.type`                                                                   | `battery`                                             |
+
+All `hw.battery.` metrics may include the below **Recommended** attributes to
+describe the characteristics of the monitored battery:
+
+| Attribute Key | Description                                   | Example                     |
+| ------------- | --------------------------------------------- | --------------------------- |
+| `chemistry`   | Chemistry of the battery                      | Nickel-Cadmium, Lithium-ion |
+| `capacity`    | Design capacity in Watts-hours or Amper-hours | 9.3Ah                       |
+| `model`       | Descriptive model name                        |                             |
+| `vendor`      | Vendor name                                   |                             |
 
 ### `hw.cpu.` - Physical processor metrics
 

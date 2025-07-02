@@ -29,7 +29,7 @@ groups:
     unit: "rpm"
     extends: metric.hw.fan
     attributes:
-      - ref: hw.fan.limit_type
+      - ref: hw.limit_type
         examples: ["low.critical", "low.degraded", "max"]
         requirement_level: recommended
 

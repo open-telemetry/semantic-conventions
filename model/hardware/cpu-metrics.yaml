@@ -33,7 +33,7 @@ groups:
     unit: "Hz"
     extends: metric.hw.cpu
     attributes:
-      - ref: hw.cpu.limit_type
+      - ref: hw.limit_type
         examples: ["throttled", "max", "turbo"]
         requirement_level: recommended
 

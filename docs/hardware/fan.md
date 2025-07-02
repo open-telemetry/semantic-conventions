@@ -88,20 +88,26 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.fan.limit_type`](/docs/registry/attributes/hardware.md) | string | Type of the fan speed limit | `low.critical`; `low.degraded`; `max` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.fan.sensor_location`](/docs/registry/attributes/hardware.md) | string | Location of the fan in the computer enclosure | `cpu0`; `ps1`; `INLET` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.limit_type`](/docs/registry/attributes/hardware.md) | string | Type of limit for hardware components | `low.critical`; `low.degraded`; `max` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
-`hw.fan.limit_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`hw.limit_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
+| `critical` | Critical | ![Development](https://img.shields.io/badge/-development-blue) |
+| `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
+| `high.critical` | High Critical | ![Development](https://img.shields.io/badge/-development-blue) |
+| `high.degraded` | High Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
 | `low.critical` | Low Critical | ![Development](https://img.shields.io/badge/-development-blue) |
 | `low.degraded` | Low Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
-| `max` | Max | ![Development](https://img.shields.io/badge/-development-blue) |
+| `max` | Maximum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `throttled` | Throttled | ![Development](https://img.shields.io/badge/-development-blue) |
+| `turbo` | Turbo | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -164,7 +170,7 @@ When using this metric for fan status, the following attributes MUST be set:
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `ok`; `degraded`; `failed` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `charging`; `degraded`; `discharging` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -181,6 +187,7 @@ When using this metric for fan status, the following attributes MUST be set:
 | `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
 | `discharging` | Discharging | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failed` | Failed | ![Development](https://img.shields.io/badge/-development-blue) |
+| `needs_cleaning` | Needs Cleaning | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ok` | Ok | ![Development](https://img.shields.io/badge/-development-blue) |
 | `predicted_failure` | Predicted Failure | ![Development](https://img.shields.io/badge/-development-blue) |
 

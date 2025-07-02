@@ -36,7 +36,8 @@ groups:
     unit: "1"
     extends: metric.hw.battery
     attributes:
-      - ref: hw.battery.limit_type
+      - ref: hw.limit_type
+        examples: ["critical", "throttled", "degraded"]
         requirement_level: recommended
 
   - id: metric.hw.battery.time_left

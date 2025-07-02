@@ -96,21 +96,27 @@ This metric is [recommended][MetricRecommended].
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.battery.capacity`](/docs/registry/attributes/hardware.md) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | string | Battery chemistry, e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.battery.limit_type`](/docs/registry/attributes/hardware.md) | string | Type of the battery charge limit | `critical`; `throttled`; `degraded` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.battery.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the battery | `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.battery.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the battery | `Dell`; `HP`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.limit_type`](/docs/registry/attributes/hardware.md) | string | Type of limit for hardware components | `critical`; `throttled`; `degraded` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
-`hw.battery.limit_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`hw.limit_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `critical` | Critical | ![Development](https://img.shields.io/badge/-development-blue) |
 | `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
+| `high.critical` | High Critical | ![Development](https://img.shields.io/badge/-development-blue) |
+| `high.degraded` | High Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
+| `low.critical` | Low Critical | ![Development](https://img.shields.io/badge/-development-blue) |
+| `low.degraded` | Low Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
+| `max` | Maximum | ![Development](https://img.shields.io/badge/-development-blue) |
 | `throttled` | Throttled | ![Development](https://img.shields.io/badge/-development-blue) |
+| `turbo` | Turbo | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -135,7 +141,7 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component [1] | `ok`; `degraded`; `failed` | `Conditionally Required` If the battery is charging or discharging | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component [1] | `charging`; `degraded`; `discharging` | `Conditionally Required` If the battery is charging or discharging | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.battery.capacity`](/docs/registry/attributes/hardware.md) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | string | Battery chemistry, e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.battery.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the battery | `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -155,6 +161,7 @@ This metric is [recommended][MetricRecommended].
 | `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
 | `discharging` | Discharging | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failed` | Failed | ![Development](https://img.shields.io/badge/-development-blue) |
+| `needs_cleaning` | Needs Cleaning | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ok` | Ok | ![Development](https://img.shields.io/badge/-development-blue) |
 | `predicted_failure` | Predicted Failure | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -196,7 +203,7 @@ The `hw.type` attribute should indicate the type of hardware component, which in
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `ok`; `degraded`; `failed` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `charging`; `degraded`; `discharging` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -213,6 +220,7 @@ The `hw.type` attribute should indicate the type of hardware component, which in
 | `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
 | `discharging` | Discharging | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failed` | Failed | ![Development](https://img.shields.io/badge/-development-blue) |
+| `needs_cleaning` | Needs Cleaning | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ok` | Ok | ![Development](https://img.shields.io/badge/-development-blue) |
 | `predicted_failure` | Predicted Failure | ![Development](https://img.shields.io/badge/-development-blue) |
 

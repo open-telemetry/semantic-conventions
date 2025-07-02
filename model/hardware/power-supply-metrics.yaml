@@ -23,7 +23,7 @@ groups:
     unit: "W"
     extends: metric.hw.power_supply
     attributes:
-      - ref: hw.power_supply.limit_type
+      - ref: hw.limit_type
         examples: ["max", "critical", "throttled"]
         requirement_level: recommended
 

@@ -11,10 +11,8 @@ Attributes for hardware.
 |---|---|---|---|---|
 | <a id="hw-battery-capacity" href="#hw-battery-capacity">`hw.battery.capacity`</a> | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-battery-chemistry" href="#hw-battery-chemistry">`hw.battery.chemistry`</a> | string | Battery chemistry, e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-battery-limit-type" href="#hw-battery-limit-type">`hw.battery.limit_type`</a> | string | Type of the battery charge limit | `critical`; `throttled`; `degraded` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-battery-model" href="#hw-battery-model">`hw.battery.model`</a> | string | Descriptive model name of the battery | `Dell XPS 15 Battery` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-battery-vendor" href="#hw-battery-vendor">`hw.battery.vendor`</a> | string | Vendor name of the battery | `Dell`; `HP`; `Lenovo` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-cpu-limit-type" href="#hw-cpu-limit-type">`hw.cpu.limit_type`</a> | string | Type of the CPU speed limit | `throttled`; `max`; `turbo` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-cpu-model" href="#hw-cpu-model">`hw.cpu.model`</a> | string | Descriptive model name of the CPU | `Intel(R) Core(TM) i7-10700K` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-cpu-vendor" href="#hw-cpu-vendor">`hw.cpu.vendor`</a> | string | Vendor name of the CPU | `Intel`; `AMD` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-disk-controller-bios-version" href="#hw-disk-controller-bios-version">`hw.disk_controller.bios_version`</a> | string | BIOS version of the disk controller | `1.2.3` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -28,7 +26,6 @@ Attributes for hardware.
 | <a id="hw-enclosure-serial-number" href="#hw-enclosure-serial-number">`hw.enclosure.serial_number`</a> | string | Serial number of the enclosure | `CNFCP0123456789` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-enclosure-type" href="#hw-enclosure-type">`hw.enclosure.type`</a> | string | Type of the enclosure (useful for modular systems) | `Computer`; `Storage`; `Switch` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-enclosure-vendor" href="#hw-enclosure-vendor">`hw.enclosure.vendor`</a> | string | Vendor name of the enclosure | `Dell`; `HP`; `Lenovo` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-fan-limit-type" href="#hw-fan-limit-type">`hw.fan.limit_type`</a> | string | Type of the fan speed limit | `low.critical`; `low.degraded`; `max` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-fan-sensor-location" href="#hw-fan-sensor-location">`hw.fan.sensor_location`</a> | string | Location of the fan in the computer enclosure | `cpu0`; `ps1`; `INLET` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-gpu-direction" href="#hw-gpu-direction">`hw.gpu.direction`</a> | string | Direction of data transfer | `receive`; `transmit` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-gpu-driver-version" href="#hw-gpu-driver-version">`hw.gpu.driver_version`</a> | string | Driver version for the GPU | `512.78`; `22.5.1` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -38,6 +35,7 @@ Attributes for hardware.
 | <a id="hw-gpu-task" href="#hw-gpu-task">`hw.gpu.task`</a> | string | Type of task the GPU is performing | `decoder`; `encoder`; `general` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-gpu-vendor" href="#hw-gpu-vendor">`hw.gpu.vendor`</a> | string | Vendor name of the GPU | `NVIDIA`; `AMD`; `Intel` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-id" href="#hw-id">`hw.id`</a> | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-limit-type" href="#hw-limit-type">`hw.limit_type`</a> | string | Type of limit for hardware components | `critical`; `degraded`; `high.critical` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-logical-disk-raid-level" href="#hw-logical-disk-raid-level">`hw.logical_disk.raid_level`</a> | string | RAID Level of the logical disk | `RAID0+1`; `RAID5`; `RAID10` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-logical-disk-state" href="#hw-logical-disk-state">`hw.logical_disk.state`</a> | string | State of the logical disk space usage | `used`; `free` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-memory-model" href="#hw-memory-model">`hw.memory.model`</a> | string | Descriptive model name of the memory module | `DDR4-3200`; `LPDDR5-6400` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -59,44 +57,19 @@ Attributes for hardware.
 | <a id="hw-physical-disk-state" href="#hw-physical-disk-state">`hw.physical_disk.state`</a> | string | State of the physical disk endurance utilization | `remaining` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-physical-disk-type" href="#hw-physical-disk-type">`hw.physical_disk.type`</a> | string | Type of the physical disk | `HDD`; `SSD`; `10K` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-physical-disk-vendor" href="#hw-physical-disk-vendor">`hw.physical_disk.vendor`</a> | string | Vendor name of the physical disk | `Samsung`; `Western Digital`; `Seagate` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-power-supply-limit-type" href="#hw-power-supply-limit-type">`hw.power_supply.limit_type`</a> | string | Type of power supply limit | `max`; `critical`; `throttled` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-power-supply-model" href="#hw-power-supply-model">`hw.power_supply.model`</a> | string | Descriptive model name of the power supply | `Corsair RM850x`; `EVGA SuperNOVA 750 G5` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-power-supply-serial-number" href="#hw-power-supply-serial-number">`hw.power_supply.serial_number`</a> | string | Serial number of the power supply | `PS123456789` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-power-supply-vendor" href="#hw-power-supply-vendor">`hw.power_supply.vendor`</a> | string | Vendor name of the power supply | `Corsair`; `EVGA`; `Seasonic` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-state" href="#hw-state">`hw.state`</a> | string | The current state of the component | `ok`; `degraded`; `failed` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-state" href="#hw-state">`hw.state`</a> | string | The current state of the component | `charging`; `degraded`; `discharging` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-tape-drive-model" href="#hw-tape-drive-model">`hw.tape_drive.model`</a> | string | Descriptive model name of the tape drive | `IBM Ultrium 8`; `LTO-8` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-tape-drive-operation-type" href="#hw-tape-drive-operation-type">`hw.tape_drive.operation_type`</a> | string | Type of tape drive operation | `mount`; `unmount`; `clean` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-tape-drive-serial-number" href="#hw-tape-drive-serial-number">`hw.tape_drive.serial_number`</a> | string | Serial number of the tape drive | `TD123456789` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-tape-drive-vendor" href="#hw-tape-drive-vendor">`hw.tape_drive.vendor`</a> | string | Vendor name of the tape drive | `IBM`; `HP`; `Quantum` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-temperature-sensor-location" href="#hw-temperature-sensor-location">`hw.temperature.sensor_location`</a> | string | Location of the temperature sensor | `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-type" href="#hw-type">`hw.type`</a> | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-voltage-sensor-location" href="#hw-voltage-sensor-location">`hw.voltage.sensor_location`</a> | string | Location of the voltage sensor | `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
-
----
-
-`hw.battery.limit_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `critical` | Critical | ![Development](https://img.shields.io/badge/-development-blue) |
-| `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
-| `throttled` | Throttled | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`hw.cpu.limit_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `max` | Max | ![Development](https://img.shields.io/badge/-development-blue) |
-| `throttled` | Throttled | ![Development](https://img.shields.io/badge/-development-blue) |
-| `turbo` | Turbo | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`hw.fan.limit_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `low.critical` | Low Critical | ![Development](https://img.shields.io/badge/-development-blue) |
-| `low.degraded` | Low Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
-| `max` | Max | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -116,6 +89,22 @@ Attributes for hardware.
 | `decoder` | Decoder | ![Development](https://img.shields.io/badge/-development-blue) |
 | `encoder` | Encoder | ![Development](https://img.shields.io/badge/-development-blue) |
 | `general` | General | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`hw.limit_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `critical` | Critical | ![Development](https://img.shields.io/badge/-development-blue) |
+| `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
+| `high.critical` | High Critical | ![Development](https://img.shields.io/badge/-development-blue) |
+| `high.degraded` | High Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
+| `low.critical` | Low Critical | ![Development](https://img.shields.io/badge/-development-blue) |
+| `low.degraded` | Low Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
+| `max` | Maximum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `throttled` | Throttled | ![Development](https://img.shields.io/badge/-development-blue) |
+| `turbo` | Turbo | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -163,16 +152,6 @@ Attributes for hardware.
 
 ---
 
-`hw.power_supply.limit_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `critical` | Critical | ![Development](https://img.shields.io/badge/-development-blue) |
-| `max` | Maximum | ![Development](https://img.shields.io/badge/-development-blue) |
-| `throttled` | Throttled | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
 `hw.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -181,8 +160,19 @@ Attributes for hardware.
 | `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
 | `discharging` | Discharging | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failed` | Failed | ![Development](https://img.shields.io/badge/-development-blue) |
+| `needs_cleaning` | Needs Cleaning | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ok` | Ok | ![Development](https://img.shields.io/badge/-development-blue) |
 | `predicted_failure` | Predicted Failure | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`hw.tape_drive.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `clean` | Clean | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mount` | Mount | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unmount` | Unmount | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

@@ -92,25 +92,29 @@ groups:
       - id: hw.state
         type:
           members:
-            - id: ok
-              value: 'ok'
-              brief: "Ok"
+            - id: charging
+              value: 'charging'
+              brief: 'Charging'
               stability: development
             - id: degraded
               value: 'degraded'
               brief: 'Degraded'
               stability: development
+            - id: discharging
+              value: 'discharging'
+              brief: 'Discharging'
+              stability: development
             - id: failed
               value: 'failed'
               brief: 'Failed'
               stability: development
-            - id: charging
-              value: 'charging'
-              brief: 'Charging'
+            - id: needs_cleaning
+              value: 'needs_cleaning'
+              brief: 'Needs Cleaning'
               stability: development
-            - id: discharging
-              value: 'discharging'
-              brief: 'Discharging'
+            - id: ok
+              value: 'ok'
+              brief: 'Ok'
               stability: development
             - id: predicted_failure
               value: 'predicted_failure'
@@ -119,25 +123,48 @@ groups:
         stability: development
         brief: >
           The current state of the component
-      #  BATTERY ATTRIBUTES
-      - id: hw.battery.limit_type
+      - id: hw.limit_type
         type:
           members:
             - id: critical
               value: 'critical'
-              brief: "Critical"
-              stability: development
-            - id: throttled
-              value: 'throttled'
-              brief: 'Throttled'
+              brief: 'Critical'
               stability: development
             - id: degraded
               value: 'degraded'
               brief: 'Degraded'
               stability: development
+            - id: high_critical
+              value: 'high.critical'
+              brief: 'High Critical'
+              stability: development
+            - id: high_degraded
+              value: 'high.degraded'
+              brief: 'High Degraded'
+              stability: development
+            - id: low_critical
+              value: 'low.critical'
+              brief: 'Low Critical'
+              stability: development
+            - id: low_degraded
+              value: 'low.degraded'
+              brief: 'Low Degraded'
+              stability: development
+            - id: max
+              value: 'max'
+              brief: 'Maximum'
+              stability: development
+            - id: throttled
+              value: 'throttled'
+              brief: 'Throttled'
+              stability: development
+            - id: turbo
+              value: 'turbo'
+              brief: 'Turbo'
+              stability: development
         stability: development
         brief: >
-          Type of the battery charge limit
+          Type of limit for hardware components
       - id: hw.battery.chemistry
         type: string
         stability: development
@@ -177,25 +204,7 @@ groups:
           Vendor name of the CPU
         examples: ['Intel', 'AMD']
 
-      - id: hw.cpu.limit_type
-        type:
-          members:
-            - id: throttled
-              value: 'throttled'
-              brief: "Throttled"
-              stability: development
-            - id: max
-              value: 'max'
-              brief: 'Max'
-              stability: development
-            - id: turbo
-              value: 'turbo'
-              brief: 'Turbo'
-              stability: development
-        stability: development
-        brief: >
-          Type of the CPU speed limit
-          
+
       # DISK CONTROLLER ATTRIBUTES
       - id: hw.disk_controller.bios_version
         type: string
@@ -273,24 +282,7 @@ groups:
         brief: >
           Location of the fan in the computer enclosure
         examples: ['cpu0', 'ps1', 'INLET']
-      - id: hw.fan.limit_type
-        type:
-          members:
-            - id: low.critical
-              value: 'low.critical'
-              brief: "Low Critical"
-              stability: development
-            - id: low.degraded
-              value: 'low.degraded'
-              brief: 'Low Degraded'
-              stability: development
-            - id: max
-              value: 'max'
-              brief: 'Max'
-              stability: development
-        stability: development
-        brief: >
-          Type of the fan speed limit
+
           
       # GPU ATTRIBUTES
       - id: hw.gpu.driver_version
@@ -561,21 +553,60 @@ groups:
         brief: >
           Vendor name of the power supply
         examples: ['Corsair', 'EVGA', 'Seasonic']
-      - id: hw.power_supply.limit_type
+
+          
+      # TAPE DRIVE ATTRIBUTES
+      - id: hw.tape_drive.model
+        type: string
+        stability: development
+        brief: >
+          Descriptive model name of the tape drive
+        examples: ['IBM Ultrium 8', 'LTO-8']
+      - id: hw.tape_drive.serial_number
+        type: string
+        stability: development
+        brief: >
+          Serial number of the tape drive
+        examples: ['TD123456789']
+      - id: hw.tape_drive.vendor
+        type: string
+        stability: development
+        brief: >
+          Vendor name of the tape drive
+        examples: ['IBM', 'HP', 'Quantum']
+      - id: hw.tape_drive.operation_type
         type:
           members:
-            - id: max
-              value: 'max'
-              brief: "Maximum"
+            - id: mount
+              value: 'mount'
+              brief: "Mount"
               stability: development
-            - id: critical
-              value: 'critical'
-              brief: 'Critical'
+            - id: unmount
+              value: 'unmount'
+              brief: 'Unmount'
               stability: development
-            - id: throttled
-              value: 'throttled'
-              brief: 'Throttled'
+            - id: clean
+              value: 'clean'
+              brief: 'Clean'
               stability: development
         stability: development
         brief: >
-          Type of power supply limit
+          Type of tape drive operation
+          
+      # TEMPERATURE ATTRIBUTES
+      - id: hw.temperature.sensor_location
+        type: string
+        stability: development
+        brief: >
+          Location of the temperature sensor
+        examples: ['CPU0_DIE', 'AMBIENT', 'MOTHERBOARD']
+
+          
+      # VOLTAGE ATTRIBUTES
+      - id: hw.voltage.sensor_location
+        type: string
+        stability: development
+        brief: >
+          Location of the voltage sensor
+        examples: ['PS0 V3_3', 'MAIN_12V', 'CPU_VCORE']
+
