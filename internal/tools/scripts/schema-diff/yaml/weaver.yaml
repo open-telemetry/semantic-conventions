@@ -1,0 +1,16 @@
+params:
+  next_version: "next_version_placeholder" # https://github.com/open-telemetry/weaver/issues/775
+templates:
+  - pattern: schema-diff.j2
+    filter: >
+      .
+      | {
+          renames: .changes | with_entries(.value |= (map(select(.type == "renamed")) | sort_by(.old_name))),
+          next_version: $next_version,
+          latest_released_version: .baseline.semconv_version,
+        }
+    application_mode: single
+whitespace_control:
+  trim_blocks: true
+  lstrip_blocks: true
+  keep_trailing_newline: true
