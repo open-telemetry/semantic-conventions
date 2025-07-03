@@ -1,6 +1,7 @@
 groups:
-  - id: log-exception
+  - id: logrecord.exception
     type: attribute_group
+    display_name: Exception Attributes
     brief: >
       This document defines attributes for exceptions represented using Log
       Records.
