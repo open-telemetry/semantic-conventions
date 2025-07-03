@@ -1,0 +1,20 @@
+baseline:
+  semconv_version: v1.35.0
+changes:
+  events: []
+  metrics:
+  - name: metric.otel.sdk.span.ended.count
+    note: Obsoleted.
+    type: obsoleted
+  - name: metric.otel.sdk.span.started
+    type: added
+  - name: metric.otel.sdk.span.ended
+    note: Obsoleted.
+    type: obsoleted
+  registry_attributes:
+  - name: otel.span.parent.origin
+    type: added
+  resources: []
+  spans: []
+head:
+  semconv_version: 1.36.0

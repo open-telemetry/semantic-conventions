@@ -1,0 +1,9 @@
+templates:
+  - pattern: schema-diff.j2
+    filter: .
+    application_mode: single
+    file_name: next-version-dev/schema-diff.yaml # how to parametrize this?
+whitespace_control:
+  trim_blocks: true
+  lstrip_blocks: true
+  keep_trailing_newline: true
