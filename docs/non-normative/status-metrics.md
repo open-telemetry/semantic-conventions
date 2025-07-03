@@ -9,6 +9,12 @@ aliases: [status-metrics]
 
 <!-- toc -->
 
+- [Definition](#definition)
+- [Design](#design)
+  - [Naming](#naming)
+  - [Instrument](#instrument)
+  - [Why not Resource Attributes?](#why-not-resource-attributes)
+
 <!-- tocstop -->
 
 ## Definition
