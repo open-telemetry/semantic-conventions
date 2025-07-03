@@ -51,7 +51,7 @@ groups:
           The full path to the file, with symlinks resolved.
         examples: [ "/var/lib/docker/uuid.log" ]
 
-  - id: registry.log.record
+  - id: registry.log.record.details
     type: attribute_group
     display_name: Log Record Attributes
     brief: >

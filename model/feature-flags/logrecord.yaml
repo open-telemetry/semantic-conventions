@@ -1,0 +1,8 @@
+groups:
+  - id: logrecord.feature_flag.evaluation
+    type: attribute_group
+    display_name: Feature Flag Attributes
+    stability: release_candidate
+    extends: event.feature_flag.evaluation
+    brief: >
+      Defines attributes to be added to log records on feature flag evaluation.
