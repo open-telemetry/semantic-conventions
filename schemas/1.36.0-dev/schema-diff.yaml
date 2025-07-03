@@ -3,14 +3,14 @@ baseline:
 changes:
   events: []
   metrics:
+  - name: metric.otel.sdk.span.ended
+    note: Obsoleted.
+    type: obsoleted
   - name: metric.otel.sdk.span.ended.count
     note: Obsoleted.
     type: obsoleted
   - name: metric.otel.sdk.span.started
     type: added
-  - name: metric.otel.sdk.span.ended
-    note: Obsoleted.
-    type: obsoleted
   registry_attributes:
   - name: otel.span.parent.origin
     type: added
