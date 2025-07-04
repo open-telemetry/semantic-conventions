@@ -25,9 +25,9 @@
     - `azure_container_apps` to `azure.container_apps` (on `cloud.platform`)
     - `azure_container_instances` to `azure.container_instances` (on `cloud.platform`)
     - `azure_functions` to `azure.functions` (on `cloud.platform`)
-    - `azure_openshift` to `azure.open_shift` (on `cloud.platform`)
+    - `azure_openshift` to `azure.openshift` (on `cloud.platform`)
     - `azure_vm` to `azure.vm` (on `cloud.platform`)
-  
+
 - `system`: Revert the change that moved `system.cpu.*` to `cpu.*`. The 3 affected metrics are back in `system.cpu.*`. ([#1873](https://github.com/open-telemetry/semantic-conventions/issues/1873))
 - `system`: Changes system.network.connections to system.network.connection.count ([#1800](https://github.com/open-telemetry/semantic-conventions/issues/1800))
 - `k8s`: Change instrument type for .limit/.request container metrics from gauge to updowncounter ([#2354](https://github.com/open-telemetry/semantic-conventions/issues/2354))
