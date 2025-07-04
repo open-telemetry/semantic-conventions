@@ -1,4 +1,0 @@
-change_type: bug_fix
-component: cloud
-note: Exclude deprecated Azure members from code generation on the `cloud.platform` attribute
-issues: [2477, 2455]
