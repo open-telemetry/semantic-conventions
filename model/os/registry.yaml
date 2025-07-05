@@ -17,11 +17,17 @@ groups:
               stability: development
             - id: linux
               value: 'linux'
-              brief: "Deprecated. Should be set as the `os.family`"
+              brief: "Linux"
+              deprecated: 
+                reason: uncategorized
+                note: Should be set as the `os.family` instead
               stability: development
             - id: darwin
               value: 'darwin'
-              brief: "Deprecated. Should be set as the `os.classifcation`"
+              brief: "Apple Darwin"
+              deprecated:
+                reason: uncategorized
+                note: Should be set as the `os.classification` instead.
               stability: development
             - id: freebsd
               value: 'freebsd'
