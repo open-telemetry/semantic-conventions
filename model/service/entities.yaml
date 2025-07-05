@@ -1,17 +1,35 @@
 groups:
+  - id: entity.service.intance
+    type: entity
+    name: service.instance
+    brief: >
+      A service instance.
+    stability: development
+    attributes:
+      - ref: service.name
+        requirement_level: required
+        role: descriptive
+      - ref: service.version
+        role: descriptive
+      - ref: service.namespace
+        role: descriptive
+      - ref: service.instance.id
+        role: identifying
   - id: entity.service
     type: entity
     name: service
     brief: >
-      A service instance.
+      A service which can generate telemetry.
     stability: stable
     attributes:
       - ref: service.name
         requirement_level: required
         role: identifying
       - ref: service.version
-        role: descriptive
+        role: identifying
       - ref: service.namespace
         role: identifying
-      - ref: service.instance.id
-        role: identifying
+      - ref: service.roles
+        role: descriptive
+      - ref: service.state
+        role: descriptive

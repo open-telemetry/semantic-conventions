@@ -69,3 +69,27 @@ groups:
           for that telemetry. This is typically the case for scraping receivers, as they know the target address and
           port.
         examples: ["627cc493-f310-47de-96bd-71410b7dec09"]
+      - id: service.roles
+        type: string[]
+        stability: development
+        brief: >
+          Roles of a service node.
+        note: |
+          This allows for distinction between different running roles of the same service.
+
+          In the case of Kibana, the service.node.role could be ui or background_tasks or both.
+
+          In the case of Elasticsearch, the service.node.role could be master or data or both.
+
+          Other services could use this to distinguish between a web and worker role running as part of the service.
+        examples:
+          - ["ui", "background_tasks"]
+          - ["background_tasks"]
+      - id: service.state
+        type: string
+        brief: >
+          Current state of the service.
+        note: >
+          This state could be reported a collector which monitors the services
+        examples: ["starting", "running", "stopping", "stopped"]
+        stability: development
