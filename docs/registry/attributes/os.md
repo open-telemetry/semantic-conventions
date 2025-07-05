@@ -10,9 +10,9 @@ The operating system (OS) on which the process represented by this resource is r
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="os-build-id" href="#os-build-id">`os.build_id`</a> | string | Unique identifier for a particular build or compilation of the operating system. | `TQ3C.230805.001.B2`; `20E247`; `22621` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="os-classification" href="#os-classification">`os.classification`</a> | string | A classification of the OS which corresponds to the upstram distro. | `rhel`; `fedora`; `arch` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="os-classification" href="#os-classification">`os.classification`</a> | string | A classification of the OS which corresponds to the upstram distro hence usually only used on linux. | `rhel`; `fedora`; `arch` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="os-description" href="#os-description">`os.description`</a> | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="os-family" href="#os-family">`os.family`</a> | string | Identifies the OS family which the OS is associated with. | `windows`; `macosx`; `linux` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="os-family" href="#os-family">`os.family`</a> | string | Identifies the OS family which the OS is associated with. | `windows`; `apple`; `linux` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="os-name" href="#os-name">`os.name`</a> | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="os-platform" href="#os-platform">`os.platform`</a> | string | Identifies the operating system platform. | `win32s`; `win32windows`; `win32nt` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="os-type" href="#os-type">`os.type`</a> | string | The operating system type. | `windows`; `linux`; `darwin` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -34,7 +34,7 @@ The operating system (OS) on which the process represented by this resource is r
 | `slackware` | Slackware | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ubuntu` | Ubuntu | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** This would usually be OS by apple
+**[1]:** This would usually be an OS by apple
 
 ---
 
@@ -42,9 +42,9 @@ The operating system (OS) on which the process represented by this resource is r
 
 | Value  | Description | Stability |
 |---|---|---|
+| `apple` | The operating system belongs to the apple family. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `bsd` | The operating system is a BSD OS. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `linux` | The operating system is a linux OS. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `macosx` | The operating system is a macosx OS. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `windows` | The operating system is a Windows OS. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---

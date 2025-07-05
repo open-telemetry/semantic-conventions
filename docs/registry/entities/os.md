@@ -5,13 +5,13 @@
 
 # OS
 
-## OS
+## OS Environment
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `os`
+**type:** `os.environment`
 
-**Description:** The operating system (OS) on which the process represented by this resource is running.
+**Description:** The operating system (OS) environment on which the process represented by this resource is running.
 
 **Other Attributes:**
 
@@ -22,11 +22,8 @@
 |---|---|---|---|---|---|
 | [`os.type`](/docs/registry/attributes/os.md) | string | The operating system type. | `windows`; `linux`; `darwin` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.build_id`](/docs/registry/attributes/os.md) | string | Unique identifier for a particular build or compilation of the operating system. [1] | `TQ3C.230805.001.B2`; `20E247`; `22621` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`os.classification`](/docs/registry/attributes/os.md) | string | A classification of the OS which corresponds to the upstram distro. | `rhel`; `fedora`; `arch` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.description`](/docs/registry/attributes/os.md) | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`os.family`](/docs/registry/attributes/os.md) | string | Identifies the OS family which the OS is associated with. | `windows`; `macosx`; `linux` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.name`](/docs/registry/attributes/os.md) | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`os.platform`](/docs/registry/attributes/os.md) | string | Identifies the operating system platform. | `win32s`; `win32windows`; `win32nt` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.version`](/docs/registry/attributes/os.md) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `os.build_id`:** `build_id` values SHOULD be obtained from the following sources:
@@ -36,6 +33,44 @@
 | Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` | - |
 | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
 | Linux | `BUILD_ID` from `/etc/os-release` | `BUILD_ID` from `/usr/lib/os-release`; <br> contents of `/proc/sys/kernel/osrelease`|
+
+---
+
+`os.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `aix` | AIX (Advanced Interactive eXecutive) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `darwin` | Apple Darwin | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dragonflybsd` | DragonFly BSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `freebsd` | FreeBSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hpux` | HP-UX (Hewlett Packard Unix) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `linux` | Linux | ![Development](https://img.shields.io/badge/-development-blue) |
+| `netbsd` | NetBSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openbsd` | OpenBSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `solaris` | SunOS, Oracle Solaris | ![Development](https://img.shields.io/badge/-development-blue) |
+| `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
+| `zos` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## OS Type
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `os.type`
+
+**Description:** The operating system (OS) type which was used to setup up the operating system environment.
+
+**Other Attributes:**
+
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`os.type`](/docs/registry/attributes/os.md) | string | The operating system type. | `windows`; `linux`; `darwin` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.family`](/docs/registry/attributes/os.md) | string | Identifies the OS family which the OS is associated with. | `windows`; `apple`; `linux` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.platform`](/docs/registry/attributes/os.md) | string | Identifies the operating system platform. | `win32s`; `win32windows`; `win32nt` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.classification`](/docs/registry/attributes/os.md) | string | A classification of the OS which corresponds to the upstram distro hence usually only used on linux. | `rhel`; `fedora`; `arch` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -53,7 +88,7 @@
 | `slackware` | Slackware | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ubuntu` | Ubuntu | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[2]:** This would usually be OS by apple
+**[2]:** This would usually be an OS by apple
 
 ---
 
@@ -61,9 +96,9 @@
 
 | Value  | Description | Stability |
 |---|---|---|
+| `apple` | The operating system belongs to the apple family. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `bsd` | The operating system is a BSD OS. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `linux` | The operating system is a linux OS. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `macosx` | The operating system is a macosx OS. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `windows` | The operating system is a Windows OS. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
