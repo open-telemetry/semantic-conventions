@@ -7,6 +7,22 @@
 
 <!-- next version -->
 
+## v1.36.0
+
+### 🚩 Deprecations 🚩
+
+- `os`: Adds the 'deprecated:' tag/attribute to the `z_os` enum value of `os.type`. This value was recently deprecated in v1.35.0. ([#2479](https://github.com/open-telemetry/semantic-conventions/issues/2479))
+
+### 💡 Enhancements 💡
+
+- `otel`: Replaces `otel.sdk.span.ended` with `otel.sdk.span.started` and allow differentiation based on the parent span origin ([#2431](https://github.com/open-telemetry/semantic-conventions/issues/2431))
+- `db`: Add database context propagation via `SET CONTEXT_INFO` for SQL Server ([#2162](https://github.com/open-telemetry/semantic-conventions/issues/2162))
+- `entities`: Adds support for Entity registry and Entity stabilization policies. ([#2246](https://github.com/open-telemetry/semantic-conventions/issues/2246))
+
+### 🧰 Bug fixes 🧰
+
+- `cloud`: Exclude deprecated Azure members from code generation on the `cloud.platform` attribute ([#2477](https://github.com/open-telemetry/semantic-conventions/issues/2477), [#2455](https://github.com/open-telemetry/semantic-conventions/issues/2455))
+
 ## v1.35.0
 
 ### 🛑 Breaking changes 🛑
