@@ -1,10 +1,10 @@
 groups:
-  - id: entity.os
+  - id: entity.os.environment
     type: entity
     stability: development
-    name: os
+    name: os.environment
     brief: >
-      The operating system (OS) on which the process represented by this resource is running.
+      The operating system (OS) environment on which the process represented by this resource is running.
     note: >
       In case of virtualized environments, this is the operating system as it is observed by
       the process, i.e., the virtualized guest rather than the underlying host.
@@ -13,9 +13,6 @@ groups:
         requirement_level: required
       - ref: os.description
       - ref: os.name
-      - ref: os.classification
-      - ref: os.family
-      - ref: os.platform
       - ref: os.version
       - ref: os.build_id
         note: >
@@ -31,3 +28,17 @@ groups:
           | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
 
           | Linux | `BUILD_ID` from `/etc/os-release` | `BUILD_ID` from `/usr/lib/os-release`; <br> contents of `/proc/sys/kernel/osrelease`|
+
+  - id: entity.os.type
+    type: entity
+    stability: development
+    name: os.type
+    brief: >
+      The operating system (OS) type which was used to setup up the operating system environment.
+    attributes:
+      - ref: os.type
+        requirement_level: required
+      - ref: os.classification
+        requirement_level: opt_in
+      - ref: os.family
+      - ref: os.platform

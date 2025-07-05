@@ -223,7 +223,11 @@ Currently, the following namespaces exist:
 <td>OS</td><td></td><td></td>
 </tr><tr>
   <td></td>
-  <td><a href="os.md#os">os</a></td>
+  <td><a href="os.md#os-environment">os.environment</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="os.md#os-type">os.type</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
 <td>OTel</td><td></td><td></td>
