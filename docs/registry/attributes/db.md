@@ -147,11 +147,13 @@ stored procedure name then that stored procedure name SHOULD be used.
 | `ibm.informix` | [IBM Informix](https://www.ibm.com/products/informix) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.netezza` | [IBM Netezza](https://www.ibm.com/products/netezza) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `influxdb` | [InfluxDB](https://www.influxdata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inmemory` | In-memory | ![Development](https://img.shields.io/badge/-development-blue) |
 | `instantdb` | [Instant](https://www.instantdb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `intersystems.cache` | [InterSystems Caché](https://www.intersystems.com/products/cache/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `iotdb` | [Apache IoTDB](https://iotdb.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kdb+` | [KDB+](https://kx.com/products/kdb/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kurrentdb` | [KurrentDB](https://www.kurrent.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `lmdb` | [Lightning Memory-Mapped Database](https://www.symas.com/mdb) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mariadb` | [MariaDB](https://mariadb.org/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `memcached` | [Memcached](https://memcached.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `microsoft.sql_server` | [Microsoft SQL Server](https://www.microsoft.com/sql-server) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
