@@ -2,6 +2,9 @@ groups:
   - id: metric.dns.lookup.duration
     type: metric
     metric_name: dns.lookup.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: Measures the time taken to perform a DNS lookup.
     instrument: histogram

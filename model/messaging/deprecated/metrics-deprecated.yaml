@@ -2,6 +2,9 @@ groups:
   - id: metric.messaging.publish.duration
     type: metric
     metric_name: messaging.publish.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Deprecated. Use `messaging.client.operation.duration` instead."
     deprecated:
       reason: renamed
@@ -14,6 +17,9 @@ groups:
   - id: metric.messaging.receive.duration
     type: metric
     metric_name: messaging.receive.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Deprecated. Use `messaging.client.operation.duration` instead."
     deprecated:
       reason: renamed
@@ -26,6 +32,9 @@ groups:
   - id: metric.messaging.process.messages
     type: metric
     metric_name: messaging.process.messages
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Deprecated. Use `messaging.client.consumed.messages` instead."
     deprecated:
       reason: renamed
@@ -38,6 +47,9 @@ groups:
   - id: metric.messaging.publish.messages
     type: metric
     metric_name: messaging.publish.messages
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Deprecated. Use `messaging.client.sent.messages` instead."
     deprecated:
       reason: renamed
@@ -50,6 +62,9 @@ groups:
   - id: metric.messaging.receive.messages
     type: metric
     metric_name: messaging.receive.messages
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Deprecated. Use `messaging.client.consumed.messages` instead."
     deprecated:
       reason: renamed
@@ -62,6 +77,9 @@ groups:
   - id: metric.messaging.client.published.messages
     type: metric
     metric_name: messaging.client.published.messages
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Deprecated. Use `messaging.client.sent.messages` instead."
     deprecated:
       reason: renamed
