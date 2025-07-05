@@ -162,6 +162,10 @@ Currently, the following namespaces exist:
   <td><a href="host.md#host-cpu">host.cpu</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
+  <td></td>
+  <td><a href="host.md#host-image">host.image</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
 <td>K8s</td><td></td><td></td>
 </tr><tr>
   <td></td>
