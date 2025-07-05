@@ -5,13 +5,13 @@
 
 # OS
 
-## OS
+## OS Environment
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `os`
+**type:** `os.environment`
 
-**Description:** The operating system (OS) on which the process represented by this resource is running.
+**Description:** The operating system (OS) environment on which the process represented by this resource is running.
 
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
@@ -20,11 +20,8 @@
 |---|---|---|---|---|---|---|
 | Other | [`os.type`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The operating system type. | `windows`; `linux`; `darwin` |
 | Other | [`os.build_id`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for a particular build or compilation of the operating system. [1] | `TQ3C.230805.001.B2`; `20E247`; `22621` |
-| Other | [`os.classification`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A classification of the OS which corresponds to the upstram distro. | `rhel`; `fedora`; `arch` |
 | Other | [`os.description`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` |
-| Other | [`os.family`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifies the OS family which the OS is associated with. | `windows`; `macosx`; `linux` |
 | Other | [`os.name`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` |
-| Other | [`os.platform`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifies the operating system platform. | `win32s`; `win32windows`; `win32nt` |
 | Other | [`os.version`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` |
 
 
@@ -35,5 +32,23 @@
 | Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` | - |
 | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
 | Linux | `BUILD_ID` from `/etc/os-release` | `BUILD_ID` from `/usr/lib/os-release`; <br> contents of `/proc/sys/kernel/osrelease`|
+
+## OS Type
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `os.type`
+
+**Description:** The operating system (OS) type which was used to setup up the operating system environment.
+
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
+
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+|---|---|---|---|---|---|---|
+| Other | [`os.type`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The operating system type. | `windows`; `linux`; `darwin` |
+| Other | [`os.family`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifies the OS family which the OS is associated with. | `windows`; `apple`; `linux` |
+| Other | [`os.platform`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifies the operating system platform. | `win32s`; `win32windows`; `win32nt` |
+| Other | [`os.classification`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A classification of the OS which corresponds to the upstram distro hence usually only used on linux. | `rhel`; `fedora`; `arch` |
 
 <!-- markdownlint-restore -->

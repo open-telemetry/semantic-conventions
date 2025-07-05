@@ -109,9 +109,9 @@ groups:
               value: 'windows'
               brief: "The operating system is a Windows OS."
               stability: development
-            - id: macosx
-              value: 'macosx'
-              brief: "The operating system is a macosx OS."
+            - id: apple
+              value: 'apple'
+              brief: "The operating system belongs to the apple family."
               stability: development
             - id: linux
               value: 'linux'
@@ -141,7 +141,7 @@ groups:
             - id: darwin
               value: 'darwin'
               brief: "Darwin"
-              note: "This would usually be OS by apple"
+              note: "This would usually be an OS by apple"
               stability: development
             - id: ubuntu
               value: 'ubuntu'
@@ -164,7 +164,7 @@ groups:
               brief: "Android"
               stability: development
         stability: development
-        brief: 'A classification of the OS which corresponds to the upstram distro.'
+        brief: 'A classification of the OS which corresponds to the upstram distro hence usually only used on linux.'
       - id: os.version
         type: string
         stability: development
