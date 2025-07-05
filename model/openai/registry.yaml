@@ -1,0 +1,31 @@
+groups:
+  - id: registry.openai
+    type: attribute_group
+    display_name: OpenAI Attributes
+    brief: >
+      This group defines attributes for OpenAI.
+    attributes:
+      - id: openai.request.service_tier
+        stability: development
+        type:
+          members:
+            - id: auto
+              value: "auto"
+              brief: The system will utilize scale tier credits until they are exhausted.
+              stability: development
+            - id: default
+              value: "default"
+              brief: The system will utilize the default scale tier.
+              stability: development
+        brief: The service tier requested. May be a specific tier, default, or auto.
+        examples: ['auto', 'default']
+      - id: openai.response.service_tier
+        stability: development
+        type: string
+        brief: The service tier used for the response.
+        examples: ['scale', 'default']
+      - id: openai.response.system_fingerprint
+        stability: development
+        type: string
+        brief: A fingerprint to track any eventual change in the Generative AI environment.
+        examples: ["fp_44709d6fcb"]

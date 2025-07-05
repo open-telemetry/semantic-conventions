@@ -107,7 +107,7 @@ groups:
       client or when the GenAI call happens over instrumented protocol such as HTTP.
     extends: attributes.gen_ai.inference.client
     attributes:
-      - ref: gen_ai.system
+      - ref: gen_ai.provider.name
         # TODO: Not adding to common attributes because of https://github.com/open-telemetry/weaver/issues/479
         requirement_level: required
       - ref: gen_ai.request.top_k
@@ -135,7 +135,7 @@ groups:
           Additional output format details may be recorded in the future in the
           `gen_ai.output.{type}.*` attributes.
 
-  - id: span.gen_ai.openai.inference.client
+  - id: span.openai.inference.client
     extends: attributes.gen_ai.inference.openai_based
     stability: development
     span_kind: client
@@ -144,22 +144,22 @@ groups:
       Semantic Conventions for [OpenAI](https://openai.com/) client spans extend
       and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md).
     note: |
-      `gen_ai.system` MUST be set to `"openai"` and SHOULD be provided **at span creation time**.
+      `gen_ai.provider.name` MUST be set to `"openai"` and SHOULD be provided **at span creation time**.
 
       **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
     attributes:
       - ref: gen_ai.request.model
         requirement_level: required
-      - ref: gen_ai.openai.request.service_tier
+      - ref: openai.request.service_tier
         requirement_level:
           conditionally_required: if the request includes a service_tier and the value is not 'auto'
-      - ref: gen_ai.openai.response.service_tier
+      - ref: openai.response.service_tier
         requirement_level:
           conditionally_required: if the response was received and includes a service_tier
-      - ref: gen_ai.openai.response.system_fingerprint
+      - ref: openai.response.system_fingerprint
         requirement_level: recommended
 
-  - id: span.gen_ai.azure.ai.inference.client
+  - id: span.azure.ai.inference.client
     extends: attributes.gen_ai.inference.openai_based
     stability: development
     type: span
@@ -168,7 +168,7 @@ groups:
       Semantic Conventions for [Azure AI Inference](https://learn.microsoft.com/azure/ai-studio/reference/reference-model-inference-api)
       client spans extend and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md).
     note: |
-      `gen_ai.system` MUST be set to `"az.ai.inference"` and SHOULD be provided **at span creation time**.
+      `gen_ai.provider.name` MUST be set to `"azure.ai.inference"` and SHOULD be provided **at span creation time**.
 
       **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}` when the
       model name is available and `{gen_ai.operation.name}` otherwise.
@@ -220,7 +220,7 @@ groups:
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
     extends: attributes.gen_ai.common.client
     attributes:
-      - ref: gen_ai.system
+      - ref: gen_ai.provider.name
         requirement_level: required
       - ref: gen_ai.agent.id
         requirement_level:
@@ -246,7 +246,7 @@ groups:
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
     extends: attributes.gen_ai.inference.client
     attributes:
-      - ref: gen_ai.system
+      - ref: gen_ai.provider.name
         requirement_level: required
       - ref: gen_ai.agent.id
         requirement_level:
