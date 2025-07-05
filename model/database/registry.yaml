@@ -392,6 +392,14 @@ groups:
               value: "tarantool+"
               brief: "[Tarantool](https://www.tarantool.io/en/)"
               stability: development
+            - id: inmemory
+              value: "inmemory"
+              brief: "In-memory"
+              stability: development
+            - id: lmdb
+              value: "lmdb"
+              brief: "[Lightning Memory-Mapped Database](https://www.symas.com/mdb)"
+              stability: development
         stability: stable
       - id: db.client.connection.state
         stability: development
