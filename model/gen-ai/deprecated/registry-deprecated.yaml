@@ -108,6 +108,7 @@ groups:
               stability: development
               value: "xai"
               brief: 'xAI'
+              deprecated: "Use 'x_ai' instead."
             - id: deepseek
               stability: development
               value: "deepseek"
