@@ -38,6 +38,10 @@ Currently, the following namespaces exist:
   <td><a href="app.md#app">app</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
+  <td></td>
+  <td><a href="app.md#app-installation">app.installation</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
 <td>AWS</td><td></td><td></td>
 </tr><tr>
   <td></td>

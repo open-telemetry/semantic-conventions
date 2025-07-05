@@ -9,13 +9,21 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="app-installation-id" href="#app-installation-id">`app.installation.id`</a> | string | A unique identifier representing the installation of an application on a specific device [1] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-id" href="#app-id">`app.id`</a> | string | A unique identifier for the app. [1] | `com.domainname.applicationname` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-installation-id" href="#app-installation-id">`app.installation.id`</a> | string | A unique identifier representing the installation of an application on a specific device [2] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-name" href="#app-name">`app.name`</a> | string | Logical name of the app. [3] | `shoppingcart` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-namespace" href="#app-namespace">`app.namespace`</a> | string | A namespace for `app.name`. [4] | `Shop` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-roles" href="#app-roles">`app.roles`</a> | string[] | What role this app can perform. [5] | `["ui", "background_tasks"]`; `["background_tasks"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-coordinate-x" href="#app-screen-coordinate-x">`app.screen.coordinate.x`</a> | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-coordinate-y" href="#app-screen-coordinate-y">`app.screen.coordinate.y`</a> | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-widget-id" href="#app-widget-id">`app.widget.id`</a> | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [2] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-widget-name" href="#app-widget-name">`app.widget.name`</a> | string | The name of an application widget. [3] | `submit`; `attack`; `Clear Cart` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-type" href="#app-type">`app.type`</a> | string | Describes the type of application which generated the telemetry | `console`; `device`; `service` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-version" href="#app-version">`app.version`</a> | string | The version string of the app. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-widget-id" href="#app-widget-id">`app.widget.id`</a> | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [6] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-widget-name" href="#app-widget-name">`app.widget.name`</a> | string | The name of an application widget. [7] | `submit`; `attack`; `Clear Cart` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
+**[1] `app.id`:** MUST remain the same across all versions. For mobile applications this should correspond to the package id.
+
+**[2] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
 It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
 Additionally, users might be able to reset this value (e.g. by clearing application data).
 If an app is installed multiple times on the same device (e.g. in different accounts on Android), each `app.installation.id` SHOULD have a different value.
@@ -33,6 +41,24 @@ For Android, examples of `app.installation.id` implementations include:
 
 More information about Android identifier best practices can be found [here](https://developer.android.com/training/articles/user-data-ids).
 
-**[2] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
+**[3] `app.name`:** MUST be the same for all installations of the app.
 
-**[3] `app.widget.name`:** A widget is an application component, typically an on-screen visual GUI element.
+**[4] `app.namespace`:** A string value having a meaning that helps to distinguish a group of apps, for example the team name that owns a group of apps. `app.name` is expected to be unique within the same namespace. If `app.namespace` is not specified in the Resource then `app.name` is expected to be unique for all apps that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
+
+**[5] `app.roles`:** This doesn't correspond to the roles being performed as a role can be disabled.
+To discover the active roles you can look at `service.roles`
+
+**[6] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
+
+**[7] `app.widget.name`:** A widget is an application component, typically an on-screen visual GUI element.
+
+---
+
+`app.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `console` | The application is interacted with via the console. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `device` | The application is interacted with via UI shown on the device the app is installed on. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `service` | The application runs in the backgroung without any ui. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `web` | The application is interacted with via a web browser. | ![Development](https://img.shields.io/badge/-development-blue) |
