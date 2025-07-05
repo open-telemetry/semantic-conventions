@@ -18,7 +18,7 @@ linkTitle: Azure AI Inference
 > [!Warning]
 >
 > Existing GenAI instrumentations that are using
-> [v1.34.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.34.0/docs/gen-ai/README.md)
+> [v1.36.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.36.0/docs/gen-ai/README.md)
 > (or prior):
 >
 > * SHOULD NOT change the version of the GenAI conventions that they emit by default.
@@ -29,9 +29,9 @@ linkTitle: Azure AI Inference
 >   includes:
 >   * `gen-ai-latest-experimental` - emit the latest experimental version of
 >     GenAI conventions (supported by the instrumentation) and do not emit the
->     old one (v1.34.0 or prior).
+>     old one (v1.36.0 or prior).
 >   * The default behavior is to continue emitting whatever version of the GenAI
->     conventions the instrumentation was emitting (1.34.0 or prior).
+>     conventions the instrumentation was emitting (1.36.0 or prior).
 >
 > This transition plan will be updated to include stable version before the
 > GenAI conventions are marked as stable.
@@ -55,7 +55,7 @@ The Semantic Conventions for [Azure AI Inference](https://learn.microsoft.com/az
 
 Semantic Conventions for [Azure AI Inference](https://learn.microsoft.com/azure/ai-studio/reference/reference-model-inference-api) client spans extend and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md).
 
-`gen_ai.provide.name` MUST be set to `"azure.ai.inference"` and SHOULD be provided **at span creation time**.
+`gen_ai.provider.name` MUST be set to `"azure.ai.inference"` and SHOULD be provided **at span creation time**.
 
 **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}` when the
 model name is available and `{gen_ai.operation.name}` otherwise.

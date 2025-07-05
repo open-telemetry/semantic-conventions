@@ -19,7 +19,7 @@ linkTitle: Spans
 > [!Warning]
 >
 > Existing GenAI instrumentations that are using
-> [v1.34.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.34.0/docs/gen-ai/README.md)
+> [v1.36.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.36.0/docs/gen-ai/README.md)
 > (or prior):
 >
 > * SHOULD NOT change the version of the GenAI conventions that they emit by default.
@@ -30,9 +30,9 @@ linkTitle: Spans
 >   includes:
 >   * `gen-ai-latest-experimental` - emit the latest experimental version of
 >     GenAI conventions (supported by the instrumentation) and do not emit the
->     old one (v1.34.0 or prior).
+>     old one (v1.36.0 or prior).
 >   * The default behavior is to continue emitting whatever version of the GenAI
->     conventions the instrumentation was emitting (1.34.0 or prior).
+>     conventions the instrumentation was emitting (1.36.0 or prior).
 >
 > This transition plan will be updated to include stable version before the
 > GenAI conventions are marked as stable.
@@ -66,7 +66,7 @@ client or when the GenAI call happens over instrumented protocol such as HTTP.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI model provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.conversation.id`](/docs/registry/attributes/gen-ai.md) | string | The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation. [4] | `conv_5j66UpCpwteGg4YSxUnt7lPY` | `Conditionally Required` when available | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.output.type`](/docs/registry/attributes/gen-ai.md) | string | Represents the content type requested by the client. [5] | `text`; `json`; `image` | `Conditionally Required` [6] | ![Development](https://img.shields.io/badge/-development-blue) |

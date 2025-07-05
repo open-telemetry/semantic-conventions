@@ -87,7 +87,7 @@ groups:
               value: "mistral_ai"
               brief: '[Mistral AI](https://mistral.ai/)'
 
-        brief: The Generative AI model provider as identified by the client
+        brief: The Generative AI provider as identified by the client
           or server instrumentation.
         note: |
           The attribute SHOULD be set based on the instrumentation's best

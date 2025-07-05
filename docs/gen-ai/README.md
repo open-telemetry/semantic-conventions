@@ -9,7 +9,7 @@ linkTitle: Generative AI
 > [!Warning]
 >
 > Existing GenAI instrumentations that are using
-> [v1.34.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.34.0/docs/gen-ai/README.md)
+> [v1.36.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.36.0/docs/gen-ai/README.md)
 > (or prior):
 >
 > * SHOULD NOT change the version of the GenAI conventions that they emit by default.
@@ -20,9 +20,9 @@ linkTitle: Generative AI
 >   includes:
 >   * `gen-ai-latest-experimental` - emit the latest experimental version of
 >     GenAI conventions (supported by the instrumentation) and do not emit the
->     old one (v1.34.0 or prior).
+>     old one (v1.36.0 or prior).
 >   * The default behavior is to continue emitting whatever version of the GenAI
->     conventions the instrumentation was emitting (1.34.0 or prior).
+>     conventions the instrumentation was emitting (1.36.0 or prior).
 >
 > This transition plan will be updated to include stable version before the
 > GenAI conventions are marked as stable.

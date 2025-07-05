@@ -24,7 +24,7 @@ linkTitle: Events
 > [!Warning]
 >
 > Existing GenAI instrumentations that are using
-> [v1.34.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.34.0/docs/gen-ai/README.md)
+> [v1.36.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.36.0/docs/gen-ai/README.md)
 > (or prior):
 >
 > * SHOULD NOT change the version of the GenAI conventions that they emit by default.
@@ -35,9 +35,9 @@ linkTitle: Events
 >   includes:
 >   * `gen-ai-latest-experimental` - emit the latest experimental version of
 >     GenAI conventions (supported by the instrumentation) and do not emit the
->     old one (v1.34.0 or prior).
+>     old one (v1.36.0 or prior).
 >   * The default behavior is to continue emitting whatever version of the GenAI
->     conventions the instrumentation was emitting (1.34.0 or prior).
+>     conventions the instrumentation was emitting (1.36.0 or prior).
 >
 > This transition plan will be updated to include stable version before the
 > GenAI conventions are marked as stable.
@@ -82,7 +82,7 @@ This event describes the system instructions passed to the GenAI model.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI model provider as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
 knowledge and may differ from the actual model provider.
@@ -164,7 +164,7 @@ This event describes the user message passed to the GenAI model.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI model provider as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
 knowledge and may differ from the actual model provider.
@@ -246,7 +246,7 @@ This event describes the assistant message passed to GenAI system.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI model provider as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
 knowledge and may differ from the actual model provider.
@@ -343,7 +343,7 @@ This event describes the response from a tool or function call passed to the Gen
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI model provider as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
 knowledge and may differ from the actual model provider.
@@ -426,7 +426,7 @@ This event describes the Gen AI response message.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI model provider as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
 knowledge and may differ from the actual model provider.
