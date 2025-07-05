@@ -89,18 +89,30 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The label key-value pairs placed on the Namespace.
+          The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
-          The `<key>` being the label name, the value being the label value, even if the value is empty.
-        examples: ['k8s.namespace.label.kubernetes.io/metadata.name=default', 'k8s.namespace.label.data=']
+
+          Examples:
+
+          - A label `kubernetes.io/metadata.name` with value `default` SHOULD be recorded
+            as the `k8s.namespace.label.kubernetes.io/metadata.name` attribute with value `"default"`.
+          - A label `data` with empty string value SHOULD be recorded as
+            the `k8s.namespace.label.data` attribute with value `""`.
+        examples: ['default', '']
       - id: k8s.namespace.annotation
         type: template[string]
         stability: development
         brief: >
-          The annotation key-value pairs placed on the Namespace.
+          The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
-          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-        examples: [ 'k8s.namespace.annotation.ttl=0', 'k8s.namespace.annotation.data=' ]
+
+          Examples:
+
+          - A label `ttl` with value `0` SHOULD be recorded
+            as the `k8s.namespace.annotation.ttl` attribute with value `"0"`.
+          - A label `data` with empty string value SHOULD be recorded as
+            the `k8s.namespace.annotation.data` attribute with value `""`.
+        examples: ['0', '']
       - id: k8s.pod.uid
         type: string
         stability: development
@@ -181,18 +193,30 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The label key-value pairs placed on the ReplicaSet.
+          The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
-          The `<key>` being the label name, the value being the label value, even if the value is empty.
-        examples: ['k8s.replicaset.label.app=guestbook', 'k8s.replicaset.label.injected=']
+
+          Examples:
+
+          - A label `app` with value `guestbook` SHOULD be recorded
+            as the `k8s.replicaset.label.app` attribute with value `"guestbook"`.
+          - A label `injected` with empty string value SHOULD be recorded as
+            the `k8s.replicaset.label.injected` attribute with value `""`.
+        examples: ['guestbook', '']
       - id: k8s.replicaset.annotation
         type: template[string]
         stability: development
         brief: >
-          The annotation key-value pairs placed on the ReplicaSet.
+          The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
-          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-        examples: [ 'k8s.replicaset.annotation.replicas=0', 'k8s.replicaset.annotation.data=' ]
+
+          Examples:
+
+          - A label `replicas` with value `0` SHOULD be recorded
+            as the `k8s.replicaset.annotation.replicas` attribute with value `"0"`.
+          - A label `data` with empty string value SHOULD be recorded as
+            the `k8s.replicaset.annotation.data` attribute with value `""`.
+        examples: ['0', '']
       - id: k8s.replicationcontroller.uid
         type: string
         stability: development
@@ -233,18 +257,30 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The label key-value pairs placed on the Deployment.
+          The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
-          The `<key>` being the label name, the value being the label value, even if the value is empty.
-        examples: ['k8s.deployment.label.app=guestbook', 'k8s.deployment.label.injected=']
+
+          Examples:
+
+          - A label `replicas` with value `0` SHOULD be recorded
+            as the `k8s.deployment.label.app` attribute with value `"guestbook"`.
+          - A label `injected` with empty string value SHOULD be recorded as
+            the `k8s.deployment.label.injected` attribute with value `""`.
+        examples: ['guestbook', '']
       - id: k8s.deployment.annotation
         type: template[string]
         stability: development
         brief: >
-          The annotation key-value pairs placed on the Deployment.
+          The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
-          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-        examples: [ 'k8s.deployment.annotation.replicas=1', 'k8s.deployment.annotation.data=' ]
+
+          Examples:
+
+          - A label `replicas` with value `1` SHOULD be recorded
+            as the `k8s.deployment.annotation.replicas` attribute with value `"1"`.
+          - A label `data` with empty string value SHOULD be recorded as
+            the `k8s.deployment.annotation.data` attribute with value `""`.
+        examples: ['1', '']
       - id: k8s.statefulset.uid
         type: string
         stability: development
@@ -261,18 +297,30 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The label key-value pairs placed on the StatefulSet.
+          The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
-          The `<key>` being the label name, the value being the label value, even if the value is empty.
-        examples: ['k8s.statefulset.label.app=guestbook', 'k8s.statefulset.label.injected=']
+
+          Examples:
+
+          - A label `replicas` with value `0` SHOULD be recorded
+            as the `k8s.statefulset.label.app` attribute with value `"guestbook"`.
+          - A label `injected` with empty string value SHOULD be recorded as
+            the `k8s.statefulset.label.injected` attribute with value `""`.
+        examples: ['guestbook', '']
       - id: k8s.statefulset.annotation
         type: template[string]
         stability: development
         brief: >
-          The annotation key-value pairs placed on the StatefulSet.
+          The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
-          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-        examples: [ 'k8s.statefulset.annotation.replicas=1', 'k8s.statefulset.annotation.data=' ]
+
+          Examples:
+
+          - A label `replicas` with value `1` SHOULD be recorded
+            as the `k8s.statefulset.annotation.replicas` attribute with value `"1"`.
+          - A label `data` with empty string value SHOULD be recorded as
+            the `k8s.statefulset.annotation.data` attribute with value `""`.
+        examples: ['1', '']
       - id: k8s.daemonset.uid
         type: string
         stability: development
@@ -289,18 +337,30 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The label key-value pairs placed on the DaemonSet.
+          The label placed on the DaemonSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
-          The `<key>` being the label name, the value being the label value, even if the value is empty.
-        examples: ['k8s.daemonset.label.app=guestbook', 'k8s.daemonset.label.injected=']
+
+          Examples:
+
+          - A label `app` with value `guestbook` SHOULD be recorded
+            as the `k8s.daemonset.label.app` attribute with value `"guestbook"`.
+          - A label `data` with empty string value SHOULD be recorded as
+            the `k8s.daemonset.label.injected` attribute with value `""`.
+        examples: ['guestbook', '']
       - id: k8s.daemonset.annotation
         type: template[string]
         stability: development
         brief: >
-          The annotation key-value pairs placed on the DaemonSet.
+          The annotation placed on the DaemonSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
-          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-        examples: [ 'k8s.daemonset.annotation.replicas=1', 'k8s.daemonset.annotation.data=' ]
+
+          Examples:
+
+          - A label `replicas` with value `1` SHOULD be recorded
+            as the `k8s.daemonset.annotation.replicas` attribute with value `"1"`.
+          - A label `data` with empty string value SHOULD be recorded as
+            the `k8s.daemonset.annotation.data` attribute with value `""`.
+        examples: ['1', '']
       - id: k8s.hpa.uid
         type: string
         stability: development
@@ -337,6 +397,14 @@ groups:
         note: |
           This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec.
         examples: ["apps/v1", "autoscaling/v2"]
+      - id: k8s.hpa.metric.type
+        type: string
+        stability: development
+        brief: >
+          The type of metric source for the horizontal pod autoscaler.
+        examples: ['Resource', 'ContainerResource']
+        note: >
+          This attribute reflects the `type` field of spec.metrics[] in the HPA.
       - id: k8s.job.uid
         type: string
         stability: development
@@ -353,18 +421,30 @@ groups:
         type: template[string]
         stability: development
         brief: >
-          The label key-value pairs placed on the Job.
+          The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
-          The `<key>` being the label name, the value being the label value, even if the value is empty.
-        examples: ['k8s.job.label.jobtype=ci', 'k8s.job.label.automated=']
+
+          Examples:
+
+          - A label `jobtype` with value `ci` SHOULD be recorded
+            as the `k8s.job.label.jobtype` attribute with value `"ci"`.
+          - A label `data` with empty string value SHOULD be recorded as
+            the `k8s.job.label.automated` attribute with value `""`.
+        examples: ['ci', '']
       - id: k8s.job.annotation
         type: template[string]
         stability: development
         brief: >
-          The annotation key-value pairs placed on the Job.
+          The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
-          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-        examples: [ 'k8s.job.annotation.number=1', 'k8s.job.annotation.data=' ]
+
+          Examples:
+
+          - A label `number` with value `1` SHOULD be recorded
+            as the `k8s.job.annotation.number` attribute with value `"1"`.
+          - A label `data` with empty string value SHOULD be recorded as
+            the `k8s.job.annotation.data` attribute with value `""`.
+        examples: ['1', '']
       - id: k8s.cronjob.uid
         type: string
         stability: development
@@ -457,6 +537,62 @@ groups:
             - id: terminating
               value: 'terminating'
               brief: "Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)"
+              stability: development
+      - id: k8s.node.condition.type
+        stability: development
+        brief: >
+          The condition type of a K8s Node.
+        note: |
+          K8s Node conditions as described
+          by [K8s documentation](https://v1-32.docs.kubernetes.io/docs/reference/node/node-status/#condition).
+
+          This attribute aligns with the `type` field of the
+          [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
+
+          The set of possible values is not limited to those listed here. Managed Kubernetes environments,
+          or custom controllers MAY introduce additional node condition types.
+          When this occurs, the exact value as reported by the Kubernetes API SHOULD be used.
+        examples: [ "Ready", "DiskPressure" ]
+        type:
+          members:
+            - id: ready
+              value: 'Ready'
+              brief: "The node is healthy and ready to accept pods"
+              stability: development
+            - id: disk_pressure
+              value: 'DiskPressure'
+              brief: "Pressure exists on the disk size—that is, if the disk capacity is low"
+              stability: development
+            - id: memory_pressure
+              value: 'MemoryPressure'
+              brief: "Pressure exists on the node memory—that is, if the node memory is low"
+              stability: development
+            - id: pid_pressure
+              value: 'PIDPressure'
+              brief: "Pressure exists on the processes—that is, if there are too many processes on the node"
+              stability: development
+            - id: network_unavailable
+              value: 'NetworkUnavailable'
+              brief: "The network for the node is not correctly configured"
+              stability: development
+      - id: k8s.node.condition.status
+        stability: development
+        brief: >
+          The status of the condition, one of True, False, Unknown.
+        note: |
+          This attribute aligns with the `status` field of the
+          [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
+        examples: [ "true", "false", "unknown" ]
+        type:
+          members:
+            - id: condition_true
+              value: 'true'
+              stability: development
+            - id: condition_false
+              value: 'false'
+              stability: development
+            - id: condition_unknown
+              value: 'unknown'
               stability: development
       - id: k8s.container.status.state
         stability: experimental

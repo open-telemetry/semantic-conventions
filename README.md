@@ -16,15 +16,7 @@ Major parts of these Markdown documents are generated from the YAML definitions 
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)
 
-Approvers ([@open-telemetry/specs-semconv-approvers](https://github.com/orgs/open-telemetry/teams/specs-semconv-approvers)):
-
-- [Alexandra Konrad](https://github.com/trisch-me), Elastic
-- [Daniel Dyla](https://github.com/dyladan), Dynatrace
-- [Ted Young](https://github.com/tedsuo), Lightstep
-
-_Find more about the approver role in [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#approver)._
-
-Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs/open-telemetry/teams/specs-semconv-maintainers)):
+### Maintainers
 
 - [Alexander Wert](https://github.com/AlexanderWert), Elastic
 - [Armin Ruech](https://github.com/arminru), Dynatrace
@@ -34,14 +26,26 @@ Maintainers ([@open-telemetry/specs-semconv-maintainers](https://github.com/orgs
 - [Liudmila Molkova](https://github.com/lmolkova), Microsoft
 - [Trask Stalnaker](https://github.com/trask), Microsoft
 
-Emeritus Approvers:
+For more information about the maintainer role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#maintainer).
+
+### Approvers
+
+- [Alexandra Konrad](https://github.com/trisch-me), Elastic
+- [Daniel Dyla](https://github.com/dyladan), Dynatrace
+- [Ted Young](https://github.com/tedsuo), Lightstep
+
+For more information about the approver role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#approver).
+
+### Emeritus Maintainers
+
+- [Reiley Yang](https://github.com/reyang)
+
+For more information about the emeritus role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#emeritus-maintainerapprovertriager).
+
+### Emeritus Approvers
 
 - [Christian Neumüller](https://github.com/Oberon00)
 - [James Moessis](https://github.com/jamesmoessis)
 - [Sean Marciniak](https://github.com/MovieStoreGuy)
 
-Emeritus Maintainers:
-
-- [Reiley Yang](https://github.com/reyang)
-
-_Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#maintainer)._
+For more information about the emeritus role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#emeritus-maintainerapprovertriager).

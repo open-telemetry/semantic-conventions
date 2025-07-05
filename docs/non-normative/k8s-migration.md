@@ -60,6 +60,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s ReplicationController resource](#k8s-replicationcontroller-resource)
   - [K8s Container metrics](#k8s-container-metrics)
   - [K8s ResourceQuota metrics](#k8s-resourcequota-metrics)
+  - [K8s Node condition metrics](#k8s-node-condition-metrics)
 
 <!-- tocstop -->
 
@@ -350,5 +351,22 @@ These metrics were completely re-designed. The changes are the following:
 | `k8s.resource_quota.hard_limit`                                                    | `k8s.resourcequota.{resource}.hard` |
 | `k8s.resource_quota.used`                                                          | `k8s.resourcequota.{resource}.used` |
 | `{resource}` attribute                                                             | Split in different metrics per type |
+
+<!-- prettier-ignore-end -->
+
+### K8s Node condition metrics
+
+The K8s Node condition metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#2077](https://github.com/open-telemetry/semantic-conventions/issues/2077)
+
+The changes in their metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                                                                  |
+|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `k8s.node.condition_*`                                                             | `k8s.node.condition.status` metric [0,1] with attribute `k8s.node.condition.type` for the different conditions and `k8s.node.condition.status` for true/false/unknown |
 
 <!-- prettier-ignore-end -->
