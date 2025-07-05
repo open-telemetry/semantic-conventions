@@ -92,6 +92,14 @@ groups:
               stability: development
               value: "az.ai.openai"
               brief: 'Azure OpenAI'
+            - id: azure.ai.inference
+              stability: development
+              value: "azure.ai.inference"
+              brief: 'Azure AI Inference'
+            - id: azure.ai.openai
+              stability: development
+              value: "azure.ai.openai"
+              brief: 'Azure OpenAI'
             - id: ibm.watsonx.ai
               stability: development
               value: "ibm.watsonx.ai"
