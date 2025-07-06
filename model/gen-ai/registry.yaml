@@ -68,7 +68,7 @@ groups:
               brief: 'Azure AI Inference'
             - id: az.ai.openai
               stability: development
-              value: "azure.ai.openai"
+              value: "az.ai.openai"
               brief: 'Azure OpenAI'
               deprecated: "Replaced by azure.ai.openai"
             - id: ibm.watsonx.ai
