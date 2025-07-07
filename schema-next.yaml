@@ -2,6 +2,13 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/next
 versions:
   next:
+    all:
+      changes:
+        # https://github.com/open-telemetry/semantic-conventions/pull/2367
+        - rename_attributes:
+            attribute_map:
+              cloud.platform: host.platform.name
+              cloud.provider: host.platform.provider
   1.36.0:
   1.35.0:
     all:
