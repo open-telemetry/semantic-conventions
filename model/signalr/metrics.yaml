@@ -2,6 +2,9 @@ groups:
   - id: metric.signalr.server.connection.duration
     type: metric
     metric_name: signalr.server.connection.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: stable
     brief: The duration of connections on the server.
     instrument: histogram
@@ -15,6 +18,9 @@ groups:
   - id: metric.signalr.server.active_connections
     type: metric
     metric_name: signalr.server.active_connections
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: stable
     brief: Number of connections that are currently active on the server.
     instrument: updowncounter

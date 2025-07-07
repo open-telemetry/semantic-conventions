@@ -11,7 +11,9 @@ groups:
   - id: metric.hw.energy
     type: metric
     metric_name: hw.energy
-    # value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "Energy consumed by the component"
     instrument: counter
@@ -21,7 +23,9 @@ groups:
   - id: metric.hw.errors
     type: metric
     metric_name: hw.errors
-    # value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Number of errors encountered by the component"
     instrument: counter
@@ -46,7 +50,9 @@ groups:
   - id: metric.hw.power
     type: metric
     metric_name: hw.power
-    # value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "Instantaneous power consumed by the component"
     note: >
@@ -58,7 +64,9 @@ groups:
   - id: metric.hw.status
     type: metric
     metric_name: hw.status
-    # value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Operational status: `1` (true) or `0` (false) for each of the possible states"
     instrument: updowncounter

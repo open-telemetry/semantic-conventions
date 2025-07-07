@@ -19,6 +19,9 @@ groups:
   - id: metric.rpc.server.duration
     type: metric
     metric_name: rpc.server.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: Measures the duration of inbound RPC.
     instrument: histogram
@@ -32,6 +35,9 @@ groups:
   - id: metric.rpc.server.request.size
     type: metric
     metric_name: rpc.server.request.size
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: Measures the size of RPC request messages (uncompressed).
     instrument: histogram
@@ -42,6 +48,9 @@ groups:
   - id: metric.rpc.server.response.size
     type: metric
     metric_name: rpc.server.response.size
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: Measures the size of RPC response messages (uncompressed).
     instrument: histogram
@@ -52,6 +61,9 @@ groups:
   - id: metric.rpc.server.requests_per_rpc
     type: metric
     metric_name: rpc.server.requests_per_rpc
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: Measures the number of messages received per RPC.
     instrument: histogram
@@ -64,6 +76,9 @@ groups:
   - id: metric.rpc.server.responses_per_rpc
     type: metric
     metric_name: rpc.server.responses_per_rpc
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: Measures the number of messages sent per RPC.
     instrument: histogram
@@ -77,6 +92,9 @@ groups:
   - id: metric.rpc.client.duration
     type: metric
     metric_name: rpc.client.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: Measures the duration of outbound RPC.
     instrument: histogram
@@ -90,6 +108,9 @@ groups:
   - id: metric.rpc.client.request.size
     type: metric
     metric_name: rpc.client.request.size
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: Measures the size of RPC request messages (uncompressed).
     instrument: histogram
@@ -100,6 +121,9 @@ groups:
   - id: metric.rpc.client.response.size
     type: metric
     metric_name: rpc.client.response.size
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: Measures the size of RPC response messages (uncompressed).
     instrument: histogram
@@ -110,6 +134,9 @@ groups:
   - id: metric.rpc.client.requests_per_rpc
     type: metric
     metric_name: rpc.client.requests_per_rpc
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: Measures the number of messages received per RPC.
     instrument: histogram
@@ -122,6 +149,9 @@ groups:
   - id: metric.rpc.client.responses_per_rpc
     type: metric
     metric_name: rpc.client.responses_per_rpc
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: Measures the number of messages sent per RPC.
     instrument: histogram

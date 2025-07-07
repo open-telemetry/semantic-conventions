@@ -7,6 +7,22 @@
 
 <!-- next version -->
 
+## v1.36.0
+
+### 🚩 Deprecations 🚩
+
+- `os`: Adds the 'deprecated:' tag/attribute to the `z_os` enum value of `os.type`. This value was recently deprecated in v1.35.0. ([#2479](https://github.com/open-telemetry/semantic-conventions/issues/2479))
+
+### 💡 Enhancements 💡
+
+- `otel`: Replaces `otel.sdk.span.ended` with `otel.sdk.span.started` and allow differentiation based on the parent span origin ([#2431](https://github.com/open-telemetry/semantic-conventions/issues/2431))
+- `db`: Add database context propagation via `SET CONTEXT_INFO` for SQL Server ([#2162](https://github.com/open-telemetry/semantic-conventions/issues/2162))
+- `entities`: Adds support for Entity registry and Entity stabilization policies. ([#2246](https://github.com/open-telemetry/semantic-conventions/issues/2246))
+
+### 🧰 Bug fixes 🧰
+
+- `cloud`: Exclude deprecated Azure members from code generation on the `cloud.platform` attribute ([#2477](https://github.com/open-telemetry/semantic-conventions/issues/2477), [#2455](https://github.com/open-telemetry/semantic-conventions/issues/2455))
+
 ## v1.35.0
 
 ### 🛑 Breaking changes 🛑
@@ -25,9 +41,9 @@
     - `azure_container_apps` to `azure.container_apps` (on `cloud.platform`)
     - `azure_container_instances` to `azure.container_instances` (on `cloud.platform`)
     - `azure_functions` to `azure.functions` (on `cloud.platform`)
-    - `azure_openshift` to `azure.open_shift` (on `cloud.platform`)
+    - `azure_openshift` to `azure.openshift` (on `cloud.platform`)
     - `azure_vm` to `azure.vm` (on `cloud.platform`)
-  
+
 - `system`: Revert the change that moved `system.cpu.*` to `cpu.*`. The 3 affected metrics are back in `system.cpu.*`. ([#1873](https://github.com/open-telemetry/semantic-conventions/issues/1873))
 - `system`: Changes system.network.connections to system.network.connection.count ([#1800](https://github.com/open-telemetry/semantic-conventions/issues/1800))
 - `k8s`: Change instrument type for .limit/.request container metrics from gauge to updowncounter ([#2354](https://github.com/open-telemetry/semantic-conventions/issues/2354))
