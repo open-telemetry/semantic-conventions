@@ -12,14 +12,14 @@ This document defines attributes for Feature Flags.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="feature-flag-context-id" href="#feature-flag-context-id">`feature_flag.context.id`</a> | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="feature-flag-key" href="#feature-flag-key">`feature_flag.key`</a> | string | The lookup key of the feature flag. | `logo-color` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider.name`</a> | string | Identifies the feature flag provider. | `Flag Manager` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="feature-flag-result-reason" href="#feature-flag-result-reason">`feature_flag.result.reason`</a> | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="feature-flag-result-value" href="#feature-flag-result-value">`feature_flag.result.value`</a> | any | The evaluated value of the feature flag. [1] | `#ff0000`; `true`; `3` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="feature-flag-result-variant" href="#feature-flag-result-variant">`feature_flag.result.variant`</a> | string | A semantic identifier for an evaluated flag value. [2] | `red`; `true`; `on` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="feature-flag-set-id" href="#feature-flag-set-id">`feature_flag.set.id`</a> | string | The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs. | `proj-1`; `ab98sgs`; `service1/dev` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="feature-flag-version" href="#feature-flag-version">`feature_flag.version`</a> | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="feature-flag-context-id" href="#feature-flag-context-id">`feature_flag.context.id`</a> | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="feature-flag-key" href="#feature-flag-key">`feature_flag.key`</a> | string | The lookup key of the feature flag. | `logo-color` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider.name`</a> | string | Identifies the feature flag provider. | `Flag Manager` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="feature-flag-result-reason" href="#feature-flag-result-reason">`feature_flag.result.reason`</a> | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="feature-flag-result-value" href="#feature-flag-result-value">`feature_flag.result.value`</a> | any | The evaluated value of the feature flag. [1] | `#ff0000`; `true`; `3` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="feature-flag-result-variant" href="#feature-flag-result-variant">`feature_flag.result.variant`</a> | string | A semantic identifier for an evaluated flag value. [2] | `red`; `true`; `on` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="feature-flag-set-id" href="#feature-flag-set-id">`feature_flag.set.id`</a> | string | The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs. | `proj-1`; `ab98sgs`; `service1/dev` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| <a id="feature-flag-version" href="#feature-flag-version">`feature_flag.version`</a> | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1] `feature_flag.result.value`:** With some feature flag providers, feature flag results can be quite large or contain private or sensitive details.
 Because of this, `feature_flag.result.variant` is often the preferred attribute if it is available.
@@ -38,15 +38,15 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `cached` | The resolved value was retrieved from cache. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `default` | The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `disabled` | The resolved value was the result of the flag being disabled in the management system. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `error` | The resolved value was the result of an error. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `split` | The resolved value was the result of pseudorandom assignment. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stale` | The resolved value is non-authoritative or possibly out of date | ![Development](https://img.shields.io/badge/-development-blue) |
-| `static` | The resolved value is static (no dynamic evaluation). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unknown` | The reason for the resolved value could not be determined. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cached` | The resolved value was retrieved from cache. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `default` | The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `disabled` | The resolved value was the result of the flag being disabled in the management system. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `error` | The resolved value was the result of an error. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `split` | The resolved value was the result of pseudorandom assignment. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `stale` | The resolved value is non-authoritative or possibly out of date | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `static` | The resolved value is static (no dynamic evaluation). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `unknown` | The reason for the resolved value could not be determined. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ## Deprecated Feature Flag Attributes
 

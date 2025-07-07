@@ -77,17 +77,18 @@
 /model/mobile/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
 
 # K8s semantic conventions
-/docs/resource/k8s.md                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
-/model/k8s/                           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
-/docs/non-normative/k8s-attributes.md @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
-/docs/non-normative/k8s-migration.md  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/docs/resource/k8s.md                           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/model/k8s/                                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/docs/non-normative/k8s-attributes.md           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/docs/non-normative/k8s-migration.md            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/docs/non-normative/naming-known-exceptions.md  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
 
 # Container semantic conventions
 /docs/resource/container.md       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
 /model/container/                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
 /model/oci/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
 
-# .NET semantic conventions
+# .NET semantic conventions approvers
 /docs/dotnet/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers
 /docs/runtime/dotnet-metrics.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
 /model/aspnetcore/                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers
@@ -145,3 +146,9 @@
 /templates/                             @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-approvers
 /internal/                              @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-approvers
 /docs/non-normative/code-generation.md  @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-approvers
+
+# Mainframe
+/docs/mainframe                   @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
+/model/mainframe                  @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
+/docs/zos                         @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
+/model/zos                        @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers

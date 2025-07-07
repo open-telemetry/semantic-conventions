@@ -2,6 +2,9 @@ groups:
   - id: metric.k8s.replication_controller.desired_pods
     type: metric
     metric_name: k8s.replication_controller.desired_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed
@@ -12,6 +15,9 @@ groups:
   - id: metric.k8s.replication_controller.available_pods
     type: metric
     metric_name: k8s.replication_controller.available_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed

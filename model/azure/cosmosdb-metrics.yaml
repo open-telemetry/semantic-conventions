@@ -2,6 +2,9 @@ groups:
   - id: metric.azure.cosmosdb.client.operation.request_charge
     type: metric
     metric_name: azure.cosmosdb.client.operation.request_charge
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "[Request units](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation"
     instrument: histogram
     unit: "{request_unit}"
@@ -20,6 +23,9 @@ groups:
   - id: metric.azure.cosmosdb.client.active_instance.count
     type: metric
     metric_name: azure.cosmosdb.client.active_instance.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Number of active client instances"
     instrument: updowncounter
     unit: "{instance}"

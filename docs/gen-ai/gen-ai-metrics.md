@@ -107,8 +107,8 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 |---|---|---|
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gemini` | Gemini [5] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -220,8 +220,8 @@ Instrumentations SHOULD document the list of errors they report.
 |---|---|---|
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gemini` | Gemini [6] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -331,8 +331,8 @@ Instrumentations SHOULD document the list of errors they report.
 |---|---|---|
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gemini` | Gemini [6] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -429,8 +429,8 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 |---|---|---|
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gemini` | Gemini [5] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -526,8 +526,8 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 |---|---|---|
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gemini` | Gemini [5] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -554,4 +554,4 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
 [MetricRequired]: /docs/general/metric-requirement-level.md#required
 [MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
-[ExplicitBucketBoundaries]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.45.0/specification/metrics/api.md#instrument-advisory-parameters
+[ExplicitBucketBoundaries]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.46.0/specification/metrics/api.md#instrument-advisory-parameters

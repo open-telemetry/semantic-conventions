@@ -33,10 +33,10 @@ jobs:
           version=${{ inputs.version }}
           cp schema-next.yaml "schemas/$version"
 
-          sed -i "s/  next:$/  next:\n  $version/" schema-next.yaml
+          sed -i "s/  next:$/  next:\n  $version:/" schema-next.yaml
 
           sed -i "s/^schema_url: .*/schema_url: https:\/\/opentelemetry.io\/schemas\/$version/" "schemas/$version"
-          sed -i "s/  next:$/  $version/" "schemas/$version"
+          sed -i "s/  next:$/  $version:/" "schemas/$version"
           git add "schemas/$version"
 
       - name: Update change log

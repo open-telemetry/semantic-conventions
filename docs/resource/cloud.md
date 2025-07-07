@@ -41,7 +41,7 @@ The following well-known definitions MUST be used if you set this attribute and 
   with the resolved function version, as the same runtime instance may be invocable with
   multiple different aliases.
 - **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
-- **Azure:** The [Fully Qualified Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
+- **Azure:** The [Fully Qualified Resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
   *not* the function app, having the form
   `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
@@ -63,13 +63,13 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `aws_elastic_beanstalk` | AWS Elastic Beanstalk | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_lambda` | AWS Lambda | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_openshift` | Red Hat OpenShift on AWS (ROSA) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_aks` | Azure Kubernetes Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_app_service` | Azure App Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_container_apps` | Azure Container Apps | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_container_instances` | Azure Container Instances | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_functions` | Azure Functions | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_openshift` | Azure Red Hat OpenShift | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_vm` | Azure Virtual Machines | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.aks` | Azure Kubernetes Service | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.app_service` | Azure App Service | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.container_apps` | Azure Container Apps | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.container_instances` | Azure Container Instances | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.functions` | Azure Functions | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.openshift` | Azure Red Hat OpenShift | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.vm` | Azure Virtual Machines | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_app_engine` | Google Cloud App Engine (GAE) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_bare_metal_solution` | Google Bare Metal Solution (BMS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_cloud_functions` | Google Cloud Functions (GCF) | ![Development](https://img.shields.io/badge/-development-blue) |

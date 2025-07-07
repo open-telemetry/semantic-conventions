@@ -9,6 +9,7 @@ This document defines the shared attributes used to report a DNS query.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
+| <a id="dns-answers" href="#dns-answers">`dns.answers`</a> | string[] | The list of IPv4 or IPv6 addresses resolved during DNS lookup. | `["10.0.0.1", "2001:0db8:85a3:0000:0000:8a2e:0370:7334"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="dns-question-name" href="#dns-question-name">`dns.question.name`</a> | string | The name being queried. [1] | `www.example.com`; `opentelemetry.io` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `dns.question.name`:** If the name field contains non-printable characters (below 32 or above 126), those characters should be represented as escaped base 10 integers (\DDD). Back slashes and quotes should be escaped. Tabs, carriage returns, and line feeds should be converted to \t, \r, and \n respectively.

@@ -11,6 +11,9 @@ groups:
   - id: metric.aspnetcore.routing.match_attempts
     type: metric
     metric_name: aspnetcore.routing.match_attempts
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: stable
     brief: Number of requests that were attempted to be matched to an endpoint.
     instrument: counter
@@ -31,6 +34,9 @@ groups:
   - id: metric.aspnetcore.diagnostics.exceptions
     type: metric
     metric_name: aspnetcore.diagnostics.exceptions
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: stable
     brief: Number of exceptions caught by exception handling middleware.
     instrument: counter
@@ -52,6 +58,9 @@ groups:
   - id: metric.aspnetcore.rate_limiting.active_request_leases
     type: metric
     metric_name: aspnetcore.rate_limiting.active_request_leases
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: stable
     brief: Number of requests that are currently active on the server that hold a rate limiting lease.
     instrument: updowncounter
@@ -63,6 +72,9 @@ groups:
   - id: metric.aspnetcore.rate_limiting.request_lease.duration
     type: metric
     metric_name: aspnetcore.rate_limiting.request_lease.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: stable
     brief: The duration of rate limiting lease held by requests on the server.
     instrument: histogram
@@ -74,6 +86,9 @@ groups:
   - id: metric.aspnetcore.rate_limiting.request.time_in_queue
     type: metric
     metric_name: aspnetcore.rate_limiting.request.time_in_queue
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: stable
     brief: The time the request spent in a queue waiting to acquire a rate limiting lease.
     instrument: histogram
@@ -88,6 +103,9 @@ groups:
   - id: metric.aspnetcore.rate_limiting.queued_requests
     type: metric
     metric_name: aspnetcore.rate_limiting.queued_requests
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: stable
     brief: Number of requests that are currently queued, waiting to acquire a rate limiting lease.
     instrument: updowncounter
@@ -99,6 +117,9 @@ groups:
   - id: metric.aspnetcore.rate_limiting.requests
     type: metric
     metric_name: aspnetcore.rate_limiting.requests
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: stable
     brief: Number of requests that tried to acquire a rate limiting lease.
     instrument: counter

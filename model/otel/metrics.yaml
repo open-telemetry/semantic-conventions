@@ -2,32 +2,38 @@ groups:
   - id: metric.otel.sdk.span.live
     type: metric
     metric_name: otel.sdk.span.live
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "The number of created spans for which the end operation has not been called yet"
+    brief: "The number of created spans with `recording=true` for which the end operation has not been called yet"
     instrument: updowncounter
     unit: "{span}"
-    note: |
-      For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live` and `otel.sdk.span.ended`.
-      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.ended`.
     attributes:
       - ref: otel.span.sampling_result
 
-  - id: metric.otel.sdk.span.ended
+  - id: metric.otel.sdk.span.started
     type: metric
-    metric_name: otel.sdk.span.ended
+    metric_name: otel.sdk.span.started
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "The number of created spans for which the end operation was called"
+    brief: "The number of created spans"
     instrument: counter
     unit: "{span}"
     note: |
-      For spans with `recording=true`: Implementations MUST record both `otel.sdk.span.live` and `otel.sdk.span.ended`.
-      For spans with `recording=false`: If implementations decide to record this metric, they MUST also record `otel.sdk.span.live`.
+      Implementations MUST record this metric for all spans, even for non-recording ones.
     attributes:
       - ref: otel.span.sampling_result
+      - ref: otel.span.parent.origin
 
   - id: metric.otel.sdk.processor.span.queue.size
     type: metric
     metric_name: otel.sdk.processor.span.queue.size
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The number of spans in the queue of a given instance of an SDK span processor"
     note: |
@@ -41,6 +47,9 @@ groups:
   - id: metric.otel.sdk.processor.span.queue.capacity
     type: metric
     metric_name: otel.sdk.processor.span.queue.capacity
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The maximum number of spans the queue of a given instance of an SDK span processor can hold"
     note: |
@@ -54,6 +63,9 @@ groups:
   - id: metric.otel.sdk.processor.span.processed
     type: metric
     metric_name: otel.sdk.processor.span.processed
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The number of spans for which the processing has finished, either successful or failed"
     note: |
@@ -72,6 +84,9 @@ groups:
   - id: metric.otel.sdk.exporter.span.inflight
     type: metric
     metric_name: otel.sdk.exporter.span.inflight
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
     note: |
@@ -91,6 +106,9 @@ groups:
   - id: metric.otel.sdk.exporter.span.exported
     type: metric
     metric_name: otel.sdk.exporter.span.exported
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The number of spans for which the export has finished, either successful or failed"
     note: |
@@ -114,6 +132,9 @@ groups:
   - id: metric.otel.sdk.log.created
     type: metric
     metric_name: otel.sdk.log.created
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The number of logs submitted to enabled SDK Loggers"
     instrument: counter
@@ -122,6 +143,9 @@ groups:
   - id: metric.otel.sdk.processor.log.queue.size
     type: metric
     metric_name: otel.sdk.processor.log.queue.size
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The number of log records in the queue of a given instance of an SDK log processor"
     note: |
@@ -135,6 +159,9 @@ groups:
   - id: metric.otel.sdk.processor.log.queue.capacity
     type: metric
     metric_name: otel.sdk.processor.log.queue.capacity
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The maximum number of log records the queue of a given instance of an SDK Log Record processor can hold"
     note: |
@@ -148,6 +175,9 @@ groups:
   - id: metric.otel.sdk.processor.log.processed
     type: metric
     metric_name: otel.sdk.processor.log.processed
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The number of log records for which the processing has finished, either successful or failed"
     note: |
@@ -167,6 +197,9 @@ groups:
   - id: metric.otel.sdk.exporter.log.inflight
     type: metric
     metric_name: otel.sdk.exporter.log.inflight
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The number of log records which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
     note: |
@@ -186,6 +219,9 @@ groups:
   - id: metric.otel.sdk.exporter.log.exported
     type: metric
     metric_name: otel.sdk.exporter.log.exported
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The number of log records for which the export has finished, either successful or failed"
     note: |
@@ -209,6 +245,9 @@ groups:
   - id: metric.otel.sdk.exporter.metric_data_point.inflight
     type: metric
     metric_name: otel.sdk.exporter.metric_data_point.inflight
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The number of metric data points which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
     note: |
@@ -228,6 +267,9 @@ groups:
   - id: metric.otel.sdk.exporter.metric_data_point.exported
     type: metric
     metric_name: otel.sdk.exporter.metric_data_point.exported
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The number of metric data points for which the export has finished, either successful or failed"
     note: |
@@ -251,6 +293,9 @@ groups:
   - id: metric.otel.sdk.metric_reader.collection.duration
     type: metric
     metric_name: otel.sdk.metric_reader.collection.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "The duration of the collect operation of the metric reader."
     note: |
@@ -266,6 +311,9 @@ groups:
   - id: metric.otel.sdk.exporter.operation.duration
     type: metric
     metric_name: otel.sdk.exporter.operation.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "The duration of exporting a batch of telemetry records."
     note: |
