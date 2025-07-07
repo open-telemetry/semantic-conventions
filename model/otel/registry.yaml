@@ -77,10 +77,10 @@ groups:
         examples: ['https://opentelemetry.io/schemas/1.31.0']
         stability: stable
       - id: otel.scope
-        type: template[string[]]
+        type: template[string]
         brief: >
           The attributes of the instrumentation scope - (`InstrumentationScope.Attributes` in OTLP).
-        examples: ['otel.scope.attributes.foo="bar"', 'otel.scope.baz="qux"']
+        examples: ["someval", "55"]
         stability: stable
   - id: registry.otel.component
     type: attribute_group
