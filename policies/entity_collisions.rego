@@ -6,7 +6,7 @@ import rego.v1
 entities_names := { obj |
     group := input.groups[_]
     group.type = "entity"
-    obj := { "name": group.name, "namespace_prefix": to_namespace_prefix(group.name)}
+    obj := { "name": group.name, "namespace_prefix": extract_entity_namespace_prefix(group.name)}
 }
 
 # check that matric names do not collide with namespaces
@@ -37,6 +37,6 @@ entities_registry_collision(description, entity_name) = violation if {
     }
 }
 
-to_namespace_prefix(name) = namespace if {
+extract_entity_namespace_prefix(name) = namespace if {
     namespace := concat("", [name, "."])
 }

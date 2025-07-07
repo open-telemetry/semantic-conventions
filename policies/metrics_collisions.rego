@@ -5,7 +5,7 @@ import rego.v1
 # Data structures to make checking things faster.
 metric_names := { obj |
     group := input.groups[_];
-    obj := { "name": group.metric_name, "namespace_prefix": to_namespace_prefix(group.metric_name)}
+    obj := { "name": group.metric_name, "namespace_prefix": extract_metric_namespace_prefix(group.metric_name)}
 }
 
 # check that matric names do not collide with namespaces
@@ -36,7 +36,7 @@ metrics_registry_collision(description, metric_name) = violation if {
     }
 }
 
-to_namespace_prefix(name) = namespace if {
+extract_metric_namespace_prefix(name) = namespace if {
     namespace := concat("", [name, "."])
 }
 
