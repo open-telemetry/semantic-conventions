@@ -31,13 +31,12 @@ groups:
     stability: development
     extends: attributes.db.client.minimal
     attributes:
-      # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
+      # TODO: add db.system.name once https://github.com/open-telemetry/weaver/issues/479 is possible
       # - ref: db.system.name
       #   requirement_level:
       #     conditionally_required: if available
       - ref: db.operation.name
-        requirement_level:
-          conditionally_required: If readily available.
+        requirement_level: required
       - ref: db.collection.name
         brief: Cosmos DB container name.
         requirement_level:
@@ -62,7 +61,7 @@ groups:
       - ref: db.query.text
       - ref: db.query.summary
         requirement_level:
-          recommended: if readily available or if instrumentation supports query summarization.
+          recommended: if available through instrumentation hooks or if the instrumentation supports generating a query summary.
 
   - id: attributes.db.client.with_query_and_collection
     extends: attributes.db.client.with_query

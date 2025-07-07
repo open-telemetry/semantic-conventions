@@ -52,12 +52,12 @@ Notes:
 
 | Attribute                                                       | Type | Description  | Examples  | Requirement Level |
 |-----------------------------------------------------------------|---|---|---|---|
-| [`http.connection.state`](../attributes-registry/http.md)       | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` | Required |
-| [`network.peer.address`](../attributes-registry/network.md)     | string | Remote IP address of the socket connection. | `10.1.2.80` | Recommended |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | The negotiated version of the protocol associated with connection in the connection pool. [1] | `1.1`; `2`; `3` | Recommended |
-| [`server.address`](../attributes-registry/server.md)            | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
-| [`server.port`](../attributes-registry/server.md)               | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
-| [`url.scheme`](../attributes-registry/url.md)                   | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https`; `ftp` | Recommended |
+| [`http.connection.state`](../registry/attributes/http.md)       | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` | Required |
+| [`network.peer.address`](../registry/attributes/network.md)     | string | Remote IP address of the socket connection. | `10.1.2.80` | Recommended |
+| [`network.protocol.version`](../registry/attributes/network.md) | string | The negotiated version of the protocol associated with connection in the connection pool. [1] | `1.1`; `2`; `3` | Recommended |
+| [`server.address`](../registry/attributes/server.md)            | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
+| [`server.port`](../registry/attributes/server.md)               | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
+| [`url.scheme`](../registry/attributes/url.md)                   | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https`; `ftp` | Recommended |
 
 **[1]:** HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`. So, the `network.protocol.version` value reported on connection metrics is different than the one reported on request-level metrics or spans for HTTP 1.0 requests.
 
@@ -77,7 +77,7 @@ Notes:
 ### Metric: `http.client.connection.duration`
 
 this metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.46.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 <!-- Tables in this document are not auto-generated and are intentionally frozen in time. From the .NET perspective this metric and its attributes are stable till the next major version. They are still experimental in the OpenTelemetry. -->
@@ -89,11 +89,11 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`network.peer.address`](../attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | The negotiated version of the protocol associated with connection in the connection pool. [1] | `1.1`; `2`; `3` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
-| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
-| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https`; `ftp` | Recommended |
+| [`network.peer.address`](../registry/attributes/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`network.protocol.version`](../registry/attributes/network.md) | string | The negotiated version of the protocol associated with connection in the connection pool. [1] | `1.1`; `2`; `3` | Recommended |
+| [`server.address`](../registry/attributes/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
+| [`server.port`](../registry/attributes/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
+| [`url.scheme`](../registry/attributes/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https`; `ftp` | Recommended |
 
 **[1]:** HTTP 1.0 and 1.1 requests share connections in the connection pool and are both reported as version `1.1`. So, the `network.protocol.version` value reported on connection metrics is different than the one reported on request-level metrics or spans for HTTP 1.0 requests.
 
@@ -106,7 +106,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 ### Metric: `http.client.request.time_in_queue`
 
 this metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.43.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.46.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- Tables in this document are not auto-generated and are intentionally frozen in time. From the .NET perspective this metric and its attributes are stable till the next major version. They are still experimental in the OpenTelemetry. -->
@@ -118,11 +118,11 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Recommended |
-| [`network.protocol.version`](../attributes-registry/network.md) | string | The negotiated version of the protocol associated with connection in the connection pool. [2] | `1.1`; `2`; `3` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
-| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [4] | `80`; `8080`; `443` | Conditionally Required: [5] |
-| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https`; `ftp` | Recommended |
+| [`http.request.method`](../registry/attributes/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Recommended |
+| [`network.protocol.version`](../registry/attributes/network.md) | string | The negotiated version of the protocol associated with connection in the connection pool. [2] | `1.1`; `2`; `3` | Recommended |
+| [`server.address`](../registry/attributes/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
+| [`server.port`](../registry/attributes/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [4] | `80`; `8080`; `443` | Conditionally Required: [5] |
+| [`url.scheme`](../registry/attributes/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https`; `ftp` | Recommended |
 
 **[1]:** HTTP request method value is one of the "known" methods listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods) and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 If the HTTP request method isn't known, it sets the `http.request.method` attribute to `_OTHER`. It's not possible at the moment to override the list of known HTTP methods.
@@ -161,10 +161,10 @@ If the HTTP request method isn't known, it sets the `http.request.method` attrib
 
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| [`http.request.method`](../attributes-registry/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Recommended |
-| [`server.address`](../attributes-registry/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
-| [`server.port`](../attributes-registry/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
-| [`url.scheme`](../attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https`; `ftp` | Recommended |
+| [`http.request.method`](../registry/attributes/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | Recommended |
+| [`server.address`](../registry/attributes/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
+| [`server.port`](../registry/attributes/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
+| [`url.scheme`](../registry/attributes/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https`; `ftp` | Recommended |
 
 **[1]:** HTTP request method value is one of the "known" methods listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods) and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 If the HTTP request method isn't known, it sets the `http.request.method` attribute to `_OTHER`. It's not possible at the moment to override the list of known HTTP methods.

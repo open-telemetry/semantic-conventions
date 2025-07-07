@@ -4,6 +4,17 @@ groups:
     display_name: Deprecated Feature Flag Attributes
     brief: "Describes deprecated feature flag attributes."
     attributes:
+      - id: feature_flag.provider_name
+        type: string
+        brief: 'Deprecated, use `feature_flag.provider.name` instead.'
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: feature_flag.provider.name
+        annotations:
+          code_generation:
+            exclude: true
+        examples: ["Flag Manager"]
       - id: feature_flag.evaluation.reason
         type:
           members:
@@ -45,17 +56,23 @@ groups:
               stability: development
         brief: 'Deprecated, use `feature_flag.result.reason` instead.'
         stability: development
-        deprecated: "Replaced by `feature_flag.result.reason`."
+        deprecated:
+          reason: renamed
+          renamed_to: feature_flag.result.reason
         examples: ["static", "targeting_match", "error", "default"]
       - id: feature_flag.variant
         type: string
         brief: 'Deprecated, use `feature_flag.result.variant` instead.'
         stability: development
-        deprecated: "Replaced by `feature_flag.result.variant`."
+        deprecated:
+          reason: renamed
+          renamed_to: feature_flag.result.variant
         examples: ["red", "true", "on"]
       - id: feature_flag.evaluation.error.message
         type: string
         brief: 'Deprecated, use `error.message` instead.'
         stability: development
-        deprecated: "Replaced by `error.message`."
+        deprecated:
+          reason: renamed
+          renamed_to: error.message
         examples: ["Flag `header-color` expected type `string` but found type `number`"]

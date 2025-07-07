@@ -2,6 +2,9 @@ groups:
   - id: metric.azure.cosmosdb.client.operation.request_charge
     type: metric
     metric_name: azure.cosmosdb.client.operation.request_charge
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "[Request units](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation"
     instrument: histogram
     unit: "{request_unit}"
@@ -20,12 +23,15 @@ groups:
   - id: metric.azure.cosmosdb.client.active_instance.count
     type: metric
     metric_name: azure.cosmosdb.client.active_instance.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Number of active client instances"
     instrument: updowncounter
     unit: "{instance}"
     stability: development
     attributes:
-      # TODO: add db.system once https://github.com/open-telemetry/build-tools/issues/192 is possible
+      # TODO: add db.system.name once https://github.com/open-telemetry/weaver/issues/479 is possible
       # - ref: db.system.name
       #   requirement_level:
       #     conditionally_required: if available

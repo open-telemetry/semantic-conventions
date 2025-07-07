@@ -13,7 +13,7 @@ linkTitle: How to define new semantic conventions
     - [Defining attributes](#defining-attributes)
     - [Defining spans](#defining-spans)
     - [Defining metrics](#defining-metrics)
-    - [Defining resources](#defining-resources)
+    - [Defining entities](#defining-entities)
     - [Defining events](#defining-events)
 - [Stabilizing existing conventions](#stabilizing-existing-conventions)
   - [Migration plan](#migration-plan)
@@ -39,7 +39,7 @@ for new areas or make substantial changes to the existing ones.
 
 #### Defining attributes
 
-Reuse existing attributes when possible. Look through [existing conventions](/docs/attributes-registry/) for similar areas,
+Reuse existing attributes when possible. Look through [existing conventions](/docs/registry/attributes/) for similar areas,
 check out [common attributes](/docs/general/attributes.md).
 Semantic conventions authors are encouraged to use attributes from different namespaces.
 
@@ -78,9 +78,21 @@ When defining a new attribute:
   - If the value has a reasonably short (open or closed) set of possible values, define it as an enum.
   - If the value is a timestamp, record it as a string in ISO 8601 format.
   - For arrays of primitives, use the array type. Avoid recording arrays as a single string.
+  - Arrays should be homogeneous, meaning all elements share the same type and represent the same concept.
+    For example:
+    - Latitude and longitude should be defined as separate attributes (`geo.lat` and `geo.lon`)
+      rather than combining them into a single array, as they represent distinct concepts.
   - Use the template type to define attributes with dynamic names (only the last segment of the name should be dynamic).
     This is useful for capturing user-defined key-value pairs, such as HTTP headers.
-  - Represent complex values as a set of flat attributes. <!-- This may change, check out https://github.com/open-telemetry/semantic-conventions/issues/1669 to monitor the progress -->
+  - Represent complex values as a set of flat attributes whenever possible.
+    - Complex or structured attributes (not listed in the
+      [set of standard attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.44.0/specification/common/README.md#attribute))
+      are supported on events and logs only. <!-- This may change, check out https://github.com/open-telemetry/opentelemetry-specification/pull/4485 to monitor the progress -->
+
+      Semantic convention authors should assume that backends do not index individual properties of complex attributes,
+      that querying or aggregating on such properties is inefficient and complicated,
+      and that reporting complex attributes carries higher performance overhead.
+
 - Define new attributes with `development` stability.
 - Provide realistic examples
 - Avoid defining attributes with potentially unbounded values, such as strings longer than
@@ -129,9 +141,9 @@ TBD
 
 TBD
 
-#### Defining resources
+#### Defining entities
 
-TBD
+Follow the [Entity Modeling Guide](/docs/non-normative/how-to-write-conventions/resource-and-entities.md).
 
 #### Defining events
 

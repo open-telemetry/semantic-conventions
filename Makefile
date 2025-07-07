@@ -10,6 +10,13 @@ else
 	SED ?= sed
 endif
 
+
+ifeq ($(LYCHEE_GITHUB_TOKEN),)
+  LYCHEE_GITHUB_TOKEN_ARG :=
+else
+  LYCHEE_GITHUB_TOKEN_ARG := --env GITHUB_TOKEN=$(LYCHEE_GITHUB_TOKEN)
+endif
+
 TOOLS_DIR := $(PWD)/internal/tools
 
 MARKDOWN_LINK_CHECK_ARG= # pass extra arguments such as --exclude '^http'
@@ -25,15 +32,15 @@ CONTAINER_REPOSITORY=docker.io
 
 # Per container overrides for the repository resolution.
 WEAVER_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
-SEMCONVGEN_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 OPA_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
+LYCHEE_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 
 # Versioned, non-qualified references to containers used in this Makefile.
 # These are parsed from dependencies.Dockerfile so dependabot will autoupdate
 # the versions of docker files we use.
 VERSIONED_WEAVER_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="weaver" {print $$2}')
-VERSIONED_SEMCONVGEN_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="semconvgen" {print $$2}')
 VERSIONED_OPA_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}')
+VERSIONED_LYCHEE_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="lychee" {print $$2}')
 
 # Fully qualified references to containers used in this Makefile. These
 # include the container repository, so that the build will work with tools
@@ -44,11 +51,10 @@ VERSIONED_OPA_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4==
 #    Error: short-name "otel/weaver:v1.2.3" did not resolve to an alias
 #    and no unqualified-search registries are defined in "/etc/containers/registries.conf"
 WEAVER_CONTAINER=$(WEAVER_CONTAINER_REPOSITORY)/$(VERSIONED_WEAVER_CONTAINER_NO_REPO)
-SEMCONVGEN_CONTAINER=$(SEMCONVGEN_CONTAINER_REPOSITORY)/$(VERSIONED_SEMCONVGEN_CONTAINER_NO_REPO)
 OPA_CONTAINER=$(OPA_CONTAINER_REPOSITORY)/$(VERSIONED_OPA_CONTAINER_NO_REPO)
+LYCHEE_CONTAINER=$(LYCHEE_CONTAINER_REPOSITORY)/$(VERSIONED_LYCHEE_CONTAINER_NO_REPO)
 
-
-CHECK_TARGETS=install-tools markdownlint misspell table-check compatibility-check \
+CHECK_TARGETS=install-tools markdownlint misspell table-check \
 			schema-check check-file-and-folder-names-in-docs
 
 # Determine if "docker" is actually podman
@@ -122,19 +128,22 @@ normalized-link-check:
 .PHONY: markdown-link-check
 markdown-link-check: normalized-link-check
 	$(DOCKER_RUN) --rm \
-		--mount 'type=bind,source=$(PWD),target=/home/repo' \
-		lycheeverse/lychee \
+	    $(DOCKER_USER_IS_HOST_USER_ARG) \
+		--mount 'type=bind,source=$(PWD),target=/home/repo' $(LYCHEE_GITHUB_TOKEN_ARG) \
+		$(LYCHEE_CONTAINER) \
 		--config home/repo/.lychee.toml \
 		--root-dir /home/repo \
 		--verbose \
+		--timeout=60 \
 		$(MARKDOWN_LINK_CHECK_ARG) \
 		home/repo
 
 .PHONY: markdown-link-check-changelog-preview
 markdown-link-check-changelog-preview:
 	$(DOCKER_RUN) --rm \
-		--mount 'type=bind,source=$(PWD),target=/home/repo' \
-		lycheeverse/lychee \
+	   $(DOCKER_USER_IS_HOST_USER_ARG) \
+		--mount 'type=bind,source=$(PWD),target=/home/repo' $(LYCHEE_GITHUB_TOKEN_ARG) \
+		$(LYCHEE_CONTAINER) \
 		--config /home/repo/.lychee.toml \
 		--root-dir /home/repo \
 		--verbose \
@@ -170,7 +179,7 @@ markdownlint:
 .PHONY: install-yamllint
 install-yamllint:
     # Using a venv is recommended
-	pip install -U yamllint~=1.26.1
+	pip install -U yamllint~=1.37.0
 
 .PHONY: yamllint
 yamllint:
@@ -186,15 +195,20 @@ table-generation:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		--attribute-registry-base-url=/docs/attributes-registry \
+		-Dregistry_base_url=/docs/registry/ \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--future \
 		/home/weaver/target
 
-# Generate attribute registry markdown.
+# DEPRECATED: Generate attribute registry markdown.
 .PHONY: attribute-registry-generation
-attribute-registry-generation:
+attribute-registry-generation: registry-generation
+
+
+# Generate registry markdown (attributes, etc.).
+.PHONY: registry-generation
+registry-generation:
 	$(DOCKER_RUN) --rm \
 		$(DOCKER_USER_IS_HOST_USER_ARG) \
 		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
@@ -204,18 +218,19 @@ attribute-registry-generation:
 		  --registry=/home/weaver/source \
 		  --templates=/home/weaver/templates \
 		  markdown \
-		  /home/weaver/target/attributes-registry/
+		  /home/weaver/target/registry/
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
 .PHONY: table-check
 table-check:
 	$(DOCKER_RUN) --rm \
+     	$(DOCKER_USER_IS_HOST_USER_ARG) \
 		--mount 'type=bind,source=$(PWD)/templates,target=/home/weaver/templates,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target,readonly' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		--attribute-registry-base-url=/docs/attributes-registry \
+		-Dregistry_base_url=/docs/registry/ \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--dry-run \
@@ -229,13 +244,13 @@ schema-check:
 # Run all checks in order of speed / likely failure.
 # As a last thing, run attribute registry generation and git-diff for differences.
 .PHONY: check
-check: misspell markdownlint markdown-toc markdown-link-check check-policies attribute-registry-generation
+check: misspell markdownlint markdown-toc markdown-link-check check-policies registry-generation
 	git diff --exit-code ':*.md' || (echo 'Generated markdown Table of Contents is out of date, please run "make markdown-toc" and commit the changes in this PR.' && exit 1)
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation attribute-registry-generation misspell-correction markdown-toc
+fix: table-generation registry-generation misspell-correction markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools
@@ -298,6 +313,10 @@ LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.c
 .PHONY: check-policies
 check-policies:
 	$(DOCKER_RUN) --rm \
+	    $(DOCKER_USER_IS_HOST_USER_ARG) \
+		--env USER=weaver \
+		--env HOME=/home/weaver \
+		-v $(shell mktemp -d):/home/weaver/.weaver \
 		--mount 'type=bind,source=$(PWD)/policies,target=/home/weaver/policies,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		${WEAVER_CONTAINER} registry check \
@@ -308,16 +327,25 @@ check-policies:
 # Test rego policies
 .PHONY: test-policies
 test-policies:
-	$(DOCKER_RUN) --rm -v $(PWD)/policies:/policies -v $(PWD)/policies_test:/policies_test \
+	$(DOCKER_RUN) --rm $(DOCKER_USER_IS_HOST_USER_ARG) -v $(PWD)/policies:/policies -v $(PWD)/policies_test:/policies_test \
 	${OPA_CONTAINER} test \
     --var-values \
 	--explain fails \
 	/policies \
 	/policies_test
 
-# TODO: This is now duplicative with weaver policy checks.  We can remove
-# once github action requirements are updated.
-.PHONY: compatibility-check
-compatibility-check:
-	$(DOCKER_RUN) --rm -v $(PWD)/model:/source -v $(PWD)/docs:/spec --pull=always \
-		$(SEMCONVGEN_CONTAINER) --continue-on-validation-errors -f /source compatibility --previous-version $(LATEST_RELEASED_SEMCONV_VERSION)
+.PHONY: check-dead-yaml
+check-dead-yaml:
+	mkdir -p $(TOOLS_DIR)/bin
+	$(DOCKER_RUN) --rm \
+	$(DOCKER_USER_IS_HOST_USER_ARG) \
+	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
+	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+	--mount 'type=bind,source=$(TOOLS_DIR)/bin,target=/home/weaver/target' \
+	$(WEAVER_CONTAINER) registry generate \
+		--registry=/home/weaver/source \
+		--templates=/home/weaver/templates \
+		--config=/home/weaver/templates/registry/signal-groups-weaver.yaml \
+		. \
+		/home/weaver/target
+	$(TOOLS_DIR)/scripts/find-dead-yaml.sh $(PWD)/internal/tools/bin/signal-groups.txt $(PWD)/docs

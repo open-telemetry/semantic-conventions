@@ -1,13 +1,20 @@
 {#- Macros for simplifying creating "Event" documentation. -#}
 {% import 'stability.j2' as stability %}
 {% import 'body_field_table.j2' as body_table %}
-{% macro header(event) %}**Status:** {{ stability.badge(event.stability, event.deprecated) }}
+{% macro header(event) %}**Status:** {{ stability.badge(event.stability, event.deprecated, event.brief) }}
 
 The event name MUST be `{{ event.name }}`.
 
 {{ event.brief | trim }}
 {%if event.note %}
 {{ event.note | trim }}
+{% endif %}
+{%- if event.entity_associations is sequence %}
+
+The event SHOULD be associated with one of the following entities:
+{% for e in event.entity_associations %}
+- `{{ e }}`
+{% endfor %}
 {% endif %}
 {% endmacro %}
 {% macro body(body) %}{% if body %}**Body fields:**

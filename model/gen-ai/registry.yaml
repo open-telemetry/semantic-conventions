@@ -13,14 +13,38 @@ groups:
               stability: development
               value: "openai"
               brief: 'OpenAI'
+            - id: gcp.gen_ai
+              stability: development
+              value: "gcp.gen_ai"
+              brief: "Any Google generative AI endpoint"
+              note: >
+                May be used when specific backend is unknown.
+                May use common attributes prefixed with 'gcp.gen_ai.'.
+            - id: gcp.vertex_ai
+              stability: development
+              value: "gcp.vertex_ai"
+              brief: 'Vertex AI'
+              note: >
+                This refers to the 'aiplatform.googleapis.com' endpoint.
+                May use common attributes prefixed with 'gcp.gen_ai.'.
+            - id: gcp.gemini
+              stability: development
+              value: "gcp.gemini"
+              brief: 'Gemini'
+              note: >
+                This refers to the 'generativelanguage.googleapis.com' endpoint.
+                Also known as the AI Studio API.
+                May use common attributes prefixed with 'gcp.gen_ai.'.
             - id: vertex_ai
               stability: development
               value: "vertex_ai"
               brief: 'Vertex AI'
+              deprecated: "Use 'gcp.vertex_ai' instead."
             - id: gemini
               stability: development
               value: "gemini"
               brief: 'Gemini'
+              deprecated: "Use 'gcp.gemini' instead."
             - id: anthropic
               stability: development
               value: "anthropic"
@@ -29,14 +53,24 @@ groups:
               stability: development
               value: "cohere"
               brief: 'Cohere'
+            - id: azure.ai.inference
+              stability: development
+              value: "azure.ai.inference"
+              brief: 'Azure AI Inference'
+            - id: azure.ai.openai
+              stability: development
+              value: "azure.ai.openai"
+              brief: 'Azure OpenAI'
             - id: az.ai.inference
               stability: development
               value: "az.ai.inference"
+              deprecated: "Replaced by azure.ai.inference"
               brief: 'Azure AI Inference'
             - id: az.ai.openai
               stability: development
-              value: "az.ai.openai"
+              value: "azure.ai.openai"
               brief: 'Azure OpenAI'
+              deprecated: "Replaced by azure.ai.openai"
             - id: ibm.watsonx.ai
               stability: development
               value: "ibm.watsonx.ai"
@@ -187,6 +221,11 @@ groups:
               brief: 'Output tokens (completion, response, etc.)'
         brief: The type of token being counted.
         examples: ['input', 'output']
+      - id: gen_ai.conversation.id
+        stability: development
+        type: string
+        brief: The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation.
+        examples: ["conv_5j66UpCpwteGg4YSxUnt7lPY"]
       - id: gen_ai.agent.id   # alternatives: assistant (openai)
         stability: development
         type: string
@@ -212,6 +251,11 @@ groups:
         type: string
         brief: The tool call identifier.
         examples: ['call_mszuSIzqtI65i1wAUOE8w5H4']
+      - id: gen_ai.tool.description
+        stability: development
+        type: string
+        brief: The tool description.
+        examples: ["Multiply two numbers"]
       - id: gen_ai.tool.type
         stability: development
         type: string
@@ -223,6 +267,16 @@ groups:
             Client-side operations are actions taken on the user's end or within the client application.
           Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
         examples: ['function', 'extension', 'datastore']
+      - id: gen_ai.data_source.id
+        stability: development
+        type: string
+        brief: The data source identifier.
+        note: >
+          Data sources are used by AI agents and RAG applications to store grounding data.
+          A data source may be an external database, object store, document collection, website, or any other storage system used by the GenAI agent or application.
+          The `gen_ai.data_source.id` SHOULD match the identifier used by the GenAI system rather than a name specific to the external storage, such as a database or
+          object store. Semantic conventions referencing `gen_ai.data_source.id` MAY also leverage additional attributes, such as `db.*`, to further identify and describe the data source.
+        examples: ['H7STPQYOND']
       - id: gen_ai.operation.name
         stability: development
         type:
@@ -230,6 +284,10 @@ groups:
             - id: chat
               value: "chat"
               brief: 'Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)'
+              stability: development
+            - id: generate_content
+              value: "generate_content"
+              brief: 'Multimodal content generation operation such as [Gemini Generate Content](https://ai.google.dev/api/generate-content)'
               stability: development
             - id: text_completion
               value: "text_completion"
@@ -242,6 +300,10 @@ groups:
             - id: create_agent
               value: "create_agent"
               brief: 'Create GenAI agent'
+              stability: development
+            - id: invoke_agent
+              value: "invoke_agent"
+              brief: 'Invoke GenAI agent'
               stability: development
             - id: execute_tool
               value: "execute_tool"
