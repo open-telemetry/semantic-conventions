@@ -13,7 +13,7 @@ linkTitle: Spans
   - [Notes and well-known identifiers for `db.system.name`](#notes-and-well-known-identifiers-for-dbsystemname)
 - [Sanitization of `db.query.text`](#sanitization-of-dbquerytext)
 - [Generating a summary of the query](#generating-a-summary-of-the-query)
-- [Context Propagation](#context-propagation)
+- [Context propagation](#context-propagation)
   - [SQL commenter](#sql-commenter)
 - [Semantic conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 
@@ -480,19 +480,23 @@ Semantic conventions for individual database systems or specialized instrumentat
 MAY specify a different `db.query.summary` format as long as produced summary remains
 relatively short and its cardinality remains low comparing to the `db.query.text`.
 
-## Context Propagation
+## Context propagation
 
 **Status**: [Development][DocumentStatus]
 
 ### SQL commenter
 
-Instrumentations SHOULD propagate the context information to the SQL queries following [SQL commenter](https://google.github.io/sqlcommenter/spec/). The instrumentation implementation MAY choose to either **append** the comment to the end of the query or **prepend** the comment at the beginning of the query, depending on the specific database system's requirements or preferences.
+Instrumentations MAY propagate context using [SQL commenter](https://google.github.io/sqlcommenter/spec/) by injecting comments into SQL queries before execution. Context injection SHOULD NOT be enabled by default, but instrumentation MAY allow users to opt into it.
 
-| Attribute              | Type   | Description                           | Examples | Require level     | Stability                                                      |
-|------------------------|--------|---------------------------------------|----------|-------------------|----------------------------------------------------------------|
-| [`service.name`](/docs/registry/attributes/service.md) | string | Logical name of the service [22]   | `shoppingcart` | `Recommended`     | ![Development](https://img.shields.io/badge/-development-blue) |
+The instrumentation implementation MAY choose to either **append** the comment to the end of the query or **prepend** the comment at the beginning of the query, depending on the specific database system's requirements or preferences.
 
-**[22] `service.name`:** Instrumentations MAY use [SDK-provided resource detectors](https://opentelemetry.io/docs/specs/semconv/resource/#semantic-attributes-with-sdk-provided-default-value) to set the default value for this attribute.
+The instrumentation SHOULD allow users to pass a list of propagators to overwrite the default propagators.
+
+The instrumentation MAY provide the following propagators that users can use to overwrite the default propagators:
+
+- `service.name` propagator, a propagator that can inject the `service.name` into carrier.
+
+Note that the performance of certain database systems may be impacted by high cardinality values in comments. The `service.name` propagator is useful for these databases with minimal performance impact while providing useful context.
 
 **Examples:**
 
