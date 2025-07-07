@@ -5,6 +5,7 @@ import rego.v1
 # Data structures to make checking things faster.
 metric_names := { obj |
     group := input.groups[_];
+    group.type = "metric"
     obj := { "name": group.metric_name, "namespace_prefix": extract_metric_namespace_prefix(group.metric_name)}
 }
 
