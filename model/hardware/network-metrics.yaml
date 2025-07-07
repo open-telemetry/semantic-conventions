@@ -20,7 +20,9 @@ groups:
   - id: metric.hw.network.bandwidth.limit
     type: metric
     metric_name: hw.network.bandwidth.limit
-    # value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Link speed"
     instrument: updowncounter
@@ -30,7 +32,9 @@ groups:
   - id: metric.hw.network.bandwidth.utilization
     type: metric
     metric_name: hw.network.bandwidth.utilization
-    # value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "Utilization of the network bandwidth as a fraction"
     instrument: gauge
@@ -40,7 +44,9 @@ groups:
   - id: metric.hw.network.io
     type: metric
     metric_name: hw.network.io
-    # value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Received and transmitted network traffic in bytes"
     instrument: counter
@@ -54,7 +60,9 @@ groups:
   - id: metric.hw.network.packets
     type: metric
     metric_name: hw.network.packets
-    # value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Received and transmitted network traffic in packets (or frames)"
     instrument: counter
@@ -68,7 +76,9 @@ groups:
   - id: metric.hw.network.up
     type: metric
     metric_name: hw.network.up
-    # value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Link status: `1` (up) or `0` (down)"
     instrument: updowncounter

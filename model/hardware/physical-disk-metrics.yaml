@@ -20,7 +20,9 @@ groups:
   - id: metric.hw.physical_disk.endurance_utilization
     type: metric
     metric_name: hw.physical_disk.endurance_utilization
-    # value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "Endurance remaining for this SSD disk"
     instrument: gauge
@@ -34,7 +36,9 @@ groups:
   - id: metric.hw.physical_disk.size
     type: metric
     metric_name: hw.physical_disk.size
-    # value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Size of the disk"
     instrument: updowncounter
@@ -44,7 +48,9 @@ groups:
   - id: metric.hw.physical_disk.smart
     type: metric
     metric_name: hw.physical_disk.smart
-    # value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Value of the corresponding [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute"
     instrument: gauge

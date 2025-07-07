@@ -16,7 +16,9 @@ groups:
   - id: metric.hw.power_supply.limit
     type: metric
     metric_name: hw.power_supply.limit
-    # value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Maximum power output of the power supply"
     instrument: updowncounter
@@ -30,7 +32,9 @@ groups:
   - id: metric.hw.power_supply.utilization
     type: metric
     metric_name: hw.power_supply.utilization
-    # value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "Utilization of the power supply as a fraction of its maximum output"
     instrument: gauge

@@ -16,7 +16,9 @@ groups:
   - id: metric.hw.tape_drive.operations
     type: metric
     metric_name: hw.tape_drive.operations
-    # value_type: int
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Operations performed by the tape drive"
     instrument: counter

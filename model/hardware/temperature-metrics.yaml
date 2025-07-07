@@ -12,7 +12,9 @@ groups:
   - id: metric.hw.temperature
     type: metric
     metric_name: hw.temperature
-    # value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "Temperature in degrees Celsius"
     instrument: gauge
@@ -22,7 +24,9 @@ groups:
   - id: metric.hw.temperature.limit
     type: metric
     metric_name: hw.temperature.limit
-    # value_type: double
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "Temperature limit in degrees Celsius"
     instrument: gauge
