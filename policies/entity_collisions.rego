@@ -6,7 +6,7 @@ import rego.v1
 entities_names := { obj |
     group := input.groups[_]
     group.type = "entity"
-    obj := { "name": group.name, "const_name": to_const_name(group.name), "namespace_prefix": to_namespace_prefix(group.name)}
+    obj := { "name": group.name, "namespace_prefix": to_namespace_prefix(group.name)}
 }
 
 # check that matric names do not collide with namespaces
@@ -23,7 +23,6 @@ deny contains entities_registry_collision(description, name) if {
         startswith(other.name, prefix)
     ]
     count(collisions) > 0
-    # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
     description := sprintf("Entity name '%s' is used as a namespace in the following entities '%s'.", [name, collisions])
 }
 
@@ -40,8 +39,4 @@ entities_registry_collision(description, entity_name) = violation if {
 
 to_namespace_prefix(name) = namespace if {
     namespace := concat("", [name, "."])
-}
-
-to_const_name(name) = const_name if {
-    const_name := replace(name, ".", "_")
 }
