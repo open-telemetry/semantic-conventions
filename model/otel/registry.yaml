@@ -54,6 +54,17 @@ groups:
         brief: The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP).
         examples: ['1.0.0']
         stability: stable
+      - id: otel.scope.schema_url
+        type: string
+        brief: The schema URL of the instrumentation scope - (`InstrumentationScope.SchemaUrl` in OTLP).
+        examples: ['https://opentelemetry.io/schemas/1.31.0']
+        stability: stable
+      - id: otel.scope
+        type: template[string[]]
+        brief: >
+          The attributes of the instrumentation scope - (`InstrumentationScope.Attributes` in OTLP).
+        examples: ['otel.scope.attributes.foo="bar"', 'otel.scope.baz="qux"']
+        stability: stable
   - id: registry.otel.component
     type: attribute_group
     display_name: OTel Component Attributes
