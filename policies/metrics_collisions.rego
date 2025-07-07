@@ -23,7 +23,7 @@ deny contains metrics_registry_collision(description, name) if {
         startswith(other.name, prefix)
     ]
     count(collisions) > 0
-    description := sprintf("Metric name '%s' is used as a namespace in the following metrics '%s'.", [name, collisions])
+    description := sprintf("Metric with name '%s' is used as a namespace in the following metrics '%s'.", [name, collisions])
 }
 
 

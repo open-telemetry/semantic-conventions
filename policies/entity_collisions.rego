@@ -23,7 +23,7 @@ deny contains entities_registry_collision(description, name) if {
         startswith(other.name, prefix)
     ]
     count(collisions) > 0
-    description := sprintf("Entity name '%s' is used as a namespace in the following entities '%s'.", [name, collisions])
+    description := sprintf("Entity with name '%s' is used as a namespace in the following entities '%s'.", [name, collisions])
 }
 
 
