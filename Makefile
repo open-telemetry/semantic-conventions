@@ -114,7 +114,7 @@ misspell-correction:	$(MISSPELL)
 	$(MISSPELL) -w $(ALL_DOCS)
 
 .PHONY: normalized-link-check
-# NOTE: Seach "model/*/**" rather than "model" to skip `model/README.md`, which
+# NOTE: Search "model/*/**" rather than "model" to skip `model/README.md`, which
 # contains valid occurrences of `../docs/`.
 normalized-link-check:
 	@if grep -R '\.\./docs/' docs model/*/**; then \
