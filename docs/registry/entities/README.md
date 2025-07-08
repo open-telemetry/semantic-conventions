@@ -80,8 +80,7 @@ Currently, the following namespaces exist:
 | Openshift | | |
 | | [openshift.clusterquota](openshift.md#openshift-clusterquota) | ![Development](https://img.shields.io/badge/-development-blue) |
 | OS | | |
-| | [os.environment](os.md#os-environment) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [os.type](os.md#os-type) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [os](os.md#os) | ![Development](https://img.shields.io/badge/-development-blue) |
 | OTel | | |
 | | [otel.scope](otel.md#otel-scope) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Obsoleted. |
 | Process | | |
