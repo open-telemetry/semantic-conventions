@@ -18,6 +18,27 @@ linkTitle: Metrics
 
 <!-- tocstop -->
 
+> [!Warning]
+>
+> Existing GenAI instrumentations that are using
+> [v1.36.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.36.0/docs/gen-ai/README.md)
+> (or prior):
+>
+> * SHOULD NOT change the version of the GenAI conventions that they emit by default.
+>   Conventions include, but are not limited to, attributes, metric, span and event names,
+>   span kind and unit of measure.
+> * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
+>   as a comma-separated list of category-specific values. The list of values
+>   includes:
+>   * `gen_ai_latest_experimental` - emit the latest experimental version of
+>     GenAI conventions (supported by the instrumentation) and do not emit the
+>     old one (v1.36.0 or prior).
+>   * The default behavior is to continue emitting whatever version of the GenAI
+>     conventions the instrumentation was emitting (1.36.0 or prior).
+>
+> This transition plan will be updated to include stable version before the
+> GenAI conventions are marked as stable.
+
 ## Generative AI client metrics
 
 The conventions described in this section are specific to Generative AI client
@@ -60,7 +81,7 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [1, 4, 16, 64
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.system`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.token.type`](/docs/registry/attributes/gen-ai.md) | string | The type of token being counted. | `input`; `output` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | string | The name of the GenAI model a request is being made to. | `gpt-4` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.port`](/docs/registry/attributes/server.md) | int | GenAI server port. [3] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -69,17 +90,24 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [1, 4, 16, 64
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[2] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
-by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+**[2] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
+knowledge and may differ from the actual model provider.
 
-The actual GenAI product may differ from the one identified by the client.
-Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
-instrumentation's best knowledge, instead of the actual system. The `server.address`
-attribute may help identify the actual system in use for `openai`.
+Multiple providers, including Azure OpenAI, Gemini, and AI hosting platforms
+are accessible using the OpenAI REST API and corresponding client libraries,
+but may proxy or host models from different providers.
 
-For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+The `gen_ai.request.model`, `gen_ai.response.model`, and `server.address`
+attributes may help identify the actual system in use.
+
+The `gen_ai.provider.name` attribute acts as a discriminator that
+identifies the GenAI telemetry format flavor specific to that provider
+within GenAI semantic conventions.
+It SHOULD be set consistently with provider-specific attributes and signals.
+For example, GenAI spans, metrics, and events related to AWS Bedrock
+should have the `gen_ai.provider.name` set to `aws.bedrock` and include
+applicable `aws.bedrock.*` attributes and are not expected to include
+`openai.*` attributes.
 
 **[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -101,31 +129,31 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
+| `anthropic` | [Anthropic](https://www.anthropic.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.bedrock` | [AWS Bedrock](https://aws.amazon.com/bedrock) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
-| `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gemini` | Gemini [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cohere` | [Cohere](https://cohere.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deepseek` | [DeepSeek](https://www.deepseek.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gemini` | [Gemini](https://cloud.google.com/products/gemini) [5] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gen_ai` | Any Google generative AI endpoint [6] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.vertex_ai` | Vertex AI [7] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
-| `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.vertex_ai` | [Vertex AI](https://cloud.google.com/vertex-ai) [7] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `groq` | [Groq](https://groq.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.watsonx.ai` | [IBM Watsonx AI](https://www.ibm.com/products/watsonx-ai) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mistral_ai` | [Mistral AI](https://mistral.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openai` | [OpenAI](https://openai.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perplexity` | [Perplexity](https://www.perplexity.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `x_ai` | [xAI](https://x.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[5]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[5]:** Used when accessing the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API.
 
-**[6]:** May be used when specific backend is unknown. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[6]:** May be used when specific backend is unknown.
 
-**[7]:** This refers to the 'aiplatform.googleapis.com' endpoint. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[7]:** Used when accessing the 'aiplatform.googleapis.com' endpoint.
 
 ---
 
@@ -161,7 +189,7 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [0.01, 0.02, 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.system`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | string | The name of the GenAI model a request is being made to. | `gpt-4` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.port`](/docs/registry/attributes/server.md) | int | GenAI server port. [4] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -170,17 +198,24 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [0.01, 0.02, 
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[2] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
-by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+**[2] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
+knowledge and may differ from the actual model provider.
 
-The actual GenAI product may differ from the one identified by the client.
-Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
-instrumentation's best knowledge, instead of the actual system. The `server.address`
-attribute may help identify the actual system in use for `openai`.
+Multiple providers, including Azure OpenAI, Gemini, and AI hosting platforms
+are accessible using the OpenAI REST API and corresponding client libraries,
+but may proxy or host models from different providers.
 
-For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+The `gen_ai.request.model`, `gen_ai.response.model`, and `server.address`
+attributes may help identify the actual system in use.
+
+The `gen_ai.provider.name` attribute acts as a discriminator that
+identifies the GenAI telemetry format flavor specific to that provider
+within GenAI semantic conventions.
+It SHOULD be set consistently with provider-specific attributes and signals.
+For example, GenAI spans, metrics, and events related to AWS Bedrock
+should have the `gen_ai.provider.name` set to `aws.bedrock` and include
+applicable `aws.bedrock.*` attributes and are not expected to include
+`openai.*` attributes.
 
 **[3] `error.type`:** The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
 the canonical name of exception that occurred, or another low-cardinality error identifier.
@@ -214,31 +249,31 @@ Instrumentations SHOULD document the list of errors they report.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
+| `anthropic` | [Anthropic](https://www.anthropic.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.bedrock` | [AWS Bedrock](https://aws.amazon.com/bedrock) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
-| `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gemini` | Gemini [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cohere` | [Cohere](https://cohere.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deepseek` | [DeepSeek](https://www.deepseek.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gemini` | [Gemini](https://cloud.google.com/products/gemini) [6] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gen_ai` | Any Google generative AI endpoint [7] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.vertex_ai` | Vertex AI [8] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
-| `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.vertex_ai` | [Vertex AI](https://cloud.google.com/vertex-ai) [8] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `groq` | [Groq](https://groq.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.watsonx.ai` | [IBM Watsonx AI](https://www.ibm.com/products/watsonx-ai) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mistral_ai` | [Mistral AI](https://mistral.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openai` | [OpenAI](https://openai.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perplexity` | [Perplexity](https://www.perplexity.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `x_ai` | [xAI](https://x.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[6]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[6]:** Used when accessing the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API.
 
-**[7]:** May be used when specific backend is unknown. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[7]:** May be used when specific backend is unknown.
 
-**[8]:** This refers to the 'aiplatform.googleapis.com' endpoint. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[8]:** Used when accessing the 'aiplatform.googleapis.com' endpoint.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -272,7 +307,7 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.system`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | string | The name of the GenAI model a request is being made to. | `gpt-4` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.port`](/docs/registry/attributes/server.md) | int | GenAI server port. [4] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -281,17 +316,24 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[2] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
-by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+**[2] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
+knowledge and may differ from the actual model provider.
 
-The actual GenAI product may differ from the one identified by the client.
-Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
-instrumentation's best knowledge, instead of the actual system. The `server.address`
-attribute may help identify the actual system in use for `openai`.
+Multiple providers, including Azure OpenAI, Gemini, and AI hosting platforms
+are accessible using the OpenAI REST API and corresponding client libraries,
+but may proxy or host models from different providers.
 
-For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+The `gen_ai.request.model`, `gen_ai.response.model`, and `server.address`
+attributes may help identify the actual system in use.
+
+The `gen_ai.provider.name` attribute acts as a discriminator that
+identifies the GenAI telemetry format flavor specific to that provider
+within GenAI semantic conventions.
+It SHOULD be set consistently with provider-specific attributes and signals.
+For example, GenAI spans, metrics, and events related to AWS Bedrock
+should have the `gen_ai.provider.name` set to `aws.bedrock` and include
+applicable `aws.bedrock.*` attributes and are not expected to include
+`openai.*` attributes.
 
 **[3] `error.type`:** The `error.type` SHOULD match the error code returned by the Generative AI service,
 the canonical name of exception that occurred, or another low-cardinality error identifier.
@@ -325,31 +367,31 @@ Instrumentations SHOULD document the list of errors they report.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
+| `anthropic` | [Anthropic](https://www.anthropic.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.bedrock` | [AWS Bedrock](https://aws.amazon.com/bedrock) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
-| `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gemini` | Gemini [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cohere` | [Cohere](https://cohere.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deepseek` | [DeepSeek](https://www.deepseek.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gemini` | [Gemini](https://cloud.google.com/products/gemini) [6] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gen_ai` | Any Google generative AI endpoint [7] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.vertex_ai` | Vertex AI [8] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
-| `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.vertex_ai` | [Vertex AI](https://cloud.google.com/vertex-ai) [8] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `groq` | [Groq](https://groq.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.watsonx.ai` | [IBM Watsonx AI](https://www.ibm.com/products/watsonx-ai) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mistral_ai` | [Mistral AI](https://mistral.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openai` | [OpenAI](https://openai.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perplexity` | [Perplexity](https://www.perplexity.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `x_ai` | [xAI](https://x.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[6]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[6]:** Used when accessing the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API.
 
-**[7]:** May be used when specific backend is unknown. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[7]:** May be used when specific backend is unknown.
 
-**[8]:** This refers to the 'aiplatform.googleapis.com' endpoint. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[8]:** Used when accessing the 'aiplatform.googleapis.com' endpoint.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -383,7 +425,7 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.system`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | string | The name of the GenAI model a request is being made to. | `gpt-4` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.port`](/docs/registry/attributes/server.md) | int | GenAI server port. [3] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | string | The name of the model that generated the response. | `gpt-4-0613` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -391,17 +433,24 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[2] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
-by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+**[2] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
+knowledge and may differ from the actual model provider.
 
-The actual GenAI product may differ from the one identified by the client.
-Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
-instrumentation's best knowledge, instead of the actual system. The `server.address`
-attribute may help identify the actual system in use for `openai`.
+Multiple providers, including Azure OpenAI, Gemini, and AI hosting platforms
+are accessible using the OpenAI REST API and corresponding client libraries,
+but may proxy or host models from different providers.
 
-For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+The `gen_ai.request.model`, `gen_ai.response.model`, and `server.address`
+attributes may help identify the actual system in use.
+
+The `gen_ai.provider.name` attribute acts as a discriminator that
+identifies the GenAI telemetry format flavor specific to that provider
+within GenAI semantic conventions.
+It SHOULD be set consistently with provider-specific attributes and signals.
+For example, GenAI spans, metrics, and events related to AWS Bedrock
+should have the `gen_ai.provider.name` set to `aws.bedrock` and include
+applicable `aws.bedrock.*` attributes and are not expected to include
+`openai.*` attributes.
 
 **[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -423,31 +472,31 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
+| `anthropic` | [Anthropic](https://www.anthropic.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.bedrock` | [AWS Bedrock](https://aws.amazon.com/bedrock) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
-| `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gemini` | Gemini [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cohere` | [Cohere](https://cohere.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deepseek` | [DeepSeek](https://www.deepseek.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gemini` | [Gemini](https://cloud.google.com/products/gemini) [5] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gen_ai` | Any Google generative AI endpoint [6] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.vertex_ai` | Vertex AI [7] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
-| `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.vertex_ai` | [Vertex AI](https://cloud.google.com/vertex-ai) [7] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `groq` | [Groq](https://groq.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.watsonx.ai` | [IBM Watsonx AI](https://www.ibm.com/products/watsonx-ai) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mistral_ai` | [Mistral AI](https://mistral.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openai` | [OpenAI](https://openai.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perplexity` | [Perplexity](https://www.perplexity.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `x_ai` | [xAI](https://x.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[5]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[5]:** Used when accessing the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API.
 
-**[6]:** May be used when specific backend is unknown. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[6]:** May be used when specific backend is unknown.
 
-**[7]:** This refers to the 'aiplatform.googleapis.com' endpoint. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[7]:** Used when accessing the 'aiplatform.googleapis.com' endpoint.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -480,7 +529,7 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.system`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [2] | `openai` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | string | The name of the GenAI model a request is being made to. | `gpt-4` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.port`](/docs/registry/attributes/server.md) | int | GenAI server port. [3] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | string | The name of the model that generated the response. | `gpt-4-0613` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -488,17 +537,24 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[2] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
-by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+**[2] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
+knowledge and may differ from the actual model provider.
 
-The actual GenAI product may differ from the one identified by the client.
-Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
-instrumentation's best knowledge, instead of the actual system. The `server.address`
-attribute may help identify the actual system in use for `openai`.
+Multiple providers, including Azure OpenAI, Gemini, and AI hosting platforms
+are accessible using the OpenAI REST API and corresponding client libraries,
+but may proxy or host models from different providers.
 
-For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+The `gen_ai.request.model`, `gen_ai.response.model`, and `server.address`
+attributes may help identify the actual system in use.
+
+The `gen_ai.provider.name` attribute acts as a discriminator that
+identifies the GenAI telemetry format flavor specific to that provider
+within GenAI semantic conventions.
+It SHOULD be set consistently with provider-specific attributes and signals.
+For example, GenAI spans, metrics, and events related to AWS Bedrock
+should have the `gen_ai.provider.name` set to `aws.bedrock` and include
+applicable `aws.bedrock.*` attributes and are not expected to include
+`openai.*` attributes.
 
 **[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -520,31 +576,31 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
+| `anthropic` | [Anthropic](https://www.anthropic.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.bedrock` | [AWS Bedrock](https://aws.amazon.com/bedrock) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
-| `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gemini` | Gemini [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cohere` | [Cohere](https://cohere.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deepseek` | [DeepSeek](https://www.deepseek.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gemini` | [Gemini](https://cloud.google.com/products/gemini) [5] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gen_ai` | Any Google generative AI endpoint [6] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.vertex_ai` | Vertex AI [7] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
-| `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.vertex_ai` | [Vertex AI](https://cloud.google.com/vertex-ai) [7] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `groq` | [Groq](https://groq.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.watsonx.ai` | [IBM Watsonx AI](https://www.ibm.com/products/watsonx-ai) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mistral_ai` | [Mistral AI](https://mistral.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openai` | [OpenAI](https://openai.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perplexity` | [Perplexity](https://www.perplexity.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `x_ai` | [xAI](https://x.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[5]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[5]:** Used when accessing the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API.
 
-**[6]:** May be used when specific backend is unknown. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[6]:** May be used when specific backend is unknown.
 
-**[7]:** This refers to the 'aiplatform.googleapis.com' endpoint. May use common attributes prefixed with 'gcp.gen_ai.'.
+**[7]:** Used when accessing the 'aiplatform.googleapis.com' endpoint.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
