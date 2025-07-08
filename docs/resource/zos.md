@@ -96,29 +96,8 @@ The following table describes how to populate the operating system attributes on
 
 | Value  | Description | Stability |
 |---|---|---|
-| `aix` | AIX (Advanced Interactive eXecutive) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `android` | Android | ![Development](https://img.shields.io/badge/-development-blue) |
-| `archlinux` | Arch Linux | ![Development](https://img.shields.io/badge/-development-blue) |
-| `centos` | CentOS | ![Development](https://img.shields.io/badge/-development-blue) |
-| `chromeos` | ChromeOS | ![Development](https://img.shields.io/badge/-development-blue) |
-| `chromiumos` | ChromiumOS | ![Development](https://img.shields.io/badge/-development-blue) |
-| `dragonflybsd` | DragonFly BSD | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fireos` | Fire OS | ![Development](https://img.shields.io/badge/-development-blue) |
-| `freebsd` | FreeBSD | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hpux` | HP-UX (Hewlett Packard Unix) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ios` | Apple ios | ![Development](https://img.shields.io/badge/-development-blue) |
-| `manjaro` | Manjaro | ![Development](https://img.shields.io/badge/-development-blue) |
-| `netbsd` | NetBSD | ![Development](https://img.shields.io/badge/-development-blue) |
-| `openbsd` | OpenBSD | ![Development](https://img.shields.io/badge/-development-blue) |
-| `rhel` | Red Hat Enterprise Linux | ![Development](https://img.shields.io/badge/-development-blue) |
-| `solaris` | SunOS, Oracle Solaris | ![Development](https://img.shields.io/badge/-development-blue) |
-| `steamos` | SteamOS | ![Development](https://img.shields.io/badge/-development-blue) |
-| `suse` | SUSE Linux Enterprise | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tvos` | Apple tvos | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ubuntu` | Ubuntu | ![Development](https://img.shields.io/badge/-development-blue) |
-| `watchos` | Apple WatchOS | ![Development](https://img.shields.io/badge/-development-blue) |
-| `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
-| `zos` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unix` | Unix | ![Development](https://img.shields.io/badge/-development-blue) |
+| `windowsnt` | Microsoft Windows NT based OS | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
