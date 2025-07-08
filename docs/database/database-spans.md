@@ -494,7 +494,7 @@ The instrumentation SHOULD allow users to pass a list of propagators to overwrit
 
 The instrumentation MAY provide the following propagators that users can use to overwrite the default propagators:
 
-- `service.name` propagator, a propagator that can inject the `service.name` into carrier.
+- `service.name` propagator, a propagator that can inject the `service.name` resource attribute into carrier.
 
 Note that the performance of certain database systems may be impacted by high cardinality values in comments. The `service.name` propagator is useful for these databases with minimal performance impact while providing useful context.
 
