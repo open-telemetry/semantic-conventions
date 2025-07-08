@@ -6,18 +6,20 @@ import rego.v1
 entities_names := { obj |
     group := input.groups[_]
     group.type = "entity"
-    obj := { "name": group.name, "namespace_prefix": extract_entity_namespace_prefix(group.name)}
+    obj := { "name": group.name, "namespace_prefix": extract_entity_namespace_prefix(group.name), "deprecated": is_property_set(group, "deprecated")}
 }
 
-# check that matric names do not collide with namespaces
+# check that entity names do not collide with namespaces
 deny contains entities_registry_collision(description, name) if {
     some i
 
     name := entities_names[i].name
     prefix := entities_names[i].namespace_prefix
+    not entities_names[i].deprecated
 
     collisions := [other.name |
         other := entities_names[_]
+        not other.deprecated
 
         other.name != name
         startswith(other.name, prefix)
@@ -40,3 +42,7 @@ entities_registry_collision(description, entity_name) = violation if {
 extract_entity_namespace_prefix(name) = namespace if {
     namespace := concat("", [name, "."])
 }
+
+is_property_set(obj, property) = true if {
+    obj[property] != null
+} else = false

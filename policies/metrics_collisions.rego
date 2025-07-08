@@ -6,18 +6,20 @@ import rego.v1
 metric_names := { obj |
     group := input.groups[_];
     group.type = "metric"
-    obj := { "name": group.metric_name, "namespace_prefix": extract_metric_namespace_prefix(group.metric_name)}
+    obj := { "name": group.metric_name, "namespace_prefix": extract_metric_namespace_prefix(group.metric_name), "deprecated": is_property_set(group, "deprecated")}
 }
 
-# check that matric names do not collide with namespaces
+# check that metric names do not collide with namespaces
 deny contains metrics_registry_collision(description, name) if {
     some i
 
     name := metric_names[i].name
     prefix := metric_names[i].namespace_prefix
+    not metric_names[i].deprecated
 
     collisions := [other.name |
         other := metric_names[_]
+        not other.deprecated
 
         other.name != name
         startswith(other.name, prefix)
@@ -41,3 +43,6 @@ extract_metric_namespace_prefix(name) = namespace if {
     namespace := concat("", [name, "."])
 }
 
+is_property_set(obj, property) = true if {
+    obj[property] != null
+} else = false
