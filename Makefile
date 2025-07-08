@@ -108,10 +108,10 @@ misspell-correction:	$(MISSPELL)
 	$(MISSPELL) -w $(ALL_DOCS)
 
 .PHONY: normalized-link-check
-# NOTE: we check `model/[a-z]*` to avoid `model/README.md`, which contains
-# valid occurrences of `../docs/`.
+# NOTE: Search "model/*/**" rather than "model" to skip `model/README.md`, which
+# contains valid occurrences of `../docs/`.
 normalized-link-check:
-	@if grep -R '\.\./docs/' docs model/[a-z]*; then \
+	@if grep -R '\.\./docs/' docs model/*/**; then \
 		echo "\nERROR: Found occurrences of '../docs/'; see above."; \
 		echo "       Remove the '../docs/' from doc page links referencing doc pages."; \
 		exit 1; \
