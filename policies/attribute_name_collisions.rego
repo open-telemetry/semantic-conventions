@@ -41,9 +41,6 @@ deny contains attr_registry_collision(description, name) if {
     name := attribute_names[i].name
     prefix := attribute_names[i].namespace_prefix
 
-    # ignore otel.scope attribute
-    name != "otel.scope"
-
     collisions := [other.name |
         other := attribute_names[_]
         not other.deprecated

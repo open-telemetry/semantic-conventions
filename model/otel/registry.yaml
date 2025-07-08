@@ -76,17 +76,6 @@ groups:
         brief: The schema URL of the instrumentation scope.
         examples: ['https://opentelemetry.io/schemas/1.31.0']
         stability: stable
-      - id: otel.scope
-        type: template[string]
-        brief: >
-          The attributes of the instrumentation scope - (`InstrumentationScope.Attributes` in OTLP).
-          `<key>` being the instrumentation scope attribute key,
-          the value being the instrumentation scope attribute value.
-        note: >
-          For example, an instrumentation scope attribute `foo` with value `12` SHOULD be recorded
-          as the `otel.scope.foo` attribute with value `12`.
-        examples: ["someval", "55"]
-        stability: development
   - id: registry.otel.component
     type: attribute_group
     display_name: OTel Component Attributes

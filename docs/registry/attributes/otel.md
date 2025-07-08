@@ -103,12 +103,9 @@ Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concept
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="otel-scope" href="#otel-scope">`otel.scope.<key>`</a> | string | The attributes of the instrumentation scope - (`InstrumentationScope.Attributes` in OTLP). `<key>` being the instrumentation scope attribute key, the value being the instrumentation scope attribute value. [3] | `someval`; `55` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="otel-scope-name" href="#otel-scope-name">`otel.scope.name`</a> | string | The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP). | `io.opentelemetry.contrib.mongodb` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="otel-scope-schema-url" href="#otel-scope-schema-url">`otel.scope.schema_url`</a> | string | The schema URL of the instrumentation scope. | `https://opentelemetry.io/schemas/1.31.0` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="otel-scope-version" href="#otel-scope-version">`otel.scope.version`</a> | string | The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP). | `1.0.0` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-**[3] `otel.scope.<key>`:** For example, an instrumentation scope attribute `foo` with value `12` SHOULD be recorded as the `otel.scope.foo` attribute with value `12`.
 
 ## Deprecated OTel Library Attributes
 
