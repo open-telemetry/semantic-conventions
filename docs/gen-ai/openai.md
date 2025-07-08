@@ -29,7 +29,7 @@ linkTitle: OpenAI
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   as a comma-separated list of category-specific values. The list of values
 >   includes:
->   * `gen-ai-latest-experimental` - emit the latest experimental version of
+>   * `gen_ai_latest_experimental` - emit the latest experimental version of
 >     GenAI conventions (supported by the instrumentation) and do not emit the
 >     old one (v1.36.0 or prior).
 >   * The default behavior is to continue emitting whatever version of the GenAI
