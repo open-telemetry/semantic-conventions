@@ -20,10 +20,12 @@
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`otel.scope.<key>`](/docs/registry/attributes/otel.md) | string | The attributes of the instrumentation scope - (`InstrumentationScope.Attributes` in OTLP). | `someval`; `55` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`otel.scope.<key>`](/docs/registry/attributes/otel.md) | string | The attributes of the instrumentation scope - (`InstrumentationScope.Attributes` in OTLP). `<key>` being the instrumentation scope attribute key, the value being the instrumentation scope attribute value. [1] | `someval`; `55` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`otel.scope.name`](/docs/registry/attributes/otel.md) | string | The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP). | `io.opentelemetry.contrib.mongodb` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`otel.scope.schema_url`](/docs/registry/attributes/otel.md) | string | The schema URL of the instrumentation scope. | `https://opentelemetry.io/schemas/1.31.0` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`otel.scope.version`](/docs/registry/attributes/otel.md) | string | The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP). | `1.0.0` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+**[1] `otel.scope.<key>`:** For example, an instrumentation scope attribute `foo` with value `12` SHOULD be recorded as the `otel.scope.foo` attribute with value `12`.
 
 
 <!-- markdownlint-restore -->
