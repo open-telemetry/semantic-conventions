@@ -57,13 +57,14 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [5] | `MyQueue`; `MyTopic` | `Conditionally Required` [6] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.gcp_pubsub.message.ordering_key`](/docs/registry/attributes/messaging.md) | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | `Conditionally Required` If the message type has an ordering key set. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | string | A string identifying the type of the messaging operation. [7] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.replyto.name`](/docs/registry/attributes/messaging.md) | string | The message replyto name [8] | `MyQueue`; `MyTopic` | `Conditionally Required` [9] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md) | string | Google Pub/Sub [subscription name](https://cloud.google.com/pubsub/docs/subscription-overview). | `subscription-a` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.gcp_pubsub.message.ack_deadline`](/docs/registry/attributes/messaging.md) | int | The ack deadline in seconds set for the modify ack deadline request. | `10` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.gcp_pubsub.message.ack_id`](/docs/registry/attributes/messaging.md) | string | The ack id for a given message. | `ack_id` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.gcp_pubsub.message.delivery_attempt`](/docs/registry/attributes/messaging.md) | int | The delivery attempt for a given message. | `2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [11] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `messaging.operation.name`:** The `messaging.operation.name` has the following list of well-known values in the context of Google Pub/Sub.
 If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -105,9 +106,14 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[7] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[8] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[8] `messaging.replyto.name`:** Replyto name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+the broker doesn't have such notion, the replyto name SHOULD uniquely identify the broker.
 
-**[9] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[9] `messaging.replyto.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
+
+**[10] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+
+**[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -116,6 +122,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md)
 * [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
 * [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
+* [`messaging.replyto.name`](/docs/registry/attributes/messaging.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
 
