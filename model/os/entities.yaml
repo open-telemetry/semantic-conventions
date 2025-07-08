@@ -1,8 +1,8 @@
 groups:
-  - id: entity.os.environment
+  - id: entity.os
     type: entity
     stability: development
-    name: os.environment
+    name: os
     brief: >
       The operating system (OS) environment on which the process represented by this resource is running.
     note: >
@@ -12,6 +12,7 @@ groups:
       - ref: os.type
         requirement_level: required
       - ref: os.description
+      - ref: os.family
       - ref: os.name
       - ref: os.version
       - ref: os.build_id
@@ -28,17 +29,3 @@ groups:
           | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
 
           | Linux | `BUILD_ID` from `/etc/os-release` | `BUILD_ID` from `/usr/lib/os-release`; <br> contents of `/proc/sys/kernel/osrelease`|
-
-  - id: entity.os.type
-    type: entity
-    stability: development
-    name: os.type
-    brief: >
-      The operating system (OS) type which was used to setup up the operating system environment.
-    attributes:
-      - ref: os.type
-        requirement_level: required
-      - ref: os.classification
-        requirement_level: opt_in
-      - ref: os.family
-      - ref: os.platform
