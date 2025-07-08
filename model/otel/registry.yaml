@@ -80,8 +80,13 @@ groups:
         type: template[string]
         brief: >
           The attributes of the instrumentation scope - (`InstrumentationScope.Attributes` in OTLP).
+          `<key>` being the instrumentation scope attribute key,
+          the value being the instrumentation scope attribute value.
+        note: >
+          For example, an instrumentation scope attribute `foo` with value `12` SHOULD be recorded
+          as the `otel.scope.foo` attribute with value `12`.
         examples: ["someval", "55"]
-        stability: stable
+        stability: development
   - id: registry.otel.component
     type: attribute_group
     display_name: OTel Component Attributes
