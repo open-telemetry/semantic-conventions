@@ -37,9 +37,11 @@ All battery metrics may include the below attributes to describe the characteris
 | [`hw.battery.capacity`](/docs/registry/attributes/hardware.md) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.model.name`. |
+| [`hw.model.name`](/docs/registry/attributes/hardware.md) | string | Descriptive model name | `Barracuda 7200`; `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.vendor.name`. |
+| [`hw.vendor.name`](/docs/registry/attributes/hardware.md) | string | Vendor name | `Intel`; `Seagate`; `Western Digital` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -67,9 +69,11 @@ This metric is [recommended][MetricRecommended].
 | [`hw.battery.capacity`](/docs/registry/attributes/hardware.md) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.model.name`. |
+| [`hw.model.name`](/docs/registry/attributes/hardware.md) | string | Descriptive model name | `Barracuda 7200`; `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.vendor.name`. |
+| [`hw.vendor.name`](/docs/registry/attributes/hardware.md) | string | Vendor name | `Intel`; `Seagate`; `Western Digital` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -98,9 +102,11 @@ This metric is [recommended][MetricRecommended].
 | [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.limit_type`](/docs/registry/attributes/hardware.md) | string | Represents battery charge level thresholds relevant to device operation and health. Each `limit_type` denotes a specific charge limit such as the minimum or maximum optimal charge, the shutdown threshold, or energy-saving thresholds. These values are typically provided by the hardware or firmware to guide safe and efficient battery usage. | `critical`; `throttled`; `degraded` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.model.name`. |
+| [`hw.model.name`](/docs/registry/attributes/hardware.md) | string | Descriptive model name | `Barracuda 7200`; `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.vendor.name`. |
+| [`hw.vendor.name`](/docs/registry/attributes/hardware.md) | string | Vendor name | `Intel`; `Seagate`; `Western Digital` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -146,9 +152,11 @@ This metric is [recommended][MetricRecommended].
 | [`hw.battery.capacity`](/docs/registry/attributes/hardware.md) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.model.name`. |
+| [`hw.model.name`](/docs/registry/attributes/hardware.md) | string | Descriptive model name | `Barracuda 7200`; `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `hw.vendor.name`. |
+| [`hw.vendor.name`](/docs/registry/attributes/hardware.md) | string | Vendor name | `Intel`; `Seagate`; `Western Digital` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `hw.battery.state`:** The `hw.state` attribute should indicate the current state of the battery. It should be one of the predefined states such as "charging" or "discharging".
 

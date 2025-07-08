@@ -251,6 +251,12 @@ groups:
         brief: >
           Descriptive model name
         examples: ['Barracuda 7200', '11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz']
+      - id: hw.model.family
+        type: string
+        stability: development
+        brief: >
+          Family or generation of the CPU.
+        examples: ['PA-RISC 1.1e', 'Intel64 Family 6 Model 26 Stepping 5']
 
       # BATTERY ATTRIBUTES
       - id: hw.battery.chemistry

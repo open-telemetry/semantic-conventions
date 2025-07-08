@@ -10,9 +10,13 @@ groups:
         requirement_level: recommended
       - ref: hw.model
         requirement_level: recommended
+      - ref: hw.model.name
+        requirement_level: recommended
       - ref: hw.serial_number
         requirement_level: recommended
       - ref: hw.enclosure.type
         requirement_level: recommended
       - ref: hw.vendor
+        requirement_level: recommended
+      - ref: hw.vendor.name
         requirement_level: recommended

@@ -8,6 +8,8 @@ groups:
     attributes:
       - ref: hw.model
         requirement_level: recommended
+      - ref: hw.model.name
+        requirement_level: recommended
       - ref: hw.network.logical_addresses
         requirement_level: recommended
       - ref: hw.network.physical_address
@@ -15,6 +17,8 @@ groups:
       - ref: hw.serial_number
         requirement_level: recommended
       - ref: hw.vendor
+        requirement_level: recommended
+      - ref: hw.vendor.name
         requirement_level: recommended
 
   - id: metric.hw.network.bandwidth.limit
