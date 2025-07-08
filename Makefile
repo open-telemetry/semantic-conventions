@@ -54,9 +54,6 @@ WEAVER_CONTAINER=$(WEAVER_CONTAINER_REPOSITORY)/$(VERSIONED_WEAVER_CONTAINER_NO_
 OPA_CONTAINER=$(OPA_CONTAINER_REPOSITORY)/$(VERSIONED_OPA_CONTAINER_NO_REPO)
 LYCHEE_CONTAINER=$(LYCHEE_CONTAINER_REPOSITORY)/$(VERSIONED_LYCHEE_CONTAINER_NO_REPO)
 
-CHECK_TARGETS=install-tools markdownlint misspell table-check \
-			schema-check check-file-and-folder-names-in-docs
-
 # Determine if "docker" is actually podman
 DOCKER_VERSION_OUTPUT := $(shell docker --version 2>&1)
 DOCKER_IS_PODMAN := $(shell echo $(DOCKER_VERSION_OUTPUT) | grep -c podman)
@@ -88,10 +85,7 @@ endif
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
-all: $(CHECK_TARGETS) markdown-link-check
-
-.PHONY: check
-check: $(CHECK_TARGETS)
+all: install-tools markdownlint misspell table-check schema-check check-file-and-folder-names-in-docs markdown-link-check
 
 .PHONY: check-file-and-folder-names-in-docs
 check-file-and-folder-names-in-docs:
