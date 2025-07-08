@@ -11,47 +11,63 @@ groups:
       - id: os.type
         type:
           members:
+            - id: windowsnt
+              value: 'windowsnt'
+              brief: "Microsoft Windows NT based OS"
+              stability: development
             - id: windows
               value: 'windows'
               brief: "Microsoft Windows"
+              deprecated: Should use `windowsnt` instead'
               stability: development
             - id: linux
               value: 'linux'
               brief: "Linux"
-              deprecated: Should be set as the `os.family` instead
+              deprecated: Should use `unix` instead'
+              stability: development
+            - id: unix
+              value: 'unix'
+              brief: "Unix"
               stability: development
             - id: darwin
               value: 'darwin'
               brief: "Apple Darwin"
-              deprecated: Should be set as the `os.classifcation` instead.
+              deprecated: Should be set as the `os.family` instead.
               stability: development
             - id: freebsd
               value: 'freebsd'
               brief: "FreeBSD"
+              deprecated: "Use `os.name` instead"
               stability: development
             - id: netbsd
               value: 'netbsd'
               brief: "NetBSD"
+              deprecated: "Use `os.name` instead"
               stability: development
             - id: openbsd
               value: 'openbsd'
               brief: "OpenBSD"
+              deprecated: "Use `os.name` instead"
               stability: development
             - id: dragonflybsd
               value: 'dragonflybsd'
               brief: "DragonFly BSD"
+              deprecated: "Use `os.name` instead"
               stability: development
             - id: hpux
               value: 'hpux'
               brief: "HP-UX (Hewlett Packard Unix)"
+              deprecated: "Use `os.name` instead"
               stability: development
             - id: aix
               value: 'aix'
               brief: "AIX (Advanced Interactive eXecutive)"
+              deprecated: "Use `os.name` instead"
               stability: development
             - id: solaris
               value: 'solaris'
               brief: "SunOS, Oracle Solaris"
+              deprecated: "Use `os.name` instead"
               stability: development
             - id: z_os
               value: 'z_os'
@@ -63,62 +79,7 @@ groups:
             - id: zos
               value: 'zos'
               brief: "IBM z/OS"
-              stability: development
-            - id: android
-              value: 'android'
-              brief: "Android"
-              stability: development
-            - id: ios
-              value: 'ios'
-              brief: "Apple ios"
-              stability: development
-            - id: tvos
-              value: 'tvos'
-              brief: "Apple tvos"
-              stability: development
-            - id: watchos
-              value: 'watchos'
-              brief: "Apple WatchOS"
-              stability: development
-            - id: ubuntu
-              value: 'ubuntu'
-              brief: "Ubuntu"
-              stability: development
-            - id: manjaro
-              value: 'manjaro'
-              brief: "Manjaro"
-              stability: development
-            - id: steamos
-              value: 'steamos'
-              brief: "SteamOS"
-              stability: development
-            - id: centos
-              value: 'centos'
-              brief: "CentOS"
-              stability: development
-            - id: archlinux
-              value: 'archlinux'
-              brief: "Arch Linux"
-              stability: development
-            - id: rhel
-              value: 'rhel'
-              brief: "Red Hat Enterprise Linux "
-              stability: development
-            - id: suse
-              value: 'suse'
-              brief: "SUSE Linux Enterprise"
-              stability: development
-            - id: chromeos
-              value: 'chromeos'
-              brief: "ChromeOS"
-              stability: development
-            - id: chromiumos
-              value: 'chromiumos'
-              brief: "ChromiumOS"
-              stability: development
-            - id: fireos
-              value: 'fireos'
-              brief: "Fire OS"
+              deprecated: "Use `os.name` instead"
               stability: development
         brief: >
           The operating system type.
