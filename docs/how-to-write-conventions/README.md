@@ -160,7 +160,7 @@ TBD
 
 #### Defining entities
 
-Follow the [Entity Modeling Guide](/docs/non-normative/how-to-write-conventions/resource-and-entities.md).
+Follow the [Entity Modeling Guide](resource-and-entities.md).
 
 #### Defining events
 
