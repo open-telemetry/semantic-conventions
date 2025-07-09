@@ -115,7 +115,7 @@ groups:
               stability: development
             - id: ok
               value: 'ok'
-              brief: 'Ok'
+              brief: 'OK'
               stability: development
             - id: predicted_failure
               value: 'predicted_failure'

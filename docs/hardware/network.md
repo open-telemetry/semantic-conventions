@@ -379,7 +379,7 @@ When using this metric for network status, the following attributes MUST be set:
 | `discharging` | Discharging | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failed` | Failed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `needs_cleaning` | Needs Cleaning | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ok` | Ok | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ok` | OK | ![Development](https://img.shields.io/badge/-development-blue) |
 | `predicted_failure` | Predicted Failure | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---

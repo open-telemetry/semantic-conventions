@@ -69,18 +69,6 @@ groups:
     unit: "By"
     extends: metric.hw.gpu
 
-  - id: metric.hw.gpu.power
-    type: metric
-    metric_name: hw.gpu.power
-    annotations:
-      code_generation:
-        metric_value_type: double
-    stability: development
-    brief: "GPU instantaneous power consumption in Watts"
-    instrument: gauge
-    unit: "W"
-    extends: metric.hw.gpu
-
   - id: metric.hw.gpu.utilization
     type: metric
     metric_name: hw.gpu.utilization
