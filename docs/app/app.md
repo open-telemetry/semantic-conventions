@@ -108,10 +108,14 @@ Jank happens when the UI is rendered slowly enough for the user to experience so
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`app.jank.count`](/docs/registry/attributes/app.md) | int | A count of the number of frame renders that experienced jank. [1] | `9`; `42` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.activity.name`](/docs/registry/attributes/app.md) | string | The name of the Activity at the time of the event or span start. [2] | `myActivity`; `checkout` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.jank.period`](/docs/registry/attributes/app.md) | double | The time period, in seconds, for which this jank is being reported. | `0.5`; `1.0`; `10.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`app.jank.threshold_ms`](/docs/registry/attributes/app.md) | int | The minimum rendering threshold for this type of jank, in milliseconds. | `16`; `700`; `1024` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`app.jank.type`](/docs/registry/attributes/app.md) | string | A categorization of the type of jank. | `slow`; `frozen` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `app.jank.count`:** Depending on platform limitations, the value provided MAY be approximation.
+
+**[2] `app.activity.name`:** This is an Android specific attribute.
 
 ---
 
@@ -119,12 +123,12 @@ Jank happens when the UI is rendered slowly enough for the user to experience so
 
 | Value  | Description | Stability |
 |---|---|---|
-| `frozen` | Jank that causes the user to suspect that the application is frozen. [2] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `slow` | Jank is classified as observably slow. [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `frozen` | Jank that causes the user to suspect that the application is frozen. [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `slow` | Jank is classified as observably slow. [4] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[2]:** Recommended threshold for frozen is 700ms.
+**[3]:** Recommended threshold for frozen is 700ms.
 
-**[3]:** Recommended threshold for slow is 16ms.
+**[4]:** Recommended threshold for slow is 16ms.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

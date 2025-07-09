@@ -9,9 +9,10 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="app-installation-id" href="#app-installation-id">`app.installation.id`</a> | string | A unique identifier representing the installation of an application on a specific device [1] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-jank-activity-name" href="#app-jank-activity-name">`app.jank.activity.name`</a> | string | The name of the Activity that was active during the jank. [2] | `myActivity`; `checkout` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-activity-name" href="#app-activity-name">`app.activity.name`</a> | string | The name of the Activity at the time of the event or span start. [1] | `myActivity`; `checkout` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-installation-id" href="#app-installation-id">`app.installation.id`</a> | string | A unique identifier representing the installation of an application on a specific device [2] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-jank-count" href="#app-jank-count">`app.jank.count`</a> | int | A count of the number of frame renders that experienced jank. [3] | `9`; `42` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-jank-period" href="#app-jank-period">`app.jank.period`</a> | double | The time period, in seconds, for which this jank is being reported. | `0.5`; `1.0`; `10.0` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-jank-threshold-ms" href="#app-jank-threshold-ms">`app.jank.threshold_ms`</a> | int | The minimum rendering threshold for this type of jank, in milliseconds. | `16`; `700`; `1024` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-jank-type" href="#app-jank-type">`app.jank.type`</a> | string | A categorization of the type of jank. | `slow`; `frozen` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-coordinate-x" href="#app-screen-coordinate-x">`app.screen.coordinate.x`</a> | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -19,7 +20,9 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
 | <a id="app-widget-id" href="#app-widget-id">`app.widget.id`</a> | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [4] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-widget-name" href="#app-widget-name">`app.widget.name`</a> | string | The name of an application widget. [5] | `submit`; `attack`; `Clear Cart` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
+**[1] `app.activity.name`:** This is an Android specific attribute.
+
+**[2] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
 It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
 Additionally, users might be able to reset this value (e.g. by clearing application data).
 If an app is installed multiple times on the same device (e.g. in different accounts on Android), each `app.installation.id` SHOULD have a different value.
@@ -36,8 +39,6 @@ For Android, examples of `app.installation.id` implementations include:
 - [`Settings.getString(Settings.Secure.ANDROID_ID)`](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
 
 More information about Android identifier best practices can be found [here](https://developer.android.com/training/articles/user-data-ids).
-
-**[2] `app.jank.activity.name`:** This is an Android specific attribute.
 
 **[3] `app.jank.count`:** Depending on platform limitations, the value provided MAY be approximation.
 
