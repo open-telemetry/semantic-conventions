@@ -6,7 +6,7 @@ groups:
       Common attributes for voltage metrics
     extends: hardware.attributes.common
     attributes:
-      - ref: hw.voltage.sensor_location
+      - ref: hw.sensor_location
         requirement_level: recommended
 
   - id: metric.hw.voltage

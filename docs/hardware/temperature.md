@@ -35,7 +35,7 @@ All temperature metrics may include the below attributes:
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.temperature.sensor_location`](/docs/registry/attributes/hardware.md) | string | Location of the temperature sensor | `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.sensor_location`](/docs/registry/attributes/hardware.md) | string | Location of the sensor | `cpu0`; `ps1`; `INLET`; `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD`; `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -64,7 +64,7 @@ Temperature in degrees Celsius.
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.temperature.sensor_location`](/docs/registry/attributes/hardware.md) | string | Location of the temperature sensor | `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.sensor_location`](/docs/registry/attributes/hardware.md) | string | Location of the sensor | `cpu0`; `ps1`; `INLET`; `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD`; `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -98,7 +98,7 @@ The following attributes SHOULD be set:
 | [`hw.limit_type`](/docs/registry/attributes/hardware.md) | string | Type of limit for hardware components | `low.critical`; `low.degraded`; `high.degraded`; `high.critical` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.temperature.sensor_location`](/docs/registry/attributes/hardware.md) | string | Location of the temperature sensor | `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.sensor_location`](/docs/registry/attributes/hardware.md) | string | Location of the sensor | `cpu0`; `ps1`; `INLET`; `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD`; `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

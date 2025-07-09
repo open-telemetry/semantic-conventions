@@ -6,13 +6,13 @@ groups:
       Common attributes for memory module metrics
     extends: hardware.attributes.common
     attributes:
-      - ref: hw.memory.model
+      - ref: hw.model
         requirement_level: recommended
-      - ref: hw.memory.serial_number
+      - ref: hw.serial_number
         requirement_level: recommended
       - ref: hw.memory.type
         requirement_level: recommended
-      - ref: hw.memory.vendor
+      - ref: hw.vendor
         requirement_level: recommended
 
   - id: metric.hw.memory.size

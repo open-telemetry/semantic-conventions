@@ -6,7 +6,7 @@ groups:
       Common attributes for temperature metrics
     extends: hardware.attributes.common
     attributes:
-      - ref: hw.temperature.sensor_location
+      - ref: hw.sensor_location
         requirement_level: recommended
 
   - id: metric.hw.temperature

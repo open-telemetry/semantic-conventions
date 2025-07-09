@@ -37,13 +37,13 @@ All network metrics may include the below attributes:
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.network.logical_addresses`](/docs/registry/attributes/hardware.md) | string[] | Logical addresses of the adapter (e.g. IP address, or WWPN) | `["172.16.8.21", "57.11.193.42"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the network adapter | `Intel X520`; `Mellanox ConnectX-5` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.network.physical_address`](/docs/registry/attributes/hardware.md) | string | Physical address of the adapter (e.g. MAC address, or WWNN) | `00-90-F5-E9-7B-36` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the network adapter | `ABCDEF123456` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the network adapter | `Intel`; `Broadcom`; `Mellanox` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -81,15 +81,15 @@ The following attributes SHOULD be set:
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | The type of error encountered by the component [2] | `uncorrected`; `zero_buffer_credit`; `crc`; `bad_sector` | `Conditionally Required` if and only if an error has occurred | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`hw.direction`](/docs/registry/attributes/hardware.md) | string | Direction of network traffic for network errors [3] | `receive`; `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.direction`](/docs/registry/attributes/hardware.md) | string | Direction of network traffic for network errors [3] | `receive`; `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
 **[2] `error.type`:** The `error.type` SHOULD match the error code reported by the component, the canonical name of the error, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
 
-**[3] `hw.network.direction`:** This attribute SHOULD only be used when `hw.type` is set to `"network"` to indicate the direction of the error.
+**[3] `hw.direction`:** This attribute SHOULD only be used when `hw.type` is set to `"network"` to indicate the direction of the error.
 
 ---
 
@@ -101,7 +101,7 @@ The following attributes SHOULD be set:
 
 ---
 
-`hw.network.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`hw.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -154,13 +154,13 @@ Link speed.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.network.logical_addresses`](/docs/registry/attributes/hardware.md) | string[] | Logical addresses of the adapter (e.g. IP address, or WWPN) | `["172.16.8.21", "57.11.193.42"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the network adapter | `Intel X520`; `Mellanox ConnectX-5` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.network.physical_address`](/docs/registry/attributes/hardware.md) | string | Physical address of the adapter (e.g. MAC address, or WWNN) | `00-90-F5-E9-7B-36` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the network adapter | `ABCDEF123456` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the network adapter | `Intel`; `Broadcom`; `Mellanox` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -187,13 +187,13 @@ Utilization of the network bandwidth as a fraction.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.network.logical_addresses`](/docs/registry/attributes/hardware.md) | string[] | Logical addresses of the adapter (e.g. IP address, or WWPN) | `["172.16.8.21", "57.11.193.42"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the network adapter | `Intel X520`; `Mellanox ConnectX-5` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.network.physical_address`](/docs/registry/attributes/hardware.md) | string | Physical address of the adapter (e.g. MAC address, or WWNN) | `00-90-F5-E9-7B-36` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the network adapter | `ABCDEF123456` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the network adapter | `Intel`; `Broadcom`; `Mellanox` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -225,19 +225,19 @@ When using this metric, the following attributes MUST be set:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`hw.direction`](/docs/registry/attributes/hardware.md) | string | Direction of data transfer | `receive`; `transmit` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.direction`](/docs/registry/attributes/hardware.md) | string | Direction of network traffic | `receive`; `transmit` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.network.logical_addresses`](/docs/registry/attributes/hardware.md) | string[] | Logical addresses of the adapter (e.g. IP address, or WWPN) | `["172.16.8.21", "57.11.193.42"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the network adapter | `Intel X520`; `Mellanox ConnectX-5` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.network.physical_address`](/docs/registry/attributes/hardware.md) | string | Physical address of the adapter (e.g. MAC address, or WWNN) | `00-90-F5-E9-7B-36` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the network adapter | `ABCDEF123456` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the network adapter | `Intel`; `Broadcom`; `Mellanox` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
-`hw.network.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`hw.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -274,19 +274,19 @@ When using this metric, the following attributes MUST be set:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`hw.direction`](/docs/registry/attributes/hardware.md) | string | Direction of data transfer | `receive`; `transmit` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.direction`](/docs/registry/attributes/hardware.md) | string | Direction of network traffic | `receive`; `transmit` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.network.logical_addresses`](/docs/registry/attributes/hardware.md) | string[] | Logical addresses of the adapter (e.g. IP address, or WWPN) | `["172.16.8.21", "57.11.193.42"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the network adapter | `Intel X520`; `Mellanox ConnectX-5` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.network.physical_address`](/docs/registry/attributes/hardware.md) | string | Physical address of the adapter (e.g. MAC address, or WWNN) | `00-90-F5-E9-7B-36` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the network adapter | `ABCDEF123456` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the network adapter | `Intel`; `Broadcom`; `Mellanox` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
-`hw.network.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`hw.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -318,13 +318,13 @@ Link status: `1` (up) or `0` (down).
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.network.logical_addresses`](/docs/registry/attributes/hardware.md) | string[] | Logical addresses of the adapter (e.g. IP address, or WWPN) | `["172.16.8.21", "57.11.193.42"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the network adapter | `Intel X520`; `Mellanox ConnectX-5` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.network.physical_address`](/docs/registry/attributes/hardware.md) | string | Physical address of the adapter (e.g. MAC address, or WWNN) | `00-90-F5-E9-7B-36` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the network adapter | `ABCDEF123456` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the network adapter | `Intel`; `Broadcom`; `Mellanox` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

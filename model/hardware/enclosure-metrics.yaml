@@ -6,13 +6,13 @@ groups:
       Common attributes for enclosure metrics
     extends: hardware.attributes.common
     attributes:
-      - ref: hw.enclosure.bios_version
+      - ref: hw.bios_version
         requirement_level: recommended
-      - ref: hw.enclosure.model
+      - ref: hw.model
         requirement_level: recommended
-      - ref: hw.enclosure.serial_number
+      - ref: hw.serial_number
         requirement_level: recommended
       - ref: hw.enclosure.type
         requirement_level: recommended
-      - ref: hw.enclosure.vendor
+      - ref: hw.vendor
         requirement_level: recommended

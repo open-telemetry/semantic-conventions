@@ -6,15 +6,15 @@ groups:
       Common attributes for GPU metrics
     extends: hardware.attributes.common
     attributes:
-      - ref: hw.gpu.driver_version
+      - ref: hw.driver_version
         requirement_level: recommended
-      - ref: hw.gpu.firmware_version
+      - ref: hw.firmware_version
         requirement_level: recommended
-      - ref: hw.gpu.model
+      - ref: hw.model
         requirement_level: recommended
-      - ref: hw.gpu.serial_number
+      - ref: hw.serial_number
         requirement_level: recommended
-      - ref: hw.gpu.vendor
+      - ref: hw.vendor
         requirement_level: recommended
 
   - id: metric.hw.gpu.io
@@ -29,7 +29,7 @@ groups:
     unit: "By"
     extends: metric.hw.gpu
     attributes:
-      - ref: hw.gpu.direction
+      - ref: hw.direction
         examples: ["receive", "transmit"]
         requirement_level: required
 

@@ -6,7 +6,7 @@ groups:
       Common attributes for fan metrics
     extends: hardware.attributes.common
     attributes:
-      - ref: hw.fan.sensor_location
+      - ref: hw.sensor_location
         requirement_level: recommended
 
   - id: metric.hw.fan.speed

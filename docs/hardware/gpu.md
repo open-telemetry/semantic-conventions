@@ -38,13 +38,13 @@ All GPU metrics may include the below attributes:
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.driver_version`](/docs/registry/attributes/hardware.md) | string | Driver version for the GPU | `512.78`; `22.5.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the GPU | `94.02.71.00.0D` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the GPU | `NVIDIA GeForce RTX 3080`; `AMD Radeon RX 6800 XT` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the GPU | `GVKH2P000001` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the GPU | `NVIDIA`; `AMD`; `Intel` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.driver_version`](/docs/registry/attributes/hardware.md) | string | Driver version for the hardware component | `10.2.1-3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the hardware component | `2.0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -80,15 +80,15 @@ When using this metric, the following attributes MUST be set:
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | The type of error encountered by the component [2] | `uncorrected`; `zero_buffer_credit`; `crc`; `bad_sector` | `Conditionally Required` if and only if an error has occurred | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`hw.direction`](/docs/registry/attributes/hardware.md) | string | Direction of network traffic for network errors [3] | `receive`; `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.network.direction`](/docs/registry/attributes/hardware.md) | string | Direction of network traffic for network errors [3] | `receive`; `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
 **[2] `error.type`:** The `error.type` SHOULD match the error code reported by the component, the canonical name of the error, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
 
-**[3] `hw.network.direction`:** This attribute SHOULD only be used when `hw.type` is set to `"network"` to indicate the direction of the error.
+**[3] `hw.direction`:** This attribute SHOULD only be used when `hw.type` is set to `"network"` to indicate the direction of the error.
 
 ---
 
@@ -100,7 +100,7 @@ When using this metric, the following attributes MUST be set:
 
 ---
 
-`hw.network.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`hw.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -150,19 +150,19 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`hw.gpu.direction`](/docs/registry/attributes/hardware.md) | string | Direction of data transfer | `receive`; `transmit` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.direction`](/docs/registry/attributes/hardware.md) | string | Direction of data transfer | `receive`; `transmit` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.driver_version`](/docs/registry/attributes/hardware.md) | string | Driver version for the GPU | `512.78`; `22.5.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the GPU | `94.02.71.00.0D` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the GPU | `NVIDIA GeForce RTX 3080`; `AMD Radeon RX 6800 XT` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the GPU | `GVKH2P000001` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the GPU | `NVIDIA`; `AMD`; `Intel` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.driver_version`](/docs/registry/attributes/hardware.md) | string | Driver version for the hardware component | `10.2.1-3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the hardware component | `2.0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
-`hw.gpu.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`hw.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -192,13 +192,13 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.driver_version`](/docs/registry/attributes/hardware.md) | string | Driver version for the GPU | `512.78`; `22.5.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the GPU | `94.02.71.00.0D` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the GPU | `NVIDIA GeForce RTX 3080`; `AMD Radeon RX 6800 XT` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the GPU | `GVKH2P000001` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the GPU | `NVIDIA`; `AMD`; `Intel` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.driver_version`](/docs/registry/attributes/hardware.md) | string | Driver version for the hardware component | `10.2.1-3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the hardware component | `2.0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -223,13 +223,13 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.driver_version`](/docs/registry/attributes/hardware.md) | string | Driver version for the GPU | `512.78`; `22.5.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the GPU | `94.02.71.00.0D` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the GPU | `NVIDIA GeForce RTX 3080`; `AMD Radeon RX 6800 XT` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the GPU | `GVKH2P000001` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the GPU | `NVIDIA`; `AMD`; `Intel` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.driver_version`](/docs/registry/attributes/hardware.md) | string | Driver version for the hardware component | `10.2.1-3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the hardware component | `2.0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -254,13 +254,13 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.driver_version`](/docs/registry/attributes/hardware.md) | string | Driver version for the GPU | `512.78`; `22.5.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the GPU | `94.02.71.00.0D` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the GPU | `NVIDIA GeForce RTX 3080`; `AMD Radeon RX 6800 XT` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the GPU | `GVKH2P000001` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the GPU | `NVIDIA`; `AMD`; `Intel` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.driver_version`](/docs/registry/attributes/hardware.md) | string | Driver version for the hardware component | `10.2.1-3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the hardware component | `2.0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -285,13 +285,13 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.driver_version`](/docs/registry/attributes/hardware.md) | string | Driver version for the GPU | `512.78`; `22.5.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the GPU | `94.02.71.00.0D` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the GPU | `NVIDIA GeForce RTX 3080`; `AMD Radeon RX 6800 XT` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the GPU | `GVKH2P000001` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the GPU | `NVIDIA`; `AMD`; `Intel` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.driver_version`](/docs/registry/attributes/hardware.md) | string | Driver version for the hardware component | `10.2.1-3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the hardware component | `2.0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -316,14 +316,14 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.driver_version`](/docs/registry/attributes/hardware.md) | string | Driver version for the GPU | `512.78`; `22.5.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the GPU | `94.02.71.00.0D` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the GPU | `NVIDIA GeForce RTX 3080`; `AMD Radeon RX 6800 XT` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the GPU | `GVKH2P000001` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.driver_version`](/docs/registry/attributes/hardware.md) | string | Driver version for the hardware component | `10.2.1-3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the hardware component | `2.0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.gpu.task`](/docs/registry/attributes/hardware.md) | string | Type of task the GPU is performing | `decoder`; `encoder`; `general` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.gpu.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the GPU | `NVIDIA`; `AMD`; `Intel` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

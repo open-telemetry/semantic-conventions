@@ -11,69 +11,37 @@ Attributes for hardware.
 |---|---|---|---|---|
 | <a id="hw-battery-capacity" href="#hw-battery-capacity">`hw.battery.capacity`</a> | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-battery-chemistry" href="#hw-battery-chemistry">`hw.battery.chemistry`</a> | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-battery-model" href="#hw-battery-model">`hw.battery.model`</a> | string | Descriptive model name of the battery | `Dell XPS 15 Battery` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-battery-vendor" href="#hw-battery-vendor">`hw.battery.vendor`</a> | string | Vendor name of the battery | `Dell`; `HP`; `Lenovo` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-cpu-model" href="#hw-cpu-model">`hw.cpu.model`</a> | string | Descriptive model name of the CPU | `Intel(R) Core(TM) i7-10700K` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-cpu-vendor" href="#hw-cpu-vendor">`hw.cpu.vendor`</a> | string | Vendor name of the CPU | `Intel`; `AMD` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-disk-controller-bios-version" href="#hw-disk-controller-bios-version">`hw.disk_controller.bios_version`</a> | string | BIOS version of the disk controller | `1.2.3` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-disk-controller-driver-version" href="#hw-disk-controller-driver-version">`hw.disk_controller.driver_version`</a> | string | Driver version for the disk controller | `10.2.1-3` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-disk-controller-firmware-version" href="#hw-disk-controller-firmware-version">`hw.disk_controller.firmware_version`</a> | string | Firmware version of the disk controller | `2.0.1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-disk-controller-model" href="#hw-disk-controller-model">`hw.disk_controller.model`</a> | string | Descriptive model name of the disk controller | `PERC H740P` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-disk-controller-serial-number" href="#hw-disk-controller-serial-number">`hw.disk_controller.serial_number`</a> | string | Serial number of the disk controller | `CNFCP0123456789` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-disk-controller-vendor" href="#hw-disk-controller-vendor">`hw.disk_controller.vendor`</a> | string | Vendor name of the disk controller | `Dell`; `HP`; `LSI` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-enclosure-bios-version" href="#hw-enclosure-bios-version">`hw.enclosure.bios_version`</a> | string | BIOS version of the enclosure | `1.2.3` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-enclosure-model" href="#hw-enclosure-model">`hw.enclosure.model`</a> | string | Descriptive model name of the enclosure | `PowerEdge R740` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-enclosure-serial-number" href="#hw-enclosure-serial-number">`hw.enclosure.serial_number`</a> | string | Serial number of the enclosure | `CNFCP0123456789` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-bios-version" href="#hw-bios-version">`hw.bios_version`</a> | string | BIOS version of the hardware component | `1.2.3` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-direction" href="#hw-direction">`hw.direction`</a> | string | Direction of data transfer | `receive`; `transmit` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-driver-version" href="#hw-driver-version">`hw.driver_version`</a> | string | Driver version for the hardware component | `10.2.1-3` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-enclosure-type" href="#hw-enclosure-type">`hw.enclosure.type`</a> | string | Type of the enclosure (useful for modular systems) | `Computer`; `Storage`; `Switch` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-enclosure-vendor" href="#hw-enclosure-vendor">`hw.enclosure.vendor`</a> | string | Vendor name of the enclosure | `Dell`; `HP`; `Lenovo` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-fan-sensor-location" href="#hw-fan-sensor-location">`hw.fan.sensor_location`</a> | string | Location of the fan in the computer enclosure | `cpu0`; `ps1`; `INLET` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-gpu-direction" href="#hw-gpu-direction">`hw.gpu.direction`</a> | string | Direction of data transfer | `receive`; `transmit` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-gpu-driver-version" href="#hw-gpu-driver-version">`hw.gpu.driver_version`</a> | string | Driver version for the GPU | `512.78`; `22.5.1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-gpu-firmware-version" href="#hw-gpu-firmware-version">`hw.gpu.firmware_version`</a> | string | Firmware version of the GPU | `94.02.71.00.0D` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-gpu-model" href="#hw-gpu-model">`hw.gpu.model`</a> | string | Descriptive model name of the GPU | `NVIDIA GeForce RTX 3080`; `AMD Radeon RX 6800 XT` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-gpu-serial-number" href="#hw-gpu-serial-number">`hw.gpu.serial_number`</a> | string | Serial number of the GPU | `GVKH2P000001` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-firmware-version" href="#hw-firmware-version">`hw.firmware_version`</a> | string | Firmware version of the hardware component | `2.0.1` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-gpu-task" href="#hw-gpu-task">`hw.gpu.task`</a> | string | Type of task the GPU is performing | `decoder`; `encoder`; `general` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-gpu-vendor" href="#hw-gpu-vendor">`hw.gpu.vendor`</a> | string | Vendor name of the GPU | `NVIDIA`; `AMD`; `Intel` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-id" href="#hw-id">`hw.id`</a> | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-limit-type" href="#hw-limit-type">`hw.limit_type`</a> | string | Type of limit for hardware components | `critical`; `degraded`; `high.critical` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-logical-disk-raid-level" href="#hw-logical-disk-raid-level">`hw.logical_disk.raid_level`</a> | string | RAID Level of the logical disk | `RAID0+1`; `RAID5`; `RAID10` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-logical-disk-state" href="#hw-logical-disk-state">`hw.logical_disk.state`</a> | string | State of the logical disk space usage | `used`; `free` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-memory-model" href="#hw-memory-model">`hw.memory.model`</a> | string | Descriptive model name of the memory module | `DDR4-3200`; `LPDDR5-6400` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-memory-serial-number" href="#hw-memory-serial-number">`hw.memory.serial_number`</a> | string | Serial number of the memory module | `123456789ABC` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-memory-type" href="#hw-memory-type">`hw.memory.type`</a> | string | Type of the memory module | `DDR4`; `DDR5`; `LPDDR5` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-memory-vendor" href="#hw-memory-vendor">`hw.memory.vendor`</a> | string | Vendor name of the memory module | `Crucial`; `Kingston`; `Samsung`; `Corsair` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-model" href="#hw-model">`hw.model`</a> | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-name" href="#hw-name">`hw.name`</a> | string | An easily-recognizable name for the hardware component | `eth0` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-network-direction" href="#hw-network-direction">`hw.network.direction`</a> | string | Direction of network traffic | `receive`; `transmit` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-network-logical-addresses" href="#hw-network-logical-addresses">`hw.network.logical_addresses`</a> | string[] | Logical addresses of the adapter (e.g. IP address, or WWPN) | `["172.16.8.21", "57.11.193.42"]` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-network-model" href="#hw-network-model">`hw.network.model`</a> | string | Descriptive model name of the network adapter | `Intel X520`; `Mellanox ConnectX-5` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-network-physical-address" href="#hw-network-physical-address">`hw.network.physical_address`</a> | string | Physical address of the adapter (e.g. MAC address, or WWNN) | `00-90-F5-E9-7B-36` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-network-serial-number" href="#hw-network-serial-number">`hw.network.serial_number`</a> | string | Serial number of the network adapter | `ABCDEF123456` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-network-vendor" href="#hw-network-vendor">`hw.network.vendor`</a> | string | Vendor name of the network adapter | `Intel`; `Broadcom`; `Mellanox` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-parent" href="#hw-parent">`hw.parent`</a> | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-physical-disk-firmware-version" href="#hw-physical-disk-firmware-version">`hw.physical_disk.firmware_version`</a> | string | Firmware version of the physical disk | `2.3.1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-physical-disk-model" href="#hw-physical-disk-model">`hw.physical_disk.model`</a> | string | Descriptive model name of the physical disk | `Samsung 970 EVO Plus`; `WD Black SN750` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-physical-disk-serial-number" href="#hw-physical-disk-serial-number">`hw.physical_disk.serial_number`</a> | string | Serial number of the physical disk | `S3Z9NX0M123456` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-physical-disk-smart-attribute" href="#hw-physical-disk-smart-attribute">`hw.physical_disk.smart_attribute`</a> | string | [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk | `raw_read_error_rate`; `throughput_performance`; `spin_up_time` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-physical-disk-state" href="#hw-physical-disk-state">`hw.physical_disk.state`</a> | string | State of the physical disk endurance utilization | `remaining` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-physical-disk-type" href="#hw-physical-disk-type">`hw.physical_disk.type`</a> | string | Type of the physical disk | `HDD`; `SSD`; `10K` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-physical-disk-vendor" href="#hw-physical-disk-vendor">`hw.physical_disk.vendor`</a> | string | Vendor name of the physical disk | `Samsung`; `Western Digital`; `Seagate` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-power-supply-model" href="#hw-power-supply-model">`hw.power_supply.model`</a> | string | Descriptive model name of the power supply | `Corsair RM850x`; `EVGA SuperNOVA 750 G5` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-power-supply-serial-number" href="#hw-power-supply-serial-number">`hw.power_supply.serial_number`</a> | string | Serial number of the power supply | `PS123456789` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-power-supply-vendor" href="#hw-power-supply-vendor">`hw.power_supply.vendor`</a> | string | Vendor name of the power supply | `Corsair`; `EVGA`; `Seasonic` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-sensor-location" href="#hw-sensor-location">`hw.sensor_location`</a> | string | Location of the sensor | `cpu0`; `ps1`; `INLET`; `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD`; `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-serial-number" href="#hw-serial-number">`hw.serial_number`</a> | string | Serial number of the hardware component | `CNFCP0123456789` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-state" href="#hw-state">`hw.state`</a> | string | The current state of the component | `charging`; `degraded`; `discharging` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-tape-drive-model" href="#hw-tape-drive-model">`hw.tape_drive.model`</a> | string | Descriptive model name of the tape drive | `IBM Ultrium 8`; `LTO-8` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-tape-drive-operation-type" href="#hw-tape-drive-operation-type">`hw.tape_drive.operation_type`</a> | string | Type of tape drive operation | `mount`; `unmount`; `clean` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-tape-drive-serial-number" href="#hw-tape-drive-serial-number">`hw.tape_drive.serial_number`</a> | string | Serial number of the tape drive | `TD123456789` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-tape-drive-vendor" href="#hw-tape-drive-vendor">`hw.tape_drive.vendor`</a> | string | Vendor name of the tape drive | `IBM`; `HP`; `Quantum` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-temperature-sensor-location" href="#hw-temperature-sensor-location">`hw.temperature.sensor_location`</a> | string | Location of the temperature sensor | `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-type" href="#hw-type">`hw.type`</a> | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-voltage-sensor-location" href="#hw-voltage-sensor-location">`hw.voltage.sensor_location`</a> | string | Location of the voltage sensor | `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-vendor" href="#hw-vendor">`hw.vendor`</a> | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
 ---
 
-`hw.gpu.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`hw.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -114,15 +82,6 @@ Attributes for hardware.
 |---|---|---|
 | `free` | Free | ![Development](https://img.shields.io/badge/-development-blue) |
 | `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`hw.network.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `receive` | Receive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `transmit` | Transmit | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

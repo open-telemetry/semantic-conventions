@@ -6,15 +6,15 @@ groups:
       Common attributes for physical disk metrics
     extends: hardware.attributes.common
     attributes:
-      - ref: hw.physical_disk.firmware_version
+      - ref: hw.firmware_version
         requirement_level: recommended
-      - ref: hw.physical_disk.model
+      - ref: hw.model
         requirement_level: recommended
-      - ref: hw.physical_disk.serial_number
+      - ref: hw.serial_number
         requirement_level: recommended
       - ref: hw.physical_disk.type
         requirement_level: recommended
-      - ref: hw.physical_disk.vendor
+      - ref: hw.vendor
         requirement_level: recommended
 
   - id: metric.hw.physical_disk.endurance_utilization

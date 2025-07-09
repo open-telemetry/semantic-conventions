@@ -10,9 +10,9 @@ groups:
         requirement_level: recommended
       - ref: hw.battery.capacity
         requirement_level: recommended
-      - ref: hw.battery.model
+      - ref: hw.model
         requirement_level: recommended
-      - ref: hw.battery.vendor
+      - ref: hw.vendor
         requirement_level: recommended
 
   - id: metric.hw.battery.charge
@@ -43,6 +43,12 @@ groups:
       - ref: hw.limit_type
         examples: ["critical", "throttled", "degraded"]
         requirement_level: recommended
+        brief: >
+          Represents battery charge level thresholds relevant to device operation and health.
+          Each `limit_type` denotes a specific charge limit such as the minimum or maximum
+          optimal charge, the shutdown threshold, or energy-saving thresholds. These values
+          are typically provided by the hardware or firmware to guide safe and efficient battery
+          usage.
 
   - id: metric.hw.battery.time_left
     type: metric

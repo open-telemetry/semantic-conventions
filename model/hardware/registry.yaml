@@ -5,6 +5,7 @@ groups:
     brief: >
       Attributes for hardware.
     attributes:
+      # COMMON ATTRIBUTES FOR ALL
       - id: hw.id
         type: string
         stability: development
@@ -165,6 +166,66 @@ groups:
         stability: development
         brief: >
           Type of limit for hardware components
+
+      # COMMON ATTRIBUTES FOR SOME HARDWARE COMPONENTS
+      - id: hw.bios_version
+        type: string
+        stability: development
+        brief: >
+          BIOS version of the hardware component
+        examples: ['1.2.3']
+      - id: hw.driver_version
+        type: string
+        stability: development
+        brief: >
+          Driver version for the hardware component
+        examples: ['10.2.1-3']
+      - id: hw.firmware_version
+        type: string
+        stability: development
+        brief: >
+          Firmware version of the hardware component
+        examples: ['2.0.1']
+      - id: hw.model
+        type: string
+        stability: development
+        brief: >
+          Descriptive model name of the hardware component
+        examples: ['PERC H740P', 'Intel(R) Core(TM) i7-10700K', 'Dell XPS 15 Battery']
+      - id: hw.serial_number
+        type: string
+        stability: development
+        brief: >
+          Serial number of the hardware component
+        examples: ['CNFCP0123456789']
+      - id: hw.vendor
+        type: string
+        stability: development
+        brief: >
+          Vendor name of the hardware component
+        examples: ['Dell', 'HP', 'Intel', 'AMD', 'LSI', 'Lenovo']
+      - id: hw.sensor_location
+        type: string
+        stability: development
+        brief: >
+          Location of the sensor
+        examples: ['cpu0', 'ps1', 'INLET', 'CPU0_DIE', 'AMBIENT', 'MOTHERBOARD', 'PS0 V3_3', 'MAIN_12V', 'CPU_VCORE']
+      - id: hw.direction
+        type:
+          members:
+            - id: receive
+              value: 'receive'
+              brief: "Receive"
+              stability: development
+            - id: transmit
+              value: 'transmit'
+              brief: 'Transmit'
+              stability: development
+        stability: development
+        brief: >
+          Direction of data transfer
+
+      # BATTERY ATTRIBUTES
       - id: hw.battery.chemistry
         type: string
         stability: development
@@ -177,144 +238,16 @@ groups:
         brief: >
           Design capacity in Watts-hours or Amper-hours
         examples: ['9.3Ah', '50Wh']
-      - id: hw.battery.model
-        type: string
-        stability: development
-        brief: >
-          Descriptive model name of the battery
-        examples: ['Dell XPS 15 Battery']
-      - id: hw.battery.vendor
-        type: string
-        stability: development
-        brief: >
-          Vendor name of the battery
-        examples: ['Dell', 'HP', 'Lenovo']
-
-      # CPU ATTRIBUTES
-      - id: hw.cpu.model
-        type: string
-        stability: development
-        brief: >
-          Descriptive model name of the CPU
-        examples: ['Intel(R) Core(TM) i7-10700K']
-      - id: hw.cpu.vendor
-        type: string
-        stability: development
-        brief: >
-          Vendor name of the CPU
-        examples: ['Intel', 'AMD']
-
-
-      # DISK CONTROLLER ATTRIBUTES
-      - id: hw.disk_controller.bios_version
-        type: string
-        stability: development
-        brief: >
-          BIOS version of the disk controller
-        examples: ['1.2.3']
-      - id: hw.disk_controller.driver_version
-        type: string
-        stability: development
-        brief: >
-          Driver version for the disk controller
-        examples: ['10.2.1-3']
-      - id: hw.disk_controller.firmware_version
-        type: string
-        stability: development
-        brief: >
-          Firmware version of the disk controller
-        examples: ['2.0.1']
-      - id: hw.disk_controller.model
-        type: string
-        stability: development
-        brief: >
-          Descriptive model name of the disk controller
-        examples: ['PERC H740P']
-      - id: hw.disk_controller.serial_number
-        type: string
-        stability: development
-        brief: >
-          Serial number of the disk controller
-        examples: ['CNFCP0123456789']
-      - id: hw.disk_controller.vendor
-        type: string
-        stability: development
-        brief: >
-          Vendor name of the disk controller
-        examples: ['Dell', 'HP', 'LSI']
 
       # ENCLOSURE ATTRIBUTES
-      - id: hw.enclosure.bios_version
-        type: string
-        stability: development
-        brief: >
-          BIOS version of the enclosure
-        examples: ['1.2.3']
-      - id: hw.enclosure.model
-        type: string
-        stability: development
-        brief: >
-          Descriptive model name of the enclosure
-        examples: ['PowerEdge R740']
-      - id: hw.enclosure.serial_number
-        type: string
-        stability: development
-        brief: >
-          Serial number of the enclosure
-        examples: ['CNFCP0123456789']
       - id: hw.enclosure.type
         type: string
         stability: development
         brief: >
           Type of the enclosure (useful for modular systems)
         examples: ['Computer', 'Storage', 'Switch']
-      - id: hw.enclosure.vendor
-        type: string
-        stability: development
-        brief: >
-          Vendor name of the enclosure
-        examples: ['Dell', 'HP', 'Lenovo']
-
-      # FAN ATTRIBUTES
-      - id: hw.fan.sensor_location
-        type: string
-        stability: development
-        brief: >
-          Location of the fan in the computer enclosure
-        examples: ['cpu0', 'ps1', 'INLET']
-
 
       # GPU ATTRIBUTES
-      - id: hw.gpu.driver_version
-        type: string
-        stability: development
-        brief: >
-          Driver version for the GPU
-        examples: ['512.78', '22.5.1']
-      - id: hw.gpu.firmware_version
-        type: string
-        stability: development
-        brief: >
-          Firmware version of the GPU
-        examples: ['94.02.71.00.0D']
-      - id: hw.gpu.model
-        type: string
-        stability: development
-        brief: >
-          Descriptive model name of the GPU
-        examples: ['NVIDIA GeForce RTX 3080', 'AMD Radeon RX 6800 XT']
-      - id: hw.gpu.serial_number
-        type: string
-        stability: development
-        brief: >
-          Serial number of the GPU
-        examples: ['GVKH2P000001']
-      - id: hw.gpu.vendor
-        type: string
-        stability: development
-        brief: >
-          Vendor name of the GPU
-        examples: ['NVIDIA', 'AMD', 'Intel']
       - id: hw.gpu.task
         type:
           members:
@@ -333,20 +266,6 @@ groups:
         stability: development
         brief: >
           Type of task the GPU is performing
-      - id: hw.gpu.direction
-        type:
-          members:
-            - id: receive
-              value: 'receive'
-              brief: "Receive"
-              stability: development
-            - id: transmit
-              value: 'transmit'
-              brief: 'Transmit'
-              stability: development
-        stability: development
-        brief: >
-          Direction of data transfer
 
       # LOGICAL DISK ATTRIBUTES
       - id: hw.logical_disk.raid_level
@@ -371,38 +290,14 @@ groups:
           State of the logical disk space usage
 
       # MEMORY ATTRIBUTES
-      - id: hw.memory.model
-        type: string
-        stability: development
-        brief: >
-          Descriptive model name of the memory module
-        examples: ['DDR4-3200', 'LPDDR5-6400']
-      - id: hw.memory.serial_number
-        type: string
-        stability: development
-        brief: >
-          Serial number of the memory module
-        examples: ['123456789ABC']
       - id: hw.memory.type
         type: string
         stability: development
         brief: >
           Type of the memory module
         examples: ['DDR4', 'DDR5', 'LPDDR5']
-      - id: hw.memory.vendor
-        type: string
-        stability: development
-        brief: >
-          Vendor name of the memory module
-        examples: ['Crucial', 'Kingston', 'Samsung', 'Corsair']
 
       # NETWORK ATTRIBUTES
-      - id: hw.network.model
-        type: string
-        stability: development
-        brief: >
-          Descriptive model name of the network adapter
-        examples: ['Intel X520', 'Mellanox ConnectX-5']
       - id: hw.network.logical_addresses
         type: string[]
         stability: development
@@ -415,64 +310,14 @@ groups:
         brief: >
           Physical address of the adapter (e.g. MAC address, or WWNN)
         examples: ['00-90-F5-E9-7B-36']
-      - id: hw.network.serial_number
-        type: string
-        stability: development
-        brief: >
-          Serial number of the network adapter
-        examples: ['ABCDEF123456']
-      - id: hw.network.vendor
-        type: string
-        stability: development
-        brief: >
-          Vendor name of the network adapter
-        examples: ['Intel', 'Broadcom', 'Mellanox']
-      - id: hw.network.direction
-        type:
-          members:
-            - id: receive
-              value: 'receive'
-              brief: "Receive"
-              stability: development
-            - id: transmit
-              value: 'transmit'
-              brief: 'Transmit'
-              stability: development
-        stability: development
-        brief: >
-          Direction of network traffic
 
       # PHYSICAL DISK ATTRIBUTES
-      - id: hw.physical_disk.firmware_version
-        type: string
-        stability: development
-        brief: >
-          Firmware version of the physical disk
-        examples: ['2.3.1']
-      - id: hw.physical_disk.model
-        type: string
-        stability: development
-        brief: >
-          Descriptive model name of the physical disk
-        examples: ['Samsung 970 EVO Plus', 'WD Black SN750']
-      - id: hw.physical_disk.serial_number
-        type: string
-        stability: development
-        brief: >
-          Serial number of the physical disk
-        examples: ['S3Z9NX0M123456']
       - id: hw.physical_disk.type
         type: string
         stability: development
         brief: >
           Type of the physical disk
         examples: ['HDD', 'SSD', '10K']
-      - id: hw.physical_disk.vendor
-        type: string
-        stability: development
-        brief: >
-          Vendor name of the physical disk
-        examples: ['Samsung', 'Western Digital', 'Seagate']
       - id: hw.physical_disk.state
         type:
           members:
@@ -534,46 +379,7 @@ groups:
         brief: >
           [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk
 
-      # POWER SUPPLY ATTRIBUTES
-      - id: hw.power_supply.model
-        type: string
-        stability: development
-        brief: >
-          Descriptive model name of the power supply
-        examples: ['Corsair RM850x', 'EVGA SuperNOVA 750 G5']
-      - id: hw.power_supply.serial_number
-        type: string
-        stability: development
-        brief: >
-          Serial number of the power supply
-        examples: ['PS123456789']
-      - id: hw.power_supply.vendor
-        type: string
-        stability: development
-        brief: >
-          Vendor name of the power supply
-        examples: ['Corsair', 'EVGA', 'Seasonic']
-
-
       # TAPE DRIVE ATTRIBUTES
-      - id: hw.tape_drive.model
-        type: string
-        stability: development
-        brief: >
-          Descriptive model name of the tape drive
-        examples: ['IBM Ultrium 8', 'LTO-8']
-      - id: hw.tape_drive.serial_number
-        type: string
-        stability: development
-        brief: >
-          Serial number of the tape drive
-        examples: ['TD123456789']
-      - id: hw.tape_drive.vendor
-        type: string
-        stability: development
-        brief: >
-          Vendor name of the tape drive
-        examples: ['IBM', 'HP', 'Quantum']
       - id: hw.tape_drive.operation_type
         type:
           members:
@@ -592,20 +398,3 @@ groups:
         stability: development
         brief: >
           Type of tape drive operation
-
-      # TEMPERATURE ATTRIBUTES
-      - id: hw.temperature.sensor_location
-        type: string
-        stability: development
-        brief: >
-          Location of the temperature sensor
-        examples: ['CPU0_DIE', 'AMBIENT', 'MOTHERBOARD']
-
-
-      # VOLTAGE ATTRIBUTES
-      - id: hw.voltage.sensor_location
-        type: string
-        stability: development
-        brief: >
-          Location of the voltage sensor
-        examples: ['PS0 V3_3', 'MAIN_12V', 'CPU_VCORE']

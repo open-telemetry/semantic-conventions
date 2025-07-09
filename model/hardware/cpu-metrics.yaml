@@ -6,9 +6,9 @@ groups:
       Common attributes for CPU metrics
     extends: hardware.attributes.common
     attributes:
-      - ref: hw.cpu.model
+      - ref: hw.model
         requirement_level: recommended
-      - ref: hw.cpu.vendor
+      - ref: hw.vendor
         requirement_level: recommended
 
 

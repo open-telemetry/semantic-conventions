@@ -31,14 +31,14 @@ All disk controller metrics may include the below attributes:
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.disk_controller.bios_version`](/docs/registry/attributes/hardware.md) | string | BIOS version of the disk controller | `1.2.3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.disk_controller.driver_version`](/docs/registry/attributes/hardware.md) | string | Driver version for the disk controller | `10.2.1-3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.disk_controller.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the disk controller | `2.0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.disk_controller.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the disk controller | `PERC H740P` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.disk_controller.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the disk controller | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.disk_controller.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the disk controller | `Dell`; `HP`; `LSI` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.bios_version`](/docs/registry/attributes/hardware.md) | string | BIOS version of the hardware component | `1.2.3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.driver_version`](/docs/registry/attributes/hardware.md) | string | Driver version for the hardware component | `10.2.1-3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.firmware_version`](/docs/registry/attributes/hardware.md) | string | Firmware version of the hardware component | `2.0.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

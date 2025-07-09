@@ -6,15 +6,15 @@ groups:
       Common attributes for disk controller metrics
     extends: hardware.attributes.common
     attributes:
-      - ref: hw.disk_controller.bios_version
+      - ref: hw.bios_version
         requirement_level: recommended
-      - ref: hw.disk_controller.driver_version
+      - ref: hw.driver_version
         requirement_level: recommended
-      - ref: hw.disk_controller.firmware_version
+      - ref: hw.firmware_version
         requirement_level: recommended
-      - ref: hw.disk_controller.model
+      - ref: hw.model
         requirement_level: recommended
-      - ref: hw.disk_controller.serial_number
+      - ref: hw.serial_number
         requirement_level: recommended
-      - ref: hw.disk_controller.vendor
+      - ref: hw.vendor
         requirement_level: recommended

@@ -6,11 +6,11 @@ groups:
       Common attributes for power supply metrics
     extends: hardware.attributes.common
     attributes:
-      - ref: hw.power_supply.model
+      - ref: hw.model
         requirement_level: recommended
-      - ref: hw.power_supply.serial_number
+      - ref: hw.serial_number
         requirement_level: recommended
-      - ref: hw.power_supply.vendor
+      - ref: hw.vendor
         requirement_level: recommended
 
   - id: metric.hw.power_supply.limit

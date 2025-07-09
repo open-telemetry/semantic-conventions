@@ -6,11 +6,11 @@ groups:
       Common attributes for tape drive metrics
     extends: hardware.attributes.common
     attributes:
-      - ref: hw.tape_drive.model
+      - ref: hw.model
         requirement_level: recommended
-      - ref: hw.tape_drive.serial_number
+      - ref: hw.serial_number
         requirement_level: recommended
-      - ref: hw.tape_drive.vendor
+      - ref: hw.vendor
         requirement_level: recommended
 
   - id: metric.hw.tape_drive.operations
