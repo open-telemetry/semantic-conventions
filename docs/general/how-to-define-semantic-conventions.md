@@ -37,6 +37,18 @@ for new areas or make substantial changes to the existing ones.
 >
 > This section contains non-normative guidance.
 
+#### Prototyping
+
+It is strongly recommended to prototype proposed conventions in one or more instrumentations and:
+
+- validate the feasibility of collecting the proposed telemetry and attributes, ensuring the information is available and can be gathered with reasonable overhead,
+
+- confirm that the proposed terminology applies across the diverse libraries and technologies covered by the conventions,
+
+- provide actionable guidance to instrumentation authors on when and how to collect attributes and record telemetry,
+
+- evaluate how the new or updated telemetry integrates with other instrumentation layers, identifying gaps, duplication, or opportunities to improve the end-user experience.
+
 #### Defining attributes
 
 Reuse existing attributes when possible. Look through [existing conventions](/docs/registry/attributes/) for similar areas,
@@ -156,7 +168,6 @@ TBD
 
 TODO:
 
-- prototyping/implementation requirements
 - migration plan
 
 ### Migration plan
