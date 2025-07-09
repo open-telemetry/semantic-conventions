@@ -91,10 +91,14 @@ groups:
         type: int
         brief: The minimum rendering threshold for this type of jank, in milliseconds.
         examples: [16, 700, 1024]
-      - id: app.jank.activity.name
-        # TODO: breedx - Note: activity.name probably should move up out of jank at some point
+      - id: app.jank.period
+        stability: development
+        type: double
+        brief: The time period, in seconds, for which this jank is being reported.
+        examples: [ 0.5, 1.0, 10.0 ]
+      - id: app.activity.name
         stability: development
         type: string
-        brief: The name of the Activity that was active during the jank.
+        brief: The name of the Activity at the time of the event or span start.
         note: This is an Android specific attribute.
         examples: ['myActivity', 'checkout']
