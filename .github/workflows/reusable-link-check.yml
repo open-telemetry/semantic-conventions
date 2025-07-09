@@ -30,7 +30,6 @@ jobs:
                             | grep -E '\.(md|mkd|mdx|mdown|mdwn|mkdn|mkdown|markdown|html|htm|txt)$' \
                             | tr '\n' ' ' || true)
           echo "files=$modified_files" >> $GITHUB_OUTPUT
-          echo "Modified files: $modified_files"
 
       - name: Link check - all links (modified files only)
         if: github.event_name == 'pull_request' && steps.modified-files.outputs.files != ''
