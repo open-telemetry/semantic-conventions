@@ -37,7 +37,7 @@ fi
 CMD="lycheeverse/lychee:$LYCHEE_VERSION --verbose --root-dir /data"
 
 # Add GitHub token if available
-if [[ -n "${GITHUB_TOKEN:-}" ]]; then
+if [[ -n "$GITHUB_TOKEN" ]]; then
     CMD="$CMD --github-token $GITHUB_TOKEN"
 fi
 
