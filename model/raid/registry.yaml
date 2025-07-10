@@ -4,32 +4,19 @@ groups:
     display_name: General RAID Device Attributes
     brief: "Describes RAID Device attributes"
     attributes:
+      - id: raid.disk.status
+        type: string
+        note: |
+          The set of values are pulled directly from mdraid via 
+          https://github.com/prometheus/procfs/blob/master/mdstat.go
+        stability: development
+        brief: "The raid array activity status"
+        examples: ["active"]
       - id: storage.volume.name
         type: string
         stability: development
         brief: "The device identifier"
         examples: ["(identifier)"]
-      - id: storage.disk.status
-        type:
-          members:
-            - id: active
-              value: 'active'
-              stability: development
-            - id: inactive
-              value: 'inactive'
-              stability: development
-            - id: recovering
-              value: 'recovering'
-              stability: development
-            - id: resync
-              value: 'resync'
-              stability: development
-            - id: check
-              value: 'check'
-              stability: development
-        stability: development
-        brief: "The storage activity status"
-        examples: ["active"]
       - id: storage.disk.state
         type:
           members:

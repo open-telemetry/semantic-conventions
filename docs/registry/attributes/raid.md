@@ -9,9 +9,12 @@ Describes RAID Device attributes
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
+| <a id="raid-disk-status" href="#raid-disk-status">`raid.disk.status`</a> | string | The raid array activity status [1] | `active` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="storage-disk-state" href="#storage-disk-state">`storage.disk.state`</a> | string | The storage disk state | `active` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="storage-disk-status" href="#storage-disk-status">`storage.disk.status`</a> | string | The storage activity status | `active` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="storage-volume-name" href="#storage-volume-name">`storage.volume.name`</a> | string | The device identifier | `(identifier)` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `raid.disk.status`:** The set of values are pulled directly from mdraid via 
+https://github.com/prometheus/procfs/blob/master/mdstat.go
 
 ---
 
@@ -22,15 +25,3 @@ Describes RAID Device attributes
 | `active` | active | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failed` | failed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `spare` | spare | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`storage.disk.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `active` | active | ![Development](https://img.shields.io/badge/-development-blue) |
-| `check` | check | ![Development](https://img.shields.io/badge/-development-blue) |
-| `inactive` | inactive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `recovering` | recovering | ![Development](https://img.shields.io/badge/-development-blue) |
-| `resync` | resync | ![Development](https://img.shields.io/badge/-development-blue) |
