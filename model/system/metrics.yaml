@@ -471,7 +471,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "TODO"
+    brief: TODO
     instrument: counter
     unit: "By"
     attributes:
@@ -487,7 +487,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "TODO"
+    brief: TODO
     instrument: updowncounter
     unit: "{connection}"
     attributes:
