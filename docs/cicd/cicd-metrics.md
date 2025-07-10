@@ -60,7 +60,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `cicd.pipeline.run.info` | Gauge | `1` | This is an info metric linking pipeline runs to any other associated entities or information. | ![Development](https://img.shields.io/badge/-development-blue) | `cicd.pipeline`; `cicd.pipeline.run`; `cicd.worker`; `host`; `container`; `k8s.namespace`; `k8s.pod` |
+| `cicd.pipeline.run.info` | Gauge | `1` | This is an info metric linking pipeline runs to any other associated entities or information. | ![Development](https://img.shields.io/badge/-development-blue) | [`cicd.pipeline`](/docs/registry/entities/cicd.md#cicd-pipeline); [`cicd.pipeline.run`](/docs/registry/entities/cicd.md#cicd-pipeline-run); [`cicd.worker`](/docs/registry/entities/cicd.md#cicd-worker); [`host`](/docs/registry/entities/host.md#host); [`container`](/docs/registry/entities/container.md#container); [`k8s.namespace`](/docs/registry/entities/k8s.md#k8s-namespace); [`k8s.pod`](/docs/registry/entities/k8s.md#k8s-pod) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
