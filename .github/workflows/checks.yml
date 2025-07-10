@@ -37,19 +37,8 @@ jobs:
     - name: run yamllint
       run: yamllint . -f github
 
-  markdown-link-check:
-    runs-on: ubuntu-latest
-    steps:
-    - name: check out code
-      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
-    - name: install dependencies
-      run: npm install
-
-    - name: run markdown-link-check
-      run: make markdown-link-check
-      env:
-        LYCHEE_GITHUB_TOKEN: ${{ github.token }}
+  link-check:
+    uses: ./.github/workflows/reusable-link-check.yml
 
   markdown-toc-check:
     runs-on: ubuntu-latest
