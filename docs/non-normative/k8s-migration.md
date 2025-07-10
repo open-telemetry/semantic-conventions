@@ -61,7 +61,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Container metrics](#k8s-container-metrics)
   - [K8s ResourceQuota metrics](#k8s-resourcequota-metrics)
   - [K8s Node condition metrics](#k8s-node-condition-metrics)
-  - [K8s Filestystem metrics](#k8s-filestystem-metrics)
+  - [K8s Filesystem metrics](#k8s-filesystem-metrics)
 
 <!-- tocstop -->
 
