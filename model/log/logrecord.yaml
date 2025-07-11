@@ -1,0 +1,33 @@
+groups:
+  - id: logrecord.log.stream
+    type: attribute_group
+    display_name: Log I/O Stream Attributes
+    extends: registry.log
+    brief: >
+      This document defines log attributes
+    note: >
+      The following attributes do not describe entities that produce telemetry but rather, they describe mechanisms of log transmission.
+    attributes:
+      - ref: log.record.original
+      - ref: log.record.uid
+
+  - id: logrecord.log.file    # TODO: should we move it to the file model?
+    type: attribute_group
+    display_name: Log File Attributes
+    extends: registry.log.file
+    brief: >
+      Attributes for a file to which log was emitted.
+    note: >
+      The following attributes do not describe entities that produce telemetry but rather, they describe mechanisms of log transmission.
+    attributes:
+      - ref: log.record.original
+      - ref: log.record.uid
+
+  - id: logrecord.log.record.details
+    type: attribute_group
+    display_name: General Log Record Attributes
+    extends: registry.log.record.details
+    brief: >
+      This document defines the generic attributes that may be used in any Log Record.
+    note: >
+      The following attributes do not describe entities that produce telemetry but rather, they describe mechanisms of log transmission.
