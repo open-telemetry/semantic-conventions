@@ -687,3 +687,17 @@ groups:
           [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota)
           for more details.
         examples: [ 'count/replicationcontrollers' ]
+      - id: k8s.container.ports
+        requirement_level: opt_in
+        type: map[]
+        stability: development
+        brief: >
+          List of ports exposed from the container. See the Kubernetes documentation for [Container ports](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#containerport-v1-core) for more details. 
+          The value will be an empty list when no ports are exposed. 
+        fields:
+          - id: containerPort
+            type: int
+            stability: development
+            brief: >
+              Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.
+            examples: [[],[10053], [8080, 8081]]
