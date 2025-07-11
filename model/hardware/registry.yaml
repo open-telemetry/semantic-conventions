@@ -3,7 +3,8 @@ groups:
     type: attribute_group
     display_name: Hardware Attributes
     brief: >
-      Attributes for hardware.
+      Hardware attributes are used to represent details about the hw components which are providing the base platform for the software running to be emitting telemetry.
+      It is important to correctly describe the component by indicating the `hw.type`.
     attributes:
       - id: hw.id
         type: string
@@ -107,3 +108,43 @@ groups:
         stability: development
         brief: >
           The current state of the component
+      - id: hw.vendor.id
+        type: string
+        stability: development
+        brief: >
+          A fixed id which identifies the vendor.
+        note: >
+          if the hardware component doesn't provide it, it should default to the name.
+        examples: ['GenuineIntel', 'Seagate', 'Western Digital']
+      - id: hw.vendor.name
+        type: string
+        stability: development
+        brief: >
+          Vendor name
+        examples: ['Intel', 'Seagate', 'Western Digital']
+      - id: hw.model.id
+        type: string
+        stability: development
+        brief: >
+          A fixed id which identifies the model.
+        note: >
+          If not known should default to the name
+        examples: ['Barracuda 7200', '9000/778/B180L']
+      - id: hw.model.name
+        type: string
+        stability: development
+        brief: >
+          Descriptive model name
+        examples: ['Barracuda 7200', 'Intel(R) Core(TM) i7 CPU         930  @ 2.80GHz']
+      - id: hw.model.family
+        type: string
+        stability: development
+        brief: >
+          Family or generation of the CPU.
+        examples: ['PA-RISC 1.1e', 'Intel64 Family 6 Model 26 Stepping 5']
+      - id: hw.serial_number
+        type: string
+        stability: development
+        brief: >
+          Serial number
+        examples: ['SGHDD001ABC']

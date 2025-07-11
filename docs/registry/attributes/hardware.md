@@ -5,17 +5,27 @@
 
 ## Hardware Attributes
 
-Attributes for hardware.
+Hardware attributes are used to represent details about the hw components which are providing the base platform for the software running to be emitting telemetry. It is important to correctly describe the component by indicating the `hw.type`.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="hw-id" href="#hw-id">`hw.id`</a> | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-model-family" href="#hw-model-family">`hw.model.family`</a> | string | Family or generation of the CPU. | `PA-RISC 1.1e`; `Intel64 Family 6 Model 26 Stepping 5` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-model-id" href="#hw-model-id">`hw.model.id`</a> | string | A fixed id which identifies the model. [1] | `Barracuda 7200`; `9000/778/B180L` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-model-name" href="#hw-model-name">`hw.model.name`</a> | string | Descriptive model name | `Barracuda 7200`; `Intel(R) Core(TM) i7 CPU         930  @ 2.80GHz` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-name" href="#hw-name">`hw.name`</a> | string | An easily-recognizable name for the hardware component | `eth0` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-parent" href="#hw-parent">`hw.parent`</a> | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-serial-number" href="#hw-serial-number">`hw.serial_number`</a> | string | Serial number | `SGHDD001ABC` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-state" href="#hw-state">`hw.state`</a> | string | The current state of the component | `ok`; `degraded`; `failed` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-type" href="#hw-type">`hw.type`</a> | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-type" href="#hw-type">`hw.type`</a> | string | Type of the component [2] | `battery`; `cpu`; `disk_controller` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-vendor-id" href="#hw-vendor-id">`hw.vendor.id`</a> | string | A fixed id which identifies the vendor. [3] | `GenuineIntel`; `Seagate`; `Western Digital` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-vendor-name" href="#hw-vendor-name">`hw.vendor.name`</a> | string | Vendor name | `Intel`; `Seagate`; `Western Digital` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
+**[1] `hw.model.id`:** If not known should default to the name
+
+**[2] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
+
+**[3] `hw.vendor.id`:** if the hardware component doesn't provide it, it should default to the name.
 
 ---
 
