@@ -15,9 +15,9 @@ groups:
       The actual accuracy would depend on the instrumentation and operating system.
     instrument: gauge
     unit: "s"
-  - id: metric.k8s.pod.phase
+  - id: metric.k8s.pod.status.phase
     type: metric
-    metric_name: k8s.pod.phase
+    metric_name: k8s.pod.status.phase
     annotations:
       code_generation:
         metric_value_type: int
@@ -31,7 +31,7 @@ groups:
     instrument: updowncounter
     unit: "{pod}"
     attributes:
-      - ref: k8s.pod.phase
+      - ref: k8s.pod.status.phase
         requirement_level: required
 
   # k8s.pod.status.* metrics
