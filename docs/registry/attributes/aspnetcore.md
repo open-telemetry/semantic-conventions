@@ -9,13 +9,24 @@ ASP.NET Core attributes
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="aspnetcore-diagnostics-exception-result" href="#aspnetcore-diagnostics-exception-result">`aspnetcore.diagnostics.exception.result`</a> | string | ASP.NET Core exception middleware handling result | `handled`; `unhandled` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="aspnetcore-authentication-scheme" href="#aspnetcore-authentication-scheme">`aspnetcore.authentication_scheme`</a> | string | The authentication scheme to sign in with. | `Identity.Application` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-diagnostics-exception-result" href="#aspnetcore-diagnostics-exception-result">`aspnetcore.diagnostics.exception.result`</a> | string | ASP.NET Core exception middleware handling result. | `handled`; `unhandled` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="aspnetcore-diagnostics-handler-type" href="#aspnetcore-diagnostics-handler-type">`aspnetcore.diagnostics.handler.type`</a> | string | Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="aspnetcore-identity-error-code" href="#aspnetcore-identity-error-code">`aspnetcore.identity.error_code`</a> | string | The error code for a failed identity operation. | `DefaultError`; `PasswordMismatch` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-identity-password-check-result" href="#aspnetcore-identity-password-check-result">`aspnetcore.identity.password_check_result`</a> | string | The result from checking the password. | `success`; `failure` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-identity-result" href="#aspnetcore-identity-result">`aspnetcore.identity.result`</a> | string | The result of the identity operation. | `success`; `failure` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-identity-sign-in-result" href="#aspnetcore-identity-sign-in-result">`aspnetcore.identity.sign_in.result`</a> | string | Whether the sign in result was success or failure. | `password`; `two_factor` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-identity-sign-in-type" href="#aspnetcore-identity-sign-in-type">`aspnetcore.identity.sign_in.type`</a> | string | The authentication type. | `password`; `two_factor` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-identity-token-purpose" href="#aspnetcore-identity-token-purpose">`aspnetcore.identity.token_purpose`</a> | string | The result from checking the password. | `success`; `failure` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-identity-token-verified" href="#aspnetcore-identity-token-verified">`aspnetcore.identity.token_verified`</a> | string | The result of token verification. | `success`; `failure` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-identity-user-update-type" href="#aspnetcore-identity-user-update-type">`aspnetcore.identity.user.update_type`</a> | string | The user update type. | `update`; `user_name`; `reset_password` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-identity-user-type" href="#aspnetcore-identity-user-type">`aspnetcore.identity.user_type`</a> | string | The full name of the identity user type. | `Contoso.ContosoUser` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aspnetcore-rate-limiting-policy" href="#aspnetcore-rate-limiting-policy">`aspnetcore.rate_limiting.policy`</a> | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="aspnetcore-rate-limiting-result" href="#aspnetcore-rate-limiting-result">`aspnetcore.rate_limiting.result`</a> | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="aspnetcore-request-is-unhandled" href="#aspnetcore-request-is-unhandled">`aspnetcore.request.is_unhandled`</a> | boolean | Flag indicating if request was handled by the application pipeline. | `true` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="aspnetcore-routing-is-fallback" href="#aspnetcore-routing-is-fallback">`aspnetcore.routing.is_fallback`</a> | boolean | A value that indicates whether the matched route is a fallback route. | `true` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="aspnetcore-routing-match-status" href="#aspnetcore-routing-match-status">`aspnetcore.routing.match_status`</a> | string | Match result - success or failure | `success`; `failure` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="aspnetcore-sign-in-is-persistent" href="#aspnetcore-sign-in-is-persistent">`aspnetcore.sign_in.is_persistent`</a> | boolean | A flag indicating whether the sign in is persistent. |  | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -27,6 +38,114 @@ ASP.NET Core attributes
 | `handled` | Exception was handled by the exception handling middleware. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `skipped` | Exception handling was skipped because the response had started. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unhandled` | Exception was not handled by the exception handling middleware. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
+
+`aspnetcore.identity.password_check_result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `failure` | Password check failed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `password_missing` | Password check couldn't proceed because the password was missing from the user. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `success` | Password check was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `success_rehash_needed` | Password check was successful however the password was encoded using a deprecated algorithm and should be rehashed and updated. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user_missing` | Password check couldn't proceed because the user was missing. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`aspnetcore.identity.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `failure` | Identity operation failed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `success` | Identity operation was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`aspnetcore.identity.sign_in.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `failure` | Sign in failed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `locked_out` | User is locked out. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `not_allowed` | User is not allowed to sign in. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `requires_two_factor` | User requires two factory authentication to sign in. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `success` | Sign in was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`aspnetcore.identity.sign_in.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `external` | Sign in with a previously registered third-party login. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `passkey` | Sign in with passkey. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `password` | Sign in with password. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `two_factor` | Sign in with a two factor provider. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `two_factor_authenticator` | Sign in with two factor authenticator app. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `two_factor_recovery_code` | Sign in with two factory recovery code. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`aspnetcore.identity.token_purpose` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | Any token purpose that the instrumentation has no prior knowledge of. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `change_email` | The token is for changing the user email address. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `change_phone_number` | The token is for changing a user phone number. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `email_confirmation` | The token is for confirming user email address. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reset_password` | The token is for resetting a user password. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `two_factor` | The token is for changing user two factor settings. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`aspnetcore.identity.token_verified` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `failure` | Token verification failed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `success` | Token verification was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`aspnetcore.identity.user.update_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | Any update type that the instrumentation has no prior knowledge of. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `access_failed` | Identity user access failure recorded. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `add_claims` | Identity user claims added. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `add_login` | Identity user login added. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `add_password` | Identity user password added. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `add_to_roles` | Identity user added to roles. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `change_email` | Identity user email changed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `change_password` | Identity user password changed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `change_phone_number` | Identity user phone number changed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `confirm_email` | Identity user email confirmed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `generate_new_two_factor_recovery_codes` | Identity user new two-factor recovery codes generated. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `password_rehash` | Identity user password rehashed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `redeem_two_factor_recovery_code` | Identity user two-factor recovery code redeemed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `remove_authentication_token` | Identity user authentication token removed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `remove_claims` | Identity user claims removed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `remove_from_roles` | Identity user removed from roles. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `remove_login` | Identity user login removed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `remove_passkey` | Identity user passkey removed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `remove_password` | Identity user password removed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `replace_claim` | Identity user claim replaced. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reset_access_failed_count` | Identity user access failure count reset. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reset_authenticator_key` | Identity user authenticator key reset. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reset_password` | Identity user password reset. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `security_stamp` | Identity user security stamp updated. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `set_authentication_token` | Identity user authentication token set. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `set_email` | Identity user email set. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `set_lockout_enabled` | Identity user lockout enabled or disabled. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `set_lockout_end_date` | Identity user lockout end date set. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `set_passkey` | Identity user passkey set. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `set_phone_number` | Identity user phone number set. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `set_two_factor_enabled` | Identity user two-factor authentication enabled or disabled. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `update` | Identity user updated. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user_name` | Identity user name updated. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
