@@ -81,5 +81,302 @@ groups:
               brief: "Exception handling didn't run because the request was aborted."
               stability: stable
         stability: stable
-        brief: ASP.NET Core exception middleware handling result
+        brief: ASP.NET Core exception middleware handling result.
         examples: ["handled", "unhandled"]
+      - id: aspnetcore.identity.user_type
+        type: string
+        brief: The full name of the identity user type.
+        stability: stable
+        examples: ["Contoso.ContosoUser"]
+      - id: aspnetcore.identity.result
+        type:
+          members:
+            - id: success
+              value: 'success'
+              brief: "Identity operation was successful."
+              stability: stable
+            - id: failure
+              value: 'failure'
+              brief: "Identity operation failed."
+              stability: stable
+        stability: stable
+        brief: The result of the identity operation.
+        examples: ["success", "failure"]
+      - id: aspnetcore.identity.result_error_code
+        type: string
+        stability: stable
+        brief: The error code for a failed identity operation.
+        examples: ["DefaultError", "PasswordMismatch"]
+      - id: aspnetcore.identity.user.update_type
+        type:
+          members:
+            - id: update
+              value: 'update'
+              brief: "Identity user updated."
+              stability: stable
+            - id: user_name
+              value: 'user_name'
+              brief: "Identity user name updated."
+              stability: stable
+            - id: add_password
+              value: 'add_password'
+              brief: "Identity user password added."
+              stability: stable
+            - id: change_password
+              value: 'change_password'
+              brief: "Identity user password changed."
+              stability: stable
+            - id: security_stamp
+              value: 'security_stamp'
+              brief: "Identity user security stamp updated."
+              stability: stable
+            - id: reset_password
+              value: 'reset_password'
+              brief: "Identity user password reset."
+              stability: stable
+            - id: remove_login
+              value: 'remove_login'
+              brief: "Identity user login removed."
+              stability: stable
+            - id: add_login
+              value: 'add_login'
+              brief: "Identity user login added."
+              stability: stable
+            - id: add_claims
+              value: 'add_claims'
+              brief: "Identity user claims added."
+              stability: stable
+            - id: replace_claim
+              value: 'replace_claim'
+              brief: "Identity user claim replaced."
+              stability: stable
+            - id: remove_claims
+              value: 'remove_claims'
+              brief: "Identity user claims removed."
+              stability: stable
+            - id: add_to_roles
+              value: 'add_to_roles'
+              brief: "Identity user added to roles."
+              stability: stable
+            - id: remove_from_roles
+              value: 'remove_from_roles'
+              brief: "Identity user removed from roles."
+              stability: stable
+            - id: set_email
+              value: 'set_email'
+              brief: "Identity user email set."
+              stability: stable
+            - id: confirm_email
+              value: 'confirm_email'
+              brief: "Identity user email confirmed."
+              stability: stable
+            - id: password_rehash
+              value: 'password_rehash'
+              brief: "Identity user password rehashed."
+              stability: stable
+            - id: remove_password
+              value: 'remove_password'
+              brief: "Identity user password removed."
+              stability: stable
+            - id: change_email
+              value: 'change_email'
+              brief: "Identity user email changed."
+              stability: stable
+            - id: set_phone_number
+              value: 'set_phone_number'
+              brief: "Identity user phone number set."
+              stability: stable
+            - id: change_phone_number
+              value: 'change_phone_number'
+              brief: "Identity user phone number changed."
+              stability: stable
+            - id: set_two_factor_enabled
+              value: 'set_two_factor_enabled'
+              brief: "Identity user two-factor authentication enabled or disabled."
+              stability: stable
+            - id: set_lockout_enabled
+              value: 'set_lockout_enabled'
+              brief: "Identity user lockout enabled or disabled."
+              stability: stable
+            - id: set_lockout_end_date
+              value: 'set_lockout_end_date'
+              brief: "Identity user lockout end date set."
+              stability: stable
+            - id: access_failed
+              value: 'access_failed'
+              brief: "Identity user access failure recorded."
+              stability: stable
+            - id: reset_access_failed_count
+              value: 'reset_access_failed_count'
+              brief: "Identity user access failure count reset."
+              stability: stable
+            - id: set_authentication_token
+              value: 'set_authentication_token'
+              brief: "Identity user authentication token set."
+              stability: stable
+            - id: remove_authentication_token
+              value: 'remove_authentication_token'
+              brief: "Identity user authentication token removed."
+              stability: stable
+            - id: reset_authenticator_key
+              value: 'reset_authenticator_key'
+              brief: "Identity user authenticator key reset."
+              stability: stable
+            - id: generate_new_two_factor_recovery_codes
+              value: 'generate_new_two_factor_recovery_codes'
+              brief: "Identity user new two-factor recovery codes generated."
+              stability: stable
+            - id: redeem_two_factor_recovery_code
+              value: 'redeem_two_factor_recovery_code'
+              brief: "Identity user two-factor recovery code redeemed."
+              stability: stable
+            - id: set_passkey
+              value: 'set_passkey'
+              brief: "Identity user passkey set."
+              stability: stable
+            - id: remove_passkey
+              value: 'remove_passkey'
+              brief: "Identity user passkey removed."
+              stability: stable
+            - id: _OTHER
+              value: '_OTHER'
+              brief: "Any update type that the instrumentation has no prior knowledge of."
+              stability: stable
+        stability: stable
+        brief: The user update type.
+        examples: ["update", "user_name", "reset_password"]
+      - id: aspnetcore.identity.user.password_result
+        type:
+          members:
+            - id: success
+              value: 'success'
+              brief: "Password check was successful."
+              stability: stable
+            - id: success_rehash_needed
+              value: 'success_rehash_needed'
+              brief: "Password check was successful however the password was encoded using a deprecated algorithm and should be rehashed and updated."
+              stability: stable
+            - id: failure
+              value: 'failure'
+              brief: "Password check failed."
+              stability: stable
+            - id: password_missing
+              value: 'password_missing'
+              brief: "Password check couldn't proceed because the password was missing from the user."
+              stability: stable
+            - id: user_missing
+              value: 'user_missing'
+              brief: "Password check couldn't proceed because the user was missing."
+              stability: stable
+        stability: stable
+        brief: The result from checking the password.
+        examples: ["success", "failure"]
+      - id: aspnetcore.identity.token_purpose
+        type:
+          members:
+            - id: reset_password
+              value: 'reset_password'
+              brief: "The token is for resetting a user password."
+              stability: stable
+            - id: change_phone_number
+              value: 'change_phone_number'
+              brief: "The token is for changing a user phone number."
+              stability: stable
+            - id: email_confirmation
+              value: 'email_confirmation'
+              brief: "The token is for confirming user email address."
+              stability: stable
+            - id: change_email
+              value: 'change_email'
+              brief: "The token is for changing the user email address."
+              stability: stable
+            - id: two_factor
+              value: 'two_factor'
+              brief: "The token is for changing user two factor settings."
+              stability: stable
+            - id: _OTHER
+              value: '_OTHER'
+              brief: "Any token purpose that the instrumentation has no prior knowledge of."
+              stability: stable
+        stability: stable
+        brief: The result from checking the password.
+        examples: ["success", "failure"]
+      - id: aspnetcore.identity.token_verified
+        type:
+          members:
+            - id: success
+              value: 'success'
+              brief: "Token verification was successful."
+              stability: stable
+            - id: failure
+              value: 'failure'
+              brief: "Token verification failed."
+              stability: stable
+        stability: stable
+        brief: The result of token verification.
+        examples: ["success", "failure"]
+      - id: aspnetcore.identity.authentication_scheme
+        type: string
+        stability: stable
+        brief: The authentication scheme to sign in with.
+        examples: ["Identity.Application"]
+      - id: aspnetcore.identity.sign_in.type
+        type:
+          members:
+            - id: password
+              value: 'password'
+              brief: "Sign in with password."
+              stability: stable
+            - id: two_factor_recovery_code
+              value: 'two_factor_recovery_code'
+              brief: "Sign in with two factory recovery code."
+              stability: stable
+            - id: two_factor_authenticator
+              value: 'two_factor_authenticator'
+              brief: "Sign in with two factor authenticator app."
+              stability: stable
+            - id: two_factor
+              value: 'two_factor'
+              brief: "Sign in with a two factor provider."
+              stability: stable
+            - id: external
+              value: 'external'
+              brief: "Sign in with a previously registered third-party login."
+              stability: stable
+            - id: passkey
+              value: 'passkey'
+              brief: "Sign in with passkey."
+              stability: stable
+        stability: stable
+        brief: The authentication type.
+        examples: ["password", "two_factor"]
+      - id: aspnetcore.identity.sign_in.is_persistent
+        type: boolean
+        stability: stable
+        brief: A flag indicating whether the sign in is persistent.
+      - id: aspnetcore.identity.sign_in.result
+        type:
+          members:
+            - id: success
+              value: 'success'
+              brief: "Sign in was successful."
+              stability: stable
+            - id: locked_out
+              value: 'locked_out'
+              brief: "User is locked out."
+              stability: stable
+            - id: not_allowed
+              value: 'not_allowed'
+              brief: "User is not allowed to sign in."
+              stability: stable
+            - id: requires_two_factor
+              value: 'requires_two_factor'
+              brief: "User requires two factory authentication to sign in."
+              stability: stable
+            - id: failure
+              value: 'failure'
+              brief: "Sign in failed."
+              stability: stable
+        stability: stable
+        brief: Whether the sign in result was success or failure.
+        examples: ["password", "two_factor"]
