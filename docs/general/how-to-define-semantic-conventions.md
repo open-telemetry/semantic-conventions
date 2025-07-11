@@ -37,6 +37,10 @@ for new areas or make substantial changes to the existing ones.
 >
 > This section contains non-normative guidance.
 
+Please read [T-Shaped Signals](/docs/non-normative/how-to-write-conventions/t-shaped-signals.md)
+for guidance on how to approach creating Semantic Convnetions through defining
+key use cases for convnentions.
+
 #### Defining attributes
 
 Reuse existing attributes when possible. Look through [existing conventions](/docs/registry/attributes/) for similar areas,
