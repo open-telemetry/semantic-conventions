@@ -13,6 +13,8 @@ linkTitle: Spans
   - [Notes and well-known identifiers for `db.system.name`](#notes-and-well-known-identifiers-for-dbsystemname)
 - [Sanitization of `db.query.text`](#sanitization-of-dbquerytext)
 - [Generating a summary of the query](#generating-a-summary-of-the-query)
+- [Context propagation](#context-propagation)
+  - [SQL commenter](#sql-commenter)
 - [Semantic conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 
 <!-- tocstop -->
@@ -477,6 +479,32 @@ name or target).
 Semantic conventions for individual database systems or specialized instrumentations
 MAY specify a different `db.query.summary` format as long as produced summary remains
 relatively short and its cardinality remains low comparing to the `db.query.text`.
+
+## Context propagation
+
+**Status**: [Development][DocumentStatus]
+
+### SQL commenter
+
+Instrumentations MAY propagate context using [SQL commenter](https://google.github.io/sqlcommenter/spec/) by injecting comments into SQL queries before execution. Context propagation SHOULD NOT be enabled by default, but instrumentation MAY allow users to opt into it.
+
+The instrumentation implementation MAY choose to either **append** the comment to the end of the query or **prepend** the comment at the beginning of the query, depending on the specific database system's requirements or preferences.
+
+The instrumentation SHOULD allow users to pass a list of propagators to overwrite the default propagators.
+
+The instrumentation MAY provide the following propagators that users can use to overwrite the default propagators:
+
+- `service.name` propagator, a propagator that can inject the `service.name` resource attribute into carrier.
+
+Note that the performance of certain database systems may be impacted by high cardinality values in comments. The `service.name` propagator is useful for these databases with minimal performance impact while providing useful context.
+
+**Examples:**
+
+- For a query `SELECT * FROM songs` where `service.name` is `shoppingcart`:
+
+  ```sql
+  SELECT * FROM songs /*service.name='shoppingcart'*/
+  ```
 
 ## Semantic conventions for specific database technologies
 
