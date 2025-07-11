@@ -21,7 +21,7 @@ Please note that this is an [ongoing process](https://github.com/open-telemetry/
 - [Metric Instruments](#metric-instruments)
   - [`hw.` - Common hardware metrics](/docs/hardware/common.md)
   - [`hw.host.` - Physical host metrics](/docs/hardware/host.md)
-  - [`hw.battery.` - Battery metrics](#hwbattery---battery-metrics)
+  - [`hw.battery.` - Battery metrics](/docs/hardware/battery.md)
   - [`hw.cpu.` - Physical processor metrics](#hwcpu---physical-processor-metrics)
   - [`hw.disk_controller.` - Disk controller metrics](#hwdisk_controller---disk-controller-metrics)
   - [`hw.enclosure.` - Enclosure metrics](#hwenclosure---enclosure-metrics)
@@ -47,7 +47,25 @@ Please note that this is an [ongoing process](https://github.com/open-telemetry/
 > * SHOULD introduce a control mechanism to allow users to opt-in to the new
 >   conventions once the migration plan is finalized.
 
-## Metric instruments
+## Metric Instruments
+
+### `hw.host.` - Physical host metrics
+
+**Description:** Physical system as opposed to a virtual system or a container.
+Examples: physical server, switch or disk array.
+
+| Name                          | Description                                                                                                                                           | Units | Instrument Type ([*](/docs/general/metrics.md#instrument-types)) | Value Type | Attribute Key(s) | Attribute Values |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------- | ---------- | ---------------- | ---------------- |
+| `hw.host.ambient_temperature` | Ambient (external) temperature of the physical host                                                                                                   | Cel   | Gauge                                             | Double     |                  |                  |
+| `hw.host.energy`              | Total energy consumed by the entire physical host, in joules                                                                                          | J     | Counter                                           | Int64      |                  |                  |
+| `hw.host.heating_margin`      | By how many degrees Celsius the temperature of the physical host can be increased, before reaching a warning threshold on one of the internal sensors | Cel   | Gauge                                             | Double     |                  |                  |
+| `hw.host.power`               | Instantaneous power consumed by the entire physical host in Watts (`hw.host.energy` is preferred)                                                     | W     | Gauge                                             | Double     |                  |                  |
+
+> **Note**
+> The overall energy usage of a host MUST be reported using the specific
+> `hw.host.energy` and `hw.host.power` metrics **only**, instead of the generic
+> `hw.energy` and `hw.power` described in the previous section, to prevent
+> summing up overlapping values.
 
 ### `hw.battery.` - Battery metrics
 
