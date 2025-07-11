@@ -52,6 +52,7 @@ Agreement](https://identity.linuxfoundation.org/projects/cncf).
 When contributing to semantic conventions, it's important to understand a few
 key, but non-obvious, aspects:
 
+- In the PR description, include links to the relevant instrumentation and any applicable prototypes. Non-trivial changes to semantic conventions should be prototyped in the corresponding instrumentation(s).
 - All attributes, metrics, etc. are formally defined in YAML files under
   the `model/` directory.
 - All descriptions, normative language are defined in the `docs/` directory.
