@@ -1,0 +1,93 @@
+groups:
+  # raid.* metrics
+  - id: metric.raid.disk.count
+    type: metric
+    metric_name: raid.disk.count
+    stability: development
+    brief: "Number of active/failed/spare disks of device."
+    note: |
+      Reports the total number of disks in a RAID device.
+      See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat).
+    instrument: updowncounter
+    unit: "{disk}"
+    attributes:
+      - ref: storage.volume.name
+      - ref: storage.disk.state
+    entity_associations:
+      - host
+
+  - id: metric.raid.activity_state
+    type: metric
+    metric_name: raid.activity_state
+    stability: development
+    brief: "Reports the activity state of a RAID device"
+    note: |
+      Reports the activity state of a RAID device.
+      See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat).
+    instrument: updowncounter
+    unit: "{disk}"
+    attributes:
+      - ref: storage.volume.name
+      - ref: raid.disk.status
+    entity_associations:
+      - host
+
+  - id: metric.raid.block.total
+    type: metric
+    metric_name: raid.block.total
+    stability: development
+    brief: "Number of blocks on device."
+    note: |
+      Reports the total number of blocks on a device.
+      See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat).
+    instrument: updowncounter
+    unit: "{disk}"
+    attributes:
+      - ref: storage.volume.name
+    entity_associations:
+      - host
+
+  - id: metric.raid.block.synced
+    type: metric
+    metric_name: raid.block.synced
+    stability: development
+    brief: "Number of blocks on device."
+    note: |
+      Reports the total number of blocks on a device. which are synced.
+      See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat).
+    instrument: updowncounter
+    unit: "{disk}"
+    attributes:
+      - ref: storage.volume.name
+    entity_associations:
+      - host
+
+  - id: metric.raid.disk.assigned
+    type: metric
+    metric_name: raid.disk.assigned
+    stability: development
+    brief: "Number of raid disks in a fully functional array for a RAID device."
+    note: |
+      Reports the number of raid disks in a fully functional array for a RAID device.
+      See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat) and [md](https://docs.kernel.org/admin-guide/md.html).
+    instrument: updowncounter
+    unit: "{disk}"
+    attributes:
+      - ref: storage.volume.name
+    entity_associations:
+      - host
+
+  - id: metric.raid.disk.degraded
+    type: metric
+    metric_name: raid.disk.degraded
+    stability: development
+    brief: "Number of degraded raid disks in an array for a RAID device."
+    note: |
+      Reports the number of degraded raid disks in an array for a RAID device..
+      See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat) and [md](https://docs.kernel.org/admin-guide/md.html).
+    instrument: updowncounter
+    unit: "{disk}"
+    attributes:
+      - ref: storage.volume.name
+    entity_associations:
+      - host
