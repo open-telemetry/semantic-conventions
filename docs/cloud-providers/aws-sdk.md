@@ -24,15 +24,15 @@ See [compatibility](../non-normative/compatibility/aws.md#context-propagation).
 
 This span describes an AWS SDK client call.
 
-**Span name** MUST be of the format `Service.Operation` as per the
-AWS HTTP API, e.g., `DynamoDB.GetItem`, `S3.ListBuckets`. This is
-equivalent to concatenating `rpc.service` and `rpc.method` with `.` and
-consistent with the naming guidelines for RPC client spans.
-
 AWS SDK span attributes are based on the request or response parameters
 in AWS SDK API calls. The conventions have been collected over time based
 on feedback from AWS users of tracing and will continue to increase as new
 interesting conventions are found.
+
+**Span name** MUST be of the format `Service.Operation` as per the
+AWS HTTP API, e.g., `DynamoDB.GetItem`, `S3.ListBuckets`. This is
+equivalent to concatenating `rpc.service` and `rpc.method` with `.` and
+consistent with the naming guidelines for RPC client spans.
 
 **Span kind** SHOULD be `CLIENT`.
 
