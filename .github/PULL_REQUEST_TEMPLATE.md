@@ -12,4 +12,3 @@ Note: if the PR is touching an area that is not listed in the [existing areas](h
 * [ ] Change log entry added, according to the guidelines in [When to add a changelog entry](https://github.com/open-telemetry/semantic-conventions/blob/main/CONTRIBUTING.md#when-to-add-a-changelog-entry).
   * If your PR does not need a change log, start the PR title with `[chore]`
 * [ ] Links to the prototypes or existing instrumentations (when adding or changing conventions)
-* [ ] [schema-next.yaml](https://github.com/open-telemetry/semantic-conventions/blob/main/schema-next.yaml) updated with changes to existing conventions.
