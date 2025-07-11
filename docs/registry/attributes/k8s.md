@@ -55,7 +55,7 @@ Kubernetes resource attributes.
 | <a id="k8s-pod-annotation" href="#k8s-pod-annotation">`k8s.pod.annotation.<key>`</a> | string | The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. [21] | `true`; `x64`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-pod-label" href="#k8s-pod-label">`k8s.pod.label.<key>`</a> | string | The label placed on the Pod, the `<key>` being the label name, the value being the label value. [22] | `my-app`; `x64`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-pod-name" href="#k8s-pod-name">`k8s.pod.name`</a> | string | The name of the Pod. | `opentelemetry-pod-autoconf` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="k8s-pod-phase" href="#k8s-pod-phase">`k8s.pod.phase`</a> | string | The phase for the pod. Corresponds to the `phase` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Pending`; `Running` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="k8s-pod-status-phase" href="#k8s-pod-status-phase">`k8s.pod.status.phase`</a> | string | The phase for the pod. Corresponds to the `phase` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Pending`; `Running` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-pod-status-reason" href="#k8s-pod-status-reason">`k8s.pod.status.reason`</a> | string | The reason for the pod state. Corresponds to the `reason` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Evicted`; `NodeAffinity` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-pod-uid" href="#k8s-pod-uid">`k8s.pod.uid`</a> | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-replicaset-annotation" href="#k8s-replicaset-annotation">`k8s.replicaset.annotation.<key>`</a> | string | The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [23] | `0`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -313,7 +313,7 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 
 ---
 
-`k8s.pod.phase` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`k8s.pod.status.phase` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

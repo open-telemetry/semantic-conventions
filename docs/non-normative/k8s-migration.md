@@ -64,7 +64,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Filesystem metrics](#k8s-filesystem-metrics)
   - [K8s Pod Volume metrics](#k8s-pod-volume-metrics)
   - [Container Runtime](#container-runtime)
-  - [K8s Pod Phase and Status Reason](#k8s-pod-phase-and-status-reason)
+  - [K8s Pod Status Phase and Reason](#k8s-pod-status-phase-and-reason)
 
 <!-- tocstop -->
 
@@ -450,6 +450,6 @@ The changes in their metrics are the following:
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                   |
 |------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
 | `k8s.pod.status_reason`    metric [1,6]                                            | `k8s.pod.status.reason` metric [0,1] with attribute `k8s.pod.status.reason` for the different reasons |
-| `k8s.pod.phase`       metric [1, 5]                                                | `k8s.pod.status.phase` metric [0,1] with attribute `k8s.pod.status.phase` for the different phases           |
+| `k8s.pod.phase`       metric [1, 5]                                                | `k8s.pod.status.phase` metric [0,1] with attribute `k8s.pod.phase` for the different phases           |
 
 <!-- prettier-ignore-end -->

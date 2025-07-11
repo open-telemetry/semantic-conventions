@@ -719,7 +719,7 @@ groups:
           The reason for the pod state. Corresponds to the `reason` field of the:
           [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core)
         examples: ['Evicted', 'NodeAffinity']
-      - id: k8s.pod.phase
+      - id: k8s.pod.status.phase
         type:
           members:
             - id: pending

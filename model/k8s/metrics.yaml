@@ -15,24 +15,6 @@ groups:
       The actual accuracy would depend on the instrumentation and operating system.
     instrument: gauge
     unit: "s"
-  - id: metric.k8s.pod.phase
-    type: metric
-    metric_name: k8s.pod.phase
-    annotations:
-      code_generation:
-        metric_value_type: int
-    stability: development
-    brief: "Describes number of K8s Pods that are currently in a given phase"
-    entity_associations:
-      - k8s.pod
-    note: |
-      All possible pod phases will be reported at each time interval to avoid missing metrics.
-      Only the value corresponding to the current phase will be non-zero.
-    instrument: updowncounter
-    unit: "{pod}"
-    attributes:
-      - ref: k8s.pod.phase
-        requirement_level: required
 
   # k8s.pod.status.* metrics
   - id: metric.k8s.pod.status.reason
@@ -42,7 +24,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Describes the number of K8s Pods that are currently in a state for a given reason"
+    brief: "Describes the number of K8s Pods that are currently in a state for a given reason."
     entity_associations:
       - k8s.pod
     note: |
@@ -52,6 +34,24 @@ groups:
     unit: "{pod}"
     attributes:
       - ref: k8s.pod.status.reason
+        requirement_level: required
+  - id: metric.k8s.pod.status.phase
+    type: metric
+    metric_name: k8s.pod.status.phase
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Describes number of K8s Pods that are currently in a given phase."
+    entity_associations:
+      - k8s.pod
+    note: |
+      All possible pod phases will be reported at each time interval to avoid missing metrics.
+      Only the value corresponding to the current phase will be non-zero.
+    instrument: updowncounter
+    unit: "{pod}"
+    attributes:
+      - ref: k8s.pod.status.phase
         requirement_level: required
 
   # k8s.pod.cpu.* metrics
