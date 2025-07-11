@@ -96,7 +96,7 @@ groups:
     type: metric
     metric_name: k8s.pod.filesystem.available
     stability: development
-    brief: "Pod filesystem available"
+    brief: "Pod filesystem available bytes"
     instrument: updowncounter
     unit: "By"
     annotations:
@@ -139,6 +139,8 @@ groups:
     entity_associations:
       - k8s.pod
     note: |
+      This may not equal capacity - available.
+
       This metric is derived from the
       [FsStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
       of the [PodStats.EphemeralStorage](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats)
@@ -303,7 +305,7 @@ groups:
     type: metric
     metric_name: k8s.node.filesystem.available
     stability: development
-    brief: "Node filesystem available"
+    brief: "Node filesystem available bytes"
     instrument: updowncounter
     unit: "By"
     annotations:
@@ -346,6 +348,8 @@ groups:
     entity_associations:
       - k8s.node
     note: |
+      This may not equal capacity - available.
+
       This metric is derived from the
       [FsStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
       of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats)
