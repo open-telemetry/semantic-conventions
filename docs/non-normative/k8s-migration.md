@@ -372,9 +372,9 @@ The changes in their metrics are the following:
 
 <!-- prettier-ignore-end -->
 
-### K8s Pod Phase and Status Reason
+### K8s Pod Status Phase and Reason
 
-The K8s Pod phase and Status Reason metrics implemented by the Collector and specifically the
+The K8s Pod Status Phase and Reason metrics implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
 receiver were introduced as semantic conventions in
 [#2075](https://github.com/open-telemetry/semantic-conventions/issues/2075)
