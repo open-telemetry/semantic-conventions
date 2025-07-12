@@ -19,7 +19,7 @@ and therefore inherit its attributes, like `k8s.pod.name` and `k8s.pod.uid`.
 
 - [Pod metrics](#pod-metrics)
   - [Metric: `k8s.pod.uptime`](#metric-k8spoduptime)
-  - [Metric: `k8s.pod.phase`](#metric-k8spodphase)
+  - [Metric: `k8s.pod.status.phase`](#metric-k8spodstatusphase)
   - [Metric: `k8s.pod.status.reason`](#metric-k8spodstatusreason)
   - [Metric: `k8s.pod.cpu.time`](#metric-k8spodcputime)
   - [Metric: `k8s.pod.cpu.usage`](#metric-k8spodcpuusage)
