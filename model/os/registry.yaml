@@ -70,11 +70,32 @@ groups:
           Human readable (not intended to be parsed) OS version information,
           like e.g. reported by `ver` or `lsb_release -a` commands.
         examples: ['Microsoft Windows [Version 10.0.18363.778]', 'Ubuntu 18.04.1 LTS']
+      - id: os.id
+        type: string
+        stability: development
+        brief: 'A system generated id for the OS'
+        note: 'On linux this is to be the id from the os.release file'
+        examples: ['android', 'centos', 'fedora', 'macos']
       - id: os.name
         type: string
         stability: development
         brief: 'Human readable operating system name.'
         examples: ['iOS', 'Android', 'Ubuntu']
+      - id: os.family
+        type: string[]
+        stability: development
+        brief: 'OS family (such as redhat, debian, freebsd, windows).'
+        note: 'Theses values could also be an os.id'
+        examples:
+          - ['android']
+          - ['rhel']
+          - ['fedora']
+          - ['arch']
+          - ['darwin']
+          - ['ubuntu']
+          - ['opensuse']
+          - ['gentoo']
+          - ['slackware']
       - id: os.version
         type: string
         stability: development
