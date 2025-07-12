@@ -24,6 +24,11 @@ groups:
               brief: >
                 Notification indicating that the MCP client has been initialized.
               stability: development
+            - id: notifications_progress
+              value: notifications/progress
+              brief: >
+                Notification indicating the progress for a long-running operation.
+              stability: development
             - id: ping
               value: ping
               brief: >
@@ -124,6 +129,12 @@ groups:
               brief: >
                 Notification indicating that the list of roots has changed.
               stability: development
+            - id: elicitation_create
+              value: elicitation/create
+              brief: >
+                Request from the server to elicit additional information from the
+                user via the client
+              stability: development
       - id: mcp.request.id
         type: string
         brief: >
@@ -159,7 +170,7 @@ groups:
       - id: mcp.request.argument
         type: template[string]
         brief: Additional arguments passed to the request within `params` object.
-          `<key>` being the normalized argument name name (lowercase), the value being the argument value.
+          `<key>` being the normalized argument name (lowercase), the value being the argument value.
         note: >
           Instrumentations SHOULD require an explicit configuration of which arguments
           are to be captured. Including all request arguments can be a security risk -

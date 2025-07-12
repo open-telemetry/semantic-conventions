@@ -11,7 +11,7 @@
 |---|---|---|---|---|
 | <a id="mcp-method-name" href="#mcp-method-name">`mcp.method.name`</a> | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="mcp-prompt-name" href="#mcp-prompt-name">`mcp.prompt.name`</a> | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="mcp-request-argument" href="#mcp-request-argument">`mcp.request.argument.<key>`</a> | string | Additional arguments passed to the request within `params` object. `<key>` being the normalized argument name name (lowercase), the value being the argument value. [1] | `mcp.request.argument.location="Seattle, WA"`; `mcp.request.argument.a="42"` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="mcp-request-argument" href="#mcp-request-argument">`mcp.request.argument.<key>`</a> | string | Additional arguments passed to the request within `params` object. `<key>` being the normalized argument name (lowercase), the value being the argument value. [1] | `mcp.request.argument.location="Seattle, WA"`; `mcp.request.argument.a="42"` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="mcp-request-id" href="#mcp-request-id">`mcp.request.id`</a> | string | This is a unique identifier for the request. | `42` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="mcp-resource-uri" href="#mcp-resource-uri">`mcp.resource.uri`</a> | string | The value of the resource uri. [2] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="mcp-session-id" href="#mcp-session-id">`mcp.session.id`</a> | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -29,11 +29,13 @@ Argument values SHOULD be recorded as JSON strings.
 | Value  | Description | Stability |
 |---|---|---|
 | `completion/complete` | Request to complete a prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `elicitation/create` | Request from the server to elicit additional information from the user via the client | ![Development](https://img.shields.io/badge/-development-blue) |
 | `initialize` | Request to initialize the MCP client. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `logging/setLevel` | Request to set the logging level. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/cancelled` | Notification cancelling a previously-issued request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/initialized` | Notification indicating that the MCP client has been initialized. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/message` | Notification indicating that a message has been received. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `notifications/progress` | Notification indicating the progress for a long-running operation. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/prompts/list_changed` | Notification indicating that the list of prompts has changed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/resources/list_changed` | Notification indicating that the list of resources has changed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/resources/updated` | Notification indicating that a resource has been updated. | ![Development](https://img.shields.io/badge/-development-blue) |

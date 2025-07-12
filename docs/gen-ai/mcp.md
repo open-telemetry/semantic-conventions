@@ -136,7 +136,7 @@ if the message is available.
 | [`network.transport`](/docs/registry/attributes/network.md) | string | The transport protocol used for the MCP session. [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Recommended` When `server.address` is set | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.request.argument.<key>`](/docs/registry/attributes/mcp.md) | string | Additional arguments passed to the request within `params` object. `<key>` being the normalized argument name name (lowercase), the value being the argument value. [7] | `mcp.request.argument.location="Seattle, WA"`; `mcp.request.argument.a="42"` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.request.argument.<key>`](/docs/registry/attributes/mcp.md) | string | Additional arguments passed to the request within `params` object. `<key>` being the normalized argument name (lowercase), the value being the argument value. [7] | `mcp.request.argument.location="Seattle, WA"`; `mcp.request.argument.a="42"` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
 error code, if one is returned.
@@ -144,7 +144,7 @@ error code, if one is returned.
 When JSON RPC call is successful, but an error is returned within the
 result payload, this attribute SHOULD be set to the low-cardinality
 string representation of the error. When
-[CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/d59fb7e3c1936730fbc93f6ef47790151b2e318a/schema/2025-03-26/schema.ts#L698)
+[CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/9c8a44e47e16b789a1f9d47c89ea23ed13a37cf9/schema/2025-06-18/schema.ts#L715)
 is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
@@ -178,11 +178,13 @@ Argument values SHOULD be recorded as JSON strings.
 | Value  | Description | Stability |
 |---|---|---|
 | `completion/complete` | Request to complete a prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `elicitation/create` | Request from the server to elicit additional information from the user via the client | ![Development](https://img.shields.io/badge/-development-blue) |
 | `initialize` | Request to initialize the MCP client. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `logging/setLevel` | Request to set the logging level. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/cancelled` | Notification cancelling a previously-issued request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/initialized` | Notification indicating that the MCP client has been initialized. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/message` | Notification indicating that a message has been received. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `notifications/progress` | Notification indicating the progress for a long-running operation. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/prompts/list_changed` | Notification indicating that the list of prompts has changed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/resources/list_changed` | Notification indicating that the list of resources has changed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/resources/updated` | Notification indicating that a resource has been updated. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -275,7 +277,7 @@ if the message is available.
 | [`mcp.session.id`](/docs/registry/attributes/mcp.md) | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | string | The version of JSON RPC protocol used. | `1.1`; `2` | `Recommended` when it's not `2.0`. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.transport`](/docs/registry/attributes/network.md) | string | The transport protocol used for the MCP session. [6] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`mcp.request.argument.<key>`](/docs/registry/attributes/mcp.md) | string | Additional arguments passed to the request within `params` object. `<key>` being the normalized argument name name (lowercase), the value being the argument value. [7] | `mcp.request.argument.location="Seattle, WA"`; `mcp.request.argument.a="42"` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`mcp.request.argument.<key>`](/docs/registry/attributes/mcp.md) | string | Additional arguments passed to the request within `params` object. `<key>` being the normalized argument name (lowercase), the value being the argument value. [7] | `mcp.request.argument.location="Seattle, WA"`; `mcp.request.argument.a="42"` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
 error code, if one is returned.
@@ -283,7 +285,7 @@ error code, if one is returned.
 When JSON RPC call is successful, but an error is returned within the
 result payload, this attribute SHOULD be set to the low-cardinality
 string representation of the error. When
-[CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/d59fb7e3c1936730fbc93f6ef47790151b2e318a/schema/2025-03-26/schema.ts#L698)
+[CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/9c8a44e47e16b789a1f9d47c89ea23ed13a37cf9/schema/2025-06-18/schema.ts#L715)
 is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
@@ -317,11 +319,13 @@ Argument values SHOULD be recorded as JSON strings.
 | Value  | Description | Stability |
 |---|---|---|
 | `completion/complete` | Request to complete a prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `elicitation/create` | Request from the server to elicit additional information from the user via the client | ![Development](https://img.shields.io/badge/-development-blue) |
 | `initialize` | Request to initialize the MCP client. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `logging/setLevel` | Request to set the logging level. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/cancelled` | Notification cancelling a previously-issued request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/initialized` | Notification indicating that the MCP client has been initialized. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/message` | Notification indicating that a message has been received. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `notifications/progress` | Notification indicating the progress for a long-running operation. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/prompts/list_changed` | Notification indicating that the list of prompts has changed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/resources/list_changed` | Notification indicating that the list of resources has changed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/resources/updated` | Notification indicating that a resource has been updated. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -397,7 +401,7 @@ error code, if one is returned.
 When JSON RPC call is successful, but an error is returned within the
 result payload, this attribute SHOULD be set to the low-cardinality
 string representation of the error. When
-[CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/d59fb7e3c1936730fbc93f6ef47790151b2e318a/schema/2025-03-26/schema.ts#L698)
+[CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/9c8a44e47e16b789a1f9d47c89ea23ed13a37cf9/schema/2025-06-18/schema.ts#L715)
 is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
@@ -426,11 +430,13 @@ It SHOULD be set to `pipe` if the transport is stdio.
 | Value  | Description | Stability |
 |---|---|---|
 | `completion/complete` | Request to complete a prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `elicitation/create` | Request from the server to elicit additional information from the user via the client | ![Development](https://img.shields.io/badge/-development-blue) |
 | `initialize` | Request to initialize the MCP client. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `logging/setLevel` | Request to set the logging level. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/cancelled` | Notification cancelling a previously-issued request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/initialized` | Notification indicating that the MCP client has been initialized. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/message` | Notification indicating that a message has been received. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `notifications/progress` | Notification indicating the progress for a long-running operation. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/prompts/list_changed` | Notification indicating that the list of prompts has changed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/resources/list_changed` | Notification indicating that the list of resources has changed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/resources/updated` | Notification indicating that a resource has been updated. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -502,7 +508,7 @@ error code, if one is returned.
 When JSON RPC call is successful, but an error is returned within the
 result payload, this attribute SHOULD be set to the low-cardinality
 string representation of the error. When
-[CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/d59fb7e3c1936730fbc93f6ef47790151b2e318a/schema/2025-03-26/schema.ts#L698)
+[CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/9c8a44e47e16b789a1f9d47c89ea23ed13a37cf9/schema/2025-06-18/schema.ts#L715)
 is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
@@ -527,11 +533,13 @@ It SHOULD be set to `pipe` if the transport is stdio.
 | Value  | Description | Stability |
 |---|---|---|
 | `completion/complete` | Request to complete a prompt. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `elicitation/create` | Request from the server to elicit additional information from the user via the client | ![Development](https://img.shields.io/badge/-development-blue) |
 | `initialize` | Request to initialize the MCP client. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `logging/setLevel` | Request to set the logging level. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/cancelled` | Notification cancelling a previously-issued request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/initialized` | Notification indicating that the MCP client has been initialized. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/message` | Notification indicating that a message has been received. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `notifications/progress` | Notification indicating the progress for a long-running operation. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/prompts/list_changed` | Notification indicating that the list of prompts has changed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/resources/list_changed` | Notification indicating that the list of resources has changed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `notifications/resources/updated` | Notification indicating that a resource has been updated. | ![Development](https://img.shields.io/badge/-development-blue) |
