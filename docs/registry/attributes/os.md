@@ -13,12 +13,15 @@ The operating system (OS) on which the process represented by this resource is r
 |---|---|---|---|---|
 | <a id="os-build-id" href="#os-build-id">`os.build_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Unique identifier for a particular build or compilation of the operating system. | `TQ3C.230805.001.B2`; `20E247`; `22621` |
 | <a id="os-description" href="#os-description">`os.description`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` |
-| <a id="os-family" href="#os-family">`os.family`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | OS family (such as redhat, debian, freebsd, windows). [1] | `["android"]`; `["rhel"]`; `["fedora"]`; `["arch"]`; `["darwin"]`; `["ubuntu"]`; `["opensuse"]`; `["gentoo"]`; `["slackware"]` |
-| <a id="os-name" href="#os-name">`os.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` |
+| <a id="os-family" href="#os-family">`os.family`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | A collection of `os.id` that this os is like. [1] | `["android"]`; `["fedora", "rhel"]`; `["arch"]`; `["darwin"]`; `["ubuntu"]`; `["opensuse"]`; `["gentoo"]`; `["slackware"]` |
+| <a id="os-id" href="#os-id">`os.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string to uniquely identify the os without the version [2] | `android`; `centos`; `fedora`; `macosx` |
+| <a id="os-name" href="#os-name">`os.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Human readable operating system name. | `Centos Stream`; `Arch Linux`; `Ubuntu` |
 | <a id="os-type" href="#os-type">`os.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The operating system type. | `windows`; `linux`; `darwin` |
 | <a id="os-version" href="#os-version">`os.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` |
 
-**[1] `os.family`:** Theses values could also be an os.name
+**[1] `os.family`:** This relationship is to only be desribed from the derivitative of the parent ie for Fedora this would be RHEL but RHEL would not have fedora.
+
+**[2] `os.id`:** On linux this is to be the id from the os.release file
 
 ---
 
