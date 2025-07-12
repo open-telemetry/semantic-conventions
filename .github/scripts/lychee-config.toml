@@ -1,0 +1,25 @@
+include_fragments = true
+
+accept = ["200..=299", "403"]
+
+exclude = [
+    "^https://www.foo.bar",
+    # excluding links to pull requests and issues is done for performance
+    "^https://github.com/open-telemetry/semantic-conventions/(pull|issues)/\\d+$",
+    "^https://github.com/open-telemetry/opentelemetry-specification/(pull|issues)/\\d+$",
+    # TODO (lmolkova) treat timeout as not a failure?
+    "^https://www.intersystems.com",
+    "^https://gcc.gnu.org",
+]
+
+# better to be safe and avoid failures
+max_retries = 6
+
+# better to be safe and avoid failures
+timeout = 60
+
+# insecure is currently needed for https://osi-model.com
+insecure = true
+
+# this helps slow down the rate of requests to avoid rate limiting
+max_concurrency = 4

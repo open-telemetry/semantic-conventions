@@ -1,0 +1,23 @@
+{{- template.set_file_name("schema-diff.yaml") }}
+
+file_format: 1.1.0
+schema_url: https://opentelemetry.io/schemas/{{ctx.next_version}}
+versions:
+  {{ctx.next_version}}:
+{% if ctx.renames.registry_attributes | length > 0 %}
+    all:
+      changes:
+        - rename_attributes:
+            attribute_map:
+{% for attr in ctx.renames.registry_attributes %}
+              {{attr.old_name}}: {{attr.new_name}}
+{% endfor %}
+{% endif %}
+{% if ctx.renames.metrics | length > 0 %}
+    metrics:
+      changes:
+        - rename_metrics:
+{% for metric in ctx.renames.metrics %}
+            {{metric.old_name}}: {{metric.new_name}}
+{% endfor %}
+{% endif %}

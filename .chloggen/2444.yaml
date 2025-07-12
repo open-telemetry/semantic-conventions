@@ -1,0 +1,4 @@
+change_type: enhancement
+component: all
+note: Add `metric_value_type` code-generation annotation to all metric definitions.
+issues: [2444, 591]

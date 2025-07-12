@@ -31,12 +31,8 @@ jobs:
           fi
 
           version=${{ inputs.version }}
-          sed -i "0,/^schema_url: .*\/next$/s/\/next$/\/$version/" schema-next.yaml
-          sed -i "0,/^  next:$/s//  $version:/" schema-next.yaml
-          cp schema-next.yaml "schemas/$version"
+          make generate-schema-next SCHEMA_NEXT_VERSION=$version
           git add "schemas/$version"
-
-          sed -i "0,/^  $version:$/s//  next:\n  $version:/" schema-next.yaml
 
       - name: Update change log
         run: |
@@ -48,7 +44,7 @@ jobs:
           GH_TOKEN: ${{ secrets.OPENTELEMETRYBOT_GITHUB_TOKEN }}
         run: |
           version=${{ inputs.version }}
-          message="Prepare release v${version}"
+          message="[chore] Prepare release v${version}"
           body="Prepare release \`v${version}\`."
           branch="opentelemetrybot/prepare-release-v${version}"
 

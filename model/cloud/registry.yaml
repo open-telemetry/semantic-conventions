@@ -85,7 +85,7 @@ groups:
             with the resolved function version, as the same runtime instance may be invocable with
             multiple different aliases.
           - **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
-          - **Azure:** The [Fully Qualified Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
+          - **Azure:** The [Fully Qualified Resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
             *not* the function app, having the form
             `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
             This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
@@ -147,34 +147,90 @@ groups:
               value: 'aws_openshift'
               brief: Red Hat OpenShift on AWS (ROSA)
               stability: development
+            - id: azure.vm
+              value: 'azure.vm'
+              brief: Azure Virtual Machines
+              stability: development
+            - id: azure.container_apps
+              value: 'azure.container_apps'
+              brief: Azure Container Apps
+              stability: development
+            - id: azure.container_instances
+              value: 'azure.container_instances'
+              brief: Azure Container Instances
+              stability: development
+            - id: azure.aks
+              value: 'azure.aks'
+              brief: Azure Kubernetes Service
+              stability: development
+            - id: azure.functions
+              value: 'azure.functions'
+              brief: Azure Functions
+              stability: development
+            - id: azure.app_service
+              value: 'azure.app_service'
+              brief: Azure App Service
+              stability: development
+            - id: azure.openshift
+              value: 'azure.openshift'
+              brief: Azure Red Hat OpenShift
+              stability: development
             - id: azure_vm
               value: 'azure_vm'
               brief: Azure Virtual Machines
               stability: development
+              deprecated: "Replaced by `azure.vm`"
+              annotations:
+                code_generation:
+                  exclude: true
             - id: azure_container_apps
               value: 'azure_container_apps'
               brief: Azure Container Apps
               stability: development
+              deprecated: "Replaced by `azure.container_apps`"
+              annotations:
+                code_generation:
+                  exclude: true
             - id: azure_container_instances
               value: 'azure_container_instances'
               brief: Azure Container Instances
               stability: development
+              deprecated: "Replaced by `azure.container_instances`"
+              annotations:
+                code_generation:
+                  exclude: true
             - id: azure_aks
               value: 'azure_aks'
               brief: Azure Kubernetes Service
               stability: development
+              deprecated: "Replaced by `azure.aks`"
+              annotations:
+                code_generation:
+                  exclude: true
             - id: azure_functions
               value: 'azure_functions'
               brief: Azure Functions
               stability: development
+              deprecated: "Replaced by `azure.functions`"
+              annotations:
+                code_generation:
+                  exclude: true
             - id: azure_app_service
               value: 'azure_app_service'
               brief: Azure App Service
               stability: development
+              deprecated: "Replaced by `azure.app_service`"
+              annotations:
+                code_generation:
+                  exclude: true
             - id: azure_openshift
               value: 'azure_openshift'
               brief: Azure Red Hat OpenShift
               stability: development
+              deprecated: "Replaced by `azure.openshift`"
+              annotations:
+                code_generation:
+                  exclude: true
             - id: gcp_bare_metal_solution
               value: 'gcp_bare_metal_solution'
               brief: Google Bare Metal Solution (BMS)

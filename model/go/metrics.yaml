@@ -2,6 +2,9 @@ groups:
   - id: metric.go.memory.used
     type: metric
     metric_name: go.memory.used
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Memory used by the Go runtime."
     note: >
       Computed from `(/memory/classes/total:bytes - /memory/classes/heap/released:bytes)`.
@@ -15,6 +18,9 @@ groups:
   - id: metric.go.memory.limit
     type: metric
     metric_name: go.memory.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Go runtime memory limit configured by the user, if a limit exists."
     note: >
       Computed from `/gc/gomemlimit:bytes`.
@@ -26,6 +32,9 @@ groups:
   - id: metric.go.memory.allocated
     type: metric
     metric_name: go.memory.allocated
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Memory allocated to the heap by the application."
     note: >
       Computed from `/gc/heap/allocs:bytes`.
@@ -36,6 +45,9 @@ groups:
   - id: metric.go.memory.allocations
     type: metric
     metric_name: go.memory.allocations
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Count of allocations to the heap by the application."
     note: >
       Computed from `/gc/heap/allocs:objects`.
@@ -46,6 +58,9 @@ groups:
   - id: metric.go.memory.gc.goal
     type: metric
     metric_name: go.memory.gc.goal
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Heap size target for the end of the GC cycle."
     note: >
       Computed from `/gc/heap/goal:bytes`.
@@ -56,6 +71,9 @@ groups:
   - id: metric.go.goroutine.count
     type: metric
     metric_name: go.goroutine.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Count of live goroutines."
     note: >
       Computed from `/sched/goroutines:goroutines`.
@@ -66,6 +84,9 @@ groups:
   - id: metric.go.processor.limit
     type: metric
     metric_name: go.processor.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "The number of OS threads that can execute user-level Go code simultaneously."
     note: >
       Computed from `/sched/gomaxprocs:threads`.
@@ -76,6 +97,9 @@ groups:
   - id: metric.go.schedule.duration
     type: metric
     metric_name: go.schedule.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "The time goroutines have spent in the scheduler in a runnable state before actually running."
     note: >
       Computed from `/sched/latencies:seconds`.
@@ -87,6 +111,9 @@ groups:
   - id: metric.go.config.gogc
     type: metric
     metric_name: go.config.gogc
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Heap size target percentage configured by the user, otherwise 100."
     note: >
       The value range is [0.0,100.0].

@@ -81,9 +81,7 @@ This section contains suggestions on how to structure semantic convention artifa
 This section describes how to do code-generation with weaver.
 
 > [!IMPORTANT]
-> We're transitioning away from [build-tools](https://github.com/open-telemetry/build-tools/blob/main/semantic-conventions/README.md#code-generator)
-> to [opentelemetry-weaver](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md) to generate code for semantic conventions.
-> All new code-generation should be done using weaver, build-tools may become incompatible with future version of semantic conventions.
+> All code-generation should be done using [weaver](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md),
 > Weaver supports Semantic Conventions version starting from [1.26.0](https://github.com/open-telemetry/semantic-conventions/tree/v1.26.0).
 
 Code-generation is based on YAML definitions in the specific version of semantic conventions.
@@ -105,7 +103,8 @@ Check out [weaver code-generation documentation for more details](https://github
 
 ### Migrating from build-tools
 
-Migration from build-tools involves changing Jinja templates and adding a [weaver config file](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md#configuration-file---weaveryaml).
+Migration from [build-tools](https://github.com/open-telemetry/build-tools/blob/v0.25.0/semantic-conventions/README.md)
+involves changing Jinja templates and adding a [weaver config file](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md#configuration-file---weaveryaml).
 
 #### Weaver config
 

@@ -67,11 +67,13 @@ body:
         - area:k8s
         - area:linux
         - area:log
+        - area:mainframe
         - area:mcp
         - area:messaging
         - area:network
         - area:nodejs
         - area:oci
+        - area:openai
         - area:opentracing
         - area:os
         - area:otel
@@ -96,6 +98,7 @@ body:
         - area:v8js
         - area:vcs
         - area:webengine
+        - area:zos
         # End semconv area list
   - type: textarea
     attributes:

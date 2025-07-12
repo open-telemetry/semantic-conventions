@@ -164,6 +164,12 @@ groups:
     attributes:
       - ref: k8s.hpa.uid
       - ref: k8s.hpa.name
+      - ref: k8s.hpa.scaletargetref.kind
+        requirement_level: recommended
+      - ref: k8s.hpa.scaletargetref.name
+        requirement_level: recommended
+      - ref: k8s.hpa.scaletargetref.api_version
+        requirement_level: recommended
 
   - id: entity.k8s.resourcequota
     type: entity
