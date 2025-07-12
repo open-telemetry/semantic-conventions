@@ -61,7 +61,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Container metrics](#k8s-container-metrics)
   - [K8s ResourceQuota metrics](#k8s-resourcequota-metrics)
   - [K8s Node condition metrics](#k8s-node-condition-metrics)
-  - [K8s Pod Phase and Status Reason](#k8s-pod-phase-and-status-reason)
+  - [K8s Pod Status Phase and Reason](#k8s-pod-status-phase-and-reason)
 
 <!-- tocstop -->
 
