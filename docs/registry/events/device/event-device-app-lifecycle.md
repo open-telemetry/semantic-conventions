@@ -3,13 +3,15 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# Device
+# Event Device App Lifecycle
 
 ## Device App Lifecycle
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **Event Name:** `device.app.lifecycle`
+
+**Namespace:** [`device`](README.md)
 
 **Summary:** This event represents an occurrence of a lifecycle transition on Android or iOS platform.
 

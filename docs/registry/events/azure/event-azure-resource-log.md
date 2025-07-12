@@ -3,13 +3,15 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# Azure
+# Event Azure Resource Log
 
 ## Azure Resource Log
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **Event Name:** `azure.resource.log`
+
+**Namespace:** [`azure`](README.md)
 
 **Summary:** Describes Azure Resource Log event, see [Azure Resource Log Top-level Schema](https://learn.microsoft.com/azure/azure-monitor/essentials/resource-logs-schema#top-level-common-schema) for more details.
 

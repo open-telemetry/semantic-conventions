@@ -8,40 +8,29 @@
 {%- import 'body_field_table.j2' as body_table %}
 {%- import 'event_macros.j2' as event %}
 
-# {{ ctx.id | title_case | acronym }}
-{% for e in ctx.groups | sort(attribute='name') %}
-## {{ e.name | title_case | acronym }}
+# {{ ctx.namespace | title_case | acronym }}
 
-**Status:** {{ stability.badge(e.stability, e.deprecated) }}
+{%- if ctx.entities | length > 0 %}
+<details open>
+<summary style="font-size:1.5em">Entities</summary>
 
-**Event Name:** `{{ e.name }}`
+| Name | Summary | Status|
+| --- | --- | --- |{% for e in ctx.entities | sort(attribute='name') %}
+| [`{{ e.name }}`]({{e.id | kebab_case}}.md) | {{ e.brief | trim }} | {{ stability.badge(e.stability, e.deprecated) }} |{% endfor %}
 
-**Summary:** {{ e.brief | trim }}
-
-{%if e.note %}
-**Description:** {{ e.note | trim }}
-{% endif %}
-
-{%- if e.attributes | length > 0 %}
-### Attributes:
-{{ at.generate(e.attributes, "", "/docs/registry/attributes", e.lineage.attributes) | trim }}
+</details>
 {%- endif %}
 
-{%- if e.body %}
-### Body fields:
+{%- if ctx.events | length > 0 %}
+<details open>
+<summary style="font-size:1.5em">Events</summary>
 
-**Status:** {{ stability.badge(e.body.stability, e.body.deprecated) }}
+| Name | Summary | Status|
+| --- | --- | --- |{% for e in ctx.events | sort(attribute='name') %}
+| [`{{ e.name }}`]({{e.id | kebab_case}}.md) | {{ e.brief | trim }} | {{ stability.badge(e.stability, e.deprecated) }} |{% endfor %}
 
-**requirement:** {{ requirement.render({"level": e.body.requirement_level, "name": e.name}, notes) }}
-
-:warning: Body fields will be moved to complex attributes once the
-semantic convention tooling supports complex attributes
-(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
-
-{%- if e.body.fields != undefined and e.body.fields | length > 0 %}
-{{ body_table.generate(e.body.fields) }}
+</details>
 {%- endif %}
-{%- endif %}
-{% endfor %}
+
 <!-- markdownlint-restore -->
 

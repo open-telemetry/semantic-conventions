@@ -3,30 +3,15 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# App
-
-## App Screen Click
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**Event Name:** `app.screen.click`
-
-**Summary:** This event represents an instantaneous click on the screen of an application.
-
-
-**Description:** The `app.screen.click` event can be used to indicate that a user has clicked or tapped on the screen portion of an application. Clicks outside of an application's active area SHOULD NOT generate this event. This event does not differentiate between touch/mouse down and touch/mouse up. Implementations SHOULD give preference to generating this event at the time the click is complete, typically on touch release or mouse up. The location of the click event MUST be provided in absolute screen pixels.
-
-### Attributes:
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`app.screen.coordinate.x`](/docs/registry/attributes/app.md) | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.screen.coordinate.y`](/docs/registry/attributes/app.md) | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+# Event App Widget Click
 
 ## App Widget Click
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **Event Name:** `app.widget.click`
+
+**Namespace:** [`app`](README.md)
 
 **Summary:** This event indicates that an application widget has been clicked.
 

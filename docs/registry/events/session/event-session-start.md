@@ -3,29 +3,15 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# Session
-
-## Session End
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**Event Name:** `session.end`
-
-**Summary:** Indicates that a session has ended.
-
-
-**Description:** For instrumentation that tracks user behavior during user sessions, a `session.end` event SHOULD be emitted every time a session ends. When a session ends and continues as a new session, this event SHOULD be emitted prior to the `session.start` event.
-
-### Attributes:
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`session.id`](/docs/registry/attributes/session.md) | string | The ID of the session being ended. | `00112233-4455-6677-8899-aabbccddeeff` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+# Event Session Start
 
 ## Session Start
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **Event Name:** `session.start`
+
+**Namespace:** [`session`](README.md)
 
 **Summary:** Indicates that a new session has been started, optionally linking to the prior session.
 

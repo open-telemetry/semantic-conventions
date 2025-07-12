@@ -25,10 +25,10 @@ Currently, the following namespaces exist:
 </thead>
 <tbody>
 {% for bundle in ctx %}<tr>
-<td>{{ bundle.id | title_case | acronym }}</td><td></td><td></td>
+<td><a href="{{bundle.id | kebab_case}}/README.md">{{ bundle.id | title_case | acronym }}</a></td><td></td><td></td>
 </tr>
 {%- for group in bundle.groups | sort(attribute='name') -%}
-    {%- set my_file_name = bundle.id | kebab_case ~ ".md#" ~ (group.name | kebab_case) -%}
+    {%- set my_file_name = bundle.id | kebab_case ~ "/" ~ (group.id | kebab_case) ~ ".md" -%}
 <tr>
   <td></td>
   <td><a href="{{my_file_name}}">{{ group.name }}</a></td>

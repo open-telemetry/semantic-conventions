@@ -3,13 +3,15 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# Feature Flag
+# Event Feature Flag Evaluation
 
 ## Feature Flag Evaluation
 
 **Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
 
 **Event Name:** `feature_flag.evaluation`
+
+**Namespace:** [`feature_flag`](README.md)
 
 **Summary:** Defines feature flag evaluation as an event.
 

@@ -3,13 +3,15 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# Browser
+# Event Browser Web Vital
 
 ## Browser Web Vital
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **Event Name:** `browser.web_vital`
+
+**Namespace:** [`browser`](README.md)
 
 **Summary:** This event describes the website performance metrics introduced by Google, See [web vitals](https://web.dev/vitals).
 

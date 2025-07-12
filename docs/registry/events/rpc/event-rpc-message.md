@@ -3,13 +3,15 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# RPC
+# Event RPC Message
 
 ## RPC Message
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **Event Name:** `rpc.message`
+
+**Namespace:** [`rpc`](README.md)
 
 **Summary:** Describes a message sent or received within the context of an RPC call.
 

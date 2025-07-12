@@ -24,88 +24,88 @@ Currently, the following namespaces exist:
 </thead>
 <tbody>
 <tr>
-<td>App</td><td></td><td></td>
+<td><a href="app/README.md">App</a></td><td></td><td></td>
 </tr><tr>
   <td></td>
-  <td><a href="app.md#app-screen-click">app.screen.click</a></td>
+  <td><a href="app/event-app-screen-click.md">app.screen.click</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
-  <td><a href="app.md#app-widget-click">app.widget.click</a></td>
+  <td><a href="app/event-app-widget-click.md">app.widget.click</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
-<td>Az</td><td></td><td></td>
+<td><a href="az/README.md">Az</a></td><td></td><td></td>
 </tr><tr>
   <td></td>
-  <td><a href="az.md#az-resource-log">az.resource.log</a></td>
+  <td><a href="az/event-az-resource-log.md">az.resource.log</a></td>
   <td><img src="https://img.shields.io/badge/-deprecated-red" alt="Deprecated"/></td>
 </tr><tr>
-<td>Azure</td><td></td><td></td>
+<td><a href="azure/README.md">Azure</a></td><td></td><td></td>
 </tr><tr>
   <td></td>
-  <td><a href="azure.md#azure-resource-log">azure.resource.log</a></td>
+  <td><a href="azure/event-azure-resource-log.md">azure.resource.log</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
-<td>Browser</td><td></td><td></td>
+<td><a href="browser/README.md">Browser</a></td><td></td><td></td>
 </tr><tr>
   <td></td>
-  <td><a href="browser.md#browser-web-vital">browser.web_vital</a></td>
+  <td><a href="browser/event-browser-web-vital.md">browser.web_vital</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
-<td>Device</td><td></td><td></td>
+<td><a href="device/README.md">Device</a></td><td></td><td></td>
 </tr><tr>
   <td></td>
-  <td><a href="device.md#device-app-lifecycle">device.app.lifecycle</a></td>
+  <td><a href="device/event-device-app-lifecycle.md">device.app.lifecycle</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
-<td>Exception</td><td></td><td></td>
+<td><a href="exception/README.md">Exception</a></td><td></td><td></td>
 </tr><tr>
   <td></td>
-  <td><a href="exception.md#exception">exception</a></td>
+  <td><a href="exception/event-exception.md">exception</a></td>
   <td><img src="https://img.shields.io/badge/-stable-lightgreen" alt="Stable"/></td>
 </tr><tr>
-<td>Feature Flag</td><td></td><td></td>
+<td><a href="feature-flag/README.md">Feature Flag</a></td><td></td><td></td>
 </tr><tr>
   <td></td>
-  <td><a href="feature-flag.md#feature-flag-evaluation">feature_flag.evaluation</a></td>
+  <td><a href="feature-flag/event-feature-flag-evaluation.md">feature_flag.evaluation</a></td>
   <td><img src="https://img.shields.io/badge/-rc-mediumorchid" alt="Release Candidate"/></td>
 </tr><tr>
-<td>Gen AI</td><td></td><td></td>
+<td><a href="gen-ai/README.md">Gen AI</a></td><td></td><td></td>
 </tr><tr>
   <td></td>
-  <td><a href="gen-ai.md#gen-ai-assistant-message">gen_ai.assistant.message</a></td>
+  <td><a href="gen-ai/event-gen-ai-assistant-message.md">gen_ai.assistant.message</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
-  <td><a href="gen-ai.md#gen-ai-choice">gen_ai.choice</a></td>
+  <td><a href="gen-ai/event-gen-ai-choice.md">gen_ai.choice</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
-  <td><a href="gen-ai.md#gen-ai-system-message">gen_ai.system.message</a></td>
+  <td><a href="gen-ai/event-gen-ai-system-message.md">gen_ai.system.message</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
-  <td><a href="gen-ai.md#gen-ai-tool-message">gen_ai.tool.message</a></td>
+  <td><a href="gen-ai/event-gen-ai-tool-message.md">gen_ai.tool.message</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
-  <td><a href="gen-ai.md#gen-ai-user-message">gen_ai.user.message</a></td>
+  <td><a href="gen-ai/event-gen-ai-user-message.md">gen_ai.user.message</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
-<td>RPC</td><td></td><td></td>
+<td><a href="rpc/README.md">RPC</a></td><td></td><td></td>
 </tr><tr>
   <td></td>
-  <td><a href="rpc.md#rpc-message">rpc.message</a></td>
+  <td><a href="rpc/event-rpc-message.md">rpc.message</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
-<td>Session</td><td></td><td></td>
+<td><a href="session/README.md">Session</a></td><td></td><td></td>
 </tr><tr>
   <td></td>
-  <td><a href="session.md#session-end">session.end</a></td>
+  <td><a href="session/event-session-end.md">session.end</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
-  <td><a href="session.md#session-start">session.start</a></td>
+  <td><a href="session/event-session-start.md">session.start</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr>
 </tbody>

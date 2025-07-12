@@ -3,13 +3,15 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# Az
+# Event Az Resource Log
 
 ## Az Resource Log
 
 **Status:** ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.resource.log`.
 
 **Event Name:** `az.resource.log`
+
+**Namespace:** [`az`](README.md)
 
 **Summary:** Deprecated. Use `azure.resource.log` instead.
 

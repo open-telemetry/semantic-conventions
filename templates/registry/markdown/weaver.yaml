@@ -24,9 +24,18 @@ templates:
     application_mode: single
     file_name: 'events/README.md'
   - pattern: event_namespace.md.j2
-    filter: '.groups | map(select(.type == "event")) | group_by(.name | split(".") | .[0]) | map({id: .[0].id | split(".") | .[1], groups: .})'
+    filter: '.groups | map(select(.type | startswith("event"))) | group_by(.name | split(".") | .[0]) | map({
+      id: .[0].id,
+      groups: .,
+      entities: [],
+      events: . | map(select(.type == "event")),
+      namespace: .[0].id | split(".") | .[1]})'
     application_mode: each
-    file_name: 'events/{{ ctx.id | kebab_case }}.md'
+    file_name: 'events/{{ ctx.namespace | kebab_case }}//README.md'
+  - pattern: event_details.md.j2
+    filter: '.groups | map(select(.type == "event")) | group_by(.name) | map({id: .[0].id, groups: ., namespace: .[0].id | split(".") | .[1]})'
+    application_mode: each
+    file_name: 'events/{{ctx.namespace | kebab_case }}/{{ ctx.id | kebab_case }}.md'
 acronyms:
   - AI
   - AWS

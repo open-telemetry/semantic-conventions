@@ -3,13 +3,15 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# Exception
+# Event Exception
 
 ## Exception
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
 
 **Event Name:** `exception`
+
+**Namespace:** [`exception`](README.md)
 
 **Summary:** This event describes a single exception.
 
