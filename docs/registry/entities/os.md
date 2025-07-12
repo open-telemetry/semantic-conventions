@@ -20,14 +20,17 @@
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`os.type`](/docs/registry/attributes/os.md) | string | The operating system type. | `windows`; `linux`; `darwin` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`os.build_id`](/docs/registry/attributes/os.md) | string | Unique identifier for a particular build or compilation of the operating system. [1] | `TQ3C.230805.001.B2`; `20E247`; `22621` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.id`](/docs/registry/attributes/os.md) | string | A system generated id for the OS [1] | `android`; `centos`; `fedora`; `macos` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.build_id`](/docs/registry/attributes/os.md) | string | Unique identifier for a particular build or compilation of the operating system. [2] | `TQ3C.230805.001.B2`; `20E247`; `22621` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.description`](/docs/registry/attributes/os.md) | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`os.family`](/docs/registry/attributes/os.md) | string[] | OS family (such as redhat, debian, freebsd, windows). [2] | `["android"]`; `["rhel"]`; `["fedora"]`; `["arch"]`; `["darwin"]`; `["ubuntu"]`; `["opensuse"]`; `["gentoo"]`; `["slackware"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.family`](/docs/registry/attributes/os.md) | string[] | OS family (such as redhat, debian, freebsd, windows). [3] | `["android"]`; `["rhel"]`; `["fedora"]`; `["arch"]`; `["darwin"]`; `["ubuntu"]`; `["opensuse"]`; `["gentoo"]`; `["slackware"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.name`](/docs/registry/attributes/os.md) | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.type`](/docs/registry/attributes/os.md) | string | The operating system type. | `windows`; `linux`; `darwin` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.version`](/docs/registry/attributes/os.md) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `os.build_id`:** `build_id` values SHOULD be obtained from the following sources:
+**[1] `os.id`:** On linux this is to be the id from the os.release file
+
+**[2] `os.build_id`:** `build_id` values SHOULD be obtained from the following sources:
 
 | OS | Primary | Fallback |
 | ------- | ------- | ------- |
@@ -35,7 +38,7 @@
 | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
 | Linux | `BUILD_ID` from `/etc/os-release` | `BUILD_ID` from `/usr/lib/os-release`; <br> contents of `/proc/sys/kernel/osrelease`|
 
-**[2] `os.family`:** Theses values could also be an os.name
+**[3] `os.family`:** Theses values could also be an os.id
 
 ---
 

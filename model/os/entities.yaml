@@ -9,8 +9,9 @@ groups:
       In case of virtualized environments, this is the operating system as it is observed by
       the process, i.e., the virtualized guest rather than the underlying host.
     attributes:
-      - ref: os.type
+      - ref: os.id
         requirement_level: required
+      - ref: os.type
       - ref: os.description
       - ref: os.family
       - ref: os.name
