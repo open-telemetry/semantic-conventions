@@ -5,6 +5,9 @@ on:
     - cron: "46 * * * *"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   check-versions:
     runs-on: ubuntu-latest
@@ -43,6 +46,8 @@ jobs:
           echo "already-opened=$already_opened" >> $GITHUB_OUTPUT
 
   update-spec-repo-links:
+    permissions:
+      contents: write # required for pushing changes
     runs-on: ubuntu-latest
     if: |
       needs.check-versions.outputs.current-version != needs.check-versions.outputs.latest-version &&
