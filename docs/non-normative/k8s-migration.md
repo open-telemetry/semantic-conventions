@@ -59,6 +59,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s ResourceQuota resource](#k8s-resourcequota-resource)
   - [K8s ReplicationController resource](#k8s-replicationcontroller-resource)
   - [K8s Container metrics](#k8s-container-metrics)
+  - [K8s Pod metrics](#k8s-pod-metrics)
   - [K8s ResourceQuota metrics](#k8s-resourcequota-metrics)
   - [K8s Node condition metrics](#k8s-node-condition-metrics)
   - [K8s Filesystem metrics](#k8s-filesystem-metrics)
@@ -335,6 +336,27 @@ The changes in their metrics are the following:
 | `k8s.container.ephemeralstorage_request`     (type: `gauge`)                                       | `k8s.container.ephemeral_storage.request` (type: `updowncounter`) |
 | `k8s.container.restarts`                  (type: `gauge`)                          | `k8s.container.restart.count` (type: `updowncounter`)            |
 | `k8s.container.ready`                  (type: `gauge`)                             | `k8s.container.ready` (type: `updowncounter`)                    |
+| `k8s.container.cpu_limit_utilization` (type: `gauge`) | `k8s.container.cpu.limit_utilization` (type: `gauge`) |
+| `k8s.container.cpu_request_utilization` (type: `gauge`) | `k8s.container.cpu.request_utilization` (type: `gauge`) |
+
+<!-- prettier-ignore-end -->
+
+### K8s Pod metrics
+
+The K8s Pod metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in:
+
+- [#1489](https://github.com/open-telemetry/semantic-conventions/pull/1489)
+
+The changes in their metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                              |
+|------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| `k8s.pod.cpu_limit_utilization` (type: `gauge`) | `k8s.pod.cpu.limit_utilization` (type: `gauge`) |
+| `k8s.pod.cpu_request_utilization` (type: `gauge`) | `k8s.pod.cpu.request_utilization` (type: `gauge`) |
 
 <!-- prettier-ignore-end -->
 
