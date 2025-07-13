@@ -16,7 +16,7 @@ permissions:
 jobs:
   generate-component-labels:
     permissions:
-      issues: write # required for managing repository labels
+      issues: write # required for labeling PRs
     runs-on: ubuntu-latest
     if: ${{ github.repository_owner == 'open-telemetry' }}
     steps:
