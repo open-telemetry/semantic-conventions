@@ -17,6 +17,10 @@ groups:
         requirement_level:
           conditionally_required: If span describes operation on a single message or if the value applies to all messages in the batch.
         sampling_relevant: true
+      - ref: messaging.replyto.name
+        requirement_level:
+          conditionally_required: If span describes operation on a single message or if the value applies to all messages in the batch.
+        sampling_relevant: true
       - ref: messaging.message.id
         requirement_level:
           recommended: If span describes operation on a single message.
@@ -56,11 +60,30 @@ groups:
       - ref: messaging.destination.anonymous
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
+      - ref: messaging.replyto.partition.id
+        requirement_level:
+          recommended: When applicable.
+        sampling_relevant: true
+      - ref: messaging.replyto.template
+        requirement_level:
+          conditionally_required: >
+            If available. Instrumentations MUST NOT use `messaging.replyto.name` as template
+            unless low-cardinality of replyto name is guaranteed.
+        sampling_relevant: true
+      - ref: messaging.replyto.temporary
+        requirement_level:
+          conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
+      - ref: messaging.replyto.anonymous
+        requirement_level:
+          conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
       - ref: messaging.consumer.group.name
         requirement_level:
           conditionally_required: If applicable.
         sampling_relevant: true
       - ref: messaging.destination.subscription.name
+        requirement_level:
+          conditionally_required: If applicable.
+      - ref: messaging.replyto.subscription.name
         requirement_level:
           conditionally_required: If applicable.
         sampling_relevant: true
