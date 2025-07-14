@@ -6,6 +6,9 @@ on:
         description: 'The version to release, e.g. 1.30.0'
         required: true
 
+permissions:
+  contents: read
+
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
@@ -31,12 +34,7 @@ jobs:
           fi
 
           version=${{ inputs.version }}
-          cp schema-next.yaml "schemas/$version"
-
-          sed -i "s/  next:$/  next:\n  $version:/" schema-next.yaml
-
-          sed -i "s/^schema_url: .*/schema_url: https:\/\/opentelemetry.io\/schemas\/$version/" "schemas/$version"
-          sed -i "s/  next:$/  $version:/" "schemas/$version"
+          make generate-schema-next SCHEMA_NEXT_VERSION=$version
           git add "schemas/$version"
 
       - name: Update change log

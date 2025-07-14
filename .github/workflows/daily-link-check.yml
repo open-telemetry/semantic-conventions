@@ -8,13 +8,15 @@ on:
 
 permissions:
   contents: read
-  issues: write
 
 jobs:
   link-check:
     uses: ./.github/workflows/reusable-link-check.yml
 
   workflow-notification:
+    permissions: # required by the reusable workflow
+      contents: read
+      issues: write
     needs:
       - link-check
     if: always()
