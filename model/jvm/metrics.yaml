@@ -12,6 +12,9 @@ groups:
   - id: metric.jvm.memory.used
     type: metric
     metric_name: jvm.memory.used
+    annotations:
+      code_generation:
+        metric_value_type: int
     extends: attributes.jvm.memory
     brief: "Measure of memory used."
     instrument: updowncounter
@@ -21,6 +24,9 @@ groups:
   - id: metric.jvm.memory.committed
     type: metric
     metric_name: jvm.memory.committed
+    annotations:
+      code_generation:
+        metric_value_type: int
     extends: attributes.jvm.memory
     brief: "Measure of memory committed."
     instrument: updowncounter
@@ -30,6 +36,9 @@ groups:
   - id: metric.jvm.memory.limit
     type: metric
     metric_name: jvm.memory.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
     extends: attributes.jvm.memory
     brief: "Measure of max obtainable memory."
     instrument: updowncounter
@@ -39,6 +48,9 @@ groups:
   - id: metric.jvm.memory.used_after_last_gc
     type: metric
     metric_name: jvm.memory.used_after_last_gc
+    annotations:
+      code_generation:
+        metric_value_type: int
     extends: attributes.jvm.memory
     brief: "Measure of memory used, as measured after the most recent garbage collection event on this pool."
     instrument: updowncounter
@@ -48,6 +60,9 @@ groups:
   - id: metric.jvm.gc.duration
     type: metric
     metric_name: jvm.gc.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Duration of JVM garbage collection actions."
     instrument: histogram
     unit: "s"
@@ -63,6 +78,9 @@ groups:
   - id: metric.jvm.thread.count
     type: metric
     metric_name: jvm.thread.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Number of executing platform threads."
     instrument: updowncounter
     unit: "{thread}"
@@ -76,6 +94,9 @@ groups:
   - id: metric.jvm.class.loaded
     type: metric
     metric_name: jvm.class.loaded
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Number of classes loaded since JVM start."
     instrument: counter
     unit: "{class}"
@@ -84,6 +105,9 @@ groups:
   - id: metric.jvm.class.unloaded
     type: metric
     metric_name: jvm.class.unloaded
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Number of classes unloaded since JVM start."
     instrument: counter
     unit: "{class}"
@@ -92,6 +116,9 @@ groups:
   - id: metric.jvm.class.count
     type: metric
     metric_name: jvm.class.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Number of classes currently loaded."
     instrument: updowncounter
     unit: "{class}"
@@ -100,6 +127,9 @@ groups:
   - id: metric.jvm.cpu.count
     type: metric
     metric_name: jvm.cpu.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Number of processors available to the Java virtual machine."
     instrument: updowncounter
     unit: "{cpu}"
@@ -108,6 +138,9 @@ groups:
   - id: metric.jvm.cpu.time
     type: metric
     metric_name: jvm.cpu.time
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "CPU time used by the process as reported by the JVM."
     instrument: counter
     unit: "s"
@@ -116,6 +149,9 @@ groups:
   - id: metric.jvm.cpu.recent_utilization
     type: metric
     metric_name: jvm.cpu.recent_utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Recent CPU utilization for the process as reported by the JVM."
     note: >
       The value range is [0.0,1.0].

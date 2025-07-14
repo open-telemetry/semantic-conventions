@@ -39,6 +39,23 @@ groups:
               stability: development
         brief: "The result value of the sampler for this span"
         stability: development
+      - id: otel.span.parent.origin
+        type:
+          members:
+            - id: none
+              value: none
+              brief: 'The span does not have a parent, it is a root span'
+              stability: development
+            - id: local
+              value: local
+              brief: The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is false
+              stability: development
+            - id: remote
+              value: remote
+              brief: The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is true
+              stability: development
+        brief: "Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote)"
+        stability: development
   - id: registry.otel.scope
     type: attribute_group
     display_name: OTel Scope Attributes

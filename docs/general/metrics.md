@@ -95,7 +95,7 @@ using the OpenMetrics exposition format, use the
 **Status**: [Stable][DocumentStatus]
 
 Units should follow the
-[Unified Code for Units of Measure](https://unitsofmeasure.org/ucum.html).
+[Unified Code for Units of Measure](https://ucum.org/ucum).
 
 - Instruments for **utilization** metrics (that measure the fraction out of a
 total) are dimensionless and SHOULD use the default unit `1` (the unity).

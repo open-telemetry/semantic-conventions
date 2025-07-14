@@ -54,6 +54,7 @@ groups:
             - id: z_os
               value: 'z_os'
               brief: "Deprecated. Use `zos` instead."
+              deprecated: "Replaced by `zos`."
               stability: development
             - id: zos
               value: 'zos'

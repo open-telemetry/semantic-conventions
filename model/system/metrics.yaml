@@ -3,6 +3,9 @@ groups:
   - id: metric.system.uptime
     type: metric
     metric_name: system.uptime
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "The time the system has been running"
     note: |
@@ -17,6 +20,9 @@ groups:
   - id: metric.system.cpu.physical.count
     type: metric
     metric_name: system.cpu.physical.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Reports the number of actual physical processor cores on the hardware"
     note: "Calculated by multiplying the number of sockets by the number of cores per socket"
@@ -29,6 +35,9 @@ groups:
   - id: metric.system.cpu.logical.count
     type: metric
     metric_name: system.cpu.logical.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking"
     note: "Calculated by multiplying the number of sockets by the number of cores per socket, and then by the number of threads per core"
@@ -41,6 +50,9 @@ groups:
   - id: metric.system.cpu.time
     type: metric
     metric_name: system.cpu.time
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "Seconds each logical CPU spent on each mode"
     instrument: counter
@@ -55,6 +67,9 @@ groups:
   - id: metric.system.cpu.utilization
     type: metric
     metric_name: system.cpu.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "For each logical CPU, the utilization is calculated as the change in cumulative CPU time (cpu.time) over a measurement interval, divided by the elapsed time."
     instrument: gauge
@@ -69,6 +84,9 @@ groups:
   - id: metric.system.cpu.frequency
     type: metric
     metric_name: system.cpu.frequency
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Operating frequency of the logical CPU in Hertz."
     instrument: gauge
@@ -82,6 +100,9 @@ groups:
   - id: metric.system.memory.usage
     type: metric
     metric_name: system.memory.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Reports memory in use by state."
     note: |
@@ -97,6 +118,9 @@ groups:
   - id: metric.system.memory.limit
     type: metric
     metric_name: system.memory.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Total memory available in the system."
     note: |
@@ -110,6 +134,9 @@ groups:
   - id: metric.system.memory.shared
     type: metric
     metric_name: system.memory.shared
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Shared memory used (mostly by tmpfs)."
     note: |
@@ -123,6 +150,9 @@ groups:
   - id: metric.system.memory.utilization
     type: metric
     metric_name: system.memory.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: ""
     instrument: gauge
@@ -136,6 +166,9 @@ groups:
   - id: metric.system.paging.usage
     type: metric
     metric_name: system.paging.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Unix swap or windows pagefile usage"
     instrument: updowncounter
@@ -151,6 +184,9 @@ groups:
   - id: metric.system.paging.utilization
     type: metric
     metric_name: system.paging.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: ""
     instrument: gauge
@@ -166,6 +202,9 @@ groups:
   - id: metric.system.paging.faults
     type: metric
     metric_name: system.paging.faults
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: ""
     instrument: counter
@@ -179,6 +218,9 @@ groups:
     type: metric
     metric_name: system.paging.operations
     stability: development
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: ""
     instrument: counter
     unit: "{operation}"
@@ -192,6 +234,9 @@ groups:
   - id: metric.system.disk.io
     type: metric
     metric_name: system.disk.io
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: ""
     instrument: counter
@@ -205,6 +250,9 @@ groups:
   - id: metric.system.disk.operations
     type: metric
     metric_name: system.disk.operations
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: ""
     instrument: counter
@@ -218,6 +266,9 @@ groups:
   - id: metric.system.disk.io_time
     type: metric
     metric_name: system.disk.io_time
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "Time disk spent activated"
     instrument: counter
@@ -237,6 +288,9 @@ groups:
   - id: metric.system.disk.operation_time
     type: metric
     metric_name: system.disk.operation_time
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "Sum of the time each operation took to complete"
     instrument: counter
@@ -255,6 +309,9 @@ groups:
   - id: metric.system.disk.merged
     type: metric
     metric_name: system.disk.merged
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: ""
     instrument: counter
@@ -268,6 +325,9 @@ groups:
   - id: metric.system.disk.limit
     type: metric
     metric_name: system.disk.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The total storage capacity of the disk"
     instrument: updowncounter
@@ -281,6 +341,9 @@ groups:
   - id: metric.system.filesystem.usage
     type: metric
     metric_name: system.filesystem.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Reports a filesystem's space usage across different states."
     note: |
@@ -302,6 +365,9 @@ groups:
   - id: metric.system.filesystem.utilization
     type: metric
     metric_name: system.filesystem.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: ""
     instrument: gauge
@@ -320,6 +386,9 @@ groups:
   - id: metric.system.filesystem.limit
     type: metric
     metric_name: system.filesystem.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The total storage capacity of the filesystem"
     instrument: updowncounter
@@ -338,6 +407,9 @@ groups:
   - id: metric.system.network.dropped
     type: metric
     metric_name: system.network.dropped
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Count of packets that are dropped or discarded even though there was no error"
     instrument: counter
@@ -357,6 +429,9 @@ groups:
   - id: metric.system.network.packets
     type: metric
     metric_name: system.network.packets
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: ""
     instrument: counter
@@ -370,6 +445,9 @@ groups:
   - id: metric.system.network.errors
     type: metric
     metric_name: system.network.errors
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Count of network errors detected"
     instrument: counter
@@ -389,6 +467,9 @@ groups:
   - id: metric.system.network.io
     type: metric
     metric_name: system.network.io
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: ""
     instrument: counter
@@ -399,9 +480,12 @@ groups:
     entity_associations:
       - host
 
-  - id: metric.system.network.connections
+  - id: metric.system.network.connection.count
     type: metric
-    metric_name: system.network.connections
+    metric_name: system.network.connection.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: ""
     instrument: updowncounter
@@ -417,6 +501,9 @@ groups:
   - id: metric.system.process.count
     type: metric
     metric_name: system.process.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Total number of processes in each state"
     instrument: updowncounter
@@ -429,6 +516,9 @@ groups:
   - id: metric.system.process.created
     type: metric
     metric_name: system.process.created
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Total number of processes created over uptime of the host"
     instrument: counter
@@ -441,6 +531,9 @@ groups:
   - id: metric.system.linux.memory.available
     type: metric
     metric_name: system.linux.memory.available
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "An estimate of how much memory is available for starting new applications, without causing swapping"
     note: |
@@ -458,6 +551,9 @@ groups:
   - id: metric.system.linux.memory.slab.usage
     type: metric
     metric_name: system.linux.memory.slab.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Reports the memory used by the Linux kernel for managing caches of frequently used objects."
     note: |
