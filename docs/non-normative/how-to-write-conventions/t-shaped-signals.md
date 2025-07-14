@@ -56,6 +56,3 @@ implementation specific.
 For example, see [Database semantic conventions](/docs/database/README.md) where
 there is general guidance for spans about communicating with a database, and
 additionally there is database-specific guidance as an extension of the general.
-
-
-
