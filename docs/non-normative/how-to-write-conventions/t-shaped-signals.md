@@ -46,7 +46,7 @@ Examples include:
 
 ## Recommendations
 
-While defining semantic conventions can be a balance between geneating
+While defining semantic conventions can be a balance between generating
 broadly applicable signals and defining deep at the same time, it is recommended
 to start with the *broad* use cases and signals for a particular domain, and
 strive to provide the right level of abstraction first, before going deep.
