@@ -46,7 +46,16 @@ Examples include:
 
 ## Recommendations
 
-While defining semantic conventions can be a balance between generating
-broadly applicable signals and defining deep at the same time, it is recommended
-to start with the *broad* use cases and signals for a particular domain, and
-strive to provide the right level of abstraction first, before going deep.
+Defining semantic conventions is a balance between generating
+broadly applicable signals and ensuring rich observability for a specific
+technology. It is recommended to start with the *broad* use cases and signals
+for a particular domain first. After providing a baseline set of signals for
+that domain, then explore deeper integrations that may be vendor or
+implementation specific.
+
+For example, see [Database semantic conventions](/docs/database/README.md) where
+there is general guidance for spans about communicating with a database, and
+additionally there is database-specific guidance as an extension of the general.
+
+
+
