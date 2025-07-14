@@ -39,7 +39,7 @@ for new areas or make substantial changes to the existing ones.
 
 Please read [T-Shaped Signals](/docs/non-normative/how-to-write-conventions/t-shaped-signals.md)
 for guidance on how to approach creating Semantic Convnetions through defining
-key use cases for convnentions.
+key use cases for conventions.
 
 #### Defining attributes
 
