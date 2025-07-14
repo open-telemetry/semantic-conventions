@@ -1,0 +1,24 @@
+groups:
+  - id: registry.storage
+    type: attribute_group
+    display_name: General Storage Device Attributes
+    brief: "Describes Storage Device attributes"
+    attributes:
+      - id: storage.volume.state
+        type: string
+        note: |
+          The set of values are pulled directly from mdraid via 
+          https://github.com/prometheus/procfs/blob/master/mdstat.go
+        stability: development
+        brief: "The storage array activity state"
+        examples: ["active"]
+      - id: storage.volume.name
+        type: string
+        stability: development
+        brief: "The name of the storage volume."
+        examples: ["(identifier)"]
+      - id: storage.volume.mode
+        type: string
+        stability: development
+        brief: "The mode of the storage volume controller."
+        examples: ["raid"]

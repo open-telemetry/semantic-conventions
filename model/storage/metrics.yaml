@@ -1,8 +1,8 @@
 groups:
-  # raid.* metrics
-  - id: metric.raid.disk.count
+  # storage.* metrics
+  - id: metric.storage.disk.count
     type: metric
-    metric_name: raid.disk.count
+    metric_name: storage.disk.count
     stability: development
     brief: "Number of active/failed/spare disks of device."
     note: |
@@ -12,13 +12,15 @@ groups:
     unit: "{disk}"
     attributes:
       - ref: storage.volume.name
-      - ref: storage.disk.state
+      - ref: hw.state
+      - ref: hw.type
+      - ref: storage.volume.mode
     entity_associations:
       - host
 
-  - id: metric.raid.activity_state
+  - id: metric.storage.volume.state
     type: metric
-    metric_name: raid.activity_state
+    metric_name: storage.volume.state
     stability: development
     brief: "Reports the activity state of a RAID device"
     note: |
@@ -28,13 +30,14 @@ groups:
     unit: "{disk}"
     attributes:
       - ref: storage.volume.name
-      - ref: raid.disk.status
+      - ref: storage.volume.state
+      - ref: storage.volume.mode
     entity_associations:
       - host
 
-  - id: metric.raid.block.total
+  - id: metric.storage.volume.block.total
     type: metric
-    metric_name: raid.block.total
+    metric_name: storage.volume.block.total
     stability: development
     brief: "Number of blocks on device."
     note: |
@@ -44,12 +47,13 @@ groups:
     unit: "{disk}"
     attributes:
       - ref: storage.volume.name
+      - ref: storage.volume.mode
     entity_associations:
       - host
 
-  - id: metric.raid.block.synced
+  - id: metric.storage.volume.block.synced
     type: metric
-    metric_name: raid.block.synced
+    metric_name: storage.volume.block.synced
     stability: development
     brief: "Number of blocks on device."
     note: |
@@ -59,14 +63,15 @@ groups:
     unit: "{disk}"
     attributes:
       - ref: storage.volume.name
+      - ref: storage.volume.mode
     entity_associations:
       - host
 
-  - id: metric.raid.disk.assigned
+  - id: metric.storage.volume.disk.assigned
     type: metric
-    metric_name: raid.disk.assigned
+    metric_name: storage.volume.disk.assigned
     stability: development
-    brief: "Number of raid disks in a fully functional array for a RAID device."
+    brief: "Number of disks in a fully functional device array."
     note: |
       Reports the number of raid disks in a fully functional array for a RAID device.
       See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat) and [md](https://docs.kernel.org/admin-guide/md.html).
@@ -74,12 +79,13 @@ groups:
     unit: "{disk}"
     attributes:
       - ref: storage.volume.name
+      - ref: storage.volume.mode
     entity_associations:
       - host
 
-  - id: metric.raid.disk.degraded
+  - id: metric.storage.volume.disk.degraded
     type: metric
-    metric_name: raid.disk.degraded
+    metric_name: storage.volume.disk.degraded
     stability: development
     brief: "Number of degraded raid disks in an array for a RAID device."
     note: |
@@ -89,5 +95,6 @@ groups:
     unit: "{disk}"
     attributes:
       - ref: storage.volume.name
+      - ref: storage.volume.mode
     entity_associations:
       - host
