@@ -21,7 +21,7 @@ a problem with deep signals.
 
 These are conventions meant to provide a baseline observability experience
 across a domain. An example includes HTTP semantic conventions that allow
-general purpose dashboarding, alerting and diagnostics for HTTP
+general-purpose dashboarding, alerting, and diagnostics for HTTP
 (micro-)services. These signals should provide "horizontal" coverage for
 observability.
 
