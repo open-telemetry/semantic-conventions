@@ -38,7 +38,7 @@ for new areas or make substantial changes to the existing ones.
 >
 > This section contains non-normative guidance.
 
-Please read [T-Shaped Signals](/docs/non-normative/how-to-write-conventions/t-shaped-signals.md)
+Please read [T-Shaped Signals](t-shaped-signals.md)
 for guidance on how to approach creating Semantic Conventions through defining
 key use cases for conventions.
 
@@ -160,7 +160,7 @@ TBD
 
 #### Defining entities
 
-Follow the [Entity Modeling Guide](/docs/non-normative/how-to-write-conventions/resource-and-entities.md).
+Follow the [Entity Modeling Guide](resource-and-entities.md).
 
 #### Defining events
 
