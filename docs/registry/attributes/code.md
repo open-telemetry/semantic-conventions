@@ -16,7 +16,7 @@ These attributes provide context about source code
 | <a id="code-file-path" href="#code-file-path">`code.file.path`</a> | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Function'. This constraint is imposed to prevent redundancy and maintain data integrity. | `/usr/local/MyApplication/content_root/app/index.php` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="code-function-name" href="#code-function-name">`code.function.name`</a> | string | The method or function fully-qualified name without arguments. The value should fit the natural representation of the language runtime, which is also likely the same used within `code.stacktrace` attribute value. This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Function'. This constraint is imposed to prevent redundancy and maintain data integrity. [1] | `com.example.MyHttpService.serveRequest`; `GuzzleHttp\Client::transfer`; `fopen` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="code-line-number" href="#code-line-number">`code.line.number`</a> | int | The line number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`. This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Line'. This constraint is imposed to prevent redundancy and maintain data integrity. | `42` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="code-stacktrace" href="#code-stacktrace">`code.stacktrace`</a> | string | A stacktrace as a string in the natural representation for the language runtime. The representation is identical to [`exception.stacktrace`](/docs/exceptions/exceptions-spans.md#stacktrace-representation). This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Location'. This constraint is imposed to prevent redundancy and maintain data integrity. | `at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="code-stacktrace" href="#code-stacktrace">`code.stacktrace`</a> | string | A stacktrace as a string in the natural representation for the language runtime. This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Location'. This constraint is imposed to prevent redundancy and maintain data integrity. [2] | `at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `code.function.name`:** Values and format depends on each language runtime, thus it is impossible to provide an exhaustive list of examples.
 The values are usually the same (or prefixes of) the ones found in native stack trace representation stored in
@@ -33,6 +33,38 @@ Examples:
 * Erlang: `opentelemetry_ctx:new`
 * Rust: `playground::my_module::my_cool_func`
 * C function: `fopen`
+
+**[2] `code.stacktrace`:** The table below, adapted from [Google Cloud][gcp-error-reporting], includes
+possible representations of stacktraces in various languages. The table is not
+meant to be a recommendation for any particular language, although SIGs are free
+to adopt them if they see fit.
+
+| Language   | Format                                                              |
+| ---------- | ------------------------------------------------------------------- |
+| C#         | the return value of [Exception.ToString()][csharp-stacktrace]       |
+| Elixir     | the return value of [Exception.format/3][elixir-stacktrace]         |
+| Erlang     | the return value of [`erl_error:format`][erlang-stacktrace]         |
+| Go         | the return value of [runtime.Stack][go-stacktrace]                  |
+| Java       | the contents of [Throwable.printStackTrace()][java-stacktrace]      |
+| Javascript | the return value of [error.stack][js-stacktrace] as returned by V8  |
+| Python     | the return value of [traceback.format_exc()][python-stacktrace]     |
+| Ruby       | the return value of [Exception.full_message][ruby-full-message]     |
+
+Backends can use the language specified methodology for generating a stacktrace
+combined with platform information from the
+[telemetry sdk resource][telemetry-sdk-resource] in order to extract more fine
+grained information from a stacktrace, if necessary.
+
+[gcp-error-reporting]: https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.events/report
+[java-stacktrace]: https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29
+[python-stacktrace]: https://docs.python.org/3/library/traceback.html#traceback.format_exc
+[js-stacktrace]: https://v8.dev/docs/stack-trace-api
+[ruby-full-message]: https://docs.ruby-lang.org/en/3.4/Exception.html#method-i-full_message
+[csharp-stacktrace]: https://docs.microsoft.com/dotnet/api/system.exception.tostring
+[go-stacktrace]: https://pkg.go.dev/runtime/debug#Stack
+[telemetry-sdk-resource]: ../resource/README.md#telemetry-sdk
+[erlang-stacktrace]: https://www.erlang.org/doc/apps/stdlib/erl_error.html#format_exception/3
+[elixir-stacktrace]: https://hexdocs.pm/elixir/1.14.3/Exception.html#format/3
 
 ## Deprecated Code Attributes
 

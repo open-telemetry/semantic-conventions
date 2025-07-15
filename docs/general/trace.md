@@ -25,7 +25,8 @@ The following semantic conventions for spans are defined:
 * [CloudEvents](/docs/cloudevents/README.md): Semantic Conventions for the CloudEvents spans.
 * [Cloud Providers](/docs/cloud-providers/README.md): Semantic Conventions for cloud providers spans.
 * [Database](/docs/database/database-spans.md): For SQL and NoSQL client call spans.
-* [Exceptions](/docs/exceptions/exceptions-spans.md): For recording exceptions associated with a span.
+* [Exceptions](/docs/registry/namespaces/exception/event-exception.md)
+[Exceptions]: For recording exceptions associated with a span.
 * [FaaS](/docs/faas/faas-spans.md): For [Function as a Service](https://wikipedia.org/wiki/Function_as_a_service) (e.g., AWS Lambda) spans.
 * [HTTP](/docs/http/http-spans.md): For HTTP client and server spans.
 * [Messaging](/docs/messaging/messaging-spans.md): For messaging systems (queues, publish/subscribe, etc.) spans.

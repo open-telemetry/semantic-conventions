@@ -1,16 +1,9 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Azure
+redirect: /docs/specs/semconv/registry/namespaces/azure/event-azure-resource-log/ 301!
 --->
 
-# Semantic conventions for Azure resource logs
+# Azure
 
-**Status**: [Development][DocumentStatus]
-
-This document describes Azure Resource Logs, see [Azure Resource Log Top-level Schema][AzureResourceSchema].
-
-Semantic conventions are defined for the following signals:
-
-* [Events](events.md)
-
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[AzureResourceSchema]: https://learn.microsoft.com/azure/azure-monitor/essentials/resource-logs-schema#top-level-common-schema
+This page has moved to
+[Azure](/docs/registry/namespaces/azure/event-azure-resource-log.md).
