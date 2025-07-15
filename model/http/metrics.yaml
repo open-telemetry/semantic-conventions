@@ -148,9 +148,9 @@ groups:
     metric_name: http.client.request.time_in_queue
     annotations:
       code_generation:
-        metric_value_type: int
+        metric_value_type: double
     stability: development
-    brief: "The amount of time requests spent on a queue waiting for an available connection."
+    brief: "The amount of time requests spent in a queue waiting for an available connection."
     instrument: histogram
     unit: "s"
     extends: metric_attributes.http.client
