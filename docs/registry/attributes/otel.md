@@ -104,7 +104,7 @@ Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concept
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="otel-scope-name" href="#otel-scope-name">`otel.scope.name`</a> | string | The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP). | `io.opentelemetry.contrib.mongodb` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="otel-scope-schema-url" href="#otel-scope-schema-url">`otel.scope.schema_url`</a> | string | The schema URL of the instrumentation scope. | `https://opentelemetry.io/schemas/1.31.0` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="otel-scope-schema-url" href="#otel-scope-schema-url">`otel.scope.schema_url`</a> | string | The schema URL of the instrumentation scope. | `https://opentelemetry.io/schemas/1.31.0` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="otel-scope-version" href="#otel-scope-version">`otel.scope.version`</a> | string | The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP). | `1.0.0` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ## Deprecated OTel Library Attributes
