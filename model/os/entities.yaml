@@ -4,14 +4,16 @@ groups:
     stability: development
     name: os
     brief: >
-      The operating system (OS) on which the process represented by this resource is running.
+      The operating system (OS) environment on which the process represented by this resource is running.
     note: >
       In case of virtualized environments, this is the operating system as it is observed by
       the process, i.e., the virtualized guest rather than the underlying host.
     attributes:
-      - ref: os.type
+      - ref: os.id
         requirement_level: required
+      - ref: os.type
       - ref: os.description
+      - ref: os.family
       - ref: os.name
       - ref: os.version
       - ref: os.build_id
