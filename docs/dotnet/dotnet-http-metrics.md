@@ -136,7 +136,7 @@ Meter name: `System.Net.Http`; Added in: .NET 8.0
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `http.client.request.time_in_queue` | Histogram | `s` | The amount of time requests spent on a queue waiting for an available connection. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `http.client.request.time_in_queue` | Histogram | `s` | The amount of time requests spent in a queue waiting for an available connection. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
