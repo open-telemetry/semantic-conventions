@@ -29,6 +29,7 @@ They may be used in any Profiles record they apply to.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`profile.frame.type`](/docs/registry/attributes/profile.md) | string | Describes the interpreter or compiler of a single frame. | `cpython` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`profile.mapping.symbolization`](/docs/registry/attributes/profile.md) | string | Describes the symbolization level of the mapping. | `symbols` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -48,6 +49,55 @@ They may be used in any Profiles record they apply to.
 | `ruby` | [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rust` | [Rust](https://wikipedia.org/wiki/Rust_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `v8js` | [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine)) | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`profile.mapping.symbolization` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `lines_inline` | Full, most-desired level of symbolization. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `lines_no_inline` | Limited debug information is available. [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `none` | No symbolization was attempted for the mapping. [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `symbols` | Limited symbol information is available. [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unspecified` | Unknown or unassigned. [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1]:** All of function and file names, line numbers and inline frames are
+available. This level indicates that full debug information was
+available for the binary. It is also what managed languages like
+Java provide.
+
+**[2]:** Function, file names and line numbers are assigned but the inline
+frames are not available.
+This is a somewhat exotic case specific to C++ binaries with split DWARF
+information. When symbolization is done against such a binary and the *.dwp
+file is not available, the DWARF is available only partially which results
+in this more complete but still partial symbolization level.
+This level is never practically useful for managed languages.
+
+**[3]:** No symbolization was attempted for the mapping and it's known to be a
+native mapping with no pre-populated symbol information. Function and file
+names, line numbers and inline frames are absent for all locations for the
+mapping.
+This level is common for a native (e.g. C++) mapping in a profile emitted
+by a production profiling collector since no symbolization is typically
+attempted on the host as debug information is usually not shipped to
+production machines.
+The level is rarely used with managed language mappings like Java since
+symbolization for those languages is typically done on the host.
+
+**[4]:** Function names are assigned but may be imprecise. File names, line numbers
+and inline frames are missing.
+This level is encountered when the symbolization is performed for a C++
+binary that has symbol table (.symtab) present, but no DWARF. Such a symbol
+table records top-level symbol names, but it won't have the more granular
+function and line breakdown.
+The level is rarely used with managed languages like Java since their
+symbolization information is typically more complete.
+
+**[5]:** Clients can try to determine the actual level heuristically from
+the presence of function and file names, line numbers and inline
+frames.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -78,3 +78,78 @@ groups:
                 [Rust](https://wikipedia.org/wiki/Rust_(programming_language))
               value: "rust"
               stability: development
+  - id: registry.profile.mapping
+    type: attribute_group
+    display_name: Profile Mapping Attributes
+    brief: >
+      Describes the mapping in more detail.
+    attributes:
+      - id: profile.mapping.symbolization
+        stability: development
+        brief: >
+          Describes the symbolization level of the mapping.
+        examples: ['symbols']
+        type:
+          members:
+            - id: unspecified
+              brief: >
+                Unknown or unassigned.
+              value: "unspecified"
+              stability: development
+              note: |
+                Clients can try to determine the actual level heuristically from
+                the presence of function and file names, line numbers and inline
+                frames.
+            - id: none
+              brief: >
+                No symbolization was attempted for the mapping.
+              value: "none"
+              stability: development
+              note: |
+                No symbolization was attempted for the mapping and it's known to be a
+                native mapping with no pre-populated symbol information. Function and file
+                names, line numbers and inline frames are absent for all locations for the
+                mapping.
+                This level is common for a native (e.g. C++) mapping in a profile emitted
+                by a production profiling collector since no symbolization is typically
+                attempted on the host as debug information is usually not shipped to
+                production machines.
+                The level is rarely used with managed language mappings like Java since
+                symbolization for those languages is typically done on the host.
+            - id: symbols
+              brief: >
+                Limited symbol information is available.
+              value: "symbols"
+              stability: development
+              note: |
+                Function names are assigned but may be imprecise. File names, line numbers
+                and inline frames are missing.
+                This level is encountered when the symbolization is performed for a C++
+                binary that has symbol table (.symtab) present, but no DWARF. Such a symbol
+                table records top-level symbol names, but it won't have the more granular
+                function and line breakdown.
+                The level is rarely used with managed languages like Java since their
+                symbolization information is typically more complete.
+            - id: lines_no_inline
+              brief: >
+                Limited debug information is available.
+              value: "lines_no_inline"
+              stability: development
+              note: |
+                Function, file names and line numbers are assigned but the inline
+                frames are not available.
+                This is a somewhat exotic case specific to C++ binaries with split DWARF
+                information. When symbolization is done against such a binary and the *.dwp
+                file is not available, the DWARF is available only partially which results
+                in this more complete but still partial symbolization level.
+                This level is never practically useful for managed languages.
+            - id: lines_inline
+              brief: >
+                Full, most-desired level of symbolization.
+              value: "lines_inline"
+              stability: development
+              note: |
+                All of function and file names, line numbers and inline frames are
+                available. This level indicates that full debug information was
+                available for the binary. It is also what managed languages like
+                Java provide.
