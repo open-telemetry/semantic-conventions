@@ -1,6 +1,6 @@
 # T-shaped Signals
 
-Semantic Conventions approaches observability with a T-Shaped mindset. This
+Semantic Conventions approaches observability with a T-shaped mindset. This
 splits signals into two types of a "T" shape:
 
 ```mermaid
