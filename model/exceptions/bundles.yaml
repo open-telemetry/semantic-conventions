@@ -1,5 +1,5 @@
 groups:
-  - id: logrecord.exception
+  - id: bundle.exception
     type: attribute_group
     display_name: Exception Attributes
     brief: >

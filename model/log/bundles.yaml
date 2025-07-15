@@ -1,5 +1,5 @@
 groups:
-  - id: logrecord.log.stream
+  - id: bundle.log.stream
     type: attribute_group
     display_name: Log I/O Stream Attributes
     extends: registry.log
@@ -11,7 +11,7 @@ groups:
       - ref: log.record.original
       - ref: log.record.uid
 
-  - id: logrecord.log.file    # TODO: should we move it to the file model?
+  - id: bundle.log.file    # TODO: should we move it to the file model?
     type: attribute_group
     display_name: Log File Attributes
     extends: registry.log.file
@@ -23,10 +23,10 @@ groups:
       - ref: log.record.original
       - ref: log.record.uid
 
-  - id: logrecord.log.record.details
+  - id: bundle.log.record
     type: attribute_group
     display_name: General Log Record Attributes
-    extends: registry.log.record.details
+    extends: registry.log.record
     brief: >
       This document defines the generic attributes that may be used in any Log Record.
     note: >

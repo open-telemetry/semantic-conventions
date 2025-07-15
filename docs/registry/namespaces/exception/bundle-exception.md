@@ -3,7 +3,7 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# Exception
+# Bundle Exception
 
 ## Exception Attributes
 

@@ -1,5 +1,5 @@
 groups:
-  - id: attributes.log.record.details
+  - id: attributes.log.record
     type: attribute_group
     brief: >
       The attributes described in this section are rather generic. They may be used in any Log Record they apply to.
