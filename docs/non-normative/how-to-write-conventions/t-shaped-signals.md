@@ -14,7 +14,7 @@ block-beta
 ```
 
 This matches an 80-20 rule, where 80% of users (or use-cases) can leverage the
-broadly applicable signals and 20% of users (or use-cases) will dive deep into
+broadly applicable signals and 20% of users (or use-cases) will dive deeply into
 a problem with deep signals.
 
 ## Broadly Applicable Signals
