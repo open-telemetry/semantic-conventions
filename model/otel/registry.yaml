@@ -75,7 +75,7 @@ groups:
         type: string
         brief: The schema URL of the instrumentation scope.
         examples: ['https://opentelemetry.io/schemas/1.31.0']
-        stability: stable
+        stability: development
   - id: registry.otel.component
     type: attribute_group
     display_name: OTel Component Attributes
