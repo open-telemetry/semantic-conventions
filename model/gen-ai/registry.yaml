@@ -103,6 +103,20 @@ groups:
         type: string
         brief: The name of the GenAI model a request is being made to.
         examples: 'gpt-4'
+
+      - id: gen_ai.model.version
+        stability: development
+        type: string
+        brief: The version identifier of the GenAI model being used for the request.
+        examples:
+          - "gpt-4-0613"
+          - "claude-2.1"
+          - "claude-3-sonnet"
+          - "Mistral-7B-v0.1"
+        note: >
+          Model versioning helps differentiate between iterations of a GenAI model, as providers often release improvements under a shared family name.
+          For example, OpenAI's GPT-4 has versioned identifiers like "gpt-4-0613", Claude uses "claude-2.1" or "claude-3-opus", and Mistral uses versions such as "Mistral-7B-v0.1".
+
       - id: gen_ai.request.max_tokens
         stability: development
         type: int
@@ -230,6 +244,12 @@ groups:
         type: string
         brief: Name of the tool utilized by the agent.
         examples: ["Flights"]
+      - id: gen_ai.tool.version
+        stability: development
+        type: string
+        brief: Version of the tool utilized by the agent.
+        note: "include version if tool schema exposes it."
+        examples: ["0.1.2"]
       - id: gen_ai.tool.call.id
         stability: development
         type: string
@@ -251,6 +271,63 @@ groups:
             Client-side operations are actions taken on the user's end or within the client application.
           Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
         examples: ['function', 'extension', 'datastore']
+
+      - id: gen_ai.tool.call.arguments
+        stability: development
+        type: any
+        brief: Parameters passed to the tool call.
+        note: >
+          TODO: we need to decide what to do with well-known function call params
+          (eg. filesearch) - do we want to define a format and normalize across models/frameworks or
+          leave them as is and record a complex object.
+
+          > [!WARNING]
+          > This attribute may contain sensitive information.
+
+          It's expected to be an object - in case a serialized string is available
+          to the instrumentation, the instrumentation SHOULD do the best effort to
+          deserialize it to an object.
+
+        examples: ['{"location": "San Francisco?", "date": "2025-10-01"}']
+
+      - id: gen_ai.tool.call.result
+        stability: development
+        type: any
+        brief: The result returned by the tool call (if any and if execution was successful).
+        note: |
+          TODO: we need to decide what to do with well-known function call results
+          (eg. filesearch) - do we want to define a format and normalize across
+          models/frameworks or leave it as is and record a complex object.
+          If we choose to support standardized formats, the complex object can carry a type discriminator along with the value, with the following guidance:
+          - For `text` type: Plain text string containing the tool's response
+          - For `json` type: Valid JSON string that can be parsed into an object or array
+          - For `table` type: JSON-stringified array of objects (recommended), Markdown table, or CSV-formatted string
+          - For `html` type: Valid HTML string containing structured markup
+          - For `image` type: Base64-encoded image string
+          - For `image_url` type: URL string pointing to an externally hosted image
+          - For `chart` type: Either base64-encoded chart image or code/data structure to render the chart
+
+          > [!WARNING]
+          > This attribute may contain sensitive information.
+
+        examples: ['{"temperature_range": {"high": 75, "low": 60}, "conditions": "sunny"}']
+
+      - id: gen_ai.tool.definitions
+        stability: development
+        type: any
+        brief: The list of tool definitions available to the GenAI agent or model.
+        note: >
+          The value of this attribute matches provider-specific tool definition
+          format.
+          It's expected to be an object - in case a serialized string is available
+          to the instrumentation, the instrumentation SHOULD do the best effort to
+          deserialize it to an object.
+
+          Since this attribute could be large, it's NOT RECOMMENDED to populate
+          it by default. Instrumentations MAY provide a way to enable
+          populating this attribute.
+        examples: ['[{"type":"function","name":"get_current_weather","description":"Get the current weather in a given location","parameters":{"type":"object","properties":{"location":{"type":"string","description":"The city and state, e.g. San Francisco, CA"},"unit":{"type":"string","enum":["celsius","fahrenheit"]}},"required":["location","unit"]}}]']
+      
       - id: gen_ai.data_source.id
         stability: development
         type: string
