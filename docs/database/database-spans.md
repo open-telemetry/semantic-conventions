@@ -15,6 +15,7 @@ linkTitle: Spans
 - [Generating a summary of the query](#generating-a-summary-of-the-query)
 - [Context propagation](#context-propagation)
   - [SQL commenter](#sql-commenter)
+  - [`service-name` propagator](#service-name-propagator)
 - [Semantic conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 
 <!-- tocstop -->
@@ -488,17 +489,31 @@ relatively short and its cardinality remains low comparing to the `db.query.text
 
 Instrumentations MAY propagate context using [SQL commenter](https://google.github.io/sqlcommenter/spec/) by injecting comments into SQL queries before execution. Context propagation SHOULD NOT be enabled by default, but instrumentation MAY allow users to opt into it.
 
-The instrumentation implementation MAY choose to either **append** the comment to the end of the query or **prepend** the comment at the beginning of the query, depending on the specific database system's requirements or preferences.
+The instrumentation implementation MAY choose to either **append** the comment to the end of the query or **prepend** the comment at the beginning of the query. Semantic conventions for individual database systems MAY specify different format depending on the specific database system's requirements or preferences.
 
-The instrumentation SHOULD allow users to pass a list of propagators to overwrite the default propagators.
+The instrumentation SHOULD allow users to pass a propagator to overwrite the global propagator.
 
-The instrumentation MAY provide the following propagators that users can use to overwrite the default propagators:
-
-- `service.name` propagator, a propagator that can inject the `service.name` resource attribute into carrier.
-
-Note that the performance of certain database systems may be impacted by high cardinality values in comments. The `service.name` propagator is useful for these databases with minimal performance impact while providing useful context.
+If the propagator does not provide any value, the instrumentation SHOULD NOT inject any comment into the query.
 
 **Examples:**
+
+- For a query `SELECT * FROM songs` with W3C TraceContext propagator:
+
+  ```sql
+  SELECT * FROM songs /*traceparent='00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01',tracestate='congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7'*/
+  ```
+
+### `service-name` propagator
+
+The `service-name` propagator is a propagator that can inject the `service.name` resource attribute into carrier.
+
+SDK contrib MAY provide this propagator for databases context propagation.
+
+The `service-name` propagator need to be manually configured by the user to know the `service.name` value if OpenTelemetry does not have a way to automatically fetch the `service.name` value.
+
+Note that the performance of certain database systems may be impacted by high cardinality values in comments. The `service-name` propagator is useful for these databases with minimal performance impact while providing useful context.
+
+**Examples with `service-name` propagator:**
 
 - For a query `SELECT * FROM songs` where `service.name` is `shoppingcart`:
 
