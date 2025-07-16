@@ -6,5 +6,5 @@ groups:
     attributes:
       - ref: profile.frame.type
         requirement_level: recommended
-      - ref: profile.mapping.symbolization
+      - ref: profile.pprof.mapping
         requirement_level: recommended
