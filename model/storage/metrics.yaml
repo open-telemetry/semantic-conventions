@@ -1,8 +1,8 @@
 groups:
   # storage.* metrics
-  - id: metric.storage.disk.count
+  - id: metric.storage.volume.disk.count
     type: metric
-    metric_name: storage.disk.count
+    metric_name: storage.volume.disk.count
     stability: development
     brief: "Number of active/failed/spare disks of device."
     note: |
@@ -18,9 +18,9 @@ groups:
     entity_associations:
       - host
 
-  - id: metric.storage.volume.state
+  - id: metric.storage.volume.status
     type: metric
-    metric_name: storage.volume.state
+    metric_name: storage.volume.status
     stability: development
     brief: "Reports the activity state of a RAID device"
     note: |
