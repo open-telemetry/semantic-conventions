@@ -4,7 +4,7 @@
 # Profile
 
 - [Profile Frame Attributes](#profile-frame-attributes)
-- [Pprof specific attributes for the Profiling signal.](#pprof-specific-attributes-for-the-profiling-signal)
+- [Pprof specific attributes for the Profiling signal](#pprof-specific-attributes-for-the-profiling-signal)
 
 ## Profile Frame Attributes
 
@@ -33,13 +33,13 @@ Describes the origin of a single frame in a Profile.
 | `rust` | [Rust](https://wikipedia.org/wiki/Rust_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `v8js` | [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine)) | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## Pprof specific attributes for the Profiling signal.
+## Pprof specific attributes for the Profiling signal
 
 Attributes specific to pprof that helps to convert Profiling signals.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="profile-pprof-mapping" href="#profile-pprof-mapping">`profile.pprof.mapping`</a> | string | Describes the resolution of symbolic information. | `` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="profile-pprof-mapping" href="#profile-pprof-mapping">`profile.pprof.mapping`</a> | string | Describes the resolution of symbolic information. | `has_filenames` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

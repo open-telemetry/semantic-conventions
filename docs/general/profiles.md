@@ -29,7 +29,7 @@ They may be used in any Profiles record they apply to.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`profile.frame.type`](/docs/registry/attributes/profile.md) | string | Describes the interpreter or compiler of a single frame. | `cpython` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`profile.pprof.mapping`](/docs/registry/attributes/profile.md) | string | Describes the resolution of symbolic information. | `` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`profile.pprof.mapping`](/docs/registry/attributes/profile.md) | string | Describes the resolution of symbolic information. | `has_filenames` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

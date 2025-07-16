@@ -80,7 +80,7 @@ groups:
               stability: development
   - id: registry.profile.pprof
     type: attribute_group
-    display_name: Pprof specific attributes for the Profiling signal.
+    display_name: Pprof specific attributes for the Profiling signal
     brief: >
       Attributes specific to pprof that helps to convert Profiling signals.
     attributes:
@@ -88,7 +88,7 @@ groups:
         stability: development
         brief: >
           Describes the resolution of symbolic information.
-        examples: ['']
+        examples: ['has_filenames']
         type:
           members:
             - id: has_functions
