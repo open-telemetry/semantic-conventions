@@ -52,7 +52,7 @@ Notes:
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `http.client.open_connections` | UpDownCounter | `{connection}` | Number of outbound HTTP connections that are currently active or idle on the client. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `http.client.open_connections` | UpDownCounter | `{connection}` | Number of outbound HTTP connections that are currently active or idle on the client. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -98,7 +98,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `http.client.connection.duration` | Histogram | `s` | The duration of the successfully established outbound HTTP connections. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `http.client.connection.duration` | Histogram | `s` | The duration of the successfully established outbound HTTP connections. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -136,21 +136,23 @@ Meter name: `System.Net.Http`; Added in: .NET 8.0
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `http.client.request.time_in_queue` | Histogram | `s` | The amount of time requests spent in a queue waiting for an available connection. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `http.client.request.time_in_queue` | Histogram | `s` | The amount of time requests spent in a queue waiting for an available connection. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`http.request.method`](/docs/registry/attributes/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If request has ended with an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.response.status_code`](/docs/registry/attributes/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required` If and only if one was received/sent. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.name`](/docs/registry/attributes/network.md) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [5] | `http`; `spdy` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/registry/attributes/network.md) | string | The actual version of the protocol used for network communication. [7] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.scheme`](/docs/registry/attributes/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.template`](/docs/registry/attributes/url.md) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [8] | `/users/{id}`; `/users/:id`; `/users?id={id}` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Conditionally Required` [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.request.method`](/docs/registry/attributes/http.md) | string | HTTP request method. [4] | `GET`; `POST`; `HEAD` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/registry/attributes/network.md) | string | The actual version of the protocol used for network communication. [5] | `1.1`; `2` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`url.scheme`](/docs/registry/attributes/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
+**[1] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+
+**[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[3] `server.port`:** If not the default (`80` for `http` scheme, 443 for `https`).
+
+**[4] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
 and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
@@ -165,52 +167,7 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[2] `server.address`:** In HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
-is passed in its [absolute-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
-the `server.address` SHOULD match the host component of the request target.
-
-In all other cases, `server.address` SHOULD match the host component of the
-`Host` header in HTTP/1.1 or the `:authority` pseudo-header in HTTP/2 and HTTP/3.
-
-**[3] `server.port`:** In the case of HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
-is passed in its [absolute-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
-the `server.port` SHOULD match the port component of the request target.
-
-In all other cases, `server.port` SHOULD match the port component of the
-`Host` header in HTTP/1.1 or the `:authority` pseudo-header in HTTP/2 and HTTP/3.
-
-**[4] `error.type`:** If the request fails with an error before response status code was sent or received,
-`error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
-or a component-specific low cardinality error identifier.
-
-If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
-`error.type` SHOULD be set to the status code number (represented as a string), an exception type (if thrown) or a component-specific error identifier.
-
-The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
-Instrumentations SHOULD document the list of errors they report.
-
-The cardinality of `error.type` within one instrumentation library SHOULD be low, but
-telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time, when no
-additional filters are applied.
-
-If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-**[5] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
-
-**[6] `network.protocol.name`:** If not `http` and `network.protocol.version` is set.
-
-**[7] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
-
-**[8] `url.template`:** The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
-
----
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+**[5] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
 ---
 
@@ -245,7 +202,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `http.client.active_requests` | UpDownCounter | `{request}` | Number of active HTTP requests. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `http.client.active_requests` | UpDownCounter | `{request}` | Number of active HTTP requests. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -462,7 +419,7 @@ Notes:
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `http.server.active_requests` | UpDownCounter | `{request}` | Number of active HTTP server requests. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `http.server.active_requests` | UpDownCounter | `{request}` | Number of active HTTP server requests. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
