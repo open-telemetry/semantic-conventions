@@ -3,12 +3,6 @@ groups:
     type: attribute_group
     brief: 'Database Client attributes'
     attributes:
-      - ref: server.address
-        brief: >
-          Name of the database host.
-      - ref: server.port
-        requirement_level:
-          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
       - ref: db.response.status_code
         requirement_level:
           conditionally_required: If the operation failed and status code is available.
@@ -35,6 +29,12 @@ groups:
       # - ref: db.system.name
       #   requirement_level:
       #     conditionally_required: if available
+      - ref: server.address
+        brief: >
+          Name of the database host.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
       - ref: db.operation.name
         requirement_level: required
       - ref: db.collection.name
