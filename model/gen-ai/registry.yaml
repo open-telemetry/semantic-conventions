@@ -104,19 +104,6 @@ groups:
         brief: The name of the GenAI model a request is being made to.
         examples: 'gpt-4'
 
-      - id: gen_ai.model.version
-        stability: development
-        type: string
-        brief: The version identifier of the GenAI model being used for the request.
-        examples:
-          - "gpt-4-0613"
-          - "claude-2.1"
-          - "claude-3-sonnet"
-          - "Mistral-7B-v0.1"
-        note: >
-          Model versioning helps differentiate between iterations of a GenAI model, as providers often release improvements under a shared family name.
-          For example, OpenAI's GPT-4 has versioned identifiers like "gpt-4-0613", Claude uses "claude-2.1" or "claude-3-opus", and Mistral uses versions such as "Mistral-7B-v0.1".
-
       - id: gen_ai.request.max_tokens
         stability: development
         type: int
@@ -244,12 +231,7 @@ groups:
         type: string
         brief: Name of the tool utilized by the agent.
         examples: ["Flights"]
-      - id: gen_ai.tool.version
-        stability: development
-        type: string
-        brief: Version of the tool utilized by the agent.
-        note: "include version if tool schema exposes it."
-        examples: ["0.1.2"]
+
       - id: gen_ai.tool.call.id
         stability: development
         type: string
