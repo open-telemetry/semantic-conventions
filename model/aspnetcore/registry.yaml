@@ -83,3 +83,8 @@ groups:
         stability: stable
         brief: ASP.NET Core exception middleware handling result
         examples: ["handled", "unhandled"]
+      - id: aspnetcore.memory_pool.owner
+        type: string
+        stability: development
+        brief: The name of the part of the app using the pool instance.
+        examples: ["Sockets", "NamedPipes"]
