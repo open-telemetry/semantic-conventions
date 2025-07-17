@@ -34,6 +34,15 @@ ASP.NET Core attributes
 
 ---
 
+`aspnetcore.authorization.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `failure` | Authorization failed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `success` | Authorization was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
 `aspnetcore.diagnostics.exception.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
