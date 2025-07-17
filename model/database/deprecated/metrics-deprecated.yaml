@@ -2,6 +2,9 @@ groups:
   - id: metric.db.client.connections.usage
     type: metric
     metric_name: db.client.connections.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed
@@ -18,6 +21,9 @@ groups:
   - id: metric.db.client.connections.idle.max
     type: metric
     metric_name: db.client.connections.idle.max
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed
@@ -32,6 +38,9 @@ groups:
   - id: metric.db.client.connections.idle.min
     type: metric
     metric_name: db.client.connections.idle.min
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed
@@ -46,6 +55,9 @@ groups:
   - id: metric.db.client.connections.max
     type: metric
     metric_name: db.client.connections.max
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed
@@ -60,6 +72,9 @@ groups:
   - id: metric.db.client.connections.pending_requests
     type: metric
     metric_name: db.client.connections.pending_requests
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed
@@ -74,6 +89,9 @@ groups:
   - id: metric.db.client.connections.timeouts
     type: metric
     metric_name: db.client.connections.timeouts
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed
@@ -88,6 +106,9 @@ groups:
   - id: metric.db.client.connections.create_time
     type: metric
     metric_name: db.client.connections.create_time
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     deprecated:
       reason: uncategorized
@@ -102,6 +123,9 @@ groups:
   - id: metric.db.client.connections.wait_time
     type: metric
     metric_name: db.client.connections.wait_time
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     deprecated:
       reason: uncategorized
@@ -116,6 +140,9 @@ groups:
   - id: metric.db.client.connections.use_time
     type: metric
     metric_name: db.client.connections.use_time
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     deprecated:
       reason: uncategorized
@@ -130,6 +157,9 @@ groups:
   - id: metric.db.client.cosmosdb.operation.request_charge
     type: metric
     metric_name: db.client.cosmosdb.operation.request_charge
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Deprecated, use `azure.cosmosdb.client.operation.request_charge` instead."
     deprecated:
       reason: renamed
@@ -165,6 +195,9 @@ groups:
   - id: metric.db.client.cosmosdb.active_instance.count
     type: metric
     metric_name: db.client.cosmosdb.active_instance.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Deprecated, use `azure.cosmosdb.client.active_instance.count` instead."
     deprecated:
       reason: renamed

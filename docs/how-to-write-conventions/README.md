@@ -10,10 +10,11 @@ linkTitle: How to define new semantic conventions
 
 - [Defining new conventions](#defining-new-conventions)
   - [Best practices](#best-practices)
+    - [Prototyping](#prototyping)
     - [Defining attributes](#defining-attributes)
     - [Defining spans](#defining-spans)
     - [Defining metrics](#defining-metrics)
-    - [Defining resources](#defining-resources)
+    - [Defining entities](#defining-entities)
     - [Defining events](#defining-events)
 - [Stabilizing existing conventions](#stabilizing-existing-conventions)
   - [Migration plan](#migration-plan)
@@ -36,6 +37,22 @@ for new areas or make substantial changes to the existing ones.
 > [!NOTE]
 >
 > This section contains non-normative guidance.
+
+Please read [T-Shaped Signals](t-shaped-signals.md)
+for guidance on how to approach creating Semantic Conventions through defining
+key use cases for conventions.
+
+#### Prototyping
+
+It is strongly recommended to prototype proposed conventions in one or more instrumentations and:
+
+- validate the feasibility of collecting the proposed telemetry and attributes, ensuring the information is available and can be gathered with reasonable overhead,
+
+- confirm that the proposed terminology applies across the diverse libraries and technologies covered by the conventions,
+
+- provide actionable guidance to instrumentation authors on when and how to collect attributes and record telemetry,
+
+- evaluate how the new or updated telemetry integrates with other instrumentation layers, identifying gaps, duplication, or opportunities to improve the end-user experience.
 
 #### Defining attributes
 
@@ -141,9 +158,9 @@ TBD
 
 TBD
 
-#### Defining resources
+#### Defining entities
 
-TBD
+Follow the [Entity Modeling Guide](resource-and-entities.md).
 
 #### Defining events
 
@@ -156,7 +173,6 @@ TBD
 
 TODO:
 
-- prototyping/implementation requirements
 - migration plan
 
 ### Migration plan
