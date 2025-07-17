@@ -168,6 +168,24 @@ deny contains yaml_schema_violation(description, group.id, "") if {
     description := sprintf("Group id '%s' is invalid. Span group 'id' must follow 'span.*.%s' pattern", [group.id, kind])
 }
 
+# brief is required on attributes
+deny contains yaml_schema_violation(description, group.id, attr.id) if {
+    group := input.groups[_]
+    attr := group.attributes[_]
+    property_or_null(attr, "brief") == null
+
+    description := sprintf("Attribute id '%s' in group '%s' is invalid. Attributes must have a brief.", [attr.id, group.id])
+}
+
+# brief is required on groups (except attribute groups)
+deny contains yaml_schema_violation(description, group.id, "") if {
+    group := input.groups[_]
+    group.type != "attribute_group"
+    property_or_null(group, "brief") == null
+
+    description := sprintf("Group id '%s' is invalid. Groups must have a brief.", [group.id])
+}
+
 yaml_schema_violation(description, group, attr) = violation if {
     violation := {
         "id": description,
@@ -185,3 +203,8 @@ name_regex := "^[a-z][a-z0-9]*([._][a-z0-9]+)*$"
 has_namespace_regex := "^[a-z0-9_]+\\.([a-z0-9._]+)+$"
 
 invalid_name_helper := "must consist of lowercase alphanumeric characters separated by '_' and '.'"
+
+property_or_null(obj, property) := obj[property] if {
+    obj[property]
+    obj[property] != ""
+} else := null
