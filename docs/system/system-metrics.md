@@ -287,10 +287,7 @@ This metric is [recommended][MetricRecommended].
 | `buffers` | buffers | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cached` | cached | ![Development](https://img.shields.io/badge/-development-blue) |
 | `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Actual used virtual memory in bytes. This is calculated based on the operating system.
-On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which
-more accurately reflects memory in active use by applications. If MemAvailable is not
-available, it may fall back to older formulas using free, cached, and buffers. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Actual used virtual memory in bytes. This is calculated based on the operating system. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications. If MemAvailable is not available, it may fall back to older formulas using free, cached, and buffers. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -368,10 +365,7 @@ This metric is [recommended][MetricRecommended].
 | `buffers` | buffers | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cached` | cached | ![Development](https://img.shields.io/badge/-development-blue) |
 | `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Actual used virtual memory in bytes. This is calculated based on the operating system.
-On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which
-more accurately reflects memory in active use by applications. If MemAvailable is not
-available, it may fall back to older formulas using free, cached, and buffers. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Actual used virtual memory in bytes. This is calculated based on the operating system. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications. If MemAvailable is not available, it may fall back to older formulas using free, cached, and buffers. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
