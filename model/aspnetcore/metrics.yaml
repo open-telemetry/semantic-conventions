@@ -6,6 +6,13 @@ groups:
       - ref: aspnetcore.rate_limiting.policy
         requirement_level:
           conditionally_required: if the matched endpoint for the request had a rate-limiting policy.
+  - id: aspnetcore.common.memory_pool.metrics.attributes
+    type: attribute_group
+    brief: Common ASP.NET Core memory pool metrics attributes
+    attributes:
+      - ref: aspnetcore.memory_pool.owner
+        requirement_level:
+          conditionally_required: if owner is specified when the memory pool is created.
 
   # routing
   - id: metric.aspnetcore.routing.match_attempts
@@ -135,3 +142,60 @@ groups:
     attributes:
       - ref: aspnetcore.rate_limiting.result
         requirement_level: required
+
+    # memory_pool
+  - id: metric.aspnetcore.memory_pool.current_memory
+    type: metric
+    metric_name: aspnetcore.memory_pool.current_memory
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Number of bytes that are currently pooled by the pool.
+    instrument: updowncounter
+    unit: "By"
+    note: |
+      Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.memory_pool.metrics.attributes
+
+  - id: metric.aspnetcore.memory_pool.total_allocated
+    type: metric
+    metric_name: aspnetcore.memory_pool.total_allocated
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Total number of allocations made by the pool.
+    instrument: counter
+    unit: "By"
+    note: |
+      Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.memory_pool.metrics.attributes
+
+  - id: metric.aspnetcore.memory_pool.evicted_memory
+    type: metric
+    metric_name: aspnetcore.memory_pool.evicted_memory
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Total number of bytes that have been evicted.
+    instrument: counter
+    unit: "By"
+    note: |
+      Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.memory_pool.metrics.attributes
+
+  - id: metric.aspnetcore.memory_pool.total_rented
+    type: metric
+    metric_name: aspnetcore.memory_pool.total_rented
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Total number of rented bytes from the pool.
+    instrument: counter
+    unit: "By"
+    note: |
+      Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.memory_pool.metrics.attributes

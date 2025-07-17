@@ -1,0 +1,4 @@
+change_type: enhancement
+component: aspnetcore
+note: Add ASP.NET Core memory pool metrics and update the registry.
+issues: [2532]
