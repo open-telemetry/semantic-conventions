@@ -336,7 +336,7 @@ All memory pool metrics are reported by the `Microsoft.AspNetCore.MemoryPool` me
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`aspnetcore.memory_pool.owner`](/docs/registry/attributes/aspnetcore.md) | string | The name of part of the app using the pool instance. | `Sockets`; `NamedPipes` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aspnetcore.memory_pool.owner`](/docs/registry/attributes/aspnetcore.md) | string | The name of the part of the app using the pool instance. | `Sockets`; `NamedPipes` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `aspnetcore.memory_pool.owner`:** if owner is specified when the memory pool is created.
 
@@ -362,7 +362,7 @@ All memory pool metrics are reported by the `Microsoft.AspNetCore.MemoryPool` me
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`aspnetcore.memory_pool.owner`](/docs/registry/attributes/aspnetcore.md) | string | The name of part of the app using the pool instance. | `Sockets`; `NamedPipes` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aspnetcore.memory_pool.owner`](/docs/registry/attributes/aspnetcore.md) | string | The name of the part of the app using the pool instance. | `Sockets`; `NamedPipes` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `aspnetcore.memory_pool.owner`:** if owner is specified when the memory pool is created.
 
@@ -388,7 +388,7 @@ All memory pool metrics are reported by the `Microsoft.AspNetCore.MemoryPool` me
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`aspnetcore.memory_pool.owner`](/docs/registry/attributes/aspnetcore.md) | string | The name of part of the app using the pool instance. | `Sockets`; `NamedPipes` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aspnetcore.memory_pool.owner`](/docs/registry/attributes/aspnetcore.md) | string | The name of the part of the app using the pool instance. | `Sockets`; `NamedPipes` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `aspnetcore.memory_pool.owner`:** if owner is specified when the memory pool is created.
 
@@ -414,7 +414,7 @@ All memory pool metrics are reported by the `Microsoft.AspNetCore.MemoryPool` me
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`aspnetcore.memory_pool.owner`](/docs/registry/attributes/aspnetcore.md) | string | The name of part of the app using the pool instance. | `Sockets`; `NamedPipes` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aspnetcore.memory_pool.owner`](/docs/registry/attributes/aspnetcore.md) | string | The name of the part of the app using the pool instance. | `Sockets`; `NamedPipes` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `aspnetcore.memory_pool.owner`:** if owner is specified when the memory pool is created.
 

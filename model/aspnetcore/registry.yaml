@@ -86,5 +86,5 @@ groups:
       - id: aspnetcore.memory_pool.owner
         type: string
         stability: development
-        brief: The name of part of the app using the pool instance.
+        brief: The name of the part of the app using the pool instance.
         examples: ["Sockets", "NamedPipes"]
