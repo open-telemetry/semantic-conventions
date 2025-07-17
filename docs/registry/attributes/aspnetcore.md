@@ -9,6 +9,10 @@ ASP.NET Core attributes
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
+| <a id="aspnetcore-authentication-result" href="#aspnetcore-authentication-result">`aspnetcore.authentication.result`</a> | string | The result of the authentication operation. | `success`; `failure` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-authentication-scheme" href="#aspnetcore-authentication-scheme">`aspnetcore.authentication.scheme`</a> | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-authorization-policy" href="#aspnetcore-authorization-policy">`aspnetcore.authorization.policy`</a> | string | The name of the authorization policy. | `RequireAdminRole` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-authorization-result" href="#aspnetcore-authorization-result">`aspnetcore.authorization.result`</a> | string | The result of calling the authorization service. | `success`; `failure` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aspnetcore-diagnostics-exception-result" href="#aspnetcore-diagnostics-exception-result">`aspnetcore.diagnostics.exception.result`</a> | string | ASP.NET Core exception middleware handling result. | `handled`; `unhandled` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="aspnetcore-diagnostics-handler-type" href="#aspnetcore-diagnostics-handler-type">`aspnetcore.diagnostics.handler.type`</a> | string | Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="aspnetcore-identity-authentication-scheme" href="#aspnetcore-identity-authentication-scheme">`aspnetcore.identity.authentication_scheme`</a> | string | The authentication scheme to sign in with. | `Identity.Application` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -27,6 +31,17 @@ ASP.NET Core attributes
 | <a id="aspnetcore-request-is-unhandled" href="#aspnetcore-request-is-unhandled">`aspnetcore.request.is_unhandled`</a> | boolean | Flag indicating if request was handled by the application pipeline. | `true` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="aspnetcore-routing-is-fallback" href="#aspnetcore-routing-is-fallback">`aspnetcore.routing.is_fallback`</a> | boolean | A value that indicates whether the matched route is a fallback route. | `true` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="aspnetcore-routing-match-status" href="#aspnetcore-routing-match-status">`aspnetcore.routing.match_status`</a> | string | Match result - success or failure | `success`; `failure` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="user-is-authenticated" href="#user-is-authenticated">`user.is_authenticated`</a> | boolean | A value that indicates whether the user is authenticated. | `true` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
+
+`aspnetcore.authentication.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `failure` | Authentication failed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `none` | No authentication information returned. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `success` | Authentication was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

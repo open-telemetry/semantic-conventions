@@ -380,3 +380,41 @@ groups:
         stability: development
         brief: Whether the sign in result was success or failure.
         examples: ["password", "two_factor"]
+      - id: aspnetcore.authentication.result
+        type:
+          members:
+            - id: success
+              value: 'success'
+              brief: "Authentication was successful."
+              stability: development
+            - id: failure
+              value: 'failure'
+              brief: "Authentication failed."
+              stability: development
+            - id: none
+              value: 'none'
+              brief: "No authentication information returned."
+              stability: development
+        stability: development
+        brief: The result of the authentication operation.
+        examples: ["success", "failure"]
+      - id: aspnetcore.authentication.scheme
+        type: string
+        stability: development
+        brief: The identifier that names a particular authentication handler.
+        examples: ["Cookies", "Bearer", "Identity.Application"]
+      - id: user.is_authenticated
+        type: boolean
+        stability: stable
+        brief: A value that indicates whether the user is authenticated.
+        examples: [true]
+      - id: aspnetcore.authorization.policy
+        type: string
+        stability: development
+        brief: The name of the authorization policy.
+        examples: ["RequireAdminRole"]
+      - id: aspnetcore.authorization.result
+        type: string
+        stability: development
+        brief: The result of calling the authorization service.
+        examples: ["success", "failure"]

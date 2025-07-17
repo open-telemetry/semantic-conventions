@@ -12,6 +12,19 @@ groups:
     attributes:
       - ref: aspnetcore.identity.user_type
         requirement_level: required
+  - id: aspnetcore.common.authentication.metrics.attributes
+    type: attribute_group
+    brief: Common ASP.NET Core authentication metrics attributes
+    attributes:
+      - ref: aspnetcore.authentication.scheme
+        requirement_level:
+          conditionally_required: if a scheme is specified during authentication.
+      - ref: error.type
+        brief: The full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException']
+        note: ""
 
   # routing
   - id: metric.aspnetcore.routing.match_attempts
@@ -443,6 +456,107 @@ groups:
     attributes:
       - ref: aspnetcore.identity.authentication_scheme
         requirement_level: required
+      - ref: error.type
+        brief: The full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException']
+        note: ""
+
+  - id: metric.aspnetcore.authentication.authenticate.duration
+    type: metric
+    metric_name: aspnetcore.authentication.authenticate.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: The authentication duration for a request.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.authentication.metrics.attributes
+    attributes:
+      - ref: aspnetcore.authentication.result
+        requirement_level: required
+
+  - id: metric.aspnetcore.authentication.challenges
+    type: metric
+    metric_name: aspnetcore.authentication.challenges
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of times a scheme is challenged.
+    instrument: counter
+    unit: "{request}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.authentication.metrics.attributes
+
+  - id: metric.aspnetcore.authentication.forbids
+    type: metric
+    metric_name: aspnetcore.authentication.forbids
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of times an authenticated user attempts to access a resource they are not permitted to access.
+    instrument: counter
+    unit: "{request}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.authentication.metrics.attributes
+
+  - id: metric.aspnetcore.authentication.sign_ins
+    type: metric
+    metric_name: aspnetcore.authentication.sign_ins
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of times a principal is signed in with a scheme.
+    instrument: counter
+    unit: "{request}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.authentication.metrics.attributes
+
+  - id: metric.aspnetcore.authentication.sign_outs
+    type: metric
+    metric_name: aspnetcore.authentication.sign_outs
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of times a principal is signed out with a scheme.
+    instrument: counter
+    unit: "{request}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.authentication.metrics.attributes
+
+  - id: metric.aspnetcore.authorization.attempts
+    type: metric
+    metric_name: aspnetcore.authorization.attempts
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of requests for which authorization was attempted.
+    instrument: counter
+    unit: "{request}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authorization`; Added in: ASP.NET Core 10.0
+    attributes:
+      - ref: user.is_authenticated
+        requirement_level: required
+      - ref: aspnetcore.authorization.policy
+        requirement_level:
+          conditionally_required: if a policy is specified.
+      - ref: aspnetcore.authorization.result
+        requirement_level:
+          conditionally_required: if no exception was thrown.
       - ref: error.type
         brief: The full name of exception type.
         requirement_level:
