@@ -105,9 +105,6 @@ groups:
         metric_value_type: int
     stability: development
     brief: "Reports memory in use by state."
-    note: |
-      The sum over all `system.memory.state` values SHOULD equal the total memory
-      available on the system, that is `system.memory.limit`.
     instrument: updowncounter
     unit: "By"
     attributes:
@@ -122,9 +119,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Total memory available in the system."
-    note: |
-      Its value SHOULD equal the sum of `system.memory.state` over all states.
+    brief: "Total virtual memory available in the system."
     instrument: updowncounter
     unit: "By"
     attributes: []

@@ -22,6 +22,11 @@ groups:
             - id: used
               value: 'used'
               stability: development
+              brief: |
+                Actual used virtual memory in bytes. This is calculated based on the operating system.
+                On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which
+                more accurately reflects memory in active use by applications. If MemAvailable is not
+                available, it may fall back to older formulas using free, cached, and buffers.
             - id: free
               value: 'free'
               stability: development

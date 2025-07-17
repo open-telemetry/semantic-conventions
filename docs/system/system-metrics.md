@@ -272,10 +272,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.usage` | UpDownCounter | `By` | Reports memory in use by state. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
-
-**[1]:** The sum over all `system.memory.state` values SHOULD equal the total memory
-available on the system, that is `system.memory.limit`.
+| `system.memory.usage` | UpDownCounter | `By` | Reports memory in use by state. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -290,7 +287,10 @@ available on the system, that is `system.memory.limit`.
 | `buffers` | buffers | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cached` | cached | ![Development](https://img.shields.io/badge/-development-blue) |
 | `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Actual used virtual memory in bytes. This is calculated based on the operating system.
+On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which
+more accurately reflects memory in active use by applications. If MemAvailable is not
+available, it may fall back to older formulas using free, cached, and buffers. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -310,9 +310,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.limit` | UpDownCounter | `By` | Total memory available in the system. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
-
-**[1]:** Its value SHOULD equal the sum of `system.memory.state` over all states.
+| `system.memory.limit` | UpDownCounter | `By` | Total virtual memory available in the system. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -370,7 +368,10 @@ This metric is [recommended][MetricRecommended].
 | `buffers` | buffers | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cached` | cached | ![Development](https://img.shields.io/badge/-development-blue) |
 | `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Actual used virtual memory in bytes. This is calculated based on the operating system.
+On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which
+more accurately reflects memory in active use by applications. If MemAvailable is not
+available, it may fall back to older formulas using free, cached, and buffers. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
