@@ -522,6 +522,15 @@ Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
 
 ---
 
+`aspnetcore.authorization.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `failure` | Authorization failed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `success` | Authorization was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
