@@ -103,30 +103,10 @@ Exceptions Metric is reported by the `Microsoft.AspNetCore.Diagnostics` meter.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.diagnostics.exception.result`](/docs/registry/attributes/aspnetcore.md) | string | ASP.NET Core exception middleware handling result. | `handled`; `unhandled` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. [1] | `System.OperationCanceledException`; `Contoso.MyException` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`aspnetcore.diagnostics.handler.type`](/docs/registry/attributes/aspnetcore.md) | string | Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` | `Conditionally Required` [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException`; `Contoso.MyException` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`aspnetcore.diagnostics.handler.type`](/docs/registry/attributes/aspnetcore.md) | string | Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
-
-When `error.type` is set to a type (e.g., an exception type), its
-canonical class name identifying the type within the artifact SHOULD be used.
-
-Instrumentations SHOULD document the list of errors they report.
-
-The cardinality of `error.type` within one instrumentation library SHOULD be low.
-Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to:
-
-- Use a domain-specific attribute
-- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
-
-**[2] `aspnetcore.diagnostics.handler.type`:** if and only if the exception was handled by this handler.
+**[1] `aspnetcore.diagnostics.handler.type`:** if and only if the exception was handled by this handler.
 
 ---
 
@@ -347,27 +327,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.error_code`](/docs/registry/attributes/aspnetcore.md) | string | The error code for a failed identity operation. | `DefaultError`; `PasswordMismatch` | `Conditionally Required` if an error was set on a failed identity result. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.result`](/docs/registry/attributes/aspnetcore.md) | string | The result of the identity operation. | `success`; `failure` | `Conditionally Required` if no exception was thrown. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type or the identity error code. [1] | `System.OperationCanceledException`; `PasswordMismatch` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
-
-When `error.type` is set to a type (e.g., an exception type), its
-canonical class name identifying the type within the artifact SHOULD be used.
-
-Instrumentations SHOULD document the list of errors they report.
-
-The cardinality of `error.type` within one instrumentation library SHOULD be low.
-Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to:
-
-- Use a domain-specific attribute
-- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type or the identity error code. | `System.OperationCanceledException`; `PasswordMismatch` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -412,27 +372,7 @@ it's RECOMMENDED to:
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.error_code`](/docs/registry/attributes/aspnetcore.md) | string | The error code for a failed identity operation. | `DefaultError`; `PasswordMismatch` | `Conditionally Required` if an error was set on a failed identity result. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.result`](/docs/registry/attributes/aspnetcore.md) | string | The result of the identity operation. | `success`; `failure` | `Conditionally Required` if no exception was thrown. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type or the identity error code. [1] | `System.OperationCanceledException`; `PasswordMismatch` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
-
-When `error.type` is set to a type (e.g., an exception type), its
-canonical class name identifying the type within the artifact SHOULD be used.
-
-Instrumentations SHOULD document the list of errors they report.
-
-The cardinality of `error.type` within one instrumentation library SHOULD be low.
-Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to:
-
-- Use a domain-specific attribute
-- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type or the identity error code. | `System.OperationCanceledException`; `PasswordMismatch` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -516,27 +456,7 @@ it's RECOMMENDED to:
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.error_code`](/docs/registry/attributes/aspnetcore.md) | string | The error code for a failed identity operation. | `DefaultError`; `PasswordMismatch` | `Conditionally Required` if an error was set on a failed identity result. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.result`](/docs/registry/attributes/aspnetcore.md) | string | The result of the identity operation. | `success`; `failure` | `Conditionally Required` if no exception was thrown. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type or the identity error code. [1] | `System.OperationCanceledException`; `PasswordMismatch` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
-
-When `error.type` is set to a type (e.g., an exception type), its
-canonical class name identifying the type within the artifact SHOULD be used.
-
-Instrumentations SHOULD document the list of errors they report.
-
-The cardinality of `error.type` within one instrumentation library SHOULD be low.
-Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to:
-
-- Use a domain-specific attribute
-- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type or the identity error code. | `System.OperationCanceledException`; `PasswordMismatch` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -579,27 +499,7 @@ it's RECOMMENDED to:
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.password_check_result`](/docs/registry/attributes/aspnetcore.md) | string | The result from checking the password. | `success`; `failure` | `Conditionally Required` if no exception was thrown. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. [1] | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
-
-When `error.type` is set to a type (e.g., an exception type), its
-canonical class name identifying the type within the artifact SHOULD be used.
-
-Instrumentations SHOULD document the list of errors they report.
-
-The cardinality of `error.type` within one instrumentation library SHOULD be low.
-Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to:
-
-- Use a domain-specific attribute
-- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -645,27 +545,7 @@ it's RECOMMENDED to:
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.token_purpose`](/docs/registry/attributes/aspnetcore.md) | string | The result from checking the password. | `success`; `failure` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. [1] | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
-
-When `error.type` is set to a type (e.g., an exception type), its
-canonical class name identifying the type within the artifact SHOULD be used.
-
-Instrumentations SHOULD document the list of errors they report.
-
-The cardinality of `error.type` within one instrumentation library SHOULD be low.
-Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to:
-
-- Use a domain-specific attribute
-- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -713,27 +593,7 @@ it's RECOMMENDED to:
 | [`aspnetcore.identity.token_purpose`](/docs/registry/attributes/aspnetcore.md) | string | The result from checking the password. | `success`; `failure` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.token_verified`](/docs/registry/attributes/aspnetcore.md) | string | The result of token verification. | `success`; `failure` | `Conditionally Required` if no exception was thrown. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. [1] | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
-
-When `error.type` is set to a type (e.g., an exception type), its
-canonical class name identifying the type within the artifact SHOULD be used.
-
-Instrumentations SHOULD document the list of errors they report.
-
-The cardinality of `error.type` within one instrumentation library SHOULD be low.
-Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to:
-
-- Use a domain-specific attribute
-- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -792,27 +652,7 @@ it's RECOMMENDED to:
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.sign_in.is_persistent`](/docs/registry/attributes/aspnetcore.md) | boolean | A flag indicating whether the sign in is persistent. |  | `Conditionally Required` if no exception was thrown. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.sign_in.result`](/docs/registry/attributes/aspnetcore.md) | string | Whether the sign in result was success or failure. | `password`; `two_factor` | `Conditionally Required` if no exception was thrown. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. [1] | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
-
-When `error.type` is set to a type (e.g., an exception type), its
-canonical class name identifying the type within the artifact SHOULD be used.
-
-Instrumentations SHOULD document the list of errors they report.
-
-The cardinality of `error.type` within one instrumentation library SHOULD be low.
-Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to:
-
-- Use a domain-specific attribute
-- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -871,27 +711,7 @@ it's RECOMMENDED to:
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.sign_in.result`](/docs/registry/attributes/aspnetcore.md) | string | Whether the sign in result was success or failure. | `password`; `two_factor` | `Conditionally Required` if no exception was thrown. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. [1] | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
-
-When `error.type` is set to a type (e.g., an exception type), its
-canonical class name identifying the type within the artifact SHOULD be used.
-
-Instrumentations SHOULD document the list of errors they report.
-
-The cardinality of `error.type` within one instrumentation library SHOULD be low.
-Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to:
-
-- Use a domain-specific attribute
-- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -938,27 +758,7 @@ it's RECOMMENDED to:
 | [`aspnetcore.identity.authentication_scheme`](/docs/registry/attributes/aspnetcore.md) | string | The authentication scheme to sign in with. | `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.sign_in.is_persistent`](/docs/registry/attributes/aspnetcore.md) | boolean | A flag indicating whether the sign in is persistent. |  | `Conditionally Required` if no exception was thrown. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. [1] | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
-
-When `error.type` is set to a type (e.g., an exception type), its
-canonical class name identifying the type within the artifact SHOULD be used.
-
-Instrumentations SHOULD document the list of errors they report.
-
-The cardinality of `error.type` within one instrumentation library SHOULD be low.
-Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to:
-
-- Use a domain-specific attribute
-- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -992,27 +792,7 @@ it's RECOMMENDED to:
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.authentication_scheme`](/docs/registry/attributes/aspnetcore.md) | string | The authentication scheme to sign in with. | `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. [1] | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
-
-When `error.type` is set to a type (e.g., an exception type), its
-canonical class name identifying the type within the artifact SHOULD be used.
-
-Instrumentations SHOULD document the list of errors they report.
-
-The cardinality of `error.type` within one instrumentation library SHOULD be low.
-Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to:
-
-- Use a domain-specific attribute
-- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -1046,27 +826,7 @@ it's RECOMMENDED to:
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.authentication_scheme`](/docs/registry/attributes/aspnetcore.md) | string | The authentication scheme to sign in with. | `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. [1] | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
-
-When `error.type` is set to a type (e.g., an exception type), its
-canonical class name identifying the type within the artifact SHOULD be used.
-
-Instrumentations SHOULD document the list of errors they report.
-
-The cardinality of `error.type` within one instrumentation library SHOULD be low.
-Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to:
-
-- Use a domain-specific attribute
-- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -1100,27 +860,7 @@ it's RECOMMENDED to:
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.authentication_scheme`](/docs/registry/attributes/aspnetcore.md) | string | The authentication scheme to sign in with. | `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. [1] | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
-
-When `error.type` is set to a type (e.g., an exception type), its
-canonical class name identifying the type within the artifact SHOULD be used.
-
-Instrumentations SHOULD document the list of errors they report.
-
-The cardinality of `error.type` within one instrumentation library SHOULD be low.
-Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
-should be prepared for `error.type` to have high cardinality at query time when no
-additional filters are applied.
-
-If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
-
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
-it's RECOMMENDED to:
-
-- Use a domain-specific attribute
-- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+| [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 

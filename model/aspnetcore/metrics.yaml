@@ -54,6 +54,7 @@ groups:
         brief: The full name of exception type.
         examples: ['System.OperationCanceledException', 'Contoso.MyException']
         requirement_level: required
+        note: ""
       - ref: aspnetcore.diagnostics.handler.type
         requirement_level:
           conditionally_required: if and only if the exception was handled by this handler.
@@ -168,6 +169,7 @@ groups:
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         examples: ['System.OperationCanceledException', 'PasswordMismatch']
+        note: ""
 
   - id: metric.aspnetcore.identity.user.update
     type: metric
@@ -196,6 +198,7 @@ groups:
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         examples: ['System.OperationCanceledException', 'PasswordMismatch']
+        note: ""
 
   - id: metric.aspnetcore.identity.user.delete
     type: metric
@@ -222,6 +225,7 @@ groups:
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         examples: ['System.OperationCanceledException', 'PasswordMismatch']
+        note: ""
 
   - id: metric.aspnetcore.identity.user.check_password
     type: metric
@@ -245,6 +249,7 @@ groups:
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         examples: ['System.OperationCanceledException']
+        note: ""
 
   - id: metric.aspnetcore.identity.user.verify_token
     type: metric
@@ -270,6 +275,7 @@ groups:
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         examples: ['System.OperationCanceledException']
+        note: ""
 
   - id: metric.aspnetcore.identity.user.generate_token
     type: metric
@@ -292,6 +298,7 @@ groups:
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         examples: ['System.OperationCanceledException']
+        note: ""
 
   - id: metric.aspnetcore.identity.sign_in.authenticate
     type: metric
@@ -322,6 +329,7 @@ groups:
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         examples: ['System.OperationCanceledException']
+        note: ""
 
   - id: metric.aspnetcore.identity.sign_in.remember_two_factor
     type: metric
@@ -344,6 +352,7 @@ groups:
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         examples: ['System.OperationCanceledException']
+        note: ""
 
   - id: metric.aspnetcore.identity.sign_in.forget_two_factor
     type: metric
@@ -366,6 +375,7 @@ groups:
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         examples: ['System.OperationCanceledException']
+        note: ""
 
   - id: metric.aspnetcore.identity.sign_in.check_password
     type: metric
@@ -389,6 +399,7 @@ groups:
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         examples: ['System.OperationCanceledException']
+        note: ""
 
   - id: metric.aspnetcore.identity.sign_in.sign_in
     type: metric
@@ -414,6 +425,7 @@ groups:
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         examples: ['System.OperationCanceledException']
+        note: ""
 
   - id: metric.aspnetcore.identity.sign_in.sign_out
     type: metric
@@ -436,3 +448,4 @@ groups:
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         examples: ['System.OperationCanceledException']
+        note: ""
