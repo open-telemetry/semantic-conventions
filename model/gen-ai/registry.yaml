@@ -103,6 +103,7 @@ groups:
         type: string
         brief: The name of the GenAI model a request is being made to.
         examples: 'gpt-4'
+
       - id: gen_ai.request.max_tokens
         stability: development
         type: int
@@ -230,6 +231,7 @@ groups:
         type: string
         brief: Name of the tool utilized by the agent.
         examples: ["Flights"]
+
       - id: gen_ai.tool.call.id
         stability: development
         type: string
@@ -251,6 +253,172 @@ groups:
             Client-side operations are actions taken on the user's end or within the client application.
           Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
         examples: ['function', 'extension', 'datastore']
+
+      - id: gen_ai.tool.call.arguments
+        stability: development
+        type: any
+        brief: Parameters passed to the tool call.
+        note: >
+          TODO: we need to decide what to do with well-known function call params
+          (eg. filesearch) - do we want to define a format and normalize across models/frameworks or
+          leave them as is and record a complex object.
+
+          > [!WARNING]
+          > This attribute may contain sensitive information.
+
+          It's expected to be an object - in case a serialized string is available
+          to the instrumentation, the instrumentation SHOULD do the best effort to
+          deserialize it to an object.
+
+        examples: ['{"location": "San Francisco?", "date": "2025-10-01"}']
+
+      - id: gen_ai.tool.call.result
+        stability: development
+        type: any
+        brief: The result returned by the tool call (if any and if execution was successful).
+        note: |
+          TODO: we need to decide what to do with well-known function call results
+          (eg. filesearch) - do we want to define a format and normalize across
+          models/frameworks or leave it as is and record a complex object.
+          If we choose to support standardized formats, the complex object can carry a type discriminator along with the value, with the following guidance:
+          - For `text` type: Plain text string containing the tool's response
+          - For `json` type: Valid JSON string that can be parsed into an object or array
+          - For `table` type: JSON-stringified array of objects (recommended), Markdown table, or CSV-formatted string
+          - For `html` type: Valid HTML string containing structured markup
+          - For `image` type: Base64-encoded image string
+          - For `image_url` type: URL string pointing to an externally hosted image
+          - For `chart` type: Either base64-encoded chart image or code/data structure to render the chart
+
+          > [!WARNING]
+          > This attribute may contain sensitive information.
+
+        examples: ['{"temperature_range": {"high": 75, "low": 60}, "conditions": "sunny"}']
+
+      - id: gen_ai.tool.definitions
+        stability: development
+        type: any
+        brief: The list of tool definitions available to the GenAI agent or model.
+        note: >
+          The value of this attribute matches provider-specific tool definition
+          format.
+          It's expected to be an object - in case a serialized string is available
+          to the instrumentation, the instrumentation SHOULD do the best effort to
+          deserialize it to an object.
+
+          Since this attribute could be large, it's NOT RECOMMENDED to populate
+          it by default. Instrumentations MAY provide a way to enable
+          populating this attribute.
+        examples: ['[{"type":"function","name":"get_current_weather","description":"Get the current weather in a given location","parameters":{"type":"object","properties":{"location":{"type":"string","description":"The city and state, e.g. San Francisco, CA"},"unit":{"type":"string","enum":["celsius","fahrenheit"]}},"required":["location","unit"]}}]']
+      
+      # Add these new attributes to the registry.gen_ai group in registry.yaml
+
+      - id: gen_ai.agent.invocation_input
+        stability: development
+        type: any
+        brief: The input messages provided to the agent invocation.
+        note: |
+          This attribute contains an array of structured message objects representing the conversation
+          context and input provided to the agent. Each message includes role and body information.
+          
+          The structure follows a consistent format:
+          - Each message has a `role` field (system, user, assistant, tool)
+          - Each message has a `body` array containing content objects
+          - Content objects specify `type` (typically "text") and `content` with the actual message
+
+          > [!WARNING]
+          > This attribute may contain sensitive information.
+
+          It's expected to be an array of objects - in case a serialized string is available
+          to the instrumentation, the instrumentation SHOULD do the best effort to
+          deserialize it to an object.
+        examples: |
+          [
+            {
+              "role": "system",
+              "body": [
+                {
+                  "type": "text",
+                  "content": "You are a travel planner. Create detailed travel itineraries."
+                }
+              ]
+            },
+            {
+              "role": "user", 
+              "body": [
+                {
+                  "type": "text",
+                  "content": "Plan a trip to Bali for 5 days for a family of 4."
+                }
+              ]
+            }
+          ]
+
+      - id: gen_ai.agent.invocation_output
+        stability: development
+        type: any
+        brief: The output messages generated by the agent invocation.
+        note: |
+          This attribute contains an array of structured message objects representing the agent's
+          response and output. Each message includes role, body content, and finish reason.
+          
+          The structure follows a consistent format:
+          - Each message has a `role` field (typically "assistant" for agent responses)
+          - Each message has a `body` array containing content objects
+          - Content objects specify `type` (typically "text") and `content` with the actual response
+          - Messages may include a `finish_reason` indicating why generation stopped
+
+          > [!WARNING]
+          > This attribute may contain sensitive information.
+
+          It's expected to be an array of objects - in case a serialized string is available
+          to the instrumentation, the instrumentation SHOULD do the best effort to
+          deserialize it to an object.
+        examples: |
+          [
+            {
+              "role": "assistant",
+              "body": [
+                {
+                  "type": "text",
+                  "content": "Step 1: Budget Allocation The family has a total budget of $5000 for the trip to Bali for 5 days."
+                }
+              ],
+              "finish_reason": "stop"
+            }
+          ]
+
+      - id: gen_ai.agent.child_agents
+        stability: development
+        type: any
+        brief: Information about child agents utilized during the agent invocation.
+        note: |
+          This attribute contains an array of objects representing sub-agents or specialized 
+          agents that were invoked as part of the main agent's execution flow.
+          
+          The structure is an array where each object contains:
+          - `agent_id`: Unique identifier for the child agent
+          - `name`: Human-readable name of the child agent
+          - `role`: Classification of the child agent (e.g., "specialist", "coordinator", "validator")
+          
+          This enables tracking of agent orchestration patterns and multi-agent workflows.
+
+          It's expected to be an array of objects - in case a serialized string is available
+          to the instrumentation, the instrumentation SHOULD do the best effort to
+          deserialize it to an object.
+        examples: |
+          [
+            {
+              "agent_id": "agent_id_1",
+              "name": "WeatherAgent",
+              "role": "specialist"
+            },
+            {
+              "agent_id": "agent_id_2",
+              "name": "CalendarAgent",
+              "role": "coordinator"
+            }
+          ]
+
       - id: gen_ai.data_source.id
         stability: development
         type: string
