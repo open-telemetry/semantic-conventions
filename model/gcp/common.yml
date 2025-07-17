@@ -1,4 +1,15 @@
 groups:
+- id: gcp.resource.attributes
+  type: attribute_group
+  brief: Conventions for Google Cloud resource identification.
+  stability: development
+  attributes:
+  - ref: cloud.resource_id
+    requirement_level:
+      conditionally_required: If available
+  - ref: gcp.resource.name
+    requirement_level:
+      conditionally_required: If available
 - id: gcp.client.attributes
   type: attribute_group
   brief: Conventions for official Google Cloud client libraries.
