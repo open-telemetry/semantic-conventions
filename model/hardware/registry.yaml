@@ -104,6 +104,14 @@ groups:
               value: 'failed'
               brief: 'Failed'
               stability: development
+            - id: spare
+              value: 'spare'
+              brief: 'Spare'
+              stability: development
+            - id: active
+              value: 'active'
+              brief: 'Active'
+              stability: development
         stability: development
         brief: >
           The current state of the component
