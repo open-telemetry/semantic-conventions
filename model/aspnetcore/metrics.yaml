@@ -12,6 +12,13 @@ groups:
     attributes:
       - ref: aspnetcore.identity.user_type
         requirement_level: required
+  - id: aspnetcore.common.memory_pool.metrics.attributes
+    type: attribute_group
+    brief: Common ASP.NET Core memory pool metrics attributes
+    attributes:
+      - ref: aspnetcore.memory_pool.owner
+        requirement_level:
+          conditionally_required: if owner is specified when the memory pool is created.
 
   # routing
   - id: metric.aspnetcore.routing.match_attempts
@@ -142,6 +149,63 @@ groups:
     attributes:
       - ref: aspnetcore.rate_limiting.result
         requirement_level: required
+
+    # memory_pool
+  - id: metric.aspnetcore.memory_pool.pooled
+    type: metric
+    metric_name: aspnetcore.memory_pool.pooled
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Number of bytes currently pooled and available for reuse.
+    instrument: updowncounter
+    unit: "By"
+    note: |
+      Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.memory_pool.metrics.attributes
+
+  - id: metric.aspnetcore.memory_pool.allocated
+    type: metric
+    metric_name: aspnetcore.memory_pool.allocated
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Total number of bytes allocated by the memory pool. Allocation occurs when a memory rental request exceeds the available pooled memory.
+    instrument: counter
+    unit: "By"
+    note: |
+      Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.memory_pool.metrics.attributes
+
+  - id: metric.aspnetcore.memory_pool.evicted
+    type: metric
+    metric_name: aspnetcore.memory_pool.evicted
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Total number of bytes evicted from the memory pool. Eviction occurs when idle pooled memory is reclaimed.
+    instrument: counter
+    unit: "By"
+    note: |
+      Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.memory_pool.metrics.attributes
+
+  - id: metric.aspnetcore.memory_pool.rented
+    type: metric
+    metric_name: aspnetcore.memory_pool.rented
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Total number of bytes rented from the memory pool.
+    instrument: counter
+    unit: "By"
+    note: |
+      Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.memory_pool.metrics.attributes
 
   # identity
   - id: metric.aspnetcore.identity.user.create.duration
