@@ -117,7 +117,16 @@ groups:
         brief: The name of the authorization policy.
         examples: ["RequireAdminRole"]
       - id: aspnetcore.authorization.result
-        type: string
+        type:
+          members:
+            - id: success
+              value: 'success'
+              brief: "Authorization was successful."
+              stability: development
+            - id: failure
+              value: 'failure'
+              brief: "Authorization failed."
+              stability: development
         stability: development
         brief: The result of calling the authorization service.
         examples: ["success", "failure"]
