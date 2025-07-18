@@ -5,6 +5,7 @@ groups:
     brief: >
       Attributes for hardware.
     attributes:
+      # COMMON ATTRIBUTES FOR ALL
       - id: hw.id
         type: string
         stability: development
@@ -92,10 +93,6 @@ groups:
       - id: hw.state
         type:
           members:
-            - id: ok
-              value: 'ok'
-              brief: "Ok"
-              stability: development
             - id: degraded
               value: 'degraded'
               brief: 'Degraded'
@@ -104,6 +101,248 @@ groups:
               value: 'failed'
               brief: 'Failed'
               stability: development
+            - id: needs_cleaning
+              value: 'needs_cleaning'
+              brief: 'Needs Cleaning'
+              stability: development
+            - id: ok
+              value: 'ok'
+              brief: 'OK'
+              stability: development
+            - id: predicted_failure
+              value: 'predicted_failure'
+              brief: 'Predicted Failure'
+              stability: development
         stability: development
         brief: >
           The current state of the component
+      - id: hw.battery.state
+        type:
+          members:
+            - id: charging
+              value: 'charging'
+              brief: 'Charging'
+              stability: development
+            - id: discharging
+              value: 'discharging'
+              brief: 'Discharging'
+              stability: development
+        stability: development
+        brief: >
+          The current state of the battery
+      - id: hw.limit_type
+        type:
+          members:
+            - id: critical
+              value: 'critical'
+              brief: 'Critical'
+              stability: development
+            - id: degraded
+              value: 'degraded'
+              brief: 'Degraded'
+              stability: development
+            - id: high_critical
+              value: 'high.critical'
+              brief: 'High Critical'
+              stability: development
+            - id: high_degraded
+              value: 'high.degraded'
+              brief: 'High Degraded'
+              stability: development
+            - id: low_critical
+              value: 'low.critical'
+              brief: 'Low Critical'
+              stability: development
+            - id: low_degraded
+              value: 'low.degraded'
+              brief: 'Low Degraded'
+              stability: development
+            - id: max
+              value: 'max'
+              brief: 'Maximum'
+              stability: development
+            - id: throttled
+              value: 'throttled'
+              brief: 'Throttled'
+              stability: development
+            - id: turbo
+              value: 'turbo'
+              brief: 'Turbo'
+              stability: development
+        stability: development
+        brief: >
+          Type of limit for hardware components
+
+      # COMMON ATTRIBUTES FOR SOME HARDWARE COMPONENTS
+      - id: hw.bios_version
+        type: string
+        stability: development
+        brief: >
+          BIOS version of the hardware component
+        examples: ['1.2.3']
+      - id: hw.driver_version
+        type: string
+        stability: development
+        brief: >
+          Driver version for the hardware component
+        examples: ['10.2.1-3']
+      - id: hw.firmware_version
+        type: string
+        stability: development
+        brief: >
+          Firmware version of the hardware component
+        examples: ['2.0.1']
+      - id: hw.model
+        type: string
+        stability: development
+        brief: >
+          Descriptive model name of the hardware component
+        examples: ['PERC H740P', 'Intel(R) Core(TM) i7-10700K', 'Dell XPS 15 Battery']
+      - id: hw.serial_number
+        type: string
+        stability: development
+        brief: >
+          Serial number of the hardware component
+        examples: ['CNFCP0123456789']
+      - id: hw.vendor
+        type: string
+        stability: development
+        brief: >
+          Vendor name of the hardware component
+        examples: ['Dell', 'HP', 'Intel', 'AMD', 'LSI', 'Lenovo']
+      - id: hw.sensor_location
+        type: string
+        stability: development
+        brief: >
+          Location of the sensor
+        examples: ['cpu0', 'ps1', 'INLET', 'CPU0_DIE', 'AMBIENT', 'MOTHERBOARD', 'PS0 V3_3', 'MAIN_12V', 'CPU_VCORE']
+
+      # BATTERY ATTRIBUTES
+      - id: hw.battery.chemistry
+        type: string
+        stability: development
+        brief: >
+          Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc.
+        examples: ['Li-ion', 'NiMH']
+      - id: hw.battery.capacity
+        type: string
+        stability: development
+        brief: >
+          Design capacity in Watts-hours or Amper-hours
+        examples: ['9.3Ah', '50Wh']
+
+      # ENCLOSURE ATTRIBUTES
+      - id: hw.enclosure.type
+        type: string
+        stability: development
+        brief: >
+          Type of the enclosure (useful for modular systems)
+        examples: ['Computer', 'Storage', 'Switch']
+
+      # GPU ATTRIBUTES
+      - id: hw.gpu.task
+        type:
+          members:
+            - id: decoder
+              value: 'decoder'
+              brief: "Decoder"
+              stability: development
+            - id: encoder
+              value: 'encoder'
+              brief: 'Encoder'
+              stability: development
+            - id: general
+              value: 'general'
+              brief: 'General'
+              stability: development
+        stability: development
+        brief: >
+          Type of task the GPU is performing
+
+      # LOGICAL DISK ATTRIBUTES
+      - id: hw.logical_disk.raid_level
+        type: string
+        stability: development
+        brief: >
+          RAID Level of the logical disk
+        examples: ['RAID0+1', 'RAID5', 'RAID10']
+      - id: hw.logical_disk.state
+        type:
+          members:
+            - id: used
+              value: 'used'
+              brief: "Used"
+              stability: development
+            - id: free
+              value: 'free'
+              brief: 'Free'
+              stability: development
+        stability: development
+        brief: >
+          State of the logical disk space usage
+
+      # MEMORY ATTRIBUTES
+      - id: hw.memory.type
+        type: string
+        stability: development
+        brief: >
+          Type of the memory module
+        examples: ['DDR4', 'DDR5', 'LPDDR5']
+
+      # NETWORK ATTRIBUTES
+      - id: hw.network.logical_addresses
+        type: string[]
+        stability: development
+        brief: >
+          Logical addresses of the adapter (e.g. IP address, or WWPN)
+        examples: [['172.16.8.21', '57.11.193.42']]
+      - id: hw.network.physical_address
+        type: string
+        stability: development
+        brief: >
+          Physical address of the adapter (e.g. MAC address, or WWNN)
+        examples: ['00-90-F5-E9-7B-36']
+
+      # PHYSICAL DISK ATTRIBUTES
+      - id: hw.physical_disk.type
+        type: string
+        stability: development
+        brief: >
+          Type of the physical disk
+        examples: ['HDD', 'SSD', '10K']
+      - id: hw.physical_disk.state
+        type:
+          members:
+            - id: remaining
+              value: 'remaining'
+              brief: "Remaining"
+              stability: development
+        stability: development
+        brief: >
+          State of the physical disk endurance utilization
+      - id: hw.physical_disk.smart_attribute
+        type: string
+        stability: development
+        brief: >
+          [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk
+        examples: ['Spin Retry Count', 'Seek Error Rate', 'Raw Read Error Rate']
+
+      # TAPE DRIVE ATTRIBUTES
+      - id: hw.tape_drive.operation_type
+        type:
+          members:
+            - id: mount
+              value: 'mount'
+              brief: "Mount"
+              stability: development
+            - id: unmount
+              value: 'unmount'
+              brief: 'Unmount'
+              stability: development
+            - id: clean
+              value: 'clean'
+              brief: 'Clean'
+              stability: development
+        stability: development
+        brief: >
+          Type of tape drive operation
