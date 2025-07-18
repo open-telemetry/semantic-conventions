@@ -29,7 +29,6 @@ They may be used in any Profiles record they apply to.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`profile.frame.type`](/docs/registry/attributes/profile.md) | string | Describes the interpreter or compiler of a single frame. | `cpython` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`profile.pprof.mapping`](/docs/registry/attributes/profile.md) | string | Describes the resolution of symbolic information. | `has_filenames` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -49,17 +48,6 @@ They may be used in any Profiles record they apply to.
 | `ruby` | [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rust` | [Rust](https://wikipedia.org/wiki/Rust_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `v8js` | [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine)) | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`profile.pprof.mapping` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `has_filenames` | Indicates that there are filenames related to this mapping. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `has_functions` | Indicates that there are functions related to this mapping. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `has_inline_frames` | Indicates that there are inlined frames related to this mapping. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `has_line_numbers` | Indicates that there are line numbers related to this mapping. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -6,5 +6,11 @@ groups:
     attributes:
       - ref: profile.frame.type
         requirement_level: recommended
+
+  - id: profile.pprof
+    type: attribute_group
+    brief: >
+      Describes the relationship between pprof and a Profile.
+    attributes:
       - ref: profile.pprof.mapping
         requirement_level: recommended
