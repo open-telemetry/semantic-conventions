@@ -63,6 +63,8 @@ groups:
     extends: metric.hw.battery
     attributes:
       - ref: hw.state
+        requirement_level: required
+      - ref: hw.battery.state
         requirement_level:
           conditionally_required: If the battery is charging or discharging
         note: >

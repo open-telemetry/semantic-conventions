@@ -53,7 +53,7 @@ groups:
     unit: "By"
     extends: metric.hw.network
     attributes:
-      - ref: hw.direction
+      - ref: network.io.direction
         examples: ["receive", "transmit"]
         requirement_level: required
 
@@ -69,7 +69,7 @@ groups:
     unit: "{packet}"
     extends: metric.hw.network
     attributes:
-      - ref: hw.direction
+      - ref: network.io.direction
         examples: ["receive", "transmit"]
         requirement_level: required
 

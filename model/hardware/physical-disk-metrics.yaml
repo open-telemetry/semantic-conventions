@@ -58,5 +58,5 @@ groups:
     extends: metric.hw.physical_disk
     attributes:
       - ref: hw.physical_disk.smart_attribute
-        examples: ["seek_error_rate", "spin_retry_count"]
+        examples: ['Spin Retry Count', 'Seek Error Rate']
         requirement_level: recommended

@@ -93,17 +93,9 @@ groups:
       - id: hw.state
         type:
           members:
-            - id: charging
-              value: 'charging'
-              brief: 'Charging'
-              stability: development
             - id: degraded
               value: 'degraded'
               brief: 'Degraded'
-              stability: development
-            - id: discharging
-              value: 'discharging'
-              brief: 'Discharging'
               stability: development
             - id: failed
               value: 'failed'
@@ -124,6 +116,20 @@ groups:
         stability: development
         brief: >
           The current state of the component
+      - id: hw.battery.state
+        type:
+          members:
+            - id: charging
+              value: 'charging'
+              brief: 'Charging'
+              stability: development
+            - id: discharging
+              value: 'discharging'
+              brief: 'Discharging'
+              stability: development
+        stability: development
+        brief: >
+          The current state of the battery
       - id: hw.limit_type
         type:
           members:
@@ -210,20 +216,6 @@ groups:
         brief: >
           Location of the sensor
         examples: ['cpu0', 'ps1', 'INLET', 'CPU0_DIE', 'AMBIENT', 'MOTHERBOARD', 'PS0 V3_3', 'MAIN_12V', 'CPU_VCORE']
-      - id: hw.direction
-        type:
-          members:
-            - id: receive
-              value: 'receive'
-              brief: "Receive"
-              stability: development
-            - id: transmit
-              value: 'transmit'
-              brief: 'Transmit'
-              stability: development
-        stability: development
-        brief: >
-          Direction of data transfer
 
       # BATTERY ATTRIBUTES
       - id: hw.battery.chemistry
@@ -329,55 +321,11 @@ groups:
         brief: >
           State of the physical disk endurance utilization
       - id: hw.physical_disk.smart_attribute
-        type:
-          members:
-            - id: raw_read_error_rate
-              value: 'raw_read_error_rate'
-              brief: "Raw Read Error Rate"
-              stability: development
-            - id: throughput_performance
-              value: 'throughput_performance'
-              brief: 'Throughput Performance'
-              stability: development
-            - id: spin_up_time
-              value: 'spin_up_time'
-              brief: 'Spin Up Time'
-              stability: development
-            - id: start_stop_count
-              value: 'start_stop_count'
-              brief: 'Start/Stop Count'
-              stability: development
-            - id: reallocated_sectors_count
-              value: 'reallocated_sectors_count'
-              brief: 'Reallocated Sectors Count'
-              stability: development
-            - id: seek_error_rate
-              value: 'seek_error_rate'
-              brief: 'Seek Error Rate'
-              stability: development
-            - id: seek_time_performance
-              value: 'seek_time_performance'
-              brief: 'Seek Time Performance'
-              stability: development
-            - id: power_on_hours
-              value: 'power_on_hours'
-              brief: 'Power-On Hours'
-              stability: development
-            - id: spin_retry_count
-              value: 'spin_retry_count'
-              brief: 'Spin Retry Count'
-              stability: development
-            - id: power_cycle_count
-              value: 'power_cycle_count'
-              brief: 'Power Cycle Count'
-              stability: development
-            - id: temperature_celsius
-              value: 'temperature_celsius'
-              brief: 'Temperature Celsius'
-              stability: development
+        type: string
         stability: development
         brief: >
           [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk
+        examples: ['Spin Retry Count', 'Seek Error Rate', 'Raw Read Error Rate']
 
       # TAPE DRIVE ATTRIBUTES
       - id: hw.tape_drive.operation_type

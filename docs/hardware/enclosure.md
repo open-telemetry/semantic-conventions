@@ -75,7 +75,7 @@ When using this metric for enclosure status, the following attributes MUST be se
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `charging`; `degraded`; `discharging` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -88,9 +88,7 @@ When using this metric for enclosure status, the following attributes MUST be se
 
 | Value  | Description | Stability |
 |---|---|---|
-| `charging` | Charging | ![Development](https://img.shields.io/badge/-development-blue) |
 | `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
-| `discharging` | Discharging | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failed` | Failed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `needs_cleaning` | Needs Cleaning | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ok` | OK | ![Development](https://img.shields.io/badge/-development-blue) |

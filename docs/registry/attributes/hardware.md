@@ -11,8 +11,8 @@ Attributes for hardware.
 |---|---|---|---|---|
 | <a id="hw-battery-capacity" href="#hw-battery-capacity">`hw.battery.capacity`</a> | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-battery-chemistry" href="#hw-battery-chemistry">`hw.battery.chemistry`</a> | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-battery-state" href="#hw-battery-state">`hw.battery.state`</a> | string | The current state of the battery | `charging`; `discharging` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-bios-version" href="#hw-bios-version">`hw.bios_version`</a> | string | BIOS version of the hardware component | `1.2.3` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-direction" href="#hw-direction">`hw.direction`</a> | string | Direction of data transfer | `receive`; `transmit` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-driver-version" href="#hw-driver-version">`hw.driver_version`</a> | string | Driver version for the hardware component | `10.2.1-3` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-enclosure-type" href="#hw-enclosure-type">`hw.enclosure.type`</a> | string | Type of the enclosure (useful for modular systems) | `Computer`; `Storage`; `Switch` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-firmware-version" href="#hw-firmware-version">`hw.firmware_version`</a> | string | Firmware version of the hardware component | `2.0.1` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -27,12 +27,12 @@ Attributes for hardware.
 | <a id="hw-network-logical-addresses" href="#hw-network-logical-addresses">`hw.network.logical_addresses`</a> | string[] | Logical addresses of the adapter (e.g. IP address, or WWPN) | `["172.16.8.21", "57.11.193.42"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-network-physical-address" href="#hw-network-physical-address">`hw.network.physical_address`</a> | string | Physical address of the adapter (e.g. MAC address, or WWNN) | `00-90-F5-E9-7B-36` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-parent" href="#hw-parent">`hw.parent`</a> | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-physical-disk-smart-attribute" href="#hw-physical-disk-smart-attribute">`hw.physical_disk.smart_attribute`</a> | string | [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk | `raw_read_error_rate`; `throughput_performance`; `spin_up_time` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-physical-disk-smart-attribute" href="#hw-physical-disk-smart-attribute">`hw.physical_disk.smart_attribute`</a> | string | [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk | `Spin Retry Count`; `Seek Error Rate`; `Raw Read Error Rate` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-physical-disk-state" href="#hw-physical-disk-state">`hw.physical_disk.state`</a> | string | State of the physical disk endurance utilization | `remaining` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-physical-disk-type" href="#hw-physical-disk-type">`hw.physical_disk.type`</a> | string | Type of the physical disk | `HDD`; `SSD`; `10K` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-sensor-location" href="#hw-sensor-location">`hw.sensor_location`</a> | string | Location of the sensor | `cpu0`; `ps1`; `INLET`; `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD`; `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-serial-number" href="#hw-serial-number">`hw.serial_number`</a> | string | Serial number of the hardware component | `CNFCP0123456789` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="hw-state" href="#hw-state">`hw.state`</a> | string | The current state of the component | `charging`; `degraded`; `discharging` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="hw-state" href="#hw-state">`hw.state`</a> | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-tape-drive-operation-type" href="#hw-tape-drive-operation-type">`hw.tape_drive.operation_type`</a> | string | Type of tape drive operation | `mount`; `unmount`; `clean` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-type" href="#hw-type">`hw.type`</a> | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="hw-vendor" href="#hw-vendor">`hw.vendor`</a> | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -41,12 +41,12 @@ Attributes for hardware.
 
 ---
 
-`hw.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`hw.battery.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `receive` | Receive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `transmit` | Transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+| `charging` | Charging | ![Development](https://img.shields.io/badge/-development-blue) |
+| `discharging` | Discharging | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -85,24 +85,6 @@ Attributes for hardware.
 
 ---
 
-`hw.physical_disk.smart_attribute` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `power_cycle_count` | Power Cycle Count | ![Development](https://img.shields.io/badge/-development-blue) |
-| `power_on_hours` | Power-On Hours | ![Development](https://img.shields.io/badge/-development-blue) |
-| `raw_read_error_rate` | Raw Read Error Rate | ![Development](https://img.shields.io/badge/-development-blue) |
-| `reallocated_sectors_count` | Reallocated Sectors Count | ![Development](https://img.shields.io/badge/-development-blue) |
-| `seek_error_rate` | Seek Error Rate | ![Development](https://img.shields.io/badge/-development-blue) |
-| `seek_time_performance` | Seek Time Performance | ![Development](https://img.shields.io/badge/-development-blue) |
-| `spin_retry_count` | Spin Retry Count | ![Development](https://img.shields.io/badge/-development-blue) |
-| `spin_up_time` | Spin Up Time | ![Development](https://img.shields.io/badge/-development-blue) |
-| `start_stop_count` | Start/Stop Count | ![Development](https://img.shields.io/badge/-development-blue) |
-| `temperature_celsius` | Temperature Celsius | ![Development](https://img.shields.io/badge/-development-blue) |
-| `throughput_performance` | Throughput Performance | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
 `hw.physical_disk.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -115,9 +97,7 @@ Attributes for hardware.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `charging` | Charging | ![Development](https://img.shields.io/badge/-development-blue) |
 | `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
-| `discharging` | Discharging | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failed` | Failed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `needs_cleaning` | Needs Cleaning | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ok` | OK | ![Development](https://img.shields.io/badge/-development-blue) |

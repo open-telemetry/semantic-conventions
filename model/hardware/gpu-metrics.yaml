@@ -29,7 +29,7 @@ groups:
     unit: "By"
     extends: metric.hw.gpu
     attributes:
-      - ref: hw.direction
+      - ref: network.io.direction
         examples: ["receive", "transmit"]
         requirement_level: required
 

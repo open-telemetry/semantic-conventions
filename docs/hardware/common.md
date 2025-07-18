@@ -138,15 +138,15 @@ This metric is [recommended][MetricRecommended].
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | The type of error encountered by the component [2] | `uncorrected`; `zero_buffer_credit`; `crc`; `bad_sector` | `Conditionally Required` if and only if an error has occurred | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`hw.direction`](/docs/registry/attributes/hardware.md) | string | Direction of network traffic for network errors [3] | `receive`; `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.io.direction`](/docs/registry/attributes/network.md) | string | Direction of network traffic for network errors [3] | `receive`; `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
 **[2] `error.type`:** The `error.type` SHOULD match the error code reported by the component, the canonical name of the error, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
 
-**[3] `hw.direction`:** This attribute SHOULD only be used when `hw.type` is set to `"network"` to indicate the direction of the error.
+**[3] `network.io.direction`:** This attribute SHOULD only be used when `hw.type` is set to `"network"` to indicate the direction of the error.
 
 ---
 
@@ -155,15 +155,6 @@ This metric is [recommended][MetricRecommended].
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`hw.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `receive` | Receive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `transmit` | Transmit | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -185,6 +176,15 @@ This metric is [recommended][MetricRecommended].
 | `tape_drive` | Tape drive | ![Development](https://img.shields.io/badge/-development-blue) |
 | `temperature` | Temperature | ![Development](https://img.shields.io/badge/-development-blue) |
 | `voltage` | Voltage | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -263,7 +263,7 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `charging`; `degraded`; `discharging` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -276,9 +276,7 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `charging` | Charging | ![Development](https://img.shields.io/badge/-development-blue) |
 | `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
-| `discharging` | Discharging | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failed` | Failed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `needs_cleaning` | Needs Cleaning | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ok` | OK | ![Development](https://img.shields.io/badge/-development-blue) |
