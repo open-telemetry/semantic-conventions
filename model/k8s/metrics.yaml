@@ -91,6 +91,199 @@ groups:
       - ref: network.interface.name
       - ref: network.io.direction
 
+  # k8s.pod.filesystem.* metrics
+  - id: metric.k8s.pod.filesystem.available
+    type: metric
+    metric_name: k8s.pod.filesystem.available
+    stability: development
+    brief: "Pod filesystem available bytes"
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric is derived from the
+      [FsStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [PodStats.EphemeralStorage](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+  - id: metric.k8s.pod.filesystem.capacity
+    type: metric
+    metric_name: k8s.pod.filesystem.capacity
+    stability: development
+    brief: "Pod filesystem capacity"
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric is derived from the
+      [FsStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [PodStats.EphemeralStorage](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+  - id: metric.k8s.pod.filesystem.usage
+    type: metric
+    metric_name: k8s.pod.filesystem.usage
+    stability: development
+    brief: "Pod filesystem usage"
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.pod
+    note: |
+      This may not equal capacity - available.
+
+      This metric is derived from the
+      [FsStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [PodStats.EphemeralStorage](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+
+  # k8s.pod.volume.* metrics
+  - id: metric.k8s.pod.volume.available
+    type: metric
+    metric_name: k8s.pod.volume.available
+    stability: development
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Pod volume storage space available"
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric is derived from the
+      [VolumeStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      Kubelet's stats API.
+    attributes:
+      - ref: k8s.volume.name
+        requirement_level: required
+      - ref: k8s.volume.type
+        requirement_level: recommended
+  - id: metric.k8s.pod.volume.capacity
+    type: metric
+    metric_name: k8s.pod.volume.capacity
+    stability: development
+    brief: "Pod volume total capacity"
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "By"
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric is derived from the
+      [VolumeStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      Kubelet's stats API.
+    attributes:
+      - ref: k8s.volume.name
+        requirement_level: required
+      - ref: k8s.volume.type
+        requirement_level: recommended
+  - id: metric.k8s.pod.volume.usage
+    type: metric
+    metric_name: k8s.pod.volume.usage
+    stability: development
+    brief: "Pod volume usage"
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "By"
+    entity_associations:
+      - k8s.pod
+    note: |
+      This may not equal capacity - available.
+
+      This metric is derived from the
+      [VolumeStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      Kubelet's stats API.
+    attributes:
+      - ref: k8s.volume.name
+        requirement_level: required
+      - ref: k8s.volume.type
+        requirement_level: recommended
+  - id: metric.k8s.pod.volume.inode.count
+    type: metric
+    metric_name: k8s.pod.volume.inode.count
+    stability: development
+    brief: "The total inodes in the filesystem of the Pod's volume"
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{inode}"
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric is derived from the
+      [VolumeStats.Inodes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      Kubelet's stats API.
+    attributes:
+      - ref: k8s.volume.name
+        requirement_level: required
+      - ref: k8s.volume.type
+        requirement_level: recommended
+  - id: metric.k8s.pod.volume.inode.used
+    type: metric
+    metric_name: k8s.pod.volume.inode.used
+    stability: development
+    brief: "The inodes used by the filesystem of the Pod's volume"
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{inode}"
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric is derived from the
+      [VolumeStats.InodesUsed](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      Kubelet's stats API.
+
+      This may not be equal to `inodes - free` because filesystem may share inodes with other filesystems.
+    attributes:
+      - ref: k8s.volume.name
+        requirement_level: required
+      - ref: k8s.volume.type
+        requirement_level: recommended
+  - id: metric.k8s.pod.volume.inode.free
+    type: metric
+    metric_name: k8s.pod.volume.inode.free
+    stability: development
+    brief: "The free inodes in the filesystem of the Pod's volume"
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{inode}"
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric is derived from the
+      [VolumeStats.InodesFree](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      Kubelet's stats API.
+    attributes:
+      - ref: k8s.volume.name
+        requirement_level: required
+      - ref: k8s.volume.type
+        requirement_level: recommended
+
   # k8s.container.* metrics
   - id: metric.k8s.container.status.state
     type: metric
@@ -244,6 +437,61 @@ groups:
     entity_associations:
       - k8s.node
     unit: "{cpu}"
+
+  # k8s.node.filesystem.* metrics
+  - id: metric.k8s.node.filesystem.available
+    type: metric
+    metric_name: k8s.node.filesystem.available
+    stability: development
+    brief: "Node filesystem available bytes"
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.node
+    note: |
+      This metric is derived from the
+      [FsStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+  - id: metric.k8s.node.filesystem.capacity
+    type: metric
+    metric_name: k8s.node.filesystem.capacity
+    stability: development
+    brief: "Node filesystem capacity"
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.node
+    note: |
+      This metric is derived from the
+      [FsStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+  - id: metric.k8s.node.filesystem.usage
+    type: metric
+    metric_name: k8s.node.filesystem.usage
+    stability: development
+    brief: "Node filesystem usage"
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.node
+    note: |
+      This may not equal capacity - available.
+
+      This metric is derived from the
+      [FsStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
 
   # k8s.node.memory.* metrics
   - id: metric.k8s.node.memory.usage
