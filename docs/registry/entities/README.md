@@ -274,6 +274,28 @@ Currently, the following namespaces exist:
   <td><a href="webengine.md#webengine">webengine</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
+<td>Workflow</td><td></td><td></td>
+</tr><tr>
+  <td></td>
+  <td><a href="workflow.md#workflow">workflow</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="workflow.md#workflow-execution">workflow.execution</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="workflow.md#workflow-task">workflow.task</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="workflow.md#workflow-taskrun">workflow.taskrun</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
+  <td></td>
+  <td><a href="workflow.md#workflow-trigger">workflow.trigger</a></td>
+  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
+</tr><tr>
 <td>zOS</td><td></td><td></td>
 </tr><tr>
   <td></td>
