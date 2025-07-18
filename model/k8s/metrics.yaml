@@ -154,7 +154,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    brief: "Pod volume storage space available"
+    brief: "Pod volume storage space available."
     instrument: updowncounter
     unit: "By"
     entity_associations:
@@ -173,7 +173,7 @@ groups:
     type: metric
     metric_name: k8s.pod.volume.capacity
     stability: development
-    brief: "Pod volume total capacity"
+    brief: "Pod volume total capacity."
     instrument: updowncounter
     annotations:
       code_generation:
@@ -195,7 +195,7 @@ groups:
     type: metric
     metric_name: k8s.pod.volume.usage
     stability: development
-    brief: "Pod volume usage"
+    brief: "Pod volume usage."
     instrument: updowncounter
     annotations:
       code_generation:
@@ -219,7 +219,7 @@ groups:
     type: metric
     metric_name: k8s.pod.volume.inode.count
     stability: development
-    brief: "The total inodes in the filesystem of the Pod's volume"
+    brief: "The total inodes in the filesystem of the Pod's volume."
     instrument: updowncounter
     annotations:
       code_generation:
@@ -241,7 +241,7 @@ groups:
     type: metric
     metric_name: k8s.pod.volume.inode.used
     stability: development
-    brief: "The inodes used by the filesystem of the Pod's volume"
+    brief: "The inodes used by the filesystem of the Pod's volume."
     instrument: updowncounter
     annotations:
       code_generation:
@@ -265,7 +265,7 @@ groups:
     type: metric
     metric_name: k8s.pod.volume.inode.free
     stability: development
-    brief: "The free inodes in the filesystem of the Pod's volume"
+    brief: "The free inodes in the filesystem of the Pod's volume."
     instrument: updowncounter
     annotations:
       code_generation:
