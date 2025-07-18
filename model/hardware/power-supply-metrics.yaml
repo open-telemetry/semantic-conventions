@@ -40,3 +40,15 @@ groups:
     instrument: gauge
     unit: "1"
     extends: metric.hw.power_supply
+
+  - id: metric.hw.power_supply.usage
+    type: metric
+    metric_name: hw.power_supply.usage
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Current power output of the power supply"
+    instrument: updowncounter
+    unit: "W"
+    extends: metric.hw.power_supply
