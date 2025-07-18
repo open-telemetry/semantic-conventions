@@ -12,20 +12,28 @@ aliases: [attribute-naming]
 <!-- toc -->
 
 - [General naming considerations](#general-naming-considerations)
-- [Name Abbreviation Guidelines](#name-abbreviation-guidelines)
-- [Name Reuse Prohibition](#name-reuse-prohibition)
-- [Recommendations for OpenTelemetry Authors](#recommendations-for-opentelemetry-authors)
-- [Recommendations for Application Developers](#recommendations-for-application-developers)
+- [Name abbreviation guidelines](#name-abbreviation-guidelines)
+- [Name reuse prohibition](#name-reuse-prohibition)
+- [Recommendations for OpenTelemetry authors](#recommendations-for-opentelemetry-authors)
+- [Recommendations for application developers](#recommendations-for-application-developers)
 - [Attributes](#attributes)
-  - [otel.\* Namespace](#otel-namespace)
-  - [Attribute Name Pluralization Guidelines](#attribute-name-pluralization-guidelines)
-  - [Signal-specific Attributes](#signal-specific-attributes)
+  - [otel.\* namespace](#otel-namespace)
+  - [Attribute name pluralization guidelines](#attribute-name-pluralization-guidelines)
+  - [Signal-specific attributes](#signal-specific-attributes)
+  - [System-specific attributes](#system-specific-attributes)
 - [Metrics](#metrics)
-  - [Naming Rules for Counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
+  - [Naming rules for counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
     - [Pluralization](#pluralization)
-    - [Use `count` Instead of Pluralization for UpDownCounters](#use-count-instead-of-pluralization-for-updowncounters)
-    - [Do Not Use `total`](#do-not-use-total)
-  - [Instrument Naming](#instrument-naming)
+    - [Do not pluralize UpDownCounter names](#do-not-pluralize-updowncounter-names)
+    - [Do not use `total`](#do-not-use-total)
+  - [Instrument naming](#instrument-naming)
+  - [Client and server metrics](#client-and-server-metrics)
+- [System-specific naming](#system-specific-naming)
+  - [System (project/product/provider) name attribute](#system-projectproductprovider-name-attribute)
+  - [Choosing a system name](#choosing-a-system-name)
+  - [System-specific attributes](#system-specific-attributes-1)
+  - [System-specific metrics](#system-specific-metrics)
+  - [Known exceptions](#known-exceptions)
 
 <!-- tocstop -->
 
@@ -67,12 +75,17 @@ Names SHOULD follow these rules:
   words by underscores (i.e. use snake_case). For example
   `http.response.status_code` denotes the status code in the http namespace.
 
+  Known exceptions include
+  [K8s API names](../non-normative/naming-known-exceptions.md) where a single
+  word is used for consistency with the instrumented API.
+
   Use underscore only when using dot (namespacing) does not make sense or changes
   the semantic meaning of the name. For example, use `rate_limiting`
   instead of `rate.limiting`.
 
 - Be precise. Attribute, event, metric, and other names should be descriptive and
   unambiguous.
+
   - When introducing a name describing a certain property of the object,
     include the property name. For example, use `file.owner.name` instead of `file.owner`
     and `system.network.packet.dropped` instead of `system.network.dropped`
@@ -84,7 +97,7 @@ Names SHOULD follow these rules:
   components or words in multi-word components when they are not necessary. For example,
   `vcs.change.id` describes pull request id as precisely as `vcs.repository.change.id` does.
 
-## Name Abbreviation Guidelines
+## Name abbreviation guidelines
 
 Abbreviations MAY be used when they are widely recognized and commonly used.
 
@@ -100,7 +113,7 @@ or `container.oci.*` instead of `container.open_container_initiative.*`
 Abbreviations SHOULD be avoided if they are ambiguous, for example, when they apply
 to multiple products or concepts.
 
-## Name Reuse Prohibition
+## Name reuse prohibition
 
 Two attributes, two metrics, or two events MUST NOT share the same name.
 Different entities (attribute and metric, metric and event) MAY share the same name.
@@ -109,7 +122,7 @@ Attributes, metrics, and events SHOULD NOT be removed from semantic
 conventions regardless of their maturity level. When the convention is renamed or
 no longer recommended, it SHOULD be deprecated.
 
-## Recommendations for OpenTelemetry Authors
+## Recommendations for OpenTelemetry authors
 
 - When coming up with a new semantic convention make sure to check existing
   namespaces ([Semantic Conventions](/docs/README.md)) to see if a similar namespace
@@ -134,7 +147,7 @@ no longer recommended, it SHOULD be deprecated.
 > Names must start with a letter, end with an alphanumeric character, and must not
 > contain two or more consecutive delimiters (Underscore or Dot).
 
-## Recommendations for Application Developers
+## Recommendations for application developers
 
 As an application developer when you need to record an attribute, metric, event, or
 other signal first consult existing [semantic conventions](./README.md).
@@ -173,7 +186,7 @@ subset of Unicode code points).
 
 ## Attributes
 
-### otel.\* Namespace
+### otel.\* namespace
 
 Attribute names that start with `otel.` are reserved to be defined by
 OpenTelemetry specification. These are typically used to express OpenTelemetry
@@ -187,7 +200,7 @@ and protocols.
 Any additions to the `otel.*` namespace MUST be approved as part of
 OpenTelemetry specification.
 
-### Attribute Name Pluralization Guidelines
+### Attribute name pluralization guidelines
 
 - When an attribute represents a single entity, the attribute name SHOULD be
   singular. Examples: `host.name`, `container.id`.
@@ -200,7 +213,7 @@ OpenTelemetry specification.
   [Name Pluralization Guidelines](./naming.md#pluralization) SHOULD be
   followed for the attribute name.
 
-### Signal-specific Attributes
+### Signal-specific attributes
 
 **Status**: [Development][DocumentStatus]
 
@@ -226,11 +239,37 @@ Examples:
 Metric `http.server.request.duration` uses attributes from the registry such as
 `server.port`, `error.type`.
 
+### System-specific attributes
+
+**Status**: [Development][DocumentStatus]
+
+When an attribute is specific to a particular system (e.g., project, provider, product),
+the system name should be used in the attribute name, following the pattern:
+`{optional domain}.{system}.*.{property}` pattern.
+
+Examples:
+
+- `db.cassandra.consistency_level` - Describes the consistency level property
+  specific to the Cassandra database.
+- `aws.s3.key` - Refers to the `key` property of the AWS S3 product.
+- `signalr.connection.status` – Indicates the connection status of the SignalR
+  network protocol. In this case, no domain is included.
+
+Semantic conventions for a specific domain are generally applicable to multiple systems.
+These conventions should define an attribute to represent the name of the system.
+For example, database conventions include the `db.system.name` attribute.
+
+The name of the system used in the corresponding attribute should match the name
+used inside system-specific attributes.
+
+For example, if the database name specified in `db.system.name` is `foo.bar`, system-specific
+attributes for this database should follow the `db.foo.bar.*` pattern.
+
 ## Metrics
 
 **Status**: [Development][DocumentStatus]
 
-### Naming Rules for Counters and UpDownCounters
+### Naming rules for counters and UpDownCounters
 
 #### Pluralization
 
@@ -244,21 +283,21 @@ question is a non-unit (like `{fault}` or `{operation}`).
 
 Examples:
 
-* `system.filesystem.utilization`, `http.server.request.duration`, and `system.cpu.time`
-should not be pluralized, even if many data points are recorded.
-* `system.paging.faults`, `system.disk.operations`, and `system.network.packets`
-should be pluralized, even if only a single data point is recorded.
+- `system.filesystem.utilization`, `http.server.request.duration`, and `system.cpu.time`
+  should not be pluralized, even if many data points are recorded.
+- `system.paging.faults`, `system.disk.operations`, and `system.network.packets`
+  should be pluralized, even if only a single data point is recorded.
 
-#### Use `count` Instead of Pluralization for UpDownCounters
+#### Do not pluralize UpDownCounter names
 
-If the value being recorded represents the count of concepts signified
-by the namespace then the metric should be named `count` (within its namespace).
+UpDownCounter names SHOULD NOT be pluralized.
 
 For example if we have a namespace `system.process` which contains all metrics related
 to the processes then to represent the count of the processes we can have a metric named
-`system.process.count`.
+`system.process.count` instead of `system.processes`. Similarly, `cicd.pipeline.run.active` is preferred
+over the `cicd.pipeline.active_runs`.
 
-#### Do Not Use `total`
+#### Do not use `total`
 
 UpDownCounters SHOULD NOT use `_total` because then they will look like
 monotonic sums.
@@ -266,19 +305,19 @@ monotonic sums.
 Counters SHOULD NOT append `_total` either because then their meaning will
 be confusing in delta backends.
 
-### Instrument Naming
+### Instrument naming
 
 **Status**: [Development][DocumentStatus]
 
 - **limit** - an instrument that measures the constant, known total amount of
-something should be called `entity.limit`. For example, `system.memory.limit`
-for the total amount of memory on a system.
+  something should be called `entity.limit`. For example, `system.memory.limit`
+  for the total amount of memory on a system.
 
 - **usage** - an instrument that measures an amount used out of a known total
-(**limit**) amount should be called `entity.usage`. For example,
-`system.memory.usage` with attribute `state = used | cached | free | ...` for the
-amount of memory in a each state. Where appropriate, the sum of **usage**
-over all attribute values SHOULD be equal to the **limit**.
+  (**limit**) amount should be called `entity.usage`. For example,
+  `system.memory.usage` with attribute `state = used | cached | free | ...` for the
+  amount of memory in a each state. Where appropriate, the sum of **usage**
+  over all attribute values SHOULD be equal to the **limit**.
 
   A measure of the amount consumed of an unlimited resource, or of a resource
   whose limit is unknowable, is differentiated from **usage**. For example, the
@@ -286,16 +325,16 @@ over all attribute values SHOULD be equal to the **limit**.
   fluctuate over time and is not typically known.
 
 - **utilization** - an instrument that measures the _fraction_ of **usage**
-out of its **limit** should be called `entity.utilization`. For example,
-`system.memory.utilization` for the fraction of memory in use. Utilization can
-be with respect to a fixed limit or a soft limit. Utilization values are
-represented as a ratio and are typically in the range `[0, 1]`, but may go above 1
-in case of exceeding a soft limit.
+  out of its **limit** should be called `entity.utilization`. For example,
+  `system.memory.utilization` for the fraction of memory in use. Utilization can
+  be with respect to a fixed limit or a soft limit. Utilization values are
+  represented as a ratio and are typically in the range `[0, 1]`, but may go above 1
+  in case of exceeding a soft limit.
 
 - **time** - an instrument that measures passage of time should be called
-`entity.time`. For example, `system.cpu.time` with attribute `state = idle | user
+  `entity.time`. For example, `system.cpu.time` with attribute `state = idle | user
 | system | ...`. **time** measurements are not necessarily wall time and can
-be less than or greater than the real wall time between measurements.
+  be less than or greater than the real wall time between measurements.
 
   **time** instruments are a special case of **usage** metrics, where the
   **limit** can usually be calculated as the sum of **time** over all attribute
@@ -305,12 +344,122 @@ be less than or greater than the real wall time between measurements.
   elapsed time and number of CPUs.
 
 - **io** - an instrument that measures bidirectional data flow should be
-called `entity.io` and have attributes for direction. For example,
-`system.network.io`.
+  called `entity.io` and have attributes for direction. For example,
+  `system.network.io`.
 
 - Other instruments that do not fit the above descriptions may be named more
-freely. For example, `system.paging.faults` and `system.network.packets`.
-Units do not need to be specified in the names since they are included during
-instrument creation, but can be added if there is ambiguity.
+  freely. For example, `system.paging.faults` and `system.network.packets`.
+  Units do not need to be specified in the names since they are included during
+  instrument creation, but can be added if there is ambiguity.
+
+### Client and server metrics
+
+Metrics that measure some aspect of a physical or logical network call SHOULD include
+an indication of which side the metric is being recorded from.
+
+Such metrics SHOULD follow the `{area}.{client|server}.{metric_name}`
+pattern if the communication side is ambiguous for a given `{area}` and `{metric_name}`.
+Otherwise, when the communication side can be inferred from the given `{area}` or
+`{metric_name}`, the `{area}.{metric_name}` pattern SHOULD be used.
+
+Examples:
+
+- `http.client.request.duration`
+- `gen_ai.server.request.duration`
+- `messaging.client.sent.messages`
+- `messaging.process.duration` - the term `process` clearly indicates that
+  the metric is reported by the consumer.
+- `kestrel.connection.duration` - here, `kestrel` is the name of the web server,
+  so no additional indication is necessary.
+
+## System-specific naming
+
+**Status**: [Development][DocumentStatus]
+
+### System (project/product/provider) name attribute
+
+Semantic conventions for a certain area are usually applicable to multiple systems
+(projects, providers, products).
+
+For example, database semantic conventions can be used to describe telemetry for a
+broad range of database systems.
+
+Such conventions SHOULD define an attribute to represent the system name following
+`{area}.system|provider|protocol.name` pattern.
+
+For example, database conventions include the `db.system.name` attribute.
+
+### Choosing a system name
+
+When adding new a system to the semantic conventions, follow these principles in descending order of priority:
+
+1. The system name SHOULD adhere to the general attribute naming guidelines outlined in this document,
+   as it will be used as a namespace in [system-specific attribute names](#system-specific-attributes).
+
+2. The system name SHOULD unambiguously identify this specific product or project.
+
+   For example, use `gcp.pubsub` or `oracle.db`. Avoid generic names like `pubsub`,
+   which could refer to multiple messaging products, or `oracle` which could refer to
+   multiple Oracle products.
+
+3. The system name SHOULD match the corresponding project or product name in the following cases:
+
+   - Independent projects that do not belong to a specific company, such as Apache Foundation projects like
+     `kafka` or `cassandra`.
+   - Products with names similar to the owning company, such as `mongodb` or `elasticsearch`
+   - Widely recognized products that are popular outside their company's ecosystem.
+     These products often have trademarks without the company name and have
+     their own top-level domain (e.g. `spring` or `mysql`).
+
+4. In other cases, the system name SHOULD be prefixed with the company (organization,
+   division, or group) name. For cloud services, the name SHOULD use the
+   corresponding cloud provider name. For example, use `aws.dynamodb` or `azure.cosmosdb`.
+
+   The company (organization, division, or group) name SHOULD remain consistent
+   across multiple product names in different semantic convention areas.
+
+### System-specific attributes
+
+When an attribute is specific to a particular system (project, provider, product),
+the corresponding attribute name SHOULD start with the system name following the
+`{system_name}.*.{property}` pattern.
+
+Examples:
+
+- `cassandra.consistency.level` - Describes the consistency level property
+  specific to the Cassandra database.
+- `aws.s3.key` - Refers to the `key` property of the AWS S3 product.
+- `signalr.connection.status` – Indicates the connection status of the SignalR
+  network protocol.
+
+The value of the [`*.system.name`](#system-projectproductprovider-name-attribute) (or similar)
+attribute MUST match the root namespace used in the system specific attribute being defined.
+
+For example, both `cassandra.consistency.level` attribute name and `db.system.name=cassandra`
+use the same system name (`cassandra`).
+
+### System-specific metrics
+
+When a metric is specific to a system (project, provider, product),
+the corresponding instrument name SHOULD start with the system name following the
+`{system_name}.*.{metric_name}` pattern.
+
+For example, `azure.cosmosdb.client.operation.request_charge`
+
+The value of the [`*.system.name`](#system-projectproductprovider-name-attribute) (or similar)
+attribute MUST match system specific metric namespace.
+
+For example, both the `azure.cosmosdb.client.operation.request_charge` metric and the `db.system.name=azure.cosmosdb`
+attribute use the same system name (`azure.cosmosdb`).
+
+### Known exceptions
+
+- Operational system and process-related attributes and metrics [follow a
+  pattern](/docs/system/system-metrics.md#systemos---os-specific-system-metrics)
+  of `system.{os}` and `process.{os}`. <!-- TODO: document why-->
+
+- [RPC](/docs/rpc/README.md), [messaging](/docs/messaging/README.md), and
+  [GenAI](/docs/gen-ai/README.md) semantic conventions don't follow the
+  system-specific naming guidance yet, and will be updated one-by-one.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

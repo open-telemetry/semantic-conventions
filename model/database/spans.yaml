@@ -4,7 +4,7 @@ groups:
     type: attribute_group
     brief: This group defines the attributes used to perform database client calls.
     attributes:
-      # TODO: add db.system.name once https://github.com/open-telemetry/build-tools/issues/192 is possible
+      # TODO: add db.system.name once https://github.com/open-telemetry/weaver/issues/479 is possible
       # - ref: db.system.name
       #   sampling_relevant: true
       - ref: db.operation.name
@@ -40,7 +40,7 @@ groups:
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.query.parameter.<key>`](/docs/attributes-registry/db.md)).
+            see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
       - ref: db.query.summary
         sampling_relevant: true
       - ref: db.query.parameter
@@ -71,7 +71,7 @@ groups:
 
             Parameterized query text SHOULD be collected by default
             (the query parameter values themselves are opt-in,
-            see [`db.query.parameter.<key>`](/docs/attributes-registry/db.md)).
+            see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
       - ref: db.query.summary
         sampling_relevant: true
       - ref: db.query.parameter
@@ -96,7 +96,7 @@ groups:
           recommended: if and only if `network.peer.address` is set.
       - ref: db.system.name
         sampling_relevant: true
-        # TODO: Not adding to the minimal because of https://github.com/open-telemetry/build-tools/issues/192
+        # TODO: Not adding to the minimal because of https://github.com/open-telemetry/weaver/issues/479
         requirement_level: required
       - ref: db.namespace
         sampling_relevant: true
@@ -229,7 +229,7 @@ groups:
     brief: >
       Spans representing calls to a MySQL Server adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
     note: |
-      `db.system.name` MUST be set to `"microsoft.sql_server"` and SHOULD be provided **at span creation time**.
+      `db.system.name` MUST be set to `"mysql"` and SHOULD be provided **at span creation time**.
     attributes:
       - ref: db.namespace
         sampling_relevant: true
@@ -821,10 +821,11 @@ groups:
         requirement_level:
           conditionally_required: If available.
         note: ""  # overriding the base note
-      - ref: az.namespace
+      - ref: azure.resource_provider.namespace
         note: >
-          When `az.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all
-          operations performed by Cosmos DB client.
+          When `azure.resource_provider.namespace` attribute is populated, it
+          MUST be set to `Microsoft.DocumentDB` for all operations performed by
+          Cosmos DB client.
         examples: ["Microsoft.DocumentDB"]
       - ref: db.operation.name
         requirement_level: required
@@ -1009,7 +1010,7 @@ groups:
             in the query text. See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
             Parameterized query text MUST also NOT be collected by default unless explicitly configured.
             The query parameter values themselves are opt-in,
-            see [`db.query.parameter.<key>`](../attributes-registry/db.md)).
+            see [`db.query.parameter.<key>`](../registry/attributes/db.md)).
         note: >
           For sanitization see [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext).
           For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used,

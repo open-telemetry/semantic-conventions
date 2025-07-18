@@ -32,6 +32,9 @@ groups:
   - id: metric.messaging.client.operation.duration
     type: metric
     metric_name: messaging.client.operation.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Duration of messaging operation initiated by a producer or consumer client."
     note: >
       This metric SHOULD NOT be used to report processing duration - processing duration is reported in `messaging.process.duration` metric.
@@ -49,6 +52,9 @@ groups:
   - id: metric.messaging.process.duration
     type: metric
     metric_name: messaging.process.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Duration of processing operation."
     note: >
       This metric MUST be reported for operations with `messaging.operation.type` that matches `process`.
@@ -64,6 +70,9 @@ groups:
   - id: metric.messaging.client.sent.messages
     type: metric
     metric_name: messaging.client.sent.messages
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Number of messages producer attempted to send to the broker."
     note: >
       This metric MUST NOT count messages that were created but haven't yet been sent.
@@ -78,6 +87,9 @@ groups:
   - id: metric.messaging.client.consumed.messages
     type: metric
     metric_name: messaging.client.consumed.messages
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Number of messages that were delivered to the application."
     note: >
       Records the number of messages pulled from the broker or number of messages dispatched to the application in push-based scenarios.

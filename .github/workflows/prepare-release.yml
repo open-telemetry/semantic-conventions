@@ -6,6 +6,9 @@ on:
         description: 'The version to release, e.g. 1.30.0'
         required: true
 
+permissions:
+  contents: read
+
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
@@ -31,26 +34,28 @@ jobs:
           fi
 
           version=${{ inputs.version }}
-          sed -i "0,/^schema_url: .*\/next$/s/\/next$/\/$version/" schema-next.yaml
-          sed -i "0,/^  next:$/s//  $version:/" schema-next.yaml
-          cp schema-next.yaml "schemas/$version"
+          make generate-schema-next SCHEMA_NEXT_VERSION=$version
           git add "schemas/$version"
-
-          sed -i "0,/^  $version:$/s//  next:\n  $version:/" schema-next.yaml
 
       - name: Update change log
         run: |
           make chlog-update VERSION=v${{ inputs.version }}
 
+      - uses: actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e # v2.0.6
+        id: otelbot-token
+        with:
+          app-id: ${{ vars.OTELBOT_APP_ID }}
+          private-key: ${{ secrets.OTELBOT_PRIVATE_KEY }}
+
       - name: Create pull request
         env:
           # not using secrets.GITHUB_TOKEN since pull requests from that token do not run workflows
-          GH_TOKEN: ${{ secrets.OPENTELEMETRYBOT_GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.otelbot-token.outputs.token }}
         run: |
           version=${{ inputs.version }}
-          message="Prepare release v${version}"
+          message="[chore] Prepare release v${version}"
           body="Prepare release \`v${version}\`."
-          branch="opentelemetrybot/prepare-release-v${version}"
+          branch="otelbot/prepare-release-v${version}"
 
           git checkout -b $branch
           git commit -a -m "$message"

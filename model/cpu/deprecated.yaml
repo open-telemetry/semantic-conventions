@@ -1,0 +1,50 @@
+groups:
+  - id: metric.cpu.time
+    type: metric
+    metric_name: cpu.time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Deprecated. Use `system.cpu.time` instead."
+    deprecated:
+      reason: renamed
+      renamed_to: system.cpu.time
+    stability: development
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: cpu.mode
+        note: "Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
+      - ref: cpu.logical_number
+
+  - id: metric.cpu.utilization
+    type: metric
+    metric_name: cpu.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Deprecated. Use `system.cpu.utilization` instead."
+    deprecated:
+      reason: renamed
+      renamed_to: system.cpu.utilization
+    stability: development
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: cpu.mode
+        note: "Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
+      - ref: cpu.logical_number
+
+  - id: metric.cpu.frequency
+    type: metric
+    metric_name: cpu.frequency
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Deprecated. Use `system.cpu.frequency` instead."
+    deprecated:
+      reason: renamed
+      renamed_to: system.cpu.frequency
+    stability: development
+    instrument: gauge
+    unit: "{Hz}"

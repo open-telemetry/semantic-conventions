@@ -2,6 +2,9 @@ groups:
   - id: metric.jvm.memory.init
     type: metric
     metric_name: jvm.memory.init
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     extends: attributes.jvm.memory
     brief: "Measure of initial memory requested."
@@ -11,6 +14,9 @@ groups:
   - id: metric.jvm.system.cpu.utilization
     type: metric
     metric_name: jvm.system.cpu.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "Recent CPU utilization for the whole system as reported by the JVM."
     note: >
@@ -24,6 +30,9 @@ groups:
   - id: metric.jvm.system.cpu.load_1m
     type: metric
     metric_name: jvm.system.cpu.load_1m
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "Average CPU load of the whole system for the last minute as reported by the JVM."
     note: >
@@ -44,6 +53,9 @@ groups:
   - id: metric.jvm.buffer.memory.used
     type: metric
     metric_name: jvm.buffer.memory.used
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     extends: attributes.jvm.buffer
     brief: "Measure of memory used by buffers."
@@ -53,6 +65,9 @@ groups:
   - id: metric.jvm.buffer.memory.limit
     type: metric
     metric_name: jvm.buffer.memory.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     extends: attributes.jvm.buffer
     brief: "Measure of total memory capacity of buffers."
@@ -62,6 +77,9 @@ groups:
   - id: metric.jvm.buffer.count
     type: metric
     metric_name: jvm.buffer.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     extends: attributes.jvm.buffer
     brief: "Number of buffers in the pool."
@@ -71,6 +89,9 @@ groups:
   - id: metric.jvm.file_descriptor.count
     type: metric
     metric_name: jvm.file_descriptor.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Number of open file descriptors as reported by the JVM."
     instrument: updowncounter

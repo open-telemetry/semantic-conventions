@@ -39,6 +39,23 @@ groups:
               stability: development
         brief: "The result value of the sampler for this span"
         stability: development
+      - id: otel.span.parent.origin
+        type:
+          members:
+            - id: none
+              value: none
+              brief: 'The span does not have a parent, it is a root span'
+              stability: development
+            - id: local
+              value: local
+              brief: The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is false
+              stability: development
+            - id: remote
+              value: remote
+              brief: The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is true
+              stability: development
+        brief: "Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote)"
+        stability: development
   - id: registry.otel.scope
     type: attribute_group
     display_name: OTel Scope Attributes
@@ -54,6 +71,11 @@ groups:
         brief: The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP).
         examples: ['1.0.0']
         stability: stable
+      - id: otel.scope.schema_url
+        type: string
+        brief: The schema URL of the instrumentation scope.
+        examples: ['https://opentelemetry.io/schemas/1.31.0']
+        stability: development
   - id: registry.otel.component
     type: attribute_group
     display_name: OTel Component Attributes
@@ -97,6 +119,11 @@ groups:
               brief: >
                 OTLP span exporter over HTTP with JSON serialization
               stability: development
+            - id: zipkin_http_span_exporter
+              value: "zipkin_http_span_exporter"
+              brief: >
+                Zipkin span exporter over HTTP
+              stability: development
             - id: otlp_grpc_log_exporter
               value: "otlp_grpc_log_exporter"
               brief: >
@@ -131,6 +158,11 @@ groups:
               value: "otlp_http_json_metric_exporter"
               brief: >
                 OTLP metric exporter over HTTP with JSON serialization
+              stability: development
+            - id: prometheus_http_text_metric_exporter
+              value: "prometheus_http_text_metric_exporter"
+              brief: >
+                Prometheus metric exporter over HTTP with the default text-based format
               stability: development
         stability: development
         brief: >
