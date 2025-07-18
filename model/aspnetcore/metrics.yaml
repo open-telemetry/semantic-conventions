@@ -116,9 +116,9 @@ groups:
         requirement_level: required
 
   # blazor components
-  - id: metric.aspnetcore.components.navigation
+  - id: metric.aspnetcore.components.navigate
     type: metric
-    metric_name: aspnetcore.components.navigation
+    metric_name: aspnetcore.components.navigate
     stability: development
     brief: Total number of route changes.
     instrument: counter
@@ -132,9 +132,9 @@ groups:
       - ref: aspnetcore.components.route
         requirement_level: required
 
-  - id: metric.aspnetcore.components.event_handler
+  - id: metric.aspnetcore.components.handle_event.duration
     type: metric
-    metric_name: aspnetcore.components.event_handler
+    metric_name: aspnetcore.components.handle_event.duration
     stability: development
     brief: Duration of processing browser event handler.
     instrument: histogram
@@ -155,10 +155,10 @@ groups:
         requirement_level:
           conditionally_required: If handler has ended with an error.
 
-  - id: metric.aspnetcore.components.update_parameters
+  - id: metric.aspnetcore.components.update_parameters.duration
     type: metric
-    metric_name: aspnetcore.components.update_parameters
-    stability: development
+    metric_name: aspnetcore.components.update_parameters.duration
+    stability: development.duration
     brief: Duration of processing component parameters.
     instrument: histogram
     unit: "s"
@@ -174,9 +174,9 @@ groups:
         requirement_level:
           conditionally_required: If handler has ended with an error.
 
-  - id: metric.aspnetcore.components.render_diff
+  - id: metric.aspnetcore.components.render_diff.duration
     type: metric
-    metric_name: aspnetcore.components.render_diff
+    metric_name: aspnetcore.components.render_diff.duration
     stability: development
     brief: Duration of rendering difference batch between previous and current HTML.
     instrument: histogram
@@ -185,8 +185,23 @@ groups:
       Meter name: `Microsoft.AspNetCore.Components.Lifecycle`; Added in: ASP.NET Core 10.0
       More about [Blazor rendering](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/rendering)
     attributes:
-      - ref: aspnetcore.components.diff.length
-        requirement_level: required
+      - ref: error.type
+        brief: The full name of exception type.
+        examples: ['System.OperationCanceledException', 'Contoso.MyException']
+        requirement_level:
+          conditionally_required: If handler has ended with an error.
+
+  - id: metric.aspnetcore.components.render_diff.size
+    type: metric
+    metric_name: aspnetcore.components.render_diff.size
+    stability: development
+    brief: Size of rendering difference batch between previous and current HTML.
+    instrument: histogram
+    unit: "element"
+    note: >
+      Meter name: `Microsoft.AspNetCore.Components.Lifecycle`; Added in: ASP.NET Core 10.0
+      More about [Blazor rendering](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/rendering)
+    attributes:
       - ref: error.type
         brief: The full name of exception type.
         examples: ['System.OperationCanceledException', 'Contoso.MyException']

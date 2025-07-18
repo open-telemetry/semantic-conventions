@@ -1,10 +1,10 @@
 groups:
-  - id: span.Microsoft.AspNetCore.Components.CircuitStart
+  - id: span.Microsoft.AspNetCore.Components.Server.Circuits.StartCircuit
     type: span
     span_kind: internal
     brief: 
     note: >
-      ActivitySource name: `Microsoft.AspNetCore.Components`; Added in: ASP.NET Core 10.0
+      ActivitySource name: `Microsoft.AspNetCore.Components.Server.Circuits`; Added in: ASP.NET Core 10.0
       More about [Blazor circuits](https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/signalr)
     stability: development
     attributes:
@@ -13,7 +13,7 @@ groups:
       - ref: error.type
         requirement_level:
           conditionally_required: if the circuit initialization failed
-  - id: span.Microsoft.AspNetCore.Components.RouteChange
+  - id: span.Microsoft.AspNetCore.Components.Navigate
     type: span
     span_kind: internal
     brief: 

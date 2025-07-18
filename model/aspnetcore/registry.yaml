@@ -115,15 +115,6 @@ groups:
           This route pattern is used to match the URL to the component.
           More about [Blazor routing](https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/routing)
         examples: ["/weather", "/counter"]
-      - id: aspnetcore.components.diff.length
-        type: int
-        stability: development
-        brief: Bucketed length of the diff in Blazor rendering pipeline.
-        note: >
-          This is approximate number of changes in the diff batch which would be applied to browser DOM. 
-          It's bucketed so that it doesn't have high cardinality.
-          More about [Blazor rendering](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/rendering)
-        examples: [1, 2, 5, 10, 100, 1000]
       - id: aspnetcore.components.circuit.id
         type: string
         stability: development
