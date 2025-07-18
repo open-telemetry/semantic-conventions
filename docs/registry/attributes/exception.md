@@ -13,8 +13,40 @@ This document defines the shared attributes used to report a single exception as
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="exception-message" href="#exception-message">`exception.message`</a> | string | The exception message. | `Division by zero`; `Can't convert 'int' object to str implicitly` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="exception-stacktrace" href="#exception-stacktrace">`exception.stacktrace`</a> | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="exception-stacktrace" href="#exception-stacktrace">`exception.stacktrace`</a> | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. [1] | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="exception-type" href="#exception-type">`exception.type`</a> | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. | `java.net.ConnectException`; `OSError` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+**[1] `exception.stacktrace`:** The table below, adapted from [Google Cloud][gcp-error-reporting], includes
+possible representations of stacktraces in various languages. The table is not
+meant to be a recommendation for any particular language, although SIGs are free
+to adopt them if they see fit.
+
+| Language   | Format                                                              |
+| ---------- | ------------------------------------------------------------------- |
+| C#         | the return value of [Exception.ToString()][csharp-stacktrace]       |
+| Elixir     | the return value of [Exception.format/3][elixir-stacktrace]         |
+| Erlang     | the return value of [`erl_error:format`][erlang-stacktrace]         |
+| Go         | the return value of [runtime.Stack][go-stacktrace]                  |
+| Java       | the contents of [Throwable.printStackTrace()][java-stacktrace]      |
+| Javascript | the return value of [error.stack][js-stacktrace] as returned by V8  |
+| Python     | the return value of [traceback.format_exc()][python-stacktrace]     |
+| Ruby       | the return value of [Exception.full_message][ruby-full-message]     |
+
+Backends can use the language specified methodology for generating a stacktrace
+combined with platform information from the
+[telemetry sdk resource][telemetry-sdk-resource] in order to extract more fine
+grained information from a stacktrace, if necessary.
+
+[gcp-error-reporting]: https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.events/report
+[java-stacktrace]: https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29
+[python-stacktrace]: https://docs.python.org/3/library/traceback.html#traceback.format_exc
+[js-stacktrace]: https://v8.dev/docs/stack-trace-api
+[ruby-full-message]: https://docs.ruby-lang.org/en/3.4/Exception.html#method-i-full_message
+[csharp-stacktrace]: https://docs.microsoft.com/dotnet/api/system.exception.tostring
+[go-stacktrace]: https://pkg.go.dev/runtime/debug#Stack
+[telemetry-sdk-resource]: ../resource/README.md#telemetry-sdk
+[erlang-stacktrace]: https://www.erlang.org/doc/apps/stdlib/erl_error.html#format_exception/3
+[elixir-stacktrace]: https://hexdocs.pm/elixir/1.14.3/Exception.html#format/3
 
 ## Deprecated Exception Attributes
 
