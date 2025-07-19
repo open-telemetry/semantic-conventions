@@ -21,5 +21,7 @@ The operating system (OS) on which the process represented by this resource is r
 
 | Value  | Description | Stability |
 |---|---|---|
+| `itron` | Industrial TRON | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unix` | Unix | ![Development](https://img.shields.io/badge/-development-blue) |
+| `wasm` | WASM OS | ![Development](https://img.shields.io/badge/-development-blue) |
 | `windowsnt` | Microsoft Windows NT based OS | ![Development](https://img.shields.io/badge/-development-blue) |

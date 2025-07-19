@@ -38,7 +38,9 @@ In case of virtualized environments, this is the operating system as it is obser
 
 | Value  | Description | Stability |
 |---|---|---|
+| `itron` | Industrial TRON | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unix` | Unix | ![Development](https://img.shields.io/badge/-development-blue) |
+| `wasm` | WASM OS | ![Development](https://img.shields.io/badge/-development-blue) |
 | `windowsnt` | Microsoft Windows NT based OS | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->

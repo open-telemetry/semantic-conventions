@@ -79,6 +79,14 @@ groups:
               brief: "IBM z/OS"
               deprecated: "Use `os.name` instead"
               stability: development
+            - id: wasm
+              value: 'wasm'
+              brief: "WASM OS"
+              stability: development
+            - id: itron
+              value: 'itron'
+              brief: "Industrial TRON"
+              stability: development
         brief: >
           The operating system type.
         stability: development
