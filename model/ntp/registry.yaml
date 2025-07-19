@@ -1,0 +1,30 @@
+groups:
+  - id: registry.ntp
+    type: attribute_group
+    display_name: NTP Attributes
+    brief: >
+      This document defines the shared attributes used to report NTP.
+    attributes:
+      - id: ntp.leapsec.mode
+        type:
+          members:
+            - id: normal
+              value: normal
+              stability: development
+            - id: insert_second
+              value: insert_second
+              stability: development
+            - id: delete_second
+              value: delete_second
+              stability: development
+            - id: unsynchronised
+              value: unsynchronised
+              stability: development
+        stability: development
+        brief: how leap seconds are being handled
+      - id: ntp.servers
+        type: string[]
+        stability: development
+        brief: NTP server used.
+        examples:
+          - ["0.au.pool.ntp.org", "1.au.pool.ntp.org"]
