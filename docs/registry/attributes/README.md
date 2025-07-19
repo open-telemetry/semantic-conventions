@@ -31,6 +31,7 @@ All registered attributes are listed by namespace in this registry.
 
 Currently, the following namespaces exist:
 
+- [Active Directory](active-directory.md)
 - [Android](android.md)
 - [App](app.md)
 - [Artifact](artifact.md)

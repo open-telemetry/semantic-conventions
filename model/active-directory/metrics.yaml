@@ -1,0 +1,209 @@
+groups:
+  - id: metric.active_directory.ds.bind.rate
+    type: metric
+    metric_name: active_directory.ds.bind.rate
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: The number of binds per second serviced by this domain controller.
+    instrument: updowncounter
+    unit: "{binds}/s"
+    attributes:
+      - ref: active_directory.ds.bind.type
+        requirement_level: required
+  - id: metric.active_directory.ds.ldap.bind.last_successful.time
+    type: metric
+    metric_name: active_directory.ds.ldap.bind.last_successful.time
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The amount of time taken for the last successful LDAP bind.
+    instrument: gauge
+    unit: "ms"
+  - id: metric.active_directory.ds.ldap.bind.rate
+    type: metric
+    metric_name: active_directory.ds.ldap.bind.rate
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: The number of successful LDAP binds per second.
+    instrument: updowncounter
+    unit: "{binds}/s"
+  - id: metric.active_directory.ds.ldap.client.session.count
+    type: metric
+    metric_name: active_directory.ds.ldap.client.session.count
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: The number of connected LDAP client sessions.
+    instrument: updowncounter
+    unit: "{sessions}"
+  - id: metric.active_directory.ds.ldap.search.rate
+    type: metric
+    metric_name: active_directory.ds.ldap.search.rate
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: The number of LDAP searches per second.
+    instrument: updowncounter
+    unit: "{binds}/s"
+  - id: metric.active_directory.ds.name_cache.hit_rate
+    type: metric
+    metric_name: active_directory.ds.name_cache.hit_rate
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: The percentage of directory object name component lookups that are satisfied by the Directory System Agent's name cache.
+    instrument: gauge
+    unit: "%"
+  - id: metric.active_directory.ds.notification.queued
+    type: metric
+    metric_name: active_directory.ds.notification.queued
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: The number of pending update notifications that have been queued to push to clients.
+    instrument: updowncounter
+    unit: "{notifications}"
+  - id: metric.active_directory.ds.operation.rate
+    type: metric
+    metric_name: active_directory.ds.operation.rate
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: The number of operations performed per second.
+    instrument: updowncounter
+    unit: "{operations}/s"
+    attributes:
+      - ref: active_directory.ds.operation.type
+        requirement_level: required
+  - id: metric.active_directory.ds.replication.network.io
+    type: metric
+    metric_name: active_directory.ds.replication.network.io
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The number of binds per second serviced by this domain controller.
+    instrument: counter
+    unit: "By"
+    attributes:
+      - ref: network.io.direction
+        requirement_level: required
+      - ref: network.io.compression
+        requirement_level: recommended
+  - id: metric.active_directory.ds.replication.object.rate
+    type: metric
+    metric_name: active_directory.ds.replication.object.rate
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: The number of objects transmitted by the Directory Replication Agent per second.
+    instrument: updowncounter
+    unit: "{objects}/s"
+    attributes:
+      - ref: network.io.direction
+        requirement_level: required
+  - id: metric.active_directory.ds.replication.operation.pending
+    type: metric
+    metric_name: active_directory.ds.replication.operation.pending
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The number of pending replication operations for the Directory Replication Agent.
+    instrument: updowncounter
+    unit: "{operations}"
+  - id: metric.active_directory.ds.replication.property.rate
+    type: metric
+    metric_name: active_directory.ds.replication.property.rate
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: The number of binds per second serviced by this domain controller.
+    instrument: updowncounter
+    unit: "{properties}/s	"
+    attributes:
+      - ref: network.io.direction
+        requirement_level: required
+  - id: metric.active_directory.ds.replication.sync.object.pending
+    type: metric
+    metric_name: active_directory.ds.replication.sync.object.pending
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The number of objects remaining until the full sync completes for the Directory Replication Agent.
+    instrument: updowncounter
+    unit: "{objects}"
+  - id: metric.active_directory.ds.replication.sync.request.count
+    type: metric
+    metric_name: active_directory.ds.replication.sync.request.count
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The number of sync requests made by the Directory Replication Agent.
+    instrument: counter
+    unit: "{requests}"
+    attributes:
+      - ref: active_directory.ds.replication.sync.request.result
+        requirement_level: required
+  - id: metric.active_directory.ds.replication.value.rate
+    type: metric
+    metric_name: active_directory.ds.replication.value.rate
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: The number of values transmitted by the Directory Replication Agent per second.
+    instrument: updowncounter
+    unit: "{values}/s"
+    attributes:
+      - ref: network.io.direction
+        requirement_level: required
+      - ref: active_directory.ds.replication.value.type
+        requirement_level: required
+  - id: metric.active_directory.ds.security_descriptor_propagations_event.queued
+    type: metric
+    metric_name: active_directory.ds.security_descriptor_propagations_event.queued
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The number of binds per second serviced by this domain controller.
+    instrument: updowncounter
+    unit: "{events}"
+  - id: metric.active_directory.ds.suboperation.rate
+    type: metric
+    metric_name: active_directory.ds.suboperation.rate
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: The rate of sub-operations performed.
+    instrument: updowncounter
+    unit: "{suboperations}/s"
+    attributes:
+      - ref: active_directory.ds.suboperation.type
+        requirement_level: required
+  - id: metric.active_directory.ds.thread.count
+    type: metric
+    metric_name: active_directory.ds.thread.count
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The number of binds per second serviced by this domain controller.
+    instrument: updowncounter
+    unit: "{threads}"

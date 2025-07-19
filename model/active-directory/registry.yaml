@@ -1,0 +1,71 @@
+groups:
+  - id: registry.active_directory
+    type: attribute_group
+    display_name: DNS Attributes
+    brief: >
+      This document defines the shared attributes used to report a DNS query.
+    attributes:
+      - id: active_directory.ds.bind.type
+        type:
+          members:
+            - id: server
+              value: server
+              stability: development
+            - id: client
+              value: client
+              stability: development
+        stability: development
+        brief: The type of bind
+      - id: active_directory.ds.operation.type
+        type:
+          members:
+            - id: read
+              value: read
+              stability: development
+            - id: write
+              value: write
+              stability: development
+            - id: search
+              value: search
+              stability: development
+        stability: development
+        brief: The type of operation.
+      - id: active_directory.ds.replication.sync.request.result
+        type:
+          members:
+            - id: success
+              value: success
+              stability: development
+            - id: schema_mismatch
+              value: schema_mismatch
+              stability: development
+            - id: other
+              value: other
+              stability: development
+        stability: development
+        brief: The result of the replication sync request.
+      - id: active_directory.ds.replication.value.type
+        type:
+          members:
+            - id: distinguished_names
+              value: distinguished_names
+              stability: development
+            - id: other
+              value: other
+              stability: development
+        stability: development
+        brief: The type of replication value.
+      - id: active_directory.ds.suboperation.type
+        type:
+          members:
+            - id: security_descriptor_propagations_event
+              value: security_descriptor_propagations_event
+              stability: development
+            - id: search
+              value: search
+              stability: development
+            - id: other
+              value: other
+              stability: development
+        stability: development
+        brief: The type of sub operation.
