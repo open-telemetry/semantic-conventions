@@ -46,7 +46,7 @@ groups:
     display_name: IBM Customer Information Control System (CICS)
     brief: This group defines attributes for the IBM CICS Transaction Server for z/OS
     attributes:
-      - id: ibm.cics.transaction.group_id
+      - id: ibm.cics.transaction.group.id
         type: string
         stability: development
         brief: Describes the group ID assigned at transaction attach time and can be used to correlate the transactions that CICS runs for the same incoming work request.
