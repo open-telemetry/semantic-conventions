@@ -32,6 +32,6 @@
 
 {{table of body properties}}
 
-|Body Field|Type|Summary|Examples|Requirement|Stability|
-|---|---|---|---|---|---|
-name|[CustomType](type-custom.md)|This is an attribute| | | |
+|Body Field|Type|Summary|Examples|Stability|
+|---|---|---|---|---|
+|name|[CustomType](type-custom.md)|This is an attribute| | |

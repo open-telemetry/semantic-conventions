@@ -18,7 +18,7 @@
 
 **Examples:** {{attribute.example}}
 
-**Values**
+**Values:**
 
 |Value|Summary|Stability|
 |---|---|---|
@@ -28,8 +28,8 @@
 
 {{table of signals}}
 
-|Name|Signal Type|Summary|Stability|Requirement|
-|---|---|---|---|---|
-|[CustomEvent](event-custom.md)|Event|This is an event| | |
+|Name|Signal Type|Summary|Stability|
+|---|---|---|---|
+|[CustomEvent](event-custom.md)|Event|This is an event| |
 |[CustomMetric](entity-custom.md)|Metric|This is a metric| |
 |[CustomSpan](entity-custom.md)|Span|This is a span| |

@@ -8,17 +8,17 @@
 
 ---------------------------------
 
-## {{metric.name}}
+## {{span.name}}
 
-**Status:** {{metric.stability}}
+**Status:** {{span.stability}}
 
-**Summary:** {{metric.brief}}
+**Summary:** {{span.brief}}
 
-**Signal Type:** Metric
+**Signal Type:** Span
 
 ..... {{spot for signal specific properties}}
 
-**Description:** {{metric.note}}
+**Description:** {{span.note}}
 
 **Attributes:**
 

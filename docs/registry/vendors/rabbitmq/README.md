@@ -14,7 +14,7 @@
 
 |Name|Package|Summary|
 |---|---|---|
-|[CustomImplementation](implementation-custom.md)|[CustomPackage](../../namespaces/messaging/package-custom.md)|This is an implementation| | |
+|[CustomImplementation](implementation-custom.md)|[CustomPackage](../../namespaces/rpc/package-custom.md)|This is an implementation|
 
 ---------------------------------
 

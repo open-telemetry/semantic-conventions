@@ -6,7 +6,6 @@
 
 **Description:** {{vendor.note}}
 
-
 ## {{implementation.name}}
 
 **Summary:** {{implementation.brief}}
@@ -26,11 +25,11 @@
 
 ---------------------------------
 
-### Events:
+### Events
 
 {{block of events}}
 
-#### {{event.name}}:
+#### {{event.name}}
 
 **Summary:** {{event.brief}}
 
@@ -42,7 +41,7 @@
 
 |Key|Type|Summary|Value|
 |---|---|---|---|
-|[CustomAttribute](attribute-custom.md)|[CustomType](type-custom.md)|This is an attribute| RabbitMQ|
+|[CustomAttribute](../../namespaces/rpc/attribute-custom.md)|[CustomType](../../namespaces/rpc/type-custom.md)|This is an attribute| RabbitMQ|
 
 **Body:**
 
@@ -50,9 +49,9 @@
 
 |Body Field|Type|Summary|Value|
 |---|---|---|---|
-name|[CustomType](type-custom.md)|This is an attribute| |
+|name|[CustomType](../../namespaces/rpc/type-custom.md)|This is an attribute| |
 
-### Metrics:
+### Metrics
 
 {{block of metrics}}
 
@@ -70,9 +69,9 @@ name|[CustomType](type-custom.md)|This is an attribute| |
 
 |Key|Type|Summary|Value|
 |---|---|---|---|
-|[CustomAttribute](attribute-custom.md)|[CustomType](type-custom.md)|This is an attribute| RabbitMQ|
+|[CustomAttribute](../../namespaces/rpc/attribute-custom.md)|[CustomType](../../namespaces/rpc/type-custom.md)|This is an attribute| RabbitMQ|
 
-### Spans:
+### Spans
 
 {{block of spans}}
 
@@ -90,7 +89,7 @@ name|[CustomType](type-custom.md)|This is an attribute| |
 
 |Key|Type|Summary|Value|
 |---|---|---|---|
-|[CustomAttribute](attribute-custom.md)|[CustomType](type-custom.md)|This is an attribute| RabbitMQ||
+|[CustomAttribute](../../namespaces/rpc/attribute-custom.md)|[CustomType](../../namespaces/rpc/type-custom.md)|This is an attribute| RabbitMQ|
 
 ---------------------------------
 

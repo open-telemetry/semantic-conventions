@@ -22,7 +22,7 @@
 
 |Name|Summary|Stability|
 |---|---|---|
-|[CustomEntity](entity-custom.md)|This is an entity| | |
+|[CustomEntity](entity-custom.md)|This is an entity| |
 
 **Events:**
 
@@ -30,7 +30,7 @@
 
 |Name|Summary|Stability|
 |---|---|---|
-|[CustomEvent](event-custom.md)|This is an event| | |
+|[CustomEvent](event-custom.md)|This is an event| |
 
 **Metrics:**
 
@@ -46,7 +46,7 @@
 
 |Name|Summary|Stability|
 |---|---|---|
-|[CustomPackage](package-custom.md)|This is a package| | |
+|[CustomPackage](package-custom.md)|This is a package| |
 
 **Spans:**
 
@@ -62,7 +62,7 @@
 
 |Name|Summary|Stability|
 |---|---|---|
-|[CustomType](type-custom.md)|This is a type| | |
+|[CustomType](type-custom.md)|This is a type| |
 
 ---------------------------------
 

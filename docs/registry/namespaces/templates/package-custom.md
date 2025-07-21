@@ -23,5 +23,5 @@
 |Name|Signal Type|Summary|Stability|Requirement|
 |---|---|---|---|---|
 |[CustomEvent](event-custom.md)|Event|This is an event| | |
-|[CustomMetric](entity-custom.md)|Metric|This is a metric| |
-|[CustomSpan](entity-custom.md)|Span|This is a span| |
+|[CustomMetric](entity-custom.md)|Metric|This is a metric| | |
+|[CustomSpan](entity-custom.md)|Span|This is a span| | |
