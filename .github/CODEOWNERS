@@ -153,6 +153,10 @@
 /docs/zos                         @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
 /model/zos                        @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
 
+# IBM
+/docs/ibm                         @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
+/model/ibm                        @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
+
 # Transaction Processing System
 /docs/tps                         @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
 /model/tps                        @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers

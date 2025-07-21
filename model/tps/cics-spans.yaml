@@ -1,7 +1,7 @@
 groups:
   - id: span.ibm.cics.http.server
     type: span
-    stability: experimental
+    stability: development
     brief: 'This group defines semantic conventions for a HTTP server spans of IBM CICS Transaction Server for z/OS.'
     extends: span.tps.http.server
     span_kind: server
@@ -13,7 +13,7 @@ groups:
 
   - id: span.ibm.cics.rpc.server
     type: span
-    stability: experimental
+    stability: development
     brief: 'This group defines semantic conventions for Remote Procedure Call (RPC) server spans of IBM CICS Transaction Server for z/OS.'
     extends: span.tps.rpc.server
     span_kind: server
