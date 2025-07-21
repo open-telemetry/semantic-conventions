@@ -1,7 +1,7 @@
 groups:
   - id: span.tps.http.server
     type: span
-    stability: experimental
+    stability: development
     brief: 'This document defines semantic conventions for a HTTP server spans of Transaction Processing Systems.'
     extends: span.http.server
     span_kind: server
@@ -18,7 +18,7 @@ groups:
 
   - id: span.tps.rpc.server
     type: span
-    stability: experimental
+    stability: development
     brief: 'This document defines semantic conventions for Remote Procedure Call (RPC) server spans of Transaction Processing Systems'
     extends: span.rpc.server
     span_kind: server

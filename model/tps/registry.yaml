@@ -5,39 +5,39 @@ groups:
     brief: >
       This group defines generic attributes for Transaction Processing Systems (TPS).
     attributes:
-      - id: tps.system
+      - id: tps.system.name
         type: string
-        stability: experimental
+        stability: development
         brief: "Type of Transaction Processing System"
         examples: ['jta', 'oracle.tuxedo', 'ibm.cics', 'ibm.ims', 'ibm.ztpf']
       - id: tps.transaction.id
         type: string
-        stability: experimental
+        stability: development
         brief: "Identifier of the transaction initiated by a user or system request"
         examples: 'TRX1'
       - id: tps.transaction.owner
         type: string
-        stability: experimental
+        stability: development
         brief: "Identifier of the user owning the transaction"
         examples: 'USER'
       - id: tps.region.id
         type: string
-        stability: experimental
-        brief: "Runtime environment within the Transaction Processing System"
+        stability: development
+        brief: "On z/OS, identifies the entity acting as runtime environment to execute tasks of transactions within the Transaction Processing System"
         examples: 'PRD1'
       - id: tps.task.id
         type: string
-        stability: experimental
+        stability: development
         brief: "Identifier of the task created to run the transaction"
         examples: '1554'
       - id: tps.program.name
         type: string
-        stability: experimental
+        stability: development
         brief: "Program name executed by the task"
         examples: 'PROG123'
       - id: tps.unit_of_work.id
         type: string
-        stability: experimental
+        stability: development
         brief: "Unit of work executed by the program"
         examples: 'DF308CBF385A3C05'
 
@@ -48,7 +48,7 @@ groups:
     attributes:
       - id: ibm.cics.transaction.group_id
         type: string
-        stability: experimental
+        stability: development
         brief: Describes the group ID assigned at transaction attach time and can be used to correlate the transactions that CICS runs for the same incoming work request.
         examples: ['TRNGROUP']
 
@@ -59,6 +59,6 @@ groups:
     attributes:
       - id: ibm.ims.commit_mode
         type: string
-        stability: experimental
+        stability: development
         brief: Determines the type of commit mode processing that IMS performs.
         examples: ['0', '1']

@@ -1,7 +1,7 @@
 groups:
   - id: span.ibm.ims.rpc.server
     type: span
-    stability: experimental
+    stability: development
     brief: 'This group defines semantic conventions for Remote Procedure Call (RPC) server spans of IBM Information Management System (IMS) for z/OS'
     extends: span.tps.rpc.server
     span_kind: server
