@@ -41,15 +41,21 @@ jobs:
         run: |
           make chlog-update VERSION=v${{ inputs.version }}
 
+      - uses: actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e # v2.0.6
+        id: otelbot-token
+        with:
+          app-id: ${{ vars.OTELBOT_APP_ID }}
+          private-key: ${{ secrets.OTELBOT_PRIVATE_KEY }}
+
       - name: Create pull request
         env:
           # not using secrets.GITHUB_TOKEN since pull requests from that token do not run workflows
-          GH_TOKEN: ${{ secrets.OPENTELEMETRYBOT_GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.otelbot-token.outputs.token }}
         run: |
           version=${{ inputs.version }}
           message="[chore] Prepare release v${version}"
           body="Prepare release \`v${version}\`."
-          branch="opentelemetrybot/prepare-release-v${version}"
+          branch="otelbot/prepare-release-v${version}"
 
           git checkout -b $branch
           git commit -a -m "$message"
