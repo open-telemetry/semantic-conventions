@@ -2,6 +2,9 @@ groups:
   - id: metric.process.cpu.time
     type: metric
     metric_name: process.cpu.time
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "Total CPU seconds broken down by different states."
     instrument: counter
@@ -18,6 +21,9 @@ groups:
   - id: metric.process.cpu.utilization
     type: metric
     metric_name: process.cpu.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief:
       Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs
@@ -36,6 +42,9 @@ groups:
   - id: metric.process.memory.usage
     type: metric
     metric_name: process.memory.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The amount of physical memory in use."
     instrument: updowncounter
@@ -47,6 +56,9 @@ groups:
   - id: metric.process.memory.virtual
     type: metric
     metric_name: process.memory.virtual
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "The amount of committed virtual memory."
     instrument: updowncounter
@@ -58,6 +70,9 @@ groups:
   - id: metric.process.disk.io
     type: metric
     metric_name: process.disk.io
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Disk bytes transferred."
     instrument: counter
@@ -70,6 +85,9 @@ groups:
   - id: metric.process.network.io
     type: metric
     metric_name: process.network.io
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Network bytes transferred."
     instrument: counter
@@ -82,6 +100,9 @@ groups:
   - id: metric.process.thread.count
     type: metric
     metric_name: process.thread.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Process threads count."
     instrument: updowncounter
@@ -92,6 +113,9 @@ groups:
   - id: metric.process.open_file_descriptor.count
     type: metric
     metric_name: process.open_file_descriptor.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Number of file descriptors in use by the process."
     instrument: updowncounter
@@ -102,6 +126,9 @@ groups:
   - id: metric.process.context_switches
     type: metric
     metric_name: process.context_switches
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Number of times the process has been context switched."
     instrument: counter
@@ -114,6 +141,9 @@ groups:
   - id: metric.process.paging.faults
     type: metric
     metric_name: process.paging.faults
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Number of page faults the process has made."
     instrument: counter
@@ -126,6 +156,9 @@ groups:
   - id: metric.process.uptime
     type: metric
     metric_name: process.uptime
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: "The time the process has been running."
     note: |

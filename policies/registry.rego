@@ -89,6 +89,58 @@ deny contains attr_registry_violation(description, group.id, "") if {
     description := sprintf("Semconv group '%s' does not contain stability field. All semconv definitions must include stability level.", [group.id])
 }
 
+# check that member ids do not collide within the same attribute
+deny contains attr_registry_violation(description, group.id, attr.id) if {
+    group := input.groups[_]
+    startswith(group.id, "registry.")
+
+    attr := group.attributes[_]
+    member := attr.type.members[_]
+
+    collisions := [n | n := attr.type.members[_].id; n == member.id ]
+    count(collisions) > 1
+
+    description := sprintf("Member with id '%s' is already defined on the attribute '%s' in the group '%s'. Member id must be unique.", [member.id, attr.id, group.id])
+}
+
+# check that member values do not collide within the same attribute
+deny contains attr_registry_violation(description, group.id, attr.id) if {
+    group := input.groups[_]
+    startswith(group.id, "registry.")
+    attr := group.attributes[_]
+    member := attr.type.members[_]
+    not is_property_set(member, "deprecated")
+
+    collisions := [m
+        | m := attr.type.members[_]
+        not is_property_set(m, "deprecated")
+        m.value == member.value
+    ]
+    count(collisions) > 1
+
+    description := sprintf("Member with value '%s' (id '%s') is already defined on the attribute '%s' in the group '%s'. Member value must be unique.", [member.value, member.id, attr.id, group.id])
+}
+
+# check that member const names do not collide within the same attribute
+deny contains attr_registry_violation(description, group.id, attr.id) if {
+    group := input.groups[_]
+    startswith(group.id, "registry.")
+    attr := group.attributes[_]
+    member := attr.type.members[_]
+    not member.annotations["code_generation"]["exclude"]
+
+    const_name := to_const_name(member.id)
+
+    collisions := [m
+        | m := attr.type.members[_]
+        to_const_name(m.id) == const_name
+        not m.annotations["code_generation"]["exclude"]
+    ]
+    count(collisions) > 1
+
+    description := sprintf("Member with const name '%s' (id '%s'), is already defined on the attribute '%s' in the group '%s'. Member const names must be unique.", [const_name, member.id, attr.id, group.id])
+}
+
 get_attribute_name(attr, group) := name if {
     full_name := concat(".", [group.prefix, attr.id])
 
@@ -96,3 +148,10 @@ get_attribute_name(attr, group) := name if {
     name := trim(full_name, ".")
 }
 
+to_const_name(name) = const_name if {
+    const_name := replace(name, ".", "_")
+}
+
+is_property_set(obj, property) = true if {
+    obj[property] != null
+} else = false

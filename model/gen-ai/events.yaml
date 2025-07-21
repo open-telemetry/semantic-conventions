@@ -5,7 +5,7 @@ groups:
     brief: >
       Describes common Gen AI event attributes.
     attributes:
-      - ref: gen_ai.system
+      - ref: gen_ai.provider.name
 
   - id: event.gen_ai.system.message
     name: gen_ai.system.message

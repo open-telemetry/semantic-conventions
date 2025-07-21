@@ -2,8 +2,11 @@ groups:
   - id: metric.faas.invoke_duration
     type: metric
     metric_name: faas.invoke_duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
-    brief: "Measures the duration of the function's logic execution"
+    brief: "Measures the duration of the function's logic execution."
     instrument: histogram
     unit: "s"
     attributes:
@@ -12,8 +15,11 @@ groups:
   - id: metric.faas.init_duration
     type: metric
     metric_name: faas.init_duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
-    brief: "Measures the duration of the function's initialization, such as a cold start"
+    brief: "Measures the duration of the function's initialization, such as a cold start."
     instrument: histogram
     unit: "s"
     attributes:
@@ -22,8 +28,11 @@ groups:
   - id: metric.faas.coldstarts
     type: metric
     metric_name: faas.coldstarts
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Number of invocation cold starts"
+    brief: "Number of invocation cold starts."
     instrument: counter
     unit: "{coldstart}"
     attributes:
@@ -32,8 +41,11 @@ groups:
   - id: metric.faas.errors
     type: metric
     metric_name: faas.errors
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Number of invocation errors"
+    brief: "Number of invocation errors."
     instrument: counter
     unit: "{error}"
     attributes:
@@ -42,8 +54,11 @@ groups:
   - id: metric.faas.invocations
     type: metric
     metric_name: faas.invocations
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Number of successful invocations"
+    brief: "Number of successful invocations."
     instrument: counter
     unit: "{invocation}"
     attributes:
@@ -52,8 +67,11 @@ groups:
   - id: metric.faas.timeouts
     type: metric
     metric_name: faas.timeouts
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Number of invocation timeouts"
+    brief: "Number of invocation timeouts."
     instrument: counter
     unit: "{timeout}"
     attributes:
@@ -62,8 +80,11 @@ groups:
   - id: metric.faas.mem_usage
     type: metric
     metric_name: faas.mem_usage
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Distribution of max memory usage per invocation"
+    brief: "Distribution of max memory usage per invocation."
     instrument: histogram
     unit: "By"
     attributes:
@@ -72,8 +93,11 @@ groups:
   - id: metric.faas.cpu_usage
     type: metric
     metric_name: faas.cpu_usage
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
-    brief: "Distribution of CPU usage per invocation"
+    brief: "Distribution of CPU usage per invocation."
     instrument: histogram
     unit: "s"
     attributes:
@@ -82,8 +106,11 @@ groups:
   - id: metric.faas.net_io
     type: metric
     metric_name: faas.net_io
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Distribution of net I/O usage per invocation"
+    brief: "Distribution of net I/O usage per invocation."
     instrument: histogram
     unit: "By"
     attributes:

@@ -11,6 +11,9 @@ on:
       - main
   merge_group:
 
+permissions:
+  contents: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref }}
   cancel-in-progress: true
@@ -80,4 +83,4 @@ jobs:
       - name: Run markdown-link-check on the changelog
         run: |
           make chlog-preview &> changelog_preview.md
-          make markdown-link-check-changelog-preview
+          make markdown-link-check FILES=changelog_preview.md

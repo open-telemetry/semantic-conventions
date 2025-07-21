@@ -5,6 +5,9 @@ on:
     branches: [ 'main*' ]
     paths: ['.chloggen/*']
 
+permissions:
+  contents: read
+
 jobs:
   prepare-new-pr:
     runs-on: ubuntu-latest

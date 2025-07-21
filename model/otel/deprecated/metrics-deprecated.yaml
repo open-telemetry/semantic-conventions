@@ -2,6 +2,9 @@ groups:
   - id: metric.otel.sdk.span.live.count
     type: metric
     metric_name: otel.sdk.span.live.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed
@@ -12,16 +15,21 @@ groups:
   - id: metric.otel.sdk.span.ended.count
     type: metric
     metric_name: otel.sdk.span.ended.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
-      reason: renamed
-      renamed_to: otel.sdk.span.ended
-    brief: "Deprecated, use `otel.sdk.span.ended` instead."
+      reason: obsoleted
+    brief: "Use `otel.sdk.span.started` minus `otel.sdk.span.live` to derive this value."
     instrument: counter
     unit: "{span}"
   - id: metric.otel.sdk.processor.span.processed.count
     type: metric
     metric_name: otel.sdk.processor.span.processed.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed
@@ -32,6 +40,9 @@ groups:
   - id: metric.otel.sdk.exporter.span.inflight.count
     type: metric
     metric_name: otel.sdk.exporter.span.inflight.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed
@@ -42,10 +53,22 @@ groups:
   - id: metric.otel.sdk.exporter.span.exported.count
     type: metric
     metric_name: otel.sdk.exporter.span.exported.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed
       renamed_to: otel.sdk.exporter.span.exported
     brief: "Deprecated, use `otel.sdk.exporter.span.exported` instead."
     instrument: updowncounter
+    unit: "{span}"
+  - id: metric.otel.sdk.span.ended
+    type: metric
+    metric_name: otel.sdk.span.ended
+    stability: development
+    deprecated:
+      reason: obsoleted
+    brief: "Use `otel.sdk.span.started` minus `otel.sdk.span.live` to derive this value."
+    instrument: counter
     unit: "{span}"

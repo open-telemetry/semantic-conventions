@@ -31,5 +31,4 @@ The operating system (OS) on which the process represented by this resource is r
 | `openbsd` | OpenBSD | ![Development](https://img.shields.io/badge/-development-blue) |
 | `solaris` | SunOS, Oracle Solaris | ![Development](https://img.shields.io/badge/-development-blue) |
 | `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
-| `z_os` | Deprecated. Use `zos` instead. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zos` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
