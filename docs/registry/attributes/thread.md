@@ -9,10 +9,14 @@ These attributes may be used for any operation to store information about a thre
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="thread-background" href="#thread-background">`thread.background`</a> | boolean | The thread is a background thread. | `true`; `false` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="thread-id" href="#thread-id">`thread.id`</a> | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="thread-name" href="#thread-name">`thread.name`</a> | string | Current thread name. | `main` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="thread-pooled" href="#thread-pooled">`thread.pooled`</a> | boolean | The thread belongs to the managed thread pool. | `true`; `false` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="thread-priority" href="#thread-priority">`thread.priority`</a> | string | The scheduling priority of a thread. [1] | `Lowest`; `Highest`; `0`; `10` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="thread-pool-name" href="#thread-pool-name">`thread.pool.name`</a> | string | The thread pool which the thread belongs to pool. [1] | `secondary` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="thread-priority" href="#thread-priority">`thread.priority`</a> | string | The scheduling priority of a thread. [2] | `Lowest`; `Highest`; `0`; `10` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="thread-state" href="#thread-state">`thread.state`</a> | string | State of the the thread. [3] | `active`; `inactive`; `background`; `blocked` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `thread.priority`:** This value should be as per it is obtained from the SDK/library being used. In the event both a numerical and a named value exists, the named value should be used as it provides meaningful context.
+**[1] `thread.pool.name`:** If the thread is running on the pool but the name is not known, the name of `UNKNOWN` can be used to indicate that it is on the pool.
+
+**[2] `thread.priority`:** This value should be as per it is obtained from the SDK/library being used. In the event both a numerical and a named value exists, the named value should be used as it provides meaningful context.
+
+**[3] `thread.state`:** This is to be the value as received via api/sdk without transformation.
