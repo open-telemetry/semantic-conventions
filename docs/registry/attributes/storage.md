@@ -14,4 +14,4 @@ Describes Storage Device attributes
 | <a id="storage-volume-state" href="#storage-volume-state">`storage.volume.state`</a> | string | The storage array activity state [1] | `active` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `storage.volume.state`:** The set of values are pulled directly from mdraid via
-[mdstat]https://github.com/prometheus/procfs/blob/master/mdstat.go
+[mdstat](https://github.com/prometheus/procfs/blob/master/mdstat.go)

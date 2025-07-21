@@ -8,7 +8,7 @@ groups:
         type: string
         note: |
           The set of values are pulled directly from mdraid via
-          [mdstat]https://github.com/prometheus/procfs/blob/master/mdstat.go
+          [mdstat](https://github.com/prometheus/procfs/blob/master/mdstat.go)
         stability: development
         brief: "The storage array activity state"
         examples: ["active"]
