@@ -46,6 +46,8 @@ groups:
         requirement_level: required
       - ref: aspnetcore.components.route
         requirement_level: required
+      - ref: code.function.name
+        requirement_level: required
       - ref: aspnetcore.components.attribute.name
         requirement_level: required
       - ref: error.type

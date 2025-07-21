@@ -91,14 +91,6 @@ groups:
           This is full name of the C# component class, including the namespace.
           More about [Blazor event handling](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/event-handling)
         examples: ["Contoso.Weather"]
-      - id: aspnetcore.components.method
-        type: string
-        stability: development
-        brief: Method name of the event handler in Blazor component.
-        note: >
-          This is method name of the C# event handler.
-          More about [Blazor event handling](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/event-handling)
-        examples: ["IncrementCount"]
       - id: aspnetcore.components.attribute.name
         type: string
         stability: development
