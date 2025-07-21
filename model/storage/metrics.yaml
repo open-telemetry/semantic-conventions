@@ -6,7 +6,7 @@ groups:
     stability: development
     brief: "Number of active/failed/spare disks of device."
     note: |
-      Reports the total number of disks in a RAID device.
+      Reports the total number of disks in a storage device.
       See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat).
     instrument: updowncounter
     unit: "{disk}"
@@ -22,9 +22,9 @@ groups:
     type: metric
     metric_name: storage.volume.status
     stability: development
-    brief: "Reports the activity state of a RAID device"
+    brief: "Reports the activity state of a storage device"
     note: |
-      Reports the activity state of a RAID device.
+      Reports the activity state of a storage device.
       See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat).
     instrument: updowncounter
     unit: "{disk}"
@@ -73,7 +73,7 @@ groups:
     stability: development
     brief: "Number of disks in a fully functional device array."
     note: |
-      Reports the number of raid disks in a fully functional array for a RAID device.
+      Reports the number of disks in a fully functional array for a storage device.
       See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat) and [md](https://docs.kernel.org/admin-guide/md.html).
     instrument: updowncounter
     unit: "{disk}"
@@ -87,9 +87,9 @@ groups:
     type: metric
     metric_name: storage.volume.disk.degraded
     stability: development
-    brief: "Number of degraded raid disks in an array for a RAID device."
+    brief: "Number of degraded disks in an array for a storage device."
     note: |
-      Reports the number of degraded raid disks in an array for a RAID device..
+      Reports the number of degraded disks in an array for a storage device.
       See also [mdadm](https://raid.wiki.kernel.org/index.php/Mdstat) and [md](https://docs.kernel.org/admin-guide/md.html).
     instrument: updowncounter
     unit: "{disk}"
