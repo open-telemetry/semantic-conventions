@@ -15,7 +15,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Energy consumed by the component"
+    brief: "Energy consumed by the component."
     instrument: counter
     unit: "J"
     extends: metric.hw.attributes
@@ -27,7 +27,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Number of errors encountered by the component"
+    brief: "Number of errors encountered by the component."
     instrument: counter
     unit: "{error}"
     extends: metric.hw.attributes
@@ -48,7 +48,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Instantaneous power consumed by the component"
+    brief: "Instantaneous power consumed by the component."
     note: >
       It is recommended to report `hw.energy` instead of `hw.power` when possible.
     instrument: gauge
@@ -62,7 +62,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Operational status: `1` (true) or `0` (false) for each of the possible states"
+    brief: "Operational status: `1` (true) or `0` (false) for each of the possible states."
     instrument: updowncounter
     unit: "1"
     extends: metric.hw.attributes
