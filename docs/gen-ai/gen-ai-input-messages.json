@@ -4,9 +4,18 @@
             "additionalProperties": true,
             "properties": {
                 "role": {
-                    "type": "string"
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Role"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "title": "Role"
                 },
                 "parts": {
+                    "description": "List of message parts that make up the message content.",
                     "items": {
                         "discriminator": {
                             "mapping": {
@@ -28,25 +37,38 @@
                             }
                         ]
                     },
+                    "title": "Parts",
                     "type": "array"
                 }
             },
             "required": [
-                "role",
                 "parts"
             ],
+            "title": "ChatMessage",
             "type": "object"
+        },
+        "Role": {
+            "enum": [
+                "system",
+                "user",
+                "assistant"
+            ],
+            "title": "Role",
+            "type": "string"
         },
         "TextPart": {
             "additionalProperties": true,
-            "description": "Describes text content sent to or received from the model.",
+            "description": "Represents text content sent to or received from the model.",
             "properties": {
                 "type": {
                     "const": "text",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
                     "type": "string"
                 },
                 "content": {
-                    "description": "Text content provided to or received from the model.",
+                    "description": "Text content sent to or received from the model.",
+                    "title": "Content",
                     "type": "string"
                 }
             },
@@ -54,58 +76,61 @@
                 "type",
                 "content"
             ],
+            "title": "TextPart",
             "type": "object"
         },
         "ToolCallPart": {
             "additionalProperties": true,
-            "description": "Describes a tool call requested by the model.",
+            "description": "Represents a tool call requested by the model.",
             "properties": {
                 "type": {
                     "const": "tool_call",
-                    "description": "Content type.",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
                     "type": "string"
                 },
                 "id": {
                     "description": "Unique identifier for the tool call.",
+                    "title": "Id",
                     "type": "string"
                 },
                 "name": {
                     "description": "Name of the tool.",
+                    "title": "Name",
                     "type": "string"
                 },
                 "arguments": {
-                    "anyOf": [
-                        {}
-                    ],
-                    "description": "Arguments for the tool call."
+                    "default": null,
+                    "description": "Arguments for the tool call.",
+                    "title": "Arguments"
                 }
             },
             "required": [
                 "type",
                 "id",
-                "name",
-                "arguments"
+                "name"
             ],
+            "title": "ToolCallPart",
             "type": "object"
         },
         "ToolCallResponsePart": {
             "additionalProperties": true,
-            "description": "Describes a result of the tool call.",
+            "description": "Represents a tool call result sent to the model.",
             "properties": {
                 "type": {
                     "const": "tool_call_response",
-                    "description": "Message type.",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
                     "type": "string"
                 },
                 "id": {
                     "description": "Unique tool call identifier.",
+                    "title": "Id",
                     "type": "string"
                 },
                 "result": {
-                    "anyOf": [
-                        {}
-                    ],
-                    "description": "Result of the tool call."
+                    "description": "Tool call result.",
+                    "title": "Result"
                 }
             },
             "required": [
@@ -113,12 +138,14 @@
                 "id",
                 "result"
             ],
+            "title": "ToolCallResponsePart",
             "type": "object"
         }
     },
-    "description": "Describes input messages sent to the model.",
+    "description": "Represents the list of input messages sent to the model.",
     "items": {
         "$ref": "#/$defs/ChatMessage"
     },
+    "title": "InputMessages",
     "type": "array"
 }
