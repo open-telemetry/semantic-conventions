@@ -260,7 +260,34 @@ groups:
       - ref: gen_ai.data_source.id
         requirement_level:
           conditionally_required: if applicable.
-
+      - ref: gen_ai.agent.entity.type
+        requirement_level:
+          conditionally_required: if applicable.
+        note: |
+          Type of the entity involved in the span, such as `task`, `agent`, `tool`, or `workflow`.
+          Useful for understanding role-specific behavior within a chain.
+      - ref: gen_ai.agent.entity.name
+        requirement_level:
+          conditionally_required: if applicable.
+        note: |
+          Identifier or name of the entity, such as agent name (e.g., `researcher`) or task (e.g., `summarize_input`).
+      - ref: gen_ai.agent.entity.input
+        requirement_level: 
+          conditionally_required: if applicable.
+        note: |
+          The input payload (often serialized args, kwargs, or prompt content) passed to the agent or tool.
+      - ref: gen_ai.agent.entity.output
+        requirement_level:
+          conditionally_required: if applicable.
+        note: |
+          The response or output of the entity. This can include structured results, LLM completions,
+          or tool outputs.
+      - ref: gen_ai.agent.entity.outcome
+        requirement_level:
+          conditionally_required: if applicable.
+        note: |
+          Execution outcome classification, such as `success`, `partial_success`, `failure_logical`
+          (e.g., no valid answer), or `failure_technical` (e.g., exception, timeout).
   - id: span.gen_ai.execute_tool.internal
     type: span
     stability: development
