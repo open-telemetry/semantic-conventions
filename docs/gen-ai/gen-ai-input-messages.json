@@ -75,10 +75,7 @@
                 },
                 "arguments": {
                     "anyOf": [
-                        {},
-                        {
-                            "type": "null"
-                        }
+                        {}
                     ],
                     "description": "Arguments for the tool call."
                 }
@@ -106,10 +103,7 @@
                 },
                 "result": {
                     "anyOf": [
-                        {},
-                        {
-                            "type": "null"
-                        }
+                        {}
                     ],
                     "description": "Result of the tool call."
                 }

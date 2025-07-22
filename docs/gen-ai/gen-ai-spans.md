@@ -158,7 +158,7 @@ Instrumentations MAY provide a way for users to filter or truncate
 input messages.
 
 > [!Warning]
-> This attribute is likely to contain sensitive information.
+> This attribute is likely to contain sensitive information including user/PII data.
 
 See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
 section for more details.
@@ -172,7 +172,7 @@ Instrumentations MAY provide a way for users to filter or truncate
 output messages.
 
 > [!Warning]
-> This attribute is likely to contain sensitive information.
+> This attribute is likely to contain sensitive information including user/PII data.
 
 See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
 section for more details.
@@ -409,7 +409,8 @@ application needs and maturity:
    `gen_ai.output.messages`).
 
    This approach is best suited for pre-production environments where telemetry
-   volume is manageable and privacy regulations do not apply.
+   volume is manageable and privacy regulations do not apply or telemetry storage
+   is compliant with them.
 
    See [Recording content on attributes](#recording-content-on-attributes)
    section for more details.
@@ -427,22 +428,23 @@ application needs and maturity:
 The content captured in `gen_ai.system.instructions`, `gen_ai.input.messages`,
 and `gen_ai.output.messages` attributes is likely to be large.
 
-It may contain media, and even in the text form, it may be lager than
-observability backends limits for telemetry envelopes or attribute values.
+It may contain media, and even in the text form, it may be larger than
+observability backend limits for telemetry envelopes or attribute values.
 
-The input and output messages attributes follow common structure
-defined in [inputs JSON schema](./gen-ai-input-messages.json) and
-[outputs JSON schema](./gen-ai-output-messages.json).
+The inputs and outputs attributes follow common structure
+formally defined in [inputs JSON schema](./gen-ai-input-messages.json) and
+[outputs JSON schema](./gen-ai-output-messages.json). See also their representation
+in [Python code](./non-normative/models.ipynb).
 
 > [!NOTE]
 >
-> Recording structured attributes is currently only supported on events. This may
-> change, check out [OTEP: Extending attributes to support complex values](https://github.com/open-telemetry/opentelemetry-specification/pull/4485)
+> Recording structured attributes is supported on events (or logs) and may not
+> yet be supported on spans. See [OTEP: Extending attributes to support complex values](https://github.com/open-telemetry/opentelemetry-specification/blob/main/oteps/4485-extending-attributes-to-support-complex-values.md)
 > for the details.
 
-Until structured attributes are supported on spans, the corresponding attribute
-value SHOULD be serialized to JSON string on spans (unless spans start supporting
-complex attributes) and in their structured form on events.
+If structured attributes are not yet supported on spans in a given language, the
+corresponding attribute value SHOULD be serialized to JSON string on spans and
+recorded in its structured form on events.
 
 Instrumentation MAY provide a configuration option allowing to truncate properties
 such as individual message contents, preserving JSON structure.

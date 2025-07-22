@@ -11,6 +11,6 @@ note: |
     `gen_ai.input.messages` attributes instead)
   - `gen_ai.user.message`, `gen_ai.assistant.message`, `gen_ai.tool.message` events
     (use `gen_ai.input.messages` attribute instead)
-  - `gen_ai.choice.message` event (use `gen_ai.output.messages` attribute instead)
+  - `gen_ai.choice` event (use `gen_ai.output.messages` attribute instead)
 
 issues: [2010, 2179, 1913, 1621, 1912]
