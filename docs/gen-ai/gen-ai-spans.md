@@ -408,17 +408,18 @@ application needs and maturity:
    attributes (`gen_ai.system.instructions`, `gen_ai.input.messages`,
    `gen_ai.output.messages`).
 
-   This approach is best suited for pre-production environments where telemetry
-   volume is manageable and privacy regulations do not apply or telemetry storage
-   is compliant with them.
+   This approach is best suited for situations where telemetry volume is manageable
+   and either privacy regulations do not apply or the telemetry storage complies
+   with them, for example, in pre-production environments.
 
    See [Recording content on attributes](#recording-content-on-attributes)
    section for more details.
 
 3. Store content externally and record references on the spans.
 
-   This pattern is recommended for production environments where telemetry size
-   is a concern or when handling sensitive data.
+   This pattern is recommended in production environments where telemetry volume
+   is a concern or sensitive data needs to be handled securely. Using external
+   storage enables separate access controls.
 
    See [Uploading content to external storage](#uploading-content-to-external-storage)
    section for more details.
