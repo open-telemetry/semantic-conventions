@@ -165,7 +165,7 @@ They are likely to be siblings if there is an encompassing span.
 
 **Tool call:**
 
-If tool call is [instrumented according to execute-tool span definition](../../gen-ai-spans.md#execute-tool-span), it may look like
+If tool call is [instrumented according to execute-tool span definition](../gen-ai-spans.md#execute-tool-span), it may look like
 
 |   Property                      |                     Value                   |
 |---------------------------------|---------------------------------------------|
@@ -215,7 +215,7 @@ They are likely to be siblings if there is an encompassing span.
 
 **Tool call:**
 
-If tool call is [instrumented according to execute-tool span definition](../../gen-ai-spans.md#execute-tool-span), it may look like this:
+If tool call is [instrumented according to execute-tool span definition](../gen-ai-spans.md#execute-tool-span), it may look like this:
 
 |   Property                      |                     Value                   |
 |---------------------------------|---------------------------------------------|
