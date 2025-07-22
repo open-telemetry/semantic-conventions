@@ -488,6 +488,8 @@ and export settings accordingly in the OpenTelemetry SDK pipeline.
 
 TODO: document a common approach to record references to externally stored content.
 
+Check out [LLM call examples](./non-normative/examples-llm-calls.md).
+
 ### Streaming chunks
 
 TODO
