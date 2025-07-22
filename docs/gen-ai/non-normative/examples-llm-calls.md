@@ -1,5 +1,19 @@
 # LLM call examples
 
+<!-- toc -->
+
+- [Simple chat completion](#simple-chat-completion)
+  - [GenAI client span when content capturing is disabled](#genai-client-span-when-content-capturing-is-disabled)
+  - [GenAI client span when content capturing is enabled on span attributes](#genai-client-span-when-content-capturing-is-enabled-on-span-attributes)
+  - [GenAI telemetry when content capturing is enabled on event attributes](#genai-telemetry-when-content-capturing-is-enabled-on-event-attributes)
+- [Tool calls](#tool-calls)
+  - [GenAI client spans when content capturing is disabled](#genai-client-spans-when-content-capturing-is-disabled)
+  - [GenAI client spans when content capturing is enabled on span attributes](#genai-client-spans-when-content-capturing-is-enabled-on-span-attributes)
+- [Chat completion with multiple choices](#chat-completion-with-multiple-choices)
+  - [GenAI client span when content capturing is enabled on span attributes](#genai-client-span-when-content-capturing-is-enabled-on-span-attributes-1)
+
+<!-- tocstop -->
+
 ## Simple chat completion
 
 This is an example of telemetry generated for a chat completion call with
@@ -41,7 +55,7 @@ sequenceDiagram
 | `gen_ai.usage.input_tokens`     | `52`                                       |
 | `gen_ai.response.finish_reasons`| `["stop"]`                                 |
 
-### GenAI client span  when content capturing is enabled on attributes
+### GenAI client span when content capturing is enabled on span attributes
 
 |   Property                      |                     Value                  |
 |---------------------------------|--------------------------------------------|
@@ -61,7 +75,7 @@ sequenceDiagram
 | `gen_ai.input.messages`         | `[{"role": "system", "parts": [{"type": "text", "content": "You are a helpful bot"}]}, {"role": "user", "parts": [{"type": "text", "content": "Tell me a joke about OpenTelemetry"}]}]` |
 | `gen_ai.output.messages`        | `[{"role":"assistant","parts":[{"type":"text","content":" Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"}],"finish_reason":"stop"}]` |
 
-### GenAI telemetry when events with content are enabled
+### GenAI telemetry when content capturing is enabled on event attributes
 
 Span:
 
@@ -249,3 +263,21 @@ sequenceDiagram
     I-->M: assistant: Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!<br/> assistant: Why did OpenTelemetry get promoted? It had great span of control!
     I-->>-A: #U+200D
 ```
+
+### GenAI client span when content capturing is enabled on span attributes
+
+|   Property                      |                     Value                  |
+|---------------------------------|--------------------------------------------|
+| Span name                       | `"chat gpt-4"`                             |
+| `gen_ai.provider.name`          | `"openai"`                                 |
+| `gen_ai.operation.name`         | `"chat"`                                   |
+| `gen_ai.request.model`          | `"gpt-4"`                                  |
+| `gen_ai.request.max_tokens`     | `200`                                      |
+| `gen_ai.request.top_p`          | `1.0`                                      |
+| `gen_ai.response.id`            | `"chatcmpl-9J3uIL87gldCFtiIbyaOvTeYBRA3l"` |
+| `gen_ai.response.model`         | `"gpt-4-0613"`                             |
+| `gen_ai.usage.output_tokens`    | `77`                                       |
+| `gen_ai.usage.input_tokens`     | `52`                                       |
+| `gen_ai.response.finish_reasons`| `["stop", "stop"]`                         |
+| `gen_ai.input.messages`         | `[{"role": "system", "parts": [{"type": "text", "content": "You are a helpful bot"}]}, {"role": "user", "parts": [{"type": "text", "content": "Tell me a joke about OpenTelemetry"}]}]` |
+| `gen_ai.output.messages`        | `[{"role":"assistant","parts":[{"type":"text","content":" Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"}],"finish_reason":"stop"},{"role":"assistant","parts":[{"type":"text","content":" Why did OpenTelemetry get promoted? It had great span of control!"}],"finish_reason":"stop"}]` |
