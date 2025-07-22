@@ -31,6 +31,24 @@ groups:
           More information about Android identifier best practices can be found [here](https://developer.android.com/training/articles/user-data-ids).
         examples:
           - 2ab2916d-a51f-4ac8-80ee-45ac31a28092
+      - id: app.jank.count
+        type: int
+        stability: development
+        brief: A count of the number of frame renders that experienced jank.
+        note: >
+          Depending on platform limitations, the value provided
+          MAY be approximation.
+        examples: [ 9, 42 ]
+      - id: app.jank.threshold_ms
+        stability: development
+        type: int
+        brief: The minimum rendering threshold for this type of jank, in milliseconds.
+        examples: [ 16, 700, 1024 ]
+      - id: app.jank.period
+        stability: development
+        type: double
+        brief: The time period, in seconds, for which this jank is being reported.
+        examples: [ 0.5, 1.0, 10.0 ]
       - id: app.screen.coordinate.x
         type: int
         brief: The x (horizontal) coordinate of a screen coordinate, in screen pixels.
