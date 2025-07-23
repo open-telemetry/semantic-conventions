@@ -27,10 +27,9 @@ This span describes CLI (Command Line Interfaces) program execution from a calle
 Instrumentations that have additional context about executed commands MAY use
 a different low-cardinality span name format and SHOULD document it.
 
-**Span status** SHOULD be set to Error if {process.exit.code} is not 0. Refer to
-the [Recording Errors](/docs/general/recording-errors.md) document for details on how to record span status.
-
 **Span kind** SHOULD be `INTERNAL`.
+
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document. An error is defined when the {process.exit.code} is not 0. 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -91,10 +90,9 @@ This span describes CLI (Command Line Interfaces) program execution from a calle
 Instrumentations that have additional context about executed commands MAY use
 a different low-cardinality span name format and SHOULD document it.
 
-**Span status** SHOULD be set to Error if {process.exit.code} is not 0. Refer to
-the [Recording Errors](/docs/general/recording-errors.md) document for details on how to record span status.
-
 **Span kind** SHOULD be `CLIENT`.
+
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document. An error is defined when the {process.exit.code} is not 0. 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

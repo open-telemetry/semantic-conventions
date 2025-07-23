@@ -140,9 +140,9 @@ There are two ways HTTP client spans can be implemented in an instrumentation:
 
 **Span name:** refer to the [Span Name](/docs/http/http-spans.md#name) section.
 
-**Span status:** refer to the [Span Status](/docs/http/http-spans.md#status) section.
-
 **Span kind** MUST be `CLIENT`.
+
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document. Error handling for http is defined in the [Span Status](/docs/http/http-spans.md#status) section. 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -439,9 +439,9 @@ This span represents an inbound HTTP request.
 
 **Span name:** refer to the [Span Name](/docs/http/http-spans.md#name) section.
 
-**Span status:** refer to the [Span Status](/docs/http/http-spans.md#status) section.
-
 **Span kind** MUST be `SERVER`.
+
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document. Error handling for http is defined in the [Span Status](/docs/http/http-spans.md#status) section. 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
