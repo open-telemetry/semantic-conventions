@@ -183,8 +183,9 @@ groups:
 
       **Span name** SHOULD be `TLS client handshake {server.address}` when authenticating on the client
       side and `TLS server handshake` when authenticating the server.
-
-      **Span kind** SHOULD be `INTERNAL` in both cases.
+    annotations:
+      docs:
+        span_kind_brief: in both cases.
     attributes:
       - ref: tls.protocol.name
         requirement_level:

@@ -60,10 +60,13 @@ This span represents a client call to Generative AI model or service that genera
 Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
 and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#span).
 
-**Span kind** SHOULD be `CLIENT`and MAY be set to `INTERNAL` on spans representing
-call to models running in the same process. It's RECOMMENDED to use `CLIENT` kind
-when the GenAI system being instrumented usually runs in a different process than its
-client or when the GenAI call happens over instrumented protocol such as HTTP.
+**Span kind** SHOULD be `CLIENT` and MAY be set to `INTERNAL` on spans representing
+call to models running in the same process.
+
+It's RECOMMENDED to use `CLIENT` kind when the GenAI system being instrumented
+usually runs in a different process than its client or when the GenAI call happens over
+instrumented protocol such as HTTP.
+
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 

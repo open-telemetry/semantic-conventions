@@ -100,16 +100,18 @@ readily available at the generic query level.
 
 **Span name** is covered in the [Name](/docs/database/database-spans.md#name) section.
 
-**Span kind** SHOULD be `CLIENT`. It MAY be set to `INTERNAL` on spans representing
-in-memory database calls.
-It's RECOMMENDED to use `CLIENT` kind when database system being instrumented usually
-runs in a different process than its client or when database calls happen over
-instrumented protocol such as HTTP.
-
 **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
 document for details on how to record span status. Semantic conventions for
 individual systems SHOULD specify which values of `db.response.status_code`
 classify as errors.
+
+**Span kind** SHOULD be `CLIENT` . It MAY be set to `INTERNAL` on spans representing
+in-memory database calls.
+
+It's RECOMMENDED to use `CLIENT` kind when database system being instrumented usually
+runs in a different process than its client or when database calls happen over
+instrumented protocol such as HTTP.
+
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

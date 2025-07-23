@@ -19,9 +19,10 @@ groups:
 
       **Span name:** refer to the [Span Name](/docs/http/http-spans.md#name) section.
 
-      **Span kind** MUST be `CLIENT`.
-
       **Span status:** refer to the [Span Status](/docs/http/http-spans.md#status) section.
+    annotations:
+      docs:
+        span_kind_expectation: MUST
     attributes:
       - ref: http.request.method
         sampling_relevant: true
@@ -74,10 +75,11 @@ groups:
     note: |
       **Span name:** refer to the [Span Name](/docs/http/http-spans.md#name) section.
 
-      **Span kind** MUST be `SERVER`.
-
       **Span status:** refer to the [Span Status](/docs/http/http-spans.md#status) section.
     stability: stable
+    annotations:
+      docs:
+        span_kind_expectation: MUST
     attributes:
       - ref: http.request.method
         sampling_relevant: true

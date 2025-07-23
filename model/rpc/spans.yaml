@@ -8,11 +8,12 @@ groups:
       when the names of the called service and method are known and available.
 
       **Span name:** refer to the [Span Name](#span-name) section.
-
-      **Span kind** MUST be `CLIENT`.
     extends: rpc_service
     span_kind: client
     events: [rpc.message]
+    annotations:
+      docs:
+        span_kind_expectation: MUST
     attributes:
       - ref: rpc.system
         requirement_level: required
@@ -29,8 +30,9 @@ groups:
       when the names of the called service and method are known and available.
 
       **Span name:** refer to the [Span Name](#span-name) section.
-
-      **Span kind** MUST be `SERVER`.
+    annotations:
+      docs:
+        span_kind_expectation: MUST
     attributes:
       - ref: rpc.system
         requirement_level: required
@@ -55,10 +57,11 @@ groups:
       `rpc.system` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](./rpc-spans.md#span-name) section.
-
-      **Span kind** MUST be `CLIENT`.
     extends: rpc
     span_kind: client
+    annotations:
+      docs:
+        span_kind_expectation: MUST
     attributes:
       - ref: rpc.method
         requirement_level: required
@@ -83,8 +86,9 @@ groups:
       `rpc.system` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](./rpc-spans.md#span-name) section.
-
-      **Span kind** MUST be `SERVER`.
+    annotations:
+      docs:
+        span_kind_expectation: MUST
     attributes:
       - ref: rpc.method
         requirement_level: required

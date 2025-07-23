@@ -7,9 +7,13 @@
 {%- if span.note %}
 
 {{ span.note | trim }}{% endif %}
-{%- if "**Span kind" not in span.note %}
 
-**Span kind** SHOULD be `{{ span.span_kind | upper }}`.{% endif %}
+{%- if span.annotations | safe and span.annotations.docs.span_kind_expectation %}
+
+**Span kind** {{ span.annotations.docs.span_kind_expectation}} be `{{ span.span_kind | upper }}`{% else %}
+
+**Span kind** SHOULD be `{{ span.span_kind | upper }}`{% endif %}
+{%- if span.annotations | safe and span.annotations.docs.span_kind_brief %} {{ span.annotations.docs.span_kind_brief}}{% else %}.{% endif %}
 {%- if "**Span status" not in span.note %}
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.{% endif %}
