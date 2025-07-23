@@ -46,9 +46,9 @@ groups:
         examples: [ 16, 700, 1024 ]
       - id: app.jank.period
         stability: development
-        type: double
+        type: int
         brief: The time period, in seconds, for which this jank is being reported.
-        examples: [ 0.5, 1.0, 10.0 ]
+        examples: [ 1, 5, 10 ]
       - id: app.screen.coordinate.x
         type: int
         brief: The x (horizontal) coordinate of a screen coordinate, in screen pixels.
