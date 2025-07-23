@@ -128,14 +128,14 @@ groups:
     annotations:
       docs:
         span_kind_brief: |
-          . It MAY be set to `INTERNAL` on spans representing
-          in-memory database calls.
-
+          or for spans representing in-memory database calls, It MAY be set to `INTERNAL`.
           It's RECOMMENDED to use `CLIENT` kind when database system being instrumented usually
           runs in a different process than its client or when database calls happen over
           instrumented protocol such as HTTP.
-        span_status_brief2: >
-          Semantic conventions for individual systems SHOULD specify which values of `db.response.status_code` classify as errors.
+        span_status_brief: |
+          Semantic conventions for
+          individual systems SHOULD specify which values of `db.response.status_code`
+          classify as errors.
     attributes:
       # experimental attributes must be opt-in stable spans
       # TODO (trask) make this recommended once it is stable

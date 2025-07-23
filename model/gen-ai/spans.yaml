@@ -113,11 +113,9 @@ groups:
       docs:
         span_kind_brief: |
           and MAY be set to `INTERNAL` on spans representing
-          call to models running in the same process.
-
-          It's RECOMMENDED to use `CLIENT` kind when the GenAI system being instrumented
-          usually runs in a different process than its client or when the GenAI call happens over
-          instrumented protocol such as HTTP.
+          call to models running in the same process. It's RECOMMENDED to use `CLIENT` kind
+          when the GenAI system being instrumented usually runs in a different process than its
+          client or when the GenAI call happens over instrumented protocol such as HTTP.
     extends: attributes.gen_ai.inference.client
     attributes:
       - ref: gen_ai.provider.name
