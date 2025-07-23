@@ -49,8 +49,8 @@ groups:
       experience some disruption or sluggishness.
     attributes:
       - ref: app.jank.count
-        requirement_level: required
+        requirement_level: recommended
       - ref: app.jank.threshold_ms
-        requirement_level: required
+        requirement_level: recommended
       - ref: app.jank.period
-        requirement_level: required
+        requirement_level: recommended
