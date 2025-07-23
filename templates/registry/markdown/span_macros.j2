@@ -13,10 +13,10 @@
 **Span kind** {{ span.annotations.docs.span_kind_expectation}} be `{{ span.span_kind | upper }}`{% else %}
 
 **Span kind** SHOULD be `{{ span.span_kind | upper }}`{% endif %}
-{%- if span.annotations | safe and span.annotations.docs.span_kind_brief %} {{ span.annotations.docs.span_kind_brief}}{% else %}.{% endif %}
+{%- if span.annotations | safe and span.annotations.docs.span_kind_brief %} {{ span.annotations.docs.span_kind_brief | trim }}{% else %}.{% endif %}
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
-{%- if span.annotations | safe and span.annotations.docs.span_status_brief %} {{span.annotations.docs.span_status_brief}} {% endif %}
+{%- if span.annotations | safe and span.annotations.docs.span_status_brief %} {{ span.annotations.docs.span_status_brief | trim }}{% endif %}
 
 {%- if span.entity_associations is sequence %}
 

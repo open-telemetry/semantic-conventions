@@ -29,7 +29,7 @@ a different low-cardinality span name format and SHOULD document it.
 
 **Span kind** SHOULD be `INTERNAL`.
 
-**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document. An error is defined when the {process.exit.code} is not 0. 
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document. An error is defined when the {process.exit.code} is not 0.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -92,7 +92,7 @@ a different low-cardinality span name format and SHOULD document it.
 
 **Span kind** SHOULD be `CLIENT`.
 
-**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document. An error is defined when the {process.exit.code} is not 0. 
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document. An error is defined when the {process.exit.code} is not 0.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
