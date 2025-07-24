@@ -15,7 +15,6 @@ linkTitle: Spans
 - [Generating a summary of the query](#generating-a-summary-of-the-query)
 - [Context propagation](#context-propagation)
   - [SQL commenter](#sql-commenter)
-  - [`service-name` propagator](#service-name-propagator)
 - [Semantic conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 
 <!-- tocstop -->
