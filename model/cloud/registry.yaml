@@ -181,7 +181,7 @@ groups:
               stability: development
               deprecated: 
                 reason: renamed
-                renamed_to: "`azure.vm`"
+                renamed_to: "azure.vm"
               annotations:
                 code_generation:
                   exclude: true
@@ -191,7 +191,7 @@ groups:
               stability: development
               deprecated: 
                 reason: renamed
-                renamed_to: "`azure.container_apps`"
+                renamed_to: "azure.container_apps"
               annotations:
                 code_generation:
                   exclude: true
@@ -201,7 +201,7 @@ groups:
               stability: development
               deprecated: 
                 reason: renamed
-                renamed_to: "`azure.container_instances`"
+                renamed_to: "azure.container_instances"
               annotations:
                 code_generation:
                   exclude: true
@@ -211,7 +211,7 @@ groups:
               stability: development
               deprecated: 
                 reason: renamed
-                renamed_to: "`azure.aks`"
+                renamed_to: "azure.aks"
               annotations:
                 code_generation:
                   exclude: true
@@ -221,7 +221,7 @@ groups:
               stability: development
               deprecated: 
                 reason: renamed
-                renamed_to: "`azure.functions`"
+                renamed_to: "azure.functions"
               annotations:
                 code_generation:
                   exclude: true
@@ -231,7 +231,7 @@ groups:
               stability: development
               deprecated: 
                 reason: renamed
-                renamed_to: "`azure.app_service`"
+                renamed_to: "azure.app_service"
               annotations:
                 code_generation:
                   exclude: true
@@ -241,7 +241,7 @@ groups:
               stability: development
               deprecated: 
                 reason: renamed
-                renamed_to: "`azure.openshift`"
+                renamed_to: "azure.openshift"
               annotations:
                 code_generation:
                   exclude: true
