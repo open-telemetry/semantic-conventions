@@ -332,3 +332,42 @@ groups:
 
           Additional output format details may be recorded in the future in the
           `gen_ai.output.{type}.*` attributes.
+      - id: gen_ai.evaluation.name
+        stability: development
+        type: string
+        brief: The qualified name of the evaluator used to evaluate the GenAI response.
+        examples: ["Relevance", "IntentResolution"]
+        note: >
+          This attribute identifies the evaluation name.
+      - id: gen_ai.evaluation.score
+        stability: development
+        type: double
+        brief: The evaluation score for the GenAI response.
+        examples: [4.0]
+      - id: gen_ai.evaluation.input.metadata
+        stability: development
+        type: string
+        brief: Metadata associated with the evaluation input.
+        examples: ['{\"requestId\": \"fab3ee5d-a3c6-4c47-b3de-901bf02fa045\"}']
+        note: >
+          The structure is specific to the evaluator. If the metadata is structured, it
+          is RECOMMENDED to provide it in a structured form using language-specific API. It
+          can also be captured as a JSON string when structured API is not available. If
+          metadata properties contain any sensitive information such as prompts or
+          completions, corresponding properties MUST NOT be recorded by default. Instrumentations
+          MAY provide a way to override this behavior and record sensitive information in
+          the metadata if user explicitly allows it.
+      - id: gen_ai.evaluation.reasoning
+        stability: development
+        type: string
+        brief: A free-form reasoning for the assigned score provided by the evaluator.
+        examples: ["The response is factually accurate but lacks sufficient detail to fully address the question."]
+      - id: gen_ai.evaluation.metadata
+        stability: development
+        type: string
+        brief: Additional metadata associated with the evaluation.
+        examples: ['{\"evaluator_version\": \"1.2.0\", \"gen_ai.thread.id\": \"thread_ggguJ0iZXRPjUnCy9vT9Fdvs\"}']
+        note: >
+          The structure is specific to the evaluator. If the metadata is structured, it
+          is RECOMMENDED to provide it in a structured form using language-specific API. It
+          can also be captured as a JSON string when structured API is not available.
