@@ -115,8 +115,8 @@ stored procedure name then that stored procedure name SHOULD be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | Idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -211,17 +211,17 @@ Describes deprecated database attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `all` | all | ![Development](https://img.shields.io/badge/-development-blue) |
-| `any` | any | ![Development](https://img.shields.io/badge/-development-blue) |
-| `each_quorum` | each_quorum | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local_one` | local_one | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local_quorum` | local_quorum | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local_serial` | local_serial | ![Development](https://img.shields.io/badge/-development-blue) |
-| `one` | one | ![Development](https://img.shields.io/badge/-development-blue) |
-| `quorum` | quorum | ![Development](https://img.shields.io/badge/-development-blue) |
-| `serial` | serial | ![Development](https://img.shields.io/badge/-development-blue) |
-| `three` | three | ![Development](https://img.shields.io/badge/-development-blue) |
-| `two` | two | ![Development](https://img.shields.io/badge/-development-blue) |
+| `all` | All | ![Development](https://img.shields.io/badge/-development-blue) |
+| `any` | Any | ![Development](https://img.shields.io/badge/-development-blue) |
+| `each_quorum` | Each Quorum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_one` | Local One | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_quorum` | Local Quorum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_serial` | Local Serial | ![Development](https://img.shields.io/badge/-development-blue) |
+| `one` | One | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quorum` | Quorum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `serial` | Serial | ![Development](https://img.shields.io/badge/-development-blue) |
+| `three` | Three | ![Development](https://img.shields.io/badge/-development-blue) |
+| `two` | Two | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -238,11 +238,11 @@ Describes deprecated database attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `BoundedStaleness` | bounded_staleness | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ConsistentPrefix` | consistent_prefix | ![Development](https://img.shields.io/badge/-development-blue) |
-| `Eventual` | eventual | ![Development](https://img.shields.io/badge/-development-blue) |
-| `Session` | session | ![Development](https://img.shields.io/badge/-development-blue) |
-| `Strong` | strong | ![Development](https://img.shields.io/badge/-development-blue) |
+| `BoundedStaleness` | Bounded Staleness | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ConsistentPrefix` | Consistent Prefix | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Eventual` | Eventual | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Session` | Session | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Strong` | Strong | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -250,21 +250,21 @@ Describes deprecated database attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `batch` | batch | ![Development](https://img.shields.io/badge/-development-blue) |
-| `create` | create | ![Development](https://img.shields.io/badge/-development-blue) |
-| `delete` | delete | ![Development](https://img.shields.io/badge/-development-blue) |
-| `execute` | execute | ![Development](https://img.shields.io/badge/-development-blue) |
-| `execute_javascript` | execute_javascript | ![Development](https://img.shields.io/badge/-development-blue) |
-| `head` | head | ![Development](https://img.shields.io/badge/-development-blue) |
-| `head_feed` | head_feed | ![Development](https://img.shields.io/badge/-development-blue) |
-| `invalid` | invalid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `patch` | patch | ![Development](https://img.shields.io/badge/-development-blue) |
-| `query` | query | ![Development](https://img.shields.io/badge/-development-blue) |
-| `query_plan` | query_plan | ![Development](https://img.shields.io/badge/-development-blue) |
-| `read` | read | ![Development](https://img.shields.io/badge/-development-blue) |
-| `read_feed` | read_feed | ![Development](https://img.shields.io/badge/-development-blue) |
-| `replace` | replace | ![Development](https://img.shields.io/badge/-development-blue) |
-| `upsert` | upsert | ![Development](https://img.shields.io/badge/-development-blue) |
+| `batch` | Batch | ![Development](https://img.shields.io/badge/-development-blue) |
+| `create` | Create | ![Development](https://img.shields.io/badge/-development-blue) |
+| `delete` | Delete | ![Development](https://img.shields.io/badge/-development-blue) |
+| `execute` | Execute | ![Development](https://img.shields.io/badge/-development-blue) |
+| `execute_javascript` | Execute JavaScript | ![Development](https://img.shields.io/badge/-development-blue) |
+| `head` | Head | ![Development](https://img.shields.io/badge/-development-blue) |
+| `head_feed` | Head Feed | ![Development](https://img.shields.io/badge/-development-blue) |
+| `invalid` | Invalid | ![Development](https://img.shields.io/badge/-development-blue) |
+| `patch` | Patch | ![Development](https://img.shields.io/badge/-development-blue) |
+| `query` | Query | ![Development](https://img.shields.io/badge/-development-blue) |
+| `query_plan` | Query Plan | ![Development](https://img.shields.io/badge/-development-blue) |
+| `read` | Read | ![Development](https://img.shields.io/badge/-development-blue) |
+| `read_feed` | Read feed | ![Development](https://img.shields.io/badge/-development-blue) |
+| `replace` | Replace | ![Development](https://img.shields.io/badge/-development-blue) |
+| `upsert` | Upsert | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -339,8 +339,8 @@ Describes deprecated database attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | Idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -348,5 +348,5 @@ Describes deprecated database attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | Idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |

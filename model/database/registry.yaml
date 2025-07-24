@@ -354,9 +354,11 @@ groups:
           members:
             - id: idle
               value: "idle"
+              brief: Idle
               stability: development
             - id: used
               value: "used"
+              brief: Used
               stability: development
         brief: "The state of a connection in the pool"
         examples: ["idle"]
