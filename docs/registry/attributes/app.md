@@ -10,7 +10,7 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="app-installation-id" href="#app-installation-id">`app.installation.id`</a> | string | A unique identifier representing the installation of an application on a specific device [1] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-jank-count" href="#app-jank-count">`app.jank.count`</a> | int | A count of the number of frame renders that experienced jank. [2] | `9`; `42` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-jank-frame-count" href="#app-jank-frame-count">`app.jank.frame_count`</a> | int | A count of the number of frame renders that experienced jank. [2] | `9`; `42` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-jank-period" href="#app-jank-period">`app.jank.period`</a> | int | The time period, in seconds, for which this jank is being reported. | `1`; `5`; `10` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-jank-threshold-ms" href="#app-jank-threshold-ms">`app.jank.threshold_ms`</a> | int | The minimum rendering threshold for this type of jank, in milliseconds. | `16`; `700`; `1024` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-coordinate-x" href="#app-screen-coordinate-x">`app.screen.coordinate.x`</a> | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -36,7 +36,7 @@ For Android, examples of `app.installation.id` implementations include:
 
 More information about Android identifier best practices can be found [here](https://developer.android.com/training/articles/user-data-ids).
 
-**[2] `app.jank.count`:** Depending on platform limitations, the value provided MAY be approximation.
+**[2] `app.jank.frame_count`:** Depending on platform limitations, the value provided MAY be approximation.
 
 **[3] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
 

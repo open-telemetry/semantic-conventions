@@ -48,7 +48,7 @@ groups:
       Jank happens when the UI is rendered slowly enough for the user to
       experience some disruption or sluggishness.
     attributes:
-      - ref: app.jank.count
+      - ref: app.jank.frame_count
         requirement_level: recommended
       - ref: app.jank.threshold_ms
         requirement_level: recommended
