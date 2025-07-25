@@ -23,6 +23,18 @@ groups:
         stability: development
         brief: 'Destination port number'
         examples: [3389, 2888]
+      - id: destination.interface.id
+        stability: development
+        type: int
+        brief: Destination Interface Id
+        note: Interface ID as reported by an observer (typically SNMP interface ID).
+        examples: [10]
+      - id: destination.interface.name
+        stability: development
+        type: string
+        brief: Destination Interface Name
+        note: Interface name as reported by the system.
+        examples: ["eth0"]
       - id: destination.mac
         stability: development
         type: string
