@@ -2,26 +2,15 @@
 linkTitle: AWS SDK
 --->
 
-# Semantic Conventions for AWS SDK
+# Semantic conventions for AWS SDK client spans
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
-This document defines semantic conventions to apply when instrumenting the AWS SDK. They map request or response
-parameters in AWS SDK API calls to attributes on a Span. The conventions have been collected over time based
-on feedback from AWS users of tracing and will continue to increase as new interesting conventions
-are found.
-
-Some descriptions are also provided for populating general OpenTelemetry semantic conventions based on these APIs.
-
-## Context Propagation
+## Context propagation
 
 See [compatibility](../non-normative/compatibility/aws.md#context-propagation).
 
-## Common Attributes
-
-The span name MUST be of the format `Service.Operation` as per the AWS HTTP API, e.g., `DynamoDB.GetItem`,
-`S3.ListBuckets`. This is equivalent to concatenating `rpc.service` and `rpc.method` with `.` and consistent
-with the naming guidelines for RPC client spans.
+## AWS SDK spans
 
 <!-- prettier-ignore-start -->
 <!-- semconv span.aws.client -->
@@ -31,17 +20,38 @@ with the naming guidelines for RPC client spans.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This span describes an AWS SDK client call.
+
+**Span name** MUST be of the format `Service.Operation` as per the
+AWS HTTP API, e.g., `DynamoDB.GetItem`, `S3.ListBuckets`. This is
+equivalent to concatenating `rpc.service` and `rpc.method` with `.` and
+consistent with the naming guidelines for RPC client spans.
+
+AWS SDK span attributes are based on the request or response parameters
+in AWS SDK API calls. The conventions have been collected over time based
+on feedback from AWS users of tracing and will continue to increase as new
+interesting conventions are found.
+
+**Span kind** SHOULD be `CLIENT`.
+
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.extended_request_id`](/docs/attributes-registry/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`aws.request_id`](/docs/attributes-registry/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [1] | `GetItem`; `PutItem` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [2] | `DynamoDB`; `S3` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.extended_request_id`](/docs/registry/attributes/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.request_id`](/docs/registry/attributes/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cloud.region`](/docs/registry/attributes/cloud.md) | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [2] | `GetItem`; `PutItem` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [3] | `DynamoDB`; `S3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+**[1] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 
-**[2] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
+**[2] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+
+**[3] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
 ---
 
@@ -49,11 +59,11 @@ with the naming guidelines for RPC client spans.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -67,5 +77,8 @@ The following Semantic Conventions extend the general AWS SDK attributes for spe
 
 - [AWS DynamoDB](/docs/database/dynamodb.md): Semantic Conventions for _AWS DynamoDB_.
 - [AWS S3](/docs/object-stores/s3.md): Semantic Conventions for _AWS S3_.
+- [AWS Bedrock](/docs/gen-ai/aws-bedrock.md): Semantic Conventions for _AWS Bedrock_.
+- [AWS SNS](/docs/messaging/sns.md): Semantic Conventions for _AWS SNS_.
+- [AWS SQS](/docs/messaging/sqs.md): Semantic Conventions for _AWS SQS_.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

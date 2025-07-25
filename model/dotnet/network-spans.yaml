@@ -1,0 +1,204 @@
+groups:
+  - id: span.dotnet.http.request.wait_for_connection.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: The span describes the time it takes for the HTTP request to obtain a connection from the connection pool.
+    note: |
+      The span is reported only if there was no connection readily available when request has started.
+      It's reported as a child of *HTTP client request* span.
+
+      The span ends when the connection is obtained - it could happen when an existing connection becomes available or once
+      a new connection is established, so the duration of *Wait For Connection* span is different from duration of the
+      [*HTTP connection setup*](/docs/dotnet/dotnet-network-traces.md#http-connection-setup) span.
+
+      The time it takes to get a connection from the pool is also reported by the
+      [`http.client.request.time_in_queue` metric](/docs/dotnet/dotnet-http-metrics.md#metric-httpclientrequesttime_in_queue).
+
+      Corresponding `Activity.OperationName` is `Experimental.System.Net.Http.Connections.WaitForConnection`, `ActivitySource` name - `Experimental.System.Net.Http`.
+      Added in .NET 9.
+
+      **Span name** SHOULD be `HTTP wait_for_connection {server.address}:{server.port}`.
+    attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        brief: >
+          One of the [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, or a full exception type.
+        note: ""
+        examples: ["version_negotiation_error", "System.OperationCanceledException"]
+
+  - id: span.dotnet.http.connection_setup.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      The span describes the establishment of the HTTP connection. It includes the time it takes
+      to resolve the DNS, establish the socket connection, and perform the TLS handshake.
+    note: |
+      There is no parent-child relationship between the [*HTTP client request*](/docs/dotnet/dotnet-network-traces.md#http-client-request) and the
+      [*HTTP connection setup*]/docs/dotnet/dotnet-network-traces.md(/docs/dotnet/dotnet-network-traces.md#http-connection-setup) spans;
+      the latter will always be a root span, defining a separate trace.
+
+      However, if the connection attempt represented by the [*HTTP connection setup*](/docs/dotnet/dotnet-network-traces.md#http-connection-setup) span results in a
+      successful HTTP connection, and that connection is picked up by a request to serve it, the instrumentation adds a link
+      to the [*HTTP client request*](/docs/dotnet/dotnet-network-traces.md#http-client-request) span pointing to the *HTTP connection setup* span.
+      I.e., each request is linked to the connection that served this request.
+
+      Corresponding `Activity.OperationName` is `Experimental.System.Net.Http.Connections.ConnectionSetup`, `ActivitySource` name - `Experimental.System.Net.Http.Connections`.
+      Added in .NET 9.
+
+      **Span name** SHOULD be `HTTP connection_setup {server.address}:{server.port}`.
+    attributes:
+      - ref: network.peer.address
+        brief: Peer IP address of the socket connection.
+        note: >
+          The `network.peer.address` attribute is available only if the connection was successfully established and only for IP sockets.
+      - ref: server.address
+      - ref: server.port
+      - ref: error.type
+        brief: >
+          One of the [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, or a full exception type.
+        note: ""
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ["name_resolution_error", "System.OperationCanceledException"]
+      - ref: url.scheme
+
+  - id: span.dotnet.socket.connect.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      The span describes the establishment of the socket connection.
+    note: |
+      It's different from [*HTTP connection setup*](/docs/dotnet/dotnet-network-traces.md#http-connection-setup) span, which also covers the DNS lookup and TLS handshake.
+
+      When *socket connect* span is reported along with *HTTP connection setup* span, the socket span becomes a child of HTTP connection setup.
+
+      Corresponding `Activity.OperationName` is `Experimental.System.Net.Sockets.Connect`, `ActivitySource` name - `Experimental.System.Net.Sockets`.
+      Added in .NET 9.
+
+      **Span name** SHOULD be `socket connect {network.peer.address}:{network.peer.port}` when socket address family has a
+      notion of port and `socket connect {network.peer.address}`
+      otherwise.
+    attributes:
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If port is supported for the socket address family.
+      - ref: network.peer.address
+      - ref: network.type
+        requirement_level:
+          recommended: if `network.peer.address` is an IP address.
+      - ref: network.transport
+        examples: ['tcp', 'udp', 'unix']
+        requirement_level:
+          recommended: If value is not `tcp`. When missing, the value is assumed to be `tcp`.
+      - ref: error.type
+        brief: "Socket error code."
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        note: |
+          The following errors codes are reported:
+
+          - `network_down`
+          - `address_already_in_use`
+          - `interrupted`
+          - `in_progress`
+          - `already_in_progress`
+          - `address_not_available`
+          - `address_family_not_supported`
+          - `connection_refused`
+          - `fault`
+          - `invalid_argument`
+          - `is_connected`
+          - `network_unreachable`
+          - `host_unreachable`
+          - `no_buffer_space_available`
+          - `timed_out`
+          - `access_denied`
+          - `protocol_type`
+
+          See socket errors on [Windows](https://learn.microsoft.com/windows/win32/api/winsock2/nf-winsock2-connect#return-value) and
+          [Linux](https://man7.org/linux/man-pages/man2/connect.2.html) for more details.
+        examples: ["connection_refused", "address_not_available"]
+
+  - id: span.dotnet.dns.lookup.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      The span describes DNS lookup or reverse lookup performed with one of the methods
+      on [System.Net.Dns](https://learn.microsoft.com/dotnet/api/system.net.dns) class.
+    note: |
+      DNS spans track logical operations rather than physical DNS calls and the actual behavior depends on the
+      resolver implementation which could be changed in the future versions of .NET.
+      .NET 9 uses OS DNS resolver which may do zero or more physical lookups for one API call.
+
+      When the *DNS lookup* span is reported along with *HTTP connection setup* and *socket connect* span,
+      the *DNS lookup* span span becomes a child of *HTTP connection setup* and a sibling of *socket connect*.
+
+      DNS lookup duration is also reported by [`dns.lookup.duration` metric](/docs/dotnet/dotnet-dns-metrics.md#metric-dnslookupduration).
+
+      Corresponding `Activity.OperationName` is `Experimental.System.Net.NameResolution.DnsLookup`, `ActivitySource` name - `Experimental.System.Net.NameResolution`.
+      Added in .NET 9.
+
+      **Span name** SHOULD be `DNS lookup {dns.question.name}` for DNS lookup (IP addresses from host name)
+      and `DNS reverse lookup {dns.question.name}` for reverse lookup (host names from IP address).
+    attributes:
+      - ref: dns.question.name
+        brief: The domain name or an IP address being queried.
+        note: ""
+      - ref: dns.answers
+        brief: List of resolved IP addresses (for DNS lookup) or a single element containing domain name (for reverse lookup).
+        requirement_level:
+          recommended: if DNS lookup was successful.
+      - ref: error.type
+        brief: The error code or exception name returned by [System.Net.Dns](https://learn.microsoft.com/dotnet/api/system.net.dns).
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        note: |
+          The following errors are reported:
+
+          - `host_not_found`
+          - `try_again`
+          - `no_recovery`
+          - `address_family_not_supported`
+          - the full exception type name
+
+          See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.socketerror) for more details.
+        examples: ["host_not_found", "try_again" ]
+
+  - id: span.dotnet.tls.handshake.internal
+    type: span
+    span_kind: internal
+    stability: development
+    brief: >
+      The span describes TLS client or server handshake performed with [System.Net.Security.SslStream](https://learn.microsoft.com/dotnet/api/system.net.security.sslstream).
+    note: |
+      When *TLS* span is reported for client-side authentication along with *HTTP connection setup* and *socket connect* span, the *TLS* span becomes a child of *HTTP connection setup*.
+
+      Corresponding `Activity.OperationName` is `Experimental.System.Net.Security.TlsHandshake`, `ActivitySource` name - `Experimental.System.Net.Security`.
+      Added in .NET 9.
+
+      **Span name** SHOULD be `TLS client handshake {server.address}` when authenticating on the client
+      side and `TLS server handshake` when authenticating the server.
+
+      **Span kind** SHOULD be `INTERNAL` in both cases.
+    attributes:
+      - ref: tls.protocol.name
+        requirement_level:
+          recommended: when available
+      - ref: tls.protocol.version
+        requirement_level:
+          recommended: when available
+      - ref: server.address
+        brief: The [server name indication (SNI)](https://en.wikipedia.org/wiki/Server_Name_Indication) used in the 'Client Hello' message during TLS handshake.
+        requirement_level:
+          recommended: when authenticating the client.
+        examples: ["opentelemetry.io", "example.com"]
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        note: ""
+        examples: ["System.Net.Security.Authentication.AuthenticationException", "System.OperationCanceledException"]

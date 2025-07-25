@@ -1,0 +1,67 @@
+name: Prepare release
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The version to release, e.g. 1.30.0'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  create-pull-request:
+    permissions:
+      contents: write # required for pushing changes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Validate version
+        run: |
+          version=${{ inputs.version }}
+          if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "unexpected version: $version"
+            exit 1
+          fi
+
+      - name: Use CLA approved github bot
+        run: .github/scripts/use-cla-approved-github-bot.sh
+
+      - name: Update schema files
+        run: |
+          if ! grep -q "^  next:$" schema-next.yaml; then
+            echo "String 'next:' not found in the file"
+            exit 1
+          fi
+
+          version=${{ inputs.version }}
+          make generate-schema-next SCHEMA_NEXT_VERSION=$version
+          git add "schemas/$version"
+
+      - name: Update change log
+        run: |
+          make chlog-update VERSION=v${{ inputs.version }}
+
+      - uses: actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e # v2.0.6
+        id: otelbot-token
+        with:
+          app-id: ${{ vars.OTELBOT_APP_ID }}
+          private-key: ${{ secrets.OTELBOT_PRIVATE_KEY }}
+
+      - name: Create pull request
+        env:
+          # not using secrets.GITHUB_TOKEN since pull requests from that token do not run workflows
+          GH_TOKEN: ${{ steps.otelbot-token.outputs.token }}
+        run: |
+          version=${{ inputs.version }}
+          message="[chore] Prepare release v${version}"
+          body="Prepare release \`v${version}\`."
+          branch="otelbot/prepare-release-v${version}"
+
+          git checkout -b $branch
+          git commit -a -m "$message"
+          git push --set-upstream origin $branch
+          gh pr create --title "$message" \
+                       --body "$body" \
+                       --base main

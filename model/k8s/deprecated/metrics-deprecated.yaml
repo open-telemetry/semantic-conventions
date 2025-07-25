@@ -1,0 +1,27 @@
+groups:
+  - id: metric.k8s.replication_controller.desired_pods
+    type: metric
+    metric_name: k8s.replication_controller.desired_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.replicationcontroller.desired_pods
+    brief: "Deprecated, use `k8s.replicationcontroller.desired_pods` instead."
+    instrument: updowncounter
+    unit: "{pod}"
+  - id: metric.k8s.replication_controller.available_pods
+    type: metric
+    metric_name: k8s.replication_controller.available_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.replicationcontroller.available_pods
+    brief: "Deprecated, use `k8s.replicationcontroller.available_pods` instead."
+    instrument: updowncounter
+    unit: "{pod}"

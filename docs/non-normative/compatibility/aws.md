@@ -2,13 +2,13 @@
 linkTitle: AWS
 --->
 
-# Compatibility Considerations for AWS
+# Compatibility considerations for AWS
 
 This page highlights compatibility considerations for OpenTelemetry
 instrumentations when interacting with AWS managed services using an aws-sdk,
 a third-party library, or a direct HTTP request.
 
-## Context Propagation
+## Context propagation
 
 When making calls to AWS managed services using an AWS SDK, a third-party
 library, or a direct HTTP request, an AWS service-supported propagation format should

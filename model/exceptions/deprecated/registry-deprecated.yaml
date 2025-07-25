@@ -1,0 +1,17 @@
+groups:
+  - id: registry.exception.deprecated
+    type: attribute_group
+    display_name: Deprecated Exception Attributes
+    brief: >
+      Deprecated exception attributes.
+    attributes:
+      - id: exception.escaped
+        type: boolean
+        stability: stable
+        deprecated:
+          reason: obsoleted
+          note: >
+            It's no longer recommended to record exceptions that are handled
+            and do not escape the scope of a span.
+        brief: >
+          Indicates that the exception is escaping the scope of the span.

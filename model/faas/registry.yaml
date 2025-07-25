@@ -6,7 +6,7 @@ groups:
     attributes:
       - id: faas.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the single function that this runtime instance executes.
         note: |
@@ -29,7 +29,7 @@ groups:
         examples: ['my-function', 'myazurefunctionapp/some-function-name']
       - id: faas.version
         type: string
-        stability: experimental
+        stability: development
         brief: The immutable version of the function being executed.
         note: |
           Depending on the cloud provider and platform, use:
@@ -44,7 +44,7 @@ groups:
         examples: ['26', 'pinkfroid-00002']
       - id: faas.instance
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The execution environment ID as a string, that will be potentially reused
           for other invocations to the same function/function version.
@@ -53,7 +53,7 @@ groups:
         examples: ['2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de']
       - id: faas.max_memory
         type: int
-        stability: experimental
+        stability: development
         brief: >
           The amount of memory available to the serverless function converted to Bytes.
         note: >
@@ -63,7 +63,7 @@ groups:
           provides this information (which must be multiplied by 1,048,576).
         examples: 134217728
       - id: faas.trigger
-        stability: experimental
+        stability: development
         brief: >
           Type of the trigger which caused this function invocation.
         type:
@@ -71,26 +71,26 @@ groups:
             - id: datasource
               value: 'datasource'
               brief: 'A response to some data source operation such as a database or filesystem read/write'
-              stability: experimental
+              stability: development
             - id: http
               value: 'http'
               brief: 'To provide an answer to an inbound HTTP request'
-              stability: experimental
+              stability: development
             - id: pubsub
               value: 'pubsub'
               brief: 'A function is set to be executed when messages are sent to a messaging system'
-              stability: experimental
+              stability: development
             - id: timer
               value: 'timer'
               brief: 'A function is scheduled to be executed regularly'
-              stability: experimental
+              stability: development
             - id: other
               value: 'other'
               brief: 'If none of the others apply'
-              stability: experimental
+              stability: development
       - id: faas.invoked_name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the invoked function.
         note: >
@@ -98,29 +98,29 @@ groups:
           invoked function.
         examples: 'my-function'
       - id: faas.invoked_provider
-        stability: experimental
+        stability: development
         type:
           members:
             - id: 'alibaba_cloud'
               value: 'alibaba_cloud'
               brief: 'Alibaba Cloud'
-              stability: experimental
+              stability: development
             - id: 'aws'
               value: 'aws'
               brief: 'Amazon Web Services'
-              stability: experimental
+              stability: development
             - id: 'azure'
               value: 'azure'
               brief: 'Microsoft Azure'
-              stability: experimental
+              stability: development
             - id: 'gcp'
               value: 'gcp'
               brief: 'Google Cloud Platform'
-              stability: experimental
+              stability: development
             - id: 'tencent_cloud'
               value: 'tencent_cloud'
               brief: 'Tencent Cloud'
-              stability: experimental
+              stability: development
         brief: >
           The cloud provider of the invoked function.
         note: >
@@ -128,7 +128,7 @@ groups:
           invoked function.
       - id: faas.invoked_region
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The cloud region of the invoked function.
         note: >
@@ -137,13 +137,13 @@ groups:
         examples: 'eu-central-1'
       - id: faas.invocation_id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The invocation ID of the current function invocation.
         examples: 'af9d5aa4-a685-4c5f-a22b-444f80b3cc28'
       - id: faas.time
         type: string
-        stability: experimental
+        stability: development
         brief: >
           A string containing the function invocation time in the
           [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)
@@ -151,45 +151,45 @@ groups:
         examples: "2020-01-23T13:47:06Z"
       - id: faas.cron
         type: string
-        stability: experimental
+        stability: development
         brief: >
           A string containing the schedule period as
           [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm).
         examples: "0/5 * * * ? *"
       - id: faas.coldstart
         type: boolean
-        stability: experimental
+        stability: development
         brief: >
           A boolean that is true if the serverless function is executed for the
           first time (aka cold-start).
       - id: faas.document.collection
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the source on which the triggering operation was performed.
           For example, in Cloud Storage or S3 corresponds to the bucket name,
           and in Cosmos DB to the database name.
         examples: ['myBucketName', 'myDbName']
       - id: faas.document.operation
-        stability: experimental
+        stability: development
         type:
           members:
             - id: insert
               value: 'insert'
               brief: 'When a new object is created.'
-              stability: experimental
+              stability: development
             - id: edit
               value: 'edit'
               brief: 'When an object is modified.'
-              stability: experimental
+              stability: development
             - id: delete
               value: 'delete'
               brief: 'When an object is deleted.'
-              stability: experimental
+              stability: development
         brief: 'Describes the type of the operation that was performed on the data.'
       - id: faas.document.time
         type: string
-        stability: experimental
+        stability: development
         brief: >
           A string containing the time when the data was accessed in the
           [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)
@@ -197,7 +197,7 @@ groups:
         examples: "2020-01-23T13:47:06Z"
       - id: faas.document.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The document name/table subjected to the operation.
           For example, in Cloud Storage or S3 is the name of

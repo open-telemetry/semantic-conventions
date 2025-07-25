@@ -6,7 +6,9 @@ groups:
     attributes:
       - id: k8s.pod.labels
         type: template[string]
-        examples: ['k8s.pod.label.app=my-app']
+        examples: ['my-app']
         brief: "Deprecated, use `k8s.pod.label` instead."
-        stability: experimental
-        deprecated: "Replaced by `k8s.pod.label`."
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: k8s.pod.label

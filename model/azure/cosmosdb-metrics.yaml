@@ -1,0 +1,43 @@
+groups:
+  - id: metric.azure.cosmosdb.client.operation.request_charge
+    type: metric
+    metric_name: azure.cosmosdb.client.operation.request_charge
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "[Request units](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation."
+    instrument: histogram
+    unit: "{request_unit}"
+    stability: development
+    extends: attributes.azure.cosmosdb.minimal
+    attributes:
+      - ref: azure.cosmosdb.operation.contacted_regions
+        requirement_level:
+          recommended: If available
+      - ref: db.collection.name
+        brief: >
+          Cosmos DB container name.
+        note: >
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
+  - id: metric.azure.cosmosdb.client.active_instance.count
+    type: metric
+    metric_name: azure.cosmosdb.client.active_instance.count
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Number of active client instances."
+    instrument: updowncounter
+    unit: "{instance}"
+    stability: development
+    attributes:
+      # TODO: add db.system.name once https://github.com/open-telemetry/weaver/issues/479 is possible
+      # - ref: db.system.name
+      #   requirement_level:
+      #     conditionally_required: if available
+      - ref: server.address
+        brief: >
+          Name of the database host.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.

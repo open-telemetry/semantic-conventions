@@ -1,0 +1,30 @@
+groups:
+  - id: entity.os
+    type: entity
+    stability: development
+    name: os
+    brief: >
+      The operating system (OS) on which the process represented by this resource is running.
+    note: >
+      In case of virtualized environments, this is the operating system as it is observed by
+      the process, i.e., the virtualized guest rather than the underlying host.
+    attributes:
+      - ref: os.type
+        requirement_level: required
+      - ref: os.description
+      - ref: os.name
+      - ref: os.version
+      - ref: os.build_id
+        note: >
+          `build_id` values SHOULD be obtained from the following sources:
+
+
+          | OS | Primary | Fallback |
+
+          | ------- | ------- | ------- |
+
+          | Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` | - |
+
+          | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
+
+          | Linux | `BUILD_ID` from `/etc/os-release` | `BUILD_ID` from `/usr/lib/os-release`; <br> contents of `/proc/sys/kernel/osrelease`|

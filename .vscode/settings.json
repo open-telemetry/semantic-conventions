@@ -1,18 +1,10 @@
 {
-    "rewrap.wrappingColumn": 80,
     "editor.rulers": [80],
-    "markdownlint.config": {
-        "MD004": false,
-        "MD013": false,
-        "MD024": {"allow_different_nesting": true},
-        "MD029": {"style": "ordered"},
-        "MD033": false,
-        "MD040": false,
-    },
     "yaml.schemas": {
-        "https://raw.githubusercontent.com/open-telemetry/weaver/v0.12.0/schemas/semconv.schema.json": [
+        "https://raw.githubusercontent.com/open-telemetry/weaver/v0.16.1/schemas/semconv.schema.json": [
             "model/**/*.yaml"
         ]
     },
-    "json.schemaDownload.enable": true
+    "json.schemaDownload.enable": true,
+    "markdown.extension.toc.levels": "2..6"
 }

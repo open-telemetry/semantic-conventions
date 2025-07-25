@@ -3,16 +3,16 @@ linkTitle: Metrics
 aliases: [metrics-general]
 --->
 
-# Metrics Semantic Conventions
+# Metrics semantic conventions
 
 **Status**: [Mixed][DocumentStatus]
 
 <!-- toc -->
 
-- [General Guidelines](#general-guidelines)
+- [General guidelines](#general-guidelines)
   - [Units](#units)
-  - [Instrument Units](#instrument-units)
-  - [Instrument Types](#instrument-types)
+  - [Instrument units](#instrument-units)
+  - [Instrument types](#instrument-types)
   - [Consistent UpDownCounter timeseries](#consistent-updowncounter-timeseries)
 
 <!-- tocstop -->
@@ -34,14 +34,15 @@ The following semantic conventions surrounding metrics are defined:
   * [K8s](/docs/system/k8s-metrics.md): For K8s metrics.
   * [Process](/docs/system/process-metrics.md): For standard process metrics.
   * [Runtime Environment](/docs/runtime/README.md#metrics): For runtime environment metrics.
+* [OTel SDK Telemetry](/docs/otel/sdk-metrics.md): Metrics emitted by the OpenTelemetry SDK components.
 
 Apart from semantic conventions for metrics, [traces](trace.md), [logs](logs.md), and [events](events.md), OpenTelemetry also
-defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/resource/sdk.md) with
+defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.47.0/specification/resource/sdk.md) with
 their own [Resource Semantic Conventions](/docs/resource/README.md).
 
-## General Guidelines
+## General guidelines
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 When defining new metric names and attributes, consider the prior art of
 existing standard metrics and metrics from frameworks/libraries.
@@ -87,14 +88,14 @@ usable.
 
 When building components that interoperate between OpenTelemetry and a system
 using the OpenMetrics exposition format, use the
-[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/compatibility/prometheus_and_openmetrics.md).
+[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.47.0/specification/compatibility/prometheus_and_openmetrics.md).
 
-### Instrument Units
+### Instrument units
 
 **Status**: [Stable][DocumentStatus]
 
 Units should follow the
-[Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html).
+[Unified Code for Units of Measure](https://ucum.org/ucum).
 
 - Instruments for **utilization** metrics (that measure the fraction out of a
 total) are dimensionless and SHOULD use the default unit `1` (the unity).
@@ -114,7 +115,7 @@ use `{packet}`, `{error}`, `{fault}`, etc.
   unless there is good technical reason to not do so.
 - When instruments are measuring durations, seconds (i.e. `s`) SHOULD be used.
 
-### Instrument Types
+### Instrument types
 
 **Status**: [Stable][DocumentStatus]
 
@@ -126,7 +127,7 @@ implementation detail. Both choices are compliant with this specification.
 
 ### Consistent UpDownCounter timeseries
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 When recording `UpDownCounter` metrics, the same attribute values used to record an increment SHOULD be used to record
 any associated decrement, otherwise those increments and decrements will end up as different timeseries.

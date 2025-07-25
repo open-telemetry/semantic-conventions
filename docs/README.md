@@ -1,18 +1,17 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Semantic Conventions
-# no_list: true
 cascade:
   body_class: otel-docs-spec
   github_repo: &repo https://github.com/open-telemetry/semantic-conventions
   github_subdir: docs
   path_base_for_github_subdir: tmp/semconv/docs/
   github_project_repo: *repo
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/_index.md
-  to: README.md
+redirects: [{ from: 'attributes-registry/*', to: 'registry/attributes/:splat' }]
+cSpell:ignore: semconv CICD
+auto_gen: below
+linkTitle: Semantic conventions
 --->
 
-# OpenTelemetry Semantic Conventions
+# OpenTelemetry semantic conventions
 
 The Semantic Conventions define a common set of (semantic) attributes which provide meaning to data when collecting, producing and consuming it.
 The Semantic Conventions specify among other things span names and kind, metric instruments and units as well as attribute names, types, meaning and valid values. For a detailed definition of the Semantic Conventions' scope see [Semantic Conventions Stability](https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability).
@@ -21,7 +20,7 @@ The benefit to using Semantic Conventions is in following a common naming scheme
 Semantic Conventions are defined for the following areas:
 
 * **[General](general/README.md): General Semantic Conventions**.
-* [CICD](cicd/cicd-metrics.md): Semantic Conventions for CICD systems.
+* [CICD](cicd/README.md): Semantic Conventions for CICD systems.
 * [Code](code/README.md): Semantic Conventions for code.
 * [Cloud Providers](cloud-providers/README.md): Semantic Conventions for cloud providers libraries.
 * [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.
@@ -42,6 +41,7 @@ Semantic Conventions by signals:
 * [Events](general/events.md): Semantic Conventions for event data.
 * [Logs](general/logs.md): Semantic Conventions for logs data.
 * [Metrics](general/metrics.md): Semantic Conventions for metrics.
+* [Profiles](general/profiles.md): Semantic Conventions for profiles.
 * [Resource](resource/README.md): Semantic Conventions for resources.
 * [Trace](general/trace.md): Semantic Conventions for traces and spans.
 

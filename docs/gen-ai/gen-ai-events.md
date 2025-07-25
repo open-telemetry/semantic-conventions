@@ -1,12 +1,10 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Generative AI events
+linkTitle: Events
 --->
 
-# Semantic Conventions for GenAI events
+# Semantic conventions for generative AI events
 
-**Status**: [Experimental][DocumentStatus]
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
+**Status**: [Development][DocumentStatus]
 
 <!-- toc -->
 
@@ -23,10 +21,31 @@ linkTitle: Generative AI events
 
 <!-- tocstop -->
 
-GenAI instrumentations MAY capture user inputs sent to the model and responses received from it as [events](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.40.0/specification/logs/api.md#emit-an-event).
+> [!Warning]
+>
+> Existing GenAI instrumentations that are using
+> [v1.36.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.36.0/docs/gen-ai/README.md)
+> (or prior):
+>
+> * SHOULD NOT change the version of the GenAI conventions that they emit by default.
+>   Conventions include, but are not limited to, attributes, metric, span and event names,
+>   span kind and unit of measure.
+> * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
+>   as a comma-separated list of category-specific values. The list of values
+>   includes:
+>   * `gen_ai_latest_experimental` - emit the latest experimental version of
+>     GenAI conventions (supported by the instrumentation) and do not emit the
+>     old one (v1.36.0 or prior).
+>   * The default behavior is to continue emitting whatever version of the GenAI
+>     conventions the instrumentation was emitting (1.36.0 or prior).
+>
+> This transition plan will be updated to include stable version before the
+> GenAI conventions are marked as stable.
+
+GenAI instrumentations MAY capture user inputs sent to the model and responses received from it as [events](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.47.0/specification/logs/data-model.md#events).
 
 > Note:
-> Event API is experimental and not yet available in some languages. Check [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.40.0/spec-compliance-matrix.md#logs) to see the implementation status in corresponding language.
+> Events are in-development and not yet available in some languages. Check [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.47.0/spec-compliance-matrix.md#logs) to see the implementation status in corresponding language.
 
 Instrumentations MAY capture inputs and outputs if and only if application has enabled the collection of this data.
 This is for three primary reasons:
@@ -55,7 +74,7 @@ Instrumentations MAY offer configuration options allowing to disable events or a
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 The event name MUST be `gen_ai.system.message`.
 
@@ -63,47 +82,65 @@ This event describes the system instructions passed to the GenAI model.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
-by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+**[1] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
+knowledge and may differ from the actual model provider.
 
-The actual GenAI product may differ from the one identified by the client.
-Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
-instrumentation's best knowledge, instead of the actual system. The `server.address`
-attribute may help identify the actual system in use for `openai`.
+Multiple providers, including Azure OpenAI, Gemini, and AI hosting platforms
+are accessible using the OpenAI REST API and corresponding client libraries,
+but may proxy or host models from different providers.
 
-For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+The `gen_ai.request.model`, `gen_ai.response.model`, and `server.address`
+attributes may help identify the actual system in use.
+
+The `gen_ai.provider.name` attribute acts as a discriminator that
+identifies the GenAI telemetry format flavor specific to that provider
+within GenAI semantic conventions.
+It SHOULD be set consistently with provider-specific attributes and signals.
+For example, GenAI spans, metrics, and events related to AWS Bedrock
+should have the `gen_ai.provider.name` set to `aws.bedrock` and include
+applicable `aws.bedrock.*` attributes and are not expected to include
+`openai.*` attributes.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mistral_ai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `anthropic` | [Anthropic](https://www.anthropic.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.bedrock` | [AWS Bedrock](https://aws.amazon.com/bedrock) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cohere` | [Cohere](https://cohere.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deepseek` | [DeepSeek](https://www.deepseek.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gemini` | [Gemini](https://cloud.google.com/products/gemini) [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai` | Any Google generative AI endpoint [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.vertex_ai` | [Vertex AI](https://cloud.google.com/vertex-ai) [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `groq` | [Groq](https://groq.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.watsonx.ai` | [IBM Watsonx AI](https://www.ibm.com/products/watsonx-ai) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mistral_ai` | [Mistral AI](https://mistral.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openai` | [OpenAI](https://openai.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perplexity` | [Perplexity](https://www.perplexity.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `x_ai` | [xAI](https://x.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[2]:** Used when accessing the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API.
+
+**[3]:** May be used when specific backend is unknown.
+
+**[4]:** Used when accessing the 'aiplatform.googleapis.com' endpoint.
 
 **Body fields:**
 
+:warning: Body fields will be moved to complex attributes once the
+semantic convention tooling supports complex attributes
+(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
+
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `content` | undefined | The contents of the system message. | `You're a helpful bot` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `role` | string | The actual role of the message author as passed in the message. | `system`; `instruction` | `Conditionally Required` if available and not equal to `system`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `content` | undefined | The contents of the system message. | `You're a helpful bot` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `role` | string | The actual role of the message author as passed in the message. | `system`; `instruction` | `Conditionally Required` if available and not equal to `system`. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -119,7 +156,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 The event name MUST be `gen_ai.user.message`.
 
@@ -127,47 +164,65 @@ This event describes the user message passed to the GenAI model.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
-by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+**[1] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
+knowledge and may differ from the actual model provider.
 
-The actual GenAI product may differ from the one identified by the client.
-Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
-instrumentation's best knowledge, instead of the actual system. The `server.address`
-attribute may help identify the actual system in use for `openai`.
+Multiple providers, including Azure OpenAI, Gemini, and AI hosting platforms
+are accessible using the OpenAI REST API and corresponding client libraries,
+but may proxy or host models from different providers.
 
-For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+The `gen_ai.request.model`, `gen_ai.response.model`, and `server.address`
+attributes may help identify the actual system in use.
+
+The `gen_ai.provider.name` attribute acts as a discriminator that
+identifies the GenAI telemetry format flavor specific to that provider
+within GenAI semantic conventions.
+It SHOULD be set consistently with provider-specific attributes and signals.
+For example, GenAI spans, metrics, and events related to AWS Bedrock
+should have the `gen_ai.provider.name` set to `aws.bedrock` and include
+applicable `aws.bedrock.*` attributes and are not expected to include
+`openai.*` attributes.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mistral_ai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `anthropic` | [Anthropic](https://www.anthropic.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.bedrock` | [AWS Bedrock](https://aws.amazon.com/bedrock) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cohere` | [Cohere](https://cohere.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deepseek` | [DeepSeek](https://www.deepseek.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gemini` | [Gemini](https://cloud.google.com/products/gemini) [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai` | Any Google generative AI endpoint [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.vertex_ai` | [Vertex AI](https://cloud.google.com/vertex-ai) [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `groq` | [Groq](https://groq.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.watsonx.ai` | [IBM Watsonx AI](https://www.ibm.com/products/watsonx-ai) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mistral_ai` | [Mistral AI](https://mistral.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openai` | [OpenAI](https://openai.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perplexity` | [Perplexity](https://www.perplexity.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `x_ai` | [xAI](https://x.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[2]:** Used when accessing the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API.
+
+**[3]:** May be used when specific backend is unknown.
+
+**[4]:** Used when accessing the 'aiplatform.googleapis.com' endpoint.
 
 **Body fields:**
 
+:warning: Body fields will be moved to complex attributes once the
+semantic convention tooling supports complex attributes
+(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
+
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `content` | undefined | The contents of the user message. | `What's the weather in Paris?` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `role` | string | The actual role of the message author as passed in the message. | `user`; `customer` | `Conditionally Required` if available and not equal to `user`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `content` | undefined | The contents of the user message. | `What's the weather in Paris?` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `role` | string | The actual role of the message author as passed in the message. | `user`; `customer` | `Conditionally Required` if available and not equal to `user`. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -183,7 +238,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 The event name MUST be `gen_ai.assistant.message`.
 
@@ -191,53 +246,71 @@ This event describes the assistant message passed to GenAI system.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
-by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+**[1] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
+knowledge and may differ from the actual model provider.
 
-The actual GenAI product may differ from the one identified by the client.
-Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
-instrumentation's best knowledge, instead of the actual system. The `server.address`
-attribute may help identify the actual system in use for `openai`.
+Multiple providers, including Azure OpenAI, Gemini, and AI hosting platforms
+are accessible using the OpenAI REST API and corresponding client libraries,
+but may proxy or host models from different providers.
 
-For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+The `gen_ai.request.model`, `gen_ai.response.model`, and `server.address`
+attributes may help identify the actual system in use.
+
+The `gen_ai.provider.name` attribute acts as a discriminator that
+identifies the GenAI telemetry format flavor specific to that provider
+within GenAI semantic conventions.
+It SHOULD be set consistently with provider-specific attributes and signals.
+For example, GenAI spans, metrics, and events related to AWS Bedrock
+should have the `gen_ai.provider.name` set to `aws.bedrock` and include
+applicable `aws.bedrock.*` attributes and are not expected to include
+`openai.*` attributes.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mistral_ai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `anthropic` | [Anthropic](https://www.anthropic.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.bedrock` | [AWS Bedrock](https://aws.amazon.com/bedrock) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cohere` | [Cohere](https://cohere.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deepseek` | [DeepSeek](https://www.deepseek.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gemini` | [Gemini](https://cloud.google.com/products/gemini) [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai` | Any Google generative AI endpoint [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.vertex_ai` | [Vertex AI](https://cloud.google.com/vertex-ai) [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `groq` | [Groq](https://groq.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.watsonx.ai` | [IBM Watsonx AI](https://www.ibm.com/products/watsonx-ai) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mistral_ai` | [Mistral AI](https://mistral.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openai` | [OpenAI](https://openai.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perplexity` | [Perplexity](https://www.perplexity.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `x_ai` | [xAI](https://x.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[2]:** Used when accessing the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API.
+
+**[3]:** May be used when specific backend is unknown.
+
+**[4]:** Used when accessing the 'aiplatform.googleapis.com' endpoint.
 
 **Body fields:**
 
+:warning: Body fields will be moved to complex attributes once the
+semantic convention tooling supports complex attributes
+(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
+
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `content` | undefined | The contents of the tool message. | `The weather in Paris is rainy and overcast, with temperatures around 57°F` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `role` | string | The actual role of the message author as passed in the message. | `assistant`; `bot` | `Conditionally Required` if available and not equal to `assistant`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tool_calls`: | map[] | The tool calls generated by the model, such as function calls. |  | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;`function`: | map | The function call. |  | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;&nbsp;&nbsp;`arguments` | undefined | The arguments of the function as provided in the LLM response. [1] | `{\"location\": \"Paris\"}` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;&nbsp;&nbsp;`name` | string | The name of the function. | `get_weather` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;`id` | string | The id of the tool call. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;`type` | enum | The type of the tool. | `function` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `content` | undefined | The contents of the tool message. | `The weather in Paris is rainy and overcast, with temperatures around 57°F` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `role` | string | The actual role of the message author as passed in the message. | `assistant`; `bot` | `Conditionally Required` if available and not equal to `assistant`. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tool_calls`: | map[] | The tool calls generated by the model, such as function calls. |  | `Conditionally Required` if available | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;`function`: | map | The function call. |  | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;&nbsp;&nbsp;`arguments` | undefined | The arguments of the function as provided in the LLM response. [1] | `{\"location\": \"Paris\"}` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;&nbsp;&nbsp;`name` | string | The name of the function. | `get_weather` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;`id` | string | The id of the tool call. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;`type` | enum | The type of the tool. | `function` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Models usually return arguments as a JSON string. In this case, it's RECOMMENDED to provide arguments as is without attempting to deserialize them.
 Semantic conventions for individual systems MAY specify a different type for arguments field.
@@ -246,7 +319,7 @@ Semantic conventions for individual systems MAY specify a different type for arg
 
 | Value  | Description | Stability |
 |---|---|---|
-| `function` | Function | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `function` | Function | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -262,7 +335,7 @@ Semantic conventions for individual systems MAY specify a different type for arg
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 The event name MUST be `gen_ai.tool.message`.
 
@@ -270,48 +343,66 @@ This event describes the response from a tool or function call passed to the Gen
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
-by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+**[1] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
+knowledge and may differ from the actual model provider.
 
-The actual GenAI product may differ from the one identified by the client.
-Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
-instrumentation's best knowledge, instead of the actual system. The `server.address`
-attribute may help identify the actual system in use for `openai`.
+Multiple providers, including Azure OpenAI, Gemini, and AI hosting platforms
+are accessible using the OpenAI REST API and corresponding client libraries,
+but may proxy or host models from different providers.
 
-For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+The `gen_ai.request.model`, `gen_ai.response.model`, and `server.address`
+attributes may help identify the actual system in use.
+
+The `gen_ai.provider.name` attribute acts as a discriminator that
+identifies the GenAI telemetry format flavor specific to that provider
+within GenAI semantic conventions.
+It SHOULD be set consistently with provider-specific attributes and signals.
+For example, GenAI spans, metrics, and events related to AWS Bedrock
+should have the `gen_ai.provider.name` set to `aws.bedrock` and include
+applicable `aws.bedrock.*` attributes and are not expected to include
+`openai.*` attributes.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mistral_ai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `anthropic` | [Anthropic](https://www.anthropic.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.bedrock` | [AWS Bedrock](https://aws.amazon.com/bedrock) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cohere` | [Cohere](https://cohere.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deepseek` | [DeepSeek](https://www.deepseek.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gemini` | [Gemini](https://cloud.google.com/products/gemini) [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai` | Any Google generative AI endpoint [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.vertex_ai` | [Vertex AI](https://cloud.google.com/vertex-ai) [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `groq` | [Groq](https://groq.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.watsonx.ai` | [IBM Watsonx AI](https://www.ibm.com/products/watsonx-ai) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mistral_ai` | [Mistral AI](https://mistral.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openai` | [OpenAI](https://openai.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perplexity` | [Perplexity](https://www.perplexity.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `x_ai` | [xAI](https://x.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[2]:** Used when accessing the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API.
+
+**[3]:** May be used when specific backend is unknown.
+
+**[4]:** Used when accessing the 'aiplatform.googleapis.com' endpoint.
 
 **Body fields:**
 
+:warning: Body fields will be moved to complex attributes once the
+semantic convention tooling supports complex attributes
+(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
+
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `content` | undefined | The contents of the tool message. | `rainy, 57°F` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `id` | string | Tool call id that this message is responding to. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `role` | string | The actual role of the message author as passed in the message. | `tool`; `function` | `Conditionally Required` if available and not equal to `tool`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `content` | undefined | The contents of the tool message. | `rainy, 57°F` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `id` | string | Tool call id that this message is responding to. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `role` | string | The actual role of the message author as passed in the message. | `tool`; `function` | `Conditionally Required` if available and not equal to `tool`. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -327,7 +418,7 @@ If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-**Status:** ![Experimental](https://img.shields.io/badge/-experimental-blue)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 The event name MUST be `gen_ai.choice`.
 
@@ -335,56 +426,74 @@ This event describes the Gen AI response message.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.system`](/docs/attributes-registry/gen-ai.md) | string | The Generative AI product as identified by the client or server instrumentation. [1] | `openai` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [1] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `gen_ai.system`:** The `gen_ai.system` describes a family of GenAI models with specific model identified
-by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+**[1] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
+knowledge and may differ from the actual model provider.
 
-The actual GenAI product may differ from the one identified by the client.
-Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
-instrumentation's best knowledge, instead of the actual system. The `server.address`
-attribute may help identify the actual system in use for `openai`.
+Multiple providers, including Azure OpenAI, Gemini, and AI hosting platforms
+are accessible using the OpenAI REST API and corresponding client libraries,
+but may proxy or host models from different providers.
 
-For custom model, a custom friendly name SHOULD be used.
-If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+The `gen_ai.request.model`, `gen_ai.response.model`, and `server.address`
+attributes may help identify the actual system in use.
+
+The `gen_ai.provider.name` attribute acts as a discriminator that
+identifies the GenAI telemetry format flavor specific to that provider
+within GenAI semantic conventions.
+It SHOULD be set consistently with provider-specific attributes and signals.
+For example, GenAI spans, metrics, and events related to AWS Bedrock
+should have the `gen_ai.provider.name` set to `aws.bedrock` and include
+applicable `aws.bedrock.*` attributes and are not expected to include
+`openai.*` attributes.
 
 ---
 
-`gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `anthropic` | Anthropic | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `aws.bedrock` | AWS Bedrock | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.inference` | Azure AI Inference | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `az.ai.openai` | Azure OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cohere` | Cohere | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `deepseek` | DeepSeek | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gemini` | Gemini | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `groq` | Groq | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ibm.watsonx.ai` | IBM Watsonx AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mistral_ai` | Mistral AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `openai` | OpenAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `perplexity` | Perplexity | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertex_ai` | Vertex AI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `xai` | xAI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `anthropic` | [Anthropic](https://www.anthropic.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.bedrock` | [AWS Bedrock](https://aws.amazon.com/bedrock) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.openai` | [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cohere` | [Cohere](https://cohere.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deepseek` | [DeepSeek](https://www.deepseek.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gemini` | [Gemini](https://cloud.google.com/products/gemini) [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai` | Any Google generative AI endpoint [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.vertex_ai` | [Vertex AI](https://cloud.google.com/vertex-ai) [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `groq` | [Groq](https://groq.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.watsonx.ai` | [IBM Watsonx AI](https://www.ibm.com/products/watsonx-ai) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mistral_ai` | [Mistral AI](https://mistral.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openai` | [OpenAI](https://openai.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perplexity` | [Perplexity](https://www.perplexity.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `x_ai` | [xAI](https://x.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[2]:** Used when accessing the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API.
+
+**[3]:** May be used when specific backend is unknown.
+
+**[4]:** Used when accessing the 'aiplatform.googleapis.com' endpoint.
 
 **Body fields:**
 
+:warning: Body fields will be moved to complex attributes once the
+semantic convention tooling supports complex attributes
+(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
+
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `finish_reason` | enum | The reason the model stopped generating tokens. | `stop`; `tool_calls`; `content_filter` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `index` | int | The index of the choice in the list of choices. | `0`; `1` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `message`: | map | GenAI response message. |  | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;`content` | undefined | The contents of the assistant message. | `The weather in Paris is rainy and overcast, with temperatures around 57°F` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;`role` | string | The actual role of the message author as passed in the message. | `assistant`; `bot` | `Conditionally Required` if available and not equal to `assistant`. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tool_calls`: | map[] | The tool calls generated by the model, such as function calls. |  | `Conditionally Required` if available | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;`function`: | map | The function that the model called. |  | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;&nbsp;&nbsp;`arguments` | undefined | The arguments of the function as provided in the LLM response. [1] | `{\"location\": \"Paris\"}` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;&nbsp;&nbsp;`name` | string | The name of the function. | `get_weather` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;`id` | string | The id of the tool call. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| &nbsp;&nbsp;`type` | enum | The type of the tool. | `function` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `finish_reason` | enum | The reason the model stopped generating tokens. | `stop`; `tool_calls`; `content_filter` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `index` | int | The index of the choice in the list of choices. | `0`; `1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `message`: | map | GenAI response message. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;`content` | undefined | The contents of the assistant message. | `The weather in Paris is rainy and overcast, with temperatures around 57°F` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;`role` | string | The actual role of the message author as passed in the message. | `assistant`; `bot` | `Conditionally Required` if available and not equal to `assistant`. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tool_calls`: | map[] | The tool calls generated by the model, such as function calls. |  | `Conditionally Required` if available | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;`function`: | map | The function that the model called. |  | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;&nbsp;&nbsp;`arguments` | undefined | The arguments of the function as provided in the LLM response. [1] | `{\"location\": \"Paris\"}` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;&nbsp;&nbsp;`name` | string | The name of the function. | `get_weather` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;`id` | string | The id of the tool call. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| &nbsp;&nbsp;`type` | enum | The type of the tool. | `function` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Models usually return arguments as a JSON string. In this case, it's RECOMMENDED to provide arguments as is without attempting to deserialize them.
 Semantic conventions for individual systems MAY specify a different type for arguments field.
@@ -393,17 +502,17 @@ Semantic conventions for individual systems MAY specify a different type for arg
 
 | Value  | Description | Stability |
 |---|---|---|
-| `content_filter` | Content Filter | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `error` | Error | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `length` | Length | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `stop` | Stop | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `tool_calls` | Tool Calls | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `content_filter` | Content Filter | ![Development](https://img.shields.io/badge/-development-blue) |
+| `error` | Error | ![Development](https://img.shields.io/badge/-development-blue) |
+| `length` | Length | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stop` | Stop | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tool_calls` | Tool Calls | ![Development](https://img.shields.io/badge/-development-blue) |
 
 `type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `function` | Function | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `function` | Function | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -413,7 +522,7 @@ Semantic conventions for individual systems MAY specify a different type for arg
 ## Custom events
 
 System-specific events that are not covered in this document SHOULD be documented in corresponding Semantic Conventions extensions and
-SHOULD follow `gen_ai.{gen_ai.system}.*` naming pattern for system-specific events.
+SHOULD follow `{gen_ai.provider.name}.*` naming pattern.
 
 ## Examples
 
@@ -444,7 +553,7 @@ sequenceDiagram
 |   Attribute name                |                     Value                  |
 |---------------------------------|--------------------------------------------|
 | Span name                       | `"chat gpt-4"`                             |
-| `gen_ai.system`                 | `"openai"`                                 |
+| `gen_ai.provider.name`            | `"openai"`                                 |
 | `gen_ai.request.model`          | `"gpt-4"`                                  |
 | `gen_ai.request.max_tokens`     | `200`                                      |
 | `gen_ai.request.top_p`          | `1.0`                                      |
@@ -460,21 +569,21 @@ sequenceDiagram
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
-   | `gen_ai.system`     | `"openai"`                                            |
+   | `gen_ai.provider.name`| `"openai"`                                            |
    | Event body (with content enabled) | `{"content": "You're a helpful bot"}` |
 
 2. `gen_ai.user.message`
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
-   | `gen_ai.system`     | `"openai"`                                            |
+   | `gen_ai.provider.name`| `"openai"`                                            |
    | Event body (with content enabled) | `{"content":"Tell me a joke about OpenTelemetry"}` |
 
 3. `gen_ai.choice`
 
    |   Property          |                     Value                             |
    |---------------------|-------------------------------------------------------|
-   | `gen_ai.system`     | `"openai"`                                            |
+   | `gen_ai.provider.name`| `"openai"`                                            |
    | Event body (with content enabled) | `{"index":0,"finish_reason":"stop","message":{"content":"Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"}}` |
    | Event body (without content) | `{"index":0,"finish_reason":"stop","message":{}}` |
 
@@ -515,7 +624,7 @@ Here's the telemetry generated for each step in this scenario:
 |   Attribute name    |                     Value                             |
 |---------------------|-------------------------------------------------------|
 | Span name           | `"chat gpt-4"`                             |
-| `gen_ai.system`     | `"openai"`                                            |
+| `gen_ai.provider.name`| `"openai"`                                            |
 | `gen_ai.request.model`| `"gpt-4"`                                           |
 | `gen_ai.request.max_tokens`| `200`                                          |
 | `gen_ai.request.top_p`| `1.0`                                               |
@@ -533,14 +642,14 @@ Here's the telemetry generated for each step in this scenario:
 
      |   Property          |                     Value                             |
      |---------------------|-------------------------------------------------------|
-     | `gen_ai.system`     | `"openai"`                                            |
+     | `gen_ai.provider.name`| `"openai"`                                            |
      | Event body          | `{"content":"What's the weather in Paris?"}` |
 
   2. `gen_ai.choice`
 
      |   Property          |                     Value                             |
      |---------------------|-------------------------------------------------------|
-     | `gen_ai.system`     | `"openai"`                                            |
+     | `gen_ai.provider.name`| `"openai"`                                            |
      | Event body (with content)    | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":"{\"location\":\"Paris\"}"},"type":"function"}]}` |
      | Event body (without content) | `{"index":0,"finish_reason":"tool_calls","message":{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather"},"type":"function"}]}` |
 
@@ -549,7 +658,7 @@ Here's the telemetry generated for each step in this scenario:
    |   Attribute name                |                     Value                             |
    |---------------------------------|-------------------------------------------------------|
    | Span name                       | `"chat gpt-4"`                                        |
-   | `gen_ai.system`                 | `"openai"`                                            |
+   | `gen_ai.provider.name`            | `"openai"`                                            |
    | `gen_ai.request.model`          | `"gpt-4"`                                             |
    | `gen_ai.request.max_tokens`     | `200`                                                 |
    | `gen_ai.request.top_p`          | `1.0`                                                 |
@@ -569,14 +678,14 @@ Here's the telemetry generated for each step in this scenario:
 
      |   Property                       |                     Value                                  |
      |----------------------------------|------------------------------------------------------------|
-     | `gen_ai.system`                  | `"openai"`                                                 |
+     | `gen_ai.provider.name`             | `"openai"`                                                 |
      | Event body                       | `{"content":"What's the weather in Paris?"}` |
 
   2. `gen_ai.assistant.message`
 
      |   Property                       |                     Value                                                                                                                  |
      |----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
-     | `gen_ai.system`                  | `"openai"`                                                                                                                                 |
+     | `gen_ai.provider.name`             | `"openai"`                                                                                                                                 |
      | Event body (content enabled)     | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather","arguments":"{\"location\":\"Paris\"}"},"type":"function"}]}` |
      | Event body (content not enabled) | `{"tool_calls":[{"id":"call_VSPygqKTWdrhaFErNvMV18Yl","function":{"name":"get_weather"},"type":"function"}]}`                 |
 
@@ -584,7 +693,7 @@ Here's the telemetry generated for each step in this scenario:
 
      |   Property                       |                     Value                                                                      |
      |----------------------------------|------------------------------------------------------------------------------------------------|
-     | `gen_ai.system`                  | `"openai"`                                                                                     |
+     | `gen_ai.provider.name`             | `"openai"`                                                                                     |
      | Event body (content enabled)     | `{"content":"rainy, 57°F","id":"call_VSPygqKTWdrhaFErNvMV18Yl"}` |
      | Event body (content not enabled) | `{"id":"call_VSPygqKTWdrhaFErNvMV18Yl"}`                                             |
 
@@ -592,7 +701,7 @@ Here's the telemetry generated for each step in this scenario:
 
      |   Property                       |                     Value                                                                                                     |
      |----------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-     | `gen_ai.system`                  | `"openai"`                                                                                                                    |
+     | `gen_ai.provider.name`             | `"openai"`                                                                                                                    |
      | Event body (content enabled)     | `{"index":0,"finish_reason":"stop","message":{"content":"The weather in Paris is rainy and overcast, with temperatures around 57°F"}}` |
      | Event body (content not enabled) | `{"index":0,"finish_reason":"stop","message":{}}` |
 
@@ -623,7 +732,7 @@ sequenceDiagram
 |   Attribute name    |                     Value                  |
 |---------------------|--------------------------------------------|
 | Span name           | `"chat gpt-4"`                             |
-| `gen_ai.system`     | `"openai"`                                 |
+| `gen_ai.provider.name`| `"openai"`                                 |
 | `gen_ai.request.model`| `"gpt-4"`                                |
 | `gen_ai.request.max_tokens`| `200`                               |
 | `gen_ai.request.top_p`| `1.0`                                    |
@@ -643,14 +752,14 @@ All events are parented to the GenAI chat span above.
 
    |   Property                   |                     Value                             |
    |------------------------------|-------------------------------------------------------|
-   | `gen_ai.system`              | `"openai"`                                            |
+   | `gen_ai.provider.name`         | `"openai"`                                            |
    | Event body (content enabled) | `{"index":0,"finish_reason":"stop","message":{"content":"Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"}}` |
 
 4. `gen_ai.choice`
 
    |   Property                   |                     Value                             |
    |------------------------------|-------------------------------------------------------|
-   | `gen_ai.system`              | `"openai"`                                            |
+   | `gen_ai.provider.name`         | `"openai"`                                            |
    | Event body (content enabled) | `{"index":1,"finish_reason":"stop","message":{"content":"Why did OpenTelemetry get promoted? It had great span of control!"}}` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

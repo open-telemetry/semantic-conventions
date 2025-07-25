@@ -2,9 +2,14 @@ groups:
   - id: metric.messaging.publish.duration
     type: metric
     metric_name: messaging.publish.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Deprecated. Use `messaging.client.operation.duration` instead."
-    deprecated: "Replaced by `messaging.client.operation.duration`."
-    stability: experimental
+    deprecated:
+      reason: renamed
+      renamed_to: messaging.client.operation.duration
+    stability: development
     instrument: histogram
     unit: "s"
     extends: attributes.messaging.common.minimal
@@ -12,9 +17,14 @@ groups:
   - id: metric.messaging.receive.duration
     type: metric
     metric_name: messaging.receive.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Deprecated. Use `messaging.client.operation.duration` instead."
-    deprecated: "Replaced by `messaging.client.operation.duration`."
-    stability: experimental
+    deprecated:
+      reason: renamed
+      renamed_to: messaging.client.operation.duration
+    stability: development
     instrument: histogram
     unit: "s"
     extends: attributes.messaging.common.minimal
@@ -22,9 +32,14 @@ groups:
   - id: metric.messaging.process.messages
     type: metric
     metric_name: messaging.process.messages
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Deprecated. Use `messaging.client.consumed.messages` instead."
-    deprecated: "Replaced by `messaging.client.consumed.messages`."
-    stability: experimental
+    deprecated:
+      reason: renamed
+      renamed_to: messaging.client.consumed.messages
+    stability: development
     instrument: counter
     unit: "{message}"
     extends: attributes.messaging.common.minimal
@@ -32,9 +47,14 @@ groups:
   - id: metric.messaging.publish.messages
     type: metric
     metric_name: messaging.publish.messages
-    brief: "Deprecated. Use `messaging.client.produced.messages` instead."
-    deprecated: "Replaced by `messaging.client.produced.messages`."
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Deprecated. Use `messaging.client.sent.messages` instead."
+    deprecated:
+      reason: renamed
+      renamed_to: messaging.client.sent.messages
+    stability: development
     instrument: counter
     unit: "{message}"
     extends: attributes.messaging.common.minimal
@@ -42,9 +62,14 @@ groups:
   - id: metric.messaging.receive.messages
     type: metric
     metric_name: messaging.receive.messages
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Deprecated. Use `messaging.client.consumed.messages` instead."
-    deprecated: "Replaced by `messaging.client.consumed.messages`."
-    stability: experimental
+    deprecated:
+      reason: renamed
+      renamed_to: messaging.client.consumed.messages
+    stability: development
     instrument: counter
     unit: "{message}"
     extends: attributes.messaging.common.minimal
@@ -52,9 +77,14 @@ groups:
   - id: metric.messaging.client.published.messages
     type: metric
     metric_name: messaging.client.published.messages
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Deprecated. Use `messaging.client.sent.messages` instead."
-    deprecated: "Replaced by `messaging.client.sent.messages`."
-    stability: experimental
+    deprecated:
+      reason: renamed
+      renamed_to: messaging.client.sent.messages
+    stability: development
     instrument: counter
     unit: "{message}"
     extends: metric.messaging.attributes

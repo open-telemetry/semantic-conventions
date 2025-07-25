@@ -1,4 +1,4 @@
-# System Semantic Conventions: Instrumentation Design Philosophy
+# System semantic conventions: instrumentation design philosophy
 
 The System Semantic Conventions are caught in a strange dichotomy that is unique
 among other semconv groups. While we want to make sure we cover obvious generic
@@ -64,7 +64,7 @@ something we're keen on dealing with all over system semconv, as the
 instrumentation ends up polluted with so many edge cases in each namespace that
 it defeats the purpose of sharing the attribute in the first place.
 
-## Two Class Design Strategy
+## Two class design strategy
 
 Relevant discussions:
 [\#1403 (particular comment)](https://github.com/open-telemetry/semantic-conventions/issues/1403#issuecomment-2368815634)
@@ -73,7 +73,7 @@ We are considering two personas for system semconv instrumentation. If we have a
 piece of instrumentation, we decide which persona it is meant for and use that
 to make the decision for how we should name/treat that piece of instrumentation.
 
-### General Class: A generalized cross-platform use case we want any user of instrumentation to be able to easily access
+### General class: A generalized cross-platform use case we want any user of instrumentation to be able to easily access
 
 When instrumentation is meant for the General Class, we will strive to make the
 names and examples as prescriptive as possible. This instrumentation is what
@@ -84,7 +84,7 @@ use cases][use cases doc] we have laid out as a group. We want this
 instrumentation to be very clear exactly how and when they should be used.
 General Class instrumentation will be recommended as **on by default**.
 
-### Specialist Class: A more specific use case that specialists could enable to get more in-depth information that they already understand how to use
+### Specialist class: A more specific use case that specialists could enable to get more in-depth information that they already understand how to use
 
 When instrumentation falls into the Specialist Class, we are assuming the target
 audience is already familiar with the concept and knows exactly what they are
@@ -126,12 +126,12 @@ Some Specialist Class examples:
   [Process Working Set](https://learn.microsoft.com/windows/win32/procthread/process-working-set))
 - Niche process information like open file descriptors, page faults, etc.
 
-## Instrumentation Design Guide
+## Instrumentation design guide
 
 When designing new instrumentation we will follow these steps as closely as
 possible:
 
-### Choosing Instrumentation Class
+### Choosing instrumentation class
 
 In System Semantic Conventions, the most important questions when deciding
 whether a piece of instrumentation is General or Specialist would be:

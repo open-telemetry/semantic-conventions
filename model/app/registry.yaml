@@ -1,0 +1,64 @@
+groups:
+  - id: registry.app
+    type: attribute_group
+    display_name: Application Attributes
+    brief: >
+      Describes attributes related to client-side applications (e.g. web apps or mobile apps).
+    stability: development
+    attributes:
+      - id: app.installation.id
+        type: string
+        stability: development
+        brief: >
+          A unique identifier representing the installation of an application on a specific device
+        note: |
+          Its value SHOULD persist across launches of the same application installation, including through application upgrades.
+          It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
+          Additionally, users might be able to reset this value (e.g. by clearing application data).
+          If an app is installed multiple times on the same device (e.g. in different accounts on Android), each `app.installation.id` SHOULD have a different value.
+          If multiple OpenTelemetry SDKs are used within the same application, they SHOULD use the same value for `app.installation.id`.
+          Hardware IDs (e.g. serial number, IMEI, MAC address) MUST NOT be used as the `app.installation.id`.
+
+          For iOS, this value SHOULD be equal to the [vendor identifier](https://developer.apple.com/documentation/uikit/uidevice/identifierforvendor).
+
+          For Android, examples of `app.installation.id` implementations include:
+
+          - [Firebase Installation ID](https://firebase.google.com/docs/projects/manage-installations).
+          - A globally unique UUID which is persisted across sessions in your application.
+          - [App set ID](https://developer.android.com/identity/app-set-id).
+          - [`Settings.getString(Settings.Secure.ANDROID_ID)`](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
+
+          More information about Android identifier best practices can be found [here](https://developer.android.com/training/articles/user-data-ids).
+        examples:
+          - 2ab2916d-a51f-4ac8-80ee-45ac31a28092
+      - id: app.screen.coordinate.x
+        type: int
+        brief: The x (horizontal) coordinate of a screen coordinate, in screen pixels.
+        stability: development
+        examples: [ 0, 131 ]
+      - id: app.screen.coordinate.y
+        type: int
+        brief: >
+          The y (vertical) component of a screen coordinate, in screen pixels.
+        stability: development
+        examples: [ 12, 99 ]
+      - id: app.widget.id
+        type: string
+        stability: development
+        brief: >
+          An identifier that uniquely differentiates this widget from other
+          widgets in the same application.
+        note: >
+          A widget is an application component, typically an on-screen visual
+          GUI element.
+        examples:
+          - f9bc787d-ff05-48ad-90e1-fca1d46130b3
+          - submit_order_1829
+      - id: app.widget.name
+        type: string
+        stability: development
+        brief: The name of an application widget.
+        note: >
+          A widget is an application component, typically an on-screen visual
+          GUI element.
+        examples: [ "submit", "attack", "Clear Cart" ]

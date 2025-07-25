@@ -1,0 +1,108 @@
+name: Build System Check
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Makefile'
+      - 'dependencies.Dockerfile'
+      - 'internal/tools/**'
+  pull_request:
+    paths:
+      - 'Makefile'
+      - 'dependencies.Dockerfile'
+      - 'internal/tools/**'
+
+permissions:
+  contents: read
+
+jobs:
+
+  # Ensure that invoking "make" without a specific build target will succeed.
+  make-default-target:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container-runner: ["docker", "podman"]
+    steps:
+    - name: install podman and podman-docker
+      if: ${{ matrix.container-runner == 'podman' }}
+      run: sudo apt-get install podman podman-docker
+
+    - name: check out code
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+    - name: install dependencies
+      run: npm install
+
+    - name: invoke make
+      run: make
+      env:
+        LYCHEE_GITHUB_TOKEN: ${{ github.token }}
+
+
+  # The "CONTRIBUTING.md" guide provides these make targets for regenerating the files;
+  # ensure that the steps in the "CONTRIBUTING.md" guide continue to work.
+  make-generation-from-contributing-guide:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container-runner: ["docker", "podman"]
+    steps:
+    - name: install podman and podman-docker
+      if: ${{ matrix.container-runner == 'podman' }}
+      run: sudo apt-get install podman podman-docker
+
+    - name: check out code
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+    - name: install dependencies
+      run: npm install
+
+    - name: invoke make
+      run: make table-generation registry-generation
+
+  # The "CONTRIBUTING.md" guide provides these make targets for verifying the policies;
+  # ensure that the steps in the "CONTRIBUTING.md" guide continue to work.
+  make-check-policies-from-contributing-guide:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container-runner: ["docker", "podman"]
+    steps:
+    - name: install podman and podman-docker
+      if: ${{ matrix.container-runner == 'podman' }}
+      run: sudo apt-get install podman podman-docker
+
+    - name: check out code
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+    - name: install dependencies
+      run: npm install
+
+    - name: invoke make
+      run: make check-policies
+
+  # The "CONTRIBUTING.md" guide provides these make targets for doing a last minute full
+  # check over the entire repo before attempting to send a PR. Make sure this succeeds.
+  make-check-from-contributing-guide:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container-runner: ["docker", "podman"]
+    steps:
+    - name: install podman and podman-docker
+      if: ${{ matrix.container-runner == 'podman' }}
+      run: sudo apt-get install podman podman-docker
+
+    - name: check out code
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+    - name: install dependencies
+      run: npm install
+
+    - name: invoke make
+      run: make check
+      env:
+        LYCHEE_GITHUB_TOKEN: ${{ github.token }}

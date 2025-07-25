@@ -1,15 +1,10 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Exceptions
-path_base_for_github_subdir:
-  from: tmp/semconv/docs/exceptions/_index.md
-  to: exceptions/README.md
 --->
 
-# Semantic Conventions for Exceptions
+# Semantic conventions for exceptions
 
 **Status**: [Stable][DocumentStatus]
-
-This document defines semantic conventions for Exceptions.
 
 Semantic conventions for Exceptions are defined for the following signals:
 

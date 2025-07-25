@@ -7,8 +7,11 @@ groups:
     attributes:
       - id: event.name
         type: string
-        stability: experimental
-        deprecated: "Replaced by EventName top-level field on the LogRecord"
+        stability: development
+        deprecated:
+          reason: uncategorized
+          note: >
+            Replaced by EventName top-level field on the LogRecord.
         brief: >
           Identifies the class / type of event.
         examples: ["browser.mouse.click", "device.app.lifecycle"]

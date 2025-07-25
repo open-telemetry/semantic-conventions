@@ -1,10 +1,8 @@
 groups:
-  - id: span.cli.internal
-    type: span
-    span_kind: internal
-    stability: experimental
+  - id: attributes.cli.common
+    type: attribute_group
     brief: >
-      Describes span of CLI (Command Line Interfaces) programs.
+      Common CLI attributes.
     attributes:
       - ref: process.executable.name
         requirement_level: required
@@ -20,23 +18,32 @@ groups:
         requirement_level:
           conditionally_required: if and only if process.exit.code is not 0
 
+  - id: span.cli.internal
+    type: span
+    span_kind: internal
+    stability: development
+    brief: >
+      This span describes CLI (Command Line Interfaces) program execution from a callee perspective.
+    note: |
+      **Span name** SHOULD be set to {process.executable.name}.
+      Instrumentations that have additional context about executed commands MAY use
+      a different low-cardinality span name format and SHOULD document it.
+
+      **Span status** SHOULD be set to Error if {process.exit.code} is not 0. Refer to
+      the [Recording Errors](/docs/general/recording-errors.md) document for details on how to record span status.
+    extends: attributes.cli.common
+
   - id: span.cli.client
     type: span
     span_kind: client
-    stability: experimental
+    stability: development
     brief: >
-      Describes span to calls of CLI (Command Line Interfaces) programs.
-    attributes:
-      - ref: process.executable.name
-        requirement_level: required
-      - ref: process.executable.path
-        requirement_level: recommended
-      - ref: process.pid
-        requirement_level: required
-      - ref: process.exit.code
-        requirement_level: required
-      - ref: process.command_args
-        requirement_level: recommended
-      - ref: error.type
-        requirement_level:
-          conditionally_required: if and only if process.exit.code is not 0
+      This span describes CLI (Command Line Interfaces) program execution from a caller perspective.
+    note: |
+      **Span name** SHOULD be set to {process.executable.name}.
+      Instrumentations that have additional context about executed commands MAY use
+      a different low-cardinality span name format and SHOULD document it.
+
+      **Span status** SHOULD be set to Error if {process.exit.code} is not 0. Refer to
+      the [Recording Errors](/docs/general/recording-errors.md) document for details on how to record span status.
+    extends: attributes.cli.common

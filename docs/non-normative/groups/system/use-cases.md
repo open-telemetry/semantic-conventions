@@ -1,4 +1,8 @@
-# **System Semantic Conventions: General Use Cases**
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: System use cases
+--->
+
+# System semantic conventions: general use cases
 
 This document is a collection of the use cases that we want to cover with the
 System Semantic Conventions. The use cases outlined here inform the working
@@ -26,7 +30,7 @@ resource consumption, unexpected errors due to resource exhaustion or
 malfunction of core components of a host or fleet of hosts (network stack,
 memory, CPU, etc.).
 
-### General Information
+### General information
 
 - Machine name
 - ID (relevant to its context, could be a cloud provider ID or just base machine
@@ -87,7 +91,7 @@ provided by the OS. Reasons a user may want this:
    monitor stuff and it's an easier lift for them to move to basic process
    instrumentation, then move to other specific semconv over time.
 
-### General Information
+### General information
 
 - Process name
 - Pid

@@ -1,7 +1,7 @@
 groups:
   - id: hardware.attributes.common
     type: attribute_group
-    stability: experimental
+    stability: development
     brief: 'Common hardware attributes'
     attributes:
       - ref: hw.id

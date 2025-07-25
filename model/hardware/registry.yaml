@@ -7,19 +7,19 @@ groups:
     attributes:
       - id: hw.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           An identifier for the hardware component, unique within the monitored host
         examples: ['win32battery_battery_testsysa33_1']
       - id: hw.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           An easily-recognizable name for the hardware component
         examples: ['eth0']
       - id: hw.parent
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller)
         examples: ['dellStorage_perc_0']
@@ -29,60 +29,60 @@ groups:
             - id: battery
               value: 'battery'
               brief: "Battery"
-              stability: experimental
+              stability: development
             - id: cpu
               value: 'cpu'
               brief: 'CPU'
-              stability: experimental
+              stability: development
             - id: disk_controller
               value: 'disk_controller'
               brief: 'Disk controller'
-              stability: experimental
+              stability: development
             - id: enclosure
               value: 'enclosure'
               brief: 'Enclosure'
-              stability: experimental
+              stability: development
             - id: fan
               value: 'fan'
               brief: 'Fan'
-              stability: experimental
+              stability: development
             - id: gpu
               value: 'gpu'
               brief: 'GPU'
-              stability: experimental
+              stability: development
             - id: logical_disk
               value: 'logical_disk'
               brief: 'Logical disk'
-              stability: experimental
+              stability: development
             - id: memory
               value: 'memory'
               brief: 'Memory'
-              stability: experimental
+              stability: development
             - id: network
               value: 'network'
               brief: 'Network'
-              stability: experimental
+              stability: development
             - id: physical_disk
               value: 'physical_disk'
               brief: 'Physical disk'
-              stability: experimental
+              stability: development
             - id: power_supply
               value: 'power_supply'
               brief: 'Power supply'
-              stability: experimental
+              stability: development
             - id: tape_drive
               value: 'tape_drive'
               brief: 'Tape drive'
-              stability: experimental
+              stability: development
             - id: temperature
               value: 'temperature'
               brief: 'Temperature'
-              stability: experimental
+              stability: development
             - id: voltage
               value: 'voltage'
               brief: 'Voltage'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           Type of the component
         note: >
@@ -95,15 +95,15 @@ groups:
             - id: ok
               value: 'ok'
               brief: "Ok"
-              stability: experimental
+              stability: development
             - id: degraded
               value: 'degraded'
               brief: 'Degraded'
-              stability: experimental
+              stability: development
             - id: failed
               value: 'failed'
               brief: 'Failed'
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The current state of the component

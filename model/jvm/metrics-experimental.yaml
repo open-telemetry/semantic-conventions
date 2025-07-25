@@ -2,7 +2,10 @@ groups:
   - id: metric.jvm.memory.init
     type: metric
     metric_name: jvm.memory.init
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     extends: attributes.jvm.memory
     brief: "Measure of initial memory requested."
     instrument: updowncounter
@@ -11,7 +14,10 @@ groups:
   - id: metric.jvm.system.cpu.utilization
     type: metric
     metric_name: jvm.system.cpu.utilization
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
     brief: "Recent CPU utilization for the whole system as reported by the JVM."
     note: >
       The value range is [0.0,1.0].
@@ -24,7 +30,10 @@ groups:
   - id: metric.jvm.system.cpu.load_1m
     type: metric
     metric_name: jvm.system.cpu.load_1m
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
     brief: "Average CPU load of the whole system for the last minute as reported by the JVM."
     note: >
       The value range is [0,n], where n is the number of CPU cores - or a negative number if the value is not available.
@@ -44,7 +53,10 @@ groups:
   - id: metric.jvm.buffer.memory.used
     type: metric
     metric_name: jvm.buffer.memory.used
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     extends: attributes.jvm.buffer
     brief: "Measure of memory used by buffers."
     instrument: updowncounter
@@ -53,7 +65,10 @@ groups:
   - id: metric.jvm.buffer.memory.limit
     type: metric
     metric_name: jvm.buffer.memory.limit
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     extends: attributes.jvm.buffer
     brief: "Measure of total memory capacity of buffers."
     instrument: updowncounter
@@ -62,8 +77,22 @@ groups:
   - id: metric.jvm.buffer.count
     type: metric
     metric_name: jvm.buffer.count
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     extends: attributes.jvm.buffer
     brief: "Number of buffers in the pool."
     instrument: updowncounter
     unit: "{buffer}"
+
+  - id: metric.jvm.file_descriptor.count
+    type: metric
+    metric_name: jvm.file_descriptor.count
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Number of open file descriptors as reported by the JVM."
+    instrument: updowncounter
+    unit: "{file_descriptor}"

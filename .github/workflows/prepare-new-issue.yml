@@ -3,18 +3,20 @@ on:
   issues:
     types: [opened]
 
+permissions:
+  contents: read
+
 jobs:
   prepare-new-issue:
+    permissions:
+      issues: write # required for labeling issues
     runs-on: ubuntu-latest
     if: ${{ github.repository_owner == 'open-telemetry' }}
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Run update permissions
-        run: chmod +x ./.github/workflows/scripts/prepare-new-issue.sh
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Run prepare-new-issue.sh
-        run: ./.github/workflows/scripts/prepare-new-issue.sh
+        run: ./.github/scripts/prepare-new-issue.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE: ${{ github.event.issue.number }}

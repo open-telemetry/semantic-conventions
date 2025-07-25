@@ -1,8 +1,0 @@
-change_type: enhancement
-component: docs
-note: Update attribute, events, and metrics naming guidance to include new best practices.
-subtext: |
-  - Use namespaces (with `.` delimiter) whenever possible.
-  - Use precise, descriptive, unambiguous names that leave room for expansion.
-
-issues: [1694]

@@ -2,9 +2,9 @@
 linkTitle: URL
 --->
 
-# Semantic Conventions for URL
+# Semantic conventions for URL
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions that describe URL and its components.
 
@@ -31,11 +31,11 @@ This document defines semantic conventions that describe URL and its components.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`url.fragment`](/docs/attributes-registry/url.md) | string | The [URI fragment](https://www.rfc-editor.org/rfc/rfc3986#section-3.5) component | `SemConv` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.full`](/docs/attributes-registry/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [1] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.path`](/docs/attributes-registry/url.md) | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [2] | `/search` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.query`](/docs/attributes-registry/url.md) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [3] | `q=OpenTelemetry` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.scheme`](/docs/attributes-registry/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`url.fragment`](/docs/registry/attributes/url.md) | string | The [URI fragment](https://www.rfc-editor.org/rfc/rfc3986#section-3.5) component | `SemConv` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`url.full`](/docs/registry/attributes/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [1] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`url.path`](/docs/registry/attributes/url.md) | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [2] | `/search` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`url.query`](/docs/registry/attributes/url.md) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [3] | `q=OpenTelemetry` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`url.scheme`](/docs/registry/attributes/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `url.full`:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment
 is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
@@ -47,7 +47,7 @@ In such case username and password SHOULD be redacted and attribute's value SHOU
 
 Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
 
-![Experimental](https://img.shields.io/badge/-experimental-blue)
+![Development](https://img.shields.io/badge/-development-blue)
 Query string values for the following keys SHOULD be redacted by default and replaced by the
 value `REDACTED`:
 
@@ -65,7 +65,7 @@ When a query string value is redacted, the query string key SHOULD still be pres
 
 **[3] `url.query`:** Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
 
-![Experimental](https://img.shields.io/badge/-experimental-blue)
+![Development](https://img.shields.io/badge/-development-blue)
 Query string values for the following keys SHOULD be redacted by default and replaced by the value `REDACTED`:
 
 * [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)

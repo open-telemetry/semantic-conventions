@@ -2,18 +2,16 @@
 linkTitle: Metrics
 --->
 
-# Semantic Conventions for Database Client Metrics
+# Semantic conventions for database client metrics
 
 **Status**: [Mixed][DocumentStatus]
-
-<!-- Re-generate TOC with `markdown-toc --no-first-h1 -i` -->
 
 <!-- toc -->
 
 - [Database operation](#database-operation)
   - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
-- [Experimental](#experimental)
-  - [Database Response](#database-response)
+- [Development](#development)
+  - [Database response](#database-response)
     - [Metric: `db.client.response.returned_rows`](#metric-dbclientresponsereturned_rows)
   - [Connection pools](#connection-pools)
     - [Metric: `db.client.connection.count`](#metric-dbclientconnectioncount)
@@ -34,38 +32,38 @@ linkTitle: Metrics
 > [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/database-spans.md)
 > (or prior):
 >
-> * SHOULD NOT change the version of the database conventions that they emit by default
->   until the database semantic conventions are marked stable.
->   Conventions include, but are not limited to, attributes,
->   metric and span names, and unit of measure.
+> * SHOULD NOT change the version of the database conventions that they emit by
+>   default in their existing major version. Conventions include (but are not
+>   limited to) attributes, metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version which is a comma-separated list of values.
->   The list of values includes:
->   * `database` - emit the new, stable database conventions,
->     and stop emitting the old experimental database conventions
->     that the instrumentation emitted previously.
->   * `database/dup` - emit both the old and the stable database conventions,
->     allowing for a seamless transition.
+>   in their existing major version as a comma-separated list of category-specific values
+>   (e.g., http, databases, messaging). The list of values includes:
+>   * `database` - emit the stable database conventions, and stop emitting
+>     the experimental database conventions that the instrumentation emitted
+>     previously.
+>   * `database/dup` - emit both the experimental and stable database conventions,
+>     allowing for a phased rollout of the stable semantic conventions.
 >   * The default behavior (in the absence of one of these values) is to continue
 >     emitting whatever version of the old experimental database conventions
 >     the instrumentation was emitting previously.
 >   * Note: `database/dup` has higher precedence than `database` in case both values are present
-> * SHOULD maintain (security patching at a minimum) the existing major version
+> * SHOULD maintain (security patching at a minimum) their existing major version
 >   for at least six months after it starts emitting both sets of conventions.
-> * SHOULD drop the environment variable in the next major version.
+> * MAY drop the environment variable in their next major version and emit only
+>   the stable database conventions.
 
 ## Database operation
 
 ### Metric: `db.client.operation.duration`
 
-**Status**: [Release Candidate][DocumentStatus]
+**Status**: [Stable][DocumentStatus]
 
 This metric is [required][MetricRequired].
 
 When this metric is reported alongside a database operation span, the metric value SHOULD be the same as the database operation span duration.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.47.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 
 <!-- semconv metric.db.client.operation.duration -->
@@ -75,40 +73,43 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.operation.duration` | Histogram | `s` | Duration of database client operations. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.operation.duration` | Histogram | `s` | Duration of database client operations. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Batch operations SHOULD be recorded as a single operation.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.system`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `adabas`; `cache` | `Required` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [7] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` [8] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a database query text. [12] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [13] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [14] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [16] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.system.name`](/docs/registry/attributes/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.collection.name`](/docs/registry/attributes/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.namespace`](/docs/registry/attributes/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.name`](/docs/registry/attributes/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.response.status_code`](/docs/registry/attributes/db.md) | string | Database response status code. [7] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.summary`](/docs/registry/attributes/db.md) | string | Low cardinality summary of a database query. [12] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [13] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | string | The name of a stored procedure within the database. [14] | `GetCustomer` | `Recommended` [15] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the database node where the operation was performed. [16] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Name of the database host. [17] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.text`](/docs/registry/attributes/db.md) | string | The database query being executed. [18] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `db.system`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
+**[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
-**[2] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[2] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
 
 The collection name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single collection name present.
+when the database system supports query text with multiple collections
+in non-batch operations.
 
-For batch operations, if the individual operations are known to have the same collection name
-then that collection name SHOULD be used.
+For batch operations, if the individual operations are known to have the same
+collection name then that collection name SHOULD be used.
 
-**[3] `db.collection.name`:** If readily available and if a database call is performed on a single collection. The collection name MAY be parsed from the query text, in which case it SHOULD be the single collection name in the query.
+**[3] `db.collection.name`:** If readily available and if a database call is performed on a single collection.
 
-**[4] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+**[4] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
@@ -116,14 +117,18 @@ It is RECOMMENDED to capture the value as provided by the application without at
 without attempting to do any case normalization.
 
 The operation name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single operation name present.
+when the database system supports query text with multiple operations
+in non-batch operations.
+
+If spaces can occur in the operation name, multiple consecutive spaces
+SHOULD be normalized to a single space.
 
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,
 otherwise `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
-**[6] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[6] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call.
 
 **[7] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
@@ -138,75 +143,82 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[11] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[12] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
+**[12] `db.query.summary`:** The query summary describes a class of database queries and is useful
+as a grouping key, especially when analyzing telemetry for database
+calls involving complex queries.
 
-**[13] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
+Summary may be available to the instrumentation through
+instrumentation hooks or other means. If it is not available, instrumentations
+that support query parsing SHOULD generate a summary following
+[Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
+section.
 
-**[14] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
+**[13] `db.query.summary`:** if available through instrumentation hooks or if the instrumentation supports generating a query summary.
+
+**[14] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
+
+For batch operations, if the individual operations are known to have the same
+stored procedure name then that stored procedure name SHOULD be used.
+
+**[15] `db.stored_procedure.name`:** If operation applies to a specific stored procedure.
+
+**[16] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[15] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[17] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[16] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[18] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
-Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
+Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 ---
 
-`db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`db.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `adabas` | Adabas (Adaptable Database System) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cassandra` | Apache Cassandra | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `clickhouse` | ClickHouse | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cockroachdb` | CockroachDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cosmosdb` | Microsoft Azure Cosmos DB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `couchbase` | Couchbase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `couchdb` | CouchDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db2` | IBM Db2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `derby` | Apache Derby | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dynamodb` | Amazon DynamoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `edb` | EnterpriseDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `elasticsearch` | Elasticsearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `filemaker` | FileMaker | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `firebird` | Firebird | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `geode` | Apache Geode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `h2` | H2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hanadb` | SAP HANA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hbase` | Apache HBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hive` | Apache Hive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hsqldb` | HyperSQL DataBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `influxdb` | InfluxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `informix` | Informix | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ingres` | Ingres | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `instantdb` | InstantDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `interbase` | InterBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `intersystems_cache` | InterSystems Caché | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mariadb` | MariaDB (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `maxdb` | SAP MaxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `memcached` | Memcached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mongodb` | MongoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mssql` | Microsoft SQL Server (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `mysql` | MySQL (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `neo4j` | Neo4j | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `netezza` | Netezza | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `opensearch` | OpenSearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `oracle` | Oracle Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pervasive` | Pervasive PSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pointbase` | PointBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `postgresql` | PostgreSQL (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `progress` | Progress Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `redis` | Redis | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `redshift` | Amazon Redshift | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `spanner` | Cloud Spanner | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sqlite` | SQLite | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sybase` | Sybase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `teradata` | Teradata | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `trino` | Trino | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertica` | Vertica | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `actian.ingres` | [Actian Ingres](https://www.actian.com/databases/ingres/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.dynamodb` | [Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.redshift` | [Amazon Redshift](https://aws.amazon.com/redshift/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.cosmosdb` | [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cassandra` | [Apache Cassandra](https://cassandra.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `clickhouse` | [ClickHouse](https://clickhouse.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cockroachdb` | [CockroachDB](https://www.cockroachlabs.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `couchbase` | [Couchbase](https://www.couchbase.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `couchdb` | [Apache CouchDB](https://couchdb.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `derby` | [Apache Derby](https://db.apache.org/derby/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `elasticsearch` | [Elasticsearch](https://www.elastic.co/elasticsearch) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `firebirdsql` | [Firebird](https://www.firebirdsql.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.spanner` | [Google Cloud Spanner](https://cloud.google.com/spanner) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `geode` | [Apache Geode](https://geode.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `h2database` | [H2 Database](https://h2database.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hbase` | [Apache HBase](https://hbase.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hive` | [Apache Hive](https://hive.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hsqldb` | [HyperSQL Database](https://hsqldb.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.db2` | [IBM Db2](https://www.ibm.com/db2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.informix` | [IBM Informix](https://www.ibm.com/products/informix) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.netezza` | [IBM Netezza](https://www.ibm.com/products/netezza) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `influxdb` | [InfluxDB](https://www.influxdata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `instantdb` | [Instant](https://www.instantdb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `intersystems.cache` | [InterSystems Caché](https://www.intersystems.com/products/cache/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mariadb` | [MariaDB](https://mariadb.org/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `memcached` | [Memcached](https://memcached.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `microsoft.sql_server` | [Microsoft SQL Server](https://www.microsoft.com/sql-server) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `mongodb` | [MongoDB](https://www.mongodb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mysql` | [MySQL](https://www.mysql.com/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `neo4j` | [Neo4j](https://neo4j.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `opensearch` | [OpenSearch](https://opensearch.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `oracle.db` | [Oracle Database](https://www.oracle.com/database/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other_sql` | Some other SQL database. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `postgresql` | [PostgreSQL](https://www.postgresql.org/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `redis` | [Redis](https://redis.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sap.hana` | [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sap.maxdb` | [SAP MaxDB](https://maxdb.sap.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `softwareag.adabas` | [Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sqlite` | [SQLite](https://www.sqlite.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `teradata` | [Teradata](https://www.teradata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `trino` | [Trino](https://trino.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -221,9 +233,11 @@ Even though parameterized query text can potentially have sensitive data, by usi
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## Experimental
+## Development
 
-### Database Response
+**Status**: [Development][DocumentStatus]
+
+### Database response
 
 The following metric instruments describe database query response.
 
@@ -232,7 +246,7 @@ The following metric instruments describe database query response.
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.39.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.47.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000]`.
 
 Explaining bucket configuration:
@@ -249,38 +263,40 @@ Explaining bucket configuration:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.response.returned_rows` | Histogram | `{row}` | The actual number of records returned by the database operation. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.response.returned_rows` | Histogram | `{row}` | The actual number of records returned by the database operation. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.system`](/docs/attributes-registry/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `adabas`; `cache` | `Required` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.collection.name`](/docs/attributes-registry/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.namespace`](/docs/attributes-registry/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.operation.name`](/docs/attributes-registry/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`db.response.status_code`](/docs/attributes-registry/db.md) | string | Database response status code. [7] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` [8] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.summary`](/docs/attributes-registry/db.md) | string | Low cardinality representation of a database query text. [12] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [13] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the database node where the operation was performed. [14] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.text`](/docs/attributes-registry/db.md) | string | The database query being executed. [16] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Opt-In` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| [`db.system.name`](/docs/registry/attributes/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.collection.name`](/docs/registry/attributes/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.namespace`](/docs/registry/attributes/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.operation.name`](/docs/registry/attributes/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.response.status_code`](/docs/registry/attributes/db.md) | string | Database response status code. [7] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.summary`](/docs/registry/attributes/db.md) | string | Low cardinality summary of a database query. [12] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [13] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the database node where the operation was performed. [14] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.query.text`](/docs/registry/attributes/db.md) | string | The database query being executed. [16] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `db.system`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
+**[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
-**[2] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+**[2] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
 
 The collection name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single collection name present.
+when the database system supports query text with multiple collections
+in non-batch operations.
 
-For batch operations, if the individual operations are known to have the same collection name
-then that collection name SHOULD be used.
+For batch operations, if the individual operations are known to have the same
+collection name then that collection name SHOULD be used.
 
-**[3] `db.collection.name`:** If readily available and if a database call is performed on a single collection. The collection name MAY be parsed from the query text, in which case it SHOULD be the single collection name in the query.
+**[3] `db.collection.name`:** If readily available and if a database call is performed on a single collection.
 
-**[4] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+**[4] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
@@ -288,14 +304,18 @@ It is RECOMMENDED to capture the value as provided by the application without at
 without attempting to do any case normalization.
 
 The operation name SHOULD NOT be extracted from `db.query.text`,
-unless the query format is known to only ever have a single operation name present.
+when the database system supports query text with multiple operations
+in non-batch operations.
+
+If spaces can occur in the operation name, multiple consecutive spaces
+SHOULD be normalized to a single space.
 
 For batch operations, if the individual operations are known to have the same operation name
 then that operation name SHOULD be used prepended by `BATCH `,
 otherwise `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
-**[6] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call. The operation name MAY be parsed from the query text, in which case it SHOULD be the single operation name found in the query.
+**[6] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call.
 
 **[7] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
@@ -310,75 +330,74 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[11] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[12] `db.query.summary`:** `db.query.summary` provides static summary of the query text. It describes a class of database queries and is useful as a grouping key, especially when analyzing telemetry for database calls involving complex queries.
-Summary may be available to the instrumentation through instrumentation hooks or other means. If it is not available, instrumentations that support query parsing SHOULD generate a summary following [Generating query summary](../../docs/database/database-spans.md#generating-a-summary-of-the-query-text) section.
+**[12] `db.query.summary`:** The query summary describes a class of database queries and is useful
+as a grouping key, especially when analyzing telemetry for database
+calls involving complex queries.
 
-**[13] `db.query.summary`:** if readily available or if instrumentation supports query summarization.
+Summary may be available to the instrumentation through
+instrumentation hooks or other means. If it is not available, instrumentations
+that support query parsing SHOULD generate a summary following
+[Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
+section.
+
+**[13] `db.query.summary`:** if available through instrumentation hooks or if the instrumentation supports generating a query summary.
 
 **[14] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
 **[15] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[16] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](../../docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[16] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
-Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
+Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 ---
 
-`db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`db.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `adabas` | Adabas (Adaptable Database System) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cassandra` | Apache Cassandra | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `clickhouse` | ClickHouse | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cockroachdb` | CockroachDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cosmosdb` | Microsoft Azure Cosmos DB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `couchbase` | Couchbase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `couchdb` | CouchDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `db2` | IBM Db2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `derby` | Apache Derby | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dynamodb` | Amazon DynamoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `edb` | EnterpriseDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `elasticsearch` | Elasticsearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `filemaker` | FileMaker | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `firebird` | Firebird | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `geode` | Apache Geode | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `h2` | H2 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hanadb` | SAP HANA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hbase` | Apache HBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hive` | Apache Hive | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hsqldb` | HyperSQL DataBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `influxdb` | InfluxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `informix` | Informix | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ingres` | Ingres | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `instantdb` | InstantDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `interbase` | InterBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `intersystems_cache` | InterSystems Caché | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mariadb` | MariaDB (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `maxdb` | SAP MaxDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `memcached` | Memcached | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mongodb` | MongoDB | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `mssql` | Microsoft SQL Server (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `mysql` | MySQL (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `neo4j` | Neo4j | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `netezza` | Netezza | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `opensearch` | OpenSearch | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `oracle` | Oracle Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `other_sql` | Some other SQL database. Fallback only. See notes. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pervasive` | Pervasive PSQL | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `pointbase` | PointBase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `postgresql` | PostgreSQL (This value has stability level RELEASE CANDIDATE) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `progress` | Progress Database | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `redis` | Redis | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `redshift` | Amazon Redshift | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `spanner` | Cloud Spanner | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sqlite` | SQLite | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `sybase` | Sybase | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `teradata` | Teradata | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `trino` | Trino | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `vertica` | Vertica | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `actian.ingres` | [Actian Ingres](https://www.actian.com/databases/ingres/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.dynamodb` | [Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.redshift` | [Amazon Redshift](https://aws.amazon.com/redshift/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.cosmosdb` | [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cassandra` | [Apache Cassandra](https://cassandra.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `clickhouse` | [ClickHouse](https://clickhouse.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cockroachdb` | [CockroachDB](https://www.cockroachlabs.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `couchbase` | [Couchbase](https://www.couchbase.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `couchdb` | [Apache CouchDB](https://couchdb.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `derby` | [Apache Derby](https://db.apache.org/derby/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `elasticsearch` | [Elasticsearch](https://www.elastic.co/elasticsearch) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `firebirdsql` | [Firebird](https://www.firebirdsql.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.spanner` | [Google Cloud Spanner](https://cloud.google.com/spanner) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `geode` | [Apache Geode](https://geode.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `h2database` | [H2 Database](https://h2database.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hbase` | [Apache HBase](https://hbase.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hive` | [Apache Hive](https://hive.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hsqldb` | [HyperSQL Database](https://hsqldb.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.db2` | [IBM Db2](https://www.ibm.com/db2) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.informix` | [IBM Informix](https://www.ibm.com/products/informix) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm.netezza` | [IBM Netezza](https://www.ibm.com/products/netezza) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `influxdb` | [InfluxDB](https://www.influxdata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `instantdb` | [Instant](https://www.instantdb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `intersystems.cache` | [InterSystems Caché](https://www.intersystems.com/products/cache/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mariadb` | [MariaDB](https://mariadb.org/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `memcached` | [Memcached](https://memcached.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `microsoft.sql_server` | [Microsoft SQL Server](https://www.microsoft.com/sql-server) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `mongodb` | [MongoDB](https://www.mongodb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mysql` | [MySQL](https://www.mysql.com/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `neo4j` | [Neo4j](https://neo4j.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `opensearch` | [OpenSearch](https://opensearch.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `oracle.db` | [Oracle Database](https://www.oracle.com/database/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other_sql` | Some other SQL database. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `postgresql` | [PostgreSQL](https://www.postgresql.org/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `redis` | [Redis](https://redis.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sap.hana` | [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sap.maxdb` | [SAP MaxDB](https://maxdb.sap.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `softwareag.adabas` | [Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sqlite` | [SQLite](https://www.sqlite.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `teradata` | [Teradata](https://www.teradata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `trino` | [Trino](https://trino.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -408,14 +427,14 @@ This metric is [required][MetricRequired].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.count` | UpDownCounter | `{connection}` | The number of connections that are currently in state described by the `state` attribute | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.count` | UpDownCounter | `{connection}` | The number of connections that are currently in state described by the `state` attribute. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`db.client.connection.state`](/docs/attributes-registry/db.md) | string | The state of a connection in the pool | `idle` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`db.client.connection.state`](/docs/registry/attributes/db.md) | string | The state of a connection in the pool | `idle` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -423,8 +442,8 @@ This metric is [required][MetricRequired].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `used` | used | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -442,13 +461,13 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.idle.max` | UpDownCounter | `{connection}` | The maximum number of idle open connections allowed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.idle.max` | UpDownCounter | `{connection}` | The maximum number of idle open connections allowed. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -466,13 +485,13 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.idle.min` | UpDownCounter | `{connection}` | The minimum number of idle open connections allowed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.idle.min` | UpDownCounter | `{connection}` | The minimum number of idle open connections allowed. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -490,13 +509,13 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.max` | UpDownCounter | `{connection}` | The maximum number of open connections allowed | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.max` | UpDownCounter | `{connection}` | The maximum number of open connections allowed. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -514,13 +533,13 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.pending_requests` | UpDownCounter | `{request}` | The number of current pending requests for an open connection | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.pending_requests` | UpDownCounter | `{request}` | The number of current pending requests for an open connection. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -538,13 +557,13 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.timeouts` | Counter | `{timeout}` | The number of connection timeouts that have occurred trying to obtain a connection from the pool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.timeouts` | Counter | `{timeout}` | The number of connection timeouts that have occurred trying to obtain a connection from the pool. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -562,13 +581,13 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.create_time` | Histogram | `s` | The time it took to create a new connection | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.create_time` | Histogram | `s` | The time it took to create a new connection. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -586,13 +605,13 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.wait_time` | Histogram | `s` | The time it took to obtain an open connection from the pool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.wait_time` | Histogram | `s` | The time it took to obtain an open connection from the pool. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -610,13 +629,13 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `db.client.connection.use_time` | Histogram | `s` | The time between borrowing a connection and returning it to the pool | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `db.client.connection.use_time` | Histogram | `s` | The time between borrowing a connection and returning it to the pool. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/attributes-registry/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

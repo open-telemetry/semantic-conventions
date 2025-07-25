@@ -1,11 +1,17 @@
 groups:
-  - id: span.faas
-    type: span
-    stability: experimental
+  - id: faas.attributes
+    type: attribute_group
+    stability: development
     brief: >
-      This semantic convention describes an instance of a function that
-      runs without provisioning or managing of servers (also known as
-      serverless functions or Function as a Service (FaaS)) with spans.
+      This span represents a serverless function (FaaS) execution.
+    note: |
+      Span `name` should be set to the function name being executed.
+      Depending on the value of the `faas.trigger` attribute, additional attributes MUST be set.
+
+      For example, an `http` trigger SHOULD follow the [HTTP Server semantic conventions](/docs/http/http-spans.md#http-server-span).
+      For more information, refer to the [Function Trigger Type](#function-trigger-type) section.
+
+      If Spans following this convention are produced, a Resource of type `faas` MUST exist following the [Resource semantic convention](/docs/resource/faas.md).
     attributes:
       - ref: faas.trigger
         note: |
@@ -21,12 +27,13 @@ groups:
       - ref: faas.invocation_id
       - ref: cloud.resource_id
 
-  - id: span.faas.datasource
+  - id: span.faas.datasource.server
     type: span
-    stability: experimental
+    span_kind: server
+    stability: development
     brief: >
-      Semantic Convention for FaaS triggered as a response to some data
-      source operation such as a database or filesystem read/write.
+      This span represents server side if the FaaS invocations triggered in response
+      response to some data source operation such as a database or filesystem read/write.
     attributes:
       - ref: faas.document.collection
         requirement_level: required
@@ -35,11 +42,12 @@ groups:
       - ref: faas.document.time
       - ref: faas.document.name
 
-  - id: span.faas.timer
+  - id: span.faas.timer.server
     type: span
-    stability: experimental
+    span_kind: server
+    stability: development
     brief: >
-      Semantic Convention for FaaS scheduled to be executed regularly.
+      This span represents server side if the FaaS invocations triggered by a timer.
     attributes:
       - ref: faas.time
       - ref: faas.cron
@@ -47,9 +55,9 @@ groups:
   - id: span.faas.server
     span_kind: server
     type: span
-    stability: experimental
+    stability: development
     brief: >
-      Contains additional attributes for incoming FaaS spans.
+      This span represents server (incoming) side of the FaaS invocation.
     attributes:
       - ref: faas.coldstart
       - ref: faas.trigger
@@ -68,9 +76,13 @@ groups:
   - id: span.faas.client
     span_kind: client
     type: span
-    stability: experimental
+    stability: development
     brief: >
-      Contains additional attributes for outgoing FaaS spans.
+      This span represents an outgoing call to a FaaS service.
+    note: |
+      The values reported by the client for the attributes listed below SHOULD be equal to
+      the corresponding [FaaS resource attributes][] and [Cloud resource attributes][],
+      which the invoked FaaS instance reports about itself, if it's instrumented.
     attributes:
       - ref: faas.invoked_name
         requirement_level: required

@@ -1,5 +1,0 @@
-change_type: 'enhancement'
-component: gen_ai
-note: Introduce gen_ai.request.seed and deprecated gen_ai.openai.request.seed
-
-issues: [1710]
