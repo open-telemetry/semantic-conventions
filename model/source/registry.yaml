@@ -23,6 +23,18 @@ groups:
         stability: development
         brief: 'Source port number'
         examples: [3389, 2888]
+      - id: source.interface.id
+        stability: development
+        type: int
+        brief: Source Interface Id
+        note: Interface ID as reported by an observer (typically SNMP interface ID).
+        examples: [10]
+      - id: source.interface.name
+        stability: development
+        type: string
+        brief: Source Interface Name
+        note: Interface name as reported by the system.
+        examples: ["eth0"]
       - id: source.mac
         stability: development
         type: string

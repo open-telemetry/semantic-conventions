@@ -12,18 +12,24 @@ These attributes may be used to describe the sender of a network exchange/packet
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="source-address" href="#source-address">`source.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| <a id="source-mac" href="#source-mac">`source.mac`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Source mac address [2] | `AC-DE-48-23-45-67`; `AC-DE-48-23-45-67-01-9F` |
+| <a id="source-interface-id" href="#source-interface-id">`source.interface.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Source Interface Id [2] | `10` |
+| <a id="source-interface-name" href="#source-interface-name">`source.interface.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Source Interface Name [3] | `eth0` |
+| <a id="source-mac" href="#source-mac">`source.mac`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Source mac address [4] | `AC-DE-48-23-45-67`; `AC-DE-48-23-45-67-01-9F` |
 | <a id="source-port" href="#source-port">`source.port`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Source port number | `3389`; `2888` |
-| <a id="source-vlan-id" href="#source-vlan-id">`source.vlan.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Source VLAN Id [3] | `10` |
-| <a id="source-vlan-name" href="#source-vlan-name">`source.vlan.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Source VLAN Name [4] | `outside`; `DMZ`; `corporate` |
-| <a id="source-zone" href="#source-zone">`source.zone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Zone where traffic can be categorized as coming from [5] | `internal`; `External`; `DMZ`; `HR`; `Legal` |
+| <a id="source-vlan-id" href="#source-vlan-id">`source.vlan.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Source VLAN Id [5] | `10` |
+| <a id="source-vlan-name" href="#source-vlan-name">`source.vlan.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Source VLAN Name [6] | `outside`; `DMZ`; `corporate` |
+| <a id="source-zone" href="#source-zone">`source.zone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Zone where traffic can be categorized as coming from [7] | `internal`; `External`; `DMZ`; `HR`; `Legal` |
 
 **[1] `source.address`:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.
 
-**[2] `source.mac`:** MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+**[2] `source.interface.id`:** Interface ID as reported by an observer (typically SNMP interface ID).
 
-**[3] `source.vlan.id`:** VLAN ID as reported by the observer.
+**[3] `source.interface.name`:** Interface name as reported by the system.
 
-**[4] `source.vlan.name`:** VLAN name as reported by the observer.
+**[4] `source.mac`:** MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
-**[5] `source.zone`:** Network zone of incoming traffic as reported by an observer to categorize the source area of the traffic.
+**[5] `source.vlan.id`:** VLAN ID as reported by the observer.
+
+**[6] `source.vlan.name`:** VLAN name as reported by the observer.
+
+**[7] `source.zone`:** Network zone of incoming traffic as reported by an observer to categorize the source area of the traffic.
