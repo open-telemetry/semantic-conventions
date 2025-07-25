@@ -31,3 +31,21 @@ groups:
           MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
           as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
         examples: ['AC-DE-48-23-45-67', 'AC-DE-48-23-45-67-01-9F']
+      - id: source.zone
+        stability: development
+        type: string
+        brief: Zone where traffic can be categorized as coming from
+        note: Network zone of incoming traffic as reported by an observer to categorize the source area of the traffic.
+        examples: ["internal", "External", "DMZ", "HR", "Legal"]
+      - id: source.vlan.id
+        stability: development
+        type: int
+        brief: Source VLAN Id
+        note: VLAN ID as reported by the observer.
+        examples: [10]
+      - id: source.vlan.name
+        stability: development
+        type: string
+        brief: Source VLAN Name
+        note: VLAN name as reported by the observer.
+        examples: ["outside", "DMZ", "corporate"]
