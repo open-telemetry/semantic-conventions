@@ -169,22 +169,21 @@ groups:
           See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.socketerror) for more details.
         examples: ["host_not_found", "try_again" ]
 
-  - id: span.dotnet.tls.handshake.internal
+  - id: span.dotnet.tls.client.handshake.internal
     type: span
     span_kind: internal
     stability: development
     brief: >
-      The span describes TLS client or server handshake performed with [System.Net.Security.SslStream](https://learn.microsoft.com/dotnet/api/system.net.security.sslstream).
+      The span describes TLS handshake on the client side.
     note: |
       When *TLS* span is reported for client-side authentication along with *HTTP connection setup* and *socket connect* span, the *TLS* span becomes a child of *HTTP connection setup*.
+
+      On dotnet this performed with [System.Net.Security.SslStream](https://learn.microsoft.com/dotnet/api/system.net.security.sslstream).
 
       Corresponding `Activity.OperationName` is `Experimental.System.Net.Security.TlsHandshake`, `ActivitySource` name - `Experimental.System.Net.Security`.
       Added in .NET 9.
 
-      **Span name** SHOULD be `TLS client handshake {server.address}` when authenticating on the client
-      side and `TLS server handshake` when authenticating the server.
-
-      **Span kind** SHOULD be `INTERNAL` in both cases.
+      **Span name** SHOULD be `TLS client handshake {server.address}`
     attributes:
       - ref: tls.protocol.name
         requirement_level:
@@ -202,3 +201,17 @@ groups:
           conditionally_required: if and only if an error has occurred.
         note: ""
         examples: ["System.Net.Security.Authentication.AuthenticationException", "System.OperationCanceledException"]
+  - id: span.dotnet.tls.server.handshake.internal
+    extends: span.dotnet.tls.client.handshake.internal
+    type: span
+    span_kind: internal
+    stability: development
+    brief: >
+      The span describes TLS handshake on the server side.
+    note: |
+      On dotnet this performed with [System.Net.Security.SslStream](https://learn.microsoft.com/dotnet/api/system.net.security.sslstream).
+
+      Corresponding `Activity.OperationName` is `Experimental.System.Net.Security.TlsHandshake`, `ActivitySource` name - `Experimental.System.Net.Security`.
+      Added in .NET 9.
+
+      **Span name** SHOULD be `TLS server handshake`
