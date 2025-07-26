@@ -50,12 +50,26 @@ groups:
               stability: development
               value: 'SA'
               brief: 'South America'
+      - id: geo.continent.name
+        stability: development
+        type: string
+        brief: >
+          Name of the continent.
+        note: Is a string representation of `geo.continent.code`
+        examples: ['North America']
       - id: geo.country.iso_code
         stability: development
         type: string
         brief: >
           Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://wikipedia.org/wiki/ISO_3166-1#Codes)).
         examples: [ 'CA' ]
+      - id: geo.country.name
+        stability: development
+        type: string
+        brief: >
+          Country name.
+        note: Is a string representation of `geo.country.iso_code`
+        examples: ['Canada']
       - id: geo.location.lon
         stability: development
         type: double
@@ -81,7 +95,14 @@ groups:
         brief: >
           Region ISO code ([ISO 3166-2](https://wikipedia.org/wiki/ISO_3166-2)).
         examples: [ 'CA-QC' ]
-      - id: geo.location.name
+      - id: geo.region.name
+        stability: development
+        type: string
+        brief: >
+          Region name.
+        note: Is a string representation of `geo.region.iso_code`
+        examples: ['Quebec']
+      - id: geo.location.description
         stability: development
         type: string
         brief: >
