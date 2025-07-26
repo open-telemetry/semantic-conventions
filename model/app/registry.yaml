@@ -11,7 +11,7 @@ groups:
         brief: >
           A unique identifier for the app.
         note: >
-          MUST remain the same across all versions. For mobile applications this should correspond to the package id.
+          MUST remain the same across all versions. For mobile applications this should correspond to the package id, bundle id or another id which is unique across the platform.
         examples: ["com.domainname.applicationname"]
         stability: development
       - id: app.name
@@ -42,27 +42,6 @@ groups:
           (so the empty/unspecified namespace is simply one more valid namespace).
           Zero-length namespace string is assumed equal to unspecified namespace.
         examples: ["Shop"]
-      - id: app.type
-        type:
-          members:
-            - id: console
-              value: "console"
-              brief: The application is interacted with via the console.
-              stability: development
-            - id: device
-              value: "device"
-              brief: The application is interacted with via UI shown on the device the app is installed on.
-              stability: development
-            - id: service
-              value: "service"
-              brief: The application runs in the backgroung without any ui.
-              stability: development
-            - id: web
-              value: "web"
-              brief: The application is interacted with via a web browser.
-              stability: development
-        brief: Describes the type of application which generated the telemetry
-        stability: development
       - id: app.roles
         type: string[]
         brief: >
@@ -73,7 +52,7 @@ groups:
           To discover the active roles you can look at `service.roles`
         examples:
           - ["ui", "background_tasks"]
-          - ["background_tasks"]
+          - ["background_tasks", "console"]
         stability: development
       - id: app.installation.id
         type: string

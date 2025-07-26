@@ -19,17 +19,16 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
 | <a id="app-jank-threshold" href="#app-jank-threshold">`app.jank.threshold`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | The minimum rendering threshold for this jank, in seconds. | `0.016`; `0.7`; `1.024` |
 | <a id="app-name" href="#app-name">`app.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical name of the app. [4] | `shoppingcart` |
 | <a id="app-namespace" href="#app-namespace">`app.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A namespace for `app.name`. [5] | `Shop` |
-| <a id="app-roles" href="#app-roles">`app.roles`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | What role this app can perform. [6] | `["ui", "background_tasks"]`; `["background_tasks"]` |
+| <a id="app-roles" href="#app-roles">`app.roles`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | What role this app can perform. [6] | `["ui", "background_tasks"]`; `["background_tasks", "console"]` |
 | <a id="app-screen-coordinate-x" href="#app-screen-coordinate-x">`app.screen.coordinate.x`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` |
 | <a id="app-screen-coordinate-y" href="#app-screen-coordinate-y">`app.screen.coordinate.y`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` |
 | <a id="app-screen-id" href="#app-screen-id">`app.screen.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | An identifier that uniquely differentiates this screen from other screens in the same application. [7] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` |
 | <a id="app-screen-name" href="#app-screen-name">`app.screen.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of an application screen. [8] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` |
-| <a id="app-type" href="#app-type">`app.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Describes the type of application which generated the telemetry | `console`; `device`; `service` |
 | <a id="app-version" href="#app-version">`app.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The version string of the app. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
 | <a id="app-widget-id" href="#app-widget-id">`app.widget.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [9] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` |
 | <a id="app-widget-name" href="#app-widget-name">`app.widget.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of an application widget. [10] | `submit`; `attack`; `Clear Cart` |
 
-**[1] `app.id`:** MUST remain the same across all versions. For mobile applications this should correspond to the package id.
+**[1] `app.id`:** MUST remain the same across all versions. For mobile applications this should correspond to the package id, bundle id or another id which is unique across the platform.
 
 **[2] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
 It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
@@ -65,14 +64,3 @@ To discover the active roles you can look at `service.roles`
 **[9] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
 
 **[10] `app.widget.name`:** A widget is an application component, typically an on-screen visual GUI element.
-
----
-
-`app.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `console` | The application is interacted with via the console. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `device` | The application is interacted with via UI shown on the device the app is installed on. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `service` | The application runs in the backgroung without any ui. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `web` | The application is interacted with via a web browser. | ![Development](https://img.shields.io/badge/-development-blue) |
