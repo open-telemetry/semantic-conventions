@@ -15,8 +15,12 @@ groups:
             database call.
       - ref: db.operation.batch.size
       - ref: server.address
+        brief: >
+          Name of the database host.
         sampling_relevant: true
       - ref: server.port
+        requirement_level:
+          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
         sampling_relevant: true
 
   - id: trace.db.common.query
@@ -25,8 +29,12 @@ groups:
     brief: This group defines the attributes used to perform database client calls.
     attributes:
       - ref: server.address
+        brief: >
+          Name of the database host.
         sampling_relevant: true
       - ref: server.port
+        requirement_level:
+          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
         sampling_relevant: true
       - ref: db.operation.batch.size
       - ref: db.response.returned_rows
@@ -56,10 +64,6 @@ groups:
       - ref: db.operation.name
         sampling_relevant: true
       - ref: db.operation.batch.size
-      - ref: server.address
-        sampling_relevant: true
-      - ref: server.port
-        sampling_relevant: true
       - ref: db.response.returned_rows
       - ref: db.query.text
         sampling_relevant: true
@@ -77,10 +81,24 @@ groups:
       - ref: db.query.parameter
         requirement_level: opt_in
 
+  - id: trace.db.common.remote.query_and_collection
+    extends: trace.db.common.query_and_collection
+    type: attribute_group
+    brief: This group defines the attributes used to perform database client calls.
+    attributes:
+      - ref: server.address
+        brief: >
+          Name of the database host.
+        sampling_relevant: true
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
+        sampling_relevant: true
+
   - id: trace.db.common.full
     type: attribute_group
     brief: This group documents attributes that describe database call along with network information.
-    extends: trace.db.common.query_and_collection
+    extends: trace.db.common.remote.query_and_collection
     attributes:
       - ref: network.peer.address
         brief: Peer address of the database node where the operation was performed.
@@ -111,6 +129,9 @@ groups:
     stability: stable
     brief: This span describes database client call.
     note: |
+      This span is for db calls where the db runs in a different process to the client or when the database calls happen over an
+      instrumented protocol such as HTTP. If the db call is occurring in-memory then the [db.inmemory.internal](/docs/database/database-spans.md#in-memory-process) span should be used.
+
       Instrumentations SHOULD, when possible, record database spans that cover the duration of
       the corresponding API call as if it was observed by the caller (such as client application).
       For example, if a transient issue happened and was retried within this database call, the corresponding
@@ -124,12 +145,6 @@ groups:
 
       **Span name** is covered in the [Name](/docs/database/database-spans.md#name) section.
 
-      **Span kind** SHOULD be `CLIENT`. It MAY be set to `INTERNAL` on spans representing
-      in-memory database calls.
-      It's RECOMMENDED to use `CLIENT` kind when database system being instrumented usually
-      runs in a different process than its client or when database calls happen over
-      instrumented protocol such as HTTP.
-
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status. Semantic conventions for
       individual systems SHOULD specify which values of `db.response.status_code`
@@ -137,10 +152,52 @@ groups:
     span_kind: client
     extends: trace.db.common.full
     attributes:
-      # experimental attributes must be opt-in stable spans
-      # TODO (trask) make this recommended once it is stable
       - ref: db.response.returned_rows
-        requirement_level: opt_in
+        # TODO (trask) make this recommended once it is stable
+        requirement_level: opt_in  # experimental attributes must be opt-in stable spans
+
+  - id: span.db.inmemory.internal
+    type: span
+    stability: stable
+    brief: This span describes in-memory database client call.
+    note: |
+      This span is for in-memory db calls. If the db runs in a different process to the client or when database calls happen over an
+      instrumented protocol such as HTTP, then the [db.client](/docs/database/database-spans.md#separate-process) span should be used.
+
+      Instrumentations SHOULD, when possible, record database spans that cover the duration of
+      the corresponding API call as if it was observed by the caller (such as client application).
+      For example, if a transient issue happened and was retried within this database call, the corresponding
+      span should cover the duration of the logical operation with all retries.
+
+      When a database client provides higher-level convenience APIs for specific operations
+      (e.g., calling a stored procedure), which internally generate and execute a generic query,
+      it is RECOMMENDED to instrument the higher-level convenience APIs.
+      These often allow setting `db.operation.*` attributes, which usually are not
+      readily available at the generic query level.
+
+      **Span name** is covered in the [Name](/docs/database/database-spans.md#name) section.
+
+      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. Semantic conventions for
+      individual systems SHOULD specify which values of `db.response.status_code`
+      classify as errors.
+    span_kind: internal
+    extends: trace.db.common.query_and_collection
+    attributes:
+      - ref: db.system.name
+        sampling_relevant: true
+        # TODO: Not adding to the minimal because of https://github.com/open-telemetry/weaver/issues/479
+        requirement_level: required
+      - ref: db.namespace
+        sampling_relevant: true
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.stored_procedure.name
+        requirement_level:
+          recommended: If operation applies to a specific stored procedure.
+      - ref: db.response.returned_rows
+        # TODO (trask) make this recommended once it is stable
+        requirement_level: opt_in  # experimental attributes must be opt-in stable spans
 
   - id: span.db.sql_server.client
     type: span
@@ -298,7 +355,7 @@ groups:
     type: span
     span_kind: client
     stability: development
-    extends: trace.db.common.query_and_collection
+    extends: trace.db.common.remote.query_and_collection
     brief: >
       Spans representing calls to a Cassandra database adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
     note: |
@@ -751,9 +808,8 @@ groups:
         note: |
           The collection name SHOULD NOT be extracted from `db.query.text`.
       - ref: db.response.returned_rows
-        # experimental attributes must be opt-in stable spans
         # TODO (trask) make this recommended once it is stable
-        requirement_level: opt_in
+        requirement_level: opt_in  # experimental attributes must be opt-in stable spans
 
   - id: span.azure.cosmosdb.client
     type: span
