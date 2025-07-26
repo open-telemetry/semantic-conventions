@@ -97,14 +97,35 @@ groups:
       This span represents a client call to Generative AI model or service that generates
       a response or requests a tool call based on the input prompt.
     note: |
+      This span is to be used when the models is running in a different process or when
+      the GenAI call happens over instrumented protocol such as HTTP.
+      In other cases, [Embedded Inference](/docs/gen-ai/gen-ai-spans.md#embedded-inference) span should be used.
+
       **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
       and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#span).
+    extends: attributes.gen_ai.inference.client
+    attributes:
+      - ref: gen_ai.system
+        # TODO: Not adding to common attributes because of https://github.com/open-telemetry/weaver/issues/479
+        requirement_level: required
+      - ref: gen_ai.request.top_k
+        requirement_level: recommended
 
-      **Span kind** SHOULD be `CLIENT`and MAY be set to `INTERNAL` on spans representing
-      call to models running in the same process. It's RECOMMENDED to use `CLIENT` kind
-      when the GenAI system being instrumented usually runs in a different process than its
-      client or when the GenAI call happens over instrumented protocol such as HTTP.
+  - id: span.gen_ai.embedded.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents a client call to Generative AI model or service that generates
+      a response or requests a tool call based on the input prompt.
+    note: |
+      This span is to be used when the models is running in the same process.
+      In other cases such as when the GenAI call happens over instrumented protocol such as HTTP, [Standalone Inference](/docs/gen-ai/gen-ai-spans.md#standalone-inference) span should be used.
+
+      **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
+      and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#span).
     extends: attributes.gen_ai.inference.client
     attributes:
       - ref: gen_ai.provider.name
@@ -241,7 +262,8 @@ groups:
       with remote agent services.
     note: |
       The `gen_ai.operation.name` SHOULD be `invoke_agent`.
-      The **span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
+
+      **Span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
       When `gen_ai.agent.name` is not available, it SHOULD be `invoke_agent`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
     extends: attributes.gen_ai.inference.client
@@ -267,14 +289,13 @@ groups:
     span_kind: internal
     brief: Describes tool execution span.
     note: |
-      `gen_ai.operation.name` SHOULD be `execute_tool`.
-
-      **Span name** SHOULD be `execute_tool {gen_ai.tool.name}`.
-
       GenAI instrumentations that are able to instrument tool execution call SHOULD do so.
       However, it's common for tools to be executed by the application code. It's recommended
       for the application developers to follow this semantic convention for tools invoked
       by the application code.
+      `gen_ai.operation.name` SHOULD be `execute_tool`.
+
+      **Span name** SHOULD be `execute_tool {gen_ai.tool.name}`.
     attributes:
       - ref: gen_ai.operation.name
         requirement_level: required
