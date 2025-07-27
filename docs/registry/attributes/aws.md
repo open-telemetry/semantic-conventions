@@ -16,7 +16,6 @@
 - [Amazon SNS Attributes](#amazon-sns-attributes)
 - [Amazon SQS Attributes](#amazon-sqs-attributes)
 - [Amazon Step Functions Attributes](#amazon-step-functions-attributes)
-- [Amazon ECS Attributes](#amazon-ecs-attributes)
 
 ## General AWS Attributes
 
@@ -73,7 +72,20 @@ This document defines attributes for AWS Elastic Container Service (ECS).
 |---|---|---|---|---|
 | <a id="aws-ecs-cluster-arn" href="#aws-ecs-cluster-arn">`aws.ecs.cluster.arn`</a> | string | The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html). | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aws-ecs-container-arn" href="#aws-ecs-container-arn">`aws.ecs.container.arn`</a> | string | The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html). | `arn:aws:ecs:us-west-1:123456789123:container/32624152-9086-4f0e-acae-1a75b14fe4d9` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aws-ecs-launchtype" href="#aws-ecs-launchtype">`aws.ecs.launchtype`</a> | string | The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task. | `ec2`; `fargate` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aws-ecs-task-arn" href="#aws-ecs-task-arn">`aws.ecs.task.arn`</a> | string | The ARN of a running [ECS task](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids). | `arn:aws:ecs:us-west-1:123456789123:task/10838bed-421f-43ef-870a-f43feacbbb5b`; `arn:aws:ecs:us-west-1:123456789123:task/my-cluster/task-id/23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aws-ecs-task-family" href="#aws-ecs-task-family">`aws.ecs.task.family`</a> | string | The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task. | `opentelemetry-family` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aws-ecs-task-id" href="#aws-ecs-task-id">`aws.ecs.task.id`</a> | string | The ID of a running ECS task. The ID MUST be extracted from `task.arn`. | `10838bed-421f-43ef-870a-f43feacbbb5b`; `23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aws-ecs-task-revision" href="#aws-ecs-task-revision">`aws.ecs.task.revision`</a> | string | The revision for the task definition used to create the ECS task. | `8`; `26` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`aws.ecs.launchtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `ec2` | ec2 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fargate` | fargate | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Amazon EKS Attributes
 
@@ -210,23 +222,3 @@ This document defines attributes for AWS Step Functions.
 |---|---|---|---|---|
 | <a id="aws-step-functions-activity-arn" href="#aws-step-functions-activity-arn">`aws.step_functions.activity.arn`</a> | string | The ARN of the AWS Step Functions Activity. | `arn:aws:states:us-east-1:123456789012:activity:get-greeting` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aws-step-functions-state-machine-arn" href="#aws-step-functions-state-machine-arn">`aws.step_functions.state_machine.arn`</a> | string | The ARN of the AWS Step Functions State Machine. | `arn:aws:states:us-east-1:123456789012:stateMachine:myStateMachine:1` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## Amazon ECS Attributes
-
-This document defines attributes for AWS Elastic Container Service (ECS).
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="aws-ecs-launchtype" href="#aws-ecs-launchtype">`aws.ecs.launchtype`</a> | string | The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task. | `ec2`; `fargate` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `workflow.platform.product`. |
-| <a id="aws-ecs-task-family" href="#aws-ecs-task-family">`aws.ecs.task.family`</a> | string | The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task. | `opentelemetry-family` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `workflow.task.name`. |
-| <a id="aws-ecs-task-id" href="#aws-ecs-task-id">`aws.ecs.task.id`</a> | string | The ID of a running ECS task. The ID MUST be extracted from `task.arn`. | `10838bed-421f-43ef-870a-f43feacbbb5b`; `23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `workflow.task.run.id`. |
-| <a id="aws-ecs-task-revision" href="#aws-ecs-task-revision">`aws.ecs.task.revision`</a> | string | The revision for the task definition used to create the ECS task. | `8`; `26` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `workflow.task.version`. |
-
----
-
-`aws.ecs.launchtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `ec2` | ec2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fargate` | fargate | ![Development](https://img.shields.io/badge/-development-blue) |

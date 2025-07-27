@@ -241,6 +241,18 @@ groups:
         brief: >
           The name of the resource quota.
         examples: [ 'opentelemetry' ]
+      - id: k8s.deployment.uid
+        type: string
+        stability: development
+        brief: >
+          The UID of the Deployment.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.deployment.name
+        type: string
+        stability: development
+        brief: >
+          The name of the Deployment.
+        examples: ['opentelemetry']
       - id: k8s.deployment.label
         type: template[string]
         stability: development
@@ -255,6 +267,20 @@ groups:
           - A label `injected` with empty string value SHOULD be recorded as
             the `k8s.deployment.label.injected` attribute with value `""`.
         examples: ['guestbook', '']
+      - id: k8s.deployment.annotation
+        type: template[string]
+        stability: development
+        brief: >
+          The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        note: |
+
+          Examples:
+
+          - A label `replicas` with value `1` SHOULD be recorded
+            as the `k8s.deployment.annotation.replicas` attribute with value `"1"`.
+          - A label `data` with empty string value SHOULD be recorded as
+            the `k8s.deployment.annotation.data` attribute with value `""`.
+        examples: ['1', '']
       - id: k8s.statefulset.uid
         type: string
         stability: development

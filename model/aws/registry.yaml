@@ -276,6 +276,18 @@ groups:
         brief: >
           The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html).
         examples: ["arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster"]
+      - id: aws.ecs.launchtype
+        type:
+          members:
+            - id: ec2
+              value: "ec2"
+              stability: development
+            - id: fargate
+              value: "fargate"
+              stability: development
+        stability: development
+        brief: >
+          The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task.
       - id: aws.ecs.task.arn
         type: string
         stability: development
@@ -286,6 +298,28 @@ groups:
             "arn:aws:ecs:us-west-1:123456789123:task/10838bed-421f-43ef-870a-f43feacbbb5b",
             "arn:aws:ecs:us-west-1:123456789123:task/my-cluster/task-id/23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd"
           ]
+      - id: aws.ecs.task.family
+        type: string
+        stability: development
+        brief: >
+          The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task.
+        examples: ["opentelemetry-family"]
+      - id: aws.ecs.task.id
+        type: string
+        stability: development
+        brief: >
+          The ID of a running ECS task. The ID MUST be extracted from `task.arn`.
+        examples:
+          [
+            "10838bed-421f-43ef-870a-f43feacbbb5b",
+            "23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd"
+          ]
+      - id: aws.ecs.task.revision
+        type: string
+        stability: development
+        brief: >
+          The revision for the task definition used to create the ECS task.
+        examples: ["8", "26"]
   - id: registry.aws.eks
     type: attribute_group
     display_name: Amazon EKS Attributes

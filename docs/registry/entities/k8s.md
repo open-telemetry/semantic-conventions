@@ -148,9 +148,9 @@ conflict.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`k8s.deployment.name`](/docs/registry/attributes/k8s.md) | string | The name of the Deployment. | `opentelemetry` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `workflow.task.name`. |
-| [`k8s.deployment.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `workflow.task.id`. |
-| [`k8s.deployment.annotation.<key>`](/docs/registry/attributes/k8s.md) | string | The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [6] | `1`; `` | `Opt-In` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `workflow.task.annotation`. |
+| [`k8s.deployment.name`](/docs/registry/attributes/k8s.md) | string | The name of the Deployment. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.deployment.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.deployment.annotation.<key>`](/docs/registry/attributes/k8s.md) | string | The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [6] | `1`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.deployment.label.<key>`](/docs/registry/attributes/k8s.md) | string | The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty. [7] | `guestbook`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[6] `k8s.deployment.annotation.<key>`:** Examples:

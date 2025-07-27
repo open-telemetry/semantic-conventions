@@ -13,38 +13,3 @@ groups:
         brief: >
           Deprecated, use `deployment.environment.name` instead.
         examples: ['staging', 'production']
-      - id: deployment.name
-        type: string
-        stability: development
-        deprecated:
-          reason: renamed
-          renamed_to: workflow.task.name
-        brief: >
-          The name of the deployment.
-        examples: ["deploy my app", "deploy-frontend"]
-      - id: deployment.id
-        type: string
-        stability: development
-        deprecated:
-          reason: renamed
-          renamed_to: workflow.task.run.id
-        brief: >
-          The id of the deployment.
-        examples: ["1208"]
-      - id: deployment.status
-        type:
-          members:
-            - id: failed
-              value: failed
-              brief: failed
-              stability: development
-            - id: succeeded
-              value: succeeded
-              brief: succeeded
-              stability: development
-        stability: development
-        deprecated:
-          reason: renamed
-          renamed_to: workflow.task.run.result
-        brief: >
-          The status of the deployment.
