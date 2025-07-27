@@ -1,19 +1,19 @@
 groups:
-  - id: entity.workflow
+  - id: entity.workflow.definition
     type: entity
     stability: development
-    name: workflow
+    name: workflow.definition
     brief: >
     attributes:
-      - ref: workflow.id
+      - ref: workflow.definition.id
         role: identifying
-      - ref: workflow.name
+      - ref: workflow.definition.name
         role: descriptive
-      - ref: workflow.type
+      - ref: workflow.definition.type
         role: descriptive
-      - ref: workflow.url.full
+      - ref: workflow.definition.url.full
         role: descriptive
-      - ref: workflow.version
+      - ref: workflow.definition.version
         role: descriptive
   - id: entity.workflow.trigger
     type: entity
@@ -29,23 +29,21 @@ groups:
         role: descriptive
       - ref: workflow.trigger.type
         role: descriptive
-      - ref: workflow.id
+      - ref: workflow.definition.id
         role: descriptive
-  - id: entity.workflow.execution
+  - id: entity.workflow
     type: entity
     stability: development
-    name: workflow.execution
+    name: workflow
     brief: >
     attributes:
-      - ref: workflow.execution.id
-        role: identifying
-      - ref: workflow.execution.result
-        role: descriptive
-      - ref: workflow.execution.state
-        role: descriptive
-      - ref: workflow.execution.url.full
-        role: descriptive
       - ref: workflow.id
+        role: identifying
+      - ref: workflow.outcome
+        role: descriptive
+      - ref: workflow.url.full
+        role: descriptive
+      - ref: workflow.definition.id
         role: descriptive
   - id: entity.workflow.task
     type: entity
@@ -63,21 +61,25 @@ groups:
         role: descriptive
       - ref: workflow.task.version
         role: descriptive
-      - ref: workflow.id
+      - ref: workflow.definition.id
         role: descriptive
-  - id: entity.workflow.taskrun
+  - id: entity.workflow.execution
     type: entity
     stability: development
-    name: workflow.taskrun
+    name: workflow.execution
     brief: >
     attributes:
-      - ref: workflow.task.run.id
+      - ref: workflow.execution.id
         role: identifying
-      - ref: workflow.task.run.result
+      - ref: workflow.execution.attempt
         role: descriptive
-      - ref: workflow.task.run.state
+      - ref: workflow.execution.outcome
         role: descriptive
-      - ref: workflow.task.run.url.full
+      - ref: workflow.execution.state
+        role: descriptive
+      - ref: workflow.execution.url.full
         role: descriptive
       - ref: workflow.task.id
+        role: descriptive
+      - ref: workflow.id
         role: descriptive

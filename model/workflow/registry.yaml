@@ -10,21 +10,9 @@ groups:
         stability: development
         type: string
         brief: >
-          Unique ID for this workflow which can be used to correlate multiple executions of this workflow.
-        examples: [ '5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66' ]
-      - id: workflow.name
-        stability: development
-        type: string
-        brief: >
-          Name of the workflow
-        examples: [ 'Build and deploy application' ]
-      - id: workflow.execution.id
-        stability: development
-        type: string
-        brief: >
           Unique ID for this execution of the workflow and will be shared across all the task runs.
         examples: [ '5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66' ]
-      - id: workflow.execution.result
+      - id: workflow.outcome
         type:
           members:
             - id: success
@@ -58,6 +46,161 @@ groups:
         brief: >
           The result of a task run.
         examples: ["success", "failure", "timeout", "skipped"]
+      - id: workflow.state
+        type:
+          members:
+            - id: pending
+              value: pending
+              brief: >
+                The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
+              stability: development
+            - id: executing
+              value: executing
+              brief: The executing state spans the execution of any run tasks (eg. build, test).
+              stability: development
+            - id: finalizing
+              value: finalizing
+              brief: The finalizing state spans from when the run has finished executing and covers cleanup of resources etc.
+              stability: development
+            - id: completed
+              value: completed
+              brief: The completed state spans from when the run has finished finalizing (eg. cleanup of run resources).
+              stability: development
+        stability: development
+        brief: >
+          The pipeline run goes through these states during its lifecycle.
+        examples: ["pending", "executing", "finalizing"]
+      - id: workflow.url.full
+        type: string
+        stability: development
+        brief: >
+          The [URL](https://wikipedia.org/wiki/URL) of the pipeline run,
+          providing the complete address in order to locate and identify the pipeline run.
+        examples:
+          [
+            "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075",
+          ]
+      - id: workflow.definition.id
+        stability: development
+        type: string
+        brief: >
+          Unique ID for this workflow which can be used to correlate multiple executions of this workflow.
+        examples: [ '5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66' ]
+      - id: workflow.definition.name
+        stability: development
+        type: string
+        brief: >
+          Name of the workflow
+        examples: [ 'Build and deploy application' ]
+      - id: workflow.definition.type
+        stability: development
+        type: string
+        brief: >
+          Type of the workflow
+        examples: [ 'DSL' ]
+      - id: workflow.definition.url.full
+        type: string
+        stability: development
+        brief: >
+          The [URL](https://wikipedia.org/wiki/URL) of the workflow,
+          providing the complete address in order to locate and identify the workflow.
+        examples:
+          [
+            "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075",
+          ]
+      - id: workflow.definition.version
+        stability: development
+        type: string
+        brief: >
+          Version of the workflow
+        examples: [ '2.1' ]
+      - id: workflow.execution.id
+        stability: development
+        type: string
+        brief: >
+          Unique ID for this execution of the workflow and will be shared across all the task runs.
+        examples: [ '5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66' ]
+      - id: workflow.iteration.annotation
+        type: template[string]
+        stability: development
+        brief: >
+          The annotation key-value pairs placed on the iteration.
+        note: |
+          The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        examples: [ 'workflow.iteration.annotation.id=1' ]
+      - id: workflow.iteration.count
+        stability: development
+        type: int
+        brief: >
+          The index of the item which is being processed by the task.
+        note: >
+          Only used when the task is operating on batches.
+        examples: [ 0 ]
+      - id: workflow.iteration.limit
+        stability: development
+        type: int
+        brief: >
+          This can be a pre-defined limit of times the task can be run or it can be the batch size.
+        note: >
+          Only used when the task is operating on batches or within a loop.
+        examples: [ 10 ]
+      - id: workflow.iteration.success
+        stability: development
+        type: int
+        brief: >
+          The number items that were processed by this task.
+        examples: [ 7 ]
+      - id: workflow.iteration.failed
+        stability: development
+        type: int
+        brief: >
+          The number items that were processed by this task.
+        examples: [ 1 ]
+      - id: workflow.iteration.skipped
+        stability: development
+        type: int
+        brief: >
+          The number items that were processed by this task.
+        examples: [ 2 ]
+      - id: workflow.execution.attempt
+        stability: development
+        type: int
+        brief: >
+          What number execution attempt is this.
+        note: >
+          This counter starts at 1 and is incremented on each re-run of the task.
+          The uniqueness is based upon `workflow.execution.id` & `workflow.execution.item.id`.
+        examples: [ 1 ]
+      - id: workflow.execution.outcome
+        type:
+          members:
+            - id: success
+              value: success
+              brief: "The execution finished successfully."
+              stability: development
+            - id: failure
+              value: failure
+              brief: The execution failed as a non-zero exit codes was returned.
+              stability: development
+            - id: error
+              value: error
+              brief: During the execution an error with the worker occurred, ie worker being killed.
+              stability: development
+            - id: timeout
+              value: timeout
+              brief: "The execution timed-out causing the execution to be interrupted."
+              stability: development
+            - id: cancellation
+              value: cancellation
+              brief: "The execution was cancelled, eg. by a user manually cancelling the execution."
+              stability: development
+            - id: skip
+              value: skip
+              brief: "The execution was skipped, eg. due to a precondition not being met."
+              stability: development
+        stability: development
+        brief: The outcome of executing the task.
+        examples: ["success", "failure", "timeout", "skipped"]
       - id: workflow.execution.state
         type:
           members:
@@ -72,7 +215,11 @@ groups:
               stability: development
             - id: finalizing
               value: finalizing
-              brief: The finalizing state spans from when the run has finished executing (eg. cleanup of run resources).
+              brief: The finalizing state spans from when the run has finished executing and covers cleanup of resources etc.
+              stability: development
+            - id: completed
+              value: completed
+              brief: The completed state spans from when the run has finished finalizing (eg. cleanup of run resources).
               stability: development
         stability: development
         brief: >
@@ -122,23 +269,7 @@ groups:
           The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         examples: [ 'workflow.task.annotation.replicas=1', 'k8s.task.annotation.data=' ]
       - id: workflow.task.category
-        type:
-          members:
-            - id: deployment
-              value: deployment
-              brief: >
-                Software is being deployed by this task.
-              stability: development
-            - id: build
-              value: build
-              brief: >
-                Software is being built by this task.
-              stability: development
-            - id: test
-              value: test
-              brief: >
-                Software is being tested by this task.
-              stability: development
+        type: string
         stability: development
         brief: >
           The pipeline run goes through these states during its lifecycle.
@@ -149,13 +280,35 @@ groups:
         brief: >
           Name of the task
         examples: [ 'Build application' ]
-      - id: workflow.task.run.id
+      - id: workflow.task.url.full
+        type: string
+        stability: development
+        brief: >
+          The [URL](https://wikipedia.org/wiki/URL) of the task,
+          providing the complete address in order to locate and identify the task.
+        examples:
+          [
+            "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075",
+          ]
+      - id: workflow.task.version
         stability: development
         type: string
         brief: >
-          Unique ID for this execution of the workflow and will be shared across all the task runs.
+          Version of the task
+        examples: [ '2.1' ]
+      - id: workflow.trigger.id
+        stability: development
+        type: string
+        brief: >
+          Unique ID for this trigger which can be used to correlate trigger usage
         examples: [ '5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66' ]
-      - id: workflow.task.run.result
+      - id: workflow.trigger.name
+        stability: development
+        type: string
+        brief: >
+          Name of the trigger
+        examples: [ 'Nightly build' ]
+      - id: workflow.trigger.outcome
         type:
           members:
             - id: success
@@ -189,64 +342,6 @@ groups:
         brief: >
           The result of a task run.
         examples: ["success", "failure", "timeout", "skipped"]
-      - id: workflow.task.run.state
-        type:
-          members:
-            - id: pending
-              value: pending
-              brief: >
-                The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
-              stability: development
-            - id: executing
-              value: executing
-              brief: The executing state spans the execution of any run tasks (eg. build, test).
-              stability: development
-            - id: finalizing
-              value: finalizing
-              brief: The finalizing state spans from when the run has finished executing (eg. cleanup of run resources).
-              stability: development
-        stability: development
-        brief: >
-          The pipeline run goes through these states during its lifecycle.
-        examples: ["pending", "executing", "finalizing"]
-      - id: workflow.task.run.url.full
-        type: string
-        stability: development
-        brief: >
-          The [URL](https://wikipedia.org/wiki/URL) of the pipeline run,
-          providing the complete address in order to locate and identify the pipeline run.
-        examples:
-          [
-            "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075",
-          ]
-      - id: workflow.task.url.full
-        type: string
-        stability: development
-        brief: >
-          The [URL](https://wikipedia.org/wiki/URL) of the task,
-          providing the complete address in order to locate and identify the task.
-        examples:
-          [
-            "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075",
-          ]
-      - id: workflow.task.version
-        stability: development
-        type: string
-        brief: >
-          Version of the task
-        examples: [ '2.1' ]
-      - id: workflow.trigger.id
-        stability: development
-        type: string
-        brief: >
-          Unique ID for this trigger which can be used to correlate trigger usage
-        examples: [ '5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66' ]
-      - id: workflow.trigger.name
-        stability: development
-        type: string
-        brief: >
-          Name of the trigger
-        examples: [ 'Nightly build' ]
       - id: workflow.trigger.schedule
         type: string
         stability: development
@@ -260,25 +355,13 @@ groups:
         brief: >
           Type of trigger that was called
         examples: [ 'cron' ]
-      - id: workflow.type
-        stability: development
-        type: string
-        brief: >
-          Type of the workflow
-        examples: [ 'DSL' ]
-      - id: workflow.url.full
+      - id: workflow.trigger.url.full
         type: string
         stability: development
         brief: >
-          The [URL](https://wikipedia.org/wiki/URL) of the workflow,
-          providing the complete address in order to locate and identify the workflow.
+          The [URL](https://wikipedia.org/wiki/URL) of the task,
+          providing the complete address in order to locate and identify the task.
         examples:
           [
             "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075",
           ]
-      - id: workflow.version
-        stability: development
-        type: string
-        brief: >
-          Version of the workflow
-        examples: [ '2.1' ]

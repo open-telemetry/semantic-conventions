@@ -1,59 +1,33 @@
 groups:
-  - id: metric.workflow.taskrun.duration
-    type: metric
-    metric_name: workflow.taskrun.duration
-    brief: 'Duration of a task run grouped by task, type and result.'
-    instrument: histogram
-    unit: "s"
-    stability: development
-    extends: attribute.metric.workflow.taskrun
-    attributes:
-      - ref: workflow.task.run.result
-        requirement_level: required
-  - id: metric.workflow.taskrun.qty
-    type: metric
-    metric_name: workflow.taskrun.qty
-    brief: "The number of actively running tasks grouped by task, type and result."
-    note: "When a task changes state it is expected that the previous state is decremented and new state incremented."
-    instrument: updowncounter
-    unit: "{job}"
-    stability: development
-    extends: attribute.metric.workflow.taskrun
-    attributes:
-      - ref: workflow.task.run.state
-        requirement_level: required
-  - id: metric.workflow.taskrun.errors
-    type: metric
-    metric_name: workflow.taskrun.errors
-    brief: 'The number of errors encountered in task runs runs (eg. compile, test failures).'
-    note: |
-      There might be errors in a workflow task run that are non fatal (eg. they are suppressed) or in a parallel stage multiple stages could have a fatal error.
-      This means that this error count might not be the same as the count of metric `workflow.taskrun.duration` with run result `failure`.
-    instrument: counter
-    unit: "{error}"
-    stability: development
-    extends: attribute.metric.workflow.taskrun
-    attributes:
-      - ref: error.type
-        requirement_level: required 
   - id: metric.workflow.execution.duration
     type: metric
     metric_name: workflow.execution.duration
-    brief: 'Duration of a execution grouped by workflow and result.'
+    brief: Duration of an execution grouped by task, type and result.
     instrument: histogram
     unit: "s"
     stability: development
     extends: attribute.metric.workflow.execution
     attributes:
-      - ref: workflow.execution.result
+      - ref: workflow.execution.outcome
         requirement_level: required
-  - id: metric.workflow.execution.qty
+  - id: metric.workflow.execution.count
     type: metric
-    metric_name: workflow.execution.qty
-    brief: "The number of actively running tasks grouped by task, type and result."
-    note: "When a workflow changes state it is expected that the previous state is decremented and new state incremented."
+    metric_name: workflow.execution.count
+    brief: The number of task executions which have been initiated.
+    instrument: counter
+    unit: "{executions}"
+    stability: development
+    extends: attribute.metric.workflow.execution
+    attributes:
+      - ref: workflow.execution.outcome
+        requirement_level: required
+  - id: metric.workflow.execution.status
+    type: metric
+    metric_name: workflow.execution.status
+    brief: The number of actively running tasks grouped by task, type and the current state.
+    note: When a task changes state it is expected that the previous state is decremented and new state incremented.
     instrument: updowncounter
-    unit: "{job}"
+    unit: "{executions}"
     stability: development
     extends: attribute.metric.workflow.execution
     attributes:
@@ -62,14 +36,74 @@ groups:
   - id: metric.workflow.execution.errors
     type: metric
     metric_name: workflow.execution.errors
-    brief: 'The number of errors encountered in workflow execution (eg. compile, test failures).'
+    brief: The number of errors encountered in task runs runs (eg. compile, test failures).
     note: |
-      There might be errors in a workflow execution that are non fatal (eg. they are suppressed) or in a parallel stage multiple stages could have a fatal error.
-      This means that this error count might not be the same as the count of metric `workflow.taskrun.duration` with run result `failure`.
+      There might be errors in a workflow task run that are non fatal (eg. they are suppressed) or in a parallel stage multiple stages could have a fatal error.
+      This means that this error count might not be the same as the count of metric `workflow.execution.duration` with run result `failure`.
     instrument: counter
     unit: "{error}"
     stability: development
     extends: attribute.metric.workflow.execution
     attributes:
       - ref: error.type
+        requirement_level: required
+
+  - id: metric.workflow.duration
+    type: metric
+    metric_name: workflow.duration
+    brief: Duration of the workflow grouped by by the definition and outcome.
+    instrument: histogram
+    unit: "s"
+    stability: development
+    extends: attribute.metric.workflow.run
+    attributes:
+      - ref: workflow.outcome
+        requirement_level: required
+  - id: metric.workflow.count
+    type: metric
+    metric_name: workflow.count
+    brief: The number of workflow instances which have been initiated.
+    instrument: counter
+    unit: "{workflows}"
+    stability: development
+    extends: attribute.metric.workflow.run
+    attributes:
+      - ref: workflow.outcome
+        requirement_level: required
+  - id: metric.workflow.status
+    type: metric
+    metric_name: workflow.status
+    brief: The number of actively running workflows grouped by definition and the current state.
+    note: When a workflow changes state it is expected that the previous state is decremented and new state incremented.
+    instrument: updowncounter
+    unit: "{workflows}"
+    stability: development
+    extends: attribute.metric.workflow.run
+    attributes:
+      - ref: workflow.state
+        requirement_level: required
+  - id: metric.workflow.errors
+    type: metric
+    metric_name: workflow.errors
+    brief: The number of errors encountered in workflow execution (eg. compile, test failures).
+    note: |
+      There might be errors in a workflow execution that are non fatal (eg. they are suppressed) or in a parallel stage multiple stages could have a fatal error.
+      This means that this error count might not be the same as the count of metric `workflow.execution.duration` with run result `failure`.
+    instrument: counter
+    unit: "{error}"
+    stability: development
+    extends: attribute.metric.workflow.run
+    attributes:
+      - ref: error.type
+        requirement_level: required
+  - id: metric.workflow.iteration.ratio
+    type: metric
+    metric_name: workflow.iteration.ratio
+    brief: The percentage of Iterations that resulted in the selected outcome.
+    instrument: gauge
+    unit: "%"
+    stability: development
+    extends: attribute.metric.workflow.execution
+    attributes:
+      - ref: workflow.execution.outcome
         requirement_level: required

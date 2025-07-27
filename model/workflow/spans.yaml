@@ -1,16 +1,58 @@
 groups:
+  - id: span.workflow.execution.client
+    type: span
+    span_kind: client
+    stability: development
+    extends: attribute.span.workflow.coordination
+    brief: >
+      Used to capture the execution of tasks is delegated to workers. The completion of the task is described in `span.workflow.execution.server`.
+    attributes:
+      - ref: workflow.definition.name
+        requirement_level: recommended
+      - ref: workflow.definition.url.full
+        requirement_level: opt_in
+      - ref: workflow.url.full
+        requirement_level: opt_in
+
+  - id: span.workflow.execution.server
+    type: span
+    span_kind: server
+    stability: development
+    extends: attribute.span.workflow.execution
+    brief: >
+      Used to capture the execution of tasks from the perspective of the worker. The triggering of the task is described in `span.workflow.execution.client`.
+
+  - id: span.workflow.execution.internal
+    type: span
+    span_kind: internal
+    stability: development
+    extends: attribute.span.workflow.execution
+    brief: >
+      Used to capture when there is no designated workers and the tasks are performed directly when determined as needing to be run.
+
+  - id: span.workflow.trigger.server
+    type: span
+    span_kind: server
+    stability: development
+    extends: attribute.span.workflow.core
+    brief: >
+      Used to capture the process of handling a trigger to initiate a workflow.
+    attributes:
+      - ref: workflow.trigger.id
+        requirement_level: required
+      - ref: workflow.trigger.name
+        requirement_level: recommended
+      - ref: workflow.trigger.url.full
+        requirement_level: recommended
+
   - id: span.workflow.k8s.task.cronjob.client
     type: span
     span_kind: client
     stability: development
-    extends: attribute.span.workflow.taskrun
+    extends: span.workflow.execution.internal
     brief: >
       Used to describe Kubernetes cronjobs
     attributes:
-      - ref: workflow.id
-        brief: "The UID of the k8s CronJob."
-      - ref: workflow.name
-        brief: "The name of the k8s CronJob."
       - ref: workflow.task.id
         brief: "The UID of the k8s CronJob."
       - ref: workflow.task.name
@@ -35,14 +77,10 @@ groups:
     type: span
     span_kind: client
     stability: development
-    extends: attribute.span.workflow.taskrun
+    extends: span.workflow.execution.internal
     brief: >
       Used to describe Kubernetes cronjobs
     attributes:
-      - ref: workflow.id
-        brief: "The UID of the k8s Job."
-      - ref: workflow.name
-        brief: "The name of the k8s Job."
       - ref: workflow.task.id
         brief: "The UID of the k8s Job."
       - ref: workflow.task.name
