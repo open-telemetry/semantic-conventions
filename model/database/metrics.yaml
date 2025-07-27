@@ -14,8 +14,7 @@ groups:
     extends: attributes.db.client.with_query_and_collection
     attributes:
       - ref: server.address
-        brief: >
-          Name of the database host.
+        brief: Name of the database host.
       - ref: server.port
         requirement_level:
           conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
@@ -184,8 +183,7 @@ groups:
     extends: attributes.db.client.with_query_and_collection
     attributes:
       - ref: server.address
-        brief: >
-          Name of the database host.
+        brief: Name of the database host.
       - ref: server.port
         requirement_level:
           conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
