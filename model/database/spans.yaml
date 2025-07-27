@@ -15,8 +15,7 @@ groups:
             database call.
       - ref: db.operation.batch.size
       - ref: server.address
-        brief: >
-          Name of the database host.
+        brief: Name of the database host.
         sampling_relevant: true
       - ref: server.port
         requirement_level:
@@ -29,8 +28,7 @@ groups:
     brief: This group defines the attributes used to perform database client calls.
     attributes:
       - ref: server.address
-        brief: >
-          Name of the database host.
+        brief: Name of the database host.
         sampling_relevant: true
       - ref: server.port
         requirement_level:
@@ -130,7 +128,7 @@ groups:
     brief: This span describes database client call.
     note: |
       This span is for db calls where the db runs in a different process to the client or when the database calls happen over an
-      instrumented protocol such as HTTP. If the db call is occurring in-memory then the [db.inmemory.internal](/docs/database/database-spans.md#in-memory-process) span should be used.
+      instrumented protocol such as HTTP. If the db call is occurring in-memory then the [db.inmemory.internal](/docs/database/inmemory.md) span should be used.
 
       Instrumentations SHOULD, when possible, record database spans that cover the duration of
       the corresponding API call as if it was observed by the caller (such as client application).
@@ -162,7 +160,7 @@ groups:
     brief: This span describes in-memory database client call.
     note: |
       This span is for in-memory db calls. If the db runs in a different process to the client or when database calls happen over an
-      instrumented protocol such as HTTP, then the [db.client](/docs/database/database-spans.md#separate-process) span should be used.
+      instrumented protocol such as HTTP, then the [db.client](/docs/database/database-spans.md#span-definition) span should be used.
 
       Instrumentations SHOULD, when possible, record database spans that cover the duration of
       the corresponding API call as if it was observed by the caller (such as client application).

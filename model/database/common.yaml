@@ -30,8 +30,7 @@ groups:
       #   requirement_level:
       #     conditionally_required: if available
       - ref: server.address
-        brief: >
-          Name of the database host.
+        brief: Name of the database host.
       - ref: server.port
         requirement_level:
           conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
