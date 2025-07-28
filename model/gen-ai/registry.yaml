@@ -344,26 +344,26 @@ groups:
         type: double
         brief: The evaluation score for the GenAI response.
         examples: [4.0]
-      - id: gen_ai.evaluation.input.metadata
+      - id: gen_ai.input.metadata
         stability: development
         type: string
-        brief: Metadata associated with the evaluation input.
+        brief: Metadata associated with the GenAI input.
         examples: ['{\"requestId\": \"fab3ee5d-a3c6-4c47-b3de-901bf02fa045\"}']
         note: >
-          The structure is specific to the evaluator. If the metadata is structured, it
+          The structure is specific to the implementation. If the metadata is structured, it
           is RECOMMENDED to provide it in a structured form using language-specific API. It
           can also be captured as a JSON string when structured API is not available. If
           metadata properties contain any sensitive information such as prompts or
           completions, corresponding properties MUST NOT be recorded by default. Instrumentations
           MAY provide a way to override this behavior and record sensitive information in
           the metadata if user explicitly allows it.
-      - id: gen_ai.evaluation.output.metadata
+      - id: gen_ai.output.metadata
         type: string
         stability: development
         brief: >
-          Metadata associated with the evaluation result.
+          Metadata associated with the GenAI output.
         note: >
-          The structure is specific to the evaluator. If the metadata is structured, it
+          The structure is specific to the implementation. If the metadata is structured, it
           is RECOMMENDED to provide it in a structured form using language-specific API. It
           can also be captured as a JSON string when structured API is not available. If
           metadata properties contain any sensitive information such as prompts or
