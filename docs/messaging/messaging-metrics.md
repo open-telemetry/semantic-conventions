@@ -74,7 +74,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. | `send`; `receive`; `ack` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws_sns`; `aws_sqs` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.system`](/docs/registry/attributes/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | string | The name of the consumer group with which a consumer is associated. [3] | `my-group`; `indexer` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -151,7 +151,6 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | Value  | Description | Stability |
 |---|---|---|
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws_sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -159,13 +158,10 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mqtt` | MQTT | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nats` | Nats | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `signalr` | SignalR | ![Development](https://img.shields.io/badge/-development-blue) |
-| `solace` | Solace | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -194,7 +190,7 @@ This metric is [required][MetricRequired].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. | `send`; `schedule`; `enqueue` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws_sns`; `aws_sqs` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.system`](/docs/registry/attributes/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [3] | `MyQueue`; `MyTopic` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | string | Low cardinality representation of the messaging destination name [5] | `/customers/{customerId}` | `Conditionally Required` if available. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -250,7 +246,6 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | Value  | Description | Stability |
 |---|---|---|
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws_sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -258,13 +253,10 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mqtt` | MQTT | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nats` | Nats | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `signalr` | SignalR | ![Development](https://img.shields.io/badge/-development-blue) |
-| `solace` | Solace | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -294,7 +286,7 @@ The metric SHOULD be reported once per message delivery. For example, if receivi
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. | `receive`; `peek`; `poll`; `consume` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws_sns`; `aws_sqs` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.system`](/docs/registry/attributes/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | string | The name of the consumer group with which a consumer is associated. [3] | `my-group`; `indexer` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -356,7 +348,6 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | Value  | Description | Stability |
 |---|---|---|
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws_sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -364,13 +355,10 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mqtt` | MQTT | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nats` | Nats | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `signalr` | SignalR | ![Development](https://img.shields.io/badge/-development-blue) |
-| `solace` | Solace | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -403,7 +391,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. | `process`; `consume`; `handle` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws_sns`; `aws_sqs` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.system`](/docs/registry/attributes/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws_sqs`; `eventgrid` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | string | The name of the consumer group with which a consumer is associated. [3] | `my-group`; `indexer` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -465,7 +453,6 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | Value  | Description | Stability |
 |---|---|---|
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws_sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -473,13 +460,10 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `jms` | Java Message Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kafka` | Apache Kafka | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mqtt` | MQTT | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nats` | Nats | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pulsar` | Apache Pulsar | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `signalr` | SignalR | ![Development](https://img.shields.io/badge/-development-blue) |
-| `solace` | Solace | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

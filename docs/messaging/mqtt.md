@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: SignalR
+linkTitle: MQTT
 --->
 
 # Semantic conventions for MQTT

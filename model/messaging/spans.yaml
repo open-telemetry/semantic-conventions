@@ -334,17 +334,6 @@ groups:
       - ref: aws.request_id
         requirement_level: recommended
 
-  - id: messaging.signalr
-    type: attribute_group
-    stability: development
-    extends: attributes.messaging.trace.minimal
-    brief: "Attributes that exist for SignalR."
-    attributes:
-      - ref: messaging.destination.name
-        brief: The hub method name which is being invoked.
-      - ref: url.path
-        requirement_level: recommended
-
   - id: messaging.mqtt
     type: attribute_group
     stability: development
