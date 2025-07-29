@@ -6,11 +6,10 @@ groups:
       - ref: rpc.system
         requirement_level: required
       - ref: rpc.service
-        requirement_level:
-          conditionally_required: When the `rpc.service` is known.
+        requirement_level: recommended
       - ref: rpc.method
         requirement_level:
-          conditionally_required: When the `rpc.method` is known.
+          conditionally_required: When the `rpc.system` is jsonrpc.
       - ref: network.transport
         requirement_level: recommended
       - ref: network.type
