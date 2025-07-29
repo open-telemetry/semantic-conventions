@@ -108,6 +108,11 @@ groups:
         type: int
         brief: The maximum number of tokens the model generates for a request.
         examples: [100]
+      - id: gen_ai.request.logprobs
+        stability: development
+        type: boolean
+        brief: Whether to return the log probabilities for each token in the response.
+        examples: [true]
       - id: gen_ai.request.choice.count
         stability: development
         type: int
@@ -225,76 +230,11 @@ groups:
         type: string
         brief: Free-form description of the GenAI agent provided by the application.
         examples: ["Helps with math problems", "Generates fiction stories"]
-      - id: gen_ai.agent.entity.type
-        stability: development
-        type:
-          members:
-            - id: task
-              value: "task"
-              brief: 'Task performed by the agent'
-              stability: development
-            - id: agent
-              value: "agent"
-              brief: 'Agent performing the task'
-              stability: development
-            - id: tool
-              value: "tool"
-              brief: 'Tool used by the agent'
-              stability: development
-            - id: workflow
-              value: "workflow"
-              brief: 'Workflow executed by the agent'
-              stability: development
-        brief: >
-          Type of the entity involved in the span, such as task, agent, tool, or workflow.
-          Useful for understanding role-specific behavior within a chain.
-        examples: ['task', 'agent', 'tool', 'workflow']
-      - id: gen_ai.agent.entity.name
+      - id: gen_ai.agent.role
         stability: development
         type: string
-        brief: >
-          Identifier or name of the entity, such as agent name (e.g., "researcher") or an internal task (e.g., "summarize_input").
-          This is often used to identify the agent or task being performed.
-        examples: ["researcher", "summarize_input"]
-      - id: gen_ai.agent.entity.input
-        stability: development
-        type: string
-        brief: >  
-          The input payload (often serialized args, kwargs, or prompt content) passed to the agent/tool.
-          This is the data that the agent or tool receives to perform its task.
-        examples: ["What is the capital of France?", "Summarize the following text..."]
-      - id: gen_ai.agent.entity.output
-        stability: development
-        type: string
-        brief: >
-          The response/output of the entity. This can include structured results, LLM completions,
-          or tool outputs. It represents the result of the agent's or tool's execution.
-        examples: ["The capital of France is Paris.", "Summary: The text discusses..."]
-      - id: gen_ai.agent.entity.outcome
-        stability: development
-        type:
-          members:
-            - id: success
-              value: "success"
-              brief: 'The entity executed successfully.'
-              stability: development
-            - id: partial_success
-              value: "partial_success"
-              brief: 'The entity executed with partial success, e.g., returned a valid but incomplete result.'
-              stability: development
-            - id: failure_logical
-              value: "failure_logical"
-              brief: 'The entity failed logically, e.g., no valid answer could be generated.'
-              stability: development
-            - id: failure_technical
-              value: "failure_technical"
-              brief: 'The entity failed due to a technical issue, e.g., an exception or timeout.'
-              stability: development
-        brief: >
-          Execution outcome classification for the entity, such as success, partial_success,
-          failure_logical (e.g., no valid answer), or failure_technical (e.g., exception, timeout).
-          This helps in understanding the success or failure of the entity's execution.
-        examples: ['success', 'partial_success', 'failure_logical', 'failure_technical']
+        brief: Role of the agent in the given operation context.
+        examples: ["researcher", "coder", "assistant"]
       - id: gen_ai.tool.name
         stability: development
         type: string

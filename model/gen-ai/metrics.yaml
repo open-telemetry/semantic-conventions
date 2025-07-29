@@ -105,3 +105,25 @@ groups:
     unit: "s"
     stability: development
     extends: metric_attributes.gen_ai
+  - id: metric.gen_ai.client.agent.end_to_end_completion_duration
+    type: metric
+    metric_name: gen_ai.client.agent.end_to_end_completion_duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: 'End-to-end duration of the agent execution.'
+    instrument: histogram
+    unit: "s"
+    stability: development
+    extends: metric_attributes.gen_ai
+  - id: metric.gen_ai.client.active_agents
+    type: metric
+    metric_name: gen_ai.client.active_agents
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: 'Number of active agents currently running in the system.'
+    instrument: updowncounter
+    unit: "1"
+    stability: development
+    extends: metric_attributes.gen_ai
