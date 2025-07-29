@@ -14,7 +14,7 @@ groups:
     deprecated:
       reason: uncategorized
       note: >
-        Chat history is reported on `gen_ai.system.instructions` attribute on
+        Chat history is reported on `gen_ai.system_instructions` attribute on
         spans or `gen_ai.client.inference.operation.details` event.
     brief: >
       This event describes the system instructions passed to the GenAI model.

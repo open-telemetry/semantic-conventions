@@ -12,20 +12,13 @@
                             "type": "string"
                         }
                     ],
+                    "description": "Role of the entity that created the message.",
                     "title": "Role"
                 },
                 "parts": {
                     "description": "List of message parts that make up the message content.",
                     "items": {
-                        "discriminator": {
-                            "mapping": {
-                                "text": "#/$defs/TextPart",
-                                "tool_call": "#/$defs/ToolCallPart",
-                                "tool_call_response": "#/$defs/ToolCallResponsePart"
-                            },
-                            "propertyName": "type"
-                        },
-                        "oneOf": [
+                        "anyOf": [
                             {
                                 "$ref": "#/$defs/TextPart"
                             },
@@ -34,6 +27,9 @@
                             },
                             {
                                 "$ref": "#/$defs/ToolCallResponsePart"
+                            },
+                            {
+                                "$ref": "#/$defs/GenericPart"
                             }
                         ]
                     },
@@ -42,16 +38,34 @@
                 }
             },
             "required": [
+                "role",
                 "parts"
             ],
             "title": "ChatMessage",
+            "type": "object"
+        },
+        "GenericPart": {
+            "additionalProperties": true,
+            "description": "Represents an arbitrary message part with any type and properties.\nThis allows for extensibility with custom message part types.",
+            "properties": {
+                "type": {
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "title": "GenericPart",
             "type": "object"
         },
         "Role": {
             "enum": [
                 "system",
                 "user",
-                "assistant"
+                "assistant",
+                "tool"
             ],
             "title": "Role",
             "type": "string"

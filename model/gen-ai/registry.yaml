@@ -332,7 +332,7 @@ groups:
 
           Additional output format details may be recorded in the future in the
           `gen_ai.output.{type}.*` attributes.
-      - id: gen_ai.system.instructions
+      - id: gen_ai.system_instructions
         stability: development
         type: any
         brief: The system message or instructions provided to the GenAI model or agent

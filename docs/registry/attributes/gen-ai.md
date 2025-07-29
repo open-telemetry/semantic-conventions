@@ -37,7 +37,7 @@ This document defines the attributes used to describe telemetry in the context o
 | <a id="gen-ai-response-finish-reasons" href="#gen-ai-response-finish-reasons">`gen_ai.response.finish_reasons`</a> | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `["stop"]`; `["stop", "length"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-response-id" href="#gen-ai-response-id">`gen_ai.response.id`</a> | string | The unique identifier for the completion. | `chatcmpl-123` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-response-model" href="#gen-ai-response-model">`gen_ai.response.model`</a> | string | The name of the model that generated the response. | `gpt-4-0613` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="gen-ai-system-instructions" href="#gen-ai-system-instructions">`gen_ai.system.instructions`</a> | any | The system message or instructions provided to the GenAI model or agent separately from the chat history. [8] | `You are an Agent that greet users, always use greetings tool to respond`; `["You are a language translator.", "Your mission is to translate text in English to French."]` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gen-ai-system-instructions" href="#gen-ai-system-instructions">`gen_ai.system_instructions`</a> | any | The system message or instructions provided to the GenAI model or agent separately from the chat history. [8] | `You are an Agent that greet users, always use greetings tool to respond`; `["You are a language translator.", "Your mission is to translate text in English to French."]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-token-type" href="#gen-ai-token-type">`gen_ai.token.type`</a> | string | The type of token being counted. | `input`; `output` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-tool-call-id" href="#gen-ai-tool-call-id">`gen_ai.tool.call.id`</a> | string | The tool call identifier. | `call_mszuSIzqtI65i1wAUOE8w5H4` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-tool-description" href="#gen-ai-tool-description">`gen_ai.tool.description`</a> | string | The tool description. | `Multiply two numbers` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -104,7 +104,7 @@ applicable `aws.bedrock.*` attributes and are not expected to include
 
 **[7] `gen_ai.request.encoding_formats`:** In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
 
-**[8] `gen_ai.system.instructions`:** This attribute SHOULD be used when the corresponding provider or API
+**[8] `gen_ai.system_instructions`:** This attribute SHOULD be used when the corresponding provider or API
 allows to provide system instructions or messages separately from the
 chat history.
 

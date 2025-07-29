@@ -93,7 +93,7 @@ client or when the GenAI call happens over instrumented protocol such as HTTP.
 | [`server.address`](/docs/registry/attributes/server.md) | string | GenAI server address. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.input.messages`](/docs/registry/attributes/gen-ai.md) | any | The chat history provided to the model or agent as an input. [11] | `[{"role": "user", "parts": [{"type": "text", "content": "Weather in Paris?"}]}, {"role": "assistant", "parts": [{"type": "tool_call", "id": "call_VSPygqKTWdrhaFErNvMV18Yl", "name":"get_weather", "arguments":{"location":"Paris"}}]}, {"role": "tool", "parts": [{"type": "tool_call_response", "id":" call_VSPygqKTWdrhaFErNvMV18Yl", "result":"rainy, 57°F"}]}]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.output.messages`](/docs/registry/attributes/gen-ai.md) | any | Messages returned by the model or agent. [12] | `[{"role":"assistant","parts":[{"type":"text","content":"The weather in Paris is currently rainy with a temperature of 57°F."}],"finish_reason":"stop"}]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.system.instructions`](/docs/registry/attributes/gen-ai.md) | any | The system message or instructions provided to the GenAI model or agent separately from the chat history. [13] | `You are an Agent that greet users, always use greetings tool to respond`; `["You are a language translator.", "Your mission is to translate text in English to French."]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.system_instructions`](/docs/registry/attributes/gen-ai.md) | any | The system message or instructions provided to the GenAI model or agent separately from the chat history. [13] | `You are an Agent that greet users, always use greetings tool to respond`; `["You are a language translator.", "Your mission is to translate text in English to French."]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
@@ -177,7 +177,7 @@ output messages.
 See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
 section for more details.
 
-**[13] `gen_ai.system.instructions`:** This attribute SHOULD be used when the corresponding provider or API
+**[13] `gen_ai.system_instructions`:** This attribute SHOULD be used when the corresponding provider or API
 allows to provide system instructions or messages separately from the
 chat history.
 
