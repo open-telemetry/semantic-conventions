@@ -248,10 +248,6 @@ Currently, the following namespaces exist:
   <td><a href="service.md#service">service</a></td>
   <td><img src="https://img.shields.io/badge/-stable-lightgreen" alt="Stable"/></td>
 </tr><tr>
-  <td></td>
-  <td><a href="service.md#service-instance">service.instance</a></td>
-  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
-</tr><tr>
 <td>Telemetry</td><td></td><td></td>
 </tr><tr>
   <td></td>

@@ -77,19 +77,47 @@ groups:
         note: |
           This allows for distinction between different running roles of the same service.
 
-          In the case of Kibana, the service.node.role could be ui or background_tasks or both.
+          In the case of Kibana, the service.roles could be ui or background_tasks or both.
 
-          In the case of Elasticsearch, the service.node.role could be master or data or both.
+          In the case of Elasticsearch, the service.roles could be master or data or both.
 
           Other services could use this to distinguish between a web and worker role running as part of the service.
         examples:
           - ["ui", "background_tasks"]
           - ["background_tasks"]
       - id: service.state
-        type: string
+        type:
+          members:
+            - id: stopped
+              value: "stopped"
+              brief: Stopped
+              stability: development
+            - id: start_pending
+              value: "start_pending"
+              brief: Start Pending
+              stability: development
+            - id: stop_pending
+              value: "stop_pending"
+              brief: Stop Pending
+              stability: development
+            - id: running
+              value: "running"
+              brief: Running
+              stability: development
+            - id: paused
+              value: "paused"
+              brief: Paused
+              stability: development
+            - id: pause_pending
+              value: "pause_pending"
+              brief: Pause Pending
+              stability: development
+            - id: resume_pending
+              value: "resume_pending"
+              brief: Resume Pending
+              stability: development
         brief: >
           Current state of the service.
         note: >
           This state could be reported a collector which monitors the services
-        examples: ["starting", "running", "stopping", "stopped"]
         stability: development

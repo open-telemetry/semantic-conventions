@@ -11,52 +11,19 @@
 
 **type:** `service`
 
-**Description:** A service which can generate telemetry.
-
-**Identifying Attributes:**
-
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`service.name`](/docs/registry/attributes/service.md) | string | Logical name of the service. [1] | `shoppingcart` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`service.namespace`](/docs/registry/attributes/service.md) | string | A namespace for `service.name`. [2] | `Shop` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`service.version`](/docs/registry/attributes/service.md) | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-**[1] `service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
-
-**[2] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
-
-**Descriptive Attributes:**
-
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`service.roles`](/docs/registry/attributes/service.md) | string[] | Roles of a service node. [3] | `["ui", "background_tasks"]`; `["background_tasks"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`service.state`](/docs/registry/attributes/service.md) | string | Current state of the service. [4] | `starting`; `running`; `stopping`; `stopped` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[3] `service.roles`:** This allows for distinction between different running roles of the same service.
-
-In the case of Kibana, the service.node.role could be ui or background_tasks or both.
-
-In the case of Elasticsearch, the service.node.role could be master or data or both.
-
-Other services could use this to distinguish between a web and worker role running as part of the service.
-
-**[4] `service.state`:** This state could be reported a collector which monitors the services
-
-## Service Instance
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `service.instance`
-
 **Description:** A service instance.
 
 **Identifying Attributes:**
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`service.instance.id`](/docs/registry/attributes/service.md) | string | The string ID of the service instance. [5] | `627cc493-f310-47de-96bd-71410b7dec09` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`service.name`](/docs/registry/attributes/service.md) | string | Logical name of the service. [1] | `shoppingcart` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`service.instance.id`](/docs/registry/attributes/service.md) | string | The string ID of the service instance. [2] | `627cc493-f310-47de-96bd-71410b7dec09` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`service.namespace`](/docs/registry/attributes/service.md) | string | A namespace for `service.name`. [3] | `Shop` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[5] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
+**[1] `service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
+
+**[2] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
 `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to
 distinguish instances of the same service that exist at the same time (e.g. instances of a horizontally scaled
 service).
@@ -83,17 +50,39 @@ However, Collectors can set the `service.instance.id` if they can unambiguously 
 for that telemetry. This is typically the case for scraping receivers, as they know the target address and
 port.
 
+**[3] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
+
 **Descriptive Attributes:**
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`service.name`](/docs/registry/attributes/service.md) | string | Logical name of the service. [6] | `shoppingcart` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`service.namespace`](/docs/registry/attributes/service.md) | string | A namespace for `service.name`. [7] | `Shop` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`service.roles`](/docs/registry/attributes/service.md) | string[] | Roles of a service node. [4] | `["ui", "background_tasks"]`; `["background_tasks"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`service.state`](/docs/registry/attributes/service.md) | string | Current state of the service. [5] | `stopped`; `start_pending`; `stop_pending` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`service.version`](/docs/registry/attributes/service.md) | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[6] `service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
+**[4] `service.roles`:** This allows for distinction between different running roles of the same service.
 
-**[7] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
+In the case of Kibana, the service.roles could be ui or background_tasks or both.
+
+In the case of Elasticsearch, the service.roles could be master or data or both.
+
+Other services could use this to distinguish between a web and worker role running as part of the service.
+
+**[5] `service.state`:** This state could be reported a collector which monitors the services
+
+---
+
+`service.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `pause_pending` | Pause Pending | ![Development](https://img.shields.io/badge/-development-blue) |
+| `paused` | Paused | ![Development](https://img.shields.io/badge/-development-blue) |
+| `resume_pending` | Resume Pending | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | Running | ![Development](https://img.shields.io/badge/-development-blue) |
+| `start_pending` | Start Pending | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stop_pending` | Stop Pending | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | Stopped | ![Development](https://img.shields.io/badge/-development-blue) |
 
 
 <!-- markdownlint-restore -->

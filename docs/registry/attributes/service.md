@@ -13,7 +13,7 @@ A service instance.
 | <a id="service-name" href="#service-name">`service.name`</a> | string | Logical name of the service. [2] | `shoppingcart` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="service-namespace" href="#service-namespace">`service.namespace`</a> | string | A namespace for `service.name`. [3] | `Shop` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="service-roles" href="#service-roles">`service.roles`</a> | string[] | Roles of a service node. [4] | `["ui", "background_tasks"]`; `["background_tasks"]` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="service-state" href="#service-state">`service.state`</a> | string | Current state of the service. [5] | `starting`; `running`; `stopping`; `stopped` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="service-state" href="#service-state">`service.state`</a> | string | Current state of the service. [5] | `stopped`; `start_pending`; `stop_pending` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="service-version" href="#service-version">`service.version`</a> | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
@@ -49,10 +49,24 @@ port.
 
 **[4] `service.roles`:** This allows for distinction between different running roles of the same service.
 
-In the case of Kibana, the service.node.role could be ui or background_tasks or both.
+In the case of Kibana, the service.roles could be ui or background_tasks or both.
 
-In the case of Elasticsearch, the service.node.role could be master or data or both.
+In the case of Elasticsearch, the service.roles could be master or data or both.
 
 Other services could use this to distinguish between a web and worker role running as part of the service.
 
 **[5] `service.state`:** This state could be reported a collector which monitors the services
+
+---
+
+`service.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `pause_pending` | Pause Pending | ![Development](https://img.shields.io/badge/-development-blue) |
+| `paused` | Paused | ![Development](https://img.shields.io/badge/-development-blue) |
+| `resume_pending` | Resume Pending | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | Running | ![Development](https://img.shields.io/badge/-development-blue) |
+| `start_pending` | Start Pending | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stop_pending` | Stop Pending | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | Stopped | ![Development](https://img.shields.io/badge/-development-blue) |
