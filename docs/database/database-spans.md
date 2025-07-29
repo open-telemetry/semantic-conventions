@@ -245,7 +245,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | Value  | Description | Stability |
 |---|---|---|
 | `actian.ingres` | [Actian Ingres](https://www.actian.com/databases/ingres/) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `arangodb` | [ArangoDB](https://arangodb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.dynamodb` | [Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.redshift` | [Amazon Redshift](https://aws.amazon.com/redshift/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.cosmosdb` | [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -280,13 +279,11 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `oracle.db` | [Oracle Database](https://www.oracle.com/database/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `other_sql` | Some other SQL database. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `postgresql` | [PostgreSQL](https://www.postgresql.org/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ravendb` | [RavenDB](https://ravendb.net/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `redis` | [Redis](https://redis.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `sap.hana` | [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `sap.maxdb` | [SAP MaxDB](https://maxdb.sap.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `softwareag.adabas` | [Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `sqlite` | [SQLite](https://www.sqlite.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `surrealdb` | [SurrealDB](https://surrealdb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `teradata` | [Teradata](https://www.teradata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `trino` | [Trino](https://trino.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
