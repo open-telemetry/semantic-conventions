@@ -528,8 +528,6 @@ Semantic conventions for individual systems MAY specify a different type for arg
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-## Event: `gen_ai.evaluation.result`
-
 The event name MUST be `gen_ai.evaluation.result`.
 
 This event describes a generic GenAI response evaluation result.
@@ -539,10 +537,10 @@ This event describes a generic GenAI response evaluation result.
 | [`gen_ai.evaluation.name`](/docs/registry/attributes/.md) | string | The qualified name of the evaluation used to evaluate the GenAI response. | `Relevance`; `IntentResolution` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if and only if evaluation failed | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.evaluation.score`](/docs/registry/attributes/.md) | double | The score calculated by the evaluator for the GenAI response. | `4.0` | `Conditionally Required` if evaluation completed successfully | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.evaluation.input.metadata`](/docs/registry/attributes/.md) | string | Metadata associated with the evaluation input. [2] | `{\"requestId\": \"fab3ee5d-a3c6-4c47-b3de-901bf02fa045\"}` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.evaluation.metadata`](/docs/registry/attributes/.md) | string | Additional metadata associated with the evaluation. [3] | `{\"evaluator_version\": \"1.2.0\", \"gen_ai.thread.id\": \"thread_ggguJ0iZXRPjUnCy9vT9Fdvs\"}` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.evaluation.output.metadata`](/docs/registry/attributes/.md) | string | Metadata associated with the evaluation result. [4] | `{\"Perplexity\": 1.335}` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.evaluation.metadata`](/docs/registry/attributes/.md) | string | Additional metadata associated with the evaluation. [2] | `{\"evaluator_version\": \"1.2.0\", \"gen_ai.thread.id\": \"thread_ggguJ0iZXRPjUnCy9vT9Fdvs\"}` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.evaluation.reasoning`](/docs/registry/attributes/.md) | string | A free-form reasoning for the assigned score provided by the evaluator. | `The response is factually accurate but lacks sufficient detail to fully address the question.` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.input.metadata`](/docs/registry/attributes/.md) | string | Metadata associated with the evaluation input. [3] | `{\"requestId\": \"fab3ee5d-a3c6-4c47-b3de-901bf02fa045\"}` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.output.metadata`](/docs/registry/attributes/.md) | string | Metadata associated with the evaluation output. [4] | `{\"Perplexity\": 1.335}` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [5] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.usage.input_tokens`](/docs/registry/attributes/gen-ai.md) | int | The number of tokens used in the GenAI input (prompt). [6] | `100` | `Recommended` if evaluation was performed by the model | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.usage.output_tokens`](/docs/registry/attributes/gen-ai.md) | int | The number of tokens used in the GenAI response (completion). [7] | `180` | `Recommended` if evaluation was performed by the model | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -567,11 +565,11 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2] `gen_ai.evaluation.input.metadata`:** The structure is specific to the evaluator. If the metadata is structured, it is RECOMMENDED to provide it in a structured form using language-specific API. It can also be captured as a JSON string when structured API is not available. If metadata properties contain any sensitive information such as prompts or completions, corresponding properties MUST NOT be recorded by default. Instrumentations MAY provide a way to override this behavior and record sensitive information in the metadata if user explicitly allows it.
+**[2] `gen_ai.evaluation.metadata`:** The structure is specific to the evaluator. If the metadata is structured, it is RECOMMENDED to provide it in a structured form using language-specific API. It can also be captured as a JSON string when structured API is not available.
 
-**[3] `gen_ai.evaluation.metadata`:** The structure is specific to the evaluator. If the metadata is structured, it is RECOMMENDED to provide it in a structured form using language-specific API. It can also be captured as a JSON string when structured API is not available.
+**[3] `gen_ai.input.metadata`:** The structure is specific to the implementation. If the metadata is structured, it is RECOMMENDED to provide it in a structured form using language-specific API. It can also be captured as a JSON string when structured API is not available. If metadata properties contain any sensitive information such as prompts or completions, corresponding properties MUST NOT be recorded by default. Instrumentations MAY provide a way to override this behavior and record sensitive information in the metadata if user explicitly allows it.
 
-**[4] `gen_ai.evaluation.output.metadata`:** The structure is specific to the evaluator. If the metadata is structured, it is RECOMMENDED to provide it in a structured form using language-specific API. It can also be captured as a JSON string when structured API is not available. If metadata properties contain any sensitive information such as prompts or completions, corresponding properties MUST NOT be recorded by default. Instrumentations MAY provide a way to override this behavior and record sensitive information in the metadata if user explicitly allows it.
+**[4] `gen_ai.output.metadata`:** The structure is specific to the implementation. If the metadata is structured, it is RECOMMENDED to provide it in a structured form using language-specific API. It can also be captured as a JSON string when structured API is not available. If metadata properties contain any sensitive information such as prompts or completions, corresponding properties MUST NOT be recorded by default. Instrumentations MAY provide a way to override this behavior and record sensitive information in the metadata if user explicitly allows it.
 
 **[5] `gen_ai.provider.name`:** The attribute SHOULD be set based on the instrumentation's best
 knowledge and may differ from the actual model provider.
