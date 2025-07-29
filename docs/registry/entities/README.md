@@ -163,10 +163,6 @@ Currently, the following namespaces exist:
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
   <td></td>
-  <td><a href="host.md#host-image">host.image</a></td>
-  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
-</tr><tr>
-  <td></td>
   <td><a href="host.md#host-platform">host.platform</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
