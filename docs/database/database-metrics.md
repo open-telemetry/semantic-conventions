@@ -212,6 +212,7 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 | `oracle.db` | [Oracle Database](https://www.oracle.com/database/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `other_sql` | Some other SQL database. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `postgresql` | [PostgreSQL](https://www.postgresql.org/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ravendb` | [RavenDB](https://ravendb.net/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `redis` | [Redis](https://redis.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `sap.hana` | [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `sap.maxdb` | [SAP MaxDB](https://maxdb.sap.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -391,6 +392,7 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 | `oracle.db` | [Oracle Database](https://www.oracle.com/database/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `other_sql` | Some other SQL database. Fallback only. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `postgresql` | [PostgreSQL](https://www.postgresql.org/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ravendb` | [RavenDB](https://ravendb.net/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `redis` | [Redis](https://redis.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `sap.hana` | [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `sap.maxdb` | [SAP MaxDB](https://maxdb.sap.com/) | ![Development](https://img.shields.io/badge/-development-blue) |

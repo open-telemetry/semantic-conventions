@@ -344,6 +344,10 @@ groups:
               value: "trino"
               brief: "[Trino](https://trino.io/)"
               stability: development
+            - id: ravendb
+              value: "ravendb"
+              brief: "[RavenDB](https://ravendb.net/)"
+              stability: development
         stability: stable
       - id: db.client.connection.state
         stability: development
