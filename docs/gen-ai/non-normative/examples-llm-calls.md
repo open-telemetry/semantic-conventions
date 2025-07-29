@@ -285,7 +285,6 @@ sequenceDiagram
 | `gen_ai.input.messages`         | `[{"role": "system", "parts": [{"type": "text", "content": "You are a helpful bot"}]}, {"role": "user", "parts": [{"type": "text", "content": "Write Python code that generates a random number, executes it, and returns the result."}]}]` |
 | `gen_ai.output.messages`        | `[{"role":"tool","parts":[{"type":"tool_call_response","id":" ci_6888515dea548198a1eea9","response":{"type":"code_interpreter_call","code":"import random\n\nrandom_number = random.randint(1, 100)\nrandom_number"}}]},{"role":"assistant","parts":[{"type":"text","content":"The generated random number is 95."}],"finish_reason":"stop"}]` |
 
-
 ## Chat completion with multiple choices
 
 This example covers the scenario when user requests model to generate two completions for the same prompt:
