@@ -344,6 +344,10 @@ groups:
               value: "trino"
               brief: "[Trino](https://trino.io/)"
               stability: development
+            - id: arangodb
+              value: "arangodb"
+              brief: "[ArangoDB](https://arangodb.com/)"
+              stability: development
         stability: stable
       - id: db.client.connection.state
         stability: development
