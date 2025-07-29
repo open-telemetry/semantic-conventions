@@ -214,12 +214,12 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`faas.invoked_name`](/docs/registry/attributes/faas.md) | string | The name of the invoked function. [1] | `my-function` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`faas.invoked_provider`](/docs/registry/attributes/faas.md) | string | The provider of the platform hosting the invoked function. [2] | `alibaba_cloud`; `aws`; `azure` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.invoked_provider`](/docs/registry/attributes/faas.md) | string | The cloud provider of the invoked function. [2] | `alibaba_cloud`; `aws`; `azure` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`faas.invoked_region`](/docs/registry/attributes/faas.md) | string | The cloud region of the invoked function. [3] | `eu-central-1` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `faas.invoked_name`:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
 
-**[2] `faas.invoked_provider`:** SHOULD be equal to the `host.platform.provider` resource attribute of the invoked function.
+**[2] `faas.invoked_provider`:** SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
 
 **[3] `faas.invoked_region`:** SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
 
