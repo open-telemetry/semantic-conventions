@@ -40,4 +40,4 @@
 | `HEROKU_RELEASE_VERSION`           | `service.version`                   |
 | `HEROKU_SLUG_COMMIT`               | `heroku.release.commit`             |
 
-Additionally, [the `host.platform.provider` resource attribute MUST be set to `heroku`](../host.md).
+Additionally, [the `cloud.provider` resource attribute MUST be set to `heroku`](../cloud.md).

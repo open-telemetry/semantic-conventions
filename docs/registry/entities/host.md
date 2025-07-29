@@ -11,7 +11,7 @@
 
 **type:** `host`
 
-**Description:** A host is defined as a computing instance/environment. For example, physical servers, virtual machines, switches or disk array.
+**Description:** A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
 
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
@@ -20,6 +20,9 @@
 |---|---|---|---|---|---|---|
 | Other | [`host.arch`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` |
 | Other | [`host.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system. [1] | `fdbf79e8af94cb7f9e8df36789187052` |
+| Other | [`host.image.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `ami-07b06b442921831e5` |
+| Other | [`host.image.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the VM image or OS install the host was instantiated from. | `infra-ami-eks-worker-node-7d4ec78312`; `CentOS-8-x86_64-1905` |
+| Other | [`host.image.version`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `0.1` |
 | Other | [`host.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` |
 | Other | [`host.type`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` |
 | Other | [`host.ip`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Available IP addresses of the host, excluding loopback interfaces. [2] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` |
@@ -79,23 +82,6 @@ privileged lookup of `host.id` is required, the value should be injected via the
 
 **[4] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
 
-## Host Image
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `host.image`
-
-**Description:** The software image that was used to provision the computing instance/environment.
-
-> :warning: This entity definition contains attributes without a role.
-> Stable Entities MUST NOT have attributes without a defined role.
-
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|---|
-| Other | [`host.image.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `ami-07b06b442921831e5` |
-| Other | [`host.image.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the VM image or OS install the host was instantiated from. | `infra-ami-eks-worker-node-7d4ec78312`; `CentOS-8-x86_64-1905` |
-| Other | [`host.image.version`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `0.1` |
-
 ## Host Platform
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -109,11 +95,7 @@ privileged lookup of `host.id` is required, the value should be injected via the
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
-| Other | [`host.platform.app.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | What product forms the basis of the hosting platform | `openshift`; `esxi`; `hyperv` |
-| Other | [`host.platform.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The commercial hosting platform in use. [5] | `alibaba_cloud_ecs`; `alibaba_cloud_fc`; `alibaba_cloud_openshift` |
-| Other | [`host.platform.provider`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the organisation providing the platform. | `alibaba`; `amazon`; `google` |
-
-
-**[5] `host.platform.name`:** The prefix SHOULD match the one specified in `host.platform.provider`.
+| Other | [`host.platform.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The platform being used to host the computing instance. | `Azure VMWare Esxi` |
+| Other | [`host.platform.product`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | What product if any is being used to host the computing instance. | `openshift`; `esxi`; `hyperv` |
 
 <!-- markdownlint-restore -->

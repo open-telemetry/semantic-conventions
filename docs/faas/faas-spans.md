@@ -220,12 +220,12 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`faas.invoked_name`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the invoked function. [1] | `my-function` |
-| [`faas.invoked_provider`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The provider of the platform hosting the invoked function. [2] | `alibaba_cloud`; `aws`; `azure` |
+| [`faas.invoked_provider`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The cloud provider of the invoked function. [2] | `alibaba_cloud`; `aws`; `azure` |
 | [`faas.invoked_region`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | The cloud region of the invoked function. [4] | `eu-central-1` |
 
 **[1] `faas.invoked_name`:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
 
-**[2] `faas.invoked_provider`:** SHOULD be equal to the `host.platform.provider` resource attribute of the invoked function.
+**[2] `faas.invoked_provider`:** SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
 
 **[3] `faas.invoked_region`:** For some cloud providers, like AWS or GCP, the region in which a function is hosted is essential to uniquely identify the function and also part of its endpoint. Since it's part of the endpoint being called, the region is always known to clients. In these cases, `faas.invoked_region` MUST be set accordingly. If the region is unknown to the client or not required for identifying the invoked function, setting `faas.invoked_region` is optional.
 

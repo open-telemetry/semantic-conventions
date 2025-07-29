@@ -122,9 +122,9 @@ groups:
               brief: 'Tencent Cloud'
               stability: development
         brief: >
-          The provider of the platform hosting the invoked function.
+          The cloud provider of the invoked function.
         note: >
-          SHOULD be equal to the `host.platform.provider` resource attribute of the
+          SHOULD be equal to the `cloud.provider` resource attribute of the
           invoked function.
       - id: faas.invoked_region
         type: string
