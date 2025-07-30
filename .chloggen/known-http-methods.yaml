@@ -1,0 +1,4 @@
+change_type: enhancement
+component: http
+note: "declarative configuration: add known methods"
+issues: [2504]
