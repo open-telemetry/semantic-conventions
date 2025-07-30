@@ -7,7 +7,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Ambient (external) temperature of the physical host"
+    brief: "Ambient (external) temperature of the physical host."
     instrument: gauge
     unit: "Cel"
     extends: hardware.attributes.common
@@ -19,7 +19,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Total energy consumed by the entire physical host, in joules"
+    brief: "Total energy consumed by the entire physical host, in joules."
     instrument: counter
     unit: "J"
     extends: hardware.attributes.common
@@ -37,7 +37,7 @@ groups:
     stability: development
     brief: >
       By how many degrees Celsius the temperature of the physical host can be increased, before reaching a warning
-      threshold on one of the internal sensors
+      threshold on one of the internal sensors.
     instrument: gauge
     unit: "Cel"
     extends: hardware.attributes.common
@@ -50,7 +50,7 @@ groups:
         metric_value_type: double
     stability: development
     brief: >
-      Instantaneous power consumed by the entire physical host in Watts (`hw.host.energy` is preferred)
+      Instantaneous power consumed by the entire physical host in Watts (`hw.host.energy` is preferred).
     instrument: gauge
     unit: "W"
     extends: hardware.attributes.common

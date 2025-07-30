@@ -333,7 +333,7 @@ This metric is [required][MetricRequired].
 It captures the Request Units consumed by each operation in Azure Cosmos DB. Since Request Units serve as a form of throughput control within the Azure Cosmos DB database, monitoring their usage is crucial to avoid throttling.
 
 this metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.46.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.47.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 1, 5, 10, 25, 50, 100, 250, 500, 1000]`.
 
 Explaining bucket configuration:
@@ -352,7 +352,7 @@ Explaining bucket configuration:
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `azure.cosmosdb.client.operation.request_charge` | Histogram | `{request_unit}` | [Request units](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `azure.cosmosdb.client.operation.request_charge` | Histogram | `{request_unit}` | [Request units](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -441,7 +441,7 @@ It captures the number of active instances at any given time. Best practices dic
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `azure.cosmosdb.client.active_instance.count` | UpDownCounter | `{instance}` | Number of active client instances | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `azure.cosmosdb.client.active_instance.count` | UpDownCounter | `{instance}` | Number of active client instances. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

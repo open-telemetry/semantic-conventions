@@ -39,7 +39,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.uptime` | Gauge | `s` | The time the container has been running [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `container.uptime` | Gauge | `s` | The time the container has been running. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
 The actual accuracy would depend on the instrumentation and operating system.
@@ -62,7 +62,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.cpu.time` | Counter | `s` | Total CPU time consumed [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `container.cpu.time` | Counter | `s` | Total CPU time consumed. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Total CPU time consumed by the specific container on all available CPU cores
 
@@ -107,7 +107,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.cpu.usage` | Gauge | `{cpu}` | Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `container.cpu.usage` | Gauge | `{cpu}` | Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** CPU usage of the specific container on all available CPU cores, averaged over the sample window
 
@@ -246,7 +246,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.filesystem.available` | UpDownCounter | `By` | Container filesystem available bytes [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
+| `container.filesystem.available` | UpDownCounter | `By` | Container filesystem available bytes. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
 
 **[1]:** In K8s, this metric is derived from the
 [FsStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
@@ -271,7 +271,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.filesystem.capacity` | UpDownCounter | `By` | Container filesystem capacity [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
+| `container.filesystem.capacity` | UpDownCounter | `By` | Container filesystem capacity. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
 
 **[1]:** In K8s, this metric is derived from the
 [FsStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
@@ -296,7 +296,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.filesystem.usage` | UpDownCounter | `By` | Container filesystem usage [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
+| `container.filesystem.usage` | UpDownCounter | `By` | Container filesystem usage. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
 
 **[1]:** This may not equal capacity - available.
 
