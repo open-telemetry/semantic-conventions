@@ -133,6 +133,7 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 | `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
 | `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `onc_rpc` | ONC RPC (Sun RPC) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated RPC Attributes
 
