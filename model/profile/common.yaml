@@ -14,3 +14,5 @@ groups:
     attributes:
       - ref: profile.pprof.mapping
         requirement_level: recommended
+      - ref: profile.pprof.location
+        requirement_level: recommended

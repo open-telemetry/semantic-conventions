@@ -39,7 +39,16 @@ Attributes specific to pprof that helps to convert Profiling signals.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
+| <a id="profile-pprof-location" href="#profile-pprof-location">`profile.pprof.location`</a> | string | Describes the relation between symbols and a location. | `is_folded` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="profile-pprof-mapping" href="#profile-pprof-mapping">`profile.pprof.mapping`</a> | string | Describes the resolution of symbolic information. | `has_filenames` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`profile.pprof.location` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `is_folded` | Provides an indication that multiple symbols map to this location's address, for example due to identical code folding by the linker. In that case the line information represents one of the multiple symbols. This field must be recomputed when the symbolization state of the profile changes. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
