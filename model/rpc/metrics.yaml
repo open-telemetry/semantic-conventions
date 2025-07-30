@@ -160,33 +160,3 @@ groups:
       Should be 1 for all non-streaming RPCs.
 
       **Streaming**: This metric is required for server and client streaming RPCs
-
-  - id: metric.rpc.client.connection.count
-    type: metric
-    metric_name: rpc.client.connection.count
-    stability: development
-    brief: "Reports the count of RPC client TCP connections"
-    instrument: counter
-    unit: "{connection}"
-    attributes:
-      - ref: rpc.system
-      - ref: network.transport
-      - ref: network.type
-      - ref: peer.service.name
-    entity_associations:
-      - host
-
-  - id: metric.rpc.server.connection.count
-    type: metric
-    metric_name: rpc.server.connection.count
-    stability: development
-    brief: "Reports the count of RPC server TCP connections"
-    instrument: counter
-    unit: "{connection}"
-    attributes:
-      - ref: rpc.system
-      - ref: network.transport
-      - ref: network.type
-      - ref: service.name
-    entity_associations:
-      - host
