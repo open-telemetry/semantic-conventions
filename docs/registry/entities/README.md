@@ -124,10 +124,6 @@ Currently, the following namespaces exist:
   <td><a href="faas.md#faas">faas</a></td>
   <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
 </tr><tr>
-  <td></td>
-  <td><a href="faas.md#faas-instance">faas.instance</a></td>
-  <td><img src="https://img.shields.io/badge/-development-blue" alt="Development"/></td>
-</tr><tr>
 <td>GCP</td><td></td><td></td>
 </tr><tr>
   <td></td>
