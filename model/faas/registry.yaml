@@ -45,6 +45,18 @@ groups:
       - id: faas.instance
         type: string
         stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: faas.instance.id
+        brief: >
+          The execution environment ID as a string, that will be potentially reused
+          for other invocations to the same function/function version.
+        note: >
+          - **AWS Lambda:** Use the (full) log stream name.
+        examples: ['2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de']
+      - id: faas.instance.id
+        type: string
+        stability: development
         brief: >
           The execution environment ID as a string, that will be potentially reused
           for other invocations to the same function/function version.
