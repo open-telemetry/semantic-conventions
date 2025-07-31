@@ -200,6 +200,10 @@ groups:
               value: 'rocketmq'
               brief: 'Apache RocketMQ'
               stability: development
+            - id: signalr
+              value: 'signalr'
+              brief: 'SignalR'
+              stability: development
             - id: pulsar
               value: 'pulsar'
               brief: 'Apache Pulsar'
