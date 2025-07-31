@@ -7,10 +7,11 @@
 
 <!-- toc -->
 
-- [Required](#required)
-- [Conditionally Required](#conditionally-required)
-- [Recommended](#recommended)
-- [Opt-In](#opt-in)
+- [Requirement Levels](#requirement-levels)
+  - [Required](#required)
+  - [Conditionally Required](#conditionally-required)
+  - [Recommended](#recommended)
+  - [Opt-In](#opt-in)
 - [Performance suggestions](#performance-suggestions)
 
 <!-- tocstop -->
@@ -22,13 +23,6 @@ requirement levels for attributes defined in semantic conventions._
 
 Attribute requirement levels apply to the
 [instrumentation library](https://opentelemetry.io/docs/concepts/glossary/#instrumentation-library).
-
-The following attribute requirement levels are specified:
-
-- [Required](#required)
-- [Conditionally Required](#conditionally-required)
-- [Recommended](#recommended)
-- [Opt-In](#opt-in)
 
 The requirement level for an attribute is specified by semantic conventions
 depending on attribute availability across instrumented entities, performance,
@@ -48,7 +42,21 @@ For example, [Database semantic convention](../database/README.md) references
 `network.transport` attribute defined in [General attributes](./README.md) with
 `Conditionally Required` level on it.
 
-## Required
+## Requirement Levels
+
+| Level | Included by Default | Included via Config | Excluded via Config |
+| --- | --- | --- | --- |
+| [Required](#required) | Yes | n/a | No |
+| [Conditionally Required](#conditionally-required) | Maybe [^1] | Maybe [^2] | Maybe [^3] |
+| [Recommended](#recommended) | Yes [^4] | No [^4] | Yes |
+| [Opt-In](#opt-in) | No | Yes | Yes |
+
+[^1]: only when the attribute requirement conditions or instructions were satisfied.
+[^2]: only when the attribute requirement conditions & instructions were not satisfied.
+[^3]: only when the attribute requirement conditions were not satisfied.
+[^4]: unless it was excluded for a reason outlined in [Recommended](#recommended) section.
+
+### Required
 
 All instrumentations MUST populate the attribute. A semantic convention defining
 a Required attribute expects an absolute majority of instrumentation libraries
@@ -63,7 +71,7 @@ defined by such convention. For example, the presence of the `db.system.name`
 attribute on a span can be used as an indication that the span follows database
 semantics._
 
-## Conditionally Required
+### Conditionally Required
 
 All instrumentations MUST populate the attribute when the given condition is
 satisfied. The semantic convention of a `Conditionally Required` attribute MUST
@@ -89,7 +97,7 @@ lookup, cache and populate `server.address`, but only if the user explicitly
 enables the instrumentation to do so, considering the performance issues that
 DNS lookups introduce.
 
-## Recommended
+### Recommended
 
 Instrumentations SHOULD add the attribute by default if it's readily available
 and can be [efficiently populated](#performance-suggestions). Instrumentations
@@ -101,7 +109,7 @@ consideration by default, SHOULD allow for users to opt-in to emit them as
 defined for the `Opt-In` requirement level (if the attributes are logically
 applicable).
 
-## Opt-In
+### Opt-In
 
 Instrumentations SHOULD populate the attribute if and only if the user
 configures the instrumentation to do so. Instrumentation that doesn't support
