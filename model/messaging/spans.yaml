@@ -338,7 +338,7 @@ groups:
     type: attribute_group
     stability: development
     extends: attributes.messaging.trace.minimal
-    brief: "Attributes that exist for SignalR."
+    brief: Attributes that exist for MQTT.
     attributes:
       - ref: messaging.destination.name
         brief: The topic being published/subscribed to.
