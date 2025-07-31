@@ -116,9 +116,9 @@ groups:
     unit: "s"
     stability: development
     extends: metric_attributes.gen_ai
-  - id: metric.gen_ai.client.active_agents
+  - id: metric.gen_ai.client.agent.active
     type: metric
-    metric_name: gen_ai.client.active_agents
+    metric_name: gen_ai.client.agent.active
     annotations:
       code_generation:
         metric_value_type: int
