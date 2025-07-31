@@ -502,7 +502,10 @@ If the propagator does not provide any value, the instrumentation SHOULD NOT inj
   SELECT * FROM songs /*traceparent='00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01',tracestate='congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7'*/
   ```
 
-  Note that adding high cardinality comments, like `traceparent` and `tracestate`, to queries can impact the performance for some database systems, like MySQL. See [this related issue](https://github.com/google/sqlcommenter/issues/284) for more details.
+  Note that adding high cardinality comments, like `traceparent` and `tracestate`, to queries can impact the performance for some database systems, such as:
+  
+  - Prepared statements in MySQL. See [this related issue](https://github.com/google/sqlcommenter/issues/284) for more details.
+  - Oracle and SQL Server for both prepared and non-prepared statements.
 
 - For a query `SELECT * FROM songs` with a custom propagator that injects `service.name` into carrier where `service.name` is `shoppingcart`:
 
