@@ -56,7 +56,33 @@ port.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`service.roles`](/docs/registry/attributes/service.md) | string[] | Roles of a service node. [4] | `["ui", "background_tasks"]`; `["background_tasks"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`service.state`](/docs/registry/attributes/service.md) | string | Current state of the service. [5] | `stopped`; `start_pending`; `stop_pending` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`service.version`](/docs/registry/attributes/service.md) | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+**[4] `service.roles`:** This allows for distinction between different running roles of the same service.
+
+In the case of Kibana, the service.roles could be ui or background_tasks or both.
+
+In the case of Elasticsearch, the service.roles could be master or data or both.
+
+Other services could use this to distinguish between a web and worker role running as part of the service.
+
+**[5] `service.state`:** This state could be reported a collector which monitors the services
+
+---
+
+`service.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `pause_pending` | Pause Pending | ![Development](https://img.shields.io/badge/-development-blue) |
+| `paused` | Paused | ![Development](https://img.shields.io/badge/-development-blue) |
+| `resume_pending` | Resume Pending | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | Running | ![Development](https://img.shields.io/badge/-development-blue) |
+| `start_pending` | Start Pending | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stop_pending` | Stop Pending | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | Stopped | ![Development](https://img.shields.io/badge/-development-blue) |
 
 
 <!-- markdownlint-restore -->
