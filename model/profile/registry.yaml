@@ -78,3 +78,36 @@ groups:
                 [Rust](https://wikipedia.org/wiki/Rust_(programming_language))
               value: "rust"
               stability: development
+  - id: registry.profile.pprof
+    type: attribute_group
+    display_name: Pprof specific attributes for the Profiling signal
+    brief: >
+      Attributes specific to pprof that helps to convert Profiling signals.
+    attributes:
+      - id: profile.pprof.mapping
+        stability: development
+        brief: >
+          Describes the resolution of symbolic information.
+        examples: ['has_filenames']
+        type:
+          members:
+            - id: has_functions
+              brief: >
+                Indicates that there are functions related to this mapping.
+              value: "has_functions"
+              stability: development
+            - id: has_filenames
+              brief: >
+                Indicates that there are filenames related to this mapping.
+              value: "has_filenames"
+              stability: development
+            - id: has_line_numbers
+              brief: >
+                Indicates that there are line numbers related to this mapping.
+              value: "has_line_numbers"
+              stability: development
+            - id: has_inline_frames
+              brief: >
+                Indicates that there are inlined frames related to this mapping.
+              value: "has_inline_frames"
+              stability: development
