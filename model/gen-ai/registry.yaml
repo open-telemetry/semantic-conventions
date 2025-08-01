@@ -335,15 +335,20 @@ groups:
       - id: gen_ai.evaluation.name
         stability: development
         type: string
-        brief: The qualified name of the evaluator used to evaluate the GenAI response.
+        brief: The name of the evaluation used for the GenAI response.
         examples: ["Relevance", "IntentResolution"]
         note: >
           This attribute identifies the evaluation name.
       - id: gen_ai.evaluation.score
         stability: development
         type: double
-        brief: The evaluation score for the GenAI response.
+        brief: The evaluation score returned by the evaluator.
         examples: [4.0]
+      - id: gen_ai.evaluation.label
+        stability: development
+        type: string
+        brief: Human readable label for evaluation.
+        examples: ["relevant", "not_relevant", "correct", "incorrect", "pass", "fail"]
       - id: gen_ai.input.metadata
         stability: development
         type: string
@@ -377,12 +382,12 @@ groups:
         type: string
         brief: A free-form reasoning for the assigned score provided by the evaluator.
         examples: ["The response is factually accurate but lacks sufficient detail to fully address the question."]
-      - id: gen_ai.evaluation.metadata
+      - id: gen_ai.metadata
         stability: development
         type: string
-        brief: Additional metadata associated with the evaluation.
-        examples: ['{\"evaluator_version\": \"1.2.0\", \"gen_ai.thread.id\": \"thread_ggguJ0iZXRPjUnCy9vT9Fdvs\"}']
+        brief: Metadata associated with Gen AI operation.
+        examples: ['{\"gen_ai.thread.id\": \"thread_ggguJ0iZXRPjUnCy9vT9Fdvs\"}']
         note: >
-          The structure is specific to the evaluator. If the metadata is structured, it
+          The structure is specific to Gen AI operatiption. If the metadata is structured, it
           is RECOMMENDED to provide it in a structured form using language-specific API. It
           can also be captured as a JSON string when structured API is not available.
