@@ -6,10 +6,12 @@ groups:
     brief: >
       This event is recorded when a file is accessed.
     attributes:
+      - ref: error.type
+      - ref: file.created
+      - ref: file.mode
+      - ref: file.attributes
       - ref: file.path
       - ref: file.size
-      - ref: file.accessed
-      - ref: file.created
       - ref: file.owner.name
       - ref: file.owner.id
       - ref: file.origin_referrer_url
