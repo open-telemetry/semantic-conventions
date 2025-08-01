@@ -309,3 +309,57 @@ groups:
         requirement_level: required
       - ref: aws.bedrock.knowledge_base.id
         requirement_level: recommended
+
+  - id: span.gen_ai.evaluation.result.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      Describes GenAI evaluation span - a request to evaluate a GenAI response or output.
+    note: |
+      `gen_ai.operation.name` SHOULD be `evaluation`.
+
+      **Span name** SHOULD be `evaluation {gen_ai.evaluation.name}`.
+
+      This span is typically used when instrumenting evaluation frameworks or services
+      that assess the quality, accuracy, or other characteristics of GenAI outputs.
+    extends: attributes.gen_ai.common.client
+    attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+      - ref: gen_ai.evaluation.name
+        requirement_level: required
+      - ref: gen_ai.evaluation.score
+        requirement_level:
+          conditionally_required: if evaluation completed successfully
+      - ref: gen_ai.evaluation.label
+        requirement_level:
+          conditionally_required: if evaluation completed successfully
+      - ref: gen_ai.input.metadata
+        requirement_level: recommended
+      - ref: gen_ai.output.metadata
+        requirement_level: recommended
+      - ref: gen_ai.evaluation.reasoning
+        requirement_level: recommended
+      - ref: gen_ai.metadata
+        requirement_level: recommended
+        note: >
+          Metadata associated with evaluation.
+        examples: ['{\"evaluator_version\": \"1.2.0\"}']
+      - ref: gen_ai.usage.input_tokens
+        requirement_level:
+          recommended: if evaluation was performed by a model
+        note: >
+          The total number of input tokens used by the model during the evaluation.
+      - ref: gen_ai.usage.output_tokens
+        requirement_level:
+          recommended: if evaluation was performed by a model
+        note: >
+          The total number of output tokens used by the model during the evaluation.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
+        note: |
+          The `error.type` SHOULD match the error code returned by the Generative AI Evaluation provider or the client library,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
