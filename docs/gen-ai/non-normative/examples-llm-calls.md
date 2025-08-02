@@ -489,10 +489,10 @@ sequenceDiagram
 
 <span id="gen-ai-output-messages-built-in-tools">`gen_ai.output.messages` value</span>
 
-> [!Note]
-> 
-> Built-in tool call `reponse` format is not specified yet (check https://github.com/open-telemetry/semantic-conventions/issues/2585
-> for the details). This example shows one of the possible ways to capture built-in 
+> [!NOTE]
+>
+> Built-in tool call `response` format is not specified yet (check [#2585](https://github.com/open-telemetry/semantic-conventions/issues/2585)
+> for the details). This example shows one of the possible ways to capture built-in
 > tool call details.
 
 ```json
