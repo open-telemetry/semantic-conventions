@@ -489,20 +489,36 @@ sequenceDiagram
 
 <span id="gen-ai-output-messages-built-in-tools">`gen_ai.output.messages` value</span>
 
+> [!Note]
+> 
+> Built-in tool call `reponse` format is not specified yet (check https://github.com/open-telemetry/semantic-conventions/issues/2585
+> for the details). This example shows one of the possible ways to capture built-in 
+> tool call details.
+
 ```json
 [
   {
     "role": "tool",
     "parts": [
       {
+        "type": "tool_call",
+        "id": " ci_6888515dea548198a1eea9"
+      },
+      {
         "type": "tool_call_response",
         "id": " ci_6888515dea548198a1eea9",
         "response": {
-          "type": "code_interpreter_call",
+          "outputs": [
+            {
+              "logs": "95",
+              "type": "logs"
+            }
+          ],
           "code": "import random\n\nrandom_number = random.randint(1, 100)\nrandom_number"
         }
       }
-    ]
+    ],
+    "finish_reason": "stop"
   },
   {
     "role": "assistant",
