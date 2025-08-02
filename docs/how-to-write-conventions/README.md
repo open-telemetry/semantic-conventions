@@ -104,7 +104,7 @@ When defining a new attribute:
   - Represent complex values as a set of flat attributes whenever possible.
     - Complex or structured attributes (not listed in the
       [set of standard attributes](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.47.0/specification/common/README.md#attribute))
-      could be referenced on events and spans (![Development](https://img.shields.io/badge/-development-blue)) only. 
+      could be referenced on events and spans (![Development](https://img.shields.io/badge/-development-blue)) only.
 
       Semantic convention authors should assume that backends do not index individual properties of complex attributes,
       that querying or aggregating on such properties is inefficient and complicated,
