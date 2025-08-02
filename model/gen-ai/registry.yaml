@@ -345,9 +345,8 @@ groups:
           Instructions that are part of the chat history SHOULD be recorded in
           `gen_ai.input.messages` attribute instead.
 
-          The data format of this attribute is system-specific. Semantic conventions
-          for specific GenAI systems MAY define the format of this attribute.
-
+          Instrumentations MUST follow [System instructions JSON schema](/docs/gen-ai/gen-ai-system-instructions.json).          
+          
           When recorded on spans, it MAY be recorded as a JSON string if structured
           format is not supported and SHOULD be recorded in structured form otherwise.
 
@@ -360,8 +359,8 @@ groups:
           See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
           section for more details.
         examples:
-          - "You are an Agent that greet users, always use greetings tool to respond"
-          - '["You are a language translator.", "Your mission is to translate text in English to French."]'
+          - '[{"type": "text", "content": "You are an Agent that greet users, always use greetings tool to respond"}]'
+          - '[{"type": "text", "content": "You are a language translator."}, {"type": "text", "content": ""Your mission is to translate text in English to French."}]'
       - id: gen_ai.input.messages
         stability: development
         type: any
