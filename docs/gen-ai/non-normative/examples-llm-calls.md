@@ -73,8 +73,50 @@ sequenceDiagram
 | `gen_ai.usage.output_tokens`    | `47`                                       |
 | `gen_ai.usage.input_tokens`     | `52`                                       |
 | `gen_ai.response.finish_reasons`| `["stop"]`                                 |
-| `gen_ai.input.messages`         | `[{"role": "system", "parts": [{"type": "text", "content": "You are a helpful bot"}]}, {"role": "user", "parts": [{"type": "text", "content": "Tell me a joke about OpenTelemetry"}]}]` |
-| `gen_ai.output.messages`        | `[{"role":"assistant","parts":[{"type":"text","content":" Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"}],"finish_reason":"stop"}]` |
+| `gen_ai.input.messages`         | [`gen_ai.input.messages`](#gen-ai-input-messages-simple) |
+| `gen_ai.output.messages`        | [`gen_ai.output.messages`](#gen-ai-output-messages-simple) |
+
+<span id="gen-ai-input-messages-simple">`gen_ai.input.messages` value</span>
+
+```json
+[
+  {
+    "role": "system",
+    "parts": [
+      {
+        "type": "text",
+        "content": "You are a helpful bot"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "type": "text",
+        "content": "Tell me a joke about OpenTelemetry"
+      }
+    ]
+  }
+]
+```
+
+<span id="gen-ai-output-messages-simple">`gen_ai.output.messages` value</span>
+
+```json
+[
+  {
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "text",
+        "content": " Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"
+      }
+    ],
+    "finish_reason": "stop"
+  }
+]
+```
 
 ### GenAI telemetry when content capturing is enabled on event attributes
 
@@ -112,8 +154,50 @@ Event:
 | `gen_ai.usage.output_tokens`    | `47`                                       |
 | `gen_ai.usage.input_tokens`     | `52`                                       |
 | `gen_ai.response.finish_reasons`| `["stop"]`                                 |
-| `gen_ai.input.messages`         | `[{"role": "system", "parts": [{"type": "text", "content": "You are a helpful bot"}]}, {"role": "user", "parts": [{"type": "text", "content": "Tell me a joke about OpenTelemetry"}]}]` |
-| `gen_ai.output.messages`        | `[{"role":"assistant","parts":[{"type":"text","content":" Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"}],"finish_reason":"stop"}]` |
+| `gen_ai.input.messages`         | [`gen_ai.input.messages`](#gen-ai-input-messages-event) |
+| `gen_ai.output.messages`        | [`gen_ai.output.messages`](#gen-ai-output-messages-event) |
+
+<span id="gen-ai-input-messages-event">`gen_ai.input.messages` value</span>
+
+```json
+[
+  {
+    "role": "system",
+    "parts": [
+      {
+        "type": "text",
+        "content": "You are a helpful bot"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "type": "text",
+        "content": "Tell me a joke about OpenTelemetry"
+      }
+    ]
+  }
+]
+```
+
+<span id="gen-ai-output-messages-event">`gen_ai.output.messages` value</span>
+
+```json
+[
+  {
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "text",
+        "content": " Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"
+      }
+    ],
+    "finish_reason": "stop"
+  }
+]
+```
 
 ## Tool calls (functions)
 
@@ -211,8 +295,45 @@ They are likely to be siblings if there is an encompassing span.
 | `gen_ai.usage.output_tokens`    | `17`                                        |
 | `gen_ai.usage.input_tokens`     | `47`                                        |
 | `gen_ai.response.finish_reasons`| `["tool_calls"]`                            |
-| `gen_ai.input.messages`         | `[{"role": "user", "parts": [{"type": "text", "content": "Weather in Paris?"}]}]` |
-| `gen_ai.output.messages`        | `[{"role": "assistant", "parts": [{"type": "tool_call", "id": "call_VSPygqKTWdrhaFErNvMV18Yl", "name":"get_weather", "arguments":{"location":"Paris"}}]}],"finish_reason":"stop"}]` |
+| `gen_ai.input.messages`         | <span id="gen-ai-input-messages-tool-call-span-1">`gen_ai.input.messages` value</span> |
+| `gen_ai.output.messages`        | <span id="gen-ai-output-messages-tool-call-span-1">`gen_ai.output.messages` value</span> |
+
+<span id="gen-ai-input-messages-tool-call-span-1">`gen_ai.input.messages` value</span>
+
+```json
+[
+  {
+    "role": "user",
+    "parts": [
+      {
+        "type": "text",
+        "content": "Weather in Paris?"
+      }
+    ]
+  }
+]
+```
+
+<span id="gen-ai-output-messages-tool-call-span-1">`gen_ai.output.messages` value</span>
+
+```json
+[
+  {
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "tool_call",
+        "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
+        "name": "get_weather",
+        "arguments": {
+          "location": "Paris"
+        }
+      }
+    ],
+    "finish_reason": "tool_call"
+  }
+]
+```
 
 **Tool call:**
 
@@ -240,8 +361,64 @@ If tool call is [instrumented according to execute-tool span definition](../gen-
 | `gen_ai.usage.output_tokens`    | `52`                                        |
 | `gen_ai.usage.input_tokens`     | `97`                                        |
 | `gen_ai.response.finish_reasons`| `["stop"]`                                  |
-| `gen_ai.input.messages`         | `[{"role": "user", "parts": [{"type": "text", "content": "Weather in Paris?"}]}, {"role": "assistant", "parts": [{"type": "tool_call", "id": "call_VSPygqKTWdrhaFErNvMV18Yl", "name":"get_weather", "arguments":{"location":"Paris"}}]}, {"role": "tool", "parts": [{"type": "tool_call_response", "id":" call_VSPygqKTWdrhaFErNvMV18Yl", "response":"rainy, 57°F"}]}]` |
-| `gen_ai.output.messages`        | `[{"role":"assistant","parts":[{"type":"text","content":"The weather in Paris is currently rainy with a temperature of 57°F."}],"finish_reason":"stop"}]` |
+| `gen_ai.input.messages`         | <span id="gen-ai-input-messages-tool-call-span-2">`gen_ai.input.messages` value</span> |
+| `gen_ai.output.messages`        | <span id="gen-ai-output-messages-tool-call-span-2">`gen_ai.output.messages` value</span> |
+
+<span id="gen-ai-input-messages-tool-call-span-2">`gen_ai.input.messages` value</span>
+
+```json
+[
+  {
+    "role": "user",
+    "parts": [
+      {
+        "type": "text",
+        "content": "Weather in Paris?"
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "tool_call",
+        "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
+        "name": "get_weather",
+        "arguments": {
+          "location": "Paris"
+        }
+      }
+    ]
+  },
+  {
+    "role": "tool",
+    "parts": [
+      {
+        "type": "tool_call_response",
+        "id": " call_VSPygqKTWdrhaFErNvMV18Yl",
+        "response": "rainy, 57°F"
+      }
+    ]
+  }
+]
+```
+
+<span id="gen-ai-output-messages-tool-call-span-2">`gen_ai.output.messages` value</span>
+
+```json
+[
+  {
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "text",
+        "content": "The weather in Paris is currently rainy with a temperature of 57°F."
+      }
+    ],
+    "finish_reason": "stop"
+  }
+]
+```
 
 ## Tool calls (built-in)
 
@@ -282,8 +459,63 @@ sequenceDiagram
 | `gen_ai.usage.output_tokens`    | `44`                                        |
 | `gen_ai.usage.input_tokens`     | `385`                                       |
 | `gen_ai.response.finish_reasons`| `["stop"]`                                  |
-| `gen_ai.input.messages`         | `[{"role": "system", "parts": [{"type": "text", "content": "You are a helpful bot"}]}, {"role": "user", "parts": [{"type": "text", "content": "Write Python code that generates a random number, executes it, and returns the result."}]}]` |
-| `gen_ai.output.messages`        | `[{"role":"tool","parts":[{"type":"tool_call_response","id":" ci_6888515dea548198a1eea9","response":{"type":"code_interpreter_call","code":"import random\n\nrandom_number = random.randint(1, 100)\nrandom_number"}}]},{"role":"assistant","parts":[{"type":"text","content":"The generated random number is 95."}],"finish_reason":"stop"}]` |
+| `gen_ai.input.messages`         | <span id="gen-ai-input-messages-built-in-tools">`gen_ai.input.messages` value</span> |
+| `gen_ai.output.messages`        | <span id="gen-ai-output-messages-built-in-tools">`gen_ai.output.messages` value</span> |
+
+<span id="gen-ai-input-messages-built-in-tools">`gen_ai.input.messages` value</span>
+
+```json
+[
+  {
+    "role": "system",
+    "parts": [
+      {
+        "type": "text",
+        "content": "You are a helpful bot"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "type": "text",
+        "content": "Write Python code that generates a random number, executes it, and returns the result."
+      }
+    ]
+  }
+]
+```
+
+<span id="gen-ai-output-messages-built-in-tools">`gen_ai.output.messages` value</span>
+
+```json
+[
+  {
+    "role": "tool",
+    "parts": [
+      {
+        "type": "tool_call_response",
+        "id": " ci_6888515dea548198a1eea9",
+        "response": {
+          "type": "code_interpreter_call",
+          "code": "import random\n\nrandom_number = random.randint(1, 100)\nrandom_number"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "text",
+        "content": "The generated random number is 95."
+      }
+    ],
+    "finish_reason": "stop"
+  }
+]
+```
 
 ## Chat completion with multiple choices
 
@@ -322,5 +554,57 @@ sequenceDiagram
 | `gen_ai.usage.output_tokens`    | `77`                                       |
 | `gen_ai.usage.input_tokens`     | `52`                                       |
 | `gen_ai.response.finish_reasons`| `["stop", "stop"]`                         |
-| `gen_ai.input.messages`         | `[{"role": "system", "parts": [{"type": "text", "content": "You are a helpful bot"}]}, {"role": "user", "parts": [{"type": "text", "content": "Tell me a joke about OpenTelemetry"}]}]` |
-| `gen_ai.output.messages`        | `[{"role":"assistant","parts":[{"type":"text","content":" Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"}],"finish_reason":"stop"},{"role":"assistant","parts":[{"type":"text","content":" Why did OpenTelemetry get promoted? It had great span of control!"}],"finish_reason":"stop"}]` |
+| `gen_ai.input.messages`         | <span id="gen-ai-input-messages-choices">`gen_ai.input.messages` value</span> |
+| `gen_ai.output.messages`        | <span id="gen-ai-output-messages-choices">`gen_ai.output.messages` value</span> |
+
+<span id="gen-ai-input-messages-choices">`gen_ai.input.messages` value</span>
+
+```json
+[
+  {
+    "role": "system",
+    "parts": [
+      {
+        "type": "text",
+        "content": "You are a helpful bot"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "type": "text",
+        "content": "Tell me a joke about OpenTelemetry"
+      }
+    ]
+  }
+]
+```
+
+<span id="gen-ai-output-messages-choices">`gen_ai.output.messages` value</span>
+
+```json
+[
+  {
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "text",
+        "content": " Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"
+      }
+    ],
+    "finish_reason": "stop"
+  },
+  {
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "text",
+        "content": " Why did OpenTelemetry get promoted? It had great span of control!"
+      }
+    ],
+    "finish_reason": "stop"
+  }
+]
+```
