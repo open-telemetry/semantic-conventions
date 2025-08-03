@@ -87,7 +87,9 @@ groups:
         type: string[]
         stability: development
         brief: 'A collection of `os.id` that this os is like.'
-        note: 'This relationship is to only be desribed from the derivitative of the parent ie for Fedora this would be RHEL but RHEL would not have fedora.'
+        note: >
+          This collection should only be used to describe the parent OS's and not the child OS's.
+          For example `Fedora` would have `RHEL` but `RHEL` would not have `Fedora`.
         examples:
           - ['android']
           - ['fedora', 'rhel']

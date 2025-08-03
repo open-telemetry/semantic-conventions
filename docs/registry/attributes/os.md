@@ -19,7 +19,7 @@ The operating system (OS) on which the process represented by this resource is r
 | <a id="os-variant-name" href="#os-variant-name">`os.variant.name`</a> | string | Human readable name of the operating system variant. | `Server Edition`; `Embedded Edition` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="os-version" href="#os-version">`os.version`</a> | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `os.family`:** This relationship is to only be desribed from the derivitative of the parent ie for Fedora this would be RHEL but RHEL would not have fedora.
+**[1] `os.family`:** This collection should only be used to describe the parent OS's and not the child OS's. For example `Fedora` would have `RHEL` but `RHEL` would not have `Fedora`.
 
 **[2] `os.id`:** On linux this is to be the id from the os.release file
 
