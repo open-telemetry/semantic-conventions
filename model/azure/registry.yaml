@@ -95,3 +95,27 @@ groups:
         stability: development
         brief: Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels).
         examples: ["Eventual", "ConsistentPrefix", "BoundedStaleness", "Strong", "Session"]
+  - id: registry.azure.app_service
+    type: attribute_group
+    display_name: Azure App Service Attributes
+    brief: >
+      This section defines generic attributes used by Azure App Service.
+    attributes:
+      - id: azure.app_service.stamp
+        type: string
+        stability: development
+        brief: The specific "stamp" cluster within Azure where the App Service is running.
+        examples:
+          - "waws-prod-sn1-001"
+  - id: registry.azure.vm
+    type: attribute_group
+    display_name: Azure VM Attributes
+    brief: >
+      This section defines generic attributes used by Azure VM's.
+    attributes:
+      - id: azure.vm.scaleset.name
+        type: string
+        stability: development
+        brief: The name of the Virtual Machine Scale Set if the VM is part of one.
+        examples:
+          - "production"
