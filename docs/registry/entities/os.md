@@ -37,6 +37,6 @@
 | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
 | Linux | `BUILD_ID` from `/etc/os-release` | `BUILD_ID` from `/usr/lib/os-release`; <br> contents of `/proc/sys/kernel/osrelease`|
 
-**[3] `os.family`:** This relationship is to only be desribed from the derivitative of the parent ie for Fedora this would be RHEL but RHEL would not have fedora.
+**[3] `os.family`:** This collection should only be used to describe the parent OS's and not the child OS's. For example `Fedora` would have `RHEL` but `RHEL` would not have `Fedora`.
 
 <!-- markdownlint-restore -->
