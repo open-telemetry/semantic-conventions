@@ -15,6 +15,8 @@ The operating system (OS) on which the process represented by this resource is r
 | <a id="os-id" href="#os-id">`os.id`</a> | string | A string to uniquely identify the os without the version [2] | `android`; `centos`; `fedora`; `macosx` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="os-name" href="#os-name">`os.name`</a> | string | Human readable operating system name. | `Centos Stream`; `Arch Linux`; `Ubuntu` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="os-type" href="#os-type">`os.type`</a> | string | The operating system type. | `windows`; `linux`; `darwin` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="os-variant-id" href="#os-variant-id">`os.variant.id`</a> | string | Identifies a specific variant or edition of the operating system. | `server`; `embedded` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="os-variant-name" href="#os-variant-name">`os.variant.name`</a> | string | Human readable name of the operating system variant. | `Server Edition`; `Embedded Edition` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="os-version" href="#os-version">`os.version`</a> | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `os.family`:** This relationship is to only be desribed from the derivitative of the parent ie for Fedora this would be RHEL but RHEL would not have fedora.
