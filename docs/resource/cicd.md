@@ -94,8 +94,8 @@ Using the CICD pipeline run resource with metrics inherently causes high cardina
 **type:** `cicd.worker`
 
 **Description:** A CICD worker is a component of the CICD system that performs work (eg. running pipeline tasks or performing sync).
-A pipeline run can be executed on several workers. The pipeline run span and its individual child spans (eg. for task runs) of the pipeline run should be associated with the the most appropriate worker.
-For a pipeline run executing on multiple workers, its task run spans could have different cicd.worker resources, while the parent pipeline run span could have the CICD controller as the `cicd.worker` resource.
+A pipeline run can be executed on several workers. The pipeline run span and its individual child spans (eg. for task runs) should be associated with the most appropriate worker for a given span.
+For a pipeline run executing on multiple workers its task run spans could have different cicd.worker resources. The parent pipeline run span could have the CICD controller as the `cicd.worker` resource.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
