@@ -80,7 +80,7 @@ The ID is assigned by the container runtime and can vary in different environmen
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`container.runtime.description`](/docs/registry/attributes/container.md) | string | An additional description about the runtime, for example a specific vendor customization of the runtime environment. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`container.runtime.description`](/docs/registry/attributes/container.md) | string | A description about the runtime which could include, for example details about the CRI/API version being used or other customisations. | `docker://19.3.1 - CRI: 1.22.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 
 <!-- markdownlint-restore -->

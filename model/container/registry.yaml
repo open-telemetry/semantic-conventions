@@ -36,9 +36,9 @@ groups:
         type: string
         stability: development
         brief: >
-          An additional description about the runtime, for example
-          a specific vendor customization of the runtime environment.
-        examples: ''
+          A description about the runtime which could include, for example
+          details about the CRI/API version being used or other customisations.
+        examples: ['docker://19.3.1 - CRI: 1.22.0']
       - id: container.image.name
         type: string
         stability: development
