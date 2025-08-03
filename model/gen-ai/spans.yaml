@@ -14,13 +14,6 @@ groups:
             custom model, the value should have a more specific name than the base model that's been fine-tuned.
       - ref: gen_ai.operation.name
         requirement_level: required
-      - ref: server.address
-        brief: GenAI server address.
-        requirement_level: recommended
-      - ref: server.port
-        brief: GenAI server port.
-        requirement_level:
-          conditionally_required: If `server.address` is set.
       - ref: error.type
         requirement_level:
           conditionally_required: "if the operation ended in an error"
@@ -30,6 +23,21 @@ groups:
           Instrumentations SHOULD document the list of errors they report.
 
   - id: attributes.gen_ai.inference.client
+    type: attribute_group
+    stability: development
+    brief: >
+      Describes GenAI inference attributes.
+    extends: attributes.gen_ai.inference.internal
+    attributes:
+      - ref: server.address
+        brief: GenAI server address.
+        requirement_level: recommended
+      - ref: server.port
+        brief: GenAI server port.
+        requirement_level:
+          conditionally_required: If `server.address` is set.
+
+  - id: attributes.gen_ai.inference.internal
     type: attribute_group
     stability: development
     brief: >
@@ -106,7 +114,7 @@ groups:
       and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#span).
     extends: attributes.gen_ai.inference.client
     attributes:
-      - ref: gen_ai.system
+      - ref: gen_ai.provider.name
         # TODO: Not adding to common attributes because of https://github.com/open-telemetry/weaver/issues/479
         requirement_level: required
       - ref: gen_ai.request.top_k
@@ -126,7 +134,7 @@ groups:
       **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
       and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#span).
-    extends: attributes.gen_ai.inference.client
+    extends: attributes.gen_ai.inference.internal
     attributes:
       - ref: gen_ai.provider.name
         # TODO: Not adding to common attributes because of https://github.com/open-telemetry/weaver/issues/479
@@ -222,6 +230,13 @@ groups:
       **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
     extends: attributes.gen_ai.common.client
     attributes:
+      - ref: server.address
+        brief: GenAI server address.
+        requirement_level: recommended
+      - ref: server.port
+        brief: GenAI server port.
+        requirement_level:
+          conditionally_required: If `server.address` is set.
       - ref: gen_ai.request.encoding_formats
         requirement_level: recommended
       - ref: gen_ai.usage.input_tokens
@@ -241,6 +256,13 @@ groups:
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
     extends: attributes.gen_ai.common.client
     attributes:
+      - ref: server.address
+        brief: GenAI server address.
+        requirement_level: recommended
+      - ref: server.port
+        brief: GenAI server port.
+        requirement_level:
+          conditionally_required: If `server.address` is set.
       - ref: gen_ai.provider.name
         requirement_level: required
       - ref: gen_ai.agent.id
