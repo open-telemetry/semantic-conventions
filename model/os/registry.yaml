@@ -109,3 +109,13 @@ groups:
         stability: development
         brief: 'Unique identifier for a particular build or compilation of the operating system.'
         examples: ['TQ3C.230805.001.B2', '20E247', '22621']
+      - id: os.variant.id
+        type: string
+        stability: development
+        brief: 'Identifies a specific variant or edition of the operating system.'
+        examples: ['server', 'embedded']
+      - id: os.variant.name
+        type: string
+        stability: development
+        brief: 'Human readable name of the operating system variant.'
+        examples: ['Server Edition', 'Embedded Edition']
