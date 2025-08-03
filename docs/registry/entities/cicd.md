@@ -47,6 +47,8 @@
 **type:** `cicd.worker`
 
 **Description:** A CICD worker is a component of the CICD system that performs work (eg. running pipeline tasks or performing sync).
+A pipeline run can be executed on several workers. The pipeline run span and its individual child spans (eg. for task runs) of the pipeline run should be associated with the the most appropriate worker.
+For a pipeline run executing on multiple workers, its task run spans could have different cicd.worker resources, while the parent pipeline run span could have the CICD controller as the `cicd.worker` resource.
 
 **Other Attributes:**
 
