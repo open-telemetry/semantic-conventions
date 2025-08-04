@@ -1,17 +1,17 @@
 groups:
   - id: registry.azure.client.sdk.deprecated
     type: attribute_group
-    display_name: Deprecated Azure Client Library Attributes
+    display_name: Deprecated Azure Attributes
     brief: >
-      This section defines generic attributes used by Azure Client Libraries.
+      This section describes deprecated Azure attributes.
     attributes:
       - id: az.service_request_id
         type: string
         stability: development
-        brief: "Deprecated, use `peer.request.id` instead."
+        brief: "Deprecated, use `azure.service.request.id` instead."
         deprecated:
           reason: renamed
-          renamed_to: peer.request.id
+          renamed_to: azure.service.request.id
         examples:
           - "00000000-0000-0000-0000-000000000000"
       - id: az.namespace
@@ -23,23 +23,6 @@ groups:
         brief: >
           Deprecated, use `peer.service.namespace` instead.
         examples: ["Microsoft.Storage", "Microsoft.KeyVault", "Microsoft.ServiceBus"]
-      - id: azure.client.id
-        type: string
-        stability: development
-        deprecated:
-          reason: renamed
-          renamed_to: service.instance.id
-        brief: The unique identifier of the client instance.
-        examples: ["3ba4827d-4422-483f-b59f-85b74211c11d", "storage-client-1"]
-      - id: azure.service.request.id
-        type: string
-        stability: development
-        brief: "Deprecated, use `peer.request.id` instead."
-        deprecated:
-          reason: renamed
-          renamed_to: peer.request.id
-        examples:
-          - "00000000-0000-0000-0000-000000000000"
       - id: azure.resource_provider.namespace
         type: string
         stability: development
