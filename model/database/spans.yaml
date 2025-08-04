@@ -1027,3 +1027,21 @@ groups:
       `db.system.name` MUST be set to `"surrealdb"` and SHOULD be provided **at span creation time**.
     attributes:
       - ref: network.protocol.name
+      - ref: db.stored_procedure.name
+        brief: In SurrealDB this refers to the function being invoked.
+        note: ''
+      - ref: db.namespace
+        note: SurrealDB has the notion of both namespace & database for each client. As such the structure of this attribute would become `{{Namespace}}|{{Database}}`.
+        examples: ['customers', 'webshop\|customers']
+      - ref: db.operation.name
+        note: The operation name is to reflect the api method being called ie upsert.
+        requirement_level: recommended
+      - ref: db.response.status_code
+        note: The http response status code is to be used as the database status code.
+      - ref: db.query.summary
+        note: The query summary is to be a concatenation of the method and table being acted on.
+        requirement_level: recommended
+      - ref: db.collection.name
+        brief: The name of the table within the database.
+        note: ''
+        requirement_level: recommended
