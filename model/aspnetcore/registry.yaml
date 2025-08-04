@@ -299,7 +299,7 @@ groups:
               brief: "Any token purpose that the instrumentation has no prior knowledge of."
               stability: development
         stability: development
-        brief: The result from checking the password.
+        brief: What the token will be used for.
         examples: ["success", "failure"]
       - id: aspnetcore.identity.token_verified
         type:

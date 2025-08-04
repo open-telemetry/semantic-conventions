@@ -152,7 +152,7 @@ groups:
         metric_value_type: int
     stability: development
     brief: The duration of user creation operations.
-    instrument: counter
+    instrument: histogram
     unit: "s"
     note: |
       Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
@@ -179,7 +179,7 @@ groups:
         metric_value_type: int
     stability: development
     brief: The duration of user update operations.
-    instrument: counter
+    instrument: histogram
     unit: "s"
     note: |
       Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
@@ -208,8 +208,8 @@ groups:
         metric_value_type: int
     stability: development
     brief: The duration of user deletion operations.
-    instrument: counter
-    unit: "{user}"
+    instrument: histogram
+    unit: "s"
     note: |
       Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
     extends: aspnetcore.common.identity.metrics.attributes
@@ -308,7 +308,7 @@ groups:
         metric_value_type: int
     stability: development
     brief: The duration of authenticate attempts. The authenticate metrics is recorded by sign in methods such as PasswordSignInAsync and TwoFactorSignInAsync.
-    instrument: counter
+    instrument: histogram
     unit: "s"
     note: |
       Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0

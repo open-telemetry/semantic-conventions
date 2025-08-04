@@ -318,7 +318,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `aspnetcore.identity.user.create.duration` | Counter | `s` | The duration of user creation operations. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `aspnetcore.identity.user.create.duration` | Histogram | `s` | The duration of user creation operations. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
 
@@ -362,7 +362,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `aspnetcore.identity.user.update.duration` | Counter | `s` | The duration of user update operations. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `aspnetcore.identity.user.update.duration` | Histogram | `s` | The duration of user update operations. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
 
@@ -447,7 +447,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `aspnetcore.identity.user.delete.duration` | Counter | `{user}` | The duration of user deletion operations. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `aspnetcore.identity.user.delete.duration` | Histogram | `s` | The duration of user deletion operations. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
 
@@ -543,7 +543,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`aspnetcore.identity.token_purpose`](/docs/registry/attributes/aspnetcore.md) | string | The result from checking the password. | `success`; `failure` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aspnetcore.identity.token_purpose`](/docs/registry/attributes/aspnetcore.md) | string | What the token will be used for. | `success`; `failure` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
@@ -590,7 +590,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`aspnetcore.identity.token_purpose`](/docs/registry/attributes/aspnetcore.md) | string | The result from checking the password. | `success`; `failure` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aspnetcore.identity.token_purpose`](/docs/registry/attributes/aspnetcore.md) | string | What the token will be used for. | `success`; `failure` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.token_verified`](/docs/registry/attributes/aspnetcore.md) | string | The result of token verification. | `success`; `failure` | `Conditionally Required` if no exception was thrown. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -641,7 +641,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `aspnetcore.identity.sign_in.authenticate.duration` | Counter | `s` | The duration of authenticate attempts. The authenticate metrics is recorded by sign in methods such as PasswordSignInAsync and TwoFactorSignInAsync. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `aspnetcore.identity.sign_in.authenticate.duration` | Histogram | `s` | The duration of authenticate attempts. The authenticate metrics is recorded by sign in methods such as PasswordSignInAsync and TwoFactorSignInAsync. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
 
