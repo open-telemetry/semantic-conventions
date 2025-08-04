@@ -8,10 +8,19 @@ groups:
       - id: az.service_request_id
         type: string
         stability: development
-        brief: "Deprecated, use `azure.service.request.id` instead."
+        brief: "Deprecated, use `peer.request.id` instead."
         deprecated:
           reason: renamed
-          renamed_to: azure.service.request.id
+          renamed_to: peer.request.id
+        examples:
+          - "00000000-0000-0000-0000-000000000000"
+      - id: azure.service.request.id
+        type: string
+        stability: development
+        brief: "Deprecated, use `peer.request.id` instead."
+        deprecated:
+          reason: renamed
+          renamed_to: peer.request.id
         examples:
           - "00000000-0000-0000-0000-000000000000"
       - id: az.namespace
