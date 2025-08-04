@@ -1016,3 +1016,14 @@ groups:
           For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used,
           otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
         examples: ["SELECT * FROM wuser_table where username = :mykey"]
+  - id: span.db.surrealdb.client
+    type: span
+    stability: development
+    extends: span.db.sql.client
+    span_kind: client
+    brief: >
+      Spans representing calls to a SurrealDB database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
+    note: |
+      `db.system.name` MUST be set to `"surrealdb"` and SHOULD be provided **at span creation time**.
+    attributes:
+      - ref: network.protocol.name
