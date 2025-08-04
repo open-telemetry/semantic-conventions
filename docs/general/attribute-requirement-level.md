@@ -47,14 +47,12 @@ For example, [Database semantic convention](../database/README.md) references
 | Level | Included by Default | Included via Config | Excluded via Config |
 | --- | --- | --- | --- |
 | [Required](#required) | Yes | n/a | No |
-| [Conditionally Required](#conditionally-required) | Maybe [^1] | Maybe [^2] | Maybe [^3] |
-| [Recommended](#recommended) | Yes [^4] | No [^4] | Yes |
+| [Conditionally Required](#conditionally-required) | Yes [^1] | No [^1] | No [^1] |
+| [Recommended](#recommended) | Yes [^2] | No [^2] | Yes |
 | [Opt-In](#opt-in) | No | Yes | Yes |
 
-[^1]: only when the attribute requirement conditions or instructions were satisfied.
-[^2]: only when the attribute requirement conditions & instructions were not satisfied.
-[^3]: only when the attribute requirement conditions were not satisfied.
-[^4]: unless it was excluded for a reason outlined in [Recommended](#recommended) section.
+[^1]: unless the attribute requirement conditions or instructions are not satisfied.
+[^2]: unless it was excluded for a reason outlined in [Recommended](#recommended) section.
 
 ### Required
 
