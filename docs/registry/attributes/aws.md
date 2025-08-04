@@ -3,6 +3,7 @@
 
 # AWS
 
+- [General AWS Attributes](#general-aws-attributes)
 - [Amazon Bedrock Attributes](#amazon-bedrock-attributes)
 - [Amazon DynamoDB Attributes](#amazon-dynamodb-attributes)
 - [Amazon ECS Attributes](#amazon-ecs-attributes)
@@ -15,7 +16,15 @@
 - [Amazon SNS Attributes](#amazon-sns-attributes)
 - [Amazon SQS Attributes](#amazon-sqs-attributes)
 - [Amazon Step Functions Attributes](#amazon-step-functions-attributes)
-- [Deprecated General AWS Attributes](#deprecated-general-aws-attributes)
+
+## General AWS Attributes
+
+This section defines generic attributes for AWS services.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="aws-extended-request-id" href="#aws-extended-request-id">`aws.extended_request_id`</a> | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aws-request-id" href="#aws-request-id">`aws.request_id`</a> | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Amazon Bedrock Attributes
 
@@ -213,12 +222,3 @@ This document defines attributes for AWS Step Functions.
 |---|---|---|---|---|
 | <a id="aws-step-functions-activity-arn" href="#aws-step-functions-activity-arn">`aws.step_functions.activity.arn`</a> | string | The ARN of the AWS Step Functions Activity. | `arn:aws:states:us-east-1:123456789012:activity:get-greeting` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aws-step-functions-state-machine-arn" href="#aws-step-functions-state-machine-arn">`aws.step_functions.state_machine.arn`</a> | string | The ARN of the AWS Step Functions State Machine. | `arn:aws:states:us-east-1:123456789012:stateMachine:myStateMachine:1` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## Deprecated General AWS Attributes
-
-This section defines generic attributes for AWS services.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="aws-extended-request-id" href="#aws-extended-request-id">`aws.extended_request_id`</a> | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `peer.request.extendedid`. |
-| <a id="aws-request-id" href="#aws-request-id">`aws.request_id`</a> | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `peer.request.id`. |
