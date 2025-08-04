@@ -26,14 +26,14 @@ This article defines semantic conventions for ASP.NET Core metrics.
   - [Metric: `aspnetcore.identity.user.update.duration`](#metric-aspnetcoreidentityuserupdateduration)
   - [Metric: `aspnetcore.identity.user.delete.duration`](#metric-aspnetcoreidentityuserdeleteduration)
   - [Metric: `aspnetcore.identity.user.check_password_attempts`](#metric-aspnetcoreidentityusercheck_password_attempts)
-  - [Metric: `aspnetcore.identity.user.generated_tokens`](#metric-aspnetcoreidentityusergenerate_token)
-  - [Metric: `aspnetcore.identity.user.verify_token_attempts`](#metric-aspnetcoreidentityuserverify_token)
+  - [Metric: `aspnetcore.identity.user.generated_tokens`](#metric-aspnetcoreidentityusergenerated_tokens)
+  - [Metric: `aspnetcore.identity.user.verify_token_attempts`](#metric-aspnetcoreidentityuserverify_token_attempts)
   - [Metric: `aspnetcore.identity.sign_in.authenticate.duration`](#metric-aspnetcoreidentitysign_inauthenticateduration)
-  - [Metric: `aspnetcore.identity.sign_in.check_password_attempts`](#metric-aspnetcoreidentitysign_incheck_password)
+  - [Metric: `aspnetcore.identity.sign_in.check_password_attempts`](#metric-aspnetcoreidentitysign_incheck_password_attempts)
   - [Metric: `aspnetcore.identity.sign_in.sign_ins`](#metric-aspnetcoreidentitysign_insign_ins)
   - [Metric: `aspnetcore.identity.sign_in.sign_outs`](#metric-aspnetcoreidentitysign_insign_outs)
-  - [Metric: `aspnetcore.identity.sign_in.two_factor_clients_remembered`](#metric-aspnetcoreidentitysign_inremember_two_factor)
-  - [Metric: `aspnetcore.identity.sign_in.two_factor_clients_forgotten`](#metric-aspnetcoreidentitysign_inforget_two_factor)
+  - [Metric: `aspnetcore.identity.sign_in.two_factor_clients_remembered`](#metric-aspnetcoreidentitysign_intwo_factor_clients_remembered)
+  - [Metric: `aspnetcore.identity.sign_in.two_factor_clients_forgotten`](#metric-aspnetcoreidentitysign_intwo_factor_clients_forgotten)
 
 <!-- tocstop -->
 
