@@ -1,22 +1,4 @@
 groups:
-  - id: registry.peer.request
-    type: attribute_group
-    display_name: Request Attributes
-    brief: >
-      information about the request being processed by the peer.
-    attributes:
-      - id: peer.request.id
-        type: string
-        stability: development
-        brief: "The request ID as returned for the peer."
-        examples:
-          - 79b9da39-b7ae-508a-a6bc-864b2829c622
-      - id: peer.request.extendedid
-        type: string
-        stability: development
-        brief: "An extended request ID as returned by the peer."
-        examples:
-          - 79b9da39-b7ae-508a-a6bc-864b2829c622
   - id: registry.peer.service
     type: attribute_group
     display_name: Service Attributes

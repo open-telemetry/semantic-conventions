@@ -27,6 +27,7 @@ This document defines attributes for remote procedure calls.
 | <a id="rpc-message-type" href="#rpc-message-type">`rpc.message.type`</a> | string | Whether this is a received or sent message. | `SENT`; `RECEIVED` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-message-uncompressed-size" href="#rpc-message-uncompressed-size">`rpc.message.uncompressed_size`</a> | int | Uncompressed size of the message in bytes. |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-method" href="#rpc-method">`rpc.method`</a> | string | This is the logical name of the method from the RPC interface perspective. [6] | `exampleMethod` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-service" href="#rpc-service">`rpc.service`</a> | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-system" href="#rpc-system">`rpc.system`</a> | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.connect_rpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
@@ -56,6 +57,8 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 **[5] `rpc.message.id`:** This way we guarantee that the values will be consistent between different implementations.
 
 **[6] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+
+**[7] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
 ---
 
@@ -137,9 +140,6 @@ Deprecated rpc message attributes.
 | <a id="message-id" href="#message-id">`message.id`</a> | int | Deprecated, use `rpc.message.id` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.id`. |
 | <a id="message-type" href="#message-type">`message.type`</a> | string | Deprecated, use `rpc.message.type` instead. | `SENT`; `RECEIVED` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.type`. |
 | <a id="message-uncompressed-size" href="#message-uncompressed-size">`message.uncompressed_size`</a> | int | Deprecated, use `rpc.message.uncompressed_size` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.uncompressed_size`. |
-| <a id="rpc-service" href="#rpc-service">`rpc.service`</a> | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `peer.service.name`. |
-
-**[7] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
 ---
 
