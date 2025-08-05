@@ -23,7 +23,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 - [Joao Grassi](https://github.com/joaopgrassi), Dynatrace
 - [Johannes Tax](https://github.com/pyohannes), Grafana Labs
 - [Josh Suereth](https://github.com/jsuereth), Google
-- [Liudmila Molkova](https://github.com/lmolkova), Microsoft
+- [Liudmila Molkova](https://github.com/lmolkova), Grafana Labs
 - [Trask Stalnaker](https://github.com/trask), Microsoft
 
 For more information about the maintainer role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#maintainer).
