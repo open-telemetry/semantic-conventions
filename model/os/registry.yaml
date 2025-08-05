@@ -70,11 +70,33 @@ groups:
           Human readable (not intended to be parsed) OS version information,
           like e.g. reported by `ver` or `lsb_release -a` commands.
         examples: ['Microsoft Windows [Version 10.0.18363.778]', 'Ubuntu 18.04.1 LTS']
+      - id: os.id
+        type: string
+        stability: development
+        brief: 'A string to uniquely identify the os without the version'
+        note: 'On linux this is to be the id from the os.release file'
+        examples: ['android', 'centos', 'fedora', 'macosx']
       - id: os.name
         type: string
         stability: development
         brief: 'Human readable operating system name.'
-        examples: ['iOS', 'Android', 'Ubuntu']
+        examples: ['Centos Stream', 'Arch Linux', 'Ubuntu']
+      - id: os.family
+        type: string[]
+        stability: development
+        brief: 'A collection of `os.id` that this os is like.'
+        note: >
+          This collection should only be used to describe the parent OS's and not the child OS's.
+          For example `Fedora` would have `RHEL` but `RHEL` would not have `Fedora`.
+        examples:
+          - ['android']
+          - ['fedora', 'rhel']
+          - ['arch']
+          - ['darwin']
+          - ['ubuntu']
+          - ['opensuse']
+          - ['gentoo']
+          - ['slackware']
       - id: os.version
         type: string
         stability: development
@@ -87,3 +109,13 @@ groups:
         stability: development
         brief: 'Unique identifier for a particular build or compilation of the operating system.'
         examples: ['TQ3C.230805.001.B2', '20E247', '22621']
+      - id: os.variant.id
+        type: string
+        stability: development
+        brief: 'Identifies a specific variant or edition of the operating system.'
+        examples: ['server', 'embedded']
+      - id: os.variant.name
+        type: string
+        stability: development
+        brief: 'Human readable name of the operating system variant.'
+        examples: ['Server Edition', 'Embedded Edition']
