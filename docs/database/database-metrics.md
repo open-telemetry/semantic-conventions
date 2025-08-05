@@ -179,6 +179,7 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 | Value  | Description | Stability |
 |---|---|---|
 | `actian.ingres` | [Actian Ingres](https://www.actian.com/databases/ingres/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `arangodb` | [ArangoDB](https://arangodb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.dynamodb` | [Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.redshift` | [Amazon Redshift](https://aws.amazon.com/redshift/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.cosmosdb` | [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -358,6 +359,7 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 | Value  | Description | Stability |
 |---|---|---|
 | `actian.ingres` | [Actian Ingres](https://www.actian.com/databases/ingres/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `arangodb` | [ArangoDB](https://arangodb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.dynamodb` | [Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.redshift` | [Amazon Redshift](https://aws.amazon.com/redshift/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.cosmosdb` | [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db) | ![Development](https://img.shields.io/badge/-development-blue) |
