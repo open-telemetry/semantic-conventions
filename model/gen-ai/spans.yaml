@@ -231,7 +231,7 @@ groups:
       - ref: gen_ai.agent.description
         requirement_level:
           conditionally_required: If provided by the application.
-      - ref: gen_ai.session.id
+      - ref: session.id
         requirement_level:
           conditionally_required: if applicable.
 
