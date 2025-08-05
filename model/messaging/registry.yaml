@@ -192,6 +192,10 @@ groups:
               value: 'kafka'
               brief: 'Apache Kafka'
               stability: development
+            - id: mqtt
+              value: 'mqtt'
+              brief: 'MQTT'
+              stability: development
             - id: rabbitmq
               value: 'rabbitmq'
               brief: 'RabbitMQ'
