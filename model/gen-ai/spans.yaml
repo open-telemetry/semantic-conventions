@@ -263,7 +263,7 @@ groups:
       - ref: gen_ai.data_source.id
         requirement_level:
           conditionally_required: if applicable.
-      - ref: gen_ai.session.id
+      - ref: session.id
         requirement_level:
           conditionally_required: if applicable.
 
@@ -295,7 +295,7 @@ groups:
       - ref: gen_ai.tool.type
         requirement_level:
           recommended: if available
-      - ref: gen_ai.session.id
+      - ref: session.id
         requirement_level:
           conditionally_required: if applicable.
       - ref: error.type
