@@ -76,7 +76,7 @@ semantic convention tooling supports complex attributes
 
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `change_state` | string | Type of state change used for the virtual page navigation | `pushState`; `replaceState` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `state_change` | string | Type of state change used for the virtual page navigation | `pushState`; `replaceState` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `referrer` | string | Referring Page URI (document.referrer) whenever available. | `https://en.wikipedia.org/wiki/Main_Page` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `title` | string | Page title DOM property | `Home`; `Checkout` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `type` | enum | Type of navigation | `0`; `1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
