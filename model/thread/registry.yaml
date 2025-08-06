@@ -17,3 +17,28 @@ groups:
         brief: >
           Current thread name.
         examples: main
+      - id: thread.pool.name
+        type: string
+        stability: development
+        brief: >
+          The thread pool which the thread belongs to pool.
+        note: >
+          If the thread is running on the pool but the name is not known,
+          the name of `UNKNOWN` can be used to indicate that it is on the pool.
+        examples: secondary
+      - id: thread.priority
+        type: string
+        stability: development
+        brief: >
+          The scheduling priority of a thread.
+        note: >
+          This value should be as per it is obtained from the SDK/library being used.
+          In the event both a numerical and a named value exists, the named value should be used as it provides meaningful context.
+        examples: [ "Lowest", "Highest", "0", "10" ]
+      - id: thread.state
+        type: string
+        stability: development
+        brief: >
+          State of the the thread.
+        note: This is to be the value as received via api/sdk without transformation.
+        examples: ["active", "inactive", "background", "blocked"]
