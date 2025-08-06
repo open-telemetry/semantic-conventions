@@ -21,7 +21,7 @@
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`faas.name`](/docs/registry/attributes/faas.md) | string | The name of the single function that this runtime instance executes. [1] | `my-function`; `myazurefunctionapp/some-function-name` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`faas.instance`](/docs/registry/attributes/faas.md) | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [2] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `faas.instance.id`. |
+| [`cloud.resource_id`](/docs/registry/attributes/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [2] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`faas.version`](/docs/registry/attributes/faas.md) | string | The immutable version of the function being executed. [3] | `26`; `pinkfroid-00002` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `faas.name`:** This is the name of the function as configured/deployed on the FaaS
@@ -41,7 +41,23 @@ definition of function name MUST be used for this attribute
   app can host multiple functions that would usually share
   a TracerProvider (see also the `cloud.resource_id` attribute).
 
-**[2] `faas.instance`:** - **AWS Lambda:** Use the (full) log stream name.
+**[2] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
+so it may be necessary to set `cloud.resource_id` as a span attribute instead.
+
+The exact value to use for `cloud.resource_id` depends on the cloud provider.
+The following well-known definitions MUST be used if you set this attribute and they apply:
+
+- **AWS Lambda:** The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+  Take care not to use the "invoked ARN" directly but replace any
+  [alias suffix](https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html)
+  with the resolved function version, as the same runtime instance may be invocable with
+  multiple different aliases.
+- **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
+- **Azure:** The [Fully Qualified Resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
+  *not* the function app, having the form
+  `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
+  This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
+  a TracerProvider.
 
 **[3] `faas.version`:** Depending on the cloud provider and platform, use:
 

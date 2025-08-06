@@ -9,7 +9,7 @@ groups:
       - ref: faas.name
         requirement_level: required
       - ref: faas.version
-      - ref: faas.instance
+      - ref: cloud.resource_id
   - id: entity.faas.instance
     type: entity
     stability: development
