@@ -85,6 +85,7 @@ size should be used.
 | `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `signalr` | SignalR | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Azure Event Hubs Attributes
 
