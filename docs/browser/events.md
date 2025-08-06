@@ -76,8 +76,8 @@ semantic convention tooling supports complex attributes
 
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `state_change` | string | Type of state change used for the virtual page navigation | `pushState`; `replaceState` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `referrer` | string | Referring Page URI (document.referrer) whenever available. | `https://en.wikipedia.org/wiki/Main_Page` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `change_state` | string | Type of state change used for the virtual page navigation | `pushState`; `replaceState` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `referrer` | string | Referring Page URI ([document.referrer](https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer)) whenever available. | `https://en.wikipedia.org/wiki/Main_Page` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `title` | string | Page title DOM property | `Home`; `Checkout` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `type` | enum | Type of navigation | `0`; `1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `url` | string | Full HTTP request URL in the form scheme://host[:port]/path?query[#fragment]. Usually the fragment is not transmitted over HTTP, but if it is known, it should be included nevertheless. | `https://en.wikipedia.org/wiki/Main_Page`; `https://en.wikipedia.org/wiki/Main_Page#foo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
