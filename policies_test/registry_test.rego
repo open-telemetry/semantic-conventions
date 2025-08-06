@@ -63,3 +63,44 @@ test_attribute_requirement_levels if {
 	count(before_resolution.deny) > 0 with input as {"groups": [{"id": "registry.foo", "attributes": [{"id": "foo", "requirement_level": {"recommended": "if available"}, "stability": "rc"}]}]}
 	count(before_resolution.deny) == 0 with input as {"groups": [{"id": "not_registry", "attributes": [{"ref": "foo", "requirement_level": "required"}]}]}
 }
+
+test_fails_on_member_id_collision if {
+    collision := {"groups": [
+        {"id": "registry.test", "prefix": "", "attributes": [{"id": "foo.bar.baz", "type": {"members": [
+            {"id": "member", "value": "value1", "brief": "brief", "stability": "stable"},
+            {"id": "member", "value": "value2", "brief": "brief", "stability": "stable"},
+        ]}, "stability": "stable"}]},
+    ]}
+    count(before_resolution.deny) == 2 with input as collision
+}
+
+test_fails_on_member_const_name_collision if {
+    collision := {"groups": [
+        {"id": "registry.test", "prefix": "", "attributes": [{"id": "foo.bar.baz", "type": {"members": [
+            {"id": "member_id", "value": "member_id", "brief": "brief", "stability": "stable"},
+            {"id": "member.id", "value": "member.id", "brief": "brief", "stability": "stable"},
+        ]}, "stability": "stable"}]},
+    ]}
+    count(before_resolution.deny) == 2 with input as collision
+}
+
+test_fails_on_member_value_collision if {
+    collision := {"groups": [
+        {"id": "registry.test", "prefix": "", "attributes": [{"id": "foo.bar.baz", "type": {"members": [
+            {"id": "member1", "value": "member", "brief": "brief", "stability": "stable"},
+            {"id": "member2", "value": "member", "brief": "brief", "stability": "stable"},
+        ]}, "stability": "stable"}]},
+    ]}
+    count(before_resolution.deny) == 2 with input as collision
+}
+
+test_passes_on_member_value_collision_with_deprecated if {
+    collision := {"groups": [
+        {"id": "registry.test", "prefix": "", "attributes": [{"id": "foo.bar.baz", "type": {"members": [
+            {"id": "member1", "value": "member", "brief": "brief", "stability": "stable", "deprecated": "renamed to member2"},
+            {"id": "member2", "value": "member", "brief": "brief", "stability": "stable"},
+        ]}, "stability": "stable"}]},
+    ]}
+    count(before_resolution.deny) == 0 with input as collision
+}
+

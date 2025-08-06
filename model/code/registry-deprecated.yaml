@@ -8,27 +8,48 @@ groups:
       - id: code.function
         type: string
         stability: development
-        deprecated: Replaced by `code.function.name`
+        deprecated:
+          reason: uncategorized
+          note: >
+            Value should be included in `code.function.name` which is expected
+            to be a fully-qualified name.
         brief: >
           Deprecated, use `code.function.name` instead
         examples: serveRequest
       - id: code.filepath
         type: string
         stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: code.file.path
         brief: >
           Deprecated, use `code.file.path` instead
         examples: /usr/local/MyApplication/content_root/app/index.php
       - id: code.lineno
         type: int
         stability: development
-        deprecated: Replaced by `code.line.number`
+        deprecated:
+          reason: renamed
+          renamed_to: code.line.number
         brief: >
           Deprecated, use `code.line.number` instead
         examples: 42
       - id: code.column
         type: int
         stability: development
-        deprecated: Replaced by `code.column.number`
+        deprecated:
+          reason: renamed
+          renamed_to: code.column.number
         brief: >
           Deprecated, use `code.column.number`
         examples: 16
+      - id: code.namespace
+        type: string
+        stability: development
+        deprecated:
+          reason: uncategorized
+          note: >
+            Value should be included in `code.function.name` which is expected to be a fully-qualified name.
+        brief: >
+          Deprecated, namespace is now included into `code.function.name`
+        examples: com.example.MyHttpService

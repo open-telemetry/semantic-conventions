@@ -2,7 +2,7 @@
 linkTitle: Events
 --->
 
-# Semantic conventions for Browser events
+# Semantic conventions for browser events
 
 **Status**: [Development][DocumentStatus]
 
@@ -27,6 +27,10 @@ This event represents a browser page load/view.
 The primary use case is to capture metrics about the number of views of a page. Page view can be a hard page load in a browser as well as virtual navigation in a SPA (single-page application). The event should be collected as soon as possible without waiting for potentially delayed data such as the Navigation timing browser API.
 
 **Body fields:**
+
+:warning: Body fields will be moved to complex attributes once the
+semantic convention tooling supports complex attributes
+(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
 
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

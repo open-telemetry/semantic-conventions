@@ -7,31 +7,44 @@ groups:
       - id: cpu.mode
         brief: "The mode of the CPU"
         type:
-          # TODO: Fix how enum members are used in semantic conventions after https://github.com/open-telemetry/build-tools/issues/192 is merged
+          # TODO: Fix how enum members are used in semantic conventions after https://github.com/open-telemetry/weaver/issues/479
           members:
             - id: user
               value: 'user'
+              brief: User
               stability: development
             - id: system
               value: 'system'
+              brief: System
               stability: development
             - id: nice
               value: 'nice'
+              brief: Nice
               stability: development
             - id: idle
               value: 'idle'
+              brief: Idle
               stability: development
             - id: iowait
               value: 'iowait'
+              brief: IO Wait
               stability: development
             - id: interrupt
               value: 'interrupt'
+              brief: Interrupt
               stability: development
             - id: steal
               value: 'steal'
+              brief: Steal
               stability: development
             - id: kernel
               value: 'kernel'
+              brief: Kernel
               stability: development
         stability: development
         examples: [ "user", "system" ]
+      - id: cpu.logical_number
+        type: int
+        stability: development
+        brief: "The logical CPU number [0..n-1]"
+        examples: [1]

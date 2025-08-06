@@ -1,5 +1,5 @@
-{% macro badge(stability, deprecated) -%}
-{%- if deprecated %}![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>{{ deprecated.note | trim }}
+{% macro badge(stability, deprecated, note) -%}
+{%- if deprecated %}![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>{{ deprecated_note(deprecated, note) }}
 {%- elif stability == "mixed" %}![Mixed](https://img.shields.io/badge/-mixed-yellow)
 {%- elif stability == "stable" %}![Stable](https://img.shields.io/badge/-stable-lightgreen)
 {%- elif stability == "release_candidate" %}![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
@@ -9,3 +9,17 @@
 {%- else %}{{ "Unknown stability." }}
 {%- endif %}
 {%- endmacro %}
+
+{% macro htmlbadge(stability, deprecated) -%}
+{%- if deprecated %}<img src="https://img.shields.io/badge/-deprecated-red" alt="Deprecated"/>
+{%- elif stability == "mixed" %}<img src="https://img.shields.io/badge/-mixed-yellow" alt="Mixed"/>
+{%- elif stability == "stable" %}<img src="https://img.shields.io/badge/-stable-lightgreen" alt="Stable"/>
+{%- elif stability == "release_candidate" %}<img src="https://img.shields.io/badge/-rc-mediumorchid" alt="Release Candidate"/>
+{%- elif stability == "deprecated" %}<img src="https://img.shields.io/badge/-deprecated-red" alt="Deprecated" />
+{%- elif stability == "experimental" %}<img src="https://img.shields.io/badge/-development-blue" alt="Development"/>
+{%- elif stability == "development" %}<img src="https://img.shields.io/badge/-development-blue" alt="Development"/>
+{%- else %}{{ "Unknown stability." }}
+{%- endif %}
+{%- endmacro %}
+
+{% macro deprecated_note(deprecated, note) %}{{ (deprecated.note if deprecated.note is defined else note) | trim }}{%- endmacro %}

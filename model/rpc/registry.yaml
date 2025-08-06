@@ -56,25 +56,31 @@ groups:
               value: unauthenticated
               stability: development
         stability: development
-        brief: "The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values."
+        brief: "The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values."
       - id: rpc.connect_rpc.request.metadata
         type: template[string[]]
         stability: development
         brief: >
           Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
-        note: >
+        note: |
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-        examples: ['rpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]']
+
+          For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
+          the `rpc.connect_rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
+        examples: [["1.2.3.4", "1.2.3.5"]]
       - id: rpc.connect_rpc.response.metadata
         type: template[string[]]
         stability: development
         brief: >
           Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
-        note: >
+        note: |
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-        examples: ['rpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]']
+
+          For example, a property `my-custom-key` with value `"attribute_value"` SHOULD be recorded as
+          the `rpc.connect_rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
+        examples: [["attribute_value"]]
       - id: rpc.grpc.status_code
         type:
           members:
@@ -153,19 +159,25 @@ groups:
         stability: development
         brief: >
           gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
-        note: >
+        note: |
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-        examples: ['rpc.grpc.request.metadata.my-custom-metadata-attribute=["1.2.3.4", "1.2.3.5"]']
+
+          For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
+          `rpc.grpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
+        examples: [["1.2.3.4", "1.2.3.5"]]
       - id: rpc.grpc.response.metadata
         type: template[string[]]
         stability: development
         brief: >
           gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
-        note: >
+        note: |
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-        examples: ['rpc.grpc.response.metadata.my-custom-metadata-attribute=["attribute_value"]']
+
+          For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
+          the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
+        examples: [["attribute_value"]]
       - id: rpc.jsonrpc.error_code
         type: int
         stability: development

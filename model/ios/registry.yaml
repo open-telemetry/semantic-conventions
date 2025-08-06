@@ -1,0 +1,43 @@
+groups:
+  - id: registry.ios
+    type: attribute_group
+    display_name: iOS Attributes
+    brief: >
+      This group describes iOS-specific attributes.
+    attributes:
+      - id: ios.app.state
+        stability: development
+        brief: >
+          This attribute represents the state of the application.
+        note: >
+          The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate),
+          and from which the `OS terminology` column values are derived.
+        type:
+          members:
+            - id: active
+              value: 'active'
+              brief: >
+                The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`.
+              stability: development
+            - id: inactive
+              value: 'inactive'
+              brief: >
+                The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`.
+              stability: development
+            - id: background
+              value: 'background'
+              brief: >
+                The app is now in the background.
+                This value is associated with UIKit notification `applicationDidEnterBackground`.
+              stability: development
+            - id: foreground
+              value: 'foreground'
+              brief: >
+                The app is now in the foreground.
+                This value is associated with UIKit notification `applicationWillEnterForeground`.
+              stability: development
+            - id: terminate
+              value: 'terminate'
+              brief: >
+                The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`.
+              stability: development

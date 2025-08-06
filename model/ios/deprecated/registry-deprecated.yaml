@@ -7,13 +7,13 @@ groups:
     attributes:
       - id: ios.state
         stability: development
-        deprecated: "Moved to a payload field of `device.app.lifecycle`."
+        deprecated:
+          reason: uncategorized
+          note:
+            Replaced by the `ios.app.state` event body field.
         note: >
           The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate),
           and from which the `OS terminology` column values are derived.
-        brief: >
-          Deprecated use the `device.app.lifecycle` event definition including
-          `ios.state` as a payload field instead.
         type:
           members:
             - id: active

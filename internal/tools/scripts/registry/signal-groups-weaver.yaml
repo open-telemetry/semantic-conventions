@@ -1,0 +1,14 @@
+templates:
+  - pattern: signal-groups.j2
+    # attribute groups and entities are auto-generated and don't need manual code
+    # snippets, let's filter them out from the check.
+    filter: >
+      .groups
+      | map(select(.type != "attribute_group" and .type != "entity"))
+      | map(select(has("deprecated") | not))
+      | .[].id
+    application_mode: single
+whitespace_control:
+  trim_blocks: true
+  lstrip_blocks: true
+  keep_trailing_newline: true

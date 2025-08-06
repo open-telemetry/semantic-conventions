@@ -20,7 +20,9 @@ groups:
               value: 'defunct'
               stability: development
         brief: "Deprecated, use `system.process.status` instead."
-        deprecated: "Replaced by `system.process.status`."
+        deprecated:
+          reason: renamed
+          renamed_to: system.process.status
         stability: development
         examples: ["running"]
       - id: system.cpu.state
@@ -49,10 +51,14 @@ groups:
               stability: development
         brief: "Deprecated, use `cpu.mode` instead."
         stability: development
-        deprecated: 'Replaced by `cpu.mode`'
+        deprecated:
+          reason: renamed
+          renamed_to: cpu.mode
         examples: [ "idle", "interrupt" ]
       - id: system.network.state
-        deprecated: 'Removed, report network connection state with `network.connection.state` attribute'
+        deprecated:
+          reason: renamed
+          renamed_to: network.connection.state
         type:
           members:
             - id: close
@@ -94,3 +100,8 @@ groups:
         stability: development
         brief: "Deprecated, use `network.connection.state` instead."
         examples: [ "close_wait" ]
+      - id: system.cpu.logical_number
+        type: int
+        stability: development
+        brief: "Deprecated, use `cpu.logical_number` instead."
+        examples: [1]

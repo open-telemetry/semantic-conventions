@@ -28,7 +28,7 @@ They may be used in any Profiles record they apply to.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`profile.frame.type`](/docs/attributes-registry/profile.md) | string | Describes the interpreter or compiler of a single frame. | `cpython` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`profile.frame.type`](/docs/registry/attributes/profile.md) | string | Describes the interpreter or compiler of a single frame. | `cpython` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -39,12 +39,14 @@ They may be used in any Profiles record they apply to.
 | `beam` | [Erlang](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine)) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cpython` | [Python](https://wikipedia.org/wiki/Python_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `dotnet` | [.NET](https://wikipedia.org/wiki/.NET) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `go` | [Go](https://wikipedia.org/wiki/Go_(programming_language)), | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jvm` | [JVM](https://wikipedia.org/wiki/Java_virtual_machine) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `kernel` | [Kernel](https://wikipedia.org/wiki/Kernel_(operating_system)) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `native` | [C](https://wikipedia.org/wiki/C_(programming_language)), [C++](https://wikipedia.org/wiki/C%2B%2B), [Go](https://wikipedia.org/wiki/Go_(programming_language)), [Rust](https://wikipedia.org/wiki/Rust_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `native` | Can be one of but not limited to [C](https://wikipedia.org/wiki/C_(programming_language)), [C++](https://wikipedia.org/wiki/C%2B%2B), [Go](https://wikipedia.org/wiki/Go_(programming_language)) or [Rust](https://wikipedia.org/wiki/Rust_(programming_language)). If possible, a more precise value MUST be used. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `perl` | [Perl](https://wikipedia.org/wiki/Perl) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `php` | [PHP](https://wikipedia.org/wiki/PHP) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ruby` | [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `rust` | [Rust](https://wikipedia.org/wiki/Rust_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `v8js` | [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine)) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->

@@ -1,0 +1,60 @@
+groups:
+  # HOST METRICS
+  - id: metric.hw.host.ambient_temperature
+    type: metric
+    metric_name: hw.host.ambient_temperature
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Ambient (external) temperature of the physical host."
+    instrument: gauge
+    unit: "Cel"
+    extends: hardware.attributes.common
+
+  - id: metric.hw.host.energy
+    type: metric
+    metric_name: hw.host.energy
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Total energy consumed by the entire physical host, in joules."
+    instrument: counter
+    unit: "J"
+    extends: hardware.attributes.common
+    note: >
+      The overall energy usage of a host MUST be reported using the specific `hw.host.energy` and `hw.host.power`
+      metrics **only**, instead of the generic `hw.energy` and `hw.power` described in the previous section, to prevent
+      summing up overlapping values.
+
+  - id: metric.hw.host.heating_margin
+    type: metric
+    metric_name: hw.host.heating_margin
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: >
+      By how many degrees Celsius the temperature of the physical host can be increased, before reaching a warning
+      threshold on one of the internal sensors.
+    instrument: gauge
+    unit: "Cel"
+    extends: hardware.attributes.common
+
+  - id: metric.hw.host.power
+    type: metric
+    metric_name: hw.host.power
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: >
+      Instantaneous power consumed by the entire physical host in Watts (`hw.host.energy` is preferred).
+    instrument: gauge
+    unit: "W"
+    extends: hardware.attributes.common
+    note: >
+      The overall energy usage of a host MUST be reported using the specific `hw.host.energy` and `hw.host.power`
+      metrics **only**, instead of the generic `hw.energy` and `hw.power` described in the previous section, to prevent
+      summing up overlapping values.

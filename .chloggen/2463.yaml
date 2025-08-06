@@ -1,0 +1,4 @@
+change_type: enhancement
+component: http
+note: "Clarify how `server.address` and `server.port` should be populated by HTTP client instrumentations."
+issues: [2443, 2463]
