@@ -315,14 +315,11 @@ groups:
     stability: development
     span_kind: internal
     brief: >
-      Describes GenAI evaluation span - a request to evaluate a GenAI response or output.
+      This span captures the process and the result of evaluating GenAI output for quality, accuracy, or other characteristics.
     note: |
       `gen_ai.operation.name` SHOULD be `evaluation`.
 
       **Span name** SHOULD be `evaluation {gen_ai.evaluation.name}`.
-
-      This span is typically used when instrumenting evaluation frameworks or services
-      that assess the quality, accuracy, or other characteristics of GenAI outputs.
     extends: attributes.gen_ai.common.client
     attributes:
       - ref: gen_ai.operation.name
@@ -333,11 +330,6 @@ groups:
         requirement_level:
           conditionally_required: if evaluation completed successfully
       - ref: gen_ai.evaluation.label
-        requirement_level:
-          conditionally_required: if evaluation completed successfully
-      - ref: gen_ai.input.metadata
-        requirement_level: recommended
-      - ref: gen_ai.output.metadata
         requirement_level: recommended
       - ref: gen_ai.evaluation.reasoning
         requirement_level: recommended

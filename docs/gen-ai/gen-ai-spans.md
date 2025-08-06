@@ -363,14 +363,11 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-Describes GenAI evaluation span - a request to evaluate a GenAI response or output.
+This span captures the process and the result of evaluating GenAI output for quality, accuracy, or other characteristics.
 
 `gen_ai.operation.name` SHOULD be `evaluation`.
 
 **Span name** SHOULD be `evaluation {gen_ai.evaluation.name}`.
-
-This span is typically used when instrumenting evaluation frameworks or services
-that assess the quality, accuracy, or other characteristics of GenAI outputs.
 
 **Span kind** SHOULD be `INTERNAL`.
 
@@ -378,44 +375,36 @@ that assess the quality, accuracy, or other characteristics of GenAI outputs.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`gen_ai.evaluation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the evaluation used for the GenAI response. [1] | `Relevance`; `IntentResolution` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the operation being performed. [2] | `chat`; `generate_content`; `text_completion` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`gen_ai.evaluation.label`](/docs/registry/attributes/gen-ai.md) | string | Human readable label for evaluation. | `relevant`; `not_relevant`; `correct`; `incorrect`; `pass`; `fail` | `Conditionally Required` if evaluation completed successfully | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.evaluation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the evaluation used for the GenAI response. | `Relevance`; `IntentResolution` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.evaluation.score`](/docs/registry/attributes/gen-ai.md) | double | The evaluation score returned by the evaluator. | `4.0` | `Conditionally Required` if evaluation completed successfully | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | string | The name of the GenAI model a request is being made to. [4] | `gpt-4` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | GenAI server port. [5] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | string | The name of the GenAI model a request is being made to. [3] | `gpt-4` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | GenAI server port. [4] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`gen_ai.evaluation.label`](/docs/registry/attributes/gen-ai.md) | string | Human readable label for evaluation. | `relevant`; `not_relevant`; `correct`; `incorrect`; `pass`; `fail` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.evaluation.reasoning`](/docs/registry/attributes/gen-ai.md) | string | A free-form reasoning for the assigned score provided by the evaluator. | `The response is factually accurate but lacks sufficient detail to fully address the question.` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.input.metadata`](/docs/registry/attributes/gen-ai.md) | string | Metadata associated with the GenAI input. [6] | `{\"requestId\": \"fab3ee5d-a3c6-4c47-b3de-901bf02fa045\"}` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.metadata`](/docs/registry/attributes/gen-ai.md) | string | Metadata associated with Gen AI operation. [7] | `{\"evaluator_version\": \"1.2.0\"}` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.output.metadata`](/docs/registry/attributes/gen-ai.md) | string | Metadata associated with the GenAI output. [8] | `{\"Perplexity\": 1.335}` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.usage.input_tokens`](/docs/registry/attributes/gen-ai.md) | int | The number of tokens used in the GenAI input (prompt). [9] | `100` | `Recommended` if evaluation was performed by a model | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.usage.output_tokens`](/docs/registry/attributes/gen-ai.md) | int | The number of tokens used in the GenAI response (completion). [10] | `180` | `Recommended` if evaluation was performed by a model | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | GenAI server address. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`gen_ai.metadata`](/docs/registry/attributes/gen-ai.md) | string | Metadata associated with Gen AI operation. [5] | `{\"evaluator_version\": \"1.2.0\"}` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.usage.input_tokens`](/docs/registry/attributes/gen-ai.md) | int | The number of tokens used in the GenAI input (prompt). [6] | `100` | `Recommended` if evaluation was performed by a model | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.usage.output_tokens`](/docs/registry/attributes/gen-ai.md) | int | The number of tokens used in the GenAI response (completion). [7] | `180` | `Recommended` if evaluation was performed by a model | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | GenAI server address. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `gen_ai.evaluation.name`:** This attribute identifies the evaluation name.
+**[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-**[2] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
-
-**[3] `error.type`:** The `error.type` SHOULD match the error code returned by the Generative AI Evaluation provider or the client library,
+**[2] `error.type`:** The `error.type` SHOULD match the error code returned by the Generative AI Evaluation provider or the client library,
 the canonical name of exception that occurred, or another low-cardinality error identifier.
 Instrumentations SHOULD document the list of errors they report.
 
-**[4] `gen_ai.request.model`:** The name of the GenAI model a request is being made to. If the model is supplied by a vendor, then the value must be the exact name of the model requested. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
+**[3] `gen_ai.request.model`:** The name of the GenAI model a request is being made to. If the model is supplied by a vendor, then the value must be the exact name of the model requested. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
-**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[6] `gen_ai.input.metadata`:** The structure is specific to the implementation. If the metadata is structured, it is RECOMMENDED to provide it in a structured form using language-specific API. It can also be captured as a JSON string when structured API is not available. If metadata properties contain any sensitive information such as prompts or completions, corresponding properties MUST NOT be recorded by default. Instrumentations MAY provide a way to override this behavior and record sensitive information in the metadata if user explicitly allows it.
+**[5] `gen_ai.metadata`:** Metadata associated with evaluation.
 
-**[7] `gen_ai.metadata`:** Metadata associated with evaluation.
+**[6] `gen_ai.usage.input_tokens`:** The total number of input tokens used by the model during the evaluation.
 
-**[8] `gen_ai.output.metadata`:** The structure is specific to the implementation. If the metadata is structured, it is RECOMMENDED to provide it in a structured form using language-specific API. It can also be captured as a JSON string when structured API is not available. If metadata properties contain any sensitive information such as prompts or completions, corresponding properties MUST NOT be recorded by default. Instrumentations MAY provide a way to override this behavior and record sensitive information in the metadata if user explicitly allows it.
+**[7] `gen_ai.usage.output_tokens`:** The total number of output tokens used by the model during the evaluation.
 
-**[9] `gen_ai.usage.input_tokens`:** The total number of input tokens used by the model during the evaluation.
-
-**[10] `gen_ai.usage.output_tokens`:** The total number of output tokens used by the model during the evaluation.
-
-**[11] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[8] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 
