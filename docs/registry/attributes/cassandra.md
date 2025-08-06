@@ -22,14 +22,14 @@ This section defines attributes for Cassandra.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `all` | all | ![Development](https://img.shields.io/badge/-development-blue) |
-| `any` | any | ![Development](https://img.shields.io/badge/-development-blue) |
-| `each_quorum` | each_quorum | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local_one` | local_one | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local_quorum` | local_quorum | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local_serial` | local_serial | ![Development](https://img.shields.io/badge/-development-blue) |
-| `one` | one | ![Development](https://img.shields.io/badge/-development-blue) |
-| `quorum` | quorum | ![Development](https://img.shields.io/badge/-development-blue) |
-| `serial` | serial | ![Development](https://img.shields.io/badge/-development-blue) |
-| `three` | three | ![Development](https://img.shields.io/badge/-development-blue) |
-| `two` | two | ![Development](https://img.shields.io/badge/-development-blue) |
+| `all` | All | ![Development](https://img.shields.io/badge/-development-blue) |
+| `any` | Any | ![Development](https://img.shields.io/badge/-development-blue) |
+| `each_quorum` | Each Quorum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_one` | Local One | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_quorum` | Local Quorum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_serial` | Local Serial | ![Development](https://img.shields.io/badge/-development-blue) |
+| `one` | One | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quorum` | Quorum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `serial` | Serial | ![Development](https://img.shields.io/badge/-development-blue) |
+| `three` | Three | ![Development](https://img.shields.io/badge/-development-blue) |
+| `two` | Two | ![Development](https://img.shields.io/badge/-development-blue) |
