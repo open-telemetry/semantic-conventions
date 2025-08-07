@@ -149,7 +149,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: gauge
     unit: "1"
     attributes:
@@ -183,7 +183,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: gauge
     unit: "1"
     attributes:
@@ -201,7 +201,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: counter
     unit: "{fault}"
     attributes:
@@ -216,7 +216,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    brief: ""
+    brief: TODO.
     instrument: counter
     unit: "{operation}"
     attributes:
@@ -233,7 +233,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: counter
     unit: "By"
     attributes:
@@ -249,7 +249,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: counter
     unit: "{operation}"
     attributes:
@@ -308,7 +308,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: counter
     unit: "{operation}"
     attributes:
@@ -364,7 +364,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: gauge
     unit: "1"
     attributes:
@@ -428,7 +428,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: counter
     unit: "{packet}"
     attributes:
@@ -466,7 +466,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: counter
     unit: "By"
     attributes:
@@ -482,7 +482,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: updowncounter
     unit: "{connection}"
     attributes:
