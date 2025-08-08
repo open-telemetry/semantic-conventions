@@ -1,12 +1,15 @@
 groups:
-  - id: registry.oci.manifest
+  - id: registry.oci.manifest.deprecated
     type: attribute_group
-    display_name: Open Container Initiative (OCI) Attributes
+    display_name: Deprecated Open Container Initiative (OCI) Attributes
     brief: >
       An OCI image manifest.
     attributes:
       - id: oci.manifest.digest
         type: string
+        deprecated:
+          reason: renamed
+          renamed_to: container.manifest.digest
         stability: development
         brief: >
           The digest of the OCI image manifest. For container images specifically is the
