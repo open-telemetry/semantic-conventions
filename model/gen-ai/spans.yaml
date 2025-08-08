@@ -240,7 +240,7 @@ groups:
           conditionally_required: If provided by the application.
       - ref: gen_ai.system_instructions
         requirement_level: opt_in
-        note: "" # note is not needed here
+        note: ""  # note is not needed here
 
   - id: span.gen_ai.invoke_agent.client
     type: span
