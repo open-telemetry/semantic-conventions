@@ -128,7 +128,7 @@ groups:
     annotations:
       docs:
         span_kind_brief: |
-          or for spans representing in-memory database calls, It MAY be set to `INTERNAL`.
+          or for spans representing in-memory database calls, it MAY be set to `INTERNAL`.
           It's RECOMMENDED to use `CLIENT` kind when database system being instrumented usually
           runs in a different process than its client or when database calls happen over
           instrumented protocol such as HTTP.

@@ -21,7 +21,7 @@ groups:
     annotations:
       docs:
         span_kind_expectation: MUST
-        span_status_brief: Error handling for http is defined in the [Span Status](/docs/http/http-spans.md#status) section.
+        span_status_brief: Error handling for HTTP is defined in the [Span Status](/docs/http/http-spans.md#status) section.
     attributes:
       - ref: http.request.method
         sampling_relevant: true
@@ -77,7 +77,7 @@ groups:
     annotations:
       docs:
         span_kind_expectation: MUST
-        span_status_brief: Error handling for http is defined in the [Span Status](/docs/http/http-spans.md#status) section.
+        span_status_brief: Error handling for HTTP is defined in the [Span Status](/docs/http/http-spans.md#status) section.
     attributes:
       - ref: http.request.method
         sampling_relevant: true
