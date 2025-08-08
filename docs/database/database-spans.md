@@ -100,7 +100,7 @@ readily available at the generic query level.
 
 **Span name** is covered in the [Name](/docs/database/database-spans.md#name) section.
 
-**Span kind** SHOULD be `CLIENT` or for spans representing in-memory database calls, It MAY be set to `INTERNAL`.
+**Span kind** SHOULD be `CLIENT` or for spans representing in-memory database calls, it MAY be set to `INTERNAL`.
 It's RECOMMENDED to use `CLIENT` kind when database system being instrumented usually
 runs in a different process than its client or when database calls happen over
 instrumented protocol such as HTTP.
