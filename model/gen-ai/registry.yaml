@@ -359,8 +359,24 @@ groups:
           See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
           section for more details.
         examples:
-          - '[{"type": "text", "content": "You are an Agent that greet users, always use greetings tool to respond"}]'
-          - '[{"type": "text", "content": "You are a language translator."}, {"type": "text", "content": ""Your mission is to translate text in English to French."}]'
+          - |
+              [
+                {
+                  "type": "text",
+                  "content": "You are an Agent that greet users, always use greetings tool to respond"
+                }
+              ]
+          - |
+              [
+                {
+                  "type": "text",
+                  "content": "You are a language translator."
+                },
+                {
+                  "type": "text",
+                  "content": "Your mission is to translate text in English to French."
+                }
+              ]
       - id: gen_ai.input.messages
         stability: development
         type: any
@@ -382,9 +398,41 @@ groups:
           See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
           section for more details.
         examples:
-          - '[{"role": "user", "parts": [{"type": "text", "content": "Weather in Paris?"}]},
-              {"role": "assistant", "parts": [{"type": "tool_call", "id": "call_VSPygqKTWdrhaFErNvMV18Yl", "name":"get_weather", "arguments":{"location":"Paris"}}]},
-              {"role": "tool", "parts": [{"type": "tool_call_response", "id":" call_VSPygqKTWdrhaFErNvMV18Yl", "result":"rainy, 57°F"}]}]'
+          - |
+              [
+                {
+                  "role": "user",
+                  "parts": [
+                    {
+                      "type": "text",
+                      "content": "Weather in Paris?"
+                    }
+                  ]
+                },
+                {
+                  "role": "assistant",
+                  "parts": [
+                    {
+                      "type": "tool_call",
+                      "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
+                      "name": "get_weather",
+                      "arguments": {
+                        "location": "Paris"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "role": "tool",
+                  "parts": [
+                    {
+                      "type": "tool_call_response",
+                      "id": " call_VSPygqKTWdrhaFErNvMV18Yl",
+                      "result": "rainy, 57°F"
+                    }
+                  ]
+                }
+              ]
       - id: gen_ai.output.messages
         stability: development
         type: any
@@ -411,4 +459,16 @@ groups:
           See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
           section for more details.
         examples:
-          - '[{"role":"assistant","parts":[{"type":"text","content":"The weather in Paris is currently rainy with a temperature of 57°F."}],"finish_reason":"stop"}]'
+          - |
+              [
+                {
+                  "role": "assistant",
+                  "parts": [
+                    {
+                      "type": "text",
+                      "content": "The weather in Paris is currently rainy with a temperature of 57°F."
+                    }
+                  ],
+                  "finish_reason": "stop"
+                }
+              ]
