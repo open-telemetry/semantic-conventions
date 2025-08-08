@@ -9,6 +9,7 @@
 - [Tool calls (functions)](#tool-calls-functions)
   - [GenAI client spans when content capturing is disabled](#genai-client-spans-when-content-capturing-is-disabled)
   - [GenAI client spans when content capturing is enabled on span attributes](#genai-client-spans-when-content-capturing-is-enabled-on-span-attributes)
+- [System instructions along with chat history (content enabled)](#system-instructions-along-with-chat-history-content-enabled)
 - [Tool calls (built-in)](#tool-calls-built-in)
 - [Chat completion with multiple choices](#chat-completion-with-multiple-choices)
   - [GenAI client span when content capturing is enabled on span attributes](#genai-client-span-when-content-capturing-is-enabled-on-span-attributes-1)
@@ -32,7 +33,7 @@ sequenceDiagram
     participant I as Instrumented Client
     participant M as Model
     A->>+I: #U+200D
-    I->>M: system: You are a helpful bot<br/>user: Tell me a joke about OpenTelemetry
+    I->>M: input = [system: You are a helpful bot, user: Tell me a joke about OpenTelemetry]
     Note left of I: GenAI Client span
     I-->M: assistant: Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!
     I-->>-A: #U+200D
@@ -215,13 +216,13 @@ sequenceDiagram
     participant I as Instrumented Client
     participant M as Model
     A->>+I: #U+200D
-    I->>M: user: What's the weather in Paris?
+    I->>M: input = [user: What's the weather in Paris?]
     Note left of I: GenAI Client span 1
     I-->M: assistant: Call to the get_weather tool with Paris as the location argument.
     I-->>-A: #U+200D
     A -->> A: parse tool parameters<br/>execute tool<br/>update chat history
     A->>+I: #U+200D
-    I->>M: user: What's the weather in Paris?<br/>assistant: get_weather tool call<br/>tool: rainy, 57°F
+    I->>M: input = [user: What's the weather in Paris?, assistant: get_weather tool call, tool: rainy, 57°F]
     Note left of I: GenAI Client span 2
     I-->M: assistant: The weather in Paris is rainy and overcast, with temperatures around 57°F
     I-->>-A: #U+200D
@@ -420,6 +421,91 @@ If tool call is [instrumented according to execute-tool span definition](../gen-
 ]
 ```
 
+## System instructions along with chat history (content enabled)
+
+Some providers allow to provide instructions separately from the chat history provided in the inputs
+or in addition to `system` (`deveoper`, etc) message provided in the input.
+
+This example demonstrates en edge case when conflicting instructions are provided
+to the OpenAI responses API. In this case instructions are recorded in the `gen_ai.system_instructions` attribute.
+
+```py
+response = openai.responses.create(
+  model="gpt-4",
+  instructions="You must never tell jokes",
+  input=[{"role": "system", "content": "You are a helpful assistant"}, {"role": "user", "content": "Tell me a joke"}])
+```
+
+Span:
+
+|   Property                      |                     Value                  |
+|---------------------------------|--------------------------------------------|
+| Span name                       | `"chat gpt-4"`                             |
+| `gen_ai.provider.name`          | `"openai"`                                 |
+| `gen_ai.operation.name`         | `"chat"`                                   |
+| `gen_ai.request.model`          | `"gpt-4"`                                  |
+| `gen_ai.response.id`            | `"chatcmpl-9J3uIL87gldCFtiIbyaOvTeYBRA3l"` |
+| `gen_ai.response.model`         | `"gpt-4-0613"`                             |
+| `gen_ai.usage.output_tokens`    | `10`                                       |
+| `gen_ai.usage.input_tokens`     | `28`                                       |
+| `gen_ai.response.finish_reasons`| `["stop"]`                                 |
+| `gen_ai.system_instructions`    | [`gen_ai.system_instructions`](#gen-ai-system-instructions) |
+| `gen_ai.input.messages`         | [`gen_ai.input.messages`](#gen-ai-input-messages-instructions) |
+| `gen_ai.output.messages`        | [`gen_ai.output.messages`](#gen-ai-output-messages-instructions) |
+
+<span id="gen-ai-system-instructions">`gen_ai.system_instructions` value</span>
+
+```json
+[
+  {
+    "type": "text",
+    "content": "You must never tell jokes"
+  }
+]
+```
+
+<span id="gen-ai-input-messages-instructions">`gen_ai.input.messages` value</span>
+
+```json
+[
+  {
+    "role": "system",
+    "parts": [
+      {
+        "type": "text",
+        "content": "You are a helpful bot"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "type": "text",
+        "content": "Tell me a joke about OpenTelemetry"
+      }
+    ]
+  }
+]
+```
+
+<span id="gen-ai-output-messages-instructions">`gen_ai.output.messages` value</span>
+
+```json
+[
+  {
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "text",
+        "content": "I'm sorry, but I can't assist with that"
+      }
+    ],
+    "finish_reason": "stop"
+  }
+]
+```
+
 ## Tool calls (built-in)
 
 > [!NOTE]
@@ -443,7 +529,7 @@ sequenceDiagram
   participant M as Model
 
   A ->>+ I:
-  I ->> M: system: You are a helpful bot.<br>user: Write Python code that generates a random number, executes it, and returns the result.
+  I ->> M: input = [system: You are a helpful bot, user: Write Python code that generates a random number, executes it, and returns the result.]
   Note left of I: GenAI Client span
   I --> M: tool:code='import random ....'<br>assistant: The generated random number is 95.
   I -->>- A:
@@ -491,7 +577,7 @@ sequenceDiagram
     participant I as Instrumented Client
     participant M as Model
     A->>+I: #U+200D
-    I->>M: system: "You are a helpful bot"<br/>user: - "Tell me a joke about OpenTelemetry"
+    I->>M: input = [system: You are a helpful bot, user: Tell me a joke about OpenTelemetry]
     Note left of I: GenAI Client span
     I-->M: assistant: Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!<br/> assistant: Why did OpenTelemetry get promoted? It had great span of control!
     I-->>-A: #U+200D
