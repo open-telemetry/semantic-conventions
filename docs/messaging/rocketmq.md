@@ -64,12 +64,15 @@ Specific attributes for Apache RocketMQ are defined below.
 | [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.message.payload_compressed_size_bytes`](/docs/registry/attributes/messaging.md) | int | The compressed size of the message payload in bytes. [10] | `2048` | `Remove` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Obsoleted. |
+| [`messaging.message.payload_size_bytes`](/docs/registry/attributes/messaging.md) | int | The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported. [11] | `2738` | `Migrate` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.message.envelope.size`. |
+| [`messaging.operation`](/docs/registry/attributes/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | `Migrate` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`. |
 | [`messaging.rocketmq.consumption_model`](/docs/registry/attributes/messaging.md) | string | Model of message consumption. This only applies to consumer spans. | `clustering`; `broadcasting` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.rocketmq.message.keys`](/docs/registry/attributes/messaging.md) | string[] | Key(s) of message, another way to mark message besides message id. | `["keyA", "keyB"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.rocketmq.message.tag`](/docs/registry/attributes/messaging.md) | string | The secondary classifier of message besides topic. | `tagA` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.rocketmq.message.type`](/docs/registry/attributes/messaging.md) | string | Type of message. | `normal`; `fifo`; `delay` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body in bytes. [11] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [12] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body in bytes. [13] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -108,9 +111,13 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[9] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
-**[10] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[10] `messaging.message.payload_compressed_size_bytes`:** Only if span represents operation on a single message.
 
-**[11] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[11] `messaging.message.payload_size_bytes`:** Only if span represents operation on a single message.
+
+**[12] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[13] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
 The following attributes can be important for making sampling decisions

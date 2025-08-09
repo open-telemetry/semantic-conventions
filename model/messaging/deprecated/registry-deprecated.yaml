@@ -5,6 +5,27 @@ groups:
     display_name: Deprecated Messaging Attributes
     brief: "Describes deprecated messaging attributes."
     attributes:
+      - id: messaging.message.payload_compressed_size_bytes
+        type: int
+        stability: development
+        deprecated:
+          reason: obsoleted
+        brief: >
+          The compressed size of the message payload in bytes.
+        note: |
+          Only if span represents operation on a single message.
+        examples: 2048
+      - id: messaging.message.payload_size_bytes
+        type: int
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: messaging.message.envelope.size
+        brief: >
+          The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported.
+        note: |
+          Only if span represents operation on a single message.
+        examples: 2738
       - id: messaging.kafka.destination.partition
         type: int
         brief: >
