@@ -1,5 +1,8 @@
 {% macro render(attr, notes) -%}
-{%- if attr.level == "recommended" %}`Recommended`
+{%- if attr.deprecated and attr.deprecated.reason == "renamed" %}`Migrate`
+{% elif attr.deprecated and attr.deprecated.reason == "obsoleted" %}`Remove`
+{% elif attr.deprecated and attr.deprecated.reason == "uncategorized" %}`Migrate`
+{% elif attr.level == "recommended" %}`Recommended`
 {% elif attr.level == "required" %}`Required`
 {% elif attr.level == "opt_in" %}`Opt-In`
 {% elif attr.level.conditionally_required %}`Conditionally Required`{{ notes.add_with_limit({"note": attr.level.conditionally_required, "name": attr.name}) }}
