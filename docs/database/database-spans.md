@@ -120,10 +120,14 @@ classify as errors.
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | string | Database response status code. [7] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.connection_string`](/docs/registry/attributes/db.md) | string | Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` | `Migrate` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address` and `server.port`. |
+| [`db.instance.id`](/docs/registry/attributes/db.md) | string | Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. | `mysql-e26b99z.example.com` | `Remove` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. |
 | [`db.operation.batch.size`](/docs/registry/attributes/db.md) | int | The number of queries included in a batch operation. [12] | `2`; `3`; `4` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.query.summary`](/docs/registry/attributes/db.md) | string | Low cardinality summary of a database query. [13] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [14] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.query.text`](/docs/registry/attributes/db.md) | string | The database query being executed. [15] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [16] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | string | The name of a stored procedure within the database. [17] | `GetCustomer` | `Recommended` [18] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.system`](/docs/registry/attributes/db.md) | string | Deprecated, use `db.system.name` instead. | `other_sql`; `adabas`; `cache` | `Migrate` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.system.name`. |
+| [`db.user`](/docs/registry/attributes/db.md) | string | Deprecated, no replacement at this time. | `readonly_user`; `reporting_user` | `Remove` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the database node where the operation was performed. [19] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` if and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.address`](/docs/registry/attributes/server.md) | string | Name of the database host. [20] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -242,6 +246,62 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`db.system.name`](/docs/registry/attributes/db.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
+
+---
+
+`db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `adabas` | Adabas (Adaptable Database System) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cassandra` | Apache Cassandra | ![Development](https://img.shields.io/badge/-development-blue) |
+| `clickhouse` | ClickHouse | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cockroachdb` | CockroachDB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cosmosdb` | Microsoft Azure Cosmos DB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `couchbase` | Couchbase | ![Development](https://img.shields.io/badge/-development-blue) |
+| `couchdb` | CouchDB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `db2` | IBM Db2 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `derby` | Apache Derby | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dynamodb` | Amazon DynamoDB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `edb` | EnterpriseDB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `elasticsearch` | Elasticsearch | ![Development](https://img.shields.io/badge/-development-blue) |
+| `filemaker` | FileMaker | ![Development](https://img.shields.io/badge/-development-blue) |
+| `firebird` | Firebird | ![Development](https://img.shields.io/badge/-development-blue) |
+| `geode` | Apache Geode | ![Development](https://img.shields.io/badge/-development-blue) |
+| `h2` | H2 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hanadb` | SAP HANA | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hbase` | Apache HBase | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hive` | Apache Hive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hsqldb` | HyperSQL DataBase | ![Development](https://img.shields.io/badge/-development-blue) |
+| `influxdb` | InfluxDB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `informix` | Informix | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ingres` | Ingres | ![Development](https://img.shields.io/badge/-development-blue) |
+| `instantdb` | InstantDB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `interbase` | InterBase | ![Development](https://img.shields.io/badge/-development-blue) |
+| `intersystems_cache` | InterSystems Caché | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mariadb` | MariaDB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `maxdb` | SAP MaxDB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `memcached` | Memcached | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mongodb` | MongoDB | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mssql` | Microsoft SQL Server | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mysql` | MySQL | ![Development](https://img.shields.io/badge/-development-blue) |
+| `neo4j` | Neo4j | ![Development](https://img.shields.io/badge/-development-blue) |
+| `netezza` | Netezza | ![Development](https://img.shields.io/badge/-development-blue) |
+| `opensearch` | OpenSearch | ![Development](https://img.shields.io/badge/-development-blue) |
+| `oracle` | Oracle Database | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other_sql` | Some other SQL database. Fallback only. See notes. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pervasive` | Pervasive PSQL | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pointbase` | PointBase | ![Development](https://img.shields.io/badge/-development-blue) |
+| `postgresql` | PostgreSQL | ![Development](https://img.shields.io/badge/-development-blue) |
+| `progress` | Progress Database | ![Development](https://img.shields.io/badge/-development-blue) |
+| `redis` | Redis | ![Development](https://img.shields.io/badge/-development-blue) |
+| `redshift` | Amazon Redshift | ![Development](https://img.shields.io/badge/-development-blue) |
+| `spanner` | Cloud Spanner | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sqlite` | SQLite | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sybase` | Sybase | ![Development](https://img.shields.io/badge/-development-blue) |
+| `teradata` | Teradata | ![Development](https://img.shields.io/badge/-development-blue) |
+| `trino` | Trino | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vertica` | Vertica | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
