@@ -49,16 +49,16 @@ groups:
         brief: 'Deprecated, use `http.request.header.content-length` instead.'
         stability: development
         deprecated:
-          reason: uncategorized
-          note: Replaced by `http.request.header.content-length`.
+          reason: renamed
+          renamed_to: http.request.header
         examples: 3495
       - id: http.response_content_length
         type: int
         brief: 'Deprecated, use `http.response.header.content-length` instead.'
         stability: development
         deprecated:
-          reason: uncategorized
-          note: Replaced by `http.response.header.content-length`.
+          reason: renamed
+          renamed_to: http.response.header
         examples: 3495
       - id: http.client_ip
         type: string
