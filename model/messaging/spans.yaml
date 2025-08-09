@@ -27,6 +27,8 @@ groups:
         # TODO: add messaging.system once https://github.com/open-telemetry/weaver/issues/479 is implemented
         # - ref: messaging.system
         #   sampling_relevant: true
+      - ref: messaging.message.payload_compressed_size_bytes
+      - ref: messaging.message.payload_size_bytes
 
   - id: messaging.attributes
     type: attribute_group  # TODO: this should be a span - https://github.com/open-telemetry/semantic-conventions/issues/1891
