@@ -59,8 +59,10 @@ groups:
     instrument: updowncounter
     unit: "{request}"
     attributes:
+      - ref: http.method
       - ref: http.request.method
         requirement_level: required
+      - ref: http.scheme
       - ref: url.scheme
         requirement_level: required
         examples: ["http", "https"]
@@ -82,6 +84,8 @@ groups:
           > **Warning**
           > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
           > to trigger cardinality limits, degrading the usefulness of the metric.
+      - ref: net.host.name
+      - ref: net.host.port
 
   - id: metric.http.server.request.body.size
     type: metric
