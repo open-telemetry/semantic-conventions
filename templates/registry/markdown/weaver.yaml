@@ -19,6 +19,22 @@ templates:
     filter: '.groups | map(select(.type == "entity")) | group_by(.name | split(".") | .[0]) | map({id: .[0].id | split(".") | .[1], groups: .})'
     application_mode: each
     file_name: 'entities/{{ ctx.id | kebab_case }}.md'
+  - pattern: namespace_readme.md.j2
+    filter: '.groups | map(select(.type == "entity")) | group_by(.name | split(".") | .[0]) | map({
+      id: .[0].id,
+      entities: . | map(select(.type == "entity")),
+      namespace: .[0].id | split(".") | .[1]})'
+    application_mode: single
+    file_name: 'namespaces/README.md'
+#  - pattern: namespace_index.md.j2
+#    filter: '.groups | map(select(.type | startswith("e"))) | group_by(.name | split(".") | .[0]) | map({
+#      id: .[0].id,
+#      groups: .,
+#      entities: . | map(select(.type == "entity")),
+#      events: . | map(select(.type == "event")),
+#      namespace: .[0].id | split(".") | .[1]})'
+#    application_mode: each
+#    file_name: 'namespaces/{{ ctx.namespace | kebab_case }}//README.md'
 acronyms:
   - AI
   - AWS
