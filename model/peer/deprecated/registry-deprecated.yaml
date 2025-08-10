@@ -1,7 +1,7 @@
 groups:
   - id: registry.peer.service.deprecated
     type: attribute_group
-    display_name: Deprecated Service Attributes
+    display_name: Deprecated Peer Service Attributes
     brief: >
       Operations that access some remote service.
     attributes:

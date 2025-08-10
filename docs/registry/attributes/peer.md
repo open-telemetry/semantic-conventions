@@ -3,10 +3,10 @@
 
 # Peer
 
-- [Service Attributes](#service-attributes)
-- [Deprecated Service Attributes](#deprecated-service-attributes)
+- [Peer Service Attributes](#peer-service-attributes)
+- [Deprecated Peer Service Attributes](#deprecated-peer-service-attributes)
 
-## Service Attributes
+## Peer Service Attributes
 
 Operations that access some remote service.
 
@@ -16,7 +16,7 @@ Operations that access some remote service.
 | <a id="peer-service-name" href="#peer-service-name">`peer.service.name`</a> | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="peer-service-namespace" href="#peer-service-namespace">`peer.service.namespace`</a> | string | The [`service.namespace`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.namespace` resource attribute of the remote service if any. | `Auth` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## Deprecated Service Attributes
+## Deprecated Peer Service Attributes
 
 Operations that access some remote service.
 
