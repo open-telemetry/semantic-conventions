@@ -488,11 +488,11 @@ relatively short and its cardinality remains low comparing to the `db.query.text
 
 Instrumentations MAY propagate context using [SQL commenter](https://google.github.io/sqlcommenter/spec/) by injecting comments into SQL queries before execution. SQL commenter-based context propagation SHOULD NOT be enabled by default, but instrumentation MAY allow users to opt into it.
 
-The instrumentation implementation SHOULD **append** the comment to the end of the query. Semantic conventions for individual database systems MAY specify different format depending on the specific database system's requirements or preferences. For instance, the instrumentation MAY **prepend** the comment at the beginning of the query.
+The instrumentation implementation SHOULD **append** the comment to the end of the query. Semantic conventions for individual database systems MAY specify different format, which may include different position, encoding, or schema, depending on the specific database system's requirements or preferences.
 
-The instrumentation SHOULD allow users to pass a propagator to overwrite the global propagator.
+The instrumentation SHOULD allow users to pass a propagator to overwrite the global propagator. If no propagator is provided by the user, instrumentation SHOULD use the global propagator.
 
-If the propagator does not provide any value, the instrumentation SHOULD NOT inject any comment into the query.
+If the propagator produces no output (empty context), the instrumentation SHOULD NOT inject an empty comment into the query.
 
 **Examples:**
 
