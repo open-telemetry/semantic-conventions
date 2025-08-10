@@ -35,3 +35,9 @@ groups:
         brief: >
           The [subject](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#subject) of the event in the context of the event producer (identified by source).
         examples: 'mynewfile.jpg'
+      - id: cloudevents.datacontenttype
+        type: string
+        stability: development
+        brief: >
+          The [data content type](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#datacontenttype) of the event in the context of the event producer (identified by source).
+        examples: 'application/json'
