@@ -1,7 +1,7 @@
 groups:
   - id: registry.peer.service
     type: attribute_group
-    display_name: Service Attributes
+    display_name: Peer Service Attributes
     brief: >
       Operations that access some remote service.
     attributes:
