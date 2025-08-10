@@ -10,7 +10,7 @@ linkTitle: Oracle Database
 
 - [Spans](#spans)
 - [Context propagation](#context-propagation)
-  - [V$SESSION.ACTION](#v\$session.action)
+  - [V$SESSION.ACTION](#vsessionaction)
 - [Metrics](#metrics)
 
 <!-- tocstop -->
