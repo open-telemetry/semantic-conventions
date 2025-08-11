@@ -84,22 +84,22 @@ groups:
     brief: >
       Attributes specific to pprof that helps to convert Profiling signals.
     attributes:
-      - id:  profile.pprof.mapping.has_functions
+      - id: profile.pprof.mapping.has_functions
         brief: >
           Indicates that there are functions related to this mapping.
         type: boolean
         stability: development
-      - id:  profile.pprof.mapping.has_filenames
+      - id: profile.pprof.mapping.has_filenames
         brief: >
           Indicates that there are filenames related to this mapping.
         type: boolean
         stability: development
-      - id:  profile.pprof.mapping.has_line_numbers
+      - id: profile.pprof.mapping.has_line_numbers
         brief: >
           Indicates that there are line numbers related to this mapping.
         type: boolean
         stability: development
-      - id:  profile.pprof.mapping.has_inline_frames
+      - id: profile.pprof.mapping.has_inline_frames
         brief: >
           Indicates that there are inlined frames related to this mapping.
         type: boolean
