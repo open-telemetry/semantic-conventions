@@ -84,46 +84,32 @@ groups:
     brief: >
       Attributes specific to pprof that helps to convert Profiling signals.
     attributes:
-      - id: profile.pprof.mapping
-        stability: development
+      - id:  profile.pprof.mapping.has_functions
         brief: >
-          Describes the resolution of symbolic information.
-        examples: ['has_filenames']
-        type:
-          members:
-            - id: has_functions
-              brief: >
-                Indicates that there are functions related to this mapping.
-              value: "has_functions"
-              stability: development
-            - id: has_filenames
-              brief: >
-                Indicates that there are filenames related to this mapping.
-              value: "has_filenames"
-              stability: development
-            - id: has_line_numbers
-              brief: >
-                Indicates that there are line numbers related to this mapping.
-              value: "has_line_numbers"
-              stability: development
-            - id: has_inline_frames
-              brief: >
-                Indicates that there are inlined frames related to this mapping.
-              value: "has_inline_frames"
-              stability: development
-      - id: profile.pprof.location
+          Indicates that there are functions related to this mapping.
+        type: boolean
         stability: development
+      - id:  profile.pprof.mapping.has_filenames
         brief: >
-          Describes the relation between symbols and a location.
-        examples: ['is_folded']
-        type:
-          members:
-            - id: is_folded
-              brief: >
-                Provides an indication that multiple symbols map to this location's
-                address, for example due to identical code folding by the linker. In
-                that case the line information represents one of the multiple symbols.
-                This field must be recomputed when the symbolization state of the
-                profile changes.
-              value: "is_folded"
-              stability: development
+          Indicates that there are filenames related to this mapping.
+        type: boolean
+        stability: development
+      - id:  profile.pprof.mapping.has_line_numbers
+        brief: >
+          Indicates that there are line numbers related to this mapping.
+        type: boolean
+        stability: development
+      - id:  profile.pprof.mapping.has_inline_frames
+        brief: >
+          Indicates that there are inlined frames related to this mapping.
+        type: boolean
+        stability: development
+      - id: profile.pprof.location.is_folded
+        brief: >
+          Provides an indication that multiple symbols map to this location's
+          address, for example due to identical code folding by the linker. In
+          that case the line information represents one of the multiple symbols.
+          This field must be recomputed when the symbolization state of the
+          profile changes.
+        stability: development
+        type: boolean

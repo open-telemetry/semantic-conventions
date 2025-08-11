@@ -12,7 +12,13 @@ groups:
     brief: >
       Describes the relationship between pprof and a Profile.
     attributes:
-      - ref: profile.pprof.mapping
+      - ref: profile.pprof.mapping.has_functions
         requirement_level: recommended
-      - ref: profile.pprof.location
+      - ref: profile.pprof.mapping.has_filenames
+        requirement_level: recommended
+      - ref: profile.pprof.mapping.has_line_numbers
+        requirement_level: recommended
+      - ref: profile.pprof.mapping.has_inline_frames
+        requirement_level: recommended
+      - ref: profile.pprof.location.is_folded
         requirement_level: recommended
