@@ -6,7 +6,7 @@ toolchain go1.24.5
 
 require (
 	github.com/client9/misspell v0.3.4
-	go.opentelemetry.io/build-tools/chloggen v0.25.0
+	go.opentelemetry.io/build-tools/chloggen v0.26.1
 )
 
 require (
