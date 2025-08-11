@@ -34,4 +34,4 @@ subtext: |
   - `az.namespace` → `peer.service.namespace`
 
   GCP attributes:
-  - `gcp.client.service` → `peer.service.name`
+  - `gcp.client.service` → `peer.service.namespace`
