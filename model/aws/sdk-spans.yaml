@@ -26,7 +26,7 @@ groups:
         examples:
           - DynamoDB
           - S3
-      - ref: peer.service.name
+      - ref: peer.service.namespace
         brief: "The name of the service to which a request is made, as returned by the AWS SDK."
         examples:
           - DynamoDB
