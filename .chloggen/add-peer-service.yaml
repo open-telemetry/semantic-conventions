@@ -10,7 +10,7 @@ change_type: breaking
 component: peer, aws, azure gcp
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: This change gets the cloud providers to use standardise terminology for peers
+note: Renames `peer.service` to `peer.service.name` for consistency with `service.name` pattern, and consolidates cloud provider attributes into the peer namespace.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
@@ -19,4 +19,19 @@ issues: [2338]
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
-subtext:
+subtext: |
+  The following attributes have been renamed:
+
+  Core peer attributes:
+  - `peer.service` → `peer.service.name` (aligns with `service.name` pattern)
+
+  New peer attributes added:
+  - `peer.service.namespace`
+  - `peer.service.id`
+
+  Azure attributes:
+  - `azure.resource_provider.namespace` → `peer.service.namespace`
+  - `az.namespace` → `peer.service.namespace`
+
+  GCP attributes:
+  - `gcp.client.service` → `peer.service.name`
