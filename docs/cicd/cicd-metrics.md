@@ -38,13 +38,21 @@ but more may be added in the future.
 
 ### Guidance on per pipeline run metrics
 
-You MAY use metrics that include an attribute identifying the pipeline run by using the [`cicd.pipeline.run`](/docs/resource/cicd.md#cicd-pipeline-run) entity association.
-Using such metrics inherently causes high cardinality and may increase costs with some metric storage backends.
+It might be useful to gather metrics specific to each pipeline run.<br>
+Examples of such metrics include
+* host metrics like cpu, memory, disk of the worker on which a pipeline run executes
+* container metrics like cpu, memory requests and limits
+* runtime metrics of any processes executed as part of the pipeline run like JVM metrics
+
+These metrics could be used to correlate build failures with environment issues like overload or out-of-memory.
+They could also be used in pipeline-level aggregations to inform adjustements of allocated worker resources.
+
+Using per pipeline run metrics inherently causes high cardinality and may increase costs with some metric storage backends.
 Thus, using per pipeline run metrics MUST be opt-in.
 
-Additional entities as appropriate MAY be associated to metrics: CICD worker, host, pod, container entities.
+To define per pipeline run metrics the [`cicd.pipeline.run`](/docs/resource/cicd.md#cicd-pipeline-run) entity should be associated to them. Any other [CICD and VCS resource conventions][cicdres] that apply SHOULD also be used.
 
-Examples of per pipeline run metrics are cpu, memory, disk, network associated to the host, pod or container that the CICD worker runs in.
+[cicdres]: /docs/resource/cicd.md (CICD and VCS resource conventions)
 
 ### Metric: `cicd.pipeline.run.duration`
 
