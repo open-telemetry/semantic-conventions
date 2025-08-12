@@ -40,6 +40,7 @@ but more may be added in the future.
 
 It might be useful to gather metrics specific to each pipeline run.<br>
 Examples of such metrics include
+
 * host metrics like cpu, memory, disk of the worker on which a pipeline run executes
 * container metrics like cpu, memory requests and limits
 * runtime metrics of any processes executed as part of the pipeline run like JVM metrics
