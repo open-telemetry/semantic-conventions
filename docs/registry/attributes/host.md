@@ -23,6 +23,8 @@ A host is defined as a computing instance. For example, physical servers, virtua
 | <a id="host-ip" href="#host-ip">`host.ip`</a> | string[] | Available IP addresses of the host, excluding loopback interfaces. [2] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="host-mac" href="#host-mac">`host.mac`</a> | string[] | Available MAC addresses of the host, excluding loopback interfaces. [3] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="host-name" href="#host-name">`host.name`</a> | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="host-platform-name" href="#host-platform-name">`host.platform.name`</a> | string | The platform being used to host the computing instance. | `Azure VMWare Esxi` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="host-platform-product" href="#host-platform-product">`host.platform.product`</a> | string | What product if any is being used to host the computing instance. | `openshift`; `esxi`; `hyperv` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="host-type" href="#host-type">`host.type`</a> | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
@@ -45,3 +47,17 @@ A host is defined as a computing instance. For example, physical servers, virtua
 | `ppc64` | 64-bit PowerPC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `s390x` | IBM z/Architecture | ![Development](https://img.shields.io/badge/-development-blue) |
 | `x86` | 32-bit x86 | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`host.platform.product` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `citrix` | [Citrix](https://www.citrix.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `esxi` | [VMWare](https://www.vmware.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hyperv` | [Microsoft Hyper-V](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mesos` | [Apache Mesos](https://mesos.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openshift` | [Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `proxmox` | [Proxmox](https://www.proxmox.com/en/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `xenserver` | [Xen Sever](https://www.xenserver.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
