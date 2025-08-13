@@ -22,11 +22,13 @@ Describes file attributes.
 | <a id="file-mode" href="#file-mode">`file.mode`</a> | string | Mode of the file in octal representation. | `0640` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="file-modified" href="#file-modified">`file.modified`</a> | string | Time when the file content was last modified, in ISO 8601 format. | `2021-01-01T12:00:00Z` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="file-name" href="#file-name">`file.name`</a> | string | Name of the file including the extension, without the directory. | `example.png` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-origin-referrer-url" href="#file-origin-referrer-url">`file.origin_referrer_url`</a> | string | The URL of the webpage that linked to the file. [7] | `http://example.com/article1.html` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-origin-url" href="#file-origin-url">`file.origin_url`</a> | string | The URL where the file is hosted. [8] | `http://example.com/imgs/article1_img1.jpg` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="file-owner-id" href="#file-owner-id">`file.owner.id`</a> | string | The user ID (UID) or security identifier (SID) of the file owner. | `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="file-owner-name" href="#file-owner-name">`file.owner.name`</a> | string | Username of the file owner. | `root` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="file-path" href="#file-path">`file.path`</a> | string | Full path to the file, including the file name. It should include the drive letter, when appropriate. | `/home/alice/example.png`; `C:\Program Files\MyApp\myapp.exe` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="file-size" href="#file-size">`file.size`</a> | int | File size in bytes. |  | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-symbolic-link-target-path" href="#file-symbolic-link-target-path">`file.symbolic_link.target_path`</a> | string | Path to the target of a symbolic link. [7] | `/usr/bin/python3` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="file-symbolic-link-target-path" href="#file-symbolic-link-target-path">`file.symbolic_link.target_path`</a> | string | Path to the target of a symbolic link. [9] | `/usr/bin/python3` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `file.accessed`:** This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
 
@@ -41,4 +43,8 @@ Describes file attributes.
 **[6] `file.fork_name`:** On Linux, a resource fork is used to store additional data with a filesystem object. A file always has at least one fork for the data portion, and additional forks may exist.
 On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the Internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name.
 
-**[7] `file.symbolic_link.target_path`:** This attribute is only applicable to symbolic links.
+**[7] `file.origin_referrer_url`:** This information comes from metadata or alternate data streams linked to the file. `file.origin_url` represents the URL from which the file was downloaded, and `file.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `file.origin_url` and `file.origin_referrer_url` exist, or only one of them is present. Note that the URL itself may contain sensitive information.
+
+**[8] `file.origin_url`:** This information comes from metadata or alternate data streams linked to the file. `file.origin_url` represents the URL from which the file was downloaded, and `file.origin_referrer_url` indicates the URL of the page where that URL was listed. There may be cases where both `file.origin_url` and `file.origin_referrer_url` exist, or only one of them is present. Note that the URL itself may contain sensitive information.
+
+**[9] `file.symbolic_link.target_path`:** This attribute is only applicable to symbolic links.
