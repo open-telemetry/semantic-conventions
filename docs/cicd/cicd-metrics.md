@@ -374,6 +374,7 @@ the same backends.
 | `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gittea` | Deprecated, use `gitea` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gitea`. |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -435,6 +436,7 @@ the same backends.
 | `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gittea` | Deprecated, use `gitea` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gitea`. |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -517,6 +519,7 @@ revision based on the VCS system and situational context.
 | `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gittea` | Deprecated, use `gitea` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gitea`. |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -599,6 +602,7 @@ revision based on the VCS system and situational context.
 | `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gittea` | Deprecated, use `gitea` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gitea`. |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -635,6 +639,7 @@ This metric is [recommended][MetricRecommended].
 | `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gittea` | Deprecated, use `gitea` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gitea`. |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -681,6 +686,7 @@ the same backends.
 | `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gittea` | Deprecated, use `gitea` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gitea`. |
 
 ---
 
@@ -768,6 +774,7 @@ the same backends.
 | `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gittea` | Deprecated, use `gitea` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gitea`. |
 
 ---
 
@@ -854,6 +861,7 @@ the same backends.
 | `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gittea` | Deprecated, use `gitea` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gitea`. |
 
 ---
 
@@ -934,6 +942,7 @@ the same backends.
 | `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gittea` | Deprecated, use `gitea` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gitea`. |
 
 ---
 
@@ -988,6 +997,7 @@ the same backends.
 | `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gittea` | Deprecated, use `gitea` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gitea`. |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
