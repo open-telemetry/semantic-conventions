@@ -74,13 +74,16 @@ groups:
         stability: development
         brief: >
           Owner of the resource.
+        examples: ["pbansal124"]
       - id: service.cost_center
         type: string
         stability: development
         brief: >
           The billing entity for the resource.
+        examples: ["us-east1"]
       - id: service.business_unit
         type: string
         stability: development
         brief: >
           The business unit or department responsible for the resource.
+        examples: ["Ads", "Cloud"]
