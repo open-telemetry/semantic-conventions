@@ -81,6 +81,7 @@ Currently, the following namespaces exist:
 - [Messaging](messaging.md)
 - [Network](network.md)
 - [NodeJS](nodejs.md)
+- [Ntp](ntp.md)
 - [OCI](oci.md)
 - [OpenAI](openai.md)
 - [OpenTracing](opentracing.md)
