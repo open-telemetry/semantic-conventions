@@ -84,8 +84,11 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`service.name`](/docs/registry/attributes/service.md) | string | Logical name of the service. [1] | `shoppingcart` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`service.business_unit`](/docs/registry/attributes/service.md) | string | The business unit or department responsible for the resource. | `Ads`; `Cloud` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`service.cost_center`](/docs/registry/attributes/service.md) | string | The billing entity for the resource. | `us-east1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`service.instance.id`](/docs/registry/attributes/service.md) | string | The string ID of the service instance. [2] | `627cc493-f310-47de-96bd-71410b7dec09` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`service.namespace`](/docs/registry/attributes/service.md) | string | A namespace for `service.name`. [3] | `Shop` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`service.owner`](/docs/registry/attributes/service.md) | string | Owner of the resource. | `pbansal124` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`service.version`](/docs/registry/attributes/service.md) | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
