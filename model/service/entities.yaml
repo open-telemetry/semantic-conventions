@@ -15,3 +15,9 @@ groups:
         role: identifying
       - ref: service.instance.id
         role: identifying
+      - ref: service.owner
+        role: descriptive
+      - ref: service.cost_center
+        role: descriptive
+      - ref: service.business_unit
+        role: descriptive
