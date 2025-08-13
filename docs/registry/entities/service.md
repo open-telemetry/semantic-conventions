@@ -56,6 +56,9 @@ port.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`service.business_unit`](/docs/registry/attributes/service.md) | string | The business unit or department responsible for the resource. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`service.cost_center`](/docs/registry/attributes/service.md) | string | The billing entity for the resource. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`service.owner`](/docs/registry/attributes/service.md) | string | Owner of the resource. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`service.version`](/docs/registry/attributes/service.md) | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 

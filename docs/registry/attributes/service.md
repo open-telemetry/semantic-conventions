@@ -9,9 +9,12 @@ A service instance.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
+| <a id="service-business-unit" href="#service-business-unit">`service.business_unit`</a> | string | The business unit or department responsible for the resource. |  | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="service-cost-center" href="#service-cost-center">`service.cost_center`</a> | string | The billing entity for the resource. |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="service-instance-id" href="#service-instance-id">`service.instance.id`</a> | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="service-name" href="#service-name">`service.name`</a> | string | Logical name of the service. [2] | `shoppingcart` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="service-namespace" href="#service-namespace">`service.namespace`</a> | string | A namespace for `service.name`. [3] | `Shop` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="service-owner" href="#service-owner">`service.owner`</a> | string | Owner of the resource. |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="service-version" href="#service-version">`service.version`</a> | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
