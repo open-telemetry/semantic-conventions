@@ -334,3 +334,11 @@ generate-schema-next:
 		--output /home/weaver/target
 		# --param next_version=$(NEXT_SEMCONV_VERSION)
 	$(TOOLS_DIR)/scripts/generate-schema-next.sh $(NEXT_SEMCONV_VERSION) $(LATEST_RELEASED_SEMCONV_VERSION) $(TOOLS_DIR)/bin/schema-diff.yaml
+
+.PHONY: sig-table-generation
+sig-table-generation:
+	docker run --rm -v ${PWD}:/repo -w /repo python:3-alpine python ./internal/tools/scripts/update-sig-tables.py --install;
+
+.PHONY: sig-table-check
+sig-table-check:
+	docker run --rm -v ${PWD}:/repo -w /repo python:3-alpine python ./internal/tools/scripts/update-sig-tables.py --install --check;
