@@ -313,3 +313,45 @@ groups:
                     arguments field.
                   examples: ['{\"location\": \"Paris\"}']
                   requirement_level: opt_in
+
+  - id: event.gen_ai.evaluation.result
+    name: gen_ai.evaluation.result
+    type: event
+    stability: development
+    brief: >
+      This event captures the process and the result of evaluating GenAI output for quality, accuracy, or other characteristics.
+    extends: gen_ai.common.event.attributes
+    attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+      - ref: gen_ai.evaluation.name
+        requirement_level: required
+      - ref: gen_ai.evaluation.score
+        requirement_level:
+          conditionally_required: if evaluation completed successfully
+      - ref: gen_ai.evaluation.label
+        requirement_level: recommended
+      - ref: gen_ai.evaluation.reasoning
+        requirement_level: recommended
+      - ref: gen_ai.metadata
+        requirement_level: recommended
+        note: >
+          Metadata associated with evaluation.
+        examples: ['{\"evaluator_version\": \"1.2.0\"}']
+      - ref: gen_ai.usage.input_tokens
+        requirement_level:
+          recommended: if evaluation was performed by a model
+        note: >
+          The total number of input tokens used by the model during the evaluation.
+      - ref: gen_ai.usage.output_tokens
+        requirement_level:
+          recommended: if evaluation was performed by a model
+        note: >
+          The total number of output tokens used by the model during the evaluation.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
+        note: |
+          The `error.type` SHOULD match the error code returned by the Generative AI Evaluation provider or the client library,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
