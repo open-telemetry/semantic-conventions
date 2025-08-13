@@ -108,6 +108,7 @@ the `.git` extension.
 | `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gittea` | Deprecated, use `gitea` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gitea`. |
 
 ---
 
