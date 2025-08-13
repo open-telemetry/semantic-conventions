@@ -164,6 +164,7 @@ applicable `aws.bedrock.*` attributes and are not expected to include
 | Value  | Description | Stability |
 |---|---|---|
 | `input` | Input tokens (prompt, input, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `output` | Output tokens (completion, response, etc.) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `output`. |
 | `output` | Output tokens (completion, response, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->

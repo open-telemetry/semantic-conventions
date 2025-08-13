@@ -233,6 +233,7 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 | Value  | Description | Stability |
 |---|---|---|
 | `input` | Input tokens (prompt, input, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `output` | Output tokens (completion, response, etc.) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `output`. |
 | `output` | Output tokens (completion, response, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated GenAI Attributes
@@ -257,6 +258,8 @@ Describes deprecated `gen_ai` attributes.
 |---|---|---|
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
+| `az.ai.inference` | Azure AI Inference | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.ai.inference`. |
+| `az.ai.openai` | Azure OpenAI | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.ai.openai`. |
 | `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -264,11 +267,13 @@ Describes deprecated `gen_ai` attributes.
 | `gcp.gemini` | Gemini [17] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gen_ai` | Any Google generative AI endpoint [18] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.vertex_ai` | Vertex AI [19] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gemini` | Gemini | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gcp.gemini`. |
 | `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vertex_ai` | Vertex AI | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gcp.vertex_ai`. |
 | `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[17]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May use common attributes prefixed with 'gcp.gen_ai.'.
