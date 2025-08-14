@@ -399,9 +399,9 @@ groups:
       - host
 
   # system.network.* metrics
-  - id: metric.system.network.dropped
+  - id: metric.system.network.packet.dropped
     type: metric
-    metric_name: system.network.dropped
+    metric_name: system.network.packet.dropped
     annotations:
       code_generation:
         metric_value_type: int
