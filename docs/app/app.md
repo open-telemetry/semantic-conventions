@@ -109,7 +109,7 @@ Jank happens when the UI is rendered slowly enough for the user to experience so
 |---|---|---|---|---|---|
 | [`app.jank.frame_count`](/docs/registry/attributes/app.md) | int | A number of frame renders that experienced jank. [1] | `9`; `42` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`app.jank.period`](/docs/registry/attributes/app.md) | int | The time period, in seconds, for which this jank is being reported. | `1`; `5`; `10` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.jank.threshold`](/docs/registry/attributes/app.md) | int | The minimum rendering threshold for this jank, in seconds. | `16`; `700`; `1024` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.jank.threshold`](/docs/registry/attributes/app.md) | double | The minimum rendering threshold for this jank, in seconds. | `0.016`; `0.7`; `1.024` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `app.jank.frame_count`:** Depending on platform limitations, the value provided MAY be approximation.
 
