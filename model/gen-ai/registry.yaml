@@ -197,7 +197,9 @@ groups:
             - id: completion
               stability: development
               value: "output"
-              deprecated: "Replaced by `output`."
+              deprecated:
+                reason: renamed
+                renamed_to: "output"
               brief: 'Output tokens (completion, response, etc.)'
             - id: output
               stability: development
