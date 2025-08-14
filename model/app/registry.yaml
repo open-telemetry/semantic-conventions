@@ -34,7 +34,7 @@ groups:
       - id: app.jank.frame_count
         type: int
         stability: development
-        brief: A count of the number of frame renders that experienced jank.
+        brief: A number of frame renders that experienced jank.
         note: >
           Depending on platform limitations, the value provided MAY be approximation.
         examples: [ 9, 42 ]
