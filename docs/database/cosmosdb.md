@@ -269,11 +269,11 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 | Value  | Description | Stability |
 |---|---|---|
-| `BoundedStaleness` | bounded_staleness | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ConsistentPrefix` | consistent_prefix | ![Development](https://img.shields.io/badge/-development-blue) |
-| `Eventual` | eventual | ![Development](https://img.shields.io/badge/-development-blue) |
-| `Session` | session | ![Development](https://img.shields.io/badge/-development-blue) |
-| `Strong` | strong | ![Development](https://img.shields.io/badge/-development-blue) |
+| `BoundedStaleness` | Bounded Staleness | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ConsistentPrefix` | Consistent Prefix | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Eventual` | Eventual | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Session` | Session | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Strong` | Strong | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -407,11 +407,11 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `BoundedStaleness` | bounded_staleness | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ConsistentPrefix` | consistent_prefix | ![Development](https://img.shields.io/badge/-development-blue) |
-| `Eventual` | eventual | ![Development](https://img.shields.io/badge/-development-blue) |
-| `Session` | session | ![Development](https://img.shields.io/badge/-development-blue) |
-| `Strong` | strong | ![Development](https://img.shields.io/badge/-development-blue) |
+| `BoundedStaleness` | Bounded Staleness | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ConsistentPrefix` | Consistent Prefix | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Eventual` | Eventual | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Session` | Session | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Strong` | Strong | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
