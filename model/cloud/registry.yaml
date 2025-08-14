@@ -179,7 +179,7 @@ groups:
               value: 'azure_vm'
               brief: Azure Virtual Machines
               stability: development
-              deprecated: 
+              deprecated:
                 reason: renamed
                 renamed_to: "azure.vm"
               annotations:
@@ -189,7 +189,7 @@ groups:
               value: 'azure_container_apps'
               brief: Azure Container Apps
               stability: development
-              deprecated: 
+              deprecated:
                 reason: renamed
                 renamed_to: "azure.container_apps"
               annotations:
@@ -199,7 +199,7 @@ groups:
               value: 'azure_container_instances'
               brief: Azure Container Instances
               stability: development
-              deprecated: 
+              deprecated:
                 reason: renamed
                 renamed_to: "azure.container_instances"
               annotations:
@@ -209,7 +209,7 @@ groups:
               value: 'azure_aks'
               brief: Azure Kubernetes Service
               stability: development
-              deprecated: 
+              deprecated:
                 reason: renamed
                 renamed_to: "azure.aks"
               annotations:
@@ -219,7 +219,7 @@ groups:
               value: 'azure_functions'
               brief: Azure Functions
               stability: development
-              deprecated: 
+              deprecated:
                 reason: renamed
                 renamed_to: "azure.functions"
               annotations:
@@ -229,7 +229,7 @@ groups:
               value: 'azure_app_service'
               brief: Azure App Service
               stability: development
-              deprecated: 
+              deprecated:
                 reason: renamed
                 renamed_to: "azure.app_service"
               annotations:
@@ -239,7 +239,7 @@ groups:
               value: 'azure_openshift'
               brief: Azure Red Hat OpenShift
               stability: development
-              deprecated: 
+              deprecated:
                 reason: renamed
                 renamed_to: "azure.openshift"
               annotations:

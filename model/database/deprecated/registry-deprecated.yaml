@@ -384,7 +384,7 @@ groups:
               stability: development
             - id: cache
               value: "cache"
-              deprecated: 
+              deprecated:
                 reason: renamed
                 renamed_to: "intersystems_cache"
               brief: "Deprecated, use `intersystems_cache` instead."
