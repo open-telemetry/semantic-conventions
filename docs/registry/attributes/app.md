@@ -10,7 +10,7 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="app-installation-id" href="#app-installation-id">`app.installation.id`</a> | string | A unique identifier representing the installation of an application on a specific device [1] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-jank-frame-count" href="#app-jank-frame-count">`app.jank.frame_count`</a> | int | A count of the number of frame renders that experienced jank. [2] | `9`; `42` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-jank-frame-count" href="#app-jank-frame-count">`app.jank.frame_count`</a> | int | A number of frame renders that experienced jank. [2] | `9`; `42` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-jank-period" href="#app-jank-period">`app.jank.period`</a> | int | The time period, in seconds, for which this jank is being reported. | `1`; `5`; `10` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-jank-threshold" href="#app-jank-threshold">`app.jank.threshold`</a> | int | The minimum rendering threshold for this jank, in seconds. | `16`; `700`; `1024` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-coordinate-x" href="#app-screen-coordinate-x">`app.screen.coordinate.x`</a> | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | ![Development](https://img.shields.io/badge/-development-blue) |
