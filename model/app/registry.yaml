@@ -38,10 +38,10 @@ groups:
         note: >
           Depending on platform limitations, the value provided MAY be approximation.
         examples: [ 9, 42 ]
-      - id: app.jank.threshold_ms
+      - id: app.jank.threshold
         stability: development
         type: int
-        brief: The minimum rendering threshold for this type of jank, in milliseconds.
+        brief: The minimum rendering threshold for this jank, in seconds.
         examples: [ 16, 700, 1024 ]
       - id: app.jank.period
         stability: development

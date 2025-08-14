@@ -50,7 +50,7 @@ groups:
     attributes:
       - ref: app.jank.frame_count
         requirement_level: recommended
-      - ref: app.jank.threshold_ms
+      - ref: app.jank.threshold
         requirement_level: recommended
       - ref: app.jank.period
         requirement_level: recommended
