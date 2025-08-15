@@ -68,8 +68,8 @@ with value `"/usr/local/bin:/usr/bin"`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
-| `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| `involuntary` | Involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voluntary` | Voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -77,8 +77,8 @@ with value `"/usr/local/bin:/usr/bin"`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Process Linux Attributes
 
