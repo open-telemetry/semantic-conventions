@@ -1,4 +1,23 @@
-{% macro print_examples(examples) %}{%- for e in examples %}{%if loop.first == false %}; {% endif %}`{{ e | trim }}`{%- endfor %}{% endmacro %}
+{%- macro escape_multiline_markdown_cell(value) -%}
+    {%- if '\n' in value -%}
+        {%- for line in value.split('\n') -%}
+            {%- set rendered = '' -%}
+            {%- set ns = namespace(started=False,rendered='') -%}
+            {%- for c in line -%}
+                {%- if not ns.started and c == ' ' -%}
+                    {%- set ns.rendered = ns.rendered ~ '&nbsp;' -%}
+                {%- else -%}
+                    {%- set ns.rendered = ns.rendered ~ c-%}
+                    {%- set ns.started = True -%}
+                {%- endif -%}
+            {%- endfor -%}
+            {{ ns.rendered }}{%- if not loop.last -%}<br>{% endif -%}
+        {%- endfor -%}
+    {%- else -%}
+        `{{- value }}`
+    {%- endif -%}
+{%- endmacro -%}
+{% macro print_examples(examples) %}{%- for e in examples %}{%if loop.first == false %}; {% endif %}{{ escape_multiline_markdown_cell(e | trim) }}{%- endfor %}{% endmacro %}
 
 {% macro format(item) %}{%- if item.examples %}
 {%- if "[]" in item.type and "template" not in item.type %}
