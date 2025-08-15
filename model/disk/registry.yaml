@@ -10,9 +10,11 @@ groups:
           members:
             - id: read
               value: 'read'
+              brief: Read
               stability: development
             - id: write
               value: 'write'
+              brief: Write
               stability: development
         stability: development
         brief: "The disk IO operation direction."

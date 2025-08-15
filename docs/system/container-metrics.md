@@ -299,8 +299,8 @@ This metric is [opt-in][MetricOptIn].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `read` | read | ![Development](https://img.shields.io/badge/-development-blue) |
-| `write` | write | ![Development](https://img.shields.io/badge/-development-blue) |
+| `read` | Read | ![Development](https://img.shields.io/badge/-development-blue) |
+| `write` | Write | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
