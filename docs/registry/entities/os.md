@@ -20,7 +20,7 @@
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`os.id`](/docs/registry/attributes/os.md) | string | A string to uniquely identify the os without the version [1] | `android`; `centos`; `fedora`; `macosx` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.id`](/docs/registry/attributes/os.md) | string | A string to uniquely identify the os without the version. [1] | `android`; `centos`; `fedora`; `macosx` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.build_id`](/docs/registry/attributes/os.md) | string | Unique identifier for a particular build or compilation of the operating system. [2] | `TQ3C.230805.001.B2`; `20E247`; `22621` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.description`](/docs/registry/attributes/os.md) | string | Human readable (not intended to be parsed) OS version information. [3] | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.family`](/docs/registry/attributes/os.md) | string[] | A collection of `os.id` that this os is like. [4] | `["android"]`; `["fedora", "rhel"]`; `["arch"]`; `["darwin"]`; `["ubuntu"]`; `["opensuse"]`; `["gentoo"]`; `["slackware"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |

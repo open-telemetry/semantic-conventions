@@ -10,6 +10,7 @@ groups:
       the process, i.e., the virtualized guest rather than the underlying host.
     attributes:
       - ref: os.id
+        note: On linux this is to be the id from the os.release file.
         requirement_level: required
       - ref: os.type
       - ref: os.description
