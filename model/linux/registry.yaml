@@ -10,9 +10,11 @@ groups:
           members:
             - id: reclaimable
               value: 'reclaimable'
+              brief: Reclaimable
               stability: development
             - id: unreclaimable
               value: 'unreclaimable'
+              brief: Unreclaimable
               stability: development
         stability: development
         brief: "The Linux Slab memory state"
