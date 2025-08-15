@@ -62,6 +62,10 @@ groups:
               value: 'zos'
               brief: "IBM z/OS"
               stability: development
+            - id: itron
+              value: 'itron'
+              brief: "Industrial TRON"
+              stability: development
         brief: >
           The operating system type.
         stability: development
