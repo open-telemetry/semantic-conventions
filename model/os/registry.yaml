@@ -67,8 +67,7 @@ groups:
         type: string
         stability: development
         brief: >
-          Human readable (not intended to be parsed) OS version information,
-          like e.g. reported by `ver` or `lsb_release -a` commands.
+          Human readable (not intended to be parsed) OS version information.
         examples: ['Microsoft Windows [Version 10.0.18363.778]', 'Ubuntu 18.04.1 LTS']
       - id: os.id
         type: string
