@@ -9,7 +9,7 @@ groups:
         type: string
         stability: development
         deprecated:
-          reason: uncategorized
+          reason: obsoleted
           note: >
             Replaced by EventName top-level field on the LogRecord.
         brief: >
