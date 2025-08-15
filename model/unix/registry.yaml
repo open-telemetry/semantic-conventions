@@ -1,0 +1,25 @@
+groups:
+  # linux.memory.* attribute group
+  - id: registry.unix.kernel
+    type: attribute_group
+    display_name: Unix Kernel Attributes
+    brief: "Describes the Unix Kernel attributes"
+    attributes:
+      - id: unix.kernel.name
+        type: string
+        stability: development
+        brief: The kernel name.
+        note: This is to be the output of uname -s.
+        examples: ["Linux", "Darwin"]
+      - id: unix.kernel.release
+        type: string
+        stability: development
+        brief: The kernel release.
+        note: This is to be the output of uname -r.
+        examples: ["5.19.0-42-generic"]
+      - id: unix.kernel.version
+        type: string
+        stability: development
+        brief: The kernel version.
+        note: This is to be the output of uname -v.
+        examples: ["#43~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Apr 21 16:51:08 UTC 2"]
