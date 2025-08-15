@@ -10,23 +10,98 @@ groups:
       the process, i.e., the virtualized guest rather than the underlying host.
     attributes:
       - ref: os.id
+        note: On linux this is to be the id from the os.release file.
         requirement_level: required
       - ref: os.type
       - ref: os.description
+        note: >
+          SHOULD the value not be provided natively via the SDK the following system sources can be used:
+
+
+          | OS | Fallback |
+
+          | ------- | ------- |
+
+          | Windows | Concatentation of `ProductName` & `DisplayVersion` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
+
+          | MacOS | - |
+
+          | Linux | `PRETTY_NAME` from `/etc/os-release` or `/usr/lib/os-release` |
       - ref: os.family
+        note: >
+          SHOULD the value not be provided natively via the SDK the following system sources can be used:
+
+
+          | OS | Fallback |
+
+          | ------- | ------- |
+
+          | Linux | `ID_LIKE` from `/etc/os-release` or `/usr/lib/os-release` |
       - ref: os.name
+        note: >
+          SHOULD the value not be provided natively via the SDK the following system sources can be used:
+
+
+          | OS | Fallback |
+
+          | ------- | ------- |
+
+          | Windows | "Windows" |
+
+          | MacOS | `ProductName` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
+
+          | Linux | `NAME` from `/etc/os-release` or `/usr/lib/os-release` |
       - ref: os.version
+        note: >
+          SHOULD the value not be provided natively via the SDK the following system sources can be used:
+
+
+          | OS | Fallback |
+
+          | ------- | ------- |
+
+          | Windows | `WinREVersion` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
+
+          | MacOS | `ProductVersion` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
+
+          | Linux | `VERSION_ID` from `/etc/os-release` or `/usr/lib/os-release` |
       - ref: os.build_id
         note: >
-          `build_id` values SHOULD be obtained from the following sources:
+          SHOULD the value not be provided natively via the SDK the following system sources can be used:
 
 
-          | OS | Primary | Fallback |
+          | OS | Fallback |
 
-          | ------- | ------- | ------- |
+          | ------- | ------- |
 
-          | Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` | - |
+          | Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
 
-          | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
+          | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
 
-          | Linux | `BUILD_ID` from `/etc/os-release` | `BUILD_ID` from `/usr/lib/os-release`; <br> contents of `/proc/sys/kernel/osrelease`|
+          | Linux | `BUILD_ID` from `/etc/os-release` or `/usr/lib/os-release` |
+      - ref: os.variant.id
+        note: >
+          SHOULD the value not be provided natively via the SDK the following system sources can be used:
+
+
+          | OS | Fallback |
+
+          | ------- | ------- |
+
+          | Windows | `EditionID` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
+
+          | MacOS | - |
+
+          | Linux | `VARIANT_ID` from `/etc/os-release` or `/usr/lib/os-release` |
+      - ref: os.variant.name
+        note: >
+          SHOULD the value not be provided natively via the SDK the following system sources can be used:
+
+
+          | OS | Fallback |
+
+          | ------- | ------- |
+
+          | MacOS | - |
+
+          | Linux | `VARIANT` from `/etc/os-release` or `/usr/lib/os-release` |

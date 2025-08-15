@@ -18,25 +18,70 @@
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
-| Other | [`os.id`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A string to uniquely identify the os without the version [1] | `android`; `centos`; `fedora`; `macosx` |
+| Other | [`os.id`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A string to uniquely identify the os without the version. [1] | `android`; `centos`; `fedora`; `macosx` |
 | Other | [`os.build_id`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for a particular build or compilation of the operating system. [2] | `TQ3C.230805.001.B2`; `20E247`; `22621` |
-| Other | [`os.description`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` |
-| Other | [`os.family`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | A collection of `os.id` that this os is like. [3] | `["android"]`; `["fedora", "rhel"]`; `["arch"]`; `["darwin"]`; `["ubuntu"]`; `["opensuse"]`; `["gentoo"]`; `["slackware"]` |
-| Other | [`os.name`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable operating system name. | `Centos Stream`; `Arch Linux`; `Ubuntu` |
+| Other | [`os.description`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable (not intended to be parsed) OS version information. [3] | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` |
+| Other | [`os.family`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | A collection of `os.id` that this os is like. [4] | `["android"]`; `["fedora", "rhel"]`; `["arch"]`; `["darwin"]`; `["ubuntu"]`; `["opensuse"]`; `["gentoo"]`; `["slackware"]` |
+| Other | [`os.name`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable operating system name. [5] | `Centos Stream`; `Arch Linux`; `Ubuntu` |
 | Other | [`os.type`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The operating system type. | `windows`; `linux`; `darwin` |
-| Other | [`os.version`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` |
+| Other | [`os.variant.id`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifies a specific variant or edition of the operating system. [6] | `server`; `embedded` |
+| Other | [`os.variant.name`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable name of the operating system variant. [7] | `Server Edition`; `Embedded Edition` |
+| Other | [`os.version`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). [8] | `14.2.1`; `18.04.1` |
 
 
-**[1] `os.id`:** On linux this is to be the id from the os.release file
+**[1] `os.id`:** On linux this is to be the id from the os.release file.
 
-**[2] `os.build_id`:** `build_id` values SHOULD be obtained from the following sources:
+**[2] `os.build_id`:** SHOULD the value not be provided natively via the SDK the following system sources can be used:
 
-| OS | Primary | Fallback |
-| ------- | ------- | ------- |
-| Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` | - |
-| MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
-| Linux | `BUILD_ID` from `/etc/os-release` | `BUILD_ID` from `/usr/lib/os-release`; <br> contents of `/proc/sys/kernel/osrelease`|
+| OS | Fallback |
+| ------- | ------- |
+| Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
+| MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
+| Linux | `BUILD_ID` from `/etc/os-release` or `/usr/lib/os-release` |
 
-**[3] `os.family`:** This collection should only be used to describe the parent OS's and not the child OS's. For example `Fedora` would have `RHEL` but `RHEL` would not have `Fedora`.
+**[3] `os.description`:** SHOULD the value not be provided natively via the SDK the following system sources can be used:
+
+| OS | Fallback |
+| ------- | ------- |
+| Windows | Concatentation of `ProductName` & `DisplayVersion` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
+| MacOS | - |
+| Linux | `PRETTY_NAME` from `/etc/os-release` or `/usr/lib/os-release` |
+
+**[4] `os.family`:** SHOULD the value not be provided natively via the SDK the following system sources can be used:
+
+| OS | Fallback |
+| ------- | ------- |
+| Linux | `ID_LIKE` from `/etc/os-release` or `/usr/lib/os-release` |
+
+**[5] `os.name`:** SHOULD the value not be provided natively via the SDK the following system sources can be used:
+
+| OS | Fallback |
+| ------- | ------- |
+| Windows | "Windows" |
+| MacOS | `ProductName` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
+| Linux | `NAME` from `/etc/os-release` or `/usr/lib/os-release` |
+
+**[6] `os.variant.id`:** SHOULD the value not be provided natively via the SDK the following system sources can be used:
+
+| OS | Fallback |
+| ------- | ------- |
+| Windows | `EditionID` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
+| MacOS | - |
+| Linux | `VARIANT_ID` from `/etc/os-release` or `/usr/lib/os-release` |
+
+**[7] `os.variant.name`:** SHOULD the value not be provided natively via the SDK the following system sources can be used:
+
+| OS | Fallback |
+| ------- | ------- |
+| MacOS | - |
+| Linux | `VARIANT` from `/etc/os-release` or `/usr/lib/os-release` |
+
+**[8] `os.version`:** SHOULD the value not be provided natively via the SDK the following system sources can be used:
+
+| OS | Fallback |
+| ------- | ------- |
+| Windows | `WinREVersion` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
+| MacOS | `ProductVersion` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
+| Linux | `VERSION_ID` from `/etc/os-release` or `/usr/lib/os-release` |
 
 <!-- markdownlint-restore -->
