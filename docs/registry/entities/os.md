@@ -30,7 +30,7 @@
 | [`os.variant.name`](/docs/registry/attributes/os.md) | string | Human readable name of the operating system variant. [7] | `Server Edition`; `Embedded Edition` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.version`](/docs/registry/attributes/os.md) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). [8] | `14.2.1`; `18.04.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `os.id`:** On linux this is to be the id from the os.release file
+**[1] `os.id`:** On linux this is to be the id from the os.release file.
 
 **[2] `os.build_id`:** SHOULD the value not be provided natively via the SDK the following system sources can be used:
 
