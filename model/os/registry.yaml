@@ -11,19 +11,23 @@ groups:
       - id: os.type
         type:
           members:
-            - id: windowsnt
-              value: 'windowsnt'
+            - id: windows_nt
+              value: 'windows_nt'
               brief: "Microsoft Windows NT based OS"
               stability: development
             - id: windows
               value: 'windows'
               brief: "Microsoft Windows"
-              deprecated: Should use `windowsnt` instead'
+              deprecated:
+                reason: renamed
+                renamed_to: windows_nt
               stability: development
             - id: linux
               value: 'linux'
               brief: "Linux"
-              deprecated: Should use `unix` instead'
+              deprecated:
+                reason: renamed
+                renamed_to: unix
               stability: development
             - id: unix
               value: 'unix'
@@ -32,54 +36,82 @@ groups:
             - id: darwin
               value: 'darwin'
               brief: "Apple Darwin"
-              deprecated: Should be set as the `os.family` instead.
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: Darwin should be set as a `os.family` member instead.
               stability: development
             - id: freebsd
               value: 'freebsd'
               brief: "FreeBSD"
-              deprecated: "Use `os.name` instead"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: FreeBSD should be set as the `os.name` instead.
               stability: development
             - id: netbsd
               value: 'netbsd'
               brief: "NetBSD"
-              deprecated: "Use `os.name` instead"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: NetBSD should be set as the `os.name` instead.
               stability: development
             - id: openbsd
               value: 'openbsd'
               brief: "OpenBSD"
-              deprecated: "Use `os.name` instead"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: OpenBSD should be set as the `os.name` instead.
               stability: development
             - id: dragonflybsd
               value: 'dragonflybsd'
               brief: "DragonFly BSD"
-              deprecated: "Use `os.name` instead"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: DragonFly BSD should be set as the `os.name` instead.
               stability: development
             - id: hpux
               value: 'hpux'
               brief: "HP-UX (Hewlett Packard Unix)"
-              deprecated: "Use `os.name` instead"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: HP-UX should be set as the `os.name` instead.
               stability: development
             - id: aix
               value: 'aix'
               brief: "AIX (Advanced Interactive eXecutive)"
-              deprecated: "Use `os.name` instead"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: AIX should be set as the `os.name` instead.
               stability: development
             - id: solaris
               value: 'solaris'
               brief: "SunOS, Oracle Solaris"
-              deprecated: "Use `os.name` instead"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: Solaris should be set as the `os.name` instead.
               stability: development
             - id: z_os
               value: 'z_os'
               brief: "Deprecated. Use `zos` instead."
               deprecated:
                 reason: renamed
-                renamed_to: "zos"
+                renamed_to: unix
+                note: zos should be set as the `os.name` instead.
               stability: development
             - id: zos
               value: 'zos'
               brief: "IBM z/OS"
-              deprecated: "Use `os.name` instead"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: zos should be set as the `os.name` instead.
               stability: development
         brief: >
           The operating system type.
