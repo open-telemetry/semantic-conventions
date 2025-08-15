@@ -120,18 +120,23 @@ groups:
           members:
             - id: wifi
               value: "wifi"
+              brief: WiFi
               stability: development
             - id: wired
               value: "wired"
+              brief: Wired
               stability: development
             - id: cell
               value: "cell"
+              brief: Cell
               stability: development
             - id: unavailable
               value: "unavailable"
+              brief: Unavailable
               stability: development
             - id: unknown
               value: "unknown"
+              brief: Unknown
               stability: development
         stability: development
         brief: 'The internet connection type.'
@@ -225,9 +230,11 @@ groups:
           members:
             - id: transmit
               value: 'transmit'
+              brief: Transmit
               stability: development
             - id: receive
               value: 'receive'
+              brief: Receive
               stability: development
         stability: development
         brief: "The network IO operation direction."
@@ -242,36 +249,47 @@ groups:
           members:
             - id: closed
               value: 'closed'
+              brief: Closed
               stability: development
             - id: close_wait
               value: 'close_wait'
+              brief: Close wait
               stability: development
             - id: closing
               value: 'closing'
+              brief: Closing
               stability: development
             - id: established
               value: 'established'
+              brief: Established
               stability: development
             - id: fin_wait_1
               value: 'fin_wait_1'
+              brief: Fin wait 1
               stability: development
             - id: fin_wait_2
               value: 'fin_wait_2'
+              brief: Fin wait 2
               stability: development
             - id: last_ack
               value: 'last_ack'
+              brief: Last ack
               stability: development
             - id: listen
               value: 'listen'
+              brief: Listen
               stability: development
             - id: syn_received
               value: 'syn_received'
+              brief: Syn received
               stability: development
             - id: syn_sent
               value: 'syn_sent'
+              brief: Syn sent
               stability: development
             - id: time_wait
               value: 'time_wait'
+              brief: Time wait
               stability: development
         stability: development
         brief: "The state of network connection"
