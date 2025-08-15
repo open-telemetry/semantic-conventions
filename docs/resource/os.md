@@ -18,7 +18,7 @@ In case of virtualized environments, this is the operating system as it is obser
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`os.id`](/docs/registry/attributes/os.md) | string | A string to uniquely identify the os without the version [1] | `android`; `centos`; `fedora`; `macosx` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.id`](/docs/registry/attributes/os.md) | string | A string to uniquely identify the os without the version. [1] | `android`; `centos`; `fedora`; `macosx` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.build_id`](/docs/registry/attributes/os.md) | string | Unique identifier for a particular build or compilation of the operating system. [2] | `TQ3C.230805.001.B2`; `20E247`; `22621` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.description`](/docs/registry/attributes/os.md) | string | Human readable (not intended to be parsed) OS version information. [3] | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.family`](/docs/registry/attributes/os.md) | string[] | A collection of `os.id` that this os is like. [4] | `["android"]`; `["fedora", "rhel"]`; `["arch"]`; `["darwin"]`; `["ubuntu"]`; `["opensuse"]`; `["gentoo"]`; `["slackware"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -28,7 +28,7 @@ In case of virtualized environments, this is the operating system as it is obser
 | [`os.variant.name`](/docs/registry/attributes/os.md) | string | Human readable name of the operating system variant. [7] | `Server Edition`; `Embedded Edition` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.version`](/docs/registry/attributes/os.md) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). [8] | `14.2.1`; `18.04.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `os.id`:** On linux this is to be the id from the os.release file
+**[1] `os.id`:** On linux this is to be the id from the os.release file.
 
 **[2] `os.build_id`:** SHOULD the value not be provided natively via the SDK the following system sources can be used:
 
