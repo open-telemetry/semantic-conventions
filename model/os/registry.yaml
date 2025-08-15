@@ -62,6 +62,10 @@ groups:
               value: 'zos'
               brief: "IBM z/OS"
               stability: development
+            - id: wasm
+              value: 'wasm'
+              brief: "WASM"
+              stability: development
         brief: >
           The operating system type.
         stability: development
