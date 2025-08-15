@@ -38,6 +38,12 @@ groups:
     attributes:
       - ref: gen_ai.request.max_tokens
         requirement_level: recommended
+      - ref: gen_ai.request.logprobs
+        requirement_level:
+          conditionally_required: if available, in the request, and not false
+        note: >
+          Whether to return the log probabilities for each token in the response.
+          If the request includes this attribute, it MUST be set to `true`
       - ref: gen_ai.request.choice.count
         requirement_level:
           conditionally_required: if available, in the request, and !=1
@@ -257,10 +263,15 @@ groups:
       - ref: gen_ai.agent.description
         requirement_level:
           conditionally_required: when available
+      - ref: gen_ai.agent.role
+        requirement_level:
+          conditionally_required: If provided by the application.
+        note: |
+          The role of the agent in the context of the agentic operation, such as `supervisor`,
+          `coder` etc.
       - ref: gen_ai.data_source.id
         requirement_level:
           conditionally_required: if applicable.
-
   - id: span.gen_ai.execute_tool.internal
     type: span
     stability: development

@@ -108,6 +108,11 @@ groups:
         type: int
         brief: The maximum number of tokens the model generates for a request.
         examples: [100]
+      - id: gen_ai.request.logprobs
+        stability: development
+        type: boolean
+        brief: Whether to return the log probabilities for each token in the response.
+        examples: [true]
       - id: gen_ai.request.choice.count
         stability: development
         type: int
@@ -227,6 +232,11 @@ groups:
         type: string
         brief: Free-form description of the GenAI agent provided by the application.
         examples: ["Helps with math problems", "Generates fiction stories"]
+      - id: gen_ai.agent.role
+        stability: development
+        type: string
+        brief: Role of the agent in the given operation context.
+        examples: ["researcher", "coder", "assistant"]
       - id: gen_ai.tool.name
         stability: development
         type: string
