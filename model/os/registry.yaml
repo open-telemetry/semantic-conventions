@@ -72,8 +72,7 @@ groups:
       - id: os.id
         type: string
         stability: development
-        brief: 'A string to uniquely identify the os without the version'
-        note: 'On linux this is to be the id from the os.release file'
+        brief: 'A string to uniquely identify the os without the version.'
         examples: ['android', 'centos', 'fedora', 'macosx']
       - id: os.name
         type: string
