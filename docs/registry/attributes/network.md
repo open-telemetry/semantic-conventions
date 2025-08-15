@@ -50,17 +50,17 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `close_wait` | close_wait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `closed` | closed | ![Development](https://img.shields.io/badge/-development-blue) |
-| `closing` | closing | ![Development](https://img.shields.io/badge/-development-blue) |
-| `established` | established | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fin_wait_1` | fin_wait_1 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fin_wait_2` | fin_wait_2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `last_ack` | last_ack | ![Development](https://img.shields.io/badge/-development-blue) |
-| `listen` | listen | ![Development](https://img.shields.io/badge/-development-blue) |
-| `syn_received` | syn_received | ![Development](https://img.shields.io/badge/-development-blue) |
-| `syn_sent` | syn_sent | ![Development](https://img.shields.io/badge/-development-blue) |
-| `time_wait` | time_wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `close_wait` | Close wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `closed` | Closed | ![Development](https://img.shields.io/badge/-development-blue) |
+| `closing` | Closing | ![Development](https://img.shields.io/badge/-development-blue) |
+| `established` | Established | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fin_wait_1` | Fin wait 1 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fin_wait_2` | Fin wait 2 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `last_ack` | Last ack | ![Development](https://img.shields.io/badge/-development-blue) |
+| `listen` | Listen | ![Development](https://img.shields.io/badge/-development-blue) |
+| `syn_received` | Syn received | ![Development](https://img.shields.io/badge/-development-blue) |
+| `syn_sent` | Syn sent | ![Development](https://img.shields.io/badge/-development-blue) |
+| `time_wait` | Time wait | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -96,11 +96,11 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `cell` | cell | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unavailable` | unavailable | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unknown` | unknown | ![Development](https://img.shields.io/badge/-development-blue) |
-| `wifi` | wifi | ![Development](https://img.shields.io/badge/-development-blue) |
-| `wired` | wired | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cell` | Cell | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unavailable` | Unavailable | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unknown` | Unknown | ![Development](https://img.shields.io/badge/-development-blue) |
+| `wifi` | WiFi | ![Development](https://img.shields.io/badge/-development-blue) |
+| `wired` | Wired | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -108,8 +108,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | Receive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | Transmit | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
