@@ -97,7 +97,7 @@ The following table describes how to populate the operating system attributes on
 | Value  | Description | Stability |
 |---|---|---|
 | `unix` | Unix | ![Development](https://img.shields.io/badge/-development-blue) |
-| `windowsnt` | Microsoft Windows NT based OS | ![Development](https://img.shields.io/badge/-development-blue) |
+| `windows_nt` | Microsoft Windows NT based OS | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
