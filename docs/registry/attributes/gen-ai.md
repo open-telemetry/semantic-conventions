@@ -138,6 +138,7 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 | Value  | Description | Stability |
 |---|---|---|
 | `input` | Input tokens (prompt, input, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `output` | Output tokens (completion, response, etc.) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `output`. |
 | `output` | Output tokens (completion, response, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated GenAI Attributes
@@ -169,11 +170,14 @@ Describes deprecated `gen_ai` attributes.
 | `gcp.gemini` | Gemini [10] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.gen_ai` | Any Google generative AI endpoint [11] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp.vertex_ai` | Vertex AI [12] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gemini` | Gemini | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gcp.gemini`. |
 | `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vertex_ai` | Vertex AI | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gcp.vertex_ai`. |
+| `xai` | xAI | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `x_ai`. |
 
 **[10]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May use common attributes prefixed with 'gcp.gen_ai.'.
 
