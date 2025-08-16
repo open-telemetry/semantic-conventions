@@ -26,7 +26,8 @@ jobs:
         run: |
           merge_base=$(git merge-base origin/${{ github.base_ref }} HEAD)
           # Using lychee's default extension filter here to match when it runs against all files
-          modified_files=$(git diff --name-only $merge_base...${{ github.event.pull_request.head.sha }} \
+          # --diff-filter=d excludes deleted files
+          modified_files=$(git diff --name-only --diff-filter=d $merge_base...${{ github.event.pull_request.head.sha }} \
                             | grep -E '\.(md|mkd|mdx|mdown|mdwn|mkdn|mkdown|markdown|html|htm|txt)$' \
                             | tr '\n' ' ' || true)
           echo "files=$modified_files" >> $GITHUB_OUTPUT
