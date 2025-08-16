@@ -159,6 +159,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `QUERY` | QUERY method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- markdownlint-restore -->

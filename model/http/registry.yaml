@@ -76,6 +76,10 @@ groups:
               value: "TRACE"
               brief: 'TRACE method.'
               stability: stable
+            - id: query
+              value: "QUERY"
+              brief: 'QUERY method.'
+              stability: stable
             - id: other
               value: "_OTHER"
               brief: 'Any HTTP method that the instrumentation has no prior knowledge of.'

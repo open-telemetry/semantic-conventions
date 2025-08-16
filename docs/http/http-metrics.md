@@ -169,6 +169,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `QUERY` | QUERY method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
@@ -247,6 +248,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `QUERY` | QUERY method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- markdownlint-restore -->
@@ -362,6 +364,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `QUERY` | QUERY method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
@@ -486,6 +489,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `QUERY` | QUERY method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
@@ -614,6 +618,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `QUERY` | QUERY method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- markdownlint-restore -->
@@ -727,6 +732,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `QUERY` | QUERY method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- markdownlint-restore -->
@@ -840,6 +846,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `QUERY` | QUERY method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- markdownlint-restore -->
@@ -1000,6 +1007,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `QUERY` | QUERY method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- markdownlint-restore -->
