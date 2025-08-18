@@ -105,9 +105,6 @@ groups:
         metric_value_type: int
     stability: development
     brief: "Reports memory in use by state."
-    note: |
-      The sum over all `system.memory.state` values SHOULD equal the total memory
-      available on the system, that is `system.memory.limit`.
     instrument: updowncounter
     unit: "By"
     attributes:
@@ -122,9 +119,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Total memory available in the system."
-    note: |
-      Its value SHOULD equal the sum of `system.memory.state` over all states.
+    brief: "Total virtual memory available in the system."
     instrument: updowncounter
     unit: "By"
     attributes: []
@@ -154,7 +149,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: gauge
     unit: "1"
     attributes:
@@ -188,7 +183,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: gauge
     unit: "1"
     attributes:
@@ -206,7 +201,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: counter
     unit: "{fault}"
     attributes:
@@ -221,7 +216,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    brief: ""
+    brief: TODO.
     instrument: counter
     unit: "{operation}"
     attributes:
@@ -238,7 +233,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: counter
     unit: "By"
     attributes:
@@ -254,7 +249,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: counter
     unit: "{operation}"
     attributes:
@@ -313,7 +308,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: counter
     unit: "{operation}"
     attributes:
@@ -369,7 +364,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: gauge
     unit: "1"
     attributes:
@@ -433,7 +428,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: counter
     unit: "{packet}"
     attributes:
@@ -471,7 +466,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: counter
     unit: "By"
     attributes:
@@ -487,7 +482,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: ""
+    brief: TODO.
     instrument: updowncounter
     unit: "{connection}"
     attributes:

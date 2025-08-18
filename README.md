@@ -2,7 +2,7 @@
 
 [![Checks](https://github.com/open-telemetry/semantic-conventions/workflows/Checks/badge.svg)](https://github.com/open-telemetry/semantic-conventions/actions?query=workflow%3A%22Checks%22+branch%3Amain)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/open-telemetry/semantic-conventions.svg?logo=opentelemetry&&color=f5a800&label=Latest%20release)](https://github.com/open-telemetry/semantic-conventions/releases/latest)
-[![Specification Version](https://img.shields.io/badge/OTel_specification_version-v1.47.0-blue?logo=opentelemetry&color=f5a800)](https://github.com/open-telemetry/opentelemetry-specification/releases/tag/v1.47.0)
+[![Specification Version](https://img.shields.io/badge/OTel_specification_version-v1.48.0-blue?logo=opentelemetry&color=f5a800)](https://github.com/open-telemetry/opentelemetry-specification/releases/tag/v1.48.0)
 
 Semantic Conventions define a common set of (semantic) attributes which
 provide meaning to data when collecting, producing and consuming it.
@@ -23,7 +23,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 - [Joao Grassi](https://github.com/joaopgrassi), Dynatrace
 - [Johannes Tax](https://github.com/pyohannes), Grafana Labs
 - [Josh Suereth](https://github.com/jsuereth), Google
-- [Liudmila Molkova](https://github.com/lmolkova), Microsoft
+- [Liudmila Molkova](https://github.com/lmolkova), Grafana Labs
 - [Trask Stalnaker](https://github.com/trask), Microsoft
 
 For more information about the maintainer role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#maintainer).

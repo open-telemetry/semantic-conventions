@@ -199,7 +199,7 @@ Describes deprecated database attributes.
 | <a id="db-redis-database-index" href="#db-redis-database-index">`db.redis.database_index`</a> | int | Deprecated, use `db.namespace` instead. | `0`; `1`; `15` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.namespace`. |
 | <a id="db-sql-table" href="#db-sql-table">`db.sql.table`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`, but only if not extracting the value from `db.query.text`. |
 | <a id="db-statement" href="#db-statement">`db.statement`</a> | string | The database statement being executed. | `SELECT * FROM wuser_table`; `SET mykey "WuValue"` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.query.text`. |
-| <a id="db-system" href="#db-system">`db.system`</a> | string | Deprecated, use `db.system.name` instead. | `other_sql`; `adabas`; `cache` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.system.name`. |
+| <a id="db-system" href="#db-system">`db.system`</a> | string | Deprecated, use `db.system.name` instead. | `other_sql`; `adabas`; `intersystems_cache` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.system.name`. |
 | <a id="db-user" href="#db-user">`db.user`</a> | string | Deprecated, no replacement at this time. | `readonly_user`; `reporting_user` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. |
 
 ---

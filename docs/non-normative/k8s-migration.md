@@ -63,6 +63,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Node condition metrics](#k8s-node-condition-metrics)
   - [K8s Filesystem metrics](#k8s-filesystem-metrics)
   - [K8s Pod Volume metrics](#k8s-pod-volume-metrics)
+  - [Container Runtime](#container-runtime)
 
 <!-- tocstop -->
 
@@ -417,4 +418,19 @@ The changes in these metrics are the following:
 | `k8s.volume.inodes.free` | `k8s.pod.volume.inode.free`  |
 | `k8s.volume.inodes.used` | `k8s.pod.volume.inode.used`  |
 
+<!-- prettier-ignore-end -->
+
+### Container Runtime
+
+The container runtime has become more descriptive with changes introduced to semantic conventions
+within v1.Y.Z <!--[v1.29.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.29.0/docs/system/k8s-metrics.md)-->.
+
+The changes in their attributes are the following:
+
 <!-- prettier-ignore-start -->
+
+| Old Attribute ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New Attribute |
+|------------------------------------------------------------------------------------|--------------------------|
+| `container.runtime` | `container.runtime.name` |
+
+<!-- prettier-ignore-end -->
