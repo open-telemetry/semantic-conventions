@@ -4,35 +4,13 @@ groups:
     type: metric
     metric_name: nfs.client.net.count
     stability: development
-    brief: "Reports the count of kernel NFS client network requests handled."
+    brief: "Reports the count of kernel NFS client TCP segments and UDP datagrams handled."
     note: |
-      Linux: this metric is taken from the Linux kernel's svc_stat.netcnt, which includes both UDP datagrams and TCP segments
+      Linux: this metric is taken from the Linux kernel's svc_stat.netudpcnt and svc_stat.nettcpcnt
     instrument: counter
-    unit: "{request}"
-    entity_associations:
-      - host
-
-  - id: metric.nfs.client.net.udp.count
-    type: metric
-    metric_name: nfs.client.net.udp.count
-    stability: development
-    brief: "Reports the count of kernel NFS client UDP datagrams handled."
-    note: |
-      Linux: this metric is taken from the Linux kernel's svc_stat.netudpcnt
-    instrument: counter
-    unit: "{datagram}"
-    entity_associations:
-      - host
-
-  - id: metric.nfs.client.net.tcp.count
-    type: metric
-    metric_name: nfs.client.net.tcp.count
-    stability: development
-    brief: "Reports the count of kernel NFS client TCP segments handled."
-    note: |
-      Linux: this metric is taken from the Linux kernel's svc_stat.nettcpcnt
-    instrument: counter
-    unit: "{segment}"
+    attributes:
+      - ref: network.transport
+    unit: "{net}"
     entity_associations:
       - host
 
@@ -159,26 +137,16 @@ groups:
     entity_associations:
       - host
 
-  - id: metric.nfs.server.io.read.count
+  - id: metric.nfs.server.io.count
     type: metric
-    metric_name: nfs.server.io.read.count
+    metric_name: nfs.server.io.count
     stability: development
-    brief: "Reports the count of kernel NFS server bytes returned to read requests."
+    brief: "Reports the count of kernel NFS server bytes returned to receive and transmit (read and write) requests."
     note: |
-      Linux: this metric is taken from the Linux kernel NFSD_STATS_IO_READ counter in the nfsd_net struct
+      Linux: this metric is taken from the Linux kernel NFSD_STATS_IO_READ and NFSD_STATS_IO_WRITE counters in the nfsd_net struct
     instrument: counter
-    unit: "By"
-    entity_associations:
-      - host
-
-  - id: metric.nfs.server.io.write.count
-    type: metric
-    metric_name: nfs.server.io.write.count
-    stability: development
-    brief: "Reports the count of kernel NFS server bytes passed to write requests."
-    note: |
-      Linux: this metric is taken from the Linux kernel NFSD_STATS_IO_WRITE counter in the nfsd_net struct
-    instrument: counter
+    attribute:
+      - ref: network.io.direction
     unit: "By"
     entity_associations:
       - host
@@ -199,35 +167,11 @@ groups:
     type: metric
     metric_name: nfs.server.net.count
     stability: development
-    brief: "Reports the count of kernel NFS server network requests handled."
+    brief: "Reports the count of kernel NFS server TCP segments and UDP datagrams handled."
     note: |
-      Linux: this metric is taken from the Linux kernel's svc_stat.netcnt, which includes both UDP datagrams and TCP segments
+      Linux: this metric is taken from the Linux kernel's svc_stat.nettcpcnt and svc_stat.netudpcnt
     instrument: counter
-    unit: "{request}"
-    entity_associations:
-      - host
-
-  - id: metric.nfs.server.net.udp.count
-    type: metric
-    metric_name: nfs.server.net.udp.count
-    stability: development
-    brief: "Reports the count of kernel NFS server UDP datagrams handled."
-    note: |
-      Linux: this metric is taken from the Linux kernel's svc_stat.netudpcnt
-    instrument: counter
-    unit: "{datagram}"
-    entity_associations:
-      - host
-
-  - id: metric.nfs.server.net.tcp.count
-    type: metric
-    metric_name: nfs.server.net.tcp.count
-    stability: development
-    brief: "Reports the count of kernel NFS server TCP segments handled."
-    note: |
-      Linux: this metric is taken from the Linux kernel's svc_stat.nettcpcnt
-    instrument: counter
-    unit: "{segment}"
+    unit: "{net}"
     entity_associations:
       - host
 
