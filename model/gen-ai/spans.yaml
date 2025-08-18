@@ -276,12 +276,17 @@ groups:
       for the application developers to follow this semantic convention for tools invoked
       by the application code.
     attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
       - ref: gen_ai.tool.name
         requirement_level: recommended
       - ref: gen_ai.tool.call.id
         requirement_level:
           recommended: if available
       - ref: gen_ai.tool.description
+        requirement_level:
+          recommended: if available
+      - ref: gen_ai.tool.type
         requirement_level:
           recommended: if available
       - ref: error.type

@@ -5,7 +5,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    brief: "[Request units](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation"
+    brief: "[Request units](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation."
     instrument: histogram
     unit: "{request_unit}"
     stability: development
@@ -26,7 +26,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    brief: "Number of active client instances"
+    brief: "Number of active client instances."
     instrument: updowncounter
     unit: "{instance}"
     stability: development
