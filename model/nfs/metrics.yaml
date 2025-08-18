@@ -14,9 +14,9 @@ groups:
     entity_associations:
       - host
 
-  - id: metric.nfs.client.net.tcp.connection.count
+  - id: metric.nfs.client.net.tcp.connection.accepted
     type: metric
-    metric_name: nfs.client.net.tcp.connection.count
+    metric_name: nfs.client.net.tcp.connection.accepted
     stability: development
     brief: "Reports the count of kernel NFS client TCP connections accepted."
     note: |
@@ -145,7 +145,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel NFSD_STATS_IO_READ and NFSD_STATS_IO_WRITE counters in the nfsd_net struct
     instrument: counter
-    attribute:
+    attributes:
       - ref: network.io.direction
     unit: "By"
     entity_associations:
@@ -175,9 +175,9 @@ groups:
     entity_associations:
       - host
 
-  - id: metric.nfs.server.net.tcp.connection.count
+  - id: metric.nfs.server.net.tcp.connection.accepted
     type: metric
-    metric_name: nfs.server.net.tcp.connection.count
+    metric_name: nfs.server.net.tcp.connection.accepted
     stability: development
     brief: "Reports the count of kernel NFS server TCP connections accepted."
     note: |
