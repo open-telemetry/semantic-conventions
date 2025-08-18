@@ -205,44 +205,10 @@ groups:
     stability: development
     brief: "Reports the total count of kernel NFS server bad RPCs."
     note: |
-      Linux: this metric is taken from the Linux kernel's svc_stat.badfmt+svc_stat.badauth+svc_stat.badclnt
+      Linux: this metric can have an error.type of "format", "auth", or "client" for svc_stat.badfmt, svc_stat.badauth, and svc_stat.badclnt.
     instrument: counter
-    unit: "{request}"
-    entity_associations:
-      - host
-
-  - id: metric.nfs.server.rpc.badfmt.count
-    type: metric
-    metric_name: nfs.server.rpc.badfmt.count
-    stability: development
-    brief: "Reports the total count of kernel NFS server badly formatted RPCs."
-    note: |
-      Linux: this metric is taken from the Linux kernel's svc_stat.badfmt
-    instrument: counter
-    unit: "{request}"
-    entity_associations:
-      - host
-
-  - id: metric.nfs.server.rpc.badauth.count
-    type: metric
-    metric_name: nfs.server.rpc.badauth.count
-    stability: development
-    brief: "Reports the total count of kernel NFS server badly authenticated RPCs."
-    note: |
-      Linux: this metric is taken from the Linux kernel's svc_stat.badauth
-    instrument: counter
-    unit: "{request}"
-    entity_associations:
-      - host
-
-  - id: metric.nfs.server.rpc.badclient.count
-    type: metric
-    metric_name: nfs.server.rpc.badclient.count
-    stability: development
-    brief: "Reports the total count of kernel NFS server unauthorized client RPCs."
-    note: |
-      Linux: this metric is taken from the Linux kernel's svc_stat.badclnt
-    instrument: counter
+    attributes:
+      - ref: error.type
     unit: "{request}"
     entity_associations:
       - host
