@@ -62,3 +62,8 @@ groups:
           A widget is an application component, typically an on-screen visual
           GUI element.
         examples: [ "submit", "attack", "Clear Cart" ]
+      - id: app.build_id
+        type: string
+        stability: development
+        brief: 'Unique identifier for a particular build or compilation of the application.'
+        examples: ['6cff0a7e-cefc-4668-96f5-1273d8b334d0', '9f2b833506aa6973a92fde9733e6271f', 'my-app-1.0.0-code-123']
