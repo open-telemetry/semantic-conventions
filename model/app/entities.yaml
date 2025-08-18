@@ -8,3 +8,4 @@ groups:
     attributes:
       - ref: app.installation.id
       - ref: app.build_id
+        role: identifying
