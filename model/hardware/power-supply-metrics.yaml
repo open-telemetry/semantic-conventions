@@ -20,7 +20,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Maximum power output of the power supply"
+    brief: "Maximum power output of the power supply."
     instrument: updowncounter
     unit: "W"
     extends: metric_attributes.hw.power_supply
@@ -36,7 +36,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Utilization of the power supply as a fraction of its maximum output"
+    brief: "Utilization of the power supply as a fraction of its maximum output."
     instrument: gauge
     unit: "1"
     extends: metric_attributes.hw.power_supply
@@ -48,7 +48,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Current power output of the power supply"
+    brief: "Current power output of the power supply."
     instrument: updowncounter
     unit: "W"
     extends: metric_attributes.hw.power_supply

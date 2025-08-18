@@ -24,7 +24,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Received and transmitted bytes by the GPU"
+    brief: "Received and transmitted bytes by the GPU."
     instrument: counter
     unit: "By"
     extends: metric_attributes.hw.gpu
@@ -40,7 +40,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Size of the GPU memory"
+    brief: "Size of the GPU memory."
     instrument: updowncounter
     unit: "By"
     extends: metric_attributes.hw.gpu
@@ -52,7 +52,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Fraction of GPU memory used"
+    brief: "Fraction of GPU memory used."
     instrument: gauge
     unit: "1"
     extends: metric_attributes.hw.gpu
@@ -64,7 +64,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "GPU memory used"
+    brief: "GPU memory used."
     instrument: updowncounter
     unit: "By"
     extends: metric_attributes.hw.gpu
@@ -76,7 +76,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Fraction of time spent in a specific task"
+    brief: "Fraction of time spent in a specific task."
     instrument: gauge
     unit: "1"
     extends: metric_attributes.hw.gpu

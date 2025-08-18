@@ -20,7 +20,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Operations performed by the tape drive"
+    brief: "Operations performed by the tape drive."
     instrument: counter
     unit: "{operation}"
     extends: metric_attributes.hw.tape_drive

@@ -16,7 +16,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Size of the logical disk"
+    brief: "Size of the logical disk."
     instrument: updowncounter
     unit: "By"
     extends: metric_attributes.hw.logical_disk
@@ -28,7 +28,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Logical disk space usage"
+    brief: "Logical disk space usage."
     instrument: updowncounter
     unit: "By"
     extends: metric_attributes.hw.logical_disk
@@ -44,7 +44,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Logical disk space utilization as a fraction"
+    brief: "Logical disk space utilization as a fraction."
     instrument: gauge
     unit: "1"
     extends: metric_attributes.hw.logical_disk

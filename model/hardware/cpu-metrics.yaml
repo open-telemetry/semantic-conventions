@@ -19,7 +19,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "CPU current frequency"
+    brief: "CPU current frequency."
     instrument: gauge
     unit: "Hz"
     extends: metric_attributes.hw.cpu
@@ -32,7 +32,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "CPU maximum frequency"
+    brief: "CPU maximum frequency."
     instrument: gauge
     unit: "Hz"
     extends: metric_attributes.hw.cpu

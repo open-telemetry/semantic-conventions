@@ -22,7 +22,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Size of the memory module"
+    brief: "Size of the memory module."
     instrument: updowncounter
     unit: "By"
     extends: metric_attributes.hw.memory

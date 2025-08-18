@@ -24,7 +24,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Link speed"
+    brief: "Link speed."
     instrument: updowncounter
     unit: "By/s"
     extends: metric_attributes.hw.network
@@ -36,7 +36,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Utilization of the network bandwidth as a fraction"
+    brief: "Utilization of the network bandwidth as a fraction."
     instrument: gauge
     unit: "1"
     extends: metric_attributes.hw.network
@@ -48,7 +48,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Received and transmitted network traffic in bytes"
+    brief: "Received and transmitted network traffic in bytes."
     instrument: counter
     unit: "By"
     extends: metric_attributes.hw.network
@@ -64,7 +64,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Received and transmitted network traffic in packets (or frames)"
+    brief: "Received and transmitted network traffic in packets (or frames)."
     instrument: counter
     unit: "{packet}"
     extends: metric_attributes.hw.network
@@ -80,7 +80,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Link status: `1` (up) or `0` (down)"
+    brief: "Link status: `1` (up) or `0` (down)."
     instrument: updowncounter
     unit: "1"
     extends: metric_attributes.hw.network

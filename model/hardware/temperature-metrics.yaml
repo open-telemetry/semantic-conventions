@@ -16,7 +16,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Temperature in degrees Celsius"
+    brief: "Temperature in degrees Celsius."
     instrument: gauge
     unit: "Cel"
     extends: metric_attributes.hw.temperature.common
@@ -28,7 +28,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Temperature limit in degrees Celsius"
+    brief: "Temperature limit in degrees Celsius."
     instrument: gauge
     unit: "Cel"
     extends: metric_attributes.hw.temperature.common

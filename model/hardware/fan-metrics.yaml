@@ -16,7 +16,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Fan speed in revolutions per minute"
+    brief: "Fan speed in revolutions per minute."
     instrument: gauge
     unit: "rpm"
     extends: metric_attributes.hw.fan
@@ -28,7 +28,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Speed limit in rpm"
+    brief: "Speed limit in rpm."
     instrument: gauge
     unit: "rpm"
     extends: metric_attributes.hw.fan
@@ -44,7 +44,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Fan speed expressed as a fraction of its maximum speed"
+    brief: "Fan speed expressed as a fraction of its maximum speed."
     instrument: gauge
     unit: "1"
     extends: metric_attributes.hw.fan

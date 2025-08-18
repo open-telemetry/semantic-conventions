@@ -22,7 +22,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Remaining fraction of battery charge"
+    brief: "Remaining fraction of battery charge."
     instrument: gauge
     unit: "1"
     extends: metric_attributes.hw.battery
@@ -35,7 +35,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Lower limit of battery charge fraction to ensure proper operation"
+    brief: "Lower limit of battery charge fraction to ensure proper operation."
     instrument: gauge
     unit: "1"
     extends: metric_attributes.hw.battery
@@ -57,7 +57,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Time left before battery is completely charged or discharged"
+    brief: "Time left before battery is completely charged or discharged."
     instrument: gauge
     unit: "s"
     extends: metric_attributes.hw.battery

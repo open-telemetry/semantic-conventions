@@ -16,7 +16,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Voltage measured by the sensor"
+    brief: "Voltage measured by the sensor."
     instrument: gauge
     unit: "V"
     extends: metric_attributes.hw.voltage.common
@@ -28,7 +28,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Voltage limit in Volts"
+    brief: "Voltage limit in Volts."
     instrument: gauge
     unit: "V"
     extends: metric_attributes.hw.voltage.common
@@ -44,7 +44,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Nominal (expected) voltage"
+    brief: "Nominal (expected) voltage."
     instrument: gauge
     unit: "V"
     extends: metric_attributes.hw.voltage.common

@@ -64,16 +64,16 @@ When using this metric, the following attributes MUST be set:
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.errors` | Counter | `{error}` | Number of errors encountered by the component | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.errors` | Counter | `{error}` | Number of errors encountered by the component. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | The type of error encountered by the component [2] | `uncorrected`; `zero_buffer_credit`; `crc`; `bad_sector` | `Conditionally Required` if and only if an error has occurred | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | The type of error encountered by the component. [2] | `uncorrected`; `zero_buffer_credit`; `crc`; `bad_sector` | `Conditionally Required` if and only if an error has occurred | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.io.direction`](/docs/registry/attributes/network.md) | string | Direction of network traffic for network errors [3] | `receive`; `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.io.direction`](/docs/registry/attributes/network.md) | string | Direction of network traffic for network errors. [3] | `receive`; `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
@@ -139,7 +139,7 @@ Size of the memory module.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.memory.size` | UpDownCounter | `By` | Size of the memory module | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.memory.size` | UpDownCounter | `By` | Size of the memory module. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -180,7 +180,7 @@ When using this metric for memory status, the following attributes MUST be set:
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.status` | UpDownCounter | `1` | Operational status: `1` (true) or `0` (false) for each of the possible states [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.status` | UpDownCounter | `1` | Operational status: `1` (true) or `0` (false) for each of the possible states. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** `hw.status` is currently specified as an *UpDownCounter* but would ideally be represented using a [*StateSet* as defined in OpenMetrics](https://github.com/prometheus/OpenMetrics/blob/v1.0.0/specification/OpenMetrics.md#stateset). This semantic convention will be updated once *StateSet* is specified in OpenTelemetry. This planned change is not expected to have any consequence on the way users query their timeseries backend to retrieve the values of `hw.status` over time.
 

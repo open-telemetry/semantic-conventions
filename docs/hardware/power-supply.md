@@ -64,7 +64,7 @@ The following attributes SHOULD be set:
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.power_supply.limit` | UpDownCounter | `W` | Maximum power output of the power supply | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.power_supply.limit` | UpDownCounter | `W` | Maximum power output of the power supply. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -112,7 +112,7 @@ Utilization of the power supply as a fraction of its maximum output.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.power_supply.utilization` | Gauge | `1` | Utilization of the power supply as a fraction of its maximum output | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.power_supply.utilization` | Gauge | `1` | Utilization of the power supply as a fraction of its maximum output. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -143,7 +143,7 @@ Current power usage of the power supply.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.power_supply.usage` | UpDownCounter | `W` | Current power output of the power supply | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.power_supply.usage` | UpDownCounter | `W` | Current power output of the power supply. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -182,7 +182,7 @@ When using this metric for power supply status, the following attributes MUST be
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.status` | UpDownCounter | `1` | Operational status: `1` (true) or `0` (false) for each of the possible states [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.status` | UpDownCounter | `1` | Operational status: `1` (true) or `0` (false) for each of the possible states. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** `hw.status` is currently specified as an *UpDownCounter* but would ideally be represented using a [*StateSet* as defined in OpenMetrics](https://github.com/prometheus/OpenMetrics/blob/v1.0.0/specification/OpenMetrics.md#stateset). This semantic convention will be updated once *StateSet* is specified in OpenTelemetry. This planned change is not expected to have any consequence on the way users query their timeseries backend to retrieve the values of `hw.status` over time.
 
