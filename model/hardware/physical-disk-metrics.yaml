@@ -1,6 +1,6 @@
 groups:
   # PHYSICAL DISK METRICS
-  - id: metric.hw.physical_disk
+  - id: metric_attributes.hw.physical_disk
     type: attribute_group
     brief: >
       Common attributes for physical disk metrics
@@ -27,7 +27,7 @@ groups:
     brief: "Endurance remaining for this SSD disk"
     instrument: gauge
     unit: "1"
-    extends: metric.hw.physical_disk
+    extends: metric_attributes.hw.physical_disk
     attributes:
       - ref: hw.physical_disk.state
         examples: ["remaining"]
@@ -43,7 +43,7 @@ groups:
     brief: "Size of the disk"
     instrument: updowncounter
     unit: "By"
-    extends: metric.hw.physical_disk
+    extends: metric_attributes.hw.physical_disk
 
   - id: metric.hw.physical_disk.smart
     type: metric
@@ -55,7 +55,7 @@ groups:
     brief: "Value of the corresponding [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute"
     instrument: gauge
     unit: "1"
-    extends: metric.hw.physical_disk
+    extends: metric_attributes.hw.physical_disk
     attributes:
       - ref: hw.physical_disk.smart_attribute
         examples: ['Spin Retry Count', 'Seek Error Rate']

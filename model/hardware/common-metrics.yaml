@@ -1,6 +1,6 @@
 groups:
   # COMMON METRICS
-  - id: metric.hw.attributes
+  - id: metric_attributes.hw.attributes
     type: attribute_group
     brief: "Attributes for hardware metrics"
     extends: hardware.attributes.common
@@ -18,7 +18,7 @@ groups:
     brief: "Energy consumed by the component"
     instrument: counter
     unit: "J"
-    extends: metric.hw.attributes
+    extends: metric_attributes.hw.attributes
 
   - id: metric.hw.errors
     type: metric
@@ -30,7 +30,7 @@ groups:
     brief: "Number of errors encountered by the component"
     instrument: counter
     unit: "{error}"
-    extends: metric.hw.attributes
+    extends: metric_attributes.hw.attributes
     attributes:
       - ref: error.type
         brief: "The type of error encountered by the component"
@@ -59,7 +59,7 @@ groups:
       It is recommended to report `hw.energy` instead of `hw.power` when possible.
     instrument: gauge
     unit: "W"
-    extends: metric.hw.attributes
+    extends: metric_attributes.hw.attributes
 
   - id: metric.hw.status
     type: metric
@@ -71,7 +71,7 @@ groups:
     brief: "Operational status: `1` (true) or `0` (false) for each of the possible states"
     instrument: updowncounter
     unit: "1"
-    extends: metric.hw.attributes
+    extends: metric_attributes.hw.attributes
     note: >
       `hw.status` is currently specified as an *UpDownCounter* but would ideally be represented using a
       [*StateSet* as defined in OpenMetrics](https://github.com/prometheus/OpenMetrics/blob/v1.0.0/specification/OpenMetrics.md#stateset).

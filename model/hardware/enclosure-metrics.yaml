@@ -1,6 +1,6 @@
 groups:
   # ENCLOSURE METRICS
-  - id: metric.hw.enclosure
+  - id: metric_attributes.hw.enclosure
     type: attribute_group
     brief: >
       Common attributes for enclosure metrics

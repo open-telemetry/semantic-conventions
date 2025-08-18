@@ -1,6 +1,6 @@
 groups:
   # MEMORY METRICS
-  - id: metric.hw.memory
+  - id: metric_attributes.hw.memory
     type: attribute_group
     brief: >
       Common attributes for memory module metrics
@@ -25,4 +25,4 @@ groups:
     brief: "Size of the memory module"
     instrument: updowncounter
     unit: "By"
-    extends: metric.hw.memory
+    extends: metric_attributes.hw.memory

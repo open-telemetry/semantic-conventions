@@ -1,6 +1,6 @@
 groups:
   # BATTERY METRICS
-  - id: metric.hw.battery
+  - id: metric_attributes.hw.battery
     type: attribute_group
     brief: >
       Common attributes for battery metrics
@@ -25,7 +25,7 @@ groups:
     brief: "Remaining fraction of battery charge"
     instrument: gauge
     unit: "1"
-    extends: metric.hw.battery
+    extends: metric_attributes.hw.battery
 
     # TODO: decide on metric name - charge.limit is original
   - id: metric.hw.battery.charge.limit
@@ -38,7 +38,7 @@ groups:
     brief: "Lower limit of battery charge fraction to ensure proper operation"
     instrument: gauge
     unit: "1"
-    extends: metric.hw.battery
+    extends: metric_attributes.hw.battery
     attributes:
       - ref: hw.limit_type
         examples: ["critical", "throttled", "degraded"]
@@ -55,12 +55,12 @@ groups:
     metric_name: hw.battery.time_left
     annotations:
       code_generation:
-        metric_value_type: int
+        metric_value_type: double
     stability: development
     brief: "Time left before battery is completely charged or discharged"
     instrument: gauge
     unit: "s"
-    extends: metric.hw.battery
+    extends: metric_attributes.hw.battery
     attributes:
       - ref: hw.state
         requirement_level: required

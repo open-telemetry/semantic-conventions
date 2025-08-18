@@ -1,6 +1,6 @@
 groups:
   # GPU METRICS
-  - id: metric.hw.gpu
+  - id: metric_attributes.hw.gpu
     type: attribute_group
     brief: >
       Common attributes for GPU metrics
@@ -27,7 +27,7 @@ groups:
     brief: "Received and transmitted bytes by the GPU"
     instrument: counter
     unit: "By"
-    extends: metric.hw.gpu
+    extends: metric_attributes.hw.gpu
     attributes:
       - ref: network.io.direction
         examples: ["receive", "transmit"]
@@ -43,7 +43,7 @@ groups:
     brief: "Size of the GPU memory"
     instrument: updowncounter
     unit: "By"
-    extends: metric.hw.gpu
+    extends: metric_attributes.hw.gpu
 
   - id: metric.hw.gpu.memory.utilization
     type: metric
@@ -55,7 +55,7 @@ groups:
     brief: "Fraction of GPU memory used"
     instrument: gauge
     unit: "1"
-    extends: metric.hw.gpu
+    extends: metric_attributes.hw.gpu
 
   - id: metric.hw.gpu.memory.usage
     type: metric
@@ -67,7 +67,7 @@ groups:
     brief: "GPU memory used"
     instrument: updowncounter
     unit: "By"
-    extends: metric.hw.gpu
+    extends: metric_attributes.hw.gpu
 
   - id: metric.hw.gpu.utilization
     type: metric
@@ -79,7 +79,7 @@ groups:
     brief: "Fraction of time spent in a specific task"
     instrument: gauge
     unit: "1"
-    extends: metric.hw.gpu
+    extends: metric_attributes.hw.gpu
     attributes:
       - ref: hw.gpu.task
         examples: ["decoder", "encoder", "general"]

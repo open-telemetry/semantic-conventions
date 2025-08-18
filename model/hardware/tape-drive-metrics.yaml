@@ -1,6 +1,6 @@
 groups:
   # TAPE DRIVE METRICS
-  - id: metric.hw.tape_drive
+  - id: metric_attributes.hw.tape_drive
     type: attribute_group
     brief: >
       Common attributes for tape drive metrics
@@ -23,7 +23,7 @@ groups:
     brief: "Operations performed by the tape drive"
     instrument: counter
     unit: "{operation}"
-    extends: metric.hw.tape_drive
+    extends: metric_attributes.hw.tape_drive
     attributes:
       - ref: hw.tape_drive.operation_type
         examples: ["mount", "unmount", "clean"]

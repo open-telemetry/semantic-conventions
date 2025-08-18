@@ -1,6 +1,6 @@
 groups:
   # LOGICAL DISK METRICS
-  - id: metric.hw.logical_disk
+  - id: metric_attributes.hw.logical_disk
     type: attribute_group
     brief: >
       Common attributes for logical disk metrics
@@ -19,7 +19,7 @@ groups:
     brief: "Size of the logical disk"
     instrument: updowncounter
     unit: "By"
-    extends: metric.hw.logical_disk
+    extends: metric_attributes.hw.logical_disk
 
   - id: metric.hw.logical_disk.usage
     type: metric
@@ -31,7 +31,7 @@ groups:
     brief: "Logical disk space usage"
     instrument: updowncounter
     unit: "By"
-    extends: metric.hw.logical_disk
+    extends: metric_attributes.hw.logical_disk
     attributes:
       - ref: hw.logical_disk.state
         examples: ["used", "free"]
@@ -47,7 +47,7 @@ groups:
     brief: "Logical disk space utilization as a fraction"
     instrument: gauge
     unit: "1"
-    extends: metric.hw.logical_disk
+    extends: metric_attributes.hw.logical_disk
     attributes:
       - ref: hw.logical_disk.state
         examples: ["used", "free"]

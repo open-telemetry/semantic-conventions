@@ -1,6 +1,6 @@
 groups:
   # POWER SUPPLY METRICS
-  - id: metric.hw.power_supply
+  - id: metric_attributes.hw.power_supply
     type: attribute_group
     brief: >
       Common attributes for power supply metrics
@@ -23,7 +23,7 @@ groups:
     brief: "Maximum power output of the power supply"
     instrument: updowncounter
     unit: "W"
-    extends: metric.hw.power_supply
+    extends: metric_attributes.hw.power_supply
     attributes:
       - ref: hw.limit_type
         examples: ["max", "critical", "throttled"]
@@ -39,7 +39,7 @@ groups:
     brief: "Utilization of the power supply as a fraction of its maximum output"
     instrument: gauge
     unit: "1"
-    extends: metric.hw.power_supply
+    extends: metric_attributes.hw.power_supply
 
   - id: metric.hw.power_supply.usage
     type: metric
@@ -51,4 +51,4 @@ groups:
     brief: "Current power output of the power supply"
     instrument: updowncounter
     unit: "W"
-    extends: metric.hw.power_supply
+    extends: metric_attributes.hw.power_supply

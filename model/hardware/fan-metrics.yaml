@@ -1,6 +1,6 @@
 groups:
   # FAN METRICS
-  - id: metric.hw.fan
+  - id: metric_attributes.hw.fan
     type: attribute_group
     brief: >
       Common attributes for fan metrics
@@ -19,7 +19,7 @@ groups:
     brief: "Fan speed in revolutions per minute"
     instrument: gauge
     unit: "rpm"
-    extends: metric.hw.fan
+    extends: metric_attributes.hw.fan
 
   - id: metric.hw.fan.speed.limit
     type: metric
@@ -31,7 +31,7 @@ groups:
     brief: "Speed limit in rpm"
     instrument: gauge
     unit: "rpm"
-    extends: metric.hw.fan
+    extends: metric_attributes.hw.fan
     attributes:
       - ref: hw.limit_type
         examples: ["low.critical", "low.degraded", "max"]
@@ -47,4 +47,4 @@ groups:
     brief: "Fan speed expressed as a fraction of its maximum speed"
     instrument: gauge
     unit: "1"
-    extends: metric.hw.fan
+    extends: metric_attributes.hw.fan
