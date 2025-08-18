@@ -49,8 +49,8 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
   - [Metric: `system.filesystem.utilization`](#metric-systemfilesystemutilization)
   - [Metric: `system.filesystem.limit`](#metric-systemfilesystemlimit)
 - [Network metrics](#network-metrics)
-  - [Metric: `system.network.dropped`](#metric-systemnetworkdropped)
-  - [Metric: `system.network.packets`](#metric-systemnetworkpackets)
+  - [Metric: `system.network.packet.dropped`](#metric-systemnetworkpacketdropped)
+  - [Metric: `system.network.packet.count`](#metric-systemnetworkpacketcount)
   - [Metric: `system.network.errors`](#metric-systemnetworkerrors)
   - [Metric: `system.network.io`](#metric-systemnetworkio)
   - [Metric: `system.network.connection.count`](#metric-systemnetworkconnectioncount)
@@ -877,7 +877,7 @@ This metric is [opt-in][MetricOptIn].
 
 **Description:** System level network metrics captured under the namespace `system.network`.
 
-### Metric: `system.network.dropped`
+### Metric: `system.network.packet.dropped`
 
 This metric is [recommended][MetricRecommended].
 
