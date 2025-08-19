@@ -18,3 +18,4 @@ The following metrics are currently supported:
 * [Kestrel](dotnet-kestrel-metrics.md): Semantic Conventions for Kestrel web server *metrics*.
 * [SignalR](dotnet-signalr-metrics.md): Semantic Conventions for SignalR server *metrics*.
 * [Runtime](/docs/runtime/dotnet-metrics.md): Semantic conventions for .NET Runtime *metrics*.
+* [Blazor](dotnet-blazor-metrics.md): Semantic Conventions for Blazor UI framework *metrics*.
