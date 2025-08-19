@@ -319,7 +319,7 @@ groups:
     type: event
     stability: development
     brief: >
-      This event captures the process and the result of evaluating GenAI output for quality, accuracy, or other characteristics.
+      This event captures the process and the result of evaluating GenAI output for quality, accuracy, or other characteristics and are parented to GenAI operation span being evaluated.
     extends: gen_ai.common.event.attributes
     attributes:
       - ref: gen_ai.evaluation.name
