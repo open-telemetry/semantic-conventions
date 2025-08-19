@@ -322,13 +322,10 @@ groups:
       This event captures the process and the result of evaluating GenAI output for quality, accuracy, or other characteristics.
     extends: gen_ai.common.event.attributes
     attributes:
-      - ref: gen_ai.operation.name
-        requirement_level: required
       - ref: gen_ai.evaluation.name
         requirement_level: required
       - ref: gen_ai.evaluation.score.value
-        requirement_level:
-          conditionally_required: if evaluation completed successfully
+        requirement_level: recommended
       - ref: gen_ai.evaluation.score.label
         requirement_level: recommended
       - ref: gen_ai.evaluation.reasoning
