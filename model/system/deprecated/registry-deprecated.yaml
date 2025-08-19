@@ -9,15 +9,19 @@ groups:
           members:
             - id: running
               value: 'running'
+              brief: Running
               stability: development
             - id: sleeping
               value: 'sleeping'
+              brief: Sleeping
               stability: development
             - id: stopped
               value: 'stopped'
+              brief: Stopped
               stability: development
             - id: defunct
               value: 'defunct'
+              brief: Defunct
               stability: development
         brief: "Deprecated, use `system.process.status` instead."
         deprecated:
@@ -30,24 +34,31 @@ groups:
           members:
             - id: user
               value: 'user'
+              brief: User
               stability: development
             - id: system
               value: 'system'
+              brief: System
               stability: development
             - id: nice
               value: 'nice'
+              brief: Nice
               stability: development
             - id: idle
               value: 'idle'
+              brief: Idle
               stability: development
             - id: iowait
               value: 'iowait'
+              brief: IO Wait
               stability: development
             - id: interrupt
               value: 'interrupt'
+              brief: Interupt
               stability: development
             - id: steal
               value: 'steal'
+              brief: Steal
               stability: development
         brief: "Deprecated, use `cpu.mode` instead."
         stability: development
@@ -63,39 +74,51 @@ groups:
           members:
             - id: close
               value: 'close'
+              brief: Close
               stability: development
             - id: close_wait
               value: 'close_wait'
+              brief: Close Wait
               stability: development
             - id: closing
               value: 'closing'
+              brief: Closing
               stability: development
             - id: delete
               value: 'delete'
+              brief: Delete
               stability: development
             - id: established
               value: 'established'
+              brief: Established
               stability: development
             - id: fin_wait_1
               value: 'fin_wait_1'
+              brief: Fin Wait 1
               stability: development
             - id: fin_wait_2
               value: 'fin_wait_2'
+              brief: Fin Wait 2
               stability: development
             - id: last_ack
               value: 'last_ack'
+              brief: Last Ack
               stability: development
             - id: listen
               value: 'listen'
+              brief: Listen
               stability: development
             - id: syn_recv
               value: 'syn_recv'
+              brief: Syn Recv
               stability: development
             - id: syn_sent
               value: 'syn_sent'
+              brief: Syn Sent
               stability: development
             - id: time_wait
               value: 'time_wait'
+              brief: Time Wait
               stability: development
         stability: development
         brief: "Deprecated, use `network.connection.state` instead."
