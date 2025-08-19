@@ -533,7 +533,7 @@ Semantic conventions for individual systems MAY specify a different type for arg
 
 The event name MUST be `gen_ai.evaluation.result`.
 
-This event captures the process and the result of evaluating GenAI output for quality, accuracy, or other characteristics and are parented to GenAI operation span being evaluated.
+This event captures the result of evaluating GenAI output for quality, accuracy, or other characteristics and are parented to GenAI operation span being evaluated.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
