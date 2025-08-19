@@ -23,6 +23,18 @@ groups:
       - ref: process.command_args
         requirement_level:
           conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+      - ref: process.args_count
+        role: descriptive
+        requirement_level:
+          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+      - ref: process.creation.time
+        role: descriptive
+      - ref: process.interactive
+        role: descriptive
+      - ref: process.title
+        role: descriptive
+      - ref: process.working_directory
+        role: descriptive
       - ref: process.owner
       - ref: process.linux.cgroup
 
