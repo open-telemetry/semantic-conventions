@@ -23,39 +23,51 @@ groups:
           members:
             - id: cpp
               value: "cpp"
+              brief: C++
               stability: stable
             - id: dotnet
               value: "dotnet"
+              brief: .net
               stability: stable
             - id: erlang
               value: "erlang"
+              brief: Erlang
               stability: stable
             - id: go
               value: "go"
+              brief: Go
               stability: stable
             - id: java
               value: "java"
+              brief: Java
               stability: stable
             - id: nodejs
               value: "nodejs"
+              brief: NodeJS
               stability: stable
             - id: php
               value: "php"
+              brief: PHP
               stability: stable
             - id: python
               value: "python"
+              brief: Python
               stability: stable
             - id: ruby
               value: "ruby"
+              brief: Ruby
               stability: stable
             - id: rust
               value: "rust"
+              brief: Rust
               stability: stable
             - id: swift
               value: "swift"
+              brief: Swift
               stability: stable
             - id: webjs
               value: "webjs"
+              brief: WebJS
               stability: stable
         stability: stable
         brief: >
