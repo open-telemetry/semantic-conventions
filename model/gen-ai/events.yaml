@@ -326,18 +326,13 @@ groups:
         requirement_level: required
       - ref: gen_ai.evaluation.name
         requirement_level: required
-      - ref: gen_ai.evaluation.score
+      - ref: gen_ai.evaluation.score.value
         requirement_level:
           conditionally_required: if evaluation completed successfully
-      - ref: gen_ai.evaluation.label
+      - ref: gen_ai.evaluation.score.label
         requirement_level: recommended
       - ref: gen_ai.evaluation.reasoning
         requirement_level: recommended
-      - ref: gen_ai.metadata
-        requirement_level: recommended
-        note: >
-          Metadata associated with evaluation.
-        examples: ['{\"evaluator_version\": \"1.2.0\"}']
       - ref: gen_ai.usage.input_tokens
         requirement_level:
           recommended: if evaluation was performed by a model
