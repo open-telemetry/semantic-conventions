@@ -31,18 +31,22 @@ groups:
                 a fallback to those older formulas may be used.
             - id: free
               value: 'free'
+              brief: Free
               stability: development
             - id: shared
               value: 'shared'
+              brief: Shared
               stability: development
               deprecated:
                 reason: uncategorized
                 note: "Removed, report shared memory usage with `metric.system.memory.shared` metric"
             - id: buffers
               value: 'buffers'
+              brief: Buffers
               stability: development
             - id: cached
               value: 'cached'
+              brief: Cached
               stability: development
         stability: development
         brief: "The memory state"
@@ -58,9 +62,11 @@ groups:
           members:
             - id: used
               value: 'used'
+              brief: Used
               stability: development
             - id: free
               value: 'free'
+              brief: Free
               stability: development
         stability: development
         brief: "The memory paging state"
@@ -70,9 +76,11 @@ groups:
           members:
             - id: major
               value: 'major'
+              brief: Major
               stability: development
             - id: minor
               value: 'minor'
+              brief: Minor
               stability: development
         stability: development
         brief: "The paging fault type"
@@ -82,9 +90,11 @@ groups:
           members:
             - id: in
               value: 'in'
+              brief: In
               stability: development
             - id: out
               value: 'out'
+              brief: Out
               stability: development
         stability: development
         brief: "The paging access direction"
@@ -100,12 +110,15 @@ groups:
           members:
             - id: used
               value: 'used'
+              brief: Used
               stability: development
             - id: free
               value: 'free'
+              brief: Free
               stability: development
             - id: reserved
               value: 'reserved'
+              brief: Reserved
               stability: development
         stability: development
         examples: ["used"]
@@ -114,21 +127,27 @@ groups:
           members:
             - id: fat32
               value: 'fat32'
+              brief: FAT32
               stability: development
             - id: exfat
               value: 'exfat'
+              brief: exFAT
               stability: development
             - id: ntfs
               value: 'ntfs'
+              brief: NTFS
               stability: development
             - id: refs
               value: 'refs'
+              brief: refs
               stability: development
             - id: hfsplus
               value: 'hfsplus'
+              brief: HFS+
               stability: development
             - id: ext4
               value: 'ext4'
+              brief: ext4
               stability: development
         stability: development
         brief: "The filesystem type"
@@ -154,15 +173,19 @@ groups:
           members:
             - id: running
               value: 'running'
+              brief: Running
               stability: development
             - id: sleeping
               value: 'sleeping'
+              brief: Sleeping
               stability: development
             - id: stopped
               value: 'stopped'
+              brief: Stopped
               stability: development
             - id: defunct
               value: 'defunct'
+              brief: Defunct
               stability: development
         stability: development
         brief: >

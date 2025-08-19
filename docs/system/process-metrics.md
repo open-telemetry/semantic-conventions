@@ -330,8 +330,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

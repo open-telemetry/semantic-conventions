@@ -284,9 +284,9 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `buffers` | buffers | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cached` | cached | ![Development](https://img.shields.io/badge/-development-blue) |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
+| `buffers` | Buffers | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cached` | Cached | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Free | ![Development](https://img.shields.io/badge/-development-blue) |
 | `used` | Actual used virtual memory in bytes. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
@@ -364,9 +364,9 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `buffers` | buffers | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cached` | cached | ![Development](https://img.shields.io/badge/-development-blue) |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
+| `buffers` | Buffers | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cached` | Cached | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Free | ![Development](https://img.shields.io/badge/-development-blue) |
 | `used` | Actual used virtual memory in bytes. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
@@ -406,8 +406,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Free | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -440,8 +440,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Free | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -473,8 +473,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -507,8 +507,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `in` | in | ![Development](https://img.shields.io/badge/-development-blue) |
-| `out` | out | ![Development](https://img.shields.io/badge/-development-blue) |
+| `in` | In | ![Development](https://img.shields.io/badge/-development-blue) |
+| `out` | Out | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -516,8 +516,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -760,9 +760,9 @@ SHOULD equal the total storage capacity of the filesystem, that is `system.files
 
 | Value  | Description | Stability |
 |---|---|---|
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `reserved` | reserved | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Free | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reserved` | Reserved | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -770,11 +770,11 @@ SHOULD equal the total storage capacity of the filesystem, that is `system.files
 
 | Value  | Description | Stability |
 |---|---|---|
-| `exfat` | exfat | ![Development](https://img.shields.io/badge/-development-blue) |
+| `exfat` | exFAT | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ext4` | ext4 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fat32` | fat32 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hfsplus` | hfsplus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ntfs` | ntfs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fat32` | FAT32 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hfsplus` | HFS+ | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ntfs` | NTFS | ![Development](https://img.shields.io/badge/-development-blue) |
 | `refs` | refs | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
@@ -811,9 +811,9 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `reserved` | reserved | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Free | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reserved` | Reserved | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -821,11 +821,11 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `exfat` | exfat | ![Development](https://img.shields.io/badge/-development-blue) |
+| `exfat` | exFAT | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ext4` | ext4 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fat32` | fat32 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hfsplus` | hfsplus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ntfs` | ntfs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fat32` | FAT32 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hfsplus` | HFS+ | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ntfs` | NTFS | ![Development](https://img.shields.io/badge/-development-blue) |
 | `refs` | refs | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
@@ -861,11 +861,11 @@ This metric is [opt-in][MetricOptIn].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `exfat` | exfat | ![Development](https://img.shields.io/badge/-development-blue) |
+| `exfat` | exFAT | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ext4` | ext4 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fat32` | fat32 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hfsplus` | hfsplus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ntfs` | ntfs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fat32` | FAT32 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hfsplus` | HFS+ | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ntfs` | NTFS | ![Development](https://img.shields.io/badge/-development-blue) |
 | `refs` | refs | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
@@ -1119,10 +1119,10 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `defunct` | defunct | ![Development](https://img.shields.io/badge/-development-blue) |
-| `running` | running | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sleeping` | sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stopped` | stopped | ![Development](https://img.shields.io/badge/-development-blue) |
+| `defunct` | Defunct | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | Running | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sleeping` | Sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | Stopped | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -35,9 +35,9 @@ Describes Filesystem attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `reserved` | reserved | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Free | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reserved` | Reserved | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -45,11 +45,11 @@ Describes Filesystem attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `exfat` | exfat | ![Development](https://img.shields.io/badge/-development-blue) |
+| `exfat` | exFAT | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ext4` | ext4 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fat32` | fat32 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hfsplus` | hfsplus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ntfs` | ntfs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fat32` | FAT32 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hfsplus` | HFS+ | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ntfs` | NTFS | ![Development](https://img.shields.io/badge/-development-blue) |
 | `refs` | refs | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## System Memory Attributes
@@ -66,9 +66,9 @@ Describes System Memory attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `buffers` | buffers | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cached` | cached | ![Development](https://img.shields.io/badge/-development-blue) |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
+| `buffers` | Buffers | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cached` | Cached | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Free | ![Development](https://img.shields.io/badge/-development-blue) |
 | `used` | Actual used virtual memory in bytes. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
@@ -89,8 +89,8 @@ Describes System Memory Paging attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `in` | in | ![Development](https://img.shields.io/badge/-development-blue) |
-| `out` | out | ![Development](https://img.shields.io/badge/-development-blue) |
+| `in` | In | ![Development](https://img.shields.io/badge/-development-blue) |
+| `out` | Out | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -98,8 +98,8 @@ Describes System Memory Paging attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -107,8 +107,8 @@ Describes System Memory Paging attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Free | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## System Process Attributes
 
@@ -124,10 +124,10 @@ Describes System Process attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `defunct` | defunct | ![Development](https://img.shields.io/badge/-development-blue) |
-| `running` | running | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sleeping` | sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stopped` | stopped | ![Development](https://img.shields.io/badge/-development-blue) |
+| `defunct` | Defunct | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | Running | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sleeping` | Sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | Stopped | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated System Attributes
 
@@ -147,13 +147,13 @@ Deprecated system attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `interrupt` | interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iowait` | iowait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nice` | nice | ![Development](https://img.shields.io/badge/-development-blue) |
-| `steal` | steal | ![Development](https://img.shields.io/badge/-development-blue) |
-| `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | Idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `interrupt` | Interupt | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iowait` | IO Wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nice` | Nice | ![Development](https://img.shields.io/badge/-development-blue) |
+| `steal` | Steal | ![Development](https://img.shields.io/badge/-development-blue) |
+| `system` | System | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user` | User | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -161,18 +161,18 @@ Deprecated system attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `close` | close | ![Development](https://img.shields.io/badge/-development-blue) |
-| `close_wait` | close_wait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `closing` | closing | ![Development](https://img.shields.io/badge/-development-blue) |
-| `delete` | delete | ![Development](https://img.shields.io/badge/-development-blue) |
-| `established` | established | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fin_wait_1` | fin_wait_1 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fin_wait_2` | fin_wait_2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `last_ack` | last_ack | ![Development](https://img.shields.io/badge/-development-blue) |
-| `listen` | listen | ![Development](https://img.shields.io/badge/-development-blue) |
-| `syn_recv` | syn_recv | ![Development](https://img.shields.io/badge/-development-blue) |
-| `syn_sent` | syn_sent | ![Development](https://img.shields.io/badge/-development-blue) |
-| `time_wait` | time_wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `close` | Close | ![Development](https://img.shields.io/badge/-development-blue) |
+| `close_wait` | Close Wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `closing` | Closing | ![Development](https://img.shields.io/badge/-development-blue) |
+| `delete` | Delete | ![Development](https://img.shields.io/badge/-development-blue) |
+| `established` | Established | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fin_wait_1` | Fin Wait 1 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fin_wait_2` | Fin Wait 2 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `last_ack` | Last Ack | ![Development](https://img.shields.io/badge/-development-blue) |
+| `listen` | Listen | ![Development](https://img.shields.io/badge/-development-blue) |
+| `syn_recv` | Syn Recv | ![Development](https://img.shields.io/badge/-development-blue) |
+| `syn_sent` | Syn Sent | ![Development](https://img.shields.io/badge/-development-blue) |
+| `time_wait` | Time Wait | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -189,7 +189,7 @@ Deprecated system attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `defunct` | defunct | ![Development](https://img.shields.io/badge/-development-blue) |
-| `running` | running | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sleeping` | sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stopped` | stopped | ![Development](https://img.shields.io/badge/-development-blue) |
+| `defunct` | Defunct | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | Running | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sleeping` | Sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | Stopped | ![Development](https://img.shields.io/badge/-development-blue) |
