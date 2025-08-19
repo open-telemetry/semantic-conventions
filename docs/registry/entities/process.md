@@ -42,6 +42,27 @@
 
 **[6] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/\[PID\]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
 
+## Process Executable
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `process.executable`
+
+**Description:** The executable which is being run by the process.
+
+**Other Attributes:**
+
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`process.executable.build_id.gnu`](/docs/registry/attributes/process.md) | string | The GNU build ID as found in the `.note.gnu.build-id` ELF section (hex string). | `c89b11207f6479603b0d49bf291c092c2b719293` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.executable.build_id.go`](/docs/registry/attributes/process.md) | string | The Go build ID as retrieved by `go tool buildid <go executable>`. | `foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.executable.build_id.htlhash`](/docs/registry/attributes/process.md) | string | Profiling specific build ID for executables. See the OTel specification for Profiles for more information. | `600DCAFE4A110000F2BF38C493F5FB92` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.executable.name`](/docs/registry/attributes/process.md) | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.executable.path`](/docs/registry/attributes/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
 ## Process Runtime
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)

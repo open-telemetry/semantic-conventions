@@ -85,6 +85,7 @@ Currently, the following namespaces exist:
 | | [otel.scope](otel.md#otel-scope) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Obsoleted. |
 | Process | | |
 | | [process](process.md#process) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [process.executable](process.md#process-executable) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [process.runtime](process.md#process-runtime) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Service | | |
 | | [service](service.md#service) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
