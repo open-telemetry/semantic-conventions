@@ -102,22 +102,22 @@ the `rpc.connect_rpc.response.metadata.my-custom-key` attribute with value `["at
 
 | Value  | Description | Stability |
 |---|---|---|
-| `aborted` | aborted | ![Development](https://img.shields.io/badge/-development-blue) |
-| `already_exists` | already_exists | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cancelled` | cancelled | ![Development](https://img.shields.io/badge/-development-blue) |
-| `data_loss` | data_loss | ![Development](https://img.shields.io/badge/-development-blue) |
-| `deadline_exceeded` | deadline_exceeded | ![Development](https://img.shields.io/badge/-development-blue) |
-| `failed_precondition` | failed_precondition | ![Development](https://img.shields.io/badge/-development-blue) |
-| `internal` | internal | ![Development](https://img.shields.io/badge/-development-blue) |
-| `invalid_argument` | invalid_argument | ![Development](https://img.shields.io/badge/-development-blue) |
-| `not_found` | not_found | ![Development](https://img.shields.io/badge/-development-blue) |
-| `out_of_range` | out_of_range | ![Development](https://img.shields.io/badge/-development-blue) |
-| `permission_denied` | permission_denied | ![Development](https://img.shields.io/badge/-development-blue) |
-| `resource_exhausted` | resource_exhausted | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unauthenticated` | unauthenticated | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unavailable` | unavailable | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unimplemented` | unimplemented | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unknown` | unknown | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aborted` | Aborted | ![Development](https://img.shields.io/badge/-development-blue) |
+| `already_exists` | Already Exists | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cancelled` | Cancelled | ![Development](https://img.shields.io/badge/-development-blue) |
+| `data_loss` | Data Loss | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deadline_exceeded` | Deadline Exceeded | ![Development](https://img.shields.io/badge/-development-blue) |
+| `failed_precondition` | Failed Precondition | ![Development](https://img.shields.io/badge/-development-blue) |
+| `internal` | Internal | ![Development](https://img.shields.io/badge/-development-blue) |
+| `invalid_argument` | Invalid Argument | ![Development](https://img.shields.io/badge/-development-blue) |
+| `not_found` | Not Found | ![Development](https://img.shields.io/badge/-development-blue) |
+| `out_of_range` | Out of Range | ![Development](https://img.shields.io/badge/-development-blue) |
+| `permission_denied` | Permission Denied | ![Development](https://img.shields.io/badge/-development-blue) |
+| `resource_exhausted` | Resource Exhausted | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unauthenticated` | Unauthenticated | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unavailable` | UnAvailable | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unimplemented` | Unimplemented | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unknown` | Unknown | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

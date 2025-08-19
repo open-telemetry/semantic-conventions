@@ -302,8 +302,8 @@ In the lifetime of an RPC stream, an event for each message sent/received on cli
 
 | Value  | Description | Stability |
 |---|---|---|
-| `RECEIVED` | received | ![Development](https://img.shields.io/badge/-development-blue) |
-| `SENT` | sent | ![Development](https://img.shields.io/badge/-development-blue) |
+| `RECEIVED` | Received | ![Development](https://img.shields.io/badge/-development-blue) |
+| `SENT` | Sent | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

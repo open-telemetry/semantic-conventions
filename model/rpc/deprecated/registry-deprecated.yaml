@@ -9,9 +9,11 @@ groups:
           members:
             - id: sent
               value: "SENT"
+              brief: Sent
               stability: development
             - id: received
               value: "RECEIVED"
+              brief: Received
               stability: development
         stability: development
         brief: "Deprecated, use `rpc.message.type` instead."

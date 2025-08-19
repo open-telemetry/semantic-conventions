@@ -9,51 +9,67 @@ groups:
           members:
             - id: cancelled
               value: cancelled
+              brief: Cancelled
               stability: development
             - id: unknown
               value: unknown
+              brief: Unknown
               stability: development
             - id: invalid_argument
               value: invalid_argument
+              brief: Invalid Argument
               stability: development
             - id: deadline_exceeded
               value: deadline_exceeded
+              brief: Deadline Exceeded
               stability: development
             - id: not_found
               value: not_found
+              brief: Not Found
               stability: development
             - id: already_exists
               value: already_exists
+              brief: Already Exists
               stability: development
             - id: permission_denied
               value: permission_denied
+              brief: Permission Denied
               stability: development
             - id: resource_exhausted
               value: resource_exhausted
+              brief: Resource Exhausted
               stability: development
             - id: failed_precondition
               value: failed_precondition
+              brief: Failed Precondition
               stability: development
             - id: aborted
               value: aborted
+              brief: Aborted
               stability: development
             - id: out_of_range
               value: out_of_range
+              brief: Out of Range
               stability: development
             - id: unimplemented
               value: unimplemented
+              brief: Unimplemented
               stability: development
             - id: internal
               value: internal
+              brief: Internal
               stability: development
             - id: unavailable
               value: unavailable
+              brief: UnAvailable
               stability: development
             - id: data_loss
               value: data_loss
+              brief: Data Loss
               stability: development
             - id: unauthenticated
               value: unauthenticated
+              brief: Unauthenticated
               stability: development
         stability: development
         brief: "The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values."
@@ -250,9 +266,11 @@ groups:
           members:
             - id: sent
               value: "SENT"
+              brief: Sent
               stability: development
             - id: received
               value: "RECEIVED"
+              brief: Received
               stability: development
         stability: development
         brief: "Whether this is a received or sent message."
