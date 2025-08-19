@@ -54,7 +54,7 @@ groups:
               stability: development
             - id: interrupt
               value: 'interrupt'
-              brief: Interupt
+              brief: Interrupt
               stability: development
             - id: steal
               value: 'steal'

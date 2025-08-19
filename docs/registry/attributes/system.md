@@ -148,7 +148,7 @@ Deprecated system attributes.
 | Value  | Description | Stability |
 |---|---|---|
 | `idle` | Idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `interrupt` | Interupt | ![Development](https://img.shields.io/badge/-development-blue) |
+| `interrupt` | Interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
 | `iowait` | IO Wait | ![Development](https://img.shields.io/badge/-development-blue) |
 | `nice` | Nice | ![Development](https://img.shields.io/badge/-development-blue) |
 | `steal` | Steal | ![Development](https://img.shields.io/badge/-development-blue) |
