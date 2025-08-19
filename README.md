@@ -21,7 +21,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 - [Alexander Wert](https://github.com/AlexanderWert), Elastic
 - [Armin Ruech](https://github.com/arminru), Dynatrace
 - [Joao Grassi](https://github.com/joaopgrassi), Dynatrace
-- [Johannes Tax](https://github.com/pyohannes), Grafana Labs
 - [Josh Suereth](https://github.com/jsuereth), Google
 - [Liudmila Molkova](https://github.com/lmolkova), Grafana Labs
 - [Trask Stalnaker](https://github.com/trask), Microsoft
@@ -38,6 +37,7 @@ For more information about the approver role, see the [community repository](htt
 
 ### Emeritus Maintainers
 
+- [Johannes Tax](https://github.com/pyohannes)
 - [Reiley Yang](https://github.com/reyang)
 
 For more information about the emeritus role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#emeritus-maintainerapprovertriager).
