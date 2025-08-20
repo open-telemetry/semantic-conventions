@@ -83,6 +83,11 @@ groups:
         stability: stable
         brief: ASP.NET Core exception middleware handling result.
         examples: ["handled", "unhandled"]
+      - id: aspnetcore.memory_pool.owner
+        type: string
+        stability: development
+        brief: The name of the library or subsystem using the memory pool instance.
+        examples: ["kestrel", "iis"]
       - id: aspnetcore.identity.user_type
         type: string
         brief: The full name of the identity user type.
