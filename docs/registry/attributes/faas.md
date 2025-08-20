@@ -15,7 +15,7 @@ FaaS attributes
 | <a id="faas-document-name" href="#faas-document-name">`faas.document.name`</a> | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="faas-document-operation" href="#faas-document-operation">`faas.document.operation`</a> | string | Describes the type of the operation that was performed on the data. | `insert`; `edit`; `delete` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="faas-document-time" href="#faas-document-time">`faas.document.time`</a> | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-id" href="#faas-id">`faas.id`</a> | string | The id of the single function that this runtime instance executes. [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="faas-function-id" href="#faas-function-id">`faas.function.id`</a> | string | The id of the single function that this runtime instance executes. [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="faas-instance" href="#faas-instance">`faas.instance`</a> | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [2] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="faas-invocation-id" href="#faas-invocation-id">`faas.invocation_id`</a> | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="faas-invoked-name" href="#faas-invoked-name">`faas.invoked_name`</a> | string | The name of the invoked function. [3] | `my-function` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -27,7 +27,24 @@ FaaS attributes
 | <a id="faas-trigger" href="#faas-trigger">`faas.trigger`</a> | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="faas-version" href="#faas-version">`faas.version`</a> | string | The immutable version of the function being executed. [8] | `26`; `pinkfroid-00002` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `faas.id`:** This id in the case of cloud based faas systems will be the same value as `cloud.resource_id` however in the case of local systems this should be another local identifier.
+**[1] `faas.function.id`:** On some systems/platforms, it may not be possible to determine the full ID at startup,
+so it may be necessary to set `faas.function.id` as a span attribute instead.
+
+The following well-known definitions MUST be used if you set this attribute and they apply:
+
+- **AWS Lambda:** The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+  Take care not to use the "invoked ARN" directly but replace any
+  [alias suffix](https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html)
+  with the resolved function version, as the same runtime instance may be invocable with
+  multiple different aliases.
+- **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
+- **Azure:** The [Fully Qualified Resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
+  *not* the function app, having the form
+  `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
+  This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
+  a TracerProvider.
+
+Should a provider not be listed above, another globally unique identifier should be used to identify the function.
 
 **[2] `faas.instance`:** - **AWS Lambda:** Use the (full) log stream name.
 

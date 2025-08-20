@@ -13,7 +13,7 @@ groups:
 
       If Spans following this convention are produced, a Resource of type `faas` MUST exist following the [Resource semantic convention](/docs/resource/faas.md).
     attributes:
-      - ref: faas.id
+      - ref: faas.function.id
       - ref: faas.trigger
         note: |
           For the server/consumer span on the incoming side,
@@ -36,8 +36,6 @@ groups:
       This span represents server side if the FaaS invocations triggered in response
       response to some data source operation such as a database or filesystem read/write.
     attributes:
-      - ref: faas.id
-        requirement_level: required
       - ref: faas.document.collection
         requirement_level: required
       - ref: faas.document.operation

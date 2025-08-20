@@ -1,12 +1,12 @@
 groups:
-  - id: entity.faas
+  - id: entity.faas.function
     type: entity
     stability: development
-    name: faas
+    name: faas.function
     brief: >
       A serverless function.
     attributes:
-      - ref: faas.id
+      - ref: faas.function.id
         requirement_level: required
       - ref: faas.name
         requirement_level: required
