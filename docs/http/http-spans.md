@@ -23,6 +23,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
     - [Simple client/server example](#simple-clientserver-example)
     - [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
   - [HTTP server span](#http-server-span)
+- [Capturing HTTP headers in traces](#capturing-http-headers-in-traces)
 - [Examples](#examples)
   - [HTTP client-server example](#http-client-server-example)
   - [HTTP client retries examples](#http-client-retries-examples)
@@ -645,13 +646,14 @@ and SHOULD be provided **at span creation time** (if provided at all):
 <!-- endsemconv -->
 
 `http.route` MUST be provided at span creation time if and only if it's already available. If it becomes available after span starts, instrumentation MUST populate it anytime before span ends.
-           
+
 ## Capturing HTTP headers in traces
 
 In addition to the attributes defined in this document, HTTP client and server instrumentations MUST also allow
 users to capture header attributes from the request and response in **traces using declarative configuration**.
 
 The configuration is grouped under the `http` key, as in the following example:
+
 ```yaml
 instrumentation/development:
 general:
@@ -673,6 +675,7 @@ general:
 ```
 
 The attributes have the following format:
+
 - `http.request.header.<lower_case_header_name>` for HTTP client and server request headers.
 - `http.response.header.<lower_case_header_name>` for HTTP client and server response headers.
 

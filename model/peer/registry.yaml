@@ -16,6 +16,7 @@ groups:
         note: >
           It MUST be possible to configure the peer service name in declarative configuration as follows:
 
+
           ```yaml
           instrumentation/development:
             general:
@@ -26,4 +27,3 @@ groups:
                   - peer: 2.3.4.5
                     service: BarService
           ```
-

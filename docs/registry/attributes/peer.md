@@ -12,6 +12,7 @@ Operations that access some remote service.
 | <a id="peer-service" href="#peer-service">`peer.service`</a> | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. [1] | `AuthTokenCache` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `peer.service`:** It MUST be possible to configure the peer service name in declarative configuration as follows:
+
 ```yaml instrumentation/development:
   general:
     peer:

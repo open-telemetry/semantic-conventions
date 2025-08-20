@@ -371,6 +371,7 @@ Instrumentations SHOULD provide a way for users to configure this name.
 | [`peer.service`](/docs/registry/attributes/peer.md) | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. [1] | `AuthTokenCache` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `peer.service`:** It MUST be possible to configure the peer service name in declarative configuration as follows:
+
 ```yaml instrumentation/development:
   general:
     peer:
