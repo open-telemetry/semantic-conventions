@@ -1,0 +1,179 @@
+{
+    "$defs": {
+        "ChatMessage": {
+            "additionalProperties": true,
+            "properties": {
+                "role": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Role"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "Role of the entity that created the message.",
+                    "title": "Role"
+                },
+                "parts": {
+                    "description": "List of message parts that make up the message content.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/TextPart"
+                            },
+                            {
+                                "$ref": "#/$defs/ToolCallRequestPart"
+                            },
+                            {
+                                "$ref": "#/$defs/ToolCallResponsePart"
+                            },
+                            {
+                                "$ref": "#/$defs/GenericPart"
+                            }
+                        ]
+                    },
+                    "title": "Parts",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "role",
+                "parts"
+            ],
+            "title": "ChatMessage",
+            "type": "object"
+        },
+        "GenericPart": {
+            "additionalProperties": true,
+            "description": "Represents an arbitrary message part with any type and properties.\nThis allows for extensibility with custom message part types.",
+            "properties": {
+                "type": {
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "title": "GenericPart",
+            "type": "object"
+        },
+        "Role": {
+            "enum": [
+                "system",
+                "user",
+                "assistant",
+                "tool"
+            ],
+            "title": "Role",
+            "type": "string"
+        },
+        "TextPart": {
+            "additionalProperties": true,
+            "description": "Represents text content sent to or received from the model.",
+            "properties": {
+                "type": {
+                    "const": "text",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "content": {
+                    "description": "Text content sent to or received from the model.",
+                    "title": "Content",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "content"
+            ],
+            "title": "TextPart",
+            "type": "object"
+        },
+        "ToolCallRequestPart": {
+            "additionalProperties": true,
+            "description": "Represents a tool call requested by the model.",
+            "properties": {
+                "type": {
+                    "const": "tool_call",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "id": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Unique identifier for the tool call.",
+                    "title": "Id"
+                },
+                "name": {
+                    "description": "Name of the tool.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "arguments": {
+                    "default": null,
+                    "description": "Arguments for the tool call.",
+                    "title": "Arguments"
+                }
+            },
+            "required": [
+                "type",
+                "name"
+            ],
+            "title": "ToolCallRequestPart",
+            "type": "object"
+        },
+        "ToolCallResponsePart": {
+            "additionalProperties": true,
+            "description": "Represents a tool call result sent to the model or a built-in tool call outcome and details.",
+            "properties": {
+                "type": {
+                    "const": "tool_call_response",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "id": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Unique tool call identifier.",
+                    "title": "Id"
+                },
+                "response": {
+                    "description": "Tool call response.",
+                    "title": "Response"
+                }
+            },
+            "required": [
+                "type",
+                "response"
+            ],
+            "title": "ToolCallResponsePart",
+            "type": "object"
+        }
+    },
+    "description": "Represents the list of input messages sent to the model.",
+    "items": {
+        "$ref": "#/$defs/ChatMessage"
+    },
+    "title": "InputMessages",
+    "type": "array"
+}

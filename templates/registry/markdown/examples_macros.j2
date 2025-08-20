@@ -1,4 +1,23 @@
-{% macro print_examples(examples) %}{%- for e in examples %}{%if loop.first == false %}; {% endif %}`{{ e | trim }}`{%- endfor %}{% endmacro %}
+{%- macro escape_multiline_markdown_cell(value) -%}
+    {%- if '\n' in value -%}
+        {%- for line in value.split('\n') -%}
+            {%- set rendered = '' -%}
+            {%- set ns = namespace(started=False,rendered='') -%}
+            {%- for c in line -%}
+                {%- if not ns.started and c == ' ' -%}
+                    {%- set ns.rendered = ns.rendered ~ '&nbsp;' -%}
+                {%- else -%}
+                    {%- set ns.rendered = ns.rendered ~ c-%}
+                    {%- set ns.started = True -%}
+                {%- endif -%}
+            {%- endfor -%}
+            {{ ns.rendered }}{%- if not loop.last -%}<br>{% endif -%}
+        {%- endfor -%}
+    {%- else -%}
+        `{{- value }}`
+    {%- endif -%}
+{%- endmacro -%}
+{% macro print_examples(examples) %}{%- for e in examples %}{%if loop.first == false %}; {% endif %}{{ escape_multiline_markdown_cell(e | trim) }}{%- endfor %}{% endmacro %}
 
 {% macro format(item) %}{%- if item.examples %}
 {%- if "[]" in item.type and "template" not in item.type %}
@@ -11,7 +30,7 @@
 {%- elif item.examples is sequence %}{{ print_examples(item.examples) }}
 {%- else %}`{{ item.examples | trim }}`
 {%- endif %}{%- elif item.type is mapping %}
-{%- for e in item.type.members %}{% if loop.index0 < 3 %}{% if loop.first == false %}; {% endif %}`{{ e.value | trim }}`{% endif %}{%- endfor %}
+{%- for e in item.type.members if e.deprecated is not defined or e.deprecated is none %}{% if loop.index0 < 3 %}{% if loop.first == false %}; {% endif %}`{{ e.value | trim }}`{% endif %}{%- endfor %}
 {%- elif item.type == "enum" -%}
-{%- for e in item.members %}{% if loop.index0 < 3 %}{% if loop.first == false %}; {% endif %}`{{ e.value | trim }}`{% endif %}{%- endfor %}
+{%- for e in item.members if e.deprecated is not defined or e.deprecated is none %}{% if loop.index0 < 3 %}{% if loop.first == false %}; {% endif %}`{{ e.value | trim }}`{% endif %}{%- endfor %}
 {%- endif %}{% endmacro %}
