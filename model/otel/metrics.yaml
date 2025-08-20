@@ -6,7 +6,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The number of created spans with `recording=true` for which the end operation has not been called yet"
+    brief: "The number of created spans with `recording=true` for which the end operation has not been called yet."
     instrument: updowncounter
     unit: "{span}"
     attributes:
@@ -19,7 +19,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The number of created spans"
+    brief: "The number of created spans."
     instrument: counter
     unit: "{span}"
     note: |
@@ -35,7 +35,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The number of spans in the queue of a given instance of an SDK span processor"
+    brief: "The number of spans in the queue of a given instance of an SDK span processor."
     note: |
       Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
     instrument: updowncounter
@@ -51,7 +51,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The maximum number of spans the queue of a given instance of an SDK span processor can hold"
+    brief: "The maximum number of spans the queue of a given instance of an SDK span processor can hold."
     note: |
       Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
     instrument: updowncounter
@@ -67,7 +67,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The number of spans for which the processing has finished, either successful or failed"
+    brief: "The number of spans for which the processing has finished, either successful or failed."
     note: |
       For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
       For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
@@ -88,7 +88,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
+    brief: "The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)."
     note: |
       For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
     instrument: updowncounter
@@ -110,7 +110,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The number of spans for which the export has finished, either successful or failed"
+    brief: "The number of spans for which the export has finished, either successful or failed."
     note: |
       For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
       For exporters with partial success semantics (e.g. OTLP with `rejected_spans`), rejected spans MUST count as failed and only non-rejected spans count as success.
@@ -136,7 +136,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The number of logs submitted to enabled SDK Loggers"
+    brief: "The number of logs submitted to enabled SDK Loggers."
     instrument: counter
     unit: "{log_record}"
 
@@ -147,7 +147,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The number of log records in the queue of a given instance of an SDK log processor"
+    brief: "The number of log records in the queue of a given instance of an SDK log processor."
     note: |
       Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
     instrument: updowncounter
@@ -163,7 +163,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The maximum number of log records the queue of a given instance of an SDK Log Record processor can hold"
+    brief: "The maximum number of log records the queue of a given instance of an SDK Log Record processor can hold."
     note: |
       Only applies to Log Record processors which use a queue, e.g. the SDK Batching Log Record Processor.
     instrument: updowncounter
@@ -179,7 +179,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The number of log records for which the processing has finished, either successful or failed"
+    brief: "The number of log records for which the processing has finished, either successful or failed."
     note: |
       For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
       For the SDK Simple and Batching Log Record Processor a log record is considered to be processed already when it has been submitted to the exporter,
@@ -201,7 +201,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The number of log records which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
+    brief: "The number of log records which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)."
     note: |
       For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
     instrument: updowncounter
@@ -223,7 +223,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The number of log records for which the export has finished, either successful or failed"
+    brief: "The number of log records for which the export has finished, either successful or failed."
     note: |
       For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
       For exporters with partial success semantics (e.g. OTLP with `rejected_log_records`), rejected log records MUST count as failed and only non-rejected log records count as success.
@@ -249,7 +249,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The number of metric data points which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)"
+    brief: "The number of metric data points which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)."
     note: |
       For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
     instrument: updowncounter
@@ -271,7 +271,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The number of metric data points for which the export has finished, either successful or failed"
+    brief: "The number of metric data points for which the export has finished, either successful or failed."
     note: |
       For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
       For exporters with partial success semantics (e.g. OTLP with `rejected_data_points`), rejected data points MUST count as failed and only non-rejected data points count as success.

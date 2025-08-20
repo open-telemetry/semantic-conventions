@@ -92,7 +92,7 @@ pull requests, issues, and questions in this area.
 Check out [project management](https://github.com/open-telemetry/community/blob/main/project-management.md)
 for the details on how to start.
 
-Refer to the [How to define new conventions](/docs/general/how-to-define-semantic-conventions.md)
+Refer to the [How to define new conventions](/docs/how-to-write-conventions/README.md)
 document for guidance.
 
 ### Prerequisites

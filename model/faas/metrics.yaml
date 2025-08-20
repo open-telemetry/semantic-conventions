@@ -6,7 +6,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Measures the duration of the function's logic execution"
+    brief: "Measures the duration of the function's logic execution."
     instrument: histogram
     unit: "s"
     attributes:
@@ -19,7 +19,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Measures the duration of the function's initialization, such as a cold start"
+    brief: "Measures the duration of the function's initialization, such as a cold start."
     instrument: histogram
     unit: "s"
     attributes:
@@ -32,7 +32,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Number of invocation cold starts"
+    brief: "Number of invocation cold starts."
     instrument: counter
     unit: "{coldstart}"
     attributes:
@@ -45,7 +45,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Number of invocation errors"
+    brief: "Number of invocation errors."
     instrument: counter
     unit: "{error}"
     attributes:
@@ -58,7 +58,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Number of successful invocations"
+    brief: "Number of successful invocations."
     instrument: counter
     unit: "{invocation}"
     attributes:
@@ -71,7 +71,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Number of invocation timeouts"
+    brief: "Number of invocation timeouts."
     instrument: counter
     unit: "{timeout}"
     attributes:
@@ -84,7 +84,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Distribution of max memory usage per invocation"
+    brief: "Distribution of max memory usage per invocation."
     instrument: histogram
     unit: "By"
     attributes:
@@ -97,7 +97,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Distribution of CPU usage per invocation"
+    brief: "Distribution of CPU usage per invocation."
     instrument: histogram
     unit: "s"
     attributes:
@@ -110,7 +110,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Distribution of net I/O usage per invocation"
+    brief: "Distribution of net I/O usage per invocation."
     instrument: histogram
     unit: "By"
     attributes:

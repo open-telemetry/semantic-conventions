@@ -7,8 +7,8 @@ groups:
       - id: enduser.role
         type: string
         deprecated:
-          reason: uncategorized
-          note: "Use `user.roles` attribute instead."
+          reason: renamed
+          renamed_to: user.roles
         stability: development
         brief: "Deprecated, use `user.roles` instead."
         examples: 'admin'

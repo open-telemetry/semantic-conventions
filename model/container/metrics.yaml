@@ -7,7 +7,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "The time the container has been running"
+    brief: "The time the container has been running."
     note: |
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
       The actual accuracy would depend on the instrumentation and operating system.
@@ -21,7 +21,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Total CPU time consumed"
+    brief: "Total CPU time consumed."
     note: >
       Total CPU time consumed by the specific container on all available CPU cores
     instrument: counter
@@ -40,7 +40,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs"
+    brief: "Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs."
     note: >
       CPU usage of the specific container on all available CPU cores, averaged over the sample window
     instrument: gauge
@@ -108,7 +108,7 @@ groups:
     type: metric
     metric_name: container.filesystem.available
     stability: development
-    brief: "Container filesystem available bytes"
+    brief: "Container filesystem available bytes."
     instrument: updowncounter
     unit: "By"
     annotations:
@@ -125,7 +125,7 @@ groups:
     type: metric
     metric_name: container.filesystem.capacity
     stability: development
-    brief: "Container filesystem capacity"
+    brief: "Container filesystem capacity."
     instrument: updowncounter
     unit: "By"
     annotations:
@@ -142,7 +142,7 @@ groups:
     type: metric
     metric_name: container.filesystem.usage
     stability: development
-    brief: "Container filesystem usage"
+    brief: "Container filesystem usage."
     instrument: updowncounter
     unit: "By"
     annotations:

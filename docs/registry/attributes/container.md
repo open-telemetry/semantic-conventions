@@ -27,7 +27,9 @@ A container instance.
 | <a id="container-manifest-mediatype" href="#container-manifest-mediatype">`container.manifest.mediatype`</a> | string | The media type of the manifest. | `application/vnd.oci.image.manifest.v1+json` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="container-manifest-type" href="#container-manifest-type">`container.manifest.type`</a> | string | The type of manifest being described. | `image` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="container-name" href="#container-name">`container.name`</a> | string | Container name used by container runtime. | `opentelemetry-autoconf` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-runtime" href="#container-runtime">`container.runtime`</a> | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="container-runtime-description" href="#container-runtime-description">`container.runtime.description`</a> | string | A description about the runtime which could include, for example details about the CRI/API version being used or other customisations. | `docker://19.3.1 - CRI: 1.22.0` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="container-runtime-name" href="#container-runtime-name">`container.runtime.name`</a> | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="container-runtime-version" href="#container-runtime-version">`container.runtime.version`</a> | string | The version of the runtime of this process, as returned by the runtime without modification. | `1.0.0` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `container.command`:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
 
@@ -54,6 +56,7 @@ Describes deprecated container attributes.
 |---|---|---|---|---|
 | <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. |
 | <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | string | Deprecated, use `container.label` instead. | `nginx` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.label`. |
+| <a id="container-runtime" href="#container-runtime">`container.runtime`</a> | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.runtime.name`. |
 
 ---
 

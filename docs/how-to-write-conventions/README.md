@@ -38,6 +38,10 @@ for new areas or make substantial changes to the existing ones.
 >
 > This section contains non-normative guidance.
 
+Please read [T-Shaped Signals](t-shaped-signals.md)
+for guidance on how to approach creating Semantic Conventions through defining
+key use cases for conventions.
+
 #### Prototyping
 
 It is strongly recommended to prototype proposed conventions in one or more instrumentations and:
@@ -99,8 +103,8 @@ When defining a new attribute:
     This is useful for capturing user-defined key-value pairs, such as HTTP headers.
   - Represent complex values as a set of flat attributes whenever possible.
     - Complex or structured attributes (not listed in the
-      [set of standard attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.44.0/specification/common/README.md#attribute))
-      are supported on events and logs only. <!-- This may change, check out https://github.com/open-telemetry/opentelemetry-specification/pull/4485 to monitor the progress -->
+      [set of standard attributes](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/common/README.md#attribute))
+      could be referenced on events and spans (![Development](https://img.shields.io/badge/-development-blue)) only.
 
       Semantic convention authors should assume that backends do not index individual properties of complex attributes,
       that querying or aggregating on such properties is inefficient and complicated,
@@ -156,7 +160,7 @@ TBD
 
 #### Defining entities
 
-Follow the [Entity Modeling Guide](/docs/non-normative/how-to-write-conventions/resource-and-entities.md).
+Follow the [Entity Modeling Guide](resource-and-entities.md).
 
 #### Defining events
 
