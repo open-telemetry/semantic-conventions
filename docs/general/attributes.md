@@ -372,7 +372,8 @@ Instrumentations SHOULD provide a way for users to configure this name.
 
 **[1] `peer.service`:** It MUST be possible to configure the peer service name in declarative configuration as follows:
 
-```yaml instrumentation/development:
+```yaml
+instrumentation/development:
   general:
     peer:
       service_mapping:
