@@ -21,9 +21,11 @@ groups:
       - ref: gen_ai.evaluation.name
         requirement_level: required
       - ref: gen_ai.evaluation.score.value
-        requirement_level: recommended
+        requirement_level:
+          conditionally_required: if gen_ai.evaluation.score.label is not provided
       - ref: gen_ai.evaluation.score.label
-        requirement_level: recommended
+        requirement_level:
+          conditionally_required: if gen_ai.evaluation.score.value is not provided
       - ref: gen_ai.evaluation.explanation
         requirement_level: recommended
       - ref: gen_ai.usage.input_tokens
