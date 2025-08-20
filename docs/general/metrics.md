@@ -30,7 +30,7 @@ The following semantic conventions surrounding metrics are defined:
 * **System metrics**
   * [System](/docs/system/system-metrics.md): For standard system metrics.
   * [Container](/docs/system/container-metrics.md)
-  * [Hardware](/docs/system/hardware-metrics.md): For hardware-related metrics.
+  * [Hardware](/docs/hardware/README.md): For hardware-related metrics.
   * [K8s](/docs/system/k8s-metrics.md): For K8s metrics.
   * [Process](/docs/system/process-metrics.md): For standard process metrics.
   * [Runtime Environment](/docs/runtime/README.md#metrics): For runtime environment metrics.
