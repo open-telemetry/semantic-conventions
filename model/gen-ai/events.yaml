@@ -1,17 +1,10 @@
 groups:
-  - id: gen_ai.common.event.attributes
-    type: attribute_group
-    stability: development
-    brief: >
-      Describes common Gen AI event attributes.
-    attributes:
-      - ref: gen_ai.provider.name
-
-  - id: event.gen_ai.system.message
-    name: gen_ai.system.message
+  - id: event.gen_ai.client.inference.operation.details
+    name: gen_ai.client.inference.operation.details
     type: event
     stability: development
     brief: >
+<<<<<<< HEAD
       This event describes the system instructions passed to the GenAI model.
     extends: gen_ai.common.event.attributes
     body:
@@ -347,3 +340,11 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI Evaluation provider or the client library,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
+=======
+      Describes the details of a GenAI completion request including chat history
+      and parameters.
+    note: >
+      This event is opt-in and could be used to store input and output details
+      independently from traces.
+    extends: attributes.gen_ai.inference.client
+>>>>>>> origin/main
