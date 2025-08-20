@@ -645,6 +645,36 @@ and SHOULD be provided **at span creation time** (if provided at all):
 <!-- endsemconv -->
 
 `http.route` MUST be provided at span creation time if and only if it's already available. If it becomes available after span starts, instrumentation MUST populate it anytime before span ends.
+           
+## Capturing HTTP headers in traces
+
+In addition to the attributes defined in this document, HTTP client and server instrumentations MUST also allow
+users to capture header attributes from the request and response in **traces using declarative configuration**.
+
+The configuration is grouped under the `http` key, as in the following example:
+```yaml
+instrumentation/development:
+general:
+  http:
+    client:
+      request_captured_headers:
+        - Content-Type
+        - Accept
+      response_captured_headers:
+        - Content-Type
+        - Content-Encoding
+    server:
+      request_captured_headers:
+        - Content-Type
+        - Accept
+      response_captured_headers:
+        - Content-Type
+        - Content-Encoding
+```
+
+The attributes have the following format:
+- `http.request.header.<lower_case_header_name>` for HTTP client and server request headers.
+- `http.response.header.<lower_case_header_name>` for HTTP client and server response headers.
 
 ## Examples
 

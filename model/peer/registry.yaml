@@ -13,3 +13,17 @@ groups:
           of the remote service. SHOULD be equal to the actual `service.name`
           resource attribute of the remote service if any.
         examples: "AuthTokenCache"
+        note: >
+          It MUST be possible to configure the peer service name in declarative configuration as follows:
+
+          ```yaml
+          instrumentation/development:
+            general:
+              peer:
+                service_mapping:
+                  - peer: 1.2.3.4
+                    service: FooService
+                  - peer: 2.3.4.5
+                    service: BarService
+          ```
+

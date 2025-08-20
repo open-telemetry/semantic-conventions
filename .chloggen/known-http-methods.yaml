@@ -1,4 +1,4 @@
 change_type: enhancement
 component: http
-note: "declarative configuration: add known methods"
+note: "declarative configuration: add peer service mapping add HTTP known methods, HTTP client and server request and response attributes"
 issues: [2504]

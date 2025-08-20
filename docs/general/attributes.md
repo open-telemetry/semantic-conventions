@@ -368,7 +368,18 @@ Instrumentations SHOULD provide a way for users to configure this name.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`peer.service`](/docs/registry/attributes/peer.md) | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`peer.service`](/docs/registry/attributes/peer.md) | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. [1] | `AuthTokenCache` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `peer.service`:** It MUST be possible to configure the peer service name in declarative configuration as follows:
+```yaml instrumentation/development:
+  general:
+    peer:
+      service_mapping:
+        - peer: 1.2.3.4
+          service: FooService
+        - peer: 2.3.4.5
+          service: BarService
+```
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
