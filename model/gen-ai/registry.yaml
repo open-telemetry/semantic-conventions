@@ -489,8 +489,8 @@ groups:
         type: string
         brief: Human readable label for evaluation.
         examples: ["relevant", "not_relevant", "correct", "incorrect", "pass", "fail"]
-      - id: gen_ai.evaluation.reasoning
+      - id: gen_ai.evaluation.explanation
         stability: development
         type: string
-        brief: A free-form reasoning for the assigned score provided by the evaluator.
+        brief: A free-form explanation for the assigned score provided by the evaluator.
         examples: ["The response is factually accurate but lacks sufficient detail to fully address the question."]
