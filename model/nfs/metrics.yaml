@@ -10,7 +10,7 @@ groups:
     instrument: counter
     attributes:
       - ref: network.transport
-    unit: "{net}"
+    unit: "{record}"
     entity_associations:
       - host
 
@@ -68,7 +68,7 @@ groups:
     stability: development
     brief: "Reports the count of kernel NFSv4+ client operations."
     instrument: counter
-    unit: "{procedure}"
+    unit: "{operation}"
     attributes:
       - ref: rpc.onc.version
       - ref: rpc.nfs.operation.name
@@ -137,9 +137,9 @@ groups:
     entity_associations:
       - host
 
-  - id: metric.nfs.server.io.count
+  - id: metric.nfs.server.io
     type: metric
-    metric_name: nfs.server.io.count
+    metric_name: nfs.server.io
     stability: development
     brief: "Reports the count of kernel NFS server bytes returned to receive and transmit (read and write) requests."
     note: |
@@ -171,7 +171,7 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.nettcpcnt and svc_stat.netudpcnt
     instrument: counter
-    unit: "{net}"
+    unit: "{record}"
     entity_associations:
       - host
 
@@ -193,19 +193,8 @@ groups:
     stability: development
     brief: "Reports the count of kernel NFS server RPCs handled."
     note: |
-      Linux: this metric is taken from the Linux kernel's svc_stat.rpccnt
-    instrument: counter
-    unit: "{request}"
-    entity_associations:
-      - host
-
-  - id: metric.nfs.server.rpc.bad.count
-    type: metric
-    metric_name: nfs.server.rpc.bad.count
-    stability: development
-    brief: "Reports the total count of kernel NFS server bad RPCs."
-    note: |
-      Linux: this metric can have an error.type of "format", "auth", or "client" for svc_stat.badfmt, svc_stat.badauth, and svc_stat.badclnt.
+      Linux: this metric is taken from the Linux kernel's svc_stat.rpccnt, the count of good RPCs. this metric can have
+      an error.type of "format", "auth", or "client" for svc_stat.badfmt, svc_stat.badauth, and svc_stat.badclnt.
     instrument: counter
     attributes:
       - ref: error.type
