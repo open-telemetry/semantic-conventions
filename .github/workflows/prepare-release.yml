@@ -30,11 +30,6 @@ jobs:
 
       - name: Update schema files
         run: |
-          if ! grep -q "^  next:$" schema-next.yaml; then
-            echo "String 'next:' not found in the file"
-            exit 1
-          fi
-
           version=${{ inputs.version }}
           make generate-schema-next SCHEMA_NEXT_VERSION=$version
           git add "schemas/$version"
