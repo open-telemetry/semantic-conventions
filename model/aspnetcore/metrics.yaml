@@ -6,6 +6,19 @@ groups:
       - ref: aspnetcore.rate_limiting.policy
         requirement_level:
           conditionally_required: if the matched endpoint for the request had a rate-limiting policy.
+  - id: aspnetcore.common.authentication.metrics.attributes
+    type: attribute_group
+    brief: Common ASP.NET Core authentication metrics attributes
+    attributes:
+      - ref: aspnetcore.authentication.scheme
+        requirement_level:
+          conditionally_required: if a scheme is specified during authentication.
+      - ref: error.type
+        brief: The full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException']
+        note: ""
   - id: aspnetcore.common.identity.metrics.attributes
     type: attribute_group
     brief: Common ASP.NET Core Identity metrics attributes
@@ -207,6 +220,109 @@ groups:
       Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
     extends: aspnetcore.common.memory_pool.metrics.attributes
 
+  # authentication
+  - id: metric.aspnetcore.authentication.authenticate.duration
+    type: metric
+    metric_name: aspnetcore.authentication.authenticate.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: The authentication duration for a request.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.authentication.metrics.attributes
+    attributes:
+      - ref: aspnetcore.authentication.result
+        requirement_level: required
+
+  - id: metric.aspnetcore.authentication.challenges
+    type: metric
+    metric_name: aspnetcore.authentication.challenges
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of times a scheme is challenged.
+    instrument: counter
+    unit: "{challenge}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.authentication.metrics.attributes
+
+  - id: metric.aspnetcore.authentication.forbids
+    type: metric
+    metric_name: aspnetcore.authentication.forbids
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of times an authenticated user attempts to access a resource they are not permitted to access.
+    instrument: counter
+    unit: "{forbid}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.authentication.metrics.attributes
+
+  - id: metric.aspnetcore.authentication.sign_ins
+    type: metric
+    metric_name: aspnetcore.authentication.sign_ins
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of times a principal is signed in with a scheme.
+    instrument: counter
+    unit: "{sign_in}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.authentication.metrics.attributes
+
+  - id: metric.aspnetcore.authentication.sign_outs
+    type: metric
+    metric_name: aspnetcore.authentication.sign_outs
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of times a principal is signed out with a scheme.
+    instrument: counter
+    unit: "{sign_out}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.authentication.metrics.attributes
+
+  # authentication
+  - id: metric.aspnetcore.authorization.attempts
+    type: metric
+    metric_name: aspnetcore.authorization.attempts
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of authorization attempts.
+    instrument: counter
+    unit: "{attempt}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authorization`; Added in: ASP.NET Core 10.0
+    attributes:
+      - ref: aspnetcore.user.is_authenticated
+        requirement_level: required
+      - ref: aspnetcore.authorization.policy
+        requirement_level:
+          conditionally_required: if a policy is specified.
+      - ref: aspnetcore.authorization.result
+        requirement_level:
+          conditionally_required: if no exception was thrown.
+      - ref: error.type
+        brief: The full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException']
+        note: ""
+
   # identity
   - id: metric.aspnetcore.identity.user.create.duration
     type: metric
@@ -378,7 +494,7 @@ groups:
       Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
     extends: aspnetcore.common.identity.metrics.attributes
     attributes:
-      - ref: aspnetcore.authentication_scheme
+      - ref: aspnetcore.authentication.scheme
         requirement_level: required
       - ref: aspnetcore.sign_in.is_persistent
         requirement_level:
@@ -409,7 +525,7 @@ groups:
       Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
     extends: aspnetcore.common.identity.metrics.attributes
     attributes:
-      - ref: aspnetcore.authentication_scheme
+      - ref: aspnetcore.authentication.scheme
         requirement_level: required
       - ref: error.type
         brief: The full name of exception type.
@@ -432,7 +548,7 @@ groups:
       Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
     extends: aspnetcore.common.identity.metrics.attributes
     attributes:
-      - ref: aspnetcore.authentication_scheme
+      - ref: aspnetcore.authentication.scheme
         requirement_level: required
       - ref: error.type
         brief: The full name of exception type.
@@ -479,7 +595,7 @@ groups:
       Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
     extends: aspnetcore.common.identity.metrics.attributes
     attributes:
-      - ref: aspnetcore.authentication_scheme
+      - ref: aspnetcore.authentication.scheme
         requirement_level: required
       - ref: aspnetcore.sign_in.is_persistent
         requirement_level:
@@ -505,7 +621,7 @@ groups:
       Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
     extends: aspnetcore.common.identity.metrics.attributes
     attributes:
-      - ref: aspnetcore.authentication_scheme
+      - ref: aspnetcore.authentication.scheme
         requirement_level: required
       - ref: error.type
         brief: The full name of exception type.
