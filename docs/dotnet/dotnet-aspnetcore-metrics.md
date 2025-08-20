@@ -996,7 +996,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`aspnetcore.authentication_scheme`](/docs/registry/attributes/aspnetcore.md) | string | The authentication scheme to sign in with. | `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.sign_in.type`](/docs/registry/attributes/aspnetcore.md) | string | The authentication type. | `password`; `two_factor` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.sign_in.result`](/docs/registry/attributes/aspnetcore.md) | string | Whether the sign in result was success or failure. | `password`; `two_factor` | `Conditionally Required` if no exception was thrown. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1104,7 +1104,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`aspnetcore.authentication_scheme`](/docs/registry/attributes/aspnetcore.md) | string | The authentication scheme to sign in with. | `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.sign_in.is_persistent`](/docs/registry/attributes/aspnetcore.md) | boolean | A flag indicating whether the sign in is persistent. |  | `Conditionally Required` if no exception was thrown. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -1139,7 +1139,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`aspnetcore.authentication_scheme`](/docs/registry/attributes/aspnetcore.md) | string | The authentication scheme to sign in with. | `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
@@ -1173,7 +1173,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`aspnetcore.authentication_scheme`](/docs/registry/attributes/aspnetcore.md) | string | The authentication scheme to sign in with. | `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
@@ -1207,7 +1207,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`aspnetcore.authentication_scheme`](/docs/registry/attributes/aspnetcore.md) | string | The authentication scheme to sign in with. | `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
