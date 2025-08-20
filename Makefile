@@ -322,7 +322,6 @@ NEXT_SEMCONV_VERSION ?= next
 generate-schema-next:
 	mkdir -p $(TOOLS_DIR)/bin
 	$(DOCKER_RUN) --rm \
-	$(DOCKER_USER_IS_HOST_USER_ARG) \
 	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
 	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 	--mount 'type=bind,source=$(TOOLS_DIR)/bin,target=/home/weaver/target' \
