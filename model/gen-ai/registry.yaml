@@ -334,28 +334,6 @@ groups:
 
           Additional output format details may be recorded in the future in the
           `gen_ai.output.{type}.*` attributes.
-<<<<<<< HEAD
-      - id: gen_ai.evaluation.name
-        stability: development
-        type: string
-        brief: The name of the evaluation used for the GenAI response.
-        examples: ["Relevance", "IntentResolution"]
-      - id: gen_ai.evaluation.score.value
-        stability: development
-        type: double
-        brief: The evaluation score returned by the evaluator.
-        examples: [4.0]
-      - id: gen_ai.evaluation.score.label
-        stability: development
-        type: string
-        brief: Human readable label for evaluation.
-        examples: ["relevant", "not_relevant", "correct", "incorrect", "pass", "fail"]
-      - id: gen_ai.evaluation.reasoning
-        stability: development
-        type: string
-        brief: A free-form reasoning for the assigned score provided by the evaluator.
-        examples: ["The response is factually accurate but lacks sufficient detail to fully address the question."]
-=======
       - id: gen_ai.system_instructions
         stability: development
         type: any
@@ -496,4 +474,23 @@ groups:
                   "finish_reason": "stop"
                 }
               ]
->>>>>>> origin/main
+      - id: gen_ai.evaluation.name
+        stability: development
+        type: string
+        brief: The name of the evaluation used for the GenAI response.
+        examples: ["Relevance", "IntentResolution"]
+      - id: gen_ai.evaluation.score.value
+        stability: development
+        type: double
+        brief: The evaluation score returned by the evaluator.
+        examples: [4.0]
+      - id: gen_ai.evaluation.score.label
+        stability: development
+        type: string
+        brief: Human readable label for evaluation.
+        examples: ["relevant", "not_relevant", "correct", "incorrect", "pass", "fail"]
+      - id: gen_ai.evaluation.reasoning
+        stability: development
+        type: string
+        brief: A free-form reasoning for the assigned score provided by the evaluator.
+        examples: ["The response is factually accurate but lacks sufficient detail to fully address the question."]
