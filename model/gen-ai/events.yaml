@@ -16,7 +16,8 @@ groups:
     type: event
     stability: development
     brief: >
-      This event captures the result of evaluating GenAI output for quality, accuracy, or other characteristics and are parented to GenAI operation span being evaluated. This event can be created after the GenAI operation span being evaluated has completed.
+      This event captures the result of evaluating GenAI output for quality, accuracy,or other characteristics
+      and are parented to GenAI operation span being evaluated.
     attributes:
       - ref: gen_ai.evaluation.name
         requirement_level: required
@@ -38,6 +39,9 @@ groups:
           recommended: if evaluation was performed by a model
         note: >
           The total number of output tokens used by the model during the evaluation.
+      - ref: gen_ai.response.id
+        requirement_level:
+          recommended: when available
       - ref: error.type
         requirement_level:
           conditionally_required: "if the operation ended in an error"
