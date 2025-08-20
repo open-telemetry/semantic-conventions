@@ -96,14 +96,14 @@ This metric reports the same values as accessing the corresponding processor tim
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `interrupt` | interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iowait` | iowait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kernel` | kernel | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nice` | nice | ![Development](https://img.shields.io/badge/-development-blue) |
-| `steal` | steal | ![Development](https://img.shields.io/badge/-development-blue) |
-| `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | Idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `interrupt` | Interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iowait` | IO Wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `kernel` | Kernel | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nice` | Nice | ![Development](https://img.shields.io/badge/-development-blue) |
+| `steal` | Steal | ![Development](https://img.shields.io/badge/-development-blue) |
+| `system` | System | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user` | User | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

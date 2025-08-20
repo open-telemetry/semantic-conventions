@@ -15,21 +15,21 @@ Semantically, an Event is a named occurrence at an instant in time. It signals t
 Examples of Events might include things like button clicks, user logout,
 network connection severed, etc.
 
-In OpenTelemetry, Events are implemented as a specific type of [`LogRecord`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.46.0/specification/logs/api.md) that conforms to the conventions included here.
+In OpenTelemetry, Events are implemented as a specific type of [`LogRecord`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/logs/api.md) that conforms to the conventions included here.
 
 OpenTelemetry Semantic Conventions that define events SHOULD document the event name along
 with attributes and the type of the body if any.
 
 ## General event semantics
 
-* An event MUST have an [Event name property](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.46.0/specification/logs/data-model.md#field-eventname)
+* An event MUST have an [Event name property](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/logs/data-model.md#field-eventname)
   that uniquely identifies the event. Event names are subject to the [Naming guidelines](/docs/general/naming.md). Event name SHOULD be of a low-cardinality.
-* Events MAY have [attributes](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.46.0/specification/logs/data-model.md#field-attributes)
+* Events MAY have [attributes](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/logs/data-model.md#field-attributes)
   that provide additional context about the event.
-* Events MAY contain a [body](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.46.0/specification/logs/data-model.md#field-body) of type [`any`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.46.0/specification/logs/data-model.md#type-any).
+* Events MAY contain a [body](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/logs/data-model.md#field-body) of type [`any`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/logs/data-model.md#type-any).
 * The event name uniquely identifies event structure: the set of attributes and
   the type of the body.
-* Events MAY have [severity number](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.46.0/specification/logs/data-model.md#field-severitynumber).
+* Events MAY have [severity number](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/logs/data-model.md#field-severitynumber).
 
 It's RECOMMENDED to use the collection of attributes to represent the details of
 the event.

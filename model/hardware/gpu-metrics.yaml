@@ -1,0 +1,86 @@
+groups:
+  # GPU METRICS
+  - id: metric_attributes.hw.gpu
+    type: attribute_group
+    brief: >
+      Common attributes for GPU metrics
+    extends: hardware.attributes.common
+    attributes:
+      - ref: hw.driver_version
+        requirement_level: recommended
+      - ref: hw.firmware_version
+        requirement_level: recommended
+      - ref: hw.model
+        requirement_level: recommended
+      - ref: hw.serial_number
+        requirement_level: recommended
+      - ref: hw.vendor
+        requirement_level: recommended
+
+  - id: metric.hw.gpu.io
+    type: metric
+    metric_name: hw.gpu.io
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Received and transmitted bytes by the GPU."
+    instrument: counter
+    unit: "By"
+    extends: metric_attributes.hw.gpu
+    attributes:
+      - ref: network.io.direction
+        examples: ["receive", "transmit"]
+        requirement_level: required
+
+  - id: metric.hw.gpu.memory.limit
+    type: metric
+    metric_name: hw.gpu.memory.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Size of the GPU memory."
+    instrument: updowncounter
+    unit: "By"
+    extends: metric_attributes.hw.gpu
+
+  - id: metric.hw.gpu.memory.utilization
+    type: metric
+    metric_name: hw.gpu.memory.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Fraction of GPU memory used."
+    instrument: gauge
+    unit: "1"
+    extends: metric_attributes.hw.gpu
+
+  - id: metric.hw.gpu.memory.usage
+    type: metric
+    metric_name: hw.gpu.memory.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "GPU memory used."
+    instrument: updowncounter
+    unit: "By"
+    extends: metric_attributes.hw.gpu
+
+  - id: metric.hw.gpu.utilization
+    type: metric
+    metric_name: hw.gpu.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Fraction of time spent in a specific task."
+    instrument: gauge
+    unit: "1"
+    extends: metric_attributes.hw.gpu
+    attributes:
+      - ref: hw.gpu.task
+        examples: ["decoder", "encoder", "general"]
+        requirement_level: recommended

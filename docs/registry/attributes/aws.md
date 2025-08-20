@@ -84,8 +84,8 @@ This document defines attributes for AWS Elastic Container Service (ECS).
 
 | Value  | Description | Stability |
 |---|---|---|
-| `ec2` | ec2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fargate` | fargate | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ec2` | Amazon EC2 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fargate` | Amazon Fargate | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Amazon EKS Attributes
 

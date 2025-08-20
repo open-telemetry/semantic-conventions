@@ -62,6 +62,8 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s ResourceQuota metrics](#k8s-resourcequota-metrics)
   - [K8s Node condition metrics](#k8s-node-condition-metrics)
   - [K8s Filesystem metrics](#k8s-filesystem-metrics)
+  - [K8s Pod Volume metrics](#k8s-pod-volume-metrics)
+  - [Container Runtime](#container-runtime)
 
 <!-- tocstop -->
 
@@ -394,5 +396,41 @@ The changes in their metrics are the following:
 | `container.filesystem.available`    gauge                                               | `container.filesystem.available`   updowncounter |
 | `container.filesystem.capacity`      gauge                                              | `container.filesystem.capacity`    updowncounter |
 | `container.filesystem.usage`        gauge                                               | `container.filesystem.usage`       updowncounter |
+
+<!-- prettier-ignore-end -->
+
+### K8s Pod Volume metrics
+
+The K8s Pod volume metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.119.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#2319](https://github.com/open-telemetry/semantic-conventions/pull/2319).
+
+The changes in these metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                          |
+|------------------------------------------------------------------------------------|------------------------------|
+| `k8s.volume.available` | `k8s.pod.volume.available`   |
+| `k8s.volume.capacity` | `k8s.pod.volume.capacity`    |
+| `k8s.volume.inodes` | `k8s.pod.volume.inode.count` |
+| `k8s.volume.inodes.free` | `k8s.pod.volume.inode.free`  |
+| `k8s.volume.inodes.used` | `k8s.pod.volume.inode.used`  |
+
+<!-- prettier-ignore-end -->
+
+### Container Runtime
+
+The container runtime has become more descriptive with changes introduced to semantic conventions
+within v1.Y.Z <!--[v1.29.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.29.0/docs/system/k8s-metrics.md)-->.
+
+The changes in their attributes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old Attribute ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New Attribute |
+|------------------------------------------------------------------------------------|--------------------------|
+| `container.runtime` | `container.runtime.name` |
 
 <!-- prettier-ignore-end -->

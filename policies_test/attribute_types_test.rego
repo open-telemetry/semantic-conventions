@@ -3,7 +3,7 @@ import future.keywords
 
 test_fails_on_complex_attribute if {
     attribute_types := ["any", "template[any]"]
-    group_types = ["span", "entity", "resource", "metric"]
+    group_types = ["entity", "resource", "metric"]
     every attribute_type in attribute_types {
         every group_type in group_types {
             count(deny) == 1 with input as {"groups": [{ "id": concat(".", [group_type, "attr"]),
@@ -21,7 +21,7 @@ test_fails_on_complex_attribute if {
 
 test_pass_on_complex_attribute if {
     attribute_types := ["any", "template[any]"]
-    group_types = ["attribute_group", "event"]
+    group_types = ["attribute_group", "event", "span"]
     every attribute_type in attribute_types {
         every group_type in group_types {
             count(deny) == 0 with input as {"groups": [{ "id": concat(".", [group_type, "attr"]),

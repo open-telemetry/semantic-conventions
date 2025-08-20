@@ -384,7 +384,9 @@ groups:
               stability: development
             - id: cache
               value: "cache"
-              deprecated: "Replaced by `intersystems_cache`."
+              deprecated:
+                reason: renamed
+                renamed_to: "intersystems_cache"
               brief: "Deprecated, use `intersystems_cache` instead."
               stability: development
             - id: intersystems_cache
@@ -401,7 +403,9 @@ groups:
               stability: development
             - id: cloudscape
               value: "cloudscape"
-              deprecated: "Replaced by `other_sql`."
+              deprecated:
+                reason: renamed
+                renamed_to: "other_sql"
               brief: "Deprecated, use `other_sql` instead."
               stability: development
             - id: cockroachdb
@@ -410,7 +414,8 @@ groups:
               stability: development
             - id: coldfusion
               value: "coldfusion"
-              deprecated: "Removed."
+              deprecated:
+                reason: obsoleted
               brief: "Deprecated, no replacement at this time."
               stability: development
             - id: cosmosdb
@@ -455,7 +460,9 @@ groups:
               stability: development
             - id: firstsql
               value: "firstsql"
-              deprecated: "Replaced by `other_sql`."
+              deprecated:
+                reason: renamed
+                renamed_to: "other_sql"
               brief: "Deprecated, use `other_sql` instead."
               stability: development
             - id: geode
@@ -524,7 +531,9 @@ groups:
               stability: development
             - id: mssqlcompact
               value: "mssqlcompact"
-              deprecated: "Removed, use `other_sql` instead."
+              deprecated:
+                reason: renamed
+                renamed_to: "other_sql"
               brief: "Deprecated, Microsoft SQL Server Compact is discontinued."
               stability: development
             - id: mysql

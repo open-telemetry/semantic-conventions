@@ -6,7 +6,7 @@ groups:
     deprecated:
       reason: renamed
       renamed_to: system.network.connection.count
-    brief: "Deprecated, use `system.network.connection.count` instead"
+    brief: "Deprecated, use `system.network.connection.count` instead."
     instrument: updowncounter
     unit: "{connection}"
     attributes:

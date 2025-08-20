@@ -24,36 +24,47 @@ groups:
           members:
             - id: all
               value: "all"
+              brief: All
               stability: development
             - id: each_quorum
               value: "each_quorum"
+              brief: Each Quorum
               stability: development
             - id: quorum
               value: "quorum"
+              brief: Quorum
               stability: development
             - id: local_quorum
               value: "local_quorum"
+              brief: Local Quorum
               stability: development
             - id: one
               value: "one"
+              brief: One
               stability: development
             - id: two
               value: "two"
+              brief: Two
               stability: development
             - id: three
               value: "three"
+              brief: Three
               stability: development
             - id: local_one
               value: "local_one"
+              brief: Local One
               stability: development
             - id: any
               value: "any"
+              brief: Any
               stability: development
             - id: serial
               value: "serial"
+              brief: Serial
               stability: development
             - id: local_serial
               value: "local_serial"
+              brief: Local Serial
               stability: development
         stability: development
       - id: cassandra.query.idempotent
