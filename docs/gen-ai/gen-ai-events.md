@@ -223,7 +223,7 @@ section for more details.
 
 The event name MUST be `gen_ai.evaluation.result`.
 
-This event captures the result of evaluating GenAI output for quality, accuracy, or other characteristics and are parented to GenAI operation span being evaluated.
+This event captures the result of evaluating GenAI output for quality, accuracy, or other characteristics and are parented to GenAI operation span being evaluated. This event can be created after the GenAI operation span being evaluated has completed.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
