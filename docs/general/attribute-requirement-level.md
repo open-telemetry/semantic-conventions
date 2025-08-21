@@ -45,8 +45,8 @@ For example, [Database semantic convention](../database/README.md) references
 ## Requirement Levels
 
 The below table seeks to summarise the behaviour of attributes on signals,
-by providing a quick overview. 
-In the scenario where an instrumentation has not implemented an opt-in or recomended attribute,
+by providing a quick overview.
+In the scenario where an instrumentation has not implemented an opt-in or recommended attribute,
 the configuration option should either not exist or it should operate as a noop.
 The same is the case for conditionally required attributes where the conditions or instructions are not satisfied.
 
