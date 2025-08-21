@@ -17,16 +17,16 @@ groups:
     stability: development
     brief: >
       This event captures the result of evaluating GenAI output for quality, accuracy,or other characteristics
-      and are parented to GenAI operation span being evaluated.
+      and SHOULD be parented to GenAI operation span being evaluated when possible.
     attributes:
       - ref: gen_ai.evaluation.name
         requirement_level: required
       - ref: gen_ai.evaluation.score.value
         requirement_level:
-          conditionally_required: if gen_ai.evaluation.score.label is not provided
+          conditionally_required: if applicable
       - ref: gen_ai.evaluation.score.label
         requirement_level:
-          conditionally_required: if gen_ai.evaluation.score.value is not provided
+          conditionally_required: if applicable
       - ref: gen_ai.evaluation.explanation
         requirement_level: recommended
       - ref: gen_ai.usage.input_tokens

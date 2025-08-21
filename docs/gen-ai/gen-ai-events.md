@@ -223,14 +223,14 @@ section for more details.
 
 The event name MUST be `gen_ai.evaluation.result`.
 
-This event captures the result of evaluating GenAI output for quality, accuracy,or other characteristics and are parented to GenAI operation span being evaluated.
+This event captures the result of evaluating GenAI output for quality, accuracy,or other characteristics and SHOULD be parented to GenAI operation span being evaluated when possible.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.evaluation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the evaluation metric used for the GenAI response. | `Relevance`; `IntentResolution` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`gen_ai.evaluation.score.label`](/docs/registry/attributes/gen-ai.md) | string | Human readable label for evaluation. [2] | `relevant`; `not_relevant`; `correct`; `incorrect`; `pass`; `fail` | `Conditionally Required` if gen_ai.evaluation.score.value is not provided | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.evaluation.score.value`](/docs/registry/attributes/gen-ai.md) | double | The evaluation score returned by the evaluator. | `4.0` | `Conditionally Required` if gen_ai.evaluation.score.label is not provided | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.evaluation.score.label`](/docs/registry/attributes/gen-ai.md) | string | Human readable label for evaluation. [2] | `relevant`; `not_relevant`; `correct`; `incorrect`; `pass`; `fail` | `Conditionally Required` if applicable | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.evaluation.score.value`](/docs/registry/attributes/gen-ai.md) | double | The evaluation score returned by the evaluator. | `4.0` | `Conditionally Required` if applicable | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.evaluation.explanation`](/docs/registry/attributes/gen-ai.md) | string | A free-form explanation for the assigned score provided by the evaluator. | `The response is factually accurate but lacks sufficient detail to fully address the question.` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.response.id`](/docs/registry/attributes/gen-ai.md) | string | The unique identifier for the completion. | `chatcmpl-123` | `Recommended` when available | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.usage.input_tokens`](/docs/registry/attributes/gen-ai.md) | int | The number of tokens used in the GenAI input (prompt). [3] | `100` | `Recommended` if evaluation was performed by a model | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -240,7 +240,7 @@ This event captures the result of evaluating GenAI output for quality, accuracy,
 the canonical name of exception that occurred, or another low-cardinality error identifier.
 Instrumentations SHOULD document the list of errors they report.
 
-**[2] `gen_ai.evaluation.score.label`:** This attribute provides a human-readable interpretation of the evaluation score produced by an evaluator. For example, a score value of 1 could mean "relevant" in one evaluation system and "not relevant" in another,depending on the scoring range and evaluator. The label SHOULD have low cardinality and be easily understood by users. Possible values depend on the evaluation metric and evaluator used; implementations SHOULD document the possible values.
+**[2] `gen_ai.evaluation.score.label`:** This attribute provides a human-readable interpretation of the evaluation score produced by an evaluator. For example, a score value of 1 could mean "relevant" in one evaluation system and "not relevant" in another, depending on the scoring range and evaluator. The label SHOULD have low cardinality. Possible values depend on the evaluation metric and evaluator used; implementations SHOULD document the possible values.
 
 **[3] `gen_ai.usage.input_tokens`:** The total number of input tokens used by the model during the evaluation.
 
