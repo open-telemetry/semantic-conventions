@@ -68,7 +68,10 @@ groups:
     brief: The executable which is being run by the process.
     attributes:
       - ref: process.executable.name
-      - ref: process.executable.path
+        role: identifying
       - ref: process.executable.build_id.gnu
+        role: descriptive
       - ref: process.executable.build_id.go
+        role: descriptive
       - ref: process.executable.build_id.htlhash
+        role: descriptive
