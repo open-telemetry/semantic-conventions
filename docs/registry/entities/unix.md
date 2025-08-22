@@ -13,22 +13,24 @@
 
 **Description:** The unix kernel on which the os represented by this resource is using.
 
-**Other Attributes:**
-
-> :warning: This entity definition contains attributes without a role.
-> Stable Entities MUST NOT have attributes without a defined role.
+**Identifying Attributes:**
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`unix.kernel.name`](/docs/registry/attributes/unix.md) | string | The kernel name. [1] | `Linux`; `Darwin` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`unix.kernel.release`](/docs/registry/attributes/unix.md) | string | The kernel release. [2] | `5.19.0-42-generic` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`unix.kernel.version`](/docs/registry/attributes/unix.md) | string | The kernel version. [3] | `#43~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Apr 21 16:51:08 UTC 2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`unix.kernel.version`](/docs/registry/attributes/unix.md) | string | The kernel version. [2] | `#43~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Apr 21 16:51:08 UTC 2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `unix.kernel.name`:** This is to be the output of uname -s.
 
-**[2] `unix.kernel.release`:** This is to be the output of uname -r.
+**[2] `unix.kernel.version`:** This is to be the output of uname -v.
 
-**[3] `unix.kernel.version`:** This is to be the output of uname -v.
+**Descriptive Attributes:**
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`unix.kernel.release`](/docs/registry/attributes/unix.md) | string | The kernel release. [3] | `5.19.0-42-generic` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[3] `unix.kernel.release`:** This is to be the output of uname -r.
 
 
 <!-- markdownlint-restore -->
