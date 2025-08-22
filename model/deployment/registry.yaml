@@ -31,6 +31,20 @@ groups:
         brief: >
           The status of the deployment.
         stability: development
+      - id: deployment.type
+        stability: development
+        brief: >
+          The type of deployment which is occuring.
+        type:
+          members:
+            - id: publish
+              value: 'publish'
+              brief: The software is being published to a registry/store.
+              stability: development
+            - id: provision
+              value: 'provision'
+              brief: The software is being provisioned on a machine aka the target.
+              stability: development
       - id: deployment.environment.name
         type: string
         stability: development
