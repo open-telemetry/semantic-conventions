@@ -36,8 +36,8 @@ considered to be identifying the same service:
 
 ## Deployment Deprecated Attributes
 
-"Describes deprecated deployment attributes."
+Describes deprecated deployment attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="deployment-environment" href="#deployment-environment">`deployment.environment`</a> | string | 'Deprecated, use `deployment.environment.name` instead.' | `staging`; `production` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `deployment.environment.name`. |
+| <a id="deployment-environment" href="#deployment-environment">`deployment.environment`</a> | string | Deprecated, use `deployment.environment.name` instead. | `staging`; `production` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `deployment.environment.name`. |

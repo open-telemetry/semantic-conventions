@@ -1,4 +1,12 @@
 groups:
+  - id: gen_ai.common.event.attributes
+    type: attribute_group
+    stability: development
+    brief: >
+      Describes common Gen AI event attributes.
+    attributes:
+      - ref: gen_ai.system
+
   - id: registry.gen_ai.deprecated
     type: attribute_group
     brief: Describes deprecated `gen_ai` attributes.
@@ -36,6 +44,109 @@ groups:
           note: Removed, no replacement at this time.
         brief: "Deprecated, use Event API to report completions contents."
         examples: ["[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]"]
+      - id: gen_ai.system
+        stability: development
+        type:
+          members:
+            - id: openai
+              stability: development
+              value: "openai"
+              brief: 'OpenAI'
+            - id: gcp.gen_ai
+              stability: development
+              value: "gcp.gen_ai"
+              brief: "Any Google generative AI endpoint"
+              note: >
+                May be used when specific backend is unknown.
+                May use common attributes prefixed with 'gcp.gen_ai.'.
+            - id: gcp.vertex_ai
+              stability: development
+              value: "gcp.vertex_ai"
+              brief: 'Vertex AI'
+              note: >
+                This refers to the 'aiplatform.googleapis.com' endpoint.
+                May use common attributes prefixed with 'gcp.gen_ai.'.
+            - id: gcp.gemini
+              stability: development
+              value: "gcp.gemini"
+              brief: 'Gemini'
+              note: >
+                This refers to the 'generativelanguage.googleapis.com' endpoint.
+                Also known as the AI Studio API.
+                May use common attributes prefixed with 'gcp.gen_ai.'.
+            - id: vertex_ai
+              stability: development
+              value: "vertex_ai"
+              brief: 'Vertex AI'
+              deprecated:
+                reason: renamed
+                renamed_to: "gcp.vertex_ai"
+            - id: gemini
+              stability: development
+              value: "gemini"
+              brief: 'Gemini'
+              deprecated:
+                reason: renamed
+                renamed_to: "gcp.gemini"
+            - id: anthropic
+              stability: development
+              value: "anthropic"
+              brief: 'Anthropic'
+            - id: cohere
+              stability: development
+              value: "cohere"
+              brief: 'Cohere'
+            - id: az.ai.inference
+              stability: development
+              value: "az.ai.inference"
+              brief: 'Azure AI Inference'
+            - id: az.ai.openai
+              stability: development
+              value: "az.ai.openai"
+              brief: 'Azure OpenAI'
+            - id: azure.ai.inference
+              stability: development
+              value: "azure.ai.inference"
+              brief: 'Azure AI Inference'
+            - id: azure.ai.openai
+              stability: development
+              value: "azure.ai.openai"
+              brief: 'Azure OpenAI'
+            - id: ibm.watsonx.ai
+              stability: development
+              value: "ibm.watsonx.ai"
+              brief: 'IBM Watsonx AI'
+            - id: aws.bedrock
+              stability: development
+              value: "aws.bedrock"
+              brief: 'AWS Bedrock'
+            - id: perplexity
+              stability: development
+              value: "perplexity"
+              brief: 'Perplexity'
+            - id: xai
+              stability: development
+              value: "xai"
+              brief: 'xAI'
+              deprecated:
+                reason: renamed
+                renamed_to: "x_ai"
+            - id: deepseek
+              stability: development
+              value: "deepseek"
+              brief: 'DeepSeek'
+            - id: groq
+              stability: development
+              value: "groq"
+              brief: 'Groq'
+            - id: mistral_ai
+              stability: development
+              value: "mistral_ai"
+              brief: 'Mistral AI'
+        brief: "Deprecated, use `gen_ai.provider.name` instead."
+        deprecated:
+          reason: renamed
+          renamed_to: gen_ai.provider.name
   - id: registry.gen_ai.openai.deprecated
     type: attribute_group
     brief: Describes deprecated `gen_ai.openai` attributes.
@@ -70,3 +181,35 @@ groups:
         deprecated:
           reason: renamed
           renamed_to: gen_ai.output.type
+      - id: gen_ai.openai.request.service_tier
+        stability: development
+        type:
+          members:
+            - id: auto
+              value: "auto"
+              brief: The system will utilize scale tier credits until they are exhausted.
+              stability: development
+            - id: default
+              value: "default"
+              brief: The system will utilize the default scale tier.
+              stability: development
+        brief: "Deprecated, use `openai.request.service_tier`."
+        deprecated:
+          reason: renamed
+          renamed_to: openai.request.service_tier
+      - id: gen_ai.openai.response.service_tier
+        stability: development
+        type: string
+        brief: "Deprecated, use `openai.response.service_tier`."
+        examples: ['scale', 'default']
+        deprecated:
+          reason: renamed
+          renamed_to: openai.response.service_tier
+      - id: gen_ai.openai.response.system_fingerprint
+        stability: development
+        type: string
+        brief: "Deprecated, use `openai.response.system_fingerprint`."
+        examples: ["fp_44709d6fcb"]
+        deprecated:
+          reason: renamed
+          renamed_to: openai.response.system_fingerprint

@@ -47,11 +47,11 @@ This section defines attributes for Azure Cosmos DB.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `BoundedStaleness` | bounded_staleness | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ConsistentPrefix` | consistent_prefix | ![Development](https://img.shields.io/badge/-development-blue) |
-| `Eventual` | eventual | ![Development](https://img.shields.io/badge/-development-blue) |
-| `Session` | session | ![Development](https://img.shields.io/badge/-development-blue) |
-| `Strong` | strong | ![Development](https://img.shields.io/badge/-development-blue) |
+| `BoundedStaleness` | Bounded Staleness | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ConsistentPrefix` | Consistent Prefix | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Eventual` | Eventual | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Session` | Session | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Strong` | Strong | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated Azure Attributes
 

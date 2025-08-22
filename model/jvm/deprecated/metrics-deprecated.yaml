@@ -2,6 +2,9 @@ groups:
   - id: metric.jvm.buffer.memory.usage
     type: metric
     metric_name: jvm.buffer.memory.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     deprecated:
       reason: renamed

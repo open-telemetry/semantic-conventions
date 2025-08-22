@@ -2,6 +2,9 @@ groups:
   - id: metric.nodejs.eventloop.delay.min
     type: metric
     metric_name: nodejs.eventloop.delay.min
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Event loop minimum delay."
     instrument: gauge
     unit: "s"
@@ -12,6 +15,9 @@ groups:
   - id: metric.nodejs.eventloop.delay.max
     type: metric
     metric_name: nodejs.eventloop.delay.max
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Event loop maximum delay."
     instrument: gauge
     unit: "s"
@@ -22,6 +28,9 @@ groups:
   - id: metric.nodejs.eventloop.delay.mean
     type: metric
     metric_name: nodejs.eventloop.delay.mean
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Event loop mean delay."
     instrument: gauge
     unit: "s"
@@ -32,6 +41,9 @@ groups:
   - id: metric.nodejs.eventloop.delay.stddev
     type: metric
     metric_name: nodejs.eventloop.delay.stddev
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Event loop standard deviation delay."
     instrument: gauge
     unit: "s"
@@ -42,6 +54,9 @@ groups:
   - id: metric.nodejs.eventloop.delay.p50
     type: metric
     metric_name: nodejs.eventloop.delay.p50
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Event loop 50 percentile delay."
     instrument: gauge
     unit: "s"
@@ -52,6 +67,9 @@ groups:
   - id: metric.nodejs.eventloop.delay.p90
     type: metric
     metric_name: nodejs.eventloop.delay.p90
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Event loop 90 percentile delay."
     instrument: gauge
     unit: "s"
@@ -62,6 +80,9 @@ groups:
   - id: metric.nodejs.eventloop.delay.p99
     type: metric
     metric_name: nodejs.eventloop.delay.p99
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Event loop 99 percentile delay."
     instrument: gauge
     unit: "s"
@@ -72,6 +93,9 @@ groups:
   - id: metric.nodejs.eventloop.utilization
     type: metric
     metric_name: nodejs.eventloop.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Event loop utilization."
     instrument: gauge
     unit: "1"
@@ -83,6 +107,9 @@ groups:
   - id: metric.nodejs.eventloop.time
     type: metric
     metric_name: nodejs.eventloop.time
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Cumulative duration of time the event loop has been in each state."
     instrument: counter
     unit: "s"

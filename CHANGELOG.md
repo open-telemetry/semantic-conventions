@@ -7,6 +7,91 @@
 
 <!-- next version -->
 
+## v1.36.0
+
+### 🚩 Deprecations 🚩
+
+- `os`: Adds the 'deprecated:' tag/attribute to the `z_os` enum value of `os.type`. This value was recently deprecated in v1.35.0. ([#2479](https://github.com/open-telemetry/semantic-conventions/issues/2479))
+
+### 💡 Enhancements 💡
+
+- `otel`: Replaces `otel.sdk.span.ended` with `otel.sdk.span.started` and allow differentiation based on the parent span origin ([#2431](https://github.com/open-telemetry/semantic-conventions/issues/2431))
+- `db`: Add database context propagation via `SET CONTEXT_INFO` for SQL Server ([#2162](https://github.com/open-telemetry/semantic-conventions/issues/2162))
+- `entities`: Adds support for Entity registry and Entity stabilization policies. ([#2246](https://github.com/open-telemetry/semantic-conventions/issues/2246))
+
+### 🧰 Bug fixes 🧰
+
+- `cloud`: Exclude deprecated Azure members from code generation on the `cloud.platform` attribute ([#2477](https://github.com/open-telemetry/semantic-conventions/issues/2477), [#2455](https://github.com/open-telemetry/semantic-conventions/issues/2455))
+
+## v1.35.0
+
+### 🛑 Breaking changes 🛑
+
+- `azure`: Align azure events, attributes, and enum members with general naming guidelines. ([#608](https://github.com/open-telemetry/semantic-conventions/issues/608), [#1708](https://github.com/open-telemetry/semantic-conventions/issues/1708), [#1698](https://github.com/open-telemetry/semantic-conventions/issues/1698))
+  - Renamed attributes:
+    - `az.service_request_id` to `azure.service.request.id`
+    - `az.namespace` to `azure.resource_provider.namespace`
+  - Renamed events:
+    - `az.resource.log` to `azure.resource.log`
+  - Renamed enum members:
+    - `az.ai.inference` to `azure.ai.inference` (on `gen_ai.system`)
+    - `az.ai.openai` to `azure.ai.openai` (on `gen_ai.system`)
+    - `azure_aks` to `azure.aks` (on `cloud.platform`)
+    - `azure_app_service` to `azure.app_service` (on `cloud.platform`)
+    - `azure_container_apps` to `azure.container_apps` (on `cloud.platform`)
+    - `azure_container_instances` to `azure.container_instances` (on `cloud.platform`)
+    - `azure_functions` to `azure.functions` (on `cloud.platform`)
+    - `azure_openshift` to `azure.openshift` (on `cloud.platform`)
+    - `azure_vm` to `azure.vm` (on `cloud.platform`)
+
+- `system`: Revert the change that moved `system.cpu.*` to `cpu.*`. The 3 affected metrics are back in `system.cpu.*`. ([#1873](https://github.com/open-telemetry/semantic-conventions/issues/1873))
+- `system`: Changes system.network.connections to system.network.connection.count ([#1800](https://github.com/open-telemetry/semantic-conventions/issues/1800))
+- `k8s`: Change instrument type for .limit/.request container metrics from gauge to updowncounter ([#2354](https://github.com/open-telemetry/semantic-conventions/issues/2354))
+
+### 🚩 Deprecations 🚩
+
+- `os`: Deprecate os.type='z_os' and replace with os.type='zos' ([#1687](https://github.com/open-telemetry/semantic-conventions/issues/1687))
+
+### 🚀 New components 🚀
+
+- `mainframe, zos`: Add initial semantic conventions for mainframes ([#1687](https://github.com/open-telemetry/semantic-conventions/issues/1687))
+
+### 💡 Enhancements 💡
+
+- `dotnet`: Define .NET-specific network spans for DNS resolution, TLS handshake, and socket connections, along with HTTP-level spans to (optionally) record relationships between HTTP requests and connections.
+ ([#1192](https://github.com/open-telemetry/semantic-conventions/issues/1192))
+- `k8s`: Add `k8s.node.allocatable.cpu`, `k8s.node.allocatable.ephemeral_storage`, `k8s.node.allocatable.memory`, `k8s.node.allocatable.pods` metrics ([#2243](https://github.com/open-telemetry/semantic-conventions/issues/2243))
+- `k8s`: Add k8s.container.restart.count metric ([#2191](https://github.com/open-telemetry/semantic-conventions/issues/2191))
+- `k8s`: Add K8s container resource related metrics ([#2074](https://github.com/open-telemetry/semantic-conventions/issues/2074))
+- `k8s`: Add k8s.container.ready metric ([#2074](https://github.com/open-telemetry/semantic-conventions/issues/2074))
+- `k8s`: Add k8s.node.condition metric ([#2077](https://github.com/open-telemetry/semantic-conventions/issues/2077))
+- `k8s`: Add k8s resource quota metrics ([#2076](https://github.com/open-telemetry/semantic-conventions/issues/2076))
+- `events`: Update general event guidance to allow complex attributes on events and use them instead of the body fields.
+ ([#1651](https://github.com/open-telemetry/semantic-conventions/issues/1651), [#1669](https://github.com/open-telemetry/semantic-conventions/issues/1669))
+- `k8s`: Add k8s.container.status.state and k8s.container.status.reason metrics ([#1672](https://github.com/open-telemetry/semantic-conventions/issues/1672))
+- `feature_flags`: Mark feature flag semantic convention as release candidate. ([#2277](https://github.com/open-telemetry/semantic-conventions/issues/2277))
+- `k8s`: Add new resource attributes for `k8s.hpa` to capture the `scaleTargetRef` fields ([#2008](https://github.com/open-telemetry/semantic-conventions/issues/2008))
+  Adds below attributes to the `k8s.hpa` resource:
+  - `k8s.hpa.scaletargetref.kind`
+  - `k8s.hpa.scaletargetref.name`
+  - `k8s.hpa.scaletargetref.api_version`
+  
+- `k8s`: Adds metrics and attributes to track k8s HPA's metric target values for CPU resources. ([#2182](https://github.com/open-telemetry/semantic-conventions/issues/2182))
+  Below metrics are introduced to provide insight into HPA scaling configuration for CPU.
+  - `k8s.hpa.metric.target.cpu.value`
+  - `k8s.hpa.metric.target.cpu.average_value`
+  - `k8s.hpa.metric.target.cpu.average_utilization`
+  
+- `k8s`: Explains the rationale behind the Kubernetes resource naming convention. ([#2245](https://github.com/open-telemetry/semantic-conventions/issues/2245))
+- `all`: Adds modelling guide for resource and entity. ([#2246](https://github.com/open-telemetry/semantic-conventions/issues/2246))
+- `service`: Adds stability policies for Entity groups. ([#2378](https://github.com/open-telemetry/semantic-conventions/issues/2378))
+  Entity groups now require `role` to be filled for attributes.
+- `otel`: Specifies component.type values for Zipkin and Prometheus exporters ([#2229](https://github.com/open-telemetry/semantic-conventions/issues/2229))
+
+### 🧰 Bug fixes 🧰
+
+- `otel`: Removes `otel.scope` entity. ([#2310](https://github.com/open-telemetry/semantic-conventions/issues/2310))
+
 ## v1.34.0
 
 ### 🛑 Breaking changes 🛑

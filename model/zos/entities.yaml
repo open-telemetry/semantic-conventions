@@ -1,0 +1,12 @@
+groups:
+  - id: entity.zos.software
+    type: entity
+    stability: development
+    name: zos.software
+    brief: A software resource running on a z/OS system.
+    attributes:
+      - ref: zos.sysplex.name
+        requirement_level: required
+      - ref: zos.smf.id
+        requirement_level: required
+      - ref: mainframe.lpar.name

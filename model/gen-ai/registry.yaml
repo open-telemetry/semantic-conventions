@@ -5,54 +5,41 @@ groups:
     brief: >
       This document defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models requests and responses.
     attributes:
-      - id: gen_ai.system
+      - id: gen_ai.provider.name
         stability: development
         type:
           members:
             - id: openai
               stability: development
               value: "openai"
-              brief: 'OpenAI'
+              brief: '[OpenAI](https://openai.com/)'
             - id: gcp.gen_ai
               stability: development
               value: "gcp.gen_ai"
               brief: "Any Google generative AI endpoint"
               note: >
                 May be used when specific backend is unknown.
-                May use common attributes prefixed with 'gcp.gen_ai.'.
             - id: gcp.vertex_ai
               stability: development
               value: "gcp.vertex_ai"
-              brief: 'Vertex AI'
+              brief: "[Vertex AI](https://cloud.google.com/vertex-ai)"
               note: >
-                This refers to the 'aiplatform.googleapis.com' endpoint.
-                May use common attributes prefixed with 'gcp.gen_ai.'.
+                Used when accessing the 'aiplatform.googleapis.com' endpoint.
             - id: gcp.gemini
               stability: development
               value: "gcp.gemini"
-              brief: 'Gemini'
+              brief: '[Gemini](https://cloud.google.com/products/gemini)'
               note: >
-                This refers to the 'generativelanguage.googleapis.com' endpoint.
+                Used when accessing the 'generativelanguage.googleapis.com' endpoint.
                 Also known as the AI Studio API.
-                May use common attributes prefixed with 'gcp.gen_ai.'.
-            - id: vertex_ai
-              stability: development
-              value: "vertex_ai"
-              brief: 'Vertex AI'
-              deprecated: "Use 'gcp.vertex_ai' instead."
-            - id: gemini
-              stability: development
-              value: "gemini"
-              brief: 'Gemini'
-              deprecated: "Use 'gcp.gemini' instead."
             - id: anthropic
               stability: development
               value: "anthropic"
-              brief: 'Anthropic'
+              brief: '[Anthropic](https://www.anthropic.com/)'
             - id: cohere
               stability: development
               value: "cohere"
-              brief: 'Cohere'
+              brief: '[Cohere](https://cohere.com/)'
             - id: azure.ai.inference
               stability: development
               value: "azure.ai.inference"
@@ -60,60 +47,57 @@ groups:
             - id: azure.ai.openai
               stability: development
               value: "azure.ai.openai"
-              brief: 'Azure OpenAI'
-            - id: az.ai.inference
-              stability: development
-              value: "az.ai.inference"
-              deprecated: "Replaced by azure.ai.inference"
-              brief: 'Azure AI Inference'
-            - id: az.ai.openai
-              stability: development
-              value: "azure.ai.openai"
-              brief: 'Azure OpenAI'
-              deprecated: "Replaced by azure.ai.openai"
+              brief: '[Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/)'
             - id: ibm.watsonx.ai
               stability: development
               value: "ibm.watsonx.ai"
-              brief: 'IBM Watsonx AI'
+              brief: '[IBM Watsonx AI](https://www.ibm.com/products/watsonx-ai)'
             - id: aws.bedrock
               stability: development
               value: "aws.bedrock"
-              brief: 'AWS Bedrock'
+              brief: '[AWS Bedrock](https://aws.amazon.com/bedrock)'
             - id: perplexity
               stability: development
               value: "perplexity"
-              brief: 'Perplexity'
-            - id: xai
+              brief: '[Perplexity](https://www.perplexity.ai/)'
+            - id: x_ai
               stability: development
-              value: "xai"
-              brief: 'xAI'
+              value: "x_ai"
+              brief: '[xAI](https://x.ai/)'
             - id: deepseek
               stability: development
               value: "deepseek"
-              brief: 'DeepSeek'
+              brief: '[DeepSeek](https://www.deepseek.com/)'
             - id: groq
               stability: development
               value: "groq"
-              brief: 'Groq'
+              brief: '[Groq](https://groq.com/)'
             - id: mistral_ai
               stability: development
               value: "mistral_ai"
-              brief: 'Mistral AI'
+              brief: '[Mistral AI](https://mistral.ai/)'
 
-        brief: The Generative AI product as identified by the client or server instrumentation.
+        brief: The Generative AI provider as identified by the client
+          or server instrumentation.
         note: |
-          The `gen_ai.system` describes a family of GenAI models with specific model identified
-          by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+          The attribute SHOULD be set based on the instrumentation's best
+          knowledge and may differ from the actual model provider.
 
-          The actual GenAI product may differ from the one identified by the client.
-          Multiple systems, including Azure OpenAI and Gemini, are accessible by OpenAI client
-          libraries. In such cases, the `gen_ai.system` is set to `openai` based on the
-          instrumentation's best knowledge, instead of the actual system. The `server.address`
-          attribute may help identify the actual system in use for `openai`.
+          Multiple providers, including Azure OpenAI, Gemini, and AI hosting platforms
+          are accessible using the OpenAI REST API and corresponding client libraries,
+          but may proxy or host models from different providers.
 
-          For custom model, a custom friendly name SHOULD be used.
-          If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
-        examples: 'openai'
+          The `gen_ai.request.model`, `gen_ai.response.model`, and `server.address`
+          attributes may help identify the actual system in use.
+
+          The `gen_ai.provider.name` attribute acts as a discriminator that
+          identifies the GenAI telemetry format flavor specific to that provider
+          within GenAI semantic conventions.
+          It SHOULD be set consistently with provider-specific attributes and signals.
+          For example, GenAI spans, metrics, and events related to AWS Bedrock
+          should have the `gen_ai.provider.name` set to `aws.bedrock` and include
+          applicable `aws.bedrock.*` attributes and are not expected to include
+          `openai.*` attributes.
       - id: gen_ai.request.model
         stability: development
         type: string
@@ -213,7 +197,9 @@ groups:
             - id: completion
               stability: development
               value: "output"
-              deprecated: "Replaced by `output`."
+              deprecated:
+                reason: renamed
+                renamed_to: "output"
               brief: 'Output tokens (completion, response, etc.)'
             - id: output
               stability: development
@@ -226,7 +212,7 @@ groups:
         type: string
         brief: The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation.
         examples: ["conv_5j66UpCpwteGg4YSxUnt7lPY"]
-      - id: gen_ai.agent.id   # alternatives: assistant (openai)
+      - id: gen_ai.agent.id
         stability: development
         type: string
         brief: The unique identifier of the GenAI agent.
@@ -353,33 +339,143 @@ groups:
         type: int
         brief: The number of dimensions the resulting output embeddings should have.
         examples: [512, 1024]
-  - id: registry.gen_ai.openai
-    type: attribute_group
-    display_name: OpenAI Attributes
-    brief: >
-      This group defines attributes for OpenAI.
-    attributes:
-      - id: gen_ai.openai.request.service_tier
+      - id: gen_ai.system_instructions
         stability: development
-        type:
-          members:
-            - id: auto
-              value: "auto"
-              brief: The system will utilize scale tier credits until they are exhausted.
-              stability: development
-            - id: default
-              value: "default"
-              brief: The system will utilize the default scale tier.
-              stability: development
-        brief: The service tier requested. May be a specific tier, default, or auto.
-        examples: ['auto', 'default']
-      - id: gen_ai.openai.response.service_tier
+        type: any
+        brief: The system message or instructions provided to the GenAI model
+          separately from the chat history.
+        note: |
+          This attribute SHOULD be used when the corresponding provider or API
+          allows to provide system instructions or messages separately from the
+          chat history.
+
+          Instructions that are part of the chat history SHOULD be recorded in
+          `gen_ai.input.messages` attribute instead.
+
+          Instrumentations MUST follow [System instructions JSON schema](/docs/gen-ai/gen-ai-system-instructions.json).
+
+          When recorded on spans, it MAY be recorded as a JSON string if structured
+          format is not supported and SHOULD be recorded in structured form otherwise.
+
+          Instrumentations MAY provide a way for users to filter or truncate
+          system instructions.
+
+          > [!Warning]
+          > This attribute may contain sensitive information.
+
+          See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+          section for more details.
+        examples:
+          - |
+              [
+                {
+                  "type": "text",
+                  "content": "You are an Agent that greet users, always use greetings tool to respond"
+                }
+              ]
+          - |
+              [
+                {
+                  "type": "text",
+                  "content": "You are a language translator."
+                },
+                {
+                  "type": "text",
+                  "content": "Your mission is to translate text in English to French."
+                }
+              ]
+      - id: gen_ai.input.messages
         stability: development
-        type: string
-        brief: The service tier used for the response.
-        examples: ['scale', 'default']
-      - id: gen_ai.openai.response.system_fingerprint
+        type: any
+        brief: >
+          The chat history provided to the model as an input.
+        note: |
+          Instrumentations MUST follow [Input messages JSON schema](/docs/gen-ai/gen-ai-input-messages.json).
+          When the attribute is recorded on events, it MUST be recorded in structured
+          form. When recorded on spans, it MAY be recorded as a JSON string if structured
+          format is not supported and SHOULD be recorded in structured form otherwise.
+
+          Messages MUST be provided in the order they were sent to the model.
+          Instrumentations MAY provide a way for users to filter or truncate
+          input messages.
+
+          > [!Warning]
+          > This attribute is likely to contain sensitive information including user/PII data.
+
+          See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+          section for more details.
+        examples:
+          - |
+              [
+                {
+                  "role": "user",
+                  "parts": [
+                    {
+                      "type": "text",
+                      "content": "Weather in Paris?"
+                    }
+                  ]
+                },
+                {
+                  "role": "assistant",
+                  "parts": [
+                    {
+                      "type": "tool_call",
+                      "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
+                      "name": "get_weather",
+                      "arguments": {
+                        "location": "Paris"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "role": "tool",
+                  "parts": [
+                    {
+                      "type": "tool_call_response",
+                      "id": " call_VSPygqKTWdrhaFErNvMV18Yl",
+                      "result": "rainy, 57°F"
+                    }
+                  ]
+                }
+              ]
+      - id: gen_ai.output.messages
         stability: development
-        type: string
-        brief: A fingerprint to track any eventual change in the Generative AI environment.
-        examples: ["fp_44709d6fcb"]
+        type: any
+        brief: Messages returned by the model where each message represents
+          a specific model response (choice, candidate).
+        note: |
+          Instrumentations MUST follow [Output messages JSON schema](/docs/gen-ai/gen-ai-output-messages.json)
+
+          Each message represents a single output choice/candidate generated by
+          the model. Each message corresponds to exactly one generation
+          (choice/candidate) and vice versa - one choice cannot be split across
+          multiple messages or one message cannot contain parts from multiple choices.
+
+          When the attribute is recorded on events, it MUST be recorded in structured
+          form. When recorded on spans, it MAY be recorded as a JSON string if structured
+          format is not supported and SHOULD be recorded in structured form otherwise.
+
+          Instrumentations MAY provide a way for users to filter or truncate
+          output messages.
+
+          > [!Warning]
+          > This attribute is likely to contain sensitive information including user/PII data.
+
+          See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+          section for more details.
+        examples:
+          - |
+              [
+                {
+                  "role": "assistant",
+                  "parts": [
+                    {
+                      "type": "text",
+                      "content": "The weather in Paris is currently rainy with a temperature of 57°F."
+                    }
+                  ],
+                  "finish_reason": "stop"
+                }
+              ]

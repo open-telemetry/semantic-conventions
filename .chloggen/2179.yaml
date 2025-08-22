@@ -1,0 +1,18 @@
+change_type: breaking
+component: gen-ai
+note: |
+  Revamp how GenAI chat history is recorded. Instead of per-message events,
+  we now have `gen_ai.system_instructions`, `gen_ai.input.messages`, and
+  `gen_ai.output.messages` attributes that can appear on GenAI spans or the new
+  `gen_ai.client.inference.operation.details` event.
+
+  New attributes are not recorded by default when content capturing is disabled.
+
+  Deprecations:
+  - `gen_ai.system.message` event - use `gen_ai.system_instructions` or
+    `gen_ai.input.messages` attributes instead.
+  - `gen_ai.user.message`, `gen_ai.assistant.message`, `gen_ai.tool.message` events
+    (use `gen_ai.input.messages` attribute instead)
+  - `gen_ai.choice` event (use `gen_ai.output.messages` attribute instead)
+
+issues: [2010, 2179, 1913, 1621, 1912]
