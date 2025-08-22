@@ -81,7 +81,7 @@ groups:
         stability: development
         brief: >
           The file version of the process executable.
-        examples: ['/usr/bin/cmd/1.0.1']
+        examples: ['1.0.1']
       - id: process.command
         type: string
         stability: development
