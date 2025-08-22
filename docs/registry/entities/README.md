@@ -46,7 +46,8 @@ Currently, the following namespaces exist:
 | | [container.image](container.md#container-image) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [container.runtime](container.md#container-runtime) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Deployment | | |
-| | [deployment](deployment.md#deployment) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [deployment.environment](deployment.md#deployment-environment) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [deployment.target](deployment.md#deployment-target) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Device | | |
 | | [device](device.md#device) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Faas | | |
