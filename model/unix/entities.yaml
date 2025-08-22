@@ -8,5 +8,8 @@ groups:
     attributes:
       - ref: unix.kernel.name
         requirement_level: required
+        role: identifying
       - ref: unix.kernel.release
+        role: descriptive
       - ref: unix.kernel.version
+        role: identifying
