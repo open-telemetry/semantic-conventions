@@ -16,7 +16,7 @@ This document defines attributes for software deployments.
 | <a id="deployment-id" href="#deployment-id">`deployment.id`</a> | string | The id of the deployment. | `1208` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="deployment-name" href="#deployment-name">`deployment.name`</a> | string | The name of the deployment. | `deploy my app`; `deploy-frontend` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="deployment-status" href="#deployment-status">`deployment.status`</a> | string | The status of the deployment. | `failed`; `succeeded` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="deployment-type" href="#deployment-type">`deployment.type`</a> | string | The type of deployment which is occuring. | `publish`; `provision` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="deployment-type" href="#deployment-type">`deployment.type`</a> | string | The type of deployment which is occurring. | `publish`; `provision` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `deployment.environment.name`:** `deployment.environment.name` does not affect the uniqueness constraints defined through
 the `service.namespace`, `service.name` and `service.instance.id` resource attributes.

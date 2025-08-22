@@ -34,7 +34,7 @@ groups:
       - id: deployment.type
         stability: development
         brief: >
-          The type of deployment which is occuring.
+          The type of deployment which is occurring.
         type:
           members:
             - id: publish
