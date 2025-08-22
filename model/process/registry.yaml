@@ -76,6 +76,12 @@ groups:
           be set to the target of `proc/[pid]/exe`. On Windows, can be set to the
           result of `GetProcessImageFileNameW`.
         examples: ['/usr/bin/cmd/otelcol']
+      - id: process.executable.version
+        type: string
+        stability: development
+        brief: >
+          The file version of the process executable.
+        examples: ['/usr/bin/cmd/otelcol']
       - id: process.command
         type: string
         stability: development
