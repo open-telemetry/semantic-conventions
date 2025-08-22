@@ -650,6 +650,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 `http.route` MUST be provided at span creation time if and only if it's already available. If it becomes available after span starts, instrumentation MUST populate it anytime before span ends.
 
 ## Capturing HTTP headers in traces
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 In addition to the attributes defined in this document, HTTP client and server instrumentations MUST also allow
 users to capture header attributes from the request and response in **traces using declarative configuration**.
