@@ -7,9 +7,12 @@ groups:
       A serverless function.
     attributes:
       - ref: faas.function.id
+        role: identifying
         requirement_level: required
       - ref: faas.name
+        role: descriptive
         requirement_level: required
       - ref: faas.version
+        role: identifying
       - ref: faas.instance
       - ref: faas.max_memory

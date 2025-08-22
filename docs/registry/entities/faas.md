@@ -13,18 +13,12 @@
 
 **Description:** A serverless function.
 
-**Other Attributes:**
-
-> :warning: This entity definition contains attributes without a role.
-> Stable Entities MUST NOT have attributes without a defined role.
+**Identifying Attributes:**
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`faas.function.id`](/docs/registry/attributes/faas.md) | string | The id of the single function that this runtime instance executes. [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`faas.name`](/docs/registry/attributes/faas.md) | string | The name of the single function that this runtime instance executes. [2] | `my-function`; `myazurefunctionapp/some-function-name` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`faas.instance`](/docs/registry/attributes/faas.md) | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [3] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`faas.max_memory`](/docs/registry/attributes/faas.md) | int | The amount of memory available to the serverless function converted to Bytes. [4] | `134217728` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`faas.version`](/docs/registry/attributes/faas.md) | string | The immutable version of the function being executed. [5] | `26`; `pinkfroid-00002` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.version`](/docs/registry/attributes/faas.md) | string | The immutable version of the function being executed. [2] | `26`; `pinkfroid-00002` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `faas.function.id`:** On some systems/platforms, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `faas.function.id` as a span attribute instead.
@@ -45,7 +39,23 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 Should a provider not be listed above, another globally unique identifier should be used to identify the function.
 
-**[2] `faas.name`:** This is the name of the function as configured/deployed on the FaaS
+**[2] `faas.version`:** Depending on the cloud provider and platform, use:
+
+- **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
+  (an integer represented as a decimal string).
+- **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
+  (i.e., the function name plus the revision suffix).
+- **Google Cloud Functions:** The value of the
+  [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically).
+- **Azure Functions:** Not applicable. Do not set this attribute.
+
+**Descriptive Attributes:**
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`faas.name`](/docs/registry/attributes/faas.md) | string | The name of the single function that this runtime instance executes. [3] | `my-function`; `myazurefunctionapp/some-function-name` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[3] `faas.name`:** This is the name of the function as configured/deployed on the FaaS
 platform and is usually different from the name of the callback
 function (which may be stored in the
 [`code.namespace`/`code.function.name`](/docs/general/attributes.md#source-code-attributes)
@@ -62,19 +72,19 @@ definition of function name MUST be used for this attribute
   app can host multiple functions that would usually share
   a TracerProvider (see also the `cloud.resource_id` attribute).
 
-**[3] `faas.instance`:** - **AWS Lambda:** Use the (full) log stream name.
+**Other Attributes:**
 
-**[4] `faas.max_memory`:** It's recommended to set this attribute since e.g. too little memory can easily stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information (which must be multiplied by 1,048,576).
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
 
-**[5] `faas.version`:** Depending on the cloud provider and platform, use:
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`faas.instance`](/docs/registry/attributes/faas.md) | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [4] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`faas.max_memory`](/docs/registry/attributes/faas.md) | int | The amount of memory available to the serverless function converted to Bytes. [5] | `134217728` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-- **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
-  (an integer represented as a decimal string).
-- **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
-  (i.e., the function name plus the revision suffix).
-- **Google Cloud Functions:** The value of the
-  [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically).
-- **Azure Functions:** Not applicable. Do not set this attribute.
+**[4] `faas.instance`:** - **AWS Lambda:** Use the (full) log stream name.
+
+**[5] `faas.max_memory`:** It's recommended to set this attribute since e.g. too little memory can easily stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information (which must be multiplied by 1,048,576).
 
 
 <!-- markdownlint-restore -->
