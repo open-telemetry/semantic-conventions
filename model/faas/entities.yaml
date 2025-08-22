@@ -18,4 +18,6 @@ groups:
       A serverless instance.
     attributes:
       - ref: faas.instance.id
+        role: identifying
       - ref: faas.max_memory
+        role: descriptive

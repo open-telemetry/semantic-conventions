@@ -77,17 +77,19 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 **Description:** A serverless instance.
 
-**Other Attributes:**
-
-> :warning: This entity definition contains attributes without a role.
-> Stable Entities MUST NOT have attributes without a defined role.
+**Identifying Attributes:**
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`faas.instance.id`](/docs/registry/attributes/faas.md) | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [4] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`faas.max_memory`](/docs/registry/attributes/faas.md) | int | The amount of memory available to the serverless function converted to Bytes. [5] | `134217728` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[4] `faas.instance.id`:** - **AWS Lambda:** Use the (full) log stream name.
+
+**Descriptive Attributes:**
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`faas.max_memory`](/docs/registry/attributes/faas.md) | int | The amount of memory available to the serverless function converted to Bytes. [5] | `134217728` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[5] `faas.max_memory`:** It's recommended to set this attribute since e.g. too little memory can easily stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information (which must be multiplied by 1,048,576).
 
