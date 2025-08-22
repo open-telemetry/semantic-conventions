@@ -18,6 +18,9 @@
 |---|---|---|---|---|---|
 | [`gcp.gce.instance.hostname`](/docs/registry/attributes/gcp.md) | string | The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm). | `my-host1234.example.com`; `sample-vm.us-west1-b.c.my-project.internal` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gcp.gce.instance.name`](/docs/registry/attributes/gcp.md) | string | The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names). | `instance-1`; `my-vm-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gcp.gce.instance.labels.<key>`](/docs/registry/attributes/gcp.md) | string | GCE instance labels, `<key>` being the label name and the value being the label value. [1] | `observability` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `gcp.gce.instance.labels.<key>`:** For example, a GCE instance label `team` with value `observability` SHOULD be recorded as the `gcp.gce.instance.labels.team` attribute with value `"observability"`. The `<key>` MUST be the exact GCE instance label key.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
