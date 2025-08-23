@@ -346,7 +346,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `test` | Synthetic test source. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Past Attributes:**
-| Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
+| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
 | [`http.method`](/docs/registry/attributes/http.md) | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` | `Rename` |  Use [`http.request.method`](/docs/registry/attributes/http.md) instead.  |
 
@@ -655,7 +655,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `test` | Synthetic test source. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Past Attributes:**
-| Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
+| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
 | [`http.method`](/docs/registry/attributes/http.md) | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` | `Rename` |  Use [`http.request.method`](/docs/registry/attributes/http.md) instead.  |
 

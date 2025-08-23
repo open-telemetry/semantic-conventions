@@ -262,7 +262,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **Past Attributes:**
-| Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
+| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
 | [`http.method`](/docs/registry/attributes/http.md) | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` | `Rename` |  Use [`http.request.method`](/docs/registry/attributes/http.md) instead.  |
 | [`http.scheme`](/docs/registry/attributes/http.md) | string | Deprecated, use `url.scheme` instead. | `http`; `https` | `Rename` |  Use [`url.scheme`](/docs/registry/attributes/url.md) instead.  |

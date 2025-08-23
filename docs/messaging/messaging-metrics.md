@@ -164,7 +164,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Past Attributes:**
-| Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
+| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
 | [`messaging.operation`](/docs/registry/attributes/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | `Migrate` |  Use [`messaging.operation.type`](/docs/registry/attributes/messaging.md) instead.  |
 
@@ -264,9 +264,9 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Past Attributes:**
-| Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
+| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
-| [`messaging.operation`](/docs/registry/attributes/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | `Migrate` |  Use [`messaging.operation.type`](/docs/registry/attributes/.md) instead.  |
+| [`messaging.operation`](/docs/registry/attributes/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | `Migrate` |  Use [`messaging.operation.name`](/docs/registry/attributes/messaging.md) instead.  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -371,9 +371,9 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Past Attributes:**
-| Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
+| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
-| [`messaging.operation`](/docs/registry/attributes/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | `Migrate` |  Use [`messaging.operation.type`](/docs/registry/attributes/.md) instead.  |
+| [`messaging.operation`](/docs/registry/attributes/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | `Migrate` |  Use [`messaging.operation.name`](/docs/registry/attributes/messaging.md) instead.  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -481,9 +481,9 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Past Attributes:**
-| Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
+| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
-| [`messaging.operation`](/docs/registry/attributes/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | `Migrate` |  Use [`messaging.operation.type`](/docs/registry/attributes/.md) instead.  |
+| [`messaging.operation`](/docs/registry/attributes/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | `Migrate` |  Use [`messaging.operation.name`](/docs/registry/attributes/messaging.md) instead.  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
