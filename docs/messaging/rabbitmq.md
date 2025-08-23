@@ -58,13 +58,10 @@ The Semantic Conventions for [RabbitMQ](https://www.rabbitmq.com/) extend and ov
 | [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | string | Message [correlation Id](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property. | `MyConversationId` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.message.payload_compressed_size_bytes`](/docs/registry/attributes/messaging.md) | int | The compressed size of the message payload in bytes. [5] | `2048` | `Remove` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Obsoleted. |
-| [`messaging.message.payload_size_bytes`](/docs/registry/attributes/messaging.md) | int | The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported. [6] | `2738` | `Migrate` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.message.envelope.size`. |
-| [`messaging.operation`](/docs/registry/attributes/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | `Migrate` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`. |
-| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. [7] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. [5] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [8] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body in bytes. [9] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body in bytes. [7] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `messaging.destination.name`:** In RabbitMQ, the destination is defined by an *exchange*, a *routing key* and for consumers, a *queue*.
 
@@ -103,15 +100,11 @@ it's RECOMMENDED to:
 
 **[4] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
-**[5] `messaging.message.payload_compressed_size_bytes`:** Only if span represents operation on a single message.
+**[5] `network.peer.address`:** If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[6] `messaging.message.payload_size_bytes`:** Only if span represents operation on a single message.
+**[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[7] `network.peer.address`:** If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
-
-**[8] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[9] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[7] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
 The following attributes can be important for making sampling decisions
@@ -142,6 +135,17 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**Past Attributes:**
+| Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
+|---|---|---|---|---|---|
+| [`messaging.message.payload_compressed_size_bytes`](/docs/registry/attributes/messaging.md) | int | The compressed size of the message payload in bytes. [8] | `2048` | `Drop` |  Obsoleted.  |
+| [`messaging.message.payload_size_bytes`](/docs/registry/attributes/messaging.md) | int | The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported. [9] | `2738` | `Rename` |  Use [`messaging.message.envelope.size`](/docs/registry/attributes/.md) instead.  |
+| [`messaging.operation`](/docs/registry/attributes/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | `Migrate` |  Use [`messaging.operation.type`](/docs/registry/attributes/messaging.md) instead.  |
+
+**[8] `messaging.message.payload_compressed_size_bytes`:** Only if span represents operation on a single message.
+
+**[9] `messaging.message.payload_size_bytes`:** Only if span represents operation on a single message.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

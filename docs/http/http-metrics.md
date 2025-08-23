@@ -214,10 +214,6 @@ This metric is optional.
 |---|---|---|---|---|---|
 | [`http.request.method`](/docs/registry/attributes/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`url.scheme`](/docs/registry/attributes/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.method`](/docs/registry/attributes/http.md) | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` | `Migrate` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.request.method`. |
-| [`http.scheme`](/docs/registry/attributes/http.md) | string | Deprecated, use `url.scheme` instead. | `http`; `https` | `Migrate` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `url.scheme`. |
-| [`net.host.name`](/docs/registry/attributes/network.md) | string | Deprecated, use `server.address`. | `example.com` | `Migrate` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address`. |
-| [`net.host.port`](/docs/registry/attributes/network.md) | int | Deprecated, use `server.port`. | `8080` | `Migrate` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.port`. |
 | [`server.address`](/docs/registry/attributes/server.md) | string | Name of the local HTTP server that received the request. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.port`](/docs/registry/attributes/server.md) | int | Port of the local HTTP server that received the request. [3] | `80`; `8080`; `443` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
@@ -264,6 +260,14 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `QUERY` | QUERY method. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+**Past Attributes:**
+| Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
+|---|---|---|---|---|---|
+| [`http.method`](/docs/registry/attributes/http.md) | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` | `Rename` |  Use [`http.request.method`](/docs/registry/attributes/http.md) instead.  |
+| [`http.scheme`](/docs/registry/attributes/http.md) | string | Deprecated, use `url.scheme` instead. | `http`; `https` | `Rename` |  Use [`url.scheme`](/docs/registry/attributes/url.md) instead.  |
+| [`net.host.name`](/docs/registry/attributes/network.md) | string | Deprecated, use `server.address`. | `example.com` | `Rename` |  Use [`server.address`](/docs/registry/attributes/server.md) instead.  |
+| [`net.host.port`](/docs/registry/attributes/network.md) | int | Deprecated, use `server.port`. | `8080` | `Rename` |  Use [`server.port`](/docs/registry/attributes/server.md) instead.  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

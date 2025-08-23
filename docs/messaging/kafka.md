@@ -72,11 +72,8 @@ For Apache Kafka, the following additional attributes are defined:
 | [`messaging.kafka.message.key`](/docs/registry/attributes/messaging.md) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [9] | `myKey` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.kafka.offset`](/docs/registry/attributes/messaging.md) | int | The offset of a record in the corresponding Kafka partition. | `42` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.message.payload_compressed_size_bytes`](/docs/registry/attributes/messaging.md) | int | The compressed size of the message payload in bytes. [10] | `2048` | `Remove` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Obsoleted. |
-| [`messaging.message.payload_size_bytes`](/docs/registry/attributes/messaging.md) | int | The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported. [11] | `2738` | `Migrate` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.message.envelope.size`. |
-| [`messaging.operation`](/docs/registry/attributes/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | `Migrate` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`. |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [12] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [13] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [11] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -115,13 +112,9 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[9] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
-**[10] `messaging.message.payload_compressed_size_bytes`:** Only if span represents operation on a single message.
+**[10] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[11] `messaging.message.payload_size_bytes`:** Only if span represents operation on a single message.
-
-**[12] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[13] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[11] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
 The following attributes can be important for making sampling decisions
@@ -154,6 +147,17 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**Past Attributes:**
+| Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
+|---|---|---|---|---|---|
+| [`messaging.message.payload_compressed_size_bytes`](/docs/registry/attributes/messaging.md) | int | The compressed size of the message payload in bytes. [12] | `2048` | `Drop` |  Obsoleted.  |
+| [`messaging.message.payload_size_bytes`](/docs/registry/attributes/messaging.md) | int | The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported. [13] | `2738` | `Rename` |  Use [`messaging.message.envelope.size`](/docs/registry/attributes/.md) instead.  |
+| [`messaging.operation`](/docs/registry/attributes/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | `Migrate` |  Use [`messaging.operation.type`](/docs/registry/attributes/messaging.md) instead.  |
+
+**[12] `messaging.message.payload_compressed_size_bytes`:** Only if span represents operation on a single message.
+
+**[13] `messaging.message.payload_size_bytes`:** Only if span represents operation on a single message.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
