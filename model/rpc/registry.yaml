@@ -291,10 +291,6 @@ groups:
         stability: development
         brief: "ONC/Sun RPC procedure name."
         examples: ['OPEN', 'READ', 'GETATTR']
-      - id: rpc.onc.program.number
-        type: int
-        stability: development
-        brief: "ONC/Sun RPC program number."
       - id: rpc.onc.program.name
         type: string
         stability: development
