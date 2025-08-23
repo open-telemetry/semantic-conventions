@@ -193,7 +193,7 @@ groups:
     stability: development
     brief: "Reports the count of kernel NFS server RPCs handled."
     note: |
-      Linux: this metric is taken from the Linux kernel's svc_stat.rpccnt, the count of good RPCs. this metric can have
+      Linux: this metric is taken from the Linux kernel's svc_stat.rpccnt, the count of good RPCs. This metric can have
       an error.type of "format", "auth", or "client" for svc_stat.badfmt, svc_stat.badauth, and svc_stat.badclnt.
     instrument: counter
     attributes:
