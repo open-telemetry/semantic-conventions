@@ -62,9 +62,9 @@ Should follow the definition of the [Drop Action](#drop) for how to proceed.
 
 ## Rename
 
-The implementation is able to rename the attribute currently being emitted without needing to support the existing attribute anymore. 
+The implementation is able to rename the attribute currently being emitted without needing to support the existing attribute anymore.
 
-This equivilant to adding a new attribute and performing the [Drop Action](#drop) on the old attribute.
+This equivalent to adding a new attribute and performing the [Drop Action](#drop) on the old attribute.
 
 ## Remove
 
@@ -108,7 +108,6 @@ The drop action is where an attribute can be removed from the implementation so 
 There is no ability for a user to configure that attribute to be emitted.
 
 Under no circumstances should this attribute be added to an existing instrumentation.
-
 
 [DocumentStatus]:
   https://opentelemetry.io/docs/specs/otel/document-status

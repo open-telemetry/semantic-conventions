@@ -156,10 +156,10 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `defer` | Message is deferred | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Past Attributes:**
-| Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
+| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
 | [`messaging.message.payload_compressed_size_bytes`](/docs/registry/attributes/messaging.md) | int | The compressed size of the message payload in bytes. [11] | `2048` | `Drop` |  Obsoleted.  |
-| [`messaging.message.payload_size_bytes`](/docs/registry/attributes/messaging.md) | int | The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported. [12] | `2738` | `Rename` |  Use [`messaging.message.envelope.size`](/docs/registry/attributes/.md) instead.  |
+| [`messaging.message.payload_size_bytes`](/docs/registry/attributes/messaging.md) | int | The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported. [12] | `2738` | `Drop` |  Obsoleted.  |
 | [`messaging.operation`](/docs/registry/attributes/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | `Migrate` |  Use [`messaging.operation.type`](/docs/registry/attributes/messaging.md) instead.  |
 
 **[11] `messaging.message.payload_compressed_size_bytes`:** Only if span represents operation on a single message.
@@ -278,10 +278,10 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Past Attributes:**
-| Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
+| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
 | [`messaging.message.payload_compressed_size_bytes`](/docs/registry/attributes/messaging.md) | int | The compressed size of the message payload in bytes. [10] | `2048` | `Drop` |  Obsoleted.  |
-| [`messaging.message.payload_size_bytes`](/docs/registry/attributes/messaging.md) | int | The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported. [11] | `2738` | `Rename` |  Use [`messaging.message.envelope.size`](/docs/registry/attributes/.md) instead.  |
+| [`messaging.message.payload_size_bytes`](/docs/registry/attributes/messaging.md) | int | The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported. [11] | `2738` | `Drop` |  Obsoleted.  |
 | [`messaging.operation`](/docs/registry/attributes/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | `Migrate` |  Use [`messaging.operation.type`](/docs/registry/attributes/messaging.md) instead.  |
 
 **[10] `messaging.message.payload_compressed_size_bytes`:** Only if span represents operation on a single message.

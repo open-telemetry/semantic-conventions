@@ -285,7 +285,7 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **Past Attributes:**
-| Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
+| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
 | [`db.system`](/docs/registry/attributes/db.md) | string | Deprecated, use `db.system.name` instead. | `other_sql`; `adabas`; `intersystems_cache` | `Rename` |  Use [`db.system.name`](/docs/registry/attributes/db.md) instead.  |
 
@@ -581,7 +581,7 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **Past Attributes:**
-| Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
+| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
 | [`db.system`](/docs/registry/attributes/db.md) | string | Deprecated, use `db.system.name` instead. | `other_sql`; `adabas`; `intersystems_cache` | `Rename` |  Use [`db.system.name`](/docs/registry/attributes/db.md) instead.  |
 

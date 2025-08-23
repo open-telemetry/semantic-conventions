@@ -42,7 +42,7 @@ This event describes a single exception.
 **[2] `exception.type`:** Required if `exception.message` is not set, recommended otherwise.
 
 **Past Attributes:**
-| Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
+| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
 | [`exception.escaped`](/docs/registry/attributes/exception.md) | boolean | Indicates that the exception is escaping the scope of the span. |  | `Drop` |  It's no longer recommended to record exceptions that are handled and do not escape the scope of a span.
   |

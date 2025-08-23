@@ -65,6 +65,10 @@ groups:
     attributes:
       - ref: messaging.operation.name
         examples: ["process", "consume", "handle"]
+      - ref: messaging.operation
+        deprecated:
+          reason: renamed
+          renamed_to: messaging.operation.name
 
   # counters
   - id: metric.messaging.client.sent.messages
@@ -83,6 +87,10 @@ groups:
     attributes:
       - ref: messaging.operation.name
         examples: ["send", "schedule", "enqueue"]
+      - ref: messaging.operation
+        deprecated:
+          reason: renamed
+          renamed_to: messaging.operation.name
 
   - id: metric.messaging.client.consumed.messages
     type: metric
@@ -104,3 +112,7 @@ groups:
     attributes:
       - ref: messaging.operation.name
         examples: ["receive", "peek", "poll", "consume"]
+      - ref: messaging.operation
+        deprecated:
+          reason: renamed
+          renamed_to: messaging.operation.name
