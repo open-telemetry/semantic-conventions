@@ -63,10 +63,7 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 | [`messaging.gcp_pubsub.message.ack_id`](/docs/registry/attributes/messaging.md) | string | The ack id for a given message. | `ack_id` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.gcp_pubsub.message.delivery_attempt`](/docs/registry/attributes/messaging.md) | int | The delivery attempt for a given message. | `2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.message.payload_compressed_size_bytes`](/docs/registry/attributes/messaging.md) | int | The compressed size of the message payload in bytes. [9] | `2048` | `Remove` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Obsoleted. |
-| [`messaging.message.payload_size_bytes`](/docs/registry/attributes/messaging.md) | int | The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported. [10] | `2738` | `Migrate` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.message.envelope.size`. |
-| [`messaging.operation`](/docs/registry/attributes/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | `Migrate` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`. |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [11] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `messaging.operation.name`:** The `messaging.operation.name` has the following list of well-known values in the context of Google Pub/Sub.
 If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -110,11 +107,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
-**[9] `messaging.message.payload_compressed_size_bytes`:** Only if span represents operation on a single message.
-
-**[10] `messaging.message.payload_size_bytes`:** Only if span represents operation on a single message.
-
-**[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[9] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -145,6 +138,17 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**Past Attributes:**
+| Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
+|---|---|---|---|---|---|
+| [`messaging.message.payload_compressed_size_bytes`](/docs/registry/attributes/messaging.md) | int | The compressed size of the message payload in bytes. [10] | `2048` | `Drop` |  Obsoleted.  |
+| [`messaging.message.payload_size_bytes`](/docs/registry/attributes/messaging.md) | int | The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported. [11] | `2738` | `Rename` |  Use [`messaging.message.envelope.size`](/docs/registry/attributes/.md) instead.  |
+| [`messaging.operation`](/docs/registry/attributes/messaging.md) | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | `Migrate` |  Use [`messaging.operation.type`](/docs/registry/attributes/messaging.md) instead.  |
+
+**[10] `messaging.message.payload_compressed_size_bytes`:** Only if span represents operation on a single message.
+
+**[11] `messaging.message.payload_size_bytes`:** Only if span represents operation on a single message.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
