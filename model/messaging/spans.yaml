@@ -29,6 +29,8 @@ groups:
         #   sampling_relevant: true
       - ref: messaging.message.payload_compressed_size_bytes
       - ref: messaging.message.payload_size_bytes
+        deprecated:
+          reason: obsoleted
 
   - id: messaging.attributes
     type: attribute_group  # TODO: this should be a span - https://github.com/open-telemetry/semantic-conventions/issues/1891
