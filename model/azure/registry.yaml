@@ -74,18 +74,23 @@ groups:
           members:
             - id: strong
               value: "Strong"
+              brief: Strong
               stability: development
             - id: bounded_staleness
               value: "BoundedStaleness"
+              brief: Bounded Staleness
               stability: development
             - id: session
               value: "Session"
+              brief: Session
               stability: development
             - id: eventual
               value: "Eventual"
+              brief: Eventual
               stability: development
             - id: consistent_prefix
               value: "ConsistentPrefix"
+              brief: Consistent Prefix
               stability: development
         stability: development
         brief: Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels).

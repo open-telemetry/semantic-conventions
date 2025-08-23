@@ -20,7 +20,6 @@ aliases: [attribute-naming]
   - [otel.\* namespace](#otel-namespace)
   - [Attribute name pluralization guidelines](#attribute-name-pluralization-guidelines)
   - [Signal-specific attributes](#signal-specific-attributes)
-  - [System-specific attributes](#system-specific-attributes)
 - [Metrics](#metrics)
   - [Naming rules for counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
     - [Pluralization](#pluralization)
@@ -31,7 +30,7 @@ aliases: [attribute-naming]
 - [System-specific naming](#system-specific-naming)
   - [System (project/product/provider) name attribute](#system-projectproductprovider-name-attribute)
   - [Choosing a system name](#choosing-a-system-name)
-  - [System-specific attributes](#system-specific-attributes-1)
+  - [System-specific attributes](#system-specific-attributes)
   - [System-specific metrics](#system-specific-metrics)
   - [Known exceptions](#known-exceptions)
 
@@ -239,32 +238,6 @@ Examples:
 Metric `http.server.request.duration` uses attributes from the registry such as
 `server.port`, `error.type`.
 
-### System-specific attributes
-
-**Status**: [Development][DocumentStatus]
-
-When an attribute is specific to a particular system (e.g., project, provider, product),
-the system name should be used in the attribute name, following the pattern:
-`{optional domain}.{system}.*.{property}` pattern.
-
-Examples:
-
-- `db.cassandra.consistency_level` - Describes the consistency level property
-  specific to the Cassandra database.
-- `aws.s3.key` - Refers to the `key` property of the AWS S3 product.
-- `signalr.connection.status` – Indicates the connection status of the SignalR
-  network protocol. In this case, no domain is included.
-
-Semantic conventions for a specific domain are generally applicable to multiple systems.
-These conventions should define an attribute to represent the name of the system.
-For example, database conventions include the `db.system.name` attribute.
-
-The name of the system used in the corresponding attribute should match the name
-used inside system-specific attributes.
-
-For example, if the database name specified in `db.system.name` is `foo.bar`, system-specific
-attributes for this database should follow the `db.foo.bar.*` pattern.
-
 ## Metrics
 
 **Status**: [Development][DocumentStatus]
@@ -458,8 +431,8 @@ attribute use the same system name (`azure.cosmosdb`).
   pattern](/docs/system/system-metrics.md#systemos---os-specific-system-metrics)
   of `system.{os}` and `process.{os}`. <!-- TODO: document why-->
 
-- [RPC](/docs/rpc/README.md), [messaging](/docs/messaging/README.md), and
-  [GenAI](/docs/gen-ai/README.md) semantic conventions don't follow the
-  system-specific naming guidance yet, and will be updated one-by-one.
+- [RPC](/docs/rpc/README.md) and [messaging](/docs/messaging/README.md) semantic
+  conventions don't follow the system-specific naming guidance yet, and will be
+  updated one-by-one.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

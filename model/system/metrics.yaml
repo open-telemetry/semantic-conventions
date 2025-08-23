@@ -399,9 +399,9 @@ groups:
       - host
 
   # system.network.* metrics
-  - id: metric.system.network.dropped
+  - id: metric.system.network.packet.dropped
     type: metric
-    metric_name: system.network.dropped
+    metric_name: system.network.packet.dropped
     annotations:
       code_generation:
         metric_value_type: int
@@ -412,7 +412,7 @@ groups:
     note: |
       Measured as:
 
-      - Linux: the `drop` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html))
+      - Linux: the `drop` column in `/proc/net/dev` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html))
       - Windows: [`InDiscards`/`OutDiscards`](https://docs.microsoft.com/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
         from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2)
     attributes:
@@ -421,9 +421,9 @@ groups:
     entity_associations:
       - host
 
-  - id: metric.system.network.packets
+  - id: metric.system.network.packet.count
     type: metric
-    metric_name: system.network.packets
+    metric_name: system.network.packet.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -450,7 +450,7 @@ groups:
     note: |
       Measured as:
 
-      - Linux: the `errs` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html)).
+      - Linux: the `errs` column in `/proc/net/dev` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html)).
       - Windows: [`InErrors`/`OutErrors`](https://docs.microsoft.com/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
         from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2).
     attributes:

@@ -1,4 +1,12 @@
 groups:
+  - id: gen_ai.common.event.attributes
+    type: attribute_group
+    stability: development
+    brief: >
+      Describes common Gen AI event attributes.
+    attributes:
+      - ref: gen_ai.system
+
   - id: registry.gen_ai.deprecated
     type: attribute_group
     brief: Describes deprecated `gen_ai` attributes.
@@ -70,12 +78,16 @@ groups:
               stability: development
               value: "vertex_ai"
               brief: 'Vertex AI'
-              deprecated: "Use 'gcp.vertex_ai' instead."
+              deprecated:
+                reason: renamed
+                renamed_to: "gcp.vertex_ai"
             - id: gemini
               stability: development
               value: "gemini"
               brief: 'Gemini'
-              deprecated: "Use 'gcp.gemini' instead."
+              deprecated:
+                reason: renamed
+                renamed_to: "gcp.gemini"
             - id: anthropic
               stability: development
               value: "anthropic"
@@ -116,7 +128,9 @@ groups:
               stability: development
               value: "xai"
               brief: 'xAI'
-              deprecated: "Use 'x_ai' instead."
+              deprecated:
+                reason: renamed
+                renamed_to: "x_ai"
             - id: deepseek
               stability: development
               value: "deepseek"

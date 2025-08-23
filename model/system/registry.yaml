@@ -35,7 +35,9 @@ groups:
             - id: shared
               value: 'shared'
               stability: development
-              deprecated: 'Removed, report shared memory usage with `metric.system.memory.shared` metric'
+              deprecated:
+                reason: uncategorized
+                note: "Removed, report shared memory usage with `metric.system.memory.shared` metric"
             - id: buffers
               value: 'buffers'
               stability: development

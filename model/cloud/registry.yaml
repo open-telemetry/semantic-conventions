@@ -179,7 +179,9 @@ groups:
               value: 'azure_vm'
               brief: Azure Virtual Machines
               stability: development
-              deprecated: "Replaced by `azure.vm`"
+              deprecated:
+                reason: renamed
+                renamed_to: "azure.vm"
               annotations:
                 code_generation:
                   exclude: true
@@ -187,7 +189,9 @@ groups:
               value: 'azure_container_apps'
               brief: Azure Container Apps
               stability: development
-              deprecated: "Replaced by `azure.container_apps`"
+              deprecated:
+                reason: renamed
+                renamed_to: "azure.container_apps"
               annotations:
                 code_generation:
                   exclude: true
@@ -195,7 +199,9 @@ groups:
               value: 'azure_container_instances'
               brief: Azure Container Instances
               stability: development
-              deprecated: "Replaced by `azure.container_instances`"
+              deprecated:
+                reason: renamed
+                renamed_to: "azure.container_instances"
               annotations:
                 code_generation:
                   exclude: true
@@ -203,7 +209,9 @@ groups:
               value: 'azure_aks'
               brief: Azure Kubernetes Service
               stability: development
-              deprecated: "Replaced by `azure.aks`"
+              deprecated:
+                reason: renamed
+                renamed_to: "azure.aks"
               annotations:
                 code_generation:
                   exclude: true
@@ -211,7 +219,9 @@ groups:
               value: 'azure_functions'
               brief: Azure Functions
               stability: development
-              deprecated: "Replaced by `azure.functions`"
+              deprecated:
+                reason: renamed
+                renamed_to: "azure.functions"
               annotations:
                 code_generation:
                   exclude: true
@@ -219,7 +229,9 @@ groups:
               value: 'azure_app_service'
               brief: Azure App Service
               stability: development
-              deprecated: "Replaced by `azure.app_service`"
+              deprecated:
+                reason: renamed
+                renamed_to: "azure.app_service"
               annotations:
                 code_generation:
                   exclude: true
@@ -227,7 +239,9 @@ groups:
               value: 'azure_openshift'
               brief: Azure Red Hat OpenShift
               stability: development
-              deprecated: "Replaced by `azure.openshift`"
+              deprecated:
+                reason: renamed
+                renamed_to: "azure.openshift"
               annotations:
                 code_generation:
                   exclude: true

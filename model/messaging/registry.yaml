@@ -134,12 +134,16 @@ groups:
             - id: deliver
               value: "deliver"
               brief: "Deprecated. Use `process` instead."
-              deprecated: "Replaced by `process`."
+              deprecated:
+                reason: renamed
+                renamed_to: "process"
               stability: development
             - id: publish
               value: "publish"
               brief: "Deprecated. Use `send` instead."
-              deprecated: "Replaced by `send`."
+              deprecated:
+                reason: renamed
+                renamed_to: "send"
               stability: development
 
         stability: development

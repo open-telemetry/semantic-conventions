@@ -63,7 +63,7 @@ This metric is [required][MetricRequired].
 When this metric is reported alongside a database operation span, the metric value SHOULD be the same as the database operation span duration.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.47.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 
 <!-- semconv metric.db.client.operation.duration -->
@@ -287,7 +287,7 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 **Past Attributes:**
 | Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
 |---|---|---|---|---|---|
-| [`db.system`](/docs/registry/attributes/db.md) | string | Deprecated, use `db.system.name` instead. | `other_sql`; `adabas`; `cache` | `Rename` |  Use [`db.system.name`](/docs/registry/attributes/db.md) instead.  |
+| [`db.system`](/docs/registry/attributes/db.md) | string | Deprecated, use `db.system.name` instead. | `other_sql`; `adabas`; `intersystems_cache` | `Rename` |  Use [`db.system.name`](/docs/registry/attributes/db.md) instead.  |
 
 ---
 
@@ -363,7 +363,7 @@ The following metric instruments describe database query response.
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.47.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000]`.
 
 Explaining bucket configuration:
@@ -583,7 +583,7 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 **Past Attributes:**
 | Attribute  | Type | Description  | Examples  | [Deprecation Action](https://opentelemetry.io/docs/specs/semconv/general/attribute-deprecation-action/) | Deprecation Explanation |
 |---|---|---|---|---|---|
-| [`db.system`](/docs/registry/attributes/db.md) | string | Deprecated, use `db.system.name` instead. | `other_sql`; `adabas`; `cache` | `Rename` |  Use [`db.system.name`](/docs/registry/attributes/db.md) instead.  |
+| [`db.system`](/docs/registry/attributes/db.md) | string | Deprecated, use `db.system.name` instead. | `other_sql`; `adabas`; `intersystems_cache` | `Rename` |  Use [`db.system.name`](/docs/registry/attributes/db.md) instead.  |
 
 ---
 
