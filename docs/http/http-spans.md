@@ -345,10 +345,14 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `bot` | Bot source. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `test` | Synthetic test source. | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**Past Attributes:**
-| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
 | [`http.method`](/docs/registry/attributes/http.md) | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` | `Rename` |  Use [`http.request.method`](/docs/registry/attributes/http.md) instead.  |
+
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -654,10 +658,14 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `bot` | Bot source. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `test` | Synthetic test source. | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**Past Attributes:**
-| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
 | [`http.method`](/docs/registry/attributes/http.md) | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` | `Rename` |  Use [`http.request.method`](/docs/registry/attributes/http.md) instead.  |
+
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

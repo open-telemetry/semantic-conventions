@@ -174,62 +174,6 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 
 ---
 
-`db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `adabas` | Adabas (Adaptable Database System) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cassandra` | Apache Cassandra | ![Development](https://img.shields.io/badge/-development-blue) |
-| `clickhouse` | ClickHouse | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cockroachdb` | CockroachDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cosmosdb` | Microsoft Azure Cosmos DB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `couchbase` | Couchbase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `couchdb` | CouchDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `db2` | IBM Db2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `derby` | Apache Derby | ![Development](https://img.shields.io/badge/-development-blue) |
-| `dynamodb` | Amazon DynamoDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `edb` | EnterpriseDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `elasticsearch` | Elasticsearch | ![Development](https://img.shields.io/badge/-development-blue) |
-| `filemaker` | FileMaker | ![Development](https://img.shields.io/badge/-development-blue) |
-| `firebird` | Firebird | ![Development](https://img.shields.io/badge/-development-blue) |
-| `geode` | Apache Geode | ![Development](https://img.shields.io/badge/-development-blue) |
-| `h2` | H2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hanadb` | SAP HANA | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hbase` | Apache HBase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hive` | Apache Hive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hsqldb` | HyperSQL DataBase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `influxdb` | InfluxDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `informix` | Informix | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ingres` | Ingres | ![Development](https://img.shields.io/badge/-development-blue) |
-| `instantdb` | InstantDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `interbase` | InterBase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `intersystems_cache` | InterSystems Caché | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mariadb` | MariaDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `maxdb` | SAP MaxDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `memcached` | Memcached | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mongodb` | MongoDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mssql` | Microsoft SQL Server | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mysql` | MySQL | ![Development](https://img.shields.io/badge/-development-blue) |
-| `neo4j` | Neo4j | ![Development](https://img.shields.io/badge/-development-blue) |
-| `netezza` | Netezza | ![Development](https://img.shields.io/badge/-development-blue) |
-| `opensearch` | OpenSearch | ![Development](https://img.shields.io/badge/-development-blue) |
-| `oracle` | Oracle Database | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other_sql` | Some other SQL database. Fallback only. See notes. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pervasive` | Pervasive PSQL | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pointbase` | PointBase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `postgresql` | PostgreSQL | ![Development](https://img.shields.io/badge/-development-blue) |
-| `progress` | Progress Database | ![Development](https://img.shields.io/badge/-development-blue) |
-| `redis` | Redis | ![Development](https://img.shields.io/badge/-development-blue) |
-| `redshift` | Amazon Redshift | ![Development](https://img.shields.io/badge/-development-blue) |
-| `spanner` | Cloud Spanner | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sqlite` | SQLite | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sybase` | Sybase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `teradata` | Teradata | ![Development](https://img.shields.io/badge/-development-blue) |
-| `trino` | Trino | ![Development](https://img.shields.io/badge/-development-blue) |
-| `vertica` | Vertica | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
 `db.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -284,8 +228,10 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**Past Attributes:**
-| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
 | [`db.system`](/docs/registry/attributes/db.md) | string | Deprecated, use `db.system.name` instead. | `other_sql`; `adabas`; `intersystems_cache` | `Rename` |  Use [`db.system.name`](/docs/registry/attributes/db.md) instead.  |
 
@@ -344,6 +290,8 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 | `teradata` | Teradata | ![Development](https://img.shields.io/badge/-development-blue) |
 | `trino` | Trino | ![Development](https://img.shields.io/badge/-development-blue) |
 | `vertica` | Vertica | ![Development](https://img.shields.io/badge/-development-blue) |
+
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -470,62 +418,6 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 
 ---
 
-`db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `adabas` | Adabas (Adaptable Database System) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cassandra` | Apache Cassandra | ![Development](https://img.shields.io/badge/-development-blue) |
-| `clickhouse` | ClickHouse | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cockroachdb` | CockroachDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cosmosdb` | Microsoft Azure Cosmos DB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `couchbase` | Couchbase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `couchdb` | CouchDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `db2` | IBM Db2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `derby` | Apache Derby | ![Development](https://img.shields.io/badge/-development-blue) |
-| `dynamodb` | Amazon DynamoDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `edb` | EnterpriseDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `elasticsearch` | Elasticsearch | ![Development](https://img.shields.io/badge/-development-blue) |
-| `filemaker` | FileMaker | ![Development](https://img.shields.io/badge/-development-blue) |
-| `firebird` | Firebird | ![Development](https://img.shields.io/badge/-development-blue) |
-| `geode` | Apache Geode | ![Development](https://img.shields.io/badge/-development-blue) |
-| `h2` | H2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hanadb` | SAP HANA | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hbase` | Apache HBase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hive` | Apache Hive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hsqldb` | HyperSQL DataBase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `influxdb` | InfluxDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `informix` | Informix | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ingres` | Ingres | ![Development](https://img.shields.io/badge/-development-blue) |
-| `instantdb` | InstantDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `interbase` | InterBase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `intersystems_cache` | InterSystems Caché | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mariadb` | MariaDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `maxdb` | SAP MaxDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `memcached` | Memcached | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mongodb` | MongoDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mssql` | Microsoft SQL Server | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mysql` | MySQL | ![Development](https://img.shields.io/badge/-development-blue) |
-| `neo4j` | Neo4j | ![Development](https://img.shields.io/badge/-development-blue) |
-| `netezza` | Netezza | ![Development](https://img.shields.io/badge/-development-blue) |
-| `opensearch` | OpenSearch | ![Development](https://img.shields.io/badge/-development-blue) |
-| `oracle` | Oracle Database | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other_sql` | Some other SQL database. Fallback only. See notes. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pervasive` | Pervasive PSQL | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pointbase` | PointBase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `postgresql` | PostgreSQL | ![Development](https://img.shields.io/badge/-development-blue) |
-| `progress` | Progress Database | ![Development](https://img.shields.io/badge/-development-blue) |
-| `redis` | Redis | ![Development](https://img.shields.io/badge/-development-blue) |
-| `redshift` | Amazon Redshift | ![Development](https://img.shields.io/badge/-development-blue) |
-| `spanner` | Cloud Spanner | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sqlite` | SQLite | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sybase` | Sybase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `teradata` | Teradata | ![Development](https://img.shields.io/badge/-development-blue) |
-| `trino` | Trino | ![Development](https://img.shields.io/badge/-development-blue) |
-| `vertica` | Vertica | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
 `db.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -580,8 +472,10 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**Past Attributes:**
-| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
 | [`db.system`](/docs/registry/attributes/db.md) | string | Deprecated, use `db.system.name` instead. | `other_sql`; `adabas`; `intersystems_cache` | `Rename` |  Use [`db.system.name`](/docs/registry/attributes/db.md) instead.  |
 
@@ -640,6 +534,8 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 | `teradata` | Teradata | ![Development](https://img.shields.io/badge/-development-blue) |
 | `trino` | Trino | ![Development](https://img.shields.io/badge/-development-blue) |
 | `vertica` | Vertica | ![Development](https://img.shields.io/badge/-development-blue) |
+
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

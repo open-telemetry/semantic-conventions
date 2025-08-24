@@ -148,8 +148,10 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**Past Attributes:**
-| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
 | [`messaging.message.payload_compressed_size_bytes`](/docs/registry/attributes/messaging.md) | int | The compressed size of the message payload in bytes. [12] | `2048` | `Drop` |  Obsoleted.  |
 | [`messaging.message.payload_size_bytes`](/docs/registry/attributes/messaging.md) | int | The (uncompressed) size of the message payload in bytes. Also use this attribute if it is unknown whether the compressed or uncompressed payload size is reported. [13] | `2738` | `Drop` |  Obsoleted.  |
@@ -158,6 +160,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 **[12] `messaging.message.payload_compressed_size_bytes`:** Only if span represents operation on a single message.
 
 **[13] `messaging.message.payload_size_bytes`:** Only if span represents operation on a single message.
+
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
