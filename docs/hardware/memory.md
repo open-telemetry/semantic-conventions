@@ -30,7 +30,10 @@ All memory metrics may include the below attributes:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.memory.type`](/docs/registry/attributes/hardware.md) | string | Type of the memory module | `DDR4`; `DDR5`; `LPDDR5` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -39,6 +42,7 @@ All memory metrics may include the below attributes:
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -65,8 +69,10 @@ When using this metric, the following attributes MUST be set:
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `hw.errors` | Counter | `{error}` | Number of errors encountered by the component. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -118,6 +124,7 @@ When using this metric, the following attributes MUST be set:
 |---|---|---|
 | `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
 | `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -140,8 +147,10 @@ Size of the memory module.
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `hw.memory.size` | UpDownCounter | `By` | Size of the memory module. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.memory.type`](/docs/registry/attributes/hardware.md) | string | Type of the memory module | `DDR4`; `DDR5`; `LPDDR5` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -150,6 +159,7 @@ Size of the memory module.
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -183,8 +193,10 @@ When using this metric for memory status, the following attributes MUST be set:
 | `hw.status` | UpDownCounter | `1` | Operational status: `1` (true) or `0` (false) for each of the possible states. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** `hw.status` is currently specified as an *UpDownCounter* but would ideally be represented using a [*StateSet* as defined in OpenMetrics](https://github.com/prometheus/OpenMetrics/blob/v1.0.0/specification/OpenMetrics.md#stateset). This semantic convention will be updated once *StateSet* is specified in OpenTelemetry. This planned change is not expected to have any consequence on the way users query their timeseries backend to retrieve the values of `hw.status` over time.
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -226,6 +238,7 @@ When using this metric for memory status, the following attributes MUST be set:
 | `tape_drive` | Tape drive | ![Development](https://img.shields.io/badge/-development-blue) |
 | `temperature` | Temperature | ![Development](https://img.shields.io/badge/-development-blue) |
 | `voltage` | Voltage | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

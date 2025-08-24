@@ -41,7 +41,10 @@ The event body fields MUST be used to describe the state of the application at t
 This event is meant to be used in conjunction with `os.name` [resource semantic convention](/docs/resource/os.md) to identify the mobile operating system (e.g. Android, iOS).
 The `android.app.state` and `ios.app.state` fields are mutually exclusive and MUST NOT be used together, each field MUST be used with its corresponding `os.name` value.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`android.app.state`](/docs/registry/attributes/android.md) | string | This attribute represents the state of the application. [1] | `created` | `Conditionally Required` if and only if `os.name` is `android` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`ios.app.state`](/docs/registry/attributes/ios.md) | string | This attribute represents the state of the application. [2] | `active`; `inactive`; `background` | `Conditionally Required` if and only if `os.name` is `ios` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -71,6 +74,7 @@ The `android.app.state` and `ios.app.state` fields are mutually exclusive and MU
 | `foreground` | The app is now in the foreground. This value is associated with UIKit notification `applicationWillEnterForeground`. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `inactive` | The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `terminate` | The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`. | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

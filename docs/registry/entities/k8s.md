@@ -18,7 +18,10 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.cluster.name`](/docs/registry/attributes/k8s.md) | string | The name of the cluster. | `opentelemetry-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.cluster.uid`](/docs/registry/attributes/k8s.md) | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -45,6 +48,7 @@ Which states:
 
 Therefore, UIDs between clusters should be extremely unlikely to
 conflict.
+</details>
 
 ## K8s Container
 
@@ -59,11 +63,15 @@ conflict.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.container.name`](/docs/registry/attributes/k8s.md) | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.container.restart_count`](/docs/registry/attributes/k8s.md) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.container.status.last_terminated_reason`](/docs/registry/attributes/k8s.md) | string | Last terminated reason of the Container. | `Evicted`; `Error` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 ## K8s Cronjob
 
@@ -78,7 +86,10 @@ conflict.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.cronjob.name`](/docs/registry/attributes/k8s.md) | string | The name of the CronJob. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.cronjob.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -98,6 +109,7 @@ conflict.
   `k8s.cronjob.label.type` attribute with value `"weekly"`.
 - A label `automated` with empty string value SHOULD be recorded as
   the `k8s.cronjob.label.automated` attribute with value `""`.
+</details>
 
 ## K8s Daemonset
 
@@ -112,7 +124,10 @@ conflict.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.daemonset.name`](/docs/registry/attributes/k8s.md) | string | The name of the DaemonSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.daemonset.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -132,6 +147,7 @@ conflict.
   as the `k8s.daemonset.label.app` attribute with value `"guestbook"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.daemonset.label.injected` attribute with value `""`.
+</details>
 
 ## K8s Deployment
 
@@ -146,7 +162,10 @@ conflict.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.deployment.name`](/docs/registry/attributes/k8s.md) | string | The name of the Deployment. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.deployment.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -166,6 +185,7 @@ conflict.
   as the `k8s.deployment.label.app` attribute with value `"guestbook"`.
 - A label `injected` with empty string value SHOULD be recorded as
   the `k8s.deployment.label.injected` attribute with value `""`.
+</details>
 
 ## K8s Hpa
 
@@ -180,7 +200,10 @@ conflict.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.hpa.name`](/docs/registry/attributes/k8s.md) | string | The name of the horizontal pod autoscaler. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.hpa.scaletargetref.api_version`](/docs/registry/attributes/k8s.md) | string | The API version of the target resource to scale for the HorizontalPodAutoscaler. [8] | `apps/v1`; `autoscaling/v2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -193,6 +216,7 @@ conflict.
 **[9] `k8s.hpa.scaletargetref.kind`:** This maps to the `kind` field in the `scaleTargetRef` of the HPA spec.
 
 **[10] `k8s.hpa.scaletargetref.name`:** This maps to the `name` field in the `scaleTargetRef` of the HPA spec.
+</details>
 
 ## K8s Job
 
@@ -207,7 +231,10 @@ conflict.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.job.name`](/docs/registry/attributes/k8s.md) | string | The name of the Job. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.job.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -227,6 +254,7 @@ conflict.
   as the `k8s.job.label.jobtype` attribute with value `"ci"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.job.label.automated` attribute with value `""`.
+</details>
 
 ## K8s Namespace
 
@@ -241,7 +269,10 @@ conflict.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | string | The name of the namespace that the pod is running in. | `default` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.namespace.annotation.<key>`](/docs/registry/attributes/k8s.md) | string | The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [13] | `0`; `` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -260,6 +291,7 @@ conflict.
   as the `k8s.namespace.label.kubernetes.io/metadata.name` attribute with value `"default"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.namespace.label.data` attribute with value `""`.
+</details>
 
 ## K8s Node
 
@@ -274,7 +306,10 @@ conflict.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.node.name`](/docs/registry/attributes/k8s.md) | string | The name of the Node. | `node-1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.node.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -294,6 +329,7 @@ conflict.
   as the `k8s.node.label.kubernetes.io/arch` attribute with value `"arm64"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.node.label.data` attribute with value `""`.
+</details>
 
 ## K8s Pod
 
@@ -308,7 +344,10 @@ conflict.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.pod.name`](/docs/registry/attributes/k8s.md) | string | The name of the Pod. | `opentelemetry-pod-autoconf` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.pod.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -332,6 +371,7 @@ conflict.
   the `k8s.pod.label.mycompany.io/arch` attribute with value `"x64"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.pod.label.data` attribute with value `""`.
+</details>
 
 ## K8s Replicaset
 
@@ -346,7 +386,10 @@ conflict.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.replicaset.name`](/docs/registry/attributes/k8s.md) | string | The name of the ReplicaSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.replicaset.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -366,6 +409,7 @@ conflict.
   as the `k8s.replicaset.label.app` attribute with value `"guestbook"`.
 - A label `injected` with empty string value SHOULD be recorded as
   the `k8s.replicaset.label.injected` attribute with value `""`.
+</details>
 
 ## K8s Replicationcontroller
 
@@ -380,10 +424,14 @@ conflict.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.replicationcontroller.name`](/docs/registry/attributes/k8s.md) | string | The name of the replication controller. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.replicationcontroller.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the replication controller. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 ## K8s Resourcequota
 
@@ -398,10 +446,14 @@ conflict.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.resourcequota.name`](/docs/registry/attributes/k8s.md) | string | The name of the resource quota. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.resourcequota.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the resource quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 ## K8s Statefulset
 
@@ -416,7 +468,10 @@ conflict.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`k8s.statefulset.name`](/docs/registry/attributes/k8s.md) | string | The name of the StatefulSet. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.statefulset.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -436,6 +491,7 @@ conflict.
   as the `k8s.statefulset.label.app` attribute with value `"guestbook"`.
 - A label `injected` with empty string value SHOULD be recorded as
   the `k8s.statefulset.label.injected` attribute with value `""`.
+</details>
 
 
 <!-- markdownlint-restore -->

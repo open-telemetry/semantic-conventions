@@ -10,17 +10,21 @@ This document defines z/OS software entity and documents how to populate other e
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `zos.software`
 
 **Description:** A software resource running on a z/OS system.
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`zos.smf.id`](/docs/registry/attributes/zos.md) | string | The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis. | `SYS1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`zos.sysplex.name`](/docs/registry/attributes/zos.md) | string | The name of the SYSPLEX to which the z/OS system belongs too. | `SYSPLEX1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mainframe.lpar.name`](/docs/registry/attributes/mainframe.md) | string | Name of the logical partition that hosts a systems with a mainframe operating system. | `LPAR01` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -38,7 +42,10 @@ The following table describes how to populate attributes on the `host` entity on
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`host.arch`](/docs/registry/attributes/host.md) | string | The CPU architecture the host system is running on. | `s390x` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On z/OS, SHOULD be the full qualified hostname used to register the z/OS system in DNS. | `SYS1.DOMAIN.COM` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -58,6 +65,7 @@ The following table describes how to populate attributes on the `host` entity on
 | `ppc64` | 64-bit PowerPC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `s390x` | IBM z/Architecture | ![Development](https://img.shields.io/badge/-development-blue) |
 | `x86` | 32-bit x86 | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -74,7 +82,10 @@ The following table describes how to populate the operating system attributes on
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`os.type`](/docs/registry/attributes/os.md) | string | The operating system type. | `zos` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.version`](/docs/registry/attributes/os.md) | string | The version string of the operating system. On z/OS, SHOULD be the release returned by the command `d iplinfo`. | `3.1.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -98,6 +109,7 @@ The following table describes how to populate the operating system attributes on
 | `solaris` | SunOS, Oracle Solaris | ![Development](https://img.shields.io/badge/-development-blue) |
 | `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zos` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -114,7 +126,10 @@ The following table describes how to populate attributes on the `process` entity
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`process.command`](/docs/registry/attributes/process.md) | string | The command used to launch the process (i.e. the command name). On z/OS, SHOULD be set to the name of the job used to start the z/OS system software. | `CICSSTRT` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`process.pid`](/docs/registry/attributes/process.md) | int | Process identifier (PID). [1] | `008A` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -126,6 +141,7 @@ The following table describes how to populate attributes on the `process` entity
 **[1] `process.pid`:** On z/OS, SHOULD be set to the Address Space Identifier.
 
 **[2] `process.owner`:** On z/OS, SHOULD be set to the user under which the z/OS system software is executed.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

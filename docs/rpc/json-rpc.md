@@ -31,7 +31,10 @@ This span represents an outgoing Remote Procedure Call (RPC).
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/registry/attributes/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -81,6 +84,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 |---|---|---|
 | `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -108,7 +112,10 @@ This span represents an incoming Remote Procedure Call (RPC).
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/registry/attributes/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -164,6 +171,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 |---|---|---|
 | `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

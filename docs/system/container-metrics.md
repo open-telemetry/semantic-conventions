@@ -69,8 +69,10 @@ This metric is [opt-in][MetricOptIn].
 | `container.cpu.time` | Counter | `s` | Total CPU time consumed. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Total CPU time consumed by the specific container on all available CPU cores
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cpu.mode`](/docs/registry/attributes/cpu.md) | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -92,6 +94,7 @@ This metric is [opt-in][MetricOptIn].
 | `steal` | Steal | ![Development](https://img.shields.io/badge/-development-blue) |
 | `system` | System | ![Development](https://img.shields.io/badge/-development-blue) |
 | `user` | User | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -114,8 +117,10 @@ This metric is [opt-in][MetricOptIn].
 | `container.cpu.usage` | Gauge | `{cpu}` | Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** CPU usage of the specific container on all available CPU cores, averaged over the sample window
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cpu.mode`](/docs/registry/attributes/cpu.md) | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -137,6 +142,7 @@ This metric is [opt-in][MetricOptIn].
 | `steal` | Steal | ![Development](https://img.shields.io/badge/-development-blue) |
 | `system` | System | ![Development](https://img.shields.io/badge/-development-blue) |
 | `user` | User | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -252,8 +258,10 @@ This metric is [opt-in][MetricOptIn].
 
 **[1]:** In general, this metric can be derived from [cadvisor](https://github.com/google/cadvisor/blob/v0.53.0/docs/storage/prometheus.md#prometheus-container-metrics) and specifically the `container_memory_failures_total{failure_type=pgfault, scope=container}` and `container_memory_failures_total{failure_type=pgmajfault, scope=container}`metric.
 In K8s, this metric is derived from the [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats) of the Kubelet's stats API.
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`system.paging.type`](/docs/registry/attributes/system.md) | string | The memory paging type | `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -265,6 +273,7 @@ In K8s, this metric is derived from the [MemoryStats.PageFaults](https://pkg.go.
 |---|---|---|
 | `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
 | `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -287,8 +296,10 @@ This metric is [opt-in][MetricOptIn].
 | `container.disk.io` | Counter | `By` | Disk bytes for the container. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** The total number of bytes read/written successfully (aggregated from all disks).
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`disk.io.direction`](/docs/registry/attributes/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`system.device`](/docs/registry/attributes/system.md) | string | The device identifier | `(identifier)` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -301,6 +312,7 @@ This metric is [opt-in][MetricOptIn].
 |---|---|---|
 | `read` | read | ![Development](https://img.shields.io/badge/-development-blue) |
 | `write` | write | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -323,8 +335,10 @@ This metric is [opt-in][MetricOptIn].
 | `container.network.io` | Counter | `By` | Network bytes for the container. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** The number of bytes sent/received on all network interfaces by the container.
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`network.interface.name`](/docs/registry/attributes/network.md) | string | The network interface name. | `lo`; `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`network.io.direction`](/docs/registry/attributes/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -337,6 +351,7 @@ This metric is [opt-in][MetricOptIn].
 |---|---|---|
 | `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
 | `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

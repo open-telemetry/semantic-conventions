@@ -56,7 +56,10 @@ Describes the details of a GenAI completion request including chat history and p
 
 This event is opt-in and could be used to store input and output details independently from traces.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -215,6 +218,7 @@ populating this attribute.
 | `json` | JSON object with known or unknown schema | ![Development](https://img.shields.io/badge/-development-blue) |
 | `speech` | Speech | ![Development](https://img.shields.io/badge/-development-blue) |
 | `text` | Plain text | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -236,7 +240,10 @@ The event name MUST be `gen_ai.evaluation.result`.
 
 This event captures the result of evaluating GenAI output for quality, accuracy, or other characteristics. This event SHOULD be parented to GenAI operation span being evaluated when possible or set `gen_ai.response.id` when span id is not available.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`gen_ai.evaluation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the evaluation metric used for the GenAI response. | `Relevance`; `IntentResolution` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -262,6 +269,7 @@ event with the corresponding operation when span id is not available.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

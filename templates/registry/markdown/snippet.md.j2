@@ -12,16 +12,26 @@
 {%- set entity_registry_base_url=params.registry_base_url~"entities" %}
 
 {% macro generate_event(group) -%}
-{{ event.header(group) }}{{ generate_attributes(group) }}{{ event.body(group.body) }}{% endmacro -%}
+{{ event.header(group) | trim }}
+{% if (group.attributes is defined) and (group.attributes | length > 0) %}{{"\n"}}{{ generate_attributes(group) | trim }}{{"\n"}}{% endif %}
+{% if (group.body is defined) and (group.body | length > 0) %}{{ event.body(group.body) | trim }}
+{{"\n"}}{% endif %}{% endmacro -%}
 {%- macro generate_resource(group) -%}
-{{ resource.header(group) }}{{ generate_attributes(group) }}{% endmacro -%}
+{{ resource.header(group) | trim }}
+
+{{ generate_attributes(group) | trim }}
+
+{% endmacro -%}
 {%- macro generate_metric(group, entity_registry_base_url) -%}
-{{ mt.generate(group, entity_registry_base_url) }}
-{{ generate_attributes(group) }}{% endmacro -%}
+{{ mt.generate(group, entity_registry_base_url) | trim }}
+{% if (group.attributes is defined) and (group.attributes | length > 0) %}{{ generate_attributes(group) | trim }}{{"\n"}}{% endif %}
+{% endmacro -%}
 {%- macro generate_span(group) -%}
 {{ span.header(group) }}{{ generate_attributes(group) }}{% endmacro -%}
 {%- macro generate_attributes(group) -%}
-{{ at.generate(group.attributes, tag_filter, attribute_registry_base_url, group.lineage.attributes) }}{% endmacro -%}
+{{ at.generate(group.attributes, tag_filter, attribute_registry_base_url, group.lineage.attributes) | trim }}
+
+{% endmacro -%}
 
 {% if group.type == "event" -%}
 {{ generate_event(group) -}}

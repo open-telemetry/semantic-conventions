@@ -39,7 +39,10 @@ These attributes may be used for identifying a Log Record.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`log.record.original`](/docs/registry/attributes/log.md) | string | The complete original Log Record. [1] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`log.record.uid`](/docs/registry/attributes/log.md) | string | A unique identifier for the Log Record. [2] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -48,6 +51,7 @@ These attributes may be used for identifying a Log Record.
 
 **[2] `log.record.uid`:** If an id is provided, other log records with the same id will be considered duplicates and can be removed safely. This means, that two distinguishable log records MUST have different values.
 The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec), but other identifiers (e.g. UUID) may be used as needed.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -73,12 +77,16 @@ As such, these should be recorded as Log Record attributes when applicable. They
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`log.file.name`](/docs/registry/attributes/log.md) | string | The basename of the file. | `audit.log` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`log.file.name_resolved`](/docs/registry/attributes/log.md) | string | The basename of the file, with symlinks resolved. | `uuid.log` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`log.file.path`](/docs/registry/attributes/log.md) | string | The full path to the file. | `/var/log/mysql/audit.log` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`log.file.path_resolved`](/docs/registry/attributes/log.md) | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -96,7 +104,10 @@ As such, these should be recorded as Log Record attributes when applicable. They
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`log.iostream`](/docs/registry/attributes/log.md) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -108,6 +119,7 @@ As such, these should be recorded as Log Record attributes when applicable. They
 |---|---|---|
 | `stderr` | Events from stderr stream | ![Development](https://img.shields.io/badge/-development-blue) |
 | `stdout` | Logs from stdout stream | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

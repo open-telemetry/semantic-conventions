@@ -23,7 +23,10 @@ Below is a table of attributes that SHOULD be included on client and server gRPC
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.grpc.status_code`](/docs/registry/attributes/rpc.md) | int | The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.grpc.request.metadata.<key>`](/docs/registry/attributes/rpc.md) | string[] | gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [1] | `["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -64,6 +67,7 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 | `14` | UNAVAILABLE | ![Development](https://img.shields.io/badge/-development-blue) |
 | `15` | DATA_LOSS | ![Development](https://img.shields.io/badge/-development-blue) |
 | `16` | UNAUTHENTICATED | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

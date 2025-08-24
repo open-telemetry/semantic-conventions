@@ -28,10 +28,14 @@ backends can link the two sessions (see [Session Start Event](#event-sessionstar
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`session.id`](/docs/registry/attributes/session.md) | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`session.previous_id`](/docs/registry/attributes/session.md) | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -58,12 +62,16 @@ Indicates that a new session has been started, optionally linking to the prior s
 For instrumentation that tracks user behavior during user sessions, a `session.start` event MUST be emitted every time a session is created. When a new session is created as a continuation of a prior session, the `session.previous_id` SHOULD be included in the event. The values of `session.id` and `session.previous_id` MUST be different.
 When the `session.start` event contains both `session.id` and `session.previous_id` fields, the event indicates that the previous session has ended. If the session ID in `session.previous_id` has not yet ended via explicit `session.end` event, then the consumer SHOULD treat this continuation event as semantically equivalent to `session.end(session.previous_id)` and `session.start(session.id)`.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`session.id`](/docs/registry/attributes/session.md) | string | The ID of the new session being started. | `00112233-4455-6677-8899-aabbccddeeff` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`session.previous_id`](/docs/registry/attributes/session.md) | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `session.previous_id`:** If the new session is being created as a continuation of a previous session, the `session.previous_id` SHOULD be included in the event. The `session.id` and `session.previous_id` attributes MUST have different values.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -87,9 +95,13 @@ Indicates that a session has ended.
 
 For instrumentation that tracks user behavior during user sessions, a `session.end` event SHOULD be emitted every time a session ends. When a session ends and continues as a new session, this event SHOULD be emitted prior to the `session.start` event.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`session.id`](/docs/registry/attributes/session.md) | string | The ID of the session being ended. | `00112233-4455-6677-8899-aabbccddeeff` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

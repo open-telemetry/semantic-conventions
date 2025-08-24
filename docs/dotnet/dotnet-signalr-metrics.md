@@ -33,8 +33,10 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | `signalr.server.connection.duration` | Histogram | `s` | The duration of connections on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Http.Connections`; Added in: ASP.NET Core 8.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`signalr.transport`](/docs/registry/attributes/signalr.md) | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -58,6 +60,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | `long_polling` | LongPolling protocol | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `server_sent_events` | ServerSentEvents protocol | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `web_sockets` | WebSockets protocol | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -78,8 +81,10 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | `signalr.server.active_connections` | UpDownCounter | `{connection}` | Number of connections that are currently active on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Http.Connections`; Added in: ASP.NET Core 8.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`signalr.transport`](/docs/registry/attributes/signalr.md) | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -103,6 +108,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | `long_polling` | LongPolling protocol | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `server_sent_events` | ServerSentEvents protocol | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `web_sockets` | WebSockets protocol | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

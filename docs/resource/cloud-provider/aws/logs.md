@@ -11,14 +11,16 @@ linkTitle: Logs
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `aws.log`
 
 **Description:** Entities specific to Amazon Web Services.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aws.log.group.arns`](/docs/registry/attributes/aws.md) | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [1] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aws.log.group.names`](/docs/registry/attributes/aws.md) | string[] | The name(s) of the AWS log group(s) an application is writing to. [2] | `["/aws/lambda/my-function", "opentelemetry-service"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -30,6 +32,7 @@ linkTitle: Logs
 **[2] `aws.log.group.names`:** Multiple log groups must be supported for cases like multi-container applications, where a single application has sidecar containers, and each write to their own log group.
 
 **[3] `aws.log.stream.arns`:** See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

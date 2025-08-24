@@ -91,7 +91,10 @@ Added in .NET 9.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`error.type`](/docs/registry/attributes/error.md) | string | One of the [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, or a full exception type. | `version_negotiation_error`; `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
@@ -102,6 +105,7 @@ Added in .NET 9.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -139,7 +143,10 @@ Added in .NET 9.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`error.type`](/docs/registry/attributes/error.md) | string | One of the [HTTP Request errors](https://learn.microsoft.com/dotnet/api/system.net.http.httprequesterror) in snake_case, or a full exception type. | `name_resolution_error`; `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer IP address of the socket connection. [1] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -160,6 +167,7 @@ Added in .NET 9.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -198,7 +206,10 @@ and `DNS reverse lookup {dns.question.name}` for reverse lookup (host names from
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`error.type`](/docs/registry/attributes/error.md) | string | The error code or exception name returned by [System.Net.Dns](https://learn.microsoft.com/dotnet/api/system.net.dns). [1] | `host_not_found`; `try_again` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`dns.answers`](/docs/registry/attributes/dns.md) | string[] | List of resolved IP addresses (for DNS lookup) or a single element containing domain name (for reverse lookup). | `["10.0.0.1", "2001:0db8:85a3:0000:0000:8a2e:0370:7334"]` | `Recommended` if DNS lookup was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -221,6 +232,7 @@ See [SocketError](https://learn.microsoft.com/dotnet/api/system.net.sockets.sock
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -255,7 +267,10 @@ otherwise.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`error.type`](/docs/registry/attributes/error.md) | string | Socket error code. [1] | `connection_refused`; `address_not_available` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -326,6 +341,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 |---|---|---|
 | `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -360,7 +376,10 @@ side and `TLS server handshake` when authenticating the server.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. | `System.Net.Security.Authentication.AuthenticationException`; `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`server.address`](/docs/registry/attributes/server.md) | string | The [server name indication (SNI)](https://en.wikipedia.org/wiki/Server_Name_Indication) used in the 'Client Hello' message during TLS handshake. [1] | `opentelemetry.io`; `example.com` | `Recommended` when authenticating the client. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -385,6 +404,7 @@ side and `TLS server handshake` when authenticating the server.
 |---|---|---|
 | `ssl` | ssl | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tls` | tls | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

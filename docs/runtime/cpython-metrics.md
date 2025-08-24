@@ -39,8 +39,10 @@ This metric is [recommended][MetricRecommended].
 | `cpython.gc.collections` | Counter | `{collection}` | The number of times a generation was collected since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -53,6 +55,7 @@ This metric is [recommended][MetricRecommended].
 | `0` | Generation 0 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `1` | Generation 1 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `2` | Generation 2 | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -75,8 +78,10 @@ This metric is [recommended][MetricRecommended].
 | `cpython.gc.collected_objects` | Counter | `{object}` | The total number of objects collected inside a generation since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -89,6 +94,7 @@ This metric is [recommended][MetricRecommended].
 | `0` | Generation 0 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `1` | Generation 1 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `2` | Generation 2 | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -111,8 +117,10 @@ This metric is [recommended][MetricRecommended].
 | `cpython.gc.uncollectable_objects` | Counter | `{object}` | The total number of objects which were found to be uncollectable inside a generation since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -125,6 +133,7 @@ This metric is [recommended][MetricRecommended].
 | `0` | Generation 0 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `1` | Generation 1 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `2` | Generation 2 | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

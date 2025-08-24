@@ -18,7 +18,10 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`browser.brands`](/docs/registry/attributes/browser.md) | string[] | Array of brand name and version separated by a space [1] | `[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`browser.language`](/docs/registry/attributes/browser.md) | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -36,6 +39,7 @@
 The list of possible values is defined in the [W3C User-Agent Client Hints specification](https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform). Note that some (but not all) of these values can overlap with values in the [`os.type` and `os.name` attributes](./os.md). However, for consistency, the values in the `browser.platform` attribute should capture the exact value that the user agent provides.
 
 **[5] `user_agent.original`:** The user-agent value SHOULD be provided only from browsers that do not have a mechanism to retrieve brands and platform individually from the User-Agent Client Hints API. To retrieve the value, the legacy `navigator.userAgent` API can be used.
+</details>
 
 
 <!-- markdownlint-restore -->

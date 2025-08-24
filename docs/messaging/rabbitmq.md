@@ -47,21 +47,18 @@ The Semantic Conventions for [RabbitMQ](https://www.rabbitmq.com/) extend and ov
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>Sampling Relevant Attributes:</b></summary>
+The following attributes can be important for making sampling decisions
+and SHOULD be provided <b>at span creation time</b> (if provided at all). 
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [1] | `direct_logs:warning`; `logs` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | string | A string identifying the type of the messaging operation. [3] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.rabbitmq.destination.routing_key`](/docs/registry/attributes/messaging.md) | string | RabbitMQ message routing key. | `myKey` | `Conditionally Required` If not empty. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.rabbitmq.message.delivery_tag`](/docs/registry/attributes/messaging.md) | int | RabbitMQ message delivery tag | `123` | `Conditionally Required` When available. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | string | Message [correlation Id](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property. | `MyConversationId` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.message.id`](/docs/registry/attributes/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. [5] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body in bytes. [7] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | string | A string identifying the type of the messaging operation. [2] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `messaging.destination.name`:** In RabbitMQ, the destination is defined by an *exchange*, a *routing key* and for consumers, a *queue*.
 
@@ -76,7 +73,40 @@ If any has an empty value (e.g., the default exchange is used) it SHOULD be omit
 For cases when `{routing key}` and `{queue}` are equal, only one of them SHOULD
 be used, e.g., `{exchange}:{routing key}`.
 
-**[2] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[2] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
+
+**[3] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+
+**[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+---
+
+`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
+
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [5] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.rabbitmq.destination.routing_key`](/docs/registry/attributes/messaging.md) | string | RabbitMQ message routing key. | `myKey` | `Conditionally Required` If not empty. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.rabbitmq.message.delivery_tag`](/docs/registry/attributes/messaging.md) | int | RabbitMQ message delivery tag | `123` | `Conditionally Required` When available. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | string | Message [correlation Id](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property. | `MyConversationId` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.message.id`](/docs/registry/attributes/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. [6] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body in bytes. [7] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[5] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
@@ -96,25 +126,10 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[3] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
-
-**[4] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
-
-**[5] `network.peer.address`:** If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
-
-**[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[6] `network.peer.address`:** If an operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
 **[7] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
-
-The following attributes can be important for making sampling decisions
-and SHOULD be provided **at span creation time** (if provided at all):
-
-* [`messaging.destination.name`](/docs/registry/attributes/messaging.md)
-* [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
-* [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
-* [`server.address`](/docs/registry/attributes/server.md)
-* [`server.port`](/docs/registry/attributes/server.md)
 
 ---
 
@@ -123,18 +138,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
-`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
