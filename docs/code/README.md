@@ -17,7 +17,10 @@ This document defines semantic conventions for source code.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`code.column.number`](/docs/registry/attributes/code.md) | int | The column number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`. This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Line'. This constraint is imposed to prevent redundancy and maintain data integrity. | `16` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`code.file.path`](/docs/registry/attributes/code.md) | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Function'. This constraint is imposed to prevent redundancy and maintain data integrity. | `/usr/local/MyApplication/content_root/app/index.php` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -40,6 +43,7 @@ Examples:
 * Erlang: `opentelemetry_ctx:new`
 * Rust: `playground::my_module::my_cool_func`
 * C function: `fopen`
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

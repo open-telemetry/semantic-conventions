@@ -23,7 +23,10 @@ Below is a table of attributes that SHOULD be included on client and server Conn
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`rpc.connect_rpc.error_code`](/docs/registry/attributes/rpc.md) | string | The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled`; `unknown`; `invalid_argument` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.connect_rpc.request.metadata.<key>`](/docs/registry/attributes/rpc.md) | string[] | Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [2] | `["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -65,6 +68,7 @@ the `rpc.connect_rpc.response.metadata.my-custom-key` attribute with value `["at
 | `unavailable` | unavailable | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unimplemented` | unimplemented | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | unknown | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
