@@ -242,8 +242,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | Receive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | Transmit | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -276,8 +276,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | Receive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | Transmit | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -968,8 +968,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | Receive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | Transmit | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -1002,8 +1002,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | Receive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | Transmit | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
