@@ -34,7 +34,10 @@ the span SHOULD be named `GraphQL Operation`.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`graphql.document`](/docs/registry/attributes/graphql.md) | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | string | The name of the operation being executed. | `findBookById` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -51,6 +54,7 @@ the span SHOULD be named `GraphQL Operation`.
 | `mutation` | GraphQL mutation | ![Development](https://img.shields.io/badge/-development-blue) |
 | `query` | GraphQL query | ![Development](https://img.shields.io/badge/-development-blue) |
 | `subscription` | GraphQL subscription | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

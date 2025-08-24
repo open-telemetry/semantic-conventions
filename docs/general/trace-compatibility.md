@@ -29,7 +29,10 @@ between a child Span and a parent Span, as defined by
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`opentracing.ref_type`](/docs/registry/attributes/opentracing.md) | string | Parent-child Reference type [1] | `child_of`; `follows_from` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -43,6 +46,7 @@ between a child Span and a parent Span, as defined by
 |---|---|---|
 | `child_of` | The parent Span depends on the child Span in some capacity | ![Development](https://img.shields.io/badge/-development-blue) |
 | `follows_from` | The parent Span doesn't depend in any way on the result of the child Span | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

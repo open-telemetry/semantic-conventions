@@ -18,7 +18,10 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`container.id`](/docs/registry/attributes/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.label.<key>`](/docs/registry/attributes/container.md) | string | Container labels, `<key>` being the label name, the value being the label value. [1] | `nginx` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -34,6 +37,7 @@
 An example can be found in [Example Image Manifest](https://github.com/opencontainers/image-spec/blob/main/manifest.md#example-image-manifest).
 
 **[3] `container.command`:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
+</details>
 
 ## Container Image
 
@@ -48,7 +52,10 @@ An example can be found in [Example Image Manifest](https://github.com/openconta
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`container.image.id`](/docs/registry/attributes/container.md) | string | Runtime specific image identifier. Usually a hash algorithm followed by a UUID. [4] | `sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.image.name`](/docs/registry/attributes/container.md) | string | Name of the image the container was built on. | `gcr.io/opentelemetry/operator` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -60,6 +67,7 @@ K8s defines a link to the container registry repository with digest `"imageID": 
 The ID is assigned by the container runtime and can vary in different environments. Consider using `oci.manifest.digest` if it is important to identify the same image in different environments/runtimes.
 
 **[5] `container.image.repo_digests`:** [Docker](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
+</details>
 
 ## Container Runtime
 
@@ -71,16 +79,24 @@ The ID is assigned by the container runtime and can vary in different environmen
 
 **Identifying Attributes:**
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`container.runtime.name`](/docs/registry/attributes/container.md) | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.runtime.version`](/docs/registry/attributes/container.md) | string | The version of the runtime of this process, as returned by the runtime without modification. | `1.0.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 **Descriptive Attributes:**
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`container.runtime.description`](/docs/registry/attributes/container.md) | string | A description about the runtime which could include, for example details about the CRI/API version being used or other customisations. | `docker://19.3.1 - CRI: 1.22.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 
 <!-- markdownlint-restore -->

@@ -70,8 +70,10 @@ All routing metrics are reported by the `Microsoft.AspNetCore.Routing` meter.
 | `aspnetcore.routing.match_attempts` | Counter | `{match_attempt}` | Number of requests that were attempted to be matched to an endpoint. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Routing`; Added in: ASP.NET Core 8.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.routing.match_status`](/docs/registry/attributes/aspnetcore.md) | string | Match result - success or failure | `success`; `failure` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`aspnetcore.routing.is_fallback`](/docs/registry/attributes/aspnetcore.md) | boolean | A value that indicates whether the matched route is a fallback route. | `true` | `Conditionally Required` if and only if a route was successfully matched. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -88,6 +90,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 |---|---|---|
 | `failure` | Match failed | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `success` | Match succeeded | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -112,8 +115,10 @@ Exceptions Metric is reported by the `Microsoft.AspNetCore.Diagnostics` meter.
 | `aspnetcore.diagnostics.exceptions` | Counter | `{exception}` | Number of exceptions caught by exception handling middleware. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Diagnostics`; Added in: ASP.NET Core 8.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.diagnostics.exception.result`](/docs/registry/attributes/aspnetcore.md) | string | ASP.NET Core exception middleware handling result. | `handled`; `unhandled` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException`; `Contoso.MyException` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -139,6 +144,7 @@ Exceptions Metric is reported by the `Microsoft.AspNetCore.Diagnostics` meter.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -163,12 +169,15 @@ All rate-limiting metrics are reported by the `Microsoft.AspNetCore.RateLimiting
 | `aspnetcore.rate_limiting.active_request_leases` | UpDownCounter | `{request}` | Number of requests that are currently active on the server that hold a rate limiting lease. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.rate_limiting.policy`](/docs/registry/attributes/aspnetcore.md) | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `aspnetcore.rate_limiting.policy`:** if the matched endpoint for the request had a rate-limiting policy.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -193,12 +202,15 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | `aspnetcore.rate_limiting.request_lease.duration` | Histogram | `s` | The duration of rate limiting lease held by requests on the server. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.rate_limiting.policy`](/docs/registry/attributes/aspnetcore.md) | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `aspnetcore.rate_limiting.policy`:** if the matched endpoint for the request had a rate-limiting policy.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -219,12 +231,15 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | `aspnetcore.rate_limiting.queued_requests` | UpDownCounter | `{request}` | Number of requests that are currently queued, waiting to acquire a rate limiting lease. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.rate_limiting.policy`](/docs/registry/attributes/aspnetcore.md) | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `aspnetcore.rate_limiting.policy`:** if the matched endpoint for the request had a rate-limiting policy.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -249,8 +264,10 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | `aspnetcore.rate_limiting.request.time_in_queue` | Histogram | `s` | The time the request spent in a queue waiting to acquire a rate limiting lease. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.rate_limiting.result`](/docs/registry/attributes/aspnetcore.md) | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`aspnetcore.rate_limiting.policy`](/docs/registry/attributes/aspnetcore.md) | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -267,6 +284,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | `endpoint_limiter` | Lease request was rejected by the endpoint limiter | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `global_limiter` | Lease request was rejected by the global limiter | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `request_canceled` | Lease request was canceled | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -292,8 +310,10 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 * Canceled while waiting for the lease.
 
 Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.rate_limiting.result`](/docs/registry/attributes/aspnetcore.md) | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`aspnetcore.rate_limiting.policy`](/docs/registry/attributes/aspnetcore.md) | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -310,6 +330,7 @@ Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
 | `endpoint_limiter` | Lease request was rejected by the endpoint limiter | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `global_limiter` | Lease request was rejected by the global limiter | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `request_canceled` | Lease request was canceled | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -334,12 +355,15 @@ All memory pool metrics are reported by the `Microsoft.AspNetCore.MemoryPool` me
 | `aspnetcore.memory_pool.pooled` | UpDownCounter | `By` | Number of bytes currently pooled and available for reuse. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.memory_pool.owner`](/docs/registry/attributes/aspnetcore.md) | string | The name of the library or subsystem using the memory pool instance. | `kestrel`; `iis` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `aspnetcore.memory_pool.owner`:** if owner is specified when the memory pool is created.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -360,12 +384,15 @@ All memory pool metrics are reported by the `Microsoft.AspNetCore.MemoryPool` me
 | `aspnetcore.memory_pool.evicted` | Counter | `By` | Total number of bytes evicted from the memory pool. Eviction occurs when idle pooled memory is reclaimed. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.memory_pool.owner`](/docs/registry/attributes/aspnetcore.md) | string | The name of the library or subsystem using the memory pool instance. | `kestrel`; `iis` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `aspnetcore.memory_pool.owner`:** if owner is specified when the memory pool is created.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -386,12 +413,15 @@ All memory pool metrics are reported by the `Microsoft.AspNetCore.MemoryPool` me
 | `aspnetcore.memory_pool.allocated` | Counter | `By` | Total number of bytes allocated by the memory pool. Allocation occurs when a memory rental request exceeds the available pooled memory. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.memory_pool.owner`](/docs/registry/attributes/aspnetcore.md) | string | The name of the library or subsystem using the memory pool instance. | `kestrel`; `iis` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `aspnetcore.memory_pool.owner`:** if owner is specified when the memory pool is created.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -412,12 +442,15 @@ All memory pool metrics are reported by the `Microsoft.AspNetCore.MemoryPool` me
 | `aspnetcore.memory_pool.rented` | Counter | `By` | Total number of bytes rented from the memory pool. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.memory_pool.owner`](/docs/registry/attributes/aspnetcore.md) | string | The name of the library or subsystem using the memory pool instance. | `kestrel`; `iis` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `aspnetcore.memory_pool.owner`:** if owner is specified when the memory pool is created.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -442,8 +475,10 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 | `aspnetcore.authentication.authenticate.duration` | Histogram | `s` | The authentication duration for a request. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.result`](/docs/registry/attributes/aspnetcore.md) | string | The result of the authentication operation. | `success`; `failure` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | `Conditionally Required` if a scheme is specified during authentication. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -466,6 +501,7 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -486,8 +522,10 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 | `aspnetcore.authentication.challenges` | Counter | `{challenge}` | The total number of times a scheme is challenged. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | `Conditionally Required` if a scheme is specified during authentication. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -499,6 +537,7 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -519,8 +558,10 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 | `aspnetcore.authentication.forbids` | Counter | `{forbid}` | The total number of times an authenticated user attempts to access a resource they are not permitted to access. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | `Conditionally Required` if a scheme is specified during authentication. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -532,6 +573,7 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -552,8 +594,10 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 | `aspnetcore.authentication.sign_ins` | Counter | `{sign_in}` | The total number of times a principal is signed in with a scheme. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | `Conditionally Required` if a scheme is specified during authentication. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -565,6 +609,7 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -585,8 +630,10 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 | `aspnetcore.authentication.sign_outs` | Counter | `{sign_out}` | The total number of times a principal is signed out with a scheme. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | `Conditionally Required` if a scheme is specified during authentication. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | The full name of exception type. | `System.OperationCanceledException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -598,6 +645,7 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -622,8 +670,10 @@ All authorization metrics are reported by the `Microsoft.AspNetCore.Authorizatio
 | `aspnetcore.authorization.attempts` | Counter | `{attempt}` | The total number of authorization attempts. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Authorization`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.user.is_authenticated`](/docs/registry/attributes/aspnetcore.md) | boolean | A value that indicates whether the user is authenticated. | `true` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`aspnetcore.authorization.policy`](/docs/registry/attributes/aspnetcore.md) | string | The name of the authorization policy. | `RequireAdminRole` | `Conditionally Required` if a policy is specified. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -646,6 +696,7 @@ All authorization metrics are reported by the `Microsoft.AspNetCore.Authorizatio
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -670,8 +721,10 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | `aspnetcore.identity.user.create.duration` | Histogram | `s` | The duration of user creation operations. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.error_code`](/docs/registry/attributes/aspnetcore.md) | string | The error code for a failed identity operation. | `DefaultError`; `PasswordMismatch` | `Conditionally Required` if an error was set on a failed identity result. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -694,6 +747,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -714,8 +768,10 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | `aspnetcore.identity.user.update.duration` | Histogram | `s` | The duration of user update operations. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.user.update_type`](/docs/registry/attributes/aspnetcore.md) | string | The user update type. | `update`; `user_name`; `reset_password` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -779,6 +835,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -799,8 +856,10 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | `aspnetcore.identity.user.delete.duration` | Histogram | `s` | The duration of user deletion operations. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.error_code`](/docs/registry/attributes/aspnetcore.md) | string | The error code for a failed identity operation. | `DefaultError`; `PasswordMismatch` | `Conditionally Required` if an error was set on a failed identity result. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -823,6 +882,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -843,8 +903,10 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | `aspnetcore.identity.user.check_password_attempts` | Counter | `{attempt}` | The number of check password attempts. Only checks whether the password is valid and not whether the user account is in a state that can log in. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.password_check_result`](/docs/registry/attributes/aspnetcore.md) | string | The result from checking the password. | `success`; `failure` | `Conditionally Required` if no exception was thrown. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -869,6 +931,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -889,8 +952,10 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | `aspnetcore.identity.user.generated_tokens` | Counter | `{count}` | The total number of token generations. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.token_purpose`](/docs/registry/attributes/aspnetcore.md) | string | What the token will be used for. | `success`; `failure` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -916,6 +981,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -936,8 +1002,10 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | `aspnetcore.identity.user.verify_token_attempts` | Counter | `{attempt}` | The total number of token verification attempts. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.token_purpose`](/docs/registry/attributes/aspnetcore.md) | string | What the token will be used for. | `success`; `failure` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -973,6 +1041,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -993,8 +1062,10 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | `aspnetcore.identity.sign_in.authenticate.duration` | Histogram | `s` | The duration of authenticate attempts. The authenticate metrics is recorded by sign in methods such as PasswordSignInAsync and TwoFactorSignInAsync. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.sign_in.type`](/docs/registry/attributes/aspnetcore.md) | string | The authentication type. | `password`; `two_factor` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1035,6 +1106,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -1055,8 +1127,10 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | `aspnetcore.identity.sign_in.check_password_attempts` | Counter | `{attempt}` | The total number of check password attempts. Checks that the account is in a state that can log in and that the password is valid using the UserManager.CheckPasswordAsync method. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.sign_in.result`](/docs/registry/attributes/aspnetcore.md) | string | Whether the sign in result was success or failure. | `password`; `two_factor` | `Conditionally Required` if no exception was thrown. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1081,6 +1155,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -1101,8 +1176,10 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | `aspnetcore.identity.sign_in.sign_ins` | Counter | `{sign_in}` | The total number of calls to sign in user principals. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1116,6 +1193,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -1136,8 +1214,10 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | `aspnetcore.identity.sign_in.sign_outs` | Counter | `{sign_out}` | The total number of calls to sign out user principals. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1150,6 +1230,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -1170,8 +1251,10 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | `aspnetcore.identity.sign_in.two_factor_clients_remembered` | Counter | `{client}` | The total number of two factor clients remembered. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1184,6 +1267,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -1204,8 +1288,10 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | `aspnetcore.identity.sign_in.two_factor_clients_forgotten` | Counter | `{client}` | The total number of two factor clients forgotten. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | string | The full name of the identity user type. | `Contoso.ContosoUser` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1218,6 +1304,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
