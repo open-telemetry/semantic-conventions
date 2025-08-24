@@ -29,14 +29,16 @@ They align with the Bosh deployment tool of CloudFoundry.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `cloudfoundry.org`
 
 **Description:** The organization of the application which is monitored.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cloudfoundry.org.id`](/docs/registry/attributes/cloudfoundry.md) | string | The guid of the CloudFoundry org the application is running in. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`cloudfoundry.org.name`](/docs/registry/attributes/cloudfoundry.md) | string | The name of the CloudFoundry organization the app is running in. [2] | `my-org-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -48,6 +50,7 @@ reported by `cf org <org-name> --guid`.
 **[2] `cloudfoundry.org.name`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.org_name`. This is the same value as
 reported by `cf orgs`.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -63,14 +66,16 @@ reported by `cf orgs`.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `cloudfoundry.space`
 
 **Description:** The space of the application which is monitored.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cloudfoundry.space.id`](/docs/registry/attributes/cloudfoundry.md) | string | The guid of the CloudFoundry space the application is running in. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`cloudfoundry.space.name`](/docs/registry/attributes/cloudfoundry.md) | string | The name of the CloudFoundry space the application is running in. [2] | `my-space-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -82,6 +87,7 @@ reported by `cf space <space-name> --guid`.
 **[2] `cloudfoundry.space.name`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.space_name`. This is the same value as
 reported by `cf spaces`.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -97,14 +103,16 @@ reported by `cf spaces`.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `cloudfoundry.app`
 
 **Description:** The application which is monitored.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cloudfoundry.app.id`](/docs/registry/attributes/cloudfoundry.md) | string | The guid of the application. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`cloudfoundry.app.name`](/docs/registry/attributes/cloudfoundry.md) | string | The name of the application. [2] | `my-app-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -116,6 +124,7 @@ reported by `cf app <app-name> --guid`.
 **[2] `cloudfoundry.app.name`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.application_name`. This is the same value
 as reported by `cf apps`.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -131,14 +140,16 @@ as reported by `cf apps`.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `cloudfoundry.process`
 
 **Description:** The process of the application which is monitored.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cloudfoundry.process.id`](/docs/registry/attributes/cloudfoundry.md) | string | The UID identifying the process. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`cloudfoundry.process.type`](/docs/registry/attributes/cloudfoundry.md) | string | The type of process. [2] | `web` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -151,6 +162,7 @@ For system components, this could be the actual PID.
 **[2] `cloudfoundry.process.type`:** CloudFoundry applications can consist of multiple jobs. Usually the
 main process will be of type `web`. There can be additional background
 tasks or side-cars with different process types.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -166,14 +178,16 @@ tasks or side-cars with different process types.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `cloudfoundry.system`
 
 **Description:** The system component which is monitored.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`cloudfoundry.system.id`](/docs/registry/attributes/cloudfoundry.md) | string | A guid or another name describing the event source. [1] | `cf/gorouter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`cloudfoundry.system.instance.id`](/docs/registry/attributes/cloudfoundry.md) | string | A guid describing the concrete instance of the event source. [2] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -195,6 +209,7 @@ supposed to contain the vm id for CloudFoundry components.
 When system components are instrumented, values from the
 [Bosh spec](https://bosh.io/docs/jobs/#properties-spec)
 should be used. The `system.instance.id` should be set to `spec.id`.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
