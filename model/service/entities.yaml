@@ -15,3 +15,7 @@ groups:
         role: identifying
       - ref: service.instance.id
         role: identifying
+      - ref: service.roles
+        role: descriptive
+      - ref: service.state
+        role: descriptive
