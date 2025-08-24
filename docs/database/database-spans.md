@@ -352,8 +352,10 @@ and SHOULD be provided **at span creation time** (if provided at all):
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**Past Attributes:**
-| Attribute  | Type | Description  | Examples  | Deprecation Action | Deprecation Explanation |
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Action | Deprecation Explanation |
 |---|---|---|---|---|---|
 | [`db.connection_string`](/docs/registry/attributes/db.md) | string | Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` | `Update` |  Replaced by `server.address` and `server.port`.
   |
@@ -417,6 +419,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `teradata` | Teradata | ![Development](https://img.shields.io/badge/-development-blue) |
 | `trino` | Trino | ![Development](https://img.shields.io/badge/-development-blue) |
 | `vertica` | Vertica | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
