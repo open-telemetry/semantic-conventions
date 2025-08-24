@@ -220,8 +220,10 @@ This metric is [recommended][MetricRecommended].
 | `nodejs.eventloop.time` | Counter | `s` | Cumulative duration of time the event loop has been in each state. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Value can be retrieved from [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`nodejs.eventloop.state`](/docs/registry/attributes/nodejs.md) | string | The state of event loop time. | `active`; `idle` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -233,6 +235,7 @@ This metric is [recommended][MetricRecommended].
 |---|---|---|
 | `active` | Active time. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `idle` | Idle time. | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

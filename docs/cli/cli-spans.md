@@ -32,7 +32,10 @@ the [Recording Errors](/docs/general/recording-errors.md) document for details o
 
 **Span kind** SHOULD be `INTERNAL`.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`process.executable.name`](/docs/registry/attributes/process.md) | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`process.exit.code`](/docs/registry/attributes/process.md) | int | The exit code of the process. | `127` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -68,6 +71,7 @@ it's RECOMMENDED to:
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -96,7 +100,10 @@ the [Recording Errors](/docs/general/recording-errors.md) document for details o
 
 **Span kind** SHOULD be `CLIENT`.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`process.executable.name`](/docs/registry/attributes/process.md) | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`process.exit.code`](/docs/registry/attributes/process.md) | int | The exit code of the process. | `127` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -132,6 +139,7 @@ it's RECOMMENDED to:
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

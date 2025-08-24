@@ -42,7 +42,10 @@ The table below indicates which attributes should be added to the
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`exception.message`](/docs/registry/attributes/exception.md) | string | The exception message. | `Division by zero`; `Can't convert 'int' object to str implicitly` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`exception.type`](/docs/registry/attributes/exception.md) | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. | `java.net.ConnectException`; `OSError` | `Conditionally Required` [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -51,6 +54,7 @@ The table below indicates which attributes should be added to the
 **[1] `exception.message`:** Required if `exception.type` is not set, recommended otherwise.
 
 **[2] `exception.type`:** Required if `exception.message` is not set, recommended otherwise.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
