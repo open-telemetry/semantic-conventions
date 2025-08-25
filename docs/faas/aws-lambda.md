@@ -58,7 +58,7 @@ and the [cloud resource conventions][cloud].
 **Span name** MUST be set to the function name from the Lambda `Context`
 unless stated otherwise.
 
-**Span kind** MUST be set to `SERVER` unless stated otherwise.
+**Span kind** MUST be `SERVER` unless stated otherwise.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
