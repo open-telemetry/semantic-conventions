@@ -12,11 +12,11 @@ Operations that access some remote service.
 | <a id="peer-service" href="#peer-service">`peer.service`</a> | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. [1] | `AuthTokenCache` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `peer.service`:** If this is done via declarative configuration, then it MUST be possible to configure the peer service name:
+
 - `peer` is host, and optionally the and path of the remote service that is used to identify the service
    instance, e.g., `example.com:443`, `1.2.3.4:8080`, `example.com`, `example.com:443/fooService`.
 - `service` is the name of the remote service, e.g., `AuthService` that will be translated to the
   `peer.service` attribute.
-
 
 ```yaml
 instrumentation/development:
