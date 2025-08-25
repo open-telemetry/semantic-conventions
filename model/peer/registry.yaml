@@ -16,6 +16,11 @@ groups:
         note: >
           It MUST be possible to configure the peer service name in declarative configuration as follows:
 
+          - `peer` is host and possibly port of the remote service that is used to identify the service instance,
+            e.g., `example.com:443`, `1.2.3.4:8080`, `example.com`.
+          - `service` is the name of the remote service, e.g., `AuthService` that will be translated to the
+            `peer.service` attribute.
+
 
           ```yaml
 

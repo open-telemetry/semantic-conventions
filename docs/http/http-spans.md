@@ -652,7 +652,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 ## Capturing HTTP headers in traces
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-In addition to the attributes defined in this document, HTTP client and server instrumentations MUST also allow
+In addition to the attributes defined in this document, HTTP client and server instrumentations MAY also allow
 users to capture header attributes from the request and response in **traces using declarative configuration**.
 
 The configuration is grouped under the `http` key, as in the following example:
