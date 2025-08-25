@@ -23,6 +23,7 @@ groups:
 
       **Span status:** refer to the [Span Status](/docs/http/http-spans.md#status) section.
     attributes:
+      - ref: http.method
       - ref: http.request.method
         sampling_relevant: true
       - ref: http.request.method_original
@@ -79,6 +80,7 @@ groups:
       **Span status:** refer to the [Span Status](/docs/http/http-spans.md#status) section.
     stability: stable
     attributes:
+      - ref: http.method
       - ref: http.request.method
         sampling_relevant: true
       - ref: http.request.method_original
