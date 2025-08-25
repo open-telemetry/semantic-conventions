@@ -296,8 +296,8 @@ They are likely to be siblings if there is an encompassing span.
 | `gen_ai.usage.output_tokens`    | `17`                                        |
 | `gen_ai.usage.input_tokens`     | `47`                                        |
 | `gen_ai.response.finish_reasons`| `["tool_calls"]`                            |
-| `gen_ai.input.messages`         | <span id="gen-ai-input-messages-tool-call-span-1">`gen_ai.input.messages` value</span> |
-| `gen_ai.output.messages`        | <span id="gen-ai-output-messages-tool-call-span-1">`gen_ai.output.messages` value</span> |
+| `gen_ai.input.messages`         | [`gen_ai.input.messages`](#gen-ai-input-messages-tool-call-span-1) |
+| `gen_ai.output.messages`        | [`gen_ai.output.messages`](#gen-ai-output-messages-tool-call-span-1) |
 
 <span id="gen-ai-input-messages-tool-call-span-1">`gen_ai.input.messages` value</span>
 
@@ -362,8 +362,8 @@ If tool call is [instrumented according to execute-tool span definition](../gen-
 | `gen_ai.usage.output_tokens`    | `52`                                        |
 | `gen_ai.usage.input_tokens`     | `97`                                        |
 | `gen_ai.response.finish_reasons`| `["stop"]`                                  |
-| `gen_ai.input.messages`         | <span id="gen-ai-input-messages-tool-call-span-2">`gen_ai.input.messages` value</span> |
-| `gen_ai.output.messages`        | <span id="gen-ai-output-messages-tool-call-span-2">`gen_ai.output.messages` value</span> |
+| `gen_ai.input.messages`         | [`gen_ai.input.messages`](#gen-ai-input-messages-tool-call-span-2) |
+| `gen_ai.output.messages`        | [`gen_ai.output.messages`](#gen-ai-output-messages-tool-call-span-2) |
 
 <span id="gen-ai-input-messages-tool-call-span-2">`gen_ai.input.messages` value</span>
 
@@ -424,7 +424,7 @@ If tool call is [instrumented according to execute-tool span definition](../gen-
 ## System instructions along with chat history (content enabled)
 
 Some providers allow to provide instructions separately from the chat history provided in the inputs
-or in addition to `system` (`deveoper`, etc) message provided in the input.
+or in addition to `system` (`developer`, etc) message provided in the input.
 
 This example demonstrates en edge case when conflicting instructions are provided
 to the OpenAI responses API. In this case instructions are recorded in the `gen_ai.system_instructions` attribute.
@@ -550,8 +550,8 @@ sequenceDiagram
 | `gen_ai.usage.output_tokens`    | `44`                                        |
 | `gen_ai.usage.input_tokens`     | `385`                                       |
 | `gen_ai.response.finish_reasons`| `["stop"]`                                  |
-| `gen_ai.input.messages`         | <span id="gen-ai-input-messages-built-in-tools">`gen_ai.input.messages` value</span> |
-| `gen_ai.output.messages`        | <span id="gen-ai-output-messages-built-in-tools">`gen_ai.output.messages` value</span> |
+| `gen_ai.input.messages`         | [`gen_ai.input.messages`](#gen-ai-input-messages-built-in-tools) |
+| `gen_ai.output.messages`        | [`gen_ai.output.messages`](#gen-ai-output-messages-built-in-tools) |
 
 <span id="gen-ai-input-messages-built-in-tools">`gen_ai.input.messages` value</span>
 
@@ -598,8 +598,8 @@ sequenceDiagram
 | `gen_ai.usage.output_tokens`    | `77`                                       |
 | `gen_ai.usage.input_tokens`     | `52`                                       |
 | `gen_ai.response.finish_reasons`| `["stop", "stop"]`                         |
-| `gen_ai.input.messages`         | <span id="gen-ai-input-messages-choices">`gen_ai.input.messages` value</span> |
-| `gen_ai.output.messages`        | <span id="gen-ai-output-messages-choices">`gen_ai.output.messages` value</span> |
+| `gen_ai.input.messages`         | [`gen_ai.input.messages`](#gen-ai-input-messages-choices) |
+| `gen_ai.output.messages`        | [`gen_ai.output.messages`](#gen-ai-output-messages-choices) |
 
 <span id="gen-ai-input-messages-choices">`gen_ai.input.messages` value</span>
 

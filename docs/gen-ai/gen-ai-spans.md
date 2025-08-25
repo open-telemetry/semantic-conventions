@@ -434,7 +434,7 @@ application needs and maturity:
 1. [Default] Don't record instructions, inputs, or outputs.
 
 2. Record instructions, inputs, and outputs on the GenAI spans using corresponding
-   attributes (`gen_ai.system.instructions`, `gen_ai.input.messages`,
+   attributes (`gen_ai.system_instructions`, `gen_ai.input.messages`,
    `gen_ai.output.messages`).
 
    This approach is best suited for situations where telemetry volume is manageable
@@ -455,7 +455,7 @@ application needs and maturity:
 
 #### Recording content on attributes
 
-The content captured in `gen_ai.system.instructions`, `gen_ai.input.messages`,
+The content captured in `gen_ai.system_instructions`, `gen_ai.input.messages`,
 and `gen_ai.output.messages` attributes is likely to be large.
 
 It may contain media, and even in the text form, it may be larger than
@@ -484,7 +484,7 @@ such as individual message contents, preserving JSON structure.
 Instrumentations MAY support user-defined in-process hooks to handle content upload.
 
 The hook SHOULD operate independently of the opt-in flags that control capturing of
-`gen_ai.system.instructions`, `gen_ai.input.messages`, and `gen_ai.output.messages`.
+`gen_ai.system_instructions`, `gen_ai.input.messages`, and `gen_ai.output.messages`.
 
 If such a hook is supported and configured, instrumentations SHOULD invoke it regardless
 of the span sampling decision with:
@@ -497,7 +497,7 @@ of the span sampling decision with:
 The hook implementation SHOULD be able to enrich and modify provided span, instructions,
 and message objects.
 
-If instrumentation is configured to also record `gen_ai.system.instructions`,
+If instrumentation is configured to also record `gen_ai.system_instructions`,
 `gen_ai.input.messages`, and `gen_ai.output.messages` attributes, it SHOULD do it
 after calling the hook and SHOULD record values that were potentially modified within
 the hook implementation.
@@ -511,7 +511,7 @@ implementation including
 
 Application or OpenTelemetry distributions MAY also implement content uploading
 in the telemetry processing pipeline (in-process or via a collector), based on the
-`gen_ai.system.instructions`, `gen_ai.input.messages`, and `gen_ai.output.messages`
+`gen_ai.system_instructions`, `gen_ai.input.messages`, and `gen_ai.output.messages`
 attributes. Given the potential data volume, it is RECOMMENDED to tune batching
 and export settings accordingly in the OpenTelemetry SDK pipeline.
 
