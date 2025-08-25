@@ -212,6 +212,8 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.usage.input_tokens
         requirement_level: recommended
+      - ref: gen_ai.embeddings.dimension.count
+        requirement_level: recommended
 
   - id: span.gen_ai.create_agent.client
     type: span

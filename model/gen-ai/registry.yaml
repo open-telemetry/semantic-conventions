@@ -334,6 +334,11 @@ groups:
 
           Additional output format details may be recorded in the future in the
           `gen_ai.output.{type}.*` attributes.
+      - id: gen_ai.embeddings.dimension.count
+        stability: development
+        type: int
+        brief: The number of dimensions the resulting output embeddings should have.
+        examples: [512, 1024]
       - id: gen_ai.system_instructions
         stability: development
         type: any
