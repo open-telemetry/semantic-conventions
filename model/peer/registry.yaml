@@ -14,7 +14,7 @@ groups:
           resource attribute of the remote service if any.
         examples: "AuthTokenCache"
         note: >
-          It MUST be possible to configure the peer service name in declarative configuration as follows:
+          If this is done via declarative configuration, then it MUST be possible to configure the peer service name:
 
           - `peer` is host, and optionally the and path of the remote service that is used to identify the service
              instance, e.g., `example.com:443`, `1.2.3.4:8080`, `example.com`, `example.com:443/fooService`.
