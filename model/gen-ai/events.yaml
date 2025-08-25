@@ -10,3 +10,42 @@ groups:
       This event is opt-in and could be used to store input and output details
       independently from traces.
     extends: attributes.gen_ai.inference.client
+
+  - id: event.gen_ai.evaluation.result
+    name: gen_ai.evaluation.result
+    type: event
+    stability: development
+    brief: >
+      This event captures the result of evaluating GenAI output for quality, accuracy,or other characteristics
+      and SHOULD be parented to GenAI operation span being evaluated when possible.
+    attributes:
+      - ref: gen_ai.evaluation.name
+        requirement_level: required
+      - ref: gen_ai.evaluation.score.value
+        requirement_level:
+          conditionally_required: if applicable
+      - ref: gen_ai.evaluation.score.label
+        requirement_level:
+          conditionally_required: if applicable
+      - ref: gen_ai.evaluation.explanation
+        requirement_level: recommended
+      - ref: gen_ai.usage.input_tokens
+        requirement_level:
+          recommended: if evaluation was performed by a model
+        note: >
+          The total number of input tokens used by the model during the evaluation.
+      - ref: gen_ai.usage.output_tokens
+        requirement_level:
+          recommended: if evaluation was performed by a model
+        note: >
+          The total number of output tokens used by the model during the evaluation.
+      - ref: gen_ai.response.id
+        requirement_level:
+          recommended: when available
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
+        note: |
+          The `error.type` SHOULD match the error code returned by the Generative AI Evaluation provider or the client library,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
