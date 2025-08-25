@@ -442,8 +442,8 @@ This metric is [required][MetricRequired].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | Idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
