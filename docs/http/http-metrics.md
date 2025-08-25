@@ -101,7 +101,7 @@ If the HTTP instrumentation could end up converting valid HTTP request methods t
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
 If this override is done via declarative configuration, then the list key MUST be named `known_methods`
-(under `instrumentation`/development`/`general`/`http`).
+(under `instrumentation/development`/`general`/`http`/`client` or `instrumentation/development`/`general`/`http`/`server`).
 In either case, this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults.
 
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
@@ -219,7 +219,7 @@ If the HTTP instrumentation could end up converting valid HTTP request methods t
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
 If this override is done via declarative configuration, then the list key MUST be named `known_methods`
-(under `instrumentation`/development`/`general`/`http`).
+(under `instrumentation/development`/`general`/`http`/`client` or `instrumentation/development`/`general`/`http`/`server`).
 In either case, this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults.
 
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
@@ -298,7 +298,7 @@ If the HTTP instrumentation could end up converting valid HTTP request methods t
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
 If this override is done via declarative configuration, then the list key MUST be named `known_methods`
-(under `instrumentation`/development`/`general`/`http`).
+(under `instrumentation/development`/`general`/`http`/`client` or `instrumentation/development`/`general`/`http`/`server`).
 In either case, this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults.
 
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
@@ -424,7 +424,7 @@ If the HTTP instrumentation could end up converting valid HTTP request methods t
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
 If this override is done via declarative configuration, then the list key MUST be named `known_methods`
-(under `instrumentation`/development`/`general`/`http`).
+(under `instrumentation/development`/`general`/`http`/`client` or `instrumentation/development`/`general`/`http`/`server`).
 In either case, this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults.
 
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
@@ -555,7 +555,7 @@ If the HTTP instrumentation could end up converting valid HTTP request methods t
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
 If this override is done via declarative configuration, then the list key MUST be named `known_methods`
-(under `instrumentation`/development`/`general`/`http`).
+(under `instrumentation/development`/`general`/`http`/`client` or `instrumentation/development`/`general`/`http`/`server`).
 In either case, this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults.
 
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
@@ -670,7 +670,7 @@ If the HTTP instrumentation could end up converting valid HTTP request methods t
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
 If this override is done via declarative configuration, then the list key MUST be named `known_methods`
-(under `instrumentation`/development`/`general`/`http`).
+(under `instrumentation/development`/`general`/`http`/`client` or `instrumentation/development`/`general`/`http`/`server`).
 In either case, this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults.
 
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
@@ -785,7 +785,7 @@ If the HTTP instrumentation could end up converting valid HTTP request methods t
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
 If this override is done via declarative configuration, then the list key MUST be named `known_methods`
-(under `instrumentation`/development`/`general`/`http`).
+(under `instrumentation/development`/`general`/`http`/`client` or `instrumentation/development`/`general`/`http`/`server`).
 In either case, this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults.
 
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
@@ -994,7 +994,7 @@ If the HTTP instrumentation could end up converting valid HTTP request methods t
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
 If this override is done via declarative configuration, then the list key MUST be named `known_methods`
-(under `instrumentation`/development`/`general`/`http`).
+(under `instrumentation/development`/`general`/`http`/`client` or `instrumentation/development`/`general`/`http`/`server`).
 In either case, this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults.
 
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
