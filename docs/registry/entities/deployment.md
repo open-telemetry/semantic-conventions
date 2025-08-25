@@ -5,13 +5,13 @@
 
 # Deployment
 
-## Deployment
+## Deployment Environment
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `deployment`
+**type:** `deployment.environment`
 
-**Description:** The software deployment.
+**Description:** The software deployment environment.
 
 **Other Attributes:**
 
@@ -29,6 +29,27 @@ considered to be identifying the same service:
 
 - `service.name=frontend`, `deployment.environment.name=production`
 - `service.name=frontend`, `deployment.environment.name=staging`.
+
+## Deployment Target
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `deployment.target`
+
+**Description:** The software deployment target.
+
+**Identifying Attributes:**
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`deployment.target.path`](/docs/registry/attributes/deployment.md) | string | A path of where to deploy the files to on the target. [2] | `C:\folder-path` | `Conditionally Required` [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`deployment.target.name`](/docs/registry/attributes/deployment.md) | string | A unique name describing where the deployment is deploying to. [4] | `test.mymachines.org`; `playstore` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[2] `deployment.target.path`:** This could be the same value as `process.executable.path` for an installation.
+
+**[3] `deployment.target.path`:** If the target supports multiple side by side deployments.
+
+**[4] `deployment.target.name`:** This could be a fqdn of the machine or the name of the platform the deployment is deploying to.
 
 
 <!-- markdownlint-restore -->
