@@ -168,6 +168,10 @@ groups:
               value: 'activemq'
               brief: 'Apache ActiveMQ'
               stability: development
+            - id: aws.sns
+              value: 'aws.sns'
+              brief: 'Amazon Simple Notification Service (SNS)'
+              stability: development
             - id: aws_sqs
               value: 'aws_sqs'
               brief: 'Amazon Simple Queue Service (SQS)'
