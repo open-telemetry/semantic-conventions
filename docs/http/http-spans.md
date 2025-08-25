@@ -23,6 +23,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
     - [Simple client/server example](#simple-clientserver-example)
     - [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
   - [HTTP server span](#http-server-span)
+- [Capturing HTTP headers in traces](#capturing-http-headers-in-traces)
 - [Examples](#examples)
   - [HTTP client-server example](#http-client-server-example)
   - [HTTP client retries examples](#http-client-retries-examples)
@@ -179,7 +180,9 @@ If the HTTP request method is not known to instrumentation, it MUST set the `htt
 If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+If this override is done via declarative configuration, then the list key MUST be named `known_methods`
+(under `instrumentation/development`/`general`/`http`/`client` or `instrumentation/development`/`general`/`http`/`server`).
+In either case, this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults.
 
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
@@ -480,7 +483,9 @@ If the HTTP request method is not known to instrumentation, it MUST set the `htt
 If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
 OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+If this override is done via declarative configuration, then the list key MUST be named `known_methods`
+(under `instrumentation/development`/`general`/`http`/`client` or `instrumentation/development`/`general`/`http`/`server`).
+In either case, this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults.
 
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
@@ -643,6 +648,40 @@ and SHOULD be provided **at span creation time** (if provided at all):
 <!-- endsemconv -->
 
 `http.route` MUST be provided at span creation time if and only if it's already available. If it becomes available after span starts, instrumentation MUST populate it anytime before span ends.
+
+## Capturing HTTP headers in traces
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+In addition to the attributes defined in this document, HTTP client and server instrumentations MAY also allow
+users to capture header attributes from the request and response in **traces using declarative configuration**.
+
+The configuration is grouped under the `http` key, as in the following example:
+
+```yaml
+instrumentation/development:
+general:
+  http:
+    client:
+      request_captured_headers:
+        - Content-Type
+        - Accept
+      response_captured_headers:
+        - Content-Type
+        - Content-Encoding
+    server:
+      request_captured_headers:
+        - Content-Type
+        - Accept
+      response_captured_headers:
+        - Content-Type
+        - Content-Encoding
+```
+
+The attributes have the following format:
+
+- `http.request.header.<lower_case_header_name>` for HTTP client and server request headers.
+- `http.response.header.<lower_case_header_name>` for HTTP client and server response headers.
 
 ## Examples
 
