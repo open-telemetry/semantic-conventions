@@ -19,6 +19,7 @@ we now have `gen_ai.system_instructions`, `gen_ai.input.messages`, and
 New attributes are not recorded by default when content capturing is disabled.
 
 Deprecations:
+
 - `gen_ai.system.message` event - use `gen_ai.system_instructions` or
   `gen_ai.input.messages` attributes instead.
 - `gen_ai.user.message`, `gen_ai.assistant.message`, `gen_ai.tool.message` events
