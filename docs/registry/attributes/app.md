@@ -11,10 +11,13 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
 |---|---|---|---|---|
 | <a id="app-build-id" href="#app-build-id">`app.build_id`</a> | string | Unique identifier for a particular build or compilation of the application. | `6cff0a7e-cefc-4668-96f5-1273d8b334d0`; `9f2b833506aa6973a92fde9733e6271f`; `my-app-1.0.0-code-123` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-installation-id" href="#app-installation-id">`app.installation.id`</a> | string | A unique identifier representing the installation of an application on a specific device [1] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-jank-frame-count" href="#app-jank-frame-count">`app.jank.frame_count`</a> | int | A number of frame renders that experienced jank. [2] | `9`; `42` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-jank-period" href="#app-jank-period">`app.jank.period`</a> | double | The time period, in seconds, for which this jank is being reported. | `1.0`; `5.0`; `10.24` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-jank-threshold" href="#app-jank-threshold">`app.jank.threshold`</a> | double | The minimum rendering threshold for this jank, in seconds. | `0.016`; `0.7`; `1.024` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-coordinate-x" href="#app-screen-coordinate-x">`app.screen.coordinate.x`</a> | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-coordinate-y" href="#app-screen-coordinate-y">`app.screen.coordinate.y`</a> | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-widget-id" href="#app-widget-id">`app.widget.id`</a> | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [2] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-widget-name" href="#app-widget-name">`app.widget.name`</a> | string | The name of an application widget. [3] | `submit`; `attack`; `Clear Cart` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-widget-id" href="#app-widget-id">`app.widget.id`</a> | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [3] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-widget-name" href="#app-widget-name">`app.widget.name`</a> | string | The name of an application widget. [4] | `submit`; `attack`; `Clear Cart` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
 It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
@@ -32,8 +35,10 @@ For Android, examples of `app.installation.id` implementations include:
 - [App set ID](https://developer.android.com/identity/app-set-id).
 - [`Settings.getString(Settings.Secure.ANDROID_ID)`](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
 
-More information about Android identifier best practices can be found [here](https://developer.android.com/training/articles/user-data-ids).
+More information about Android identifier best practices can be found in the [Android user data IDs guide](https://developer.android.com/training/articles/user-data-ids).
 
-**[2] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
+**[2] `app.jank.frame_count`:** Depending on platform limitations, the value provided MAY be approximation.
 
-**[3] `app.widget.name`:** A widget is an application component, typically an on-screen visual GUI element.
+**[3] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
+
+**[4] `app.widget.name`:** A widget is an application component, typically an on-screen visual GUI element.
