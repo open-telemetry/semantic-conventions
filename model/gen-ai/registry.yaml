@@ -267,21 +267,23 @@ groups:
           It's expected to be an object - in case a serialized string is available
           to the instrumentation, the instrumentation SHOULD do the best effort to
           deserialize it to an object.
-        examples: |
-          - for function_call : {"location": "San Francisco?", "date": "2025-10-01"}
-          - for file_search : {"queries": ["semantic conventions for HTTP attributes", "Find all files containing OpenTelemetry database semantic conventions"]}
-          - for code_Interpreter:
-             - |
-                {
-                    "type": "code",
-                    "content": "import pandas as pd\ndf = pd.read_csv('/tmp/data.csv')\nprint(df.describe())",
-                    "file_ids": [ "file-abc123","file-xyz789"]
-                },
-                {
-                  "type": "file",
-                  "content": "Analyze this CSV file and create a summary report with visualizations",
-                  "file_ids": ["file-data001"]
-                }
+        examples: 
+          - 'For function_call: {"location": "San Francisco?", "date": "2025-10-01"}'
+          - 'For file_search: {"queries": ["semantic conventions for HTTP attributes", "Find all files containing OpenTelemetry database semantic conventions"]}'
+          - |
+            For code_interpreter with code:
+            {
+              "type": "code",
+              "content": "import pandas as pd\ndf = pd.read_csv('/tmp/data.csv')\nprint(df.describe())",
+              "file_ids": ["file-abc123", "file-xyz789"]
+            }
+          - |
+            For code_interpreter with file instruction:
+            {
+              "type": "file",
+              "content": "Analyze this CSV file and create a summary report with visualizations",
+              "file_ids": ["file-data001"]
+            }
         
       - id: gen_ai.tool.call.result
         stability: development
@@ -291,17 +293,11 @@ groups:
           > [!WARNING]
           > This attribute may contain sensitive information.
 
-        examples: |
-          - for function : {"temperature_range": {"high": 75, "low": 60}, "conditions": "sunny"}
-          - for file_search :  {"file_id": "file1", "filename": "file1.md", "text"  : "something important"}
-          - for code_Interpreter : output would contain Array of outputs from code interpreter execution.
-              Each output object in the array contains:
-              - 'type': The output type ('logs', 'image_file', 'file')
-              - Additional fields based on type:
-                - For 'logs': 'logs' field with text output
-                - For 'image_file': 'image_file' object with 'file_id' and optional 'filename'
-                - For 'file': 'file' object with 'file_id', 'filename', and 'path'
-              
+        examples:
+          - 'For function: {"temperature_range": {"high": 75, "low": 60}, "conditions": "sunny"}'
+          - 'For file_search: {"file_id": "file1", "filename": "file1.md", "text": "something important"}'
+          - |
+            For code_interpreter with multiple outputs:
             {
               "outputs": [
                 {
@@ -374,76 +370,15 @@ groups:
             ]
       # Add these new attributes to the registry.gen_ai group in registry.yaml
 
-      - id: gen_ai.input.messages
-        stability: development
-        type: any
-        brief: The chat history provided to the model as an input.
-        examples:
-          - |
-              [
-                {
-                  "role": "user",
-                  "parts": [
-                    {
-                      "type": "text",
-                      "content": "Weather in Paris?"
-                    }
-                  ]
-                },
-                {
-                  "role": "assistant",
-                  "parts": [
-                    {
-                      "type": "tool_call",
-                      "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
-                      "name": "get_weather",
-                      "arguments": {
-                        "location": "Paris"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "role": "tool",
-                  "parts": [
-                    {
-                      "type": "tool_call_response",
-                      "id": " call_VSPygqKTWdrhaFErNvMV18Yl",
-                      "result": "rainy, 57°F"
-                    }
-                  ]
-                }
-              ]
-
-      - id: gen_ai.output.messages
-        stability: development
-        type: any
-        brief: Messages returned by the model where each message represents
-          a specific model response (choice, candidate).
-        examples:
-                  - |
-                      [
-                        {
-                          "role": "assistant",
-                          "parts": [
-                            {
-                              "type": "text",
-                              "content": "The weather in Paris is currently rainy with a temperature of 57°F."
-                            }
-                          ],
-                          "finish_reason": "stop"
-                        }
-                      ]
-
       - id: gen_ai.orchestrator.agent_definitions 
         stability: development
         type: any
         brief: Definitions of agents available to the orchestrator for multi-agent workflows.
         note: |
-          This attribute contains an array of objects representing agent definitions that are
-          available to the orchestrator for potential use in multi-agent workflows.
+          This attribute contains an array of objects representing agent definitions that are available to the orchestrator for potential use in multi-agent workflows.
           
           The structure is an array where each object contains:
+          
           - 'agent_id': Unique identifier for the agent
           - 'name': Human-readable name of the agent
           - 'role': Classification of the agent (e.g., "specialist", "coordinator", "validator")
@@ -454,19 +389,20 @@ groups:
           It's expected to be an array of objects - in case a serialized string is available
           to the instrumentation, the instrumentation SHOULD do the best effort to
           deserialize it to an object.
-        examples: |
-          [
-            {
-              "agent_id": "agent_weather_001",
-              "name": "WeatherAgent",
-              "role": "specialist",
-            },
-            {
-              "agent_id": "agent_calendar_002",
-              "name": "CalendarAgent",
-              "role": "coordinator",
-            }
-          ]
+        examples: 
+          - |
+            [
+              {
+                "agent_id": "agent_weather_001",
+                "name": "WeatherAgent",
+                "role": "specialist"
+              },
+              {
+                "agent_id": "agent_calendar_002",
+                "name": "CalendarAgent",
+                "role": "coordinator"
+              }
+            ]
 
       - id: gen_ai.data_source.id
         stability: development
