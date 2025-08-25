@@ -77,9 +77,8 @@ Semantic conventions for individual GenAI systems and frameworks MAY specify dif
 | [`gen_ai.agent.id`](/docs/registry/attributes/gen-ai.md) | string | The unique identifier of the GenAI agent. | `asst_5j66UpCpwteGg4YSxUnt7lPY` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.agent.name`](/docs/registry/attributes/gen-ai.md) | string | Human-readable name of the GenAI agent provided by the application. | `Math Tutor`; `Fiction Writer` | `Conditionally Required` If provided by the application. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | string | The name of the GenAI model a request is being made to. [4] | `gpt-4` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.tool.definitions`](/docs/registry/attributes/gen-ai.md) | any | The list of tool definitions available to the GenAI agent or model. [5] | `[{"type":"function","name":"get_current_weather","description":"Get the current weather in a given location","parameters":{"type":"object","properties":{"location":{"type":"string","description":"The city and state, e.g. San Francisco, CA"},"unit":{"type":"string","enum":["celsius","fahrenheit"]}},"required":["location","unit"]}}]` | `Conditionally Required` opt_in | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | GenAI server port. [6] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | GenAI server address. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | GenAI server port. [5] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | GenAI server address. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
@@ -108,12 +107,9 @@ Instrumentations SHOULD document the list of errors they report.
 
 **[4] `gen_ai.request.model`:** The name of the GenAI model a request is being made to. If the model is supplied by a vendor, then the value must be the exact name of the model requested. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
-**[5] `gen_ai.tool.definitions`:** The value of this attribute matches provider-specific tool definition format. It's expected to be an object - in case a serialized string is available to the instrumentation, the instrumentation SHOULD do the best effort to deserialize it to an object.
-Since this attribute could be large, it's NOT RECOMMENDED to populate it by default. Instrumentations MAY provide a way to enable populating this attribute.
+**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[7] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 
@@ -149,9 +145,9 @@ Since this attribute could be large, it's NOT RECOMMENDED to populate it by defa
 | `azure.ai.openai` | [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | [Cohere](https://cohere.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | [DeepSeek](https://www.deepseek.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gemini` | [Gemini](https://cloud.google.com/products/gemini) [8] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gen_ai` | Any Google generative AI endpoint [9] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.vertex_ai` | [Vertex AI](https://cloud.google.com/vertex-ai) [10] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gemini` | [Gemini](https://cloud.google.com/products/gemini) [7] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai` | Any Google generative AI endpoint [8] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.vertex_ai` | [Vertex AI](https://cloud.google.com/vertex-ai) [9] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `groq` | [Groq](https://groq.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.watsonx.ai` | [IBM Watsonx AI](https://www.ibm.com/products/watsonx-ai) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mistral_ai` | [Mistral AI](https://mistral.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -159,11 +155,11 @@ Since this attribute could be large, it's NOT RECOMMENDED to populate it by defa
 | `perplexity` | [Perplexity](https://www.perplexity.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `x_ai` | [xAI](https://x.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[8]:** Used when accessing the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API.
+**[7]:** Used when accessing the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API.
 
-**[9]:** May be used when specific backend is unknown.
+**[8]:** May be used when specific backend is unknown.
 
-**[10]:** Used when accessing the 'aiplatform.googleapis.com' endpoint.
+**[9]:** Used when accessing the 'aiplatform.googleapis.com' endpoint.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -197,56 +193,96 @@ Semantic conventions for individual GenAI systems and frameworks MAY specify dif
 | [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`gen_ai.agent.child_agents`](/docs/registry/attributes/gen-ai.md) | any | Information about child agents utilized during the agent invocation. [4] | `[
-  {
-    "agent_id": "agent_id_1",
-    "name": "WeatherAgent",
-    "role": "specialist"
-  },
-  {
-    "agent_id": "agent_id_2",
-    "name": "CalendarAgent",
-    "role": "coordinator"
-  }
-]` | `Conditionally Required` if applicable | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.agent.description`](/docs/registry/attributes/gen-ai.md) | string | Free-form description of the GenAI agent provided by the application. | `Helps with math problems`; `Generates fiction stories` | `Conditionally Required` when available | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.agent.id`](/docs/registry/attributes/gen-ai.md) | string | The unique identifier of the GenAI agent. | `asst_5j66UpCpwteGg4YSxUnt7lPY` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.agent.name`](/docs/registry/attributes/gen-ai.md) | string | Human-readable name of the GenAI agent provided by the application. | `Math Tutor`; `Fiction Writer` | `Conditionally Required` when available | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.conversation.id`](/docs/registry/attributes/gen-ai.md) | string | The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation. [5] | `conv_5j66UpCpwteGg4YSxUnt7lPY` | `Conditionally Required` when available | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.data_source.id`](/docs/registry/attributes/gen-ai.md) | string | The data source identifier. [6] | `H7STPQYOND` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.conversation.id`](/docs/registry/attributes/gen-ai.md) | string | The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation. [4] | `conv_5j66UpCpwteGg4YSxUnt7lPY` | `Conditionally Required` when available | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.data_source.id`](/docs/registry/attributes/gen-ai.md) | string | The data source identifier. [5] | `H7STPQYOND` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.orchestrator.agent_definitions`](/docs/registry/attributes/gen-ai.md) | any | Definitions of agents available to the orchestrator for multi-agent workflows. [6] | `[
+  {
+    "agent_id": "agent_weather_001",
+    "name": "WeatherAgent",
+    "role": "specialist",
+  },
+  {
+    "agent_id": "agent_calendar_002",
+    "name": "CalendarAgent",
+    "role": "coordinator",
+  }
+]` | `Conditionally Required` if applicable | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.output.type`](/docs/registry/attributes/gen-ai.md) | string | Represents the content type requested by the client. [7] | `text`; `json`; `image` | `Conditionally Required` [8] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.choice.count`](/docs/registry/attributes/gen-ai.md) | int | The target number of candidate completions to return. | `3` | `Conditionally Required` if available, in the request, and !=1 | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | string | The name of the GenAI model a request is being made to. [9] | `gpt-4` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.seed`](/docs/registry/attributes/gen-ai.md) | int | Requests with same seed value more likely to return same result. | `100` | `Conditionally Required` if applicable and if the request includes a seed | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.tool.definitions`](/docs/registry/attributes/gen-ai.md) | any | The list of tool definitions available to the GenAI agent or model. [10] | `[{"type":"function","name":"get_current_weather","description":"Get the current weather in a given location","parameters":{"type":"object","properties":{"location":{"type":"string","description":"The city and state, e.g. San Francisco, CA"},"unit":{"type":"string","enum":["celsius","fahrenheit"]}},"required":["location","unit"]}}]` | `Conditionally Required` opt_in | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | GenAI server port. [11] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`gen_ai.agent.invocation_input`](/docs/registry/attributes/gen-ai.md) | any | The input messages provided to the agent invocation. [12] | `[
+| [`gen_ai.tool.definitions`](/docs/registry/attributes/gen-ai.md) | any | The list of tool definitions available to the GenAI agent or model. [10] | `[
   {
-    "role": "system",
-    "body": [
+    "type": "function",
+    "name": "get_current_weather",
+    "description": "Get the current weather in a given location",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string",
+          "description": "The city and state, e.g. San Francisco, CA"
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "celsius",
+            "fahrenheit"
+          ]
+        }
+      },
+      "required": [
+        "location",
+        "unit"
+      ]
+    }
+  }
+]` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | GenAI server port. [11] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`gen_ai.input.messages`](/docs/registry/attributes/gen-ai.md) | any | The chat history provided to the model as an input. [12] | `[
+  {
+    "role": "user",
+    "parts": [
       {
         "type": "text",
-        "content": "You are a travel planner. Create detailed travel itineraries."
+        "content": "Weather in Paris?"
       }
     ]
   },
   {
-    "role": "user", 
-    "body": [
+    "role": "assistant",
+    "parts": [
       {
-        "type": "text",
-        "content": "Plan a trip to Bali for 5 days for a family of 4."
+        "type": "tool_call",
+        "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
+        "name": "get_weather",
+        "arguments": {
+          "location": "Paris"
+        }
+      }
+    ]
+  },
+  {
+    "role": "tool",
+    "parts": [
+      {
+        "type": "tool_call_response",
+        "id": " call_VSPygqKTWdrhaFErNvMV18Yl",
+        "result": "rainy, 57°F"
       }
     ]
   }
 ]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.agent.invocation_output`](/docs/registry/attributes/gen-ai.md) | any | The output messages generated by the agent invocation. [13] | `[
+| [`gen_ai.output.messages`](/docs/registry/attributes/gen-ai.md) | any | Messages returned by the model where each message represents a specific model response (choice, candidate). [13] | `[
   {
     "role": "assistant",
-    "body": [
+    "parts": [
       {
         "type": "text",
-        "content": "Step 1: Budget Allocation The family has a total budget of $5000 for the trip to Bali for 5 days."
+        "content": "The weather in Paris is currently rainy with a temperature of 57°F."
       }
     ],
     "finish_reason": "stop"
@@ -290,11 +326,7 @@ applicable `aws.bedrock.*` attributes and are not expected to include
 the canonical name of exception that occurred, or another low-cardinality error identifier.
 Instrumentations SHOULD document the list of errors they report.
 
-**[4] `gen_ai.agent.child_agents`:** Information about child agents utilized during execution.
-This attribute should be populated when the agent orchestrates or delegates
-to other specialized agents as part of its workflow.
-
-**[5] `gen_ai.conversation.id`:** Instrumentations SHOULD populate conversation id when they have it readily available
+**[4] `gen_ai.conversation.id`:** Instrumentations SHOULD populate conversation id when they have it readily available
 for a given operation, for example:
 
 -  when client framework being instrumented manages conversation history
@@ -308,7 +340,11 @@ Application developers that manage conversation history MAY add conversation id 
 spans or logs using custom span or log record processors or hooks provided by instrumentation
 libraries.
 
-**[6] `gen_ai.data_source.id`:** Data sources are used by AI agents and RAG applications to store grounding data. A data source may be an external database, object store, document collection, website, or any other storage system used by the GenAI agent or application. The `gen_ai.data_source.id` SHOULD match the identifier used by the GenAI system rather than a name specific to the external storage, such as a database or object store. Semantic conventions referencing `gen_ai.data_source.id` MAY also leverage additional attributes, such as `db.*`, to further identify and describe the data source.
+**[5] `gen_ai.data_source.id`:** Data sources are used by AI agents and RAG applications to store grounding data. A data source may be an external database, object store, document collection, website, or any other storage system used by the GenAI agent or application. The `gen_ai.data_source.id` SHOULD match the identifier used by the GenAI system rather than a name specific to the external storage, such as a database or object store. Semantic conventions referencing `gen_ai.data_source.id` MAY also leverage additional attributes, such as `db.*`, to further identify and describe the data source.
+
+**[6] `gen_ai.orchestrator.agent_definitions`:** Information about child agents utilized during execution.
+This attribute should be populated when the agent orchestrates or delegates
+to other specialized agents as part of its workflow.
 
 **[7] `gen_ai.output.type`:** This attribute SHOULD be used when the client requests output of a specific type. The model may return zero or more outputs of this type.
 This attribute specifies the output modality and not the actual output format. For example, if an image is requested, the actual output could be a URL pointing to an image file.
@@ -323,11 +359,11 @@ Since this attribute could be large, it's NOT RECOMMENDED to populate it by defa
 
 **[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[12] `gen_ai.agent.invocation_input`:** Contains the structured input messages provided to the agent.
+**[12] `gen_ai.input.messages`:** Contains the structured input messages provided to the agent.
 This attribute enables tracking of conversation context and input prompts.
 Due to potential size and sensitive content, population should be opt-in.
 
-**[13] `gen_ai.agent.invocation_output`:** Contains the structured output messages generated by the agent.
+**[13] `gen_ai.output.messages`:** Contains the structured output messages generated by the agent.
 This attribute enables tracking of agent responses and completion status.
 Due to potential size and sensitive content, population should be opt-in.
 

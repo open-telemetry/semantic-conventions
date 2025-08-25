@@ -1,0 +1,7 @@
+change_type: enhancement
+component: gen-ai
+note: | 
+  Add new attributes to 'invoke_agent' and 'execute_tool' span to capture input and output definition for Multi-Agentic systems.
+  for 'invoke_agent' span - 'gen_ai.input.messages', 'gen_ai.output.messages', 'gen_ai.tool.definitions', 'gen_ai.orchestrator.agent_definitions'
+  for 'execute_tool' span - 'gen_ai.tool.call.arguments' and 'gen_ai.tool.call.result'
+issues: [2444, 591]
