@@ -309,8 +309,6 @@ groups:
       - ref: gen_ai.tool.type
         requirement_level:
           recommended: if available
-
-      # New attributes added to execute_tool span
       - ref: gen_ai.tool.call.arguments
         requirement_level:
           conditionally_required: if available
