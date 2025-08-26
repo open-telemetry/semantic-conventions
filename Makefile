@@ -338,8 +338,8 @@ generate-schema-next:
 
 .PHONY: sig-table-generation
 sig-table-generation:
-	docker run --rm -v ${PWD}:/repo -w /repo python:3-alpine python ./internal/tools/scripts/update-sig-tables.py --install;
+	docker run --rm -v ${PWD}:/repo -w /repo python:3-alpine python internal/tools/scripts/update-sig-table.py --install;
 
 .PHONY: sig-table-check
 sig-table-check:
-	docker run --rm -v ${PWD}:/repo -w /repo python:3-alpine python ./internal/tools/scripts/update-sig-tables.py --install --check;
+	docker run --rm -v ${PWD}:/repo -w /repo python:3-alpine python internal/tools/scripts/update-sig-table.py --install --check;
