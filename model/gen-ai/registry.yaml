@@ -302,7 +302,7 @@ groups:
               "outputs": [
                 {
                   "type": "logs",
-                  "logs": "Analysis complete. Generated 3 visualizations and summary report."
+                  "logs": "Analysis complete. Generated visualization and summary report."
                 },
                 {
                   "type": "image",
