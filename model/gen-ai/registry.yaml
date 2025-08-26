@@ -227,6 +227,11 @@ groups:
         type: string
         brief: Free-form description of the GenAI agent provided by the application.
         examples: ["Helps with math problems", "Generates fiction stories"]
+      - id: gen_ai.agent.role
+        stability: development
+        type: string
+        brief: The role of the GenAI agent within the application. Different roles may have different capabilities and responsibilities. It is different from the agent's name and description because it indicates the purpose of the agent.
+        examples: ["Assistant", "Researcher"]
       - id: gen_ai.tool.name
         stability: development
         type: string
