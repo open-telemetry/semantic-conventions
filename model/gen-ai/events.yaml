@@ -29,16 +29,6 @@ groups:
           conditionally_required: if applicable
       - ref: gen_ai.evaluation.explanation
         requirement_level: recommended
-      - ref: gen_ai.usage.input_tokens
-        requirement_level:
-          recommended: if evaluation was performed by a model
-        note: >
-          The total number of input tokens used by the model during the evaluation.
-      - ref: gen_ai.usage.output_tokens
-        requirement_level:
-          recommended: if evaluation was performed by a model
-        note: >
-          The total number of output tokens used by the model during the evaluation.
       - ref: gen_ai.response.id
         requirement_level:
           recommended: when available
