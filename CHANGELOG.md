@@ -15,23 +15,20 @@
 we now have `gen_ai.system_instructions`, `gen_ai.input.messages`, and
 `gen_ai.output.messages` attributes that can appear on GenAI spans or the new
 `gen_ai.client.inference.operation.details` event.
-
-New attributes are not recorded by default when content capturing is disabled.
-
-Deprecations:
-
-- `gen_ai.system.message` event - use `gen_ai.system_instructions` or
-  `gen_ai.input.messages` attributes instead.
-- `gen_ai.user.message`, `gen_ai.assistant.message`, `gen_ai.tool.message` events
-  (use `gen_ai.input.messages` attribute instead)
-- `gen_ai.choice` event (use `gen_ai.output.messages` attribute instead)
- ([#2010](https://github.com/open-telemetry/semantic-conventions/issues/2010), [#2179](https://github.com/open-telemetry/semantic-conventions/issues/2179), [#1913](https://github.com/open-telemetry/semantic-conventions/issues/1913), [#1621](https://github.com/open-telemetry/semantic-conventions/issues/1621), [#1912](https://github.com/open-telemetry/semantic-conventions/issues/1912))
+  New attributes are not recorded by default when content capturing is disabled.
+  Deprecations:
+  - `gen_ai.system.message` event - use `gen_ai.system_instructions` or
+    `gen_ai.input.messages` attributes instead.
+  - `gen_ai.user.message`, `gen_ai.assistant.message`, `gen_ai.tool.message` events
+    (use `gen_ai.input.messages` attribute instead)
+  - `gen_ai.choice` event (use `gen_ai.output.messages` attribute instead)
+  ([#2010](https://github.com/open-telemetry/semantic-conventions/issues/2010), [#2179](https://github.com/open-telemetry/semantic-conventions/issues/2179), [#1913](https://github.com/open-telemetry/semantic-conventions/issues/1913), [#1621](https://github.com/open-telemetry/semantic-conventions/issues/1621), [#1912](https://github.com/open-telemetry/semantic-conventions/issues/1912))
 - `container`: The container runtime can now also have the version and description provided ([#2342](https://github.com/open-telemetry/semantic-conventions/issues/2342))
 - `gen-ai`: Follow system-specific naming policy in GenAI semantic conventions.
-- Rename `gen_ai.system` to `gen_ai.provider.name`
-- Remove `gen_ai` prefix from `gen_ai.openai.*` attributes.
-- Rename `az.ai.*` attribute names to `azure.ai.*`.
- ([#2046](https://github.com/open-telemetry/semantic-conventions/issues/2046))
+  - Rename `gen_ai.system` to `gen_ai.provider.name`
+  - Remove `gen_ai` prefix from `gen_ai.openai.*` attributes.
+  - Rename `az.ai.*` attribute names to `azure.ai.*`.
+  ([#2046](https://github.com/open-telemetry/semantic-conventions/issues/2046))
 - `system`: Rename system.network.dropped to system.network.packet.dropped and system.network.packets to system.network.packet.count ([#1700](https://github.com/open-telemetry/semantic-conventions/issues/1700))
 
 ### 💡 Enhancements 💡
