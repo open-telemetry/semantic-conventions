@@ -223,7 +223,7 @@ section for more details.
 
 The event name MUST be `gen_ai.evaluation.result`.
 
-This event captures the result of evaluating GenAI output for quality, accuracy,or other characteristics and SHOULD be parented to GenAI operation span being evaluated when possible.
+This event captures the result of evaluating GenAI output for quality, accuracy,or other characteristics. This event SHOULD be parented to GenAI operation span being evaluated when possible  or set `gen_ai.response.id` when span id is not available.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -240,9 +240,9 @@ Instrumentations SHOULD document the list of errors they report.
 
 **[2] `gen_ai.evaluation.score.label`:** This attribute provides a human-readable interpretation of the evaluation score produced by an evaluator. For example, a score value of 1 could mean "relevant" in one evaluation system and "not relevant" in another, depending on the scoring range and evaluator. The label SHOULD have low cardinality. Possible values depend on the evaluation metric and evaluator used; implementations SHOULD document the possible values.
 
-**[3] `gen_ai.response.id`:** The `gen_ai.response.id` is the unique identifier assigned to the specific
+**[3] `gen_ai.response.id`:** The unique identifier assigned to the specific
 completion being evaluated. This attribute helps correlate the evaluation
-event with the corresponding operation when span id is not available.
+event with the corresponding operation when span id is not.
 
 ---
 
