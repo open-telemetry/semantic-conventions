@@ -89,6 +89,12 @@ groups:
           spans or logs using custom span or log record processors or hooks provided by instrumentation
           libraries.
 
+      - ref: gen_ai.system_instructions
+        requirement_level: opt_in
+      - ref: gen_ai.input.messages
+        requirement_level: opt_in
+      - ref: gen_ai.output.messages
+        requirement_level: opt_in
 
   - id: span.gen_ai.inference.client
     type: span
@@ -232,6 +238,9 @@ groups:
       - ref: gen_ai.agent.description
         requirement_level:
           conditionally_required: If provided by the application.
+      - ref: gen_ai.system_instructions
+        requirement_level: opt_in
+        note: ""  # note is not needed here
 
 
   - id: span.gen_ai.invoke_agent.client
@@ -262,6 +271,12 @@ groups:
       - ref: gen_ai.data_source.id
         requirement_level:
           conditionally_required: if applicable.
+      - ref: gen_ai.system_instructions
+        requirement_level: opt_in
+      - ref: gen_ai.input.messages
+        requirement_level: opt_in
+      - ref: gen_ai.output.messages
+        requirement_level: opt_in
 
       # New attributes added to invoke_agent span
       - ref: gen_ai.tool.definitions
@@ -304,12 +319,17 @@ groups:
       for the application developers to follow this semantic convention for tools invoked
       by the application code.
     attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
       - ref: gen_ai.tool.name
         requirement_level: recommended
       - ref: gen_ai.tool.call.id
         requirement_level:
           recommended: if available
       - ref: gen_ai.tool.description
+        requirement_level:
+          recommended: if available
+      - ref: gen_ai.tool.type
         requirement_level:
           recommended: if available
       - ref: gen_ai.tool.type

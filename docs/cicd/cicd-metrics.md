@@ -317,7 +317,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `vcs.change.count` | UpDownCounter | `{change}` | The number of changes (pull requests/merge requests/changelists) in a repository, categorized by their state (e.g. open or merged) | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo) |
+| `vcs.change.count` | UpDownCounter | `{change}` | The number of changes (pull requests/merge requests/changelists) in a repository, categorized by their state (e.g. open or merged). | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -786,7 +786,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `vcs.ref.revisions_delta` | Gauge | `{revision}` | The number of revisions (commits) a ref (branch) is ahead/behind the branch from the `vcs.ref.base.name` attribute [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo) |
+| `vcs.ref.revisions_delta` | Gauge | `{revision}` | The number of revisions (commits) a ref (branch) is ahead/behind the branch from the `vcs.ref.base.name` attribute. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo) |
 
 **[1]:** This metric should be reported for each `vcs.revision_delta.direction` value. For example if branch `a` is 3 commits behind and 2 commits ahead of `trunk`,
 instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers) and `vcs.ref.base.name` is set to `trunk`.
@@ -881,7 +881,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `vcs.ref.time` | Gauge | `s` | Time a ref (branch) created from the default branch (trunk) has existed. The `ref.type` attribute will always be `branch` | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo) |
+| `vcs.ref.time` | Gauge | `s` | Time a ref (branch) created from the default branch (trunk) has existed. The `ref.type` attribute will always be `branch`. | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -943,7 +943,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `vcs.contributor.count` | Gauge | `{contributor}` | The number of unique contributors to a repository | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo) |
+| `vcs.contributor.count` | Gauge | `{contributor}` | The number of unique contributors to a repository. | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
