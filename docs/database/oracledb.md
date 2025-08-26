@@ -149,7 +149,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ### V$SESSION.ACTION
 
-Instrumentations MAY propagate context using [V$SESSION.ACTION](https://docs.oracle.com/en/database/oracle/oracle-database/23/refrn/V-SESSION.html) by injecting fixed-length part of span context (trace-id, span-id, trace-flags, protocol version) before executing a query. For example, when using W3C Trace Context, only a string representation of [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) SHOULD be injected. Context injection SHOULD NOT be enabled by default, but instrumentation MAY allow users to opt into it.
+Instrumentations MAY propagate context with a fixed-length, 64 byte value using [V$SESSION.ACTION](https://docs.oracle.com/en/database/oracle/oracle-database/23/refrn/V-SESSION.html) by injecting part of span context (trace-id, span-id, trace-flags, protocol version) before executing a query. For example, when using W3C Trace Context, only a string representation of [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) SHOULD be injected. Context injection SHOULD NOT be enabled by default, but instrumentation MAY allow users to opt into it.
 
 Variable context parts (`tracestate`, `baggage`) SHOULD NOT be injected since `V$SESSION.ACTION` value length is limited to 64 bytes.
 
