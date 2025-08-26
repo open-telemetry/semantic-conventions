@@ -9,7 +9,10 @@ ASP.NET Core attributes
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="aspnetcore-authentication-scheme" href="#aspnetcore-authentication-scheme">`aspnetcore.authentication_scheme`</a> | string | The authentication scheme to sign in with. | `Identity.Application` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-authentication-result" href="#aspnetcore-authentication-result">`aspnetcore.authentication.result`</a> | string | The result of the authentication operation. | `success`; `failure` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-authentication-scheme" href="#aspnetcore-authentication-scheme">`aspnetcore.authentication.scheme`</a> | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-authorization-policy" href="#aspnetcore-authorization-policy">`aspnetcore.authorization.policy`</a> | string | The name of the authorization policy. | `RequireAdminRole` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-authorization-result" href="#aspnetcore-authorization-result">`aspnetcore.authorization.result`</a> | string | The result of calling the authorization service. | `success`; `failure` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aspnetcore-diagnostics-exception-result" href="#aspnetcore-diagnostics-exception-result">`aspnetcore.diagnostics.exception.result`</a> | string | ASP.NET Core exception middleware handling result. | `handled`; `unhandled` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="aspnetcore-diagnostics-handler-type" href="#aspnetcore-diagnostics-handler-type">`aspnetcore.diagnostics.handler.type`</a> | string | Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="aspnetcore-identity-error-code" href="#aspnetcore-identity-error-code">`aspnetcore.identity.error_code`</a> | string | The error code for a failed identity operation. | `DefaultError`; `PasswordMismatch` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -21,12 +24,33 @@ ASP.NET Core attributes
 | <a id="aspnetcore-identity-token-verified" href="#aspnetcore-identity-token-verified">`aspnetcore.identity.token_verified`</a> | string | The result of token verification. | `success`; `failure` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aspnetcore-identity-user-update-type" href="#aspnetcore-identity-user-update-type">`aspnetcore.identity.user.update_type`</a> | string | The user update type. | `update`; `user_name`; `reset_password` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aspnetcore-identity-user-type" href="#aspnetcore-identity-user-type">`aspnetcore.identity.user_type`</a> | string | The full name of the identity user type. | `Contoso.ContosoUser` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-memory-pool-owner" href="#aspnetcore-memory-pool-owner">`aspnetcore.memory_pool.owner`</a> | string | The name of the library or subsystem using the memory pool instance. | `kestrel`; `iis` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aspnetcore-rate-limiting-policy" href="#aspnetcore-rate-limiting-policy">`aspnetcore.rate_limiting.policy`</a> | string | Rate limiting policy name. | `fixed`; `sliding`; `token` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="aspnetcore-rate-limiting-result" href="#aspnetcore-rate-limiting-result">`aspnetcore.rate_limiting.result`</a> | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="aspnetcore-request-is-unhandled" href="#aspnetcore-request-is-unhandled">`aspnetcore.request.is_unhandled`</a> | boolean | Flag indicating if request was handled by the application pipeline. | `true` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="aspnetcore-routing-is-fallback" href="#aspnetcore-routing-is-fallback">`aspnetcore.routing.is_fallback`</a> | boolean | A value that indicates whether the matched route is a fallback route. | `true` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="aspnetcore-routing-match-status" href="#aspnetcore-routing-match-status">`aspnetcore.routing.match_status`</a> | string | Match result - success or failure | `success`; `failure` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="aspnetcore-sign-in-is-persistent" href="#aspnetcore-sign-in-is-persistent">`aspnetcore.sign_in.is_persistent`</a> | boolean | A flag indicating whether the sign in is persistent. |  | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aspnetcore-user-is-authenticated" href="#aspnetcore-user-is-authenticated">`aspnetcore.user.is_authenticated`</a> | boolean | A value that indicates whether the user is authenticated. | `true` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
+
+`aspnetcore.authentication.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `failure` | Authentication failed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `none` | No authentication information returned. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `success` | Authentication was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`aspnetcore.authorization.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `failure` | Authorization failed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `success` | Authorization was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

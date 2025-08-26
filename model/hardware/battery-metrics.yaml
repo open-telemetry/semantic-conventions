@@ -1,0 +1,72 @@
+groups:
+  # BATTERY METRICS
+  - id: metric_attributes.hw.battery
+    type: attribute_group
+    brief: >
+      Common attributes for battery metrics
+    extends: hardware.attributes.common
+    attributes:
+      - ref: hw.battery.chemistry
+        requirement_level: recommended
+      - ref: hw.battery.capacity
+        requirement_level: recommended
+      - ref: hw.model
+        requirement_level: recommended
+      - ref: hw.vendor
+        requirement_level: recommended
+
+  - id: metric.hw.battery.charge
+    type: metric
+    metric_name: hw.battery.charge
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Remaining fraction of battery charge."
+    instrument: gauge
+    unit: "1"
+    extends: metric_attributes.hw.battery
+
+    # TODO: decide on metric name - charge.limit is original
+  - id: metric.hw.battery.charge.limit
+    type: metric
+    metric_name: hw.battery.charge.limit
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Lower limit of battery charge fraction to ensure proper operation."
+    instrument: gauge
+    unit: "1"
+    extends: metric_attributes.hw.battery
+    attributes:
+      - ref: hw.limit_type
+        examples: ["critical", "throttled", "degraded"]
+        requirement_level: recommended
+        brief: >
+          Represents battery charge level thresholds relevant to device operation and health.
+          Each `limit_type` denotes a specific charge limit such as the minimum or maximum
+          optimal charge, the shutdown threshold, or energy-saving thresholds. These values
+          are typically provided by the hardware or firmware to guide safe and efficient battery
+          usage.
+
+  - id: metric.hw.battery.time_left
+    type: metric
+    metric_name: hw.battery.time_left
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Time left before battery is completely charged or discharged."
+    instrument: gauge
+    unit: "s"
+    extends: metric_attributes.hw.battery
+    attributes:
+      - ref: hw.state
+        requirement_level: required
+      - ref: hw.battery.state
+        requirement_level:
+          conditionally_required: If the battery is charging or discharging
+        note: >
+          The `hw.state` attribute should indicate the current state of the battery.
+          It should be one of the predefined states such as "charging" or "discharging".

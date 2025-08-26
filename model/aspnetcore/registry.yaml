@@ -83,11 +83,63 @@ groups:
         stability: stable
         brief: ASP.NET Core exception middleware handling result.
         examples: ["handled", "unhandled"]
+      - id: aspnetcore.memory_pool.owner
+        type: string
+        stability: development
+        brief: The name of the library or subsystem using the memory pool instance.
+        examples: ["kestrel", "iis"]
       - id: aspnetcore.identity.user_type
         type: string
         brief: The full name of the identity user type.
         stability: development
         examples: ["Contoso.ContosoUser"]
+      - id: aspnetcore.authentication.result
+        type:
+          members:
+            - id: success
+              value: 'success'
+              brief: "Authentication was successful."
+              stability: development
+            - id: failure
+              value: 'failure'
+              brief: "Authentication failed."
+              stability: development
+            - id: none
+              value: 'none'
+              brief: "No authentication information returned."
+              stability: development
+        stability: development
+        brief: The result of the authentication operation.
+        examples: ["success", "failure"]
+      - id: aspnetcore.authentication.scheme
+        type: string
+        stability: development
+        brief: The identifier that names a particular authentication handler.
+        examples: ["Cookies", "Bearer", "Identity.Application"]
+      - id: aspnetcore.user.is_authenticated
+        type: boolean
+        stability: stable
+        brief: A value that indicates whether the user is authenticated.
+        examples: [true]
+      - id: aspnetcore.authorization.policy
+        type: string
+        stability: development
+        brief: The name of the authorization policy.
+        examples: ["RequireAdminRole"]
+      - id: aspnetcore.authorization.result
+        type:
+          members:
+            - id: success
+              value: 'success'
+              brief: "Authorization was successful."
+              stability: development
+            - id: failure
+              value: 'failure'
+              brief: "Authorization failed."
+              stability: development
+        stability: development
+        brief: The result of calling the authorization service.
+        examples: ["success", "failure"]
       - id: aspnetcore.identity.result
         type:
           members:
@@ -315,11 +367,6 @@ groups:
         stability: development
         brief: The result of token verification.
         examples: ["success", "failure"]
-      - id: aspnetcore.authentication_scheme
-        type: string
-        stability: development
-        brief: The authentication scheme to sign in with.
-        examples: ["Identity.Application"]
       - id: aspnetcore.identity.sign_in.type
         type:
           members:

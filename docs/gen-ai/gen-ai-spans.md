@@ -295,6 +295,7 @@ The `gen_ai.operation.name` SHOULD be `embeddings`.
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | string | The name of the GenAI model a request is being made to. [3] | `gpt-4` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.port`](/docs/registry/attributes/server.md) | int | GenAI server port. [4] | `80`; `8080`; `443` | `Conditionally Required` If `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`gen_ai.embeddings.dimension.count`](/docs/registry/attributes/gen-ai.md) | int | The number of dimensions the resulting output embeddings should have. | `512`; `1024` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.request.encoding_formats`](/docs/registry/attributes/gen-ai.md) | string[] | The encoding formats requested in an embeddings operation, if specified. [5] | `["base64"]`; `["float", "binary"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.usage.input_tokens`](/docs/registry/attributes/gen-ai.md) | int | The number of tokens used in the GenAI input (prompt). | `100` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/registry/attributes/server.md) | string | GenAI server address. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -434,7 +435,7 @@ application needs and maturity:
 1. [Default] Don't record instructions, inputs, or outputs.
 
 2. Record instructions, inputs, and outputs on the GenAI spans using corresponding
-   attributes (`gen_ai.system.instructions`, `gen_ai.input.messages`,
+   attributes (`gen_ai.system_instructions`, `gen_ai.input.messages`,
    `gen_ai.output.messages`).
 
    This approach is best suited for situations where telemetry volume is manageable
@@ -455,7 +456,7 @@ application needs and maturity:
 
 #### Recording content on attributes
 
-The content captured in `gen_ai.system.instructions`, `gen_ai.input.messages`,
+The content captured in `gen_ai.system_instructions`, `gen_ai.input.messages`,
 and `gen_ai.output.messages` attributes is likely to be large.
 
 It may contain media, and even in the text form, it may be larger than
@@ -484,7 +485,7 @@ such as individual message contents, preserving JSON structure.
 Instrumentations MAY support user-defined in-process hooks to handle content upload.
 
 The hook SHOULD operate independently of the opt-in flags that control capturing of
-`gen_ai.system.instructions`, `gen_ai.input.messages`, and `gen_ai.output.messages`.
+`gen_ai.system_instructions`, `gen_ai.input.messages`, and `gen_ai.output.messages`.
 
 If such a hook is supported and configured, instrumentations SHOULD invoke it regardless
 of the span sampling decision with:
@@ -497,7 +498,7 @@ of the span sampling decision with:
 The hook implementation SHOULD be able to enrich and modify provided span, instructions,
 and message objects.
 
-If instrumentation is configured to also record `gen_ai.system.instructions`,
+If instrumentation is configured to also record `gen_ai.system_instructions`,
 `gen_ai.input.messages`, and `gen_ai.output.messages` attributes, it SHOULD do it
 after calling the hook and SHOULD record values that were potentially modified within
 the hook implementation.
@@ -511,7 +512,7 @@ implementation including
 
 Application or OpenTelemetry distributions MAY also implement content uploading
 in the telemetry processing pipeline (in-process or via a collector), based on the
-`gen_ai.system.instructions`, `gen_ai.input.messages`, and `gen_ai.output.messages`
+`gen_ai.system_instructions`, `gen_ai.input.messages`, and `gen_ai.output.messages`
 attributes. Given the potential data volume, it is RECOMMENDED to tune batching
 and export settings accordingly in the OpenTelemetry SDK pipeline.
 
