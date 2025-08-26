@@ -235,6 +235,9 @@ then `<key>` SHOULD be the 0-based index.
 `db.query.parameter.<key>` SHOULD match
 up with the parameterized placeholders present in `db.query.text`.
 
+`db.query.parameter.<key>` SHOULD match the name of the parameterized
+placeholders verbatim, such as matching the exact casing of names.
+
 `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
 
 Examples:
@@ -242,8 +245,8 @@ Examples:
 - For a query `SELECT * FROM users where username =  %s` with the parameter `"jdoe"`,
   the attribute `db.query.parameter.0` SHOULD be set to `"jdoe"`.
 
-- For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
-  `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
+- For a query `"SELECT * FROM users WHERE username = %(userName)s;` with parameter
+  `userName = "jdoe"`, the attribute `db.query.parameter.userName` SHOULD be set to `"jdoe"`.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
