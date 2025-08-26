@@ -370,61 +370,12 @@ by the application code.
 |---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the operation ended in an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`gen_ai.tool.call.arguments`](/docs/registry/attributes/gen-ai.md) | any | Parameters passed to the tool call. [2] | `- for function_call : {"location": "San Francisco?", "date": "2025-10-01"}
-- for file_search : {"queries": ["semantic conventions for HTTP attributes", "Find all files containing OpenTelemetry database semantic conventions"]}
-- for code_interpreter:
-   - |
-      {
-          "type": "code",
-          "content": "import pandas as pd\ndf = pd.read_csv('/tmp/data.csv')\nprint(df.describe())",
-          "file_ids": [ "file-abc123","file-xyz789"]
-      },
-      {
-        "type": "file",
-        "content": "Analyze this CSV file and create a summary report with visualizations",
-        "file_ids": ["file-data001"]
-      }` | `Conditionally Required` if available | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.tool.call.result`](/docs/registry/attributes/gen-ai.md) | any | The result returned by the tool call (if any and if execution was successful). [3] | `- for function : {"temperature_range": {"high": 75, "low": 60}, "conditions": "sunny"}
-- for file_search :  {"file_id": "file1", "filename": "file1.md", "text"  : "something important"}
-- for code_interpreter : output would contain Array of outputs from code interpreter execution.
-    Each output object in the array contains:
-    - 'type': The output type ('logs', 'image_file', 'file')
-    - Additional fields based on type:
-      - For 'logs': 'logs' field with text output
-      - For 'image_file': 'image_file' object with 'file_id' and optional 'filename'
-      - For 'file': 'file' object with 'file_id', 'filename', and 'path'
-    
-  {
-    "outputs": [
-      {
-        "type": "logs",
-        "logs": "Analysis complete. Generated 3 visualizations and summary report."
-      },
-      {
-        "type": "image",
-        "image": {
-          "file_id": "file-img001",
-          "filename": "correlation_matrix.png",
-          "mime_type": "image/png"
-        }
-      },
-      {
-        "type": "file",
-        "file": {
-          "file_id": "file-data001",
-          "filename": "analysis_summary.pdf",
-          "path": "sandbox:/mnt/data/analysis_summary.pdf",
-          "mime_type": "application/pdf"
-        }
-      }
-    ],
-    "execution_time_ms": 3427
-  }` | `Conditionally Required` if available | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.tool.call.arguments`](/docs/registry/attributes/gen-ai.md) | any | Parameters passed to the tool call. [3] | `For function_call: {"location": "San Francisco?", "date": "2025-10-01"}`; `For file_search: {"queries": ["semantic conventions for HTTP attributes", "Find all files containing OpenTelemetry database semantic conventions"]}`; For code_interpreter with code:<br>{<br>&nbsp;&nbsp;"type": "code",<br>&nbsp;&nbsp;"content": "import pandas as pd\ndf = pd.read_csv('/tmp/data.csv')\nprint(df.describe())",<br>&nbsp;&nbsp;"file_ids": ["file-abc123", "file-xyz789"]<br>}; For code_interpreter with file instruction:<br>{<br>&nbsp;&nbsp;"type": "file",<br>&nbsp;&nbsp;"content": "Analyze this CSV file and create a summary report with visualizations",<br>&nbsp;&nbsp;"file_ids": ["file-data001"]<br>} | `Conditionally Required` if available | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.tool.call.result`](/docs/registry/attributes/gen-ai.md) | any | The result returned by the tool call (if any and if execution was successful). [4] | `For function: {"temperature_range": {"high": 75, "low": 60}, "conditions": "sunny"}`; `For file_search: {"file_id": "file1", "filename": "file1.md", "text": "something important"}`; For code_interpreter with multiple outputs:<br>{<br>&nbsp;&nbsp;"outputs": [<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "logs",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"logs": "Analysis complete. Generated 3 visualizations and summary report."<br>&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "image",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"image": {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file_id": "file-img001",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"filename": "correlation_matrix.png",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"mime_type": "image/png"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "file",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file": {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file_id": "file-data001",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"filename": "analysis_summary.pdf",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "sandbox:/mnt/data/analysis_summary.pdf",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"mime_type": "application/pdf"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;],<br>&nbsp;&nbsp;"execution_time_ms": 3427<br>} | `Conditionally Required` if available | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.tool.call.id`](/docs/registry/attributes/gen-ai.md) | string | The tool call identifier. | `call_mszuSIzqtI65i1wAUOE8w5H4` | `Recommended` if available | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.tool.description`](/docs/registry/attributes/gen-ai.md) | string | The tool description. | `Multiply two numbers` | `Recommended` if available | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.tool.name`](/docs/registry/attributes/gen-ai.md) | string | Name of the tool utilized by the agent. | `Flights` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.tool.type`](/docs/registry/attributes/gen-ai.md) | string | Type of the tool utilized by the agent [3] | `function`; `extension`; `datastore` | `Recommended` if available | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.tool.type`](/docs/registry/attributes/gen-ai.md) | string | Type of the tool utilized by the agent [5] | `function`; `extension`; `datastore` | `Recommended` if available | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
@@ -432,19 +383,13 @@ by the application code.
 the canonical name of exception that occurred, or another low-cardinality error identifier.
 Instrumentations SHOULD document the list of errors they report.
 
-**[3] `gen_ai.tool.type`:** Extension: A tool executed on the agent-side to directly call external APIs, bridging the gap between the agent and real-world systems.
-  Agent-side operations involve actions that are performed by the agent on the server or within the agent's controlled environment.
-Function: A tool executed on the client-side, where the agent generates parameters for a predefined function, and the client executes the logic.
-  Client-side operations are actions taken on the user's end or within the client application.
-Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
-
-**[2] `gen_ai.tool.call.arguments`:** > [!WARNING] > This attribute may contain sensitive information.
+**[3] `gen_ai.tool.call.arguments`:** > [!WARNING] > This attribute may contain sensitive information.
 It's expected to be an object - in case a serialized string is available to the instrumentation, the instrumentation SHOULD do the best effort to deserialize it to an object.
 
-**[3] `gen_ai.tool.call.result`:** > [!WARNING]
+**[4] `gen_ai.tool.call.result`:** > [!WARNING]
 > This attribute may contain sensitive information.
 
-**[4] `gen_ai.tool.type`:** Extension: A tool executed on the agent-side to directly call external APIs, bridging the gap between the agent and real-world systems.
+**[5] `gen_ai.tool.type`:** Extension: A tool executed on the agent-side to directly call external APIs, bridging the gap between the agent and real-world systems.
   Agent-side operations involve actions that are performed by the agent on the server or within the agent's controlled environment.
 Function: A tool executed on the client-side, where the agent generates parameters for a predefined function, and the client executes the logic.
   Client-side operations are actions taken on the user's end or within the client application.
