@@ -16,8 +16,8 @@ groups:
     type: event
     stability: development
     brief: >
-      This event captures the result of evaluating GenAI output for quality, accuracy,or other characteristics.
-      This event SHOULD be parented to GenAI operation span being evaluated when possible 
+      This event captures the result of evaluating GenAI output for quality, accuracy, or other characteristics.
+      This event SHOULD be parented to GenAI operation span being evaluated when possible
       or set `gen_ai.response.id` when span id is not available.
     attributes:
       - ref: gen_ai.evaluation.name
@@ -36,7 +36,7 @@ groups:
         note: |
           The unique identifier assigned to the specific
           completion being evaluated. This attribute helps correlate the evaluation
-          event with the corresponding operation when span id is not.
+          event with the corresponding operation when span id is not available.
       - ref: error.type
         requirement_level:
           conditionally_required: "if the operation ended in an error"
