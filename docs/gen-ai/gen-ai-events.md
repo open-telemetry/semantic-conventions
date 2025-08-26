@@ -232,13 +232,17 @@ This event captures the result of evaluating GenAI output for quality, accuracy,
 | [`gen_ai.evaluation.score.label`](/docs/registry/attributes/gen-ai.md) | string | Human readable label for evaluation. [2] | `relevant`; `not_relevant`; `correct`; `incorrect`; `pass`; `fail` | `Conditionally Required` if applicable | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.evaluation.score.value`](/docs/registry/attributes/gen-ai.md) | double | The evaluation score returned by the evaluator. | `4.0` | `Conditionally Required` if applicable | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.evaluation.explanation`](/docs/registry/attributes/gen-ai.md) | string | A free-form explanation for the assigned score provided by the evaluator. | `The response is factually accurate but lacks sufficient detail to fully address the question.` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.response.id`](/docs/registry/attributes/gen-ai.md) | string | The unique identifier for the completion. | `chatcmpl-123` | `Recommended` when available | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.response.id`](/docs/registry/attributes/gen-ai.md) | string | The unique identifier for the completion. [3] | `chatcmpl-123` | `Recommended` when available | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD match the error code returned by the Generative AI Evaluation provider or the client library,
 the canonical name of exception that occurred, or another low-cardinality error identifier.
 Instrumentations SHOULD document the list of errors they report.
 
 **[2] `gen_ai.evaluation.score.label`:** This attribute provides a human-readable interpretation of the evaluation score produced by an evaluator. For example, a score value of 1 could mean "relevant" in one evaluation system and "not relevant" in another, depending on the scoring range and evaluator. The label SHOULD have low cardinality. Possible values depend on the evaluation metric and evaluator used; implementations SHOULD document the possible values.
+
+**[3] `gen_ai.response.id`:** The `gen_ai.response.id` is the unique identifier assigned to the specific
+completion being evaluated. This attribute helps correlate the evaluation
+event with the corresponding operation when span id is not available.
 
 ---
 

@@ -32,6 +32,10 @@ groups:
       - ref: gen_ai.response.id
         requirement_level:
           recommended: when available
+        note: |
+          The `gen_ai.response.id` is the unique identifier assigned to the specific
+          completion being evaluated. This attribute helps correlate the evaluation
+          event with the corresponding operation when span id is not available.
       - ref: error.type
         requirement_level:
           conditionally_required: "if the operation ended in an error"
