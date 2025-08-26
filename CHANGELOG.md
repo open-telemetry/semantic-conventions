@@ -7,6 +7,9 @@
 
 <!-- next version -->
 
+- Clarify behaviour for `db.query.parameter.<key>`.
+ ([#2684](https://github.com/open-telemetry/semantic-conventions/pull/2684))
+
 ## v1.37.0
 
 ### 🛑 Breaking changes 🛑
