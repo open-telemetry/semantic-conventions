@@ -85,8 +85,8 @@ groups:
         stability: development
         brief: 'Deprecated, use `db.namespace` instead.'
         deprecated:
-          reason: renamed
-          renamed_to: db.namespace
+          reason: uncategorized
+          renamed_to: Use `db.namespace` instead.
         examples: [0, 1, 15]
       - id: db.name
         type: string
@@ -126,8 +126,8 @@ groups:
         type: int
         stability: development
         deprecated:
-          reason: renamed
-          renamed_to: db.response.status_code
+          reason: uncategorized
+          renamed_to: Use `db.response.status_code` instead.
         brief: 'Deprecated, use `db.response.status_code` instead.'
         examples: [200, 201]
       - id: db.cosmosdb.operation_type

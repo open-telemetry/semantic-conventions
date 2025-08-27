@@ -1,0 +1,6 @@
+change_type: enhancement
+component: gen_ai, db, enduser, messaging
+note: >
+  Fix deprecation reasons - use uncategorized when attribute type is changing.
+  Fix missing/invalid deprecations on (deprecated) `gen_ai.system` attribute.
+issues: [2688]
