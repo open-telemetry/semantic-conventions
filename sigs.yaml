@@ -1,18 +1,134 @@
 sigs:
+  - name: "Semantic Conventions: System"
+    owner:
+      - name: "semconv-system-approvers"
+        github: semconv-system-approvers
+        type: team-user
+    project: "https://github.com/open-telemetry/community/blob/main/projects/system-semconv.md"
+    board: "https://github.com/orgs/open-telemetry/projects/55"
+    areas:
+      - area:system
+      - area:host
+      - area:process
+    labels:
+      - accepting_contributions
+      - active
+    notes: "The SIG is looking for contributions!"
+
   - name: "Semantic Conventions: K8s"
     owner:
       - name: "semconv-k8s-approvers"
         github: semconv-k8s-approvers
         type: team-user
     project: "https://github.com/open-telemetry/community/blob/main/projects/k8s-semconv.md"
-    board: "https://github.com/orgs/open-telemetry/projects/114/views/1"
+    board: "https://github.com/orgs/open-telemetry/projects/114"
     areas:
       - area:k8s
-      - area:container
     labels:
       - accepting_contributions
       - active
-    directories:
-      - /model/k8s/
-      - /model/containers/
     notes: "The SIG is looking for contributions!"
+
+  - name: "Semantic Conventions: GenAI"
+    owner:
+      - name: "semconv-genai-approvers"
+        github: semconv-genai-approvers
+        type: team-user
+    project: "https://github.com/open-telemetry/community/blob/main/projects/gen-ai.md"
+    board: "https://github.com/orgs/open-telemetry/projects/82"
+    areas:
+      - area:gen-ai
+    labels:
+      - accepting_contributions
+      - active
+    notes: "The SIG is looking for contributions!"
+
+  - name: "Semantic Conventions: CI/CD"
+    owner:
+      - name: "semconv-cicd-approvers"
+        github: semconv-cicd-approvers
+        type: team-user
+    project: "https://github.com/open-telemetry/community/blob/main/projects/ci-cd.md"
+    board: "https://github.com/orgs/open-telemetry/projects/79"
+    areas:
+      - area:cicd
+    labels:
+      - accepting_contributions
+      - active
+    notes: "The SIG is looking for contributions!"
+
+  - name: "Semantic Conventions: Security"
+    owner:
+      - name: "semconv-security-approvers"
+        github: semconv-security-approvers
+        type: team-user
+    project: "https://github.com/open-telemetry/community/blob/main/projects/security-semconv.md"
+    board: "https://github.com/orgs/open-telemetry/projects/104"
+    areas:
+      - area:security
+      - area:log
+      - area:user
+    labels:
+      - accepting_contributions
+      - active
+    notes: "The SIG is looking for contributions!"
+
+  - name: "Semantic Conventions: Browser Instrumentation"
+    owner:
+      - name: "semconv-browser-approvers"
+        github: semconv-browser-approvers
+        type: team-user
+    project: "https://github.com/open-telemetry/community/blob/main/projects/browser-phase-1.md"
+    board: "https://github.com/orgs/open-telemetry/projects/146"
+    areas:
+      - area:browser
+      - area:enduser
+      - area:user
+      - area:user-agent
+    labels:
+      - accepting_contributions
+      - active
+    notes: "The SIG is looking for contributions!"
+
+  - name: "Semantic Conventions: Client Instrumentation"
+    owner:
+      - name: "semconv-client-approvers"
+        github: semconv-client-approvers
+        type: team-user
+    project: "https://github.com/open-telemetry/community/blob/main/projects/client-instrumentation.md"
+    board: "https://github.com/orgs/open-telemetry/projects/19"
+    areas:
+      - area:client
+      - area:event
+    labels:
+      - accepting_contributions
+      - active
+    notes: "The SIG is looking for contributions!"
+
+  - name: "Semantic Conventions: Resources and Entities"
+    owner:
+      - name: "specs-semconv-maintainers" # TODO: Missing team user for entities?
+        github: specs-semconv-maintainers
+        type: team-user
+    project: "https://github.com/open-telemetry/community/blob/main/projects/resources-and-entities.md"
+    board: "https://github.com/orgs/open-telemetry/projects/85"
+    areas:
+      - area:entities
+    labels:
+      - accepting_contributions
+      - active
+    notes: "The SIG is looking for contributions!"
+
+  - name: "Semantic Conventions: Messaging"
+    owner:
+      - name: "semconv-messaging-approvers"
+        github: semconv-messaging-approvers
+        type: team-user
+    project: "https://github.com/open-telemetry/community/blob/main/projects/currently-inactive/messaging-semconv.md"
+    board: "https://github.com/orgs/open-telemetry/projects/20"
+    areas:
+      - area:messaging
+    labels:
+      - inactive
+      - needs_staffing
+    notes: "The SIG is inactive. If you have interest in working towards messaging stabilization, reach out to maintainers to discuss activating the SIG again"

@@ -31,14 +31,13 @@ with open(markdown_file, 'r') as file:
 
 # Generate the markdown content for each SIG group
 markdown_content = start_marker + '\n'
-markdown_content += "| Name | Owners | Project | Board | Areas | Status | Directories | Notes |\n"
-markdown_content += "|------|--------|---------|-------|-------|--------|-------------|-------|\n"
+markdown_content += "| Name | Owners | Project | Board | Areas | Status | Notes |\n"
+markdown_content += "|------|--------|---------|-------|-------|--------|-------|\n"
 
 for sig in data['sigs']:
     name = sig['name']
     project = sig['project']
     board = sig['board']
-    directories = sig['directories']
     notes = sig['notes']
 
     owners = ",<br/>".join(
@@ -63,13 +62,7 @@ for sig in data['sigs']:
          if area]
     )
 
-    directories = ", ".join(
-        [f"`{dir}`"
-         for dir in sig.get('directories', [])
-         if dir]
-    )
-
-    markdown_content += f"| {name} | {owners} | {project} | {board} | {areas} | {labels} | {directories} | {notes} |\n"
+    markdown_content += f"| {name} | {owners} | {project} | {board} | {areas} | {labels} | {notes} |\n"
 
 markdown_content += end_marker
 
