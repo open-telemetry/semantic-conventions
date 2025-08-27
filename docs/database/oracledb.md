@@ -109,8 +109,8 @@ then `<key>` SHOULD be the 0-based index.
 `db.query.parameter.<key>` SHOULD match
 up with the parameterized placeholders present in `db.query.text`.
 
-`db.query.parameter.<key>` SHOULD match the name of the parameterized
-placeholders verbatim, such as matching the exact casing of names.
+It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
 
 `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
 
