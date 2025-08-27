@@ -27,7 +27,7 @@ test_fails_on_attribute_renamed_to_attribute_of_different_type if {
     ]}
 }
 
-test_fails_on_string_enum_attribute_renamed_to_attribute_of_different_type if {
+test_fails_on_enum_attribute_renamed_to_attribute_of_different_type if {
     # string enum to int fails
     count(deny) >= 1 with input as {"groups": [
         {
@@ -60,7 +60,7 @@ test_fails_on_string_enum_attribute_renamed_to_attribute_of_different_type if {
             ]
         }
     ]}   
-    # string enumb to int enum fails 
+    # string enum to int enum fails 
     count(deny) >= 1 with input as {"groups": [
         {
             "id": "registry.deprecation.test", "stability": "development", "type": "attribute_group",
@@ -103,6 +103,66 @@ test_fails_on_string_enum_attribute_renamed_to_attribute_of_different_type if {
                     }},
                 {"name": "test.me.str", "stability": "development", "type": "string"},
                 {"name": "test.me.int", "stability": "development", "type": "int"}
+            ]
+        }
+    ]}    
+}
+
+
+test_fails_on_attribute_renamed_to_enum_attribute_of_different_type if {
+    # int to string enum fails
+    count(deny) >= 1 with input as {"groups": [
+        {
+            "id": "registry.deprecation.test", "stability": "development", "type": "attribute_group",
+            "attributes": [
+                {"name": "test.me.enum.str", "stability": "development", "type": {
+                        "members": [{
+                            "id": "test",
+                            "value": "test",
+                            "stability": "development",
+                        }]
+                    }},
+                {"name": "test.me.int", "stability": "development", "type": "int", "deprecated": {"reason": "renamed", "renamed_to": "test.me.enum.str"}}
+            ]
+        }
+    ]}
+    # string to int enum fails
+    count(deny) >= 1 with input as {"groups": [
+        {
+            "id": "registry.deprecation.test", "stability": "development", "type": "attribute_group",
+            "attributes": [
+                {"name": "test.me.enum.int", "stability": "development", "type": {
+                        "members": [{
+                            "id": "test",
+                            "value": 42,
+                            "stability": "development",
+                        }]
+                    }},
+                {"name": "test.me.str", "stability": "development", "type": "string", "deprecated": {"reason": "renamed", "renamed_to": "test.me.enum.int"}},
+            ]
+        }
+    ]}   
+    # string/int to string/int enum ok
+    count(deny) == 0 with input as {"groups": [
+        {
+            "id": "registry.deprecation.test", "stability": "development", "type": "attribute_group",
+            "attributes": [
+                {"name": "test.me.enum.str", "stability": "development", "type": {
+                        "members": [{
+                            "id": "test",
+                            "value": "test",
+                            "stability": "development",
+                        }]
+                    }},
+                {"name": "test.me.enum.int", "stability": "development", "type": {
+                        "members": [{
+                            "id": "test",
+                            "value": 42,
+                            "stability": "development",
+                        }]
+                    }},
+                {"name": "test.me.str", "stability": "development", "type": "string", "deprecated": {"reason": "renamed", "renamed_to": "test.me.enum.str"}},
+                {"name": "test.me.int", "stability": "development", "type": "int", "deprecated": {"reason": "renamed", "renamed_to": "test.me.enum.int"}}
             ]
         }
     ]}    

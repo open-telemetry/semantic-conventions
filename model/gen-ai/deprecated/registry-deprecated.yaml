@@ -134,9 +134,6 @@ groups:
               stability: development
               value: "xai"
               brief: 'xAI'
-              deprecated:
-                reason: uncategorized
-                note: Use `x_ai` on the `gen_ai.provider.name` attribute
             - id: deepseek
               stability: development
               value: "deepseek"
