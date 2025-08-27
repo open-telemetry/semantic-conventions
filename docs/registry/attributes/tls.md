@@ -49,8 +49,8 @@ This document defines semantic convention attributes in the TLS namespace.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `ssl` | ssl | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tls` | tls | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ssl` | SSL | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tls` | TLS | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## TLS Deprecated Attributes
 
