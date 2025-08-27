@@ -100,10 +100,16 @@ groups:
               stability: development
               value: "az.ai.inference"
               brief: 'Azure AI Inference'
+              deprecated:
+                reason: renamed
+                renamed_to: azure.ai.inference
             - id: az.ai.openai
               stability: development
               value: "az.ai.openai"
               brief: 'Azure OpenAI'
+              deprecated:
+                reason: renamed
+                renamed_to: azure.ai.openai
             - id: azure.ai.inference
               stability: development
               value: "azure.ai.inference"
@@ -129,8 +135,8 @@ groups:
               value: "xai"
               brief: 'xAI'
               deprecated:
-                reason: renamed
-                renamed_to: "x_ai"
+                reason: uncategorized
+                note: Use `x_ai` on the `gen_ai.provider.name` attribute
             - id: deepseek
               stability: development
               value: "deepseek"
