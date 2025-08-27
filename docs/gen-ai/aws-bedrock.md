@@ -192,7 +192,8 @@ system instructions.
 See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
 section for more details.
 
-**[14] `gen_ai.tool_definitions.raw`:** The value of this attribute matches source system tool definition format. It's expected to be an array of JSON objects - in case a serialized string is available to the instrumentation, the instrumentation SHOULD do the best effort to deserialize it to an array.
+**[14] `gen_ai.tool_definitions.raw`:** The value of this attribute matches source system tool definition format.
+It's expected to be an array of JSON objects - in case a serialized string is available to the instrumentation, the instrumentation SHOULD do the best effort to deserialize it to an array.
 Since this attribute could be large, it's NOT RECOMMENDED to populate it by default. Instrumentations MAY provide a way to enable populating this attribute.
 
 ---

@@ -205,7 +205,8 @@ system instructions.
 See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
 section for more details.
 
-**[14] `gen_ai.tool_definitions.raw`:** The value of this attribute matches source system tool definition format. It's expected to be an array of JSON objects - in case a serialized string is available to the instrumentation, the instrumentation SHOULD do the best effort to deserialize it to an array.
+**[14] `gen_ai.tool_definitions.raw`:** The value of this attribute matches source system tool definition format.
+It's expected to be an array of JSON objects - in case a serialized string is available to the instrumentation, the instrumentation SHOULD do the best effort to deserialize it to an array.
 Since this attribute could be large, it's NOT RECOMMENDED to populate it by default. Instrumentations MAY provide a way to enable populating this attribute.
 
 ---
@@ -379,19 +380,8 @@ by the application code.
 | [`gen_ai.tool.description`](/docs/registry/attributes/gen-ai.md) | string | The tool description. | `Multiply two numbers` | `Recommended` if available | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.tool.name`](/docs/registry/attributes/gen-ai.md) | string | Name of the tool utilized by the agent. | `Flights` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gen_ai.tool.type`](/docs/registry/attributes/gen-ai.md) | string | Type of the tool utilized by the agent [3] | `function`; `extension`; `datastore` | `Recommended` if available | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.tool.call.arguments`](/docs/registry/attributes/gen-ai.md) | any | Parameters passed to the tool call. [4] | `[
-  {
-    "location": "San Francisco?",
-    "date": "2025-10-01"
-  }
-]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gen_ai.tool.call.result`](/docs/registry/attributes/gen-ai.md) | any | The result returned by the tool call (if any and if execution was successful). [5] | `{
-  "temperature_range": {
-    "high": 75,
-    "low": 60
-  },
-  "conditions": "sunny"
-}` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.tool.call.arguments`](/docs/registry/attributes/gen-ai.md) | any | Parameters passed to the tool call. [4] | [<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>&nbsp;&nbsp;}<br>] | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`gen_ai.tool.call.result`](/docs/registry/attributes/gen-ai.md) | any | The result returned by the tool call (if any and if execution was successful). [5] | {<br>&nbsp;&nbsp;"temperature_range": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"high": 75,<br>&nbsp;&nbsp;&nbsp;&nbsp;"low": 60<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;"conditions": "sunny"<br>} | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
@@ -410,6 +400,10 @@ It's expected to be an object - in case a serialized string is available to the 
 
 **[5] `gen_ai.tool.call.result`:** > [!WARNING]
 > This attribute may contain sensitive information.
+
+It's expected to be an object - in case a serialized string is available
+to the instrumentation, the instrumentation SHOULD do the best effort to
+deserialize it to an object.
 
 ---
 

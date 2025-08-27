@@ -267,13 +267,14 @@ groups:
           It's expected to be an object - in case a serialized string is available
           to the instrumentation, the instrumentation SHOULD do the best effort to
           deserialize it to an object.
-        examples: |
-          [
-            {
-              "location": "San Francisco?",
-              "date": "2025-10-01"
-            }
-          ]
+        examples: 
+        - |
+            [
+              {
+                "location": "San Francisco?",
+                "date": "2025-10-01"
+              }
+            ]
         
       - id: gen_ai.tool.call.result
         stability: development
@@ -283,16 +284,20 @@ groups:
           > [!WARNING]
           > This attribute may contain sensitive information.
 
-        examples: |
-          {
-            "temperature_range": {
-              "high": 75,
-              "low": 60
-            },
-            "conditions": "sunny"
-          }
-        
+          It's expected to be an object - in case a serialized string is available
+          to the instrumentation, the instrumentation SHOULD do the best effort to
+          deserialize it to an object.
 
+        examples: 
+        - |
+            {
+              "temperature_range": {
+                "high": 75,
+                "low": 60
+              },
+              "conditions": "sunny"
+            }
+        
       - id: gen_ai.tool_definitions.raw
         stability: development
         type: any
