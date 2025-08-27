@@ -95,6 +95,8 @@ groups:
         requirement_level: opt_in
       - ref: gen_ai.output.messages
         requirement_level: opt_in
+      - ref: gen_ai.tool_definitions.raw
+        requirement_level: opt_in
 
   - id: span.gen_ai.inference.client
     type: span
@@ -277,15 +279,8 @@ groups:
         requirement_level: opt_in
       - ref: gen_ai.output.messages
         requirement_level: opt_in
-      - ref: gen_ai.tool.definitions
-        requirement_level: opt_in      
-      - ref: gen_ai.orchestrator.agent_definitions
-        requirement_level:
-          conditionally_required: if applicable 
-        note: |
-          Information about child agents utilized during execution.
-          This attribute should be populated when the agent orchestrates or delegates
-          to other specialized agents as part of its workflow.
+      - ref: gen_ai.tool_definitions.raw
+        requirement_level: opt_in
 
   - id: span.gen_ai.execute_tool.internal
     type: span
@@ -315,14 +310,10 @@ groups:
       - ref: gen_ai.tool.type
         requirement_level:
           recommended: if available
-
-      # New attributes added to execute_tool span
       - ref: gen_ai.tool.call.arguments
-        requirement_level:
-          conditionally_required: if available
+        requirement_level: opt_in
       - ref: gen_ai.tool.call.result
-        requirement_level:
-          conditionally_required: if available
+        requirement_level: opt_in
       - ref: error.type
         requirement_level:
           conditionally_required: "if the operation ended in an error"
