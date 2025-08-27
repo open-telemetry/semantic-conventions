@@ -283,7 +283,6 @@ groups:
           > [!WARNING]
           > This attribute may contain sensitive information.
 
-<<<<<<< HEAD
         examples: |
           {
             "temperature_range": {
@@ -293,52 +292,15 @@ groups:
             "conditions": "sunny"
           }
         
-=======
-        examples:
-          - 'For function: {"temperature_range": {"high": 75, "low": 60}, "conditions": "sunny"}'
-          - 'For file_search: {"file_id": "file1", "filename": "file1.md", "text": "something important"}'
-          - |
-            For code_interpreter with multiple outputs:
-            {
-              "outputs": [
-                {
-                  "type": "logs",
-                  "logs": "Analysis complete. Generated visualization and summary report."
-                },
-                {
-                  "type": "image",
-                  "image": {
-                    "file_id": "file-img001",
-                    "filename": "correlation_matrix.png",
-                    "mime_type": "image/png"
-                  }
-                },
-                {
-                  "type": "file",
-                  "file": {
-                    "file_id": "file-data001",
-                    "filename": "analysis_summary.pdf",
-                    "path": "sandbox:/mnt/data/analysis_summary.pdf",
-                    "mime_type": "application/pdf"
-                  }
-                }
-              ],
-              "execution_time_ms": 3427
-            }
->>>>>>> 8e8ede24f11e4484483c82ffd3beb660205ca898
 
       - id: gen_ai.tool_definitions.raw
         stability: development
         type: any
         brief: The list of source system tool definitions available to the GenAI agent or model.
         note: >
-          The value of this attribute matches source system tool definition
-          format.
-<<<<<<< HEAD
+          The value of this attribute matches source system tool definition format.
+         
           It's expected to be an array of JSON objects - in case a serialized string is available
-=======
-          It's expected to be an array of objects - in case a serialized string is available
->>>>>>> 8e8ede24f11e4484483c82ffd3beb660205ca898
           to the instrumentation, the instrumentation SHOULD do the best effort to
           deserialize it to an array.
 
