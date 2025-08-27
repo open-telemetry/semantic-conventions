@@ -2,6 +2,6 @@ change_type: enhancement
 component: gen-ai
 note: | 
   Add new attributes to 'invoke_agent', 'execute_tool' and llm spans to capture input and output definition for Single and Multi-Agent systems.
-  for 'invoke_agent' span and attribute group - 'attributes.gen_ai.inference.client' -  'gen_ai.tool_definitions.raw'
-  for 'execute_tool' span - 'gen_ai.tool.call.arguments' and 'gen_ai.tool.call.result'
+  for 'invoke_agent' span and attribute group - 'attributes.gen_ai.inference.client', add attribute 'gen_ai.tool_definitions.raw'
+  for 'execute_tool' span,  add attributes 'gen_ai.tool.call.arguments' and 'gen_ai.tool.call.result'
 issues: [2444, 591]
