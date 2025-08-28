@@ -223,9 +223,11 @@ groups:
           members:
             - id: voluntary
               value: 'voluntary'
+              brief: Voluntary
               stability: development
             - id: involuntary
               value: 'involuntary'
+              brief: Involuntary
               stability: development
         stability: development
       - id: process.paging.fault_type
@@ -236,9 +238,11 @@ groups:
           members:
             - id: major
               value: 'major'
+              brief: Major
               stability: development
             - id: minor
               value: 'minor'
+              brief: Minor
               stability: development
         stability: development
       - id: process.environment_variable
