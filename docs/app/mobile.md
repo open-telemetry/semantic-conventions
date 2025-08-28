@@ -6,9 +6,7 @@ linkTitle: Mobile
 
 **Status**: [Development][DocumentStatus]
 
-This document defines semantic conventions for instrumentations that emit
-events on mobile platforms. All mobile events MUST use a namespace of
-`device` in the EventName LogRecord property.
+This document defines semantic conventions  related to mobile applications.
 
 <!-- toc -->
 
@@ -129,6 +127,8 @@ Jank happens when the UI is rendered slowly enough for the user to experience so
 
 This section defines how to apply semantic conventions when instrumenting
 application lifecycle.
+
+All mobile lifecycle events MUST use a namespace of `device` in the EventName LogRecord property.
 
 ### Event: `device.app.lifecycle`
 

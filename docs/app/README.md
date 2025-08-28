@@ -6,11 +6,10 @@ linkTitle: App
 
 **Status**: [Development][DocumentStatus]
 
-This document defines semantic conventions for App events & spans.
-
-Semantic conventions are defined for the following signals:
+This document defines semantic conventions for the following application types:
 
 * [CLI Programs](cli.md)
-* [Mobile](mobile.md) : Semantic Conventions for mobile
+* [Mobile](mobile.md)
+* [Web](web.md)
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
