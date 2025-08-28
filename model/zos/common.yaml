@@ -76,7 +76,7 @@ groups:
       - ref: host.name
         brief: 'Name of the host. On z/OS, SHOULD be the full qualified hostname used to register the z/OS system in DNS.'
         examples: 'SYS1.DOMAIN.COM'
-      - ref: host.arch
+      - ref: host.cpu.arch
         examples: 's390x'
       - ref: host.id
         brief: 'Unique host ID. On z/OS, SHOULD be the concatenation of sysplex name and SMFID, separated by a dash'
