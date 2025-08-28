@@ -224,9 +224,7 @@ groups:
               stability: development
         stability: development
         brief: >
-          Environment of a destination service is the stage of a software lifecycle.
-        note: >
-          [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+          Software lifecycle stage of a destination service as defined [AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
       - id: gcp.apphub_destination.service.criticality_type
         type:
           members:
@@ -248,9 +246,7 @@ groups:
               stability: development
         stability: development
         brief: >
-          Criticality of a destination service indicates its importance to the business.
-        note: >
-          [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+          Criticality of a destination workload indicates its importance to the business as specified in [AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
       - id: gcp.apphub_destination.workload.id
         type: string
         stability: development
@@ -278,9 +274,7 @@ groups:
               stability: development
         stability: development
         brief: >
-          Environment of a destination workload is the stage of a software lifecycle.
-        note: >
-          [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+          Environment of a destination workload is the stage of a software lifecycle as provided in the [AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
       - id: gcp.apphub_destination.workload.criticality_type
         type:
           members:
@@ -302,9 +296,7 @@ groups:
               stability: development
         stability: development
         brief: >
-          Criticality of a destination workload indicates its importance to the business.
-        note: >
-          [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+          Criticality of a destination workload indicates its importance to the business as specified in [AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
   - id: registry.gcp.gce
     type: attribute_group
     display_name: GCP - Google Compute Engine (GCE) Attributes
