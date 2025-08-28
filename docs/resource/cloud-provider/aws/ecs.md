@@ -34,8 +34,8 @@ linkTitle: ECS
 
 | Value  | Description | Stability |
 |---|---|---|
-| `ec2` | ec2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fargate` | fargate | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ec2` | Amazon EC2 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fargate` | Amazon Fargate | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
