@@ -66,12 +66,12 @@ groups:
       - ref: host.cpu.cache.l2.size
         requirement_level: opt_in
 
-  - id: entity.host.platform
+  - id: entity.host.provider
     type: entity
     stability: development
-    name: host.platform
+    name: host.provider
     brief: >
-        The host platform  represents the tool being used to provide the computing instance/environment.
+        The host provider represents the tool being used to provide the computing instance/environment.
     attributes:
-      - ref: host.platform.name
-      - ref: host.platform.product
+      - ref: host.provider.description
+      - ref: host.provider.name

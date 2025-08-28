@@ -82,20 +82,20 @@ privileged lookup of `host.id` is required, the value should be injected via the
 
 **[4] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
 
-## Host Platform
+## Host Provider
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `host.platform`
+**type:** `host.provider`
 
-**Description:** The host platform  represents the tool being used to provide the computing instance/environment.
+**Description:** The host provider represents the tool being used to provide the computing instance/environment.
 
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
-| Other | [`host.platform.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The platform being used to host the computing instance. | `Azure VMWare Esxi` |
-| Other | [`host.platform.product`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | What product if any is being used to host the computing instance. | `openshift`; `esxi`; `hyperv` |
+| Other | [`host.provider.description`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The platform being used to host the computing instance. | `Azure VMWare Esxi` |
+| Other | [`host.provider.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | What product if any is being used to host the computing instance. | `openshift`; `esxi`; `hyperv` |
 
 <!-- markdownlint-restore -->

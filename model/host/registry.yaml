@@ -144,7 +144,7 @@ groups:
         brief: >
           The amount of level 2 memory cache available to the processor (in Bytes).
         examples: [ 12288000 ]
-      - id: host.platform.product
+      - id: host.provider.name
         type:
           members:
             - id: openshift
@@ -177,7 +177,7 @@ groups:
               stability: development
         stability: development
         brief: What product if any is being used to host the computing instance.
-      - id: host.platform.name
+      - id: host.provider.description
         type: string
         stability: development
         brief: The platform being used to host the computing instance.

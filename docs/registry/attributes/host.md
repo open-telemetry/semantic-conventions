@@ -25,8 +25,8 @@ A host is defined as a computing instance. For example, physical servers, virtua
 | <a id="host-ip" href="#host-ip">`host.ip`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Available IP addresses of the host, excluding loopback interfaces. [2] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` |
 | <a id="host-mac" href="#host-mac">`host.mac`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Available MAC addresses of the host, excluding loopback interfaces. [3] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` |
 | <a id="host-name" href="#host-name">`host.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` |
-| <a id="host-platform-name" href="#host-platform-name">`host.platform.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The platform being used to host the computing instance. | `Azure VMWare Esxi` |
-| <a id="host-platform-product" href="#host-platform-product">`host.platform.product`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | What product if any is being used to host the computing instance. | `openshift`; `esxi`; `hyperv` |
+| <a id="host-provider-description" href="#host-provider-description">`host.provider.description`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The platform being used to host the computing instance. | `Azure VMWare Esxi` |
+| <a id="host-provider-name" href="#host-provider-name">`host.provider.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | What product if any is being used to host the computing instance. | `openshift`; `esxi`; `hyperv` |
 | <a id="host-type" href="#host-type">`host.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` |
 
 **[1] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
@@ -52,7 +52,7 @@ A host is defined as a computing instance. For example, physical servers, virtua
 
 ---
 
-`host.platform.product` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`host.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
