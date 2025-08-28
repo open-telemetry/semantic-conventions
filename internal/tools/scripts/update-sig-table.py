@@ -38,7 +38,6 @@ for sig in data['sigs']:
     name = sig['name']
     project = sig['project']
     board = sig['board']
-    notes = sig['notes']
 
     owners = ",<br/>".join(
         [
@@ -59,6 +58,14 @@ for sig in data['sigs']:
          for area in sig.get('areas', [])
          if area]
     )
+
+    # Add a default note for common SIG states
+    if sig.get('notes'):
+        notes = sig['notes']
+    elif not sig.get('notes') and 'inactive' in labels:
+        notes = "The SIG is inactive. Bugs and bugfixes are welcome. For substantial changes, follow the [new project process](https://github.com/open-telemetry/community/blob/main/project-management.md)"
+    elif not sig.get('notes') and 'accepting_contributions' in labels:
+        notes = "The SIG is looking for contributions!"
 
     markdown_content += f"| {name} | {owners} | {project} | {board} | {areas} | {labels} | {notes} |\n"
 

@@ -12,7 +12,6 @@ sigs:
     labels:
       - accepting_contributions
       - active
-    notes: "The SIG is looking for contributions!"
 
   - name: "Semantic Conventions: K8s"
     owner:
@@ -25,7 +24,6 @@ sigs:
     labels:
       - accepting_contributions
       - active
-    notes: "The SIG is looking for contributions!"
 
   - name: "Semantic Conventions: GenAI"
     owner:
@@ -39,7 +37,6 @@ sigs:
     labels:
       - accepting_contributions
       - active
-    notes: "The SIG is looking for contributions!"
 
   - name: "Semantic Conventions: CI/CD"
     owner:
@@ -56,7 +53,6 @@ sigs:
     labels:
       - accepting_contributions
       - active
-    notes: "The SIG is looking for contributions!"
 
   - name: "Semantic Conventions: Security"
     owner:
@@ -71,7 +67,6 @@ sigs:
     labels:
       - accepting_contributions
       - active
-    notes: "The SIG is looking for contributions!"
 
   - name: "Semantic Conventions: Browser Instrumentation"
     owner:
@@ -87,7 +82,6 @@ sigs:
     labels:
       - accepting_contributions
       - active
-    notes: "The SIG is looking for contributions!"
 
   - name: "Semantic Conventions: Client Instrumentation"
     owner:
@@ -101,7 +95,6 @@ sigs:
     labels:
       - accepting_contributions
       - active
-    notes: "The SIG is looking for contributions!"
 
   - name: "Semantic Conventions: Resources and Entities"
     owner:
@@ -114,7 +107,6 @@ sigs:
     labels:
       - accepting_contributions
       - active
-    notes: "The SIG is looking for contributions!"
 
   - name: "Semantic Conventions: Messaging"
     owner:
@@ -127,4 +119,97 @@ sigs:
     labels:
       - inactive
       - needs_staffing
-    notes: "The SIG is inactive. If you have interest in working towards messaging stabilization, consider proposing a project update in the https://github.com/open-telemetry/community"
+    notes: "The SIG is inactive. If you have interest in working towards messaging stabilization, consider proposing a [project update](https://github.com/open-telemetry/community/blob/main/projects/currently-inactive/messaging-semconv.md)"
+
+  - name: "Semantic Conventions: HTTP"
+    owner:
+      - name: "semconv-http-approvers"
+        github: semconv-http-approvers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/completed-projects/http.md"
+    board: "https://github.com/orgs/open-telemetry/projects/41"
+    areas:
+      - area:http
+    labels:
+      - inactive
+  - name: "Semantic Conventions: Database"
+    owner:
+      - name: "semconv-db-approvers"
+        github: semconv-db-approvers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/completed-projects/database-client-semconv.md"
+    board: "https://github.com/orgs/open-telemetry/projects/73"
+    areas:
+      - area:db
+    labels:
+      - inactive
+
+  - name: "Semantic Conventions: FaaS"
+    owner:
+      - name: "specs-semconv-maintainers" # TODO: Missing team user for faas?
+        github: specs-semconv-maintainers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/completed-projects/faas.md"
+    board: "https://github.com/orgs/open-telemetry/projects/45"
+    areas:
+      - area:faas
+    labels:
+      - inactive
+
+  - name: "Semantic Conventions: JVM"
+    owner:
+      - name: "semconv-jvm-approvers"
+        github: semconv-jvm-approvers
+    project: "N/A"
+    board: "https://github.com/orgs/open-telemetry/projects/49"
+    areas:
+      - area:jvm
+    labels:
+      - inactive
+
+  - name: "Semantic Conventions: Logs"
+    owner:
+      - name: "semconv-log-approvers"
+        github: semconv-log-approvers
+    project: "N/A"
+    board: "N/A"
+    areas:
+      - area:log
+    labels:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: Mainframe"
+    owner:
+      - name: "sig-mainframe-approvers"
+        github: sig-mainframe-approvers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/mainframe.md"
+    board: "N/A"
+    areas:
+      - area:mainframe
+    labels:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: Profiling"
+    owner:
+      - name: "profiling-approvers"
+        github: profiling-approvers
+    project: "N/A"
+    board: "N/A"
+    areas:
+      - area:profile
+    labels:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: .NET"
+    owner:
+      - name: "semconv-dotnet-approver"
+        github: semconv-dotnet-approver
+    project: "N/A"
+    board: "N/A"
+    areas:
+      - area:dotnet
+      - area:aspnetcore
+    labels:
+      - accepting_contributions
+      - active
+    notes: "SIG is driven by members of the .NET runtime team. Contributions are welcomed but must be aligned with the .NET runtime features/roadmap"
