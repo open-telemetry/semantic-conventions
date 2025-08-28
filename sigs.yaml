@@ -119,7 +119,9 @@ sigs:
     labels:
       - inactive
       - needs_staffing
-    notes: "The SIG is inactive. If you have interest in working towards messaging stabilization, consider proposing a [project update](https://github.com/open-telemetry/community/blob/main/projects/currently-inactive/messaging-semconv.md)"
+    notes: >
+      The SIG is inactive. If you have interest in working towards messaging stabilization,
+      consider proposing a [project update](https://github.com/open-telemetry/community/blob/main/projects/currently-inactive/messaging-semconv.md)
 
   - name: "Semantic Conventions: HTTP"
     owner:
