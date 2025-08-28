@@ -21,7 +21,7 @@ issues: [2365]
 # Use pipe (|) for multiline entries.
 subtext: |
   Introduced the following new attributes:
+    - host.platform.description
     - host.platform.name
-    - host.platform.product
 
   These atrributes serve as a replacement to `cloud.platform`.

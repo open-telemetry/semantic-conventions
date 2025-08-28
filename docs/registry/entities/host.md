@@ -114,12 +114,12 @@ privileged lookup of `host.id` is required, the value should be injected via the
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`host.platform.name`](/docs/registry/attributes/host.md) | string | The platform being used to host the computing instance. | `Azure VMWare Esxi` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`host.platform.product`](/docs/registry/attributes/host.md) | string | What product if any is being used to host the computing instance. | `openshift`; `esxi`; `hyperv` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`host.platform.description`](/docs/registry/attributes/host.md) | string | The platform being used to host the computing instance. | `Azure VMWare Esxi` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`host.platform.name`](/docs/registry/attributes/host.md) | string | What product if any is being used to host the computing instance. | `openshift`; `esxi`; `hyperv` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
-`host.platform.product` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`host.platform.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
