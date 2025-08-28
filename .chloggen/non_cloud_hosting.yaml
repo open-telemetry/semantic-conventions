@@ -10,7 +10,7 @@ change_type: enhancement
 component: host
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Hosting platform can now be described regardless of if they are cloud or on-premise
+note: Hosting provider can now be described regardless of if they are cloud or on-premise
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
@@ -21,7 +21,7 @@ issues: [2365]
 # Use pipe (|) for multiline entries.
 subtext: |
   Introduced the following new attributes:
-    - host.platform.name
-    - host.platform.product
+    - host.provider.description
+    - host.provider.name
 
   These atrributes serve as a replacement to `cloud.platform`.

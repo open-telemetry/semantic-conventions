@@ -99,13 +99,13 @@ privileged lookup of `host.id` is required, the value should be injected via the
 
 **[4] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
 
-## Host Platform
+## Host Provider
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `host.platform`
+**type:** `host.provider`
 
-**Description:** The host platform  represents the tool being used to provide the computing instance/environment.
+**Description:** The host provider represents the tool being used to provide the computing instance/environment.
 
 **Other Attributes:**
 
@@ -114,12 +114,12 @@ privileged lookup of `host.id` is required, the value should be injected via the
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`host.platform.name`](/docs/registry/attributes/host.md) | string | The platform being used to host the computing instance. | `Azure VMWare Esxi` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`host.platform.product`](/docs/registry/attributes/host.md) | string | What product if any is being used to host the computing instance. | `openshift`; `esxi`; `hyperv` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`host.provider.description`](/docs/registry/attributes/host.md) | string | The platform being used to host the computing instance. | `Azure VMWare Esxi` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`host.provider.name`](/docs/registry/attributes/host.md) | string | What product if any is being used to host the computing instance. | `openshift`; `esxi`; `hyperv` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
-`host.platform.product` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`host.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
