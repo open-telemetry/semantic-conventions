@@ -11,7 +11,7 @@
 
 **type:** `workflow`
 
-**Description:** 
+**Description:** An overaching encapsulation of all the tasks which have been run, as a result of the triggering of the workflow.
 
 **Identifying Attributes:**
 
@@ -23,7 +23,6 @@
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`workflow.definition.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this workflow which can be used to correlate multiple executions of this workflow. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.outcome`](/docs/registry/attributes/workflow.md) | string | The result of a task run. | `success`; `failure`; `timeout`; `skipped` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.url.full`](/docs/registry/attributes/workflow.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -46,13 +45,14 @@
 
 **type:** `workflow.definition`
 
-**Description:** 
+**Description:** A reusable block which has been defined to complete an action via a task.
 
 **Identifying Attributes:**
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`workflow.definition.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this workflow which can be used to correlate multiple executions of this workflow. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.definition.version`](/docs/registry/attributes/workflow.md) | string | Version of the workflow | `2.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Descriptive Attributes:**
 
@@ -61,7 +61,6 @@
 | [`workflow.definition.name`](/docs/registry/attributes/workflow.md) | string | Name of the workflow | `Build and deploy application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.definition.type`](/docs/registry/attributes/workflow.md) | string | Type of the workflow | `DSL` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.definition.url.full`](/docs/registry/attributes/workflow.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the workflow, providing the complete address in order to locate and identify the workflow. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.definition.version`](/docs/registry/attributes/workflow.md) | string | Version of the workflow | `2.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Workflow Execution
 
@@ -69,7 +68,7 @@
 
 **type:** `workflow.execution`
 
-**Description:** 
+**Description:** A short lived entity used to capture an instance of a task being performed.
 
 **Identifying Attributes:**
 
@@ -85,8 +84,6 @@
 | [`workflow.execution.outcome`](/docs/registry/attributes/workflow.md) | string | The outcome of executing the task. | `success`; `failure`; `timeout`; `skipped` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.execution.state`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.execution.url.full`](/docs/registry/attributes/workflow.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this execution of the workflow and will be shared across all the task runs. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.task.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this task which can be used to correlate multiple executions of this task. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `workflow.execution.attempt`:** This counter starts at 1 and is incremented on each re-run of the task. The uniqueness is based upon `workflow.execution.id` & `workflow.execution.item.id`.
 
@@ -120,23 +117,20 @@
 
 **type:** `workflow.task`
 
-**Description:** 
+**Description:** A reusable definition of an action which is to performed via an execution.
 
 **Identifying Attributes:**
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`workflow.task.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this task which can be used to correlate multiple executions of this task. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.task.version`](/docs/registry/attributes/workflow.md) | string | Version of the task | `2.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **Descriptive Attributes:**
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`workflow.definition.id`](/docs/registry/attributes/workflow.md) | string | Unique ID for this workflow which can be used to correlate multiple executions of this workflow. | `5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.task.category`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `deployment`; `build`; `test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.task.name`](/docs/registry/attributes/workflow.md) | string | Name of the task | `Build application` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.task.url.full`](/docs/registry/attributes/workflow.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the task, providing the complete address in order to locate and identify the task. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.task.version`](/docs/registry/attributes/workflow.md) | string | Version of the task | `2.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Workflow Trigger
 
@@ -144,7 +138,7 @@
 
 **type:** `workflow.trigger`
 
-**Description:** 
+**Description:** A definition of an interaction which should start a workflow to run.
 
 **Identifying Attributes:**
 

@@ -235,7 +235,7 @@ groups:
           [
             "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075",
           ]
-      - id: workflow.platform.product
+      - id: workflow.platform.name
         stability: development
         type:
           members:
@@ -253,7 +253,6 @@ groups:
               brief: 'Quartz'
         brief: >
           The product being used to co-ordinate the execution of the tasks.
-        examples: [ 'k8s' ]
       - id: workflow.task.id
         stability: development
         type: string
@@ -268,28 +267,12 @@ groups:
         note: |
           The `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         examples: [ 'workflow.task.annotation.replicas=1', 'k8s.task.annotation.data=' ]
-      - id: workflow.task.category
-        type: string
-        stability: development
-        brief: >
-          The pipeline run goes through these states during its lifecycle.
-        examples: ["deployment", "build", "test"]
       - id: workflow.task.name
         stability: development
         type: string
         brief: >
           Name of the task
         examples: [ 'Build application' ]
-      - id: workflow.task.url.full
-        type: string
-        stability: development
-        brief: >
-          The [URL](https://wikipedia.org/wiki/URL) of the task,
-          providing the complete address in order to locate and identify the task.
-        examples:
-          [
-            "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075",
-          ]
       - id: workflow.task.version
         stability: development
         type: string
@@ -355,13 +338,3 @@ groups:
         brief: >
           Type of trigger that was called
         examples: [ 'cron' ]
-      - id: workflow.trigger.url.full
-        type: string
-        stability: development
-        brief: >
-          The [URL](https://wikipedia.org/wiki/URL) of the task,
-          providing the complete address in order to locate and identify the task.
-        examples:
-          [
-            "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075",
-          ]

@@ -1,4 +1,18 @@
 groups:
+  - id: event.workflow.triggered
+    type: event
+    name: workflow.triggered
+    stability: development
+    extends: attribute.span.workflow.core
+    brief: A workflow has been triggered to be run.
+    note: >
+    attributes:
+      - ref: workflow.trigger.id
+        requirement_level: required
+      - ref: workflow.trigger.name
+        requirement_level: recommended
+      - ref: workflow.trigger.type
+        requirement_level: required
   - id: event.workflow.result
     type: event
     name: workflow.result
@@ -12,7 +26,7 @@ groups:
         brief: "The UID of the k8s CronJob/Job."
       - ref: workflow.definition.name
         brief: "The name of the k8s CronJob/Job."
-      - ref: workflow.platform.product
+      - ref: workflow.platform.name
         examples: "k8s"
       - ref: workflow.outcome
         requirement_level: required
@@ -29,7 +43,7 @@ groups:
         brief: "The UID of the k8s CronJob/Job."
       - ref: workflow.definition.name
         brief: "The name of the k8s CronJob/Job."
-      - ref: workflow.platform.product
+      - ref: workflow.platform.name
         examples: "k8s"
       - ref: workflow.state
         requirement_level: required
@@ -38,7 +52,7 @@ groups:
     name: workflow.execution.result
     stability: development
     extends: attribute.event.workflow.execution
-    brief: >
+    brief: The end result of the execution useful know if it was successful etc.
     note: >
     attributes:
       - ref: workflow.definition.id
@@ -49,7 +63,7 @@ groups:
         brief: "The UID of the k8s CronJob/Job."
       - ref: workflow.task.name
         brief: "The name of the k8s CronJob/Job."
-      - ref: workflow.platform.product
+      - ref: workflow.platform.name
         examples: "k8s"
       - ref: workflow.execution.outcome
         requirement_level: required
@@ -70,14 +84,14 @@ groups:
     name: workflow.execution.status
     extends: attribute.event.workflow.execution
     stability: development
-    brief: >
+    brief: The current status of the execution of the task so that it can be tracked.
     note: >
     attributes:
       - ref: workflow.task.id
         brief: "The UID of the k8s CronJob/Job."
       - ref: workflow.task.name
         brief: "The name of the k8s CronJob/Job."
-      - ref: workflow.platform.product
+      - ref: workflow.platform.name
         examples: "k8s"
       - ref: workflow.execution.state
         requirement_level: required

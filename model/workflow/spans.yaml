@@ -30,17 +30,21 @@ groups:
     brief: >
       Used to capture when there is no designated workers and the tasks are performed directly when determined as needing to be run.
 
-  - id: span.workflow.trigger.server
+  - id: span.workflow.trigger.internal
     type: span
-    span_kind: server
+    span_kind: internal
     stability: development
     extends: attribute.span.workflow.core
     brief: >
-      Used to capture the process of handling a trigger to initiate a workflow.
+      Used to capture the process of handling an internal trigger to initiate a workflow such as a cron schedule.
+    note: >
+      For scenarios where the trigger is a message received, api request etc the corresponding server span should be used with the corresponding attributes added for workflow trigger.
+
+      Also this span pairs with the workflow trigger event.
     attributes:
       - ref: workflow.trigger.id
         requirement_level: required
       - ref: workflow.trigger.name
         requirement_level: recommended
-      - ref: workflow.trigger.url.full
-        requirement_level: recommended
+      - ref: workflow.trigger.type
+        requirement_level: required

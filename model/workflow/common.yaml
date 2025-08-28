@@ -10,17 +10,9 @@ groups:
       - ref: workflow.id
         requirement_level: required
       - ref: workflow.url.full
-      - ref: workflow.platform.product
+      - ref: workflow.platform.name
         requirement_level: required
       - ref: workflow.trigger.type
-      - ref: container.id
-        requirement_level: opt_in
-      - ref: container.name
-        requirement_level: opt_in
-      - ref: host.id
-        requirement_level: recommended
-      - ref: host.name
-        requirement_level: recommended
   - id: attribute.event.workflow.execution
     type: attribute_group
     extends: attribute.event.workflow.run
@@ -34,8 +26,6 @@ groups:
         requirement_level: required
       - ref: workflow.task.name
         requirement_level: recommended
-      - ref: workflow.task.url.full
-      - ref: workflow.task.category
   - id: attribute.metric.workflow.run
     type: attribute_group
     brief: >
@@ -47,7 +37,7 @@ groups:
         requirement_level: recommended
       - ref: workflow.definition.name
         requirement_level: required
-      - ref: workflow.platform.product
+      - ref: workflow.platform.name
       - ref: workflow.trigger.type
         requirement_level: required
       - ref: error.type
@@ -64,8 +54,7 @@ groups:
         requirement_level: recommended
       - ref: workflow.task.name
         requirement_level: required
-      - ref: workflow.platform.product
-      - ref: workflow.task.category
+      - ref: workflow.platform.name
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if the task run failed.
@@ -76,18 +65,8 @@ groups:
     attributes:
       - ref: workflow.id
         requirement_level: required
-      - ref: workflow.platform.product
+      - ref: workflow.platform.name
         requirement_level: required
-      - ref: container.id
-        requirement_level: opt_in
-      - ref: container.name
-        requirement_level: opt_in
-      - ref: host.id
-        requirement_level: recommended
-      - ref: host.name
-        requirement_level: recommended
-      - ref: workflow.trigger.type
-        requirement_level: recommended
   - id: attribute.span.workflow.coordination
     type: attribute_group
     extends: attribute.span.workflow.core
@@ -96,14 +75,8 @@ groups:
     attributes:
       - ref: workflow.task.id
         requirement_level: required
-      - ref: workflow.task.category
-        requirement_level: opt_in
       - ref: workflow.task.name
         requirement_level: opt_in
-      - ref: workflow.task.url.full
-        requirement_level: opt_in
-      - ref: workflow.trigger.type
-        requirement_level: recommended
       - ref: workflow.execution.attempt
         requirement_level: opt_in
   - id: attribute.span.workflow.execution
@@ -118,11 +91,7 @@ groups:
         requirement_level: required
       - ref: workflow.execution.url.full
         requirement_level: recommended
-      - ref: workflow.task.category
-        requirement_level: recommended
       - ref: workflow.task.name
         requirement_level: recommended
-      - ref: workflow.task.url.full
-        requirement_level: opt_in
       - ref: workflow.iteration.annotation
         requirement_level: opt_in

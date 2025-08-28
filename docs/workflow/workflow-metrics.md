@@ -44,7 +44,7 @@ linkTitle: Metrics
 | [`workflow.trigger.type`](/docs/registry/attributes/workflow.md) | string | Type of trigger that was called | `cron` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the workflow execution failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.platform.name`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `hangfire`; `k8s`; `quartz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
@@ -90,7 +90,7 @@ it's RECOMMENDED to:
 
 ---
 
-`workflow.platform.product` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`workflow.platform.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -125,7 +125,7 @@ This means that this error count might not be the same as the count of metric `w
 | [`workflow.definition.name`](/docs/registry/attributes/workflow.md) | string | Name of the workflow | `Build and deploy application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`workflow.trigger.type`](/docs/registry/attributes/workflow.md) | string | Type of trigger that was called | `cron` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.platform.name`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `hangfire`; `k8s`; `quartz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
@@ -158,7 +158,7 @@ it's RECOMMENDED to:
 
 ---
 
-`workflow.platform.product` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`workflow.platform.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -191,7 +191,7 @@ it's RECOMMENDED to:
 | [`workflow.trigger.type`](/docs/registry/attributes/workflow.md) | string | Type of trigger that was called | `cron` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the workflow execution failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.platform.name`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `hangfire`; `k8s`; `quartz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
@@ -237,7 +237,7 @@ it's RECOMMENDED to:
 
 ---
 
-`workflow.platform.product` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`workflow.platform.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -274,7 +274,7 @@ This metric is [recommended][MetricRecommended].
 | [`workflow.trigger.type`](/docs/registry/attributes/workflow.md) | string | Type of trigger that was called | `cron` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the workflow execution failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.platform.name`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `hangfire`; `k8s`; `quartz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
@@ -307,7 +307,7 @@ it's RECOMMENDED to:
 
 ---
 
-`workflow.platform.product` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`workflow.platform.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -352,8 +352,7 @@ it's RECOMMENDED to:
 | [`workflow.task.name`](/docs/registry/attributes/workflow.md) | string | Name of the task | `Build application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the task run failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.task.category`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `deployment`; `build`; `test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.platform.name`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `hangfire`; `k8s`; `quartz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
@@ -399,7 +398,7 @@ it's RECOMMENDED to:
 
 ---
 
-`workflow.platform.product` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`workflow.platform.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -433,8 +432,7 @@ This means that this error count might not be the same as the count of metric `w
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`workflow.task.name`](/docs/registry/attributes/workflow.md) | string | Name of the task | `Build application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.task.category`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `deployment`; `build`; `test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.platform.name`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `hangfire`; `k8s`; `quartz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
@@ -467,7 +465,7 @@ it's RECOMMENDED to:
 
 ---
 
-`workflow.platform.product` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`workflow.platform.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -501,8 +499,7 @@ This metric is [recommended][MetricRecommended].
 | [`workflow.task.name`](/docs/registry/attributes/workflow.md) | string | Name of the task | `Build application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the task run failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.task.category`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `deployment`; `build`; `test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.platform.name`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `hangfire`; `k8s`; `quartz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
@@ -548,7 +545,7 @@ it's RECOMMENDED to:
 
 ---
 
-`workflow.platform.product` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`workflow.platform.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -584,8 +581,7 @@ This metric is [recommended][MetricRecommended].
 | [`workflow.task.name`](/docs/registry/attributes/workflow.md) | string | Name of the task | `Build application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the task run failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.task.category`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `deployment`; `build`; `test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.platform.name`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `hangfire`; `k8s`; `quartz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
@@ -629,7 +625,7 @@ it's RECOMMENDED to:
 
 ---
 
-`workflow.platform.product` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`workflow.platform.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -663,8 +659,7 @@ This metric is [recommended][MetricRecommended].
 | [`workflow.task.name`](/docs/registry/attributes/workflow.md) | string | Name of the task | `Build application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the task run failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.platform.product`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `k8s` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`workflow.task.category`](/docs/registry/attributes/workflow.md) | string | The pipeline run goes through these states during its lifecycle. | `deployment`; `build`; `test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`workflow.platform.name`](/docs/registry/attributes/workflow.md) | string | The product being used to co-ordinate the execution of the tasks. | `hangfire`; `k8s`; `quartz` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
@@ -710,7 +705,7 @@ it's RECOMMENDED to:
 
 ---
 
-`workflow.platform.product` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`workflow.platform.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|

@@ -3,7 +3,7 @@ groups:
     type: entity
     stability: development
     name: workflow.definition
-    brief: >
+    brief: A reusable block which has been defined to complete an action via a task.
     attributes:
       - ref: workflow.definition.id
         role: identifying
@@ -14,12 +14,12 @@ groups:
       - ref: workflow.definition.url.full
         role: descriptive
       - ref: workflow.definition.version
-        role: descriptive
+        role: identifying
   - id: entity.workflow.trigger
     type: entity
     stability: development
     name: workflow.trigger
-    brief: >
+    brief: A definition of an interaction which should start a workflow to run.
     attributes:
       - ref: workflow.trigger.id
         role: identifying
@@ -35,7 +35,8 @@ groups:
     type: entity
     stability: development
     name: workflow
-    brief: >
+    brief: An overaching encapsulation of all the tasks which have been run,
+      as a result of the triggering of the workflow.
     attributes:
       - ref: workflow.id
         role: identifying
@@ -43,31 +44,23 @@ groups:
         role: descriptive
       - ref: workflow.url.full
         role: descriptive
-      - ref: workflow.definition.id
-        role: descriptive
   - id: entity.workflow.task
     type: entity
     stability: development
     name: workflow.task
-    brief: >
+    brief: A reusable definition of an action which is to performed via an execution.
     attributes:
       - ref: workflow.task.id
         role: identifying
-      - ref: workflow.task.category
-        role: descriptive
       - ref: workflow.task.name
         role: descriptive
-      - ref: workflow.task.url.full
-        role: descriptive
       - ref: workflow.task.version
-        role: descriptive
-      - ref: workflow.definition.id
-        role: descriptive
+        role: identifying
   - id: entity.workflow.execution
     type: entity
     stability: development
     name: workflow.execution
-    brief: >
+    brief: A short lived entity used to capture an instance of a task being performed.
     attributes:
       - ref: workflow.execution.id
         role: identifying
@@ -78,8 +71,4 @@ groups:
       - ref: workflow.execution.state
         role: descriptive
       - ref: workflow.execution.url.full
-        role: descriptive
-      - ref: workflow.task.id
-        role: descriptive
-      - ref: workflow.id
         role: descriptive
