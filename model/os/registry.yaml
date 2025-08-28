@@ -11,16 +11,10 @@ groups:
       - id: os.type
         type:
           members:
-            - id: windows_nt
-              value: 'windows_nt'
-              brief: "Microsoft Windows NT based OS"
-              stability: development
             - id: windows
               value: 'windows'
               brief: "Microsoft Windows"
-              deprecated:
-                reason: renamed
-                renamed_to: windows_nt
+              note: Used for the Windows NT Operating System.
               stability: development
             - id: linux
               value: 'linux'
