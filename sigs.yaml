@@ -3,7 +3,6 @@ sigs:
     owner:
       - name: "semconv-system-approvers"
         github: semconv-system-approvers
-        type: team-user
     project: "https://github.com/open-telemetry/community/blob/main/projects/system-semconv.md"
     board: "https://github.com/orgs/open-telemetry/projects/55"
     areas:
@@ -19,7 +18,6 @@ sigs:
     owner:
       - name: "semconv-k8s-approvers"
         github: semconv-k8s-approvers
-        type: team-user
     project: "https://github.com/open-telemetry/community/blob/main/projects/k8s-semconv.md"
     board: "https://github.com/orgs/open-telemetry/projects/114"
     areas:
@@ -33,11 +31,11 @@ sigs:
     owner:
       - name: "semconv-genai-approvers"
         github: semconv-genai-approvers
-        type: team-user
     project: "https://github.com/open-telemetry/community/blob/main/projects/gen-ai.md"
     board: "https://github.com/orgs/open-telemetry/projects/82"
     areas:
       - area:gen-ai
+      - area:openai
     labels:
       - accepting_contributions
       - active
@@ -47,11 +45,14 @@ sigs:
     owner:
       - name: "semconv-cicd-approvers"
         github: semconv-cicd-approvers
-        type: team-user
     project: "https://github.com/open-telemetry/community/blob/main/projects/ci-cd.md"
     board: "https://github.com/orgs/open-telemetry/projects/79"
     areas:
       - area:cicd
+      - area:artifact
+      - area:deployment
+      - area:test
+      - area:vcs
     labels:
       - accepting_contributions
       - active
@@ -61,7 +62,6 @@ sigs:
     owner:
       - name: "semconv-security-approvers"
         github: semconv-security-approvers
-        type: team-user
     project: "https://github.com/open-telemetry/community/blob/main/projects/security-semconv.md"
     board: "https://github.com/orgs/open-telemetry/projects/104"
     areas:
@@ -77,7 +77,6 @@ sigs:
     owner:
       - name: "semconv-browser-approvers"
         github: semconv-browser-approvers
-        type: team-user
     project: "https://github.com/open-telemetry/community/blob/main/projects/browser-phase-1.md"
     board: "https://github.com/orgs/open-telemetry/projects/146"
     areas:
@@ -94,7 +93,6 @@ sigs:
     owner:
       - name: "semconv-client-approvers"
         github: semconv-client-approvers
-        type: team-user
     project: "https://github.com/open-telemetry/community/blob/main/projects/client-instrumentation.md"
     board: "https://github.com/orgs/open-telemetry/projects/19"
     areas:
@@ -109,7 +107,6 @@ sigs:
     owner:
       - name: "specs-semconv-maintainers" # TODO: Missing team user for entities?
         github: specs-semconv-maintainers
-        type: team-user
     project: "https://github.com/open-telemetry/community/blob/main/projects/resources-and-entities.md"
     board: "https://github.com/orgs/open-telemetry/projects/85"
     areas:
@@ -123,7 +120,6 @@ sigs:
     owner:
       - name: "semconv-messaging-approvers"
         github: semconv-messaging-approvers
-        type: team-user
     project: "https://github.com/open-telemetry/community/blob/main/projects/currently-inactive/messaging-semconv.md"
     board: "https://github.com/orgs/open-telemetry/projects/20"
     areas:
@@ -131,4 +127,4 @@ sigs:
     labels:
       - inactive
       - needs_staffing
-    notes: "The SIG is inactive. If you have interest in working towards messaging stabilization, reach out to maintainers to discuss activating the SIG again"
+    notes: "The SIG is inactive. If you have interest in working towards messaging stabilization, consider proposing a project update in the https://github.com/open-telemetry/community"

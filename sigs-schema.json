@@ -18,19 +18,14 @@
               "properties": {
                 "name": {
                   "type": "string",
-                  "description": "The name of the owner (individual or team)."
+                  "description": "The name of the owner (team user)."
                 },
                 "github": {
                   "type": "string",
-                  "description": "The GitHub handle of the owner (individual or team)."
-                },
-                "type": {
-                  "type": "string",
-                  "enum": ["team-user", "user"],
-                  "description": "The type of owner, either a team user or an individual user."
+                  "description": "The GitHub handle of the owner (team user)."
                 }
               },
-              "required": ["name", "github", "type"]
+              "required": ["name", "github"]
             },
             "description": "List of owners for the SIG, which can include individuals or teams."
           },

@@ -43,10 +43,8 @@ for sig in data['sigs']:
     owners = ",<br/>".join(
         [
             f"[{owner['name']}](https://github.com/orgs/open-telemetry/teams/{owner['github']})"
-            if owner['type'] == 'team-user'
-            else f"[{owner['name']}](https://github.com/{owner['github']})"
             for owner in sig.get('owner', [])
-            if owner.get('name') and owner.get('github') and owner.get('type')
+            if owner.get('name') and owner.get('github')
         ]
     )
 
