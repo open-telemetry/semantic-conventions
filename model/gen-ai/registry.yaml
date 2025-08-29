@@ -260,7 +260,7 @@ groups:
         stability: development
         type: any
         brief: Parameters passed to the tool call.
-        note: >
+        note: |
           > [!WARNING]
           > This attribute may contain sensitive information.
 
@@ -298,11 +298,11 @@ groups:
               "conditions": "sunny"
             }
         
-      - id: gen_ai.tool_definitions.raw
+      - id: gen_ai.tool_definitions
         stability: development
         type: any
         brief: The list of source system tool definitions available to the GenAI agent or model.
-        note: >
+        note: |
           The value of this attribute matches source system tool definition format.
          
           It's expected to be an array of JSON objects - in case a serialized string is available
