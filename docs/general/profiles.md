@@ -29,9 +29,9 @@ They may be used in any Profiles record they apply to.
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`profile.frame.type`](/docs/registry/attributes/profile.md) | string | Describes the interpreter or compiler of a single frame. | `cpython` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`profile.frame.type`](/docs/registry/attributes/profile.md) | string | Describes the interpreter or compiler of a single frame. | `cpython` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
