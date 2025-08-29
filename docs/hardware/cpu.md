@@ -273,4 +273,4 @@ When using this metric for CPU status, the following attributes MUST be set:
 <!-- endsemconv -->
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[MetricRecommended]: /docs/general/metrics.md#metric-requirement-levels
+[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
