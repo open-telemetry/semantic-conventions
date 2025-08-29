@@ -6,7 +6,7 @@ composed of multidisciplinary contributors who bring expertise in both the
 relevant domain and OpenTelemetry itself.
 
 SIGs have several responsibilities and goals, but their primary focus is to
-define and guide semantic conventions toward stabilization. SIGs that achieve their goal 
+define and guide semantic conventions toward stabilization. SIGs that achieve their goal
 may be dissolved, but the codeowner group stays serving as domain experts
 for pull request (PR) reviews and issue triage.
 
