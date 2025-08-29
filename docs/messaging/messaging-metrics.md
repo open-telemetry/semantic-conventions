@@ -70,20 +70,22 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | `messaging.client.operation.duration` | Histogram | `s` | Duration of messaging operation initiated by a producer or consumer client. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric SHOULD NOT be used to report processing duration - processing duration is reported in `messaging.process.duration` metric.
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. | `send`; `receive`; `ack` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws.sns`; `aws_sqs` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | string | The name of the consumer group with which a consumer is associated. [3] | `my-group`; `indexer` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md) | string | The name of the destination subscription from which a message is consumed. [6] | `subscription-a` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` | `Conditionally Required` if available. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | string | A string identifying the type of the messaging operation. [8] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+|---|---|---|---|---|---|---|
+| [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. | `send`; `receive`; `ack` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`messaging.system`](/docs/registry/attributes/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws.sns`; `aws_sqs` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | string | The name of the consumer group with which a consumer is associated. [3] | `my-group`; `indexer` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md) | string | The name of the destination subscription from which a message is consumed. [6] | `subscription-a` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` | `Conditionally Required` if available. | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | string | A string identifying the type of the messaging operation. [8] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 
 **[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
@@ -162,6 +164,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -186,17 +189,19 @@ This metric is [required][MetricRequired].
 | `messaging.client.sent.messages` | Counter | `{message}` | Number of messages producer attempted to send to the broker. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric MUST NOT count messages that were created but haven't yet been sent.
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. | `send`; `schedule`; `enqueue` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws.sns`; `aws_sqs` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [3] | `MyQueue`; `MyTopic` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | string | Low cardinality representation of the messaging destination name [5] | `/customers/{customerId}` | `Conditionally Required` if available. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+|---|---|---|---|---|---|---|
+| [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. | `send`; `schedule`; `enqueue` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`messaging.system`](/docs/registry/attributes/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws.sns`; `aws_sqs` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [3] | `MyQueue`; `MyTopic` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | string | Low cardinality representation of the messaging destination name [5] | `/customers/{customerId}` | `Conditionally Required` if available. | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 
 **[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
@@ -257,6 +262,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -282,19 +288,21 @@ This metric is [required][MetricRequired].
 
 **[1]:** Records the number of messages pulled from the broker or number of messages dispatched to the application in push-based scenarios.
 The metric SHOULD be reported once per message delivery. For example, if receiving and processing operations are both instrumented for a single message delivery, this counter is incremented when the message is received and not reported when it is processed.
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. | `receive`; `peek`; `poll`; `consume` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws.sns`; `aws_sqs` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | string | The name of the consumer group with which a consumer is associated. [3] | `my-group`; `indexer` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md) | string | The name of the destination subscription from which a message is consumed. [6] | `subscription-a` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` | `Conditionally Required` if available. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+|---|---|---|---|---|---|---|
+| [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. | `receive`; `peek`; `poll`; `consume` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`messaging.system`](/docs/registry/attributes/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws.sns`; `aws_sqs` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | string | The name of the consumer group with which a consumer is associated. [3] | `my-group`; `indexer` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md) | string | The name of the destination subscription from which a message is consumed. [6] | `subscription-a` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` | `Conditionally Required` if available. | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 
 **[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
@@ -359,6 +367,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -387,19 +396,21 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | `messaging.process.duration` | Histogram | `s` | Duration of processing operation. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** This metric MUST be reported for operations with `messaging.operation.type` that matches `process`.
+<details open>
+<summary><b>General Attributes:</b></summary>
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. | `process`; `consume`; `handle` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.system`](/docs/registry/attributes/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws.sns`; `aws_sqs` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | string | The name of the consumer group with which a consumer is associated. [3] | `my-group`; `indexer` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md) | string | The name of the destination subscription from which a message is consumed. [6] | `subscription-a` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` | `Conditionally Required` if available. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+|---|---|---|---|---|---|---|
+| [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. | `process`; `consume`; `handle` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`messaging.system`](/docs/registry/attributes/messaging.md) | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws.sns`; `aws_sqs` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | string | The name of the consumer group with which a consumer is associated. [3] | `my-group`; `indexer` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md) | string | The name of the destination subscription from which a message is consumed. [6] | `subscription-a` | `Conditionally Required` if applicable. | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` | `Conditionally Required` if available. | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 
 **[1] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
@@ -464,6 +475,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 | `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
