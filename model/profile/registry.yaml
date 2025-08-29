@@ -82,7 +82,7 @@ groups:
     type: attribute_group
     display_name: Pprof specific attributes for the Profiling signal
     brief: >
-      Attributes specific to pprof that helps to convert Profiling signals.
+      Attributes specific to pprof that help convert from pprof to Profiling signal.
     attributes:
       - id: profile.pprof.mapping.has_functions
         brief: >
@@ -101,7 +101,7 @@ groups:
         stability: development
       - id: profile.pprof.mapping.has_inline_frames
         brief: >
-          Indicates that there are inlined frames related to this mapping.
+          Indicates that there are inline frames related to this mapping.
         type: boolean
         stability: development
       - id: profile.pprof.location.is_folded

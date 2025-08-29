@@ -35,12 +35,12 @@ Describes the origin of a single frame in a Profile.
 
 ## Pprof specific attributes for the Profiling signal
 
-Attributes specific to pprof that helps to convert Profiling signals.
+Attributes specific to pprof that help convert from pprof to Profiling signal.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="profile-pprof-location-is-folded" href="#profile-pprof-location-is-folded">`profile.pprof.location.is_folded`</a> | boolean | Provides an indication that multiple symbols map to this location's address, for example due to identical code folding by the linker. In that case the line information represents one of the multiple symbols. This field must be recomputed when the symbolization state of the profile changes. |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="profile-pprof-mapping-has-filenames" href="#profile-pprof-mapping-has-filenames">`profile.pprof.mapping.has_filenames`</a> | boolean | Indicates that there are filenames related to this mapping. |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="profile-pprof-mapping-has-functions" href="#profile-pprof-mapping-has-functions">`profile.pprof.mapping.has_functions`</a> | boolean | Indicates that there are functions related to this mapping. |  | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="profile-pprof-mapping-has-inline-frames" href="#profile-pprof-mapping-has-inline-frames">`profile.pprof.mapping.has_inline_frames`</a> | boolean | Indicates that there are inlined frames related to this mapping. |  | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="profile-pprof-mapping-has-inline-frames" href="#profile-pprof-mapping-has-inline-frames">`profile.pprof.mapping.has_inline_frames`</a> | boolean | Indicates that there are inline frames related to this mapping. |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="profile-pprof-mapping-has-line-numbers" href="#profile-pprof-mapping-has-line-numbers">`profile.pprof.mapping.has_line_numbers`</a> | boolean | Indicates that there are line numbers related to this mapping. |  | ![Development](https://img.shields.io/badge/-development-blue) |

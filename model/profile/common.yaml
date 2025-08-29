@@ -10,7 +10,7 @@ groups:
   - id: profile.pprof
     type: attribute_group
     brief: >
-      Describes the relationship between pprof and a Profile.
+      Attributes specific to pprof that help convert from pprof to Profiling signal.
     attributes:
       - ref: profile.pprof.mapping.has_functions
         requirement_level: recommended
