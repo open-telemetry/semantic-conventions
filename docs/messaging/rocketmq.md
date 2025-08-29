@@ -50,63 +50,31 @@ Specific attributes for Apache RocketMQ are defined below.
 <!-- markdownlint-disable -->
 
 <details open>
-<summary><b>Sampling Relevant Attributes:</b></summary>
-The following attributes can be important for making sampling decisions
-and SHOULD be provided <b>at span creation time</b> (if provided at all). 
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | string | RocketMQ [consumer group name](https://rocketmq.apache.org/docs/domainModel/07consumergroup). | `my-group`; `indexer` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [1] | `MyQueue`; `MyTopic` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | string | A string identifying the type of the messaging operation. [3] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [5] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-**[1] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
-
-**[2] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
-
-**[3] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
-
-**[4] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
-
-**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
----
-
-`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
-
-<details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`messaging.rocketmq.namespace`](/docs/registry/attributes/messaging.md) | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [6] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [7] | `0`; `1`; `2` | `Conditionally Required` [8] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.rocketmq.message.delay_time_level`](/docs/registry/attributes/messaging.md) | int | The delay time level for delay message, which determines the message delay time. | `3` | `Conditionally Required` [9] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.rocketmq.message.delivery_timestamp`](/docs/registry/attributes/messaging.md) | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer. | `1665987217045` | `Conditionally Required` [10] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.rocketmq.message.group`](/docs/registry/attributes/messaging.md) | string | It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group. | `myMessageGroup` | `Conditionally Required` If the message type is FIFO. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.client.id`](/docs/registry/attributes/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.message.id`](/docs/registry/attributes/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.rocketmq.consumption_model`](/docs/registry/attributes/messaging.md) | string | Model of message consumption. This only applies to consumer spans. | `clustering`; `broadcasting` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.rocketmq.message.keys`](/docs/registry/attributes/messaging.md) | string[] | Key(s) of message, another way to mark message besides message id. | `["keyA", "keyB"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.rocketmq.message.tag`](/docs/registry/attributes/messaging.md) | string | The secondary classifier of message besides topic. | `tagA` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.rocketmq.message.type`](/docs/registry/attributes/messaging.md) | string | Type of message. | `normal`; `fifo`; `delay` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body in bytes. [11] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | string | RocketMQ [consumer group name](https://rocketmq.apache.org/docs/domainModel/07consumergroup). | `my-group`; `indexer` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Span Creation  |
+| [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Span Creation  |
+| [`messaging.rocketmq.namespace`](/docs/registry/attributes/messaging.md) | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [2] | `0`; `1`; `2` | `Conditionally Required` [3] | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [4] | `MyQueue`; `MyTopic` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |  Span Creation  |
+| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | string | A string identifying the type of the messaging operation. [6] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |  Span Creation  |
+| [`messaging.rocketmq.message.delay_time_level`](/docs/registry/attributes/messaging.md) | int | The delay time level for delay message, which determines the message delay time. | `3` | `Conditionally Required` [7] | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`messaging.rocketmq.message.delivery_timestamp`](/docs/registry/attributes/messaging.md) | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer. | `1665987217045` | `Conditionally Required` [8] | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`messaging.rocketmq.message.group`](/docs/registry/attributes/messaging.md) | string | It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group. | `myMessageGroup` | `Conditionally Required` If the message type is FIFO. | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`messaging.client.id`](/docs/registry/attributes/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`messaging.message.id`](/docs/registry/attributes/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`messaging.rocketmq.consumption_model`](/docs/registry/attributes/messaging.md) | string | Model of message consumption. This only applies to consumer spans. | `clustering`; `broadcasting` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`messaging.rocketmq.message.keys`](/docs/registry/attributes/messaging.md) | string[] | Key(s) of message, another way to mark message besides message id. | `["keyA", "keyB"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`messaging.rocketmq.message.tag`](/docs/registry/attributes/messaging.md) | string | The secondary classifier of message besides topic. | `tagA` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`messaging.rocketmq.message.type`](/docs/registry/attributes/messaging.md) | string | Type of message. | `normal`; `fifo`; `delay` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body in bytes. [11] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
-**[6] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
@@ -126,13 +94,24 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[7] `messaging.batch.message_count`:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
+**[2] `messaging.batch.message_count`:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
-**[8] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
+**[3] `messaging.batch.message_count`:** If the span describes an operation on a batch of messages.
 
-**[9] `messaging.rocketmq.message.delay_time_level`:** If the message type is delay and delivery timestamp is not specified.
+**[4] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[10] `messaging.rocketmq.message.delivery_timestamp`:** If the message type is delay and delay time level is not specified.
+**[5] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
+
+**[6] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
+
+**[7] `messaging.rocketmq.message.delay_time_level`:** If the message type is delay and delivery timestamp is not specified.
+
+**[8] `messaging.rocketmq.message.delivery_timestamp`:** If the message type is delay and delay time level is not specified.
+
+**[9] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+
+**[10] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[11] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
@@ -144,6 +123,18 @@ body size should be used.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
+
+`messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
