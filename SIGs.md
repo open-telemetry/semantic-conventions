@@ -10,7 +10,7 @@ define and guide semantic conventions toward stabilization. SIGs that achieve th
 may be dissolved, but the codeowner group stays serving as domain experts
 for pull request (PR) reviews and issue triage.
 
-This document provides an overview of all SIGs involved in the
+This document provides an overview of all SIGs and codeowner groups involved in the
 semantic conventions project. In particular, the table below highlights
 the owners of each SIG and their current status.
 
