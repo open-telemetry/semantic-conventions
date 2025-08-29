@@ -274,7 +274,8 @@ groups:
               stability: development
         stability: development
         brief: >
-          Environment of a destination workload is the stage of a software lifecycle as provided in the [AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+          Environment of a destination workload is the stage of a software lifecycle as provided in the
+          [AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
       - id: gcp.apphub_destination.workload.criticality_type
         type:
           members:
