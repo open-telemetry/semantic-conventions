@@ -21,9 +21,9 @@
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 </details>
 
 ## CICD Pipeline Run
@@ -42,10 +42,10 @@
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`cicd.pipeline.run.id`](/docs/registry/attributes/cicd.md) | string | The unique identifier of a pipeline run within a CI/CD system. | `120912` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`cicd.pipeline.run.url.full`](/docs/registry/attributes/cicd.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`cicd.pipeline.run.id`](/docs/registry/attributes/cicd.md) | string | The unique identifier of a pipeline run within a CI/CD system. | `120912` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`cicd.pipeline.run.url.full`](/docs/registry/attributes/cicd.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 </details>
 
 ## CICD Worker
@@ -66,11 +66,11 @@ For example, when a pipeline run involves several workers, its task run spans ma
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`cicd.worker.id`](/docs/registry/attributes/cicd.md) | string | The unique identifier of a worker within a CICD system. | `abc123`; `10.0.1.2`; `controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`cicd.worker.name`](/docs/registry/attributes/cicd.md) | string | The name of a worker within a CICD system. | `agent-abc`; `controller`; `Ubuntu LTS` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`cicd.worker.url.full`](/docs/registry/attributes/cicd.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` | `Recommended` If available | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`cicd.worker.id`](/docs/registry/attributes/cicd.md) | string | The unique identifier of a worker within a CICD system. | `abc123`; `10.0.1.2`; `controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`cicd.worker.name`](/docs/registry/attributes/cicd.md) | string | The name of a worker within a CICD system. | `agent-abc`; `controller`; `Ubuntu LTS` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`cicd.worker.url.full`](/docs/registry/attributes/cicd.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` | `Recommended` If available | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 </details>
 
 

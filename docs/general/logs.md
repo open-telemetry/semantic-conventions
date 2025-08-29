@@ -42,10 +42,10 @@ These attributes may be used for identifying a Log Record.
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`log.record.original`](/docs/registry/attributes/log.md) | string | The complete original Log Record. [1] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`log.record.uid`](/docs/registry/attributes/log.md) | string | A unique identifier for the Log Record. [2] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`log.record.original`](/docs/registry/attributes/log.md) | string | The complete original Log Record. [1] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`log.record.uid`](/docs/registry/attributes/log.md) | string | A unique identifier for the Log Record. [2] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `log.record.original`:** This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)
 
@@ -80,12 +80,12 @@ As such, these should be recorded as Log Record attributes when applicable. They
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`log.file.name`](/docs/registry/attributes/log.md) | string | The basename of the file. | `audit.log` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`log.file.name_resolved`](/docs/registry/attributes/log.md) | string | The basename of the file, with symlinks resolved. | `uuid.log` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`log.file.path`](/docs/registry/attributes/log.md) | string | The full path to the file. | `/var/log/mysql/audit.log` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`log.file.path_resolved`](/docs/registry/attributes/log.md) | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`log.file.name`](/docs/registry/attributes/log.md) | string | The basename of the file. | `audit.log` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`log.file.name_resolved`](/docs/registry/attributes/log.md) | string | The basename of the file, with symlinks resolved. | `uuid.log` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`log.file.path`](/docs/registry/attributes/log.md) | string | The full path to the file. | `/var/log/mysql/audit.log` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`log.file.path_resolved`](/docs/registry/attributes/log.md) | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 </details>
 
 <!-- markdownlint-restore -->
@@ -107,9 +107,9 @@ As such, these should be recorded as Log Record attributes when applicable. They
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`log.iostream`](/docs/registry/attributes/log.md) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`log.iostream`](/docs/registry/attributes/log.md) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 

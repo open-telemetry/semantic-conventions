@@ -19,11 +19,11 @@ This document defines z/OS software entity and documents how to populate other e
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`zos.smf.id`](/docs/registry/attributes/zos.md) | string | The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis. | `SYS1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`zos.sysplex.name`](/docs/registry/attributes/zos.md) | string | The name of the SYSPLEX to which the z/OS system belongs too. | `SYSPLEX1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`mainframe.lpar.name`](/docs/registry/attributes/mainframe.md) | string | Name of the logical partition that hosts a systems with a mainframe operating system. | `LPAR01` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`zos.smf.id`](/docs/registry/attributes/zos.md) | string | The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis. | `SYS1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`zos.sysplex.name`](/docs/registry/attributes/zos.md) | string | The name of the SYSPLEX to which the z/OS system belongs too. | `SYSPLEX1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`mainframe.lpar.name`](/docs/registry/attributes/mainframe.md) | string | Name of the logical partition that hosts a systems with a mainframe operating system. | `LPAR01` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 </details>
 
 <!-- markdownlint-restore -->
@@ -45,11 +45,11 @@ The following table describes how to populate attributes on the `host` entity on
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`host.arch`](/docs/registry/attributes/host.md) | string | The CPU architecture the host system is running on. | `s390x` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On z/OS, SHOULD be the full qualified hostname used to register the z/OS system in DNS. | `SYS1.DOMAIN.COM` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`host.id`](/docs/registry/attributes/host.md) | string | Unique host ID. On z/OS, SHOULD be the concatenation of sysplex name and SMFID, separated by a dash | `SYSPLEX1-SYS1` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`host.arch`](/docs/registry/attributes/host.md) | string | The CPU architecture the host system is running on. | `s390x` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`host.name`](/docs/registry/attributes/host.md) | string | Name of the host. On z/OS, SHOULD be the full qualified hostname used to register the z/OS system in DNS. | `SYS1.DOMAIN.COM` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`host.id`](/docs/registry/attributes/host.md) | string | Unique host ID. On z/OS, SHOULD be the concatenation of sysplex name and SMFID, separated by a dash | `SYSPLEX1-SYS1` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
@@ -85,12 +85,12 @@ The following table describes how to populate the operating system attributes on
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`os.type`](/docs/registry/attributes/os.md) | string | The operating system type. | `zos` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`os.version`](/docs/registry/attributes/os.md) | string | The version string of the operating system. On z/OS, SHOULD be the release returned by the command `d iplinfo`. | `3.1.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`os.description`](/docs/registry/attributes/os.md) | string | Human readable OS version information, e.g., as reported by command `d iplinfo`. | `IBM z/OS 3.1` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`os.name`](/docs/registry/attributes/os.md) | string | Human readable operating system name. | `z/OS` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`os.type`](/docs/registry/attributes/os.md) | string | The operating system type. | `zos` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`os.version`](/docs/registry/attributes/os.md) | string | The version string of the operating system. On z/OS, SHOULD be the release returned by the command `d iplinfo`. | `3.1.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`os.description`](/docs/registry/attributes/os.md) | string | Human readable OS version information, e.g., as reported by command `d iplinfo`. | `IBM z/OS 3.1` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`os.name`](/docs/registry/attributes/os.md) | string | Human readable operating system name. | `z/OS` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
@@ -129,14 +129,14 @@ The following table describes how to populate attributes on the `process` entity
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`process.command`](/docs/registry/attributes/process.md) | string | The command used to launch the process (i.e. the command name). On z/OS, SHOULD be set to the name of the job used to start the z/OS system software. | `CICSSTRT` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`process.pid`](/docs/registry/attributes/process.md) | int | Process identifier (PID). [1] | `008A` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`process.owner`](/docs/registry/attributes/process.md) | string | The username of the user that owns the process. [2] | `CICSUSR` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`process.runtime.description`](/docs/registry/attributes/process.md) | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `IBM Customer Information Control System (CICS) Transaction Server for z/OS Version 5.6` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`process.runtime.name`](/docs/registry/attributes/process.md) | string | The name of the runtime of this process. | `CICS Transaction Server z/OS Version 5.6` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`process.runtime.version`](/docs/registry/attributes/process.md) | string | The version of the runtime of this process, as returned by the runtime without modification. | `5.6` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`process.command`](/docs/registry/attributes/process.md) | string | The command used to launch the process (i.e. the command name). On z/OS, SHOULD be set to the name of the job used to start the z/OS system software. | `CICSSTRT` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`process.pid`](/docs/registry/attributes/process.md) | int | Process identifier (PID). [1] | `008A` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`process.owner`](/docs/registry/attributes/process.md) | string | The username of the user that owns the process. [2] | `CICSUSR` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`process.runtime.description`](/docs/registry/attributes/process.md) | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `IBM Customer Information Control System (CICS) Transaction Server for z/OS Version 5.6` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`process.runtime.name`](/docs/registry/attributes/process.md) | string | The name of the runtime of this process. | `CICS Transaction Server z/OS Version 5.6` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`process.runtime.version`](/docs/registry/attributes/process.md) | string | The version of the runtime of this process, as returned by the runtime without modification. | `5.6` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `process.pid`:** On z/OS, SHOULD be set to the Address Space Identifier.
 

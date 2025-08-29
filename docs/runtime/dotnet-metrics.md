@@ -88,9 +88,9 @@ This metric reports the same values as accessing the corresponding processor tim
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`cpu.mode`](/docs/registry/attributes/cpu.md) | string | The mode of the CPU | `user`; `system` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`cpu.mode`](/docs/registry/attributes/cpu.md) | string | The mode of the CPU | `user`; `system` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
@@ -162,9 +162,9 @@ This metric uses the [`GC.CollectionCount(int generation)`](https://learn.micros
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 
 ---
 
@@ -250,9 +250,9 @@ This metric reports the same values as calling [`GC.GetGCMemoryInfo().Generation
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 
 ---
 
@@ -292,9 +292,9 @@ This metric reports the same values as calling [`GC.GetGCMemoryInfo().Generation
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 
 ---
 
@@ -582,9 +582,9 @@ This metric reports the same values as counting calls to [`AppDomain.CurrentDoma
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. | `System.OperationCanceledException`; `Contoso.MyException` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. | `System.OperationCanceledException`; `Contoso.MyException` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 
 ---
 

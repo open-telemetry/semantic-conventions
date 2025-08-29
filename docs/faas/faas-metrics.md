@@ -60,9 +60,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
@@ -103,9 +103,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
@@ -142,9 +142,9 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
@@ -181,9 +181,9 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
@@ -220,9 +220,9 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
@@ -259,9 +259,9 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
@@ -298,9 +298,9 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
@@ -341,9 +341,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
@@ -380,9 +380,9 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
